@@ -1,0 +1,19 @@
+schema_version: 1
+registry_id: threat-forge-research-baselines
+
+baselines:
+  - id: TF-BL-0001
+    repository: nballestriero/threat-forge
+    branch: master
+    commit: b8ffdbc5c6b6ae68ff5afefe2ab44116362d15e3
+    short_commit: b8ffdbc
+    commit_message: "tooling: improve governed Markdown editor visibility"
+    captured_on: 2026-07-16
+    purpose: >
+      Source baseline for the initial study of naturally expressed primary
+      Base Analysis focus in governed Functional Requirements.
+    corpus:
+      macro_requirements: 2
+      functional_requirements: 24
+      governance_requirements: 37
+      total_requirements: 61

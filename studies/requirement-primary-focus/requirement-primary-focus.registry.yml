@@ -1,0 +1,229 @@
+schema_version: 1
+registry_id: requirement-primary-analysis-focus
+study_id: STUDY-0001
+source_baseline_id: TF-BL-0001
+status: candidate
+
+allowed_focus_types:
+  - actor
+  - component
+  - asset
+  - boundary
+  - data_flow
+
+mappings:
+  - requirement_id: MR-0001ADR-0003REQ-0001
+    title: "Registro di tracciabilita implementativa"
+    primary_focus_type: asset
+    primary_focus_name: "Governed implementation trace registry"
+    confidence: explicit
+    source_body_path: docs/reference/project-model/body/requirements/MR-0001/MR-0001ADR-0003REQ-0001_body.md
+    review_status: candidate
+    rationale: "The registry is introduced once and reused by coreference."
+
+  - requirement_id: MR-0001ADR-0004REQ-0001
+    title: "Registro dei valori controllati dei campi documentali"
+    primary_focus_type: asset
+    primary_focus_name: "Governed controlled-field taxonomy registry"
+    confidence: explicit
+    source_body_path: docs/reference/project-model/body/requirements/MR-0001/MR-0001ADR-0004REQ-0001_body.md
+    review_status: candidate
+    rationale: "The registry and its contextual value sets are the governed information resource."
+
+  - requirement_id: MR-0001ADR-0006REQ-0001
+    title: "Generatore locale di handoff archive"
+    primary_focus_type: component
+    primary_focus_name: "Local handoff archive generator"
+    confidence: explicit
+    source_body_path: docs/reference/project-model/body/requirements/MR-0001/MR-0001ADR-0006REQ-0001_body.md
+    review_status: candidate
+    rationale: "The generator performs all required behavior."
+
+  - requirement_id: MR-0001ADR-0003REQ-0002
+    title: "Copertura implementativa dei requisiti governati"
+    primary_focus_type: asset
+    primary_focus_name: "Requirement-centric implementation coverage view"
+    confidence: explicit
+    source_body_path: docs/reference/project-model/body/requirements/MR-0001/MR-0001ADR-0003REQ-0002_body.md
+    review_status: candidate
+    rationale: "The coverage view is derived, populated and classified."
+
+  - requirement_id: MR-0001ADR-0004REQ-0002
+    title: "Catalogo canonico dei campi controllati e dei metadati di presentazione"
+    primary_focus_type: asset
+    primary_focus_name: "Canonical controlled-field catalog"
+    confidence: explicit
+    source_body_path: docs/reference/project-model/body/requirements/MR-0001/MR-0001ADR-0004REQ-0002_body.md
+    review_status: candidate
+    rationale: "The catalog is the surface-independent information resource."
+
+  - requirement_id: MR-0001ADR-0007REQ-0001
+    title: "Canonical profiles for governed document models"
+    primary_focus_type: asset
+    primary_focus_name: "Canonical governed document model set"
+    confidence: composite
+    source_body_path: docs/reference/project-model/body/requirements/MR-0001/MR-0001ADR-0007REQ-0001_body.md
+    review_status: candidate
+    rationale: "Four logical models and their profiles form one coherent governed model set."
+
+  - requirement_id: MR-0001ADR-0007REQ-0002
+    title: "Model-oriented validation of governed documents"
+    primary_focus_type: component
+    primary_focus_name: "Governed document model validation subsystem"
+    confidence: composite
+    source_body_path: docs/reference/project-model/body/requirements/MR-0001/MR-0001ADR-0007REQ-0002_body.md
+    review_status: candidate
+    rationale: "Multiple validators form one coherent validation subsystem."
+
+  - requirement_id: MR-0001ADR-0007REQ-0003
+    title: "Governed migration of the active document corpus"
+    primary_focus_type: component
+    primary_focus_name: "Governed document corpus migration process"
+    confidence: inferred
+    source_body_path: docs/reference/project-model/body/requirements/MR-0001/MR-0001ADR-0007REQ-0003_body.md
+    review_status: candidate
+    rationale: "The migration process inventories, reports and transforms the corpus."
+
+  - requirement_id: MR-0002ADR-0001REQ-0001
+    title: "Pianificazione guidata di un artefatto implementativo da requisito governato"
+    primary_focus_type: component
+    primary_focus_name: "Governed implementation planner"
+    confidence: explicit
+    source_body_path: docs/reference/project-model/body/requirements/MR-0002/MR-0002ADR-0001REQ-0001_body.md
+    review_status: candidate
+    rationale: "The planner accepts, derives, validates and displays the plan."
+
+  - requirement_id: MR-0002ADR-0002REQ-0001
+    title: "Commit e push governati dalla root canonica"
+    primary_focus_type: component
+    primary_focus_name: "Governed repository-operation runner"
+    confidence: explicit
+    source_body_path: docs/reference/project-model/body/requirements/MR-0002/MR-0002ADR-0002REQ-0001_body.md
+    review_status: candidate
+    rationale: "The runner owns the publication sequence."
+
+  - requirement_id: MR-0002ADR-0003REQ-0001
+    title: "Creazione guidata di uno scaffold implementativo governato"
+    primary_focus_type: component
+    primary_focus_name: "Governed implementation scaffolder"
+    confidence: explicit
+    source_body_path: docs/reference/project-model/body/requirements/MR-0002/MR-0002ADR-0003REQ-0001_body.md
+    review_status: candidate
+    rationale: "The scaffolder creates and records the scaffold."
+
+  - requirement_id: MR-0002ADR-0003REQ-0002
+    title: "Promozione governata di uno scaffold implementativo"
+    primary_focus_type: component
+    primary_focus_name: "Governed scaffold promotion tool"
+    confidence: explicit
+    source_body_path: docs/reference/project-model/body/requirements/MR-0002/MR-0002ADR-0003REQ-0002_body.md
+    review_status: candidate
+    rationale: "The promotion tool validates and atomically promotes one scaffold."
+
+  - requirement_id: MR-0002ADR-0004REQ-0001
+    title: "Generatore deterministico di documenti governati"
+    primary_focus_type: component
+    primary_focus_name: "Governed document generator"
+    confidence: explicit
+    source_body_path: docs/reference/project-model/body/requirements/MR-0002/MR-0002ADR-0004REQ-0001_body.md
+    review_status: candidate
+    rationale: "The generator creates coherent registry and Markdown representations."
+
+  - requirement_id: MR-0002ADR-0004REQ-0002
+    title: "Controllo degli header dei body governati"
+    primary_focus_type: component
+    primary_focus_name: "Governed header validation subsystem"
+    confidence: composite
+    source_body_path: docs/reference/project-model/body/requirements/MR-0002/MR-0002ADR-0004REQ-0002_body.md
+    review_status: candidate
+    rationale: "Applicable validators and transitional coverage form one validation capability."
+
+  - requirement_id: MR-0002ADR-0005REQ-0001
+    title: "Catalogo locale di task VS Code ThreatForge"
+    primary_focus_type: asset
+    primary_focus_name: "Local VS Code task catalog"
+    confidence: explicit
+    source_body_path: docs/reference/project-model/body/requirements/MR-0002/MR-0002ADR-0005REQ-0001_body.md
+    review_status: candidate
+    rationale: "The task catalog is maintained and exposes governed commands."
+
+  - requirement_id: MR-0002ADR-0004REQ-0003
+    title: "Contratto di authoring guidato dei requisiti governati"
+    primary_focus_type: component
+    primary_focus_name: "Governed Requirement authoring core"
+    confidence: explicit
+    source_body_path: docs/reference/project-model/body/requirements/MR-0002/MR-0002ADR-0004REQ-0003_body.md
+    review_status: candidate
+    rationale: "The authoring core reads sources, builds projections, previews and writes."
+
+  - requirement_id: MR-0002ADR-0005REQ-0002
+    title: "Authoring guidato dei requisiti tramite VS Code"
+    primary_focus_type: component
+    primary_focus_name: "VS Code guided Requirement authoring integration"
+    confidence: inferred
+    source_body_path: docs/reference/project-model/body/requirements/MR-0002/MR-0002ADR-0005REQ-0002_body.md
+    review_status: candidate
+    rationale: "The workspace integration coordinates tasks, schema and snippets."
+
+  - requirement_id: MR-0002ADR-0004REQ-0004
+    title: "Contratto condiviso di authoring documentale per MR, ADR e REQ"
+    primary_focus_type: component
+    primary_focus_name: "Governed document authoring core"
+    confidence: explicit
+    source_body_path: docs/reference/project-model/body/requirements/MR-0002/MR-0002ADR-0004REQ-0004_body.md
+    review_status: candidate
+    rationale: "The shared core owns creation and modification behavior."
+
+  - requirement_id: MR-0002ADR-0005REQ-0003
+    title: "Editor VS Code guidato per MR, ADR e REQ"
+    primary_focus_type: component
+    primary_focus_name: "VS Code governed-document editor integration"
+    confidence: explicit
+    source_body_path: docs/reference/project-model/body/requirements/MR-0002/MR-0002ADR-0005REQ-0003_body.md
+    review_status: candidate
+    rationale: "The editor integration provides completion, hover and diagnostics."
+
+  - requirement_id: MR-0002ADR-0001REQ-0002
+    title: "Presentazione web dei campi documentali controllati"
+    primary_focus_type: data_flow
+    primary_focus_name: "Controlled-field metadata delivery from Project Model API to web UI"
+    confidence: inferred
+    source_body_path: docs/reference/project-model/body/requirements/MR-0002/MR-0002ADR-0001REQ-0002_body.md
+    review_status: candidate
+    rationale: "The requirement is naturally centered on API-to-UI metadata delivery."
+
+  - requirement_id: MR-0002ADR-0006REQ-0001
+    title: "Contextual analysis of governed Markdown bodies"
+    primary_focus_type: component
+    primary_focus_name: "Markdown assistance core"
+    confidence: explicit
+    source_body_path: docs/reference/project-model/body/requirements/MR-0002/MR-0002ADR-0006REQ-0001_body.md
+    review_status: candidate
+    rationale: "The core accepts editor state and returns semantic assistance."
+
+  - requirement_id: MR-0002ADR-0006REQ-0002
+    title: "Live VS Code assistance for governed Markdown bodies"
+    primary_focus_type: component
+    primary_focus_name: "VS Code Markdown assistance adapter"
+    confidence: explicit
+    source_body_path: docs/reference/project-model/body/requirements/MR-0002/MR-0002ADR-0006REQ-0002_body.md
+    review_status: candidate
+    rationale: "The adapter invokes the core and presents its results."
+
+  - requirement_id: MR-0002ADR-0006REQ-0003
+    title: "Web editor reuse of governed Markdown assistance"
+    primary_focus_type: component
+    primary_focus_name: "Web editor Markdown assistance adapter"
+    confidence: explicit
+    source_body_path: docs/reference/project-model/body/requirements/MR-0002/MR-0002ADR-0006REQ-0003_body.md
+    review_status: candidate
+    rationale: "The web adapter consumes the same assistance contract."
+
+  - requirement_id: MR-0002ADR-0002REQ-0002
+    title: "Deterministic materialization before governed repository gates"
+    primary_focus_type: component
+    primary_focus_name: "Governed repository materialization pipeline"
+    confidence: explicit
+    source_body_path: docs/reference/project-model/body/requirements/MR-0002/MR-0002ADR-0002REQ-0002_body.md
+    review_status: candidate
+    rationale: "The runner-owned materialization pipeline executes before repository gates."
