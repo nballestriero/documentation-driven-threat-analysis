@@ -1,0 +1,9 @@
+schema_version: 1
+evidence:
+  - id: EVD-0001
+    kind: study_record
+    source: studies/requirement-primary-focus/STUDY-0001.md
+    baseline: TF-BL-0001
+    status: in_review
+    supports: []
+    note: "Must not support accepted thesis claims until the study is reviewed."

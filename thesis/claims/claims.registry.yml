@@ -1,0 +1,22 @@
+schema_version: 1
+claims:
+  - id: CLM-0001
+    statement: "Documentation-Driven Threat Analysis can derive a security-analyzable model from governed software documentation."
+    status: hypothesis
+    evidence: []
+    related_research_questions: [RQ1, RQ2]
+  - id: CLM-0002
+    statement: "A methodology-neutral Base Analysis can support multiple threat-analysis overlays without changing its canonical elements."
+    status: design_claim
+    evidence: []
+    related_research_questions: [RQ1, RQ3]
+  - id: CLM-0003
+    statement: "Baseline-aware traceability can identify analysis results requiring re-evaluation after documentation changes."
+    status: hypothesis
+    evidence: []
+    related_research_questions: [RQ4]
+  - id: CLM-0004
+    statement: "Separating candidate generation from expert acceptance preserves accountable human oversight."
+    status: hypothesis
+    evidence: []
+    related_research_questions: [RQ5]
