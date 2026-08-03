@@ -1,0 +1,670 @@
+\documentclass[12pt,a4paper,oneside]{report}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[a4paper,margin=2.8cm,headheight=15pt]{geometry}
+\usepackage{setspace}
+\usepackage{parskip}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{seqsplit}
+
+\definecolor{DDTADark}{HTML}{1F2933}
+\definecolor{DDTAGray}{HTML}{EEF1F4}
+\definecolor{DDTABorder}{HTML}{8A97A3}
+\definecolor{DDTAWarn}{HTML}{FFF4D6}
+\definecolor{DDTAWarnBorder}{HTML}{B7791F}
+\definecolor{DDTAInfo}{HTML}{EAF3F8}
+\definecolor{DDTAInfoBorder}{HTML}{3C718C}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=DDTADark,
+  citecolor=DDTADark,
+  urlcolor=DDTAInfoBorder,
+  pdftitle={Documentation-Driven Threat Analysis - Bozza di tesi},
+  pdfauthor={Nicolò Ballestriero}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small Documentation-Driven Threat Analysis}
+\fancyhead[R]{\small Bozza di lavoro}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\setstretch{1.18}
+\setlength{\emergencystretch}{3em}
+\setlist[itemize]{leftmargin=*,itemsep=0.25em,topsep=0.35em}
+\setlist[enumerate]{leftmargin=*,itemsep=0.25em,topsep=0.35em}
+
+\newtcolorbox{worknote}[1][Nota editoriale]{
+  enhanced,
+  breakable,
+  colback=DDTAGray,
+  colframe=DDTABorder,
+  boxrule=0.7pt,
+  arc=1.5mm,
+  left=3mm,right=3mm,top=2.5mm,bottom=2.5mm,
+  title={#1},
+  fonttitle=\bfseries\sffamily,
+  fontupper=\small\sffamily
+}
+
+\newtcolorbox{epistemicnote}[1][Stato epistemico]{
+  enhanced,
+  breakable,
+  colback=DDTAInfo,
+  colframe=DDTAInfoBorder,
+  boxrule=0.7pt,
+  arc=1.5mm,
+  left=3mm,right=3mm,top=2.5mm,bottom=2.5mm,
+  title={#1},
+  fonttitle=\bfseries\sffamily,
+  fontupper=\small\sffamily
+}
+
+\newtcolorbox{pendingnote}[1][Da completare]{
+  enhanced,
+  breakable,
+  colback=DDTAWarn,
+  colframe=DDTAWarnBorder,
+  boxrule=0.8pt,
+  arc=1.5mm,
+  left=3mm,right=3mm,top=2.5mm,bottom=2.5mm,
+  title={#1},
+  fonttitle=\bfseries\sffamily,
+  fontupper=\small\sffamily
+}
+
+\newcommand{\artifact}[1]{{\ttfamily\seqsplit{#1}}}
+\newcommand{\statuslabel}[1]{\par\medskip\noindent{\Large\bfseries\sffamily #1}\par\medskip}
+
+\begin{document}
+\pagenumbering{gobble}
+
+\begin{titlepage}
+  \centering
+  \vspace*{2.2cm}
+  {\Huge\bfseries Documentation-Driven Threat Analysis\par}
+  \vspace{0.6cm}
+  {\LARGE Trasformare documentazione software governata in un modello canonico analizzabile per la sicurezza\par}
+  \vspace{2.2cm}
+  {\Large Bozza di tesi\par}
+  \vspace{0.6cm}
+  {\large Nicolò Ballestriero\par}
+  \vfill
+  \begin{tcolorbox}[width=0.86\textwidth,colback=DDTAGray,colframe=DDTABorder,boxrule=0.7pt,arc=1.5mm]
+    \sffamily\small
+    Stato della bozza: contenuti redatti esclusivamente sulla base del corpus di ricerca e degli artefatti ThreatForge verificati al 2 agosto 2026. Le sezioni prive di evidenze sufficienti sono marcate esplicitamente come da iniziare o da completare.
+  \end{tcolorbox}
+  \vfill
+  {\large 2 agosto 2026\par}
+\end{titlepage}
+
+\pagenumbering{roman}
+
+\chapter*{Sommario}
+\addcontentsline{toc}{chapter}{Sommario}
+
+La tesi studia la \emph{Documentation-Driven Threat Analysis} (DDTA), un approccio nel quale la documentazione software governata costituisce la base informativa per derivare e mantenere un modello canonico analizzabile per la sicurezza. Il modello \emph{Base Analysis} rappresenta in modo metodologicamente neutrale attori, componenti, risorse informative, confini e flussi di dati, preservando identità, provenienza e relazioni con i documenti di origine.
+
+La domanda principale chiede in quale misura tale documentazione possa essere trasformata in un modello che supporti analisi ripetibili. Le domande secondarie riguardano gli elementi documentali necessari, la qualità dei candidati metodologici, la stale detection, la provenienza fino ai requisiti di sicurezza e il confronto con processi manuali e threat-model-as-code.
+
+ThreatForge è trattato come implementazione di riferimento e strumento sperimentale. Il milestone considerato materializza Base Analysis, DFD, Analysis Record, Common Finding, Security Requirement, Target Project e un caso di studio end-to-end. Queste capacità mostrano operazionalizzabilità, ma non provano da sole l'efficacia scientifica di DDTA. Valutazione, discussione dei risultati e conclusioni restano da iniziare perché richiedono un protocollo approvato, un corpus multi-progetto, modelli esperti e misure riproducibili.
+
+\begin{epistemicnote}
+Il documento mantiene separati: fatti bibliografici, interpretazioni di singole fonti, sintesi tra fonti, inferenze del ricercatore, ipotesi, design claim, evidenze sperimentali e conclusioni. Le funzionalità implementate in ThreatForge sono trattate come artefatti osservabili, non come dimostrazioni automatiche delle ipotesi.
+\end{epistemicnote}
+
+\tableofcontents
+\clearpage
+\pagenumbering{arabic}
+
+\chapter{Introduzione}
+
+\section{Contesto e motivazione}
+
+Il threat modeling richiede una rappresentazione del sistema sufficientemente precisa da consentire l'identificazione di superfici di attacco, confini di fiducia, risorse da proteggere e interazioni rilevanti. Nella pratica, tuttavia, questa rappresentazione è spesso costruita separatamente rispetto alla documentazione di progetto. Diagrammi, inventari, requisiti e risultati di analisi possono quindi evolvere con cicli di vita differenti, rendendo costosa la manutenzione e difficile stabilire se un risultato sia ancora valido dopo una modifica del sistema.
+
+DDTA parte da un presupposto diverso: quando la documentazione software è versionata, strutturata, validata e collegata tramite relazioni tracciabili, essa può essere studiata non soltanto come supporto descrittivo, ma come sorgente governata per costruire un modello analitico. L'obiettivo non è sostituire il giudizio umano né trasformare automaticamente ogni frase in una conclusione di sicurezza. L'obiettivo è rendere esplicito il percorso che collega la conoscenza documentale a elementi analizzabili, interpretazioni metodologiche, finding sottoposti a revisione e requisiti di sicurezza verificabili.
+
+Il problema è rilevante perché la documentazione ordinaria contiene spesso frammenti della rappresentazione necessaria al threat modeling: soggetti che interagiscono con il sistema, componenti logici, dati trattati, confini organizzativi o tecnici, flussi informativi, decisioni architetturali e requisiti funzionali. Questi frammenti non costituiscono automaticamente un modello completo. Devono essere identificati, normalizzati, collegati alla propria origine e sottoposti a revisione quando l'informazione è ambigua o incompleta.
+
+\section{Problema di ricerca}
+
+Il problema centrale della tesi è determinare se e a quali condizioni la documentazione governata possa essere trasformata in un modello canonico utile per il threat modeling. La trasformazione deve conservare la provenienza, distinguere i fatti documentali dalle interpretazioni analitiche e supportare la ripetizione dell'analisi dopo modifiche del progetto.
+
+La tesi non assume che una documentazione formalmente valida sia anche semanticamente sufficiente. Un repository può rispettare schemi e convenzioni, ma omettere attori, confini o flussi essenziali. Per questa ragione DDTA comprende sia una derivazione documentale sia un confine di revisione: gli elementi candidati devono poter essere confermati, corretti, respinti o integrati mediante aggiunte analitiche esplicite.
+
+\section{Domande di ricerca}
+
+La domanda primaria è:
+
+\begin{quote}
+\textbf{RQ1.} In quale misura la documentazione software governata può essere trasformata in un modello canonico analizzabile per la sicurezza che supporti analisi delle minacce ripetibili?
+\end{quote}
+
+Le domande secondarie sono:
+
+\begin{itemize}
+  \item \textbf{RQ2.} Quali entità documentali e trace link sono necessari e sufficienti per derivare Actor, Component, Asset, Boundary e Data Flow?
+  \item \textbf{RQ3.} Con quale accuratezza e consistenza possono essere generati candidati di minaccia specifici di una metodologia rispetto a modelli creati da esperti?
+  \item \textbf{RQ4.} Le modifiche alle baseline e alla tracciabilità possono identificare quali risultati sono diventati stale e richiedono rivalutazione?
+  \item \textbf{RQ5.} La revisione esperta governata preserva la provenienza dalla documentazione ai candidati, ai requisiti di sicurezza accettati e alle evidenze di verifica?
+  \item \textbf{RQ6.} Come si confronta DDTA con il threat modeling manuale e con il threat-model-as-code in termini di copertura, sforzo, riproducibilità, manutenibilità e spiegabilità?
+\end{itemize}
+
+\section{Ipotesi}
+
+Le ipotesi correnti sono candidati da sottoporre a valutazione, non conclusioni:
+
+\begin{itemize}
+  \item \textbf{H1 - Derivabilità.} La documentazione conforme al contratto di input DDTA produce un modello Base Analysis con accordo misurabile rispetto a un modello esperto.
+  \item \textbf{H2 - Tracciabilità.} Minacce accettate e requisiti di sicurezza conservano provenienza completa e verificabile verso documentazione e baseline.
+  \item \textbf{H3 - Change awareness.} L'analisi di impatto identifica risultati stale con precisione e richiamo utili.
+  \item \textbf{H4 - Riproducibilità.} Analisti indipendenti ottengono risultati più consistenti con supporto DDTA rispetto a un processo non strutturato.
+  \item \textbf{H5 - Sforzo di manutenzione.} Aggiornare un'analisi da delta documentali richiede meno sforzo che ricostruire manualmente il modello.
+  \item \textbf{H6 - Supervisione umana.} La separazione fra candidati generati e finding accettati riduce le affermazioni automatizzate non supportate mantenendo assistenza utile.
+\end{itemize}
+
+\section{Contributi attesi e loro stato}
+
+I contributi attualmente ipotizzati comprendono una definizione formale di DDTA, un metamodel Base Analysis neutrale rispetto alle metodologie, un modello di provenienza, un meccanismo di change impact, un ciclo di vita human-in-the-loop, ThreatForge come implementazione di riferimento e un corpus sperimentale riproducibile.
+
+\begin{epistemicnote}[Limite dei contributi]
+Questi elementi sono contributi candidati. La loro novità deve essere stabilita mediante verifica sistematica della letteratura; la loro utilità deve essere valutata empiricamente. L'esistenza di un'implementazione non prova né la novità né l'efficacia del metodo.
+\end{epistemicnote}
+
+\section{Separazione tra ricerca e prodotto}
+
+La ricerca e il prodotto sono governati in repository distinti. Il repository \artifact{documentation-driven-threat-analysis} conserva baseline, studi, fonti, claim, evidence record e materiali della tesi. Il repository \artifact{threat-forge} governa requisiti, decisioni, implementazione e verifiche del prodotto. Un'osservazione di ricerca non crea automaticamente un requisito di prodotto; una feature del prodotto non diventa automaticamente evidenza scientifica.
+
+Le affermazioni su ThreatForge sono ancorate a riferimenti immutabili. In questa bozza il riferimento principale è il commit \artifact{3a875b21b174a2175f82aeb164c3067d243b5961}, marcato dal tag \artifact{project-model-target-project-vscode-schema-routing-complete}. Il repository di ricerca è riferito al commit \artifact{3fb2e76808a99f25db1bef74352e6c2fe2381cfe}.
+
+\section{Struttura della tesi}
+
+La tesi è articolata in nove capitoli. Il secondo capitolo introduce le aree teoriche necessarie. Il terzo posiziona DDTA rispetto agli approcci esistenti. Il quarto definisce il metodo di ricerca. Il quinto formalizza DDTA. Il sesto descrive ThreatForge come implementazione di riferimento. Il settimo presenta la valutazione, l'ottavo discute risultati e limiti, il nono risponde alle domande di ricerca.
+
+\chapter{Background}
+
+\section{Minacce, modelli e rappresentazioni del sistema}
+
+Il threat modeling combina una rappresentazione del sistema con una procedura di analisi. La rappresentazione può assumere la forma di diagramma, modello architetturale, descrizione testuale o linguaggio dedicato. Per DDTA è essenziale distinguere tra il modello canonico del sistema e le proiezioni utilizzate per una specifica attività. Un DFD, ad esempio, può essere una vista derivata del modello e non necessariamente la sua fonte primaria.
+
+La fondazione bibliografica corrente identifica come aree principali: threat modeling generale e STRIDE; security requirements engineering; tracciabilità dei requisiti; model-driven security; documentazione e conoscenza governata; sicurezza continua; strumenti threat-model-as-code; analisi assistita da AI. Il corpus contiene venti fonti registrate, quattordici classificate come \artifact{verified} e sei come \artifact{partially\_verified}. Tale classificazione attesta lo stato dei metadati bibliografici, non la verifica di ogni affermazione sostanziale che verrà citata.
+
+\section{Security requirements e provenienza}
+
+DDTA considera i requisiti di sicurezza come obblighi di prodotto derivati da finding accettati. La derivazione deve conservare il collegamento al comportamento funzionale protetto e all'origine analitica del finding. Questo evita due confusioni: trattare il finding come requisito già accettato e trattare il requisito di sicurezza come semplice duplicazione della classificazione metodologica.
+
+La provenienza è quindi una proprietà strutturale del processo. Un requisito di sicurezza deve poter essere ricondotto al finding che lo giustifica; il finding deve conservare il riferimento all'Analysis Record; l'Analysis Record deve riferirsi agli elementi del modello e ai documenti governati che ne definiscono il contesto.
+
+\section{Documentazione governata}
+
+In questa ricerca, per documentazione governata si intende un insieme versionato di record con struttura controllata, identità stabile, lifecycle esplicito, regole di validazione e relazioni tracciabili. La governance non garantisce automaticamente la completezza semantica, ma rende osservabili e ripetibili le trasformazioni applicate alla conoscenza di progetto.
+
+Sono rilevanti almeno quattro proprietà:
+
+\begin{enumerate}
+  \item \textbf{identità}, per riferire gli stessi elementi lungo il ciclo di vita;
+  \item \textbf{provenienza}, per distinguere origine documentale e interpretazione;
+  \item \textbf{validazione}, per rilevare incoerenze strutturali e riferimenti non risolvibili;
+  \item \textbf{versionamento}, per confrontare baseline e determinare l'impatto delle modifiche.
+\end{enumerate}
+
+\section{Human-in-the-loop}
+
+Il giudizio umano è necessario quando la documentazione non determina in modo univoco il significato analitico. DDTA non considera una classificazione automatica come un finding accettato. Il lifecycle deve distinguere almeno il candidato proposto, l'esito accettato e l'esito rifiutato; un esito rifiutato conserva comunque identità, motivazione ed evidenza, evitando che le decisioni negative scompaiano dal corpus.
+
+\statuslabel{DA COMPLETARE}
+
+\begin{pendingnote}[Cosa serve per completare il capitolo]
+\begin{itemize}
+  \item leggere integralmente le fonti di base e produrre note fonte-per-fonte;
+  \item verificare le sei fonti attualmente \artifact{partially\_verified};
+  \item aggiungere citazioni puntuali, pagine e versioni esatte delle linee guida evolutive;
+  \item distinguere in modo documentato DFD-oriented threat modeling, model-driven security, requirements engineering e threat-model-as-code;
+  \item integrare una sezione sulle metriche di qualità della documentazione e sull'accordo tra valutatori.
+\end{itemize}
+\end{pendingnote}
+
+\chapter{Stato dell'arte e gap di ricerca}
+
+\section{Famiglie di approcci considerate}
+
+La sintesi corrente distingue cinque famiglie: threat modeling convenzionale basato su rappresentazioni manuali; model-driven security basata su modelli espliciti; security requirements engineering basata su misuse case o anti-goal; threat-model-as-code basato su DSL o modelli versionati; DDTA, che propone di derivare il modello analizzabile dalla documentazione governata e dal trace graph.
+
+Il punto di differenziazione candidato non è l'automazione di una specifica tassonomia, come STRIDE. Il gap ipotizzato riguarda la costruzione governata, la manutenzione e l'uso di un modello analizzabile derivato da documentazione ordinaria di progetto, seguiti da analisi metodologiche separate e da incorporazione governata dei risultati revisionati.
+
+\section{Gap candidato}
+
+La letteratura e gli strumenti censiti assumono spesso che una rappresentazione analizzabile sia già disponibile, oppure richiedono che venga costruita esplicitamente in un diagramma, in UML, in una DSL o in un modello dedicato. DDTA pone invece la domanda se un repository documentale governato possa costituire l'input primario e mantenibile per derivare tale rappresentazione.
+
+Da questa impostazione derivano cinque claim ancora non stabiliti:
+
+\begin{itemize}
+  \item la documentazione governata è sufficiente a derivare un modello Base Analysis utile;
+  \item il modello derivato è completo o meno costoso da mantenere di un modello manuale;
+  \item il change impact individua in modo affidabile i risultati stale;
+  \item i requisiti di sicurezza derivati tramite DDTA migliorano la pratica convenzionale;
+  \item il metodo generalizza oltre ThreatForge e oltre repository ricchi di documentazione.
+\end{itemize}
+
+\begin{epistemicnote}
+Questi punti definiscono il programma di ricerca. Non sono conclusioni e non devono essere formulati come vantaggi dimostrati di DDTA.
+\end{epistemicnote}
+
+\statuslabel{DA COMPLETARE}
+
+\begin{pendingnote}[Cosa serve per completare il capitolo]
+\begin{itemize}
+  \item sostituire la matrice per famiglie con confronti tra metodi e strumenti concreti;
+  \item associare ogni cella comparativa a una o più fonti lette e verificate;
+  \item includere studi empirici su qualità, effort e riproducibilità del threat modeling;
+  \item verificare la novità del gap rispetto a model extraction, architecture recovery, knowledge graph e continuous threat modeling;
+  \item documentare risultati contrari o approcci che riducono l'originalità del contributo.
+\end{itemize}
+\end{pendingnote}
+
+\chapter{Metodo di ricerca}
+
+\section{Disegno generale}
+
+La ricerca è impostata come studio empirico di un metodo e del relativo strumento sperimentale. Il disegno previsto combina: analisi documentale, costruzione di modelli di riferimento da parte di esperti, esecuzione controllata del processo DDTA, confronto tra output e ground truth, esperimenti di modifica e valutazione qualitativa della provenienza.
+
+Le unità di analisi sono repository software governati e relative baseline immutabili. Ogni esecuzione deve dichiarare il commit analizzato, il contratto documentale applicato, la versione del metodo, gli analisti coinvolti e gli artefatti prodotti. I risultati devono essere conservati nel repository di ricerca, non dedotti retroattivamente dalla sola esistenza di file nel repository del prodotto.
+
+\section{Baseline}
+
+La baseline \artifact{TF-BL-0001} fotografa ThreatForge al commit \artifact{b8ffdbc5c6b6ae68ff5afefe2ab44116362d15e3}. Essa contiene due Macro-requirement, ventiquattro Functional Requirement e trentasette Governance Requirement ed è stata usata per lo studio iniziale sul primary Base Analysis focus.
+
+Lo stato corrente richiede una baseline additiva, proposta come \artifact{TF-BL-0002}, ancorata al commit \artifact{3a875b21b174a2175f82aeb164c3067d243b5961} e al tag \artifact{project-model-target-project-vscode-schema-routing-complete}. La nuova baseline non deve sovrascrivere la precedente: le due fotografie consentono analisi longitudinali e preservano la validità del corpus originario.
+
+\section{Studio pilota esistente}
+
+\artifact{STUDY-0001} analizza i ventiquattro Functional Requirement della prima baseline e assegna a ciascuno un primary focus tra Actor, Component, Asset, Boundary e Data Flow. Il risultato preliminare identifica diciassette Component, sei Asset e un Data Flow; nessun Actor o Boundary appare come primary focus. Il risultato sostiene la fattibilità della regola nel corpus considerato, ma non ne dimostra la generalizzabilità.
+
+Lo studio è ancora in review e i mapping sono candidate. Inoltre il corpus è dominato da governance e tooling: l'assenza di Actor e Boundary non implica che tali elementi siano assenti dal sistema, ma indica che non sono il soggetto primario dei requisiti analizzati.
+
+\section{Metriche candidate}
+
+Le metriche previste devono collegarsi direttamente alle domande di ricerca:
+
+\begin{itemize}
+  \item precision, recall e F1 per elementi e relazioni Base Analysis rispetto a modelli esperti;
+  \item agreement inter-valutatore per classificazioni e review state;
+  \item copertura dei soggetti e delle categorie metodologiche;
+  \item precision e recall della stale detection su scenari di modifica controllati;
+  \item completezza dei percorsi di provenance;
+  \item tempo e numero di operazioni per costruzione e manutenzione;
+  \item stabilità degli output su esecuzioni ripetute e analisti differenti.
+\end{itemize}
+
+\statuslabel{DA COMPLETARE}
+
+\begin{pendingnote}[Cosa serve per completare il capitolo]
+\begin{itemize}
+  \item definire il numero e i criteri di selezione dei progetti del corpus;
+  \item stabilire chi costruisce i modelli esperti e come vengono risolti i disaccordi;
+  \item fissare metriche, soglie, procedure statistiche e gestione dei dati mancanti;
+  \item definire gruppi o condizioni per il confronto con processo manuale e threat-model-as-code;
+  \item predisporre scenari di modifica per stale detection e ground truth degli impatti;
+  \item descrivere validity threats: construct, internal, external e conclusion validity;
+  \item approvare un protocollo riproducibile prima di raccogliere risultati.
+\end{itemize}
+\end{pendingnote}
+
+\chapter{Documentation-Driven Threat Analysis}
+
+\section{Definizione}
+
+DDTA è un processo nel quale la documentazione governata di progetto costituisce l'evidenza primaria per derivare e mantenere un modello canonico analizzabile per la sicurezza e per applicare analisi specifiche di metodologia. Il processo conserva una separazione netta tra tre livelli:
+
+\begin{enumerate}
+  \item \textbf{conoscenza di progetto}, espressa da documenti, registri e relazioni governate;
+  \item \textbf{modello Base Analysis}, che normalizza soggetti e topologia in forma metodologicamente neutrale;
+  \item \textbf{interpretazioni metodologiche}, finding e requisiti di sicurezza sottoposti a revisione.
+\end{enumerate}
+
+Questa separazione impedisce che un'osservazione STRIDE, LINDDUN o di un'altra metodologia venga incorporata come fatto canonico del sistema senza una decisione esplicita.
+
+\section{Contratto di input}
+
+Il contratto di input DDTA deve descrivere quali proprietà rendono un repository analizzabile. Al minimo sono necessarie identità stabili, struttura documentale controllata, relazioni risolvibili, versionamento e provenienza. Per derivare una topologia significativa sono inoltre necessari indizi o dichiarazioni su:
+
+\begin{itemize}
+  \item attori che avviano o ricevono interazioni;
+  \item componenti che eseguono comportamenti;
+  \item risorse informative o asset trattati;
+  \item confini organizzativi, logici o tecnici;
+  \item flussi di dati con sorgente, destinazione e attraversamenti rilevanti.
+\end{itemize}
+
+Il contratto non deve presupporre che ogni elemento sia presente in un singolo documento. L'informazione può essere distribuita tra Macro-requirement, decisioni, requisiti, registri e riferimenti. La derivazione deve pertanto operare sul grafo documentale e non soltanto su frasi isolate.
+
+\section{Base Analysis}
+
+La Base Analysis è il modello canonico metodologicamente neutrale. Gli elementi possiedono identità stabile, tipo, titolo, significato, lifecycle e provenienza. Le relazioni rappresentano la topologia, ad esempio gli endpoint di un flusso e l'attraversamento di un confine.
+
+La Base Analysis non contiene categorie STRIDE, failure mode di sistemi AI o classificazioni di rischio specifiche. Le metodologie consumano il modello senza aggiungere o ridefinire silenziosamente gli elementi canonici. Quando un'analisi scopre conoscenza mancante, produce una proposta di aggiornamento sottoposta a revisione.
+
+\section{Proiezioni}
+
+Una proiezione è una vista derivata del modello. Il DFD è la proiezione principale attualmente considerata: attori, processi o componenti, data store, confini e flussi vengono selezionati dal modello Base Analysis e resi in una forma adatta alla lettura umana o all'applicazione di una metodologia.
+
+La proiezione deve essere deterministica rispetto agli input accettati. Il renderer non deve possedere regole di dominio autonome: riceve una proiezione già costruita e si limita a materializzarla. Questa distinzione riduce il rischio che la semantica dipenda dal componente grafico.
+
+\section{Analysis Record metodologici}
+
+Un Analysis Record rappresenta l'applicazione governata di una metodologia a uno scope definito. Il record conserva un identificatore, il metodo selezionato, il contributore, i soggetti analizzati e lo stato di accettazione per derivazioni deterministiche. I dati specifici del metodo rimangono nel payload metodologico.
+
+Un record metodologico non modifica automaticamente la Base Analysis. La sua funzione è conservare il contesto dell'interpretazione e consentire ai finding successivi di riferirsi a un'origine analitica precisa.
+
+\section{Common Finding}
+
+Il Common Finding è un risultato metodologicamente neutrale che rende confrontabili osservazioni provenienti da metodi diversi. Contiene scenario di minaccia, conseguenze, razionale o evidenza, soggetti interessati e un review state controllato.
+
+Gli stati correnti sono \artifact{proposed}, \artifact{accepted} e \artifact{rejected}. Lo stato è dichiarato esplicitamente e non inferito dal contenuto. I finding rifiutati non vengono cancellati: conservano l'evidenza che ha motivato il rifiuto e contribuiscono alla trasparenza del processo.
+
+\section{Security Requirement}
+
+Un Security Requirement esprime un obbligo di sicurezza indipendentemente verificabile. È figlio di un Functional Requirement e viene derivato da uno o più Common Finding accettati che interessano lo stesso comportamento funzionale.
+
+La relazione conserva la catena:
+
+\begin{center}
+Documentazione $\rightarrow$ Base Analysis $\rightarrow$ Analysis Record $\rightarrow$ Common Finding accettato $\rightarrow$ Security Requirement $\rightarrow$ evidenza di verifica.
+\end{center}
+
+Il requisito di sicurezza non copia classificazioni specifiche della metodologia. La motivazione metodologica resta raggiungibile attraverso il finding e l'Analysis Record, mentre il requisito formula l'obbligo di prodotto.
+
+\section{Stale detection}
+
+Un risultato è stale quando una dipendenza che lo supporta è cambiata dopo la baseline di analisi. La stale detection confronta le modifiche documentali con la provenienza degli elementi Base Analysis e propaga l'impatto verso le analisi dipendenti.
+
+Il report deve indicare la modifica scatenante e i percorsi di dipendenza. Non deve riscrivere automaticamente elementi o analisi. La risoluzione richiede una revisione che confermi, aggiorni, sostituisca o deprechi il record interessato.
+
+\section{Principi epistemici}
+
+DDTA applica i seguenti principi:
+
+\begin{itemize}
+  \item una feature implementata dimostra operazionalizzabilità, non efficacia;
+  \item un test software verifica comportamento del tool, non un'ipotesi di ricerca;
+  \item un mapping candidato non è un finding accettato;
+  \item un singolo caso di studio non giustifica generalizzazioni;
+  \item ogni claim significativo deve collegarsi a fonti o evidence record espliciti;
+  \item la supervisione umana è un confine del metodo, non un dettaglio dell'interfaccia.
+\end{itemize}
+
+\begin{pendingnote}[Parte ancora da formalizzare]
+Mancano una specifica formale completa del contratto di input, le regole di derivazione per ogni tipo di elemento, la semantica completa delle relazioni, il protocollo di review e la definizione operativa delle metriche di qualità. Questi elementi dovranno essere stabilizzati prima della valutazione.
+\end{pendingnote}
+
+\chapter{ThreatForge come implementazione di riferimento}
+
+\section{Ruolo nella ricerca}
+
+ThreatForge è presentato come implementazione di riferimento e strumento sperimentale di DDTA. Il suo ruolo è mostrare che le separazioni concettuali del metodo possono essere rappresentate mediante documenti governati, contratti, validatori, strumenti di authoring e verifiche deterministiche.
+
+Non è una dimostrazione autonoma della validità scientifica del metodo. Le capacità del prodotto diventano evidenze di ricerca solo dopo essere state registrate in una baseline stabile e osservate mediante uno studio o un evidence record nel repository di ricerca.
+
+\section{Stato immutabile considerato}
+
+La descrizione si riferisce al commit:
+
+\begin{center}
+\artifact{3a875b21b174a2175f82aeb164c3067d243b5961}
+\end{center}
+
+associato al tag:
+
+\begin{center}
+\artifact{project-model-target-project-vscode-schema-routing-complete}.
+\end{center}
+
+A questo milestone il modello del prodotto è articolato in cinque Macro-requirement: documentazione governata, authoring governato, Base Analysis derivata dalla documentazione, ciclo di vita dei Target Project e common governed analysis model.
+
+\section{Documentazione e tracciabilità}
+
+ThreatForge mantiene registri e body Markdown con identità, tipi, stato, ownership e riferimenti risolvibili. I modelli documentali, i profili e i validatori costituiscono la base per produrre una rappresentazione coerente e per collegare requisiti, decisioni, implementazioni e verifiche.
+
+La tracciabilità del prodotto è distinta dalla provenienza della ricerca. I riferimenti interni dimostrano che il prodotto conserva relazioni previste dal proprio modello; non dimostrano da soli che tali relazioni siano complete o utili in contesti esterni.
+
+\section{Base Analysis e DFD}
+
+Il Macro-requirement MR-0003 definisce una Base Analysis metodologicamente neutrale derivata dalla documentazione. Ogni elemento possiede identità, tipo, significato, provenienza e lifecycle. Le relazioni consentono di ricostruire la topologia e di generare una proiezione DFD deterministica.
+
+Il registro Base Analysis del motore contiene almeno un elemento canonico relativo alla documentazione governata. Il caso di studio contiene invece un insieme completo e intenzionalmente piccolo di cinque elementi: un attore, un componente, una risorsa informativa, un confine e un flusso di dati, con relazioni di sorgente, destinazione e attraversamento del confine.
+
+\section{Common analysis model}
+
+MR-0005 separa interpretazione esperta e trasformazioni deterministiche. Gli Analysis Record conservano metodo, contributore, scope, soggetti e payload. I Common Finding conservano identità, origine analitica, scenario, conseguenze, razionale e review state.
+
+Il modello non promuove automaticamente un finding nella Base Analysis e non accetta automaticamente un candidato. Questa separazione realizza nel prodotto il confine human-in-the-loop previsto da DDTA.
+
+\section{Security Requirement e reverse traceability}
+
+ThreatForge introduce il Security Requirement come specializzazione documentale figlia di un Functional Requirement. Il requisito deve riferire uno o più finding accettati coerenti con il parent funzionale. La provenienza resta navigabile dal requisito al finding e dall'Analysis Record al payload metodologico.
+
+La reverse traceability consente inoltre di derivare una vista Finding-to-Security-Requirement senza creare un secondo inventario canonico dei finding. Questa scelta preserva la responsabilità dei file di origine e limita la duplicazione dei fatti.
+
+\section{Target Project}
+
+Un Target Project è un progetto analizzato separato dal motore ThreatForge. Possiede documentazione, registri, report e proiezioni locali. Può essere document-only: l'esistenza di codice eseguibile, backend, frontend o database non è un prerequisito per costruire una Base Analysis.
+
+La creazione, l'authoring, la verifica e l'analisi ricevono un \artifact{target\_root} esplicito. Questa separazione impedisce che gli artefatti del progetto target contaminino il modello canonico del motore.
+
+\section{Caso di studio end-to-end}
+
+Il caso di studio \artifact{examples/case-studies/documentation-to-base-analysis} dimostra un percorso completo ma controllato. Contiene:
+
+\begin{itemize}
+  \item documentazione governata di una semplice interazione;
+  \item cinque Base Analysis Element e tre relazioni;
+  \item un Analysis Record STRIDE simulato e scritto manualmente;
+  \item tre Common Finding, rispettivamente proposto, accettato e rifiutato;
+  \item un Security Requirement derivato dal finding accettato;
+  \item verifiche positive e negative deterministiche;
+  \item configurazione VS Code e schemi locali del Target Project.
+\end{itemize}
+
+L'Analysis Record dichiara esplicitamente \artifact{simulation\_only: true}, \artifact{implementation\_status: not\_implemented} e \artifact{derivation\_state: not\_accepted}. Di conseguenza i finding sono manuali e il caso non prova generazione automatica, completezza STRIDE o efficacia dell'analisi.
+
+Il finding accettato riguarda l'assenza di verifica dell'identità dell'utente dimostrativo prima dell'elaborazione della richiesta. Il Security Requirement risultante obbliga il servizio a verificare l'identità dichiarata prima di accettare o processare la richiesta. Il finding rifiutato conserva una scenario non supportato, perché il modello non contiene il sistema downstream necessario.
+
+\section{Supporto editor VS Code}
+
+Il milestone include un'estensione unificata per l'assistenza alla documentazione governata. Nel Target Project, lo schema di authoring è materializzato localmente e la configurazione VS Code associa lo schema ai file pertinenti. Il routing riconosce il workspace target e usa le fonti locali senza duplicare le regole canoniche negli adapter editor.
+
+Questa capacità migliora la ripetibilità operativa dell'authoring, ma non costituisce evidenza che l'assistenza editoriale migliori la qualità del threat modeling. Tale effetto richiede uno studio dedicato.
+
+\section{Capacità dimostrate e non dimostrate}
+
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Dimostrato come capacità del prodotto} & \textbf{Non dimostrato scientificamente} \\
+\midrule
+Validazione di documenti e riferimenti & Completezza semantica della documentazione \\
+Base Analysis e proiezione DFD & Accuratezza rispetto a modelli esperti \\
+Lifecycle esplicito dei finding & Qualità della revisione o riduzione degli errori \\
+Provenienza fino al Security Requirement & Completezza della provenance su corpus reali \\
+Caso di studio riproducibile & Generalizzabilità oltre il caso costruito \\
+Supporto editor e schemi locali & Riduzione misurabile di effort o difetti \\
+\bottomrule
+\end{tabularx}
+
+\begin{pendingnote}[Registrazione di ricerca necessaria]
+Prima di utilizzare queste capacità come evidenza della tesi occorre aggiungere, senza modificare \artifact{TF-BL-0001}, una baseline \artifact{TF-BL-0002} e almeno un evidence record descrittivo. Gli studi di efficacia devono restare separati dall'inventario tecnico del milestone.
+\end{pendingnote}
+
+\chapter{Valutazione}
+
+\statuslabel{DA INIZIARE}
+
+\begin{pendingnote}[Cosa serve per iniziare il capitolo]
+\begin{itemize}
+  \item protocollo di valutazione approvato;
+  \item baseline \artifact{TF-BL-0002} registrata nel repository di ricerca;
+  \item corpus di più progetti con caratteristiche documentali differenti;
+  \item modelli di riferimento prodotti e revisionati da esperti;
+  \item risultati quantitativi per H1--H5 e protocollo qualitativo per H6;
+  \item confronto controllato con threat modeling manuale e threat-model-as-code;
+  \item dataset di modifiche per valutare precision e recall della stale detection;
+  \item evidence record collegati esplicitamente ai claim della tesi.
+\end{itemize}
+\end{pendingnote}
+
+\chapter{Discussione}
+
+\statuslabel{DA INIZIARE}
+
+\begin{pendingnote}[Cosa serve per iniziare il capitolo]
+\begin{itemize}
+  \item risultati completi della valutazione;
+  \item interpretazione distinta da dati e osservazioni;
+  \item confronto con la letteratura verificata;
+  \item analisi dei casi contrari e dei fallimenti del metodo;
+  \item validity threats e limiti di trasferibilità;
+  \item discussione del ruolo dell'automazione e della supervisione umana;
+  \item implicazioni per repository con documentazione incompleta o non governata.
+\end{itemize}
+\end{pendingnote}
+
+\chapter{Conclusioni}
+
+\statuslabel{DA INIZIARE}
+
+\begin{pendingnote}[Cosa serve per iniziare il capitolo]
+Il capitolo potrà essere scritto soltanto dopo la valutazione. Dovrà rispondere separatamente a RQ1--RQ6, indicare quali ipotesi risultano supportate, non supportate o inconcludenti, distinguere contributi effettivamente dimostrati da contributi progettuali, riepilogare limiti e definire il lavoro futuro senza generalizzare oltre il corpus osservato.
+\end{pendingnote}
+
+\appendix
+
+\chapter{Stato del corpus di ricerca al 2 agosto 2026}
+
+\section{Materiali maturi}
+
+\begin{itemize}
+  \item separazione concettuale tra repository di ricerca e repository di prodotto;
+  \item definizione delle sei research question e delle sei ipotesi;
+  \item terminologia di base DDTA;
+  \item outline della tesi in nove capitoli;
+  \item fondazione bibliografica classificata;
+  \item baseline \artifact{TF-BL-0001};
+  \item studio pilota \artifact{STUDY-0001}, ancora in review;
+  \item snapshot tecnico immutabile dello stato corrente di ThreatForge.
+\end{itemize}
+
+\section{Materiali provvisori}
+
+\begin{itemize}
+  \item TADR-0001 con stato Proposed;
+  \item quattro claim di tesi senza evidenze collegate;
+  \item un evidence record ancora in review;
+  \item matrice comparativa per famiglie di approcci;
+  \item contributi candidati e gap di ricerca ancora da verificare fonte per fonte;
+  \item specifica parziale del metodo e delle metriche.
+\end{itemize}
+
+\section{Materiali mancanti}
+
+\begin{itemize}
+  \item note di lettura complete e citazioni puntuali;
+  \item baseline \artifact{TF-BL-0002};
+  \item evidence record per il milestone e per il caso di studio corrente;
+  \item corpus sperimentale multi-progetto;
+  \item modelli esperti e protocollo di review;
+  \item risultati empirici e analisi statistica;
+  \item validity threats basati sull'esecuzione reale;
+  \item prosa definitiva dei capitoli 7--9.
+\end{itemize}
+
+\chapter{Mappa preliminare claim--fonti--evidenze}
+
+\begin{longtable}{p{0.18\textwidth} p{0.25\textwidth} p{0.24\textwidth} p{0.23\textwidth}}
+\toprule
+\textbf{Claim} & \textbf{Fonti candidate} & \textbf{Evidenza disponibile} & \textbf{Evidenza mancante} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Claim} & \textbf{Fonti candidate} & \textbf{Evidenza disponibile} & \textbf{Evidenza mancante} \\
+\midrule
+\endhead
+CLM-0001: derivazione del modello & Threat modeling, traceability, architecture documentation & STUDY-0001 in review; caso ThreatForge non ancora registrato come evidence & Più progetti, reference model, agreement e coverage \\
+\addlinespace
+CLM-0002: Base Analysis multi-overlay & Model-driven security e metodi DFD-oriented & Boundary implementato; Analysis Record simulato & Due o più metodologie realmente applicate allo stesso modello \\
+\addlinespace
+CLM-0003: stale detection & Traceability, continuous security, change impact & Requisito e design del prodotto & Dataset di cambiamenti, ground truth, precision e recall \\
+\addlinespace
+CLM-0004: supervisione umana & Human factors e AI-assisted analysis & Stati proposed/accepted/rejected nel case study & Protocollo, reviewer identity, audit e confronto tra processi \\
+\bottomrule
+\end{longtable}
+
+\begin{pendingnote}[Estensione necessaria del claim registry]
+Il registro corrente non copre in modo esplicito riproducibilità, maintenance effort, confronto con threat-model-as-code e completezza della provenance fino alle evidenze di verifica. Prima della stesura finale tali claim devono essere identificati e collegati alle rispettive RQ, fonti ed evidenze.
+\end{pendingnote}
+
+\begin{thebibliography}{99}
+
+\bibitem{researchrepo}
+N. Ballestriero,
+\emph{Documentation-Driven Threat Analysis research repository},
+commit \artifact{3fb2e76808a99f25db1bef74352e6c2fe2381cfe}, 2026.
+
+\bibitem{threatforge}
+N. Ballestriero,
+\emph{ThreatForge reference implementation},
+commit \artifact{3a875b21b174a2175f82aeb164c3067d243b5961},
+tag \artifact{project-model-target-project-vscode-schema-routing-complete}, 2026.
+
+\bibitem{shostack}
+A. Shostack,
+\emph{Threat Modeling: Designing for Security},
+Wiley, 2014.
+
+\bibitem{gotel}
+O. C. Z. Gotel e A. C. W. Finkelstein,
+``An Analysis of the Requirements Traceability Problem'',
+Proceedings of the First International Conference on Requirements Engineering, pp. 94--101, 1994.
+
+\bibitem{sindre}
+G. Sindre e A. L. Opdahl,
+``Eliciting Security Requirements with Misuse Cases'',
+Requirements Engineering, vol. 10, n. 1, pp. 34--44, 2005.
+
+\bibitem{vanlamsweerde}
+A. van Lamsweerde,
+``Elaborating Security Requirements by Construction of Intentional Anti-Models'',
+Proceedings of the 26th International Conference on Software Engineering, pp. 148--157, 2004.
+
+\bibitem{basin}
+D. Basin, J. Doser e T. Lodderstedt,
+``Model Driven Security: From UML Models to Access Control Infrastructures'',
+ACM Transactions on Software Engineering and Methodology, vol. 15, n. 1, pp. 39--91, 2006.
+
+\bibitem{juerjens}
+J. Jürjens,
+\emph{Secure Systems Development with UML},
+Springer, 2005.
+
+\bibitem{nist}
+National Institute of Standards and Technology,
+\emph{Secure Software Development Framework (SSDF) Version 1.1},
+NIST SP 800-218, 2022.
+
+\end{thebibliography}
+
+\end{document}

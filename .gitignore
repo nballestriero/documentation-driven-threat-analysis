@@ -1,0 +1,15 @@
+# LaTeX working output for the thesis projection
+thesis/latex/*.aux
+thesis/latex/*.bbl
+thesis/latex/*.bcf
+thesis/latex/*.blg
+thesis/latex/*.fdb_latexmk
+thesis/latex/*.fls
+thesis/latex/*.lof
+thesis/latex/*.log
+thesis/latex/*.lot
+thesis/latex/*.out
+thesis/latex/*.run.xml
+thesis/latex/*.synctex.gz
+thesis/latex/*.toc
+thesis/latex/DDTA_tesi.pdf
