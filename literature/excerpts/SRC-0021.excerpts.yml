@@ -1,0 +1,65 @@
+schema_version: 1
+source_id: SRC-0021
+citation_key: mucha2024prers
+source_version:
+  stable_identifier: "10.1007/s00766-023-00412-z"
+  edition_or_version: "Version of record, CC BY 4.0"
+  accessed_on: null
+  local_filename: "SRC-0021-mucha-kaufmann-riehle-2024.pdf"
+  sha256: null
+excerpts:
+  - id: SRC-0021-EX-0001
+    location: {pdf_page: 1, printed_page: 119, section: "Abstract and Introduction", paragraph_or_table: ""}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "The review analyzes 77 publications from 1992 to June 2022 to synthesize pre-RS traceability research."
+    researcher_interpretation: "This is the modern corroborating source for SRC-0002."
+    supported_proposition: "The pre-RS traceability evidence base remains smaller than the post-RS evidence base."
+    thesis_targets: ["chapter-2", "chapter-3"]
+    temporal_caveat: "The corpus ends in June 2022."
+    verification_state: location_verified
+  - id: SRC-0021-EX-0002
+    location: {pdf_page: 1, printed_page: 119, section: "Introduction", paragraph_or_table: ""}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "Pre-RS sources may include interviews, meeting protocols, decisions, notes, multimedia and legacy systems."
+    researcher_interpretation: "DDTA input contracts must accommodate heterogeneous governed evidence."
+    supported_proposition: "Pre-RS provenance spans heterogeneous and partly unstructured artifacts."
+    thesis_targets: ["chapter-2", "chapter-5"]
+    temporal_caveat: "Current for the reviewed literature through 2022."
+    verification_state: location_verified
+  - id: SRC-0021-EX-0003
+    location: {pdf_page: 9, printed_page: 127, section: "5.3 Use cases and benefits", paragraph_or_table: "Tables 5 and 6"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "Finding the requirement source, responsibility identification and impact analysis are prominent use cases."
+    researcher_interpretation: "These map to DDTA provenance, ownership and staleness capabilities."
+    supported_proposition: "Traceability supports understanding, responsibility and change impact."
+    thesis_targets: ["chapter-2", "chapter-3", "chapter-5"]
+    temporal_caveat: "The ranking aggregates literature codings, not a contemporary prevalence survey."
+    verification_state: location_verified
+  - id: SRC-0021-EX-0004
+    location: {pdf_page: 11, printed_page: 129, section: "5.4 Problems and solutions", paragraph_or_table: ""}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "Versioning, project-specific adaptability and trust in generated links remain insufficiently solved."
+    researcher_interpretation: "An overlay needs versioned links, configurable scope and review states."
+    supported_proposition: "Link correctness and maintenance cannot be inferred from automatic generation alone."
+    thesis_targets: ["chapter-3", "chapter-5"]
+    temporal_caveat: "Needs post-2022 corroboration for current AI-assisted techniques."
+    verification_state: location_verified
+  - id: SRC-0021-EX-0005
+    location: {pdf_page: 12, printed_page: 130, section: "5.5 Techniques", paragraph_or_table: "State of evaluation"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "Only a small subset of proposed techniques has multi-case or extensive evaluation."
+    researcher_interpretation: "DDTA evaluation must prioritize realistic multi-project evidence."
+    supported_proposition: "Industrial validation remains a gap in traceability research."
+    thesis_targets: ["chapter-3", "chapter-4"]
+    temporal_caveat: "Evidence window ends in 2022."
+    verification_state: location_verified

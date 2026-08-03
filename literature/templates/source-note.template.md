@@ -1,5 +1,6 @@
 ---
 source_id: SRC-XXXX
+citation_key: ""
 title: ""
 authors: []
 year: null
@@ -9,21 +10,51 @@ stable_identifier: ""
 primary_topics: []
 secondary_topics: []
 ddta_roles: []
+temporal_status: unassessed
+time_sensitivity: unassessed
+evidence_window: ""
+corroborating_sources: []
 ---
 
 # Source note
 
-## Bibliographic identity
+## Bibliographic identity and access
 
-## Research problem
+- Landing URL:
+- Legal PDF URL:
+- Licence/access type:
+- Local filename:
+- Retrieved on:
+- Local SHA-256:
 
-## Method
+## Four reading questions
+
+### 1. Research problem and contribution
+
+### 2. Starting artifacts and system representation
+
+### 3. Traceability, change, automation and human role
+
+### 4. Findings, limitations and relationship with DDTA / overlay
+
+## Research method and corpus
 
 ## Contribution
 
 ## Findings
 
 ## Limitations stated by the authors
+
+## Temporal validity
+
+- Contribution type:
+- Time sensitivity:
+- Temporal status:
+- Evidence window:
+- Elements still applicable:
+- Potentially obsolete elements:
+- Contemporary corroboration:
+- Permitted thesis use:
 
 ## Limitations identified for DDTA comparison
 
@@ -35,8 +66,13 @@ ddta_roles: []
 
 ### Research gap left open
 
+### Overlay-method implications
+
 ## Candidate thesis claims
 
-## Quotations to verify against the original
+## Citation-ready locations
+
+Record exact page/section locations in the matching file under `literature/excerpts/`.
+Keep quotation, paraphrase and interpretation separate.
 
 ## Follow-up sources

@@ -1,0 +1,39 @@
+schema_version: 1
+last_updated: 2026-08-04
+sources:
+  - source_id: SRC-0002
+    landing_url: "https://discovery.ucl.ac.uk/id/eprint/749/"
+    pdf_url: "https://discovery.ucl.ac.uk/id/eprint/749/1/2.2_rtprob.pdf"
+    access_type: open_access_repository_copy
+    licence: "Repository copy; check publisher terms for reuse"
+    local_filename: "SRC-0002-gotel-finkelstein-1994.pdf"
+    retrieved_on: null
+    sha256: null
+    repository_storage: forbidden
+  - source_id: SRC-0021
+    landing_url: "https://link.springer.com/article/10.1007/s00766-023-00412-z"
+    pdf_url: "https://link.springer.com/content/pdf/10.1007/s00766-023-00412-z.pdf"
+    access_type: open_access
+    licence: "CC BY 4.0"
+    local_filename: "SRC-0021-mucha-kaufmann-riehle-2024.pdf"
+    retrieved_on: null
+    sha256: null
+    repository_storage: forbidden
+  - source_id: SRC-0022
+    landing_url: "https://link.springer.com/article/10.1007/s00766-023-00408-9"
+    pdf_url: "https://dspace.library.uu.nl/bitstream/handle/1874/435321/s00766-023-00408-9.pdf?sequence=1"
+    access_type: open_access
+    licence: "CC BY 4.0"
+    local_filename: "SRC-0022-ruiz-hu-dalpiaz-2023.pdf"
+    retrieved_on: null
+    sha256: null
+    repository_storage: forbidden
+  - source_id: SRC-0023
+    landing_url: "https://link.springer.com/article/10.1007/s10270-021-00958-y"
+    pdf_url: "https://link.springer.com/content/pdf/10.1007/s10270-021-00958-y.pdf"
+    access_type: open_access
+    licence: "CC BY 4.0"
+    local_filename: "SRC-0023-grosser-riediger-jurjens-2022.pdf"
+    retrieved_on: null
+    sha256: null
+    repository_storage: forbidden

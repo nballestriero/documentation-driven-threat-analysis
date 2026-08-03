@@ -1,0 +1,32 @@
+schema_version: 1
+source_id: SRC-0002
+citation_key: gotel1994analysis
+source_version:
+  stable_identifier: "10.1109/ICRE.1994.292398"
+  edition_or_version: "UCL repository copy"
+  accessed_on: null
+  local_filename: "SRC-0002-gotel-finkelstein-1994.pdf"
+  sha256: null
+excerpts:
+  - id: SRC-0002-EX-0001
+    location: {pdf_page: 1, printed_page: 94, section: "Opening definitions", paragraph_or_table: ""}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "Pre-RS traceability concerns the life of a requirement before inclusion in the requirements specification."
+    researcher_interpretation: "This supplies the historical provenance boundary used by DDTA."
+    supported_proposition: "Pre-RS and post-RS provenance are distinct."
+    thesis_targets: ["chapter-2", "chapter-5"]
+    temporal_caveat: "Use as a foundational definition, not current practice evidence."
+    verification_state: location_verified
+  - id: SRC-0002-EX-0002
+    location: {pdf_page: null, printed_page: null, section: "Empirical findings", paragraph_or_table: ""}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "Source and participant information are important for understanding how a requirement originated and evolved."
+    researcher_interpretation: "DDTA should retain responsibility and provenance metadata."
+    supported_proposition: "Requirement provenance includes people and production context."
+    thesis_targets: ["chapter-2", "chapter-5"]
+    temporal_caveat: "Corroborate with SRC-0021 and SRC-0022."
+    verification_state: captured

@@ -1,0 +1,25 @@
+schema_version: 1
+source_id: SRC-XXXX
+citation_key: ""
+source_version:
+  stable_identifier: ""
+  edition_or_version: ""
+  accessed_on: null
+  local_filename: ""
+  sha256: null
+excerpts:
+  - id: SRC-XXXX-EX-0001
+    location:
+      pdf_page: null
+      printed_page: null
+      section: ""
+      paragraph_or_table: ""
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: ""
+    researcher_interpretation: ""
+    supported_proposition: ""
+    thesis_targets: []
+    temporal_caveat: ""
+    verification_state: captured

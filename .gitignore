@@ -13,3 +13,9 @@ thesis/latex/*.run.xml
 thesis/latex/*.synctex.gz
 thesis/latex/*.toc
 thesis/latex/DDTA_tesi.pdf
+
+# Personally downloaded literature PDFs are local evidence copies, not repository artifacts
+literature/local-pdf/*.pdf
+
+# Local DDTA working and drop-in preview directories
+.ddta/

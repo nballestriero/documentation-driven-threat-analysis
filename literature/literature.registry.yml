@@ -1,6 +1,6 @@
 schema_version: 1
 corpus_status: working
-last_updated: 2026-07-22
+last_updated: 2026-08-04
 sources:
   - id: SRC-0001
     citation_key: shostack2014threat
@@ -162,3 +162,27 @@ sources:
     verification_state: verified
     topics: [DE-ARCH, MD-VIEW]
     ddta_roles: [foundation, context]
+  - id: SRC-0021
+    citation_key: mucha2024prers
+    title: "A systematic literature review of pre-requirements specification traceability"
+    year: 2024
+    type: secondary_review
+    verification_state: verified
+    topics: [RE-TRACEABILITY, RE-PRE, CS-CHANGE, CS-HUMAN]
+    ddta_roles: [foundation, comparison, evaluation]
+  - id: SRC-0022
+    citation_key: ruiz2023whydontwetrace
+    title: "Why don't we trace? A study on the barriers to software traceability in practice"
+    year: 2023
+    type: primary_research
+    verification_state: verified
+    topics: [RE-TRACEABILITY, CS-HUMAN, CS-DEVSECOPS]
+    ddta_roles: [comparison, evaluation, challenge]
+  - id: SRC-0023
+    citation_key: grosser2022documentrelations
+    title: "Requirements document relations: A reuse perspective on traceability through standards"
+    year: 2022
+    type: primary_research
+    verification_state: verified
+    topics: [RE-TRACEABILITY, MD-VIEW, DE-DOCS-AS-CODE]
+    ddta_roles: [foundation, comparison]
