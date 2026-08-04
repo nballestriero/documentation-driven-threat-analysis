@@ -202,3 +202,11 @@ sources:
     verification_state: verified
     topics: [RE-TRACEABILITY, RE-NLP-LLM, DE-QUALITY]
     ddta_roles: [comparison, evaluation, challenge]
+  - id: SRC-0026
+    citation_key: tuma2018threatanalysis
+    title: "Threat analysis of software systems: A systematic literature review"
+    year: 2018
+    type: secondary_review
+    verification_state: verified
+    topics: [TM-GENERAL, RE-SECURITY, CS-ASSURANCE]
+    ddta_roles: [foundation, comparison, evaluation]

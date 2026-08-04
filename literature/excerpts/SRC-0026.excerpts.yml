@@ -1,0 +1,153 @@
+schema_version: 1
+source_id: SRC-0026
+citation_key: tuma2018threatanalysis
+source_version:
+  stable_identifier: "10.1016/j.jss.2018.06.073"
+  edition_or_version: "Author-hosted preprint submitted 2018-02-05"
+  accessed_on: "2026-08-04"
+  local_filename: "SRC-0026-tuma-calikli-scandariato-2018.pdf"
+  sha256: null
+excerpts:
+  - id: SRC-0026-EX-0001
+    location: {pdf_page: 1, printed_page: 1, section: "Abstract and Introduction", paragraph_or_table: ""}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "The review compares 26 threat-analysis techniques across applicability, input, procedure, outcomes, adoption and validation."
+    researcher_interpretation: "These dimensions form the initial DDTA comparison matrix."
+    supported_proposition: "Threat-analysis methods differ in more than their threat taxonomy."
+    thesis_targets: ["chapter-2", "chapter-3", "chapter-4"]
+    temporal_caveat: "The primary-study window ends before January 2017."
+    verification_state: location_verified
+  - id: SRC-0026-EX-0002
+    location: {pdf_page: 3, printed_page: 3, section: "2.2 Search strategy", paragraph_or_table: "Figure 1"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "Five thousand ranked search results were reduced to 38 primary studies through title, abstract, full-text filtering and backward snowballing."
+    researcher_interpretation: "The source is a systematic map, not a common-benchmark effectiveness study."
+    supported_proposition: "The review uses an explicit multi-stage selection process."
+    thesis_targets: ["chapter-3", "chapter-4"]
+    temporal_caveat: "CORE filtering and grey-literature exclusion limit industrial coverage."
+    verification_state: location_verified
+  - id: SRC-0026-EX-0003
+    location: {pdf_page: 4, printed_page: 4, section: "2.4 Data extraction", paragraph_or_table: "Table 2"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "The assessment distinguishes requirements, attacker behavior, security assumptions, architectural design, source code and goals, represented textually or through models."
+    researcher_interpretation: "DDTA must record both artifact type and representation layer."
+    supported_proposition: "Input type and representation are separate method-selection dimensions."
+    thesis_targets: ["chapter-3", "chapter-5"]
+    temporal_caveat: "Conceptual taxonomy remains useful despite the historical evidence window."
+    verification_state: location_verified
+  - id: SRC-0026-EX-0004
+    location: {pdf_page: 5, printed_page: 5, section: "2.4 Data extraction", paragraph_or_table: "Input rationale"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "Threat analysis requires knowledge of what the system is and what it must be protected from."
+    researcher_interpretation: "Documentation-first does not mean information-free; the minimum information contract must be explicit."
+    supported_proposition: "System and adversarial context are minimum threat-analysis inputs."
+    thesis_targets: ["chapter-2", "chapter-5"]
+    temporal_caveat: "The paper does not define a sufficient raw-document set."
+    verification_state: location_verified
+  - id: SRC-0026-EX-0005
+    location: {pdf_page: 9, printed_page: 9, section: "3.2 RQ1 Characteristics", paragraph_or_table: "Applicability"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "Fourteen techniques apply at requirements level, eleven at architecture, thirteen at design and only two at implementation."
+    researcher_interpretation: "The first DDTA analysis can be evaluated independently of source code."
+    supported_proposition: "The reviewed threat-analysis literature is predominantly pre-implementation."
+    thesis_targets: ["chapter-3", "chapter-5"]
+    temporal_caveat: "Counts describe methods selected before 2017."
+    verification_state: location_verified
+  - id: SRC-0026-EX-0006
+    location: {pdf_page: 9, printed_page: 9, section: "3.2 RQ1 Characteristics", paragraph_or_table: "Input"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "Requirements and architectural design are common inputs; only one technique considers source code, where it is optional; textual descriptions occur more often than models."
+    researcher_interpretation: "Code is later evidence, while the unresolved problem is constructing an adequate system representation from documentation."
+    supported_proposition: "Source code is not normally required for early threat analysis."
+    thesis_targets: ["chapter-3", "chapter-5"]
+    temporal_caveat: "This does not prove that arbitrary raw documentation is sufficient."
+    verification_state: location_verified
+  - id: SRC-0026-EX-0007
+    location: {pdf_page: 7, printed_page: 7, section: "3.1 Overview", paragraph_or_table: "Technique focus taxonomy"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "The review distinguishes risk-centric, attack-centric and software-centric techniques and also identifies GORE, SRE and privacy families."
+    researcher_interpretation: "DDTA can use a neutral Base Analysis while overlays declare their focus and required views."
+    supported_proposition: "Threat-analysis methods organize the problem around different analytical centers."
+    thesis_targets: ["chapter-2", "chapter-3", "chapter-5"]
+    temporal_caveat: "Taxonomy is a historical synthesis rather than an exhaustive 2026 ontology."
+    verification_state: location_verified
+  - id: SRC-0026-EX-0008
+    location: {pdf_page: 9, printed_page: 9, section: "3.2 RQ1 Characteristics", paragraph_or_table: "Procedure"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "About half of the methods use knowledge bases, while precision often remains at examples or templates; only four families are classified as very precise."
+    researcher_interpretation: "Overlay procedures need executable rules, diagnostic output and a declared completion condition."
+    supported_proposition: "Procedure precision varies substantially across threat-analysis techniques."
+    thesis_targets: ["chapter-3", "chapter-5"]
+    temporal_caveat: "Specific method classifications require the original primary studies for final claims."
+    verification_state: location_verified
+  - id: SRC-0026-EX-0009
+    location: {pdf_page: 11, printed_page: 11, section: "3.2 RQ1 Characteristics", paragraph_or_table: "Outcomes"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "All methods produce threats; fifteen produce mitigations, twelve produce security requirements and eight produce all three."
+    researcher_interpretation: "DDTA must keep threats, reviewed findings, mitigations and security requirements as distinct entities."
+    supported_proposition: "Threat-analysis outcomes have multiple semantic types."
+    thesis_targets: ["chapter-2", "chapter-5"]
+    temporal_caveat: "Counts reflect the reviewed historical corpus."
+    verification_state: location_verified
+  - id: SRC-0026-EX-0010
+    location: {pdf_page: 11, printed_page: 11, section: "3.2 RQ1 Characteristics", paragraph_or_table: "Quality assurance"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "Only three techniques include explicit quality assurance, five include some assurance and seventeen have none identified."
+    researcher_interpretation: "Verification evidence must be an explicit DDTA output rather than an informal expectation."
+    supported_proposition: "Outcome quality assurance was uncommon in the reviewed methods."
+    thesis_targets: ["chapter-3", "chapter-4", "chapter-5"]
+    temporal_caveat: "The finding needs contemporary corroboration before being described as current."
+    verification_state: location_verified
+  - id: SRC-0026-EX-0011
+    location: {pdf_page: 11, printed_page: 11, section: "3.3 and 3.4", paragraph_or_table: "Ease of adoption and validation"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "Eleven methods have no tool, eleven have tools and four have prototypes; validation is dominated by broadly defined case studies, with fewer experiments."
+    researcher_interpretation: "Tool existence and methodological validity must be evaluated separately."
+    supported_proposition: "Tool and validation maturity were limited in the review's evidence window."
+    thesis_targets: ["chapter-3", "chapter-4"]
+    temporal_caveat: "Tool availability is highly time-sensitive."
+    verification_state: location_verified
+  - id: SRC-0026-EX-0012
+    location: {pdf_page: 14, printed_page: 14, section: "4.2 and 4.3", paragraph_or_table: "Definition of Done and precise guidelines"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "Scoping, stopping and detailed threat-selection decisions are commonly left to experts, and precise analysis rules are rare."
+    researcher_interpretation: "DDTA needs a governed coverage plan, stopping condition and incomplete-analysis diagnostics."
+    supported_proposition: "Definition of Done and procedure precision are major gaps."
+    thesis_targets: ["chapter-3", "chapter-5"]
+    temporal_caveat: "Longstanding gap requiring current confirmation."
+    verification_state: location_verified
+  - id: SRC-0026-EX-0013
+    location: {pdf_page: 18, printed_page: 18, section: "7 Conclusions and future work", paragraph_or_table: ""}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "The authors propose feedback between intended and actual architecture, composition of subsystem analyses and lightweight risk-first analysis for change-driven development."
+    researcher_interpretation: "DDTA should separate the initial intended-system analysis from later code-based corroboration and impact analysis."
+    supported_proposition: "Initial design analysis and later implementation feedback are complementary lifecycle stages."
+    thesis_targets: ["chapter-3", "chapter-5", "chapter-6"]
+    temporal_caveat: "Future-work proposal, not validated evidence."
+    verification_state: location_verified
