@@ -1,0 +1,109 @@
+schema_version: 1
+source_id: SRC-0022
+citation_key: ruiz2023whydontwetrace
+source_version:
+  stable_identifier: "10.1007/s00766-023-00408-9"
+  edition_or_version: "Version of record, CC BY 4.0"
+  accessed_on: null
+  local_filename: "SRC-0022-ruiz-hu-dalpiaz-2023.pdf"
+  sha256: null
+excerpts:
+  - id: SRC-0022-EX-0001
+    location: {pdf_page: 1, printed_page: 619, section: "Abstract", paragraph_or_table: ""}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "The study combines an online survey of 55 practitioners with interviews of 14 practitioners to examine traceability value, practices, challenges and needs."
+    researcher_interpretation: "This provides contemporary empirical corroboration for the historical and systematic traceability sources."
+    supported_proposition: "Current traceability research needs practitioner evidence, not only proposed tools and techniques."
+    thesis_targets: ["chapter-2", "chapter-3", "chapter-4"]
+    temporal_caveat: "The exact data-collection dates are not stated; the data predate manuscript submission in June 2022."
+    verification_state: location_verified
+  - id: SRC-0022-EX-0002
+    location: {pdf_page: 8, printed_page: 626, section: "4.1 Perceived importance of barriers - RQ1", paragraph_or_table: "Finding S2 and S3"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "Eighty percent perceived cost as a main inhibitor, while 37 percent believed costs outweigh benefits; 86 percent considered traceability highly important."
+    researcher_interpretation: "DDTA must reduce maintenance effort and make its benefit observable."
+    supported_proposition: "Perceived cost inhibits adoption even when practitioners value traceability."
+    thesis_targets: ["chapter-2", "chapter-3", "chapter-5"]
+    temporal_caveat: "Percentages describe this 55-person survey sample, not the full practitioner population."
+    verification_state: location_verified
+  - id: SRC-0022-EX-0003
+    location: {pdf_page: 8, printed_page: 626, section: "4.1 Perceived importance of barriers - RQ1", paragraph_or_table: "Finding S5"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "Respondents requested better organizational embedding through benefit/cost visibility, awareness, managed practice and clearer communication of roles and responsibilities."
+    researcher_interpretation: "Traceability governance is socio-technical and cannot be reduced to a link schema."
+    supported_proposition: "Organizational embedding is a recurring requirement for sustained traceability practice."
+    thesis_targets: ["chapter-2", "chapter-3", "chapter-5"]
+    temporal_caveat: "Perception-based evidence from the study sample."
+    verification_state: location_verified
+  - id: SRC-0022-EX-0004
+    location: {pdf_page: 13, printed_page: 631, section: "5 Key findings from the interviews", paragraph_or_table: "Finding I2"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "Traceability tools and practices are not mature enough for distributed artifacts in all contexts, but engineers frequently compensate for the gaps."
+    researcher_interpretation: "Human expertise can hide integration weaknesses that become visible when teams, permissions and tools scale."
+    supported_proposition: "Distributed artifact access and cross-tool integration remain context-sensitive barriers."
+    thesis_targets: ["chapter-3", "chapter-5"]
+    temporal_caveat: "Interview evidence from 14 Europe-based practitioners."
+    verification_state: location_verified
+  - id: SRC-0022-EX-0005
+    location: {pdf_page: 14, printed_page: 632, section: "5 Key findings from the interviews", paragraph_or_table: "Finding I5"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "Interviewees did not identify one universal role responsible for traceability; responsibility depends on team agreements and organizational context."
+    researcher_interpretation: "DDTA should support distributed responsibility while recording explicit ownership and review decisions."
+    supported_proposition: "Traceability responsibility is shared and context-dependent."
+    thesis_targets: ["chapter-2", "chapter-5"]
+    temporal_caveat: "Qualitative finding; not a universal role model."
+    verification_state: location_verified
+  - id: SRC-0022-EX-0006
+    location: {pdf_page: 15, printed_page: 633, section: "5 Key findings from the interviews", paragraph_or_table: "Finding I6"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "Practitioners commonly repurpose and customize their existing work tools rather than use a dedicated traceability tool, but substantial manual work remains."
+    researcher_interpretation: "A DDTA implementation should integrate into existing repositories and authoring environments."
+    supported_proposition: "Tool integration and workflow fit influence traceability adoption."
+    thesis_targets: ["chapter-3", "chapter-5", "chapter-6"]
+    temporal_caveat: "Tool preferences may change with later integrated and AI-assisted systems."
+    verification_state: location_verified
+  - id: SRC-0022-EX-0007
+    location: {pdf_page: 15, printed_page: 633, section: "5 Key findings from the interviews", paragraph_or_table: "Finding I7"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "Participants desired automation for repetitive trace creation and maintenance, but expected a human to check correctness."
+    researcher_interpretation: "Overlay output should remain candidate evidence until reviewed and accepted."
+    supported_proposition: "Automation is expected to assist rather than replace human traceability work."
+    thesis_targets: ["chapter-3", "chapter-5"]
+    temporal_caveat: "The interviews predate the latest LLM-assisted tracing capabilities."
+    verification_state: location_verified
+  - id: SRC-0022-EX-0008
+    location: {pdf_page: 16, printed_page: 634, section: "5 Key findings from the interviews", paragraph_or_table: "Finding I8"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "The lifecycle phase in which practitioners perceive the greatest traceability benefit varies with their role."
+    researcher_interpretation: "DDTA views and navigation should be role-oriented while preserving a common provenance graph."
+    supported_proposition: "Traceability value is role-dependent across the lifecycle."
+    thesis_targets: ["chapter-2", "chapter-5"]
+    temporal_caveat: "Qualitative evidence from 14 interviews."
+    verification_state: location_verified
+  - id: SRC-0022-EX-0009
+    location: {pdf_page: 17, printed_page: 635, section: "6.2 Threats to validity", paragraph_or_table: ""}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "The authors caution that the sample is small, mostly European, weighted toward large companies and agile practice, and has limited statistical power for subgroup comparisons."
+    researcher_interpretation: "The study should be used as scoped contemporary evidence rather than as a population prevalence estimate."
+    supported_proposition: "The findings require explicit geographic, sampling and statistical caveats."
+    thesis_targets: ["chapter-3", "chapter-4", "chapter-8"]
+    temporal_caveat: "Limitations are intrinsic to the study and remain applicable."
+    verification_state: location_verified
