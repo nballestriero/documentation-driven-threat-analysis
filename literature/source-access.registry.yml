@@ -49,3 +49,18 @@ sources:
     companion_repository_url: "https://github.com/ZZYG0g0g0/RCTLR_SOTA"
     companion_repository_ref: "887c3a134d2892dcab103a1da399bdb4132ddaba"
     companion_repository_status: partial_reproducibility_package
+  - source_id: SRC-0025
+    landing_url: "https://publikationen.bibliothek.kit.edu/1000170117"
+    pdf_url: "https://publikationen.bibliothek.kit.edu/1000170117/152716343"
+    access_type: open_access_repository_copy
+    licence: "KITopen postprint; reuse licence not stated on landing page"
+    local_filename: "SRC-0025-hey-keim-corallo-2024.pdf"
+    retrieved_on: null
+    sha256: null
+    repository_storage: forbidden
+    companion_repository_url: "https://zenodo.org/records/10998830"
+    companion_repository_identifier: "10.5281/zenodo.10990762"
+    companion_repository_version: "v2"
+    companion_github_url: "https://github.com/tobhey/finegrained-traceability"
+    companion_github_ref: "197cf2f395e9e90636436f30d6383465cb9e9f63"
+    companion_repository_status: substantial_package_not_executed

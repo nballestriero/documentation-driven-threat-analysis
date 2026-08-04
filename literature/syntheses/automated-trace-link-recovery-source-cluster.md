@@ -28,7 +28,7 @@ implementations to external repositories. The package is therefore useful but no
 
 ## Provisional synthesis for DDTA evaluation
 
-SRC-0024 supports the following benchmark controls:
+SRC-0024 and SRC-0025 jointly support the following benchmark and pipeline controls:
 
 - pin method, dependency and dataset versions;
 - publish the ground-truth provenance and negative-pair construction;
@@ -39,7 +39,12 @@ SRC-0024 supports the following benchmark controls:
 - add analyst-review effort, accepted-candidate yield and confidence calibration;
 - test unseen projects, languages and artifact types;
 - distinguish relative rank from absolute usefulness;
-- record unavailable dependencies and partial reproduction packages as limitations.
+- record unavailable dependencies and partial reproduction packages as limitations;
+- evaluate preprocessing separately from end-to-end recovery;
+- preserve filtered fragments and record every exclusion decision;
+- report rare-class precision and recall instead of relying only on weighted averages;
+- distinguish fixed deployable thresholds from gold-optimized upper bounds;
+- verify that a filter's semantics match the overlay task.
 
 For the DDTA overlay, trace recovery is only one evaluation layer:
 
@@ -53,14 +58,36 @@ document extraction
 ```
 
 A gain in requirement-to-code F1 does not establish improvement in finding quality or threat
-coverage. Those outcomes require separate ground truth and expert review.
+coverage. Likewise, text that is irrelevant to functional code mapping may be essential security
+or operational evidence. Those outcomes and filtering semantics require separate ground truth
+and expert review.
 
 ## Next sources
 
-### SRC-0025 candidate - Requirements Classification for Traceability Link Recovery
+### SRC-0025 - Hey, Keim and Corallo (2024)
 
-Evaluate whether fine-grained requirement classification improves recovery and whether the
-published code, datasets and reported F1 improvements reproduce outside the original projects.
+Role: pretrained-transformer classification as task-specific preprocessing for requirement-to-code
+recovery. The paper labels requirement elements, evaluates NoRBERT with an unseen-project design
+and filters FTLR inputs before link recovery.
+
+The automated functional-aspect filter yields a modest but statistically significant improvement
+in the reported setup. With optimized thresholds, FTLR improves from 37.8 to 38.8 percent average
+F1; combining template and functional filters reaches 40.7 percent. The user-related filter reduces
+average performance because recall falls. Aggregate classification scores also conceal severe
+rare-class behavior: the LibEST user-related class has 80 percent recall but only 1.7 percent
+precision.
+
+The main refinement to SRC-0024 is that preprocessing is itself a governed model component.
+Its labels, confidence, class balance and errors determine which evidence reaches recovery.
+Gold-standard classifications and per-project optimized thresholds are upper bounds and must be
+kept separate from deployable performance.
+
+Temporal caveat: NoRBERT is BERT-based 2024 evidence, not a generative-LLM evaluation. The
+method ranking and absolute performance need post-2024 corroboration.
+
+Reproducibility caveat: Zenodo v2 and the associated GitHub repository provide code, results,
+datasets, installation guidance and Docker references. The package was structurally audited but
+not executed in this reading workflow.
 
 ### SRC-0026 candidate - MTLink
 
@@ -82,7 +109,7 @@ Select peer-reviewed full-text studies that report:
 
 ```text
 SRC-0024 classical and early-ML benchmark floor
--> fine-grained requirement classification
+-> SRC-0025 pretrained requirement classification and filtering
 -> pretrained issue-to-commit recovery
 -> RAG and generative LLM recovery
 -> cross-project and human-review synthesis

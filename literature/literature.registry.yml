@@ -194,3 +194,11 @@ sources:
     verification_state: verified
     topics: [RE-TRACEABILITY, DE-QUALITY, CS-ASSURANCE]
     ddta_roles: [comparison, evaluation, challenge]
+  - id: SRC-0025
+    citation_key: hey2024requirementsclassification
+    title: "Requirements Classification for Traceability Link Recovery"
+    year: 2024
+    type: primary_research
+    verification_state: verified
+    topics: [RE-TRACEABILITY, RE-NLP-LLM, DE-QUALITY]
+    ddta_roles: [comparison, evaluation, challenge]

@@ -1,0 +1,145 @@
+schema_version: 1
+source_id: SRC-0025
+citation_key: hey2024requirementsclassification
+source_version:
+  stable_identifier: "10.1109/RE59067.2024.00024"
+  edition_or_version: "KITopen postprint of the RE 2024 paper"
+  accessed_on: "2026-08-04"
+  local_filename: "SRC-0025-hey-keim-corallo-2024.pdf"
+  sha256: null
+companion_artifacts:
+  - type: supplementary_software
+    url: "https://zenodo.org/records/10998830"
+    stable_identifier: "10.5281/zenodo.10990762"
+    version: "v2"
+    audited_on: "2026-08-04"
+    reproducibility_status: substantial_package_not_executed
+    researcher_observation: "The record declares source code, further results, a labeled dataset relationship and separate Docker-image records."
+  - type: source_repository
+    url: "https://github.com/tobhey/finegrained-traceability"
+    ref: "197cf2f395e9e90636436f30d6383465cb9e9f63"
+    audited_on: "2026-08-04"
+    reproducibility_status: documented_external_model_dependencies
+    researcher_observation: "The repository includes FTLR, datasets, classification files, installation guidance and a CLI, while language and embedding model files remain external dependencies."
+excerpts:
+  - id: SRC-0025-EX-0001
+    location: {pdf_page: 1, printed_page: 155, section: "Abstract", paragraph_or_table: ""}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "The work trains NoRBERT on a new requirement-element dataset and uses its classifications to filter text before FTLR trace recovery."
+    researcher_interpretation: "The contribution is a preprocessing-plus-recovery pipeline, not an end-to-end security-analysis method."
+    supported_proposition: "Task-specific requirement classification can be integrated before trace-link recovery."
+    thesis_targets: ["chapter-3", "chapter-4", "chapter-5"]
+    temporal_caveat: "NoRBERT is a BERT-based classifier, not a current generative LLM."
+    verification_state: location_verified
+  - id: SRC-0025-EX-0002
+    location: {pdf_page: 2, printed_page: 156, section: "1 Introduction", paragraph_or_table: "Contributions"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "The authors create a labeled requirement-element dataset, evaluate classification on traceability benchmarks and evaluate filtering in FTLR."
+    researcher_interpretation: "The evaluation separates classifier quality from downstream trace recovery."
+    supported_proposition: "Component and end-to-end performance should both be measured."
+    thesis_targets: ["chapter-3", "chapter-4"]
+    temporal_caveat: "The benchmark family predates later RAG and generative methods."
+    verification_state: location_verified
+  - id: SRC-0025-EX-0003
+    location: {pdf_page: 5, printed_page: 159, section: "4.2 Integration of Classification in FTLR", paragraph_or_table: "Figure 4 and filter definitions"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "FTLR can filter elements lacking functional aspects, filter user-related elements, or combine both decisions before trace recovery."
+    researcher_interpretation: "DDTA filtering must record task-specific semantics and preserve excluded evidence."
+    supported_proposition: "Preprocessing decisions directly determine which evidence can enter candidate recovery."
+    thesis_targets: ["chapter-3", "chapter-5"]
+    temporal_caveat: "The filter meanings are specific to requirement-to-code mapping."
+    verification_state: location_verified
+  - id: SRC-0025-EX-0004
+    location: {pdf_page: 5, printed_page: 159, section: "4.2 Integration of Classification in FTLR", paragraph_or_table: "Category clarification"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "An element without functional aspects is not necessarily a non-functional requirement."
+    researcher_interpretation: "The functional filter cannot be reinterpreted as a general rule that non-functional or security text is irrelevant."
+    supported_proposition: "Filter labels must not be conflated with broader requirement taxonomies."
+    thesis_targets: ["chapter-2", "chapter-5"]
+    temporal_caveat: "Definition-level proposition."
+    verification_state: location_verified
+  - id: SRC-0025-EX-0005
+    location: {pdf_page: 6, printed_page: 160, section: "5 Empirical Study on Classification", paragraph_or_table: "Tables I and II"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "The new subset contains 447 requirements and 3,284 elements; two annotators achieve Krippendorff alpha values from 0.742 to 0.905 across labels."
+    researcher_interpretation: "Ground-truth provenance and inter-annotator reliability must be governed evaluation evidence."
+    supported_proposition: "The classification dataset is manually constructed with measured agreement."
+    thesis_targets: ["chapter-4", "chapter-8"]
+    temporal_caveat: "The gold standard was created with the intended approach in mind."
+    verification_state: location_verified
+  - id: SRC-0025-EX-0006
+    location: {pdf_page: 7, printed_page: 161, section: "5.1 Experimental Setup", paragraph_or_table: "Leave-one-project-out-like design"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "Each traceability project is tested as unseen while NoRBERT is trained on the remaining projects and PNFR, except for the user-related class."
+    researcher_interpretation: "Project holdout is stronger than within-project testing but still limited to one benchmark family."
+    supported_proposition: "Unseen-project evaluation is necessary for preprocessing intended for new projects."
+    thesis_targets: ["chapter-4"]
+    temporal_caveat: "SMOS and eAnci are machine-translated to English."
+    verification_state: location_verified
+  - id: SRC-0025-EX-0007
+    location: {pdf_page: 8, printed_page: 162, section: "5.2 Classification Results", paragraph_or_table: "Table IV and LibEST discussion"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "The rare LibEST user-related class has 80 percent recall but only 1.7 percent precision, despite promising aggregate results."
+    researcher_interpretation: "Weighted headline scores can conceal a downstream review burden or destructive filtering risk."
+    supported_proposition: "Rare-class precision and recall must be reported separately."
+    thesis_targets: ["chapter-3", "chapter-4", "chapter-8"]
+    temporal_caveat: "Only five positive user-related elements exist in LibEST."
+    verification_state: location_verified
+  - id: SRC-0025-EX-0008
+    location: {pdf_page: 8, printed_page: 162, section: "5.3 Threats to Validity", paragraph_or_table: ""}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "The authors caution that projects and student-authored requirements may not represent industry, datasets are imbalanced and machine translation may bias results."
+    researcher_interpretation: "The classification result is benchmark evidence, not an industrial prevalence estimate."
+    supported_proposition: "External and construct validity require explicit project, authorship and language caveats."
+    thesis_targets: ["chapter-4", "chapter-8"]
+    temporal_caveat: "Explicit author limitations."
+    verification_state: location_verified
+  - id: SRC-0025-EX-0009
+    location: {pdf_page: 9, printed_page: 163, section: "6.1 Comparison to FTLR without Filters", paragraph_or_table: "Table V"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "The automated functional filter raises best average F1 from 34.5 to 35.3 percent with original thresholds and from 37.8 to 38.8 percent with optimized thresholds."
+    researcher_interpretation: "The measured benefit is real but modest, and the optimized result is an upper-bound scenario."
+    supported_proposition: "Classification-based filtering can improve FTLR in the reported benchmark setup."
+    thesis_targets: ["chapter-3", "chapter-4"]
+    temporal_caveat: "The optimized-threshold comparison uses known project links."
+    verification_state: location_verified
+  - id: SRC-0025-EX-0010
+    location: {pdf_page: 10, printed_page: 164, section: "6.2 and 6.3", paragraph_or_table: "Tables VI and VII"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "Combining template and functional filters reaches 40.7 percent average F1; under optimized comparison, filtered FTLR leads average F1 and F2, while the best method still varies by project."
+    researcher_interpretation: "No single preprocessing or recovery configuration should be assumed to generalize."
+    supported_proposition: "Complementary filters can help, but performance remains project-dependent."
+    thesis_targets: ["chapter-3", "chapter-4"]
+    temporal_caveat: "The comparison is restricted to selected unsupervised approaches and per-project optimized thresholds."
+    verification_state: location_verified
+  - id: SRC-0025-EX-0011
+    location: {pdf_page: 11, printed_page: 165, section: "6.4 Threats to Validity and 7 Conclusion", paragraph_or_table: ""}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "The authors identify limited mostly academic projects as the largest external-validity threat and leave generalization to other TLR methods for future work."
+    researcher_interpretation: "Claims about practitioner usability, industrial effectiveness and other pipeline stages remain unvalidated."
+    supported_proposition: "The study demonstrates benchmark improvement, not general industrial effectiveness."
+    thesis_targets: ["chapter-4", "chapter-8"]
+    temporal_caveat: "Subsequent independent and industrial studies are required."
+    verification_state: location_verified
