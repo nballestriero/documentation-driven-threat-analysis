@@ -86,14 +86,16 @@ quality. It also does not validate automatic extraction from modern documentatio
 LLM-assisted trace recovery or change-impact classification. Those claims require more recent
 technical studies and security-specific empirical evaluation.
 
-## Next source family
+## Transition to automated recovery evidence
 
-### Recent automated and AI-assisted trace-link studies
+The first source in the automated recovery family is SRC-0024, a 2024 empirical benchmark of
+requirement-to-code recovery methods. Its analysis is maintained separately in:
 
-The next cluster should examine post-2022 work on NLP, transformer and LLM-assisted trace
-retrieval, with particular attention to datasets, precision/recall, confidence calibration,
-human review and generalization across projects. Candidate sources must be selected from
-peer-reviewed or primary technical publications with accessible full text.
+`literature/syntheses/automated-trace-link-recovery-source-cluster.md`
+
+This separation prevents the conceptual traceability cluster from being conflated with a
+rapidly changing algorithmic SOTA. SRC-0024 is used as a benchmark floor, not as evidence of
+the best methods available in 2026.
 
 ## Additional candidate
 
@@ -108,5 +110,6 @@ SRC-0002 historical foundation
 -> SRC-0021 systematic update
 -> SRC-0022 current practitioner evidence
 -> SRC-0023 document-level formalization
--> recent AI/RAG trace-link studies
+-> SRC-0024 automated recovery benchmark floor
+-> recent transformer, RAG and LLM trace-link studies
 ```

@@ -186,3 +186,11 @@ sources:
     verification_state: verified
     topics: [RE-TRACEABILITY, MD-VIEW, DE-DOCS-AS-CODE]
     ddta_roles: [foundation, comparison]
+  - id: SRC-0024
+    citation_key: wang2024rctlrsota
+    title: "An empirical study on the state-of-the-art methods for requirement-to-code traceability link recovery"
+    year: 2024
+    type: primary_research
+    verification_state: verified
+    topics: [RE-TRACEABILITY, DE-QUALITY, CS-ASSURANCE]
+    ddta_roles: [comparison, evaluation, challenge]

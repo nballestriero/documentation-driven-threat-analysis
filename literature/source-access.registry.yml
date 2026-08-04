@@ -37,3 +37,15 @@ sources:
     retrieved_on: null
     sha256: null
     repository_storage: forbidden
+  - source_id: SRC-0024
+    landing_url: "https://link.springer.com/article/10.1016/j.jksuci.2024.102118"
+    pdf_url: "https://link.springer.com/content/pdf/10.1016/j.jksuci.2024.102118.pdf"
+    access_type: open_access
+    licence: "CC BY-NC-ND 4.0"
+    local_filename: "SRC-0024-wang-zou-wan-et-al-2024.pdf"
+    retrieved_on: null
+    sha256: null
+    repository_storage: forbidden
+    companion_repository_url: "https://github.com/ZZYG0g0g0/RCTLR_SOTA"
+    companion_repository_ref: "887c3a134d2892dcab103a1da399bdb4132ddaba"
+    companion_repository_status: partial_reproducibility_package

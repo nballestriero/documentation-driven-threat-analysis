@@ -1,0 +1,127 @@
+schema_version: 1
+source_id: SRC-0024
+citation_key: wang2024rctlrsota
+source_version:
+  stable_identifier: "10.1016/j.jksuci.2024.102118"
+  edition_or_version: "Version of record, CC BY-NC-ND 4.0"
+  accessed_on: "2026-08-04"
+  local_filename: "SRC-0024-wang-zou-wan-et-al-2024.pdf"
+  sha256: null
+companion_artifacts:
+  - type: replication_repository
+    url: "https://github.com/ZZYG0g0g0/RCTLR_SOTA"
+    ref: "887c3a134d2892dcab103a1da399bdb4132ddaba"
+    audited_on: "2026-08-04"
+    reproducibility_status: partial
+    researcher_observation: "The README requires separately supplied corpora, CoreNLP and some large datasets, and redirects TAROT and FTLR source code to external repositories."
+excerpts:
+  - id: SRC-0024-EX-0001
+    location: {pdf_page: 1, printed_page: 1, section: "Abstract", paragraph_or_table: ""}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "The study applies a SOTA-identification framework to RC-TLR literature from 2018 to 2023 and replicates experiments on 13 datasets."
+    researcher_interpretation: "This is a benchmark-update source rather than a general traceability survey."
+    supported_proposition: "RC-TLR lacked a uniform recent empirical benchmark."
+    thesis_targets: ["chapter-2", "chapter-3", "chapter-4"]
+    temporal_caveat: "The evaluated method set predates most post-2024 RAG and LLM work."
+    verification_state: location_verified
+  - id: SRC-0024-EX-0002
+    location: {pdf_page: 2, printed_page: 2, section: "1 Introduction", paragraph_or_table: "Motivation"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "New RC-TLR methods are often compared mainly with traditional VSM and LSI baselines rather than stronger recent approaches."
+    researcher_interpretation: "DDTA must avoid claiming progress against deliberately weak baselines."
+    supported_proposition: "Baseline selection affects the credibility of improvement claims."
+    thesis_targets: ["chapter-3", "chapter-4"]
+    temporal_caveat: "This is the authors' characterization of the 2018-2023 literature."
+    verification_state: location_verified
+  - id: SRC-0024-EX-0003
+    location: {pdf_page: 6, printed_page: 6, section: "3.5 Perform the framework", paragraph_or_table: "Stages 1 and 2"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "The search reduced 3609 initial records to 29 studies, assessed 11 candidate papers, selected six candidate SOTA papers and used 13 Java datasets for replication."
+    researcher_interpretation: "The study provides a transparent narrowing chain, but its language and artifact scope remain narrow."
+    supported_proposition: "Candidate methods and datasets were selected through explicit filtering stages."
+    thesis_targets: ["chapter-3", "chapter-4"]
+    temporal_caveat: "All experimental datasets are Java."
+    verification_state: location_verified
+  - id: SRC-0024-EX-0004
+    location: {pdf_page: 12, printed_page: 12, section: "4.4 RQ3", paragraph_or_table: "Dataset and metric summary"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "Precision and recall appear in 92.86 percent of the reviewed studies, while F1 appears in 71.43 percent."
+    researcher_interpretation: "DDTA should retain these metrics but add review-effort and confidence measures."
+    supported_proposition: "Precision, recall and F1 are core comparable RC-TLR metrics."
+    thesis_targets: ["chapter-2", "chapter-4"]
+    temporal_caveat: "Frequency in a literature sample does not prove metric sufficiency."
+    verification_state: location_verified
+  - id: SRC-0024-EX-0005
+    location: {pdf_page: 12, printed_page: 12, section: "4.5.1 IR-based methods", paragraph_or_table: "COEST results"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "Different IR method combinations lead on Albergate, EasyClinic, eTour, iTrust and SMOS; the best F1 values range from 0.3406 to 0.5763."
+    researcher_interpretation: "There is no dataset-independent winner even within the small benchmark family."
+    supported_proposition: "RC-TLR performance is project-dependent."
+    thesis_targets: ["chapter-3", "chapter-4"]
+    temporal_caveat: "These are within-dataset results with tuned settings."
+    verification_state: location_verified
+  - id: SRC-0024-EX-0006
+    location: {pdf_page: 13, printed_page: 13, section: "4.5.1 IR-based methods", paragraph_or_table: "Cutoff analysis"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "Cutoff-based selection generally outperforms top-N selection in the tested COEST setting, and the authors derive a cutoff evaluation interval of 0.05 to 0.14."
+    researcher_interpretation: "Threshold robustness should be reported, but the derived interval must not be treated as a universal DDTA threshold."
+    supported_proposition: "Candidate-selection policy materially affects reported recovery performance."
+    thesis_targets: ["chapter-4", "chapter-5"]
+    temporal_caveat: "The interval is derived from the selected datasets and methods."
+    verification_state: location_verified
+  - id: SRC-0024-EX-0007
+    location: {pdf_page: 13, printed_page: 13, section: "4.5.2 ML-based methods", paragraph_or_table: "Table 13 discussion"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "Random forest with SMOTE performs best on the tested ML datasets, while the effect of balancing varies by classifier and more training data can cause overfitting."
+    researcher_interpretation: "Class balance and tuning protocol must be part of the governed evaluation record."
+    supported_proposition: "Experimental settings can change the ranking of trace-recovery classifiers."
+    thesis_targets: ["chapter-3", "chapter-4"]
+    temporal_caveat: "Classical ML benchmark; not evidence about current LLM performance."
+    verification_state: location_verified
+  - id: SRC-0024-EX-0008
+    location: {pdf_page: 16, printed_page: 16, section: "4.6 and 4.7", paragraph_or_table: "Large-scale results and Table 16"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "On larger datasets, Conpos or TAROT lead the IR results depending on the project, while random forest with SMOTE leads most ML results; absolute F1 values remain modest."
+    researcher_interpretation: "Relative SOTA labels must be reported together with absolute usefulness and review burden."
+    supported_proposition: "Best-in-comparison does not imply production-ready recovery quality."
+    thesis_targets: ["chapter-3", "chapter-4", "chapter-8"]
+    temporal_caveat: "Large-scale datasets remain Java and are not a cross-project holdout evaluation."
+    verification_state: location_verified
+  - id: SRC-0024-EX-0009
+    location: {pdf_page: 17, printed_page: 17, section: "5.1 Threats to validity", paragraph_or_table: ""}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "The authors identify subjectivity in literature scoring, preprocessing effects, Italian-language processing errors and Java-only datasets as validity threats."
+    researcher_interpretation: "DDTA evaluation must include language, project and artifact diversity rather than relying on one repository ecosystem."
+    supported_proposition: "The study's external validity is limited by dataset language and selection."
+    thesis_targets: ["chapter-4", "chapter-8"]
+    temporal_caveat: "Explicit author limitations."
+    verification_state: location_verified
+  - id: SRC-0024-EX-0010
+    location: {pdf_page: 18, printed_page: 18, section: "5.3 Future research direction", paragraph_or_table: ""}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "The paper proposes few-shot or transfer learning, fine-grained text extraction, GPT reasoning, data augmentation, automatic tuning and more industrial use as future directions."
+    researcher_interpretation: "GPT is a research direction in this source, not an evaluated result."
+    supported_proposition: "The 2024 benchmark leaves modern generative and cross-project methods open."
+    thesis_targets: ["chapter-3", "chapter-4"]
+    temporal_caveat: "Subsequent work must be analyzed before making current claims."
+    verification_state: location_verified
