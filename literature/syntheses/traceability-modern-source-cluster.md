@@ -30,42 +30,70 @@ predate manuscript submission in June 2022. The sample is mostly European, weigh
 large organizations and agile practice, and subgroup comparisons have limited statistical
 power.
 
-## Provisional cross-source synthesis
+### SRC-0023 - Großer, Riediger and Jürjens (2022)
 
-The three analyzed sources support a qualified continuity claim:
+Role: document-level conceptual and proof-of-concept evidence. The paper treats documents as
+views on requirement sets and models traceability relations at document, set and individual
+requirement granularity. It formalizes relation dependencies through ORM constraints and
+derivation rules and implements selected checks as Neo4J/Cypher queries over the EagleEye and
+ECSS case material.
+
+The paper is directly relevant to DDTA because it establishes that document content,
+structure and relations can carry semantics beyond the underlying requirement model. It also
+shows why representation layers and refinement levels should not be collapsed into one graph
+dimension. Its case study demonstrates feasibility of selected graph checks, including the
+detection of missing standard tailorings, but it does not establish precision, recall,
+usability or industrial effectiveness.
+
+Temporal and external-validity caveat: the conceptual material remains relevant, while the
+PDF extraction and graph-tool observations reflect technology available mainly through
+2020-2021. The evidence is a small proof of concept in European space engineering without a
+complete ground truth or integration into an established workflow.
+
+## Cross-source synthesis
+
+The four analyzed sources support a qualified continuity and refinement claim:
 
 ```text
 1994: origin, responsibility and access to requirement sources are problematic
 2024 SLR: maintenance, versioning, adaptability, trust and industrial evaluation remain open
-2023 empirical study: manual effort, visible benefit, organization, collaboration and tool fit
-remain practical barriers
+2023 empirical study: manual effort, visible benefit, organization, collaboration and tool fit remain practical barriers
+2022 document study: views, sets and requirements need typed cross-layer semantics and consistency rules
 ```
 
 The contemporary evidence changes the framing rather than simply repeating the historical
-problem. Modern practitioners may have access to many tools and artifacts, but information
-is distributed across repositories, issue trackers, documentation, permissions and roles.
-Human expertise often compensates for weak integration, which can conceal maintenance and
-scalability problems.
+problem. Modern practitioners may have access to many tools and artifacts, but information is
+distributed across repositories, issue trackers, documentation, permissions and roles. Human
+expertise often compensates for weak integration. At the same time, document structure and
+relations carry semantics that are lost when traceability is reduced to untyped links between
+isolated requirements.
 
 For DDTA, this cluster provisionally supports:
 
 - typed and versioned provenance links;
+- explicit document, section, requirement-set and model-entity layers;
+- view contracts describing selection, transformation and added information;
+- cross-layer constraints and derivation rules;
 - integration with normal authoring and development tools;
 - explicit but distributed responsibility and review history;
 - visible value through navigation, impact analysis, stale detection and evidence reuse;
-- machine-generated candidates that remain subject to human review;
-- evaluation of both correctness and maintenance effort in realistic multi-project settings.
+- machine-generated structural facts and semantic candidates with distinct confidence states;
+- human review for semantic links and accepted findings;
+- evaluation of correctness, usability and maintenance effort in realistic multi-project settings.
 
-It does not yet establish that DDTA or a methodology overlay improves threat-model quality.
-That claim requires security-specific literature and empirical evaluation.
+The cluster does not establish that DDTA or a methodology overlay improves threat-model
+quality. It also does not validate automatic extraction from modern documentation-as-code,
+LLM-assisted trace recovery or change-impact classification. Those claims require more recent
+technical studies and security-specific empirical evaluation.
 
-## Next document
+## Next source family
 
-### SRC-0023 - Großer, Riediger and Jürjens (2022)
+### Recent automated and AI-assisted trace-link studies
 
-Formalizes layered traceability across documents, requirement sets and individual
-requirements. It is directly relevant to DDTA because documentation is treated as a view
-with relations at multiple representation granularities.
+The next cluster should examine post-2022 work on NLP, transformer and LLM-assisted trace
+retrieval, with particular attention to datasets, precision/recall, confidence calibration,
+human review and generalization across projects. Candidate sources must be selected from
+peer-reviewed or primary technical publications with accessible full text.
 
 ## Additional candidate
 

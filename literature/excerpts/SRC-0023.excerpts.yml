@@ -1,0 +1,98 @@
+schema_version: 1
+source_id: SRC-0023
+citation_key: grosser2022documentrelations
+source_version:
+  stable_identifier: "10.1007/s10270-021-00958-y"
+  edition_or_version: "Version of record, CC BY 4.0"
+  accessed_on: null
+  local_filename: "SRC-0023-grosser-riediger-jurjens-2022.pdf"
+  sha256: null
+excerpts:
+  - id: SRC-0023-EX-0001
+    location: {pdf_page: 1, printed_page: 2133, section: "Abstract", paragraph_or_table: ""}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "The approach treats documents as views on requirement sets and defines traceability relations on and between multiple representation layers."
+    researcher_interpretation: "DDTA should preserve document, model and analysis layers as distinct traceable representations."
+    supported_proposition: "Traceability can be layered across documents, requirement sets and individual requirements."
+    thesis_targets: ["chapter-2", "chapter-3", "chapter-5"]
+    temporal_caveat: "Conceptual claim; case-study tooling reflects the 2020-2021 period."
+    verification_state: location_verified
+  - id: SRC-0023-EX-0002
+    location: {pdf_page: 2, printed_page: 2134, section: "1 Introduction", paragraph_or_table: ""}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "Document content, structure and relations express semantics beyond the requirement model, making views traceable objects in their own right."
+    researcher_interpretation: "A governed DDTA document cannot be reduced to a bag of extracted entities without preserving its view semantics."
+    supported_proposition: "Document views carry independent traceability semantics."
+    thesis_targets: ["chapter-2", "chapter-5"]
+    temporal_caveat: "Conceptual proposition, not an empirical estimate."
+    verification_state: location_verified
+  - id: SRC-0023-EX-0003
+    location: {pdf_page: 7, printed_page: 2139, section: "4.2 Requirement document relations", paragraph_or_table: ""}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "A document view may abstract or aggregate model elements and may add interconnections or data entered manually or computed automatically."
+    researcher_interpretation: "DDTA needs an explicit view contract describing selection, transformation and added information."
+    supported_proposition: "Views are transformations with governed conventions, not mere file containers."
+    thesis_targets: ["chapter-2", "chapter-5"]
+    temporal_caveat: "Definition-level use."
+    verification_state: location_verified
+  - id: SRC-0023-EX-0004
+    location: {pdf_page: 14, printed_page: 2146, section: "5.4 Representation layers", paragraph_or_table: "Figure 16 discussion"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "Relations exist at every representation granularity, and the representation-layer hierarchy is orthogonal to refinement hierarchy."
+    researcher_interpretation: "DDTA should not collapse representation and abstraction into a single graph dimension."
+    supported_proposition: "Representation layers and refinement levels are distinct but interacting structures."
+    thesis_targets: ["chapter-3", "chapter-5"]
+    temporal_caveat: "Conceptual model; DDTA mapping requires independent validation."
+    verification_state: location_verified
+  - id: SRC-0023-EX-0005
+    location: {pdf_page: 26, printed_page: 2158, section: "7.3 Data extraction", paragraph_or_table: ""}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "Heterogeneous PDF formats allowed automatic extraction mainly of structure and containment; semantic trace links required manual creation and domain knowledge."
+    researcher_interpretation: "DDTA extraction confidence must distinguish structural facts from semantic candidates."
+    supported_proposition: "Legacy-document heterogeneity constrains automated semantic trace recovery."
+    thesis_targets: ["chapter-3", "chapter-4", "chapter-5"]
+    temporal_caveat: "PDF extraction and AI capabilities have advanced since the study period."
+    verification_state: location_verified
+  - id: SRC-0023-EX-0006
+    location: {pdf_page: 29, printed_page: 2161, section: "7.4.2 Missing tailorings", paragraph_or_table: "Query 5 result"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "The proof-of-concept query reported seven of eleven applicable-standard relations without an explicit tailoring."
+    researcher_interpretation: "Typed graph rules can surface review candidates that are not visible from isolated document links."
+    supported_proposition: "Graph derivations can expose selected document-dependency inconsistencies."
+    thesis_targets: ["chapter-3", "chapter-5"]
+    temporal_caveat: "Single proof-of-concept case; not a prevalence estimate."
+    verification_state: location_verified
+  - id: SRC-0023-EX-0007
+    location: {pdf_page: 30, printed_page: 2162, section: "7.5.1 Threats to validity", paragraph_or_table: "Size and domain"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "The small, domain-specific dataset and absence of an established ground truth prevent measurement of precision, recall and usability."
+    researcher_interpretation: "DDTA evaluation must use realistic multi-project corpora and expert reference models."
+    supported_proposition: "The paper demonstrates feasibility, not validated effectiveness."
+    thesis_targets: ["chapter-3", "chapter-4"]
+    temporal_caveat: "Explicit author limitation."
+    verification_state: location_verified
+  - id: SRC-0023-EX-0008
+    location: {pdf_page: 31, printed_page: 2163, section: "7.5.2 Challenges and future work", paragraph_or_table: ""}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "Baselines can represent versions as distinct traceable entities, while change propagation depends on relation and change type; distinguishing editorial and semantic change remains open."
+    researcher_interpretation: "DDTA stale detection needs typed changes and baseline-aware relation identity."
+    supported_proposition: "Version-aware traceability requires semantics for both relation type and change type."
+    thesis_targets: ["chapter-3", "chapter-5"]
+    temporal_caveat: "The open problem should be corroborated with post-2022 change-impact studies."
+    verification_state: location_verified
