@@ -73,3 +73,12 @@ sources:
     retrieved_on: null
     sha256: null
     repository_storage: forbidden
+  - source_id: SRC-0003
+    landing_url: "https://link.springer.com/article/10.1007/s00766-004-0194-4"
+    pdf_url: "https://www.researchgate.net/publication/226177413_Eliciting_security_requirements_with_misuse_cases"
+    access_type: author_uploaded_full_text
+    licence: "Author-uploaded full text; copyright Springer; check reuse terms"
+    local_filename: "SRC-0003-sindre-opdahl-2005.pdf"
+    retrieved_on: null
+    sha256: null
+    repository_storage: forbidden

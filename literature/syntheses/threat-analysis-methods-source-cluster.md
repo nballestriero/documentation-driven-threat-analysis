@@ -22,6 +22,27 @@ This does not mean raw project documentation is automatically sufficient. The re
 usually assume an analyst already has goals, requirements, scenarios, attacker assumptions or an
 architectural model. The documentation-to-model transformation remains separate and unresolved.
 
+
+### SRC-0003 - Sindre and Opdahl (2005)
+
+Role: documentation-primary, scenario-based security-requirements elicitation. The method extends
+functional use cases with misusers, misuse cases and security use cases connected through
+`threaten` and `mitigate`.
+
+The source confirms that threat and security-requirement candidates can be elicited before code
+or detailed design. It does not begin from arbitrary documentation: analysts need or create
+structured functional scenarios, assets and security goals. Threat discovery, risk assessment and
+countermeasure selection remain human activities.
+
+A lightweight threat field gives each use case a visible review status. Extensive misuse cases
+add harmful paths, assumptions, preconditions, mitigation points, guarantees, misuser profiles
+and stakeholder risks. This supports a progressive path from early coverage to detailed analysis.
+
+The main limitation is discovery assurance. Guidelines remain open-ended, global stopping and
+prioritization are underdeveloped, and threats without an identifiable actor or action sequence
+fit poorly. The method is therefore a candidate scenario overlay, not a complete neutral Base
+Analysis or universal threat method.
+
 ## Initial DDTA separation
 
 ```text
@@ -32,8 +53,10 @@ raw and governed project documentation
 -> security requirements
 ```
 
-SRC-0026 mostly maps the second transformation. DDTA must investigate the first transformation
-through requirements-to-model and document-understanding studies.
+SRC-0026 mostly maps the second transformation. SRC-0003 demonstrates one scenario-based
+implementation of that transformation after a functional scenario view exists. DDTA must still
+investigate how heterogeneous documentation becomes the neutral assets, actors, goals,
+interactions and scenarios consumed by overlays.
 
 ## Technique-focus taxonomy
 
@@ -56,7 +79,9 @@ Direct evidence from the review:
 - requirements, high-level goals and textual descriptions can be inputs;
 - architecture and design models are also common inputs;
 - source code is rarely required;
-- threat analysis can be repeated later in the lifecycle.
+- threat analysis can be repeated later in the lifecycle;
+- a scenario-based method can link functional behavior to threats and security requirements;
+- structured scenarios are not equivalent to raw heterogeneous documentation.
 
 Researcher conclusion for DDTA:
 
@@ -80,6 +105,8 @@ DDTA candidate controls:
 - typed outputs;
 - source provenance;
 - extracted versus inferred status;
+- scenario-level review dispositions;
+- progressive lightweight and extensive analysis profiles;
 - coverage declaration;
 - explicit stopping condition;
 - incomplete-input diagnostics;
@@ -89,17 +116,16 @@ DDTA candidate controls:
 
 ## Primary-study selection queue
 
-### Existing registry entries to analyze fully
+### Existing registry entry to analyze fully
 
-1. SRC-0003 - Sindre and Opdahl, misuse cases.
-2. SRC-0004 - van Lamsweerde, intentional anti-models and KAOS-style anti-goals.
+1. SRC-0004 - van Lamsweerde, intentional anti-models and KAOS-style anti-goals.
 
 ### New sources to retrieve
 
-3. Haley et al. - security requirements and satisfaction arguments.
-4. Whittle et al. - misuse scenarios, mitigation weaving and finite-state verification.
-5. Hatebur and Heisel - security problem frames.
-6. A recent empirical STRIDE study - DFD-based overlay effectiveness and analyst performance.
+2. Haley et al. - security requirements and satisfaction arguments.
+3. Whittle et al. - misuse scenarios, mitigation weaving and finite-state verification.
+4. Hatebur and Heisel - security problem frames.
+5. A recent empirical STRIDE study - DFD-based overlay effectiveness and analyst performance.
 
 These sources cover:
 
@@ -114,8 +140,8 @@ quality assurance
 
 ## Evidence still missing
 
-- automatic extraction of Base Analysis entities from heterogeneous documentation;
-- sentence-to-model provenance;
+- automatic extraction of Base Analysis entities and scenario views from heterogeneous documentation;
+- sentence-to-model and sentence-to-scenario provenance;
 - management of missing and contradictory documentation;
 - current tool maturity;
 - continuous rerun and stale detection;
@@ -132,8 +158,8 @@ Every maturity claim must be updated through recent systematic reviews and empir
 
 ```text
 SRC-0026 historical method taxonomy
--> SRC-0003 misuse cases
--> SRC-0004 anti-models
+-> SRC-0003 scenario-based misuse cases
+-> SRC-0004 goal-oriented anti-models
 -> Haley explicit assurance
 -> Whittle behavioral transformation
 -> problem frames

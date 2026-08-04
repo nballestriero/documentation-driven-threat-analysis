@@ -1,0 +1,153 @@
+schema_version: 1
+source_id: SRC-0003
+citation_key: sindre2005eliciting
+source_version:
+  stable_identifier: "10.1007/s00766-004-0194-4"
+  edition_or_version: "Requirements Engineering 10(1), 34-44; author-uploaded full text"
+  accessed_on: "2026-08-04"
+  local_filename: "SRC-0003-sindre-opdahl-2005.pdf"
+  sha256: null
+excerpts:
+  - id: SRC-0003-EX-0001
+    location: {pdf_page: 1, printed_page: 34, section: "Abstract and Introduction", paragraph_or_table: ""}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "The paper extends ordinary use cases with negative scenarios to support early elicitation of security threats and requirements."
+    researcher_interpretation: "The method is documentation-primary and pre-code, but assumes structured functional scenarios."
+    supported_proposition: "Security analysis can be integrated with early use-case-based requirements work."
+    thesis_targets: ["chapter-2", "chapter-3", "chapter-5"]
+    temporal_caveat: "Foundational method evidence from 2005."
+    verification_state: location_verified
+  - id: SRC-0003-EX-0002
+    location: {pdf_page: 2, printed_page: 35, section: "2 Concepts and notation", paragraph_or_table: "Definitions"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "A misuse case is a harmful action sequence, and a misuser is an intentional or inadvertent actor that initiates it."
+    researcher_interpretation: "Candidate threat actors and harmful paths should be typed overlay entities and marked as inferred when analyst-created."
+    supported_proposition: "The method models actor and harmful behavior explicitly."
+    thesis_targets: ["chapter-2", "chapter-5"]
+    temporal_caveat: "Definition-level proposition."
+    verification_state: location_verified
+  - id: SRC-0003-EX-0003
+    location: {pdf_page: 2, printed_page: 35, section: "2 Concepts and notation", paragraph_or_table: "Metamodel and relationships"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "Misuse cases threaten ordinary use cases, while security use cases mitigate misuse cases."
+    researcher_interpretation: "Threat, threatened behavior and countermeasure must remain separate linked records."
+    supported_proposition: "The notation provides typed threat and mitigation relations."
+    thesis_targets: ["chapter-2", "chapter-5"]
+    temporal_caveat: "UML notation is optional according to the authors."
+    verification_state: location_verified
+  - id: SRC-0003-EX-0004
+    location: {pdf_page: 3, printed_page: 36, section: "3.1 Lightweight misuse case description", paragraph_or_table: "Threats field or column"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "A lightweight template adds a threat field or column; an empty field signals that security still needs investigation, while an explicit disposition records a considered low-risk case."
+    researcher_interpretation: "DDTA can record per-scenario coverage and explicit no-material-threat decisions."
+    supported_proposition: "The template makes local review status visible."
+    thesis_targets: ["chapter-4", "chapter-5"]
+    temporal_caveat: "Local review status is not a global stopping rule."
+    verification_state: location_verified
+  - id: SRC-0003-EX-0005
+    location: {pdf_page: 4, printed_page: 37, section: "3.2 Extensive misuse case description", paragraph_or_table: "Table 3"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "The extensive template records harmful paths, mitigation points, triggers, assumptions, preconditions, guarantees, rules, misuser profiles, scope and stakeholder risks."
+    researcher_interpretation: "These fields define a candidate overlay evidence contract."
+    supported_proposition: "Detailed misuse cases preserve context needed for analysis and review."
+    thesis_targets: ["chapter-4", "chapter-5"]
+    temporal_caveat: "The paper does not define machine-readable validation rules."
+    verification_state: location_verified
+  - id: SRC-0003-EX-0006
+    location: {pdf_page: 4, printed_page: 37, section: "4.1 The security requirements process", paragraph_or_table: "Five steps"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "The process identifies assets, defines security goals, identifies threats, analyzes risk and defines security requirements matched to risk and cost."
+    researcher_interpretation: "The method requires a minimum system-and-security context before candidate generation."
+    supported_proposition: "Misuse-case elicitation is embedded in a broader security-requirements process."
+    thesis_targets: ["chapter-2", "chapter-3", "chapter-5"]
+    temporal_caveat: "No mandatory risk model is specified."
+    verification_state: location_verified
+  - id: SRC-0003-EX-0007
+    location: {pdf_page: 5, printed_page: 38, section: "4.1 and 4.2", paragraph_or_table: "Cyclic process and reuse"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "The process is cyclic because countermeasures may introduce new assets and threats, and reusable threat-requirement repositories may support analysis."
+    researcher_interpretation: "Overlay reruns and provenance are needed when mitigations or documentation change."
+    supported_proposition: "Security-requirements analysis is iterative rather than one-shot."
+    thesis_targets: ["chapter-3", "chapter-5", "chapter-6"]
+    temporal_caveat: "Repository support is proposed rather than evaluated as an automated system."
+    verification_state: location_verified
+  - id: SRC-0003-EX-0008
+    location: {pdf_page: 6, printed_page: 39, section: "4.3 Specifying misuse cases in detail", paragraph_or_table: ""}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "Lightweight descriptions suit early brainstorming, while extensive descriptions suit complex, critical or later-stage analysis."
+    researcher_interpretation: "DDTA can expose progressive overlay profiles without changing Base Analysis."
+    supported_proposition: "The method supports progressive refinement according to risk and complexity."
+    thesis_targets: ["chapter-4", "chapter-5"]
+    temporal_caveat: "Granularity guidance remains intentionally imprecise."
+    verification_state: location_verified
+  - id: SRC-0003-EX-0009
+    location: {pdf_page: 7, printed_page: 40, section: "5 Validation", paragraph_or_table: ""}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "The authors report use in research and realistic settings, stakeholder interviews and project applications, while acknowledging the need for conclusive large-scale industrial validation."
+    researcher_interpretation: "The evidence establishes feasibility and understandability, not comparative effectiveness."
+    supported_proposition: "Validation is descriptive and limited."
+    thesis_targets: ["chapter-3", "chapter-4", "chapter-8"]
+    temporal_caveat: "No common benchmark or controlled comparison is reported."
+    verification_state: location_verified
+  - id: SRC-0003-EX-0010
+    location: {pdf_page: 7, printed_page: 40, section: "6.1 Strengths", paragraph_or_table: "Traceability and change management"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "Links among use cases, misuse cases and countermeasures support explanation, prioritization and tracing security requirements to motivating threats."
+    researcher_interpretation: "DDTA should preserve source-to-scenario-to-finding-to-requirement provenance."
+    supported_proposition: "Typed links support security-requirement rationale and change management."
+    thesis_targets: ["chapter-3", "chapter-5"]
+    temporal_caveat: "The paper argues the benefit but does not quantify maintenance improvement."
+    verification_state: location_verified
+  - id: SRC-0003-EX-0011
+    location: {pdf_page: 8, printed_page: 41, section: "6.2 Weaknesses", paragraph_or_table: "Guidance and analysis paralysis"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "Open-ended guidance forces analyst improvisation, can introduce defects and can cause analysis paralysis; prioritization and stopping criteria need further development."
+    researcher_interpretation: "DDTA needs explicit diagnostics, coverage rules and completion criteria beyond the source method."
+    supported_proposition: "The method lacks repeatable discovery and stopping guarantees."
+    thesis_targets: ["chapter-3", "chapter-5", "chapter-8"]
+    temporal_caveat: "A foundational limitation requiring contemporary corroboration."
+    verification_state: location_verified
+  - id: SRC-0003-EX-0012
+    location: {pdf_page: 8, printed_page: 41, section: "6.2 Weaknesses", paragraph_or_table: "Threats poorly suited to misuse cases"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "Misuse cases fit poorly when no identifiable misuser, harmful action sequence or threatened use case exists."
+    researcher_interpretation: "A misuse-case overlay cannot replace structural, data-flow or other threat-analysis overlays."
+    supported_proposition: "Scenario-based analysis has a bounded applicability domain."
+    thesis_targets: ["chapter-3", "chapter-5"]
+    temporal_caveat: "The limitation is conceptual rather than tool-specific."
+    verification_state: location_verified
+  - id: SRC-0003-EX-0013
+    location: {pdf_page: 9, printed_page: 42, section: "8 Conclusion and further work", paragraph_or_table: ""}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "The authors conclude that misuse cases improve early integration and traceability but that guidance remains too general and the technique is not suitable for every threat."
+    researcher_interpretation: "The method is a useful overlay family, not a complete DDTA method."
+    supported_proposition: "Scenario-based negative analysis should be combined with other techniques."
+    thesis_targets: ["chapter-3", "chapter-5"]
+    temporal_caveat: "Conclusion reflects the evidence available by 2004."
+    verification_state: location_verified
