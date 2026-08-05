@@ -100,3 +100,12 @@ sources:
     retrieved_on: "2026-08-05"
     sha256: "811aac50e9707a6a89b4aa19fd1f702877fb8a8aa0770054117a6d870d5d0c43"
     repository_storage: forbidden
+  - source_id: SRC-0028
+    landing_url: "https://eprints.lancs.ac.uk/id/eprint/53557/"
+    pdf_url: "https://web.archive.org/web/20240415002137if_/https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=f4368dc8640df3602e450f007cda1c146c6330ff"
+    access_type: web_archive_full_text
+    licence: "ACM personal or classroom use permitted with notice; republication and redistribution require permission or a fee"
+    local_filename: "SRC-0028-whittle-wijesekera-hartong-2008.pdf"
+    retrieved_on: "2026-08-05"
+    sha256: "c281043bdf946742fe22c03cebbff96b0f4ff1276ace9bab0a4ac8a3870c51da"
+    repository_storage: forbidden

@@ -218,3 +218,11 @@ sources:
     verification_state: verified
     topics: [RE-SECURITY, CS-ASSURANCE, MD-VIEW, CS-HUMAN]
     ddta_roles: [foundation, comparison, evaluation]
+  - id: SRC-0028
+    citation_key: whittle2008executable
+    title: "Executable Misuse Cases for Modeling Security Concerns"
+    year: 2008
+    type: primary_research
+    verification_state: verified
+    topics: [RE-SECURITY, RE-MISUSE, TM-AUTOMATION, CS-ASSURANCE]
+    ddta_roles: [comparison, evaluation, challenge]

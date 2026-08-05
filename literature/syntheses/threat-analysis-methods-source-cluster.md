@@ -88,12 +88,37 @@ showed practitioner difficulty with formal arguments, preference for less expres
 lack of a complete rebuttal-discovery recipe and a need for stronger tool support. The evidence is
 one project application, not a controlled comparison.
 
+
+### SRC-0028 - Whittle, Wijesekera and Hartong (2008)
+
+Role: documentation-plus-model executable misuse-case testing. The method starts from a precise
+functional scenario model, adds attacker modification and attack scenarios, keeps mitigations as
+separate aspects, weaves them into core behavior and generates communicating finite-state machines.
+Specified attack traces are then executed as model-level tests and rerun as a regression suite.
+
+The source confirms that known attacks and mitigations can be tested before implementation, but
+only after use cases, EIODs, sequence diagrams, messages and relevant state conditions have been
+modeled. It does not transform heterogeneous documentation into those views or discover attacks
+automatically. Attack inputs in the studies came from an earlier code analysis or human
+brainstorming.
+
+A key boundary is that the reported MUCSIM tool supports animation and attack execution, not formal
+analysis. EIODs and FSMs have formal semantics and external analyzers are suggested, but the paper
+does not evaluate model checking or prove security. Regression success is relative to the modeled
+traces and composed behavior.
+
+The evaluation is preliminary. Seven of nine design-level EVS attacks were modelable; two required
+lower-level storage or network information. The PTC study brainstormed nineteen attacks but modeled
+four representatives. The authors explicitly limit validation to language suitability and
+executability, not improved red-team effectiveness.
+
 ## Initial DDTA separation
 
 ```text
 raw and governed project documentation
 -> Base Analysis construction
 -> methodology-specific threat analysis
+-> optional executable attack and mitigation regression
 -> reviewed findings
 -> security requirements
 -> satisfaction and assurance evidence
@@ -103,9 +128,10 @@ raw and governed project documentation
 SRC-0026 mostly maps methodology-specific threat analysis. SRC-0003 demonstrates a scenario-based
 implementation after a functional scenario view exists. SRC-0004 demonstrates a goal-oriented
 implementation after a structured primal model exists. SRC-0027 adds a downstream assurance
-layer after problem-context and behavior views exist. DDTA must still investigate how
-heterogeneous documentation becomes the neutral assets, actors, goals, interactions, objects,
-operations, domains and phenomena consumed by these overlays and arguments.
+layer after problem-context and behavior views exist. SRC-0028 adds executable attack regression
+after precise scenario and behavior views exist. DDTA must still investigate how heterogeneous
+documentation becomes the neutral assets, actors, goals, interactions, objects, operations,
+domains, phenomena and scenarios consumed by these overlays, arguments and tests.
 
 ## Technique-focus taxonomy
 
@@ -134,7 +160,10 @@ Direct evidence from the review:
 - formal threat derivation becomes possible after goal, object, agent and domain modeling;
 - formal-plus-informal assurance becomes possible after context, phenomena and behavior modeling;
 - failed assurance arguments can diagnose missing information and require design iteration;
-- structured scenarios, goal models and problem contexts are not equivalent to raw heterogeneous documentation.
+- precise hostile scenarios can be woven into functional behavior and executed as regression tests;
+- model animation and attack execution are not equivalent to formal verification;
+- requirements-level models may defer storage, network and implementation-dependent attacks;
+- structured scenarios, goal models, problem contexts and EIODs are not equivalent to raw heterogeneous documentation.
 
 Researcher conclusion for DDTA:
 
@@ -151,8 +180,10 @@ corroborate, contradict or refine the prior model rather than become a hidden pr
 
 The reviewed techniques distinguish threats, mitigations and security requirements. SRC-0027
 shows how explicit assurance can be structured as conditional proof plus arguments for trust
-assumptions, but its completeness remains relative to the modeled context and selected premises.
-Completion conditions, precise discovery rules and comparative validation remain weak.
+assumptions. SRC-0028 adds executable regression evidence for known hostile traces. Both remain
+relative to the modeled context, premises, behaviors and attacks; neither establishes global threat
+completeness or implementation security. Completion conditions, precise discovery rules and
+comparative validation remain weak.
 
 DDTA candidate controls:
 
@@ -168,6 +199,10 @@ DDTA candidate controls:
 - outer-argument premises, logic and proof status;
 - inner claims, grounds, warrants, rebuttals and trust assumptions;
 - primary-to-secondary cover/replace ancestry;
+- separate core behavior, attacker modification, attack test and mitigation aspect;
+- weave scope, order, dependency and conflict evidence;
+- versioned attack regression suite with explicit trace-level pass/fail semantics;
+- deferred attack candidates with missing-representation reasons;
 - coverage declaration;
 - explicit stopping condition;
 - incomplete-input diagnostics;
@@ -179,9 +214,9 @@ DDTA candidate controls:
 
 ### New sources to retrieve
 
-1. Whittle et al. - misuse scenarios, mitigation weaving and finite-state verification.
-2. Hatebur and Heisel - security problem frames.
-3. A recent empirical STRIDE study - DFD-based overlay effectiveness and analyst performance.
+1. Hatebur and Heisel - security problem frames.
+2. A recent empirical STRIDE study - DFD-based overlay effectiveness and analyst performance.
+3. A recent review of automated threat-modeling tools and model-based security testing.
 
 These sources cover:
 
@@ -195,21 +230,21 @@ quality assurance
 ```
 
 
-## Scenario, anti-goal and assurance contrast
+## Scenario, anti-goal, assurance and execution contrast
 
-| Dimension | SRC-0003 | SRC-0004 | SRC-0027 |
-|---|---|---|---|
-| Starting view | functional scenarios | goal, object, agent and domain models | problem context, phenomena and behavior |
-| Main structure | harmful scenario | intentional AND/OR anti-goal graph | constrained requirement and argument graph |
-| Formality | mostly informal | optional temporal logic and formal regression | formal outer proof plus informal inner argument |
-| Security output | misuse and mitigation | anti-requirement and vulnerability | primary/secondary security constraints |
-| Assumption handling | template fields | domain properties | trust assumptions and rebuttals |
-| Assurance | review status and trace links | local proof and derivation evidence | conditional satisfaction evidence |
-| Empirical evidence | descriptive examples | four anti-model cases | one industrial research application |
+| Dimension | SRC-0003 | SRC-0004 | SRC-0027 | SRC-0028 |
+|---|---|---|---|---|
+| Starting view | functional scenarios | goal, object, agent and domain models | problem context, phenomena and behavior | EIOD and sequence behavior |
+| Main structure | harmful scenario | intentional AND/OR anti-goal graph | constrained requirement and argument graph | modification, attack and mitigation scenarios |
+| Formality | mostly informal | optional temporal logic and formal regression | formal outer proof plus informal inner argument | formal trace semantics and executable FSMs |
+| Security output | misuse and mitigation | anti-requirement and vulnerability | primary/secondary security constraints | composed behavior and attack tests |
+| Assumption handling | template fields | domain properties | trust assumptions and rebuttals | pre/postconditions and interactive path choices |
+| Assurance | review status and trace links | local proof and derivation evidence | conditional satisfaction evidence | regression over known attack traces |
+| Empirical evidence | descriptive examples | four anti-model cases | one industrial research application | two preliminary case studies |
 
-All three approaches are pre-code. None solves source-document interpretation, assertion-level
-provenance or global completeness. They support different methodology and assurance overlays over
-a neutral Base Analysis.
+All four approaches are pre-code. None solves source-document interpretation, assertion-level
+provenance or global completeness. They support different methodology, assurance and executable
+scenario overlays over a neutral Base Analysis.
 
 ## Evidence still missing
 
@@ -236,7 +271,7 @@ SRC-0026 historical method taxonomy
 -> SRC-0003 scenario-based misuse cases
 -> SRC-0004 goal-oriented anti-models
 -> SRC-0027 explicit satisfaction assurance
--> Whittle behavioral transformation
+-> SRC-0028 executable misuse regression
 -> problem frames
 -> current empirical STRIDE
 -> recent automated-tool review

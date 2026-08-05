@@ -1,0 +1,353 @@
+schema_version: 1
+source_id: SRC-0028
+citation_key: whittle2008executable
+source_version:
+  stable_identifier: 10.1145/1368088.1368106
+  edition_or_version: ICSE 2008, pages 121-130; archived full-text copy
+  accessed_on: '2026-08-05'
+  local_filename: SRC-0028-whittle-wijesekera-hartong-2008.pdf
+  sha256: c281043bdf946742fe22c03cebbff96b0f4ff1276ace9bab0a4ac8a3870c51da
+excerpts:
+- id: SRC-0028-EX-0001
+  location:
+    pdf_page: 1
+    printed_page: 121
+    section: Abstract
+    paragraph_or_table: Contribution and evidence
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The language makes misuse scenarios executable, separates mitigations as aspects and reports two case studies.
+  researcher_interpretation: Executable hostile behavior and mitigation behavior should be distinct typed artifacts.
+  supported_proposition: Executable misuse cases combine precise scenarios, separate mitigations and preliminary realistic applications.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2008 evidence; tool maturity and effectiveness require current corroboration.
+  verification_state: location_verified
+- id: SRC-0028-EX-0002
+  location:
+    pdf_page: 1
+    printed_page: 121
+    section: 1 Introduction
+    paragraph_or_table: Transformation pipeline
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Precise use and misuse scenarios are woven with mitigation aspects and transformed automatically into communicating FSMs.
+  researcher_interpretation: A scenario overlay can have an explicit, reproducible transformation pipeline.
+  supported_proposition: The method connects scenario models, aspect composition and executable state machines.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2008 evidence; tool maturity and effectiveness require current corroboration.
+  verification_state: location_verified
+- id: SRC-0028-EX-0003
+  location:
+    pdf_page: 2
+    printed_page: 122
+    section: 1 Introduction
+    paragraph_or_table: MUCSIM and case studies
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: MUCSIM integrates UCSIM and MATA and was applied to an electronic voting system and positive train control.
+  researcher_interpretation: Tool identity and evaluation context must be recorded separately from method claims.
+  supported_proposition: The contribution includes a prototype tool and two realistic case studies.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2008 evidence; tool maturity and effectiveness require current corroboration.
+  verification_state: location_verified
+- id: SRC-0028-EX-0004
+  location:
+    pdf_page: 2
+    printed_page: 122
+    section: 2 Illustrative Example
+    paragraph_or_table: Required functional model
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The EVS behavior is first represented as a three-level EIOD and sequence diagrams before misuse execution.
+  researcher_interpretation: The method starts after a structured functional behavior view exists.
+  supported_proposition: Executable misuse modeling requires a precise scenario model rather than raw documentation.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2008 evidence; tool maturity and effectiveness require current corroboration.
+  verification_state: location_verified
+- id: SRC-0028-EX-0005
+  location:
+    pdf_page: 3
+    printed_page: 123
+    section: 2 Illustrative Example
+    paragraph_or_table: Attack as test
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: An attack scenario succeeds when its messages can be executed on the generated FSMs, similarly to a test case.
+  researcher_interpretation: Attack scenarios should be represented as verification artifacts with explicit pass/fail semantics.
+  supported_proposition: Known hostile traces can be executed against a requirements-level behavior model.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2008 evidence; tool maturity and effectiveness require current corroboration.
+  verification_state: location_verified
+- id: SRC-0028-EX-0006
+  location:
+    pdf_page: 3
+    printed_page: 123
+    section: 2 Illustrative Example
+    paragraph_or_table: Separate mitigation aspects
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Mitigation scenarios are woven automatically while remaining separate, reusable and replaceable.
+  researcher_interpretation: Overlay composition should preserve the uncomposed mitigation and its alternatives.
+  supported_proposition: Aspect separation supports mitigation reuse and trade-off analysis.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2008 evidence; tool maturity and effectiveness require current corroboration.
+  verification_state: location_verified
+- id: SRC-0028-EX-0007
+  location:
+    pdf_page: 4
+    printed_page: 124
+    section: 2 Illustrative Example
+    paragraph_or_table: Regression and iteration
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: All previous attacks can be rerun after a mitigation because a new mitigation may reopen an earlier attack.
+  researcher_interpretation: DDTA should maintain a versioned attack regression suite.
+  supported_proposition: Mitigation evolution requires regression of known attacks.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2008 evidence; tool maturity and effectiveness require current corroboration.
+  verification_state: location_verified
+- id: SRC-0028-EX-0008
+  location:
+    pdf_page: 4
+    printed_page: 124
+    section: 3.1 Misuse Interactions
+    paragraph_or_table: Three-level formal representation
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: EIODs refine use cases into scenarios and sequence diagrams and have formally defined trace semantics.
+  researcher_interpretation: Base Analysis must expose a scenario view before this overlay can run.
+  supported_proposition: The method relies on a precise hierarchical behavioral representation.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2008 evidence; tool maturity and effectiveness require current corroboration.
+  verification_state: location_verified
+- id: SRC-0028-EX-0009
+  location:
+    pdf_page: 4
+    printed_page: 124
+    section: 3.1 Misuse Interactions
+    paragraph_or_table: Misuse artifact types
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: A misuse can include an optional modification scenario and an attack scenario; mitigations are separate aspect scenarios.
+  researcher_interpretation: Attacker preparation, attack interaction and mitigation must not be collapsed.
+  supported_proposition: The method distinguishes attacker-induced modification, attack behavior and mitigation behavior.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2008 evidence; tool maturity and effectiveness require current corroboration.
+  verification_state: location_verified
+- id: SRC-0028-EX-0010
+  location:
+    pdf_page: 4
+    printed_page: 124
+    section: 3.1 Misuse Interactions
+    paragraph_or_table: Threat and mitigation scope
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Threatens and mitigates relations determine which core scenarios are crosscut during composition.
+  researcher_interpretation: Overlay applicability should be explicit and traversable.
+  supported_proposition: Typed relations define the scope of security-specific model transformation.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2008 evidence; tool maturity and effectiveness require current corroboration.
+  verification_state: location_verified
+- id: SRC-0028-EX-0011
+  location:
+    pdf_page: 5
+    printed_page: 125
+    section: 3.1 Misuse Interactions
+    paragraph_or_table: Weaving order
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Multiple weaving steps are order-sensitive and the user ultimately specifies an order, although dependency analysis is referenced.
+  researcher_interpretation: Composition order and conflicts are governed inputs, not hidden implementation details.
+  supported_proposition: Aspect composition can be order-dependent.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2008 evidence; tool maturity and effectiveness require current corroboration.
+  verification_state: location_verified
+- id: SRC-0028-EX-0012
+  location:
+    pdf_page: 5
+    printed_page: 125
+    section: 3.2 Modeling and Weaving Aspect Scenarios
+    paragraph_or_table: Graph transformation
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: MATA uses graph rules with pattern context and create/delete operations, including sequence pointcuts.
+  researcher_interpretation: Every generated behavior should retain the transformation rule and matched source elements.
+  supported_proposition: Mitigation weaving is a structured and automatable graph transformation.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2008 evidence; tool maturity and effectiveness require current corroboration.
+  verification_state: location_verified
+- id: SRC-0028-EX-0013
+  location:
+    pdf_page: 6
+    printed_page: 126
+    section: 3.3 Executing and Testing Misuse Cases
+    paragraph_or_table: Animation versus formal analysis
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The reported tool supports animation but not formal analysis; external FSM analyzers are only suggested.
+  researcher_interpretation: DDTA must distinguish executable testing from formal verification.
+  supported_proposition: The paper does not evaluate formal model checking.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2008 evidence; tool maturity and effectiveness require current corroboration.
+  verification_state: location_verified
+- id: SRC-0028-EX-0014
+  location:
+    pdf_page: 6
+    printed_page: 126
+    section: 3.3 Executing and Testing Misuse Cases
+    paragraph_or_table: Trace execution criterion
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: An attack succeeds when its trace set is admitted by the composed EIOD and is checked by injecting events into the animator.
+  researcher_interpretation: Execution evidence is scoped to specified traces and model semantics.
+  supported_proposition: Attack prevention is evaluated against modeled trace sets.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2008 evidence; tool maturity and effectiveness require current corroboration.
+  verification_state: location_verified
+- id: SRC-0028-EX-0015
+  location:
+    pdf_page: 7
+    printed_page: 127
+    section: 3.3 Executing and Testing Misuse Cases
+    paragraph_or_table: Nondeterminism and human input
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Optional pre/postconditions or interactive choices resolve nondeterministic execution paths.
+  researcher_interpretation: Path decisions and analyst-supplied semantics must be captured as evidence.
+  supported_proposition: Some execution outcomes depend on supplied conditions or human choices.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2008 evidence; tool maturity and effectiveness require current corroboration.
+  verification_state: location_verified
+- id: SRC-0028-EX-0016
+  location:
+    pdf_page: 7
+    printed_page: 127
+    section: 4.1 Methodology
+    paragraph_or_table: Evaluation limitation
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The authors state that the cases validate only suitability and executability, not red-team benefit.
+  researcher_interpretation: Evaluation claims must remain narrower than applicability claims.
+  supported_proposition: The empirical validation is explicitly preliminary.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-7
+  temporal_caveat: Foundational 2008 evidence; tool maturity and effectiveness require current corroboration.
+  verification_state: location_verified
+- id: SRC-0028-EX-0017
+  location:
+    pdf_page: 8
+    printed_page: 128
+    section: 4.2 EVS Results
+    paragraph_or_table: Attack modelability
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Seven of nine design-level EVS attacks were modelable; storage-level and network-level attacks were not.
+  researcher_interpretation: Deferred attacks should retain missing-representation reasons.
+  supported_proposition: Requirements-level executable scenarios have scope limits.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-7
+  temporal_caveat: Foundational 2008 evidence; tool maturity and effectiveness require current corroboration.
+  verification_state: location_verified
+- id: SRC-0028-EX-0018
+  location:
+    pdf_page: 8
+    printed_page: 128
+    section: 4.3 PTC Results
+    paragraph_or_table: Representative attacks
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Nineteen PTC attacks were brainstormed, but four representatives were modeled.
+  researcher_interpretation: Do not treat representative modeling as full coverage of all elicited attacks.
+  supported_proposition: The PTC study demonstrates selected examples rather than exhaustive modeling.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-7
+  temporal_caveat: Foundational 2008 evidence; tool maturity and effectiveness require current corroboration.
+  verification_state: location_verified
+- id: SRC-0028-EX-0019
+  location:
+    pdf_page: 9
+    printed_page: 129
+    section: 4.4 Discussion
+    paragraph_or_table: Expertise and patterns
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Translating high-level attacks into precise models requires expertise; reusable attack patterns are proposed as future work.
+  researcher_interpretation: Automation needs governed pattern provenance and human review.
+  supported_proposition: Precise modeling does not remove expert dependence.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2008 evidence; tool maturity and effectiveness require current corroboration.
+  verification_state: location_verified
+- id: SRC-0028-EX-0020
+  location:
+    pdf_page: 10
+    printed_page: 130
+    section: 6 Conclusion
+    paragraph_or_table: Future work
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Future work includes design-stage transformation, goal-model integration and automatic attack-sequence generation.
+  researcher_interpretation: Later-stage synchronization and attack generation were not delivered by this study.
+  supported_proposition: The paper leaves model-to-design continuity and automated attack generation open.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2008 evidence; tool maturity and effectiveness require current corroboration.
+  verification_state: location_verified
