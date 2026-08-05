@@ -1,0 +1,439 @@
+schema_version: 1
+source_id: SRC-0029
+citation_key: hatebur2006securityengineering
+source_version:
+  stable_identifier: 10.1007/11766155_17
+  edition_or_version: ETRICS 2006, LNCS 3995, pages 238-253; author-hosted full-text copy
+  accessed_on: '2026-08-05'
+  local_filename: SRC-0029-hatebur-heisel-schmidt-2006.pdf
+  sha256: 78f7230aa8d87613138303f28cf25261d129611f869fbf9723d9d58cc0a4a302
+excerpts:
+- id: SRC-0029-EX-0001
+  location:
+    pdf_page: 1
+    printed_page: 238
+    section: Abstract
+    paragraph_or_table: Method contribution
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The paper introduces security problem frames, concretized security problem frames and generic
+    sequence diagrams as a three-stage path from a security problem to an implementable specification.
+  researcher_interpretation: Treat the stages as separate governed artifact types rather than one continuously overwritten
+    model.
+  supported_proposition: The method explicitly separates problem representation, solution principle and concrete
+    specification.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2006 method evidence. The problem/solution separation and explicit assumption structure
+    remain conceptually relevant; cryptographic choices, Common Criteria references and tool/process maturity require
+    contemporary corroboration.
+  verification_state: location_verified
+- id: SRC-0029-EX-0002
+  location:
+    pdf_page: 2
+    printed_page: 239
+    section: 2 Problem Frames
+    paragraph_or_table: Problem-frame definition
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: A problem frame classifies a development problem through its context, domains, interfaces
+    and requirement; a frame diagram represents those elements and their shared phenomena.
+  researcher_interpretation: A DDTA Base Analysis needs typed context elements and relations before a problem-frame
+    overlay can be applied.
+  supported_proposition: Problem-frame analysis depends on a structured context representation rather than unstructured
+    prose alone.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2006 method evidence. The problem/solution separation and explicit assumption structure
+    remain conceptually relevant; cryptographic choices, Common Criteria references and tool/process maturity require
+    contemporary corroboration.
+  verification_state: location_verified
+- id: SRC-0029-EX-0003
+  location:
+    pdf_page: 3
+    printed_page: 240
+    section: 2 Problem Frames
+    paragraph_or_table: Context and decomposition procedure
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Development begins with a context diagram, followed by decomposition into subproblems and
+    instantiation of suitable frames with domain, phenomenon, interface and requirement instances.
+  researcher_interpretation: Document-to-model transformation is a prerequisite left outside the method.
+  supported_proposition: The technique assumes or constructs an explicit context model before security-specific
+    refinement.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2006 method evidence. The problem/solution separation and explicit assumption structure
+    remain conceptually relevant; cryptographic choices, Common Criteria references and tool/process maturity require
+    contemporary corroboration.
+  verification_state: location_verified
+- id: SRC-0029-EX-0004
+  location:
+    pdf_page: 4
+    printed_page: 241
+    section: 3 Security Problem Frames
+    paragraph_or_table: Problem/solution separation
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Security problem frames state security problems without anticipating mechanisms such as encryption,
+    preserving a distinction between the requirement and a possible solution.
+  researcher_interpretation: DDTA should not embed mitigation choices in Base Analysis facts or initial findings.
+  supported_proposition: Security requirements can be represented independently from candidate mechanisms.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2006 method evidence. The problem/solution separation and explicit assumption structure
+    remain conceptually relevant; cryptographic choices, Common Criteria references and tool/process maturity require
+    contemporary corroboration.
+  verification_state: location_verified
+- id: SRC-0029-EX-0005
+  location:
+    pdf_page: 5
+    printed_page: 241
+    section: 3 Security Problem Frames
+    paragraph_or_table: Security-specific extensions
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Compared with ordinary problem frames, the security frames include security-requirement patterns,
+    an explicit potential attacker, assumptions and non-functional requirements.
+  researcher_interpretation: The overlay should type attacker, assumption and security-property elements explicitly.
+  supported_proposition: The method extends context modeling with attacker and assumption semantics.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2006 method evidence. The problem/solution separation and explicit assumption structure
+    remain conceptually relevant; cryptographic choices, Common Criteria references and tool/process maturity require
+    contemporary corroboration.
+  verification_state: location_verified
+- id: SRC-0029-EX-0006
+  location:
+    pdf_page: 6
+    printed_page: 242
+    section: 4 Concretized Security Problem Frames
+    paragraph_or_table: Conditional refinement obligation
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: A security requirement SR is transformed into a concretized security requirement CSR using
+    basic domain knowledge and explicit assumptions; sufficiency is expressed as A and D_basic and CSR implying
+    SR.
+  researcher_interpretation: The implication is a stated reasoning obligation, not evidence of an implemented proof
+    procedure in this paper.
+  supported_proposition: The refinement from SR to CSR is conditional on assumptions and domain knowledge.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2006 method evidence. The problem/solution separation and explicit assumption structure
+    remain conceptually relevant; cryptographic choices, Common Criteria references and tool/process maturity require
+    contemporary corroboration.
+  verification_state: location_verified
+- id: SRC-0029-EX-0007
+  location:
+    pdf_page: 7
+    printed_page: 243
+    section: 4 Concretized Security Problem Frames
+    paragraph_or_table: Authentication concretization
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The authentication example introduces credentials and a trusted subject so authentic and
+    fake subjects can be distinguished under stated assumptions.
+  researcher_interpretation: Generic mechanism selection changes the model by adding solution-oriented domains and
+    relations.
+  supported_proposition: Concretization introduces new solution-principle artifacts while preserving the original
+    problem frame.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2006 method evidence. The problem/solution separation and explicit assumption structure
+    remain conceptually relevant; cryptographic choices, Common Criteria references and tool/process maturity require
+    contemporary corroboration.
+  verification_state: location_verified
+- id: SRC-0029-EX-0008
+  location:
+    pdf_page: 8
+    printed_page: 244
+    section: 5 Generic Security Protocols
+    paragraph_or_table: Generic protocol representation
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Generic sequence diagrams describe security protocols that must later be instantiated with
+    concrete domains and messages; naming should align with the concretized frame phenomena.
+  researcher_interpretation: Cross-view correspondence needs explicit trace links and consistency checks.
+  supported_proposition: The method links problem diagrams and behavioral protocol views through shared names and
+    instantiation.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2006 method evidence. The problem/solution separation and explicit assumption structure
+    remain conceptually relevant; cryptographic choices, Common Criteria references and tool/process maturity require
+    contemporary corroboration.
+  verification_state: location_verified
+- id: SRC-0029-EX-0009
+  location:
+    pdf_page: 9
+    printed_page: 245
+    section: 5 Generic Security Protocols
+    paragraph_or_table: Public-key authentication example
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The example protocol distributes trusted public keys and certificates, then uses a random
+    challenge and signature verification to authenticate a subject.
+  researcher_interpretation: The security reasoning depends on protocol assumptions and omitted failure paths as
+    well as diagram structure.
+  supported_proposition: A generic protocol is an intermediate solution pattern, not yet the concrete specification.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2006 method evidence. The problem/solution separation and explicit assumption structure
+    remain conceptually relevant; cryptographic choices, Common Criteria references and tool/process maturity require
+    contemporary corroboration.
+  verification_state: location_verified
+- id: SRC-0029-EX-0010
+  location:
+    pdf_page: 10
+    printed_page: 246
+    section: 6 Method for Security Engineering using Problem Frames
+    paragraph_or_table: Three-step method
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The method instantiates a security problem frame, then a concretized security problem frame,
+    and finally generic sequence diagrams plus concrete mechanisms to derive and validate a specification.
+  researcher_interpretation: This is a suitable overlay pipeline over a neutral system-context representation.
+  supported_proposition: The paper defines an ordered transformation from problem to generic solution principle
+    to concrete specification.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2006 method evidence. The problem/solution separation and explicit assumption structure
+    remain conceptually relevant; cryptographic choices, Common Criteria references and tool/process maturity require
+    contemporary corroboration.
+  verification_state: location_verified
+- id: SRC-0029-EX-0011
+  location:
+    pdf_page: 11
+    printed_page: 247
+    section: 6.1 Instantiation of Security Problem Frames
+    paragraph_or_table: Threat model and biddable domains
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The first step bounds and decomposes the problem, produces security problem diagrams, assumptions
+    and domain knowledge, and characterizes attacker skill, equipment and determination.
+  researcher_interpretation: Threat capability assumptions should be first-class, versioned evidence rather than
+    hidden analyst judgments.
+  supported_proposition: Mechanism strength is intended to scale with explicit attacker assumptions.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2006 method evidence. The problem/solution separation and explicit assumption structure
+    remain conceptually relevant; cryptographic choices, Common Criteria references and tool/process maturity require
+    contemporary corroboration.
+  verification_state: location_verified
+- id: SRC-0029-EX-0012
+  location:
+    pdf_page: 12
+    printed_page: 247
+    section: 6.2 Instantiation of Concretized Security Problem Frames
+    paragraph_or_table: Human mechanism-class choice
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The second step requires the security engineer to choose a generic mechanism class while
+    preserving and reusing domain knowledge and assumptions from the first step.
+  researcher_interpretation: Automation is not claimed for mechanism selection; the decision remains human and context-dependent.
+  supported_proposition: The method preserves assumptions across refinement but relies on expert choice.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2006 method evidence. The problem/solution separation and explicit assumption structure
+    remain conceptually relevant; cryptographic choices, Common Criteria references and tool/process maturity require
+    contemporary corroboration.
+  verification_state: location_verified
+- id: SRC-0029-EX-0013
+  location:
+    pdf_page: 13
+    printed_page: 248
+    section: 6.3 Instantiation and Specification
+    paragraph_or_table: Concrete specification obligation
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The third step derives a specification made of concrete sequence diagrams and mechanisms
+    and requires A_biddable and D and S to imply CSR without contradiction.
+  researcher_interpretation: The paper states a validation condition but does not present a formalized or automated
+    verifier.
+  supported_proposition: Specification adequacy is conditional on assumptions, domain knowledge and the selected
+    mechanisms.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2006 method evidence. The problem/solution separation and explicit assumption structure
+    remain conceptually relevant; cryptographic choices, Common Criteria references and tool/process maturity require
+    contemporary corroboration.
+  verification_state: location_verified
+- id: SRC-0029-EX-0014
+  location:
+    pdf_page: 14
+    printed_page: 248
+    section: 6.3 Instantiation and Specification
+    paragraph_or_table: Composition limitation
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Generic protocols and mechanisms are instantiated in parallel and then composed; incompatible-solution
+    dependencies are acknowledged but their analysis is outside the paper scope.
+  researcher_interpretation: Composition and interaction analysis remain open obligations for a multi-overlay DDTA
+    architecture.
+  supported_proposition: The method does not solve compatibility or interaction analysis among combined security
+    frames.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2006 method evidence. The problem/solution separation and explicit assumption structure
+    remain conceptually relevant; cryptographic choices, Common Criteria references and tool/process maturity require
+    contemporary corroboration.
+  verification_state: location_verified
+- id: SRC-0029-EX-0015
+  location:
+    pdf_page: 15
+    printed_page: 249
+    section: 7 Case Study
+    paragraph_or_table: Evaluation design
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The method is illustrated on a remote-display system using a PDA and Bluetooth, with authentication,
+    confidentiality and integrity concerns.
+  researcher_interpretation: This is an illustrative application, not a comparative or controlled empirical evaluation.
+  supported_proposition: The evidence demonstrates worked applicability on one example but not effectiveness or
+    superiority.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-7
+  temporal_caveat: Foundational 2006 method evidence. The problem/solution separation and explicit assumption structure
+    remain conceptually relevant; cryptographic choices, Common Criteria references and tool/process maturity require
+    contemporary corroboration.
+  verification_state: location_verified
+- id: SRC-0029-EX-0016
+  location:
+    pdf_page: 16
+    printed_page: 250
+    section: 7.1 Case Study - First Step
+    paragraph_or_table: Attack-potential calculation
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The case uses Common Evaluation Methodology factors for time, expertise, TOE knowledge, access
+    and equipment, obtaining a total of 22 and a Moderate attack-potential rating.
+  researcher_interpretation: Quantified attacker assumptions can be recorded, but the scale and its validity must
+    remain source-specific and time-bounded.
+  supported_proposition: The case operationalizes attacker strength through an explicit rating procedure.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-7
+  temporal_caveat: Foundational 2006 method evidence. The problem/solution separation and explicit assumption structure
+    remain conceptually relevant; cryptographic choices, Common Criteria references and tool/process maturity require
+    contemporary corroboration.
+  verification_state: location_verified
+- id: SRC-0029-EX-0017
+  location:
+    pdf_page: 17
+    printed_page: 250
+    section: 7.1 Case Study - Scope
+    paragraph_or_table: Partial case coverage
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The system is decomposed into six security subproblems, but the paper develops only desktop
+    authentication in detail and delegates the other diagrams to a technical report.
+  researcher_interpretation: Do not infer full-system coverage from the worked authentication path.
+  supported_proposition: The reported case study provides incomplete coverage of the identified security subproblems.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-7
+  temporal_caveat: Foundational 2006 method evidence. The problem/solution separation and explicit assumption structure
+    remain conceptually relevant; cryptographic choices, Common Criteria references and tool/process maturity require
+    contemporary corroboration.
+  verification_state: location_verified
+- id: SRC-0029-EX-0018
+  location:
+    pdf_page: 18
+    printed_page: 252
+    section: 7.3 Case Study - Third Step
+    paragraph_or_table: Concrete mechanism and temporal obsolescence
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The case selects 768-bit RSA based on the assumed Moderate attacker and 2003 factorization
+    knowledge, then claims conditional sufficiency for the concretized requirement.
+  researcher_interpretation: The reasoning pattern is reusable, but the cryptographic parameter and security conclusion
+    are obsolete and must not be reused normatively.
+  supported_proposition: Concrete mechanism adequacy is time-sensitive even when the refinement structure remains
+    useful.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-7
+  temporal_caveat: Foundational 2006 method evidence. The problem/solution separation and explicit assumption structure
+    remain conceptually relevant; cryptographic choices, Common Criteria references and tool/process maturity require
+    contemporary corroboration.
+  verification_state: location_verified
+- id: SRC-0029-EX-0019
+  location:
+    pdf_page: 19
+    printed_page: 253
+    section: 8 Related Work
+    paragraph_or_table: Relation to abuse frames and security patterns
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Abuse frames are described as complementary for deriving security requirements, while security
+    patterns apply later and at a more detailed solution level than the problem frames.
+  researcher_interpretation: Nearest-neighbor approaches occupy different pipeline stages and should not be collapsed
+    into one method category.
+  supported_proposition: The paper positions security problem frames between threat-oriented elicitation and detailed
+    design patterns.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2006 method evidence. The problem/solution separation and explicit assumption structure
+    remain conceptually relevant; cryptographic choices, Common Criteria references and tool/process maturity require
+    contemporary corroboration.
+  verification_state: location_verified
+- id: SRC-0029-EX-0020
+  location:
+    pdf_page: 20
+    printed_page: 253
+    section: 9 Conclusions and Future Work
+    paragraph_or_table: Open work and coverage claims
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The authors expect a larger frame catalogue to help avoid omissions, but leave formalization,
+    composition and interaction analysis, and later lifecycle integration as future work.
+  researcher_interpretation: Catalogue-assisted coverage is an aspiration rather than demonstrated threat completeness.
+  supported_proposition: The paper does not establish completeness, automated formal verification or continuous
+    lifecycle synchronization.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-7
+  temporal_caveat: Foundational 2006 method evidence. The problem/solution separation and explicit assumption structure
+    remain conceptually relevant; cryptographic choices, Common Criteria references and tool/process maturity require
+    contemporary corroboration.
+  verification_state: location_verified

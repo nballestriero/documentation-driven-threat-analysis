@@ -109,3 +109,12 @@ sources:
     retrieved_on: "2026-08-05"
     sha256: "c281043bdf946742fe22c03cebbff96b0f4ff1276ace9bab0a4ac8a3870c51da"
     repository_storage: forbidden
+  - source_id: SRC-0029
+    landing_url: "https://link.springer.com/chapter/10.1007/11766155_17"
+    pdf_url: "https://www.uni-due.de/imperia/md/content/swe/papers/2006etrics.pdf"
+    access_type: author_hosted_full_text
+    licence: "Author-hosted full text; copyright Springer-Verlag Berlin Heidelberg 2006; reuse terms not stated"
+    local_filename: "SRC-0029-hatebur-heisel-schmidt-2006.pdf"
+    retrieved_on: "2026-08-05"
+    sha256: "78f7230aa8d87613138303f28cf25261d129611f869fbf9723d9d58cc0a4a302"
+    repository_storage: forbidden

@@ -226,3 +226,11 @@ sources:
     verification_state: verified
     topics: [RE-SECURITY, RE-MISUSE, TM-AUTOMATION, CS-ASSURANCE]
     ddta_roles: [comparison, evaluation, challenge]
+  - id: SRC-0029
+    citation_key: hatebur2006securityengineering
+    title: "Security Engineering Using Problem Frames"
+    year: 2006
+    type: primary_research
+    verification_state: verified
+    topics: [RE-SECURITY, MD-MDS, MD-VIEW, CS-ASSURANCE]
+    ddta_roles: [foundation, comparison, challenge]

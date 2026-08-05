@@ -112,12 +112,33 @@ lower-level storage or network information. The PTC study brainstormed nineteen 
 four representatives. The authors explicitly limit validation to language suitability and
 executability, not improved red-team effectiveness.
 
+### SRC-0029 - Hatebur, Heisel and Schmidt (2006)
+
+Role: documentation-plus-model security problem framing and problem-to-specification refinement.
+The method starts from a bounded context, environmental domains, interfaces, shared phenomena,
+a security requirement, domain knowledge and explicit assumptions. It then instantiates a security
+problem frame, introduces a generic solution principle through a concretized frame and finally
+instantiates a protocol and concrete mechanism.
+
+The source strengthens the separation between the security problem, the concretized requirement,
+the generic protocol and the implementable specification. Attacker capability and biddable-domain
+assumptions constrain mechanism selection, while two implication obligations express conditional
+adequacy from specification to concretized requirement and from concretized requirement to the
+original security requirement.
+
+The paper does not derive context or problem diagrams from heterogeneous documentation, automate
+frame matching or mechanism selection, or provide a solver or model checker for the stated
+obligations. Every substantial modeling and selection decision remains with the security engineer.
+The remote-display example is illustrative and develops only one of six identified subproblems; it
+does not establish completeness, comparative advantage or current cryptographic suitability.
+
 ## Initial DDTA separation
 
 ```text
 raw and governed project documentation
 -> Base Analysis construction
 -> methodology-specific threat analysis
+-> optional problem-to-mechanism refinement
 -> optional executable attack and mitigation regression
 -> reviewed findings
 -> security requirements
@@ -129,7 +150,8 @@ SRC-0026 mostly maps methodology-specific threat analysis. SRC-0003 demonstrates
 implementation after a functional scenario view exists. SRC-0004 demonstrates a goal-oriented
 implementation after a structured primal model exists. SRC-0027 adds a downstream assurance
 layer after problem-context and behavior views exist. SRC-0028 adds executable attack regression
-after precise scenario and behavior views exist. DDTA must still investigate how heterogeneous
+after precise scenario and behavior views exist. SRC-0029 adds a problem-frame refinement overlay
+after context, domain, interface, requirement, assumption and attacker-capability views exist. DDTA must still investigate how heterogeneous
 documentation becomes the neutral assets, actors, goals, interactions, objects, operations,
 domains, phenomena and scenarios consumed by these overlays, arguments and tests.
 
@@ -163,7 +185,10 @@ Direct evidence from the review:
 - precise hostile scenarios can be woven into functional behavior and executed as regression tests;
 - model animation and attack execution are not equivalent to formal verification;
 - requirements-level models may defer storage, network and implementation-dependent attacks;
-- structured scenarios, goal models, problem contexts and EIODs are not equivalent to raw heterogeneous documentation.
+- structured scenarios, goal models, problem contexts and EIODs are not equivalent to raw heterogeneous documentation;
+- security problem frames preserve the distinction between a security problem, a generic solution principle and a concrete mechanism;
+- refinement and specification adequacy remain conditional on explicit assumptions and domain knowledge;
+- attacker-capability assumptions may constrain mechanism strength without proving threat completeness.
 
 Researcher conclusion for DDTA:
 
@@ -180,8 +205,9 @@ corroborate, contradict or refine the prior model rather than become a hidden pr
 
 The reviewed techniques distinguish threats, mitigations and security requirements. SRC-0027
 shows how explicit assurance can be structured as conditional proof plus arguments for trust
-assumptions. SRC-0028 adds executable regression evidence for known hostile traces. Both remain
-relative to the modeled context, premises, behaviors and attacks; neither establishes global threat
+assumptions. SRC-0028 adds executable regression evidence for known hostile traces. SRC-0029 adds conditional
+problem-to-specification adequacy obligations based on explicit assumptions and domain knowledge.
+All three remain relative to the modeled context, premises, behaviors, attacks and mechanism choices; neither establishes global threat
 completeness or implementation security. Completion conditions, precise discovery rules and
 comparative validation remain weak.
 
@@ -195,6 +221,9 @@ DDTA candidate controls:
 - derivation rule, premises and proof status;
 - software requirement versus environmental expectation responsibility;
 - preserved alternative countermeasures and selection rationale;
+- separate security problem, concretized requirement, generic protocol, concrete mechanism and specification;
+- versioned attacker-capability assumptions and domain knowledge;
+- explicit conditional adequacy obligations with evidence and verification status;
 - security-goal-to-requirement validation evidence;
 - outer-argument premises, logic and proof status;
 - inner claims, grounds, warrants, rebuttals and trust assumptions;
@@ -214,9 +243,8 @@ DDTA candidate controls:
 
 ### New sources to retrieve
 
-1. Hatebur and Heisel - security problem frames.
-2. A recent empirical STRIDE study - DFD-based overlay effectiveness and analyst performance.
-3. A recent review of automated threat-modeling tools and model-based security testing.
+1. A recent empirical STRIDE study - DFD-based overlay effectiveness and analyst performance.
+2. A recent review of automated threat-modeling tools and model-based security testing.
 
 These sources cover:
 
@@ -230,21 +258,21 @@ quality assurance
 ```
 
 
-## Scenario, anti-goal, assurance and execution contrast
+## Scenario, anti-goal, assurance, execution and problem-frame contrast
 
-| Dimension | SRC-0003 | SRC-0004 | SRC-0027 | SRC-0028 |
-|---|---|---|---|---|
-| Starting view | functional scenarios | goal, object, agent and domain models | problem context, phenomena and behavior | EIOD and sequence behavior |
-| Main structure | harmful scenario | intentional AND/OR anti-goal graph | constrained requirement and argument graph | modification, attack and mitigation scenarios |
-| Formality | mostly informal | optional temporal logic and formal regression | formal outer proof plus informal inner argument | formal trace semantics and executable FSMs |
-| Security output | misuse and mitigation | anti-requirement and vulnerability | primary/secondary security constraints | composed behavior and attack tests |
-| Assumption handling | template fields | domain properties | trust assumptions and rebuttals | pre/postconditions and interactive path choices |
-| Assurance | review status and trace links | local proof and derivation evidence | conditional satisfaction evidence | regression over known attack traces |
-| Empirical evidence | descriptive examples | four anti-model cases | one industrial research application | two preliminary case studies |
+| Dimension | SRC-0003 | SRC-0004 | SRC-0027 | SRC-0028 | SRC-0029 |
+|---|---|---|---|---|---|
+| Starting view | functional scenarios | goal, object, agent and domain models | problem context, phenomena and behavior | EIOD and sequence behavior | context, domains, interfaces and security requirement |
+| Main structure | harmful scenario | intentional AND/OR anti-goal graph | constrained requirement and argument graph | modification, attack and mitigation scenarios | security problem frame and concretized frame |
+| Formality | mostly informal | optional temporal logic and formal regression | formal outer proof plus informal inner argument | formal trace semantics and executable FSMs | conditional implication obligations; no implemented verifier |
+| Security output | misuse and mitigation | anti-requirement and vulnerability | primary/secondary security constraints | composed behavior and attack tests | concretized requirement, protocol, mechanism and specification |
+| Assumption handling | template fields | domain properties | trust assumptions and rebuttals | pre/postconditions and interactive path choices | explicit attacker capability and domain knowledge |
+| Assurance | review status and trace links | local proof and derivation evidence | conditional satisfaction evidence | regression over known attack traces | conditional refinement and specification adequacy |
+| Empirical evidence | descriptive examples | four anti-model cases | one industrial research application | two preliminary case studies | one illustrative remote-display case |
 
-All four approaches are pre-code. None solves source-document interpretation, assertion-level
-provenance or global completeness. They support different methodology, assurance and executable
-scenario overlays over a neutral Base Analysis.
+All five approaches are pre-code. None solves source-document interpretation, assertion-level
+provenance or global completeness. They support distinct methodology, assurance, executable-scenario
+and problem-refinement overlays over a neutral Base Analysis.
 
 ## Evidence still missing
 
@@ -253,6 +281,8 @@ scenario overlays over a neutral Base Analysis.
 - management of missing and contradictory documentation;
 - governed trust-assumption acceptance and residual-risk criteria;
 - automatic argument maintenance and change impact;
+- automatic document-to-problem-frame construction and frame-applicability checking;
+- governed mechanism selection and automated validation of conditional adequacy obligations;
 - current tool maturity;
 - continuous rerun and stale detection;
 - current LLM/RAG performance;
@@ -263,6 +293,8 @@ scenario overlays over a neutral Base Analysis.
 
 SRC-0026 is a strong historical map but cannot describe the 2026 state of automation or tools.
 Every maturity claim must be updated through recent systematic reviews and empirical studies.
+SRC-0029 remains conceptually relevant for problem/solution separation and explicit assumptions,
+but its 768-bit RSA example is obsolete and must not be reused as current cryptographic guidance.
 
 ## Reading order
 
@@ -272,7 +304,7 @@ SRC-0026 historical method taxonomy
 -> SRC-0004 goal-oriented anti-models
 -> SRC-0027 explicit satisfaction assurance
 -> SRC-0028 executable misuse regression
--> problem frames
+-> SRC-0029 security problem frames
 -> current empirical STRIDE
 -> recent automated-tool review
 ```
