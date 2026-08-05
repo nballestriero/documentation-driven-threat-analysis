@@ -1,0 +1,332 @@
+schema_version: 1
+source_id: SRC-0027
+citation_key: haley2008securityrequirements
+source_version:
+  stable_identifier: 10.1109/TSE.2007.70754
+  edition_or_version: IEEE TSE 34(1), January/February 2008, pages 133-153; author-hosted copy
+  accessed_on: '2026-08-05'
+  local_filename: SRC-0027-haley-et-al-2008.pdf
+  sha256: 811aac50e9707a6a89b4aa19fd1f702877fb8a8aa0770054117a6d870d5d0c43
+excerpts:
+- id: SRC-0027-EX-0001
+  location:
+    pdf_page: 1
+    printed_page: 133
+    section: Abstract
+    paragraph_or_table: Framework and failure diagnostics
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The framework combines context, constraints and two-part satisfaction arguments; failed construction
+    can reveal infeasibility or missing information.
+  researcher_interpretation: Failed assurance should create a typed diagnostic and iteration request.
+  supported_proposition: Satisfaction arguments can diagnose inadequate requirements or context.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2008 evidence; empirical maturity requires current corroboration.
+  verification_state: location_verified
+- id: SRC-0027-EX-0002
+  location:
+    pdf_page: 1
+    printed_page: 133
+    section: 1 Introduction
+    paragraph_or_table: Three criteria
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Adequate security requirements require definition, explicit assumptions and satisfaction
+    evidence.
+  researcher_interpretation: Definition, assumptions and satisfaction are separate obligations.
+  supported_proposition: Security-requirement quality has distinct dimensions.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2008 evidence; empirical maturity requires current corroboration.
+  verification_state: location_verified
+- id: SRC-0027-EX-0003
+  location:
+    pdf_page: 2
+    printed_page: 134
+    section: 2.1.2 Security Requirements and Context
+    paragraph_or_table: System boundary
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The system includes software, people, equipment and environment, and security goals depend
+    on context.
+  researcher_interpretation: Base Analysis must include relevant nonsoftware domains.
+  supported_proposition: Security requirements are context-dependent.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2008 evidence; empirical maturity requires current corroboration.
+  verification_state: location_verified
+- id: SRC-0027-EX-0004
+  location:
+    pdf_page: 3
+    printed_page: 135
+    section: 2.2 and 2.3
+    paragraph_or_table: Trust assumptions
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Boundary selection embeds trust assumptions whose validity affects the whole satisfaction
+    argument.
+  researcher_interpretation: Omitted domains and assumed behavior must be reviewable claims.
+  supported_proposition: Trust assumptions are unavoidable assurance dependencies.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2008 evidence; empirical maturity requires current corroboration.
+  verification_state: location_verified
+- id: SRC-0027-EX-0005
+  location:
+    pdf_page: 3
+    printed_page: 135
+    section: 3.2 Definition of Security Requirements
+    paragraph_or_table: Constraint definition
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Security requirements are constraints on functional requirements that operationalize security
+    goals.
+  researcher_interpretation: Security constraints should link to exact functions.
+  supported_proposition: The framework gives security requirements an operational form.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2008 evidence; empirical maturity requires current corroboration.
+  verification_state: location_verified
+- id: SRC-0027-EX-0006
+  location:
+    pdf_page: 4
+    printed_page: 136
+    section: 3.3 From Security Goals to Security Requirements
+    paragraph_or_table: Primary and secondary artifacts
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Secondary requirements may cover an infeasible primary requirement but do not delete it.
+  researcher_interpretation: Replacement must preserve ancestry and rationale.
+  supported_proposition: Primary-secondary dependencies matter for change.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2008 evidence; empirical maturity requires current corroboration.
+  verification_state: location_verified
+- id: SRC-0027-EX-0007
+  location:
+    pdf_page: 4
+    printed_page: 136
+    section: 3.4 Development Artifacts and Dependencies
+    paragraph_or_table: Figure 1
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Artifacts have downward derivation dependencies and upward feasibility dependencies.
+  researcher_interpretation: DDTA needs bidirectional impact and separate assurance artifacts.
+  supported_proposition: Artifact dependencies require iteration in both directions.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2008 evidence; empirical maturity requires current corroboration.
+  verification_state: location_verified
+- id: SRC-0027-EX-0008
+  location:
+    pdf_page: 5
+    printed_page: 137
+    section: 3.5 Activities in the Framework
+    paragraph_or_table: Figures 1 and 2
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The four stages end in satisfaction arguments; Stage 1 requires context but leaves its derivation
+    open.
+  researcher_interpretation: The unresolved upstream boundary is document-to-context construction.
+  supported_proposition: A structured context is a prerequisite.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2008 evidence; empirical maturity requires current corroboration.
+  verification_state: location_verified
+- id: SRC-0027-EX-0009
+  location:
+    pdf_page: 7
+    printed_page: 139
+    section: 3.5.3 Identify Security Requirements
+    paragraph_or_table: Problem diagrams
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Domains, interconnections, phenomena and requirements are used to attach security constraints
+    to functions.
+  researcher_interpretation: Base Analysis must expose context and behavior views.
+  supported_proposition: Security constraints depend on asset-function relationships.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2008 evidence; empirical maturity requires current corroboration.
+  verification_state: location_verified
+- id: SRC-0027-EX-0010
+  location:
+    pdf_page: 7
+    printed_page: 139
+    section: 3.5.4 Verification of the System
+    paragraph_or_table: Conditional proof
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The outer argument assumes a correct context and no conflicting implementation behavior;
+    inner arguments challenge assumptions.
+  researcher_interpretation: Proof status and real-world confidence must be separate.
+  supported_proposition: Formal verification does not prove premises true.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2008 evidence; empirical maturity requires current corroboration.
+  verification_state: location_verified
+- id: SRC-0027-EX-0011
+  location:
+    pdf_page: 8
+    printed_page: 140
+    section: 4.1 and 4.2 Satisfaction Arguments
+    paragraph_or_table: Figure 3
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Outer arguments use domain premises; inner arguments use claims, grounds, warrants, backing,
+    qualifiers and rebuttals and terminate at trust assumptions.
+  researcher_interpretation: Assurance needs a typed argument graph.
+  supported_proposition: Formal and informal evidence are complementary.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2008 evidence; empirical maturity requires current corroboration.
+  verification_state: location_verified
+- id: SRC-0027-EX-0012
+  location:
+    pdf_page: 7
+    printed_page: 139
+    section: 3.6 Iteration
+    paragraph_or_table: Twin Peaks
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Insufficient evidence triggers requirements-design iteration and can introduce new functions,
+    assets, domains and requirements.
+  researcher_interpretation: Argument dependencies should drive stale detection and reruns.
+  supported_proposition: Assurance construction is change-producing.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2008 evidence; empirical maturity requires current corroboration.
+  verification_state: location_verified
+- id: SRC-0027-EX-0013
+  location:
+    pdf_page: 11
+    printed_page: 143
+    section: 5.2 First Iteration
+    paragraph_or_table: Figures 9 and 10
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The ADS-B case derives assets, eight threats, two security goals and two constraints for
+    accuracy and timeliness.
+  researcher_interpretation: The case provides a worked context-to-constraint path.
+  supported_proposition: The framework was applied to a realistic ATC problem.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2008 evidence; empirical maturity requires current corroboration.
+  verification_state: location_verified
+- id: SRC-0027-EX-0014
+  location:
+    pdf_page: 12
+    printed_page: 144
+    section: 5.2 Satisfaction Arguments
+    paragraph_or_table: Figures 11-16
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The first argument set exposed twelve rebuttals involving sabotage, denial of service and
+    false position data.
+  researcher_interpretation: Rebuttal yield is a possible evaluation measure.
+  supported_proposition: Argument construction can reveal hidden vulnerability hypotheses.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2008 evidence; empirical maturity requires current corroboration.
+  verification_state: location_verified
+- id: SRC-0027-EX-0015
+  location:
+    pdf_page: 13
+    printed_page: 145
+    section: 5.3 Second Iteration
+    paragraph_or_table: Figures 17 and 18
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Multilateration changed context and behavior and created new rebuttals about identity, virtual
+    transmitters and clocks.
+  researcher_interpretation: Mitigation can introduce new attack surfaces and obligations.
+  supported_proposition: Mitigation analysis requires recursive reassessment.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2008 evidence; empirical maturity requires current corroboration.
+  verification_state: location_verified
+- id: SRC-0027-EX-0016
+  location:
+    pdf_page: 14
+    printed_page: 146
+    section: 6 Discussion
+    paragraph_or_table: Practitioner lessons
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Practitioners questioned formal arguments, preferred graphics, lacked a rebuttal recipe and
+    benefited from nonexpert challenge.
+  researcher_interpretation: Usability and team composition are first-class concerns.
+  supported_proposition: Human factors constrain adoption.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2008 evidence; empirical maturity requires current corroboration.
+  verification_state: location_verified
+- id: SRC-0027-EX-0017
+  location:
+    pdf_page: 15
+    printed_page: 147
+    section: 6.4 and 6.5
+    paragraph_or_table: Iteration and context
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Interacting rebuttals require coordinated management and security analysis can expand context
+    unexpectedly.
+  researcher_interpretation: DDTA needs interaction-aware impact and scope controls.
+  supported_proposition: Security-relevant context evolves during analysis.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2008 evidence; empirical maturity requires current corroboration.
+  verification_state: location_verified
+- id: SRC-0027-EX-0018
+  location:
+    pdf_page: 17
+    printed_page: 149
+    section: 8 Conclusions
+    paragraph_or_table: Evaluation and future work
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The authors report previously unconsidered requirements, rebuttals and mitigations and identify
+    tool support and partial satisfaction as future work.
+  researcher_interpretation: The evaluation supports feasibility, not comparative effectiveness.
+  supported_proposition: The framework has promising but limited empirical validation.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Foundational 2008 evidence; empirical maturity requires current corroboration.
+  verification_state: location_verified

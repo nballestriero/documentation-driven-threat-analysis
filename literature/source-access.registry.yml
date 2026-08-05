@@ -1,5 +1,5 @@
 schema_version: 1
-last_updated: 2026-08-04
+last_updated: 2026-08-05
 sources:
   - source_id: SRC-0002
     landing_url: "https://discovery.ucl.ac.uk/id/eprint/749/"
@@ -90,4 +90,13 @@ sources:
     local_filename: "SRC-0004-van-lamsweerde-2004.pdf"
     retrieved_on: "2026-08-05"
     sha256: "a344418a784c8830dfd82a4b578554c8102c9702f33e15ff8ead2f35597c69da"
+    repository_storage: forbidden
+  - source_id: SRC-0027
+    landing_url: "https://oro.open.ac.uk/10058/"
+    pdf_url: "https://charles.haleys.org/papers/Haley-TSE-04359475-for_web.pdf"
+    access_type: author_hosted_full_text
+    licence: "IEEE personal use permitted; reprint, republication and redistribution restrictions stated in the PDF"
+    local_filename: "SRC-0027-haley-et-al-2008.pdf"
+    retrieved_on: "2026-08-05"
+    sha256: "811aac50e9707a6a89b4aa19fd1f702877fb8a8aa0770054117a6d870d5d0c43"
     repository_storage: forbidden

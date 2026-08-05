@@ -1,6 +1,6 @@
 schema_version: 1
 corpus_status: working
-last_updated: 2026-08-04
+last_updated: 2026-08-05
 sources:
   - id: SRC-0001
     citation_key: shostack2014threat
@@ -209,4 +209,12 @@ sources:
     type: secondary_review
     verification_state: verified
     topics: [TM-GENERAL, RE-SECURITY, CS-ASSURANCE]
+    ddta_roles: [foundation, comparison, evaluation]
+  - id: SRC-0027
+    citation_key: haley2008securityrequirements
+    title: "Security Requirements Engineering: A Framework for Representation and Analysis"
+    year: 2008
+    type: primary_research
+    verification_state: verified
+    topics: [RE-SECURITY, CS-ASSURANCE, MD-VIEW, CS-HUMAN]
     ddta_roles: [foundation, comparison, evaluation]
