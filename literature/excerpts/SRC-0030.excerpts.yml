@@ -1,0 +1,469 @@
+schema_version: 1
+source_id: SRC-0030
+citation_key: mbaka2025dfdvalidation
+source_version:
+  stable_identifier: 10.1016/j.cose.2025.104498
+  edition_or_version: Computers & Security 156 (2025), article 104498; publisher's PDF / Version of Record
+  accessed_on: '2026-08-05'
+  local_filename: SRC-0030-mbaka-et-al-2025.pdf
+  sha256: 50bd229227dc204a64efb2e57f5ebe26d8c7a7c807a9f86d2cc281713a8c23fb
+excerpts:
+- id: SRC-0030-EX-0001
+  location:
+    pdf_page: 2
+    printed_page: 1
+    section: Abstract
+    paragraph_or_table: Methods and results
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The study reports an experiment with 98 students in two countries measuring both perceived
+    and actual effectiveness of a DFD during validation of actual and fabricated threats.
+  researcher_interpretation: The source supplies current empirical evaluation evidence rather than a new threat-analysis
+    method.
+  supported_proposition: The paper evaluates the incremental contribution of a DFD to threat validation with
+    novice participants.
+  thesis_targets:
+  - chapter-3
+  - chapter-7
+  temporal_caveat: Current 2025 controlled-experiment evidence. Its conclusions are limited to novice student
+    participants validating pre-identified threats while all groups received a sequence diagram and structured
+    textual material; they do not establish the absolute value of DFDs, expert performance, threat-elicitation
+    effectiveness, or longitudinal SDLC utility.
+  verification_state: location_verified
+- id: SRC-0030-EX-0002
+  location:
+    pdf_page: 3
+    printed_page: 2
+    section: 1 Introduction
+    paragraph_or_table: DFD maintenance motivation
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The authors note that DFDs may become out of sync as software design is refined and
+    ask whether the effort of maintaining them beyond threat elicitation is justified.
+  researcher_interpretation: DDTA needs explicit stale detection and maintenance-cost evaluation rather than
+    assuming persistent model value.
+  supported_proposition: The sustainability of maintaining DFDs after initial threat analysis is an open empirical
+    problem.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-7
+  temporal_caveat: Current 2025 controlled-experiment evidence. Its conclusions are limited to novice student
+    participants validating pre-identified threats while all groups received a sequence diagram and structured
+    textual material; they do not establish the absolute value of DFDs, expert performance, threat-elicitation
+    effectiveness, or longitudinal SDLC utility.
+  verification_state: location_verified
+- id: SRC-0030-EX-0003
+  location:
+    pdf_page: 3
+    printed_page: 2
+    section: 1 Introduction
+    paragraph_or_table: Fabricated-threat construction
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: 'The experiment limits invalidity to one mistake type: every fabricated threat contains
+    an assumption that contradicts what the threat description requires.'
+  researcher_interpretation: The binary validation task tests assumption consistency, not the full range of
+    threat-validity judgments.
+  supported_proposition: The fabricated-threat ground truth operationalizes one controlled contradiction pattern.
+  thesis_targets:
+  - chapter-3
+  - chapter-7
+  temporal_caveat: Current 2025 controlled-experiment evidence. Its conclusions are limited to novice student
+    participants validating pre-identified threats while all groups received a sequence diagram and structured
+    textual material; they do not establish the absolute value of DFDs, expert performance, threat-elicitation
+    effectiveness, or longitudinal SDLC utility.
+  verification_state: location_verified
+- id: SRC-0030-EX-0004
+  location:
+    pdf_page: 4
+    printed_page: 3
+    section: 3 Research questions
+    paragraph_or_table: RQ1 and RQ2
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: RQ1 asks whether the presence of a DFD helps novice analysts correctly validate a supplied
+    threat list; RQ2 asks whether novices perceive a DFD as more useful than a sequence diagram.
+  researcher_interpretation: Actual effectiveness and perceived usefulness must remain separate outcome dimensions
+    in DDTA evaluation.
+  supported_proposition: The study distinguishes objective task performance from subjective model usefulness.
+  thesis_targets:
+  - chapter-3
+  - chapter-7
+  temporal_caveat: Current 2025 controlled-experiment evidence. Its conclusions are limited to novice student
+    participants validating pre-identified threats while all groups received a sequence diagram and structured
+    textual material; they do not establish the absolute value of DFDs, expert performance, threat-elicitation
+    effectiveness, or longitudinal SDLC utility.
+  verification_state: location_verified
+- id: SRC-0030-EX-0005
+  location:
+    pdf_page: 4
+    printed_page: 3
+    section: 4 Experiment design
+    paragraph_or_table: Two-country experimental design
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: 'The experiment was conducted twice with different students and scenarios: first-year
+    MSc students in the Netherlands used Kubernetes, while third-year BSc students in China used GitHub.'
+  researcher_interpretation: The confirming experiment broadens context but also changes population, scenario,
+    and delivery mode.
+  supported_proposition: The reported evidence spans two academic populations and two comparable software scenarios.
+  thesis_targets:
+  - chapter-3
+  - chapter-7
+  temporal_caveat: Current 2025 controlled-experiment evidence. Its conclusions are limited to novice student
+    participants validating pre-identified threats while all groups received a sequence diagram and structured
+    textual material; they do not establish the absolute value of DFDs, expert performance, threat-elicitation
+    effectiveness, or longitudinal SDLC utility.
+  verification_state: location_verified
+- id: SRC-0030-EX-0006
+  location:
+    pdf_page: 5
+    printed_page: 4
+    section: 4.1 Research plan
+    paragraph_or_table: Figure 1 intervention and control groups
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Both groups received training, STRIDE material, a scenario description, a sequence diagram,
+    and ten structured threats; only the intervention group additionally received a DFD and DFD training.
+  researcher_interpretation: The causal contrast measures the incremental value of a DFD over an already rich
+    textual and behavioral baseline.
+  supported_proposition: The experiment does not compare DFD use with a no-model condition.
+  thesis_targets:
+  - chapter-3
+  - chapter-7
+  temporal_caveat: Current 2025 controlled-experiment evidence. Its conclusions are limited to novice student
+    participants validating pre-identified threats while all groups received a sequence diagram and structured
+    textual material; they do not establish the absolute value of DFDs, expert performance, threat-elicitation
+    effectiveness, or longitudinal SDLC utility.
+  verification_state: location_verified
+- id: SRC-0030-EX-0007
+  location:
+    pdf_page: 5
+    printed_page: 4
+    section: 4.1 Research plan
+    paragraph_or_table: Table 1 and hand-out material
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Each candidate threat included a description, an assumption, a STRIDE category, and
+    affected DFD components; fabricated threats were created by manipulating the assumption to contradict the
+    description.
+  researcher_interpretation: Threat validity is represented as an evidence-bearing record rather than as an
+    unlabeled diagram annotation.
+  supported_proposition: Structured threat descriptions and assumptions are explicit inputs to the validation
+    task.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-7
+  temporal_caveat: Current 2025 controlled-experiment evidence. Its conclusions are limited to novice student
+    participants validating pre-identified threats while all groups received a sequence diagram and structured
+    textual material; they do not establish the absolute value of DFDs, expert performance, threat-elicitation
+    effectiveness, or longitudinal SDLC utility.
+  verification_state: location_verified
+- id: SRC-0030-EX-0008
+  location:
+    pdf_page: 6
+    printed_page: 5
+    section: 4.1 Research plan
+    paragraph_or_table: Ground truth
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Experienced threat-analysis researchers constructed the DFDs and sequence diagrams,
+    a cloud-security researcher created the initial threat lists, and all experimenters discussed and validated
+    the ground truth.
+  researcher_interpretation: The ground truth is expert-curated but is not independent of the study authors
+    or proven complete.
+  supported_proposition: Ground-truth construction relied on multiple researchers and collective validation.
+  thesis_targets:
+  - chapter-4
+  - chapter-7
+  temporal_caveat: Current 2025 controlled-experiment evidence. Its conclusions are limited to novice student
+    participants validating pre-identified threats while all groups received a sequence diagram and structured
+    textual material; they do not establish the absolute value of DFDs, expert performance, threat-elicitation
+    effectiveness, or longitudinal SDLC utility.
+  verification_state: location_verified
+- id: SRC-0030-EX-0009
+  location:
+    pdf_page: 6
+    printed_page: 5
+    section: 4.1 Research plan
+    paragraph_or_table: Measures of success
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Actual effectiveness is measured by correctly classified actual threats and fabricated
+    threats (TP and TN), while perceived usefulness is collected through the exit questionnaire.
+  researcher_interpretation: DDTA evaluation should combine behavioral performance metrics with, but not substitute
+    them by, user perception.
+  supported_proposition: The experiment operationalizes actual and perceived effectiveness with distinct measures.
+  thesis_targets:
+  - chapter-4
+  - chapter-7
+  temporal_caveat: Current 2025 controlled-experiment evidence. Its conclusions are limited to novice student
+    participants validating pre-identified threats while all groups received a sequence diagram and structured
+    textual material; they do not establish the absolute value of DFDs, expert performance, threat-elicitation
+    effectiveness, or longitudinal SDLC utility.
+  verification_state: location_verified
+- id: SRC-0030-EX-0010
+  location:
+    pdf_page: 7
+    printed_page: 6
+    section: 6 Results
+    paragraph_or_table: Equivalence procedure and delta rationale
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Difference and equivalence were tested with Mann-Whitney U procedures at alpha 0.05;
+    the authors chose an equivalence margin of one correct classification or one Likert point.
+  researcher_interpretation: Equivalence claims must retain the author-chosen delta and cannot be generalized
+    to exact equality.
+  supported_proposition: The reported equivalence is conditional on a delta of one.
+  thesis_targets:
+  - chapter-4
+  - chapter-7
+  temporal_caveat: Current 2025 controlled-experiment evidence. Its conclusions are limited to novice student
+    participants validating pre-identified threats while all groups received a sequence diagram and structured
+    textual material; they do not establish the absolute value of DFDs, expert performance, threat-elicitation
+    effectiveness, or longitudinal SDLC utility.
+  verification_state: location_verified
+- id: SRC-0030-EX-0011
+  location:
+    pdf_page: 8
+    printed_page: 7
+    section: 6.3 Demographics
+    paragraph_or_table: Table 3
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: 'Ninety-eight participants completed the experiments: 50 in the intervention groups
+    and 48 in the control groups; participants generally reported limited security-analysis expertise.'
+  researcher_interpretation: The findings concern trained novices and do not directly represent experienced
+    practitioners.
+  supported_proposition: The study population is predominantly novice computer-science students.
+  thesis_targets:
+  - chapter-3
+  - chapter-7
+  temporal_caveat: Current 2025 controlled-experiment evidence. Its conclusions are limited to novice student
+    participants validating pre-identified threats while all groups received a sequence diagram and structured
+    textual material; they do not establish the absolute value of DFDs, expert performance, threat-elicitation
+    effectiveness, or longitudinal SDLC utility.
+  verification_state: location_verified
+- id: SRC-0030-EX-0012
+  location:
+    pdf_page: 9
+    printed_page: 8
+    section: 6.4 RQ1 Actual effectiveness
+    paragraph_or_table: Tables 6 and 7
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The intervention and control means were close in both experiments, and no statistically
+    significant difference was found for TP, TN, or the combined TP+TN measure.
+  researcher_interpretation: The extra DFD did not produce a detectable performance gain under the tested conditions.
+  supported_proposition: Adding a DFD to the supplied sequence diagram and text did not significantly improve
+    novice validation performance.
+  thesis_targets:
+  - chapter-3
+  - chapter-7
+  temporal_caveat: Current 2025 controlled-experiment evidence. Its conclusions are limited to novice student
+    participants validating pre-identified threats while all groups received a sequence diagram and structured
+    textual material; they do not establish the absolute value of DFDs, expert performance, threat-elicitation
+    effectiveness, or longitudinal SDLC utility.
+  verification_state: location_verified
+- id: SRC-0030-EX-0013
+  location:
+    pdf_page: 9
+    printed_page: 8
+    section: 6.4 RQ1 Actual effectiveness
+    paragraph_or_table: Table 8 equivalence tests
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: With delta equal to one, significant equivalence was observed for TP and TN separately
+    in both experiments, but not for the combined TP+TN score, whose p-values were 0.18 and 0.06.
+  researcher_interpretation: The result is narrower than complete process equivalence and should be reported
+    measure by measure.
+  supported_proposition: Equivalence evidence supports separate TP and TN outcomes but not the combined score.
+  thesis_targets:
+  - chapter-3
+  - chapter-7
+  temporal_caveat: Current 2025 controlled-experiment evidence. Its conclusions are limited to novice student
+    participants validating pre-identified threats while all groups received a sequence diagram and structured
+    textual material; they do not establish the absolute value of DFDs, expert performance, threat-elicitation
+    effectiveness, or longitudinal SDLC utility.
+  verification_state: location_verified
+- id: SRC-0030-EX-0014
+  location:
+    pdf_page: 10
+    printed_page: 9
+    section: 6.5 RQ2 Perceived usefulness
+    paragraph_or_table: Table 11
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Within the intervention group, participants rated the DFD as more useful than the sequence
+    diagram in both experiments, with paired-test p-values of 0.01 and 0.002.
+  researcher_interpretation: A favorable user impression can coexist with no measurable improvement in task
+    correctness.
+  supported_proposition: Perceived DFD usefulness exceeded perceived sequence-diagram usefulness among participants
+    who received both.
+  thesis_targets:
+  - chapter-3
+  - chapter-7
+  temporal_caveat: Current 2025 controlled-experiment evidence. Its conclusions are limited to novice student
+    participants validating pre-identified threats while all groups received a sequence diagram and structured
+    textual material; they do not establish the absolute value of DFDs, expert performance, threat-elicitation
+    effectiveness, or longitudinal SDLC utility.
+  verification_state: location_verified
+- id: SRC-0030-EX-0015
+  location:
+    pdf_page: 11
+    printed_page: 10
+    section: 7 Discussion
+    paragraph_or_table: Answers to RQ1 and RQ2
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The authors conclude that, when a textual scenario and sequence diagram are already
+    provided, the DFD does not help the tested validation task, although participants perceive it as more useful.
+  researcher_interpretation: DDTA should not infer effectiveness from the mere availability or popularity of
+    a visualization.
+  supported_proposition: The study reports a perception-performance divergence for the additional DFD.
+  thesis_targets:
+  - chapter-3
+  - chapter-7
+  - chapter-8
+  temporal_caveat: Current 2025 controlled-experiment evidence. Its conclusions are limited to novice student
+    participants validating pre-identified threats while all groups received a sequence diagram and structured
+    textual material; they do not establish the absolute value of DFDs, expert performance, threat-elicitation
+    effectiveness, or longitudinal SDLC utility.
+  verification_state: location_verified
+- id: SRC-0030-EX-0016
+  location:
+    pdf_page: 11
+    printed_page: 10
+    section: 7 Discussion
+    paragraph_or_table: Textual threat material implications
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Threat descriptions and assumptions were considered useful in both groups, leading the
+    authors to recommend more comprehensive and formal ways of documenting them, such as templates.
+  researcher_interpretation: Structured assumptions and threat rationales should be first-class governed DDTA
+    records.
+  supported_proposition: The study supports investing in explicit threat descriptions and assumptions for validation.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-7
+  temporal_caveat: Current 2025 controlled-experiment evidence. Its conclusions are limited to novice student
+    participants validating pre-identified threats while all groups received a sequence diagram and structured
+    textual material; they do not establish the absolute value of DFDs, expert performance, threat-elicitation
+    effectiveness, or longitudinal SDLC utility.
+  verification_state: location_verified
+- id: SRC-0030-EX-0017
+  location:
+    pdf_page: 11
+    printed_page: 10
+    section: 7 Discussion
+    paragraph_or_table: Long-term sustainability
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The effectiveness of DFD-related models has been studied in isolated SDLC phases, but
+    the authors identify no longitudinal study covering design through deployment.
+  researcher_interpretation: Cross-phase utility, synchronization, and maintenance remain evaluation targets
+    for DDTA and ThreatForge.
+  supported_proposition: Longitudinal DFD usefulness across the SDLC remains an open research question.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-7
+  temporal_caveat: Current 2025 controlled-experiment evidence. Its conclusions are limited to novice student
+    participants validating pre-identified threats while all groups received a sequence diagram and structured
+    textual material; they do not establish the absolute value of DFDs, expert performance, threat-elicitation
+    effectiveness, or longitudinal SDLC utility.
+  verification_state: location_verified
+- id: SRC-0030-EX-0018
+  location:
+    pdf_page: 12
+    printed_page: 11
+    section: 8 Threats to validity
+    paragraph_or_table: Study design, binary ground truth, and external validity
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Key limitations include student participants, different scenarios and delivery modes,
+    self-reported perception, a binary ground truth restricted to one contradiction pattern, the chosen equivalence
+    margin, and a sequence diagram supplied to every participant.
+  researcher_interpretation: The findings should challenge DFD-centric assumptions without being generalized
+    into a claim that DFDs are useless.
+  supported_proposition: The study's internal, external, and conclusion validity constraints substantially
+    narrow its claims.
+  thesis_targets:
+  - chapter-3
+  - chapter-7
+  - chapter-8
+  temporal_caveat: Current 2025 controlled-experiment evidence. Its conclusions are limited to novice student
+    participants validating pre-identified threats while all groups received a sequence diagram and structured
+    textual material; they do not establish the absolute value of DFDs, expert performance, threat-elicitation
+    effectiveness, or longitudinal SDLC utility.
+  verification_state: location_verified
+- id: SRC-0030-EX-0019
+  location:
+    pdf_page: 13
+    printed_page: 12
+    section: Appendix A.1 Data flow diagrams
+    paragraph_or_table: Figure 5 GitHub scenario DFD
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The GitHub DFD models local commit and push, local logs and scheduling, a remote GitHub
+    engine, Actions workflows, the remote repository, data flows, and nested trust boundaries.
+  researcher_interpretation: The DFD is a security-relevant projection containing topology and trust cues,
+    not a complete behavioral or evidential model.
+  supported_proposition: The intervention diagram exposes processes, stores, flows, external entities, and
+    trust boundaries for the GitHub scenario.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Current 2025 controlled-experiment evidence. Its conclusions are limited to novice student
+    participants validating pre-identified threats while all groups received a sequence diagram and structured
+    textual material; they do not establish the absolute value of DFDs, expert performance, threat-elicitation
+    effectiveness, or longitudinal SDLC utility.
+  verification_state: location_verified
+- id: SRC-0030-EX-0020
+  location:
+    pdf_page: 15
+    printed_page: 14
+    section: Appendix A.2-A.4
+    paragraph_or_table: Tables 12 and 13
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: After Bonferroni correction, perceived familiarity, difficulty, confidence, and related
+    control measures showed no significant correlation with performance; threat difficulty was coded as easy,
+    medium, or hard depending on whether validation required assumptions, supplied materials, or external technical
+    knowledge.
+  researcher_interpretation: Evidence provenance should identify whether a validation judgment depends on explicit
+    source facts, model cues, or external expertise.
+  supported_proposition: Threat-validation difficulty depends on the location and explicitness of the information
+    required for judgment.
+  thesis_targets:
+  - chapter-4
+  - chapter-5
+  - chapter-7
+  temporal_caveat: Current 2025 controlled-experiment evidence. Its conclusions are limited to novice student
+    participants validating pre-identified threats while all groups received a sequence diagram and structured
+    textual material; they do not establish the absolute value of DFDs, expert performance, threat-elicitation
+    effectiveness, or longitudinal SDLC utility.
+  verification_state: location_verified

@@ -234,3 +234,11 @@ sources:
     verification_state: verified
     topics: [RE-SECURITY, MD-MDS, MD-VIEW, CS-ASSURANCE]
     ddta_roles: [foundation, comparison, challenge]
+  - id: SRC-0030
+    citation_key: mbaka2025dfdvalidation
+    title: "Assessing the usefulness of Data Flow Diagrams for validating security threats"
+    year: 2025
+    type: primary_research
+    verification_state: verified
+    topics: [TM-STRIDE, MD-VIEW, CS-ASSURANCE, CS-HUMAN]
+    ddta_roles: [comparison, evaluation, challenge]

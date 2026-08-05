@@ -118,3 +118,14 @@ sources:
     retrieved_on: "2026-08-05"
     sha256: "78f7230aa8d87613138303f28cf25261d129611f869fbf9723d9d58cc0a4a302"
     repository_storage: forbidden
+  - source_id: SRC-0030
+    landing_url: "https://research.tue.nl/en/publications/assessing-the-usefulness-of-data-flow-diagrams-for-validating-sec/"
+    pdf_url: "https://pure.tue.nl/ws/portalfiles/portal/358666425/1-s2.0-S0167404825001865-main.pdf"
+    access_type: open_access_version_of_record
+    licence: "CC BY 4.0"
+    local_filename: "SRC-0030-mbaka-et-al-2025.pdf"
+    retrieved_on: "2026-08-05"
+    sha256: "50bd229227dc204a64efb2e57f5ebe26d8c7a7c807a9f86d2cc281713a8c23fb"
+    repository_storage: forbidden
+    companion_repository_url: "https://anonymous.4open.science/r/STRIDE-Visualization/README.md"
+    companion_repository_status: declared_replication_package_not_executed

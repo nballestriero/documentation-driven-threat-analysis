@@ -132,6 +132,27 @@ obligations. Every substantial modeling and selection decision remains with the 
 The remote-display example is illustrative and develops only one of six identified subproblems; it
 does not establish completeness, comparative advantage or current cryptographic suitability.
 
+### SRC-0030 - Mbaka et al. (2025)
+
+Role: current controlled evaluation of the incremental usefulness of a DFD during validation of
+pre-identified security threats. All participants received a textual scenario, STRIDE material,
+structured threat descriptions and assumptions, and a sequence diagram; only the intervention
+group additionally received a DFD.
+
+Across a first and confirming experiment with 98 novice student participants, the additional DFD
+did not produce a statistically significant improvement in correctly classifying actual or
+fabricated threats. With the authors' equivalence margin of one, TP and TN were equivalent
+separately, while equivalence was not established for the combined TP+TN score.
+
+Participants who received both diagrams perceived the DFD as more useful than the sequence
+diagram. This perception did not translate into a correctness improvement. Threat descriptions
+and assumptions were consistently useful, supporting explicit evidence-bearing threat records
+rather than DFD-only reasoning.
+
+The study does not compare against a no-model condition, evaluate threat elicitation or expert
+practitioners, or measure longitudinal maintenance. Its result challenges automatic DFD-centric
+claims without establishing that DFDs are generally ineffective.
+
 ## Initial DDTA separation
 
 ```text
@@ -140,6 +161,7 @@ raw and governed project documentation
 -> methodology-specific threat analysis
 -> optional problem-to-mechanism refinement
 -> optional executable attack and mitigation regression
+-> threat validation against structured evidence and model views
 -> reviewed findings
 -> security requirements
 -> satisfaction and assurance evidence
@@ -151,8 +173,11 @@ implementation after a functional scenario view exists. SRC-0004 demonstrates a 
 implementation after a structured primal model exists. SRC-0027 adds a downstream assurance
 layer after problem-context and behavior views exist. SRC-0028 adds executable attack regression
 after precise scenario and behavior views exist. SRC-0029 adds a problem-frame refinement overlay
-after context, domain, interface, requirement, assumption and attacker-capability views exist. DDTA must still investigate how heterogeneous
-documentation becomes the neutral assets, actors, goals, interactions, objects, operations,
+after context, domain, interface, requirement, assumption and attacker-capability views exist.
+SRC-0030 adds controlled evidence that an additional DFD did not improve novice threat-validation
+correctness when a sequence diagram and structured textual material were already provided, although
+the DFD was perceived as more useful. DDTA must still investigate how heterogeneous documentation
+becomes the neutral assets, actors, goals, interactions, objects, operations,
 domains, phenomena and scenarios consumed by these overlays, arguments and tests.
 
 ## Technique-focus taxonomy
@@ -188,7 +213,10 @@ Direct evidence from the review:
 - structured scenarios, goal models, problem contexts and EIODs are not equivalent to raw heterogeneous documentation;
 - security problem frames preserve the distinction between a security problem, a generic solution principle and a concrete mechanism;
 - refinement and specification adequacy remain conditional on explicit assumptions and domain knowledge;
-- attacker-capability assumptions may constrain mechanism strength without proving threat completeness.
+- attacker-capability assumptions may constrain mechanism strength without proving threat completeness;
+- actual effectiveness and perceived usefulness can diverge for an additional architectural view;
+- incremental model value depends on the task, baseline, population and outcome being measured;
+- structured threat descriptions and assumptions can be central evidence during threat validation.
 
 Researcher conclusion for DDTA:
 
@@ -205,11 +233,15 @@ corroborate, contradict or refine the prior model rather than become a hidden pr
 
 The reviewed techniques distinguish threats, mitigations and security requirements. SRC-0027
 shows how explicit assurance can be structured as conditional proof plus arguments for trust
-assumptions. SRC-0028 adds executable regression evidence for known hostile traces. SRC-0029 adds conditional
-problem-to-specification adequacy obligations based on explicit assumptions and domain knowledge.
-All three remain relative to the modeled context, premises, behaviors, attacks and mechanism choices; neither establishes global threat
-completeness or implementation security. Completion conditions, precise discovery rules and
-comparative validation remain weak.
+assumptions. SRC-0028 adds executable regression evidence for known hostile traces. SRC-0029 adds
+conditional problem-to-specification adequacy obligations based on explicit assumptions and domain
+knowledge. SRC-0030 adds controlled evidence that perceived usefulness of a model view need not
+produce a measurable correctness improvement.
+
+All four evidence forms remain relative to their modeled context, premises, behaviors, attacks,
+mechanism choices, participants, baselines and measured outcomes. None establishes global threat
+completeness or implementation security. Completion conditions, precise discovery rules,
+comparative validation and longitudinal maintenance evidence remain weak.
 
 DDTA candidate controls:
 
@@ -224,6 +256,9 @@ DDTA candidate controls:
 - separate security problem, concretized requirement, generic protocol, concrete mechanism and specification;
 - versioned attacker-capability assumptions and domain knowledge;
 - explicit conditional adequacy obligations with evidence and verification status;
+- explicit task, baseline, population and outcome for each empirical evaluation;
+- separate actual effectiveness, perceived usefulness and maintenance cost;
+- information-cue provenance across text, model views, assumptions and external knowledge;
 - security-goal-to-requirement validation evidence;
 - outer-argument premises, logic and proof status;
 - inner claims, grounds, warrants, rebuttals and trust assumptions;
@@ -243,8 +278,7 @@ DDTA candidate controls:
 
 ### New sources to retrieve
 
-1. A recent empirical STRIDE study - DFD-based overlay effectiveness and analyst performance.
-2. A recent review of automated threat-modeling tools and model-based security testing.
+1. A recent review of automated threat-modeling tools and model-based security testing.
 
 These sources cover:
 
@@ -258,21 +292,21 @@ quality assurance
 ```
 
 
-## Scenario, anti-goal, assurance, execution and problem-frame contrast
+## Scenario, anti-goal, assurance, execution, problem-frame and validation contrast
 
-| Dimension | SRC-0003 | SRC-0004 | SRC-0027 | SRC-0028 | SRC-0029 |
-|---|---|---|---|---|---|
-| Starting view | functional scenarios | goal, object, agent and domain models | problem context, phenomena and behavior | EIOD and sequence behavior | context, domains, interfaces and security requirement |
-| Main structure | harmful scenario | intentional AND/OR anti-goal graph | constrained requirement and argument graph | modification, attack and mitigation scenarios | security problem frame and concretized frame |
-| Formality | mostly informal | optional temporal logic and formal regression | formal outer proof plus informal inner argument | formal trace semantics and executable FSMs | conditional implication obligations; no implemented verifier |
-| Security output | misuse and mitigation | anti-requirement and vulnerability | primary/secondary security constraints | composed behavior and attack tests | concretized requirement, protocol, mechanism and specification |
-| Assumption handling | template fields | domain properties | trust assumptions and rebuttals | pre/postconditions and interactive path choices | explicit attacker capability and domain knowledge |
-| Assurance | review status and trace links | local proof and derivation evidence | conditional satisfaction evidence | regression over known attack traces | conditional refinement and specification adequacy |
-| Empirical evidence | descriptive examples | four anti-model cases | one industrial research application | two preliminary case studies | one illustrative remote-display case |
+| Dimension | SRC-0003 | SRC-0004 | SRC-0027 | SRC-0028 | SRC-0029 | SRC-0030 |
+|---|---|---|---|---|---|---|
+| Starting view | functional scenarios | goal, object, agent and domain models | problem context, phenomena and behavior | EIOD and sequence behavior | context, domains, interfaces and security requirement | scenario, sequence diagram, structured threats and optional DFD |
+| Main structure | harmful scenario | intentional AND/OR anti-goal graph | constrained requirement and argument graph | modification, attack and mitigation scenarios | security problem frame and concretized frame | actual/fabricated threat-validation experiment |
+| Formality | mostly informal | optional temporal logic and formal regression | formal outer proof plus informal inner argument | formal trace semantics and executable FSMs | conditional implication obligations; no implemented verifier | statistical difference and equivalence tests |
+| Security output | misuse and mitigation | anti-requirement and vulnerability | primary/secondary security constraints | composed behavior and attack tests | concretized requirement, protocol, mechanism and specification | correctness and perceived-usefulness evidence |
+| Assumption handling | template fields | domain properties | trust assumptions and rebuttals | pre/postconditions and interactive path choices | explicit attacker capability and domain knowledge | explicit threat assumptions used in binary validation |
+| Assurance | review status and trace links | local proof and derivation evidence | conditional satisfaction evidence | regression over known attack traces | conditional refinement and specification adequacy | expert-curated ground truth and measured participant outcomes |
+| Empirical evidence | descriptive examples | four anti-model cases | one industrial research application | two preliminary case studies | one illustrative remote-display case | controlled and confirming experiment with 98 students |
 
-All five approaches are pre-code. None solves source-document interpretation, assertion-level
-provenance or global completeness. They support distinct methodology, assurance, executable-scenario
-and problem-refinement overlays over a neutral Base Analysis.
+All six approaches are pre-code. None solves source-document interpretation, assertion-level
+provenance or global completeness. They support distinct methodology, assurance, executable-scenario,
+problem-refinement and empirical-validation roles over a neutral Base Analysis.
 
 ## Evidence still missing
 
@@ -287,6 +321,8 @@ and problem-refinement overlays over a neutral Base Analysis.
 - continuous rerun and stale detection;
 - current LLM/RAG performance;
 - evaluation against expert-created threat models;
+- expert and no-model replications of model-view usefulness;
+- longitudinal model-maintenance cost and utility across the SDLC;
 - review effort and accepted-finding yield.
 
 ## Temporal caveat
@@ -295,6 +331,8 @@ SRC-0026 is a strong historical map but cannot describe the 2026 state of automa
 Every maturity claim must be updated through recent systematic reviews and empirical studies.
 SRC-0029 remains conceptually relevant for problem/solution separation and explicit assumptions,
 but its 768-bit RSA example is obsolete and must not be reused as current cryptographic guidance.
+SRC-0030 is current 2025 empirical evidence, but its conclusions remain bounded to novice students,
+two scenarios, one fabricated-threat pattern and a sequence-diagram baseline.
 
 ## Reading order
 
@@ -305,6 +343,6 @@ SRC-0026 historical method taxonomy
 -> SRC-0027 explicit satisfaction assurance
 -> SRC-0028 executable misuse regression
 -> SRC-0029 security problem frames
--> current empirical STRIDE
+-> SRC-0030 empirical DFD threat validation
 -> recent automated-tool review
 ```
