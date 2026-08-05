@@ -153,12 +153,35 @@ The study does not compare against a no-model condition, evaluate threat elicita
 practitioners, or measure longitudinal maintenance. Its result challenges automatic DFD-centric
 claims without establishing that DFDs are generally ineffective.
 
+### SRC-0031 - Granata and Rak (2024)
+
+Role: recent systematic analysis of automated threat-modelling techniques and supporting tools,
+combined with an illustrative WordPress comparison. The review defines automation after a system
+has already been represented as a typed model and maps model types, threat classifications,
+selection mechanisms and tools across 55 included studies.
+
+DFD and graph-based representations dominate, STRIDE is the most frequent classification, and
+label- and relationship-based catalogue selection are the most common automation mechanisms. The
+review also identifies richer use of properties, protocols, relationship roles, propagation and
+rule or pattern matching.
+
+The WordPress comparison shows that Microsoft, Threat Dragon, SLA-generator and PyTM attach threats
+to different units and produce lists with different scope and granularity. Raw candidate counts are
+therefore not a quality or completeness measure. The comparison has no independent ground truth,
+precision, recall, effort or accepted-finding metric and contains unresolved count discrepancies.
+
+The source establishes a model-to-candidate-threat automation boundary, not automatic interpretation
+of heterogeneous documentation. Human work remains necessary for model construction, catalogue and
+rule maintenance, candidate review, prioritization, deduplication and disposition. The review is not
+a dedicated systematic study of model-based security testing, so that branch remains open.
+
 ## Initial DDTA separation
 
 ```text
 raw and governed project documentation
 -> Base Analysis construction
 -> methodology-specific threat analysis
+-> automated model-to-threat candidate generation when a typed model exists
 -> optional problem-to-mechanism refinement
 -> optional executable attack and mitigation regression
 -> threat validation against structured evidence and model views
@@ -176,8 +199,10 @@ after precise scenario and behavior views exist. SRC-0029 adds a problem-frame r
 after context, domain, interface, requirement, assumption and attacker-capability views exist.
 SRC-0030 adds controlled evidence that an additional DFD did not improve novice threat-validation
 correctness when a sequence diagram and structured textual material were already provided, although
-the DFD was perceived as more useful. DDTA must still investigate how heterogeneous documentation
-becomes the neutral assets, actors, goals, interactions, objects, operations,
+the DFD was perceived as more useful. SRC-0031 maps model-to-candidate-threat automation after a
+typed model exists and shows that catalogues, rules, asset semantics and granularity differ across
+tools. DDTA must still investigate how heterogeneous documentation becomes the neutral assets,
+actors, goals, interactions, objects, operations,
 domains, phenomena and scenarios consumed by these overlays, arguments and tests.
 
 ## Technique-focus taxonomy
@@ -216,13 +241,18 @@ Direct evidence from the review:
 - attacker-capability assumptions may constrain mechanism strength without proving threat completeness;
 - actual effectiveness and perceived usefulness can diverge for an additional architectural view;
 - incremental model value depends on the task, baseline, population and outcome being measured;
-- structured threat descriptions and assumptions can be central evidence during threat validation.
+- structured threat descriptions and assumptions can be central evidence during threat validation;
+- automated threat selection commonly begins only after a typed model has been supplied;
+- labels, properties, relationships, protocols, propagation and catalogues can activate candidates;
+- tools can attach threats to different model units and produce non-comparable granularity;
+- generated candidate count is not evidence of correctness or completeness.
 
 Researcher conclusion for DDTA:
 
 ```text
 documentation_only is possible for some techniques
 documentation_plus_model is required for others
+model_to_candidate_threat can be automated after a typed model exists
 raw_documentation_to_neutral_model is not established
 ```
 
@@ -236,12 +266,15 @@ shows how explicit assurance can be structured as conditional proof plus argumen
 assumptions. SRC-0028 adds executable regression evidence for known hostile traces. SRC-0029 adds
 conditional problem-to-specification adequacy obligations based on explicit assumptions and domain
 knowledge. SRC-0030 adds controlled evidence that perceived usefulness of a model view need not
-produce a measurable correctness improvement.
+produce a measurable correctness improvement. SRC-0031 adds model-to-candidate-threat automation
+through typed elements, catalogues and rules, while showing that generated lists differ in scope and
+granularity.
 
-All four evidence forms remain relative to their modeled context, premises, behaviors, attacks,
-mechanism choices, participants, baselines and measured outcomes. None establishes global threat
-completeness or implementation security. Completion conditions, precise discovery rules,
-comparative validation and longitudinal maintenance evidence remain weak.
+All five evidence forms remain relative to their modeled context, premises, behaviors, attacks,
+mechanism choices, participants, baselines, catalogue versions, rule semantics and measured
+outcomes. None establishes global threat completeness or implementation security. Completion
+conditions, precise discovery rules, normalized cross-tool evaluation and longitudinal maintenance
+evidence remain weak.
 
 DDTA candidate controls:
 
@@ -259,6 +292,10 @@ DDTA candidate controls:
 - explicit task, baseline, population and outcome for each empirical evaluation;
 - separate actual effectiveness, perceived usefulness and maintenance cost;
 - information-cue provenance across text, model views, assumptions and external knowledge;
+- versioned model projection, threat catalogue and selection rule set;
+- candidate activation evidence linking element, relation, properties and applied rule;
+- duplicate and overlap handling across catalogues and levels of granularity;
+- explicit generated, accepted, rejected, deferred and duplicate candidate states;
 - security-goal-to-requirement validation evidence;
 - outer-argument premises, logic and proof status;
 - inner claims, grounds, warrants, rebuttals and trust assumptions;
@@ -278,35 +315,35 @@ DDTA candidate controls:
 
 ### New sources to retrieve
 
-1. A recent review of automated threat-modeling tools and model-based security testing.
+1. A recent systematic review focused on model-based security testing, to close the testing
+   branch not covered by SRC-0031.
 
-These sources cover:
+The remaining source should cover:
 
 ```text
-use-case text
-goal models
-problem descriptions
-behavioral models
-architecture/DFD overlays
-quality assurance
+model-to-test generation
+security properties and test oracles
+model-based security testing tools
+implementation-level evidence
 ```
 
 
-## Scenario, anti-goal, assurance, execution, problem-frame and validation contrast
+## Scenario, anti-goal, assurance, execution, problem-frame, validation and automation contrast
 
-| Dimension | SRC-0003 | SRC-0004 | SRC-0027 | SRC-0028 | SRC-0029 | SRC-0030 |
-|---|---|---|---|---|---|---|
-| Starting view | functional scenarios | goal, object, agent and domain models | problem context, phenomena and behavior | EIOD and sequence behavior | context, domains, interfaces and security requirement | scenario, sequence diagram, structured threats and optional DFD |
-| Main structure | harmful scenario | intentional AND/OR anti-goal graph | constrained requirement and argument graph | modification, attack and mitigation scenarios | security problem frame and concretized frame | actual/fabricated threat-validation experiment |
-| Formality | mostly informal | optional temporal logic and formal regression | formal outer proof plus informal inner argument | formal trace semantics and executable FSMs | conditional implication obligations; no implemented verifier | statistical difference and equivalence tests |
-| Security output | misuse and mitigation | anti-requirement and vulnerability | primary/secondary security constraints | composed behavior and attack tests | concretized requirement, protocol, mechanism and specification | correctness and perceived-usefulness evidence |
-| Assumption handling | template fields | domain properties | trust assumptions and rebuttals | pre/postconditions and interactive path choices | explicit attacker capability and domain knowledge | explicit threat assumptions used in binary validation |
-| Assurance | review status and trace links | local proof and derivation evidence | conditional satisfaction evidence | regression over known attack traces | conditional refinement and specification adequacy | expert-curated ground truth and measured participant outcomes |
-| Empirical evidence | descriptive examples | four anti-model cases | one industrial research application | two preliminary case studies | one illustrative remote-display case | controlled and confirming experiment with 98 students |
+| Dimension | SRC-0003 | SRC-0004 | SRC-0027 | SRC-0028 | SRC-0029 | SRC-0030 | SRC-0031 |
+|---|---|---|---|---|---|---|---|
+| Starting view | functional scenarios | goal, object, agent and domain models | problem context, phenomena and behavior | EIOD and sequence behavior | context, domains, interfaces and security requirement | scenario, sequence diagram, structured threats and optional DFD | typed graph, DFD, code model or asset list plus catalogue/rules |
+| Main structure | harmful scenario | intentional AND/OR anti-goal graph | constrained requirement and argument graph | modification, attack and mitigation scenarios | security problem frame and concretized frame | actual/fabricated threat-validation experiment | automated candidate selection and cross-tool comparison |
+| Formality | mostly informal | optional temporal logic and formal regression | formal outer proof plus informal inner argument | formal trace semantics and executable FSMs | conditional implication obligations; no implemented verifier | statistical difference and equivalence tests | typed mappings, Boolean conditions and catalogue/rule matching |
+| Security output | misuse and mitigation | anti-requirement and vulnerability | primary/secondary security constraints | composed behavior and attack tests | concretized requirement, protocol, mechanism and specification | correctness and perceived-usefulness evidence | candidate threats, mitigations and control mappings |
+| Assumption handling | template fields | domain properties | trust assumptions and rebuttals | pre/postconditions and interactive path choices | explicit attacker capability and domain knowledge | explicit threat assumptions used in binary validation | model properties, technologies, protocols and rule conditions |
+| Assurance | review status and trace links | local proof and derivation evidence | conditional satisfaction evidence | regression over known attack traces | conditional refinement and specification adequacy | expert-curated ground truth and measured participant outcomes | element-to-candidate trace; no independent completeness ground truth |
+| Empirical evidence | descriptive examples | four anti-model cases | one industrial research application | two preliminary case studies | one illustrative remote-display case | controlled and confirming experiment with 98 students | 55-study SLR plus one illustrative WordPress comparison |
 
-All six approaches are pre-code. None solves source-document interpretation, assertion-level
-provenance or global completeness. They support distinct methodology, assurance, executable-scenario,
-problem-refinement and empirical-validation roles over a neutral Base Analysis.
+All seven approaches are pre-code or model-primary. None solves source-document interpretation,
+assertion-level provenance or global completeness. They support distinct methodology, assurance,
+executable-scenario, problem-refinement, empirical-validation and automation roles over a neutral
+Base Analysis.
 
 ## Evidence still missing
 
@@ -317,7 +354,11 @@ problem-refinement and empirical-validation roles over a neutral Base Analysis.
 - automatic argument maintenance and change impact;
 - automatic document-to-problem-frame construction and frame-applicability checking;
 - governed mechanism selection and automated validation of conditional adequacy obligations;
-- current tool maturity;
+- current tool and catalogue maturity beyond SRC-0031's mainly 2022 search horizon;
+- public reproducibility package and independent rerun of the WordPress comparison;
+- precision, recall, false-positive rate and expert acceptance of generated threats;
+- normalization and deduplication across tools with different scope and granularity;
+- dedicated systematic evidence on model-based security testing;
 - continuous rerun and stale detection;
 - current LLM/RAG performance;
 - evaluation against expert-created threat models;
@@ -332,7 +373,9 @@ Every maturity claim must be updated through recent systematic reviews and empir
 SRC-0029 remains conceptually relevant for problem/solution separation and explicit assumptions,
 but its 768-bit RSA example is obsolete and must not be reused as current cryptographic guidance.
 SRC-0030 is current 2025 empirical evidence, but its conclusions remain bounded to novice students,
-two scenarios, one fabricated-threat pattern and a sequence-diagram baseline.
+two scenarios, one fabricated-threat pattern and a sequence-diagram baseline. SRC-0031 was
+published in the 2024 volume but its search and tool references extend mainly through 2022; all
+2026 product, catalogue and maturity claims require fresh verification.
 
 ## Reading order
 
@@ -344,5 +387,6 @@ SRC-0026 historical method taxonomy
 -> SRC-0028 executable misuse regression
 -> SRC-0029 security problem frames
 -> SRC-0030 empirical DFD threat validation
--> recent automated-tool review
+-> SRC-0031 automated threat-modelling review and tool comparison
+-> recent model-based security-testing review
 ```

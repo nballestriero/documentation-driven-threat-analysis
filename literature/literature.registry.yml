@@ -242,3 +242,11 @@ sources:
     verification_state: verified
     topics: [TM-STRIDE, MD-VIEW, CS-ASSURANCE, CS-HUMAN]
     ddta_roles: [comparison, evaluation, challenge]
+  - id: SRC-0031
+    citation_key: granata2024automatedthreatmodelling
+    title: "Systematic analysis of automated threat modelling techniques: Comparison of open-source tools"
+    year: 2024
+    type: secondary_review
+    verification_state: verified
+    topics: [TM-AUTOMATION, TM-STRIDE, MD-VIEW, CS-ASSURANCE]
+    ddta_roles: [comparison, evaluation, challenge]

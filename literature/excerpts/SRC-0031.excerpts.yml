@@ -1,0 +1,558 @@
+schema_version: 1
+source_id: SRC-0031
+citation_key: granata2024automatedthreatmodelling
+source_version:
+  stable_identifier: 10.1007/s11219-023-09634-4
+  edition_or_version: Software Quality Journal 32 (2024), pages 125-161; Version of Record
+  accessed_on: '2026-08-05'
+  local_filename: SRC-0031-granata-rak-2024.pdf
+  sha256: 36a3ce1b867d58b2997a298c42f283682fe9dd0e326763ca1cebe344c8db9ca2
+excerpts:
+- id: SRC-0031-EX-0001
+  location:
+    pdf_page: 1
+    printed_page: 125
+    section: Abstract
+    paragraph_or_table: Aim and contributions
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The paper combines a systematic literature review of automated threat-modelling techniques
+    and tools with a comparison of selected tools on a WordPress e-commerce case.
+  researcher_interpretation: The source provides landscape and comparison evidence, not an end-to-end documentation-driven
+    method.
+  supported_proposition: The work studies both automated threat-modelling methods and tool implementations.
+  thesis_targets:
+  - chapter-3
+  - chapter-6
+  - chapter-7
+  temporal_caveat: Systematic-review and illustrative tool-comparison evidence published in the 2024 volume,
+    with searches and tool references extending mainly through 2022. The taxonomy and automation boundary remain
+    useful, while tool availability, catalogues, versions, feature sets and current maturity require contemporary
+    verification.
+  verification_state: location_verified
+- id: SRC-0031-EX-0002
+  location:
+    pdf_page: 2
+    printed_page: 126
+    section: 1 Introduction
+    paragraph_or_table: Main contributions
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The stated contributions are a review of automated approaches and tools, detailed tool
+    descriptions, and a WordPress-based comparison.
+  researcher_interpretation: The study mixes secondary-review evidence with an illustrative authors' comparison
+    and these evidence types must remain separate.
+  supported_proposition: 'The paper has three distinct contribution layers: review, tool description and case
+    comparison.'
+  thesis_targets:
+  - chapter-3
+  - chapter-4
+  - chapter-7
+  temporal_caveat: Systematic-review and illustrative tool-comparison evidence published in the 2024 volume,
+    with searches and tool references extending mainly through 2022. The taxonomy and automation boundary remain
+    useful, while tool availability, catalogues, versions, feature sets and current maturity require contemporary
+    verification.
+  verification_state: location_verified
+- id: SRC-0031-EX-0003
+  location:
+    pdf_page: 5
+    printed_page: 129
+    section: 3.2 Planning
+    paragraph_or_table: RQ1 and RQ2
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: RQ1 asks which methodologies automatically produce threat models, while RQ2 asks which
+    open-source tools support them.
+  researcher_interpretation: The review's scope is automated threat modelling rather than a dedicated review
+    of model-based security testing.
+  supported_proposition: The review is organized around method automation and supporting open-source tools.
+  thesis_targets:
+  - chapter-3
+  temporal_caveat: Systematic-review and illustrative tool-comparison evidence published in the 2024 volume,
+    with searches and tool references extending mainly through 2022. The taxonomy and automation boundary remain
+    useful, while tool availability, catalogues, versions, feature sets and current maturity require contemporary
+    verification.
+  verification_state: location_verified
+- id: SRC-0031-EX-0004
+  location:
+    pdf_page: 6
+    printed_page: 130
+    section: 3.2 Planning
+    paragraph_or_table: Table 2 search approaches
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The selected third query reports 466 results across IEEE, Scopus, Springer and ACM,
+    after two alternative queries were rejected as too broad or too strict.
+  researcher_interpretation: The later narrative reports 465 initial results, so the one-record discrepancy
+    must be preserved rather than silently reconciled.
+  supported_proposition: The query table and conducting narrative contain a 466-versus-465 inconsistency.
+  thesis_targets:
+  - chapter-4
+  - chapter-7
+  temporal_caveat: Systematic-review and illustrative tool-comparison evidence published in the 2024 volume,
+    with searches and tool references extending mainly through 2022. The taxonomy and automation boundary remain
+    useful, while tool availability, catalogues, versions, feature sets and current maturity require contemporary
+    verification.
+  verification_state: location_verified
+- id: SRC-0031-EX-0005
+  location:
+    pdf_page: 7
+    printed_page: 131
+    section: 3.3 Conducting
+    paragraph_or_table: Screening flow
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The authors report 465 search results, 115 after abstract screening and 55 included
+    after full-text review; duplicates and out-of-scope papers are reported separately.
+  researcher_interpretation: The flow documents selection counts but does not report inter-rater agreement
+    or a formal study-quality assessment.
+  supported_proposition: Fifty-five studies form the final review corpus.
+  thesis_targets:
+  - chapter-3
+  - chapter-4
+  - chapter-7
+  temporal_caveat: Systematic-review and illustrative tool-comparison evidence published in the 2024 volume,
+    with searches and tool references extending mainly through 2022. The taxonomy and automation boundary remain
+    useful, while tool availability, catalogues, versions, feature sets and current maturity require contemporary
+    verification.
+  verification_state: location_verified
+- id: SRC-0031-EX-0006
+  location:
+    pdf_page: 7
+    printed_page: 131
+    section: 3.2 Planning
+    paragraph_or_table: Automation definition and extraction fields
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Automated threat modelling is defined as evaluating the security of an already modelled
+    system without human effort, with partial automation allowed when only limited manual tasks remain.
+  researcher_interpretation: The definition explicitly places automation after system modelling rather than
+    covering document-to-model construction.
+  supported_proposition: The review's automation boundary assumes a previously modelled system.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Systematic-review and illustrative tool-comparison evidence published in the 2024 volume,
+    with searches and tool references extending mainly through 2022. The taxonomy and automation boundary remain
+    useful, while tool availability, catalogues, versions, feature sets and current maturity require contemporary
+    verification.
+  verification_state: location_verified
+- id: SRC-0031-EX-0007
+  location:
+    pdf_page: 8
+    printed_page: 132
+    section: 3.4 Results
+    paragraph_or_table: Model findings
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The review groups findings into modelling data, threat classification, threat selection
+    and tools, and reports DFD and graph-based representations as the dominant modelling family.
+  researcher_interpretation: A typed graph is a common operational substrate for tool automation but is not
+    shown to be a complete or neutral system model.
+  supported_proposition: Graph-based and DFD representations dominate the reviewed automated approaches.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-6
+  temporal_caveat: Systematic-review and illustrative tool-comparison evidence published in the 2024 volume,
+    with searches and tool references extending mainly through 2022. The taxonomy and automation boundary remain
+    useful, while tool availability, catalogues, versions, feature sets and current maturity require contemporary
+    verification.
+  verification_state: location_verified
+- id: SRC-0031-EX-0008
+  location:
+    pdf_page: 11
+    printed_page: 135
+    section: 3.4 Results
+    paragraph_or_table: Table 3 modelling techniques
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Table 3 classifies the 55 studies as DFD, extended DFD, MACM, proprietary graph, proprietary
+    architecture, component/asset list, UML, brainstorming or other/minor representations.
+  researcher_interpretation: Automation depends on the semantics and granularity supplied by the selected representation.
+  supported_proposition: The literature uses heterogeneous model types even though graph families predominate.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Systematic-review and illustrative tool-comparison evidence published in the 2024 volume,
+    with searches and tool references extending mainly through 2022. The taxonomy and automation boundary remain
+    useful, while tool availability, catalogues, versions, feature sets and current maturity require contemporary
+    verification.
+  verification_state: location_verified
+- id: SRC-0031-EX-0009
+  location:
+    pdf_page: 12
+    printed_page: 136
+    section: 3.4 Results
+    paragraph_or_table: Table 4 threat classifications
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: STRIDE appears in 30 studies, followed by CIA and extensions in 13; smaller groups use
+    extended STRIDE, LINDDUN, CAPEC and specialized structures or languages.
+  researcher_interpretation: STRIDE is the dominant overlay vocabulary, not the only threat knowledge representation.
+  supported_proposition: STRIDE is the most frequently reported classification in the reviewed corpus.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Systematic-review and illustrative tool-comparison evidence published in the 2024 volume,
+    with searches and tool references extending mainly through 2022. The taxonomy and automation boundary remain
+    useful, while tool availability, catalogues, versions, feature sets and current maturity require contemporary
+    verification.
+  verification_state: location_verified
+- id: SRC-0031-EX-0010
+  location:
+    pdf_page: 13
+    printed_page: 137
+    section: 3.4 Results
+    paragraph_or_table: Table 5 threat-selection techniques
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Label-based selection is the largest group, followed by relationship-based, STRIDE-based,
+    rule/pattern-based and propagation approaches, with several smaller techniques.
+  researcher_interpretation: Rule activation provenance should preserve which label, relationship, property,
+    protocol or pattern selected each threat.
+  supported_proposition: Automated threat selection is commonly catalogue- and rule-driven over typed model
+    elements.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-6
+  temporal_caveat: Systematic-review and illustrative tool-comparison evidence published in the 2024 volume,
+    with searches and tool references extending mainly through 2022. The taxonomy and automation boundary remain
+    useful, while tool availability, catalogues, versions, feature sets and current maturity require contemporary
+    verification.
+  verification_state: location_verified
+- id: SRC-0031-EX-0011
+  location:
+    pdf_page: 14
+    printed_page: 138
+    section: 3.4 Results
+    paragraph_or_table: Threat-selection explanation
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Simple mappings from STRIDE classes to component types are fully automated but coarse;
+    richer methods also use relationship types, protocols, propagation or graph-pattern rules.
+  researcher_interpretation: Increasing automation detail requires richer model semantics and more governable
+    rule knowledge.
+  supported_proposition: Automated approaches trade modelling detail and rule complexity against output specificity.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Systematic-review and illustrative tool-comparison evidence published in the 2024 volume,
+    with searches and tool references extending mainly through 2022. The taxonomy and automation boundary remain
+    useful, while tool availability, catalogues, versions, feature sets and current maturity require contemporary
+    verification.
+  verification_state: location_verified
+- id: SRC-0031-EX-0012
+  location:
+    pdf_page: 15
+    printed_page: 139
+    section: 3.4.1 Tools
+    paragraph_or_table: Enumeration and selection boundary
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Nine tools emerged from the SLR and additional tools were added manually; the authors
+    explicitly state that the enumeration is not complete.
+  researcher_interpretation: The paper is useful as a structured sample, not as a complete 2026 tool inventory.
+  supported_proposition: The tool list combines systematic-review findings with manual enrichment and is acknowledged
+    as incomplete.
+  thesis_targets:
+  - chapter-3
+  - chapter-6
+  - chapter-7
+  temporal_caveat: Systematic-review and illustrative tool-comparison evidence published in the 2024 volume,
+    with searches and tool references extending mainly through 2022. The taxonomy and automation boundary remain
+    useful, while tool availability, catalogues, versions, feature sets and current maturity require contemporary
+    verification.
+  verification_state: location_verified
+- id: SRC-0031-EX-0013
+  location:
+    pdf_page: 16
+    printed_page: 140
+    section: 3.4.1 Tools
+    paragraph_or_table: Table 6 tool features
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Table 6 compares modelling style, domains, risk-analysis support and threat-selection
+    methodology for SLA-generator, Microsoft, Threat Dragon, SPARTA, STS-tool, Threatspec, PyTM and Threagile.
+  researcher_interpretation: Tool interoperability requires explicit representation and catalogue adapters
+    because input and selection semantics differ.
+  supported_proposition: Tools vary in graphical versus code modelling, domain coverage, risk support and selection
+    rules.
+  thesis_targets:
+  - chapter-3
+  - chapter-6
+  temporal_caveat: Systematic-review and illustrative tool-comparison evidence published in the 2024 volume,
+    with searches and tool references extending mainly through 2022. The taxonomy and automation boundary remain
+    useful, while tool availability, catalogues, versions, feature sets and current maturity require contemporary
+    verification.
+  verification_state: location_verified
+- id: SRC-0031-EX-0014
+  location:
+    pdf_page: 17
+    printed_page: 141
+    section: 4.1 Microsoft threat modelling tool
+    paragraph_or_table: Model and threat derivation
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The Microsoft tool uses a graph whose labelled nodes and typed relationships select
+    threats and mitigations from proprietary catalogues.
+  researcher_interpretation: Catalogue provenance and version are necessary to explain and reproduce generated
+    candidates.
+  supported_proposition: Microsoft threat derivation is relationship- and catalogue-based after manual modelling.
+  thesis_targets:
+  - chapter-3
+  - chapter-6
+  temporal_caveat: Systematic-review and illustrative tool-comparison evidence published in the 2024 volume,
+    with searches and tool references extending mainly through 2022. The taxonomy and automation boundary remain
+    useful, while tool availability, catalogues, versions, feature sets and current maturity require contemporary
+    verification.
+  verification_state: location_verified
+- id: SRC-0031-EX-0015
+  location:
+    pdf_page: 18
+    printed_page: 142
+    section: 4.2 OWASP Threat Dragon
+    paragraph_or_table: Properties, threats and human fields
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Threat Dragon maps component types and properties to catalogue threats, supports custom
+    threats, and records open/mitigated status and priority before suggesting mitigations.
+  researcher_interpretation: Automation can generate candidates while disposition and prioritization remain
+    explicit human-governed states.
+  supported_proposition: Threat Dragon combines automated catalogue lookup with user-supplied status, priority
+    and custom threats.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-6
+  temporal_caveat: Systematic-review and illustrative tool-comparison evidence published in the 2024 volume,
+    with searches and tool references extending mainly through 2022. The taxonomy and automation boundary remain
+    useful, while tool availability, catalogues, versions, feature sets and current maturity require contemporary
+    verification.
+  verification_state: location_verified
+- id: SRC-0031-EX-0016
+  location:
+    pdf_page: 20
+    printed_page: 144
+    section: 4.3 SLA-generator
+    paragraph_or_table: Threat catalogue template and derivation
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: SLA-generator uses MACM nodes, relationships, protocols, roles and a catalogue with
+    threat, asset type, behaviour, STRIDE class and compromised-asset fields, then suggests NIST controls.
+  researcher_interpretation: The catalogue schema approximates a methodology plugin contract over a typed base
+    model.
+  supported_proposition: SLA-generator derives candidate threats from typed assets and communication context
+    and maps them to controls.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-6
+  temporal_caveat: Systematic-review and illustrative tool-comparison evidence published in the 2024 volume,
+    with searches and tool references extending mainly through 2022. The taxonomy and automation boundary remain
+    useful, while tool availability, catalogues, versions, feature sets and current maturity require contemporary
+    verification.
+  verification_state: location_verified
+- id: SRC-0031-EX-0017
+  location:
+    pdf_page: 21
+    printed_page: 145
+    section: 4.4 PyTM
+    paragraph_or_table: Threat modelling as code
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: PyTM requires the modeller to describe architecture with Python objects and properties,
+    then generates a DFD, a sequence diagram and a threat model.
+  researcher_interpretation: Threat modelling as code is a purpose-built model, not automatic analysis of arbitrary
+    application source code.
+  supported_proposition: PyTM automates model rendering and threat selection after a manually authored Python
+    model exists.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-6
+  temporal_caveat: Systematic-review and illustrative tool-comparison evidence published in the 2024 volume,
+    with searches and tool references extending mainly through 2022. The taxonomy and automation boundary remain
+    useful, while tool availability, catalogues, versions, feature sets and current maturity require contemporary
+    verification.
+  verification_state: location_verified
+- id: SRC-0031-EX-0018
+  location:
+    pdf_page: 22
+    printed_page: 146
+    section: 4.4 PyTM
+    paragraph_or_table: Conditions, controls and continuous rerun
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: PyTM applies threats when target types and Boolean conditions match; controls can update
+    the model and remove mitigated threats on a rerun, which the authors associate with continuous threat modelling.
+  researcher_interpretation: Rerun capability is not the same as verified synchronization with changing documentation,
+    architecture or implementation.
+  supported_proposition: A code-based model can support repeatable rule evaluation after control changes.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-6
+  temporal_caveat: Systematic-review and illustrative tool-comparison evidence published in the 2024 volume,
+    with searches and tool references extending mainly through 2022. The taxonomy and automation boundary remain
+    useful, while tool availability, catalogues, versions, feature sets and current maturity require contemporary
+    verification.
+  verification_state: location_verified
+- id: SRC-0031-EX-0019
+  location:
+    pdf_page: 22
+    printed_page: 146
+    section: 5 Comparison
+    paragraph_or_table: WordPress case design
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The authors manually model the same WordPress e-commerce architecture with Microsoft,
+    Threat Dragon, SLA-generator and PyTM and document each generated threat model.
+  researcher_interpretation: The case is an illustrative cross-tool comparison without an independent ground
+    truth or analyst-performance design.
+  supported_proposition: The comparison uses one simple common case and manually adapted models for four tools.
+  thesis_targets:
+  - chapter-3
+  - chapter-4
+  - chapter-7
+  temporal_caveat: Systematic-review and illustrative tool-comparison evidence published in the 2024 volume,
+    with searches and tool references extending mainly through 2022. The taxonomy and automation boundary remain
+    useful, while tool availability, catalogues, versions, feature sets and current maturity require contemporary
+    verification.
+  verification_state: location_verified
+- id: SRC-0031-EX-0020
+  location:
+    pdf_page: 29
+    printed_page: 153
+    section: 5.5 PyTM analysis
+    paragraph_or_table: Generated threat count and implementation specificity
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The PyTM section reports 91 threats and notes that some results are low-level or technology-specific;
+    attached data-flow content is not used in threat evaluation.
+  researcher_interpretation: Generated volume and technical detail do not establish correctness, applicability
+    or completeness.
+  supported_proposition: PyTM can generate a large, implementation-sensitive candidate list from a simplified
+    model.
+  thesis_targets:
+  - chapter-3
+  - chapter-6
+  - chapter-7
+  temporal_caveat: Systematic-review and illustrative tool-comparison evidence published in the 2024 volume,
+    with searches and tool references extending mainly through 2022. The taxonomy and automation boundary remain
+    useful, while tool availability, catalogues, versions, feature sets and current maturity require contemporary
+    verification.
+  verification_state: location_verified
+- id: SRC-0031-EX-0021
+  location:
+    pdf_page: 31
+    printed_page: 155
+    section: 5.6 Comparison
+    paragraph_or_table: Counts, assets and granularity
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The tools attach threats to different units - edges, nodes, both or Python elements
+    - and produce differently granular lists; the text reports 88, 84, 31 and 97 threats respectively.
+  researcher_interpretation: Raw counts are not comparable quality metrics because scope, assets, catalogue
+    size and granularity differ.
+  supported_proposition: Cross-tool threat counts cannot be interpreted independently of model and catalogue
+    semantics.
+  thesis_targets:
+  - chapter-3
+  - chapter-6
+  - chapter-7
+  temporal_caveat: Systematic-review and illustrative tool-comparison evidence published in the 2024 volume,
+    with searches and tool references extending mainly through 2022. The taxonomy and automation boundary remain
+    useful, while tool availability, catalogues, versions, feature sets and current maturity require contemporary
+    verification.
+  verification_state: location_verified
+- id: SRC-0031-EX-0022
+  location:
+    pdf_page: 32
+    printed_page: 156
+    section: 5.6 Comparison
+    paragraph_or_table: Table 19
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Table 19 reports SLA-generator 84, Microsoft 88, OWASP 30 and PyTM 97, with nodes, arcs,
+    both or all Python elements as their asset bases and variable, high or low granularity.
+  researcher_interpretation: The table conflicts with the narrative's Threat Dragon count of 31 and the PyTM
+    section's count of 91.
+  supported_proposition: The paper contains unresolved count inconsistencies for Threat Dragon and PyTM.
+  thesis_targets:
+  - chapter-4
+  - chapter-7
+  temporal_caveat: Systematic-review and illustrative tool-comparison evidence published in the 2024 volume,
+    with searches and tool references extending mainly through 2022. The taxonomy and automation boundary remain
+    useful, while tool availability, catalogues, versions, feature sets and current maturity require contemporary
+    verification.
+  verification_state: location_verified
+- id: SRC-0031-EX-0023
+  location:
+    pdf_page: 32
+    printed_page: 156
+    section: 6 Conclusions and future work
+    paragraph_or_table: Conclusions
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The authors conclude that simple graph models enable automatic security information
+    and that tools produce compatible but differently detailed threats; they describe Threat Dragon as less
+    complete in the case.
+  researcher_interpretation: The less-complete characterization is based on one case and list coverage, not
+    measured precision, recall or independent ground truth.
+  supported_proposition: The paper's comparative conclusion is illustrative and scope-dependent rather than
+    a general tool ranking.
+  thesis_targets:
+  - chapter-3
+  - chapter-7
+  - chapter-8
+  temporal_caveat: Systematic-review and illustrative tool-comparison evidence published in the 2024 volume,
+    with searches and tool references extending mainly through 2022. The taxonomy and automation boundary remain
+    useful, while tool availability, catalogues, versions, feature sets and current maturity require contemporary
+    verification.
+  verification_state: location_verified
+- id: SRC-0031-EX-0024
+  location:
+    pdf_page: 33
+    printed_page: 157
+    section: Data availability
+    paragraph_or_table: Availability statement
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The generated and analysed datasets are available from the corresponding author on reasonable
+    request.
+  researcher_interpretation: No directly public replication package is identified in the article.
+  supported_proposition: Reproduction materials are request-based rather than directly linked as a public package.
+  thesis_targets:
+  - chapter-4
+  - chapter-7
+  temporal_caveat: Systematic-review and illustrative tool-comparison evidence published in the 2024 volume,
+    with searches and tool references extending mainly through 2022. The taxonomy and automation boundary remain
+    useful, while tool availability, catalogues, versions, feature sets and current maturity require contemporary
+    verification.
+  verification_state: location_verified
