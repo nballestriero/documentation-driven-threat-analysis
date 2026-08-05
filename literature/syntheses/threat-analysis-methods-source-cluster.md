@@ -43,6 +43,29 @@ prioritization are underdeveloped, and threats without an identifiable actor or 
 fit poorly. The method is therefore a candidate scenario overlay, not a complete neutral Base
 Analysis or universal threat method.
 
+
+### SRC-0004 - van Lamsweerde (2004)
+
+Role: documentation-plus-model, goal-oriented and partly formal security-requirements
+elaboration. The method builds a primal model of goals, agents, objects, operations, requirements,
+expectations and domain properties together with an intentional anti-model of attackers,
+anti-goals, capabilities and vulnerabilities.
+
+The source confirms that security analysis can begin from declarative assertions in stakeholder
+interviews and documents before implementation or complete state-machine models. It does not
+analyze raw documentation directly: the assertions must be interpreted into structured goal,
+object, agent and domain models.
+
+Anti-goal refinement distinguishes attacker-realizable anti-requirements from
+attackee-realizable vulnerabilities. Formal regression and refinement patterns can provide local
+derivation evidence, and bounded SAT solving can generate scenarios once formal models exist.
+Sensitive-object identification, attacker motives, domain properties, risk assessment and
+countermeasure selection remain analyst responsibilities.
+
+The approach therefore provides stronger internal assurance than scenario templates, but at
+higher modeling cost. Its global requirement/anti-requirement/countermeasure termination rule is
+explicitly left open, and the anti-model extension had only four reported case studies.
+
 ## Initial DDTA separation
 
 ```text
@@ -53,10 +76,11 @@ raw and governed project documentation
 -> security requirements
 ```
 
-SRC-0026 mostly maps the second transformation. SRC-0003 demonstrates one scenario-based
-implementation of that transformation after a functional scenario view exists. DDTA must still
-investigate how heterogeneous documentation becomes the neutral assets, actors, goals,
-interactions and scenarios consumed by overlays.
+SRC-0026 mostly maps the second transformation. SRC-0003 demonstrates a scenario-based
+implementation after a functional scenario view exists. SRC-0004 demonstrates a goal-oriented
+implementation after a structured primal model exists. DDTA must still investigate how
+heterogeneous documentation becomes the neutral assets, actors, goals, interactions, objects,
+operations and domain properties consumed by those overlays.
 
 ## Technique-focus taxonomy
 
@@ -81,7 +105,9 @@ Direct evidence from the review:
 - source code is rarely required;
 - threat analysis can be repeated later in the lifecycle;
 - a scenario-based method can link functional behavior to threats and security requirements;
-- structured scenarios are not equivalent to raw heterogeneous documentation.
+- a goal-oriented method can operate on partial declarative models before implementation;
+- formal threat derivation becomes possible after goal, object, agent and domain modeling;
+- structured scenarios and goal models are not equivalent to raw heterogeneous documentation.
 
 Researcher conclusion for DDTA:
 
@@ -107,6 +133,9 @@ DDTA candidate controls:
 - extracted versus inferred status;
 - scenario-level review dispositions;
 - progressive lightweight and extensive analysis profiles;
+- derivation rule, premises and proof status;
+- software requirement versus environmental expectation responsibility;
+- preserved alternative countermeasures and selection rationale;
 - coverage declaration;
 - explicit stopping condition;
 - incomplete-input diagnostics;
@@ -116,16 +145,12 @@ DDTA candidate controls:
 
 ## Primary-study selection queue
 
-### Existing registry entry to analyze fully
-
-1. SRC-0004 - van Lamsweerde, intentional anti-models and KAOS-style anti-goals.
-
 ### New sources to retrieve
 
-2. Haley et al. - security requirements and satisfaction arguments.
-3. Whittle et al. - misuse scenarios, mitigation weaving and finite-state verification.
-4. Hatebur and Heisel - security problem frames.
-5. A recent empirical STRIDE study - DFD-based overlay effectiveness and analyst performance.
+1. Haley et al. - security requirements and satisfaction arguments.
+2. Whittle et al. - misuse scenarios, mitigation weaving and finite-state verification.
+3. Hatebur and Heisel - security problem frames.
+4. A recent empirical STRIDE study - DFD-based overlay effectiveness and analyst performance.
 
 These sources cover:
 
@@ -138,10 +163,26 @@ architecture/DFD overlays
 quality assurance
 ```
 
+
+## Scenario and goal-model contrast
+
+| Dimension | SRC-0003 | SRC-0004 |
+|---|---|---|
+| Starting view | functional scenarios | goal, object, agent and domain models |
+| Threat structure | harmful scenario | intentional AND/OR anti-goal graph |
+| Formality | mostly informal | optional temporal logic and formal regression |
+| Leaf semantics | misuse and mitigation | anti-requirement versus vulnerability |
+| Assurance | review status and trace links | local proof and derivation evidence |
+| Human dependency | high | high before and around formal derivation |
+| Global stopping | absent | explicitly left open |
+
+Both approaches are pre-code. Neither solves source-document interpretation, provenance or global
+completeness. They support different methodology overlays over a neutral Base Analysis.
+
 ## Evidence still missing
 
-- automatic extraction of Base Analysis entities and scenario views from heterogeneous documentation;
-- sentence-to-model and sentence-to-scenario provenance;
+- automatic extraction of Base Analysis entities, scenario views and goal views from heterogeneous documentation;
+- sentence-to-model, sentence-to-scenario and sentence-to-goal provenance;
 - management of missing and contradictory documentation;
 - current tool maturity;
 - continuous rerun and stale detection;

@@ -82,3 +82,12 @@ sources:
     retrieved_on: null
     sha256: null
     repository_storage: forbidden
+  - source_id: SRC-0004
+    landing_url: "https://webperso.info.ucl.ac.be/~avl/gore.php"
+    pdf_url: "https://webperso.info.ucl.ac.be/~avl/files/avl-Icse04-AntiGoals.pdf"
+    access_type: author_hosted_full_text
+    licence: "Author-hosted conference paper; copyright ACM/IEEE; reuse terms not stated"
+    local_filename: "SRC-0004-van-lamsweerde-2004.pdf"
+    retrieved_on: "2026-08-05"
+    sha256: "a344418a784c8830dfd82a4b578554c8102c9702f33e15ff8ead2f35597c69da"
+    repository_storage: forbidden

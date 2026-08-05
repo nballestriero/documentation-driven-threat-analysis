@@ -1,0 +1,164 @@
+schema_version: 1
+source_id: SRC-0004
+citation_key: vanlamsweerde2004elaborating
+source_version:
+  stable_identifier: "10.1109/ICSE.2004.1317437"
+  edition_or_version: "ICSE 2004 proceedings version, pages 148-157"
+  accessed_on: "2026-08-05"
+  local_filename: "SRC-0004-van-lamsweerde-2004.pdf"
+  sha256: "a344418a784c8830dfd82a4b578554c8102c9702f33e15ff8ead2f35597c69da"
+excerpts:
+  - id: SRC-0004-EX-0001
+    location: {pdf_page: 1, printed_page: 148, section: "Abstract", paragraph_or_table: ""}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "The method constructs threat trees by refining anti-goals until attacker-implementable anti-requirements or attacker-observable software vulnerabilities are reached, then derives countermeasures."
+    researcher_interpretation: "Threat candidates, vulnerabilities and countermeasures need distinct typed records."
+    supported_proposition: "Intentional anti-models derive security requirements from goal-anchored threats."
+    thesis_targets: ["chapter-2", "chapter-3", "chapter-5"]
+    temporal_caveat: "Foundational method evidence from 2004."
+    verification_state: location_verified
+  - id: SRC-0004-EX-0002
+    location: {pdf_page: 2, printed_page: 149, section: "1 Introduction", paragraph_or_table: "Meta-requirements"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "The technique is intended to operate early on declarative assertions from stakeholder interviews and documents, support partial models, alternatives, formal assurance, construction and separation of concerns."
+    researcher_interpretation: "Early documentation compatibility must be separated from the structured-model prerequisites."
+    supported_proposition: "The method explicitly targets early and incremental requirements engineering."
+    thesis_targets: ["chapter-3", "chapter-5"]
+    temporal_caveat: "The source does not evaluate direct raw-document processing."
+    verification_state: location_verified
+  - id: SRC-0004-EX-0003
+    location: {pdf_page: 2, printed_page: 149, section: "1 Introduction", paragraph_or_table: "Two concurrent models"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "The method builds a system-to-be model containing goals, agents, objects, operations, requirements and assumptions, together with an anti-model explaining how those elements may be maliciously threatened, why and by whom."
+    researcher_interpretation: "Base Analysis and methodology-specific anti-model state must remain separate but linked."
+    supported_proposition: "Security analysis is organized as a primal-model and anti-model duality."
+    thesis_targets: ["chapter-2", "chapter-5"]
+    temporal_caveat: "Conceptual method proposition."
+    verification_state: location_verified
+  - id: SRC-0004-EX-0004
+    location: {pdf_page: 3, printed_page: 150, section: "2 Background", paragraph_or_table: "Requirements, expectations and obstacles"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "Terminal goals assigned to software agents are requirements, while terminal goals assigned to environmental agents are expectations; obstacles are conditions that may prevent goals from being achieved."
+    researcher_interpretation: "DDTA must distinguish software obligations from environmental policies or assumptions."
+    supported_proposition: "Responsibility assignment determines whether a terminal goal is a requirement or expectation."
+    thesis_targets: ["chapter-2", "chapter-5"]
+    temporal_caveat: "KAOS-specific terminology with broader modeling relevance."
+    verification_state: location_verified
+  - id: SRC-0004-EX-0005
+    location: {pdf_page: 3, printed_page: 150, section: "2 Background", paragraph_or_table: "Security interpretation"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "Security goals are refined to requirements and expectations; attackers are malicious environmental agents, threats are intentional obstacles and assets are active or passive objects."
+    researcher_interpretation: "These are overlay mappings over common system entities, not necessarily universal canonical types."
+    supported_proposition: "The goal framework maps security concepts onto goals, agents, obstacles and objects."
+    thesis_targets: ["chapter-2", "chapter-5"]
+    temporal_caveat: "The method claims no new kernel abstractions are needed."
+    verification_state: location_verified
+  - id: SRC-0004-EX-0006
+    location: {pdf_page: 4, printed_page: 151, section: "3 Specification Patterns for Security Goals", paragraph_or_table: ""}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "Security-goal patterns are instantiated against sensitive classes, attributes and associations in the object model, while generic predicates require application-specific definitions."
+    researcher_interpretation: "Pattern use requires a documented object model and explicit domain semantics."
+    supported_proposition: "Security-goal generation is downstream of application-specific model construction."
+    thesis_targets: ["chapter-3", "chapter-5"]
+    temporal_caveat: "The paper demonstrates formal patterns but not automated document extraction."
+    verification_state: location_verified
+  - id: SRC-0004-EX-0007
+    location: {pdf_page: 5, printed_page: 152, section: "4 Building Intentional Threat Models", paragraph_or_table: "Table 1"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "The six-step method negates security goals, elicits attackers and motives, refines anti-goals to anti-requirements or vulnerabilities, derives anti-agent and anti-object models and operationalizes attacker capabilities."
+    researcher_interpretation: "This sequence defines the core contract of a goal-oriented DDTA overlay."
+    supported_proposition: "The anti-model method has an explicit ordered procedure with intertwined dependencies."
+    thesis_targets: ["chapter-3", "chapter-5"]
+    temporal_caveat: "Several elicitation steps remain human-guided."
+    verification_state: location_verified
+  - id: SRC-0004-EX-0008
+    location: {pdf_page: 5, printed_page: 152, section: "4 Building Intentional Threat Models", paragraph_or_table: "Realizability and refinement"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "An anti-goal is realizable by an agent when expressed through conditions that agent can monitor and control; refinement may use questions, formal regression through domain properties or goals and formal patterns."
+    researcher_interpretation: "Derivation records should retain rule type, premises, agent interface and proof status."
+    supported_proposition: "Formal and informal anti-goal derivations can coexist."
+    thesis_targets: ["chapter-4", "chapter-5"]
+    temporal_caveat: "Assurance is relative to the supplied model and domain theory."
+    verification_state: location_verified
+  - id: SRC-0004-EX-0009
+    location: {pdf_page: 6, printed_page: 153, section: "4 Building Intentional Threat Models", paragraph_or_table: "Figures 1 and 2"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "Formal refinement patterns may yield locally provably complete refinements, and bounded SAT solvers can generate attack scenarios from formal anti-goal models."
+    researcher_interpretation: "Local proof completeness and scenario generation do not establish global threat completeness."
+    supported_proposition: "Structured formal models enable downstream automated reasoning."
+    thesis_targets: ["chapter-3", "chapter-4", "chapter-5"]
+    temporal_caveat: "Historical tool support and no end-to-end automation evaluation."
+    verification_state: location_verified
+  - id: SRC-0004-EX-0010
+    location: {pdf_page: 6, printed_page: 153, section: "5 Generating Countermeasures", paragraph_or_table: ""}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "Countermeasure operators include goal or agent substitution, goal weakening or restoration, anti-goal mitigation or prevention, vulnerability protection and threat defusing; alternatives are selected by severity, likelihood and other quality goals."
+    researcher_interpretation: "DDTA should preserve candidate alternatives and selection rationales rather than only the chosen requirement."
+    supported_proposition: "Countermeasure generation and selection are explicit but separate activities."
+    thesis_targets: ["chapter-3", "chapter-5"]
+    temporal_caveat: "No common decision model or quantitative evaluation is provided."
+    verification_state: location_verified
+  - id: SRC-0004-EX-0011
+    location: {pdf_page: 8, printed_page: 155, section: "6 Case Study", paragraph_or_table: "Derived vulnerabilities and new goals"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "The banking example derives attacker anti-requirements and repeatable-check vulnerabilities, then applies an avoid-vulnerability operator to generate new security goals that require further refinement."
+    researcher_interpretation: "Accepted findings and resulting requirements remain linked through the specific derived vulnerability."
+    supported_proposition: "The worked example demonstrates the complete anti-goal-to-countermeasure chain."
+    thesis_targets: ["chapter-3", "chapter-5"]
+    temporal_caveat: "Single detailed illustrative case, not comparative evidence."
+    verification_state: location_verified
+  - id: SRC-0004-EX-0012
+    location: {pdf_page: 8, printed_page: 155, section: "7 Related work", paragraph_or_table: "Upstream complement"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "The approach is positioned upstream of attack-graph model checking because it derives threats from partial declarative goal and anti-goal models rather than requiring complete operational state machines."
+    researcher_interpretation: "Initial documentation-driven analysis and later operational or code-based verification are complementary phases."
+    supported_proposition: "Requirements-level derivation can precede complete operational modeling."
+    thesis_targets: ["chapter-3", "chapter-5", "chapter-6"]
+    temporal_caveat: "Positioning claim rather than controlled comparison."
+    verification_state: location_verified
+  - id: SRC-0004-EX-0013
+    location: {pdf_page: 9, printed_page: 156, section: "8 Conclusion", paragraph_or_table: "Validation"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "The general goal-oriented method had broad prior industrial use, but the anti-model transposition had been applied in only four case studies."
+    researcher_interpretation: "Evidence for KAOS generally must not be transferred automatically to the security anti-model extension."
+    supported_proposition: "Anti-model validation was limited at publication time."
+    thesis_targets: ["chapter-3", "chapter-4", "chapter-8"]
+    temporal_caveat: "No current validation evidence in this source."
+    verification_state: location_verified
+  - id: SRC-0004-EX-0014
+    location: {pdf_page: 9, printed_page: 156, section: "8 Conclusion", paragraph_or_table: "Open issues"}
+    capture_state: location_identified
+    usage_mode: paraphrase
+    verbatim_excerpt: null
+    faithful_paraphrase: "Open issues include termination of the requirement/anti-requirement/countermeasure cycle, richer pattern catalogues, trust modeling, probabilistic likelihood and vulnerability criticality."
+    researcher_interpretation: "DDTA must supply explicit completion, uncertainty and prioritization controls not established by this method."
+    supported_proposition: "Global stopping and probabilistic assessment remain unresolved."
+    thesis_targets: ["chapter-3", "chapter-5", "chapter-8"]
+    temporal_caveat: "Historical open issues requiring current corroboration."
+    verification_state: location_verified
