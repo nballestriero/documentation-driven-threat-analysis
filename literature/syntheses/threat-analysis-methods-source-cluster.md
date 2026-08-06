@@ -264,6 +264,29 @@ The study uses one historical GPT-3.5 configuration, one prompt pattern, functio
 no gold-standard diagram. Its failure taxonomy is directly useful, while performance claims require
 contemporary multi-model replication.
 
+### SRC-0036 - Garaccione, Calabrese, Coppola and Ardito (2025)
+
+Role: current multi-model empirical comparison of LLM generation of UML class diagrams from 15
+Italian university exercises. GPT-4o, DeepSeek v3, Gemini 2.5 Pro and Qwen 3 receive the same
+role-based few-shot prompt through free web interfaces and produce Apollon JSON diagram candidates.
+
+The source decomposes quality into syntax errors, semantic errors and reference-solution
+completeness. GPT-4o and Gemini have no syntax errors in the 15 cases, DeepSeek has the lowest mean
+semantic-error count, Gemini has the highest mean completeness, and Qwen is significantly worse on
+syntax. Most other pairwise semantic and completeness differences are not statistically significant,
+so the paper establishes different error profiles rather than one universal winner.
+
+Association type and multiplicity dominate semantic failures. The figures show that a model can
+produce parser-compatible, structurally plausible output while still encoding the wrong containment,
+generalization, direction or cardinality. Syntax validation, source coverage and structural-semantic
+validation must therefore remain independent gates.
+
+The study establishes a multi-model document-to-candidate-structural-model boundary, not autonomous
+Base Analysis. It uses educational functional requirements, dynamic June-2025 web interfaces, no
+assertion-level traces, no repeated runs, no change propagation and no security or privacy evaluation.
+Every candidate still requires generation provenance, source-to-element trace review, correction and
+explicit disposition.
+
 ## Initial DDTA separation
 
 ```text
@@ -306,9 +329,12 @@ maps the following requirements-to-architecture transition and shows that transf
 representation-specific, decisions remain tacit, traceability is exceptional and architecture
 validation is often absent. SRC-0035 demonstrates that GPT-3.5 can produce readable first-pass
 sequence diagrams from realistic requirements while still omitting, altering or inventing behavior
-behind strong syntax and terminology. DDTA must still establish how heterogeneous documentation
-becomes reviewed neutral assets, actors, goals, interactions, objects, operations, domains,
-phenomena, scenarios and architectural decisions consumed by these overlays, arguments and tests.
+behind strong syntax and terminology. SRC-0036 adds a four-model class-diagram comparison and shows
+that syntax, completeness and semantic correctness can favor different models, while association
+type and multiplicity remain shared failure points. DDTA must still establish how heterogeneous
+documentation becomes reviewed neutral assets, actors, goals, interactions, objects, operations,
+domains, phenomena, scenarios and architectural decisions consumed by these overlays, arguments
+and tests.
 
 ## Technique-focus taxonomy
 
@@ -373,7 +399,9 @@ Direct evidence from the review:
 - LLM-produced trace notes and requirement identifiers can be incomplete or inaccurate;
 - provider, model, prompt, session, memory, context and renderer state affect reproducibility;
 - requirement modifications can be ignored and every accepted model needs explicit stale-state control.
-
+- a contemporary multi-model comparison can produce different descriptive winners for syntax, semantics and completeness;
+- syntax-valid class diagrams can still contain incorrect association types, directions and multiplicities;
+- selecting a provider or model does not replace artifact-level coverage, semantic and trace validation;
 Researcher conclusion for DDTA:
 
 ```text
@@ -382,6 +410,7 @@ documentation_plus_model is required for others
 document_to_candidate_artifact can be automated or assisted from natural-language requirements
 document_to_llm_candidate_model can produce readable but semantically unreliable projections
 llm_candidate_model_to_accepted_model requires syntax, coverage, semantic and trace validation
+llm_candidate_structural_model_to_accepted_model additionally requires association and multiplicity validation
 candidate_artifact_to_base_analysis requires source provenance and human review
 base_analysis_to_candidate_architecture requires explicit concerns, alternatives and decisions
 candidate_architecture_to_accepted_architecture requires multi-view review and satisfaction evidence
@@ -410,6 +439,8 @@ incomplete. SRC-0034 adds the requirements-to-architecture decision boundary and
 knowledge, weak traceability, heterogeneous views and insufficient evaluation remain central gaps.
 SRC-0035 adds direct LLM document-to-behavioral-model evidence and shows that polished syntax,
 terminology and understandability can coexist with omissions, incorrect behavior and weak traces.
+SRC-0036 adds multi-model document-to-structural-model evidence and shows that parser-compatible
+output and relatively high coverage can coexist with incorrect association type and multiplicity.
 
 All nine evidence forms remain relative to their source documents, model and session state, prompts,
 modeled context, premises, behaviors, attacks, mechanism choices, architectural alternatives,
@@ -487,15 +518,16 @@ DDTA candidate controls:
 ## Primary-study selection queue
 
 Automated threat modelling, model-based security testing, broad automated requirements engineering,
-the historical requirements-to-architecture boundary and first-pass LLM sequence-diagram generation
-are now covered by SRC-0031 through SRC-0035. The next central reading should provide a contemporary
-multi-model comparison of LLM-based UML or requirements-model generation.
+the historical requirements-to-architecture boundary, first-pass LLM sequence-diagram generation
+and a contemporary multi-model class-diagram comparison are now covered by SRC-0031 through
+SRC-0036. The next central reading should provide direct empirical evidence for security, privacy or
+other non-functional requirement/model generation.
 
 ```text
-shared requirements cases
--> multiple current LLMs and controlled prompts
--> syntax, assertion coverage, semantic correctness and correction effort
--> comparative evidence for plugin selection and governance
+security, privacy or NFR source evidence
+-> generated requirement or model candidates
+-> source coverage, semantic correctness and security relevance
+-> human correction and acceptance evidence
 ```
 
 
@@ -518,6 +550,22 @@ projection and global completeness together. They support distinct documentation
 architectural-decision, methodology, assurance, executable-scenario, problem-refinement,
 empirical-validation, candidate-generation and security-testing roles over governed project evidence.
 
+### SRC-0035 and SRC-0036 LLM-projection contrast
+
+| Dimension | SRC-0035 | SRC-0036 |
+|---|---|---|
+| Generated view | behavioral sequence diagram | structural class diagram |
+| Models | one GPT-3.5 web configuration | GPT-4o, DeepSeek v3, Gemini 2.5 Pro and Qwen 3 web interfaces |
+| Input evidence | 28 realistic functional-requirement documents and 87 variants | 15 Italian university exercises |
+| Output representation | PlantUML rendered with PlantText | Apollon JSON |
+| Main assurance result | strong syntax and readability can hide omitted or incorrect behavior | syntax and completeness can coexist with wrong associations and multiplicities |
+| Trace and change evidence | generated traces can be incomplete; modifications can be ignored | assertion-level traces and change handling are absent |
+| DDTA role | candidate behavioral projection | candidate structural projection |
+
+Together they establish that every generated view needs notation-specific syntax checks plus
+source-coverage, semantic, trace and human-acceptance evidence. Neither a clear rendering nor a
+provider-level model choice is an acceptance criterion.
+
 ## Evidence still missing
 
 - validated extraction of Base Analysis entities, scenario views and goal views from heterogeneous documentation;
@@ -533,7 +581,7 @@ empirical-validation, candidate-generation and security-testing roles over gover
 - comparable architecture-satisfaction evaluation and industrial evidence;
 - semantic preservation across heterogeneous architectural views and ADLs;
 - current requirements-to-architecture automation and LLM evidence beyond the historical corpus;
-- contemporary multi-model UML-generation comparison on shared realistic requirements;
+- contemporary multi-model generation evidence beyond educational class-diagram exercises;
 - assertion-level gold standards or verified source-coverage mappings without requiring one canonical layout;
 - security, privacy and non-functional requirement model-generation evidence;
 - reproducible provider/model/prompt/session configurations and longitudinal reruns;
@@ -577,6 +625,9 @@ traceability, multi-view and evaluation boundaries but cannot establish current 
 requirements-to-architecture maturity. SRC-0035 was published in 2024 but evaluates one GPT-3.5
 configuration through the ChatGPT web interface; its failure categories remain relevant, while all
 2026 performance, memory, prompting and comparative claims require contemporary replication.
+SRC-0036 was published in 2025 and compares four models through free web interfaces available around
+June 2025; its multidimensional quality and relationship-error findings remain relevant, while its
+model ranking, interface behavior and provider descriptions must not be treated as current 2026 facts.
 
 ## Reading order
 
@@ -593,5 +644,6 @@ SRC-0026 historical method taxonomy
 -> SRC-0033 automated requirements-engineering support SLR
 -> SRC-0034 requirements-to-architecture mapping study
 -> SRC-0035 GPT-3.5 requirements-to-sequence-diagram study
--> recent multi-model LLM requirements-to-UML comparison
+-> SRC-0036 multi-model requirements-to-class-diagram comparison
+-> SRC-0037 direct security/NFR model-generation evidence
 ```

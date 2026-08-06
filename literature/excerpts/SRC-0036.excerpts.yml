@@ -1,0 +1,568 @@
+schema_version: 1
+source_id: SRC-0036
+citation_key: garaccione2025llmcomparison
+source_version:
+  stable_identifier: 10.1109/MODELS-C68889.2025.00078
+  edition_or_version: IEEE Author's Accepted Manuscript of MODELS-C 2025, pages 541-545
+  accessed_on: '2026-08-06'
+  local_filename: SRC-0036-garaccione-calabrese-coppola-ardito-2025.pdf
+  sha256: 7bdcc831571c7a1c0979bca8742c27020d637f034a98fb4bd339f015b625b019
+excerpts:
+- id: SRC-0036-EX-0001
+  location:
+    pdf_page: 1
+    printed_page: null
+    section: IRIS repository cover
+    paragraph_or_table: Bibliographic identity and terms of use
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The repository copy is identified as an IEEE postprint or Author's Accepted Manuscript for
+    the 2025 MODELS Companion paper, pages 541-545, with personal use permitted and permission required for other
+    reuse.
+  researcher_interpretation: The source PDF may be read and cited but should remain outside the Git repository and
+    offline redistribution bundle unless rights are separately established.
+  supported_proposition: SRC-0036 was reviewed from a public institutional Author's Accepted Manuscript with restricted
+    redistribution terms.
+  thesis_targets:
+  - chapter-4
+  temporal_caveat: Published in 2025 and based on model versions and free web interfaces available around June 2025.
+    The quality dimensions and error families remain relevant, but model rankings, interface behavior, availability
+    and current 2026 performance require fresh verification.
+  verification_state: location_verified
+- id: SRC-0036-EX-0002
+  location:
+    pdf_page: 2
+    printed_page: 541
+    section: Abstract
+    paragraph_or_table: Aim, models and quality dimensions
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The study compares four proprietary and source-described open-source LLMs on class-diagram
+    solutions to university exercises and evaluates syntax, semantic accuracy and completeness.
+  researcher_interpretation: The paper supplies a contemporary multi-model test of requirements-to-structural-model
+    generation.
+  supported_proposition: Four LLMs are compared on syntax, semantics and completeness for UML class-diagram generation.
+  thesis_targets:
+  - chapter-3
+  - chapter-4
+  - chapter-7
+  temporal_caveat: Published in 2025 and based on model versions and free web interfaces available around June 2025.
+    The quality dimensions and error families remain relevant, but model rankings, interface behavior, availability
+    and current 2026 performance require fresh verification.
+  verification_state: location_verified
+- id: SRC-0036-EX-0003
+  location:
+    pdf_page: 2
+    printed_page: 541
+    section: Abstract
+    paragraph_or_table: Headline results
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: ChatGPT and Gemini have zero syntax errors in the evaluated exercises, DeepSeek has the lowest
+    average semantic-error count, and Qwen struggles with syntax while retaining broadly comparable completeness.
+  researcher_interpretation: Different quality dimensions produce different descriptive winners; the abstract does
+    not establish a universal best model.
+  supported_proposition: Model quality profiles differ across syntax, semantics and completeness.
+  thesis_targets:
+  - chapter-3
+  - chapter-7
+  - chapter-8
+  temporal_caveat: Published in 2025 and based on model versions and free web interfaces available around June 2025.
+    The quality dimensions and error families remain relevant, but model rankings, interface behavior, availability
+    and current 2026 performance require fresh verification.
+  verification_state: location_verified
+- id: SRC-0036-EX-0004
+  location:
+    pdf_page: 2
+    printed_page: 541
+    section: 1 Introduction
+    paragraph_or_table: Problem motivation
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Producing correct and complete UML class diagrams from textual descriptions is challenging
+    for students and novice designers, while earlier LLM work produced reasonably complete but lower-quality models
+    than humans.
+  researcher_interpretation: LLM generation addresses modeling effort but inherits a semantic assurance problem.
+  supported_proposition: LLMs may assist class-diagram production but prior evidence does not establish human-equivalent
+    quality.
+  thesis_targets:
+  - chapter-2
+  - chapter-3
+  temporal_caveat: Published in 2025 and based on model versions and free web interfaces available around June 2025.
+    The quality dimensions and error families remain relevant, but model rankings, interface behavior, availability
+    and current 2026 performance require fresh verification.
+  verification_state: location_verified
+- id: SRC-0036-EX-0005
+  location:
+    pdf_page: 2
+    printed_page: 541
+    section: 1 Introduction
+    paragraph_or_table: Changes from prior study
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The study adds Gemini 2.5 Pro, Qwen 3 and DeepSeek v3, updates ChatGPT to the GPT-4o available
+    in June 2025, changes the exercise set and prompt, and replaces PlantUML with Apollon JSON.
+  researcher_interpretation: Provider, model version, prompt, corpus and output notation are all execution provenance
+    rather than incidental details.
+  supported_proposition: The comparison varies models while using a shared updated study design and Apollon representation.
+  thesis_targets:
+  - chapter-3
+  - chapter-4
+  - chapter-5
+  temporal_caveat: Published in 2025 and based on model versions and free web interfaces available around June 2025.
+    The quality dimensions and error families remain relevant, but model rankings, interface behavior, availability
+    and current 2026 performance require fresh verification.
+  verification_state: location_verified
+- id: SRC-0036-EX-0006
+  location:
+    pdf_page: 3
+    printed_page: 542
+    section: 2 Background
+    paragraph_or_table: Complementary-tool conclusion
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Prior studies show useful model-generation capability but retain limitations that favor using
+    intelligent agents as complementary tools rather than the sole solution.
+  researcher_interpretation: The paper's background supports assistant status, not autonomous authority.
+  supported_proposition: LLM model generation should complement rather than replace modeling practice.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Published in 2025 and based on model versions and free web interfaces available around June 2025.
+    The quality dimensions and error families remain relevant, but model rankings, interface behavior, availability
+    and current 2026 performance require fresh verification.
+  verification_state: location_verified
+- id: SRC-0036-EX-0007
+  location:
+    pdf_page: 3
+    printed_page: 542
+    section: 3 Study Design
+    paragraph_or_table: GQM and research questions
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The GQM goal is to compare diagrams produced by different LLMs from the same textual requirements
+    for software-modeling educators; RQ1 concerns quality differences and RQ2 concerns error categories.
+  researcher_interpretation: The study separates comparative quality from failure-mode distribution.
+  supported_proposition: The evaluation targets both quality differences and model-specific error categories.
+  thesis_targets:
+  - chapter-4
+  - chapter-7
+  temporal_caveat: Published in 2025 and based on model versions and free web interfaces available around June 2025.
+    The quality dimensions and error families remain relevant, but model rankings, interface behavior, availability
+    and current 2026 performance require fresh verification.
+  verification_state: location_verified
+- id: SRC-0036-EX-0008
+  location:
+    pdf_page: 3
+    printed_page: 542
+    section: 3.A Research Questions and Metrics
+    paragraph_or_table: Metric definitions and matching
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Completeness is the number of matching classes, attributes, methods and relationships over
+    the reference total; matching uses names judged similar enough to represent the same concept.
+  researcher_interpretation: The completeness metric depends on a human matching decision and treats different element
+    types as counted units.
+  supported_proposition: Diagram completeness is a reference-element coverage ratio based on manually judged matches.
+  thesis_targets:
+  - chapter-4
+  - chapter-7
+  - chapter-8
+  temporal_caveat: Published in 2025 and based on model versions and free web interfaces available around June 2025.
+    The quality dimensions and error families remain relevant, but model rankings, interface behavior, availability
+    and current 2026 performance require fresh verification.
+  verification_state: location_verified
+- id: SRC-0036-EX-0009
+  location:
+    pdf_page: 3
+    printed_page: 542
+    section: 3.A Research Questions and Metrics
+    paragraph_or_table: Syntax and semantic errors
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Syntax errors include collection-valued attributes, disconnected classes, missing types or
+    multiplicities and class references encoded as attributes; semantic errors include wrong method signatures,
+    association type or multiplicity and attribute type.
+  researcher_interpretation: Schema or syntax validation and domain-semantic validation must remain separate gates.
+  supported_proposition: The study operationalizes syntax and semantic errors as distinct quality dimensions.
+  thesis_targets:
+  - chapter-4
+  - chapter-5
+  - chapter-7
+  temporal_caveat: Published in 2025 and based on model versions and free web interfaces available around June 2025.
+    The quality dimensions and error families remain relevant, but model rankings, interface behavior, availability
+    and current 2026 performance require fresh verification.
+  verification_state: location_verified
+- id: SRC-0036-EX-0010
+  location:
+    pdf_page: 3
+    printed_page: 542
+    section: 3.A Research Questions and Metrics
+    paragraph_or_table: Human evaluation procedure
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: One author evaluates each diagram, two other authors independently review the results, and
+    all three agree on the final evaluation.
+  researcher_interpretation: Consensus review mitigates individual bias but no quantitative agreement statistic
+    or external review is reported.
+  supported_proposition: The reported metric values rely on manual multi-author review and consensus.
+  thesis_targets:
+  - chapter-4
+  - chapter-7
+  - chapter-8
+  temporal_caveat: Published in 2025 and based on model versions and free web interfaces available around June 2025.
+    The quality dimensions and error families remain relevant, but model rankings, interface behavior, availability
+    and current 2026 performance require fresh verification.
+  verification_state: location_verified
+- id: SRC-0036-EX-0011
+  location:
+    pdf_page: 3
+    printed_page: 542
+    section: 3.B Exercise Selection
+    paragraph_or_table: Corpus provenance
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The 15 exercises come from official teaching material at multiple Italian universities and
+    cover administrative, managerial, sanitary, educational, technical and general-purpose domains.
+  researcher_interpretation: The corpus is real educational material but not an industrial longitudinal benchmark.
+  supported_proposition: The evaluation uses 15 real Italian university class-diagram exercises across multiple
+    domains.
+  thesis_targets:
+  - chapter-3
+  - chapter-4
+  - chapter-7
+  temporal_caveat: Published in 2025 and based on model versions and free web interfaces available around June 2025.
+    The quality dimensions and error families remain relevant, but model rankings, interface behavior, availability
+    and current 2026 performance require fresh verification.
+  verification_state: location_verified
+- id: SRC-0036-EX-0012
+  location:
+    pdf_page: 4
+    printed_page: 543
+    section: 3.B Exercise Selection
+    paragraph_or_table: Exercise difficulty
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: More than half of the descriptions contain ambiguity or implicit elements, at least one third
+    contain hierarchies, and about two thirds contain composition or aggregation relationships.
+  researcher_interpretation: The corpus intentionally exercises interpretation and relationship modeling, the areas
+    most relevant to semantic risk.
+  supported_proposition: The selected exercises include ambiguity, implicit concepts, hierarchies and containment
+    relations.
+  thesis_targets:
+  - chapter-4
+  - chapter-7
+  temporal_caveat: Published in 2025 and based on model versions and free web interfaces available around June 2025.
+    The quality dimensions and error families remain relevant, but model rankings, interface behavior, availability
+    and current 2026 performance require fresh verification.
+  verification_state: location_verified
+- id: SRC-0036-EX-0013
+  location:
+    pdf_page: 4
+    printed_page: 543
+    section: 3.C Models and Prompting Strategy
+    paragraph_or_table: Models and access channel
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: GPT-4o, DeepSeek v3, Gemini 2.5 Pro and Qwen 3 are used through freely available websites
+    rather than APIs.
+  researcher_interpretation: Dynamic web interfaces weaken exact reproducibility because immutable snapshots and
+    generation parameters are not reported.
+  supported_proposition: The comparison uses four LLM web interfaces rather than controlled API executions.
+  thesis_targets:
+  - chapter-3
+  - chapter-4
+  - chapter-8
+  temporal_caveat: Published in 2025 and based on model versions and free web interfaces available around June 2025.
+    The quality dimensions and error families remain relevant, but model rankings, interface behavior, availability
+    and current 2026 performance require fresh verification.
+  verification_state: location_verified
+- id: SRC-0036-EX-0014
+  location:
+    pdf_page: 4
+    printed_page: 543
+    section: 3.C Models and Prompting Strategy
+    paragraph_or_table: Shared prompt and package
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: All four models receive the same Italian role-based few-shot prompt with requirement and
+    JSON examples; an English translation, diagrams, exercises and results are reported in a Figshare appendix.
+  researcher_interpretation: The common prompt improves comparative control but may not be equally suitable for
+    every model.
+  supported_proposition: A shared structured prompt and public companion package support protocol-level replication.
+  thesis_targets:
+  - chapter-4
+  - chapter-7
+  temporal_caveat: Published in 2025 and based on model versions and free web interfaces available around June 2025.
+    The quality dimensions and error families remain relevant, but model rankings, interface behavior, availability
+    and current 2026 performance require fresh verification.
+  verification_state: location_verified
+- id: SRC-0036-EX-0015
+  location:
+    pdf_page: 4
+    printed_page: 543
+    section: 3.D Analysis Method
+    paragraph_or_table: Pairwise model and category analysis
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: RQ1 uses fixed-effect linear pairwise comparisons with model type as the independent variable
+    and the three metrics as dependent variables; RQ2 aggregates errors by category and model.
+  researcher_interpretation: The analysis supports pairwise descriptive and inferential comparison but not a universal
+    quality score.
+  supported_proposition: The study compares model pairs and separately analyzes error-category distributions.
+  thesis_targets:
+  - chapter-4
+  - chapter-7
+  temporal_caveat: Published in 2025 and based on model versions and free web interfaces available around June 2025.
+    The quality dimensions and error families remain relevant, but model rankings, interface behavior, availability
+    and current 2026 performance require fresh verification.
+  verification_state: location_verified
+- id: SRC-0036-EX-0016
+  location:
+    pdf_page: 4
+    printed_page: 543
+    section: Figure 1
+    paragraph_or_table: Completeness and error distributions
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The completeness and semantic-error distributions overlap substantially across models, while
+    Qwen's syntax distribution is visibly separated from the other three.
+  researcher_interpretation: The figure supports caution against overinterpreting mean rankings beyond the strong
+    Qwen syntax effect.
+  supported_proposition: Visual distributions show strong overlap except for Qwen's worse syntax profile.
+  thesis_targets:
+  - chapter-7
+  - chapter-8
+  temporal_caveat: Published in 2025 and based on model versions and free web interfaces available around June 2025.
+    The quality dimensions and error families remain relevant, but model rankings, interface behavior, availability
+    and current 2026 performance require fresh verification.
+  verification_state: location_verified
+- id: SRC-0036-EX-0017
+  location:
+    pdf_page: 5
+    printed_page: 544
+    section: Table II
+    paragraph_or_table: Minimum, maximum, mean and standard deviation
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Mean syntax errors are 0 for ChatGPT, 0.13 for DeepSeek, 0 for Gemini and 3.2 for Qwen; mean
+    semantic errors are 4.33, 3.00, 3.27 and 3.40; mean completeness is 64.2, 58.3, 67.7 and 55.4 percent.
+  researcher_interpretation: No model leads every quality dimension, and syntax-valid models still make semantic
+    errors.
+  supported_proposition: The four models exhibit different descriptive strengths across syntax, semantics and completeness.
+  thesis_targets:
+  - chapter-3
+  - chapter-7
+  - chapter-8
+  temporal_caveat: Published in 2025 and based on model versions and free web interfaces available around June 2025.
+    The quality dimensions and error families remain relevant, but model rankings, interface behavior, availability
+    and current 2026 performance require fresh verification.
+  verification_state: location_verified
+- id: SRC-0036-EX-0018
+  location:
+    pdf_page: 5
+    printed_page: 544
+    section: Table III
+    paragraph_or_table: Pairwise fixed-effect estimates and p-values
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Qwen has highly significant syntax differences against ChatGPT, DeepSeek and Gemini; most
+    semantic and completeness comparisons are not statistically significant, while ChatGPT versus DeepSeek semantic
+    errors has p 0.086.
+  researcher_interpretation: The evidence supports one underlying Qwen syntax weakness rather than a stable overall
+    ranking.
+  supported_proposition: Most pairwise quality differences are not significant apart from Qwen's syntax performance.
+  thesis_targets:
+  - chapter-7
+  - chapter-8
+  temporal_caveat: Published in 2025 and based on model versions and free web interfaces available around June 2025.
+    The quality dimensions and error families remain relevant, but model rankings, interface behavior, availability
+    and current 2026 performance require fresh verification.
+  verification_state: location_verified
+- id: SRC-0036-EX-0019
+  location:
+    pdf_page: 5
+    printed_page: 544
+    section: 4.A RQ1 answer
+    paragraph_or_table: Model strengths and limitations
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: ChatGPT, DeepSeek and Gemini perform well on syntax; DeepSeek has the best semantic result;
+    all models exceed average completeness, with the proprietary models descriptively higher.
+  researcher_interpretation: The answer remains bounded to this corpus and source-described model categories.
+  supported_proposition: Each model has different capabilities and limitations in the evaluated cases.
+  thesis_targets:
+  - chapter-3
+  - chapter-7
+  temporal_caveat: Published in 2025 and based on model versions and free web interfaces available around June 2025.
+    The quality dimensions and error families remain relevant, but model rankings, interface behavior, availability
+    and current 2026 performance require fresh verification.
+  verification_state: location_verified
+- id: SRC-0036-EX-0020
+  location:
+    pdf_page: 5
+    printed_page: 544
+    section: 4.B RQ2 error categories
+    paragraph_or_table: Syntax error families
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Almost all syntax errors occur in Qwen diagrams, especially collections used instead of associations
+    and foreign-key-like attributes that reference other classes.
+  researcher_interpretation: A model may violate representation constraints in systematic, recurring ways that can
+    be checked automatically.
+  supported_proposition: Qwen's syntax weakness is concentrated in recurring collection and class-reference encodings.
+  thesis_targets:
+  - chapter-5
+  - chapter-7
+  temporal_caveat: Published in 2025 and based on model versions and free web interfaces available around June 2025.
+    The quality dimensions and error families remain relevant, but model rankings, interface behavior, availability
+    and current 2026 performance require fresh verification.
+  verification_state: location_verified
+- id: SRC-0036-EX-0021
+  location:
+    pdf_page: 5
+    printed_page: 544
+    section: 4.B RQ2 error categories
+    paragraph_or_table: Semantic relationship failures
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The most common semantic problems are wrong association type and wrong multiplicity; ChatGPT
+    has the most association-type errors and Qwen the most multiplicity errors.
+  researcher_interpretation: Relationship validation is a primary assurance gate for generated structural models.
+  supported_proposition: All four models struggle to represent associations coherently with domain specifications.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-7
+  temporal_caveat: Published in 2025 and based on model versions and free web interfaces available around June 2025.
+    The quality dimensions and error families remain relevant, but model rankings, interface behavior, availability
+    and current 2026 performance require fresh verification.
+  verification_state: location_verified
+- id: SRC-0036-EX-0022
+  location:
+    pdf_page: 6
+    printed_page: 545
+    section: Figure 2(a)
+    paragraph_or_table: Syntax category counts
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The chart reports 27 Qwen collectionAttribute errors, 19 Qwen and 2 DeepSeek foreignKeyAttribute
+    errors, and 3 Qwen unconnectedClass errors.
+  researcher_interpretation: The visual counts show that the syntax effect is not a diffuse average but a small
+    set of repeated failure modes.
+  supported_proposition: Qwen's syntax errors are concentrated in three identifiable categories.
+  thesis_targets:
+  - chapter-7
+  - chapter-8
+  temporal_caveat: Published in 2025 and based on model versions and free web interfaces available around June 2025.
+    The quality dimensions and error families remain relevant, but model rankings, interface behavior, availability
+    and current 2026 performance require fresh verification.
+  verification_state: location_verified
+- id: SRC-0036-EX-0023
+  location:
+    pdf_page: 6
+    printed_page: 545
+    section: Figure 2(b)
+    paragraph_or_table: Semantic category counts
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The chart reports wrongAssociationType counts of 35, 11, 19 and 14 and wrongMultiplicity
+    counts of 20, 24, 19 and 29 for ChatGPT, DeepSeek, Gemini and Qwen respectively; all other categories are much
+    smaller.
+  researcher_interpretation: Association semantics dominate the observed error burden and should be validated independently
+    of parser success.
+  supported_proposition: Wrong association type and wrong multiplicity are the dominant semantic error categories.
+  thesis_targets:
+  - chapter-5
+  - chapter-7
+  - chapter-8
+  temporal_caveat: Published in 2025 and based on model versions and free web interfaces available around June 2025.
+    The quality dimensions and error families remain relevant, but model rankings, interface behavior, availability
+    and current 2026 performance require fresh verification.
+  verification_state: location_verified
+- id: SRC-0036-EX-0024
+  location:
+    pdf_page: 6
+    printed_page: 545
+    section: 5 Threats to Validity
+    paragraph_or_table: Internal validity
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The authors identify evaluator dependence, potentially suboptimal prompting, few-shot overfitting
+    and the possibility that different models require different prompts.
+  researcher_interpretation: A shared prompt improves control but does not prove fair optimization across models.
+  supported_proposition: Prompt and evaluator choices are explicit threats to the comparative results.
+  thesis_targets:
+  - chapter-4
+  - chapter-8
+  temporal_caveat: Published in 2025 and based on model versions and free web interfaces available around June 2025.
+    The quality dimensions and error families remain relevant, but model rankings, interface behavior, availability
+    and current 2026 performance require fresh verification.
+  verification_state: location_verified
+- id: SRC-0036-EX-0025
+  location:
+    pdf_page: 6
+    printed_page: 545
+    section: 5 Threats to Validity
+    paragraph_or_table: Construct and external validity
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The selected metrics and error categories may be incomplete, the completeness ratio may be
+    simplistic, and results may not generalize to other class-diagram formats or modeling notations.
+  researcher_interpretation: The evidence must not be extended to industrial threat models or other views without
+    new evaluation.
+  supported_proposition: Metric coverage and generalization beyond the evaluated notation remain limited.
+  thesis_targets:
+  - chapter-4
+  - chapter-8
+  temporal_caveat: Published in 2025 and based on model versions and free web interfaces available around June 2025.
+    The quality dimensions and error families remain relevant, but model rankings, interface behavior, availability
+    and current 2026 performance require fresh verification.
+  verification_state: location_verified
+- id: SRC-0036-EX-0026
+  location:
+    pdf_page: 6
+    printed_page: 545
+    section: 6 Conclusion
+    paragraph_or_table: Interpretation and future work
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The authors interpret the four models as broadly capable with different strengths, identify
+    Qwen's syntax weakness as the significant result, and plan an API-based educational modeling assistant.
+  researcher_interpretation: The conclusion supports assisted candidate generation, not autonomous canonical modeling;
+    its 'overall correctness' wording is not a defined composite metric.
+  supported_proposition: The study motivates an API-based modeling assistant while retaining model-specific limitations.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-8
+  temporal_caveat: Published in 2025 and based on model versions and free web interfaces available around June 2025.
+    The quality dimensions and error families remain relevant, but model rankings, interface behavior, availability
+    and current 2026 performance require fresh verification.
+  verification_state: location_verified

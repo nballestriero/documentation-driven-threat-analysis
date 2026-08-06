@@ -1,5 +1,5 @@
 schema_version: 1
-last_updated: 2026-08-05
+last_updated: 2026-08-06
 sources:
   - source_id: SRC-0002
     landing_url: "https://discovery.ucl.ac.uk/id/eprint/749/"
@@ -179,4 +179,16 @@ sources:
     companion_repository_url: "https://zenodo.org/records/10911092"
     companion_repository_identifier: "10.5281/zenodo.10911092"
     companion_repository_identifier_reported_in_paper: "10.5281/zenodo.10579731"
+    companion_repository_status: public_replication_package_not_executed
+  - source_id: SRC-0036
+    landing_url: "https://iris.polito.it/handle/11583/3003614"
+    pdf_url: "https://iris.polito.it/retrieve/fcb32141-aea8-4d5e-9991-84a9088ca45d/A%20comparison%20of%20different%20Large%20Language%20Models%20for%20the%20generation%20of%20UML%20class%20diagrams.pdf"
+    access_type: open_access_repository_copy
+    licence: "IEEE Author's Accepted Manuscript; public access, all rights reserved; personal use permitted; redistribution and republication require permission"
+    local_filename: "SRC-0036-garaccione-calabrese-coppola-ardito-2025.pdf"
+    retrieved_on: "2026-08-06"
+    sha256: "7bdcc831571c7a1c0979bca8742c27020d637f034a98fb4bd339f015b625b019"
+    repository_storage: forbidden
+    companion_repository_url: "https://doi.org/10.6084/m9.figshare.29492624"
+    companion_repository_identifier: "10.6084/m9.figshare.29492624"
     companion_repository_status: public_replication_package_not_executed

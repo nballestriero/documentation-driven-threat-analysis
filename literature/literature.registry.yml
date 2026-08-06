@@ -1,6 +1,6 @@
 schema_version: 1
 corpus_status: working
-last_updated: 2026-08-05
+last_updated: 2026-08-06
 sources:
   - id: SRC-0001
     citation_key: shostack2014threat
@@ -278,6 +278,14 @@ sources:
     citation_key: ferrari2024modelgeneration
     title: "Model Generation with LLMs: From Requirements to UML Sequence Diagrams"
     year: 2024
+    type: primary_research
+    verification_state: verified
+    topics: [RE-NLP-LLM, MD-MDE, RE-TRACEABILITY, CS-HUMAN]
+    ddta_roles: [foundation, comparison, evaluation, challenge]
+  - id: SRC-0036
+    citation_key: garaccione2025llmcomparison
+    title: "A comparison of different Large Language Models for the generation of UML class diagrams"
+    year: 2025
     type: primary_research
     verification_state: verified
     topics: [RE-NLP-LLM, MD-MDE, RE-TRACEABILITY, CS-HUMAN]
