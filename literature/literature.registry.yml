@@ -250,3 +250,11 @@ sources:
     verification_state: verified
     topics: [TM-AUTOMATION, TM-STRIDE, MD-VIEW, CS-ASSURANCE]
     ddta_roles: [comparison, evaluation, challenge]
+  - id: SRC-0032
+    citation_key: lonetti2023mbstiot
+    title: "Model-based security testing in IoT systems: A Rapid Review"
+    year: 2023
+    type: secondary_review
+    verification_state: verified
+    topics: [TM-AUTOMATION, MD-MDE, CS-ASSURANCE, CS-DEVSECOPS]
+    ddta_roles: [comparison, evaluation, challenge]

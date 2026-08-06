@@ -139,3 +139,13 @@ sources:
     sha256: "36a3ce1b867d58b2997a298c42f283682fe9dd0e326763ca1cebe344c8db9ca2"
     repository_storage: forbidden
     companion_material_status: data_available_from_corresponding_author_on_request
+  - source_id: SRC-0032
+    landing_url: "https://www.sciencedirect.com/science/article/pii/S0950584923001817"
+    pdf_url: "https://openportal.isti.cnr.it/data/2023/486601/2023_486601.published.pdf?id=people______%3A%3A516e8758a488a149b6f9d945581332e6"
+    access_type: open_access_version_of_record
+    licence: "CC BY 4.0"
+    local_filename: "SRC-0032-lonetti-bertolino-di-giandomenico-2023.pdf"
+    retrieved_on: "2026-08-05"
+    sha256: "beb812227d804747cbad12e9d4421d897068940ed49b63c4029f190b67f09de5"
+    repository_storage: forbidden
+    companion_material_status: data_available_from_authors_on_request

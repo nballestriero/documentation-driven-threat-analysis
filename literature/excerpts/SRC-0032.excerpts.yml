@@ -1,0 +1,548 @@
+schema_version: 1
+source_id: SRC-0032
+citation_key: lonetti2023mbstiot
+source_version:
+  stable_identifier: 10.1016/j.infsof.2023.107326
+  edition_or_version: Information and Software Technology 164 (2023), article 107326; Version of Record
+  accessed_on: '2026-08-05'
+  local_filename: SRC-0032-lonetti-bertolino-di-giandomenico-2023.pdf
+  sha256: beb812227d804747cbad12e9d4421d897068940ed49b63c4029f190b67f09de5
+excerpts:
+- id: SRC-0032-EX-0001
+  location:
+    pdf_page: 1
+    printed_page: 1
+    section: Abstract
+    paragraph_or_table: Context, method and conclusion
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The Rapid Review examines model-based security testing for IoT, analyzes 803 publications,
+    selects 17 primary studies and classifies formalisms, test techniques, objectives, domains and attacks.
+  researcher_interpretation: The source provides a recent taxonomy of model-to-security-test generation, not
+    evidence for automatic document-to-model construction.
+  supported_proposition: The review is a systematic classification of MBST research in IoT.
+  thesis_targets:
+  - chapter-3
+  - chapter-4
+  - chapter-7
+  temporal_caveat: Rapid Review published in 2023 from searches completed in April 2022. The taxonomy and model-to-test
+    boundary remain relevant, while tool maturity, IoT technologies, attack coverage and industrial adoption
+    require contemporary corroboration. The 17 included studies were mostly exploratory and were not quality-scored.
+  verification_state: location_verified
+- id: SRC-0032-EX-0002
+  location:
+    pdf_page: 2
+    printed_page: 2
+    section: 1 Introduction
+    paragraph_or_table: MBT benefits and MBST scope
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: MBST specializes model-based testing for security requirements such as authentication,
+    authorization, confidentiality and integrity, and requires models enriched with security goals.
+  researcher_interpretation: Security properties must be first-class inputs to an MBST plugin.
+  supported_proposition: MBST is model-based testing of security requirements.
+  thesis_targets:
+  - chapter-2
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Rapid Review published in 2023 from searches completed in April 2022. The taxonomy and model-to-test
+    boundary remain relevant, while tool maturity, IoT technologies, attack coverage and industrial adoption
+    require contemporary corroboration. The 17 included studies were mostly exploratory and were not quality-scored.
+  verification_state: location_verified
+- id: SRC-0032-EX-0003
+  location:
+    pdf_page: 2
+    printed_page: 2
+    section: 2.1 Model-based security testing
+    paragraph_or_table: Three MBT steps
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The general MBT process builds a test model from requirements, specifications or the
+    SUT, defines test-selection criteria and automatically generates implementation-independent tests that
+    later require concretization.
+  researcher_interpretation: DDTA must separate source artifacts, test model, selection criteria, abstract
+    tests and executable tests.
+  supported_proposition: Abstract model-derived tests and concrete executable tests are distinct artifacts.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-6
+  temporal_caveat: Rapid Review published in 2023 from searches completed in April 2022. The taxonomy and model-to-test
+    boundary remain relevant, while tool maturity, IoT technologies, attack coverage and industrial adoption
+    require contemporary corroboration. The 17 included studies were mostly exploratory and were not quality-scored.
+  verification_state: location_verified
+- id: SRC-0032-EX-0004
+  location:
+    pdf_page: 3
+    printed_page: 3
+    section: 2.1 Model-based security testing
+    paragraph_or_table: UML, OCL and security profiles
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: UML class diagrams describe entities and structure; OCL supplies operations, parameters,
+    constraints, preconditions and postconditions; security profiles add security labels, policies or attack-surface
+    stereotypes.
+  researcher_interpretation: A useful security test projection may combine structural, behavioral and security
+    semantics.
+  supported_proposition: UML-based MBST commonly relies on supplementary constraint and security notations.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Rapid Review published in 2023 from searches completed in April 2022. The taxonomy and model-to-test
+    boundary remain relevant, while tool maturity, IoT technologies, attack coverage and industrial adoption
+    require contemporary corroboration. The 17 included studies were mostly exploratory and were not quality-scored.
+  verification_state: location_verified
+- id: SRC-0032-EX-0005
+  location:
+    pdf_page: 3
+    printed_page: 3
+    section: 2.1 Model-based security testing
+    paragraph_or_table: Timed automata and attack-tree transformation
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Timed automata model states, clocks and constraints and are supported by model checking;
+    attack trees can be transformed into price timed automata for security test extraction.
+  researcher_interpretation: Attack models and SUT behavior models may need explicit transformation provenance.
+  supported_proposition: Formal transformations can connect attack strategies to model-based test generation.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-6
+  temporal_caveat: Rapid Review published in 2023 from searches completed in April 2022. The taxonomy and model-to-test
+    boundary remain relevant, while tool maturity, IoT technologies, attack coverage and industrial adoption
+    require contemporary corroboration. The 17 included studies were mostly exploratory and were not quality-scored.
+  verification_state: location_verified
+- id: SRC-0032-EX-0006
+  location:
+    pdf_page: 4
+    printed_page: 4
+    section: 2.1 Model-based security testing
+    paragraph_or_table: Other formalisms and combined testing
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Other MBST representations include colored Petri nets, DFDs with threat templates, topology
+    graphs, semi-formal graphs and BPMN; MBST may also be combined with fuzzing or penetration testing.
+  researcher_interpretation: No single projection is sufficient for every security-testing objective.
+  supported_proposition: MBST uses heterogeneous representations and can compose with other security test strategies.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Rapid Review published in 2023 from searches completed in April 2022. The taxonomy and model-to-test
+    boundary remain relevant, while tool maturity, IoT technologies, attack coverage and industrial adoption
+    require contemporary corroboration. The 17 included studies were mostly exploratory and were not quality-scored.
+  verification_state: location_verified
+- id: SRC-0032-EX-0007
+  location:
+    pdf_page: 5
+    printed_page: 5
+    section: 4 Research method - Rapid Review
+    paragraph_or_table: Rapid Review characteristics
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: A Rapid Review follows a systematic protocol but may restrict sources, omit quality
+    assessment or simplify synthesis to reduce time and effort.
+  researcher_interpretation: The source's coverage is systematic but its evidence assurance is lower than a
+    full quality-assessed SLR.
+  supported_proposition: The chosen research method intentionally trades some review depth for timeliness.
+  thesis_targets:
+  - chapter-4
+  - chapter-7
+  temporal_caveat: Rapid Review published in 2023 from searches completed in April 2022. The taxonomy and model-to-test
+    boundary remain relevant, while tool maturity, IoT technologies, attack coverage and industrial adoption
+    require contemporary corroboration. The 17 included studies were mostly exploratory and were not quality-scored.
+  verification_state: location_verified
+- id: SRC-0032-EX-0008
+  location:
+    pdf_page: 6
+    printed_page: 6
+    section: 4.1.1 Research questions
+    paragraph_or_table: RQ1-RQ6
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The six questions cover model formalisms, testing objectives, generation and execution
+    techniques, IoT domains, targeted attacks and open challenges.
+  researcher_interpretation: These dimensions form a useful comparison schema for an MBST plugin landscape.
+  supported_proposition: The review classifies both model-to-test mechanics and the security scope of generated
+    tests.
+  thesis_targets:
+  - chapter-3
+  - chapter-4
+  temporal_caveat: Rapid Review published in 2023 from searches completed in April 2022. The taxonomy and model-to-test
+    boundary remain relevant, while tool maturity, IoT technologies, attack coverage and industrial adoption
+    require contemporary corroboration. The 17 included studies were mostly exploratory and were not quality-scored.
+  verification_state: location_verified
+- id: SRC-0032-EX-0009
+  location:
+    pdf_page: 6
+    printed_page: 6
+    section: 4.1.2 Selection process
+    paragraph_or_table: Full-text review and exclusions
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Every candidate full text was read by two authors; classical fuzzing or penetration
+    testing without explicit models and model verification without derived tests were excluded.
+  researcher_interpretation: The review preserves a clear boundary between model verification and model-based
+    test derivation.
+  supported_proposition: An approach counts as MBST only when at least abstract test cases are derived.
+  thesis_targets:
+  - chapter-3
+  - chapter-4
+  - chapter-5
+  temporal_caveat: Rapid Review published in 2023 from searches completed in April 2022. The taxonomy and model-to-test
+    boundary remain relevant, while tool maturity, IoT technologies, attack coverage and industrial adoption
+    require contemporary corroboration. The 17 included studies were mostly exploratory and were not quality-scored.
+  verification_state: location_verified
+- id: SRC-0032-EX-0010
+  location:
+    pdf_page: 7
+    printed_page: 7
+    section: 4.1.3 Data collection
+    paragraph_or_table: Figure 2 selection counts
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The November 2021 search returned 667 records and yielded 16 included studies after
+    screening and snowballing; an April 2022 update examined 116 new records and added one study, for 17 total.
+  researcher_interpretation: The evidence horizon ends in April 2022 despite publication in 2023.
+  supported_proposition: Seventeen primary studies form the final Rapid Review corpus.
+  thesis_targets:
+  - chapter-3
+  - chapter-4
+  - chapter-7
+  temporal_caveat: Rapid Review published in 2023 from searches completed in April 2022. The taxonomy and model-to-test
+    boundary remain relevant, while tool maturity, IoT technologies, attack coverage and industrial adoption
+    require contemporary corroboration. The 17 included studies were mostly exploratory and were not quality-scored.
+  verification_state: location_verified
+- id: SRC-0032-EX-0011
+  location:
+    pdf_page: 8
+    printed_page: 8
+    section: 5 Data analysis - RQ1
+    paragraph_or_table: Model formalisms
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: UML class diagrams are used in 7 of 17 studies and are complemented by OCL in six of
+    those cases; timed automata and extensions appear in 5 studies.
+  researcher_interpretation: Formalism prevalence reflects the test-generation techniques available for each
+    model family.
+  supported_proposition: UML with OCL and timed automata are the most frequent MBST formalisms in the corpus.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Rapid Review published in 2023 from searches completed in April 2022. The taxonomy and model-to-test
+    boundary remain relevant, while tool maturity, IoT technologies, attack coverage and industrial adoption
+    require contemporary corroboration. The 17 included studies were mostly exploratory and were not quality-scored.
+  verification_state: location_verified
+- id: SRC-0032-EX-0012
+  location:
+    pdf_page: 8
+    printed_page: 8
+    section: 5 Data analysis - RQ1
+    paragraph_or_table: Attack and threat models
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Attack trees occur in 4 studies, while threat templates occur in 2; one approach derives
+    a threat model automatically from a MACM system model.
+  researcher_interpretation: Model transformations must identify source model, target model, rule and loss
+    of semantics.
+  supported_proposition: Attack models are supplementary inputs for a substantial subset of reviewed MBST approaches.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-6
+  temporal_caveat: Rapid Review published in 2023 from searches completed in April 2022. The taxonomy and model-to-test
+    boundary remain relevant, while tool maturity, IoT technologies, attack coverage and industrial adoption
+    require contemporary corroboration. The 17 included studies were mostly exploratory and were not quality-scored.
+  verification_state: location_verified
+- id: SRC-0032-EX-0013
+  location:
+    pdf_page: 10
+    printed_page: 10
+    section: 5 Data analysis - RQ2
+    paragraph_or_table: Testing objectives
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: All included studies target security, with objectives including vulnerability discovery,
+    authentication, authorization, encryption, certification, risk analysis, robustness, conformance, monitoring
+    and selected performance concerns.
+  researcher_interpretation: A test result must be linked to a declared objective and security property rather
+    than treated as generic assurance.
+  supported_proposition: MBST objectives are heterogeneous even within a security-focused corpus.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-7
+  temporal_caveat: Rapid Review published in 2023 from searches completed in April 2022. The taxonomy and model-to-test
+    boundary remain relevant, while tool maturity, IoT technologies, attack coverage and industrial adoption
+    require contemporary corroboration. The 17 included studies were mostly exploratory and were not quality-scored.
+  verification_state: location_verified
+- id: SRC-0032-EX-0014
+  location:
+    pdf_page: 10
+    printed_page: 10
+    section: 5 Data analysis - RQ3
+    paragraph_or_table: Coverage and security test purposes
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: More than 40 percent of studies use model-coverage criteria, but ordinary behavioral
+    coverage is considered insufficient for security; additional security test purposes are used to trigger
+    unexpected behavior or bypass mechanisms.
+  researcher_interpretation: Coverage criteria and security objectives require separate semantics.
+  supported_proposition: Model coverage alone is not sufficient to define security test adequacy.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-7
+  temporal_caveat: Rapid Review published in 2023 from searches completed in April 2022. The taxonomy and model-to-test
+    boundary remain relevant, while tool maturity, IoT technologies, attack coverage and industrial adoption
+    require contemporary corroboration. The 17 included studies were mostly exploratory and were not quality-scored.
+  verification_state: location_verified
+- id: SRC-0032-EX-0015
+  location:
+    pdf_page: 10
+    printed_page: 10
+    section: 5 Data analysis - RQ3
+    paragraph_or_table: Model checking and test generation
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Almost 30 percent of reviewed validation techniques combine formal verification and
+    MBST; four studies formulate test generation as a reachability problem and use UPPAAL-related techniques.
+  researcher_interpretation: Verification evidence and executable test evidence must remain distinct but traceable.
+  supported_proposition: Some MBST approaches derive tests from formally explored state spaces.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-6
+  temporal_caveat: Rapid Review published in 2023 from searches completed in April 2022. The taxonomy and model-to-test
+    boundary remain relevant, while tool maturity, IoT technologies, attack coverage and industrial adoption
+    require contemporary corroboration. The 17 included studies were mostly exploratory and were not quality-scored.
+  verification_state: location_verified
+- id: SRC-0032-EX-0016
+  location:
+    pdf_page: 11
+    printed_page: 11
+    section: 5 Data analysis - RQ3
+    paragraph_or_table: Abstract test formats and execution
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: TTCN-3 is the most common abstract test format, used in about 40 percent of studies;
+    TITAN is the most frequent execution tool, and test adapters translate abstract messages to concrete system
+    interactions.
+  researcher_interpretation: Adapter version and translation behavior are part of the evidence chain.
+  supported_proposition: Executable MBST requires a concretization layer between abstract tests and the SUT.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-6
+  temporal_caveat: Rapid Review published in 2023 from searches completed in April 2022. The taxonomy and model-to-test
+    boundary remain relevant, while tool maturity, IoT technologies, attack coverage and industrial adoption
+    require contemporary corroboration. The 17 included studies were mostly exploratory and were not quality-scored.
+  verification_state: location_verified
+- id: SRC-0032-EX-0017
+  location:
+    pdf_page: 11
+    printed_page: 11
+    section: 5 Data analysis - RQ4
+    paragraph_or_table: Application domains
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Automotive and smart cities are the most represented domains, with three studies each;
+    healthcare and smart home appear once each, while several studies do not specify a domain.
+  researcher_interpretation: IoT evidence is not evenly distributed across domains.
+  supported_proposition: The reviewed MBST evidence concentrates on a small number of IoT domains.
+  thesis_targets:
+  - chapter-3
+  - chapter-7
+  temporal_caveat: Rapid Review published in 2023 from searches completed in April 2022. The taxonomy and model-to-test
+    boundary remain relevant, while tool maturity, IoT technologies, attack coverage and industrial adoption
+    require contemporary corroboration. The 17 included studies were mostly exploratory and were not quality-scored.
+  verification_state: location_verified
+- id: SRC-0032-EX-0018
+  location:
+    pdf_page: 11
+    printed_page: 11
+    section: 5 Data analysis - RQ5
+    paragraph_or_table: Table 6 attack coverage
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Denial of Service is addressed by 8 studies, eavesdropping by 5, dictionary and brute-force
+    attacks by 4 each, and several other attack classes by fewer studies.
+  researcher_interpretation: Frequency of tested attacks is not equivalent to comprehensive attack coverage.
+  supported_proposition: The reviewed MBST literature targets a limited and uneven set of IoT attacks.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-7
+  temporal_caveat: Rapid Review published in 2023 from searches completed in April 2022. The taxonomy and model-to-test
+    boundary remain relevant, while tool maturity, IoT technologies, attack coverage and industrial adoption
+    require contemporary corroboration. The 17 included studies were mostly exploratory and were not quality-scored.
+  verification_state: location_verified
+- id: SRC-0032-EX-0019
+  location:
+    pdf_page: 12
+    printed_page: 12
+    section: 6 Challenges, gaps and future research directions
+    paragraph_or_table: Model complexity and automation
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Model definition can be expensive and complex; large heterogeneous IoT systems make
+    full automation difficult and motivate modular, reusable models.
+  researcher_interpretation: Automation claims must account for model-construction and maintenance cost.
+  supported_proposition: Model complexity is a primary obstacle to scalable MBST automation.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-7
+  temporal_caveat: Rapid Review published in 2023 from searches completed in April 2022. The taxonomy and model-to-test
+    boundary remain relevant, while tool maturity, IoT technologies, attack coverage and industrial adoption
+    require contemporary corroboration. The 17 included studies were mostly exploratory and were not quality-scored.
+  verification_state: location_verified
+- id: SRC-0032-EX-0020
+  location:
+    pdf_page: 12
+    printed_page: 12
+    section: 6 Challenges, gaps and future research directions
+    paragraph_or_table: Dynamic evolution and context awareness
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Most reviewed modelling solutions do not explicitly represent dynamic evolution and
+    context awareness, although IoT entities, deployment conditions and interactions can change at runtime.
+  researcher_interpretation: Versioning and stale detection are necessary for continuous MBST.
+  supported_proposition: Dynamic and context-aware test modelling remains an open research problem.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-7
+  temporal_caveat: Rapid Review published in 2023 from searches completed in April 2022. The taxonomy and model-to-test
+    boundary remain relevant, while tool maturity, IoT technologies, attack coverage and industrial adoption
+    require contemporary corroboration. The 17 included studies were mostly exploratory and were not quality-scored.
+  verification_state: location_verified
+- id: SRC-0032-EX-0021
+  location:
+    pdf_page: 13
+    printed_page: 13
+    section: 6 Challenges, gaps and future research directions
+    paragraph_or_table: Hybrid strategies and open components
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: More than 30 percent of studies combine MBT with penetration testing, fuzzing or model
+    inference; the review also identifies open hardware and open software as under-addressed modelling and
+    validation challenges.
+  researcher_interpretation: DDTA should allow test-strategy composition and explicit unsupported-component
+    states.
+  supported_proposition: Hybrid security-testing strategies are a significant research direction for IoT MBST.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-6
+  temporal_caveat: Rapid Review published in 2023 from searches completed in April 2022. The taxonomy and model-to-test
+    boundary remain relevant, while tool maturity, IoT technologies, attack coverage and industrial adoption
+    require contemporary corroboration. The 17 included studies were mostly exploratory and were not quality-scored.
+  verification_state: location_verified
+- id: SRC-0032-EX-0022
+  location:
+    pdf_page: 13
+    printed_page: 13
+    section: 6 Challenges, gaps and future research directions
+    paragraph_or_table: Attack taxonomy coverage
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The attacks addressed by the selected studies cover about 40 percent of the adopted
+    IoT attack taxonomy, with network and software attacks comparatively underrepresented.
+  researcher_interpretation: Passing a generated suite cannot support a global security-completeness claim.
+  supported_proposition: The surveyed MBST approaches have partial attack-class coverage.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-7
+  - chapter-8
+  temporal_caveat: Rapid Review published in 2023 from searches completed in April 2022. The taxonomy and model-to-test
+    boundary remain relevant, while tool maturity, IoT technologies, attack coverage and industrial adoption
+    require contemporary corroboration. The 17 included studies were mostly exploratory and were not quality-scored.
+  verification_state: location_verified
+- id: SRC-0032-EX-0023
+  location:
+    pdf_page: 13
+    printed_page: 13
+    section: 7 Threats to validity
+    paragraph_or_table: Internal, construct and external validity
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The authors mitigate selection and classification subjectivity through random assignment,
+    dual full-text reading and plenary discussion, but acknowledge one-database search, search-string sensitivity,
+    omitted quality assessment and limited generalizability.
+  researcher_interpretation: The review is disciplined but does not establish the quality or maturity of each
+    primary study.
+  supported_proposition: Rapid Review limitations narrow confidence in the strength and completeness of the
+    evidence base.
+  thesis_targets:
+  - chapter-4
+  - chapter-7
+  - chapter-8
+  temporal_caveat: Rapid Review published in 2023 from searches completed in April 2022. The taxonomy and model-to-test
+    boundary remain relevant, while tool maturity, IoT technologies, attack coverage and industrial adoption
+    require contemporary corroboration. The 17 included studies were mostly exploratory and were not quality-scored.
+  verification_state: location_verified
+- id: SRC-0032-EX-0024
+  location:
+    pdf_page: 14
+    printed_page: 14
+    section: 8 Discussion and conclusion
+    paragraph_or_table: Summary and future research
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The selected approaches are mostly exploratory, real-size empirical comparisons are
+    missing, and future work should extend formalisms, support modular context-aware evolution and combine
+    MBST with other security strategies.
+  researcher_interpretation: The field is promising but not shown to be industrially mature or complete.
+  supported_proposition: Large-scale validation and dynamic, compositional modelling remain open.
+  thesis_targets:
+  - chapter-3
+  - chapter-7
+  - chapter-8
+  temporal_caveat: Rapid Review published in 2023 from searches completed in April 2022. The taxonomy and model-to-test
+    boundary remain relevant, while tool maturity, IoT technologies, attack coverage and industrial adoption
+    require contemporary corroboration. The 17 included studies were mostly exploratory and were not quality-scored.
+  verification_state: location_verified
+- id: SRC-0032-EX-0025
+  location:
+    pdf_page: 14
+    printed_page: 14
+    section: Data availability
+    paragraph_or_table: Availability statement
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The review data are stated to be available on request.
+  researcher_interpretation: No directly linked public replication package is supplied by the paper.
+  supported_proposition: Reproduction materials are request-based.
+  thesis_targets:
+  - chapter-4
+  - chapter-7
+  temporal_caveat: Rapid Review published in 2023 from searches completed in April 2022. The taxonomy and model-to-test
+    boundary remain relevant, while tool maturity, IoT technologies, attack coverage and industrial adoption
+    require contemporary corroboration. The 17 included studies were mostly exploratory and were not quality-scored.
+  verification_state: location_verified
