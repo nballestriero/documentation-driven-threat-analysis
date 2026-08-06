@@ -158,3 +158,12 @@ sources:
     retrieved_on: "2026-08-06"
     sha256: "17304eaf61ba7190dcf502cc5af4013a43ed8a3862c6d2a5f25ac0ae1360bd1f"
     repository_storage: forbidden
+  - source_id: SRC-0034
+    landing_url: "https://doi.org/10.1016/j.infsof.2019.01.004"
+    pdf_url: "https://run.unl.pt/server/api/core/bitstreams/cc8ef809-78b1-4211-9b29-d43c0dc86b14/content"
+    access_type: institutional_repository_copy
+    licence: "Publisher-formatted repository copy; PDF states copyright 2019 Elsevier B.V. All rights reserved"
+    local_filename: "SRC-0034-souza-moreira-goulao-2019.pdf"
+    retrieved_on: "2026-08-06"
+    sha256: "7560a403216ba0df46be238bf7bf075ef016be2c028182aa6d8a4ee28fd22adf"
+    repository_storage: forbidden

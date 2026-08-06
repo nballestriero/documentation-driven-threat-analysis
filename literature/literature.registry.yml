@@ -266,3 +266,11 @@ sources:
     verification_state: verified
     topics: [RE-NLP-LLM, MD-MDE, RE-TRACEABILITY, CS-HUMAN]
     ddta_roles: [foundation, comparison, evaluation, challenge]
+  - id: SRC-0034
+    citation_key: souza2019architecturalmodels
+    title: "Deriving architectural models from requirements specifications: A systematic mapping study"
+    year: 2019
+    type: secondary_review
+    verification_state: verified
+    topics: [DE-ARCH, MD-MDE, RE-TRACEABILITY, CS-HUMAN]
+    ddta_roles: [foundation, comparison, evaluation, challenge]

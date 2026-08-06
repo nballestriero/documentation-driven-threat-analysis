@@ -1,0 +1,654 @@
+schema_version: 1
+source_id: SRC-0034
+citation_key: souza2019architecturalmodels
+source_version:
+  stable_identifier: 10.1016/j.infsof.2019.01.004
+  edition_or_version: Information and Software Technology 109 (2019), pages 26-39; publisher-formatted institutional
+    repository copy
+  accessed_on: '2026-08-06'
+  local_filename: SRC-0034-souza-moreira-goulao-2019.pdf
+  sha256: 7560a403216ba0df46be238bf7bf075ef016be2c028182aa6d8a4ee28fd22adf
+excerpts:
+- id: SRC-0034-EX-0001
+  location:
+    pdf_page: 1
+    printed_page: 26
+    section: Abstract
+    paragraph_or_table: Aim, method and headline results
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The mapping study reviews methods that derive architectural models from requirements specifications,
+    selects 39 studies from 2575 records and reports heavy dependence on architects' tacit knowledge, weak support
+    for inexperienced architects and limited explicit evaluation.
+  researcher_interpretation: The source maps a requirements-to-architecture boundary rather than validating one
+    complete derivation method.
+  supported_proposition: Requirements-to-architecture methods remain strongly dependent on expert judgment and
+    weak evaluation.
+  thesis_targets:
+  - chapter-3
+  - chapter-4
+  - chapter-7
+  temporal_caveat: Historical systematic mapping study published in 2019. The 39 selected primary studies extend
+    through the mid-2010s and the paper does not establish the state of requirements-to-architecture automation,
+    traceability, tool maturity or LLM-based support in 2026. Its boundary findings on tacit knowledge, partial
+    automation, multi-view architecture and weak validation remain conceptually relevant.
+  verification_state: location_verified
+- id: SRC-0034-EX-0002
+  location:
+    pdf_page: 1
+    printed_page: 26
+    section: 1 Introduction
+    paragraph_or_table: Architecture versus design and three activities
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Software architecture identifies high-level elements, interactions and constraints; its
+    creation requires understanding the problem, finding a solution and evaluating that solution.
+  researcher_interpretation: DDTA must separate problem interpretation, architectural synthesis and architectural
+    evaluation instead of treating derivation as one transformation.
+  supported_proposition: Architecture derivation contains distinct analysis, synthesis and evaluation responsibilities.
+  thesis_targets:
+  - chapter-2
+  - chapter-5
+  temporal_caveat: Historical systematic mapping study published in 2019. The 39 selected primary studies extend
+    through the mid-2010s and the paper does not establish the state of requirements-to-architecture automation,
+    traceability, tool maturity or LLM-based support in 2026. Its boundary findings on tacit knowledge, partial
+    automation, multi-view architecture and weak validation remain conceptually relevant.
+  verification_state: location_verified
+- id: SRC-0034-EX-0003
+  location:
+    pdf_page: 1
+    printed_page: 26
+    section: 1 Introduction
+    paragraph_or_table: Trade-offs and problem-to-solution transition
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Architectural choices balance application-domain forces, quality attributes, patterns and
+    styles, and conflicting quality attributes can pull the solution in different directions.
+  researcher_interpretation: Requirements do not determine a unique architecture; alternatives and trade-off rationale
+    are first-class evidence.
+  supported_proposition: Architecture selection requires explicit trade-off decisions among competing concerns.
+  thesis_targets:
+  - chapter-2
+  - chapter-5
+  - chapter-6
+  temporal_caveat: Historical systematic mapping study published in 2019. The 39 selected primary studies extend
+    through the mid-2010s and the paper does not establish the state of requirements-to-architecture automation,
+    traceability, tool maturity or LLM-based support in 2026. Its boundary findings on tacit knowledge, partial
+    automation, multi-view architecture and weak validation remain conceptually relevant.
+  verification_state: location_verified
+- id: SRC-0034-EX-0004
+  location:
+    pdf_page: 2
+    printed_page: 27
+    section: 1 Introduction
+    paragraph_or_table: Study goal and classification dimensions
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The study classifies derivation methods by context, benefits to users, content and validation
+    and proposes a research roadmap.
+  researcher_interpretation: These dimensions provide a reusable assessment structure for a DDTA requirements-to-architecture
+    plugin.
+  supported_proposition: The mapping study evaluates derivation methods across four NIMSAD dimensions.
+  thesis_targets:
+  - chapter-3
+  - chapter-4
+  temporal_caveat: Historical systematic mapping study published in 2019. The 39 selected primary studies extend
+    through the mid-2010s and the paper does not establish the state of requirements-to-architecture automation,
+    traceability, tool maturity or LLM-based support in 2026. Its boundary findings on tacit knowledge, partial
+    automation, multi-view architecture and weak validation remain conceptually relevant.
+  verification_state: location_verified
+- id: SRC-0034-EX-0005
+  location:
+    pdf_page: 2
+    printed_page: 27
+    section: 2.1 Planning
+    paragraph_or_table: Research question and search strategy
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The research question asks which methods have been proposed to derive software-architecture
+    models from requirements specifications; the search combines four digital libraries, forward snowballing and
+    expert suggestions without date restrictions.
+  researcher_interpretation: The review seeks breadth but remains bounded by its terminology and accessible literature.
+  supported_proposition: The study systematically maps requirements-to-architecture derivation methods without
+    a date restriction.
+  thesis_targets:
+  - chapter-4
+  - chapter-7
+  temporal_caveat: Historical systematic mapping study published in 2019. The 39 selected primary studies extend
+    through the mid-2010s and the paper does not establish the state of requirements-to-architecture automation,
+    traceability, tool maturity or LLM-based support in 2026. Its boundary findings on tacit knowledge, partial
+    automation, multi-view architecture and weak validation remain conceptually relevant.
+  verification_state: location_verified
+- id: SRC-0034-EX-0006
+  location:
+    pdf_page: 3
+    printed_page: 28
+    section: 2.1.6 Assessing the quality of the studies
+    paragraph_or_table: Table 3 and QA1-QA4
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Quality assessment combines method and architecture-description criteria, evaluation and
+    limitations with venue ranking and citation-based criteria; the authors clarify that the score measures alignment
+    with the derivation question rather than overall paper quality.
+  researcher_interpretation: The corpus has an explicit relevance-oriented quality gate, but bibliometric criteria
+    do not normalize empirical strength.
+  supported_proposition: Included studies pass a stated derivation-focused and bibliometric quality assessment.
+  thesis_targets:
+  - chapter-4
+  - chapter-7
+  temporal_caveat: Historical systematic mapping study published in 2019. The 39 selected primary studies extend
+    through the mid-2010s and the paper does not establish the state of requirements-to-architecture automation,
+    traceability, tool maturity or LLM-based support in 2026. Its boundary findings on tacit knowledge, partial
+    automation, multi-view architecture and weak validation remain conceptually relevant.
+  verification_state: location_verified
+- id: SRC-0034-EX-0007
+  location:
+    pdf_page: 4
+    printed_page: 29
+    section: 2.1.7 Collecting the data
+    paragraph_or_table: Table 4 NIMSAD decomposition
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Data extraction covers goals, domains, starting artifacts, user benefits, limitations,
+    analysis-synthesis-evaluation coverage, viewpoints, notations, tool automation and evaluation of methods and
+    outputs.
+  researcher_interpretation: The extraction schema captures architecture-method structure but not source-level
+    provenance, confidence or change propagation.
+  supported_proposition: The review uses a structured classification of inputs, outputs, automation and validation.
+  thesis_targets:
+  - chapter-4
+  - chapter-5
+  temporal_caveat: Historical systematic mapping study published in 2019. The 39 selected primary studies extend
+    through the mid-2010s and the paper does not establish the state of requirements-to-architecture automation,
+    traceability, tool maturity or LLM-based support in 2026. Its boundary findings on tacit knowledge, partial
+    automation, multi-view architecture and weak validation remain conceptually relevant.
+  verification_state: location_verified
+- id: SRC-0034-EX-0008
+  location:
+    pdf_page: 4
+    printed_page: 29
+    section: 2.1.8 Reviewing the protocol
+    paragraph_or_table: External review, pilot and checklist
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Three external reviewers assessed the protocol, which was refined after feedback; the authors
+    also ran a pilot and applied Fabbri's checklist.
+  researcher_interpretation: Protocol review strengthens the secondary study even though primary-study evidence
+    remains heterogeneous.
+  supported_proposition: The mapping-study protocol received external review and pilot validation.
+  thesis_targets:
+  - chapter-4
+  temporal_caveat: Historical systematic mapping study published in 2019. The 39 selected primary studies extend
+    through the mid-2010s and the paper does not establish the state of requirements-to-architecture automation,
+    traceability, tool maturity or LLM-based support in 2026. Its boundary findings on tacit knowledge, partial
+    automation, multi-view architecture and weak validation remain conceptually relevant.
+  verification_state: location_verified
+- id: SRC-0034-EX-0009
+  location:
+    pdf_page: 5
+    printed_page: 30
+    section: 2.2 Conduction
+    paragraph_or_table: Table 6 filtering flow
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The search retrieved 2575 candidates and the final analysis contains 39 studies after selection
+    and quality assessment.
+  researcher_interpretation: 'Table 6 contains an arithmetic discrepancy in the ScienceDirect column: the listed
+    inclusions and exclusions yield eight, while the displayed total is nine; the final total of 39 depends on
+    that value.'
+  supported_proposition: Thirty-nine primary studies form the final corpus, with an unresolved table-arithmetic
+    discrepancy.
+  thesis_targets:
+  - chapter-4
+  - chapter-7
+  temporal_caveat: Historical systematic mapping study published in 2019. The 39 selected primary studies extend
+    through the mid-2010s and the paper does not establish the state of requirements-to-architecture automation,
+    traceability, tool maturity or LLM-based support in 2026. Its boundary findings on tacit knowledge, partial
+    automation, multi-view architecture and weak validation remain conceptually relevant.
+  verification_state: location_verified
+- id: SRC-0034-EX-0010
+  location:
+    pdf_page: 5
+    printed_page: 30
+    section: 3.2 Context
+    paragraph_or_table: Tacit knowledge and subjective artifact quality
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Even where support tools exist, reported architectural decisions rely on architects' experience
+    and intuition, and artifact quality is evaluated subjectively when it is evaluated at all.
+  researcher_interpretation: Transformation rules do not remove architectural judgment or provide objective assurance.
+  supported_proposition: Architectural decision-making remains dependent on tacit expert knowledge.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-7
+  temporal_caveat: Historical systematic mapping study published in 2019. The 39 selected primary studies extend
+    through the mid-2010s and the paper does not establish the state of requirements-to-architecture automation,
+    traceability, tool maturity or LLM-based support in 2026. Its boundary findings on tacit knowledge, partial
+    automation, multi-view architecture and weak validation remain conceptually relevant.
+  verification_state: location_verified
+- id: SRC-0034-EX-0011
+  location:
+    pdf_page: 5
+    printed_page: 30
+    section: 3.2 Context
+    paragraph_or_table: Requirements and NFR coverage
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: All 39 studies address functional requirements and 30 also address non-functional requirements;
+    product NFRs dominate, organizational NFRs are less common and only one study covers external NFRs.
+  researcher_interpretation: A derivation boundary that ignores external and organizational concerns risks losing
+    business, policy and environmental forces.
+  supported_proposition: The reviewed methods underrepresent external non-functional requirements.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Historical systematic mapping study published in 2019. The 39 selected primary studies extend
+    through the mid-2010s and the paper does not establish the state of requirements-to-architecture automation,
+    traceability, tool maturity or LLM-based support in 2026. Its boundary findings on tacit knowledge, partial
+    automation, multi-view architecture and weak validation remain conceptually relevant.
+  verification_state: location_verified
+- id: SRC-0034-EX-0012
+  location:
+    pdf_page: 5
+    printed_page: 30
+    section: 3.2 Context
+    paragraph_or_table: Figure 1 and input representations
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Twenty studies use textual requirements, eight goal-oriented models, six unspecified inputs,
+    two feature models, two problem frames and one sequence diagram.
+  researcher_interpretation: The field is requirements-primary but frequently model-mediated; input representation
+    must be declared explicitly.
+  supported_proposition: Textual specifications are the largest input group, but several structured requirement
+    models are also used.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Historical systematic mapping study published in 2019. The 39 selected primary studies extend
+    through the mid-2010s and the paper does not establish the state of requirements-to-architecture automation,
+    traceability, tool maturity or LLM-based support in 2026. Its boundary findings on tacit knowledge, partial
+    automation, multi-view architecture and weak validation remain conceptually relevant.
+  verification_state: location_verified
+- id: SRC-0034-EX-0013
+  location:
+    pdf_page: 5
+    printed_page: 30
+    section: 3.2 Context
+    paragraph_or_table: Textual-requirements subgroups
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Among the 20 textual-input studies, nine use use cases, four construct intermediate models,
+    two cluster requirements and five do not describe input structure sufficiently.
+  researcher_interpretation: Text-to-architecture commonly passes through structured scenarios, taxonomies, languages,
+    clustering or other intermediate artifacts.
+  supported_proposition: Textual requirements are often transformed through an explicit or implicit intermediate
+    representation.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Historical systematic mapping study published in 2019. The 39 selected primary studies extend
+    through the mid-2010s and the paper does not establish the state of requirements-to-architecture automation,
+    traceability, tool maturity or LLM-based support in 2026. Its boundary findings on tacit knowledge, partial
+    automation, multi-view architecture and weak validation remain conceptually relevant.
+  verification_state: location_verified
+- id: SRC-0034-EX-0014
+  location:
+    pdf_page: 6
+    printed_page: 31
+    section: 3.3 Benefits to the users
+    paragraph_or_table: Benefit counts and traceability
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Thirty-three studies claim architecture derivation, 12 requirements understanding, 12 decision
+    support, six knowledge reuse, two improved modularization and only one requirements-to-architecture traceability.
+  researcher_interpretation: Derivation is common as a claimed benefit, while maintained traceability is exceptional.
+  supported_proposition: Explicit requirements-to-architecture traceability appears as a benefit in only one study.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-7
+  temporal_caveat: Historical systematic mapping study published in 2019. The 39 selected primary studies extend
+    through the mid-2010s and the paper does not establish the state of requirements-to-architecture automation,
+    traceability, tool maturity or LLM-based support in 2026. Its boundary findings on tacit knowledge, partial
+    automation, multi-view architecture and weak validation remain conceptually relevant.
+  verification_state: location_verified
+- id: SRC-0034-EX-0015
+  location:
+    pdf_page: 6
+    printed_page: 31
+    section: 3.3 Benefits to the users
+    paragraph_or_table: Reported method limitations
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Thirty-two studies do not clearly state limitations; reported problems include immaturity,
+    absent tools, weak requirements understanding, underspecified decisions, artifact inconsistency, semantic
+    loss and missing traceability.
+  researcher_interpretation: Semantic preservation, decision provenance and artifact consistency are unresolved
+    requirements for DDTA.
+  supported_proposition: Most primary studies omit limitations and the stated limitations include semantic and
+    traceability failures.
+  thesis_targets:
+  - chapter-4
+  - chapter-5
+  - chapter-7
+  temporal_caveat: Historical systematic mapping study published in 2019. The 39 selected primary studies extend
+    through the mid-2010s and the paper does not establish the state of requirements-to-architecture automation,
+    traceability, tool maturity or LLM-based support in 2026. Its boundary findings on tacit knowledge, partial
+    automation, multi-view architecture and weak validation remain conceptually relevant.
+  verification_state: location_verified
+- id: SRC-0034-EX-0016
+  location:
+    pdf_page: 6
+    printed_page: 31
+    section: 3.4 Content
+    paragraph_or_table: Analysis-synthesis-evaluation coverage
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Only eight studies cover understanding the problem, finding a solution and evaluating it;
+    most methods cover incomplete combinations and are described too coarsely for reliable replication.
+  researcher_interpretation: An architecture artifact cannot be governed independently of the problem evidence
+    and evaluation that justify it.
+  supported_proposition: End-to-end analysis, synthesis and evaluation coverage is uncommon.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-7
+  temporal_caveat: Historical systematic mapping study published in 2019. The 39 selected primary studies extend
+    through the mid-2010s and the paper does not establish the state of requirements-to-architecture automation,
+    traceability, tool maturity or LLM-based support in 2026. Its boundary findings on tacit knowledge, partial
+    automation, multi-view architecture and weak validation remain conceptually relevant.
+  verification_state: location_verified
+- id: SRC-0034-EX-0017
+  location:
+    pdf_page: 6
+    printed_page: 31
+    section: 3.4 Content
+    paragraph_or_table: Architectural-view names
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Nineteen studies do not name their views and the remaining studies use 28 view names, sometimes
+    using the same name for different purposes or different names for the same purpose.
+  researcher_interpretation: View identity needs explicit semantics rather than label matching.
+  supported_proposition: The primary studies lack a shared architectural-view vocabulary.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Historical systematic mapping study published in 2019. The 39 selected primary studies extend
+    through the mid-2010s and the paper does not establish the state of requirements-to-architecture automation,
+    traceability, tool maturity or LLM-based support in 2026. Its boundary findings on tacit knowledge, partial
+    automation, multi-view architecture and weak validation remain conceptually relevant.
+  verification_state: location_verified
+- id: SRC-0034-EX-0018
+  location:
+    pdf_page: 7
+    printed_page: 32
+    section: 3.4 Content
+    paragraph_or_table: Figure 2 and 4+1 normalization
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The authors normalize 80 view instances to Kruchten's 4+1 model; the development view becomes
+    the largest mapped group, while useful variability, quality, customer, crosscutting and other views remain
+    unmapped.
+  researcher_interpretation: A normalized multi-view projection aids comparison but may lose concerns not represented
+    by the chosen baseline.
+  supported_proposition: Architectural views are heterogeneous and cannot be assumed to map losslessly to one
+    view model.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-7
+  temporal_caveat: Historical systematic mapping study published in 2019. The 39 selected primary studies extend
+    through the mid-2010s and the paper does not establish the state of requirements-to-architecture automation,
+    traceability, tool maturity or LLM-based support in 2026. Its boundary findings on tacit knowledge, partial
+    automation, multi-view architecture and weak validation remain conceptually relevant.
+  verification_state: location_verified
+- id: SRC-0034-EX-0019
+  location:
+    pdf_page: 8
+    printed_page: 33
+    section: 3.4 Content
+    paragraph_or_table: Architecture description languages
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Thirteen studies use standard ADLs such as UML, SysML or AADL, 13 use non-standard representations
+    and 13 do not identify the language.
+  researcher_interpretation: Output-schema and notation provenance are necessary for interpretation and interoperability.
+  supported_proposition: Two thirds of the studies do not use or do not identify a standard ADL.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Historical systematic mapping study published in 2019. The 39 selected primary studies extend
+    through the mid-2010s and the paper does not establish the state of requirements-to-architecture automation,
+    traceability, tool maturity or LLM-based support in 2026. Its boundary findings on tacit knowledge, partial
+    automation, multi-view architecture and weak validation remain conceptually relevant.
+  verification_state: location_verified
+- id: SRC-0034-EX-0020
+  location:
+    pdf_page: 8
+    printed_page: 33
+    section: 3.4 Content
+    paragraph_or_table: Automation level and transformation pattern
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Eighteen studies are partially automated, eight are not automated and 13 do not mention
+    tools; no complete automated approach is found. Automated approaches transform a specific requirement representation
+    into a specific architectural model and then require manual analysis and improvement.
+  researcher_interpretation: Automation is a bounded model transformation followed by expert refinement, not general
+    requirements-to-architecture synthesis.
+  supported_proposition: The reviewed corpus contains no fully automated end-to-end derivation approach.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-7
+  temporal_caveat: Historical systematic mapping study published in 2019. The 39 selected primary studies extend
+    through the mid-2010s and the paper does not establish the state of requirements-to-architecture automation,
+    traceability, tool maturity or LLM-based support in 2026. Its boundary findings on tacit knowledge, partial
+    automation, multi-view architecture and weak validation remain conceptually relevant.
+  verification_state: location_verified
+- id: SRC-0034-EX-0021
+  location:
+    pdf_page: 8
+    printed_page: 33
+    section: 3.5 Validation
+    paragraph_or_table: Evaluation types
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Nine studies use examples, three experiments, seven no evaluation and 20 claim case studies;
+    the authors conclude that many claimed case studies are illustrative and omit hypotheses, collected data and
+    analysis procedures.
+  researcher_interpretation: Evaluation labels cannot be treated as equivalent evidence strength.
+  supported_proposition: Strong and rigorous empirical evaluation of derivation methods is scarce.
+  thesis_targets:
+  - chapter-4
+  - chapter-7
+  temporal_caveat: Historical systematic mapping study published in 2019. The 39 selected primary studies extend
+    through the mid-2010s and the paper does not establish the state of requirements-to-architecture automation,
+    traceability, tool maturity or LLM-based support in 2026. Its boundary findings on tacit knowledge, partial
+    automation, multi-view architecture and weak validation remain conceptually relevant.
+  verification_state: location_verified
+- id: SRC-0034-EX-0022
+  location:
+    pdf_page: 10
+    printed_page: 35
+    section: 3.5 Validation
+    paragraph_or_table: Academic and industrial evaluation
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Twenty-seven evaluation approaches are academic, eight have industrial roots and two include
+    both academic and industrial cases.
+  researcher_interpretation: Industrial evidence is a minority and does not establish broad operational maturity.
+  supported_proposition: Most reported evaluations are academic rather than industrial.
+  thesis_targets:
+  - chapter-4
+  - chapter-7
+  - chapter-8
+  temporal_caveat: Historical systematic mapping study published in 2019. The 39 selected primary studies extend
+    through the mid-2010s and the paper does not establish the state of requirements-to-architecture automation,
+    traceability, tool maturity or LLM-based support in 2026. Its boundary findings on tacit knowledge, partial
+    automation, multi-view architecture and weak validation remain conceptually relevant.
+  verification_state: location_verified
+- id: SRC-0034-EX-0023
+  location:
+    pdf_page: 10
+    printed_page: 35
+    section: 3.5 Validation
+    paragraph_or_table: Architecture-output validation
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Only four studies use or suggest ATAM, several use other named or scenario-based methods
+    and 21 studies do not state how to evaluate the resulting architecture against the requirements specification.
+  researcher_interpretation: A generated architecture is not evidence that requirements are satisfied or trade-offs
+    are justified.
+  supported_proposition: More than half of the methods lack an explicit requirements-satisfaction evaluation mechanism.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-7
+  temporal_caveat: Historical systematic mapping study published in 2019. The 39 selected primary studies extend
+    through the mid-2010s and the paper does not establish the state of requirements-to-architecture automation,
+    traceability, tool maturity or LLM-based support in 2026. Its boundary findings on tacit knowledge, partial
+    automation, multi-view architecture and weak validation remain conceptually relevant.
+  verification_state: location_verified
+- id: SRC-0034-EX-0024
+  location:
+    pdf_page: 11
+    printed_page: 36
+    section: 4 Overview of the results
+    paragraph_or_table: Consolidated findings
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The overview reports methodology-specific approaches, heavy reliance on tacit knowledge,
+    non-standard terminology, weak novice support, partial automation and insufficient explicit validation.
+  researcher_interpretation: Requirements-to-architecture support must externalize decisions and evaluation evidence
+    rather than only generate views.
+  supported_proposition: The field lacks systematic decision support, standardization and validation.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-7
+  temporal_caveat: Historical systematic mapping study published in 2019. The 39 selected primary studies extend
+    through the mid-2010s and the paper does not establish the state of requirements-to-architecture automation,
+    traceability, tool maturity or LLM-based support in 2026. Its boundary findings on tacit knowledge, partial
+    automation, multi-view architecture and weak validation remain conceptually relevant.
+  verification_state: location_verified
+- id: SRC-0034-EX-0025
+  location:
+    pdf_page: 11
+    printed_page: 36
+    section: 5 Validity threats and their mitigation
+    paragraph_or_table: Internal, external and conclusion validity
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The authors mitigate terminology, selection, subjectivity and data-extraction risks through
+    external reviewers, a pilot, snowballing, expert suggestions, test-retest checks, a quality score, a checklist
+    and structured extraction, while acknowledging possible missed venues and unavailable papers.
+  researcher_interpretation: The secondary-study protocol is comparatively careful, but retrieval and interpretation
+    cannot be exhaustive.
+  supported_proposition: The mapping study explicitly addresses several validity threats without claiming complete
+    coverage.
+  thesis_targets:
+  - chapter-4
+  - chapter-7
+  temporal_caveat: Historical systematic mapping study published in 2019. The 39 selected primary studies extend
+    through the mid-2010s and the paper does not establish the state of requirements-to-architecture automation,
+    traceability, tool maturity or LLM-based support in 2026. Its boundary findings on tacit knowledge, partial
+    automation, multi-view architecture and weak validation remain conceptually relevant.
+  verification_state: location_verified
+- id: SRC-0034-EX-0026
+  location:
+    pdf_page: 12
+    printed_page: 37
+    section: 6 Research roadmap
+    paragraph_or_table: Eight research directions
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The roadmap calls for domain-aware approaches, broader NFR coverage, explicit limitations,
+    common terminology, externalized tacit knowledge, stronger tool support, stronger empirical evaluation and
+    explicit requirements-satisfaction validation.
+  researcher_interpretation: These directions translate directly into provenance, plugin, evaluation and governance
+    requirements for DDTA.
+  supported_proposition: The authors identify eight unresolved areas for requirements-to-architecture research.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-8
+  temporal_caveat: Historical systematic mapping study published in 2019. The 39 selected primary studies extend
+    through the mid-2010s and the paper does not establish the state of requirements-to-architecture automation,
+    traceability, tool maturity or LLM-based support in 2026. Its boundary findings on tacit knowledge, partial
+    automation, multi-view architecture and weak validation remain conceptually relevant.
+  verification_state: location_verified
+- id: SRC-0034-EX-0027
+  location:
+    pdf_page: 12
+    printed_page: 37
+    section: 7 Related work
+    paragraph_or_table: Architectural knowledge vaporization
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The related-work discussion describes architectural knowledge vaporization as loss of tacit
+    decision knowledge during architecture evolution and highlights the need to document and reuse decision-making
+    knowledge.
+  researcher_interpretation: Change governance must preserve rationale and alternatives, not only the current
+    architecture graph.
+  supported_proposition: Architectural decision knowledge can be lost during system evolution.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-6
+  temporal_caveat: Historical systematic mapping study published in 2019. The 39 selected primary studies extend
+    through the mid-2010s and the paper does not establish the state of requirements-to-architecture automation,
+    traceability, tool maturity or LLM-based support in 2026. Its boundary findings on tacit knowledge, partial
+    automation, multi-view architecture and weak validation remain conceptually relevant.
+  verification_state: location_verified
+- id: SRC-0034-EX-0028
+  location:
+    pdf_page: 12
+    printed_page: 37
+    section: 8 Conclusions
+    paragraph_or_table: Final conclusions
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The authors conclude that derivation methods lack sufficient systematization, tool support,
+    standardized terminology and early evaluation and remain strongly based on architects' tacit knowledge.
+  researcher_interpretation: The source supports a governed human-in-the-loop boundary rather than autonomous
+    architecture generation.
+  supported_proposition: Requirements-to-architecture derivation remains an expert-led and incompletely validated
+    activity.
+  thesis_targets:
+  - chapter-3
+  - chapter-7
+  - chapter-8
+  temporal_caveat: Historical systematic mapping study published in 2019. The 39 selected primary studies extend
+    through the mid-2010s and the paper does not establish the state of requirements-to-architecture automation,
+    traceability, tool maturity or LLM-based support in 2026. Its boundary findings on tacit knowledge, partial
+    automation, multi-view architecture and weak validation remain conceptually relevant.
+  verification_state: location_verified
