@@ -1,0 +1,600 @@
+schema_version: 1
+source_id: SRC-0033
+citation_key: umar2024automatedrequirements
+source_version:
+  stable_identifier: 10.1007/s00766-023-00411-0
+  edition_or_version: Requirements Engineering 29 (2024), pages 177-207; Version of Record
+  accessed_on: '2026-08-06'
+  local_filename: SRC-0033-umar-lano-2024.pdf
+  sha256: 17304eaf61ba7190dcf502cc5af4013a43ed8a3862c6d2a5f25ac0ae1360bd1f
+excerpts:
+- id: SRC-0033-EX-0001
+  location:
+    pdf_page: 1
+    printed_page: 177
+    section: Abstract
+    paragraph_or_table: Aim, corpus and headline findings
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The review examines empirical evidence on automated requirements engineering, classifies
+    85 studies from 1996-2022 and reports tool outputs, supported RE phases, automation levels, development techniques
+    and evaluation approaches.
+  researcher_interpretation: The source is a broad automation landscape rather than a controlled comparison of
+    one transformation technique.
+  supported_proposition: The paper systematically maps implemented automated-RE support across five comparison
+    dimensions.
+  thesis_targets:
+  - chapter-3
+  - chapter-4
+  - chapter-7
+  temporal_caveat: Systematic literature review published in 2024 from searches completed in December 2022. The
+    taxonomy of inputs, outputs, RE phases, automation levels and evaluation methods remains useful, while current
+    LLM-based techniques, tool availability, industrial adoption and performance require contemporary corroboration.
+    The 85 studies are heterogeneous and no common benchmark supports direct comparison.
+  verification_state: location_verified
+- id: SRC-0033-EX-0002
+  location:
+    pdf_page: 2
+    printed_page: 178
+    section: 1 Introduction
+    paragraph_or_table: Natural-language requirements and automated RE definition
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Natural language remains the principal medium for requirements, while automated RE uses
+    tools to support elicitation, analysis, specification, validation and management.
+  researcher_interpretation: DDTA can treat documentation as a direct automation input while retaining the distinction
+    between support for a task and replacement of the full RE process.
+  supported_proposition: Automated RE spans several lifecycle activities and commonly starts from natural-language
+    artifacts.
+  thesis_targets:
+  - chapter-2
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Systematic literature review published in 2024 from searches completed in December 2022. The
+    taxonomy of inputs, outputs, RE phases, automation levels and evaluation methods remains useful, while current
+    LLM-based techniques, tool availability, industrial adoption and performance require contemporary corroboration.
+    The 85 studies are heterogeneous and no common benchmark supports direct comparison.
+  verification_state: location_verified
+- id: SRC-0033-EX-0003
+  location:
+    pdf_page: 2
+    printed_page: 178
+    section: 1 Introduction
+    paragraph_or_table: Industrial adoption caveat
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The paper notes that many research tools have been developed and evaluated but have not
+    been widely adopted at industrial scale.
+  researcher_interpretation: Tool existence and academic evaluation do not establish operational maturity.
+  supported_proposition: Industrial adoption of automated-RE tools remains limited.
+  thesis_targets:
+  - chapter-3
+  - chapter-7
+  - chapter-8
+  temporal_caveat: Systematic literature review published in 2024 from searches completed in December 2022. The
+    taxonomy of inputs, outputs, RE phases, automation levels and evaluation methods remains useful, while current
+    LLM-based techniques, tool availability, industrial adoption and performance require contemporary corroboration.
+    The 85 studies are heterogeneous and no common benchmark supports direct comparison.
+  verification_state: location_verified
+- id: SRC-0033-EX-0004
+  location:
+    pdf_page: 3
+    printed_page: 179
+    section: 2 Background
+    paragraph_or_table: RE framework and generic phases
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The background distinguishes system context, core elicitation/documentation/negotiation
+    activities, validation and management, and artifacts such as goals, scenarios and solution-oriented requirements.
+  researcher_interpretation: Automation outputs should be typed by the RE activity and artifact role they support.
+  supported_proposition: Requirements engineering contains multiple interrelated activities and artifact types.
+  thesis_targets:
+  - chapter-2
+  - chapter-5
+  temporal_caveat: Systematic literature review published in 2024 from searches completed in December 2022. The
+    taxonomy of inputs, outputs, RE phases, automation levels and evaluation methods remains useful, while current
+    LLM-based techniques, tool availability, industrial adoption and performance require contemporary corroboration.
+    The 85 studies are heterogeneous and no common benchmark supports direct comparison.
+  verification_state: location_verified
+- id: SRC-0033-EX-0005
+  location:
+    pdf_page: 5
+    printed_page: 181
+    section: 2.3 Application of natural language processing in RE
+    paragraph_or_table: NLP role and human participation
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: NLP supports extraction and processing of textual requirements, but natural-language documents
+    and user participation remain important throughout development.
+  researcher_interpretation: NLP assistance does not eliminate stakeholder or analyst review.
+  supported_proposition: Automated processing and continued human participation coexist in RE.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-7
+  temporal_caveat: Systematic literature review published in 2024 from searches completed in December 2022. The
+    taxonomy of inputs, outputs, RE phases, automation levels and evaluation methods remains useful, while current
+    LLM-based techniques, tool availability, industrial adoption and performance require contemporary corroboration.
+    The 85 studies are heterogeneous and no common benchmark supports direct comparison.
+  verification_state: location_verified
+- id: SRC-0033-EX-0006
+  location:
+    pdf_page: 5
+    printed_page: 181
+    section: 2.4 Summary of related literature reviews
+    paragraph_or_table: Prior requirements-to-model review
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The paper summarizes an earlier review that found no method could efficiently produce complete
+    and consistent analysis models with acceptable user effort and that most methods did not handle traceability.
+  researcher_interpretation: The historical gap links transformation quality directly to provenance and maintainability.
+  supported_proposition: Completeness, consistency, user effort and traceability are longstanding document-to-model
+    challenges.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-7
+  temporal_caveat: Systematic literature review published in 2024 from searches completed in December 2022. The
+    taxonomy of inputs, outputs, RE phases, automation levels and evaluation methods remains useful, while current
+    LLM-based techniques, tool availability, industrial adoption and performance require contemporary corroboration.
+    The 85 studies are heterogeneous and no common benchmark supports direct comparison.
+  verification_state: location_verified
+- id: SRC-0033-EX-0007
+  location:
+    pdf_page: 8
+    printed_page: 184
+    section: 3.1 Research questions
+    paragraph_or_table: Table 2
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The five RQs ask what outputs are generated, which RE phase is most automated, the degree
+    of automation, the techniques used and how tools are evaluated.
+  researcher_interpretation: These dimensions provide a reusable classification contract for DDTA automation components.
+  supported_proposition: The SLR evaluates tool support through output, phase, automation, implementation technique
+    and evaluation method.
+  thesis_targets:
+  - chapter-3
+  - chapter-4
+  temporal_caveat: Systematic literature review published in 2024 from searches completed in December 2022. The
+    taxonomy of inputs, outputs, RE phases, automation levels and evaluation methods remains useful, while current
+    LLM-based techniques, tool availability, industrial adoption and performance require contemporary corroboration.
+    The 85 studies are heterogeneous and no common benchmark supports direct comparison.
+  verification_state: location_verified
+- id: SRC-0033-EX-0008
+  location:
+    pdf_page: 8
+    printed_page: 184
+    section: 3.2 Search strategies
+    paragraph_or_table: Databases and scope
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The search covers ACM, ScienceDirect, IEEE Xplore and Springer and targets implemented
+    automated-RE support published from 1996 through 2022.
+  researcher_interpretation: The evidence horizon predates widespread generative-LLM deployment.
+  supported_proposition: The review searches four major digital libraries through 2022.
+  thesis_targets:
+  - chapter-4
+  - chapter-7
+  temporal_caveat: Systematic literature review published in 2024 from searches completed in December 2022. The
+    taxonomy of inputs, outputs, RE phases, automation levels and evaluation methods remains useful, while current
+    LLM-based techniques, tool availability, industrial adoption and performance require contemporary corroboration.
+    The 85 studies are heterogeneous and no common benchmark supports direct comparison.
+  verification_state: location_verified
+- id: SRC-0033-EX-0009
+  location:
+    pdf_page: 9
+    printed_page: 185
+    section: 3.3 Inclusion and exclusion criteria
+    paragraph_or_table: Empirical implementation criterion
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Included studies had to provide empirical data about implemented automated requirements-engineering
+    tool support; short papers, duplicates and work outside the scope were excluded.
+  researcher_interpretation: The corpus emphasizes implemented research artifacts rather than purely conceptual
+    proposals.
+  supported_proposition: Primary studies require an implemented tool and empirical evidence.
+  thesis_targets:
+  - chapter-4
+  - chapter-7
+  temporal_caveat: Systematic literature review published in 2024 from searches completed in December 2022. The
+    taxonomy of inputs, outputs, RE phases, automation levels and evaluation methods remains useful, while current
+    LLM-based techniques, tool availability, industrial adoption and performance require contemporary corroboration.
+    The 85 studies are heterogeneous and no common benchmark supports direct comparison.
+  verification_state: location_verified
+- id: SRC-0033-EX-0010
+  location:
+    pdf_page: 9
+    printed_page: 185
+    section: 3.4 Quality assessment
+    paragraph_or_table: Table 3 and exclusion rule
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Seven studies were removed using yes/no criteria covering minimum reporting quality, research-design
+    suitability, data analysis, credibility and relevance, leaving 85 studies.
+  researcher_interpretation: The review has an explicit quality gate, although the binary scheme cannot normalize
+    heterogeneous evidence strength.
+  supported_proposition: The final corpus passed a stated minimum quality assessment.
+  thesis_targets:
+  - chapter-4
+  - chapter-7
+  temporal_caveat: Systematic literature review published in 2024 from searches completed in December 2022. The
+    taxonomy of inputs, outputs, RE phases, automation levels and evaluation methods remains useful, while current
+    LLM-based techniques, tool availability, industrial adoption and performance require contemporary corroboration.
+    The 85 studies are heterogeneous and no common benchmark supports direct comparison.
+  verification_state: location_verified
+- id: SRC-0033-EX-0011
+  location:
+    pdf_page: 10
+    printed_page: 186
+    section: 3.5 Primary study
+    paragraph_or_table: Figure 4 selection flow
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The selection flow starts with 3853 records, reduces to 425 after title screening and 268
+    after abstract screening and duplicate removal, then includes 85 after full-text evaluation and quality assessment.
+  researcher_interpretation: The review has broad initial recall but substantial screening attrition.
+  supported_proposition: Eighty-five studies form the final corpus from 3853 initial records.
+  thesis_targets:
+  - chapter-3
+  - chapter-4
+  temporal_caveat: Systematic literature review published in 2024 from searches completed in December 2022. The
+    taxonomy of inputs, outputs, RE phases, automation levels and evaluation methods remains useful, while current
+    LLM-based techniques, tool availability, industrial adoption and performance require contemporary corroboration.
+    The 85 studies are heterogeneous and no common benchmark supports direct comparison.
+  verification_state: location_verified
+- id: SRC-0033-EX-0012
+  location:
+    pdf_page: 10
+    printed_page: 186
+    section: 3.6 Data collection/extraction
+    paragraph_or_table: Review-data fields
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The extracted review data include development technique, tool input source, RE phase, generated
+    model, automation degree, requirements type and evaluation method.
+  researcher_interpretation: These fields are a useful baseline but omit common provenance, uncertainty and change-control
+    dimensions.
+  supported_proposition: The review uses a structured extraction schema aligned with its five RQs.
+  thesis_targets:
+  - chapter-4
+  - chapter-5
+  temporal_caveat: Systematic literature review published in 2024 from searches completed in December 2022. The
+    taxonomy of inputs, outputs, RE phases, automation levels and evaluation methods remains useful, while current
+    LLM-based techniques, tool availability, industrial adoption and performance require contemporary corroboration.
+    The 85 studies are heterogeneous and no common benchmark supports direct comparison.
+  verification_state: location_verified
+- id: SRC-0033-EX-0013
+  location:
+    pdf_page: 11
+    printed_page: 187
+    section: 4.2 Generated outputs
+    paragraph_or_table: Figure 9 and output counts
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Thirty-eight studies, 44.7 percent, generate UML diagrams, while 47 studies produce no
+    model output and instead support activities such as omission detection, consistency checking, validation,
+    classification, reuse or security analysis.
+  researcher_interpretation: Automated RE is broader than text-to-UML and output type must be explicit.
+  supported_proposition: UML is the dominant model output but most studies support non-model activities.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Systematic literature review published in 2024 from searches completed in December 2022. The
+    taxonomy of inputs, outputs, RE phases, automation levels and evaluation methods remains useful, while current
+    LLM-based techniques, tool availability, industrial adoption and performance require contemporary corroboration.
+    The 85 studies are heterogeneous and no common benchmark supports direct comparison.
+  verification_state: location_verified
+- id: SRC-0033-EX-0014
+  location:
+    pdf_page: 12
+    printed_page: 188
+    section: 4.2 Generated outputs
+    paragraph_or_table: Input sources and one-shot tools
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Natural-language text is the input for 94 percent of tools, including unstructured, semi-structured
+    and structured text; other inputs include domain knowledge, business-process models and voice feedback. Most
+    tools are one-shot rather than editors.
+  researcher_interpretation: Documentation is the dominant direct input, but lifecycle integration and interactive
+    correction are weak.
+  supported_proposition: Natural-language requirements dominate tool input and most tools operate as one-shot
+    transformations.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-7
+  temporal_caveat: Systematic literature review published in 2024 from searches completed in December 2022. The
+    taxonomy of inputs, outputs, RE phases, automation levels and evaluation methods remains useful, while current
+    LLM-based techniques, tool availability, industrial adoption and performance require contemporary corroboration.
+    The 85 studies are heterogeneous and no common benchmark supports direct comparison.
+  verification_state: location_verified
+- id: SRC-0033-EX-0015
+  location:
+    pdf_page: 13
+    printed_page: 189
+    section: 4.3 Most automated RE phase
+    paragraph_or_table: Input-output mapping classification
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The authors classify tool activities by task focus, input-output mapping, relationship
+    to RE activities, phase objectives and process integration, recognizing that a tool can span multiple phases.
+  researcher_interpretation: Phase assignment is interpretive and should not be treated as a single exclusive
+    label.
+  supported_proposition: Automated tasks may span several RE phases and require explicit classification rationale.
+  thesis_targets:
+  - chapter-3
+  - chapter-4
+  - chapter-5
+  temporal_caveat: Systematic literature review published in 2024 from searches completed in December 2022. The
+    taxonomy of inputs, outputs, RE phases, automation levels and evaluation methods remains useful, while current
+    LLM-based techniques, tool availability, industrial adoption and performance require contemporary corroboration.
+    The 85 studies are heterogeneous and no common benchmark supports direct comparison.
+  verification_state: location_verified
+- id: SRC-0033-EX-0016
+  location:
+    pdf_page: 14
+    printed_page: 190
+    section: 4.3 Most automated RE phase
+    paragraph_or_table: Figure 10 counts
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Analysis and specification receives 53 assignments, elicitation 25, management 16 and validation
+    13; the reported percentages use a total of 107 phase assignments rather than 85 studies.
+  researcher_interpretation: The multi-phase interpretation is plausible but the denominator is not stated clearly
+    and must remain an open counting issue.
+  supported_proposition: Analysis and specification is the most frequently automated phase, with non-exclusive
+    phase assignments.
+  thesis_targets:
+  - chapter-3
+  - chapter-4
+  - chapter-7
+  temporal_caveat: Systematic literature review published in 2024 from searches completed in December 2022. The
+    taxonomy of inputs, outputs, RE phases, automation levels and evaluation methods remains useful, while current
+    LLM-based techniques, tool availability, industrial adoption and performance require contemporary corroboration.
+    The 85 studies are heterogeneous and no common benchmark supports direct comparison.
+  verification_state: location_verified
+- id: SRC-0033-EX-0017
+  location:
+    pdf_page: 14
+    printed_page: 190
+    section: 4.4 Degree of automation
+    paragraph_or_table: Figure 11
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Fifty tools are classified as semi-automated and 35 as fully automated. Human involvement
+    includes input preprocessing, refinement during processing and output interpretation or analysis.
+  researcher_interpretation: A fully automated transformation step still produces an artifact that requires expert
+    verification.
+  supported_proposition: Most tools are semi-automated and none eliminates the requirements engineer from the
+    end-to-end process.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-7
+  temporal_caveat: Systematic literature review published in 2024 from searches completed in December 2022. The
+    taxonomy of inputs, outputs, RE phases, automation levels and evaluation methods remains useful, while current
+    LLM-based techniques, tool availability, industrial adoption and performance require contemporary corroboration.
+    The 85 studies are heterogeneous and no common benchmark supports direct comparison.
+  verification_state: location_verified
+- id: SRC-0033-EX-0018
+  location:
+    pdf_page: 14
+    printed_page: 190
+    section: 4.4 Degree of automation
+    paragraph_or_table: Four-stage information-processing model
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The review also assesses automation across information acquisition, information analysis,
+    decision selection and action implementation, finding higher automation in information analysis.
+  researcher_interpretation: DDTA should declare automation independently for each pipeline stage instead of applying
+    one label to the whole workflow.
+  supported_proposition: Automation level varies across distinct human-information-processing stages.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Systematic literature review published in 2024 from searches completed in December 2022. The
+    taxonomy of inputs, outputs, RE phases, automation levels and evaluation methods remains useful, while current
+    LLM-based techniques, tool availability, industrial adoption and performance require contemporary corroboration.
+    The 85 studies are heterogeneous and no common benchmark supports direct comparison.
+  verification_state: location_verified
+- id: SRC-0033-EX-0019
+  location:
+    pdf_page: 16
+    printed_page: 192
+    section: 4.5 Development techniques
+    paragraph_or_table: Figure 13
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: NLP is used in 43 studies, machine learning in 12, NLP plus ML in five, ontology in five,
+    NLP plus ontology in five and text mining in four.
+  researcher_interpretation: The reviewed landscape is dominated by classical NLP and predates current generative-LLM
+    techniques.
+  supported_proposition: NLP is the most common development approach for automated RE tools.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-7
+  temporal_caveat: Systematic literature review published in 2024 from searches completed in December 2022. The
+    taxonomy of inputs, outputs, RE phases, automation levels and evaluation methods remains useful, while current
+    LLM-based techniques, tool availability, industrial adoption and performance require contemporary corroboration.
+    The 85 studies are heterogeneous and no common benchmark supports direct comparison.
+  verification_state: location_verified
+- id: SRC-0033-EX-0020
+  location:
+    pdf_page: 16
+    printed_page: 192
+    section: 4.5 Development techniques
+    paragraph_or_table: Table 7
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: POS tagging and parsers are the most common NLP technologies; machine-learning techniques
+    include Naive Bayes, KNN, SVM, neural networks and decision trees.
+  researcher_interpretation: Transformation provenance should identify the concrete pipeline and model versions,
+    not only the broad label NLP or ML.
+  supported_proposition: Automated-RE implementations use heterogeneous linguistic and learning components.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Systematic literature review published in 2024 from searches completed in December 2022. The
+    taxonomy of inputs, outputs, RE phases, automation levels and evaluation methods remains useful, while current
+    LLM-based techniques, tool availability, industrial adoption and performance require contemporary corroboration.
+    The 85 studies are heterogeneous and no common benchmark supports direct comparison.
+  verification_state: location_verified
+- id: SRC-0033-EX-0021
+  location:
+    pdf_page: 17
+    printed_page: 193
+    section: 4.6 Tool evaluation
+    paragraph_or_table: Table 8
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Evaluation methods comprise 41 controlled experiments, 25 case studies, 12 prototypes or
+    proofs of concept and seven user studies.
+  researcher_interpretation: The controlled-experiment category contains evaluations of very different depth,
+    while user-centered evidence is scarce.
+  supported_proposition: Experimental evaluations dominate and user studies are least frequent.
+  thesis_targets:
+  - chapter-3
+  - chapter-4
+  - chapter-7
+  temporal_caveat: Systematic literature review published in 2024 from searches completed in December 2022. The
+    taxonomy of inputs, outputs, RE phases, automation levels and evaluation methods remains useful, while current
+    LLM-based techniques, tool availability, industrial adoption and performance require contemporary corroboration.
+    The 85 studies are heterogeneous and no common benchmark supports direct comparison.
+  verification_state: location_verified
+- id: SRC-0033-EX-0022
+  location:
+    pdf_page: 18
+    printed_page: 194
+    section: 5 Discussion
+    paragraph_or_table: Generated UML and input-output relationship
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The authors describe generated UML as a translation, interpretation and representation
+    of input information and identify input standardization, interoperability, ambiguity handling, model evolution,
+    human aspects and scalability as research issues.
+  researcher_interpretation: A generated model is an interpretation that requires source links, review and evolution
+    control.
+  supported_proposition: Document-to-model automation needs governed input, ambiguity and evolution handling.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-7
+  temporal_caveat: Systematic literature review published in 2024 from searches completed in December 2022. The
+    taxonomy of inputs, outputs, RE phases, automation levels and evaluation methods remains useful, while current
+    LLM-based techniques, tool availability, industrial adoption and performance require contemporary corroboration.
+    The 85 studies are heterogeneous and no common benchmark supports direct comparison.
+  verification_state: location_verified
+- id: SRC-0033-EX-0023
+  location:
+    pdf_page: 19
+    printed_page: 195
+    section: 5 Discussion
+    paragraph_or_table: Traceability and human-in-the-loop
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The paper calls for traceability from formalized model elements back to original textual
+    statements and emphasizes expert validation, explicit descriptions of human intervention and analysis of decision
+    authority in human-in-the-loop workflows.
+  researcher_interpretation: Traceability and review are unresolved core requirements, not optional presentation
+    features.
+  supported_proposition: Automated artifacts require statement-level provenance and explicit human-review responsibilities.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-6
+  temporal_caveat: Systematic literature review published in 2024 from searches completed in December 2022. The
+    taxonomy of inputs, outputs, RE phases, automation levels and evaluation methods remains useful, while current
+    LLM-based techniques, tool availability, industrial adoption and performance require contemporary corroboration.
+    The 85 studies are heterogeneous and no common benchmark supports direct comparison.
+  verification_state: location_verified
+- id: SRC-0033-EX-0024
+  location:
+    pdf_page: 20
+    printed_page: 196
+    section: 5 Discussion
+    paragraph_or_table: Comparative evaluation gap
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The review states that different tools have not been comparatively evaluated, partly because
+    no established common requirements cases exist.
+  researcher_interpretation: Cross-tool claims cannot be normalized without shared datasets, tasks and metrics.
+  supported_proposition: The automated-RE field lacks common benchmark cases for comparative evaluation.
+  thesis_targets:
+  - chapter-4
+  - chapter-7
+  - chapter-8
+  temporal_caveat: Systematic literature review published in 2024 from searches completed in December 2022. The
+    taxonomy of inputs, outputs, RE phases, automation levels and evaluation methods remains useful, while current
+    LLM-based techniques, tool availability, industrial adoption and performance require contemporary corroboration.
+    The 85 studies are heterogeneous and no common benchmark supports direct comparison.
+  verification_state: location_verified
+- id: SRC-0033-EX-0025
+  location:
+    pdf_page: 20
+    printed_page: 196
+    section: 6.1 Limitations
+    paragraph_or_table: Review-validity limitations
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The authors acknowledge possible subjective selection, incomplete database coverage, search-string
+    sensitivity, overlooked studies and language effects despite an iterative protocol and explicit criteria.
+  researcher_interpretation: The review is systematic but cannot guarantee exhaustive retrieval or unbiased classification.
+  supported_proposition: Selection and search limitations constrain the completeness of the SLR.
+  thesis_targets:
+  - chapter-4
+  - chapter-7
+  temporal_caveat: Systematic literature review published in 2024 from searches completed in December 2022. The
+    taxonomy of inputs, outputs, RE phases, automation levels and evaluation methods remains useful, while current
+    LLM-based techniques, tool availability, industrial adoption and performance require contemporary corroboration.
+    The 85 studies are heterogeneous and no common benchmark supports direct comparison.
+  verification_state: location_verified
+- id: SRC-0033-EX-0026
+  location:
+    pdf_page: 21
+    printed_page: 197
+    section: 6.2 Conclusion and future work
+    paragraph_or_table: Industrial evidence, traceability and benchmarks
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The conclusion reports limited industrial application, experimental-stage tools, lack of
+    comparative datasets and planned work on artifact traceability, practitioner interviews and common-case evaluations.
+  researcher_interpretation: The strongest DDTA contribution is a documented automation opportunity paired with
+    unresolved provenance, adoption and benchmark gaps.
+  supported_proposition: Automated RE remains research-heavy and requires traceability, practitioner evidence
+    and comparative benchmarks.
+  thesis_targets:
+  - chapter-3
+  - chapter-7
+  - chapter-8
+  temporal_caveat: Systematic literature review published in 2024 from searches completed in December 2022. The
+    taxonomy of inputs, outputs, RE phases, automation levels and evaluation methods remains useful, while current
+    LLM-based techniques, tool availability, industrial adoption and performance require contemporary corroboration.
+    The 85 studies are heterogeneous and no common benchmark supports direct comparison.
+  verification_state: location_verified

@@ -149,3 +149,12 @@ sources:
     sha256: "beb812227d804747cbad12e9d4421d897068940ed49b63c4029f190b67f09de5"
     repository_storage: forbidden
     companion_material_status: data_available_from_authors_on_request
+  - source_id: SRC-0033
+    landing_url: "https://link.springer.com/article/10.1007/s00766-023-00411-0"
+    pdf_url: "https://link.springer.com/content/pdf/10.1007/s00766-023-00411-0.pdf"
+    access_type: open_access_version_of_record
+    licence: "CC BY 4.0"
+    local_filename: "SRC-0033-umar-lano-2024.pdf"
+    retrieved_on: "2026-08-06"
+    sha256: "17304eaf61ba7190dcf502cc5af4013a43ed8a3862c6d2a5f25ac0ae1360bd1f"
+    repository_storage: forbidden

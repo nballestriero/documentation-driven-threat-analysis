@@ -258,3 +258,11 @@ sources:
     verification_state: verified
     topics: [TM-AUTOMATION, MD-MDE, CS-ASSURANCE, CS-DEVSECOPS]
     ddta_roles: [comparison, evaluation, challenge]
+  - id: SRC-0033
+    citation_key: umar2024automatedrequirements
+    title: "Advances in automated support for requirements engineering: a systematic literature review"
+    year: 2024
+    type: secondary_review
+    verification_state: verified
+    topics: [RE-NLP-LLM, MD-MDE, RE-TRACEABILITY, CS-HUMAN]
+    ddta_roles: [foundation, comparison, evaluation, challenge]

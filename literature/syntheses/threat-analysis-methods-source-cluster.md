@@ -196,11 +196,33 @@ exploratory. Model complexity, heterogeneous and evolving environments, adapter 
 limited attack coverage and the absence of large realistic comparisons prevent claims of complete
 or mature automated security assurance.
 
+### SRC-0033 - Umar and Lano (2024)
+
+Role: recent systematic review of implemented automated requirements-engineering support. The
+source classifies 85 empirical studies by input, generated artifact, RE phase, degree of
+automation, development technique and evaluation method.
+
+Natural-language text is the input for 94 percent of tools. UML is the most common model output,
+but the reviewed tools also perform omission detection, consistency checking, validation,
+classification, duplicate detection, mining, reuse and security-related analysis. The dominant
+transformation is therefore documentation-to-candidate-artifact rather than only text-to-UML.
+
+Most tools are semi-automated and most are one-shot. Even tools labelled fully automated produce
+artifacts for human verification. The review explicitly identifies traceability from generated
+elements back to source statements, model evolution, human-in-the-loop governance, industrial
+validation and common benchmark cases as unresolved needs.
+
+The source provides evidence that automated Base Analysis construction can begin from project
+documentation, but it does not establish a complete, semantically correct, neutral or continuously
+synchronized model. Generated outputs must remain candidates with source provenance, uncertainty,
+review disposition and stale-state control.
+
 ## Initial DDTA separation
 
 ```text
 raw and governed project documentation
--> Base Analysis construction
+-> automated or assisted extraction into candidate requirement and model artifacts
+-> reviewed Base Analysis construction
 -> methodology-specific threat analysis
 -> automated model-to-threat candidate generation when a typed model exists
 -> optional problem-to-mechanism refinement
@@ -226,9 +248,12 @@ the DFD was perceived as more useful. SRC-0031 maps model-to-candidate-threat au
 typed model exists and shows that catalogues, rules, asset semantics and granularity differ across
 tools. SRC-0032 maps the subsequent model-to-security-test boundary, distinguishing security
 properties, attack models, test-selection criteria, abstract tests, concretization, adapters,
-execution environments and observed evidence. DDTA must still investigate how heterogeneous
-documentation becomes the neutral assets, actors, goals, interactions, objects, operations,
-domains, phenomena and scenarios consumed by these overlays, arguments and tests.
+execution environments and observed evidence. SRC-0033 shows that natural-language requirements
+can be processed into candidate UML and other requirement artifacts, while traceability,
+uncertainty, model evolution, industrial validation and common benchmarks remain weak. DDTA must
+still establish how heterogeneous documentation becomes reviewed neutral assets, actors, goals,
+interactions, objects, operations, domains, phenomena and scenarios consumed by these overlays,
+arguments and tests.
 
 ## Technique-focus taxonomy
 
@@ -274,17 +299,24 @@ Direct evidence from the review:
 - security tests can be derived automatically after a security-enriched test model exists;
 - abstract tests require concretization, adapters and an execution environment;
 - model coverage, attack-class coverage and global security completeness are distinct;
-- model checking evidence and executable test evidence should remain separate but traceable.
+- model checking evidence and executable test evidence should remain separate but traceable;
+- natural-language text is the dominant direct input to automated requirements-engineering tools;
+- automated RE produces heterogeneous candidate models, structured requirements and quality findings;
+- a fully automated transformation step still requires expert verification in the wider RE process;
+- most reviewed tools are one-shot and do not establish continuous synchronization;
+- source-to-generated-artifact traceability and common comparative benchmarks remain open.
 
 Researcher conclusion for DDTA:
 
 ```text
 documentation_only is possible for some techniques
 documentation_plus_model is required for others
+document_to_candidate_artifact can be automated or assisted from natural-language requirements
+candidate_artifact_to_base_analysis requires source provenance and human review
 model_to_candidate_threat can be automated after a typed model exists
 model_to_abstract_security_test can be automated after a security test model exists
 abstract_test_to_execution requires governed concretization and adapters
-raw_documentation_to_neutral_model is not established
+raw_documentation_to_trustworthy_neutral_model is not established
 ```
 
 The first analysis should therefore remain documentation-primary. Later code analysis should
@@ -300,20 +332,28 @@ knowledge. SRC-0030 adds controlled evidence that perceived usefulness of a mode
 produce a measurable correctness improvement. SRC-0031 adds model-to-candidate-threat automation
 through typed elements, catalogues and rules, while showing that generated lists differ in scope and
 granularity. SRC-0032 adds model-to-security-test derivation, the abstract-to-concrete test boundary
-and implementation-level execution evidence.
+and implementation-level execution evidence. SRC-0033 adds documentation-to-candidate-artifact
+automation and shows that provenance, review, evolution, benchmark and adoption evidence remain
+incomplete.
 
-All six evidence forms remain relative to their modeled context, premises, behaviors, attacks,
-mechanism choices, participants, baselines, catalogue versions, rule semantics, test models,
-selection criteria, adapters, oracles, environments and measured outcomes. None establishes global
-threat completeness or implementation security. Completion conditions, precise discovery rules,
-normalized cross-tool evaluation, oracle assurance and longitudinal maintenance evidence remain
+All seven evidence forms remain relative to their source documents, modeled context, premises,
+behaviors, attacks, mechanism choices, participants, baselines, transformation pipelines, catalogue
+versions, rule semantics, test models, selection criteria, adapters, oracles, environments and
+measured outcomes. None establishes global threat completeness, a complete neutral Base Analysis or
+implementation security. Completion conditions, precise discovery rules, normalized cross-tool
+evaluation, provenance assurance, oracle assurance and longitudinal maintenance evidence remain
 weak.
 
 DDTA candidate controls:
 
 - typed outputs;
-- source provenance;
-- extracted versus inferred status;
+- source document, version, segment and assertion provenance;
+- extracted linguistic fact versus inferred entity or relation status;
+- transformation pipeline, rule, ontology, model or prompt version;
+- confidence, alternatives and external domain-knowledge dependencies;
+- human-intervention stage, correction history and review disposition;
+- one-shot versus maintained-editor execution mode;
+- generated-artifact stale state and regeneration trigger;
 - scenario-level review dispositions;
 - progressive lightweight and extensive analysis profiles;
 - derivation rule, premises and proof status;
@@ -352,38 +392,44 @@ DDTA candidate controls:
 
 ## Primary-study selection queue
 
-The automated threat-modelling and model-based security-testing branches are now covered by
-SRC-0031 and SRC-0032. The next central reading moves to automation in requirements engineering.
+Automated threat modelling, model-based security testing and broad automated requirements
+engineering are now covered by SRC-0031, SRC-0032 and SRC-0033. The next central reading narrows the
+transition from requirements artifacts to software architecture.
 
 ```text
-requirements artifacts
--> automated or assisted requirement processing
--> architecture and model construction implications
+requirements and candidate analysis artifacts
+-> architecture decisions and architectural models
+-> maintained requirements-to-architecture traceability
 ```
 
 
-## Scenario, anti-goal, assurance, execution, problem-frame, validation, automation and MBST contrast
+## Scenario, anti-goal, assurance, execution, problem-frame, validation, automation, MBST and automated-RE contrast
 
-| Dimension | SRC-0003 | SRC-0004 | SRC-0027 | SRC-0028 | SRC-0029 | SRC-0030 | SRC-0031 | SRC-0032 |
-|---|---|---|---|---|---|---|---|---|
-| Starting view | functional scenarios | goal, object, agent and domain models | problem context, phenomena and behavior | EIOD and sequence behavior | context, domains, interfaces and security requirement | scenario, sequence diagram, structured threats and optional DFD | typed graph, DFD, code model or asset list plus catalogue/rules | security-enriched system/test model plus optional attack model |
-| Main structure | harmful scenario | intentional AND/OR anti-goal graph | constrained requirement and argument graph | modification, attack and mitigation scenarios | security problem frame and concretized frame | actual/fabricated threat-validation experiment | automated candidate selection and cross-tool comparison | model-to-abstract-test derivation and concretized execution |
-| Formality | mostly informal | optional temporal logic and formal regression | formal outer proof plus informal inner argument | formal trace semantics and executable FSMs | conditional implication obligations; no implemented verifier | statistical difference and equivalence tests | typed mappings, Boolean conditions and catalogue/rule matching | UML/OCL, timed automata, CPN, attack trees and coverage criteria |
-| Security output | misuse and mitigation | anti-requirement and vulnerability | primary/secondary security constraints | composed behavior and attack tests | concretized requirement, protocol, mechanism and specification | correctness and perceived-usefulness evidence | candidate threats, mitigations and control mappings | abstract tests, concrete scripts and execution observations |
-| Assumption handling | template fields | domain properties | trust assumptions and rebuttals | pre/postconditions and interactive path choices | explicit attacker capability and domain knowledge | explicit threat assumptions used in binary validation | model properties, technologies, protocols and rule conditions | security properties, test purposes, adapters, environment and oracle |
-| Assurance | review status and trace links | local proof and derivation evidence | conditional satisfaction evidence | regression over known attack traces | conditional refinement and specification adequacy | expert-curated ground truth and measured participant outcomes | element-to-candidate trace; no independent completeness ground truth | model-to-test trace and SUT evidence; partial attack coverage |
-| Empirical evidence | descriptive examples | four anti-model cases | one industrial research application | two preliminary case studies | one illustrative remote-display case | controlled and confirming experiment with 98 students | 55-study SLR plus one illustrative WordPress comparison | Rapid Review of 17 mostly exploratory IoT studies |
+| Dimension | SRC-0003 | SRC-0004 | SRC-0027 | SRC-0028 | SRC-0029 | SRC-0030 | SRC-0031 | SRC-0032 | SRC-0033 |
+|---|---|---|---|---|---|---|---|---|---|
+| Starting view | functional scenarios | goal, object, agent and domain models | problem context, phenomena and behavior | EIOD and sequence behavior | context, domains, interfaces and security requirement | scenario, sequence diagram, structured threats and optional DFD | typed graph, DFD, code model or asset list plus catalogue/rules | security-enriched system/test model plus optional attack model | natural-language requirements plus optional domain knowledge, models and metadata |
+| Main structure | harmful scenario | intentional AND/OR anti-goal graph | constrained requirement and argument graph | modification, attack and mitigation scenarios | security problem frame and concretized frame | actual/fabricated threat-validation experiment | automated candidate selection and cross-tool comparison | model-to-abstract-test derivation and concretized execution | document-to-candidate-artifact processing and tool-landscape comparison |
+| Formality | mostly informal | optional temporal logic and formal regression | formal outer proof plus informal inner argument | formal trace semantics and executable FSMs | conditional implication obligations; no implemented verifier | statistical difference and equivalence tests | typed mappings, Boolean conditions and catalogue/rule matching | UML/OCL, timed automata, CPN, attack trees and coverage criteria | NLP, ML, ontology, rules and heterogeneous output schemas |
+| Security output | misuse and mitigation | anti-requirement and vulnerability | primary/secondary security constraints | composed behavior and attack tests | concretized requirement, protocol, mechanism and specification | correctness and perceived-usefulness evidence | candidate threats, mitigations and control mappings | abstract tests, concrete scripts and execution observations | candidate UML, structured requirements and quality findings |
+| Assumption handling | template fields | domain properties | trust assumptions and rebuttals | pre/postconditions and interactive path choices | explicit attacker capability and domain knowledge | explicit threat assumptions used in binary validation | model properties, technologies, protocols and rule conditions | security properties, test purposes, adapters, environment and oracle | domain knowledge, preprocessing, interpretation and reviewer corrections |
+| Assurance | review status and trace links | local proof and derivation evidence | conditional satisfaction evidence | regression over known attack traces | conditional refinement and specification adequacy | expert-curated ground truth and measured participant outcomes | element-to-candidate trace; no independent completeness ground truth | model-to-test trace and SUT evidence; partial attack coverage | human verification; no common source-provenance or benchmark contract |
+| Empirical evidence | descriptive examples | four anti-model cases | one industrial research application | two preliminary case studies | one illustrative remote-display case | controlled and confirming experiment with 98 students | 55-study SLR plus one illustrative WordPress comparison | Rapid Review of 17 mostly exploratory IoT studies | SLR of 85 heterogeneous implemented-tool studies |
 
-All eight approaches are pre-code, model-primary or test-evidence producing. None solves
-source-document interpretation, assertion-level provenance or global completeness. They support
-distinct methodology, assurance, executable-scenario, problem-refinement, empirical-validation,
-candidate-generation and security-testing roles over a neutral Base Analysis.
+All nine approaches are pre-code, documentation-primary, model-primary or test-evidence producing.
+None establishes a trustworthy complete neutral Base Analysis, assertion-level provenance and
+global completeness together. They support distinct documentation-processing, methodology,
+assurance, executable-scenario, problem-refinement, empirical-validation, candidate-generation and
+security-testing roles over a governed Base Analysis.
 
 ## Evidence still missing
 
-- automatic extraction of Base Analysis entities, scenario views and goal views from heterogeneous documentation;
+- validated extraction of Base Analysis entities, scenario views and goal views from heterogeneous documentation;
 - sentence-to-model, sentence-to-scenario, sentence-to-goal and sentence-to-context provenance;
+- extracted-versus-inferred semantics, calibrated confidence and alternative interpretations;
 - management of missing and contradictory documentation;
+- common requirements benchmarks and cross-tool comparative evaluation;
+- longitudinal accuracy, correction effort and stale-detection evidence for one-shot transformations;
+- coverage of non-functional and security requirements comparable to functional-requirement evidence;
 - governed trust-assumption acceptance and residual-risk criteria;
 - automatic argument maintenance and change impact;
 - automatic document-to-problem-frame construction and frame-applicability checking;
@@ -415,6 +461,9 @@ published in the 2024 volume but its search and tool references extend mainly th
 2026 product, catalogue and maturity claims require fresh verification. SRC-0032 was published in
 2023 from searches completed in April 2022 and includes only 17 mostly exploratory IoT studies
 without quality assessment; current MBST maturity and tool claims require fresh verification.
+SRC-0033 was published in 2024 from a search completed in December 2022; it primarily covers
+classical NLP, ML and ontology techniques and cannot establish the performance, governance or
+industrial maturity of generative-LLM-based RE in 2026.
 
 ## Reading order
 
@@ -428,5 +477,6 @@ SRC-0026 historical method taxonomy
 -> SRC-0030 empirical DFD threat validation
 -> SRC-0031 automated threat-modelling review and tool comparison
 -> SRC-0032 model-based security testing Rapid Review
--> recent automation-in-requirements-engineering review
+-> SRC-0033 automated requirements-engineering support SLR
+-> recent requirements-to-architecture transformation source
 ```
