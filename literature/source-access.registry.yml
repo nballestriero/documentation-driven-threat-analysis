@@ -167,3 +167,16 @@ sources:
     retrieved_on: "2026-08-06"
     sha256: "7560a403216ba0df46be238bf7bf075ef016be2c028182aa6d8a4ee28fd22adf"
     repository_storage: forbidden
+  - source_id: SRC-0035
+    landing_url: "https://orbilu.uni.lu/handle/10993/63431"
+    pdf_url: "https://orbilu.uni.lu/bitstream/10993/63431/1/2024-MODRE-AAF.pdf"
+    access_type: author_preprint
+    licence: "Author preprint; reuse terms not stated in the reviewed PDF"
+    local_filename: "SRC-0035-ferrari-abualhaija-arora-2024.pdf"
+    retrieved_on: "2026-08-06"
+    sha256: "205ab0defcd11446187345948d44deec7987ea9c7d4922322ef13773e37ac63a"
+    repository_storage: forbidden
+    companion_repository_url: "https://zenodo.org/records/10911092"
+    companion_repository_identifier: "10.5281/zenodo.10911092"
+    companion_repository_identifier_reported_in_paper: "10.5281/zenodo.10579731"
+    companion_repository_status: public_replication_package_not_executed

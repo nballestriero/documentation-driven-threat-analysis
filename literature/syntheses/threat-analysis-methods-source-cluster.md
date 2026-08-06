@@ -241,11 +241,36 @@ than a deterministic model conversion. Candidate architecture needs source prove
 alternatives, decision rationale, multi-view semantics, satisfaction evaluation and change control.
 The historical corpus does not establish current LLM-based architecture synthesis.
 
+### SRC-0035 - Ferrari, Abualhaija and Arora (2024)
+
+Role: current exploratory study of GPT-3.5 generation of abstract UML sequence diagrams from 28
+realistic requirements documents across 18 domains and three requirement formats. Researchers
+construct 87 variants containing additions, removals, modifications, ambiguity, inconsistency and
+incompleteness, score first-pass outputs on five quality dimensions and derive 23 issue categories
+from evaluation logs.
+
+The generated diagrams score strongly for PlantUML-oriented standard adherence, understandability
+and terminology. Correctness does not score significantly above the neutral value, and completeness
+remains imperfect. Visually convincing output can omit conditions, hide contradictions, mishandle
+numbers and timing, assign behavior to the wrong component, invent terms or include incomplete trace
+annotations.
+
+The source establishes an LLM document-to-candidate-model boundary, not autonomous model
+construction. Prompt, provider, model, interface, session, memory, context and renderer are execution
+provenance. Source coverage, behavioral semantics, terminology mappings and traces require separate
+validation, followed by human correction and disposition.
+
+The study uses one historical GPT-3.5 configuration, one prompt pattern, functional requirements and
+no gold-standard diagram. Its failure taxonomy is directly useful, while performance claims require
+contemporary multi-model replication.
+
 ## Initial DDTA separation
 
 ```text
 raw and governed project documentation
 -> automated or assisted extraction into candidate requirement and model artifacts
+-> optional LLM generation of candidate behavioral or structural model projections
+-> syntax, source-coverage, semantic and traceability validation
 -> reviewed Base Analysis construction
 -> requirements-to-architecture concern, decision and multi-view projection
 -> reviewed and evaluated candidate architecture
@@ -279,9 +304,11 @@ can be processed into candidate UML and other requirement artifacts, while trace
 uncertainty, model evolution, industrial validation and common benchmarks remain weak. SRC-0034
 maps the following requirements-to-architecture transition and shows that transformation rules are
 representation-specific, decisions remain tacit, traceability is exceptional and architecture
-validation is often absent. DDTA must still establish how heterogeneous documentation becomes
-reviewed neutral assets, actors, goals, interactions, objects, operations, domains, phenomena,
-scenarios and architectural decisions consumed by these overlays, arguments and tests.
+validation is often absent. SRC-0035 demonstrates that GPT-3.5 can produce readable first-pass
+sequence diagrams from realistic requirements while still omitting, altering or inventing behavior
+behind strong syntax and terminology. DDTA must still establish how heterogeneous documentation
+becomes reviewed neutral assets, actors, goals, interactions, objects, operations, domains,
+phenomena, scenarios and architectural decisions consumed by these overlays, arguments and tests.
 
 ## Technique-focus taxonomy
 
@@ -338,7 +365,14 @@ Direct evidence from the review:
 - partial transformations produce candidate views that require manual analysis and improvement;
 - architectural-view names and ADLs are heterogeneous and can lose semantics when normalized;
 - explicit requirements-to-architecture traceability is rare in the mapped corpus;
-- generated architecture does not establish requirements satisfaction or evaluation evidence.
+- generated architecture does not establish requirements satisfaction or evaluation evidence;
+- a general-purpose LLM can produce abstract sequence-diagram candidates from realistic requirements;
+- high understandability, terminology and parser compliance do not establish correctness or completeness;
+- ambiguous, inconsistent, numerical and temporal requirements can be omitted or concealed;
+- generated actors, components, ordering, states and terminology can contradict the source;
+- LLM-produced trace notes and requirement identifiers can be incomplete or inaccurate;
+- provider, model, prompt, session, memory, context and renderer state affect reproducibility;
+- requirement modifications can be ignored and every accepted model needs explicit stale-state control.
 
 Researcher conclusion for DDTA:
 
@@ -346,6 +380,8 @@ Researcher conclusion for DDTA:
 documentation_only is possible for some techniques
 documentation_plus_model is required for others
 document_to_candidate_artifact can be automated or assisted from natural-language requirements
+document_to_llm_candidate_model can produce readable but semantically unreliable projections
+llm_candidate_model_to_accepted_model requires syntax, coverage, semantic and trace validation
 candidate_artifact_to_base_analysis requires source provenance and human review
 base_analysis_to_candidate_architecture requires explicit concerns, alternatives and decisions
 candidate_architecture_to_accepted_architecture requires multi-view review and satisfaction evidence
@@ -372,14 +408,17 @@ and implementation-level execution evidence. SRC-0033 adds documentation-to-cand
 automation and shows that provenance, review, evolution, benchmark and adoption evidence remain
 incomplete. SRC-0034 adds the requirements-to-architecture decision boundary and shows that tacit
 knowledge, weak traceability, heterogeneous views and insufficient evaluation remain central gaps.
+SRC-0035 adds direct LLM document-to-behavioral-model evidence and shows that polished syntax,
+terminology and understandability can coexist with omissions, incorrect behavior and weak traces.
 
-All eight evidence forms remain relative to their source documents, modeled context, premises,
-behaviors, attacks, mechanism choices, architectural alternatives, decisions, participants,
-baselines, transformation pipelines, catalogue versions, rule semantics, test models, selection
-criteria, adapters, oracles, environments and measured outcomes. None establishes global threat
-completeness, a complete neutral Base Analysis, a uniquely correct architecture or implementation
-security. Completion conditions, precise discovery rules, normalized cross-tool evaluation,
-provenance assurance, architecture-satisfaction evidence, oracle assurance and longitudinal
+All nine evidence forms remain relative to their source documents, model and session state, prompts,
+modeled context, premises, behaviors, attacks, mechanism choices, architectural alternatives,
+decisions, participants, baselines, transformation pipelines, catalogue versions, rule semantics,
+test models, selection criteria, adapters, oracles, environments and measured outcomes. None
+establishes global threat completeness, a complete neutral Base Analysis, a uniquely correct
+architecture, a source-faithful LLM projection or implementation security. Completion conditions,
+precise discovery rules, normalized cross-tool evaluation, provenance assurance,
+architecture-satisfaction evidence, LLM semantic assurance, oracle assurance and longitudinal
 maintenance evidence remain weak.
 
 DDTA candidate controls:
@@ -392,6 +431,15 @@ DDTA candidate controls:
 - human-intervention stage, correction history and review disposition;
 - one-shot versus maintained-editor execution mode;
 - generated-artifact stale state and regeneration trigger;
+- selected source assertions, exclusions, decomposition and requirement-quality state;
+- LLM provider, model ID, immutable snapshot and interface or API version;
+- system prompt, user prompt, template, sampling parameters and generation timestamp;
+- session, conversation, memory, retrieval context, glossary and domain-knowledge provenance;
+- generated textual notation plus parser and renderer identity and version;
+- assertion coverage states for represented, omitted, contradicted, added and abstracted content;
+- separate syntax, notation-semantic, behavioral-semantic and domain validation results;
+- proposed versus verified source-to-model traces and terminology mappings;
+- output alternatives, variability, human corrections and final disposition;
 - architecturally significant requirement and concern classification;
 - candidate architectural alternatives and comparison criteria;
 - decision, rationale, quality-attribute trade-off and external knowledge provenance;
@@ -438,37 +486,37 @@ DDTA candidate controls:
 
 ## Primary-study selection queue
 
-Automated threat modelling, model-based security testing, broad automated requirements engineering
-and the historical requirements-to-architecture boundary are now covered by SRC-0031 through
-SRC-0034. The next central reading examines current requirements-to-UML generation with large
-language models.
+Automated threat modelling, model-based security testing, broad automated requirements engineering,
+the historical requirements-to-architecture boundary and first-pass LLM sequence-diagram generation
+are now covered by SRC-0031 through SRC-0035. The next central reading should provide a contemporary
+multi-model comparison of LLM-based UML or requirements-model generation.
 
 ```text
-natural-language requirements
--> LLM-generated candidate UML or structured model
--> provenance, syntax and semantic validation
--> human correction and accepted model
+shared requirements cases
+-> multiple current LLMs and controlled prompts
+-> syntax, assertion coverage, semantic correctness and correction effort
+-> comparative evidence for plugin selection and governance
 ```
 
 
-## Scenario, anti-goal, assurance, execution, problem-frame, validation, automation, MBST, automated-RE and architecture contrast
+## Scenario, anti-goal, assurance, execution, problem-frame, validation, automation, MBST, automated-RE, architecture and LLM model-generation contrast
 
-| Dimension | SRC-0003 | SRC-0004 | SRC-0027 | SRC-0028 | SRC-0029 | SRC-0030 | SRC-0031 | SRC-0032 | SRC-0033 | SRC-0034 |
-|---|---|---|---|---|---|---|---|---|---|---|
-| Starting view | functional scenarios | goal, object, agent and domain models | problem context, phenomena and behavior | EIOD and sequence behavior | context, domains, interfaces and security requirement | scenario, sequence diagram, structured threats and optional DFD | typed graph, DFD, code model or asset list plus catalogue/rules | security-enriched system/test model plus optional attack model | natural-language requirements plus optional domain knowledge, models and metadata | textual or modeled requirements plus NFRs and domain concerns |
-| Main structure | harmful scenario | intentional AND/OR anti-goal graph | constrained requirement and argument graph | modification, attack and mitigation scenarios | security problem frame and concretized frame | actual/fabricated threat-validation experiment | automated candidate selection and cross-tool comparison | model-to-abstract-test derivation and concretized execution | document-to-candidate-artifact processing and tool-landscape comparison | analysis, alternatives, architectural decisions, views and evaluation |
-| Formality | mostly informal | optional temporal logic and formal regression | formal outer proof plus informal inner argument | formal trace semantics and executable FSMs | conditional implication obligations; no implemented verifier | statistical difference and equivalence tests | typed mappings, Boolean conditions and catalogue/rule matching | UML/OCL, timed automata, CPN, attack trees and coverage criteria | NLP, ML, ontology, rules and heterogeneous output schemas | representation-specific rules, heterogeneous views and ADLs |
-| Security output | misuse and mitigation | anti-requirement and vulnerability | primary/secondary security constraints | composed behavior and attack tests | concretized requirement, protocol, mechanism and specification | correctness and perceived-usefulness evidence | candidate threats, mitigations and control mappings | abstract tests, concrete scripts and execution observations | candidate UML, structured requirements and quality findings | candidate architectural elements, relations, decisions and views |
-| Assumption handling | template fields | domain properties | trust assumptions and rebuttals | pre/postconditions and interactive path choices | explicit attacker capability and domain knowledge | explicit threat assumptions used in binary validation | model properties, technologies, protocols and rule conditions | security properties, test purposes, adapters, environment and oracle | domain knowledge, preprocessing, interpretation and reviewer corrections | architect knowledge, quality trade-offs, patterns, styles and alternatives |
-| Assurance | review status and trace links | local proof and derivation evidence | conditional satisfaction evidence | regression over known attack traces | conditional refinement and specification adequacy | expert-curated ground truth and measured participant outcomes | element-to-candidate trace; no independent completeness ground truth | model-to-test trace and SUT evidence; partial attack coverage | human verification; no common source-provenance or benchmark contract | manual refinement; requirements-satisfaction evaluation absent in most methods |
-| Empirical evidence | descriptive examples | four anti-model cases | one industrial research application | two preliminary case studies | one illustrative remote-display case | controlled and confirming experiment with 98 students | 55-study SLR plus one illustrative WordPress comparison | Rapid Review of 17 mostly exploratory IoT studies | SLR of 85 heterogeneous implemented-tool studies | mapping study of 39 mostly weakly evaluated derivation methods |
+| Dimension | SRC-0003 | SRC-0004 | SRC-0027 | SRC-0028 | SRC-0029 | SRC-0030 | SRC-0031 | SRC-0032 | SRC-0033 | SRC-0034 | SRC-0035 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| Starting view | functional scenarios | goal, object, agent and domain models | problem context, phenomena and behavior | EIOD and sequence behavior | context, domains, interfaces and security requirement | scenario, sequence diagram, structured threats and optional DFD | typed graph, DFD, code model or asset list plus catalogue/rules | security-enriched system/test model plus optional attack model | natural-language requirements plus optional domain knowledge, models and metadata | textual or modeled requirements plus NFRs and domain concerns | realistic functional requirements in shall, use-case and user-story formats |
+| Main structure | harmful scenario | intentional AND/OR anti-goal graph | constrained requirement and argument graph | modification, attack and mitigation scenarios | security problem frame and concretized frame | actual/fabricated threat-validation experiment | automated candidate selection and cross-tool comparison | model-to-abstract-test derivation and concretized execution | document-to-candidate-artifact processing and tool-landscape comparison | analysis, alternatives, architectural decisions, views and evaluation | single-shot LLM generation plus expert quality and issue analysis |
+| Formality | mostly informal | optional temporal logic and formal regression | formal outer proof plus informal inner argument | formal trace semantics and executable FSMs | conditional implication obligations; no implemented verifier | statistical difference and equivalence tests | typed mappings, Boolean conditions and catalogue/rule matching | UML/OCL, timed automata, CPN, attack trees and coverage criteria | NLP, ML, ontology, rules and heterogeneous output schemas | representation-specific rules, heterogeneous views and ADLs | GPT-3.5 free-form interpretation rendered as PlantUML sequence diagrams |
+| Security output | misuse and mitigation | anti-requirement and vulnerability | primary/secondary security constraints | composed behavior and attack tests | concretized requirement, protocol, mechanism and specification | correctness and perceived-usefulness evidence | candidate threats, mitigations and control mappings | abstract tests, concrete scripts and execution observations | candidate UML, structured requirements and quality findings | candidate architectural elements, relations, decisions and views | candidate behavioral interactions, actors, conditions and trace notes |
+| Assumption handling | template fields | domain properties | trust assumptions and rebuttals | pre/postconditions and interactive path choices | explicit attacker capability and domain knowledge | explicit threat assumptions used in binary validation | model properties, technologies, protocols and rule conditions | security properties, test purposes, adapters, environment and oracle | domain knowledge, preprocessing, interpretation and reviewer corrections | architect knowledge, quality trade-offs, patterns, styles and alternatives | prompt context, implicit pretrained knowledge and analyst-supplied clarification |
+| Assurance | review status and trace links | local proof and derivation evidence | conditional satisfaction evidence | regression over known attack traces | conditional refinement and specification adequacy | expert-curated ground truth and measured participant outcomes | element-to-candidate trace; no independent completeness ground truth | model-to-test trace and SUT evidence; partial attack coverage | human verification; no common source-provenance or benchmark contract | manual refinement; requirements-satisfaction evaluation absent in most methods | expert source comparison; no gold standard; generated traces can be incomplete |
+| Empirical evidence | descriptive examples | four anti-model cases | one industrial research application | two preliminary case studies | one illustrative remote-display case | controlled and confirming experiment with 98 students | 55-study SLR plus one illustrative WordPress comparison | Rapid Review of 17 mostly exploratory IoT studies | SLR of 85 heterogeneous implemented-tool studies | mapping study of 39 mostly weakly evaluated derivation methods | 28 documents, 87 variants, five scores, kappa 0.67 and 23 issue categories |
 
-All ten approaches are pre-code, documentation-primary, requirements-primary, model-primary or
-test-evidence producing. None establishes a trustworthy complete neutral Base Analysis,
-assertion-level provenance, a uniquely correct architecture and global completeness together. They
-support distinct documentation-processing, architectural-decision, methodology, assurance,
-executable-scenario, problem-refinement, empirical-validation, candidate-generation and
-security-testing roles over governed project evidence.
+All eleven approaches are pre-code, documentation-primary, requirements-primary, model-primary,
+LLM-candidate-producing or test-evidence producing. None establishes a trustworthy complete neutral
+Base Analysis, assertion-level provenance, a uniquely correct architecture, a source-faithful LLM
+projection and global completeness together. They support distinct documentation-processing,
+architectural-decision, methodology, assurance, executable-scenario, problem-refinement,
+empirical-validation, candidate-generation and security-testing roles over governed project evidence.
 
 ## Evidence still missing
 
@@ -485,6 +533,11 @@ security-testing roles over governed project evidence.
 - comparable architecture-satisfaction evaluation and industrial evidence;
 - semantic preservation across heterogeneous architectural views and ADLs;
 - current requirements-to-architecture automation and LLM evidence beyond the historical corpus;
+- contemporary multi-model UML-generation comparison on shared realistic requirements;
+- assertion-level gold standards or verified source-coverage mappings without requiring one canonical layout;
+- security, privacy and non-functional requirement model-generation evidence;
+- reproducible provider/model/prompt/session configurations and longitudinal reruns;
+- measured human correction effort, accepted-model yield and iterative prompting benefit;
 - governed trust-assumption acceptance and residual-risk criteria;
 - automatic argument maintenance and change impact;
 - automatic document-to-problem-frame construction and frame-applicability checking;
@@ -521,7 +574,9 @@ classical NLP, ML and ontology techniques and cannot establish the performance, 
 industrial maturity of generative-LLM-based RE in 2026. SRC-0034 was published in 2019 and its
 selected primary studies extend through the mid-2010s; it remains useful for the tacit-knowledge,
 traceability, multi-view and evaluation boundaries but cannot establish current tool or LLM-based
-requirements-to-architecture maturity.
+requirements-to-architecture maturity. SRC-0035 was published in 2024 but evaluates one GPT-3.5
+configuration through the ChatGPT web interface; its failure categories remain relevant, while all
+2026 performance, memory, prompting and comparative claims require contemporary replication.
 
 ## Reading order
 
@@ -537,5 +592,6 @@ SRC-0026 historical method taxonomy
 -> SRC-0032 model-based security testing Rapid Review
 -> SRC-0033 automated requirements-engineering support SLR
 -> SRC-0034 requirements-to-architecture mapping study
--> recent requirements-to-UML generation with LLMs
+-> SRC-0035 GPT-3.5 requirements-to-sequence-diagram study
+-> recent multi-model LLM requirements-to-UML comparison
 ```

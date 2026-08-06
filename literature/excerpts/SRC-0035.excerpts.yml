@@ -1,0 +1,652 @@
+schema_version: 1
+source_id: SRC-0035
+citation_key: ferrari2024modelgeneration
+source_version:
+  stable_identifier: 10.1109/REW61692.2024.00044
+  edition_or_version: Author preprint of IEEE REW 2024, pages 291-300
+  accessed_on: '2026-08-06'
+  local_filename: SRC-0035-ferrari-abualhaija-arora-2024.pdf
+  sha256: 205ab0defcd11446187345948d44deec7987ea9c7d4922322ef13773e37ac63a
+excerpts:
+- id: SRC-0035-EX-0001
+  location:
+    pdf_page: 1
+    printed_page: 291
+    section: Abstract
+    paragraph_or_table: Aim, corpus and headline findings
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The study investigates ChatGPT generation of UML sequence diagrams from 28 natural-language
+    requirements documents across different formats and domains, using evaluation logs and thematic analysis.
+  researcher_interpretation: The paper supplies direct empirical evidence for a documentation-to-LLM-candidate-model
+    boundary.
+  supported_proposition: A general-purpose LLM can generate candidate sequence diagrams from realistic requirements
+    documents.
+  thesis_targets:
+  - chapter-3
+  - chapter-4
+  - chapter-7
+  temporal_caveat: Empirical exploratory study published in 2024 and executed with the GPT-3.5 model available
+    through the ChatGPT web interface at the time of the study. The reported failure modes remain architecturally
+    relevant, but model quality, interface behavior, memory, prompting and current 2026 capabilities require contemporary
+    multi-model corroboration.
+  verification_state: location_verified
+- id: SRC-0035-EX-0002
+  location:
+    pdf_page: 1
+    printed_page: 291
+    section: Abstract
+    paragraph_or_table: Quality strengths and weaknesses
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Generated models generally conform to the chosen notation and are understandable, but completeness
+    and correctness are problematic, particularly with ambiguous or inconsistent requirements.
+  researcher_interpretation: Surface plausibility must not be used as evidence of semantic fidelity.
+  supported_proposition: Understandability and notation compliance do not establish diagram correctness or completeness.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-7
+  temporal_caveat: Empirical exploratory study published in 2024 and executed with the GPT-3.5 model available
+    through the ChatGPT web interface at the time of the study. The reported failure modes remain architecturally
+    relevant, but model quality, interface behavior, memory, prompting and current 2026 capabilities require contemporary
+    multi-model corroboration.
+  verification_state: location_verified
+- id: SRC-0035-EX-0003
+  location:
+    pdf_page: 1
+    printed_page: 291
+    section: 1 Introduction
+    paragraph_or_table: Manual modelling and LLM opportunity
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Requirements are commonly written in natural language, and complementing them with UML
+    models requires manual effort; pretrained generative LLMs can reduce tool-construction effort and assist model
+    generation.
+  researcher_interpretation: LLMs lower the entry cost of model generation but do not remove validation work.
+  supported_proposition: LLMs offer automated assistance for converting textual requirements into graphical model
+    candidates.
+  thesis_targets:
+  - chapter-2
+  - chapter-3
+  temporal_caveat: Empirical exploratory study published in 2024 and executed with the GPT-3.5 model available
+    through the ChatGPT web interface at the time of the study. The reported failure modes remain architecturally
+    relevant, but model quality, interface behavior, memory, prompting and current 2026 capabilities require contemporary
+    multi-model corroboration.
+  verification_state: location_verified
+- id: SRC-0035-EX-0004
+  location:
+    pdf_page: 1
+    printed_page: 291
+    section: 1 Introduction
+    paragraph_or_table: Sequence-diagram scope
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The paper focuses on sequence diagrams as behavioral representations of interactions, complementary
+    to static class diagrams and less studied than class-model generation.
+  researcher_interpretation: The generated view covers interaction behavior only and cannot stand for a complete
+    system model.
+  supported_proposition: Sequence diagrams provide one behavioral projection rather than a complete Base Analysis.
+  thesis_targets:
+  - chapter-2
+  - chapter-5
+  temporal_caveat: Empirical exploratory study published in 2024 and executed with the GPT-3.5 model available
+    through the ChatGPT web interface at the time of the study. The reported failure modes remain architecturally
+    relevant, but model quality, interface behavior, memory, prompting and current 2026 capabilities require contemporary
+    multi-model corroboration.
+  verification_state: location_verified
+- id: SRC-0035-EX-0005
+  location:
+    pdf_page: 1
+    printed_page: 291
+    section: 1 Introduction
+    paragraph_or_table: Researchers and 23 issue categories
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Two experienced RE/NLP researchers generated and evaluated diagrams, while a third researcher
+    performed thematic analysis and identified 23 main issue categories.
+  researcher_interpretation: The study is expert-led and produces a structured failure taxonomy rather than an
+    objective benchmark score.
+  supported_proposition: The evaluation combines expert scoring with a 23-category qualitative issue framework.
+  thesis_targets:
+  - chapter-4
+  - chapter-7
+  temporal_caveat: Empirical exploratory study published in 2024 and executed with the GPT-3.5 model available
+    through the ChatGPT web interface at the time of the study. The reported failure modes remain architecturally
+    relevant, but model quality, interface behavior, memory, prompting and current 2026 capabilities require contemporary
+    multi-model corroboration.
+  verification_state: location_verified
+- id: SRC-0035-EX-0006
+  location:
+    pdf_page: 2
+    printed_page: 292
+    section: 2.1 Sequence Diagrams
+    paragraph_or_table: Abstract versus formal diagrams
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The generated diagrams use free-form natural-language labels rather than pseudo-code because
+    they are intended to support stakeholder communication.
+  researcher_interpretation: The output is an abstract communication artifact, not an executable formal model.
+  supported_proposition: The evaluated sequence diagrams are stakeholder-oriented abstract models.
+  thesis_targets:
+  - chapter-2
+  - chapter-5
+  temporal_caveat: Empirical exploratory study published in 2024 and executed with the GPT-3.5 model available
+    through the ChatGPT web interface at the time of the study. The reported failure modes remain architecturally
+    relevant, but model quality, interface behavior, memory, prompting and current 2026 capabilities require contemporary
+    multi-model corroboration.
+  verification_state: location_verified
+- id: SRC-0035-EX-0007
+  location:
+    pdf_page: 3
+    printed_page: 293
+    section: 2.2 Related Work
+    paragraph_or_table: Research gap
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Prior LLM model-generation studies considered goal or class models, often using toy requirements;
+    this study targets sequence diagrams and industrial requirements in multiple formats and domains.
+  researcher_interpretation: The evidence is more realistic than toy-case demonstrations but remains limited to
+    one diagram type and one model family.
+  supported_proposition: The study extends LLM model-generation evidence to realistic sequence-diagram cases.
+  thesis_targets:
+  - chapter-3
+  - chapter-4
+  temporal_caveat: Empirical exploratory study published in 2024 and executed with the GPT-3.5 model available
+    through the ChatGPT web interface at the time of the study. The reported failure modes remain architecturally
+    relevant, but model quality, interface behavior, memory, prompting and current 2026 capabilities require contemporary
+    multi-model corroboration.
+  verification_state: location_verified
+- id: SRC-0035-EX-0008
+  location:
+    pdf_page: 3
+    printed_page: 293
+    section: 3 Research Design
+    paragraph_or_table: RQ1 and RQ2
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: RQ1 quantifies generated-diagram quality, while RQ2 qualitatively identifies recurring
+    issues linked to model output or input-requirement characteristics.
+  researcher_interpretation: The design separates quality scoring from failure-mode discovery.
+  supported_proposition: The study evaluates both quality degree and issue taxonomy.
+  thesis_targets:
+  - chapter-4
+  temporal_caveat: Empirical exploratory study published in 2024 and executed with the GPT-3.5 model available
+    through the ChatGPT web interface at the time of the study. The reported failure modes remain architecturally
+    relevant, but model quality, interface behavior, memory, prompting and current 2026 capabilities require contemporary
+    multi-model corroboration.
+  verification_state: location_verified
+- id: SRC-0035-EX-0009
+  location:
+    pdf_page: 3
+    printed_page: 293
+    section: 3 Research Design
+    paragraph_or_table: Model and interface
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The study uses only the GPT-3.5 model through the free ChatGPT web application, selected
+    for accessibility to analysts without API programming skills.
+  researcher_interpretation: Provider, model family and interface are material execution context and constrain
+    generalization.
+  supported_proposition: The results are specific to GPT-3.5 through the contemporaneous ChatGPT web interface.
+  thesis_targets:
+  - chapter-4
+  - chapter-7
+  temporal_caveat: Empirical exploratory study published in 2024 and executed with the GPT-3.5 model available
+    through the ChatGPT web interface at the time of the study. The reported failure modes remain architecturally
+    relevant, but model quality, interface behavior, memory, prompting and current 2026 capabilities require contemporary
+    multi-model corroboration.
+  verification_state: location_verified
+- id: SRC-0035-EX-0010
+  location:
+    pdf_page: 3
+    printed_page: 293
+    section: 3.1 Data Collection
+    paragraph_or_table: Datasets and domains
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The corpus contains 28 industrial requirements documents from three sources, spanning 18
+    domains and shall requirements, use-case specifications and user stories.
+  researcher_interpretation: The input variety supports cross-context exploration but not statistical representativeness
+    of all requirements projects.
+  supported_proposition: The evaluation uses heterogeneous realistic requirements rather than one toy example.
+  thesis_targets:
+  - chapter-3
+  - chapter-4
+  temporal_caveat: Empirical exploratory study published in 2024 and executed with the GPT-3.5 model available
+    through the ChatGPT web interface at the time of the study. The reported failure modes remain architecturally
+    relevant, but model quality, interface behavior, memory, prompting and current 2026 capabilities require contemporary
+    multi-model corroboration.
+  verification_state: location_verified
+- id: SRC-0035-EX-0011
+  location:
+    pdf_page: 3
+    printed_page: 293
+    section: 3.1 Data Collection
+    paragraph_or_table: Variants and smells
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Researchers introduce requirement additions, deletions, modifications, ambiguity, inconsistency
+    and incompleteness to expose the model to evolution and quality challenges.
+  researcher_interpretation: The study directly tests how source defects and changes influence generated artifacts.
+  supported_proposition: Input smells and requirement evolution are explicit experimental challenges.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-7
+  temporal_caveat: Empirical exploratory study published in 2024 and executed with the GPT-3.5 model available
+    through the ChatGPT web interface at the time of the study. The reported failure modes remain architecturally
+    relevant, but model quality, interface behavior, memory, prompting and current 2026 capabilities require contemporary
+    multi-model corroboration.
+  verification_state: location_verified
+- id: SRC-0035-EX-0012
+  location:
+    pdf_page: 4
+    printed_page: 294
+    section: 3.1 Data Collection
+    paragraph_or_table: 87 variants and selection bias
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: 'The study evaluates 87 variants: 57 shall-requirement, 17 use-case and 13 user-story variants;
+    selection stops after perceived issue saturation, and the authors acknowledge order bias.'
+  researcher_interpretation: Variant construction is expert-driven and non-systematic, so observed frequencies
+    are not failure probabilities.
+  supported_proposition: The study provides broad exploratory coverage but not exhaustive mutation testing.
+  thesis_targets:
+  - chapter-4
+  - chapter-7
+  temporal_caveat: Empirical exploratory study published in 2024 and executed with the GPT-3.5 model available
+    through the ChatGPT web interface at the time of the study. The reported failure modes remain architecturally
+    relevant, but model quality, interface behavior, memory, prompting and current 2026 capabilities require contemporary
+    multi-model corroboration.
+  verification_state: location_verified
+- id: SRC-0035-EX-0013
+  location:
+    pdf_page: 3
+    printed_page: 293
+    section: 3.1 Data Collection
+    paragraph_or_table: Functional-requirement scope
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Only functional requirements are selected because sequence diagrams are intended to represent
+    behavior rather than quality aspects.
+  researcher_interpretation: The results cannot be transferred directly to security, privacy or other NFR extraction.
+  supported_proposition: The evidence is limited to functional requirements.
+  thesis_targets:
+  - chapter-3
+  - chapter-7
+  temporal_caveat: Empirical exploratory study published in 2024 and executed with the GPT-3.5 model available
+    through the ChatGPT web interface at the time of the study. The reported failure modes remain architecturally
+    relevant, but model quality, interface behavior, memory, prompting and current 2026 capabilities require contemporary
+    multi-model corroboration.
+  verification_state: location_verified
+- id: SRC-0035-EX-0014
+  location:
+    pdf_page: 4
+    printed_page: 294
+    section: 3.1 Diagram Generation
+    paragraph_or_table: Prompt, PlantUML and first output
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Each variant is sent through one visualization-generator prompt requesting a sequence diagram
+    for PlantText; separate sessions are used and only the first output is evaluated, not later corrections.
+  researcher_interpretation: The evaluated boundary is single-shot generation, not an optimized interactive workflow.
+  supported_proposition: The study measures first-pass PlantUML generation under one prompt pattern.
+  thesis_targets:
+  - chapter-3
+  - chapter-4
+  - chapter-5
+  temporal_caveat: Empirical exploratory study published in 2024 and executed with the GPT-3.5 model available
+    through the ChatGPT web interface at the time of the study. The reported failure modes remain architecturally
+    relevant, but model quality, interface behavior, memory, prompting and current 2026 capabilities require contemporary
+    multi-model corroboration.
+  verification_state: location_verified
+- id: SRC-0035-EX-0015
+  location:
+    pdf_page: 4
+    printed_page: 294
+    section: 3.1 Evaluation
+    paragraph_or_table: Five quality criteria
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Completeness, correctness, adherence to the standard, understandability and terminological
+    alignment are scored on a five-point ordinal scale with textual justification.
+  researcher_interpretation: DDTA should maintain separate quality dimensions and supporting review evidence.
+  supported_proposition: Generated-model quality is multidimensional and cannot be reduced to renderability.
+  thesis_targets:
+  - chapter-4
+  - chapter-5
+  temporal_caveat: Empirical exploratory study published in 2024 and executed with the GPT-3.5 model available
+    through the ChatGPT web interface at the time of the study. The reported failure modes remain architecturally
+    relevant, but model quality, interface behavior, memory, prompting and current 2026 capabilities require contemporary
+    multi-model corroboration.
+  verification_state: location_verified
+- id: SRC-0035-EX-0016
+  location:
+    pdf_page: 4
+    printed_page: 294
+    section: 3.1 Evaluation
+    paragraph_or_table: PlantText standard caveat
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: PlantText interpretability and appropriate construct use serve as the operational standard
+    criterion, while the authors note PlantText may not cover every UML nuance.
+  researcher_interpretation: Parser acceptance is a bounded syntax/notation check, not full UML certification.
+  supported_proposition: Notation validation must declare the concrete parser and conformance scope.
+  thesis_targets:
+  - chapter-4
+  - chapter-5
+  temporal_caveat: Empirical exploratory study published in 2024 and executed with the GPT-3.5 model available
+    through the ChatGPT web interface at the time of the study. The reported failure modes remain architecturally
+    relevant, but model quality, interface behavior, memory, prompting and current 2026 capabilities require contemporary
+    multi-model corroboration.
+  verification_state: location_verified
+- id: SRC-0035-EX-0017
+  location:
+    pdf_page: 5
+    printed_page: 295
+    section: 3.1 Evaluation
+    paragraph_or_table: No manually defined ground truth
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The study does not use a gold-standard diagram because multiple diagrams can satisfy the
+    same requirements and existing ground truths were too limited.
+  researcher_interpretation: Correctness depends on expert judgment and source comparison rather than one canonical
+    diagram.
+  supported_proposition: There may be several valid diagram projections for the same requirements.
+  thesis_targets:
+  - chapter-4
+  - chapter-7
+  temporal_caveat: Empirical exploratory study published in 2024 and executed with the GPT-3.5 model available
+    through the ChatGPT web interface at the time of the study. The reported failure modes remain architecturally
+    relevant, but model quality, interface behavior, memory, prompting and current 2026 capabilities require contemporary
+    multi-model corroboration.
+  verification_state: location_verified
+- id: SRC-0035-EX-0018
+  location:
+    pdf_page: 5
+    printed_page: 295
+    section: 3.2 Data Analysis
+    paragraph_or_table: Cross-evaluation and kappa
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Thirty models are cross-evaluated and the square-weighted Cohen kappa is 0.67, interpreted
+    as substantial agreement.
+  researcher_interpretation: The score process has meaningful but incomplete inter-rater consistency.
+  supported_proposition: Expert evaluation reliability is partially supported by cross-evaluation.
+  thesis_targets:
+  - chapter-4
+  temporal_caveat: Empirical exploratory study published in 2024 and executed with the GPT-3.5 model available
+    through the ChatGPT web interface at the time of the study. The reported failure modes remain architecturally
+    relevant, but model quality, interface behavior, memory, prompting and current 2026 capabilities require contemporary
+    multi-model corroboration.
+  verification_state: location_verified
+- id: SRC-0035-EX-0019
+  location:
+    pdf_page: 5
+    printed_page: 295
+    section: 3.2 Data Analysis
+    paragraph_or_table: Thematic coding
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Thematic analysis starts with 135 low-level codes, sanitizes them to 62 and aggregates
+    them into 23 mid-level categories under the quality dimensions and general issues.
+  researcher_interpretation: The issue catalogue is systematically derived from evaluation logs but remains interpretive.
+  supported_proposition: The study supplies a structured taxonomy of LLM model-generation failures.
+  thesis_targets:
+  - chapter-4
+  - chapter-7
+  temporal_caveat: Empirical exploratory study published in 2024 and executed with the GPT-3.5 model available
+    through the ChatGPT web interface at the time of the study. The reported failure modes remain architecturally
+    relevant, but model quality, interface behavior, memory, prompting and current 2026 capabilities require contemporary
+    multi-model corroboration.
+  verification_state: location_verified
+- id: SRC-0035-EX-0020
+  location:
+    pdf_page: 5
+    printed_page: 295
+    section: 4.1 RQ1
+    paragraph_or_table: Table II quantitative results
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Completeness, standard adherence, understandability and terminology score significantly
+    above the neutral value, while correctness does not; correctness has mean 3.2195 and small effect size.
+  researcher_interpretation: The strongest warning is the divergence between polished presentation and uncertain
+    semantic correctness.
+  supported_proposition: Correctness remains inadequately fulfilled even when other quality dimensions appear
+    strong.
+  thesis_targets:
+  - chapter-3
+  - chapter-4
+  - chapter-7
+  temporal_caveat: Empirical exploratory study published in 2024 and executed with the GPT-3.5 model available
+    through the ChatGPT web interface at the time of the study. The reported failure modes remain architecturally
+    relevant, but model quality, interface behavior, memory, prompting and current 2026 capabilities require contemporary
+    multi-model corroboration.
+  verification_state: location_verified
+- id: SRC-0035-EX-0021
+  location:
+    pdf_page: 6
+    printed_page: 296
+    section: 4.2 Completeness
+    paragraph_or_table: Summarization and omissions
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Generated diagrams may over-summarize and omit requirements, components, calls, messages
+    or conditions because the model struggles to distinguish relevant from inconsequential information.
+  researcher_interpretation: Source coverage needs assertion-level checking rather than visual inspection alone.
+  supported_proposition: LLM abstraction can silently remove required behavior.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Empirical exploratory study published in 2024 and executed with the GPT-3.5 model available
+    through the ChatGPT web interface at the time of the study. The reported failure modes remain architecturally
+    relevant, but model quality, interface behavior, memory, prompting and current 2026 capabilities require contemporary
+    multi-model corroboration.
+  verification_state: location_verified
+- id: SRC-0035-EX-0022
+  location:
+    pdf_page: 6
+    printed_page: 296
+    section: 4.2 Completeness
+    paragraph_or_table: Ambiguity, inconsistency, numbers and timing
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Ambiguous content can be concealed behind generic abstractions, conflicting requirements
+    can be hidden, and numerical or timing constraints can be ignored.
+  researcher_interpretation: Generation should stop or flag unresolved defects rather than silently produce one
+    coherent-looking view.
+  supported_proposition: Input defects and quantitative constraints are high-risk sources of omission.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-7
+  temporal_caveat: Empirical exploratory study published in 2024 and executed with the GPT-3.5 model available
+    through the ChatGPT web interface at the time of the study. The reported failure modes remain architecturally
+    relevant, but model quality, interface behavior, memory, prompting and current 2026 capabilities require contemporary
+    multi-model corroboration.
+  verification_state: location_verified
+- id: SRC-0035-EX-0023
+  location:
+    pdf_page: 7
+    printed_page: 297
+    section: 4.2 Correctness
+    paragraph_or_table: Interactions, actors and structure
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The diagrams can contain incorrect interaction order, wrong action flow, data represented
+    as actors, missing states or loops and responsibility assigned to the wrong component.
+  researcher_interpretation: Behavioral plausibility must be verified against each source assertion and domain
+    rule.
+  supported_proposition: Generated diagrams can be structurally coherent yet semantically wrong.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Empirical exploratory study published in 2024 and executed with the GPT-3.5 model available
+    through the ChatGPT web interface at the time of the study. The reported failure modes remain architecturally
+    relevant, but model quality, interface behavior, memory, prompting and current 2026 capabilities require contemporary
+    multi-model corroboration.
+  verification_state: location_verified
+- id: SRC-0035-EX-0024
+  location:
+    pdf_page: 7
+    printed_page: 297
+    section: 4.2 Standard and terminology
+    paragraph_or_table: Syntax, semantic constructs and added terms
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Some outputs fail parsing or misuse sequence-diagram constructs; ChatGPT can also introduce
+    unsupported terms, omit relevant terms or rename concepts inconsistently.
+  researcher_interpretation: Syntax validation, notation-semantic validation and source-vocabulary mapping are
+    separate gates.
+  supported_proposition: A renderable diagram can still contain notation and terminology defects.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Empirical exploratory study published in 2024 and executed with the GPT-3.5 model available
+    through the ChatGPT web interface at the time of the study. The reported failure modes remain architecturally
+    relevant, but model quality, interface behavior, memory, prompting and current 2026 capabilities require contemporary
+    multi-model corroboration.
+  verification_state: location_verified
+- id: SRC-0035-EX-0025
+  location:
+    pdf_page: 8
+    printed_page: 298
+    section: 4.2 Understandability
+    paragraph_or_table: Traceability challenges
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Generated notes or requirement identifiers can assist interpretation but may be incomplete
+    or inaccurate, including cases where represented actions lack their corresponding trace.
+  researcher_interpretation: LLM-produced trace labels are candidates requiring independent verification.
+  supported_proposition: Spontaneous traceability annotations do not establish complete source-to-model traceability.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-7
+  temporal_caveat: Empirical exploratory study published in 2024 and executed with the GPT-3.5 model available
+    through the ChatGPT web interface at the time of the study. The reported failure modes remain architecturally
+    relevant, but model quality, interface behavior, memory, prompting and current 2026 capabilities require contemporary
+    multi-model corroboration.
+  verification_state: location_verified
+- id: SRC-0035-EX-0026
+  location:
+    pdf_page: 8
+    printed_page: 298
+    section: 4.2 General Issues
+    paragraph_or_table: Memory, ignored changes, context and variability
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Prior interactions can appear to influence later sessions, requirement modifications can
+    be ignored, domain context can be insufficient and identical queries can yield different outputs.
+  researcher_interpretation: Model, session, memory, prompt and context state belong to reproducibility and change
+    provenance.
+  supported_proposition: LLM model generation is state-sensitive, variable and potentially stale after requirement
+    changes.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-7
+  temporal_caveat: Empirical exploratory study published in 2024 and executed with the GPT-3.5 model available
+    through the ChatGPT web interface at the time of the study. The reported failure modes remain architecturally
+    relevant, but model quality, interface behavior, memory, prompting and current 2026 capabilities require contemporary
+    multi-model corroboration.
+  verification_state: location_verified
+- id: SRC-0035-EX-0027
+  location:
+    pdf_page: 9
+    printed_page: 299
+    section: 5 Discussion
+    paragraph_or_table: Interactive workflow and domain knowledge
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The authors retain the primary role of experienced analysts, propose iterative prompting
+    and functional decomposition, and recommend probing model understanding and supplying domain knowledge when
+    needed.
+  researcher_interpretation: The realistic operating model is human-in-the-loop generation, clarification, correction
+    and acceptance.
+  supported_proposition: Iterative prompting and contextual enrichment can assist but do not replace expert validation.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-8
+  temporal_caveat: Empirical exploratory study published in 2024 and executed with the GPT-3.5 model available
+    through the ChatGPT web interface at the time of the study. The reported failure modes remain architecturally
+    relevant, but model quality, interface behavior, memory, prompting and current 2026 capabilities require contemporary
+    multi-model corroboration.
+  verification_state: location_verified
+- id: SRC-0035-EX-0028
+  location:
+    pdf_page: 9
+    printed_page: 299
+    section: 6 Threats to Validity
+    paragraph_or_table: Construct, internal and external validity
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The study acknowledges subjective scoring, no gold standard, possible ChatGPT memory effects,
+    non-systematic exploration and document-selection bias; shared criteria, cross-evaluation and triangulation
+    partially mitigate these threats.
+  researcher_interpretation: Results identify credible failure modes but do not estimate universal accuracy or
+    current-model performance.
+  supported_proposition: The exploratory findings require independent and contemporary replication.
+  thesis_targets:
+  - chapter-4
+  - chapter-7
+  temporal_caveat: Empirical exploratory study published in 2024 and executed with the GPT-3.5 model available
+    through the ChatGPT web interface at the time of the study. The reported failure modes remain architecturally
+    relevant, but model quality, interface behavior, memory, prompting and current 2026 capabilities require contemporary
+    multi-model corroboration.
+  verification_state: location_verified
+- id: SRC-0035-EX-0029
+  location:
+    pdf_page: 10
+    printed_page: 300
+    section: 7 Conclusion
+    paragraph_or_table: Final conclusion
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The conclusion reports promising terminology, understandability and standard adherence
+    alongside incomplete or incorrect models, hallucinations and missing context; additional context and human-in-the-loop
+    decomposition, verification and refinement are recommended.
+  researcher_interpretation: The source supports candidate generation behind explicit validation gates, not autonomous
+    promotion to canonical knowledge.
+  supported_proposition: LLM-generated UML requires contextual evidence, verification and human review before
+    acceptance.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-8
+  temporal_caveat: Empirical exploratory study published in 2024 and executed with the GPT-3.5 model available
+    through the ChatGPT web interface at the time of the study. The reported failure modes remain architecturally
+    relevant, but model quality, interface behavior, memory, prompting and current 2026 capabilities require contemporary
+    multi-model corroboration.
+  verification_state: location_verified

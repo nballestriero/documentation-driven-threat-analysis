@@ -274,3 +274,11 @@ sources:
     verification_state: verified
     topics: [DE-ARCH, MD-MDE, RE-TRACEABILITY, CS-HUMAN]
     ddta_roles: [foundation, comparison, evaluation, challenge]
+  - id: SRC-0035
+    citation_key: ferrari2024modelgeneration
+    title: "Model Generation with LLMs: From Requirements to UML Sequence Diagrams"
+    year: 2024
+    type: primary_research
+    verification_state: verified
+    topics: [RE-NLP-LLM, MD-MDE, RE-TRACEABILITY, CS-HUMAN]
+    ddta_roles: [foundation, comparison, evaluation, challenge]
