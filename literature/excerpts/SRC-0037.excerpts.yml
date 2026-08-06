@@ -1,0 +1,724 @@
+schema_version: 1
+source_id: SRC-0037
+citation_key: abualhaija2025regulatory
+source_version:
+  stable_identifier: 10.1109/RE63999.2025.00023
+  edition_or_version: Public author postprint of IEEE RE 2025, pages 142-154
+  accessed_on: '2026-08-06'
+  local_filename: SRC-0037-abualhaija-ceci-sannier-et-al-2025.pdf
+  sha256: 830db5c091015faffc280e4345dd859ec3937d023963dccf88e0c5c17cc082c6
+excerpts:
+- id: SRC-0037-EX-0001
+  location:
+    pdf_page: 1
+    printed_page: 142
+    section: Abstract
+    paragraph_or_table: Reference set and approach
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The authors build 108 requirements for the GDPR rights of access and portability with legal
+    experts and propose an LLM and RAG approach for assisted extraction.
+  researcher_interpretation: The paper supplies a direct regulatory-document-to-requirement-candidate study.
+  supported_proposition: The study combines an expert reference set with an LLM-assisted privacy-requirement extraction
+    approach.
+  thesis_targets:
+  - chapter-3
+  - chapter-4
+  - chapter-7
+  temporal_caveat: Published in 2025 using fixed GPT-3.5 and GPT-4o snapshots and then-current OpenAI and LangChain
+    components. The quality dimensions and failure modes remain relevant, but exact performance and provider behavior
+    must not be treated as current 2026 evidence.
+  verification_state: location_verified
+- id: SRC-0037-EX-0002
+  location:
+    pdf_page: 1
+    printed_page: 142
+    section: Abstract
+    paragraph_or_table: Headline correctness and RAG observation
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The abstract reports 81.8 percent ACC accuracy and 85.7 percent PRT accuracy and observes
+    that generated requirements remain concentrated in the GDPR despite RAG exposure to additional sources.
+  researcher_interpretation: Accuracy must be interpreted with the paper definition, which includes partially correct
+    requirements.
+  supported_proposition: The headline results combine correct and partially correct outputs and do not establish
+    comprehensive source coverage.
+  thesis_targets:
+  - chapter-4
+  - chapter-7
+  - chapter-8
+  temporal_caveat: Published in 2025 using fixed GPT-3.5 and GPT-4o snapshots and then-current OpenAI and LangChain
+    components. The quality dimensions and failure modes remain relevant, but exact performance and provider behavior
+    must not be treated as current 2026 evidence.
+  verification_state: location_verified
+- id: SRC-0037-EX-0003
+  location:
+    pdf_page: 2
+    printed_page: 143
+    section: Introduction
+    paragraph_or_table: GDPR-only versus complementary-source example
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The portability example shows that the GDPR states a general transfer right while authoritative
+    guidance adds concrete categories of data that may need to be included.
+  researcher_interpretation: Primary regulation may be insufficient for implementable project requirements.
+  supported_proposition: Complementary authoritative sources can add implementation-relevant detail to general legal
+    provisions.
+  thesis_targets:
+  - chapter-2
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Published in 2025 using fixed GPT-3.5 and GPT-4o snapshots and then-current OpenAI and LangChain
+    components. The quality dimensions and failure modes remain relevant, but exact performance and provider behavior
+    must not be treated as current 2026 evidence.
+  verification_state: location_verified
+- id: SRC-0037-EX-0004
+  location:
+    pdf_page: 2
+    printed_page: 143
+    section: Introduction
+    paragraph_or_table: Three contributions
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The paper contributes the 61 ACC and 47 PRT reference requirements, XTRAREG and an empirical
+    comparison against the expert-built reference set.
+  researcher_interpretation: The study output includes both a benchmark-like reference corpus and an evaluated assistant.
+  supported_proposition: The case study evaluates LLM assistance against 108 expert-derived privacy requirements.
+  thesis_targets:
+  - chapter-3
+  - chapter-4
+  - chapter-7
+  temporal_caveat: Published in 2025 using fixed GPT-3.5 and GPT-4o snapshots and then-current OpenAI and LangChain
+    components. The quality dimensions and failure modes remain relevant, but exact performance and provider behavior
+    must not be treated as current 2026 evidence.
+  verification_state: location_verified
+- id: SRC-0037-EX-0005
+  location:
+    pdf_page: 2
+    printed_page: 143
+    section: Introduction
+    paragraph_or_table: Trace links and grounding results
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Reference requirements retain explicit source links; generated outputs are reported as grounded
+    in 68.2 percent of ACC and 50 percent of PRT cases, with additional incomplete references.
+  researcher_interpretation: Reference presence and reference quality are independent from requirement correctness.
+  supported_proposition: The evaluation separates requirement correctness from legal-reference groundedness.
+  thesis_targets:
+  - chapter-4
+  - chapter-5
+  - chapter-7
+  temporal_caveat: Published in 2025 using fixed GPT-3.5 and GPT-4o snapshots and then-current OpenAI and LangChain
+    components. The quality dimensions and failure modes remain relevant, but exact performance and provider behavior
+    must not be treated as current 2026 evidence.
+  verification_state: location_verified
+- id: SRC-0037-EX-0006
+  location:
+    pdf_page: 3
+    printed_page: 144
+    section: Technical background
+    paragraph_or_table: Assistant role for LLMs
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The paper treats LLMs as assistants to human experts because hallucination and other limitations
+    remain relevant.
+  researcher_interpretation: The source does not assign autonomous authority to the model.
+  supported_proposition: Human expert involvement remains part of the intended use of LLM legal assistance.
+  thesis_targets:
+  - chapter-3
+  - chapter-8
+  temporal_caveat: Published in 2025 using fixed GPT-3.5 and GPT-4o snapshots and then-current OpenAI and LangChain
+    components. The quality dimensions and failure modes remain relevant, but exact performance and provider behavior
+    must not be treated as current 2026 evidence.
+  verification_state: location_verified
+- id: SRC-0037-EX-0007
+  location:
+    pdf_page: 3
+    printed_page: 144
+    section: Technical background
+    paragraph_or_table: ZSL, CoT and RAG rationale
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Zero-shot prompting is selected as a straightforward practitioner option; chain-of-thought
+    is used to expose reasoning; RAG supplies domain-specific context.
+  researcher_interpretation: Prompt and retrieval choices are part of execution provenance.
+  supported_proposition: The evaluated workflow varies prompting and retrieval techniques rather than using an unqualified
+    LLM call.
+  thesis_targets:
+  - chapter-3
+  - chapter-4
+  - chapter-5
+  temporal_caveat: Published in 2025 using fixed GPT-3.5 and GPT-4o snapshots and then-current OpenAI and LangChain
+    components. The quality dimensions and failure modes remain relevant, but exact performance and provider behavior
+    must not be treated as current 2026 evidence.
+  verification_state: location_verified
+- id: SRC-0037-EX-0008
+  location:
+    pdf_page: 4
+    printed_page: 145
+    section: Manual requirements extraction
+    paragraph_or_table: Source taxonomy
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The expert process uses legislation, judicial decisions, official guidelines, legal literature
+    and legal-expert opinions.
+  researcher_interpretation: A future extension would need source type and authority rather than a flat URL list.
+  supported_proposition: The reference corpus is derived from multiple legal source classes.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Published in 2025 using fixed GPT-3.5 and GPT-4o snapshots and then-current OpenAI and LangChain
+    components. The quality dimensions and failure modes remain relevant, but exact performance and provider behavior
+    must not be treated as current 2026 evidence.
+  verification_state: location_verified
+- id: SRC-0037-EX-0009
+  location:
+    pdf_page: 4
+    printed_page: 145
+    section: Manual requirements extraction
+    paragraph_or_table: Expert roles and procedure
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Six experts contribute different RE, compliance and legal backgrounds; the requirements are
+    extracted, consolidated and refined through interactive sessions.
+  researcher_interpretation: The ground truth is a governed expert construction rather than an objective automatically
+    available corpus.
+  supported_proposition: The reference requirements depend on multidisciplinary expert work.
+  thesis_targets:
+  - chapter-4
+  - chapter-7
+  - chapter-8
+  temporal_caveat: Published in 2025 using fixed GPT-3.5 and GPT-4o snapshots and then-current OpenAI and LangChain
+    components. The quality dimensions and failure modes remain relevant, but exact performance and provider behavior
+    must not be treated as current 2026 evidence.
+  verification_state: location_verified
+- id: SRC-0037-EX-0010
+  location:
+    pdf_page: 4
+    printed_page: 145
+    section: Manual requirements extraction
+    paragraph_or_table: No inter-rater agreement
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The authors do not calculate inter-rater agreement for extraction because disagreements are
+    resolved during interactive sessions.
+  researcher_interpretation: Consensus mitigates disagreement but does not provide an independent reliability coefficient.
+  supported_proposition: The reference-set construction has explicit expert review but no reported agreement statistic.
+  thesis_targets:
+  - chapter-4
+  - chapter-7
+  temporal_caveat: Published in 2025 using fixed GPT-3.5 and GPT-4o snapshots and then-current OpenAI and LangChain
+    components. The quality dimensions and failure modes remain relevant, but exact performance and provider behavior
+    must not be treated as current 2026 evidence.
+  verification_state: location_verified
+- id: SRC-0037-EX-0011
+  location:
+    pdf_page: 5
+    printed_page: 146
+    section: Observations
+    paragraph_or_table: Best practices
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Some requirements come from non-binding sources and are classified as best practices that
+    increase confidence in compliance rather than minimum legal obligations.
+  researcher_interpretation: Obligation class and source authority must remain visible.
+  supported_proposition: The paper distinguishes minimum compliance requirements from recommended best practices.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Published in 2025 using fixed GPT-3.5 and GPT-4o snapshots and then-current OpenAI and LangChain
+    components. The quality dimensions and failure modes remain relevant, but exact performance and provider behavior
+    must not be treated as current 2026 evidence.
+  verification_state: location_verified
+- id: SRC-0037-EX-0012
+  location:
+    pdf_page: 5
+    printed_page: 146
+    section: Observations
+    paragraph_or_table: Context dependence
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: General GDPR provisions can remain vague until national, sector-specific or application details
+    are known.
+  researcher_interpretation: A project-independent legal candidate may require later refinement before it is implementable.
+  supported_proposition: Legal requirement actionability depends on application context.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-8
+  temporal_caveat: Published in 2025 using fixed GPT-3.5 and GPT-4o snapshots and then-current OpenAI and LangChain
+    components. The quality dimensions and failure modes remain relevant, but exact performance and provider behavior
+    must not be treated as current 2026 evidence.
+  verification_state: location_verified
+- id: SRC-0037-EX-0013
+  location:
+    pdf_page: 5
+    printed_page: 146
+    section: Observations
+    paragraph_or_table: Alternative interpretations
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Different legal interpretations may both be defensible; the experts select the more authoritative
+    interpretation while retaining traceability to alternatives.
+  researcher_interpretation: Alternative interpretations should be preserved rather than silently normalized.
+  supported_proposition: Legal-source authority and alternative provenance affect requirement selection.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-8
+  temporal_caveat: Published in 2025 using fixed GPT-3.5 and GPT-4o snapshots and then-current OpenAI and LangChain
+    components. The quality dimensions and failure modes remain relevant, but exact performance and provider behavior
+    must not be treated as current 2026 evidence.
+  verification_state: location_verified
+- id: SRC-0037-EX-0014
+  location:
+    pdf_page: 5
+    printed_page: 146
+    section: Compliance scoring
+    paragraph_or_table: Minimal compliance and best practice
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The scoring distinguishes mandatory-source obligations that raise red flags when unmet from
+    advisory-source practices that raise warnings.
+  researcher_interpretation: The classification is useful metadata but not a complete compliance determination.
+  supported_proposition: The paper uses source authority to classify minimum compliance and recommended practices.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: Published in 2025 using fixed GPT-3.5 and GPT-4o snapshots and then-current OpenAI and LangChain
+    components. The quality dimensions and failure modes remain relevant, but exact performance and provider behavior
+    must not be treated as current 2026 evidence.
+  verification_state: location_verified
+- id: SRC-0037-EX-0015
+  location:
+    pdf_page: 5
+    printed_page: 146
+    section: Figure 2
+    paragraph_or_table: XTRAREG overview
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The workflow begins with experts defining legal sources, then performs prompt engineering,
+    optional retrieval and LLM generation of requirement candidates.
+  researcher_interpretation: Source applicability remains outside automatic generation.
+  supported_proposition: XTRAREG depends on a manual source-selection step before automated extraction.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-7
+  temporal_caveat: Published in 2025 using fixed GPT-3.5 and GPT-4o snapshots and then-current OpenAI and LangChain
+    components. The quality dimensions and failure modes remain relevant, but exact performance and provider behavior
+    must not be treated as current 2026 evidence.
+  verification_state: location_verified
+- id: SRC-0037-EX-0016
+  location:
+    pdf_page: 6
+    printed_page: 147
+    section: Approach
+    paragraph_or_table: Prompt output contract
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The prompts request requirement text, exact reference, rationale, unique identifier and JSON
+    output.
+  researcher_interpretation: Structured output does not guarantee correctness or grounding.
+  supported_proposition: XTRAREG asks the model for requirements, references and rationales in a structured form.
+  thesis_targets:
+  - chapter-4
+  - chapter-5
+  temporal_caveat: Published in 2025 using fixed GPT-3.5 and GPT-4o snapshots and then-current OpenAI and LangChain
+    components. The quality dimensions and failure modes remain relevant, but exact performance and provider behavior
+    must not be treated as current 2026 evidence.
+  verification_state: location_verified
+- id: SRC-0037-EX-0017
+  location:
+    pdf_page: 6
+    printed_page: 147
+    section: Approach
+    paragraph_or_table: RAG implementation
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Legal PDFs are split into 1000-character chunks with 200-character overlap, embedded with
+    text-embedding-ada-002 and retrieved with top-k equal to four.
+  researcher_interpretation: Chunking, embeddings and retrieval settings are reproducibility metadata.
+  supported_proposition: The RAG configuration is explicitly parameterized and version-sensitive.
+  thesis_targets:
+  - chapter-4
+  - chapter-5
+  - chapter-7
+  temporal_caveat: Published in 2025 using fixed GPT-3.5 and GPT-4o snapshots and then-current OpenAI and LangChain
+    components. The quality dimensions and failure modes remain relevant, but exact performance and provider behavior
+    must not be treated as current 2026 evidence.
+  verification_state: location_verified
+- id: SRC-0037-EX-0018
+  location:
+    pdf_page: 6
+    printed_page: 147
+    section: Approach
+    paragraph_or_table: Model and software versions
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The implementation uses Python 3.9.12, OpenAI API 1.14.0 and specified LangChain, Chroma
+    and OpenAI integration versions.
+  researcher_interpretation: The experiment is tied to an identifiable but historical software stack.
+  supported_proposition: The reported results depend on fixed model and library versions.
+  thesis_targets:
+  - chapter-4
+  - chapter-7
+  - chapter-8
+  temporal_caveat: Published in 2025 using fixed GPT-3.5 and GPT-4o snapshots and then-current OpenAI and LangChain
+    components. The quality dimensions and failure modes remain relevant, but exact performance and provider behavior
+    must not be treated as current 2026 evidence.
+  verification_state: location_verified
+- id: SRC-0037-EX-0019
+  location:
+    pdf_page: 7
+    printed_page: 148
+    section: Evaluation
+    paragraph_or_table: Research questions
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: RQ1 compares model and prompt configurations for extraction accuracy; RQ2 studies the effect
+    of RAG against generation without retrieved context.
+  researcher_interpretation: The study separates configuration quality from retrieval contribution.
+  supported_proposition: The evaluation compares alternative model, prompting and RAG configurations.
+  thesis_targets:
+  - chapter-4
+  - chapter-7
+  temporal_caveat: Published in 2025 using fixed GPT-3.5 and GPT-4o snapshots and then-current OpenAI and LangChain
+    components. The quality dimensions and failure modes remain relevant, but exact performance and provider behavior
+    must not be treated as current 2026 evidence.
+  verification_state: location_verified
+- id: SRC-0037-EX-0020
+  location:
+    pdf_page: 7
+    printed_page: 148
+    section: Evaluation
+    paragraph_or_table: Human rather than LLM-only assessment
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The authors reject LLM-only judging because of self-enhancement bias and the need for legal
+    interpretation beyond semantic similarity.
+  researcher_interpretation: Automated similarity metrics cannot establish legal correctness.
+  supported_proposition: Expert legal assessment is required in addition to automated text metrics.
+  thesis_targets:
+  - chapter-4
+  - chapter-7
+  - chapter-8
+  temporal_caveat: Published in 2025 using fixed GPT-3.5 and GPT-4o snapshots and then-current OpenAI and LangChain
+    components. The quality dimensions and failure modes remain relevant, but exact performance and provider behavior
+    must not be treated as current 2026 evidence.
+  verification_state: location_verified
+- id: SRC-0037-EX-0021
+  location:
+    pdf_page: 7
+    printed_page: 148
+    section: Evaluation
+    paragraph_or_table: Correctness, groundedness and plausibility
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The expert separately labels requirement correctness, reference groundedness and rationale
+    plausibility and maps outputs to equivalent reference requirements.
+  researcher_interpretation: The dimensions must remain separate in any future governance model.
+  supported_proposition: The evaluation distinguishes output correctness, citation quality, rationale plausibility
+    and coverage.
+  thesis_targets:
+  - chapter-4
+  - chapter-5
+  - chapter-7
+  temporal_caveat: Published in 2025 using fixed GPT-3.5 and GPT-4o snapshots and then-current OpenAI and LangChain
+    components. The quality dimensions and failure modes remain relevant, but exact performance and provider behavior
+    must not be treated as current 2026 evidence.
+  verification_state: location_verified
+- id: SRC-0037-EX-0022
+  location:
+    pdf_page: 7
+    printed_page: 148
+    section: Evaluation
+    paragraph_or_table: Run counts
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Configurations with RAG are run twice, while the lower-cost ablation configurations are run
+    ten times.
+  researcher_interpretation: The experiments account for variability but use asymmetric repetition counts.
+  supported_proposition: The RAG and non-RAG configurations are not repeated the same number of times.
+  thesis_targets:
+  - chapter-4
+  - chapter-7
+  temporal_caveat: Published in 2025 using fixed GPT-3.5 and GPT-4o snapshots and then-current OpenAI and LangChain
+    components. The quality dimensions and failure modes remain relevant, but exact performance and provider behavior
+    must not be treated as current 2026 evidence.
+  verification_state: location_verified
+- id: SRC-0037-EX-0023
+  location:
+    pdf_page: 8
+    printed_page: 149
+    section: RQ1 results
+    paragraph_or_table: GPT-3.5 versus GPT-4o
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: GPT-3.5 produces too few requirements for meaningful assistance, while GPT-4o generates substantially
+    more and becomes the focus of qualitative analysis.
+  researcher_interpretation: Output quantity is useful but still not a completeness measure.
+  supported_proposition: GPT-4o produces more requirements than GPT-3.5 in the evaluated configurations.
+  thesis_targets:
+  - chapter-4
+  - chapter-7
+  temporal_caveat: Published in 2025 using fixed GPT-3.5 and GPT-4o snapshots and then-current OpenAI and LangChain
+    components. The quality dimensions and failure modes remain relevant, but exact performance and provider behavior
+    must not be treated as current 2026 evidence.
+  verification_state: location_verified
+- id: SRC-0037-EX-0024
+  location:
+    pdf_page: 8
+    printed_page: 149
+    section: RQ1 results
+    paragraph_or_table: ACC and PRT coverage
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: With GPT-4o and ZSL plus RAG, 16 ACC and 8 PRT reference requirements are identified, while
+    generated outputs are concentrated in the most directly relevant GDPR articles.
+  researcher_interpretation: The model misses many applicable obligations from other articles and complementary
+    sources.
+  supported_proposition: The best reported configuration has limited coverage of the full reference corpus.
+  thesis_targets:
+  - chapter-4
+  - chapter-7
+  - chapter-8
+  temporal_caveat: Published in 2025 using fixed GPT-3.5 and GPT-4o snapshots and then-current OpenAI and LangChain
+    components. The quality dimensions and failure modes remain relevant, but exact performance and provider behavior
+    must not be treated as current 2026 evidence.
+  verification_state: location_verified
+- id: SRC-0037-EX-0025
+  location:
+    pdf_page: 8
+    printed_page: 149
+    section: RQ1 results
+    paragraph_or_table: Correctness and grounding counts
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Table III reports 14 correct, 4 partially correct and 4 incorrect ACC outputs; PRT has 5
+    correct, 7 partially correct and 2 incorrect outputs, with lower grounding for PRT.
+  researcher_interpretation: The headline accuracy includes partially correct requirements.
+  supported_proposition: Correctness and grounding counts reveal weaker fully-correct and citation-quality performance
+    than the headline percentages alone.
+  thesis_targets:
+  - chapter-4
+  - chapter-7
+  - chapter-8
+  temporal_caveat: Published in 2025 using fixed GPT-3.5 and GPT-4o snapshots and then-current OpenAI and LangChain
+    components. The quality dimensions and failure modes remain relevant, but exact performance and provider behavior
+    must not be treated as current 2026 evidence.
+  verification_state: location_verified
+- id: SRC-0037-EX-0026
+  location:
+    pdf_page: 9
+    printed_page: 150
+    section: Table II
+    paragraph_or_table: Automated metrics and ablation
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: RAG configurations generally produce higher automated scores and more GPT-4o requirements
+    than configurations without RAG, with some exceptions.
+  researcher_interpretation: Automated gains support retrieval usefulness but do not establish legal assurance.
+  supported_proposition: RAG improves most automated metrics in the evaluated case.
+  thesis_targets:
+  - chapter-4
+  - chapter-7
+  temporal_caveat: Published in 2025 using fixed GPT-3.5 and GPT-4o snapshots and then-current OpenAI and LangChain
+    components. The quality dimensions and failure modes remain relevant, but exact performance and provider behavior
+    must not be treated as current 2026 evidence.
+  verification_state: location_verified
+- id: SRC-0037-EX-0027
+  location:
+    pdf_page: 10
+    printed_page: 151
+    section: Table III and RQ2
+    paragraph_or_table: Without-RAG qualitative results
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Without RAG, explicit prompting for external sources can improve reference variety but may
+    reduce correctness or alignment; several outputs remain misgrounded.
+  researcher_interpretation: More diverse references are not automatically better requirements.
+  supported_proposition: Prompting for additional sources without governed source selection creates a correctness
+    and grounding trade-off.
+  thesis_targets:
+  - chapter-4
+  - chapter-7
+  - chapter-8
+  temporal_caveat: Published in 2025 using fixed GPT-3.5 and GPT-4o snapshots and then-current OpenAI and LangChain
+    components. The quality dimensions and failure modes remain relevant, but exact performance and provider behavior
+    must not be treated as current 2026 evidence.
+  verification_state: location_verified
+- id: SRC-0037-EX-0028
+  location:
+    pdf_page: 10
+    printed_page: 151
+    section: Threats to validity
+    paragraph_or_table: Subjectivity and model updates
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The authors identify subjective legal interpretation and opaque model updates as validity
+    threats and expose their results for scrutiny.
+  researcher_interpretation: Legal review provenance and immutable generation context are required for reproducibility.
+  supported_proposition: Subjectivity and changing model behavior limit generalizability.
+  thesis_targets:
+  - chapter-4
+  - chapter-7
+  - chapter-8
+  temporal_caveat: Published in 2025 using fixed GPT-3.5 and GPT-4o snapshots and then-current OpenAI and LangChain
+    components. The quality dimensions and failure modes remain relevant, but exact performance and provider behavior
+    must not be treated as current 2026 evidence.
+  verification_state: location_verified
+- id: SRC-0037-EX-0029
+  location:
+    pdf_page: 10
+    printed_page: 151
+    section: Discussion
+    paragraph_or_table: Qualitative error families
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Generated requirements may use the wrong perspective, remain generic, omit exceptions, describe
+    incorrect actions or repeat legal text without actionable system behavior.
+  researcher_interpretation: Actionability and system perspective require dedicated validation.
+  supported_proposition: Plausible legal-language output can remain unsuitable as a software requirement.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-7
+  temporal_caveat: Published in 2025 using fixed GPT-3.5 and GPT-4o snapshots and then-current OpenAI and LangChain
+    components. The quality dimensions and failure modes remain relevant, but exact performance and provider behavior
+    must not be treated as current 2026 evidence.
+  verification_state: location_verified
+- id: SRC-0037-EX-0030
+  location:
+    pdf_page: 10
+    printed_page: 151
+    section: Discussion
+    paragraph_or_table: Reference limitations
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The model may cite recitals without the normative provisions needed in the EU civil-law context,
+    leading to incomplete grounding.
+  researcher_interpretation: Citation strings need legal-source-role validation.
+  supported_proposition: Generated references can be formally present but legally incomplete.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-7
+  temporal_caveat: Published in 2025 using fixed GPT-3.5 and GPT-4o snapshots and then-current OpenAI and LangChain
+    components. The quality dimensions and failure modes remain relevant, but exact performance and provider behavior
+    must not be treated as current 2026 evidence.
+  verification_state: location_verified
+- id: SRC-0037-EX-0031
+  location:
+    pdf_page: 11
+    printed_page: 152
+    section: Discussion
+    paragraph_or_table: Practical use
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The authors position XTRAREG as assistance for engineers and legal experts and call for further
+    studies on other rights and practical usefulness.
+  researcher_interpretation: The paper does not support replacement of legal expertise or deployment as a compliance
+    authority.
+  supported_proposition: The intended role is assisted navigation and candidate generation.
+  thesis_targets:
+  - chapter-3
+  - chapter-8
+  temporal_caveat: Published in 2025 using fixed GPT-3.5 and GPT-4o snapshots and then-current OpenAI and LangChain
+    components. The quality dimensions and failure modes remain relevant, but exact performance and provider behavior
+    must not be treated as current 2026 evidence.
+  verification_state: location_verified
+- id: SRC-0037-EX-0032
+  location:
+    pdf_page: 11
+    printed_page: 152
+    section: Conclusion
+    paragraph_or_table: Low coverage caveat
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The conclusion repeats the correctness and grounding values while explicitly acknowledging
+    low coverage against the manually defined requirements.
+  researcher_interpretation: Coverage is a central limitation, not a minor secondary metric.
+  supported_proposition: The paper concludes that the assistant remains incomplete despite promising output quality.
+  thesis_targets:
+  - chapter-4
+  - chapter-7
+  - chapter-8
+  temporal_caveat: Published in 2025 using fixed GPT-3.5 and GPT-4o snapshots and then-current OpenAI and LangChain
+    components. The quality dimensions and failure modes remain relevant, but exact performance and provider behavior
+    must not be treated as current 2026 evidence.
+  verification_state: location_verified
+- id: SRC-0037-EX-0033
+  location:
+    pdf_page: 1
+    printed_page: 142
+    section: Abstract versus external metadata
+    paragraph_or_table: PRT discrepancy
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The reviewed PDF reports 85.7 percent PRT accuracy, while some external metadata report 56.7
+    percent.
+  researcher_interpretation: The PDF table and repeated internal statements support 85.7 percent, but the external
+    discrepancy must remain visible.
+  supported_proposition: The source record contains an unresolved external metadata discrepancy for PRT accuracy.
+  thesis_targets:
+  - chapter-4
+  - chapter-8
+  temporal_caveat: Published in 2025 using fixed GPT-3.5 and GPT-4o snapshots and then-current OpenAI and LangChain
+    components. The quality dimensions and failure modes remain relevant, but exact performance and provider behavior
+    must not be treated as current 2026 evidence.
+  verification_state: location_verified
+- id: SRC-0037-EX-0034
+  location:
+    pdf_page: 11
+    printed_page: 152
+    section: Conclusion and thesis interpretation
+    paragraph_or_table: ThreatForge scope boundary
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The paper evaluates regulatory-requirement assistance but does not require a threat-analysis
+    platform to implement legal extraction or compliance analysis.
+  researcher_interpretation: For the thesis, the evidence supports future-compatible neutral provenance and candidate
+    boundaries only.
+  supported_proposition: SRC-0037 is used as an extensibility constraint rather than a product-feature commitment.
+  thesis_targets:
+  - chapter-5
+  - chapter-8
+  temporal_caveat: Published in 2025 using fixed GPT-3.5 and GPT-4o snapshots and then-current OpenAI and LangChain
+    components. The quality dimensions and failure modes remain relevant, but exact performance and provider behavior
+    must not be treated as current 2026 evidence.
+  verification_state: location_verified

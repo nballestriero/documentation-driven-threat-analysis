@@ -192,3 +192,18 @@ sources:
     companion_repository_url: "https://doi.org/10.6084/m9.figshare.29492624"
     companion_repository_identifier: "10.6084/m9.figshare.29492624"
     companion_repository_status: public_replication_package_not_executed
+  - source_id: SRC-0037
+    landing_url: "https://orbilu.uni.lu/handle/10993/65265"
+    pdf_url: "https://orbilu.uni.lu/bitstream/10993/65265/1/2025-RE-ACSBLSVS.pdf"
+    access_type: open_access_repository_copy
+    licence: "Public author postprint in ORBilu; repository access supports private use and research; publisher copyright and reuse restrictions remain applicable"
+    local_filename: "SRC-0037-abualhaija-ceci-sannier-et-al-2025.pdf"
+    retrieved_on: "2026-08-06"
+    sha256: "830db5c091015faffc280e4345dd859ec3937d023963dccf88e0c5c17cc082c6"
+    repository_storage: forbidden
+    companion_repository_url: "https://doi.org/10.6084/m9.figshare.27187557"
+    companion_repository_identifier: "10.6084/m9.figshare.27187557"
+    companion_repository_status: public_online_annex_not_executed
+    software_artifact_url: "https://doi.org/10.5281/zenodo.15668459"
+    software_artifact_identifier: "10.5281/zenodo.15668459"
+    software_artifact_status: public_tool_artifact_not_executed

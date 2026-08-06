@@ -290,3 +290,11 @@ sources:
     verification_state: verified
     topics: [RE-NLP-LLM, MD-MDE, RE-TRACEABILITY, CS-HUMAN]
     ddta_roles: [foundation, comparison, evaluation, challenge]
+  - id: SRC-0037
+    citation_key: abualhaija2025regulatory
+    title: "LLM-assisted Extraction of Regulatory Requirements: A Case Study on the GDPR"
+    year: 2025
+    type: primary_research
+    verification_state: verified
+    topics: [RE-NLP-LLM, RE-TRACEABILITY, CS-HUMAN, CS-ASSURANCE]
+    ddta_roles: [foundation, comparison, evaluation, challenge]

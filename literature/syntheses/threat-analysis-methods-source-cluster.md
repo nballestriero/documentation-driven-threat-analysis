@@ -287,10 +287,35 @@ assertion-level traces, no repeated runs, no change propagation and no security 
 Every candidate still requires generation provenance, source-to-element trace review, correction and
 explicit disposition.
 
+### SRC-0037 - Abualhaija et al. (2025)
+
+Role: direct empirical study of LLM- and RAG-assisted extraction of privacy requirements from the
+GDPR and complementary legal sources. Six experts construct a reference set of 61 access and 47
+portability requirements with source links, and XTRAREG generates candidate requirements, references
+and rationales using GPT-3.5 or GPT-4o.
+
+The source separates correctness, coverage, groundedness, plausibility and duplication. With GPT-4o,
+ZSL and RAG, 18 of 22 ACC outputs and 12 of 14 PRT outputs are correct or partially correct, but only
+16 of 61 ACC and 8 of 47 PRT reference requirements are identified. Grounded references fall to
+68.2 percent for ACC and 50 percent for PRT. High acceptance among generated outputs therefore does
+not establish high coverage of applicable obligations.
+
+RAG improves most automated metrics but does not produce a comprehensive list beyond the directly
+relevant GDPR articles. Generated outputs can be duplicated, generic, framed from the wrong
+perspective, non-actionable, incomplete or misgrounded. Legal-source selection, applicability,
+interpretation, correction and acceptance remain expert responsibilities.
+
+For DDTA and the parallel ThreatForge project, the source establishes only a future-compatibility
+boundary. The thesis does not implement regulatory extraction, legal review, compliance scoring, a
+legal plugin or a new privacy document model. Existing provenance, candidate-review, Target Project
+and methodology-neutral Base Analysis boundaries should merely avoid preventing a later governed
+extension.
+
 ## Initial DDTA separation
 
 ```text
 raw and governed project documentation
+-> optional accepted legal/privacy requirements as governed project documentation (future extension only)
 -> automated or assisted extraction into candidate requirement and model artifacts
 -> optional LLM generation of candidate behavioral or structural model projections
 -> syntax, source-coverage, semantic and traceability validation
@@ -331,10 +356,13 @@ validation is often absent. SRC-0035 demonstrates that GPT-3.5 can produce reada
 sequence diagrams from realistic requirements while still omitting, altering or inventing behavior
 behind strong syntax and terminology. SRC-0036 adds a four-model class-diagram comparison and shows
 that syntax, completeness and semantic correctness can favor different models, while association
-type and multiplicity remain shared failure points. DDTA must still establish how heterogeneous
-documentation becomes reviewed neutral assets, actors, goals, interactions, objects, operations,
-domains, phenomena, scenarios and architectural decisions consumed by these overlays, arguments
-and tests.
+type and multiplicity remain shared failure points. SRC-0037 adds direct privacy-requirement
+generation evidence and shows that high correctness among generated outputs can coexist with low
+coverage and incomplete or misgrounded legal references. For the thesis, this result establishes
+future compatibility only; legal extraction and compliance analysis remain outside implementation
+scope. DDTA must still establish how heterogeneous documentation becomes reviewed neutral assets,
+actors, goals, interactions, objects, operations, domains, phenomena, scenarios and architectural
+decisions consumed by these overlays, arguments and tests.
 
 ## Technique-focus taxonomy
 
@@ -402,7 +430,10 @@ Direct evidence from the review:
 - a contemporary multi-model comparison can produce different descriptive winners for syntax, semantics and completeness;
 - syntax-valid class diagrams can still contain incorrect association types, directions and multiplicities;
 - selecting a provider or model does not replace artifact-level coverage, semantic and trace validation;
-Researcher conclusion for DDTA:
+- legal requirements can depend on authoritative sources beyond the primary regulation;
+- generated privacy requirements can be largely correct or partially correct while covering only a small fraction of the expert reference set;
+- retrieved context, citations and plausible rationales still require separate legal-grounding review;
+- legal extraction remains a future-compatible extension rather than a thesis implementation requirement;Researcher conclusion for DDTA:
 
 ```text
 documentation_only is possible for some techniques
@@ -411,7 +442,8 @@ document_to_candidate_artifact can be automated or assisted from natural-languag
 document_to_llm_candidate_model can produce readable but semantically unreliable projections
 llm_candidate_model_to_accepted_model requires syntax, coverage, semantic and trace validation
 llm_candidate_structural_model_to_accepted_model additionally requires association and multiplicity validation
-candidate_artifact_to_base_analysis requires source provenance and human review
+legal_source_to_candidate_requirement requires applicability, authority, actionability, coverage and grounding review
+future_legal_analysis_compatibility does not require implementation within the thesiscandidate_artifact_to_base_analysis requires source provenance and human review
 base_analysis_to_candidate_architecture requires explicit concerns, alternatives and decisions
 candidate_architecture_to_accepted_architecture requires multi-view review and satisfaction evidence
 model_to_candidate_threat can be automated after a typed model exists
@@ -441,8 +473,11 @@ SRC-0035 adds direct LLM document-to-behavioral-model evidence and shows that po
 terminology and understandability can coexist with omissions, incorrect behavior and weak traces.
 SRC-0036 adds multi-model document-to-structural-model evidence and shows that parser-compatible
 output and relatively high coverage can coexist with incorrect association type and multiplicity.
+SRC-0037 adds regulatory-document-to-requirement-candidate evidence and shows that output
+correctness, obligation coverage and legal grounding can diverge. Its project consequence is limited
+to preserving future extensibility; no legal-analysis subsystem is required in the thesis.
 
-All nine evidence forms remain relative to their source documents, model and session state, prompts,
+All ten evidence forms remain relative to their source documents, model and session state, prompts,
 modeled context, premises, behaviors, attacks, mechanism choices, architectural alternatives,
 decisions, participants, baselines, transformation pipelines, catalogue versions, rule semantics,
 test models, selection criteria, adapters, oracles, environments and measured outcomes. None
@@ -456,7 +491,8 @@ DDTA candidate controls:
 
 - typed outputs;
 - source document, version, segment and assertion provenance;
-- extracted linguistic fact versus inferred entity or relation status;
+- future legal-source authority, jurisdiction, effective-date and applicability metadata without legal semantics in the core;
+- separate legal correctness, obligation coverage and grounding results if a later regulatory extension is introduced;- extracted linguistic fact versus inferred entity or relation status;
 - transformation pipeline, rule, ontology, model or prompt version;
 - confidence, alternatives and external domain-knowledge dependencies;
 - human-intervention stage, correction history and review disposition;
@@ -518,16 +554,16 @@ DDTA candidate controls:
 ## Primary-study selection queue
 
 Automated threat modelling, model-based security testing, broad automated requirements engineering,
-the historical requirements-to-architecture boundary, first-pass LLM sequence-diagram generation
-and a contemporary multi-model class-diagram comparison are now covered by SRC-0031 through
-SRC-0036. The next central reading should provide direct empirical evidence for security, privacy or
-other non-functional requirement/model generation.
+the historical requirements-to-architecture boundary, LLM behavioral and structural model
+generation, and direct privacy-requirement generation are now covered by SRC-0031 through SRC-0037.
+The final central reading should focus on maintenance, provenance, reproducibility, correction effort,
+accepted-artifact yield or a contemporary closing synthesis.
 
 ```text
-security, privacy or NFR source evidence
--> generated requirement or model candidates
--> source coverage, semantic correctness and security relevance
--> human correction and acceptance evidence
+maintained candidate artifact or analysis evidence
+-> source, model, prompt, version and change provenance
+-> correction effort, acceptance yield and stale detection
+-> closing evidence for thesis limits and evaluation
 ```
 
 
@@ -566,6 +602,20 @@ Together they establish that every generated view needs notation-specific syntax
 source-coverage, semantic, trace and human-acceptance evidence. Neither a clear rendering nor a
 provider-level model choice is an acceptance criterion.
 
+### SRC-0035, SRC-0036 and SRC-0037 generated-artifact contrast
+
+| Dimension | SRC-0035 | SRC-0036 | SRC-0037 |
+|---|---|---|---|
+| Generated artifact | behavioral UML sequence view | structural UML class view | privacy requirement text with reference and rationale |
+| Input evidence | realistic functional requirements and variants | Italian educational requirements | GDPR plus selected complementary legal sources |
+| Main failure boundary | readable syntax can hide omitted or incorrect behavior | syntax-valid structure can hide wrong relations | correct-looking outputs can have low coverage and weak grounding |
+| Required independent gates | syntax, source coverage, behavior, traces | syntax, structural semantics, coverage, traces | actionability, correctness, obligation coverage, legal grounding |
+| Human authority | analyst corrects and accepts model | analyst corrects and accepts model | legal and requirements experts select sources, interpret and accept |
+| Thesis role | candidate behavioral projection evidence | candidate structural projection evidence | future-compatible regulatory-candidate boundary only |
+
+Together they show that generated-artifact quality is multidimensional and artifact-specific. The
+thesis implements neither autonomous model acceptance nor legal-compliance automation.
+
 ## Evidence still missing
 
 - validated extraction of Base Analysis entities, scenario views and goal views from heterogeneous documentation;
@@ -583,7 +633,7 @@ provider-level model choice is an acceptance criterion.
 - current requirements-to-architecture automation and LLM evidence beyond the historical corpus;
 - contemporary multi-model generation evidence beyond educational class-diagram exercises;
 - assertion-level gold standards or verified source-coverage mappings without requiring one canonical layout;
-- security, privacy and non-functional requirement model-generation evidence;
+- broader industrial security, privacy and non-functional requirement generation evidence beyond two GDPR rights;
 - reproducible provider/model/prompt/session configurations and longitudinal reruns;
 - measured human correction effort, accepted-model yield and iterative prompting benefit;
 - governed trust-assumption acceptance and residual-risk criteria;
@@ -600,6 +650,7 @@ provider-level model choice is an acceptance criterion.
 - empirical MBST comparisons on large realistic systems;
 - continuous rerun and stale detection;
 - current LLM/RAG performance;
+- legal-source applicability, authority, versioning and stale-state evidence for any future regulatory extension;
 - evaluation against expert-created threat models;
 - expert and no-model replications of model-view usefulness;
 - longitudinal model-maintenance cost and utility across the SDLC;
@@ -628,6 +679,9 @@ configuration through the ChatGPT web interface; its failure categories remain r
 SRC-0036 was published in 2025 and compares four models through free web interfaces available around
 June 2025; its multidimensional quality and relationship-error findings remain relevant, while its
 model ranking, interface behavior and provider descriptions must not be treated as current 2026 facts.
+SRC-0037 was published in 2025 and uses fixed GPT-3.5 and GPT-4o snapshots with then-current OpenAI
+and LangChain components. Its separation of correctness, coverage, groundedness and expert review
+remains relevant, while exact performance and provider behavior require contemporary replication.
 
 ## Reading order
 
@@ -645,5 +699,6 @@ SRC-0026 historical method taxonomy
 -> SRC-0034 requirements-to-architecture mapping study
 -> SRC-0035 GPT-3.5 requirements-to-sequence-diagram study
 -> SRC-0036 multi-model requirements-to-class-diagram comparison
--> SRC-0037 direct security/NFR model-generation evidence
+-> SRC-0037 LLM/RAG GDPR privacy-requirement extraction case study
+-> SRC-0038 maintenance, provenance, correction-effort or closing contemporary synthesis
 ```
