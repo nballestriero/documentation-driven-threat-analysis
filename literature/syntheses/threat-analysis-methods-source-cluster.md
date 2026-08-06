@@ -433,7 +433,9 @@ Direct evidence from the review:
 - legal requirements can depend on authoritative sources beyond the primary regulation;
 - generated privacy requirements can be largely correct or partially correct while covering only a small fraction of the expert reference set;
 - retrieved context, citations and plausible rationales still require separate legal-grounding review;
-- legal extraction remains a future-compatible extension rather than a thesis implementation requirement;Researcher conclusion for DDTA:
+- legal extraction remains a future-compatible extension rather than a thesis implementation requirement;
+
+Researcher conclusion for DDTA:
 
 ```text
 documentation_only is possible for some techniques
@@ -443,7 +445,8 @@ document_to_llm_candidate_model can produce readable but semantically unreliable
 llm_candidate_model_to_accepted_model requires syntax, coverage, semantic and trace validation
 llm_candidate_structural_model_to_accepted_model additionally requires association and multiplicity validation
 legal_source_to_candidate_requirement requires applicability, authority, actionability, coverage and grounding review
-future_legal_analysis_compatibility does not require implementation within the thesiscandidate_artifact_to_base_analysis requires source provenance and human review
+future_legal_analysis_compatibility does not require implementation within the thesis
+candidate_artifact_to_base_analysis requires source provenance and human review
 base_analysis_to_candidate_architecture requires explicit concerns, alternatives and decisions
 candidate_architecture_to_accepted_architecture requires multi-view review and satisfaction evidence
 model_to_candidate_threat can be automated after a typed model exists
@@ -492,7 +495,8 @@ DDTA candidate controls:
 - typed outputs;
 - source document, version, segment and assertion provenance;
 - future legal-source authority, jurisdiction, effective-date and applicability metadata without legal semantics in the core;
-- separate legal correctness, obligation coverage and grounding results if a later regulatory extension is introduced;- extracted linguistic fact versus inferred entity or relation status;
+- separate legal correctness, obligation coverage and grounding results if a later regulatory extension is introduced;
+- extracted linguistic fact versus inferred entity or relation status;
 - transformation pipeline, rule, ontology, model or prompt version;
 - confidence, alternatives and external domain-knowledge dependencies;
 - human-intervention stage, correction history and review disposition;
