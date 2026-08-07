@@ -298,3 +298,11 @@ sources:
     verification_state: verified
     topics: [RE-NLP-LLM, RE-TRACEABILITY, CS-HUMAN, CS-ASSURANCE]
     ddta_roles: [foundation, comparison, evaluation, challenge]
+  - id: SRC-0038
+    citation_key: angermeir2026reproducibility
+    title: "Reflections on the Reproducibility of Commercial LLM Performance in Empirical Software Engineering Studies"
+    year: 2026
+    type: primary_research
+    verification_state: verified
+    topics: [RE-NLP-LLM, CS-ASSURANCE, CS-CHANGE, CS-DEVSECOPS]
+    ddta_roles: [foundation, comparison, evaluation, challenge]

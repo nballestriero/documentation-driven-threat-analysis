@@ -1,0 +1,996 @@
+schema_version: 1
+source_id: SRC-0038
+citation_key: angermeir2026reproducibility
+source_version:
+  stable_identifier: 10.1145/3744916.3773207
+  edition_or_version: arXiv 2510.25506v3 author preprint for ICSE 2026, 13 pages
+  accessed_on: '2026-08-06'
+  local_filename: SRC-0038-angermeir-amougou-kreitz-et-al-2026.pdf
+  sha256: a3dcd99af97693ae749c20ed8fd65f3e0551f98584a5b383643d16837f748745
+excerpts:
+- id: SRC-0038-EX-0001
+  location:
+    pdf_page: 1
+    printed_page: null
+    section: Abstract
+    paragraph_or_table: Corpus and headline result
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The study reviews 85 LLM-centric ICSE and ASE articles, identifies 18 OpenAI studies with
+    apparently available artifacts, finds only five sufficiently executable and fully reproduces none.
+  researcher_interpretation: The source provides direct empirical evidence that publication and apparent artifact
+    availability do not establish reproducibility.
+  supported_proposition: Only a small subset of apparently eligible commercial-LLM studies can be independently
+    executed, and none of the five executable studies is completely reproduced.
+  thesis_targets:
+  - chapter-3
+  - chapter-7
+  - chapter-8
+  temporal_caveat: The study was published for ICSE 2026 and reproduces selected ICSE/ASE 2024 experiments using
+    commercial endpoints, models and dependencies available during the authors' reproduction window. Counts and
+    failure patterns support provenance and maintenance controls; they do not establish current provider performance
+    or universal reproducibility rates in August 2026.
+  verification_state: location_verified
+- id: SRC-0038-EX-0002
+  location:
+    pdf_page: 1
+    printed_page: null
+    section: Abstract
+    paragraph_or_table: Licence and publication identity
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The PDF identifies an ICSE 2026 paper of 13 pages and declares a Creative Commons Attribution
+    4.0 licence.
+  researcher_interpretation: The reviewed arXiv copy has a clear reuse status, while DDTA still excludes source
+    PDFs from Git by project policy.
+  supported_proposition: The selected source version has stable bibliographic identity and explicit open licence
+    information.
+  thesis_targets:
+  - chapter-2
+  - appendix-literature
+  temporal_caveat: The study was published for ICSE 2026 and reproduces selected ICSE/ASE 2024 experiments using
+    commercial endpoints, models and dependencies available during the authors' reproduction window. Counts and
+    failure patterns support provenance and maintenance controls; they do not establish current provider performance
+    or universal reproducibility rates in August 2026.
+  verification_state: location_verified
+- id: SRC-0038-EX-0003
+  location:
+    pdf_page: 2
+    printed_page: null
+    section: Introduction
+    paragraph_or_table: Additional commercial-LLM reproducibility challenges
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Commercial LLM studies combine non-determinism with proprietary models, opaque updates, extensive
+    configurability and strong prompt dependence.
+  researcher_interpretation: LLM execution provenance needs both AI-specific and ordinary software-environment fields.
+  supported_proposition: Commercial LLM experiments add provider evolution and prompt sensitivity to conventional
+    reproducibility problems.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: The study was published for ICSE 2026 and reproduces selected ICSE/ASE 2024 experiments using
+    commercial endpoints, models and dependencies available during the authors' reproduction window. Counts and
+    failure patterns support provenance and maintenance controls; they do not establish current provider performance
+    or universal reproducibility rates in August 2026.
+  verification_state: location_verified
+- id: SRC-0038-EX-0004
+  location:
+    pdf_page: 2
+    printed_page: null
+    section: Introduction
+    paragraph_or_table: Time-bound knowledge risk
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The authors warn that unreproducible results can become time-bound snapshots rather than
+    cumulative scientific building blocks.
+  researcher_interpretation: DDTA should attach temporal validity and stale-state semantics to LLM-derived evidence.
+  supported_proposition: An LLM performance result should not be represented as a timeless property of a model family.
+  thesis_targets:
+  - chapter-4
+  - chapter-8
+  temporal_caveat: The study was published for ICSE 2026 and reproduces selected ICSE/ASE 2024 experiments using
+    commercial endpoints, models and dependencies available during the authors' reproduction window. Counts and
+    failure patterns support provenance and maintenance controls; they do not establish current provider performance
+    or universal reproducibility rates in August 2026.
+  verification_state: location_verified
+- id: SRC-0038-EX-0005
+  location:
+    pdf_page: 2
+    printed_page: null
+    section: Introduction
+    paragraph_or_table: Research questions
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The paper asks about reproducibility extent, impeding factors and the reliability of ACM
+    artifact badges.
+  researcher_interpretation: The study separates execution success, causal blockers and external assurance labels.
+  supported_proposition: Reproducibility assessment requires more than a binary artifact-available field.
+  thesis_targets:
+  - chapter-3
+  - chapter-7
+  temporal_caveat: The study was published for ICSE 2026 and reproduces selected ICSE/ASE 2024 experiments using
+    commercial endpoints, models and dependencies available during the authors' reproduction window. Counts and
+    failure patterns support provenance and maintenance controls; they do not establish current provider performance
+    or universal reproducibility rates in August 2026.
+  verification_state: location_verified
+- id: SRC-0038-EX-0006
+  location:
+    pdf_page: 2
+    printed_page: null
+    section: Background - Definitions
+    paragraph_or_table: ACM reproducibility and replicability
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The paper adopts ACM definitions but uses the terms interchangeably where changed models
+    and imperfect packages create a grey area.
+  researcher_interpretation: Every DDTA use of reproduced or replicated should state the actual artifact and environment
+    relation.
+  supported_proposition: Model substitution and artifact repair weaken claims of exact reproducibility.
+  thesis_targets:
+  - chapter-2
+  - chapter-7
+  temporal_caveat: The study was published for ICSE 2026 and reproduces selected ICSE/ASE 2024 experiments using
+    commercial endpoints, models and dependencies available during the authors' reproduction window. Counts and
+    failure patterns support provenance and maintenance controls; they do not establish current provider performance
+    or universal reproducibility rates in August 2026.
+  verification_state: location_verified
+- id: SRC-0038-EX-0007
+  location:
+    pdf_page: 2
+    printed_page: null
+    section: Background - Non-determinism
+    paragraph_or_table: Known influencing variables
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Temperature, prompting style and hardware are among known influences on LLM output variability,
+    while their effects vary by model and task.
+  researcher_interpretation: A universal run-count rule is not supported.
+  supported_proposition: Repeated execution policy must remain task- and evidence-specific.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  - chapter-8
+  temporal_caveat: The study was published for ICSE 2026 and reproduces selected ICSE/ASE 2024 experiments using
+    commercial endpoints, models and dependencies available during the authors' reproduction window. Counts and
+    failure patterns support provenance and maintenance controls; they do not establish current provider performance
+    or universal reproducibility rates in August 2026.
+  verification_state: location_verified
+- id: SRC-0038-EX-0008
+  location:
+    pdf_page: 3
+    printed_page: null
+    section: Background - Non-determinism
+    paragraph_or_table: Power and run-count limitation
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The authors argue that statistical power estimation is feasible only in small and highly
+    controlled LLM setups.
+  researcher_interpretation: A fixed repetition count should be documented as a practical choice rather than a proof
+    of stability.
+  supported_proposition: No universal statistically sufficient number of LLM runs is established.
+  thesis_targets:
+  - chapter-7
+  - chapter-8
+  temporal_caveat: The study was published for ICSE 2026 and reproduces selected ICSE/ASE 2024 experiments using
+    commercial endpoints, models and dependencies available during the authors' reproduction window. Counts and
+    failure patterns support provenance and maintenance controls; they do not establish current provider performance
+    or universal reproducibility rates in August 2026.
+  verification_state: location_verified
+- id: SRC-0038-EX-0009
+  location:
+    pdf_page: 3
+    printed_page: null
+    section: Background - Temporal factors
+    paragraph_or_table: Model updates and task drift
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Minor model versions and changing task information can alter performance over time, and vendor
+    benchmarks cannot cover all research tasks.
+  researcher_interpretation: Model snapshot and task-data time are separate provenance dimensions.
+  supported_proposition: Provider benchmark stability does not guarantee stability for a project-specific DDTA task.
+  thesis_targets:
+  - chapter-3
+  - chapter-5
+  temporal_caveat: The study was published for ICSE 2026 and reproduces selected ICSE/ASE 2024 experiments using
+    commercial endpoints, models and dependencies available during the authors' reproduction window. Counts and
+    failure patterns support provenance and maintenance controls; they do not establish current provider performance
+    or universal reproducibility rates in August 2026.
+  verification_state: location_verified
+- id: SRC-0038-EX-0010
+  location:
+    pdf_page: 3
+    printed_page: null
+    section: Background - Temporal factors
+    paragraph_or_table: Pinned model claim
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The paper notes a provider claim that pinned models are stable but states that the extent
+    of practical stability has not been established.
+  researcher_interpretation: A pinned identifier is evidence of requested configuration, not proof of immutable
+    behavior.
+  supported_proposition: Exact model naming is necessary but insufficient for reproducibility.
+  thesis_targets:
+  - chapter-4
+  - chapter-8
+  temporal_caveat: The study was published for ICSE 2026 and reproduces selected ICSE/ASE 2024 experiments using
+    commercial endpoints, models and dependencies available during the authors' reproduction window. Counts and
+    failure patterns support provenance and maintenance controls; they do not establish current provider performance
+    or universal reproducibility rates in August 2026.
+  verification_state: location_verified
+- id: SRC-0038-EX-0011
+  location:
+    pdf_page: 3
+    printed_page: null
+    section: Bayesian bootstrap
+    paragraph_or_table: Comparison procedure
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The authors run 10,000 Bayesian-bootstrap draws and treat original results inside a reproduced
+    95 percent interval as likely.
+  researcher_interpretation: The reported classification depends on an explicit statistical procedure that must
+    be versioned with the evaluator.
+  supported_proposition: Metric implementation and comparison procedure are part of execution evidence.
+  thesis_targets:
+  - chapter-5
+  - chapter-7
+  temporal_caveat: The study was published for ICSE 2026 and reproduces selected ICSE/ASE 2024 experiments using
+    commercial endpoints, models and dependencies available during the authors' reproduction window. Counts and
+    failure patterns support provenance and maintenance controls; they do not establish current provider performance
+    or universal reproducibility rates in August 2026.
+  verification_state: location_verified
+- id: SRC-0038-EX-0012
+  location:
+    pdf_page: 3
+    printed_page: null
+    section: Reproduction framework
+    paragraph_or_table: Containerization and download-on-demand
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The framework containerizes integrations, downloads original artifacts on demand and records
+    necessary modifications transparently.
+  researcher_interpretation: Original and repaired artifacts must remain distinguishable and linked.
+  supported_proposition: Transparent intervention provenance is required when an artifact cannot execute unchanged.
+  thesis_targets:
+  - chapter-4
+  - chapter-5
+  - chapter-8
+  temporal_caveat: The study was published for ICSE 2026 and reproduces selected ICSE/ASE 2024 experiments using
+    commercial endpoints, models and dependencies available during the authors' reproduction window. Counts and
+    failure patterns support provenance and maintenance controls; they do not establish current provider performance
+    or universal reproducibility rates in August 2026.
+  verification_state: location_verified
+- id: SRC-0038-EX-0013
+  location:
+    pdf_page: 3
+    printed_page: null
+    section: ACM badges
+    paragraph_or_table: Badge meanings
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The paper distinguishes artifact availability, artifact evaluation and independently validated
+    results, while noting that venue processes are not fully standardized.
+  researcher_interpretation: A badge is a dated assertion with defined scope, not a permanent executable guarantee.
+  supported_proposition: External assurance labels require version, date and stale-state interpretation.
+  thesis_targets:
+  - chapter-2
+  - chapter-7
+  temporal_caveat: The study was published for ICSE 2026 and reproduces selected ICSE/ASE 2024 experiments using
+    commercial endpoints, models and dependencies available during the authors' reproduction window. Counts and
+    failure patterns support provenance and maintenance controls; they do not establish current provider performance
+    or universal reproducibility rates in August 2026.
+  verification_state: location_verified
+- id: SRC-0038-EX-0014
+  location:
+    pdf_page: 4
+    printed_page: null
+    section: Methodology - Literature review
+    paragraph_or_table: ICSE selection
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The ICSE search examines 425 papers, identifies 109 keyword matches and manually retains
+    78 empirical autoregressive-LLM studies.
+  researcher_interpretation: The ICSE branch is the broader review branch.
+  supported_proposition: The total of 78 ICSE studies is supported by the paper's selection process.
+  thesis_targets:
+  - chapter-3
+  - chapter-7
+  temporal_caveat: The study was published for ICSE 2026 and reproduces selected ICSE/ASE 2024 experiments using
+    commercial endpoints, models and dependencies available during the authors' reproduction window. Counts and
+    failure patterns support provenance and maintenance controls; they do not establish current provider performance
+    or universal reproducibility rates in August 2026.
+  verification_state: location_verified
+- id: SRC-0038-EX-0015
+  location:
+    pdf_page: 4
+    printed_page: null
+    section: Methodology - Literature review
+    paragraph_or_table: ASE selection
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: ASE is added iteratively and only seven badged studies are retained rather than conducting
+    a complete equivalent review.
+  researcher_interpretation: Combined-corpus percentages must preserve the asymmetric selection design.
+  supported_proposition: The 85-study corpus is not a uniform systematic sample of both venues.
+  thesis_targets:
+  - chapter-3
+  - chapter-7
+  temporal_caveat: The study was published for ICSE 2026 and reproduces selected ICSE/ASE 2024 experiments using
+    commercial endpoints, models and dependencies available during the authors' reproduction window. Counts and
+    failure patterns support provenance and maintenance controls; they do not establish current provider performance
+    or universal reproducibility rates in August 2026.
+  verification_state: location_verified
+- id: SRC-0038-EX-0016
+  location:
+    pdf_page: 4
+    printed_page: null
+    section: Methodology - Data extraction
+    paragraph_or_table: Recorded variables
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The extraction records artifact badges, model identity, artifact availability, model comparison,
+    temperature, top-p or top-k, prompts, context-window handling and detailed model version.
+  researcher_interpretation: These variables provide a minimum but incomplete LLM execution-provenance checklist.
+  supported_proposition: Prompt disclosure is only one part of a reproducible LLM study specification.
+  thesis_targets:
+  - chapter-4
+  - chapter-5
+  temporal_caveat: The study was published for ICSE 2026 and reproduces selected ICSE/ASE 2024 experiments using
+    commercial endpoints, models and dependencies available during the authors' reproduction window. Counts and
+    failure patterns support provenance and maintenance controls; they do not establish current provider performance
+    or universal reproducibility rates in August 2026.
+  verification_state: location_verified
+- id: SRC-0038-EX-0017
+  location:
+    pdf_page: 4
+    printed_page: null
+    section: Methodology - Exclusion
+    paragraph_or_table: OpenAI and artifact funnel
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Of 85 studies, 69 use OpenAI services and 18 appear at first inspection to have complete
+    and executable artifacts and data.
+  researcher_interpretation: Apparent eligibility needs an execution gate.
+  supported_proposition: Artifact presence must be separated from verified executability.
+  thesis_targets:
+  - chapter-3
+  - chapter-7
+  temporal_caveat: The study was published for ICSE 2026 and reproduces selected ICSE/ASE 2024 experiments using
+    commercial endpoints, models and dependencies available during the authors' reproduction window. Counts and
+    failure patterns support provenance and maintenance controls; they do not establish current provider performance
+    or universal reproducibility rates in August 2026.
+  verification_state: location_verified
+- id: SRC-0038-EX-0018
+  location:
+    pdf_page: 5
+    printed_page: null
+    section: Methodology - RQ1
+    paragraph_or_table: Five-step reproduction procedure
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Researchers check completeness, execute artifacts, document and address non-functional hurdles,
+    automate the artifacts, perform repeated runs and record observations.
+  researcher_interpretation: The process explicitly separates inspection, intervention, automation and rerun evidence.
+  supported_proposition: A governed replay procedure needs intermediate states and intervention records.
+  thesis_targets:
+  - chapter-4
+  - chapter-5
+  - chapter-8
+  temporal_caveat: The study was published for ICSE 2026 and reproduces selected ICSE/ASE 2024 experiments using
+    commercial endpoints, models and dependencies available during the authors' reproduction window. Counts and
+    failure patterns support provenance and maintenance controls; they do not establish current provider performance
+    or universal reproducibility rates in August 2026.
+  verification_state: location_verified
+- id: SRC-0038-EX-0019
+  location:
+    pdf_page: 5
+    printed_page: null
+    section: Methodology - Review
+    paragraph_or_table: Independent integration review
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Another coauthor reviews each study integration for automation correctness, portability,
+    understandable changes and documented results.
+  researcher_interpretation: Independent review is evidence for the reproduction transformation, not only the original
+    study.
+  supported_proposition: Artifact repair and replay code require review disposition and traceable changes.
+  thesis_targets:
+  - chapter-5
+  - chapter-7
+  temporal_caveat: The study was published for ICSE 2026 and reproduces selected ICSE/ASE 2024 experiments using
+    commercial endpoints, models and dependencies available during the authors' reproduction window. Counts and
+    failure patterns support provenance and maintenance controls; they do not establish current provider performance
+    or universal reproducibility rates in August 2026.
+  verification_state: location_verified
+- id: SRC-0038-EX-0020
+  location:
+    pdf_page: 5
+    printed_page: null
+    section: Methodology - Run budget
+    paragraph_or_table: Thirty-run and cost cap
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Each executable study is run up to 30 times or until reproduction cost reaches 500 USD; the
+    authors state that this is a practical rather than statistically definitive choice.
+  researcher_interpretation: Run count, stop condition and cost are provenance fields.
+  supported_proposition: Budget-limited replay must preserve the reason an experiment stopped.
+  thesis_targets:
+  - chapter-5
+  - chapter-7
+  - chapter-8
+  temporal_caveat: The study was published for ICSE 2026 and reproduces selected ICSE/ASE 2024 experiments using
+    commercial endpoints, models and dependencies available during the authors' reproduction window. Counts and
+    failure patterns support provenance and maintenance controls; they do not establish current provider performance
+    or universal reproducibility rates in August 2026.
+  verification_state: location_verified
+- id: SRC-0038-EX-0021
+  location:
+    pdf_page: 5
+    printed_page: null
+    section: Methodology - Author contact
+    paragraph_or_table: Independent package test
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The team does not contact original authors because assistance could bias the independent
+    reproduction objective.
+  researcher_interpretation: Blocked status should distinguish package insufficiency from absolute impossibility.
+  supported_proposition: A self-contained reproduction failure does not prove that author-assisted recovery is impossible.
+  thesis_targets:
+  - chapter-7
+  - chapter-8
+  temporal_caveat: The study was published for ICSE 2026 and reproduces selected ICSE/ASE 2024 experiments using
+    commercial endpoints, models and dependencies available during the authors' reproduction window. Counts and
+    failure patterns support provenance and maintenance controls; they do not establish current provider performance
+    or universal reproducibility rates in August 2026.
+  verification_state: location_verified
+- id: SRC-0038-EX-0022
+  location:
+    pdf_page: 6
+    printed_page: null
+    section: Results - Pan et al.
+    paragraph_or_table: Code-translation divergence
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Reported successful-translation ratios of 79.9 and 85.5 percent are far above reproduced
+    95 percent intervals near 46-55 percent after selecting an available GPT-4 minor version.
+  researcher_interpretation: Model-version ambiguity and large metric divergence jointly block a source-equivalent
+    claim.
+  supported_proposition: A replacement model can yield materially different performance from a published commercial-LLM
+    result.
+  thesis_targets:
+  - chapter-6
+  - chapter-7
+  temporal_caveat: The study was published for ICSE 2026 and reproduces selected ICSE/ASE 2024 experiments using
+    commercial endpoints, models and dependencies available during the authors' reproduction window. Counts and
+    failure patterns support provenance and maintenance controls; they do not establish current provider performance
+    or universal reproducibility rates in August 2026.
+  verification_state: location_verified
+- id: SRC-0038-EX-0023
+  location:
+    pdf_page: 6
+    printed_page: null
+    section: Results - Ahmed et al.
+    paragraph_or_table: Deprecated model and incomplete instructions
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Most experiments depend on a deprecated model; the remaining reproduction uses a chosen GPT-3.5
+    snapshot, reconstructed dependencies and an assumed feature-flag configuration.
+  researcher_interpretation: Recovered execution is not identical to the original experiment.
+  supported_proposition: Model deprecation and undocumented operational choices are independent reproduction blockers.
+  thesis_targets:
+  - chapter-5
+  - chapter-7
+  temporal_caveat: The study was published for ICSE 2026 and reproduces selected ICSE/ASE 2024 experiments using
+    commercial endpoints, models and dependencies available during the authors' reproduction window. Counts and
+    failure patterns support provenance and maintenance controls; they do not establish current provider performance
+    or universal reproducibility rates in August 2026.
+  verification_state: location_verified
+- id: SRC-0038-EX-0024
+  location:
+    pdf_page: 6
+    printed_page: null
+    section: Results - Ahmed et al.
+    paragraph_or_table: Changed direction across languages
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: None of the available reported values falls inside reproduced intervals, and relative method
+    performance changes across Java, Python and PHP.
+  researcher_interpretation: A later model is not guaranteed to preserve even the direction of comparative claims.
+  supported_proposition: Newer commercial models do not make old task results a guaranteed lower bound.
+  thesis_targets:
+  - chapter-7
+  - chapter-8
+  temporal_caveat: The study was published for ICSE 2026 and reproduces selected ICSE/ASE 2024 experiments using
+    commercial endpoints, models and dependencies available during the authors' reproduction window. Counts and
+    failure patterns support provenance and maintenance controls; they do not establish current provider performance
+    or universal reproducibility rates in August 2026.
+  verification_state: location_verified
+- id: SRC-0038-EX-0025
+  location:
+    pdf_page: 6
+    printed_page: null
+    section: Results - Siddiq et al.
+    paragraph_or_table: Reconstructed evaluator
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The artifact lacks evaluation code, one metric cannot be reconstructed and a current GPT-3.5
+    snapshot substitutes for the original version.
+  researcher_interpretation: Evaluator reconstruction needs its own provenance and uncertainty state.
+  supported_proposition: Reported metrics cannot be treated as replayable when evaluation code is missing.
+  thesis_targets:
+  - chapter-5
+  - chapter-7
+  temporal_caveat: The study was published for ICSE 2026 and reproduces selected ICSE/ASE 2024 experiments using
+    commercial endpoints, models and dependencies available during the authors' reproduction window. Counts and
+    failure patterns support provenance and maintenance controls; they do not establish current provider performance
+    or universal reproducibility rates in August 2026.
+  verification_state: location_verified
+- id: SRC-0038-EX-0026
+  location:
+    pdf_page: 7
+    printed_page: null
+    section: Results - Siddiq et al.
+    paragraph_or_table: Five likely and twenty-one unlikely values
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Five original values appear likely under reproduced intervals while 21 remain outside them,
+    although some trends are preserved.
+  researcher_interpretation: Trend preservation is weaker than numerical reproduction.
+  supported_proposition: Partial agreement requires metric-level rather than paper-level disposition.
+  thesis_targets:
+  - chapter-6
+  - chapter-7
+  temporal_caveat: The study was published for ICSE 2026 and reproduces selected ICSE/ASE 2024 experiments using
+    commercial endpoints, models and dependencies available during the authors' reproduction window. Counts and
+    failure patterns support provenance and maintenance controls; they do not establish current provider performance
+    or universal reproducibility rates in August 2026.
+  verification_state: location_verified
+- id: SRC-0038-EX-0027
+  location:
+    pdf_page: 7
+    printed_page: null
+    section: Results - Zhou et al.
+    paragraph_or_table: Large repeated-run variability
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: About two-thirds of results appear reproducible, but some metrics range over 10-30 percentage
+    points across 30 runs.
+  researcher_interpretation: Interval inclusion can coexist with operational instability.
+  supported_proposition: Reproducibility and output stability should be represented as separate evidence dimensions.
+  thesis_targets:
+  - chapter-6
+  - chapter-8
+  temporal_caveat: The study was published for ICSE 2026 and reproduces selected ICSE/ASE 2024 experiments using
+    commercial endpoints, models and dependencies available during the authors' reproduction window. Counts and
+    failure patterns support provenance and maintenance controls; they do not establish current provider performance
+    or universal reproducibility rates in August 2026.
+  verification_state: location_verified
+- id: SRC-0038-EX-0028
+  location:
+    pdf_page: 7
+    printed_page: null
+    section: Results - Xiao et al.
+    paragraph_or_table: Partial reproduction
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Most evaluated metric-dataset combinations are inside or near reproduced intervals, but one
+    metric and part of the original setup cannot be reproduced.
+  researcher_interpretation: A paper-level partial state can contain metric-level successes and blocked components.
+  supported_proposition: Replay disposition should support hierarchical and partial results.
+  thesis_targets:
+  - chapter-6
+  - chapter-7
+  temporal_caveat: The study was published for ICSE 2026 and reproduces selected ICSE/ASE 2024 experiments using
+    commercial endpoints, models and dependencies available during the authors' reproduction window. Counts and
+    failure patterns support provenance and maintenance controls; they do not establish current provider performance
+    or universal reproducibility rates in August 2026.
+  verification_state: location_verified
+- id: SRC-0038-EX-0029
+  location:
+    pdf_page: 7
+    printed_page: null
+    section: RQ1 summary
+    paragraph_or_table: Zero complete reproductions
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Of 69 OpenAI studies only five are executable enough for detailed reproduction, and none
+    is completely reproduced.
+  researcher_interpretation: The dominant failure occurs before or alongside metric comparison.
+  supported_proposition: Executability is a prerequisite evidence gate distinct from result similarity.
+  thesis_targets:
+  - chapter-3
+  - chapter-8
+  temporal_caveat: The study was published for ICSE 2026 and reproduces selected ICSE/ASE 2024 experiments using
+    commercial endpoints, models and dependencies available during the authors' reproduction window. Counts and
+    failure patterns support provenance and maintenance controls; they do not establish current provider performance
+    or universal reproducibility rates in August 2026.
+  verification_state: location_verified
+- id: SRC-0038-EX-0030
+  location:
+    pdf_page: 7
+    printed_page: null
+    section: RQ2 reporting counts
+    paragraph_or_table: Missing code, data and configuration
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Thirty-five studies provide no code or data, 15 have irrecoverably incomplete artifacts,
+    eight omit model identity, 29 report temperature, 14 report top-p or top-k, 22 discuss context handling and
+    50 report prompts.
+  researcher_interpretation: The empirical reporting gaps map directly to execution-provenance fields.
+  supported_proposition: Prompt reporting alone does not establish a reproducible experimental setup.
+  thesis_targets:
+  - chapter-4
+  - chapter-7
+  temporal_caveat: The study was published for ICSE 2026 and reproduces selected ICSE/ASE 2024 experiments using
+    commercial endpoints, models and dependencies available during the authors' reproduction window. Counts and
+    failure patterns support provenance and maintenance controls; they do not establish current provider performance
+    or universal reproducibility rates in August 2026.
+  verification_state: location_verified
+- id: SRC-0038-EX-0031
+  location:
+    pdf_page: 8
+    printed_page: null
+    section: Table 1
+    paragraph_or_table: Original values versus reproduced intervals
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The table presents original metrics beside reproduced Bayesian-bootstrap percentiles for
+    representative configurations of the five executable studies.
+  researcher_interpretation: Raw runs and metric distributions are stronger evidence than a single aggregate score.
+  supported_proposition: Original and reproduced metrics require separate identities and traceable aggregation.
+  thesis_targets:
+  - chapter-5
+  - chapter-7
+  temporal_caveat: The study was published for ICSE 2026 and reproduces selected ICSE/ASE 2024 experiments using
+    commercial endpoints, models and dependencies available during the authors' reproduction window. Counts and
+    failure patterns support provenance and maintenance controls; they do not establish current provider performance
+    or universal reproducibility rates in August 2026.
+  verification_state: location_verified
+- id: SRC-0038-EX-0032
+  location:
+    pdf_page: 8
+    printed_page: null
+    section: Table 2
+    paragraph_or_table: Reproduction blockers
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The main blockers are incomplete artifacts, dependency-version issues, code problems, deprecated
+    models, incomplete documentation, non-executable artifacts, missing error handling and deprecated APIs.
+  researcher_interpretation: Most blockers are ordinary software-maintenance failures rather than unique LLM properties.
+  supported_proposition: LLM provenance does not replace dependency, code-quality and runtime provenance.
+  thesis_targets:
+  - chapter-4
+  - chapter-8
+  temporal_caveat: The study was published for ICSE 2026 and reproduces selected ICSE/ASE 2024 experiments using
+    commercial endpoints, models and dependencies available during the authors' reproduction window. Counts and
+    failure patterns support provenance and maintenance controls; they do not establish current provider performance
+    or universal reproducibility rates in August 2026.
+  verification_state: location_verified
+- id: SRC-0038-EX-0033
+  location:
+    pdf_page: 8
+    printed_page: null
+    section: RQ3
+    paragraph_or_table: Reusable badge failures
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Eight of 16 artifacts carrying an evaluated-reusable badge are later incomplete, non-functional
+    or insufficiently documented.
+  researcher_interpretation: Artifact evaluation evidence has a time boundary and can become stale.
+  supported_proposition: A reusable badge should not be modeled as a permanent reproducibility guarantee.
+  thesis_targets:
+  - chapter-3
+  - chapter-7
+  temporal_caveat: The study was published for ICSE 2026 and reproduces selected ICSE/ASE 2024 experiments using
+    commercial endpoints, models and dependencies available during the authors' reproduction window. Counts and
+    failure patterns support provenance and maintenance controls; they do not establish current provider performance
+    or universal reproducibility rates in August 2026.
+  verification_state: location_verified
+- id: SRC-0038-EX-0034
+  location:
+    pdf_page: 9
+    printed_page: null
+    section: RQ3 summary
+    paragraph_or_table: Badge reliability conclusion
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: About one year after evaluation, half of reusable-badged artifacts no longer meet the expected
+    requirements, so the badge is not a reliable current indicator of reproducibility.
+  researcher_interpretation: External validation needs date, evaluated version and current-state checks.
+  supported_proposition: Validation-at-publication and executability-at-replay are distinct states.
+  thesis_targets:
+  - chapter-4
+  - chapter-8
+  temporal_caveat: The study was published for ICSE 2026 and reproduces selected ICSE/ASE 2024 experiments using
+    commercial endpoints, models and dependencies available during the authors' reproduction window. Counts and
+    failure patterns support provenance and maintenance controls; they do not establish current provider performance
+    or universal reproducibility rates in August 2026.
+  verification_state: location_verified
+- id: SRC-0038-EX-0035
+  location:
+    pdf_page: 9
+    printed_page: null
+    section: Discussion
+    paragraph_or_table: No positive predictor identified
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Among the five reproduced studies, badge presence, minor-version setting, model comparison
+    and LLM-specific metrics do not show a clear relation to improved reproduction.
+  researcher_interpretation: The sample is too small for positive causal conclusions.
+  supported_proposition: The paper identifies blockers more strongly than reliable positive predictors.
+  thesis_targets:
+  - chapter-7
+  temporal_caveat: The study was published for ICSE 2026 and reproduces selected ICSE/ASE 2024 experiments using
+    commercial endpoints, models and dependencies available during the authors' reproduction window. Counts and
+    failure patterns support provenance and maintenance controls; they do not establish current provider performance
+    or universal reproducibility rates in August 2026.
+  verification_state: location_verified
+- id: SRC-0038-EX-0036
+  location:
+    pdf_page: 9
+    printed_page: null
+    section: Discussion
+    paragraph_or_table: Commercial deprecation
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Deprecated models are the only major blocker directly specific to commercial LLM use; the
+    authors suggest considering open models in study design without proving that comparison improves replicability.
+  researcher_interpretation: Model availability risk is a design-time constraint, not proof that open models are
+    sufficient.
+  supported_proposition: Commercial model deprecation should be a stale and unavailable trigger.
+  thesis_targets:
+  - chapter-5
+  - chapter-8
+  temporal_caveat: The study was published for ICSE 2026 and reproduces selected ICSE/ASE 2024 experiments using
+    commercial endpoints, models and dependencies available during the authors' reproduction window. Counts and
+    failure patterns support provenance and maintenance controls; they do not establish current provider performance
+    or universal reproducibility rates in August 2026.
+  verification_state: location_verified
+- id: SRC-0038-EX-0037
+  location:
+    pdf_page: 9
+    printed_page: null
+    section: Table 3
+    paragraph_or_table: Internal model-version ambiguity
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The table appears to mark a minor model version as set for Ahmed et al., while the surrounding
+    text says no precise version is stated.
+  researcher_interpretation: The contradiction must remain recorded rather than silently reconciled.
+  supported_proposition: The paper contains an internal ambiguity about one reproduced study's model-version reporting.
+  thesis_targets:
+  - chapter-7
+  - appendix-literature
+  temporal_caveat: The study was published for ICSE 2026 and reproduces selected ICSE/ASE 2024 experiments using
+    commercial endpoints, models and dependencies available during the authors' reproduction window. Counts and
+    failure patterns support provenance and maintenance controls; they do not establish current provider performance
+    or universal reproducibility rates in August 2026.
+  verification_state: location_verified
+- id: SRC-0038-EX-0038
+  location:
+    pdf_page: 10
+    printed_page: null
+    section: Discussion
+    paragraph_or_table: Artifact pre-screening
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The paper proposes low-effort automated pre-screening for artifact-quality issues but does
+    not recommend automating the full replication process.
+  researcher_interpretation: Static gates can catch missing fields without replacing execution and expert review.
+  supported_proposition: Automated artifact checks are useful prerequisites but not reproduction evidence.
+  thesis_targets:
+  - chapter-4
+  - chapter-8
+  temporal_caveat: The study was published for ICSE 2026 and reproduces selected ICSE/ASE 2024 experiments using
+    commercial endpoints, models and dependencies available during the authors' reproduction window. Counts and
+    failure patterns support provenance and maintenance controls; they do not establish current provider performance
+    or universal reproducibility rates in August 2026.
+  verification_state: location_verified
+- id: SRC-0038-EX-0039
+  location:
+    pdf_page: 10
+    printed_page: null
+    section: Discussion
+    paragraph_or_table: One-year sustainability concern
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Some results from studies only about one year old no longer hold under the reproduction conditions,
+    challenging their long-term value.
+  researcher_interpretation: LLM result records require explicit evidence windows and rerun triggers.
+  supported_proposition: Recent publication date does not guarantee current validity of an LLM performance claim.
+  thesis_targets:
+  - chapter-7
+  - chapter-8
+  temporal_caveat: The study was published for ICSE 2026 and reproduces selected ICSE/ASE 2024 experiments using
+    commercial endpoints, models and dependencies available during the authors' reproduction window. Counts and
+    failure patterns support provenance and maintenance controls; they do not establish current provider performance
+    or universal reproducibility rates in August 2026.
+  verification_state: location_verified
+- id: SRC-0038-EX-0040
+  location:
+    pdf_page: 10
+    printed_page: null
+    section: Recommendations
+    paragraph_or_table: Complete artifacts and SBOM
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The authors recommend complete artifact disclosure where possible, including code, data and
+    a Software Bill of Materials.
+  researcher_interpretation: SBOM and dependency locks belong in DDTA execution provenance when executable transformations
+    are evaluated.
+  supported_proposition: Long-term reproducibility needs ordinary software-supply-chain metadata in addition to
+    model provenance.
+  thesis_targets:
+  - chapter-4
+  - chapter-5
+  temporal_caveat: The study was published for ICSE 2026 and reproduces selected ICSE/ASE 2024 experiments using
+    commercial endpoints, models and dependencies available during the authors' reproduction window. Counts and
+    failure patterns support provenance and maintenance controls; they do not establish current provider performance
+    or universal reproducibility rates in August 2026.
+  verification_state: location_verified
+- id: SRC-0038-EX-0041
+  location:
+    pdf_page: 11
+    printed_page: null
+    section: Threats to validity
+    paragraph_or_table: Manual interventions
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Most executable artifacts require manual dependency recovery or code reconstruction, creating
+    researcher-bias risk; interventions are constrained by available documentation and independently reviewed.
+  researcher_interpretation: Replay evidence must preserve what changed and who reviewed the change.
+  supported_proposition: Transparent intervention review reduces but does not eliminate reconstruction uncertainty.
+  thesis_targets:
+  - chapter-5
+  - chapter-7
+  temporal_caveat: The study was published for ICSE 2026 and reproduces selected ICSE/ASE 2024 experiments using
+    commercial endpoints, models and dependencies available during the authors' reproduction window. Counts and
+    failure patterns support provenance and maintenance controls; they do not establish current provider performance
+    or universal reproducibility rates in August 2026.
+  verification_state: location_verified
+- id: SRC-0038-EX-0042
+  location:
+    pdf_page: 11
+    printed_page: null
+    section: Threats to validity
+    paragraph_or_table: External validity
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: OpenAI-only sampling, two venues and budget-limited task subsets restrict generalization.
+  researcher_interpretation: Quantitative rates must remain bounded to the selected corpus and reproduction setup.
+  supported_proposition: The study does not establish a universal reproducibility rate for all LLM research.
+  thesis_targets:
+  - chapter-7
+  temporal_caveat: The study was published for ICSE 2026 and reproduces selected ICSE/ASE 2024 experiments using
+    commercial endpoints, models and dependencies available during the authors' reproduction window. Counts and
+    failure patterns support provenance and maintenance controls; they do not establish current provider performance
+    or universal reproducibility rates in August 2026.
+  verification_state: location_verified
+- id: SRC-0038-EX-0043
+  location:
+    pdf_page: 11
+    printed_page: null
+    section: Threats to validity
+    paragraph_or_table: Reliability and variability
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Some repeated metrics vary by up to 30 percent, and each reproduction is performed by one
+    researcher then independently reviewed.
+  researcher_interpretation: Raw run distributions and reviewer identity are required to interpret aggregate claims.
+  supported_proposition: A mean or interval without raw-run provenance can conceal substantial variability.
+  thesis_targets:
+  - chapter-5
+  - chapter-7
+  temporal_caveat: The study was published for ICSE 2026 and reproduces selected ICSE/ASE 2024 experiments using
+    commercial endpoints, models and dependencies available during the authors' reproduction window. Counts and
+    failure patterns support provenance and maintenance controls; they do not establish current provider performance
+    or universal reproducibility rates in August 2026.
+  verification_state: location_verified
+- id: SRC-0038-EX-0044
+  location:
+    pdf_page: 11
+    printed_page: null
+    section: Conclusion
+    paragraph_or_table: Complete, partial and divergent states
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The conclusion restates that none of five executable studies is completely reproduced, two
+    are partial and three diverge, with incomplete artifacts, dependency issues, code defects and deprecated models
+    as common causes.
+  researcher_interpretation: Replay state needs more than success or failure.
+  supported_proposition: Reproduction evidence should support complete, partial, divergent, blocked and unavailable
+    dispositions.
+  thesis_targets:
+  - chapter-4
+  - chapter-8
+  temporal_caveat: The study was published for ICSE 2026 and reproduces selected ICSE/ASE 2024 experiments using
+    commercial endpoints, models and dependencies available during the authors' reproduction window. Counts and
+    failure patterns support provenance and maintenance controls; they do not establish current provider performance
+    or universal reproducibility rates in August 2026.
+  verification_state: location_verified
+- id: SRC-0038-EX-0045
+  location:
+    pdf_page: 11
+    printed_page: null
+    section: Conclusion
+    paragraph_or_table: Versioned artifact recommendation
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The authors call for rigorously documented data, complete versioned artifacts and stronger
+    artifact evaluation and long-term accessibility.
+  researcher_interpretation: DDTA should treat execution evidence as governed and versioned documentation.
+  supported_proposition: Versioned artifacts and long-term accessibility are core controls for reusable LLM evidence.
+  thesis_targets:
+  - chapter-4
+  - chapter-8
+  temporal_caveat: The study was published for ICSE 2026 and reproduces selected ICSE/ASE 2024 experiments using
+    commercial endpoints, models and dependencies available during the authors' reproduction window. Counts and
+    failure patterns support provenance and maintenance controls; they do not establish current provider performance
+    or universal reproducibility rates in August 2026.
+  verification_state: location_verified
+- id: SRC-0038-EX-0046
+  location:
+    pdf_page: 11
+    printed_page: null
+    section: Data availability
+    paragraph_or_table: Framework and dataset identifiers
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The paper identifies separate public records for the reproduction framework and generated
+    study data.
+  researcher_interpretation: Executable tooling and result data are distinct companion artifacts.
+  supported_proposition: A source-access record should distinguish paper, framework and online-result package states.
+  thesis_targets:
+  - appendix-literature
+  - chapter-5
+  temporal_caveat: The study was published for ICSE 2026 and reproduces selected ICSE/ASE 2024 experiments using
+    commercial endpoints, models and dependencies available during the authors' reproduction window. Counts and
+    failure patterns support provenance and maintenance controls; they do not establish current provider performance
+    or universal reproducibility rates in August 2026.
+  verification_state: location_verified

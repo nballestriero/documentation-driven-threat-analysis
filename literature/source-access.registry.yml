@@ -207,3 +207,19 @@ sources:
     software_artifact_url: "https://doi.org/10.5281/zenodo.15668459"
     software_artifact_identifier: "10.5281/zenodo.15668459"
     software_artifact_status: public_tool_artifact_not_executed
+  - source_id: SRC-0038
+    landing_url: "https://arxiv.org/abs/2510.25506"
+    pdf_url: "https://arxiv.org/pdf/2510.25506v3"
+    access_type: open_access_author_preprint
+    licence: "Creative Commons Attribution 4.0 International (CC BY 4.0) declared in the reviewed PDF"
+    source_version: "arXiv:2510.25506v3, dated 2025-11-17"
+    local_filename: "SRC-0038-angermeir-amougou-kreitz-et-al-2026.pdf"
+    retrieved_on: "2026-08-06"
+    sha256: "a3dcd99af97693ae749c20ed8fd65f3e0551f98584a5b383643d16837f748745"
+    repository_storage: forbidden
+    companion_repository_url: "https://doi.org/10.5281/zenodo.17589278"
+    companion_repository_identifier: "10.5281/zenodo.17589278"
+    companion_repository_status: public_reproduction_framework_not_executed
+    online_material_url: "https://doi.org/10.5281/zenodo.17590506"
+    online_material_identifier: "10.5281/zenodo.17590506"
+    online_material_status: public_results_and_data_not_independently_reproduced

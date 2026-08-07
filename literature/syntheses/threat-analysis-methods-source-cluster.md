@@ -311,6 +311,29 @@ legal plugin or a new privacy document model. Existing provenance, candidate-rev
 and methodology-neutral Base Analysis boundaries should merely avoid preventing a later governed
 extension.
 
+### SRC-0038 - Angermeir et al. (2026)
+
+Role: contemporary critical review and reproduction study of commercial-LLM empirical software-
+engineering research. The authors inspect 85 ICSE 2024 and badge-filtered ASE 2024 studies, identify
+69 using OpenAI services, attempt to reproduce 18 apparently eligible artifact packages and find only
+five sufficiently complete and executable.
+
+None of the five executable studies is completely reproduced. Two are partially reproduced and three
+diverge. Missing or incomplete artifacts, dependency-version problems, general code defects and
+incomplete documentation dominate the blockers; deprecated commercial models add an LLM-specific
+failure mode. Repeated metrics can vary by up to about 30 percentage points.
+
+The source establishes an execution-evidence and temporal-validity boundary. A published result,
+public repository, exact-looking model name or artifact badge does not establish current executability
+or compatible rerun evidence. Original artifacts, repair interventions, runtime, dependencies,
+prompts, raw outputs, evaluator code, repeated runs and result dispositions require separate
+identities and provenance.
+
+For DDTA and the parallel ThreatForge project, SRC-0038 requires future-compatible replay and stale-
+state semantics for implemented LLM-assisted operations. The thesis does not implement a universal
+scientific-reproduction platform, preserve commercial model weights, guarantee determinism or
+mandate repeated execution of every analysis.
+
 ## Initial DDTA separation
 
 ```text
@@ -333,6 +356,7 @@ raw and governed project documentation
 -> executable conformance or vulnerability evidence
 -> satisfaction and assurance evidence
 -> accepted assurance or iteration
+-> optional governed replay or independent rerun of LLM-dependent evidence
 ```
 
 SRC-0026 mostly maps methodology-specific threat analysis. SRC-0003 demonstrates a scenario-based
@@ -360,9 +384,11 @@ type and multiplicity remain shared failure points. SRC-0037 adds direct privacy
 generation evidence and shows that high correctness among generated outputs can coexist with low
 coverage and incomplete or misgrounded legal references. For the thesis, this result establishes
 future compatibility only; legal extraction and compliance analysis remain outside implementation
-scope. DDTA must still establish how heterogeneous documentation becomes reviewed neutral assets,
-actors, goals, interactions, objects, operations, domains, phenomena, scenarios and architectural
-decisions consumed by these overlays, arguments and tests.
+scope. SRC-0038 adds independent-rerun evidence and shows that publication, artifact availability,
+model naming and evaluation badges do not establish long-term executability or compatible results.
+DDTA must still establish how heterogeneous documentation becomes reviewed neutral assets, actors,
+goals, interactions, objects, operations, domains, phenomena, scenarios and architectural decisions
+consumed by these overlays, arguments and tests.
 
 ## Technique-focus taxonomy
 
@@ -434,7 +460,9 @@ Direct evidence from the review:
 - generated privacy requirements can be largely correct or partially correct while covering only a small fraction of the expert reference set;
 - retrieved context, citations and plausible rationales still require separate legal-grounding review;
 - legal extraction remains a future-compatible extension rather than a thesis implementation requirement;
-
+- artifact availability, model naming and an evaluation badge do not establish executable reproduction;
+- exact inputs, prompts, context handling, dependencies, evaluator code, raw outputs, repeated runs and interventions are execution provenance;
+- original and independently rerun results require separate identities, dispositions and stale-state control;
 Researcher conclusion for DDTA:
 
 ```text
@@ -446,7 +474,8 @@ llm_candidate_model_to_accepted_model requires syntax, coverage, semantic and tr
 llm_candidate_structural_model_to_accepted_model additionally requires association and multiplicity validation
 legal_source_to_candidate_requirement requires applicability, authority, actionability, coverage and grounding review
 future_legal_analysis_compatibility does not require implementation within the thesis
-candidate_artifact_to_base_analysis requires source provenance and human review
+llm_result_to_reproducible_evidence requires executable artifacts, repeated runs and transparent interventions
+artifact_available_at_t0 does not establish executable_or_reproducible_at_t1candidate_artifact_to_base_analysis requires source provenance and human review
 base_analysis_to_candidate_architecture requires explicit concerns, alternatives and decisions
 candidate_architecture_to_accepted_architecture requires multi-view review and satisfaction evidence
 model_to_candidate_threat can be automated after a typed model exists
@@ -479,8 +508,12 @@ output and relatively high coverage can coexist with incorrect association type 
 SRC-0037 adds regulatory-document-to-requirement-candidate evidence and shows that output
 correctness, obligation coverage and legal grounding can diverge. Its project consequence is limited
 to preserving future extensibility; no legal-analysis subsystem is required in the thesis.
+SRC-0038 adds independent reproduction evidence for commercial-LLM experiments and shows that an
+available or previously evaluated artifact can be incomplete, non-executable, deprecated or yield
+divergent results after a short time. Execution provenance and replay disposition are therefore part
+of assurance, while a universal reproduction laboratory remains outside thesis scope.
 
-All ten evidence forms remain relative to their source documents, model and session state, prompts,
+These evidence forms remain relative to their source documents, model and session state, prompts,
 modeled context, premises, behaviors, attacks, mechanism choices, architectural alternatives,
 decisions, participants, baselines, transformation pipelines, catalogue versions, rule semantics,
 test models, selection criteria, adapters, oracles, environments and measured outcomes. None
@@ -504,7 +537,10 @@ DDTA candidate controls:
 - generated-artifact stale state and regeneration trigger;
 - selected source assertions, exclusions, decomposition and requirement-quality state;
 - LLM provider, model ID, immutable snapshot and interface or API version;
-- system prompt, user prompt, template, sampling parameters and generation timestamp;
+- input snapshot hashes, preprocessing version, dependency lock, runtime or container identity and SBOM;
+- raw outputs, evaluator and metric version, repetition count, timestamps, costs, errors and retries;
+- original-versus-rerun result identity, transparent intervention diff and independent review disposition;
+- replay state: not_attempted, reproduced, partial, divergent, blocked, unavailable or superseded;- system prompt, user prompt, template, sampling parameters and generation timestamp;
 - session, conversation, memory, retrieval context, glossary and domain-knowledge provenance;
 - generated textual notation plus parser and renderer identity and version;
 - assertion coverage states for represented, omitted, contradicted, added and abstracted content;
@@ -558,16 +594,15 @@ DDTA candidate controls:
 ## Primary-study selection queue
 
 Automated threat modelling, model-based security testing, broad automated requirements engineering,
-the historical requirements-to-architecture boundary, LLM behavioral and structural model
-generation, and direct privacy-requirement generation are now covered by SRC-0031 through SRC-0037.
-The final central reading should focus on maintenance, provenance, reproducibility, correction effort,
-accepted-artifact yield or a contemporary closing synthesis.
+the requirements-to-architecture boundary, behavioral and structural LLM projections, direct
+privacy-requirement generation and commercial-LLM reproducibility are covered by SRC-0031 through
+SRC-0038. The 21-source central-reading corpus is complete.
 
 ```text
-maintained candidate artifact or analysis evidence
--> source, model, prompt, version and change provenance
--> correction effort, acceptance yield and stale detection
--> closing evidence for thesis limits and evaluation
+central corpus complete
+-> consolidate thesis claims and explicit non-claims
+-> derive implementation and evaluation requirements
+-> create the separate offline reading and printing collection
 ```
 
 
@@ -620,6 +655,21 @@ provider-level model choice is an acceptance criterion.
 Together they show that generated-artifact quality is multidimensional and artifact-specific. The
 thesis implements neither autonomous model acceptance nor legal-compliance automation.
 
+### SRC-0035 through SRC-0038 LLM evidence-lifecycle contrast
+
+| Dimension | SRC-0035 | SRC-0036 | SRC-0037 | SRC-0038 |
+|---|---|---|---|---|
+| Primary artifact | behavioral UML candidate | structural UML candidate | privacy requirement candidate | empirical LLM result and artifact package |
+| Main acceptance risk | readable output can hide wrong behavior | parser-valid output can hide wrong relations | plausible requirement can have low coverage or weak grounding | available artifact can fail execution or produce divergent evidence |
+| Independent gates | syntax, behavior, coverage and trace review | syntax, structural semantics, coverage and trace review | correctness, actionability, coverage and legal grounding | completeness, executability, run variability and rerun disposition |
+| Change trigger | requirement, prompt, session or renderer change | requirement, prompt, provider or interface change | legal source, model, prompt or retrieval change | model, API, dependency, input, evaluator or environment change |
+| Human authority | analyst correction and acceptance | analyst correction and acceptance | legal and requirements review | transparent intervention and independent reproduction review |
+| Thesis boundary | candidate projection only | candidate projection only | future legal compatibility only | execution provenance and replay compatibility only |
+
+Together these sources show that generated or measured LLM evidence has four independent boundaries:
+artifact readability, semantic fidelity, source coverage or grounding, and reproducibility over time.
+No single parser result, model choice, citation, badge or aggregate metric is sufficient for acceptance.
+
 ## Evidence still missing
 
 - validated extraction of Base Analysis entities, scenario views and goal views from heterogeneous documentation;
@@ -638,7 +688,7 @@ thesis implements neither autonomous model acceptance nor legal-compliance autom
 - contemporary multi-model generation evidence beyond educational class-diagram exercises;
 - assertion-level gold standards or verified source-coverage mappings without requiring one canonical layout;
 - broader industrial security, privacy and non-functional requirement generation evidence beyond two GDPR rights;
-- reproducible provider/model/prompt/session configurations and longitudinal reruns;
+- independent reproduction evidence for DDTA- and ThreatForge-specific extraction, modeling and threat-analysis runs;
 - measured human correction effort, accepted-model yield and iterative prompting benefit;
 - governed trust-assumption acceptance and residual-risk criteria;
 - automatic argument maintenance and change impact;
@@ -686,6 +736,10 @@ model ranking, interface behavior and provider descriptions must not be treated 
 SRC-0037 was published in 2025 and uses fixed GPT-3.5 and GPT-4o snapshots with then-current OpenAI
 and LangChain components. Its separation of correctness, coverage, groundedness and expert review
 remains relevant, while exact performance and provider behavior require contemporary replication.
+SRC-0038 was published for ICSE 2026 and reproduces selected 2024 studies with the commercial model
+endpoints, dependencies and budgets available during the authors' reproduction window. Its artifact-
+maintenance and provenance findings remain current design evidence, while its numeric reproduction
+rates must not be generalized to all providers, venues or August-2026 model behavior.
 
 ## Reading order
 
@@ -704,5 +758,6 @@ SRC-0026 historical method taxonomy
 -> SRC-0035 GPT-3.5 requirements-to-sequence-diagram study
 -> SRC-0036 multi-model requirements-to-class-diagram comparison
 -> SRC-0037 LLM/RAG GDPR privacy-requirement extraction case study
--> SRC-0038 maintenance, provenance, correction-effort or closing contemporary synthesis
+-> SRC-0038 commercial-LLM empirical-study reproducibility and artifact-maintenance study
+-> central reading corpus complete: 21/21
 ```
