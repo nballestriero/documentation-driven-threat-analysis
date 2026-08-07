@@ -1,22 +1,37 @@
 schema_version: 1
 claims:
   - id: CLM-0001
-    statement: "Documentation-Driven Threat Analysis can derive a security-analyzable model from governed software documentation."
+    statement: "Governed software documentation can be transformed into a reviewed methodology-neutral Base Analysis before implementation."
     status: hypothesis
     evidence: []
-    related_research_questions: [RQ1, RQ2]
+    related_research_questions: [RQ1]
+
   - id: CLM-0002
-    statement: "A methodology-neutral Base Analysis can support multiple threat-analysis overlays without changing its canonical elements."
+    statement: "A methodology-neutral Base Analysis can expose one canonical system knowledge boundary to multiple threat-analysis plugins without changing its canonical elements."
     status: design_claim
     evidence: []
-    related_research_questions: [RQ1, RQ3]
+    related_research_questions: [RQ2]
+
   - id: CLM-0003
-    statement: "Baseline-aware traceability can identify analysis results requiring re-evaluation after documentation changes."
+    statement: "STRIDE and STRIDE-AI can be implemented as distinct methodology plugins that consume the same Base Analysis and produce candidates through the same Common Finding boundary while preserving method-specific semantics."
+    status: hypothesis
+    evidence: []
+    related_research_questions: [RQ2]
+
+  - id: CLM-0004
+    statement: "Accepted Common Findings from distinct methodologies can justify governed Security Requirements without embedding methodology-specific classifications in those requirements."
+    status: design_claim
+    evidence: []
+    related_research_questions: [RQ3]
+
+  - id: CLM-0005
+    statement: "The provenance chain from Security Requirement to Common Finding, Analysis Record, Base Analysis subjects and governed Functional Requirement can be made machine-checkable."
+    status: hypothesis
+    evidence: []
+    related_research_questions: [RQ3]
+
+  - id: CLM-0006
+    statement: "Baseline-aware provenance can identify dependent analysis artifacts requiring re-evaluation after relevant documentation or methodology changes."
     status: hypothesis
     evidence: []
     related_research_questions: [RQ4]
-  - id: CLM-0004
-    statement: "Separating candidate generation from expert acceptance preserves accountable human oversight."
-    status: hypothesis
-    evidence: []
-    related_research_questions: [RQ5]
