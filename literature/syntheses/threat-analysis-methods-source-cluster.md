@@ -475,7 +475,8 @@ llm_candidate_structural_model_to_accepted_model additionally requires associati
 legal_source_to_candidate_requirement requires applicability, authority, actionability, coverage and grounding review
 future_legal_analysis_compatibility does not require implementation within the thesis
 llm_result_to_reproducible_evidence requires executable artifacts, repeated runs and transparent interventions
-artifact_available_at_t0 does not establish executable_or_reproducible_at_t1candidate_artifact_to_base_analysis requires source provenance and human review
+artifact_available_at_t0 does not establish executable_or_reproducible_at_t1
+candidate_artifact_to_base_analysis requires source provenance and human review
 base_analysis_to_candidate_architecture requires explicit concerns, alternatives and decisions
 candidate_architecture_to_accepted_architecture requires multi-view review and satisfaction evidence
 model_to_candidate_threat can be automated after a typed model exists
@@ -540,7 +541,8 @@ DDTA candidate controls:
 - input snapshot hashes, preprocessing version, dependency lock, runtime or container identity and SBOM;
 - raw outputs, evaluator and metric version, repetition count, timestamps, costs, errors and retries;
 - original-versus-rerun result identity, transparent intervention diff and independent review disposition;
-- replay state: not_attempted, reproduced, partial, divergent, blocked, unavailable or superseded;- system prompt, user prompt, template, sampling parameters and generation timestamp;
+- replay state: not_attempted, reproduced, partial, divergent, blocked, unavailable or superseded;
+- system prompt, user prompt, template, sampling parameters and generation timestamp;
 - session, conversation, memory, retrieval context, glossary and domain-knowledge provenance;
 - generated textual notation plus parser and renderer identity and version;
 - assertion coverage states for represented, omitted, contradicted, added and abstracted content;
