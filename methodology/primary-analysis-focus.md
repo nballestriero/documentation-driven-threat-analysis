@@ -1,5 +1,9 @@
 # Primary Base Analysis focus
 
+Status: research working proposition under the literature-to-model neutrality audit.
+It is not a frozen DDTA portability-contract rule and must not be treated as evidence
+that one primary focus or the current five focus types are universally neutral.
+
 ## Working proposition
 
 Every Functional Requirement should identify exactly one primary Base Analysis

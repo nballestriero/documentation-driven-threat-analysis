@@ -18,14 +18,19 @@ or explicitly authored architecture model as its primary input.
 
 ## Working inference
 
-The candidate DDTA gap is not “automated STRIDE.” It is the governed construction,
-maintenance, and use of a security-analyzable system model derived from ordinary
-project documentation and traceability records, followed by methodology-specific
-analysis and governed incorporation of reviewed results.
+The candidate DDTA gap is not “automated STRIDE.” For the current thesis it is the
+definition and evaluation of a methodology-neutral portability / analysis-readiness
+contract for governed project documentation, followed by construction and maintenance
+of a reviewed common analysis model, methodology-specific analysis, and governed
+incorporation of reviewed results.
+
+The transformation of arbitrary or legacy project documentation into this portable form
+is a separate problem and is reserved for future work.
 
 ## Claims not yet established
 
-- Governed documentation is sufficient to derive a useful Base Analysis model.
+- Portable-by-construction governed documentation satisfying the DDTA input contract is
+  sufficient to derive a useful reviewed Base Analysis model.
 - The derived model is more complete or cheaper to maintain than a manually authored one.
 - Change detection reliably identifies stale threat-analysis results.
 - Security requirements derived through DDTA are superior to conventional practice.

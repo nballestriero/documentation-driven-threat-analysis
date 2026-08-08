@@ -43,7 +43,7 @@
 
 Il Capitolo 2 ha mostrato che la threat analysis può iniziare prima dell'implementazione, che le metodologie osservano il sistema attraverso rappresentazioni differenti e che traceability, provenance, revisione e cambiamento condizionano la validità dei risultati. Questo capitolo sposta l'attenzione dalla definizione dei concetti al confronto fra gli approcci esistenti. L'obiettivo non è stabilire quale metodologia sia migliore in assoluto, ma verificare quali parti della pipeline necessaria a un processo documentation-driven siano già coperte dalla letteratura e quali rimangano invece aperte.
 
-Il confronto è costruito attorno alla domanda centrale della tesi: se un progetto possiede documentazione governata, è possibile derivarne una rappresentazione analizzabile e metodologicamente neutrale, permettere a metodi differenti di operare sulla stessa conoscenza di sistema e riportare i risultati accettati nella documentazione come requisiti di sicurezza tracciabili? La risposta non può essere ricavata da un singolo filone. Gli approcci requirements-first mostrano come partire da requisiti e scenari; gli approcci goal-oriented e problem-frame formalizzano intenzioni, contesto e assunzioni; il model-driven security sposta l'automazione su modelli espliciti; l'automated threat modelling applica cataloghi e regole dopo che un modello tipizzato è disponibile; l'automated requirements engineering affronta invece la trasformazione a monte da testo a artefatti candidati; la traceability literature studia come preservare relazioni e origine; gli studi più recenti sugli LLM mostrano infine che leggibilità, correttezza semantica, coverage, groundedness e riproducibilità sono proprietà distinte.
+Il confronto è costruito attorno alla domanda centrale della tesi: se un progetto viene documentato fin dall'origine secondo un contratto governato e metodologicamente neutrale, è possibile costruirne una rappresentazione analizzabile, permettere a metodi differenti di operare sulla stessa conoscenza di sistema e riportare i risultati accettati nella documentazione come requisiti di sicurezza tracciabili? La tesi restringe quindi l'oggetto sperimentale alla documentazione \emph{portable-by-construction}; la migrazione da documentazione arbitraria o legacy verso tale forma è lasciata a lavori futuri. La risposta non può essere ricavata da un singolo filone. Gli approcci requirements-first mostrano come partire da requisiti e scenari; gli approcci goal-oriented e problem-frame formalizzano intenzioni, contesto e assunzioni; il model-driven security sposta l'automazione su modelli espliciti; l'automated threat modelling applica cataloghi e regole dopo che un modello tipizzato è disponibile; l'automated requirements engineering affronta invece la trasformazione a monte da testo a artefatti candidati; la traceability literature studia come preservare relazioni e origine; gli studi più recenti sugli LLM mostrano infine che leggibilità, correttezza semantica, coverage, groundedness e riproducibilità sono proprietà distinte.
 
 Il capitolo mantiene una distinzione epistemica importante. Quando una fonte mostra che una tecnica è applicabile prima del codice, questo non viene trasformato nella conclusione che la documentazione grezza sia sufficiente. Quando un tool produce automaticamente threat candidate, questo non viene trasformato nella conclusione che il processo sia autonomo o completo. Quando una trasformazione LLM produce un output plausibile, questo non viene assimilato a un modello accettato. Il research gap viene quindi derivato dalle discontinuità fra i confini osservati, non da una semplice assenza nominale di un tool chiamato DDTA.
 
@@ -290,7 +290,7 @@ Angermeir et al. (2026) & Studio pubblicato e artifact package & Artifact $\righ
 
 Il confronto mette in evidenza tre pattern.
 
-Il primo è una \textbf{frammentazione per boundary}. Le fonti coprono in modo convincente tratti specifici: scenario-to-threat, goal-to-anti-goal, model-to-threat, model-to-test, document-to-candidate-model, trace-link recovery o artifact-to-rerun. Nessuna fonte del corpus copre l'intera catena dalla documentazione governata fino al requisito di sicurezza con change impact end-to-end.
+Il primo è una \textbf{frammentazione per boundary}. Le fonti coprono in modo convincente tratti specifici: scenario-to-threat, goal-to-anti-goal, model-to-threat, model-to-test, document-to-candidate-model, trace-link recovery o artifact-to-rerun. Nessuna fonte del corpus definisce e valuta l'intera catena che parte da un contratto documentale governato e methodology-neutral, costruisce una rappresentazione comune, applica più metodologie e arriva al requisito di sicurezza con change impact end-to-end.
 
 Il secondo è una \textbf{dipendenza da rappresentazioni method-ready}. Le tecniche di threat analysis più mature iniziano quando l'analista dispone già della vista richiesta: use case, goal model, problem frame, DFD, typed graph, asset model o test model. Gli studi sull'automated RE dimostrano che una parte di queste viste può essere generata da testo, ma proprio questi studi mostrano che l'output rimane candidato e che traceability, semantic correctness ed evolution sono problemi aperti.
 
@@ -302,17 +302,19 @@ Il research gap di questa tesi non è l'assenza di tecniche per identificare min
 
 Il gap emerge invece dall'intersezione di quattro discontinuità.
 
-\subsection{G1 - Dalla documentazione a un modello analizzabile governato}
+\subsection{G1 - Contratto documentale portabile e modello analizzabile governato}
 
-Gli approcci threat-oriented assumono generalmente un modello già pronto; gli approcci automated-RE possono generare artefatti da testo ma non stabiliscono una trasformazione completa, semanticamente affidabile, continuamente sincronizzata e methodology-neutral. Rimane quindi aperto il problema di costruire una rappresentazione canonica a partire dalla normale documentazione di progetto conservando, per ogni elemento derivato, fonte, versione, natura estratta o inferita e disposition di revisione.
+Gli approcci threat-oriented assumono generalmente un modello già pronto; gli approcci automated-RE mostrano che artefatti strutturati possono essere generati da testo, ma lasciano aperti correttezza semantica, traceability, evoluzione e revisione. La tesi non tenta di risolvere la migrazione dalla normale documentazione arbitraria a un modello completo. Restringe invece G1 a una domanda precedente e controllabile: quale conoscenza deve essere documentata, identificata, collegata, versionata e governata \emph{by construction} affinché possa alimentare una Base Analysis metodologicamente neutrale e revisionabile?
 
 In forma compatta:
 
 \begin{center}
-\textbf{raw/governed documentation $\not\equiv$ trusted neutral analysis model.}
+\textbf{RQ1 candidate relation: portable-by-construction documentation $+$ DDTA input contract $\rightarrow$ reviewed neutral Base Analysis?}
 \end{center}
 
-La letteratura fornisce evidenza che la trasformazione sia possibile per artefatti specifici, non che essa sia già risolta per un core security-analyzable generale.
+Per evitare una valutazione circolare, il contratto DDTA viene derivato e congelato prima di valutare i casi e non può codificare gli elementi attesi della Base Analysis per uno specifico caso né risultati attesi di STRIDE o STRIDE-AI.
+
+Il gap candidato è quindi l'assenza, nel corpus considerato, di un contratto documentale esplicito e valutato che renda la conoscenza di progetto portabile verso un core analitico comune senza incorporare la tassonomia di una singola metodologia. La trasformazione da documentazione generica o legacy verso questo contratto resta fuori dallo scope sperimentale corrente e viene riservata a future work.
 
 \subsection{G2 - Un core neutrale per più metodologie}
 
@@ -362,13 +364,13 @@ Le quattro discontinuità consentono di formulare in modo preciso il contributo 
 
 \begin{center}
 \fbox{\parbox{0.88\textwidth}{\centering
-\textbf{governed documentation} $\rightarrow$ \textbf{reviewed methodology-neutral Base Analysis} $\rightarrow$ \textbf{isolated methodology overlay} $\rightarrow$ \textbf{method-specific Analysis Record} $\rightarrow$ \textbf{reviewed Common Finding} $\rightarrow$ \textbf{governed Security Requirement} $\rightarrow$ \textbf{change-aware re-analysis}
+\textbf{portable-by-construction governed documentation} $\rightarrow$ \textbf{reviewed methodology-neutral Base Analysis} $\rightarrow$ \textbf{isolated methodology overlay} $\rightarrow$ \textbf{method-specific Analysis Record} $\rightarrow$ \textbf{reviewed Common Finding} $\rightarrow$ \textbf{governed Security Requirement} $\rightarrow$ \textbf{change-aware re-analysis}
 }}
 \end{center}
 
-Ogni tratto della catena è motivato da una debolezza osservata nelle fonti. La candidate layer è motivata dagli errori delle trasformazioni automatiche e LLM; la neutralità della Base Analysis è motivata dall'eterogeneità dei viewpoint; il plugin boundary è motivato dalla natura method-specific di cataloghi, failure mode e regole; il Common Finding evita di incorporare la tassonomia del metodo nel requisito; provenance e review derivano dai problemi di traceability e grounding; lo stale state deriva dalla necessità di mantenere valida l'analisi quando cambiano fonti e strumenti.
+Ogni tratto della catena è motivato da una debolezza osservata nelle fonti. Il contratto portable-by-construction rende esplicito quale conoscenza comune debba esistere prima dell'analisi; la candidate layer separa la trasformazione o interpretazione documentale dall'accettazione canonica; la neutralità della Base Analysis è motivata dall'eterogeneità dei viewpoint; il plugin boundary è motivato dalla natura method-specific di cataloghi, failure mode e regole; il Common Finding evita di incorporare la tassonomia del metodo nel requisito; provenance e review derivano dai problemi di traceability e grounding; lo stale state deriva dalla necessità di mantenere valida l'analisi quando cambiano fonti e strumenti. Gli studi sulle trasformazioni automatiche e LLM restano rilevanti come motivazione per la revisione e come base per futuri studi di migrazione, non come percorso di input valutato nella tesi corrente.
 
-Questa formulazione evita due claim che la letteratura non permette ancora di sostenere. Primo, non si afferma che la documentazione governata sia sufficiente a derivare sempre una Base Analysis completa: questa è materia della RQ1. Secondo, non si afferma che un core neutrale supporti qualunque metodologia: la RQ2 verrà valutata attraverso STRIDE e STRIDE-AI e la generalizzabilità oltre questi due casi resterà un limite esplicito.
+Questa formulazione evita tre claim che la letteratura non permette ancora di sostenere. Primo, non si afferma che documentazione arbitraria o legacy possa essere trasformata automaticamente in una Base Analysis completa: tale migrazione è fuori scope. La RQ1 parte invece da documentazione che soddisfa il contratto DDTA portable-by-construction e valuta se da essa sia ottenibile una Base Analysis neutrale, tracciabile e revisionabile. Secondo, non si afferma che il contratto garantisca completezza assoluta rispetto a ogni possibile conoscenza futura. Terzo, non si afferma che un core neutrale supporti qualunque metodologia: la RQ2 verrà valutata attraverso STRIDE e STRIDE-AI e la generalizzabilità oltre questi due casi resterà un limite esplicito.
 
 \section{Sintesi e collegamento al metodo di ricerca}
 
@@ -385,7 +387,7 @@ Lo stato dell'arte permette di fissare sei conclusioni che costituiscono il punt
 
 \item \textbf{Traceability deve avere semantica e stato.} Link, provenance, versioning e responsabilità restano problemi aperti e le relazioni recuperate automaticamente devono essere distinguibili dalle relazioni revisionate \citep{mucha2024prers,ruiz2023whydontwetrace,grosser2022documentrelations,wang2024rctlrsota}.
 
-\item \textbf{Il gap è una composizione governata, non un nuovo metodo di threat identification.} Manca nel corpus un processo che colleghi documentazione governata, modello neutrale revisionato, più overlay metodologici, finding comuni, requisiti di sicurezza e re-analysis basata su provenance mantenendo separata la semantica dei diversi metodi.
+\item \textbf{Il gap è una composizione governata, non un nuovo metodo di threat identification.} Manca nel corpus un processo valutato che colleghi un contratto documentale portable-by-construction, un modello neutrale revisionato, più overlay metodologici, finding comuni, requisiti di sicurezza e re-analysis basata su provenance mantenendo separata la semantica dei diversi metodi. La migrazione da documentazione generica verso il contratto resta future work.
 \end{enumerate}
 
 Il Capitolo 4 tradurrà questo gap in un disegno di ricerca verificabile: casi con input documentale esplicito, reference model e risultati attesi dove sia possibile costruire un oracle difendibile; misure di agreement e missing/unexpected elements per la Base Analysis; verifica dell'invarianza del core durante l'esecuzione dei due plugin; confronto fra expected, missing e unexpected findings quando il caso lo consente; verifica della completezza della provenance fino ai Security Requirements; mutazioni controllate per testare lo stale state. Costo, ROI e confronto economico restano fuori dalla valutazione primaria.

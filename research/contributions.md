@@ -1,8 +1,9 @@
 # Candidate research contributions
 
 1. A formal definition of Documentation-Driven Threat Analysis and its boundaries.
-2. A methodology-neutral Base Analysis model derived from governed software documentation
-   through an explicit candidate and review boundary.
+2. A methodology-neutral Base Analysis model derived from portable-by-construction governed
+   software documentation satisfying an explicit DDTA input contract, through an explicit
+   candidate and review boundary.
 3. A versioned methodology-plugin and overlay boundary that allows distinct threat-analysis
    methods to consume the same Base Analysis without moving method-specific semantics into the
    common core.
@@ -18,5 +19,6 @@
    independently prepared expected results where suitable.
 
 These are candidate contributions. The thesis does not claim universal methodology support,
-economic benefit, or superiority over conventional threat modeling unless separately supported
-by evaluation evidence.
+economic benefit, superiority over conventional threat modeling, or automatic migration from
+arbitrary/legacy documentation into DDTA-portable form unless separately supported by future
+evaluation evidence.

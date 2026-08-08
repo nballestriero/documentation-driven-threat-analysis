@@ -4,10 +4,12 @@
 
 Problem, motivation, focused research questions, candidate contributions, scope and thesis
 structure. The central contribution is not a new threat-analysis method: it is a
-documentation-primary, methodology-neutral core that supports multiple method overlays and
-returns accepted results to governed documentation as Security Requirements.
+documentation-primary, methodology-neutral core operating on portable-by-construction governed
+documentation that satisfies an explicit DDTA input contract, supports multiple method overlays,
+and returns accepted results to governed documentation as Security Requirements.
 
-Primary evaluation scope: RQ1-RQ4. Economic cost, ROI and broad adoption studies are excluded.
+Primary evaluation scope: RQ1-RQ4. Economic cost, ROI, broad adoption studies and migration from
+arbitrary/legacy documentation into DDTA-portable form are excluded.
 
 ## 2. Background
 
@@ -29,7 +31,8 @@ Source identity, rationale, relations, verification evidence, baseline identity 
 
 ### 2.5 Model-driven and documentation-driven analysis
 Explicit models, derived representations, candidate artifacts, deterministic transformations
-and human review boundaries.
+and human review boundaries. Generic document-to-model transformation remains background; the
+thesis evaluation starts from portable-by-construction documentation.
 
 ### 2.6 Automation and LLM-assisted transformations
 Candidate generation versus acceptance; syntax, semantic fidelity, source coverage,
@@ -60,13 +63,18 @@ output, automation, human review, traceability and change handling.
 Replace generalized families with source-specific evidence and explicit unknowns.
 ### 3.10 Research gap
 Derive, rather than assert, the gap:
-governed documentation -> neutral analyzable model -> multiple methodology overlays ->
-common reviewed findings -> governed Security Requirements -> change-aware re-analysis.
+portable-by-construction governed documentation -> reviewed neutral analyzable model ->
+multiple methodology overlays -> common reviewed findings -> governed Security Requirements ->
+change-aware re-analysis. Migration from generic/legacy documentation is future work.
 
 ## 4. Research method
 
-Research design, case selection, baselines, corpus protocol, reference models, expected-result
-oracles, data collection, metrics, validity threats and reproducibility.
+Research design, DDTA portability / analysis-readiness contract definition and freeze,
+case selection, baselines, corpus protocol, reference models, expected-result oracles, data
+collection, metrics, validity threats and reproducibility.
+
+The DDTA input contract is frozen before evaluation cases are assessed and must not encode
+case-specific Base Analysis elements or methodology-specific expected results.
 
 Primary evaluation is case-based and functional. Use published reference cases or independently
 prepared expected results where an explicit oracle can be justified. Precision, recall and F1 are
@@ -74,9 +82,9 @@ used only where TP/FP/FN classification is genuinely defined. Cost and ROI are n
 
 ## 5. Documentation-Driven Threat Analysis
 
-Definitions, input contract, Base Analysis metamodel, documentary candidate lifecycle, provenance,
-review states, methodology plugin/overlay contract, Common Finding boundary, Security Requirement
-feedback path and change-impact semantics.
+Definitions, portable-by-construction documentation contract and writing method, Base Analysis
+metamodel, documentary candidate lifecycle, provenance, review states, methodology plugin/overlay
+contract, Common Finding boundary, Security Requirement feedback path and change-impact semantics.
 
 The common core must not contain STRIDE, STRIDE-AI or other methodology-specific classifications.
 
@@ -93,7 +101,7 @@ Do not generalize from two plugins to universal methodology support.
 
 Evaluate:
 
-- documentation-to-Base-Analysis derivability against explicit reference models;
+- portable-documentation-to-Base-Analysis derivability against explicit reference models;
 - invariance of the canonical Base Analysis across STRIDE and STRIDE-AI runs;
 - preservation of method-specific semantics inside each plugin boundary;
 - expected, missing and unexpected finding candidates when a defensible oracle exists;
@@ -106,8 +114,9 @@ No primary economic-cost comparison is required.
 ## 8. Discussion
 
 Interpretation against the literature, limits of the two-plugin demonstration, transferability,
-human-review dependence, incomplete documentation, automation risks, validity of reference cases,
-and future extension to additional methodologies.
+human-review dependence, limits of the portability contract, incomplete contract-conformant
+documentation, automation risks, validity of reference cases, future extension to additional
+methodologies, and future migration studies for generic/legacy documentation.
 
 ## 9. Conclusions
 

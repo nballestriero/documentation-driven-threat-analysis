@@ -1,15 +1,25 @@
 # Research questions
 
 The research scope is intentionally narrow. DDTA is evaluated as a documentation-primary,
-methodology-neutral analysis core with pluggable threat-analysis overlays and a governed path
-from accepted findings to security requirements. Cost, ROI and broad industrial-effort studies
-are outside the primary thesis evaluation.
+methodology-neutral analysis core over portable-by-construction governed project documentation
+that satisfies an explicit DDTA portability / analysis-readiness contract. Pluggable
+threat-analysis overlays consume the resulting common knowledge boundary, and accepted findings
+can return to governed documentation as Security Requirements. Cost, ROI and broad
+industrial-effort studies are outside the primary thesis evaluation.
 
-## RQ1 — Documentation to Base Analysis
+## RQ1 — Portable documentation to Base Analysis
 
-To what extent can governed software documentation be transformed, before implementation,
-into a methodology-neutral Base Analysis while preserving explicit provenance and review of
-derived elements?
+To what extent can portable-by-construction governed software documentation that satisfies the
+explicit DDTA input contract be transformed, before implementation, into a methodology-neutral
+Base Analysis while preserving source provenance and explicit review of derived elements?
+
+RQ1 is evaluated only on documentation intentionally authored to satisfy that contract.
+Automatic migration from arbitrary, legacy or unstructured documentation into DDTA-portable
+form is outside the current evaluation and is reserved for future work.
+
+To avoid circular evaluation, the DDTA portability / analysis-readiness contract (DDTA input
+contract) is derived and frozen before the evaluation cases are assessed. It must not encode
+case-specific expected Base Analysis elements or methodology-specific expected results.
 
 ## RQ2 — Multi-method core
 
@@ -42,6 +52,8 @@ The thesis does not make primary research questions about:
 - support for every threat-modeling methodology;
 - autonomous acceptance of generated findings or Security Requirements;
 - legal or compliance analysis;
-- universal LLM reproducibility.
+- universal LLM reproducibility;
+- automatic migration of arbitrary, legacy or unstructured project documentation into
+  DDTA-portable form.
 
 These topics may appear as limitations or future work where supported by the literature.

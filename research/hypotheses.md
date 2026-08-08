@@ -3,8 +3,9 @@
 All hypotheses remain provisional until the evaluation protocol, reference cases and acceptance
 criteria are approved.
 
-- **H1 — Derivability:** documentation satisfying the DDTA input contract yields a reviewed
-  Base Analysis with measurable agreement against an explicit reference model.
+- **H1 — Derivability:** portable-by-construction governed documentation satisfying the DDTA
+  input contract yields a reviewed Base Analysis with measurable agreement against an explicit
+  reference model.
 - **H2 — Multi-method isolation:** two distinct methodology plugins can consume the same
   canonical Base Analysis without changing its canonical elements, preserve method-owned
   semantics outside the common core, and emit candidates accepted by the same Common Finding
@@ -19,3 +20,6 @@ criteria are approved.
 
 Human review is treated as a required methodological safeguard and an observed lifecycle
 boundary rather than as a separate thesis-wide superiority hypothesis.
+
+H1 does not test migration from arbitrary or legacy documentation into DDTA-portable form; that
+transformation is future work and requires a separate protocol.

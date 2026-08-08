@@ -1,7 +1,7 @@
 schema_version: 1
 claims:
   - id: CLM-0001
-    statement: "Governed software documentation can be transformed into a reviewed methodology-neutral Base Analysis before implementation."
+    statement: "Portable-by-construction governed software documentation satisfying the explicit DDTA input contract can be transformed into a reviewed methodology-neutral Base Analysis before implementation."
     status: hypothesis
     evidence: []
     related_research_questions: [RQ1]
