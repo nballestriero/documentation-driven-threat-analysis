@@ -1,0 +1,397 @@
+\documentclass[12pt,a4paper,oneside]{report}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[a4paper,margin=2.8cm]{geometry}
+\usepackage{setspace}
+\usepackage{parskip}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{enumitem}
+\usepackage[round,authoryear]{natbib}
+\usepackage[hidelinks]{hyperref}
+\usepackage{bookmark}
+\usepackage{xurl}
+
+\setstretch{1.18}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.62em}
+\setcounter{chapter}{1}
+\setcounter{tocdepth}{2}
+\emergencystretch=3em
+
+\newcommand{\ddta}{\textit{Documentation-Driven Threat Analysis}}
+\newcommand{\threatforge}{\textit{ThreatForge}}
+\newcommand{\baseanalysis}{\textit{Base Analysis}}
+\newcommand{\securityrequirement}{\textit{Security Requirement}}
+\newcommand{\commonfinding}{\textit{Common Finding}}
+
+\begin{document}
+
+\chapter{Background}
+
+\section*{Obiettivo del capitolo}
+
+Questo capitolo introduce i concetti necessari per formulare il problema della \ddta{} senza anticipare come risultati le scelte progettuali che verranno formalizzate nei capitoli successivi. L'obiettivo è costruire un lessico comune e chiarire cinque premesse: l'analisi delle minacce può iniziare prima dell'implementazione; le metodologie non osservano necessariamente il sistema attraverso la stessa rappresentazione; i risultati dell'analisi devono essere distinti dai requisiti di sicurezza che ne possono derivare; traceability, provenance e versionamento condizionano la validità dell'analisi nel tempo; automazione e modelli linguistici possono assistere la costruzione di artefatti analitici, ma non eliminano la necessità di validarne semantica, copertura e provenienza.
+
+La distinzione fra background e contributo della tesi è intenzionale. In questo capitolo non si assume che la documentazione di progetto sia già sufficiente a costruire automaticamente una rappresentazione completa del sistema, nè che una singola struttura dati sia adatta a ogni metodo di threat analysis. Analogamente, non si assume che una pipeline automatizzata produca finding accettabili senza revisione. Il Capitolo 3 confronterà in modo sistematico gli approcci esistenti e formulerà il research gap; il Capitolo 5 definirà invece il modello DDTA proposto per affrontarlo.
+
+\section{Threat modeling e analisi precoce}
+
+Il threat modeling può essere descritto come un'attività strutturata di rappresentazione del sistema, identificazione di condizioni o scenari di minaccia e valutazione delle conseguenze e delle possibili risposte di sicurezza. Per la tesi è importante separare questa attività dall'analisi del solo codice implementato. La systematic literature review di \citet{tuma2018threatanalysis}, che classifica ventisei tecniche di threat analysis rappresentate da trentotto studi primari, colloca la maggior parte delle tecniche esaminate nelle fasi precedenti all'implementazione: requisiti, architettura e design sono livelli di applicazione ricorrenti, mentre il codice sorgente compare raramente come prerequisito. Requisiti, descrizioni testuali, obiettivi, scenari e modelli architetturali sono invece input frequenti.
+
+Questo dato non dimostra che un insieme arbitrario di documenti sia già un threat model. Mostra però che l'analisi può essere significativa quando il software non esiste ancora, a condizione che le informazioni necessarie alla metodologia siano disponibili o possano essere costruite. Tale distinzione è centrale per un approccio documentation-driven: anticipare l'analisi non significa rinunciare a una rappresentazione strutturata del sistema, ma spostare a monte il problema della sua costruzione e del suo mantenimento.
+
+Gli approcci requirements-oriented forniscono esempi concreti. I misuse case di \citet{sindre2005eliciting} estendono gli use case funzionali introducendo misuser, misuse case e security use case. Le relazioni di minaccia e mitigazione collegano il comportamento ostile alle funzionalità da proteggere, permettendo di lavorare prima dell'implementazione. Il metodo non parte tuttavia da testo arbitrario: richiede scenari funzionali e un'interpretazione esplicita di attori, obiettivi, asset e percorsi dannosi.
+
+L'approccio goal-oriented di \citet{vanlamsweerde2004elaborating} affronta lo stesso problema da una prospettiva diversa. Il modello intenzionale del sistema viene affiancato da un anti-model di attaccanti, anti-goal, capacità e vulnerabilità. Anche in questo caso l'analisi può precedere il codice, ma le affermazioni provenienti da stakeholder e documenti devono essere strutturate in goal, agenti, oggetti, operazioni, requisiti, aspettative e proprietà di dominio. La possibilità di eseguire raffinamenti formali o generare scenari dipende dalla disponibilità di tale struttura, non dal solo possesso di documenti testuali.
+
+\citet{haley2008securityrequirements} collegano i security requirements a specifici requisiti funzionali e ne discutono la soddisfazione mediante argomenti espliciti. Il sistema deve essere rappresentato attraverso contesto, domini, fenomeni condivisi e comportamento; la trasformazione dal materiale documentale a questa rappresentazione rimane esterna al framework. \citet{whittle2008executable} mostrano invece che scenari ostili e mitigazioni possono essere incorporati in modelli comportamentali ed eseguiti come test a livello di modello prima che l'implementazione esista. Anche qui la possibilità di esecuzione dipende da una rappresentazione precisa di scenari, messaggi, stati e precondizioni.
+
+Infine, \citet{hatebur2006securityengineering} separano problema di sicurezza, requisito concretizzato, principio di soluzione, meccanismo e specifica. Questa separazione è importante perché evita di confondere l'identificazione del problema con la scelta della contromisura. Assunzioni sul dominio e sulle capacità dell'attaccante condizionano la validità del passaggio da problema a soluzione.
+
+Nel seguito della tesi vengono quindi mantenuti distinti quattro concetti. Una \textbf{minaccia} descrive una condizione, capacità o azione in grado di compromettere una proprietà di sicurezza. Un \textbf{finding} è un risultato analitico riferito a uno specifico sistema, baseline e metodo. Una \textbf{mitigazione} è una possibile risposta al problema identificato. Un \securityrequirement{} è invece un'obbligazione del prodotto, collegata al comportamento o alla proprietà che intende proteggere e, in prospettiva, verificabile. Le quattro nozioni sono correlate ma non intercambiabili.
+
+La dimensione temporale completa il quadro. Una threat analysis non deve necessariamente essere intesa come documento prodotto una sola volta. La review di \citet{tuma2018threatanalysis} include tecniche applicabili in più fasi del ciclo di sviluppo; \citet{whittle2008executable} mostrano la possibilità di riutilizzare scenari ostili come regressione a livello di modello. Questa continuità rende rilevante non soltanto produrre un'analisi iniziale, ma sapere a quale stato del sistema essa si riferisse e quando un cambiamento renda necessaria una rivalutazione.
+
+\section{Rappresentazioni e viewpoint analitici}
+
+Una metodologia di threat analysis non opera sul ``sistema'' in senso astratto, ma su una sua rappresentazione. La forma di tale rappresentazione determina quali entità sono visibili, quali relazioni possono essere espresse e quali domande analitiche possono essere poste. Il corpus considerato nella tesi non supporta l'assunzione che una singola notazione o una singola vista sia universalmente sufficiente.
+
+Negli approcci scenario-based la struttura principale è il comportamento osservabile. Nei misuse case, attori legittimi e ostili, use case, misuse case e security use case rendono espliciti percorsi desiderati e indesiderati \citep{sindre2005eliciting}. Gli executable misuse case rendono la rappresentazione ancora più precisa: scenari funzionali, modifiche dell'attaccante e mitigazioni vengono composti, trasformati in modelli eseguibili e utilizzati per verificare trace ostili note \citep{whittle2008executable}. Questa prospettiva è adatta a esprimere ordine, interazioni e condizioni comportamentali, ma può non includere dettagli di rete, storage o piattaforma necessari per minacce di livello inferiore.
+
+Negli approcci goal-oriented il centro dell'analisi cambia. Il primal model e l'anti-model di \citet{vanlamsweerde2004elaborating} rappresentano goal, anti-goal, agenti, oggetti, operazioni, vulnerabilità e capacità dell'attaccante. La decomposizione AND/OR consente di ragionare su intenzioni e condizioni di soddisfazione che non sono naturalmente espresse da una vista puramente topologica.
+
+Gli approcci basati su assurance e problem frames aggiungono ulteriori informazioni. \citet{haley2008securityrequirements} richiedono contesto, domini, fenomeni condivisi e comportamento per costruire argomenti di soddisfazione. \citet{hatebur2006securityengineering} modellano domini ambientali, interfacce, fenomeni, assunzioni e capacità dell'attaccante per mantenere distinta l'analisi del problema dalla scelta del meccanismo. Queste strutture rendono esplicite responsabilità e premesse che una rappresentazione di soli componenti e flussi potrebbe lasciare implicite.
+
+DFD, grafi tipizzati e inventory di asset assumono invece un ruolo importante negli approcci software- e model-centric. La review di \citet{granata2024automatedthreatmodelling} mostra che DFD e rappresentazioni a grafo sono comuni nelle tecniche automatizzate e che cataloghi e regole possono essere applicati a elementi, relazioni, proprietà, tecnologie e protocolli del modello. Il risultato dell'automazione dipende quindi dal modello fornito e dalla semantica delle regole che vi operano.
+
+L'utilità di una vista non può tuttavia essere dedotta dal solo fatto che essa sia convenzionale. Un \emph{Data Flow Diagram} (DFD) mette principalmente in evidenza processi o componenti, data store e flussi di dati, mentre un UML \emph{sequence diagram} rappresenta l'ordine temporale dei messaggi scambiati fra attori e componenti in uno specifico scenario. Nell'esperimento di \citet{mbaka2025dfdvalidation}, tutti i partecipanti disponevano di scenario testuale, materiale STRIDE, descrizioni strutturate delle minacce, assunzioni e sequence diagram; soltanto il gruppo di intervento riceveva in aggiunta un DFD. Fra i partecipanti che disponevano di entrambe le rappresentazioni, il DFD ricevette un punteggio di utilità percepita significativamente superiore a quello del sequence diagram; lo studio non stabilisce le cause di questa preferenza. L'aggiunta del DFD non produsse tuttavia un miglioramento statisticamente significativo nella corretta classificazione di minacce reali o fabbricate. Il risultato non dimostra che i DFD siano generalmente inefficaci: è limitato a partecipanti novizi, due scenari e uno specifico compito di validazione. Mostra però che valore percepito e incremento misurato di correttezza sono proprietà distinte e che una rappresentazione deve essere valutata rispetto al compito concreto.
+
+Il model-based security testing utilizza ancora un altro viewpoint. La Rapid Review di \citet{lonetti2023mbstiot} descrive UML/OCL, timed automata, Colored Petri Nets, attack tree e altre strutture arricchite con proprietà di sicurezza e criteri di coverage. Da tali modelli vengono derivati test astratti, che richiedono successivamente concretizzazione, adapter, ambiente di esecuzione e oracle per produrre evidenza sul sistema reale. Una rappresentazione sufficiente per generare threat candidate non è quindi automaticamente sufficiente per generare o eseguire test.
+
+La letteratura storica distingue inoltre centri di analisi risk-centric, attack-centric, software-centric, goal-oriented e security-requirements-oriented \citep{tuma2018threatanalysis}. Per questa tesi tali categorie sono considerate \emph{viewpoint analitici}: indicano quale conoscenza viene privilegiata dal metodo, non moduli necessariamente mutuamente esclusivi.
+
+\begin{table}[htbp]
+\centering
+\caption{Esempi di viewpoint analitici emersi dalle fonti considerate.}
+\label{tab:viewpoints}
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{3.2cm} X X}
+\toprule
+\textbf{Viewpoint} & \textbf{Conoscenza messa in primo piano} & \textbf{Esempi nel corpus} \\
+\midrule
+Scenario / misuse & Attori, percorsi funzionali e ostili, condizioni, mitigazioni & Misuse case ed executable misuse case \citep{sindre2005eliciting,whittle2008executable} \\
+Goal / anti-goal & Goal, anti-goal, agenti, oggetti, vulnerabilità, capacità dell'attaccante & Anti-model goal-oriented \citep{vanlamsweerde2004elaborating} \\
+Problem / assurance & Domini, fenomeni, assunzioni, requisiti, argomenti di soddisfazione & Security requirements assurance e problem frames \citep{haley2008securityrequirements,hatebur2006securityengineering} \\
+Software / model & Componenti, flussi, relazioni, proprietà, protocolli, regole & Automated threat modelling \citep{granata2024automatedthreatmodelling} \\
+Asset-centered & Asset da proteggere, funzioni, failure mode, proprietà di sicurezza, minacce & STRIDE-AI \citep{mauri2022strideai} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+La conclusione rilevante per il background è prudente: metodologie differenti possono richiedere viste e semantiche differenti dello stesso sistema. Non è giustificato assumere che la rappresentazione preferita da un singolo metodo costituisca, per questo solo motivo, il modello canonico dell'intero progetto.
+
+\section{Security Requirements Engineering}
+
+Threat analysis e Security Requirements Engineering sono strettamente collegate, ma non coincidono. Una tecnica può individuare scenari ostili, condizioni di vulnerabilità o failure mode senza avere ancora deciso quale obbligo debba essere imposto al prodotto; allo stesso modo, un requisito di sicurezza può dipendere da obiettivi, assunzioni e vincoli che richiedono un ragionamento più ampio della sola classificazione della minaccia.
+
+I misuse case forniscono un primo esempio del passaggio fra comportamento funzionale, comportamento ostile e risposta di sicurezza. I security use case vengono collegati ai misuse case come mitigazioni, rendendo visibile la relazione con la funzionalità originaria \citep{sindre2005eliciting}. Il vantaggio concettuale è che la risposta di sicurezza non rimane una nota isolata: conserva il legame con il comportamento che intende proteggere.
+
+L'approccio di \citet{vanlamsweerde2004elaborating} distingue goal, anti-goal, anti-requirement e vulnerabilità. La decomposizione dell'anti-model permette di rappresentare se un obiettivo ostile dipenda da una capacità dell'attaccante o da una debolezza dell'ambiente o del sistema. L'output dell'analisi non è quindi una lista piatta di categorie, ma una struttura di ragionamento.
+
+Nel framework di \citet{haley2008securityrequirements}, i security requirements sono vincoli posti su specifici functional requirements. Un outer argument esprime le premesse necessarie affinché il requisito sia soddisfatto; inner arguments sottopongono tali premesse a grounds, warrants, rebuttals e trust assumptions. Quando l'argomento fallisce, il risultato non è necessariamente un nuovo ``threat'': può emergere un requisito infeasible, una conoscenza di contesto mancante o la necessità di introdurre nuove funzioni e nuovi requisiti.
+
+\citet{hatebur2006securityengineering} rafforzano la distinzione fra problema e soluzione separando security problem frame, requisito concretizzato, principio di soluzione, protocollo, meccanismo e specifica. Le assunzioni sul dominio e sulle capacità dell'attaccante condizionano l'adeguatezza del meccanismo. Un requisito di sicurezza non può quindi essere ridotto alla semplice etichetta di una categoria di minaccia.
+
+Queste fonti motivano una separazione che sarà utilizzata in tutta la tesi: la metodologia di analisi deve poter conservare la propria semantica specifica -- scenario, anti-goal, failure mode, proprietà violata o categoria di minaccia -- mentre il \securityrequirement{} appartiene alla documentazione del prodotto e deve esprimere un'obbligazione comprensibile anche al di fuori della metodologia che l'ha originata. Il Capitolo 5 formalizzerà il passaggio dal finding accettato al requisito; nel background interessa stabilire che la letteratura tratta già minaccia, mitigazione, requisito, assunzione e prova di soddisfazione come artefatti concettualmente distinti.
+
+Un ulteriore punto è la verificabilità. La presenza di un requisito di sicurezza non implica la sua soddisfazione. \citet{haley2008securityrequirements} separano il requisito dagli argomenti che ne giustificano la soddisfazione; \citet{whittle2008executable} distinguono specifica dell'attacco, comportamento composto ed evidenza ottenuta eseguendo trace note; \citet{lonetti2023mbstiot} separano modello di sicurezza, abstract test, concretizzazione e osservazione sul sistema reale. Questa distinzione permette di evitare che la generazione di un requisito sia interpretata come prova della sicurezza dell'implementazione.
+
+\section{Traceability, provenance e baseline}
+
+Se l'analisi parte dalla documentazione e produce nuovi artefatti, la possibilità di ricostruire la loro origine diventa parte del problema. La requirements traceability nasce storicamente dalla necessità di descrivere e recuperare la vita di un requisito e le sue relazioni con fonti e artefatti successivi \citep{gotel1994analysis}. La disponibilità di repository, issue tracker e strumenti collaborativi non elimina automaticamente questa difficoltà.
+
+La systematic review di \citet{mucha2024prers} sulla pre-requirements-specification traceability mantiene centrali provenance, responsabilità, impact analysis e manutenzione e segnala versioning, trust, adaptability e industrial evaluation come problemi ancora aperti. Lo studio empirico di \citet{ruiz2023whydontwetrace}, basato su survey e interviste con professionisti, mostra che nel campione analizzato la traceability rimane in larga parte manuale e che il suo valore dipende fortemente dall'integrazione nei processi, dalla collaborazione e dalla visibilità del beneficio. L'automazione è desiderata per le attività ripetitive, ma la verifica umana rimane rilevante.
+
+\citet{grosser2022documentrelations} aggiungono un elemento particolarmente importante per un processo documentation-driven: i documenti possono essere considerati viste su insiemi di requisiti e le relazioni possono avere semantica a livello di documento, requirement set e singolo requisito. Ridurre questa struttura a link non tipizzati fra nodi isolati può perdere informazione. La loro proof of concept mostra che alcune dipendenze possono essere formalizzate e controllate su grafo, ma non costituisce una valutazione completa di precisione, recall o efficacia industriale.
+
+Per il resto della tesi è utile distinguere \textbf{traceability} e \textbf{provenance}. La traceability descrive relazioni navigabili fra artefatti: documento-requisito, requisito-modello, modello-finding, requisito-test. La provenance aggiunge le condizioni di origine: quale versione della fonte è stata utilizzata, quale trasformazione o regola ha prodotto un candidato, quali informazioni sono state selezionate o escluse, chi ha corretto o accettato il risultato e a quale baseline l'artefatto si riferisce.
+
+Questa distinzione diventa ancora più importante quando le relazioni non vengono dichiarate direttamente da un autore ma proposte automaticamente. Lo studio di \citet{wang2024rctlrsota} sul requirement-to-code traceability link recovery mostra che ranking e performance dei metodi cambiano con dataset, threshold, classifier e strategia di training; un buon ranking relativo non garantisce utilità operativa assoluta. \citet{hey2024requirementsclassification} mostrano inoltre che una fase di preprocessing o classificazione modifica quali frammenti raggiungono il recupero dei link: un filtro può migliorare una metrica e contemporaneamente ridurre il recall per una classe rara.
+
+Di conseguenza, un link generato automaticamente deve essere interpretato come risultato di una pipeline specifica. Occorre poter distinguere il candidate link dalla relazione revisionata e dalla eventuale ground truth utilizzata nella valutazione. Lo stesso principio vale per qualsiasi derivazione documentazione-modello o modello-finding.
+
+La traceability permette inoltre di affrontare il change impact soltanto se le relazioni restano versionate e semanticamente interpretabili. Sapere che due file sono collegati non basta a stabilire che una modifica del primo invalidi il secondo. Occorre conoscere quale informazione sia stata effettivamente utilizzata, quale derivazione dipenda da essa e quale stato di revisione avesse il risultato. La nozione di \textbf{baseline} è quindi il punto di riferimento temporale che permette di affermare: ``questo finding è stato prodotto utilizzando questa versione delle fonti, questo modello e questa configurazione metodologica''. Il problema della rivalutazione dopo il cambiamento, che verrà affrontato dalla RQ4, nasce da questa premessa.
+
+\section{Dal model-driven al documentation-driven}
+
+Gli approcci model-driven assumono che una rappresentazione esplicita e sufficientemente strutturata del sistema sia disponibile come input per trasformazioni, analisi o generazione di artefatti. La forza del paradigma è evidente: regole e verifiche possono operare su tipi e relazioni definite. Rispetto al problema della tesi, il limite è che la costruzione del modello viene spesso trattata come un'attività precedente.
+
+La review sull'automated threat modelling di \citet{granata2024automatedthreatmodelling} rende questo confine particolarmente chiaro. L'automazione parte tipicamente dopo che il sistema è stato rappresentato come DFD, grafo tipizzato, modello derivato dal codice o inventory di asset. Da quel punto cataloghi, label, proprietà, relazioni e regole possono attivare threat candidate. Il numero di candidate generati non è però una misura di completezza o correttezza: tool differenti associano minacce a unità di modello e granularità differenti.
+
+Il model-based security testing presenta un confine analogo a valle. Un modello arricchito con proprietà o attacchi consente la generazione di abstract test, ma l'esecuzione richiede ulteriori artefatti e trasformazioni \citep{lonetti2023mbstiot}. L'evidenza dipende dal modello, dal criterio di selezione, dalla concretizzazione, dall'adapter, dall'ambiente e dall'oracle. La pipeline è precisamente verificabile perché i suoi input e le sue trasformazioni sono espliciti.
+
+Il problema documentation-driven si colloca a monte. La systematic review di \citet{umar2024automatedrequirements} sulle tecniche automatizzate di Requirements Engineering mostra che il linguaggio naturale è l'input dominante e che gli strumenti possono produrre UML, requisiti strutturati, classificazioni, quality findings, link e altri candidate artifact. La maggior parte degli strumenti esaminati è tuttavia semi-automatica e one-shot; anche trasformazioni definite fully automated vengono inserite in processi nei quali gli output sono verificati da persone. La review identifica come esigenze aperte la traceability verso le source statements, l'evoluzione dei modelli, l'human-in-the-loop governance, benchmark condivisi e validazione industriale.
+
+Il mapping study di \citet{souza2019architecturalmodels} sul passaggio requirements-to-architecture arriva a una conclusione analoga. Requisiti testuali, goal model, feature model, problem frame e altre rappresentazioni vengono trasformati in candidate architectural views, ma le regole sono specifiche della rappresentazione e le decisioni su alternative e trade-off dipendono fortemente dalla conoscenza dell'architetto. Una struttura derivata non costituisce di per sè l'unica architettura corretta nè dimostra la soddisfazione dei requisiti.
+
+In questa tesi, \textbf{documentation-driven} non significa quindi ``analizzare direttamente testo grezzo senza costruire alcun modello''. Significa che la documentazione governata rimane la fonte autorevole della conoscenza sul progetto e che le rappresentazioni analitiche devono conservare un legame esplicito con tale fonte. Il passaggio documentazione-modello deve essere governato, validato e mantenuto nel tempo. La letteratura supporta la possibilità di produrre candidate artifact da documentazione, ma non stabilisce una trasformazione automatica, completa e semanticamente affidabile da documentazione eterogenea a un unico modello neutrale.
+
+Questa differenza permette anche di separare due domande che altrimenti verrebbero confuse. La prima è: ``una tecnica sa produrre threat candidate quando riceve un modello adatto?''. La seconda è: ``la documentazione ordinaria del progetto contiene e mantiene la conoscenza necessaria per costruire quel modello in modo affidabile?''. La letteratura sull'automated threat modelling risponde soprattutto alla prima; DDTA concentra il proprio problema di ricerca sulla seconda e sul collegamento stabile fra le due.
+
+\section{Automazione e trasformazioni assistite da LLM}
+
+L'automazione può rendere ripetibili alcune trasformazioni e ridurre lavoro manuale, ma il termine ``automatico'' non fornisce da solo una garanzia sulla qualità dell'artefatto prodotto. Un parser che verifica una notazione, una regola che attiva un candidate threat e un modello linguistico che genera un diagramma svolgono funzioni diverse e devono essere valutati con criteri diversi.
+
+\citet{ferrari2024modelgeneration} studiano la generazione con GPT-3.5 di sequence diagram UML astratti a partire da requisiti realistici e loro varianti. Gli output ottengono risultati forti per aderenza alla notazione, comprensibilità e terminologia, ma la correttezza non supera in modo significativo il valore neutro e la completezza rimane imperfetta. Diagrammi visivamente plausibili possono omettere condizioni, nascondere contraddizioni, gestire male numeri e tempi, assegnare azioni al componente sbagliato o introdurre termini non supportati dalla fonte. La qualità sintattica non è quindi una proxy sufficiente della fedeltà semantica.
+
+\citet{garaccione2025llmcomparison} confrontano GPT-4o, DeepSeek v3, Gemini 2.5 Pro e Qwen 3 nella generazione di class diagram da esercizi testuali e separano syntax error, semantic error e completeness rispetto a soluzioni di riferimento. Un output parser-compatible può comunque contenere associazioni, direzioni, generalizzazioni e molteplicità errate. Lo studio rafforza la necessità di separare almeno validità sintattica, copertura della fonte e correttezza strutturale-semantica.
+
+\citet{abualhaija2025regulatory} mostrano un problema complementare nella generazione assistita di requisiti regolatori. Nel loro caso, una quota elevata degli output prodotti può essere corretta o parzialmente corretta mentre la copertura dell'insieme di reference requirements rimane bassa e i riferimenti possono essere incompleti o misgrounded. Il dominio legale rimane fuori dall'implementazione della tesi, ma l'evidenza è metodologicamente importante: \textbf{correttezza locale, coverage e groundedness sono dimensioni indipendenti}.
+
+Il quarto confine è temporale. \citet{angermeir2026reproducibility} analizzano la riproducibilità di studi di software engineering basati su LLM commerciali. Dei package inizialmente ritenuti sufficientemente completi per una riproduzione, solo pochi risultano effettivamente eseguibili; nessuno dei cinque studi eseguiti viene riprodotto completamente. Oltre ai problemi generali di artefatti, dipendenze e codice, la deprecazione dei modelli commerciali introduce un vincolo specifico. Un model identifier, un repository pubblico o un artifact badge non bastano a stabilire che un risultato sia ancora eseguibile o comparabile.
+
+Da queste fonti emergono quattro gate indipendenti per un artefatto generato o misurato con LLM:
+
+\begin{enumerate}[label=\arabic*.]
+\item \textbf{validità sintattica e leggibilità}: l'artefatto può essere interpretato o processato;
+\item \textbf{fedeltà semantica}: struttura e comportamento sono coerenti con la fonte;
+\item \textbf{coverage e grounding}: è noto quale parte dell'evidenza sia rappresentata e su quali fonti si fondi;
+\item \textbf{riproducibilità temporale}: input, configurazione, ambiente, output e interventi possono essere ricostruiti e confrontati.
+\end{enumerate}
+
+Nessuno dei quattro gate sostituisce gli altri. Un modello corretto sintatticamente può essere semanticamente errato; un output corretto può coprire soltanto una piccola parte della fonte; un esperimento ben documentato può diventare non eseguibile dopo il cambiamento di dipendenze o API. Per questo, nel resto della tesi, gli output automatici vengono trattati come \textbf{candidate artifacts} finché non esiste l'evidenza richiesta per la loro accettazione. Si tratta di una scelta che verrà formalizzata nel Capitolo 5, ma che è già motivata dai failure mode osservati nella letteratura.
+
+\section{Viewpoint metodologici e STRIDE-AI come caso asset-centered}
+
+Le sezioni precedenti mostrano che le metodologie di threat analysis non differiscono soltanto per la tassonomia delle minacce. Differiscono anche per la conoscenza che richiedono e per il punto di vista attraverso il quale osservano il sistema. Questa eterogeneità è il presupposto del problema multi-metodo affrontato nella tesi.
+
+STRIDE-AI è particolarmente utile come riferimento di background perché rende esplicito un \textbf{asset-centered viewpoint} applicato a sistemi AI/ML. \citet{mauri2022strideai} presentano STRIDE-AI come estensione di STRIDE adattata al dominio AI/ML e orientata alle proprietà di sicurezza. L'obiettivo non è soltanto applicare le sei categorie STRIDE a componenti convenzionali, ma partire dagli asset generati e utilizzati lungo il ciclo di vita ML, analizzarne le possibili failure mode e collegare tali failure mode a proprietà di sicurezza e minacce.
+
+\subsection{Il ciclo di vita e gli asset in STRIDE-AI}
+
+Il riferimento di Mauri e Damiani utilizza un ciclo di vita ML iterativo che parte dai requirements e attraversa Data Management, Model Learning, Model Tuning, Model Deployment e Model Maintenance. La rappresentazione è significativa per due ragioni. Primo, l'analisi include asset che esistono molto prima del deployment, come requisiti, raw data, labeled data, validation data, algoritmi e hyper-parameters. Secondo, gli autori assumono esplicitamente che il sistema continui a evolvere e che l'identificazione degli asset debba essere aggiornata insieme alla soluzione AI/ML \citep{mauri2022strideai}.
+
+Gli asset vengono organizzati in sei macro-categorie: \textbf{Data}, \textbf{Models}, \textbf{Actors}, \textbf{Processes}, \textbf{Tools} e \textbf{Artefacts}. Le tabelle del paper approfondiscono soprattutto Data, Models e Artefacts. Fra i data asset compaiono, ad esempio, requisiti, raw data, pre-processed data, labeled data, validation data, augmented data, held-out test cases e inferences. Fra i model asset compaiono algoritmi di preprocessing, hyper-parameters, learning algorithms, model parameters, trained model e deployed model. Fra gli artefatti figurano model architecture, hardware design, data and metadata schemata e learned indexes \citep{mauri2022strideai}.
+
+La scelta è importante per la tesi perché mostra che ``asset'' non è sinonimo di ``componente software''. Un requisito, un training set, un hyper-parameter o una schema definition possono essere oggetti rilevanti per l'analisi pur appartenendo a livelli diversi del progetto. Un core multi-metodo non può quindi assumere che tutti gli elementi analizzabili siano processi, data store o data flow.
+
+\subsection{FMEA come passaggio dagli asset alle failure mode}
+
+STRIDE-AI utilizza la Failure Mode and Effects Analysis (FMEA) per strutturare il passaggio dall'asset al possibile fallimento. La procedura descritta dagli autori comprende quattro attività: costruire una lista di funzioni per ciascun asset; specificare prerequisiti e dipendenze fra funzioni; identificare difetti o failure mode con cause ed effetti; utilizzare una metodologia di threat modeling per mappare le failure mode alle minacce \citep{mauri2022strideai}.
+
+Le domande facilitatrici rendono esplicito il tipo di conoscenza richiesto. Per una funzione occorre sapere quale sia lo scopo dell'asset, cosa debba e non debba fare, quali funzioni avvengano alle interfacce e quale standard di performance sia atteso. Per le failure mode si chiede in quale modo l'asset possa fallire, eseguire una funzione indesiderata, essere abusato o produrre problemi alle interfacce. Per gli effetti si valuta la conseguenza locale, di sistema e per l'utente, includendo potenziali danni e violazioni \citep{mauri2022strideai}.
+
+Questo passaggio mostra una differenza sostanziale rispetto a un semplice catalog lookup. La minaccia non viene dedotta soltanto dal tipo tecnico dell'asset. Il metodo richiede conoscenza della funzione, delle dipendenze, del comportamento atteso e del modo in cui tale comportamento può fallire. Per un sistema documentation-driven, queste informazioni devono quindi essere disponibili nella documentazione o essere introdotte esplicitamente come conoscenza aggiuntiva e revisionata.
+
+\subsection{Dalle proprietà alle minacce}
+
+Il paper descrive un processo di threat modeling in cinque passi: identificazione degli obiettivi di sicurezza, survey degli asset e delle interconnessioni, decomposition degli asset rilevanti, threat identification e vulnerability identification. STRIDE-AI fornisce una specializzazione ML-specifica delle proprietà CIA$^3$-R e le collega alle sei categorie STRIDE \citep{mauri2022strideai}.
+
+\begin{table}[htbp]
+\centering
+\caption{Mappatura fra proprietà di sicurezza e categorie STRIDE in STRIDE-AI, riformulata da \citet{mauri2022strideai}.}
+\label{tab:strideai-map}
+\small
+\begin{tabular}{ll}
+\toprule
+\textbf{Proprietà} & \textbf{Categoria di minaccia} \\
+\midrule
+Authenticity & Spoofing \\
+Integrity & Tampering \\
+Non-repudiation & Repudiation \\
+Confidentiality & Information Disclosure \\
+Availability & Denial of Service \\
+Authorization & Elevation of Privilege \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Gli autori adattano anche la definizione delle proprietà al dominio ML. L'authenticity riguarda la possibilità di attribuire in modo verificabile l'output al modello; l'integrity riguarda la protezione delle informazioni usate o generate nel ciclo di vita; la non-repudiation riguarda l'impossibilità di negare che un output sia stato generato dal modello; la confidentiality riguarda l'assenza di disclosure oltre a input e output previsti; l'availability è collegata alla capacità del modello di produrre output utili rispetto allo scopo; l'authorization limita input e output alle parti autorizzate \citep{mauri2022strideai}.
+
+Le tabelle di mapping nel paper mostrano che asset differenti richiedono profili differenti. I labeled data vengono collegati principalmente ad Authenticity e Integrity e quindi a Spoofing e Tampering; un deployed model può coinvolgere tutte le proprietà e tutte le categorie STRIDE. Gli esempi includono poisoning, model extraction, membership inference, image-scaling attacks, label flipping, inference eavesdropping e altri attacchi specifici del ciclo di vita ML \citep{mauri2022strideai}. Il valore concettuale per la tesi non è l'elenco in sè, ma il fatto che il metodo conserva una catena esplicita:
+
+\begin{center}
+\textit{asset} $\rightarrow$ \textit{funzione/failure mode} $\rightarrow$ \textit{proprietà a rischio} $\rightarrow$ \textit{categoria di minaccia} $\rightarrow$ \textit{condizioni di vulnerabilità}.
+\end{center}
+
+\subsection{Il caso TOREADOR e il limite dell'evidenza}
+
+Mauri e Damiani illustrano STRIDE-AI con un caso reale proveniente dal progetto europeo TOREADOR. Il sistema riguarda predictive maintenance e ottimizzazione energetica in impianti fotovoltaici. L'architettura comprende data logger, infrastruttura LIGHT, preprocessing, connettori verso la piattaforma TOREADOR, training e inferenza del modello e restituzione delle predizioni agli operatori \citep{mauri2022strideai}.
+
+Nel caso di studio gli autori identificano asset data e model lungo l'architettura. Per il training data stream selezionano Integrity e Authenticity, derivando Tampering e Spoofing; per il trained model considerano Integrity e Availability, derivando Tampering e DoS. Le threat tree mostrano poi condizioni concrete: impersonation fra LIGHT e TOREADOR, injection o modification dei dati, label flipping e interferenze sull'esecuzione del modello. Alcuni rami possono essere eliminati grazie a dettagli dell'architettura, come la firma dei dati da parte dei logger, mentre altri rimangono possibili perché le label vengono introdotte successivamente \citep{mauri2022strideai}. Questo passaggio è particolarmente rilevante: la validità del finding dipende da informazioni architetturali e operative specifiche, non dalla sola categoria STRIDE.
+
+Gli autori utilizzano DREAD come rating preliminare per tre threat considerate nel caso, ma ricordano che DREAD è soggetto a inconsistenza e non è raccomandato come unico strumento di prioritizzazione. Il caso TOREADOR va quindi interpretato come dimostrazione della procedura, non come benchmark controllato dell'efficacia comparativa di STRIDE-AI.
+
+La sezione di discussione del paper contiene infine un limite direttamente collegato alla manutenzione: gli autori osservano che non è realistico enumerare in un singolo passaggio tutti i fenomeni di failure di un sistema ML e che le failure mode devono essere aggiornate con nuove informazioni sul sistema e con l'evoluzione delle conoscenze su vulnerabilità e attacchi \citep{mauri2022strideai}. Questa posizione rafforza il background della RQ4: anche una metodologia strutturata richiede un rapporto esplicito fra analisi, stato del sistema e cambiamento.
+
+\subsection{Perchè STRIDE e STRIDE-AI sono utili al problema multi-metodo}
+
+La tesi utilizza STRIDE e STRIDE-AI come due implementazioni concrete per verificare il boundary di plugin e overlay. La scelta non implica che DDTA sia una generalizzazione di STRIDE, nè che due metodi siano sufficienti a dimostrare supporto universale.
+
+STRIDE fornisce un caso vicino agli approcci software/component-centered frequenti negli strumenti automatizzati. STRIDE-AI, pur derivando storicamente da STRIDE, introduce un centro analitico più ricco: asset lungo il ciclo di vita ML, funzioni, failure mode, proprietà ML-specifiche, knowledge about attacker capability e condizioni di vulnerabilità. Il test scientificamente interessante non è quindi verificare se i due metodi condividano le sei etichette STRIDE, ma se possano consumare una stessa rappresentazione canonica della conoscenza di sistema senza obbligare il core a incorporare la semantica privata di uno dei due.
+
+L'asset-centered viewpoint di STRIDE-AI offre un criterio concreto per verificare questo confine. Se la rappresentazione comune fosse modellata soltanto attorno a componenti e data flow, potrebbe non contenere informazioni sufficienti su training data, model parameters, hyper-parameters, tool, artefatti o funzioni degli asset. Se, al contrario, il core incorporasse direttamente tutte le categorie e le regole di STRIDE-AI, cesserebbe di essere metodologicamente neutrale. La valutazione multi-metodo della tesi si colloca precisamente fra questi due estremi.
+
+\section{Sintesi del background}
+
+Il background costruito dalle fonti porta a sei premesse per i capitoli successivi.
+
+La prima è che \textbf{la threat analysis può iniziare prima dell'implementazione}. Requisiti, scenari, goal, contesti, architetture e altri modelli sono utilizzati da numerose tecniche già nelle fasi di requirements, architecture e design \citep{tuma2018threatanalysis}. Anticipare l'analisi alla fase documentale è quindi un problema scientificamente plausibile.
+
+La seconda è che \textbf{documentazione e modello non sono sinonimi}. La documentazione può contenere l'evidenza iniziale, ma le metodologie richiedono normalmente strutture interpretate: scenari, goal, domini, fenomeni, componenti, flussi, asset, funzioni, proprietà e relazioni. La trasformazione dalla documentazione eterogenea a una rappresentazione analizzabile è pertanto un problema separato e non risolto automaticamente dalla letteratura.
+
+La terza è che \textbf{non emerge una singola rappresentazione sufficiente per ogni metodologia}. Scenario-based, goal-oriented, software-centric, requirements-oriented e asset-centered approaches portano in primo piano informazioni differenti. STRIDE-AI rende particolarmente esplicito il caso asset-centered, nel quale l'analisi attraversa il ciclo di vita ML e richiede conoscenza su data, model, actors, processes, tools e artefacts \citep{mauri2022strideai}. Il problema della tesi non può quindi essere ridotto alla scelta di una notazione di threat modeling esistente.
+
+La quarta è che \textbf{finding e Security Requirement sono artefatti distinti}. Le fonti su Security Requirements Engineering separano problema, minaccia, mitigazione, requisito, assunzione e prova di soddisfazione \citep{sindre2005eliciting,haley2008securityrequirements,hatebur2006securityengineering}. Una metodologia può produrre evidenza per giustificare un requisito senza imporre che la tassonomia del metodo diventi parte del requisito stesso.
+
+La quinta è che \textbf{automazione e accettazione devono rimanere separate}. Le review sull'automated RE e gli studi LLM mostrano che un artefatto può essere leggibile ma incompleto, sintatticamente valido ma semanticamente errato, localmente corretto ma con bassa coverage oppure non più riproducibile nel tempo \citep{umar2024automatedrequirements,ferrari2024modelgeneration,garaccione2025llmcomparison,abualhaija2025regulatory,angermeir2026reproducibility}. La qualità deve quindi essere misurata rispetto alla specifica trasformazione e all'evidenza che essa dichiara di produrre.
+
+La sesta è che \textbf{traceability, provenance e change awareness sono parte della qualità analitica}. Un finding non riconducibile alle fonti, alla baseline, alla trasformazione e al metodo che lo hanno prodotto è difficile da rivalutare dopo un cambiamento \citep{mucha2024prers,grosser2022documentrelations}. La stessa considerazione vale per un \securityrequirement{} derivato dal finding.
+
+Queste premesse non costituiscono ancora la soluzione DDTA. Definiscono invece il problema che il Capitolo 3 confronterà con lo stato dell'arte: come partire dalla documentazione governata, costruire una rappresentazione analizzabile senza legarla a un solo metodo, permettere a viewpoint metodologici differenti di operare sulla stessa conoscenza di sistema, preservare provenance e revisione e riportare i risultati accettati nella documentazione sotto forma di requisiti di sicurezza. Il research gap verrà formulato soltanto dopo questo confronto.
+
+\clearpage
+\begin{thebibliography}{99}
+
+\bibitem[Gotel and Finkelstein(1994)]{gotel1994analysis}
+O.~C.~Z. Gotel and A.~C.~W. Finkelstein.
+\newblock An Analysis of the Requirements Traceability Problem.
+\newblock In \emph{Proceedings of the First International Conference on Requirements Engineering}, pages 94--101, 1994.
+\newblock doi:10.1109/ICRE.1994.292398.
+
+\bibitem[Sindre and Opdahl(2005)]{sindre2005eliciting}
+G.~Sindre and A.~L. Opdahl.
+\newblock Eliciting Security Requirements with Misuse Cases.
+\newblock \emph{Requirements Engineering}, 10(1):34--44, 2005.
+\newblock doi:10.1007/s00766-004-0194-4.
+
+\bibitem[van Lamsweerde(2004)]{vanlamsweerde2004elaborating}
+A.~van Lamsweerde.
+\newblock Elaborating Security Requirements by Construction of Intentional Anti-Models.
+\newblock In \emph{Proceedings of the 26th International Conference on Software Engineering}, pages 148--157, 2004.
+\newblock doi:10.1109/ICSE.2004.1317437.
+
+\bibitem[Mucha et~al.(2024)Mucha, Kaufmann, and Riehle]{mucha2024prers}
+J.~Mucha, A.~Kaufmann, and D.~Riehle.
+\newblock A systematic literature review of pre-requirements specification traceability.
+\newblock \emph{Requirements Engineering}, 29(2):119--141, 2024.
+\newblock doi:10.1007/s00766-023-00412-z.
+
+\bibitem[Ruiz et~al.(2023)Ruiz, Hu, and Dalpiaz]{ruiz2023whydontwetrace}
+M.~Ruiz, J.~Y. Hu, and F.~Dalpiaz.
+\newblock Why don't we trace? A study on the barriers to software traceability in practice.
+\newblock \emph{Requirements Engineering}, 28(4):619--637, 2023.
+\newblock doi:10.1007/s00766-023-00408-9.
+
+\bibitem[Gro{\ss}er et~al.(2022)Gro{\ss}er, Riediger, and J{\"u}rjens]{grosser2022documentrelations}
+K.~Gro{\ss}er, V.~Riediger, and J.~J{\"u}rjens.
+\newblock Requirements document relations: A reuse perspective on traceability through standards.
+\newblock \emph{Software and Systems Modeling}, 21:2133--2169, 2022.
+\newblock doi:10.1007/s10270-021-00958-y.
+
+\bibitem[Wang et~al.(2024)Wang, Zou, Wan, Li, Deng, and Li]{wang2024rctlrsota}
+B.~Wang, Z.~Zou, H.~Wan, Y.~Li, Y.~Deng, and X.~Li.
+\newblock An empirical study on the state-of-the-art methods for requirement-to-code traceability link recovery.
+\newblock \emph{Journal of King Saud University - Computer and Information Sciences}, 36(6):102118, 2024.
+\newblock doi:10.1016/j.jksuci.2024.102118.
+
+\bibitem[Hey et~al.(2024)Hey, Keim, and Corallo]{hey2024requirementsclassification}
+T.~Hey, J.~Keim, and S.~Corallo.
+\newblock Requirements Classification for Traceability Link Recovery.
+\newblock In \emph{2024 IEEE 32nd International Requirements Engineering Conference (RE)}, pages 155--167, 2024.
+\newblock doi:10.1109/RE59067.2024.00024.
+
+\bibitem[Tuma et~al.(2018)Tuma, Calikli, and Scandariato]{tuma2018threatanalysis}
+K.~Tuma, G.~Calikli, and R.~Scandariato.
+\newblock Threat analysis of software systems: A systematic literature review.
+\newblock \emph{Journal of Systems and Software}, 144:275--294, 2018.
+\newblock doi:10.1016/j.jss.2018.06.073.
+
+\bibitem[Haley et~al.(2008)Haley, Laney, Moffett, and Nuseibeh]{haley2008securityrequirements}
+C.~B. Haley, R.~Laney, J.~D. Moffett, and B.~Nuseibeh.
+\newblock Security Requirements Engineering: A Framework for Representation and Analysis.
+\newblock \emph{IEEE Transactions on Software Engineering}, 34(1):133--153, 2008.
+\newblock doi:10.1109/TSE.2007.70754.
+
+\bibitem[Whittle et~al.(2008)Whittle, Wijesekera, and Hartong]{whittle2008executable}
+J.~Whittle, D.~Wijesekera, and M.~Hartong.
+\newblock Executable Misuse Cases for Modeling Security Concerns.
+\newblock In \emph{Proceedings of the 30th International Conference on Software Engineering}, pages 121--130, 2008.
+\newblock doi:10.1145/1368088.1368106.
+
+\bibitem[Hatebur et~al.(2006)Hatebur, Heisel, and Schmidt]{hatebur2006securityengineering}
+D.~Hatebur, M.~Heisel, and H.~Schmidt.
+\newblock Security Engineering Using Problem Frames.
+\newblock In \emph{Emerging Trends in Information and Communication Security}, LNCS 3995, pages 238--253. Springer, 2006.
+\newblock doi:10.1007/11766155\_17.
+
+\bibitem[Mbaka et~al.(2025)Mbaka, Zhang, Wang, Li, Massacci, and Tuma]{mbaka2025dfdvalidation}
+W.~B. Mbaka, X.~Zhang, Y.~Wang, T.~Li, F.~Massacci, and K.~Tuma.
+\newblock Assessing the usefulness of Data Flow Diagrams for validating security threats.
+\newblock \emph{Computers \& Security}, 156:104498, 2025.
+\newblock doi:10.1016/j.cose.2025.104498.
+
+\bibitem[Granata and Rak(2024)]{granata2024automatedthreatmodelling}
+D.~Granata and M.~Rak.
+\newblock Systematic analysis of automated threat modelling techniques: Comparison of open-source tools.
+\newblock \emph{Software Quality Journal}, 32:125--161, 2024.
+\newblock doi:10.1007/s11219-023-09634-4.
+
+\bibitem[Lonetti et~al.(2023)Lonetti, Bertolino, and Di~Giandomenico]{lonetti2023mbstiot}
+F.~Lonetti, A.~Bertolino, and F.~Di~Giandomenico.
+\newblock Model-based security testing in IoT systems: A Rapid Review.
+\newblock \emph{Information and Software Technology}, 164:107326, 2023.
+\newblock doi:10.1016/j.infsof.2023.107326.
+
+\bibitem[Umar and Lano(2024)]{umar2024automatedrequirements}
+M.~A. Umar and K.~Lano.
+\newblock Advances in automated support for requirements engineering: a systematic literature review.
+\newblock \emph{Requirements Engineering}, 29:177--207, 2024.
+\newblock doi:10.1007/s00766-023-00411-0.
+
+\bibitem[Souza et~al.(2019)Souza, Moreira, and Goul{\~a}o]{souza2019architecturalmodels}
+E.~Souza, A.~Moreira, and M.~Goul{\~a}o.
+\newblock Deriving architectural models from requirements specifications: A systematic mapping study.
+\newblock \emph{Information and Software Technology}, 109:26--39, 2019.
+\newblock doi:10.1016/j.infsof.2019.01.004.
+
+\bibitem[Ferrari et~al.(2024)Ferrari, Abualhaija, and Arora]{ferrari2024modelgeneration}
+A.~Ferrari, S.~Abualhaija, and C.~Arora.
+\newblock Model Generation with LLMs: From Requirements to UML Sequence Diagrams.
+\newblock In \emph{2024 IEEE 32nd International Requirements Engineering Conference Workshops}, pages 291--300, 2024.
+\newblock doi:10.1109/REW61692.2024.00044.
+
+\bibitem[Garaccione et~al.(2025)Garaccione, Calabrese, Coppola, and Ardito]{garaccione2025llmcomparison}
+G.~Garaccione, D.~M. Calabrese, R.~Coppola, and L.~Ardito.
+\newblock A comparison of different Large Language Models for the generation of UML class diagrams.
+\newblock In \emph{2025 ACM/IEEE 28th MODELS Companion}, pages 541--545, 2025.
+\newblock doi:10.1109/MODELS-C68889.2025.00078.
+
+\bibitem[Abualhaija et~al.(2025)Abualhaija, Ceci, Sannier, Bianculli, Lannier, Siclari, Voordeckers, and Tosza]{abualhaija2025regulatory}
+S.~Abualhaija, M.~Ceci, N.~Sannier, D.~Bianculli, S.~Lannier, M.~Siclari, O.~Voordeckers, and S.~Tosza.
+\newblock LLM-assisted Extraction of Regulatory Requirements: A Case Study on the GDPR.
+\newblock In \emph{2025 IEEE 33rd International Requirements Engineering Conference}, pages 142--154, 2025.
+\newblock doi:10.1109/RE63999.2025.00023.
+
+\bibitem[Angermeir et~al.(2026)Angermeir, Amougou, Kreitz, Bauer, Linhuber, Fucci, Moy{\'o}n~C., Mendez, and Gorschek]{angermeir2026reproducibility}
+F.~Angermeir, M.~Amougou, M.~Kreitz, A.~Bauer, M.~Linhuber, D.~Fucci, F.~Moy{\'o}n~C., D.~Mendez, and T.~Gorschek.
+\newblock Reflections on the Reproducibility of Commercial LLM Performance in Empirical Software Engineering Studies.
+\newblock In \emph{Proceedings of the 48th IEEE/ACM International Conference on Software Engineering}, 2026.
+\newblock doi:10.1145/3744916.3773207.
+
+\bibitem[Mauri and Damiani(2022)]{mauri2022strideai}
+L.~Mauri and E.~Damiani.
+\newblock Modeling Threats to AI-ML Systems Using STRIDE.
+\newblock \emph{Sensors}, 22(17):6662, 2022.
+\newblock doi:10.3390/s22176662.
+
+\end{thebibliography}
+
+\end{document}
