@@ -1,0 +1,402 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  10pt,
+  a4paper,
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=22mm]{geometry}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+\babelprovide[main,import]{italian}
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdflang={it},
+  colorlinks=true,
+  linkcolor={Maroon},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+{
+\hypersetup{linkcolor=}
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\section{Example project - Facial-recognition access
+control}\label{example-project---facial-recognition-access-control}
+
+\begin{quote}
+Non-canonical model-validation example.
+
+The example intentionally includes ML and biometric concepts because
+they belong to the application domain. It intentionally does
+\textbf{not} decide whether the camera, recognition logic and turnstile
+are connected through a PC, LAN, edge device or another architecture.
+\end{quote}
+
+\subsection{Project summary}\label{project-summary}
+
+The project controls access to a reserved physical area. A camera
+observes a person at the access point, facial recognition is used to
+determine whether the person corresponds to an authorized identity, and
+access is granted by opening a turnstile when the project's access
+conditions are satisfied.
+
+The architecture is deliberately unresolved. Possible implementations
+include inference on a camera, on an edge computer, on a local PC or
+another local service. The MR set should remain valid across those
+alternatives.
+
+\subsection{MR-EX-001 - Accesso controllato all'area
+riservata}\label{mr-ex-001---accesso-controllato-allarea-riservata}
+
+\subsubsection{Intent}\label{intent}
+
+Consentire alle persone autorizzate di accedere a un'area riservata in
+modo rapido e controllato, evitando che il varco si apra automaticamente
+quando l'autorizzazione non e stata confermata.
+
+\subsubsection{Context}\label{context}
+
+L'area e protetta da un tornello. Il progetto usa il riconoscimento del
+volto come parte della decisione che precede l'apertura automatica del
+varco. Le modalita tecniche con cui telecamera, riconoscimento e
+tornello cooperano non sono ancora decise.
+
+\subsubsection{Stakeholders}\label{stakeholders}
+
+\begin{itemize}
+\tightlist
+\item
+  persone autorizzate;
+\item
+  responsabili dell'area riservata;
+\item
+  addetti alla sicurezza fisica;
+\item
+  personale operativo che gestisce il punto di accesso.
+\end{itemize}
+
+\subsubsection{Objective}\label{objective}
+
+\begin{itemize}
+\tightlist
+\item
+  Rendere l'accesso automatico coerente con lo stato di autorizzazione
+  della persona.
+\item
+  Mantenere controllabile il comportamento del varco anche quando il
+  riconoscimento non produce un risultato utilizzabile.
+\end{itemize}
+
+\subsubsection{Scope - candidate under
+test}\label{scope---candidate-under-test}
+
+\begin{itemize}
+\tightlist
+\item
+  il passaggio dal tentativo di ingresso alla decisione di aprire o non
+  aprire il varco;
+\item
+  l'esperienza macro della persona al punto di accesso.
+\end{itemize}
+
+\subsubsection{DependsOn}\label{dependson}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{MR-EX-002} Gestione delle persone autorizzate.
+\item
+  \texttt{MR-EX-003} Riconoscimento facciale per la verifica della
+  persona.
+\end{itemize}
+
+\subsection{MR-EX-002 - Gestione delle persone
+autorizzate}\label{mr-ex-002---gestione-delle-persone-autorizzate}
+
+\subsubsection{Intent}\label{intent-1}
+
+Consentire all'organizzazione di stabilire chi puo accedere all'area
+riservata e di mantenere aggiornata nel tempo l'associazione tra
+persona, autorizzazione e informazioni necessarie al riconoscimento.
+
+\subsubsection{Context}\label{context-1}
+
+Le autorizzazioni cambiano nel tempo: una persona puo essere abilitata,
+sospesa o non piu autorizzata. Il sistema di riconoscimento deve usare
+informazioni coerenti con lo stato corrente deciso dall'organizzazione.
+
+\subsubsection{Stakeholders}\label{stakeholders-1}
+
+\begin{itemize}
+\tightlist
+\item
+  responsabili dell'area;
+\item
+  amministratori delle autorizzazioni;
+\item
+  persone autorizzate;
+\item
+  personale incaricato dell'onboarding e della revoca.
+\end{itemize}
+
+\subsubsection{Objective}\label{objective-1}
+
+\begin{itemize}
+\tightlist
+\item
+  Mantenere una fonte governata delle persone autorizzate e del loro
+  stato di accesso.
+\item
+  Mantenere coerenti le informazioni necessarie al riconoscimento con il
+  ciclo di vita dell'autorizzazione.
+\end{itemize}
+
+\subsubsection{Scope - candidate under
+test}\label{scope---candidate-under-test-1}
+
+\begin{itemize}
+\tightlist
+\item
+  inserimento, aggiornamento, sospensione e revoca delle autorizzazioni;
+\item
+  associazione tra identita autorizzata e informazioni utilizzate per
+  riconoscerla.
+\end{itemize}
+
+\subsection{MR-EX-003 - Riconoscimento facciale per la verifica della
+persona}\label{mr-ex-003---riconoscimento-facciale-per-la-verifica-della-persona}
+
+\subsubsection{Intent}\label{intent-2}
+
+Determinare se il volto osservato al punto di accesso corrisponde a una
+persona autorizzata con qualita sufficiente per supportare la decisione
+di accesso.
+
+\subsubsection{Context}\label{context-2}
+
+Il progetto utilizza una telecamera e un modello di machine learning per
+il riconoscimento facciale. Il modello puo richiedere immagini o
+sequenze video adeguate e puo produrre risultati incerti o errati. Dove
+venga eseguita l'inferenza e come i dispositivi comunichino sono
+decisioni architetturali successive.
+
+\subsubsection{Stakeholders}\label{stakeholders-2}
+
+\begin{itemize}
+\tightlist
+\item
+  persone che si presentano al varco;
+\item
+  addetti alla sicurezza;
+\item
+  responsabili del servizio di accesso;
+\item
+  specialisti che mantengono il sistema di riconoscimento.
+\end{itemize}
+
+\subsubsection{Objective}\label{objective-2}
+
+\begin{itemize}
+\tightlist
+\item
+  Ottenere dal volto osservato un risultato di riconoscimento
+  utilizzabile dal processo di accesso.
+\item
+  Rendere distinguibili i casi di riconoscimento positivo, mancato
+  riconoscimento e risultato non sufficientemente affidabile.
+\item
+  Consentire che la qualita del riconoscimento possa essere valutata e
+  migliorata nel tempo.
+\end{itemize}
+
+\subsubsection{Scope - candidate under
+test}\label{scope---candidate-under-test-2}
+
+\begin{itemize}
+\tightlist
+\item
+  acquisizione delle informazioni visive necessarie al riconoscimento;
+\item
+  esecuzione e valutazione del riconoscimento facciale;
+\item
+  risultato fornito al processo che decide l'accesso.
+\end{itemize}
+
+\subsubsection{Assumptions}\label{assumptions}
+
+\begin{itemize}
+\tightlist
+\item
+  il riconoscimento facciale e una capacita prevista dal progetto, non
+  una tecnica scelta solo per una metodologia di analisi.
+\end{itemize}
+
+\subsection{MR-EX-004 - Uso responsabile dei dati biometrici e delle
+decisioni
+automatiche}\label{mr-ex-004---uso-responsabile-dei-dati-biometrici-e-delle-decisioni-automatiche}
+
+\subsubsection{Intent}\label{intent-3}
+
+Proteggere le persone coinvolte nell'uso del riconoscimento facciale
+assicurando che dati biometrici e decisioni automatiche siano trattati
+in modo comprensibile, controllabile e coerente con le finalita di
+accesso del progetto.
+
+\subsubsection{Context}\label{context-3}
+
+Il riconoscimento facciale utilizza informazioni biometriche e puo
+produrre errori che incidono sull'accesso fisico di una persona. Questi
+aspetti fanno parte del dominio e del valore del progetto,
+indipendentemente dalla metodologia di privacy o sicurezza che verra
+eventualmente applicata in analisi successive.
+
+\subsubsection{Stakeholders}\label{stakeholders-3}
+
+\begin{itemize}
+\tightlist
+\item
+  persone i cui dati biometrici sono trattati;
+\item
+  responsabili dell'organizzazione;
+\item
+  responsabili privacy/compliance applicabili al contesto;
+\item
+  addetti che gestiscono contestazioni o eccezioni di accesso.
+\end{itemize}
+
+\subsubsection{Objective}\label{objective-3}
+
+\begin{itemize}
+\tightlist
+\item
+  Limitare l'uso dei dati biometrici alle finalita governate dal
+  progetto.
+\item
+  Rendere governabili il ciclo di vita dei dati biometrici e gli effetti
+  degli errori di riconoscimento.
+\item
+  Consentire responsabilita e revisione delle decisioni automatiche che
+  incidono sull'accesso.
+\end{itemize}
+
+\subsubsection{Scope - candidate under
+test}\label{scope---candidate-under-test-3}
+
+\begin{itemize}
+\tightlist
+\item
+  trattamento dei dati biometrici utilizzati dal progetto;
+\item
+  conseguenze e revisione delle decisioni automatiche di riconoscimento
+  nel contesto dell'accesso.
+\end{itemize}
+
+\subsection{Why there is no separate MR for PC/LAN/edge
+architecture}\label{why-there-is-no-separate-mr-for-pclanedge-architecture}
+
+\texttt{PC}, \texttt{LAN}, inference on the camera, inference on an edge
+computer and the protocol used to command the turnstile are not
+independent project macro-concerns in the current problem statement.
+They are candidate \textbf{Decisions} below the relevant MR branches.
+
+If a future requirement makes, for example, ``offline local operation
+without external connectivity'' a project-wide outcome understood and
+valued by stakeholders, the documentation may need a different MR
+structure. That is exactly the kind of case the future MR-splitting rule
+must handle.
+
+\subsection{Candidate split test: ML model
+lifecycle}\label{candidate-split-test-ml-model-lifecycle}
+
+At present, model training, deployment, threshold selection and model
+update are treated as lower-level concerns of \texttt{MR-EX-003} because
+they all serve the single macro intent of facial recognition at the
+access point.
+
+A separate MR for \textbf{ML model lifecycle} would become justified
+only if the project explicitly treats model production/governance as an
+independent macro capability with its own stakeholders, objectives and
+Decisions (for example, if the product itself includes a reusable
+organizational ML model-management service).
+
+\subsection{What this example tests}\label{what-this-example-tests}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Domain-specific technical terms can appear in MR when they are natural
+  to the project stakeholders.
+\item
+  Architecture-specific terms can remain undecided without weakening the
+  MR set.
+\item
+  ML can be represented at MR level without introducing a
+  threat-analysis or privacy-analysis methodology.
+\item
+  Cross-MR dependencies can express collaboration without creating a
+  false hierarchy between independent macro concerns.
+\item
+  Intent/Objective and Scope remain under evaluation: this example
+  should be used to detect duplication before those concepts are frozen.
+\end{enumerate}
+
+\end{document}

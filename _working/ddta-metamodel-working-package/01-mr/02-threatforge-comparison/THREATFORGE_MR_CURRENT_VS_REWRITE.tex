@@ -1,0 +1,1099 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  10pt,
+  a4paper,
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=22mm]{geometry}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+\babelprovide[main,import]{italian}
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdflang={it},
+  colorlinks=true,
+  linkcolor={Maroon},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+{
+\hypersetup{linkcolor=}
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\section{ThreatForge MR comparison - current vs
+proposed}\label{threatforge-mr-comparison---current-vs-proposed}
+
+\begin{quote}
+Non-canonical case study. Baseline for current documents:
+\texttt{cae0f7b6b37f430ac4e857aabf6ef9f87c89dbb1}.
+\end{quote}
+
+The purpose is to test the general MR metamodel against a real project
+and to collect refactoring/authoring evidence. The proposed rewrites are
+\textbf{not canonical ThreatForge changes}.
+
+\subsection{MR-0001}\label{mr-0001}
+
+\subsubsection{Current document}\label{current-document}
+
+\paragraph{Original: MR-0001 - Gestione documentale
+governata}\label{original-mr-0001---gestione-documentale-governata}
+
+\subparagraph{Intent}\label{intent}
+
+Define a governed documentation system that gives ThreatForge one
+concise, analyzable and navigable source for project intent, decisions,
+requirements, assets, relations and verification evidence.
+
+\subparagraph{Context}\label{context}
+
+ThreatForge treats governed documentation as the primary project model
+for people, developers, LLM consumers and deterministic checks.
+Canonical registries and Markdown bodies provide the maintained sources,
+while readable books, HTML views, diagrams, indexes, appendices and
+reports are derived projections.
+
+The model organizes project knowledge by Macro-requirement and uses
+explicit Decisions and Requirements to refine each project theme.
+Controlled vocabularies, taxonomies, stable identifiers and explicit
+relations reduce ambiguity and support future security and threat
+analysis.
+
+\subparagraph{Macro obligation}\label{macro-obligation}
+
+\begin{itemize}
+\tightlist
+\item
+  ThreatForge must organize governed project knowledge around stable
+  Macro-requirement identities.
+\item
+  Each Macro-requirement must provide the project-level context for its
+  owned Decisions and Requirements.
+\item
+  Governed documentation must separate canonical sources from derived
+  readable projections.
+\item
+  Canonical registries must support both navigation and deterministic
+  validation.
+\item
+  Governed Markdown bodies must remain concise, analyzable and linked to
+  their canonical registry records.
+\item
+  Governed documents must use stable identifiers and canonical
+  terminology.
+\item
+  Controlled documentation fields must reference governed value sets,
+  taxonomies or vocabularies.
+\item
+  Governed documentation must distinguish authored prose, required
+  fields, controlled fields and derived values.
+\item
+  Decision records must govern specific choices within one
+  Macro-requirement.
+\item
+  Functional Requirements must describe independently testable
+  capabilities, behaviors or outcomes.
+\item
+  Specialized Requirements must attach governed constraints, controls or
+  qualities to Functional Requirements.
+\item
+  Governed assets must use stable identities and canonical descriptions
+  when they enter the project model.
+\item
+  Governed relations must connect Macro-requirements, Decisions,
+  Requirements, assets, implementations and verification evidence
+  explicitly.
+\item
+  ThreatForge must organize tutorials, how-to guides, reference material
+  and explanations according to Diátaxis.
+\item
+  Explanation and how-to documents must not become independent canonical
+  sources of governed obligations.
+\item
+  Derived documentation must obtain indexes, linked records and metadata
+  from canonical sources instead of manual duplication.
+\item
+  Governed documentation must preserve sufficient lifecycle and
+  historical traceability for superseded, deprecated or removed records.
+\item
+  Deterministic corpus analysis must identify terminology drift,
+  ambiguous labels and uncontrolled references.
+\item
+  Governed documentation must support future graph exploration and
+  threat-analysis workflows without duplicating canonical facts.
+\end{itemize}
+
+\subparagraph{Scope}\label{scope}
+
+\begin{itemize}
+\tightlist
+\item
+  Includes: Macro-requirement registry records and Markdown bodies
+\item
+  Includes: Decision and Requirement registries and bodies
+\item
+  Includes: {[}BAE-0001{]} Governed project documentation
+\item
+  Includes: governed assets, controlled vocabularies and taxonomies
+\item
+  Includes: stable identifiers, controlled fields and explicit relations
+\item
+  Includes: implementation and verification traceability
+\item
+  Includes: Diátaxis documentation connected to governed sources
+\item
+  Includes: deterministic corpus-quality reports and derived
+  documentation projections
+\item
+  Excludes: final application backend and user-interface implementation
+\item
+  Excludes: runtime threat-analysis execution
+\item
+  Excludes: autonomous AI integrations and model runtime behavior
+\item
+  Excludes: ungoverned narrative content without a governed
+  project-model relation
+\end{itemize}
+
+\subparagraph{Non-goals}\label{non-goals}
+
+\begin{itemize}
+\tightlist
+\item
+  Mandatory adoption of RDF, SKOS, SHACL or OWL in the initial model
+\item
+  Manual maintenance of indexes or metadata already derivable from
+  canonical sources
+\item
+  Use of explanation or how-to documents as autonomous normative sources
+\end{itemize}
+
+\subsubsection{Proposed rewrite for metamodel
+test}\label{proposed-rewrite-for-metamodel-test}
+
+\paragraph{Proposed: MR-0001 - Documentazione di progetto governata e
+tracciabile}\label{proposed-mr-0001---documentazione-di-progetto-governata-e-tracciabile}
+
+\subparagraph{Intent}\label{intent-1}
+
+Consentire a persone e strumenti di comprendere, mantenere e verificare
+le conoscenze che guidano un progetto attraverso documentazione
+versionata, coerente e tracciabile.
+
+\subparagraph{Context}\label{context-1}
+
+ThreatForge usa la documentazione governata come base condivisa per
+descrivere intenzioni, scelte, requisiti e relative evidenze. La
+documentazione deve rimanere leggibile dalle persone e sufficientemente
+strutturata da poter essere verificata e navigata dagli strumenti.
+
+\subparagraph{Stakeholders}\label{stakeholders}
+
+\begin{itemize}
+\tightlist
+\item
+  responsabili di progetto
+\item
+  sviluppatori e manutentori
+\item
+  reviewer
+\item
+  analisti
+\item
+  utenti che governano progetti con ThreatForge
+\end{itemize}
+
+\subparagraph{Objective}\label{objective}
+
+\begin{itemize}
+\tightlist
+\item
+  Rendere la documentazione una fonte affidabile per comprendere e
+  governare l'evoluzione del progetto.
+\item
+  Mantenere espliciti i collegamenti tra intenzioni, decisioni,
+  requisiti ed evidenze senza duplicare le stesse regole in piu livelli.
+\end{itemize}
+
+\subparagraph{Scope (candidate semantics under
+test)}\label{scope-candidate-semantics-under-test}
+
+\begin{itemize}
+\tightlist
+\item
+  conoscenza governata del progetto e sua tracciabilita
+\item
+  leggibilita umana e verificabilita automatizzabile della
+  documentazione
+\end{itemize}
+
+\subsubsection{What moved down}\label{what-moved-down}
+
+Registri, Markdown body, Diataxis, materializzazioni, tassonomie,
+controlli terminologici e meccanismi di proiezione diventano
+Decision/Requirement/Governance detail.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{MR-0002}\label{mr-0002}
+
+\subsubsection{Current document}\label{current-document-1}
+
+\paragraph{Original: MR-0002 - Authoring e implementazione
+governata}\label{original-mr-0002---authoring-e-implementazione-governata}
+
+\subparagraph{Intent}\label{intent-2}
+
+Define a governed path from an existing Requirement to planned, created
+and verified implementation artifacts through deterministic core
+capabilities and thin development-environment adapters.
+
+\subparagraph{Context}\label{context-2}
+
+ThreatForge supports people and LLM consumers while they author governed
+Requirements and connect those Requirements to implementation and
+verification evidence. The core workflow remains independent from a
+specific editor, while Visual Studio Code is the first integrated
+authoring surface.
+
+The repository runner, authoring tools, implementation planners,
+scaffolders and promotion controls form one governed workflow. Editor
+integrations collect input, invoke those capabilities and present their
+results without owning domain rules or bypassing repository gates.
+
+\subparagraph{Macro obligation}\label{macro-obligation-1}
+
+\begin{itemize}
+\tightlist
+\item
+  Every implementation artifact must derive from at least one existing
+  governed Requirement.
+\item
+  ThreatForge must keep domain rules and traceability rules inside
+  governed core modules and tools.
+\item
+  Development-environment adapters must remain thin consumers of
+  governed capabilities.
+\item
+  Requirement authoring must use canonical registries, controlled value
+  sets and deterministic body profiles.
+\item
+  Requirement creation must provide a complete preview before persistent
+  repository changes.
+\item
+  Persistent authoring operations must require explicit confirmation.
+\item
+  Governed creation operations must preserve atomicity across registry
+  and body updates.
+\item
+  Governed creation operations must restore pre-operation state after
+  verification failure.
+\item
+  Implementation planning must remain read-only before artifact
+  creation.
+\item
+  Every implementation plan must identify the governing Requirement.
+\item
+  Implementation scaffolding must create traceable artifacts with
+  controlled lifecycle state.
+\item
+  Implementation promotion must require completed source content and
+  successful verification evidence.
+\item
+  Implementation artifacts must declare bidirectional traceability to
+  their linked Requirements.
+\item
+  Repository commit and push operations must execute registered
+  materializers and read-only gates before Git staging.
+\item
+  Repository projection materialization must remain deterministic,
+  bounded and idempotent.
+\item
+  Direct ungoverned Git operations must not replace the governed
+  repository runner.
+\item
+  Visual Studio Code tasks must delegate to governed commands without
+  duplicating canonical choices or validation logic.
+\item
+  Future editor adapters must consume the same governed capabilities
+  without changing the canonical core rules.
+\item
+  The ThreatForge application must orchestrate the complete workflow
+  without coupling the model to one editor or filesystem adapter.
+\end{itemize}
+
+\subparagraph{Scope}\label{scope-1}
+
+\begin{itemize}
+\tightlist
+\item
+  Includes: governed Requirement authoring and deterministic previews
+\item
+  Includes: implementation planning, scaffolding and promotion
+\item
+  Includes: traceability between Requirements, source artifacts and
+  verification evidence
+\item
+  Includes: registered repository projections and governed commit-push
+  operations
+\item
+  Includes: thin Visual Studio Code integration
+\item
+  Includes: future editor and application adapters over the same core
+  capabilities
+\item
+  Excludes: autonomous code generation without an existing governed
+  Requirement
+\item
+  Excludes: domain rules duplicated inside editor extensions
+\item
+  Excludes: ungoverned automatic commit or push behavior
+\item
+  Excludes: simultaneous initial support for every development
+  environment
+\end{itemize}
+
+\subparagraph{Non-goals}\label{non-goals-1}
+
+\begin{itemize}
+\tightlist
+\item
+  Complete ThreatForge application user interface in the initial
+  authoring workflow
+\item
+  Editor-specific ownership of canonical validation or controlled values
+\item
+  Creation of implementation artifacts without governed planning and
+  traceability
+\end{itemize}
+
+\subsubsection{Proposed rewrite for metamodel
+test}\label{proposed-rewrite-for-metamodel-test-1}
+
+\paragraph{Proposed: MR-0002 - Sviluppo tracciabile dai
+requisiti}\label{proposed-mr-0002---sviluppo-tracciabile-dai-requisiti}
+
+\subparagraph{Intent}\label{intent-3}
+
+Consentire al lavoro di implementazione di partire da requisiti
+governati e di mantenere chiaro, durante l'evoluzione del progetto, che
+cosa viene realizzato e con quali evidenze viene verificato.
+
+\subparagraph{Context}\label{context-3}
+
+ThreatForge deve aiutare chi sviluppa un progetto a passare dalla
+documentazione governata al lavoro implementativo senza perdere il
+legame con le ragioni e gli obblighi che hanno originato quel lavoro.
+
+\subparagraph{Stakeholders}\label{stakeholders-1}
+
+\begin{itemize}
+\tightlist
+\item
+  sviluppatori
+\item
+  reviewer
+\item
+  responsabili di progetto
+\item
+  manutentori
+\item
+  utenti che usano ThreatForge per guidare l'authoring e
+  l'implementazione
+\end{itemize}
+
+\subparagraph{Objective}\label{objective-1}
+
+\begin{itemize}
+\tightlist
+\item
+  Mantenere tracciabile il percorso dal requisito al lavoro
+  implementativo e alla verifica.
+\item
+  Offrire assistenza coerente all'authoring e all'esecuzione del lavoro
+  senza spostare le regole di dominio dentro uno specifico strumento di
+  sviluppo.
+\end{itemize}
+
+\subparagraph{Scope (candidate semantics under
+test)}\label{scope-candidate-semantics-under-test-1}
+
+\begin{itemize}
+\tightlist
+\item
+  passaggio governato da requisiti a implementazione e verifica
+\item
+  tracciabilita dello stato del lavoro rispetto ai requisiti
+\end{itemize}
+
+\subsubsection{What moved down}\label{what-moved-down-1}
+
+VS Code, repository runner, preview, atomicita, rollback, scaffolding,
+promotion, Git staging e materializer sono scelte/obblighi di livello
+inferiore.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{MR-0003}\label{mr-0003}
+
+\subsubsection{Current document}\label{current-document-2}
+
+\paragraph{Original: MR-0003 - Modello di Analisi Base derivato dalla
+documentazione}\label{original-mr-0003---modello-di-analisi-base-derivato-dalla-documentazione}
+
+\subparagraph{Intent}\label{intent-4}
+
+Define a methodology-neutral and documentation-derived system model that
+transforms governed project knowledge into a canonical inventory of Base
+Analysis Elements for threat analysis before implementation and
+throughout system evolution.
+
+\subparagraph{Context}\label{context-4}
+
+MR-0001 establishes governed documentation as the primary project model,
+while MR-0002 governs document authoring and the path from Requirements
+to implementation artifacts.
+
+ThreatForge currently lacks an explicit analytical representation
+derived from governed documentation without replacing its canonical
+facts. Base Analysis Elements provide stable identities, provenance and
+relations for reconstructing the system being designed, identifying
+incomplete knowledge and determining whether prior analyses are stale.
+
+This boundary supports moving threat analysis into the documentation and
+design phase instead of waiting for implementation artifacts to exist.
+
+\subparagraph{Macro obligation}\label{macro-obligation-2}
+
+\begin{itemize}
+\tightlist
+\item
+  ThreatForge must maintain one canonical inventory of Base Analysis
+  Elements for each analyzed project.
+\item
+  Every Base Analysis Element must have a stable governed identity,
+  canonical type, canonical title, explicit meaning, provenance and
+  lifecycle state.
+\item
+  Every Base Analysis Element must be justified by existing governed
+  project knowledge or by an explicit reviewed analytical addition.
+\item
+  The governed origin of a Base Analysis Element must exist before any
+  document that references that element.
+\item
+  A document must not reference a Base Analysis Element whose governed
+  origin belongs to one of that document's descendants.
+\item
+  Base Analysis Element provenance must identify the governed documents
+  and evidence from which the element is derived.
+\item
+  The Base Analysis model must preserve explicit relations among
+  elements and between elements, Decisions, Requirements and other
+  governed project records.
+\item
+  The Base Analysis inventory must remain methodology-neutral.
+\item
+  The Base Analysis inventory must not contain STRIDE, STRIDE-AI or
+  other overlay-specific classifications as base facts.
+\item
+  Threat-analysis overlays must consume the canonical Base Analysis
+  inventory without silently adding, removing or redefining its
+  elements.
+\item
+  Missing or changed system knowledge discovered by an overlay must
+  produce a governed proposal to update the Base Analysis inventory.
+\item
+  Changes to governed source documentation must support deterministic
+  identification of Base Analysis Elements and analyses that are
+  potentially stale.
+\item
+  The Base Analysis model must support analysis before implementation
+  and re-analysis after architectural, requirement or feature changes.
+\item
+  MR-0003 must own Base Analysis Element semantics, provenance,
+  relations and lifecycle without owning the generic Markdown reference
+  syntax governed by MR-0001.
+\item
+  MR-0003 must expose canonical Base Analysis projections that MR-0002
+  authoring tools and editor adapters can consume without duplicating
+  domain rules.
+\end{itemize}
+
+\subparagraph{Scope}\label{scope-2}
+
+\begin{itemize}
+\tightlist
+\item
+  Includes: Methodology-neutral Base Analysis model
+\item
+  Includes: Canonical Base Analysis Element inventory
+\item
+  Includes: Stable Base Analysis Element identities and canonical types
+\item
+  Includes: Documentary provenance and governed origin
+\item
+  Includes: Relations among Base Analysis Elements and governed project
+  records
+\item
+  Includes: Base Analysis Element lifecycle and staleness
+\item
+  Includes: Derivation from Macro-requirements, Decisions, Requirements
+  and other governed project documentation
+\item
+  Includes: Reviewed analytical additions when governed documentation is
+  incomplete
+\item
+  Includes: Canonical system topology and data-flow projections for
+  later threat-analysis overlays
+\item
+  Includes: Traceability from source documentation to Base Analysis
+  Elements and dependent analyses
+\item
+  Excludes: Generic Markdown syntax for governed entity references
+\item
+  Excludes: Editor-owned completion, hover, diagnostics or quick-fix
+  rules
+\item
+  Excludes: STRIDE and STRIDE-AI classifications
+\item
+  Excludes: Methodology-specific threats, findings, mitigations or
+  security requirements
+\item
+  Excludes: Runtime Base Analysis implementation and user-interface
+  behavior
+\item
+  Excludes: Automatic canonical acceptance of LLM-inferred elements
+\item
+  Excludes: Replacement of Macro-requirement, Decision or Requirement
+  registries
+\end{itemize}
+
+\subparagraph{Non-goals}\label{non-goals-2}
+
+\begin{itemize}
+\tightlist
+\item
+  Freeze the complete Base Analysis Element taxonomy in the
+  Macro-requirement
+\item
+  Select the physical registry or database schema
+\item
+  Implement extraction, validation, graph or editor tooling
+\item
+  Treat the first textual occurrence of an element as its governed
+  origin
+\item
+  Make an LLM inference canonical without explicit governed review
+\item
+  Duplicate project facts that already have an authoritative governed
+  source
+\end{itemize}
+
+\subsubsection{Proposed rewrite for metamodel
+test}\label{proposed-rewrite-for-metamodel-test-2}
+
+\paragraph{Proposed: MR-0003 - Modello del progetto per
+l'analisi}\label{proposed-mr-0003---modello-del-progetto-per-lanalisi}
+
+\subparagraph{Intent}\label{intent-5}
+
+Rendere la conoscenza governata del progetto utilizzabile per analisi
+diverse anche prima che esista una implementazione completa, mantenendo
+chiara la provenienza delle informazioni e gli effetti delle modifiche.
+
+\subparagraph{Context}\label{context-5}
+
+Le analisi hanno bisogno di una rappresentazione coerente di cio che il
+progetto descrive. Questa rappresentazione deve derivare dalla
+documentazione senza sostituirne i fatti canonici e deve poter evolvere
+quando cambia il progetto.
+
+\subparagraph{Stakeholders}\label{stakeholders-2}
+
+\begin{itemize}
+\tightlist
+\item
+  analisti
+\item
+  architetti e progettisti
+\item
+  sviluppatori
+\item
+  reviewer
+\item
+  responsabili di progetto
+\end{itemize}
+
+\subparagraph{Objective}\label{objective-2}
+
+\begin{itemize}
+\tightlist
+\item
+  Derivare dalla documentazione una base comune e tracciabile per
+  l'analisi.
+\item
+  Permettere analisi anticipate e ripetute durante l'evoluzione del
+  progetto.
+\item
+  Mantenere distinguibili i fatti del progetto dalle interpretazioni
+  introdotte dalle singole analisi.
+\end{itemize}
+
+\subparagraph{Scope (candidate semantics under
+test)}\label{scope-candidate-semantics-under-test-2}
+
+\begin{itemize}
+\tightlist
+\item
+  conoscenza del progetto necessaria a costruire una base comune per
+  analisi
+\item
+  provenienza e aggiornamento della conoscenza analitica comune
+\end{itemize}
+
+\subsubsection{What moved down}\label{what-moved-down-2}
+
+BAE fields, precise provenance rules, topology/data-flow projection,
+STRIDE exclusions and editor integration move below MR.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{MR-0004}\label{mr-0004}
+
+\subsubsection{Current document}\label{current-document-3}
+
+\paragraph{Original: MR-0004 - Ciclo di vita governato dei progetti
+target}\label{original-mr-0004---ciclo-di-vita-governato-dei-progetti-target}
+
+\subparagraph{Intent}\label{intent-6}
+
+Define how ThreatForge creates, accesses, validates, isolates and
+analyzes governed Target Projects at user-selected filesystem locations.
+
+\subparagraph{Context}\label{context-6}
+
+ThreatForge needs one small and reproducible path from project creation
+to governed documentation and documentation-derived Base Analysis. An
+internal demonstration project and a newly created external project use
+the same Target Project model even though their destination locations
+differ. The ThreatForge engine remains separate from every target, and
+the initial demonstrable target can represent a system through governed
+documentation before executable application code exists.
+
+\subparagraph{Macro obligation}\label{macro-obligation-3}
+
+\begin{itemize}
+\tightlist
+\item
+  ThreatForge must use one Target Project model for an internal
+  demonstration project and a newly created external project.
+\item
+  Target Project creation must receive one explicit destination root
+  selected for the creation request.
+\item
+  Subsequent Target Project authoring, verification and analysis must
+  receive one explicit target root.
+\item
+  Internal and external Target Projects must originate from the same
+  governed template and application behavior.
+\item
+  Every Target Project must own its project-local documentation,
+  registries, reports and materialized projections.
+\item
+  A Target Project must remain structurally valid without executable
+  source code, a running backend, a frontend or a database instance.
+\item
+  Every Target Project must support the governed document models
+  required by the active engine-owned target template and project-local
+  Base Analysis records.
+\item
+  Target Project documentation must provide project-local sources for
+  actors, logical components, data resources, trust boundaries and
+  information flows.
+\item
+  Target Project records must preserve stable project-local identifiers
+  and source paths.
+\item
+  Base Analysis Element provenance must resolve to governed sources
+  owned by the analyzed Target Project or to explicit reviewed
+  analytical additions.
+\item
+  Target Project creation and use must not modify or contaminate the
+  canonical ThreatForge project model.
+\item
+  ThreatForge repository verification must remain development
+  governance.
+\item
+  ThreatForge repository verification must not be represented as a
+  Target Project kind.
+\item
+  MR-0001 must remain authoritative for governed documentation
+  structure, document semantics and Diátaxis organization.
+\item
+  MR-0002 must remain authoritative for reusable application interfaces,
+  target-access boundaries and delivery-adapter separation.
+\item
+  MR-0003 must remain authoritative for Base Analysis Element semantics,
+  provenance, relations and lifecycle.
+\item
+  Target-specific product requirements must remain inside the governed
+  project model of the owning Target Project.
+\end{itemize}
+
+\subparagraph{Scope}\label{scope-3}
+
+\begin{itemize}
+\tightlist
+\item
+  Includes: One Target Project model for internal and external
+  destinations
+\item
+  Includes: Explicit destination-root project creation
+\item
+  Includes: Explicit target-root authoring, verification and analysis
+\item
+  Includes: Shared governed Target Project template
+\item
+  Includes: Project-local governed documentation and registries
+\item
+  Includes: Document-only Target Projects without executable application
+  code
+\item
+  Includes: Project-local sources for actors, components, data
+  resources, boundaries and flows
+\item
+  Includes: Base Analysis readiness and documentary provenance
+\item
+  Includes: Isolation of target records, reports and materializations
+\item
+  Includes: Minimal Target Project lifecycle orchestration
+\item
+  Excludes: Import or migration of arbitrary existing repositories
+\item
+  Excludes: Compatibility-version negotiation or migration mechanisms
+\item
+  Excludes: Multiple concurrent target sessions
+\item
+  Excludes: Final web-interface behavior
+\item
+  Excludes: Product-domain requirements of a specific Target Project
+\item
+  Excludes: STRIDE, STRIDE-AI or other methodology overlays
+\item
+  Excludes: Executable application code as a prerequisite for project
+  analysis
+\end{itemize}
+
+\subparagraph{Non-goals}\label{non-goals-3}
+
+\begin{itemize}
+\tightlist
+\item
+  Model ThreatForge repository verification as a Target Project kind
+\item
+  Define compatibility versions, gate profiles or migration mechanisms
+\item
+  Import arbitrary unstructured repositories
+\item
+  Implement multiple concurrent Target Project sessions
+\item
+  Define the final web user interface
+\item
+  Define the product-domain requirements of the first demonstration
+  Target Project
+\item
+  Require executable application code before documentation-derived Base
+  Analysis
+\end{itemize}
+
+\subsubsection{Proposed rewrite for metamodel
+test}\label{proposed-rewrite-for-metamodel-test-3}
+
+\paragraph{Proposed: MR-0004 - Gestione isolata dei progetti
+governati}\label{proposed-mr-0004---gestione-isolata-dei-progetti-governati}
+
+\subparagraph{Intent}\label{intent-7}
+
+Consentire a ThreatForge di creare, aprire e governare progetti distinti
+mantenendo separati i loro documenti, risultati e ciclo di vita dal
+motore ThreatForge e dagli altri progetti.
+
+\subparagraph{Context}\label{context-7}
+
+ThreatForge e uno strumento riutilizzabile su piu progetti. Ogni
+progetto governato deve poter possedere la propria conoscenza e i propri
+risultati senza dipendere dal repository del motore o contaminare altri
+progetti.
+
+\subparagraph{Stakeholders}\label{stakeholders-3}
+
+\begin{itemize}
+\tightlist
+\item
+  utenti di ThreatForge
+\item
+  team dei progetti governati
+\item
+  manutentori di ThreatForge
+\item
+  reviewer e analisti che lavorano su un progetto specifico
+\end{itemize}
+
+\subparagraph{Objective}\label{objective-3}
+
+\begin{itemize}
+\tightlist
+\item
+  Fornire a ogni progetto governato uno spazio autonomo e
+  identificabile.
+\item
+  Mantenere separata l'evoluzione del progetto governato dall'evoluzione
+  del motore ThreatForge.
+\end{itemize}
+
+\subparagraph{Scope (candidate semantics under
+test)}\label{scope-candidate-semantics-under-test-3}
+
+\begin{itemize}
+\tightlist
+\item
+  creazione/apertura e governo di progetti distinti
+\item
+  ownership project-local della documentazione e dei risultati
+\end{itemize}
+
+\subsubsection{What moved down}\label{what-moved-down-3}
+
+Filesystem roots, templates, internal/external distinction, BAE types
+and adapter boundaries become lower-level choices and requirements.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{MR-0005}\label{mr-0005}
+
+\subsubsection{Current document}\label{current-document-4}
+
+\paragraph{Original: MR-0005 - Common governed analysis
+model}\label{original-mr-0005---common-governed-analysis-model}
+
+\subparagraph{Intent}\label{intent-8}
+
+Define the common model through which ThreatForge governs
+methodology-specific analyses based on the Base Analysis and produces
+repeatable derived representations.
+
+\subparagraph{Context}\label{context-8}
+
+The BAE registry is the methodology-neutral canonical source for the
+analyzed system. Transformation of BAEs into methodology-specific
+analysis elements involves expert judgment when the selected method does
+not provide an unambiguous mapping. Reviewed and accepted analysis
+registries provide the inputs for deterministic validation and derived
+representation generation.
+
+\subparagraph{Macro obligation}\label{macro-obligation-4}
+
+\begin{itemize}
+\tightlist
+\item
+  The common analysis model must preserve the BAE registry as the
+  methodology-neutral canonical source.
+\item
+  Each analysis must record the expert-approved methodological
+  interpretation separately.
+\item
+  Methodology-specific registries must use the controlled taxonomies
+  defined by their analysis method.
+\item
+  The common analysis model must distinguish expert judgment from
+  subsequent deterministic transformations.
+\item
+  The DFD of an analysis must be derived deterministically from the
+  governed registries accepted for that analysis.
+\item
+  The renderer must consume a derived projection.
+\item
+  The renderer must not contain Base Analysis or methodology-specific
+  rules.
+\item
+  Method-specific taxonomies and rules must belong to dedicated
+  Macro-requirements.
+\item
+  An analysis that identifies missing Base Analysis knowledge must
+  record the discrepancy explicitly.
+\item
+  The analysis process must not modify BAE registry records
+  automatically.
+\end{itemize}
+
+\subparagraph{Scope}\label{scope-4}
+
+\begin{itemize}
+\tightlist
+\item
+  Includes: common model and boundaries of governed analyses
+\item
+  Includes: relationship between the canonical Base Analysis and
+  methodology-specific registries
+\item
+  Includes: separation between expert interpretation and deterministic
+  transformations
+\item
+  Includes: deterministic DFD derivation from accepted analysis
+  registries
+\item
+  Includes: separation between DFD projection and rendering
+\item
+  Excludes: STRIDE-specific categories and rules
+\item
+  Excludes: STRIDE-AI-specific categories and rules
+\item
+  Excludes: detailed definition of DFD detail levels
+\item
+  Excludes: automatic promotion of analysis discoveries into the BAE
+  registry
+\item
+  Excludes: automatic replacement of expert judgment
+\end{itemize}
+
+\subparagraph{Non-goals}\label{non-goals-4}
+
+\begin{itemize}
+\tightlist
+\item
+  Define the complete registry schemas for every methodology
+\item
+  Define detailed diagram layout rules
+\item
+  Implement the complete correction lifecycle for elements missing from
+  the Base Analysis
+\end{itemize}
+
+\subsubsection{Proposed rewrite for metamodel
+test}\label{proposed-rewrite-for-metamodel-test-4}
+
+\paragraph{Proposed: MR-0005 - Analisi governate e
+ripetibili}\label{proposed-mr-0005---analisi-governate-e-ripetibili}
+
+\subparagraph{Intent}\label{intent-9}
+
+Consentire di applicare analisi differenti allo stesso progetto
+mantenendo espliciti il giudizio esperto, la provenienza dei risultati e
+le parti che possono essere ripetute deterministicamente.
+
+\subparagraph{Context}\label{context-9}
+
+Uno stesso progetto puo essere osservato con paradigmi e metodi
+differenti. ThreatForge deve permettere queste interpretazioni senza
+alterare implicitamente i fatti comuni del progetto e senza confondere
+risultati metodologici con conoscenza di base.
+
+\subparagraph{Stakeholders}\label{stakeholders-4}
+
+\begin{itemize}
+\tightlist
+\item
+  analisti
+\item
+  reviewer
+\item
+  responsabili di progetto
+\item
+  specialisti delle discipline di analisi
+\item
+  utenti che confrontano o rieseguono analisi
+\end{itemize}
+
+\subparagraph{Objective}\label{objective-4}
+
+\begin{itemize}
+\tightlist
+\item
+  Governare analisi metodologicamente differenti sopra una base comune
+  del progetto.
+\item
+  Rendere tracciabili le interpretazioni e i risultati prodotti da
+  ciascuna analisi.
+\item
+  Permettere di ripetere in modo deterministico le trasformazioni che
+  non richiedono nuovo giudizio esperto.
+\end{itemize}
+
+\subparagraph{Scope (candidate semantics under
+test)}\label{scope-candidate-semantics-under-test-4}
+
+\begin{itemize}
+\tightlist
+\item
+  ciclo comune delle analisi e loro tracciabilita
+\item
+  separazione tra conoscenza comune, interpretazione metodologica e
+  risultati derivati
+\end{itemize}
+
+\subsubsection{What moved down}\label{what-moved-down-4}
+
+DFD, renderer, method taxonomies, plugin specifics and exact registry
+shapes are lower-level analysis/model decisions, not MR obligations.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\end{document}

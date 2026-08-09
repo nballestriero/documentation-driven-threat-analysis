@@ -1,0 +1,499 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  10pt,
+  a4paper,
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=22mm]{geometry}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+\babelprovide[main,import]{italian}
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdflang={it},
+  colorlinks=true,
+  linkcolor={Maroon},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+{
+\hypersetup{linkcolor=}
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\section{DDTA - Working Metamodel - Macro
+Requirement}\label{ddta---working-metamodel---macro-requirement}
+
+\begin{quote}
+\textbf{NON CANONICAL WORKING DRAFT}
+
+This file defines the general document metamodel. ThreatForge-specific
+observations are excluded and belong to the case-study material.
+\end{quote}
+
+\subsection{1. Scope}\label{scope}
+
+The metamodel describes the knowledge of a governed project before
+deciding its concrete Doc-as-Code serialization and before deciding how
+a software engine validates or assists authoring.
+
+The governed product remains documentation-as-code: versionable,
+diffable, reviewable files (for example YAML registries and Markdown
+bodies). A software tool may apply and verify the metamodel, but it is
+not the subject described by the project's documents.
+
+\subsubsection{Layer separation}\label{layer-separation}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Domain metamodel} - meaning of documents, entities and
+  relations.
+\item
+  \textbf{Doc-as-Code representation} - how that meaning is serialized
+  in files.
+\item
+  \textbf{Engine} - how tools load, validate, correlate, project and
+  assist those files.
+\end{enumerate}
+
+\subsection{2. Principles already fixed}\label{principles-already-fixed}
+
+\subsubsection{Principle 1 - Progressive specialization and semantic
+containment}\label{principle-1---progressive-specialization-and-semantic-containment}
+
+Governed project knowledge is represented as a hierarchy of
+progressively specialized governed documents. A Macro Requirement
+establishes a macro-level subject and purpose; Decisions narrow that
+subject through explicit choices; Functional Requirements translate
+those choices into independently verifiable obligations; Specialized
+Requirements add domain-specific constraints to one Functional
+Requirement.
+
+Hierarchical parentage represents semantic containment and remains
+distinct from non-hierarchical traceability, evidence and provenance
+relations.
+
+\subsubsection{Principle 2 - Identity independent from textual
+encoding}\label{principle-2---identity-independent-from-textual-encoding}
+
+Every governed entity has a stable identity independent from the textual
+encoding of that identity. Hierarchy is established by explicit semantic
+relationships. Composite identifier formats may mirror ancestry but must
+not be the authoritative source of topology.
+
+\subsection{3. Progressive disclosure by
+competence}\label{progressive-disclosure-by-competence}
+
+The hierarchy increases both specificity and the amount of vertical
+competence required from the reader.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Macro Requirement} - understandable by stakeholders who
+  understand the project domain, including non-software stakeholders.
+\item
+  \textbf{Decision} - requires more knowledge of the solution space and
+  project choices.
+\item
+  \textbf{Functional Requirement} - precise, testable project behaviour
+  or outcome.
+\item
+  \textbf{Specialized Requirement} - vertical competence such as
+  governance, security, quality or another project-specific discipline.
+\item
+  \textbf{Analysis models and methodology-specific records} - specialist
+  analytical concepts introduced only when needed.
+\end{itemize}
+
+\subsubsection{Executive-map criterion}\label{executive-map-criterion}
+
+Reading only the \textbf{title and Intent} of all Macro Requirements of
+a governed project must produce a recognizable summary of:
+
+\begin{itemize}
+\tightlist
+\item
+  what the project is trying to realize;
+\item
+  what general value it produces;
+\item
+  why its main blocks of work exist.
+\end{itemize}
+
+This criterion applies to the \textbf{governed project}, not to the tool
+used to govern it.
+
+\subsection{4. Domain vocabulary versus metamodel
+vocabulary}\label{domain-vocabulary-versus-metamodel-vocabulary}
+
+The metamodel must not ban technical words merely because they are
+technical.
+
+A term belongs in an MR when it is part of the \textbf{application
+domain} and is reasonably understandable to the stakeholders of that
+domain. For example, a cryptography project may naturally use security
+terminology; a medical imaging project may naturally use imaging
+terminology; a facial-recognition access project may naturally use terms
+such as facial recognition, biometric data or ML model.
+
+What the MR must not be forced to contain are technical concepts
+introduced \textbf{only because the documentation model or an analysis
+method expects them}, such as:
+
+\begin{itemize}
+\tightlist
+\item
+  component inventories;
+\item
+  data-flow decompositions;
+\item
+  trust boundaries;
+\item
+  protocol details;
+\item
+  attack-surface classifications;
+\item
+  STRIDE/LINDDUN categories;
+\item
+  method-specific threat or privacy taxonomies.
+\end{itemize}
+
+Those concepts normally emerge later, when Decisions, Requirements, Base
+Analysis or methodology-specific analysis require them.
+
+\subsection{5. Macro Requirement
+definition}\label{macro-requirement-definition}
+
+A Macro Requirement identifies one major project concern or
+macro-capability. It explains why that concern matters, who is affected,
+and the general result the project seeks at that level.
+
+It is the root document type of the governed-document hierarchy.
+
+\subsubsection{Fundamental question}\label{fundamental-question}
+
+\begin{quote}
+\textbf{Which major project concern or result are we governing, why does
+it matter, and who is involved?}
+\end{quote}
+
+\subsection{6. Candidate information
+model}\label{candidate-information-model}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Concept
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+State
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Purpose
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{id} & required & stable identity, history and traceability \\
+\texttt{title} & required & concise name understandable within the
+project domain \\
+\texttt{lifecycle} & required & current/historical state of the
+document \\
+\texttt{intent} & required & concise explanation of why the MR exists
+and why it matters \\
+\texttt{context} & required & minimum background needed to understand
+the concern \\
+\texttt{stakeholders} & required & people/groups that benefit, use,
+govern or are affected \\
+\texttt{objective} & candidate required & macro result sought; not a
+list of atomic obligations \\
+\texttt{scope} & open semantic decision & boundary of the macro concern;
+exact form still under study \\
+\texttt{assumptions} & optional & facts accepted as true that materially
+affect the whole MR \\
+\texttt{constraints} & optional & limits that materially constrain the
+whole MR \\
+\texttt{non\_goals} & open semantic decision & plausible expectations
+deliberately outside the MR, if useful \\
+\end{longtable}
+
+\subsubsection{Concision}\label{concision}
+
+A Macro Requirement must be effective rather than verbose. It should not
+become a checklist of implementation rules.
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{title}: short noun phrase or short descriptive title;
+\item
+  \texttt{intent}: normally 1-2 sentences;
+\item
+  \texttt{context}: only the background needed to interpret the MR;
+\item
+  \texttt{stakeholders}: macro stakeholder roles, not a technical
+  inventory;
+\item
+  \texttt{objective}: normally a small number of high-level results;
+\item
+  assumptions/constraints: only if they affect the whole branch below
+  the MR.
+\end{itemize}
+
+\subsection{7. Decisions already closed}\label{decisions-already-closed}
+
+\subsubsection{\texorpdfstring{7.1 Objective is not a list of
+\texttt{must}}{7.1 Objective is not a list of must}}\label{objective-is-not-a-list-of-must}
+
+The MR does not own atomic, independently verifiable obligations. Those
+belong to Requirements. \texttt{Objective} describes a macro result, not
+a long normative checklist.
+
+\subsubsection{7.2 Stakeholders are semantically
+required}\label{stakeholders-are-semantically-required}
+
+The MR must identify the stakeholder groups relevant to its macro
+concern. Their names may be technical when that is normal domain
+language, but they should be meaningful to the project community rather
+than internal implementation labels.
+
+\subsubsection{7.3 Assumptions and Constraints are
+distinct}\label{assumptions-and-constraints-are-distinct}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Assumption}: something currently treated as true for the
+  branch of work.
+\item
+  \textbf{Constraint}: a limit within which the branch must operate.
+\end{itemize}
+
+Both are optional and belong in the MR only when they materially
+influence the whole branch below it.
+
+\subsubsection{7.4 Parent and children}\label{parent-and-children}
+
+\texttt{MacroRequirement.parent\ =\ null}.
+
+A Macro Requirement may own \texttt{0..*} Decisions. The child
+collection is derived from
+\texttt{Decision.parent\ -\textgreater{}\ MacroRequirement}; it is not a
+second topology authority.
+
+\subsubsection{7.5 Cross-MR dependency}\label{cross-mr-dependency}
+
+A Macro Requirement may have a non-hierarchical
+\texttt{dependsOn\ -\textgreater{}\ MacroRequirement\ {[}0..*{]}}
+relation when another macro concern is a genuine dependency. The exact
+Doc-as-Code serialization is deferred.
+
+\subsubsection{7.6 No Acceptance Criteria at MR
+level}\label{no-acceptance-criteria-at-mr-level}
+
+The MR does not contain atomic acceptance criteria. Evidence of
+satisfaction emerges from its descendant Requirements and their
+verification evidence.
+
+\subsubsection{7.7 Progressive
+technicality}\label{progressive-technicality}
+
+The MR should be understandable by stakeholders competent in the
+\textbf{project domain} without requiring them to understand
+implementation decomposition or analysis methodology. More specialized
+technical knowledge is introduced as documentation descends.
+
+\subsubsection{7.8 Technical and analytical decomposition normally
+emerges
+later}\label{technical-and-analytical-decomposition-normally-emerges-later}
+
+The MR must not be structurally required to enumerate components,
+services, APIs, data flows, trust boundaries, attack surfaces or threat
+categories. Those normally emerge at lower documentation or analysis
+levels.
+
+This does \textbf{not} prohibit domain-specific terminology in an MR.
+
+\subsection{8. MR invariants}\label{mr-invariants}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Root hierarchy} - MR has no parent.
+\item
+  \textbf{Stable identity} - identity is distinct from its textual
+  encoding.
+\item
+  \textbf{Single macro concern} - the MR expresses one coherent macro
+  responsibility.
+\item
+  \textbf{Child containment} - descendants progressively narrow the MR
+  rather than introduce unrelated scope.
+\item
+  \textbf{No implementation choice} - choices of solution belong to
+  Decision unless they are intrinsic to the project domain itself.
+\item
+  \textbf{No requirement-level obligation} - atomic testable obligations
+  belong to Requirements.
+\item
+  \textbf{Broad audience within the domain} - title and Intent can be
+  understood by non-software stakeholders who understand the project
+  domain.
+\item
+  \textbf{Project-map usefulness} - titles + Intent of all MR summarize
+  the project and its major work blocks.
+\item
+  \textbf{Explicit dependencies} - cross-MR dependencies are not hidden
+  as pseudo-hierarchy.
+\item
+  \textbf{Analysis enabling, method agnostic} - MR provides project
+  knowledge but does not prescribe a threat-analysis paradigm.
+\item
+  \textbf{Architecture resilience} - changing a lower-level architecture
+  choice should not normally force the MR to be rewritten if the macro
+  project concern has not changed.
+\end{enumerate}
+
+\subsection{9. Semantic decisions still
+open}\label{semantic-decisions-still-open}
+
+These points must be tested with concrete examples before the MR model
+is frozen:
+
+\subsubsection{9.1 Intent versus
+Objective}\label{intent-versus-objective}
+
+We need examples to determine whether both concepts add distinct
+information or whether they create unnecessary duplication.
+
+Candidate distinction:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{Intent} - why this MR exists / why it matters;
+\item
+  \texttt{Objective} - what macro result we want to obtain.
+\end{itemize}
+
+This distinction is \textbf{not yet frozen}.
+
+\subsubsection{9.2 Meaning and shape of
+Scope}\label{meaning-and-shape-of-scope}
+
+We need examples to determine what \texttt{scope} should actually
+express and whether \texttt{included}, \texttt{excluded} and
+\texttt{non\_goals} are all necessary or partly redundant.
+
+The goal is not to create three places that repeat the same boundary in
+different words.
+
+\subsubsection{9.3 When to split one MR into multiple
+MRs}\label{when-to-split-one-mr-into-multiple-mrs}
+
+A candidate rule is that an MR should be split when it contains multiple
+independent macro objectives, substantially different stakeholder
+concerns, or Decisions that do not share a coherent Intent. This must be
+tested against examples before becoming an invariant.
+
+\subsection{10. Doc-as-Code mapping deliberately
+deferred}\label{doc-as-code-mapping-deliberately-deferred}
+
+The following remain representation questions, not domain-model
+decisions:
+
+\begin{itemize}
+\tightlist
+\item
+  where each MR concept lives between registry and Markdown body;
+\item
+  whether \texttt{parent\ =\ null} is serialized or implicit;
+\item
+  concrete representation of stakeholders, assumptions and constraints;
+\item
+  prose versus list representation of Objective;
+\item
+  concrete representation of \texttt{dependsOn};
+\item
+  final Markdown heading names;
+\item
+  deterministic checks that can enforce the semantic contract without
+  pretending to validate human meaning.
+\end{itemize}
+
+\textbf{STOP:} Decision is not modeled in this document yet.
+
+\end{document}
