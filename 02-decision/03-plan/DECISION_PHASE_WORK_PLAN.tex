@@ -1,0 +1,463 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  10pt,
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=22mm]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{DDTA Decision phase - work
+plan}\label{ddta-decision-phase---work-plan}
+
+\textbf{Non-canonical research plan - checkpoint before facial-access
+Decisions}
+
+\subsection{Checkpoint purpose}\label{checkpoint-purpose}
+
+This file freezes the intended experimental sequence before authoring
+any Decision for the independent facial-access / controlled-access demo.
+
+Expected local repository baseline for applying this checkpoint: commit
+\texttt{2db7604}
+(\texttt{research:\ add\ MR\ teachability\ and\ pre-close\ projection\ study}).
+The full 40-character SHA was not captured in the prior transcript, so
+application commands verify the short HEAD before extraction.
+
+The current Decision construction candidate was built from the
+ThreatForge MR-0001 + MR-0002 historical ADR corpus only. The
+independent facial-access Decisions have not yet been written, and
+ThreatForge MR-0003, MR-0004 and MR-0005 remain untouched sequential
+holdouts.
+
+\subsection{Current frozen construction-candidate
+baseline}\label{current-frozen-construction-candidate-baseline}
+
+The Decision-specific core is closed for the construction candidate:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Decision}
+\NormalTok{|{-} title}
+\NormalTok{|{-} context}
+\NormalTok{|{-} decision}
+\NormalTok{\textasciigrave{}{-} consequences}
+\end{Highlighting}
+\end{Shaded}
+
+All four fields are semantically required and non-null. Parentage to one
+Macro Requirement is an explicit semantic relation. Lifecycle/status and
+serialization storage remain separate concerns.
+
+The following construction conclusions are also frozen unless a concrete
+independent counterexample reopens them:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Context is decision-local rather than a repetition of the parent MR.
+\item
+  One Decision expresses one coherent chosen position.
+\item
+  Consequences expose material effects/trade-offs of the choice.
+\item
+  Non-goals is not a Decision-core patch field; misleading Context +
+  Decision must be rewritten.
+\item
+  Separate mandatory \texttt{rationale} and embedded
+  \texttt{alternatives} are not currently justified.
+\item
+  DDTA/metamodel, governed project, ThreatForge tool and ThreatForge
+  project operations have distinct semantic ownership.
+\item
+  A ThreatForge ADR may decide how the tool supports general semantics,
+  but must not silently define those general semantics.
+\item
+  Cross-document persistence problems are not solved with topic-specific
+  Decision fields.
+\end{enumerate}
+
+Cross-cutting representation decisions are also frozen for this
+construction candidate:
+
+\begin{itemize}
+\tightlist
+\item
+  complete canonical field shape;
+\item
+  explicit field-specific nullability / canonical empty values;
+\item
+  semantic/representation separation;
+\item
+  executable projections derived from one governed canonical document
+  model.
+\end{itemize}
+
+\subsection{Experimental discipline}\label{experimental-discipline}
+
+The next phases must preserve evidence independence.
+
+\begin{itemize}
+\tightlist
+\item
+  Do not use ThreatForge MR-0003/MR-0004/MR-0005 while authoring the
+  facial-access Decisions.
+\item
+  Do not refactor or rewrite ThreatForge implementation or canonical
+  project documents during this conceptual study.
+\item
+  Do not define Requirement semantics merely to make the Decision model
+  easier to validate.
+\item
+  Do not introduce lifecycle/status mechanics during the Decision
+  semantic test.
+\item
+  Do not add fields to Decision merely because one case needs persistent
+  applicability, vocabulary, patterns, traceability or another
+  cross-cutting concern.
+\item
+  Technical/domain vocabulary is allowed when intrinsic to the actual
+  choice; premature metamodel vocabulary must not become project
+  semantics.
+\item
+  Every change to the construction candidate after this checkpoint
+  requires a concrete counterexample and an explicit regression over all
+  previously used cases.
+\end{itemize}
+
+\subsection{Phase D1 - author independent facial-access
+Decisions}\label{phase-d1---author-independent-facial-access-decisions}
+
+Use the four already-studied Macro Requirements of the independent
+facial-access / controlled-access example:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  MR-0001 - Accesso controllato all'area riservata
+\item
+  MR-0002 - Gestione delle persone autorizzate
+\item
+  MR-0003 - Riconoscimento facciale per la verifica della persona
+\item
+  MR-0004 - Uso responsabile dei dati biometrici e delle decisioni
+  automatiche
+\end{enumerate}
+
+Author a deliberately small but varied Decision corpus, approximately
+6-8 Decisions across the four MRs.
+
+Authoring constraints:
+
+\begin{itemize}
+\tightlist
+\item
+  use only \texttt{Title}, \texttt{Context}, \texttt{Decision},
+  \texttt{Consequences} for Decision-specific semantics;
+\item
+  write each field explicitly; no optional-by-omission representation;
+\item
+  avoid Requirement-level independently checkable detail unless that
+  precision is intrinsic to the choice itself;
+\item
+  avoid premature architecture (camera topology, protocols, databases,
+  thresholds, APIs, deployment) unless the Decision genuinely chooses
+  it;
+\item
+  include at least one non-software / policy-or-method Decision so the
+  model is not validated only on architecture choices;
+\item
+  keep the corpus independent from the historical ThreatForge wording.
+\end{itemize}
+
+Deliverable: a readable demo document containing the candidate
+facial-access Decisions, without changing the Decision metamodel during
+initial authoring.
+
+\subsection{Phase D2 - analyze the facial-access Decisions against the
+frozen
+candidate}\label{phase-d2---analyze-the-facial-access-decisions-against-the-frozen-candidate}
+
+Analyze each new Decision using the same tests:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  parent/MR narrowing;
+\item
+  decision-local Context;
+\item
+  explicit coherent choice;
+\item
+  consequence awareness;
+\item
+  semantic-owner correctness;
+\item
+  Decision-vs-downstream boundary;
+\item
+  no semantic patching;
+\item
+  model/tool independence;
+\item
+  survivability challenge without ad-hoc fields;
+\item
+  compatibility with complete-shape / derived executable representation.
+\end{enumerate}
+
+For every Decision produce one of two outcomes:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fits construction candidate}
+
+\NormalTok{or}
+
+\NormalTok{counterexample {-}\textgreater{} candidate correction required}
+\end{Highlighting}
+\end{Shaded}
+
+A counterexample must state exactly which closed rule fails and why the
+information cannot be represented without loss or distortion.
+
+\subsection{Phase D3 - regression and Decision candidate
+closure}\label{phase-d3---regression-and-decision-candidate-closure}
+
+If D2 exposes a counterexample:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  revise only the minimum affected rule;
+\item
+  record the evidence that caused the revision;
+\item
+  rerun the affected facial-access cases;
+\item
+  rerun all 16 ThreatForge construction ADRs against the corrected
+  model.
+\end{enumerate}
+
+If no unresolved counterexample remains, mark the Decision model as
+\textbf{candidate closed after independent example validation}.
+
+This does not yet establish universal validity; it authorizes the
+sequential holdout phase.
+
+\subsection{Phase D4 - ThreatForge MR-0003
+holdout}\label{phase-d4---threatforge-mr-0003-holdout}
+
+Read and analyze MR-0003 Decisions for the first time as holdout
+evidence.
+
+\begin{itemize}
+\tightlist
+\item
+  Do not rewrite the model pre-emptively.
+\item
+  Classify every mismatch as historical ADR defect, ownership/conflation
+  defect, downstream leakage, or genuine metamodel counterexample.
+\item
+  Modify the model only for the last category.
+\item
+  If modified, regress ThreatForge MR-0001/MR-0002 plus the
+  facial-access corpus before continuing.
+\end{itemize}
+
+\subsection{Phase D5 - ThreatForge MR-0004
+holdout}\label{phase-d5---threatforge-mr-0004-holdout}
+
+Repeat the same procedure using MR-0004 only after MR-0003 is resolved.
+Any model modification requires regression on all earlier evidence.
+
+\subsection{Phase D6 - ThreatForge MR-0005
+holdout}\label{phase-d6---threatforge-mr-0005-holdout}
+
+Repeat the same procedure using MR-0005 only after MR-0004 is resolved.
+This is the final Decision holdout in the planned sequence.
+
+\subsection{Phase D7 - Decision-phase
+synthesis}\label{phase-d7---decision-phase-synthesis}
+
+After all three holdouts:
+
+\begin{itemize}
+\tightlist
+\item
+  state the final Decision semantic model and invariants supported by
+  the evidence;
+\item
+  separate stable general rules from ThreatForge case-study lessons;
+\item
+  record remaining cross-document constraints that cannot be solved at
+  Decision level;
+\item
+  preserve the complete-shape / semantic-representation /
+  executable-projection decisions for reuse by later document models;
+\item
+  update authoring guidance and anti-patterns only after the final
+  synthesis.
+\end{itemize}
+
+\subsection{Phase R1 - move to Requirement
+semantics}\label{phase-r1---move-to-requirement-semantics}
+
+Only after Decision-phase synthesis, begin the next-level Requirement
+study.
+
+Priority questions already carried forward:
+
+\begin{itemize}
+\tightlist
+\item
+  what makes an obligation independently checkable without reducing
+  every Requirement to one implementation file;
+\item
+  how pervasive/cross-cutting obligations are represented and covered;
+\item
+  how persistent Decisions retain downstream effect without
+  inheritance-by-copy;
+\item
+  how single-source governed knowledge and effective governed context
+  are represented;
+\item
+  how humans, tools and LLMs recover applicable context without relying
+  on memory;
+\item
+  how Requirement semantics map into complete canonical representations
+  and executable projections.
+\end{itemize}
+
+\subsection{Deferred beyond the current
+plan}\label{deferred-beyond-the-current-plan}
+
+\begin{itemize}
+\tightlist
+\item
+  lifecycle/status transitions and historical governance;
+\item
+  concrete YAML/Markdown serialization;
+\item
+  ThreatForge refactoring/migration;
+\item
+  production plugin/runtime changes;
+\item
+  methodology-neutrality verdict;
+\item
+  STRIDE/LINDDUN comparison or implementation.
+\end{itemize}
+
+\subsection{Commit discipline}\label{commit-discipline}
+
+This checkpoint should be committed \textbf{before} authoring the
+facial-access Decision corpus. Later empirical phases should use
+separate commits/checkpoints so that the evidence sequence remains
+reconstructable:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{checkpoint: Decision construction candidate + plan}
+\NormalTok{    {-}\textgreater{} facial{-}access Decision authoring}
+\NormalTok{    {-}\textgreater{} facial{-}access analysis / possible regression}
+\NormalTok{    {-}\textgreater{} MR{-}0003 holdout}
+\NormalTok{    {-}\textgreater{} MR{-}0004 holdout}
+\NormalTok{    {-}\textgreater{} MR{-}0005 holdout}
+\NormalTok{    {-}\textgreater{} Decision synthesis}
+\end{Highlighting}
+\end{Shaded}
+
+The purpose is methodological traceability: later revisions should make
+it possible to identify which evidence changed which part of the model.
+
+\end{document}
