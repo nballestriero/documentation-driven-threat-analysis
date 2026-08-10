@@ -2,21 +2,23 @@
 
 > Non-canonical model-validation example.
 >
-> The example intentionally includes ML and biometric concepts because they belong to the application domain. It intentionally does **not** decide whether the camera, recognition logic and turnstile are connected through a PC, LAN, edge device or another architecture.
+> The example intentionally includes ML and biometric concepts because they belong to the application domain. The Macro Requirements remain independent from lower-level architecture choices such as inference placement, device interconnection and command protocols; those choices belong to later Decisions.
+>
+> For comparability with the current ThreatForge project-model convention, this example uses textual identifiers `MR-0001` through `MR-0004`. The general metamodel still treats the concrete ID encoding as a deferred Doc-as-Code representation decision.
 
 ## Project summary
 
 The project controls access to a reserved physical area. A camera observes a person at the access point, facial recognition is used to determine whether the person corresponds to an authorized identity, and access is granted by opening a turnstile when the project's access conditions are satisfied.
 
-The architecture is deliberately unresolved. Possible implementations include inference on a camera, on an edge computer, on a local PC or another local service. The MR set should remain valid across those alternatives.
+The MR set describes stable project concerns rather than the progress of architectural design. Placement of ML inference, network topology, device protocols and similar solution choices are therefore omitted from the MR bodies and can be governed later through Decisions and Requirements.
 
-## MR-EX-001 - Accesso controllato all'area riservata
+## MR-0001 - Accesso controllato all'area riservata
 
 ### Intent
 Consentire alle persone autorizzate di accedere a un'area riservata in modo rapido e controllato, evitando che il varco si apra automaticamente quando l'autorizzazione non e stata confermata.
 
 ### Context
-L'area e protetta da un tornello. Il progetto usa il riconoscimento del volto come parte della decisione che precede l'apertura automatica del varco. Le modalita tecniche con cui telecamera, riconoscimento e tornello cooperano non sono ancora decise.
+L'area e protetta da un tornello. Il progetto usa il riconoscimento del volto come parte della decisione che precede l'apertura automatica del varco.
 
 ### Stakeholders
 - persone autorizzate;
@@ -33,10 +35,10 @@ L'area e protetta da un tornello. Il progetto usa il riconoscimento del volto co
 - l'esperienza macro della persona al punto di accesso.
 
 ### DependsOn
-- `MR-EX-002` Gestione delle persone autorizzate.
-- `MR-EX-003` Riconoscimento facciale per la verifica della persona.
+- `MR-0002` Gestione delle persone autorizzate.
+- `MR-0003` Riconoscimento facciale per la verifica della persona.
 
-## MR-EX-002 - Gestione delle persone autorizzate
+## MR-0002 - Gestione delle persone autorizzate
 
 ### Intent
 Consentire all'organizzazione di stabilire chi puo accedere all'area riservata e di mantenere aggiornata nel tempo l'associazione tra persona, autorizzazione e informazioni necessarie al riconoscimento.
@@ -58,13 +60,13 @@ Le autorizzazioni cambiano nel tempo: una persona puo essere abilitata, sospesa 
 - inserimento, aggiornamento, sospensione e revoca delle autorizzazioni;
 - associazione tra identita autorizzata e informazioni utilizzate per riconoscerla.
 
-## MR-EX-003 - Riconoscimento facciale per la verifica della persona
+## MR-0003 - Riconoscimento facciale per la verifica della persona
 
 ### Intent
 Determinare se il volto osservato al punto di accesso corrisponde a una persona autorizzata con qualita sufficiente per supportare la decisione di accesso.
 
 ### Context
-Il progetto utilizza una telecamera e un modello di machine learning per il riconoscimento facciale. Il modello puo richiedere immagini o sequenze video adeguate e puo produrre risultati incerti o errati. Dove venga eseguita l'inferenza e come i dispositivi comunichino sono decisioni architetturali successive.
+Il progetto utilizza una telecamera e un modello di machine learning per il riconoscimento facciale. Il modello puo richiedere immagini o sequenze video adeguate e puo produrre risultati incerti o errati.
 
 ### Stakeholders
 - persone che si presentano al varco;
@@ -85,13 +87,13 @@ Il progetto utilizza una telecamera e un modello di machine learning per il rico
 ### Assumptions
 - il riconoscimento facciale e una capacita prevista dal progetto, non una tecnica scelta solo per una metodologia di analisi.
 
-## MR-EX-004 - Uso responsabile dei dati biometrici e delle decisioni automatiche
+## MR-0004 - Uso responsabile dei dati biometrici e delle decisioni automatiche
 
 ### Intent
 Proteggere le persone coinvolte nell'uso del riconoscimento facciale assicurando che dati biometrici e decisioni automatiche siano trattati in modo comprensibile, controllabile e coerente con le finalita di accesso del progetto.
 
 ### Context
-Il riconoscimento facciale utilizza informazioni biometriche e puo produrre errori che incidono sull'accesso fisico di una persona. Questi aspetti fanno parte del dominio e del valore del progetto, indipendentemente dalla metodologia di privacy o sicurezza che verra eventualmente applicata in analisi successive.
+Il riconoscimento facciale utilizza informazioni biometriche e puo produrre errori che incidono sull'accesso fisico di una persona. Questi aspetti fanno parte del dominio e del valore del progetto indipendentemente dalla metodologia di analisi che potra essere applicata.
 
 ### Stakeholders
 - persone i cui dati biometrici sono trattati;
@@ -110,20 +112,37 @@ Il riconoscimento facciale utilizza informazioni biometriche e puo produrre erro
 
 ## Why there is no separate MR for PC/LAN/edge architecture
 
-`PC`, `LAN`, inference on the camera, inference on an edge computer and the protocol used to command the turnstile are not independent project macro-concerns in the current problem statement. They are candidate **Decisions** below the relevant MR branches.
+`PC`, `LAN`, inference on the camera, inference on an edge computer and the protocol used to command the turnstile are solution choices rather than independent project macro-concerns in this example. They are candidate **Decisions** below the relevant MR branches.
 
-If a future requirement makes, for example, "offline local operation without external connectivity" a project-wide outcome understood and valued by stakeholders, the documentation may need a different MR structure. That is exactly the kind of case the future MR-splitting rule must handle.
+A different MR structure would be justified only if a property that currently looks architectural became an independently valued project outcome with its own stakeholder meaning. For example, a project-wide requirement for autonomous operation without external connectivity could reveal a distinct macro concern. This is a test for the MR boundary, not temporary status text to place inside an MR.
 
 ## Candidate split test: ML model lifecycle
 
-At present, model training, deployment, threshold selection and model update are treated as lower-level concerns of `MR-EX-003` because they all serve the single macro intent of facial recognition at the access point.
+In this example, model training, deployment, threshold selection and model update are treated as lower-level concerns of `MR-0003` because they serve the single macro intent of facial recognition at the access point.
 
-A separate MR for **ML model lifecycle** would become justified only if the project explicitly treats model production/governance as an independent macro capability with its own stakeholders, objectives and Decisions (for example, if the product itself includes a reusable organizational ML model-management service).
+A separate MR for **ML model lifecycle** would be justified only if the project treats model production/governance as an independent macro capability with its own stakeholders, objectives and Decisions (for example, if the product itself includes a reusable organizational ML model-management service).
+
+## Observation for the future analysis metamodel
+
+This example exposes an important distinction that should be preserved for the later analysis-model study rather than encoded into the MR structure itself.
+
+Different parts or concerns of one governed project may benefit from different analysis paradigms:
+
+- `MR-0003` is a natural candidate for later analysis with an AI/ML-oriented threat-analysis method such as STRIDE-AI, because the project concern includes an ML-based recognition capability and model-specific failure or abuse questions may become relevant;
+- `MR-0004` is a natural candidate for a privacy-oriented analysis because it concerns biometric data and effects on people. Privacy-specific analysis is outside the thesis implementation scope, but the example demonstrates why a general governance model should not assume that one analysis methodology covers every relevant concern equally well.
+
+The working lesson is **not** that an MR owns one methodology. The lesson is that later analysis should be able to select a method for an explicit analysis scope or set of governed subjects. Different methods may therefore analyze different, overlapping or complementary parts of the same project.
+
+Their outputs must still converge into one governed project/documentation lifecycle: findings, documentation gaps, proposed requirements and other feedback should remain traceable to the same governed project knowledge and return through common review and documentation-evolution mechanisms.
+
+This observation is intentionally deferred to the future analysis metamodel. It must not be used to add STRIDE-AI, privacy or other method-specific fields to Macro Requirements.
 
 ## What this example tests
 
 1. Domain-specific technical terms can appear in MR when they are natural to the project stakeholders.
-2. Architecture-specific terms can remain undecided without weakening the MR set.
+2. Lower-level architecture choices are omitted from MR bodies rather than described through temporary statements such as "not yet decided".
 3. ML can be represented at MR level without introducing a threat-analysis or privacy-analysis methodology.
 4. Cross-MR dependencies can express collaboration without creating a false hierarchy between independent macro concerns.
-5. Intent/Objective and Scope remain under evaluation: this example should be used to detect duplication before those concepts are frozen.
+5. A single project can expose concerns suited to different later analysis paradigms without partitioning the MR model by methodology.
+6. Results from different analyses should ultimately return to one governed project/documentation lifecycle; the detailed mechanism remains a future analysis-metamodel question.
+7. Intent/Objective and Scope remain under evaluation: this example should be used to detect duplication before those concepts are frozen.

@@ -1,6 +1,8 @@
 # ThreatForge MR comparison - current vs proposed
 
-> Non-canonical case study. Baseline for current documents: `cae0f7b6b37f430ac4e857aabf6ef9f87c89dbb1`.
+> Non-canonical case study. Baseline for current documents is the pinned ThreatForge product-semantic commit below.
+>
+> `cae0f7b6b37f430ac4e857aabf6ef9f87c89dbb1`
 
 The purpose is to test the general MR metamodel against a real project and to collect refactoring/authoring evidence. The proposed rewrites are **not canonical ThreatForge changes**.
 
@@ -264,9 +266,66 @@ Le analisi hanno bisogno di una rappresentazione coerente di cio che il progetto
 - conoscenza del progetto necessaria a costruire una base comune per analisi
 - provenienza e aggiornamento della conoscenza analitica comune
 
-### What moved down
+### What moved down in the first reformulation
 
 BAE fields, precise provenance rules, topology/data-flow projection, STRIDE exclusions and editor integration move below MR.
+
+### Second reformulation after ADR-family review
+
+#### Current candidate: MR-0003 - Governed representation of the system
+
+##### Intent
+
+Make the system described by the project understandable through explicit, traceable and maintainable project knowledge, so that people and downstream activities can rely on a shared representation of what the system is and how that knowledge is justified.
+
+##### Context
+
+Project documentation may describe relevant parts of a system across different documents and at different levels of detail. Some knowledge is stated directly, while other knowledge may need to be reconstructed, clarified or added through review.
+
+Without a governed representation, different readers or downstream activities may interpret the same project differently, create competing identities for the same concepts, lose the origin of important knowledge, or continue relying on information that is no longer current.
+
+##### Stakeholders
+- Project owners and maintainers
+- Architects and developers
+- Reviewers
+- Analysts who consume project knowledge
+- Other stakeholders who need a dependable understanding of the documented system
+
+##### Objective
+
+Provide one coherent and traceable representation of the system described by the project, preserving the distinction between documented knowledge, reviewed additions and later interpretations.
+
+##### Scope
+
+Includes the project knowledge required to identify and understand the relevant parts of the system and their relationships.
+
+Includes the origin, supporting evidence and evolution of that knowledge when these are necessary to determine whether it can still be relied upon.
+
+Includes a governed way to review knowledge that is inferred, reconstructed or found to be incomplete.
+
+Excludes interpretations whose meaning depends on a particular analysis method.
+
+Excludes findings, threats, risk judgments and other conclusions produced by applying an analysis method.
+
+##### Assumptions
+
+Project documentation may be incomplete and may evolve over time.
+
+Some relevant system knowledge may require explicit review before it can be treated as governed project knowledge.
+
+##### Constraints
+
+The governed representation must remain independent from the terminology and classifications of any particular analysis method.
+
+Knowledge introduced through inference or analytical discovery must not become governed project knowledge without explicit review.
+
+### Why the first reformulation was reopened
+
+The first reformulation described MR-0003 mainly through its future use by analysis ("a common base for analysis"). Read beside the first MR-0005 rewrite, this made the two MRs appear almost equivalent.
+
+Before merging them, the historical Decision family was inspected. The MR-0003 Decisions consistently govern a different concern: representation of system knowledge, identity and provenance, continuity of source authority, documentary extraction/review, and the boundary between system facts and methodological interpretation.
+
+The second reformulation therefore expresses the value of MR-0003 independently from its analytical consumer: **what do we know about the system, and why can that knowledge be relied upon?**
 
 ---
 
@@ -430,8 +489,103 @@ Uno stesso progetto puo essere osservato con paradigmi e metodi differenti. Thre
 - ciclo comune delle analisi e loro tracciabilita
 - separazione tra conoscenza comune, interpretazione metodologica e risultati derivati
 
-### What moved down
+### What moved down in the first reformulation
 
 DFD, renderer, method taxonomies, plugin specifics and exact registry shapes are lower-level analysis/model decisions, not MR obligations.
+
+### Second reformulation after ADR-family review
+
+#### Current candidate: MR-0005 - Governed analysis of the system
+
+##### Intent
+
+Enable different analysis methods to examine governed project knowledge and produce reviewable, traceable and repeatable results without changing the underlying description of the system or hiding method-specific interpretation.
+
+##### Context
+
+A governed description of the system provides shared knowledge about what is being developed, but different analysis methods can interpret that knowledge from different perspectives and may require expert judgment.
+
+Without a governed analysis boundary, analytical interpretations may be confused with project facts, results from different methods may become difficult to compare or trace, and conclusions may lose their connection to the project knowledge and requirements that motivated them.
+
+##### Stakeholders
+- Analysts
+- Security and assurance specialists
+- Project owners and maintainers
+- Architects and developers
+- Reviewers responsible for evaluating analysis results
+
+##### Objective
+
+Allow one governed description of a system to support multiple analysis methods while preserving the method used, the analyst's interpretation, the evidence considered and the results produced.
+
+##### Scope
+
+Includes governed applications of analysis methods to project knowledge.
+
+Includes explicit analytical interpretation and expert judgment.
+
+Includes traceability from analysis results to the project knowledge and requirements they concern.
+
+Includes review of analytical results and feedback when analysis reveals missing, ambiguous or inconsistent project knowledge.
+
+Excludes modification of governed project knowledge merely because an analysis method interprets it differently.
+
+Excludes the internal taxonomy, rules or procedure of any specific analysis methodology from the common analysis model.
+
+##### Assumptions
+
+Different analysis methods may interpret the same project knowledge differently.
+
+Some analysis activities require expert judgment and cannot be reduced entirely to deterministic transformation.
+
+##### Constraints
+
+Method-specific interpretation must remain distinguishable from governed project knowledge.
+
+Analysis results must retain enough provenance to identify the method, relevant project knowledge and supporting analytical evidence.
+
+Discoveries about missing or incorrect project knowledge must return through the governed documentation process rather than silently changing canonical project knowledge.
+
+### Why the first reformulation was reopened
+
+The first reformulation described MR-0005 as applying different analyses over a common project base. That was correct but too close to the first MR-0003 rewrite, which had also been framed around enabling analysis.
+
+Inspection of the historical MR-0005 Decisions showed a coherent second concern: expert analysis records, common findings and documentation feedback, methodology-specific extension boundaries, and governed use of accepted findings.
+
+The second reformulation therefore centers MR-0005 on a different question: **what do we learn by analysing the governed system knowledge, and how do we govern that interpretation and its results?**
+
+---
+
+## Lesson learned from MR-0003 versus MR-0005
+
+### Observation
+
+The first rewrites made MR-0003 and MR-0005 look almost duplicative. A merge initially appeared plausible. That conclusion was deliberately suspended and the historical Decision families were inspected before changing the MR decomposition.
+
+### Evidence that preserved the distinction for further testing
+
+- MR-0003 Decisions form a coherent family around **governed system knowledge**: representation, identity/provenance, source continuity, documentary extraction/review and the semantic boundary between facts and method-specific interpretation.
+- MR-0005 Decisions form a coherent family around **governed analytical interpretation and results**: expert analysis records, findings/feedback, methodology extension boundaries and eligibility of accepted results for downstream use.
+- The distinction survives removal of current solution names such as BAE, Analysis Record, Finding, DFD and plugin.
+- A dependency can be described without hierarchy: governed analysis consumes governed system knowledge, but consuming it does not make analysis the same concern as representing it.
+
+### Questions that must be asked before merging or splitting Macro Requirements
+
+1. **Independent value:** does each candidate MR express a project-level result that remains meaningful without describing the other?
+2. **Decision-family coherence:** do the descendant Decisions form distinct, internally coherent families of choices?
+3. **Solution-vocabulary removal:** does the distinction remain after removing names of current components, schemas, models, tools and other chosen mechanisms?
+4. **Input versus result:** is one concern about establishing governed knowledge while another is about interpreting or transforming that knowledge? If so, is that distinction meaningful to the project rather than merely an implementation pipeline?
+5. **Dependency versus containment:** can the relation be expressed as `dependsOn` rather than by merging the concerns or making one a child of the other?
+6. **Stakeholder explanation:** can a stakeholder competent in the project domain explain the difference using title + Intent without knowing the implementation?
+7. **Merge stress test:** if the MRs were merged, would the resulting MR need to explain two substantially different families of Decisions or two different kinds of project value?
+8. **Split stress test:** if they remain separate, is the separation justified by project concerns, or only by the fact that the current architecture has two layers/subsystems?
+
+### Current disposition
+
+**No merge decision is taken.** The current working hypothesis keeps MR-0003 and MR-0005 distinct because the historical Decision families reveal two different semantic concerns. This remains a case-study result, not a universal rule that every project must separate system representation from analysis.
+
+### General lesson for the metamodel
+
+When refactoring an existing governed corpus, similarity between rewritten MR prose is evidence to investigate, not sufficient evidence to merge. The candidate MR boundary must also be tested against the semantic responsibility of its descendant Decisions and against a version of the concern stripped of current solution vocabulary.
 
 ---

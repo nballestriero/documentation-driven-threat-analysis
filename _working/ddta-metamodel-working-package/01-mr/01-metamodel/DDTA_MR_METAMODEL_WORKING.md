@@ -64,7 +64,7 @@ What the MR must not be forced to contain are technical concepts introduced **on
 - STRIDE/LINDDUN categories;
 - method-specific threat or privacy taxonomies.
 
-Those concepts normally emerge later, when Decisions, Requirements, Base Analysis or methodology-specific analysis require them.
+Those concepts normally emerge later, when Decisions, Requirements, a project/system representation or methodology-specific analysis require them.
 
 ## 5. Macro Requirement definition
 
@@ -144,6 +144,14 @@ The MR must not be structurally required to enumerate components, services, APIs
 
 This does **not** prohibit domain-specific terminology in an MR.
 
+### 7.9 MR prose must be stable with respect to design progress
+
+A Macro Requirement describes a durable project concern, not the current progress of solution design. Statements such as `not yet decided`, `currently evaluating`, `will be chosen later` or equivalent design-status prose normally belong to working notes, Decision lifecycle/status or another planning artifact rather than to the MR body.
+
+Use the **temporal-stability test**: if a sentence becomes obsolete merely because a lower-level Decision is taken, while the macro project concern remains unchanged, the sentence should normally not be part of the MR.
+
+This rule does not forbid time-dependent **domain facts**. For example, an authorization may expire or a biometric enrollment may have a lifecycle because those are properties of the application domain. The rule targets temporary authoring/design state, not legitimate temporal semantics of the project.
+
 ## 8. MR invariants
 
 1. **Root hierarchy** - MR has no parent.
@@ -157,6 +165,7 @@ This does **not** prohibit domain-specific terminology in an MR.
 9. **Explicit dependencies** - cross-MR dependencies are not hidden as pseudo-hierarchy.
 10. **Analysis enabling, method agnostic** - MR provides project knowledge but does not prescribe a threat-analysis paradigm.
 11. **Architecture resilience** - changing a lower-level architecture choice should not normally force the MR to be rewritten if the macro project concern has not changed.
+12. **Temporal stability** - taking or revising a lower-level Decision should not make MR prose obsolete unless the macro project concern itself changes.
 
 ## 9. Semantic decisions still open
 
@@ -179,11 +188,42 @@ We need examples to determine what `scope` should actually express and whether `
 
 The goal is not to create three places that repeat the same boundary in different words.
 
-### 9.3 When to split one MR into multiple MRs
+### 9.3 When to split or merge Macro Requirements
 
-A candidate rule is that an MR should be split when it contains multiple independent macro objectives, substantially different stakeholder concerns, or Decisions that do not share a coherent Intent. This must be tested against examples before becoming an invariant.
+MR boundaries must not be decided from wording similarity alone. This is especially important when refactoring an existing governed corpus: two rewritten MRs can sound similar because both were described through the same downstream consumer, while their descendant Decisions still govern different project concerns. Conversely, historical separation is not sufficient evidence to keep two MRs if it only mirrors an implementation split.
 
-## 10. Doc-as-Code mapping deliberately deferred
+Before splitting or merging candidate MRs, test the boundary with these questions:
+
+1. **Independent value** - does each candidate express a project-level result that remains meaningful without describing the other?
+2. **Decision-family coherence** - where an existing corpus already has Decisions, do the descendants of each candidate form distinct and internally coherent families of choices?
+3. **Solution-vocabulary removal** - does the distinction survive after removing names of current components, schemas, tools, analysis representations and other chosen mechanisms?
+4. **Dependency versus containment** - can the relation be expressed more accurately as `dependsOn`, rather than by merging concerns or introducing false hierarchy?
+5. **Stakeholder explanation** - can a stakeholder competent in the project domain explain the difference using title + Intent without knowing the implementation?
+6. **Merge stress test** - would a merged MR need to explain substantially different families of Decisions or different kinds of project value?
+7. **Split stress test** - is the separation justified by project concerns, rather than merely by architectural layers, subsystems or workflow stages?
+
+These are currently **boundary-test heuristics**, not yet frozen deterministic invariants. They must be exercised on multiple project examples.
+
+#### Refactoring rule for existing documentation
+
+When an MR already owns a body of Decisions, reconstruct its macro concern from the semantic responsibility of that Decision family before rewriting the MR. A rewritten MR should explain why those Decisions belong together without merely summarizing their current solution vocabulary.
+
+## 10. Observation deferred to the future analysis metamodel
+
+Concrete MR examples show that different concerns inside the same governed project may later benefit from different analysis paradigms. An ML-based capability may justify AI/ML-oriented threat analysis, while another concern in the same project may justify privacy-oriented analysis or a different specialist method.
+
+This observation does **not** change the MR contract and must not introduce method-specific fields into Macro Requirements. The project hierarchy describes project concerns; analysis methodology is a later concern.
+
+The future analysis metamodel should therefore test whether it can:
+
+1. select an analysis method for an explicit analysis scope or set of governed subjects rather than assigning one methodology to an MR by construction;
+2. allow different methods to analyze different, overlapping or complementary parts of one project;
+3. preserve method-specific interpretation without contaminating project knowledge with methodology vocabulary;
+4. converge findings, documentation gaps, proposed requirements and other feedback into one governed project/documentation lifecycle.
+
+These are **deferred design questions**, not frozen analysis-model decisions. They are recorded here so that the MR model does not accidentally preclude multi-method project analysis.
+
+## 11. Doc-as-Code mapping deliberately deferred
 
 The following remain representation questions, not domain-model decisions:
 
