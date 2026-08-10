@@ -1,0 +1,78 @@
+{
+  "schema_version": 0,
+  "status": "non-canonical-study-projection",
+  "projection_kind": "macro_project_teachability_map",
+  "projection_id": "MR-MAP-THREATFORGE",
+  "source": "ThreatForge final MR candidate intents plus historical MR/ADR-family evidence",
+  "nodes": [
+    {
+      "id": "MR-0001",
+      "title": "Documentazione di progetto governata e tracciabile",
+      "intent": "Consentire a persone e strumenti di comprendere, mantenere e verificare le conoscenze che guidano un progetto attraverso documentazione versionata, coerente e tracciabile, mantenendo espliciti i collegamenti tra intenzioni, decisioni, requisiti ed evidenze."
+    },
+    {
+      "id": "MR-0002",
+      "title": "Sviluppo tracciabile dai requisiti",
+      "intent": "Consentire al lavoro di implementazione di partire da requisiti governati e di mantenere chiaro, durante l'evoluzione del progetto, che cosa viene realizzato, perche e con quali evidenze viene verificato."
+    },
+    {
+      "id": "MR-0003",
+      "title": "Rappresentazione governata del sistema",
+      "intent": "Rendere il sistema descritto dal progetto comprensibile attraverso conoscenza esplicita, tracciabile e mantenibile, distinguendo la conoscenza governata dalle integrazioni revisionate e dalle successive interpretazioni."
+    },
+    {
+      "id": "MR-0004",
+      "title": "Gestione isolata dei progetti governati",
+      "intent": "Consentire a ThreatForge di creare, aprire e governare progetti distinti mantenendo separati i loro documenti, risultati e ciclo di vita dal motore ThreatForge e dagli altri progetti."
+    },
+    {
+      "id": "MR-0005",
+      "title": "Analisi governata del sistema",
+      "intent": "Consentire a metodi di analisi differenti di esaminare la conoscenza governata del sistema e produrre risultati revisionabili, tracciabili e ripetibili, preservando metodo, interpretazione esperta ed evidenze senza modificare implicitamente la descrizione sottostante."
+    }
+  ],
+  "links": [
+    {
+      "id": "MRMAP-REL-0001",
+      "source": "MR-0004",
+      "target": "MR-0001",
+      "label": "provides governed project context",
+      "authority": "didactic_interpretation",
+      "evidence": "MR-0004 concerns isolated governed projects owning documents/results; MR-0001 concerns their governed knowledge."
+    },
+    {
+      "id": "MRMAP-REL-0002",
+      "source": "MR-0001",
+      "target": "MR-0002",
+      "label": "guides implementation",
+      "authority": "didactic_interpretation",
+      "evidence": "MR-0002 starts from governed requirements/project documentation."
+    },
+    {
+      "id": "MRMAP-REL-0003",
+      "source": "MR-0001",
+      "target": "MR-0003",
+      "label": "supports system understanding",
+      "authority": "didactic_interpretation",
+      "evidence": "MR-0003 builds governed system knowledge from project documentation; historical ADR family confirms this responsibility."
+    },
+    {
+      "id": "MRMAP-REL-0004",
+      "source": "MR-0003",
+      "target": "MR-0005",
+      "label": "provides governed system knowledge",
+      "authority": "didactic_interpretation",
+      "evidence": "MR-0005 analyses governed system knowledge; historical ADR families preserve the representation/analysis boundary."
+    },
+    {
+      "id": "MRMAP-REL-0005",
+      "source": "MR-0005",
+      "target": "MR-0001",
+      "label": "returns findings / documentation gaps",
+      "authority": "didactic_interpretation",
+      "evidence": "MR-0005 analysis feedback returns through governed documentation evolution."
+    }
+  ],
+  "semantic_note": "Nodes are Macro Requirements. Links are MR relations or explicitly marked didactic interpretations. Links are not data flows and nodes are not DFD roles.",
+  "renderer_note": "Layout/style are intentionally absent from this semantic study projection."
+}

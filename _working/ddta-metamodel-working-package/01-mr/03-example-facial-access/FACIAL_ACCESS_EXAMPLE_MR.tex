@@ -1,7 +1,6 @@
 % Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
-\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
 %
 \documentclass[
   10pt,
@@ -60,11 +59,7 @@
 \urlstyle{same}
 \hypersetup{
   pdflang={it},
-  colorlinks=true,
-  linkcolor={Maroon},
-  filecolor={Maroon},
-  citecolor={Blue},
-  urlcolor={Blue},
+  hidelinks,
   pdfcreator={LaTeX via pandoc}}
 
 \author{}
@@ -95,8 +90,8 @@ encoding as a deferred Doc-as-Code representation decision.
 The project controls access to a reserved physical area. A camera
 observes a person at the access point, facial recognition is used to
 determine whether the person corresponds to an authorized identity, and
-access is granted by opening a turnstile when the project's access
-conditions are satisfied.
+access is granted by opening a turnstile when the
+project\textquotesingle s access conditions are satisfied.
 
 The MR set describes stable project concerns rather than the progress of
 architectural design. Placement of ML inference, network topology,
@@ -104,20 +99,21 @@ device protocols and similar solution choices are therefore omitted from
 the MR bodies and can be governed later through Decisions and
 Requirements.
 
-\subsection{MR-0001 - Accesso controllato all'area
+\subsection{MR-0001 - Accesso controllato all\textquotesingle area
 riservata}\label{mr-0001---accesso-controllato-allarea-riservata}
 
 \subsubsection{Intent}\label{intent}
 
-Consentire alle persone autorizzate di accedere a un'area riservata in
-modo rapido e controllato, evitando che il varco si apra automaticamente
-quando l'autorizzazione non e stata confermata.
+Consentire alle persone autorizzate di accedere a
+un\textquotesingle area riservata in modo rapido e controllato, evitando
+che il varco si apra automaticamente quando
+l\textquotesingle autorizzazione non e stata confermata.
 
 \subsubsection{Context}\label{context}
 
-L'area e protetta da un tornello. Il progetto usa il riconoscimento del
-volto come parte della decisione che precede l'apertura automatica del
-varco.
+L\textquotesingle area e protetta da un tornello. Il progetto usa il
+riconoscimento del volto come parte della decisione che precede
+l\textquotesingle apertura automatica del varco.
 
 \subsubsection{Stakeholders}\label{stakeholders}
 
@@ -126,23 +122,11 @@ varco.
 \item
   persone autorizzate;
 \item
-  responsabili dell'area riservata;
+  responsabili dell\textquotesingle area riservata;
 \item
   addetti alla sicurezza fisica;
 \item
   personale operativo che gestisce il punto di accesso.
-\end{itemize}
-
-\subsubsection{Objective}\label{objective}
-
-\begin{itemize}
-\tightlist
-\item
-  Rendere l'accesso automatico coerente con lo stato di autorizzazione
-  della persona.
-\item
-  Mantenere controllabile il comportamento del varco anche quando il
-  riconoscimento non produce un risultato utilizzabile.
 \end{itemize}
 
 \subsubsection{Scope - candidate under
@@ -154,7 +138,7 @@ test}\label{scope---candidate-under-test}
   il passaggio dal tentativo di ingresso alla decisione di aprire o non
   aprire il varco;
 \item
-  l'esperienza macro della persona al punto di accesso.
+  l\textquotesingle esperienza macro della persona al punto di accesso.
 \end{itemize}
 
 \subsubsection{DependsOn}\label{dependson}
@@ -173,40 +157,30 @@ autorizzate}\label{mr-0002---gestione-delle-persone-autorizzate}
 
 \subsubsection{Intent}\label{intent-1}
 
-Consentire all'organizzazione di stabilire chi puo accedere all'area
-riservata e di mantenere aggiornata nel tempo l'associazione tra
-persona, autorizzazione e informazioni necessarie al riconoscimento.
+Consentire all\textquotesingle organizzazione di stabilire chi puo
+accedere all\textquotesingle area riservata e di mantenere aggiornata
+nel tempo l\textquotesingle associazione tra persona, autorizzazione e
+informazioni necessarie al riconoscimento.
 
 \subsubsection{Context}\label{context-1}
 
 Le autorizzazioni cambiano nel tempo: una persona puo essere abilitata,
 sospesa o non piu autorizzata. Il sistema di riconoscimento deve usare
-informazioni coerenti con lo stato corrente deciso dall'organizzazione.
+informazioni coerenti con lo stato corrente deciso
+dall\textquotesingle organizzazione.
 
 \subsubsection{Stakeholders}\label{stakeholders-1}
 
 \begin{itemize}
 \tightlist
 \item
-  responsabili dell'area;
+  responsabili dell\textquotesingle area;
 \item
   amministratori delle autorizzazioni;
 \item
   persone autorizzate;
 \item
-  personale incaricato dell'onboarding e della revoca.
-\end{itemize}
-
-\subsubsection{Objective}\label{objective-1}
-
-\begin{itemize}
-\tightlist
-\item
-  Mantenere una fonte governata delle persone autorizzate e del loro
-  stato di accesso.
-\item
-  Mantenere coerenti le informazioni necessarie al riconoscimento con il
-  ciclo di vita dell'autorizzazione.
+  personale incaricato dell\textquotesingle onboarding e della revoca.
 \end{itemize}
 
 \subsubsection{Scope - candidate under
@@ -250,21 +224,6 @@ sequenze video adeguate e puo produrre risultati incerti o errati.
   specialisti che mantengono il sistema di riconoscimento.
 \end{itemize}
 
-\subsubsection{Objective}\label{objective-2}
-
-\begin{itemize}
-\tightlist
-\item
-  Ottenere dal volto osservato un risultato di riconoscimento
-  utilizzabile dal processo di accesso.
-\item
-  Rendere distinguibili i casi di riconoscimento positivo, mancato
-  riconoscimento e risultato non sufficientemente affidabile.
-\item
-  Consentire che la qualita del riconoscimento possa essere valutata e
-  migliorata nel tempo.
-\end{itemize}
-
 \subsubsection{Scope - candidate under
 test}\label{scope---candidate-under-test-2}
 
@@ -275,7 +234,7 @@ test}\label{scope---candidate-under-test-2}
 \item
   esecuzione e valutazione del riconoscimento facciale;
 \item
-  risultato fornito al processo che decide l'accesso.
+  risultato fornito al processo che decide l\textquotesingle accesso.
 \end{itemize}
 
 \subsubsection{Assumptions}\label{assumptions}
@@ -293,17 +252,17 @@ automatiche}\label{mr-0004---uso-responsabile-dei-dati-biometrici-e-delle-decisi
 
 \subsubsection{Intent}\label{intent-3}
 
-Proteggere le persone coinvolte nell'uso del riconoscimento facciale
-assicurando che dati biometrici e decisioni automatiche siano trattati
-in modo comprensibile, controllabile e coerente con le finalita di
-accesso del progetto.
+Proteggere le persone coinvolte nell\textquotesingle uso del
+riconoscimento facciale assicurando che dati biometrici e decisioni
+automatiche siano trattati in modo comprensibile, controllabile e
+coerente con le finalita di accesso del progetto.
 
 \subsubsection{Context}\label{context-3}
 
 Il riconoscimento facciale utilizza informazioni biometriche e puo
-produrre errori che incidono sull'accesso fisico di una persona. Questi
-aspetti fanno parte del dominio e del valore del progetto
-indipendentemente dalla metodologia di analisi che potra essere
+produrre errori che incidono sull\textquotesingle accesso fisico di una
+persona. Questi aspetti fanno parte del dominio e del valore del
+progetto indipendentemente dalla metodologia di analisi che potra essere
 applicata.
 
 \subsubsection{Stakeholders}\label{stakeholders-3}
@@ -313,26 +272,11 @@ applicata.
 \item
   persone i cui dati biometrici sono trattati;
 \item
-  responsabili dell'organizzazione;
+  responsabili dell\textquotesingle organizzazione;
 \item
   responsabili privacy/compliance applicabili al contesto;
 \item
   addetti che gestiscono contestazioni o eccezioni di accesso.
-\end{itemize}
-
-\subsubsection{Objective}\label{objective-3}
-
-\begin{itemize}
-\tightlist
-\item
-  Limitare l'uso dei dati biometrici alle finalita governate dal
-  progetto.
-\item
-  Rendere governabili il ciclo di vita dei dati biometrici e gli effetti
-  degli errori di riconoscimento.
-\item
-  Consentire responsabilita e revisione delle decisioni automatiche che
-  incidono sull'accesso.
 \end{itemize}
 
 \subsubsection{Scope - candidate under
@@ -344,8 +288,20 @@ test}\label{scope---candidate-under-test-3}
   trattamento dei dati biometrici utilizzati dal progetto;
 \item
   conseguenze e revisione delle decisioni automatiche di riconoscimento
-  nel contesto dell'accesso.
+  nel contesto dell\textquotesingle accesso.
 \end{itemize}
+
+\subsection{Teachability map}\label{teachability-map}
+
+The MR set is also used to test whether a reader new to the project can
+form a simple mental model before seeing Decisions or architecture. A
+saved non-canonical Macro Project Map is available in
+\texttt{../04-teachability-maps/facial-access-macro-project-map.html}
+(with SVG/PNG companions and a textual traceability explanation).
+
+The map distinguishes explicit \texttt{dependsOn} relations from
+didactic links inferred only for explanation. These links are not data
+flows and do not establish architecture.
 
 \subsection{Why there is no separate MR for PC/LAN/edge
 architecture}\label{why-there-is-no-separate-mr-for-pclanedge-architecture}
@@ -372,7 +328,7 @@ access point.
 
 A separate MR for \textbf{ML model lifecycle} would be justified only if
 the project treats model production/governance as an independent macro
-capability with its own stakeholders, objectives and Decisions (for
+capability with its own stakeholders, macro outcome and Decisions (for
 example, if the product itself includes a reusable organizational ML
 model-management service).
 
@@ -428,8 +384,7 @@ method-specific fields to Macro Requirements.
   to the project stakeholders.
 \item
   Lower-level architecture choices are omitted from MR bodies rather
-  than described through temporary statements such as ``not yet
-  decided''.
+  than described through temporary statements such as "not yet decided".
 \item
   ML can be represented at MR level without introducing a
   threat-analysis or privacy-analysis methodology.
@@ -444,8 +399,11 @@ method-specific fields to Macro Requirements.
   governed project/documentation lifecycle; the detailed mechanism
   remains a future analysis-metamodel question.
 \item
-  Intent/Objective and Scope remain under evaluation: this example
-  should be used to detect duplication before those concepts are frozen.
+  Intent alone carries macro purpose, value and desired outcome; the
+  separate Objective field was removed after duplication testing.
+\item
+  Scope remains under evaluation and should still be tested for
+  redundancy with exclusions/non-goals.
 \end{enumerate}
 
 \end{document}

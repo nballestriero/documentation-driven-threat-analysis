@@ -83,10 +83,9 @@ It is the root document type of the governed-document hierarchy.
 | `id` | required | stable identity, history and traceability |
 | `title` | required | concise name understandable within the project domain |
 | `lifecycle` | required | current/historical state of the document |
-| `intent` | required | concise explanation of why the MR exists and why it matters |
+| `intent` | required | concise statement of the macro purpose, value and desired outcome that justify the MR |
 | `context` | required | minimum background needed to understand the concern |
 | `stakeholders` | required | people/groups that benefit, use, govern or are affected |
-| `objective` | candidate required | macro result sought; not a list of atomic obligations |
 | `scope` | open semantic decision | boundary of the macro concern; exact form still under study |
 | `assumptions` | optional | facts accepted as true that materially affect the whole MR |
 | `constraints` | optional | limits that materially constrain the whole MR |
@@ -97,17 +96,22 @@ It is the root document type of the governed-document hierarchy.
 A Macro Requirement must be effective rather than verbose. It should not become a checklist of implementation rules.
 
 - `title`: short noun phrase or short descriptive title;
-- `intent`: normally 1-2 sentences;
+- `intent`: normally 1-2 sentences covering macro purpose, value and desired outcome;
 - `context`: only the background needed to interpret the MR;
 - `stakeholders`: macro stakeholder roles, not a technical inventory;
-- `objective`: normally a small number of high-level results;
 - assumptions/constraints: only if they affect the whole branch below the MR.
 
 ## 7. Decisions already closed
 
-### 7.1 Objective is not a list of `must`
+### 7.1 Intent owns the macro purpose, value and desired outcome
 
-The MR does not own atomic, independently verifiable obligations. Those belong to Requirements. `Objective` describes a macro result, not a long normative checklist.
+`Objective` is **removed** from the Macro Requirement conceptual model. Across the four facial-access examples and the five ThreatForge case-study MRs, a separate Objective did not show stable autonomous semantics: it either paraphrased the Intent or began decomposing it into Decision/Requirement-level behavior.
+
+`Intent` therefore answers both **why the macro concern exists** and **what macro outcome/value it seeks**. It remains concise and must not become a checklist of atomic obligations.
+
+Use the **Intent-completeness test**: if `title + Intent` are insufficient for a domain-competent stakeholder to understand the macro concern and desired result, improve the Intent rather than adding a second Objective field.
+
+Use the **Objective-leakage test** when reviewing legacy or draft material: if a separate objective merely restates Intent, merge the useful wording into Intent; if it enumerates specific behaviors, mechanisms or independently verifiable outcomes, move that content to Scope, Constraints, Decisions or Requirements as appropriate.
 
 ### 7.2 Stakeholders are semantically required
 
@@ -152,6 +156,25 @@ Use the **temporal-stability test**: if a sentence becomes obsolete merely becau
 
 This rule does not forbid time-dependent **domain facts**. For example, an authorization may expire or a biometric enrollment may have a lifecycle because those are properties of the application domain. The rule targets temporary authoring/design state, not legitimate temporal semantics of the project.
 
+### 7.10 Teachability and macro project-map projection
+
+A Macro Requirement must contribute to a project description that can be **taught progressively**, not merely validated. Individually, each MR should provide one understandable conceptual block through its identity, title and Intent. Collectively, the MR set should support a simple didactic map of the project's major concerns and their meaningful relationships without requiring lower-level architecture knowledge.
+
+Use the **teachability test**: a reader who understands the application domain but is new to the project should be able to use the MR set to build a simple mental/graphical map answering:
+
+1. what the main project concerns are;
+2. why each concern exists;
+3. which macro concerns depend on, support or otherwise relate to others when such relations are explicitly governed or can be shown as clearly marked non-canonical teaching interpretations;
+4. how the blocks collectively explain the project's macro functioning without exposing lower-level implementation topology.
+
+Failure of this test is evidence to review MR decomposition, titles, Intent wording or missing explicit cross-MR relations. It is not permission to invent architecture in order to make the picture easier to draw.
+
+### 7.11 Analysis-enabling does not mean analysis-producing
+
+MR content can provide context and documentary evidence useful to later system representation and analysis, but an MR does **not** instantiate canonical analytical elements merely because it names a person, device, datum, ML capability or other domain concept.
+
+A didactic map derived from MRs is therefore not a DFD, architecture diagram or threat-analysis model. Canonical components, actors, data resources, data flows, trust boundaries or method-specific interpretations require later governed modeling/review.
+
 ## 8. MR invariants
 
 1. **Root hierarchy** - MR has no parent.
@@ -163,32 +186,23 @@ This rule does not forbid time-dependent **domain facts**. For example, an autho
 7. **Broad audience within the domain** - title and Intent can be understood by non-software stakeholders who understand the project domain.
 8. **Project-map usefulness** - titles + Intent of all MR summarize the project and its major work blocks.
 9. **Explicit dependencies** - cross-MR dependencies are not hidden as pseudo-hierarchy.
-10. **Analysis enabling, method agnostic** - MR provides project knowledge but does not prescribe a threat-analysis paradigm.
+10. **Analysis enabling, not analysis producing** - MR provides useful project context without directly instantiating canonical analytical elements or prescribing an analysis paradigm.
 11. **Architecture resilience** - changing a lower-level architecture choice should not normally force the MR to be rewritten if the macro project concern has not changed.
 12. **Temporal stability** - taking or revising a lower-level Decision should not make MR prose obsolete unless the macro project concern itself changes.
+13. **Teachability** - each MR is an understandable macro block and the MR set can support a simple didactic project map without requiring lower-level architecture.
+14. **Projection honesty** - a teaching projection derived from MRs must not be presented as a DFD, architecture model or canonical analysis representation.
 
 ## 9. Semantic decisions still open
 
-These points must be tested with concrete examples before the MR model is frozen:
+The Intent/Objective question is now closed: `Objective` is removed and `Intent` owns macro purpose, value and desired outcome. The remaining MR questions below must still be tested before final freeze.
 
-### 9.1 Intent versus Objective
-
-We need examples to determine whether both concepts add distinct information or whether they create unnecessary duplication.
-
-Candidate distinction:
-
-- `Intent` - why this MR exists / why it matters;
-- `Objective` - what macro result we want to obtain.
-
-This distinction is **not yet frozen**.
-
-### 9.2 Meaning and shape of Scope
+### 9.1 Meaning and shape of Scope
 
 We need examples to determine what `scope` should actually express and whether `included`, `excluded` and `non_goals` are all necessary or partly redundant.
 
 The goal is not to create three places that repeat the same boundary in different words.
 
-### 9.3 When to split or merge Macro Requirements
+### 9.2 When to split or merge Macro Requirements
 
 MR boundaries must not be decided from wording similarity alone. This is especially important when refactoring an existing governed corpus: two rewritten MRs can sound similar because both were described through the same downstream consumer, while their descendant Decisions still govern different project concerns. Conversely, historical separation is not sufficient evidence to keep two MRs if it only mirrors an implementation split.
 
@@ -208,7 +222,39 @@ These are currently **boundary-test heuristics**, not yet frozen deterministic i
 
 When an MR already owns a body of Decisions, reconstruct its macro concern from the semantic responsibility of that Decision family before rewriting the MR. A rewritten MR should explain why those Decisions belong together without merely summarizing their current solution vocabulary.
 
-## 10. Observation deferred to the future analysis metamodel
+## 10. Derived didactic projection - Macro Project Map
+
+The MR set may support a **Macro Project Map**: a non-canonical, teaching-oriented projection that gives readers a block-level view of the project's major concerns. Its purpose is orientation and progressive disclosure, not system analysis.
+
+A candidate projection uses:
+
+- one block per MR, showing canonical MR identity and title and optionally a shortened Intent;
+- explicit cross-MR relations such as `dependsOn` when available;
+- clearly labeled didactic links only when they are visibly marked as non-canonical interpretation and traceable to supporting MR text;
+- edge labels expressed as verbs/relations rather than unlabeled arrows;
+- textual equivalent/traceability alongside the graphic.
+
+The projection must **not** reinterpret MR blocks as DFD processes, external entities or data stores, and its links are not data flows. Layout, color, coordinates and SVG/HTML are renderer concerns and must remain outside the semantic projection.
+
+### Accessibility / BES-oriented presentation heuristic
+
+The teaching view should favor low cognitive load and progressive disclosure:
+
+1. few blocks per view;
+2. canonical titles, not unexplained synonyms;
+3. one dominant idea per block;
+4. every arrow labeled in text;
+5. meaning never encoded by color alone;
+6. a textual explanation equivalent to the visual map;
+7. stable navigation from a block back to its MR.
+
+### Rendering compatibility observation from ThreatForge
+
+At ThreatForge planning baseline `44f77796469465a6a076596b1b1ba1afdde92db7`, the active Base DFD path already follows a useful pattern: renderer-neutral semantic projection, deterministic layout, and self-contained HTML with embedded accessible SVG and traceability metadata. The active implementation is a custom Node/ESM renderer rather than Graphviz or Mermaid.
+
+This study therefore records a **future reuse direction**, not an implementation decision: a Macro Project Map renderer may share visual tokens, accessibility patterns, deterministic layout utilities and HTML/SVG shell with the DFD renderer while keeping a separate MR-specific semantic contract.
+
+## 11. Observation deferred to the future analysis metamodel
 
 Concrete MR examples show that different concerns inside the same governed project may later benefit from different analysis paradigms. An ML-based capability may justify AI/ML-oriented threat analysis, while another concern in the same project may justify privacy-oriented analysis or a different specialist method.
 
@@ -223,14 +269,13 @@ The future analysis metamodel should therefore test whether it can:
 
 These are **deferred design questions**, not frozen analysis-model decisions. They are recorded here so that the MR model does not accidentally preclude multi-method project analysis.
 
-## 11. Doc-as-Code mapping deliberately deferred
+## 12. Doc-as-Code mapping deliberately deferred
 
 The following remain representation questions, not domain-model decisions:
 
 - where each MR concept lives between registry and Markdown body;
 - whether `parent = null` is serialized or implicit;
 - concrete representation of stakeholders, assumptions and constraints;
-- prose versus list representation of Objective;
 - concrete representation of `dependsOn`;
 - final Markdown heading names;
 - deterministic checks that can enforce the semantic contract without pretending to validate human meaning.

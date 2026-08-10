@@ -4,7 +4,7 @@
 >
 > `cae0f7b6b37f430ac4e857aabf6ef9f87c89dbb1`
 
-The purpose is to test the general MR metamodel against a real project and to collect refactoring/authoring evidence. The proposed rewrites are **not canonical ThreatForge changes**.
+The purpose is to test the general MR metamodel against a real project and to collect refactoring/authoring evidence. The proposed rewrites are **not canonical ThreatForge changes**. Earlier candidate `Objective` sections are retained as study history; the current MR working contract removes `Objective` and lets `Intent` own macro purpose, value and desired outcome.
 
 ## MR-0001
 
@@ -272,7 +272,7 @@ BAE fields, precise provenance rules, topology/data-flow projection, STRIDE excl
 
 ### Second reformulation after ADR-family review
 
-#### Current candidate: MR-0003 - Governed representation of the system
+#### Second reformulation (historical working candidate): MR-0003 - Governed representation of the system
 
 ##### Intent
 
@@ -495,7 +495,7 @@ DFD, renderer, method taxonomies, plugin specifics and exact registry shapes are
 
 ### Second reformulation after ADR-family review
 
-#### Current candidate: MR-0005 - Governed analysis of the system
+#### Second reformulation (historical working candidate): MR-0005 - Governed analysis of the system
 
 ##### Intent
 
@@ -555,6 +555,34 @@ Inspection of the historical MR-0005 Decisions showed a coherent second concern:
 The second reformulation therefore centers MR-0005 on a different question: **what do we learn by analysing the governed system knowledge, and how do we govern that interpretation and its results?**
 
 ---
+
+## Intent versus Objective closure test across ThreatForge
+
+The five original ThreatForge MRs and their candidate rewrites were used as a second corpus after the four facial-access MRs. The result reinforces removal of `Objective`.
+
+- **MR-0001** - Original Intent already states the governed-documentation macro result; the long Macro obligation descends into registries, Markdown, taxonomies, Diataxis and projections. The candidate Objective restates reliable/traced documentation and starts adding design principles such as avoiding duplicated rules. **Result:** no independent Objective semantics.
+- **MR-0002** - Original Intent already states the Requirement-to-implementation/verification flow; the Macro obligation descends into preview, rollback, scaffolding, Git runner and editor adapters. The candidate Objective repeats traceability and adds tool-independence/design constraints. **Result:** keep the macro outcome in Intent and move lower details down.
+- **MR-0003** - Original Intent already states the documentation-derived methodology-neutral system representation; obligations specify identity, provenance, lifecycle and topology. The first Objective repeated analysis-readiness, while the second added the important fact/interpretation distinction. **Result:** preserve that distinction by strengthening Intent/Constraints, not by retaining Objective.
+- **MR-0004** - Original Intent already states governed Target Project lifecycle/isolation. The candidate Objective is almost a pure paraphrase of autonomy/isolation. **Result:** Objective is redundant.
+- **MR-0005** - Original Intent already states the common governed analysis model. The candidate Objective repeats multi-method analysis, traceability and deterministic repetition. **Result:** Objective is redundant/decompositional.
+
+### Closed conceptual decision
+
+`Objective` is removed from the MR conceptual model. `Intent` is the concise owner of **macro purpose + value + desired outcome**. If a separate Objective contains useful non-duplicated material, that material is redistributed to Intent, Scope, Constraints, Decisions or Requirements according to its semantics.
+
+### Final candidate Intent set after Objective removal
+
+- **MR-0001 - Documentazione di progetto governata e tracciabile**: Consentire a persone e strumenti di comprendere, mantenere e verificare le conoscenze che guidano un progetto attraverso documentazione versionata, coerente e tracciabile, mantenendo espliciti i collegamenti tra intenzioni, decisioni, requisiti ed evidenze.
+- **MR-0002 - Sviluppo tracciabile dai requisiti**: Consentire al lavoro di implementazione di partire da requisiti governati e di mantenere chiaro, durante l'evoluzione del progetto, che cosa viene realizzato, perche e con quali evidenze viene verificato.
+- **MR-0003 - Rappresentazione governata del sistema**: Rendere il sistema descritto dal progetto comprensibile attraverso conoscenza esplicita, tracciabile e mantenibile, distinguendo la conoscenza governata dalle integrazioni revisionate e dalle successive interpretazioni, affinche persone e attivita successive possano fare affidamento su una rappresentazione condivisa e giustificata del sistema.
+- **MR-0004 - Gestione isolata dei progetti governati**: Consentire a ThreatForge di creare, aprire e governare progetti distinti mantenendo separati i loro documenti, risultati e ciclo di vita dal motore ThreatForge e dagli altri progetti.
+- **MR-0005 - Analisi governata del sistema**: Consentire a metodi di analisi differenti di esaminare la conoscenza governata del sistema e produrre risultati revisionabili, tracciabili e ripetibili, preservando il metodo usato, l'interpretazione esperta e le evidenze senza modificare implicitamente la descrizione sottostante del sistema.
+
+## Teachability-map observation from the final candidate set
+
+The final candidate titles + Intent can be arranged into a didactic project map that explains ThreatForge without exposing registries, BAE records, plugins, DFD roles, editor adapters or other lower-level mechanisms. The saved study map is in `../04-teachability-maps/threatforge-macro-project-map.html`.
+
+The current candidate MR corpus does not yet govern all map links as explicit `dependsOn` relations. The study map therefore marks its explanatory links as **non-canonical didactic interpretations** and keeps traceability to the MR/ADR-family evidence. This is intentional: the teachability test may reveal where an explicit relation would improve the model, but the projection must not silently become topology authority.
 
 ## Lesson learned from MR-0003 versus MR-0005
 

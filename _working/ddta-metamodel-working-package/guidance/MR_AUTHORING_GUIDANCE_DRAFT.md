@@ -4,14 +4,14 @@
 
 ## Goal
 
-Write Macro Requirements that provide an executive map of a project without collapsing Decisions, Requirements, implementation details, temporary design state or analysis-method semantics into the top level.
+Write Macro Requirements that provide an executive and teachable map of a project without collapsing Decisions, Requirements, implementation details, temporary design state or analysis-method semantics into the top level.
 
 ## Core guidance
 
 1. Write for stakeholders who understand the **project domain**, not necessarily software architecture or security analysis.
 2. Domain terminology is allowed, including technical terminology when it is intrinsic to the project domain.
 3. Do not introduce technical vocabulary merely because the metamodel, tool or threat-analysis method uses it.
-4. Keep `Intent` short enough that all MR titles + Intent can be read as a project summary.
+4. Let `Intent` carry the macro purpose, value and desired outcome; do not create a parallel `Objective` field. Keep all MR titles + Intent short enough to read as a project summary.
 5. Identify stakeholder groups at the level relevant to the macro concern.
 6. Express a macro result, not a checklist of atomic `must` statements.
 7. Move choices of solution into Decisions.
@@ -20,6 +20,8 @@ Write Macro Requirements that provide an executive map of a project without coll
 10. Keep methodology-specific threat/privacy categories in later methodology-specific analysis artifacts.
 11. Do not describe temporary design progress in the MR (`not yet decided`, `currently evaluating`, `will be selected later`). Record that state in working notes or Decision lifecycle/status instead.
 12. Do not partition project MRs by analysis methodology. Describe project concerns first; later analyses may choose different methods for different scopes or subjects.
+13. Write each MR so it can become one understandable block in a didactic Macro Project Map.
+14. Never treat the Macro Project Map as a DFD or architecture diagram; MR relations are not data flows.
 
 ## Temporal-stability test
 
@@ -36,6 +38,42 @@ Examples to move out of MR:
 - "The team is evaluating whether the camera connects through LAN."
 
 A domain statement such as "authorizations may be suspended or revoked" is different: it remains relevant after architecture Decisions because it describes the application domain rather than design progress.
+
+## Intent-completeness and Objective-leakage tests
+
+For each MR, first read only `title + Intent`. A domain-competent reader should understand both the macro concern and the desired project-level outcome. If not, improve Intent rather than adding an Objective section.
+
+When reviewing legacy/draft Objective text:
+
+- if it paraphrases Intent, merge only the useful wording into Intent;
+- if it adds scope boundary, move it to Scope;
+- if it adds a branch-wide limit, consider Constraints;
+- if it names a chosen solution, move it to Decision;
+- if it states independently verifiable behavior, move it to Requirement.
+
+## Teachability test
+
+Treat a new reader as a student who knows the application domain but not the project. Before accepting an MR set, ask whether the reader can build a simple block-level mental map from MR titles, Intent and explicit relations.
+
+The map should answer:
+
+1. What are the main project concerns?
+2. Why does each block exist?
+3. Which blocks explicitly depend on or support one another?
+4. Can the macro functioning be explained without components, protocols, data-flow semantics or threat categories?
+5. Would the map remain valid after a lower-level architecture Decision changes?
+
+If an important link is not explicitly governed, do not silently invent it. A teaching artifact may show a **clearly marked non-canonical didactic interpretation** with traceable supporting text, but that interpretation must not become topology authority.
+
+### Accessible teaching-map guidance
+
+- Keep the number of blocks small enough to scan quickly.
+- Use the canonical MR title inside each block.
+- Label every edge with a verb/relation; do not use unexplained arrows.
+- Do not rely on color alone to distinguish meaning.
+- Provide a textual summary equivalent to the graphic.
+- Keep links/nodes traceable back to the source MR.
+- Prefer progressive disclosure: MR map first, then Decisions, Requirements and later system/analysis views.
 
 ## Boundary test before splitting or merging MRs
 
@@ -149,3 +187,19 @@ The exact common analysis model is intentionally deferred.
 **Why problematic:** methodology becomes part of the project topology and makes it harder to apply different methods to overlapping or complementary concerns.
 
 **Correction:** keep project concerns method-agnostic; select methodology later for an explicit analysis scope and return results through common governance.
+
+### AP-MR-013 - Objective shadowing Intent
+
+**Symptom:** a separate Objective section repeats the Intent or turns it into a short list of more specific behaviors.
+
+**Why problematic:** the same macro meaning gains two owners, or lower-level obligations leak upward.
+
+**Correction:** keep macro purpose/value/outcome in Intent and move the remaining detail to Scope, Constraints, Decisions or Requirements.
+
+### AP-MR-014 - Teaching map presented as DFD
+
+**Symptom:** MR blocks are labeled as processes/external entities/data stores, or MR links are presented as data flows.
+
+**Why problematic:** a didactic projection acquires analytical/architectural semantics that the MR evidence does not establish.
+
+**Correction:** call it a Macro Project Map (or equivalent), use MR identities/titles, label relationships honestly, and defer technical topology to later governed models.

@@ -1,7 +1,6 @@
 % Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
-\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
 %
 \documentclass[
   10pt,
@@ -70,11 +69,7 @@
 \urlstyle{same}
 \hypersetup{
   pdflang={it},
-  colorlinks=true,
-  linkcolor={Maroon},
-  filecolor={Maroon},
-  citecolor={Blue},
-  urlcolor={Blue},
+  hidelinks,
   pdfcreator={LaTeX via pandoc}}
 
 \author{}
@@ -92,7 +87,7 @@ This file defines the general document metamodel. ThreatForge-specific
 observations are excluded and belong to the case-study material.
 \end{quote}
 
-\subsection{1. Scope}\label{scope}
+\subsection{1. Scope}\label{1-scope}
 
 The metamodel describes the knowledge of a governed project before
 deciding its concrete Doc-as-Code serialization and before deciding how
@@ -101,7 +96,7 @@ a software engine validates or assists authoring.
 The governed product remains documentation-as-code: versionable,
 diffable, reviewable files (for example YAML registries and Markdown
 bodies). A software tool may apply and verify the metamodel, but it is
-not the subject described by the project's documents.
+not the subject described by the project\textquotesingle s documents.
 
 \subsubsection{Layer separation}\label{layer-separation}
 
@@ -119,7 +114,8 @@ not the subject described by the project's documents.
   assist those files.
 \end{enumerate}
 
-\subsection{2. Principles already fixed}\label{principles-already-fixed}
+\subsection{2. Principles already
+fixed}\label{2-principles-already-fixed}
 
 \subsubsection{Principle 1 - Progressive specialization and semantic
 containment}\label{principle-1---progressive-specialization-and-semantic-containment}
@@ -145,7 +141,7 @@ relationships. Composite identifier formats may mirror ancestry but must
 not be the authoritative source of topology.
 
 \subsection{3. Progressive disclosure by
-competence}\label{progressive-disclosure-by-competence}
+competence}\label{3-progressive-disclosure-by-competence}
 
 The hierarchy increases both specificity and the amount of vertical
 competence required from the reader.
@@ -188,7 +184,7 @@ This criterion applies to the \textbf{governed project}, not to the tool
 used to govern it.
 
 \subsection{4. Domain vocabulary versus metamodel
-vocabulary}\label{domain-vocabulary-versus-metamodel-vocabulary}
+vocabulary}\label{4-domain-vocabulary-versus-metamodel-vocabulary}
 
 The metamodel must not ban technical words merely because they are
 technical.
@@ -227,7 +223,7 @@ project/system representation or methodology-specific analysis require
 them.
 
 \subsection{5. Macro Requirement
-definition}\label{macro-requirement-definition}
+definition}\label{5-macro-requirement-definition}
 
 A Macro Requirement identifies one major project concern or
 macro-capability. It explains why that concern matters, who is affected,
@@ -243,20 +239,11 @@ it matter, and who is involved?}
 \end{quote}
 
 \subsection{6. Candidate information
-model}\label{candidate-information-model}
+model}\label{6-candidate-information-model}
 
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\begin{longtable}[]{@{}lll@{}}
 \toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-Concept
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-State
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Purpose
-\end{minipage} \\
+Concept & State & Purpose \\
 \midrule\noalign{}
 \endhead
 \bottomrule\noalign{}
@@ -266,14 +253,12 @@ Purpose
 project domain \\
 \texttt{lifecycle} & required & current/historical state of the
 document \\
-\texttt{intent} & required & concise explanation of why the MR exists
-and why it matters \\
+\texttt{intent} & required & concise statement of the macro purpose,
+value and desired outcome that justify the MR \\
 \texttt{context} & required & minimum background needed to understand
 the concern \\
 \texttt{stakeholders} & required & people/groups that benefit, use,
 govern or are affected \\
-\texttt{objective} & candidate required & macro result sought; not a
-list of atomic obligations \\
 \texttt{scope} & open semantic decision & boundary of the macro concern;
 exact form still under study \\
 \texttt{assumptions} & optional & facts accepted as true that materially
@@ -294,30 +279,47 @@ become a checklist of implementation rules.
 \item
   \texttt{title}: short noun phrase or short descriptive title;
 \item
-  \texttt{intent}: normally 1-2 sentences;
+  \texttt{intent}: normally 1-2 sentences covering macro purpose, value
+  and desired outcome;
 \item
   \texttt{context}: only the background needed to interpret the MR;
 \item
   \texttt{stakeholders}: macro stakeholder roles, not a technical
   inventory;
 \item
-  \texttt{objective}: normally a small number of high-level results;
-\item
   assumptions/constraints: only if they affect the whole branch below
   the MR.
 \end{itemize}
 
-\subsection{7. Decisions already closed}\label{decisions-already-closed}
+\subsection{7. Decisions already
+closed}\label{7-decisions-already-closed}
 
-\subsubsection{\texorpdfstring{7.1 Objective is not a list of
-\texttt{must}}{7.1 Objective is not a list of must}}\label{objective-is-not-a-list-of-must}
+\subsubsection{7.1 Intent owns the macro purpose, value and desired
+outcome}\label{71-intent-owns-the-macro-purpose-value-and-desired-outcome}
 
-The MR does not own atomic, independently verifiable obligations. Those
-belong to Requirements. \texttt{Objective} describes a macro result, not
-a long normative checklist.
+\texttt{Objective} is \textbf{removed} from the Macro Requirement
+conceptual model. Across the four facial-access examples and the five
+ThreatForge case-study MRs, a separate Objective did not show stable
+autonomous semantics: it either paraphrased the Intent or began
+decomposing it into Decision/Requirement-level behavior.
+
+\texttt{Intent} therefore answers both \textbf{why the macro concern
+exists} and \textbf{what macro outcome/value it seeks}. It remains
+concise and must not become a checklist of atomic obligations.
+
+Use the \textbf{Intent-completeness test}: if \texttt{title\ +\ Intent}
+are insufficient for a domain-competent stakeholder to understand the
+macro concern and desired result, improve the Intent rather than adding
+a second Objective field.
+
+Use the \textbf{Objective-leakage test} when reviewing legacy or draft
+material: if a separate objective merely restates Intent, merge the
+useful wording into Intent; if it enumerates specific behaviors,
+mechanisms or independently verifiable outcomes, move that content to
+Scope, Constraints, Decisions or Requirements as appropriate.
 
 \subsubsection{7.2 Stakeholders are semantically
-required}\label{stakeholders-are-semantically-required}
+required}\label{72-stakeholders-are-semantically-required}
 
 The MR must identify the stakeholder groups relevant to its macro
 concern. Their names may be technical when that is normal domain
@@ -325,7 +327,7 @@ language, but they should be meaningful to the project community rather
 than internal implementation labels.
 
 \subsubsection{7.3 Assumptions and Constraints are
-distinct}\label{assumptions-and-constraints-are-distinct}
+distinct}\label{73-assumptions-and-constraints-are-distinct}
 
 \begin{itemize}
 \tightlist
@@ -339,7 +341,7 @@ distinct}\label{assumptions-and-constraints-are-distinct}
 Both are optional and belong in the MR only when they materially
 influence the whole branch below it.
 
-\subsubsection{7.4 Parent and children}\label{parent-and-children}
+\subsubsection{7.4 Parent and children}\label{74-parent-and-children}
 
 \texttt{MacroRequirement.parent\ =\ null}.
 
@@ -348,7 +350,7 @@ collection is derived from
 \texttt{Decision.parent\ -\textgreater{}\ MacroRequirement}; it is not a
 second topology authority.
 
-\subsubsection{7.5 Cross-MR dependency}\label{cross-mr-dependency}
+\subsubsection{7.5 Cross-MR dependency}\label{75-cross-mr-dependency}
 
 A Macro Requirement may have a non-hierarchical
 \texttt{dependsOn\ -\textgreater{}\ MacroRequirement\ {[}0..*{]}}
@@ -356,14 +358,14 @@ relation when another macro concern is a genuine dependency. The exact
 Doc-as-Code serialization is deferred.
 
 \subsubsection{7.6 No Acceptance Criteria at MR
-level}\label{no-acceptance-criteria-at-mr-level}
+level}\label{76-no-acceptance-criteria-at-mr-level}
 
 The MR does not contain atomic acceptance criteria. Evidence of
 satisfaction emerges from its descendant Requirements and their
 verification evidence.
 
 \subsubsection{7.7 Progressive
-technicality}\label{progressive-technicality}
+technicality}\label{77-progressive-technicality}
 
 The MR should be understandable by stakeholders competent in the
 \textbf{project domain} without requiring them to understand
@@ -372,7 +374,7 @@ technical knowledge is introduced as documentation descends.
 
 \subsubsection{7.8 Technical and analytical decomposition normally
 emerges
-later}\label{technical-and-analytical-decomposition-normally-emerges-later}
+later}\label{78-technical-and-analytical-decomposition-normally-emerges-later}
 
 The MR must not be structurally required to enumerate components,
 services, APIs, data flows, trust boundaries, attack surfaces or threat
@@ -382,7 +384,7 @@ levels.
 This does \textbf{not} prohibit domain-specific terminology in an MR.
 
 \subsubsection{7.9 MR prose must be stable with respect to design
-progress}\label{mr-prose-must-be-stable-with-respect-to-design-progress}
+progress}\label{79-mr-prose-must-be-stable-with-respect-to-design-progress}
 
 A Macro Requirement describes a durable project concern, not the current
 progress of solution design. Statements such as
@@ -402,7 +404,57 @@ a lifecycle because those are properties of the application domain. The
 rule targets temporary authoring/design state, not legitimate temporal
 semantics of the project.
 
-\subsection{8. MR invariants}\label{mr-invariants}
+\subsubsection{7.10 Teachability and macro project-map
+projection}\label{710-teachability-and-macro-project-map-projection}
+
+A Macro Requirement must contribute to a project description that can be
+\textbf{taught progressively}, not merely validated. Individually, each
+MR should provide one understandable conceptual block through its
+identity, title and Intent. Collectively, the MR set should support a
+simple didactic map of the project\textquotesingle s major concerns and
+their meaningful relationships without requiring lower-level
+architecture knowledge.
+
+Use the \textbf{teachability test}: a reader who understands the
+application domain but is new to the project should be able to use the
+MR set to build a simple mental/graphical map answering:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  what the main project concerns are;
+\item
+  why each concern exists;
+\item
+  which macro concerns depend on, support or otherwise relate to others
+  when such relations are explicitly governed or can be shown as clearly
+  marked non-canonical teaching interpretations;
+\item
+  how the blocks collectively explain the project\textquotesingle s
+  macro functioning without exposing lower-level implementation
+  topology.
+\end{enumerate}
+
+Failure of this test is evidence to review MR decomposition, titles,
+Intent wording or missing explicit cross-MR relations. It is not
+permission to invent architecture in order to make the picture easier to
+draw.
+
+\subsubsection{7.11 Analysis-enabling does not mean
+analysis-producing}\label{711-analysis-enabling-does-not-mean-analysis-producing}
+
+MR content can provide context and documentary evidence useful to later
+system representation and analysis, but an MR does \textbf{not}
+instantiate canonical analytical elements merely because it names a
+person, device, datum, ML capability or other domain concept.
+
+A didactic map derived from MRs is therefore not a DFD, architecture
+diagram or threat-analysis model. Canonical components, actors, data
+resources, data flows, trust boundaries or method-specific
+interpretations require later governed modeling/review.
+
+\subsection{8. MR invariants}\label{8-mr-invariants}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -435,8 +487,9 @@ semantics of the project.
   \textbf{Explicit dependencies} - cross-MR dependencies are not hidden
   as pseudo-hierarchy.
 \item
-  \textbf{Analysis enabling, method agnostic} - MR provides project
-  knowledge but does not prescribe a threat-analysis paradigm.
+  \textbf{Analysis enabling, not analysis producing} - MR provides
+  useful project context without directly instantiating canonical
+  analytical elements or prescribing an analysis paradigm.
 \item
   \textbf{Architecture resilience} - changing a lower-level architecture
   choice should not normally force the MR to be rewritten if the macro
@@ -445,34 +498,26 @@ semantics of the project.
   \textbf{Temporal stability} - taking or revising a lower-level
   Decision should not make MR prose obsolete unless the macro project
   concern itself changes.
+\item
+  \textbf{Teachability} - each MR is an understandable macro block and
+  the MR set can support a simple didactic project map without requiring
+  lower-level architecture.
+\item
+  \textbf{Projection honesty} - a teaching projection derived from MRs
+  must not be presented as a DFD, architecture model or canonical
+  analysis representation.
 \end{enumerate}
 
 \subsection{9. Semantic decisions still
-open}\label{semantic-decisions-still-open}
+open}\label{9-semantic-decisions-still-open}
 
-These points must be tested with concrete examples before the MR model
-is frozen:
+The Intent/Objective question is now closed: \texttt{Objective} is
+removed and \texttt{Intent} owns macro purpose, value and desired
+outcome. The remaining MR questions below must still be tested before
+final freeze.
 
-\subsubsection{9.1 Intent versus
-Objective}\label{intent-versus-objective}
-
-We need examples to determine whether both concepts add distinct
-information or whether they create unnecessary duplication.
-
-Candidate distinction:
-
-\begin{itemize}
-\tightlist
-\item
-  \texttt{Intent} - why this MR exists / why it matters;
-\item
-  \texttt{Objective} - what macro result we want to obtain.
-\end{itemize}
-
-This distinction is \textbf{not yet frozen}.
-
-\subsubsection{9.2 Meaning and shape of
-Scope}\label{meaning-and-shape-of-scope}
+\subsubsection{9.1 Meaning and shape of
+Scope}\label{91-meaning-and-shape-of-scope}
 
 We need examples to determine what \texttt{scope} should actually
 express and whether \texttt{included}, \texttt{excluded} and
@@ -481,8 +526,8 @@ express and whether \texttt{included}, \texttt{excluded} and
 The goal is not to create three places that repeat the same boundary in
 different words.
 
-\subsubsection{9.3 When to split or merge Macro
-Requirements}\label{when-to-split-or-merge-macro-requirements}
+\subsubsection{9.2 When to split or merge Macro
+Requirements}\label{92-when-to-split-or-merge-macro-requirements}
 
 MR boundaries must not be decided from wording similarity alone. This is
 especially important when refactoring an existing governed corpus: two
@@ -541,8 +586,80 @@ rewriting the MR. A rewritten MR should explain why those Decisions
 belong together without merely summarizing their current solution
 vocabulary.
 
-\subsection{10. Observation deferred to the future analysis
-metamodel}\label{observation-deferred-to-the-future-analysis-metamodel}
+\subsection{10. Derived didactic projection - Macro Project
+Map}\label{10-derived-didactic-projection---macro-project-map}
+
+The MR set may support a \textbf{Macro Project Map}: a non-canonical,
+teaching-oriented projection that gives readers a block-level view of
+the project\textquotesingle s major concerns. Its purpose is orientation
+and progressive disclosure, not system analysis.
+
+A candidate projection uses:
+
+\begin{itemize}
+\tightlist
+\item
+  one block per MR, showing canonical MR identity and title and
+  optionally a shortened Intent;
+\item
+  explicit cross-MR relations such as \texttt{dependsOn} when available;
+\item
+  clearly labeled didactic links only when they are visibly marked as
+  non-canonical interpretation and traceable to supporting MR text;
+\item
+  edge labels expressed as verbs/relations rather than unlabeled arrows;
+\item
+  textual equivalent/traceability alongside the graphic.
+\end{itemize}
+
+The projection must \textbf{not} reinterpret MR blocks as DFD processes,
+external entities or data stores, and its links are not data flows.
+Layout, color, coordinates and SVG/HTML are renderer concerns and must
+remain outside the semantic projection.
+
+\subsubsection{Accessibility / BES-oriented presentation
+heuristic}\label{accessibility--bes-oriented-presentation-heuristic}
+
+The teaching view should favor low cognitive load and progressive
+disclosure:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  few blocks per view;
+\item
+  canonical titles, not unexplained synonyms;
+\item
+  one dominant idea per block;
+\item
+  every arrow labeled in text;
+\item
+  meaning never encoded by color alone;
+\item
+  a textual explanation equivalent to the visual map;
+\item
+  stable navigation from a block back to its MR.
+\end{enumerate}
+
+\subsubsection{Rendering compatibility observation from
+ThreatForge}\label{rendering-compatibility-observation-from-threatforge}
+
+At ThreatForge planning baseline
+\texttt{44f77796469465a6a076596b1b1ba1afdde92db7}, the active Base DFD
+path already follows a useful pattern: renderer-neutral semantic
+projection, deterministic layout, and self-contained HTML with embedded
+accessible SVG and traceability metadata. The active implementation is a
+custom Node/ESM renderer rather than Graphviz or Mermaid.
+
+This study therefore records a \textbf{future reuse direction}, not an
+implementation decision: a Macro Project Map renderer may share visual
+tokens, accessibility patterns, deterministic layout utilities and
+HTML/SVG shell with the DFD renderer while keeping a separate
+MR-specific semantic contract.
+
+\subsection{11. Observation deferred to the future analysis
+metamodel}\label{11-observation-deferred-to-the-future-analysis-metamodel}
 
 Concrete MR examples show that different concerns inside the same
 governed project may later benefit from different analysis paradigms. An
@@ -579,8 +696,8 @@ These are \textbf{deferred design questions}, not frozen analysis-model
 decisions. They are recorded here so that the MR model does not
 accidentally preclude multi-method project analysis.
 
-\subsection{11. Doc-as-Code mapping deliberately
-deferred}\label{doc-as-code-mapping-deliberately-deferred}
+\subsection{12. Doc-as-Code mapping deliberately
+deferred}\label{12-doc-as-code-mapping-deliberately-deferred}
 
 The following remain representation questions, not domain-model
 decisions:
@@ -593,8 +710,6 @@ decisions:
   whether \texttt{parent\ =\ null} is serialized or implicit;
 \item
   concrete representation of stakeholders, assumptions and constraints;
-\item
-  prose versus list representation of Objective;
 \item
   concrete representation of \texttt{dependsOn};
 \item

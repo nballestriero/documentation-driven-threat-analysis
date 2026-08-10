@@ -9,6 +9,7 @@ This package is intentionally separated from canonical thesis/repository materia
 - `01-mr/01-metamodel/` - general MR metamodel, independent from ThreatForge.
 - `01-mr/02-threatforge-comparison/` - ThreatForge as a case study: current MR versus successive rewrites.
 - `01-mr/03-example-facial-access/` - independent example project using facial recognition, biometric data and ML.
+- `01-mr/04-teachability-maps/` - non-canonical Macro Project Map study, saved facial-access/ThreatForge diagrams and DFD-renderer compatibility notes.
 - `guidance/` - draft authoring guidance/anti-pattern notes for future LLM and programmer guidance.
 
 The ThreatForge case study and the facial-access example are evidence and test material. They are not part of the general metamodel.
@@ -24,3 +25,13 @@ Macro Requirements describe stable project concerns, not temporary progress of s
 ## Observation deferred to the analysis metamodel
 
 The facial-access example shows that one project can contain concerns that later benefit from different analysis paradigms. The MR hierarchy must remain organized by project concerns rather than by methodology. The future analysis model should test method selection over explicit scopes/subjects and convergence of heterogeneous analysis feedback into one governed documentation lifecycle.
+
+## Intent/Objective closure
+
+The separate `Objective` concept is removed from the MR working model. `Intent` now owns macro purpose, value and desired outcome. The decision was tested on four facial-access MRs and on the five original/candidate ThreatForge MRs.
+
+## Teachability lesson
+
+Macro Requirements should not directly produce DFD/architecture semantics, but the MR set should be teachable as a simple Macro Project Map. The saved diagrams distinguish canonical MR relations from non-canonical didactic interpretation and provide accessible textual companions.
+
+The current ThreatForge DFD implementation was inspected as a rendering reference: future MR maps may share its deterministic HTML/SVG visual/accessibility method while keeping a separate semantic projection contract.

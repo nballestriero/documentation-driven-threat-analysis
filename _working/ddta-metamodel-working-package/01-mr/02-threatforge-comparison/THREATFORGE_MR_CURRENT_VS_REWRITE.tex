@@ -4,7 +4,6 @@
 %
 \documentclass[
   10pt,
-  a4paper,
 ]{article}
 \usepackage{amsmath,amssymb}
 \usepackage{iftex}
@@ -68,10 +67,6 @@
 
 \begin{document}
 
-{
-\setcounter{tocdepth}{3}
-\tableofcontents
-}
 \section{ThreatForge MR comparison - current vs
 proposed}\label{threatforge-mr-comparison---current-vs-proposed}
 
@@ -84,7 +79,10 @@ ThreatForge product-semantic commit below.
 
 The purpose is to test the general MR metamodel against a real project
 and to collect refactoring/authoring evidence. The proposed rewrites are
-\textbf{not canonical ThreatForge changes}.
+\textbf{not canonical ThreatForge changes}. Earlier candidate
+\texttt{Objective} sections are retained as study history; the current
+MR working contract removes \texttt{Objective} and lets \texttt{Intent}
+own macro purpose, value and desired outcome.
 
 \subsection{MR-0001}\label{mr-0001}
 
@@ -263,7 +261,7 @@ strutturata da poter essere verificata e navigata dagli strumenti.
 \tightlist
 \item
   Rendere la documentazione una fonte affidabile per comprendere e
-  governare l'evoluzione del progetto.
+  governare l\textquotesingle evoluzione del progetto.
 \item
   Mantenere espliciti i collegamenti tra intenzioni, decisioni,
   requisiti ed evidenze senza duplicare le stesse regole in piu livelli.
@@ -430,8 +428,9 @@ requisiti}\label{proposed-mr-0002---sviluppo-tracciabile-dai-requisiti}
 \subparagraph{Intent}\label{intent-3}
 
 Consentire al lavoro di implementazione di partire da requisiti
-governati e di mantenere chiaro, durante l'evoluzione del progetto, che
-cosa viene realizzato e con quali evidenze viene verificato.
+governati e di mantenere chiaro, durante l\textquotesingle evoluzione
+del progetto, che cosa viene realizzato e con quali evidenze viene
+verificato.
 
 \subparagraph{Context}\label{context-3}
 
@@ -452,8 +451,8 @@ legame con le ragioni e gli obblighi che hanno originato quel lavoro.
 \item
   manutentori
 \item
-  utenti che usano ThreatForge per guidare l'authoring e
-  l'implementazione
+  utenti che usano ThreatForge per guidare l\textquotesingle authoring e
+  l\textquotesingle implementazione
 \end{itemize}
 
 \subparagraph{Objective}\label{objective-1}
@@ -464,9 +463,9 @@ legame con le ragioni e gli obblighi che hanno originato quel lavoro.
   Mantenere tracciabile il percorso dal requisito al lavoro
   implementativo e alla verifica.
 \item
-  Offrire assistenza coerente all'authoring e all'esecuzione del lavoro
-  senza spostare le regole di dominio dentro uno specifico strumento di
-  sviluppo.
+  Offrire assistenza coerente all\textquotesingle authoring e
+  all\textquotesingle esecuzione del lavoro senza spostare le regole di
+  dominio dentro uno specifico strumento di sviluppo.
 \end{itemize}
 
 \subparagraph{Scope (candidate semantics under
@@ -536,7 +535,7 @@ design phase instead of waiting for implementation artifacts to exist.
   document that references that element.
 \item
   A document must not reference a Base Analysis Element whose governed
-  origin belongs to one of that document's descendants.
+  origin belongs to one of that document\textquotesingle s descendants.
 \item
   Base Analysis Element provenance must identify the governed documents
   and evidence from which the element is derived.
@@ -647,7 +646,7 @@ design phase instead of waiting for implementation artifacts to exist.
 test}\label{proposed-rewrite-for-metamodel-test-2}
 
 \paragraph{Proposed: MR-0003 - Modello del progetto per
-l'analisi}\label{proposed-mr-0003---modello-del-progetto-per-lanalisi}
+l\textquotesingle analisi}\label{proposed-mr-0003---modello-del-progetto-per-lanalisi}
 
 \subparagraph{Intent}\label{intent-5}
 
@@ -684,10 +683,10 @@ quando cambia il progetto.
 \tightlist
 \item
   Derivare dalla documentazione una base comune e tracciabile per
-  l'analisi.
+  l\textquotesingle analisi.
 \item
-  Permettere analisi anticipate e ripetute durante l'evoluzione del
-  progetto.
+  Permettere analisi anticipate e ripetute durante
+  l\textquotesingle evoluzione del progetto.
 \item
   Mantenere distinguibili i fatti del progetto dalle interpretazioni
   introdotte dalle singole analisi.
@@ -714,8 +713,9 @@ STRIDE exclusions and editor integration move below MR.
 \subsubsection{Second reformulation after ADR-family
 review}\label{second-reformulation-after-adr-family-review}
 
-\paragraph{Current candidate: MR-0003 - Governed representation of the
-system}\label{current-candidate-mr-0003---governed-representation-of-the-system}
+\paragraph{Second reformulation (historical working candidate): MR-0003
+- Governed representation of the
+system}\label{second-reformulation-historical-working-candidate-mr-0003---governed-representation-of-the-system}
 
 \subparagraph{Intent}\label{intent-6}
 
@@ -796,7 +796,7 @@ become governed project knowledge without explicit review.
 reopened}\label{why-the-first-reformulation-was-reopened}
 
 The first reformulation described MR-0003 mainly through its future use
-by analysis (``a common base for analysis''). Read beside the first
+by analysis ("a common base for analysis"). Read beside the first
 MR-0005 rewrite, this made the two MRs appear almost equivalent.
 
 Before merging them, the historical Decision family was inspected. The
@@ -1000,8 +1000,8 @@ progetti.
   Fornire a ogni progetto governato uno spazio autonomo e
   identificabile.
 \item
-  Mantenere separata l'evoluzione del progetto governato dall'evoluzione
-  del motore ThreatForge.
+  Mantenere separata l\textquotesingle evoluzione del progetto governato
+  dall\textquotesingle evoluzione del motore ThreatForge.
 \end{itemize}
 
 \subparagraph{Scope (candidate semantics under
@@ -1193,8 +1193,9 @@ shapes are lower-level analysis/model decisions, not MR obligations.
 \subsubsection{Second reformulation after ADR-family
 review}\label{second-reformulation-after-adr-family-review-1}
 
-\paragraph{Current candidate: MR-0005 - Governed analysis of the
-system}\label{current-candidate-mr-0005---governed-analysis-of-the-system}
+\paragraph{Second reformulation (historical working candidate): MR-0005
+- Governed analysis of the
+system}\label{second-reformulation-historical-working-candidate-mr-0005---governed-analysis-of-the-system}
 
 \subparagraph{Intent}\label{intent-11}
 
@@ -1234,8 +1235,8 @@ to the project knowledge and requirements that motivated them.
 \subparagraph{Objective}\label{objective-6}
 
 Allow one governed description of a system to support multiple analysis
-methods while preserving the method used, the analyst's interpretation,
-the evidence considered and the results produced.
+methods while preserving the method used, the analyst\textquotesingle s
+interpretation, the evidence considered and the results produced.
 
 \subparagraph{Scope}\label{scope-6}
 
@@ -1292,6 +1293,115 @@ question: \textbf{what do we learn by analysing the governed system
 knowledge, and how do we govern that interpretation and its results?}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Intent versus Objective closure test across
+ThreatForge}\label{intent-versus-objective-closure-test-across-threatforge}
+
+The five original ThreatForge MRs and their candidate rewrites were used
+as a second corpus after the four facial-access MRs. The result
+reinforces removal of \texttt{Objective}.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{MR-0001} - Original Intent already states the
+  governed-documentation macro result; the long Macro obligation
+  descends into registries, Markdown, taxonomies, Diataxis and
+  projections. The candidate Objective restates reliable/traced
+  documentation and starts adding design principles such as avoiding
+  duplicated rules. \textbf{Result:} no independent Objective semantics.
+\item
+  \textbf{MR-0002} - Original Intent already states the
+  Requirement-to-implementation/verification flow; the Macro obligation
+  descends into preview, rollback, scaffolding, Git runner and editor
+  adapters. The candidate Objective repeats traceability and adds
+  tool-independence/design constraints. \textbf{Result:} keep the macro
+  outcome in Intent and move lower details down.
+\item
+  \textbf{MR-0003} - Original Intent already states the
+  documentation-derived methodology-neutral system representation;
+  obligations specify identity, provenance, lifecycle and topology. The
+  first Objective repeated analysis-readiness, while the second added
+  the important fact/interpretation distinction. \textbf{Result:}
+  preserve that distinction by strengthening Intent/Constraints, not by
+  retaining Objective.
+\item
+  \textbf{MR-0004} - Original Intent already states governed Target
+  Project lifecycle/isolation. The candidate Objective is almost a pure
+  paraphrase of autonomy/isolation. \textbf{Result:} Objective is
+  redundant.
+\item
+  \textbf{MR-0005} - Original Intent already states the common governed
+  analysis model. The candidate Objective repeats multi-method analysis,
+  traceability and deterministic repetition. \textbf{Result:} Objective
+  is redundant/decompositional.
+\end{itemize}
+
+\subsubsection{Closed conceptual
+decision}\label{closed-conceptual-decision}
+
+\texttt{Objective} is removed from the MR conceptual model.
+\texttt{Intent} is the concise owner of \textbf{macro purpose + value +
+desired outcome}. If a separate Objective contains useful non-duplicated
+material, that material is redistributed to Intent, Scope, Constraints,
+Decisions or Requirements according to its semantics.
+
+\subsubsection{Final candidate Intent set after Objective
+removal}\label{final-candidate-intent-set-after-objective-removal}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{MR-0001 - Documentazione di progetto governata e tracciabile}:
+  Consentire a persone e strumenti di comprendere, mantenere e
+  verificare le conoscenze che guidano un progetto attraverso
+  documentazione versionata, coerente e tracciabile, mantenendo
+  espliciti i collegamenti tra intenzioni, decisioni, requisiti ed
+  evidenze.
+\item
+  \textbf{MR-0002 - Sviluppo tracciabile dai requisiti}: Consentire al
+  lavoro di implementazione di partire da requisiti governati e di
+  mantenere chiaro, durante l\textquotesingle evoluzione del progetto,
+  che cosa viene realizzato, perche e con quali evidenze viene
+  verificato.
+\item
+  \textbf{MR-0003 - Rappresentazione governata del sistema}: Rendere il
+  sistema descritto dal progetto comprensibile attraverso conoscenza
+  esplicita, tracciabile e mantenibile, distinguendo la conoscenza
+  governata dalle integrazioni revisionate e dalle successive
+  interpretazioni, affinche persone e attivita successive possano fare
+  affidamento su una rappresentazione condivisa e giustificata del
+  sistema.
+\item
+  \textbf{MR-0004 - Gestione isolata dei progetti governati}: Consentire
+  a ThreatForge di creare, aprire e governare progetti distinti
+  mantenendo separati i loro documenti, risultati e ciclo di vita dal
+  motore ThreatForge e dagli altri progetti.
+\item
+  \textbf{MR-0005 - Analisi governata del sistema}: Consentire a metodi
+  di analisi differenti di esaminare la conoscenza governata del sistema
+  e produrre risultati revisionabili, tracciabili e ripetibili,
+  preservando il metodo usato, l\textquotesingle interpretazione esperta
+  e le evidenze senza modificare implicitamente la descrizione
+  sottostante del sistema.
+\end{itemize}
+
+\subsection{Teachability-map observation from the final candidate
+set}\label{teachability-map-observation-from-the-final-candidate-set}
+
+The final candidate titles + Intent can be arranged into a didactic
+project map that explains ThreatForge without exposing registries, BAE
+records, plugins, DFD roles, editor adapters or other lower-level
+mechanisms. The saved study map is in
+\texttt{../04-teachability-maps/threatforge-macro-project-map.html}.
+
+The current candidate MR corpus does not yet govern all map links as
+explicit \texttt{dependsOn} relations. The study map therefore marks its
+explanatory links as \textbf{non-canonical didactic interpretations} and
+keeps traceability to the MR/ADR-family evidence. This is intentional:
+the teachability test may reveal where an explicit relation would
+improve the model, but the projection must not silently become topology
+authority.
 
 \subsection{Lesson learned from MR-0003 versus
 MR-0005}\label{lesson-learned-from-mr-0003-versus-mr-0005}

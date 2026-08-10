@@ -26,10 +26,6 @@ L'area e protetta da un tornello. Il progetto usa il riconoscimento del volto co
 - addetti alla sicurezza fisica;
 - personale operativo che gestisce il punto di accesso.
 
-### Objective
-- Rendere l'accesso automatico coerente con lo stato di autorizzazione della persona.
-- Mantenere controllabile il comportamento del varco anche quando il riconoscimento non produce un risultato utilizzabile.
-
 ### Scope - candidate under test
 - il passaggio dal tentativo di ingresso alla decisione di aprire o non aprire il varco;
 - l'esperienza macro della persona al punto di accesso.
@@ -52,10 +48,6 @@ Le autorizzazioni cambiano nel tempo: una persona puo essere abilitata, sospesa 
 - persone autorizzate;
 - personale incaricato dell'onboarding e della revoca.
 
-### Objective
-- Mantenere una fonte governata delle persone autorizzate e del loro stato di accesso.
-- Mantenere coerenti le informazioni necessarie al riconoscimento con il ciclo di vita dell'autorizzazione.
-
 ### Scope - candidate under test
 - inserimento, aggiornamento, sospensione e revoca delle autorizzazioni;
 - associazione tra identita autorizzata e informazioni utilizzate per riconoscerla.
@@ -73,11 +65,6 @@ Il progetto utilizza una telecamera e un modello di machine learning per il rico
 - addetti alla sicurezza;
 - responsabili del servizio di accesso;
 - specialisti che mantengono il sistema di riconoscimento.
-
-### Objective
-- Ottenere dal volto osservato un risultato di riconoscimento utilizzabile dal processo di accesso.
-- Rendere distinguibili i casi di riconoscimento positivo, mancato riconoscimento e risultato non sufficientemente affidabile.
-- Consentire che la qualita del riconoscimento possa essere valutata e migliorata nel tempo.
 
 ### Scope - candidate under test
 - acquisizione delle informazioni visive necessarie al riconoscimento;
@@ -101,14 +88,15 @@ Il riconoscimento facciale utilizza informazioni biometriche e puo produrre erro
 - responsabili privacy/compliance applicabili al contesto;
 - addetti che gestiscono contestazioni o eccezioni di accesso.
 
-### Objective
-- Limitare l'uso dei dati biometrici alle finalita governate dal progetto.
-- Rendere governabili il ciclo di vita dei dati biometrici e gli effetti degli errori di riconoscimento.
-- Consentire responsabilita e revisione delle decisioni automatiche che incidono sull'accesso.
-
 ### Scope - candidate under test
 - trattamento dei dati biometrici utilizzati dal progetto;
 - conseguenze e revisione delle decisioni automatiche di riconoscimento nel contesto dell'accesso.
+
+## Teachability map
+
+The MR set is also used to test whether a reader new to the project can form a simple mental model before seeing Decisions or architecture. A saved non-canonical Macro Project Map is available in `../04-teachability-maps/facial-access-macro-project-map.html` (with SVG/PNG companions and a textual traceability explanation).
+
+The map distinguishes explicit `dependsOn` relations from didactic links inferred only for explanation. These links are not data flows and do not establish architecture.
 
 ## Why there is no separate MR for PC/LAN/edge architecture
 
@@ -120,7 +108,7 @@ A different MR structure would be justified only if a property that currently lo
 
 In this example, model training, deployment, threshold selection and model update are treated as lower-level concerns of `MR-0003` because they serve the single macro intent of facial recognition at the access point.
 
-A separate MR for **ML model lifecycle** would be justified only if the project treats model production/governance as an independent macro capability with its own stakeholders, objectives and Decisions (for example, if the product itself includes a reusable organizational ML model-management service).
+A separate MR for **ML model lifecycle** would be justified only if the project treats model production/governance as an independent macro capability with its own stakeholders, macro outcome and Decisions (for example, if the product itself includes a reusable organizational ML model-management service).
 
 ## Observation for the future analysis metamodel
 
@@ -145,4 +133,5 @@ This observation is intentionally deferred to the future analysis metamodel. It 
 4. Cross-MR dependencies can express collaboration without creating a false hierarchy between independent macro concerns.
 5. A single project can expose concerns suited to different later analysis paradigms without partitioning the MR model by methodology.
 6. Results from different analyses should ultimately return to one governed project/documentation lifecycle; the detailed mechanism remains a future analysis-metamodel question.
-7. Intent/Objective and Scope remain under evaluation: this example should be used to detect duplication before those concepts are frozen.
+7. Intent alone carries macro purpose, value and desired outcome; the separate Objective field was removed after duplication testing.
+8. Scope remains under evaluation and should still be tested for redundancy with exclusions/non-goals.

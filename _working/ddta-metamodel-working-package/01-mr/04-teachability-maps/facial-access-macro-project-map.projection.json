@@ -1,0 +1,65 @@
+{
+  "schema_version": 0,
+  "status": "non-canonical-study-projection",
+  "projection_kind": "macro_project_teachability_map",
+  "projection_id": "MR-MAP-FACIAL-ACCESS",
+  "source": "Facial-access MR example in this working package",
+  "nodes": [
+    {
+      "id": "MR-0001",
+      "title": "Accesso controllato all'area riservata",
+      "intent": "Consentire alle persone autorizzate di accedere a un'area riservata in modo rapido e controllato, evitando che il varco si apra automaticamente quando l'autorizzazione non e stata confermata."
+    },
+    {
+      "id": "MR-0002",
+      "title": "Gestione delle persone autorizzate",
+      "intent": "Consentire all'organizzazione di stabilire chi puo accedere all'area riservata e di mantenere aggiornata nel tempo l'associazione tra persona, autorizzazione e informazioni necessarie al riconoscimento."
+    },
+    {
+      "id": "MR-0003",
+      "title": "Riconoscimento facciale per la verifica della persona",
+      "intent": "Determinare se il volto osservato al punto di accesso corrisponde a una persona autorizzata con qualita sufficiente per supportare la decisione di accesso."
+    },
+    {
+      "id": "MR-0004",
+      "title": "Uso responsabile dei dati biometrici e delle decisioni automatiche",
+      "intent": "Proteggere le persone coinvolte nell uso del riconoscimento facciale assicurando che dati biometrici e decisioni automatiche siano trattati in modo comprensibile, controllabile e coerente con le finalita di accesso del progetto."
+    }
+  ],
+  "links": [
+    {
+      "id": "MRMAP-REL-0001",
+      "source": "MR-0001",
+      "target": "MR-0002",
+      "label": "depends on",
+      "authority": "explicit_mr_relation",
+      "evidence": "MR-0001 DependsOn MR-0002"
+    },
+    {
+      "id": "MRMAP-REL-0002",
+      "source": "MR-0001",
+      "target": "MR-0003",
+      "label": "depends on",
+      "authority": "explicit_mr_relation",
+      "evidence": "MR-0001 DependsOn MR-0003"
+    },
+    {
+      "id": "MRMAP-REL-0003",
+      "source": "MR-0004",
+      "target": "MR-0003",
+      "label": "responsible biometric / ML use",
+      "authority": "didactic_interpretation",
+      "evidence": "MR-0004 Intent/Context concerns biometric information and automatic recognition decisions."
+    },
+    {
+      "id": "MRMAP-REL-0004",
+      "source": "MR-0004",
+      "target": "MR-0001",
+      "label": "effects of automatic access decisions",
+      "authority": "didactic_interpretation",
+      "evidence": "MR-0004 Scope concerns consequences/review of automatic recognition decisions in access context."
+    }
+  ],
+  "semantic_note": "Nodes are Macro Requirements. Links are MR relations or explicitly marked didactic interpretations. Links are not data flows and nodes are not DFD roles.",
+  "renderer_note": "Layout/style are intentionally absent from this semantic study projection."
+}
