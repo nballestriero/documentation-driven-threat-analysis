@@ -1,0 +1,610 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  10pt,
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+\babelprovide[main,import]{italian}
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+\usepackage{needspace}
+\usepackage{etoolbox}
+\pretocmd{\subsection}{\Needspace{12\baselineskip}}{}{}
+\pretocmd{\section}{\Needspace{14\baselineskip}}{}{}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdflang={it-IT},
+  colorlinks=true,
+  linkcolor={Maroon},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{Facial-access Decision demo - independent authoring
+corpus}\label{facial-access-decision-demo---independent-authoring-corpus}
+
+\begin{quote}
+\textbf{Non-canonical research example - Phase D1.}
+
+This corpus was authored after commit
+\texttt{4fd39955a1920e4380c0dc411b0d814c433646a6}, using the frozen
+Decision construction candidate and the four previously studied
+facial-access Macro Requirements. It is intentionally written
+\textbf{before} Phase D2 analysis. No statement in this document is
+evidence that the candidate metamodel fits; that judgement is deferred
+to a separate checkpoint.
+\end{quote}
+
+\subsection{Authoring boundary}\label{authoring-boundary}
+
+The Decision-specific shape is kept fixed during this phase:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Decision}
+\NormalTok{|{-} title}
+\NormalTok{|{-} context}
+\NormalTok{|{-} decision}
+\NormalTok{\textasciigrave{}{-} consequences}
+\end{Highlighting}
+\end{Shaded}
+
+Every Decision below materializes all four fields. Parent Macro
+Requirement is recorded as an explicit relation in the study wrapper,
+not duplicated as a Decision-specific semantic field. Lifecycle/status,
+Requirement semantics, architecture topology, concrete protocols,
+thresholds, database choices and deployment placement remain outside
+this authoring exercise.
+
+The independent source MRs are:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \texttt{MR-0001} - Accesso controllato all'area riservata
+\item
+  \texttt{MR-0002} - Gestione delle persone autorizzate
+\item
+  \texttt{MR-0003} - Riconoscimento facciale per la verifica della
+  persona
+\item
+  \texttt{MR-0004} - Uso responsabile dei dati biometrici e delle
+  decisioni automatiche
+\end{enumerate}
+
+\subsection{Corpus overview}\label{corpus-overview}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Parent MR
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Decision
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Title
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+MR-0001 & ADR-0001 & Autorizzazione e verifica come condizioni distinte
+dell'apertura automatica \\
+MR-0001 & ADR-0002 & Un esito non conclusivo non equivale a verifica
+riuscita \\
+MR-0002 & ADR-0001 & Autorizzazione organizzativa separata
+dall'iscrizione biometrica \\
+MR-0002 & ADR-0002 & Una fonte autorevole per lo stato corrente di
+autorizzazione \\
+MR-0003 & ADR-0001 & Il riconoscimento produce evidenza di identita, non
+una decisione di accesso \\
+MR-0003 & ADR-0002 & Esito di riconoscimento semanticamente stabile
+rispetto al modello ML \\
+MR-0004 & ADR-0001 & Limitazione di finalita dei dati biometrici \\
+MR-0004 & ADR-0002 & Decisioni automatiche contestabili e
+revisionabili \\
+\end{longtable}
+
+\section{MR-0001 - Accesso controllato all'area
+riservata}\label{mr-0001---accesso-controllato-allarea-riservata}
+
+\subsection{ADR-0001 - Autorizzazione e verifica come condizioni
+distinte dell'apertura
+automatica}\label{adr-0001---autorizzazione-e-verifica-come-condizioni-distinte-dellapertura-automatica}
+
+\textbf{Parent Macro Requirement:} \texttt{MR-0001}
+
+\subsubsection{Title}\label{title}
+
+Autorizzazione e verifica come condizioni distinte dell'apertura
+automatica
+
+\subsubsection{Context}\label{context}
+
+L'apertura automatica del varco deve riflettere sia la decisione
+organizzativa su chi e autorizzato sia l'evidenza che la persona
+presente al punto di accesso corrisponda all'identita interessata. Se il
+risultato del riconoscimento facciale viene trattato direttamente come
+autorizzazione, la capacita biometrica finisce per sostituire una
+decisione organizzativa che ha significato autonomo e puo cambiare nel
+tempo.
+
+\subsubsection{Decision}\label{decision}
+
+Il progetto tratta \textbf{autorizzazione corrente} e \textbf{verifica
+della persona} come condizioni distinte della decisione di apertura
+automatica. Il riconoscimento facciale puo fornire evidenza per la
+verifica della persona, ma non crea, estende o sostituisce
+l'autorizzazione. L'apertura automatica rappresenta quindi un esito del
+processo di accesso soltanto quando le condizioni di autorizzazione e
+verifica richieste dal progetto risultano entrambe soddisfatte.
+
+\subsubsection{Consequences}\label{consequences}
+
+\begin{itemize}
+\tightlist
+\item
+  La responsabilita di stabilire chi puo accedere resta distinta dalla
+  tecnologia usata per riconoscere la persona.
+\item
+  Un riconoscimento positivo non puo, da solo, rendere autorizzata una
+  persona.
+\item
+  Una persona autorizzata puo non ottenere apertura automatica quando la
+  verifica richiesta non e disponibile o sufficiente.
+\item
+  I livelli successivi dovranno rendere osservabile come le due
+  condizioni vengono risolte e combinate senza duplicarne le fonti
+  autorevoli.
+\end{itemize}
+
+\subsection{ADR-0002 - Un esito non conclusivo non equivale a verifica
+riuscita}\label{adr-0002---un-esito-non-conclusivo-non-equivale-a-verifica-riuscita}
+
+\textbf{Parent Macro Requirement:} \texttt{MR-0001}
+
+\subsubsection{Title}\label{title-1}
+
+Un esito non conclusivo non equivale a verifica riuscita
+
+\subsubsection{Context}\label{context-1}
+
+Il riconoscimento facciale puo non produrre evidenza sufficiente per
+stabilire una corrispondenza affidabile. Trattare un esito incerto,
+incompleto o non disponibile come se fosse una verifica positiva
+renderebbe l'apertura automatica dipendente dall'assenza di evidenza
+anziche dalla sua presenza; trattarlo sempre come un rifiuto definitivo
+confonderebbe invece l'impossibilita di verificare con la certezza che
+la persona non corrisponda.
+
+\subsubsection{Decision}\label{decision-1}
+
+Il processo di accesso conserva l'\textbf{esito non conclusivo} come
+situazione distinta dalla verifica riuscita e dalla verifica negativa.
+Un esito non conclusivo non vale come verifica positiva ai fini
+dell'apertura automatica. Il modo con cui il progetto gestira
+successivamente l'eccezione, la ripetizione della verifica o un
+eventuale intervento organizzativo rimane una scelta successiva.
+
+\subsubsection{Consequences}\label{consequences-1}
+
+\begin{itemize}
+\tightlist
+\item
+  L'apertura automatica non viene concessa sulla base di un risultato
+  che il sistema non e in grado di interpretare come verifica riuscita.
+\item
+  Il progetto preserva la differenza tra mancata corrispondenza e
+  impossibilita di concludere.
+\item
+  L'esperienza di accesso puo richiedere percorsi aggiuntivi nei casi
+  non conclusivi.
+\item
+  Le scelte successive dovranno mantenere questa distinzione senza
+  trasformarla prematuramente in una specifica tecnologia o procedura.
+\end{itemize}
+
+\section{MR-0002 - Gestione delle persone
+autorizzate}\label{mr-0002---gestione-delle-persone-autorizzate}
+
+\subsection{ADR-0001 - Autorizzazione organizzativa separata
+dall'iscrizione
+biometrica}\label{adr-0001---autorizzazione-organizzativa-separata-dalliscrizione-biometrica}
+
+\textbf{Parent Macro Requirement:} \texttt{MR-0002}
+
+\subsubsection{Title}\label{title-2}
+
+Autorizzazione organizzativa separata dall'iscrizione biometrica
+
+\subsubsection{Context}\label{context-2}
+
+Per riconoscere una persona il progetto deve poter associare alla sua
+identita informazioni biometriche adeguate. La presenza di tali
+informazioni, tuttavia, non significa necessariamente che la persona sia
+attualmente autorizzata ad accedere: autorizzazioni e dati necessari al
+riconoscimento hanno motivazioni e cicli di cambiamento differenti.
+
+\subsubsection{Decision}\label{decision-2}
+
+Il progetto mantiene \textbf{l'autorizzazione organizzativa} e
+\textbf{l'iscrizione biometrica necessaria alla verifica} come fatti
+distinti. L'iscrizione biometrica non concede di per se accesso e una
+modifica dello stato di autorizzazione non viene rappresentata come
+modifica implicita dell'identita della persona. Eventuali regole che
+coordinano i rispettivi cicli di vita dovranno essere governate
+esplicitamente a un livello successivo.
+
+\subsubsection{Consequences}\label{consequences-2}
+
+\begin{itemize}
+\tightlist
+\item
+  La concessione o revoca dell'accesso non dipende dal semplice fatto
+  che esista materiale biometrico utilizzabile.
+\item
+  Il progetto puo ragionare separatamente sulla correttezza
+  dell'autorizzazione e sulla qualita delle informazioni di
+  riconoscimento.
+\item
+  La separazione rende visibili future domande su conservazione,
+  aggiornamento e cancellazione dei dati biometrici invece di
+  nasconderle nello stato di accesso.
+\item
+  I livelli successivi dovranno mantenere coerenza tra fatti distinti
+  senza trasformarli in copie concorrenti della stessa informazione.
+\end{itemize}
+
+\subsection{ADR-0002 - Una fonte autorevole per lo stato corrente di
+autorizzazione}\label{adr-0002---una-fonte-autorevole-per-lo-stato-corrente-di-autorizzazione}
+
+\textbf{Parent Macro Requirement:} \texttt{MR-0002}
+
+\subsubsection{Title}\label{title-3}
+
+Una fonte autorevole per lo stato corrente di autorizzazione
+
+\subsubsection{Context}\label{context-3}
+
+Lo stato di autorizzazione puo cambiare nel tempo e viene consumato dal
+processo che decide l'accesso. Se lo stesso stato viene mantenuto come
+verita indipendente in piu punti del progetto, una sospensione o revoca
+puo risultare applicata in modo non uniforme e il sistema puo continuare
+a operare su copie obsolete.
+
+\subsubsection{Decision}\label{decision-3}
+
+Il progetto mantiene \textbf{una sola fonte autorevole dello stato
+corrente di autorizzazione} per ciascuna identita governata. Le
+rappresentazioni necessarie ai diversi consumatori sono derivate o
+risolte da quella fonte e non costituiscono nuove autorita indipendenti
+sul significato dell'autorizzazione.
+
+\subsubsection{Consequences}\label{consequences-3}
+
+\begin{itemize}
+\tightlist
+\item
+  La decisione organizzativa corrente rimane ricostruibile senza
+  confrontare copie concorrenti.
+\item
+  Proiezioni o copie operative possono esistere, ma la loro correttezza
+  dipende dalla relazione con la fonte autorevole.
+\item
+  Disponibilita, aggiornamento e freshness delle rappresentazioni
+  derivate diventano problemi espliciti da governare successivamente.
+\item
+  La scelta limita soluzioni che attribuiscono autonomia semantica a uno
+  stato locale vicino al componente di riconoscimento o al varco.
+\end{itemize}
+
+\section{MR-0003 - Riconoscimento facciale per la verifica della
+persona}\label{mr-0003---riconoscimento-facciale-per-la-verifica-della-persona}
+
+\subsection{ADR-0001 - Il riconoscimento produce evidenza di identita,
+non una decisione di
+accesso}\label{adr-0001---il-riconoscimento-produce-evidenza-di-identita-non-una-decisione-di-accesso}
+
+\textbf{Parent Macro Requirement:} \texttt{MR-0003}
+
+\subsubsection{Title}\label{title-4}
+
+Il riconoscimento produce evidenza di identita, non una decisione di
+accesso
+
+\subsubsection{Context}\label{context-4}
+
+Un sistema di riconoscimento facciale puo essere progettato per
+restituire direttamente etichette operative come ``accesso consentito''
+oppure per descrivere cio che ha osservato rispetto a un'identita.
+Legare il significato dell'output del riconoscimento alla politica di
+accesso renderebbe il modello biometrico proprietario anche di decisioni
+che dipendono da autorizzazioni e regole esterne al riconoscimento
+stesso.
+
+\subsubsection{Decision}\label{decision-4}
+
+La capacita di riconoscimento facciale produce \textbf{evidenza sulla
+corrispondenza tra il volto osservato e un'identita governata}, non una
+decisione autonoma di accesso. Il processo di accesso interpreta tale
+evidenza insieme alle altre conoscenze governate necessarie alla propria
+decisione.
+
+\subsubsection{Consequences}\label{consequences-4}
+
+\begin{itemize}
+\tightlist
+\item
+  Il modello di riconoscimento resta separato dalla politica che
+  stabilisce chi puo entrare.
+\item
+  Cambiare una regola di autorizzazione non richiede di ridefinire il
+  significato del riconoscimento facciale.
+\item
+  Il processo di accesso deve integrare esplicitamente l'evidenza di
+  riconoscimento con le altre condizioni rilevanti.
+\item
+  Il risultato del riconoscimento deve restare sufficientemente
+  comprensibile da poter essere valutato e riesaminato senza dipendere
+  da una singola etichetta operativa.
+\end{itemize}
+
+\subsection{ADR-0002 - Esito di riconoscimento semanticamente stabile
+rispetto al modello
+ML}\label{adr-0002---esito-di-riconoscimento-semanticamente-stabile-rispetto-al-modello-ml}
+
+\textbf{Parent Macro Requirement:} \texttt{MR-0003}
+
+\subsubsection{Title}\label{title-5}
+
+Esito di riconoscimento semanticamente stabile rispetto al modello ML
+
+\subsubsection{Context}\label{context-5}
+
+Modelli o implementazioni differenti possono esporre punteggi, scale e
+indicatori con significati tecnici diversi. Se il resto del progetto
+dipende direttamente da un valore grezzo specifico del modello,
+sostituire o aggiornare il modello puo cambiare implicitamente il
+significato della verifica anche quando l'intento del progetto rimane
+invariato.
+
+\subsubsection{Decision}\label{decision-5}
+
+Il progetto definisce un \textbf{significato stabile dell'esito di
+riconoscimento} a livello della capacita di verifica, separato dalla
+scala o dal formato grezzo prodotti da uno specifico modello ML.
+Evidenze tecniche del modello possono essere conservate per spiegazione,
+revisione e valutazione, ma il contratto semantico consumato dal
+processo di accesso non coincide con un punteggio grezzo proprietario di
+una particolare implementazione.
+
+\subsubsection{Consequences}\label{consequences-5}
+
+\begin{itemize}
+\tightlist
+\item
+  L'evoluzione del modello ML puo essere valutata senza cambiare
+  automaticamente la semantica del processo di accesso.
+\item
+  Diventa necessario governare come l'evidenza tecnica viene
+  interpretata nel significato stabile della verifica.
+\item
+  Informazioni specifiche del modello restano disponibili come evidenza
+  senza diventare l'unico linguaggio condiviso dal progetto.
+\item
+  La scelta introduce un confine esplicito tra semantica del progetto e
+  dettagli dell'implementazione ML.
+\end{itemize}
+
+\section{MR-0004 - Uso responsabile dei dati biometrici e delle
+decisioni
+automatiche}\label{mr-0004---uso-responsabile-dei-dati-biometrici-e-delle-decisioni-automatiche}
+
+\subsection{ADR-0001 - Limitazione di finalita dei dati
+biometrici}\label{adr-0001---limitazione-di-finalita-dei-dati-biometrici}
+
+\textbf{Parent Macro Requirement:} \texttt{MR-0004}
+
+\subsubsection{Title}\label{title-6}
+
+Limitazione di finalita dei dati biometrici
+
+\subsubsection{Context}\label{context-6}
+
+Le informazioni biometriche raccolte per consentire il riconoscimento al
+varco possono tecnicamente essere riutilizzate per finalita ulteriori,
+come osservazione continuativa, profilazione o analisi non necessarie al
+controllo dell'accesso. Un riuso implicito allargherebbe il significato
+del progetto senza una corrispondente scelta governata e senza che le
+persone coinvolte possano comprenderne il nuovo scopo.
+
+\subsubsection{Decision}\label{decision-6}
+
+Il progetto usa i dati biometrici per \textbf{iscrizione, verifica della
+persona e revisione controllata direttamente connesse alla finalita di
+accesso}. I dati non vengono trattati come una risorsa genericamente
+disponibile per finalita estranee al controllo dell'accesso. Una
+finalita sostanzialmente diversa richiederebbe una nuova scelta
+governata e non viene assorbita implicitamente da questa Decision.
+
+\subsubsection{Consequences}\label{consequences-6}
+
+\begin{itemize}
+\tightlist
+\item
+  Le capacita future non possono presumere che i dati biometrici siano
+  disponibili per qualunque uso tecnicamente possibile.
+\item
+  La comprensibilita dello scopo del trattamento migliora per persone e
+  responsabili del progetto.
+\item
+  Alcune funzionalita secondarie possono richiedere una nuova
+  giustificazione e una nuova decomposizione del progetto invece di
+  essere aggiunte come semplice riuso dei dati.
+\item
+  I livelli successivi dovranno rendere operativa la limitazione di
+  finalita senza duplicarne manualmente il significato in ogni documento
+  o componente.
+\end{itemize}
+
+\subsection{ADR-0002 - Decisioni automatiche contestabili e
+revisionabili}\label{adr-0002---decisioni-automatiche-contestabili-e-revisionabili}
+
+\textbf{Parent Macro Requirement:} \texttt{MR-0004}
+
+\subsubsection{Title}\label{title-7}
+
+Decisioni automatiche contestabili e revisionabili
+
+\subsubsection{Context}\label{context-7}
+
+Il riconoscimento facciale puo produrre errori o risultati non
+conclusivi che incidono sull'accesso fisico di una persona. Se l'esito
+automatico fosse trattato come autorita finale non riesaminabile, un
+errore tecnico diventerebbe direttamente una decisione organizzativa
+senza un percorso con cui comprenderne o contestarne gli effetti.
+
+\subsubsection{Decision}\label{decision-7}
+
+Gli esiti automatici che incidono negativamente sull'accesso restano
+\textbf{contestabili e revisionabili attraverso un processo
+organizzativo distinto dalla sola esecuzione del modello}. L'output
+automatico costituisce evidenza per la gestione dell'accesso, ma non
+elimina la possibilita di una valutazione successiva da parte
+dell'organizzazione.
+
+\subsubsection{Consequences}\label{consequences-7}
+
+\begin{itemize}
+\tightlist
+\item
+  Le persone dispongono di un principio di riesame quando l'automazione
+  produce un esito problematico.
+\item
+  L'organizzazione mantiene responsabilita sulle conseguenze dell'uso
+  del riconoscimento facciale invece di delegarle interamente al
+  modello.
+\item
+  La revisione introduce costi operativi e richiede informazioni
+  sufficienti a ricostruire l'esito automatico.
+\item
+  Le scelte successive dovranno definire il processo concreto senza
+  trasformare questa Decision in una procedura dettagliata.
+\end{itemize}
+
+\subsection{D1 freeze note}\label{d1-freeze-note}
+
+This document ends Phase D1 authoring. No Decision above has yet been
+classified as fitting or violating the frozen construction candidate.
+Phase D2 must analyze this exact corpus before any semantic rewrite. If
+D2 identifies a genuine counterexample, the original D1 text should
+remain available as the evidence that triggered the model correction.
+
+\end{document}

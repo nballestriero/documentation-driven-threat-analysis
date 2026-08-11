@@ -19,6 +19,7 @@ This package contains the current document-semantics studies for Macro Requireme
 - `02-decision/02-threatforge-comparison/` - 16 historical ThreatForge ADR bodies from MR-0001/MR-0002 versus their revised candidate Decisions; MR-0003/MR-0004/MR-0005 remain untouched holdouts.
 - `02-decision/03-plan/` - frozen experimental work plan before authoring the independent facial-access Decision corpus.
 - `02-decision/04-diagrams/` - reusable model-to-executable-projections diagram and sources.
+- `02-decision/05-example-facial-access/` - Phase D1 independent facial-access Decision authoring corpus; intentionally frozen before D2 analysis.
 
 ### `guidance/`
 
@@ -111,6 +112,10 @@ The construction corpus demonstrates that persistent choices can be forgotten or
 - no inheritance-by-copy.
 
 These are not new Decision fields. Their minimal relation/propagation mechanism remains open until Requirement semantics is studied.
+
+## Current Decision validation state
+
+Phase D1 is now authored and frozen in `02-decision/05-example-facial-access/FACIAL_ACCESS_DECISION_DEMO.*`. The eight Decisions have **not yet been analyzed** against the construction candidate. The next empirical step is Phase D2; the D1 corpus must remain unchanged while it is evaluated so that any counterexample remains attributable to the independent authoring evidence.
 
 ## Next experimental sequence
 
