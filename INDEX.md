@@ -114,6 +114,35 @@ A controlled vocabulary, if adopted, is governed knowledge independent from Thre
 
 ThreatForge should eventually make explicit which DDTA contracts it supports, validates, projects or assists with rather than re-declaring those semantics inside tool ADRs. The exact support/coverage relation model is deferred until Requirement and implementation-trace semantics are revisited.
 
+
+## ThreatForge Decision regression after Revision 7
+
+`02-decision/02-threatforge-comparison/THREATFORGE_DECISION_REGRESSION_REV7.*` records the complete regression of the sixteen construction candidates after correcting the model-layering error.
+
+Key outcomes:
+
+- L3 realization principles cannot by themselves make a ThreatForge Decision redundant;
+- ownership-correct wording must still contain an autonomous choice;
+- parentage must be re-evaluated after ownership/narrowing changes;
+- support of one concrete model extension can be L4 conformance/coverage rather than a standalone Decision.
+
+The regression specifically reopens the earlier negative reading of executable-contract ADR-0007 and retains `H-CLOSED-02` as the reason to challenge Security-support ADR-0009.
+
+
+## Corrected ThreatForge Decision candidates after Revision 7
+
+`02-decision/02-threatforge-comparison/THREATFORGE_ADR_CANDIDATES_REV7.*` rewrites the sixteen historical construction slots against the Revision 7 layering and corpus invariants.
+
+The rewrite deliberately does not preserve a one-to-one ADR count:
+
+- Diátaxis, controlled vocabulary and governed-reference grammar are relocated to DDTA method/L2 representation ownership candidates;
+- implementation trace is rewritten as a ThreatForge product choice and proposed for MR-0002;
+- handoff remains a meaningful ThreatForge project-operation Decision with parent unresolved;
+- Security Requirement support is removed as a standalone Decision candidate and represented as an L4 support/conformance case;
+- the remaining ThreatForge candidates are rewritten/cleaned so that each document states a tool/project choice rather than merely restating the DDTA contract it supports.
+
+Study annotations for semantic owner, proposed parent and supported DDTA contract are not new canonical Decision fields.
+
 ## Cross-document problems deliberately left open
 
 The construction corpus demonstrates that persistent choices can be forgotten or lose explicit downstream coverage even while artifacts survive. The working constraints retained for later combined MR -> Decision -> Requirement modeling are:
@@ -129,7 +158,7 @@ These are not new Decision fields. Their minimal relation/propagation mechanism 
 
 ## Current Decision validation state
 
-Phase D1 is authored and frozen in `02-decision/05-example-facial-access/FACIAL_ACCESS_DECISION_DEMO.*`. The frozen D1 corpus remains unchanged. Revision 6 added hierarchy/corpus invariants; the subsequent independent-example review and ThreatForge construction regression exposed a layering error in the study itself. Revision 7 checkpoints the corrected separation before the ThreatForge ADR regression is finalized or any candidate ADR is rewritten.
+Phase D1 is authored and frozen in `02-decision/05-example-facial-access/FACIAL_ACCESS_DECISION_DEMO.*`. The frozen D1 corpus remains unchanged. Revision 6 added hierarchy/corpus invariants; the subsequent independent-example review and ThreatForge construction regression exposed a layering error in the study itself. Revision 7 checkpoints the corrected separation. The ThreatForge construction regression is now finalized in `THREATFORGE_DECISION_REGRESSION_REV7.*`; no historical ThreatForge ADR has been migrated. The corrected candidate corpus is now written in `THREATFORGE_ADR_CANDIDATES_REV7.*`. The next step is to validate that rewritten corpus itself before touching the sequential ThreatForge MR-0003/MR-0004/MR-0005 holdouts.
 
 ## Next experimental sequence
 
