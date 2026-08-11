@@ -1,0 +1,29 @@
+digraph G {
+  graph [rankdir=TB, bgcolor="transparent", pad="0.15", nodesep="0.30", ranksep="0.48", splines=ortho];
+  node [shape=box, style="rounded", fontname="Helvetica", fontsize=10, margin="0.13,0.09", color="#333333", fontcolor="#111111", penwidth=1.1];
+  edge [color="#444444", penwidth=1.0, arrowsize=0.7, fontname="Helvetica", fontsize=8, fontcolor="#333333"];
+
+  meta [label="L1 - DDTA conceptual metamodel\nconcepts | semantic attributes | relations\ncardinalities | semantic nullability | invariants", width=4.4];
+  rep [label="L2 - Canonical representation contract\nfield materialization | explicit null/empty encoding\norder | headings | containers | mirrors | mappings", width=4.4];
+  realize [label="L3 - Model realization\nexecutable projections derived from L1 + L2\nnot parallel semantic authorities", width=4.4];
+
+  validator [label="Validators / gates", width=1.65];
+  editor [label="Editor schemas\n& diagnostics", width=1.65];
+  author [label="Authoring / LLM\ncontext & guidance", width=1.85];
+  search [label="Search / similarity\ndiagnostics", width=1.75];
+
+  support [label="L4 - Tool support / conformance view\nwhat a tool supports, validates, projects or assists\n(exact relation model deferred)", width=4.4];
+
+  meta -> rep [label="materialized by"];
+  meta -> realize;
+  rep -> realize;
+  realize -> validator;
+  realize -> editor;
+  realize -> author;
+  realize -> search;
+  {rank=same; validator; editor; author; search}
+  validator -> support;
+  editor -> support;
+  author -> support;
+  search -> support;
+}

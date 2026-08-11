@@ -21,7 +21,7 @@ The repeated `Status: Draft` section is omitted because lifecycle/governance is 
 5. **Single-authority executable projections** - validators, editor schemas/diagnostics, authoring support and LLM guidance should derive deterministically from the governed canonical model instead of copying field inventories or rules.
 6. **ADR boundary unchanged** - these representation rules are not inserted as ad-hoc fields or implementation detail inside each Decision. They constrain the later canonical document-model layer.
 
-![Model to executable projections](../04-diagrams/MODEL_TO_EXECUTABLE_PROJECTIONS.pdf)
+![Model to executable projections](../../00-foundations/01-model-layering/diagrams/MODEL_TO_EXECUTABLE_PROJECTIONS.pdf)
 
 ## Reading questions
 

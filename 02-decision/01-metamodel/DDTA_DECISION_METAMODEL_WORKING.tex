@@ -5,11 +5,9 @@
 \usepackage{lmodern}
 \usepackage{microtype}
 \usepackage{enumitem}
-\usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{array}
 \usepackage[hidelinks]{hyperref}
-\usepackage{xcolor}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{5.5pt}
 \setlist[itemize]{leftmargin=1.4em,itemsep=2pt,topsep=3pt}
@@ -20,24 +18,14 @@
 
 {\LARGE\bfseries DDTA - Working Metamodel - Decision}\par
 \vspace{4pt}
-{\large\bfseries NON CANONICAL WORKING DRAFT - REVISION 6}\par
+{\large\bfseries NON CANONICAL WORKING DRAFT - REVISION 7}\par
 \vspace{4pt}
-Construction candidate after the ThreatForge ownership-separation review, the complete-shape representation decision and the first independent facial-access Decision review. Revision 6 keeps the Decision-specific field core unchanged and adds cross-document hierarchy/corpus invariants exposed by early Phase D2 evidence. Concrete Doc-as-Code syntax, lifecycle storage, Requirement semantics, cross-document propagation implementation, large-corpus diagnostic algorithms and ThreatForge refactoring remain deferred.
+Revision 7 is a layering correction. It keeps the Decision-specific semantic core and the hierarchy/corpus invariants introduced by revision 6, but removes representation, realization, semantic-authority and authoring-review rules from the Decision-specific closed set. Those rules remain part of the study in the separate cross-cutting model-layering foundation document.
 
 \section{Purpose and evidence boundary}
-This study asks what a governed \textbf{Decision} means immediately below a Macro Requirement. Construction evidence remains intentionally limited to the sixteen historical ADRs of ThreatForge MR-0001 and MR-0002. MR-0003, MR-0004 and MR-0005 remain sequential holdouts and have not influenced this revision.
+This study asks what a governed \textbf{Decision} means immediately below a Macro Requirement. Construction evidence remains the sixteen historical ThreatForge ADRs of MR-0001/MR-0002, followed by the independent facial-access example. ThreatForge MR-0003, MR-0004 and MR-0005 remain sequential holdouts and are not opened by this revision.
 
-Revision 4 established that historical ThreatForge ADRs often conflate three semantic owners because the tool and the documentation model evolved together:
-
-\begin{itemize}
-  \item DDTA method / metamodel;
-  \item governed project;
-  \item ThreatForge tool / ThreatForge project operations.
-\end{itemize}
-
-Revision 5 added a separate cross-cutting conclusion: the metamodel should be able to drive a \textbf{complete canonical document shape} and deterministic executable projections without turning serialization details into document semantics.
-
-Revision 6 is the first correction triggered by the independent facial-access example. Phase D1 authored and froze eight Decisions without changing the construction candidate. Early Phase D2 review then showed that individually plausible Decision documents can still be redundant across different Macro Requirements or have ambiguous semantic ownership. This revision therefore adds two hierarchy/corpus invariants while leaving the local Decision field core unchanged. The remaining D1 Decisions have not yet been used to introduce further corrections, and ThreatForge MR-0003/MR-0004/MR-0005 remain untouched holdouts.
+Revision 6 added two genuine cross-document semantic invariants after the independent example exposed ambiguous parentage and redundant Decision contribution. The subsequent ThreatForge regression exposed a different problem in the study itself: a realization principle (executable projections) was being applied as if it were semantic truth of every governed DDTA project. Revision 7 corrects that layering without changing the meaning of Decision.
 
 \section{Semantic position below Macro Requirement}
 \begin{verbatim}
@@ -52,18 +40,14 @@ Decision
 Requirement-level semantics (to be studied next)
     independently checkable obligations / downstream effects
 \end{verbatim}
+The last level is intentionally not frozen here. Requirement remains the working name of the next document family.
 
-The last level is intentionally not frozen here. \texttt{Requirement} remains the working name of the next document family, not a semantic assumption that may be silently embedded in ThreatForge ADRs.
-
-\section{Construction-candidate Decision semantics now CLOSED}
-The following items are \textbf{closed for the construction candidate}. They may be reopened only by an explicit counterexample from an independent example or a sequential holdout, with the reason recorded.
-
+\section{Decision-specific semantic rules CLOSED for the construction candidate}
 \closed{D-CLOSED-01 - Purpose of Decision}
 \ruletext{A Decision records one significant choice that resolves an unresolved problem or tension within one parent Macro Requirement and narrows that macro concern.}
-A Decision is not restricted to software architecture. Its subject may be a method, policy, convention, operating practice, semantic choice, representation choice, technology or architecture when that is the actual decision being governed.
+Its subject may be a method, policy, convention, operating practice, semantic choice, representation choice, technology or architecture when that is the actual choice being governed.
 
 \closed{D-CLOSED-02 - Minimal semantic core}
-The Decision-specific semantic core is:
 \begin{verbatim}
 Decision
 |- title
@@ -71,77 +55,42 @@ Decision
 |- decision
 `- consequences
 \end{verbatim}
-All four Decision-specific fields are semantically required and non-null. Parentage is an explicit semantic relation to the Macro Requirement, not prose duplicated inside each document. Lifecycle/status, author/date, paths and history remain common governance concerns outside this core.
+All four Decision-specific semantic attributes are required and non-null in the current candidate. Parentage is an explicit semantic relation to the Macro Requirement rather than duplicated prose.
 
 \closed{D-CLOSED-03 - Decision-local Context}
 \ruletext{Context describes the unresolved local decision problem, tension or ambiguity that makes this specific choice necessary inside the already-governed parent concern.}
-If Context mostly explains why the parent MR exists, it is too high-level. Context may preserve historically true circumstances of the choice, but it must not become a cumulative copy of all inherited knowledge.
+If Context mostly explains why the parent MR exists, it is too high-level. Context may preserve historically true circumstances of the choice, but it must not become a cumulative copy of inherited knowledge.
 
 \closed{D-CLOSED-04 - One coherent chosen position}
 \ruletext{Decision states one coherent chosen position that can meaningfully be accepted, rejected or superseded as a conceptual unit.}
-Split diagnostic: if A can change while B remains valid and both have independently meaningful trade-offs, the historical ADR may contain more than one Decision.
+Split diagnostic: if A can change while B remains valid and both have independently meaningful trade-offs, the candidate likely contains more than one Decision.
 
 \closed{D-CLOSED-05 - Consequence awareness}
 \ruletext{Consequences record relevant effects and trade-offs accepted because of the choice.}
 Benefit, Cost, Risk and Constraint remain useful authoring labels but are not frozen semantic subtypes.
 
-\closed{D-CLOSED-06 - No semantic patching}
-If a competent reader can reasonably infer something false from Context + Decision, those sections must be rewritten. The model does not repair misleading semantics by accumulating exclusion fields. Therefore Non-goals is not part of the Decision semantic core. It may remain an exceptional editorial technique outside the model when a document truly needs local clarification.
-
 \closed{D-CLOSED-07 - No mandatory embedded Alternatives or Rationale fields}
-The construction corpus does not justify mandatory \texttt{alternatives[]} or a separate \texttt{rationale} field. Substantial alternatives may exist as separately governed candidate Decisions and lifecycle will later express acceptance/rejection/supersession. Reasoning is expected to be recoverable from:
-\begin{center}\textbf{Context + Decision + Consequences}\end{center}
-This item can be reopened only if a counterexample demonstrates loss of necessary decision semantics.
+The evidence does not justify mandatory \texttt{alternatives[]} or a separate \texttt{rationale} semantic field. Substantial alternatives may exist as separately governed candidate Decisions. Reasoning is expected to be recoverable from Context + Decision + Consequences unless a future counterexample demonstrates otherwise.
 
-\closed{D-CLOSED-08 - Lifecycle is not Decision-specific semantics}
-Acceptance, rejection, supersession, history and transition evidence belong to the later cross-cutting governance/lifecycle study. Historical Decisions may remain governed historical records without remaining current authoritative choices.
-
-\closed{D-CLOSED-09 - Semantic-owner separation}
-\ruletext{A Decision must not silently transfer ownership of general model semantics to the tool that implements or supports them.}
-Working ownership model:
-\begin{verbatim}
-DDTA method / metamodel
-    owns general semantics and portable method choices
-
-Governed project
-    owns concrete governed instances and project-specific choices
-
-ThreatForge tool
-    supports authoring, resolution, validation, projection and workflow
-    without becoming semantic owner of the general model
-
-ThreatForge project operations
-    govern development of ThreatForge itself
-    without becoming universal DDTA rules
-\end{verbatim}
-Review test: \textbf{If ThreatForge were replaced by another tool, should the statement still be true?} If yes, it is probably a DDTA/model/method concern and cannot be justified merely as a ThreatForge product Decision.
-
-\section{Cross-document Decision-set invariants now CLOSED}
-These invariants belong to the MR--Decision relation and to the governed Decision set. They are not additional fields inside a Decision document. Early facial-access Phase D2 evidence exposed them because local document validity alone did not prevent repeated or ambiguously owned choices.
+\section{Cross-document Decision-set invariants CLOSED}
+These invariants belong to the MR--Decision relation and to the governed Decision set. They are not additional fields inside a Decision.
 
 \closed{H-CLOSED-01 - Unique semantic ownership}
 \ruletext{Each Decision has exactly one Macro Requirement whose concern is the natural semantic owner of the unresolved problem resolved by that Decision.}
-Different Macro Requirements may mention the same domain objects and vocabulary, and a Decision may be relevant to concerns outside its parent. Relevance does not create multiple hierarchical ownership.
+Different MRs may mention the same domain objects and vocabulary, and a Decision may be relevant to other concerns. Relevance does not create multiple hierarchical ownership.
 
-Use the \textbf{unique-parent test}: if a Decision can move under another Macro Requirement without materially changing its Context or chosen meaning, review at least one of the following before accepting it:
-\begin{itemize}
-  \item the Decision may be too broad and contain more than one choice;
-  \item the Decision may be redundant or merely derived from already governed choices;
-  \item the Macro Requirement boundaries may overlap or fail to discriminate semantic responsibility;
-  \item the choice may be genuinely cross-cutting and require a semantic owner different from duplicated child Decisions.
-\end{itemize}
-The metamodel does not resolve ambiguous ownership by copying the same Decision under multiple Macro Requirements.
+Unique-parent test: if a Decision can move under another MR without materially changing its Context or chosen meaning, review whether the Decision is too broad, redundant/derived, or whether MR boundaries fail to discriminate responsibility. A genuinely cross-cutting choice is not resolved by copying it under multiple MRs.
 
 \closed{H-CLOSED-02 - Non-redundant Decision contribution}
 \ruletext{Each governed Decision contributes a significant choice that is not already owned by another applicable Decision and is not completely determined by its parent Macro Requirement plus the already governed choices.}
-Two Decisions may share terminology, affected actors, consequences or evidence while still owning different choices. The prohibited condition is duplicate semantic ownership of the same choice or promotion of a logically derived statement into a second Decision.
+Two Decisions may share terminology, actors, consequences or evidence while owning different choices. The prohibited condition is duplicate semantic ownership of the same choice or promotion of a logically derived statement into a second Decision.
 
-Use the \textbf{Decision-contribution test}: if removing a candidate Decision would not remove a significant project choice that cannot be reconstructed from the parent concern and the remaining governed Decisions, the candidate should be reviewed as a possible duplicate, derived consequence, explanation or downstream obligation rather than accepted as a separate Decision.
+Decision-contribution test: if removing a candidate would not remove a significant project choice that cannot be reconstructed from the parent concern and remaining Decisions, review it as a possible duplicate, derived consequence, explanation or downstream obligation.
 
-\subsection*{Three validation levels}
+\section{Three semantic validation levels}
 \begin{verbatim}
 1. Local Decision validity
-   Context / Decision / Consequences / coherent choice
+   semantic core / local problem / coherent chosen position
 
 2. Hierarchical coherence
    one natural MR owner / discriminable parentage
@@ -149,190 +98,85 @@ Use the \textbf{Decision-contribution test}: if removing a candidate Decision wo
 3. Corpus coherence
    non-redundant contribution / no duplicate choice ownership
 \end{verbatim}
-The first level can be assessed on one document. The second and third inherently require comparison with governed context beyond the current file.
+The second and third levels inherently require governed context beyond one file. Tooling may assist review at scale but does not own these semantics.
 
-\section{Metamodel invariants versus scalable tooling}
-\ruletext{The metamodel defines what must be semantically true; tools may provide deterministic diagnostics that make those invariants practical to review on large corpora without becoming semantic authorities.}
-For a small example, reviewers can compare all Decisions directly. In a large real project, a tool may retrieve likely overlaps, cross-parent similarities or conflicts so that humans or governed review processes inspect the small candidate set. Such diagnostics do not decide that two Decisions are duplicates.
-
-Possible retrieval/diagnostic techniques include lexical similarity, term overlap, TF--IDF/cosine, BM25-style ranking, fingerprints or other deterministic/indexable methods. The exact algorithm, tokenization, thresholds, weighting and ranking policy are \textbf{tooling decisions deferred from the metamodel}. A similarity score is evidence for review, not proof of semantic equivalence.
-
-\subsection*{Controlled vocabulary boundary}
-A controlled vocabulary, if a project or the DDTA method adopts one, is \textbf{governed knowledge}, not the tool itself. Its canonical terms and meanings must remain meaningful if ThreatForge is replaced. A tool may consume that governed knowledge to validate terminology, resolve references, normalize a search projection or improve retrieval diagnostics.
-
-This revision does \textbf{not} require every DDTA project to have a controlled vocabulary. Whether vocabulary governance is universal, optional, profile-specific or merely recommended remains open. Search-engine mechanisms such as stemming, token normalization or ranking synonyms remain tooling unless they are explicitly promoted into governed project semantics.
-
-\section{Cross-cutting representation decisions now CLOSED}
-These decisions are \textbf{not Decision fields}. They constrain how governed document models are represented and projected once their semantics are defined.
-
-\closed{R-CLOSED-01 - Complete-shape canonical representation}
-\ruletext{Every field declared by a governed document model is structurally present in every canonical representation of an instance of that model.}
-A missing declared field is a representation non-conformity. Optional semantic value does not imply optional structural presence.
-
-For example, if a future model declares \texttt{assumptions} as nullable, a canonical instance carries an explicit value such as \texttt{assumptions: null}; it does not silently omit the field. For the current Decision model, \texttt{title}, \texttt{context}, \texttt{decision} and \texttt{consequences} are non-null.
-
-\closed{R-CLOSED-02 - Explicit nullability and canonical empty values}
-\ruletext{Whether a field may have no semantic value is declared by the model, not inferred from omission.}
-The representation contract distinguishes at least:
+\section{Rules deliberately relocated from this metamodel}
+Revision 7 retains the historical identifiers but changes their owner:
 \begin{itemize}
-  \item \textbf{missing field}: invalid when the model declares the field;
-  \item \textbf{null}: the field is known to the model and its value is explicitly absent where nullability permits it;
-  \item \textbf{empty collection}: a collection-valued concept is applicable and currently has zero members;
-  \item \textbf{empty string}: not a generic substitute for semantic absence unless a future field type explicitly permits it.
+\item \textbf{D-CLOSED-06 - No semantic patching}: authoring/review heuristic, not a Decision invariant. Non-goals remains outside the Decision semantic core.
+\item \textbf{D-CLOSED-08 - Lifecycle is not Decision-specific}: cross-cutting common-governance boundary. Lifecycle/status/history will be modeled separately.
+\item \textbf{D-CLOSED-09 - Semantic-owner separation}: cross-cutting semantic-authority principle applying to DDTA, governed projects and tools.
+\item \textbf{R-CLOSED-01..04}: representation and realization rules; see the model-layering foundation document.
 \end{itemize}
-Exact null/empty rules remain field-specific so that one generic sentinel does not erase semantic distinctions.
-
-\closed{R-CLOSED-03 - Semantic / representation separation}
-\ruletext{Meaning, value domains, cardinalities, nullability and invariants belong to the canonical model semantics; material presence, order, headings, containers, mirrors and serialization mapping belong to governed representation profiles.}
-For example, Context preceding Decision preceding Consequences is useful and may be mandatory in the Markdown profile, but the ordering is a representation contract rather than an ontological claim about the Decision concept.
-
-\closed{R-CLOSED-04 - Executable projections from one governed model}
-\ruletext{Validators, editor contracts, authoring assistance and machine-readable schemas should be deterministic projections of the governed canonical document model, not independently maintained parallel authorities.}
-This is a model-design property. It does not yet choose JSON Schema, a particular validator implementation, YAML syntax, Markdown grammar or ThreatForge architecture.
-
-\subsection*{Model-to-executable-projection structure}
-\begin{center}
-\includegraphics[width=0.94\textwidth]{../04-diagrams/MODEL_TO_EXECUTABLE_PROJECTIONS.pdf}
-\end{center}
-
-The diagram deliberately separates \textbf{semantic contract} from \textbf{representation profiles}, then reunites them in derived executable projections. ThreatForge can consume those projections, but the projections remain derived from the governed model rather than becoming a second source of truth.
-
-\section{What is not fixed by the closed decisions}
-Semantic-owner separation does not decide whether DDTA will ultimately require Diataxis, a controlled vocabulary, implementation trace, a Security Requirement specialization or a particular Markdown reference grammar. Those remain subject-specific decisions in their proper future phase.
-
-The representation decisions do not choose concrete serialization syntax. They only require that, when a canonical representation is defined, its field presence and nullability are unambiguous and its executable contracts derive from the same governed model.
-
-This prevents the ThreatForge case study from becoming the accidental definition of the general metamodel and prevents validators/editors from becoming parallel semantic authorities.
+Relocation is not rejection. It prevents rules about serialization or tool architecture from being treated as ontological properties of Decision.
 
 \section{Decision-to-downstream boundary - still partly OPEN}
 Working rule:
 \ruletext{A Decision chooses; downstream governed documents make the chosen consequences operational and independently checkable.}
-The exact semantics of the next Requirement level are not yet closed, so revised ThreatForge ADRs avoid depending unnecessarily on classes such as Requirement, Functional Requirement or specific lifecycle states.
+The exact semantics of the next Requirement level are not yet closed.
 
-Redistribution diagnostic:
 \begin{verbatim}
 choice needed to explain what was adopted
-    -> remains in Decision
+    -> Decision
 
 independently checkable obligation
-    -> candidate next-level document semantics
+    -> candidate next-level semantics
 
-rollout / first increment / migration order
+rollout / migration order
     -> planning
 
-separable choice with own trade-offs
+separable choice with its own trade-offs
     -> another Decision candidate
 \end{verbatim}
-Technical vocabulary is not forbidden. The issue is semantic ownership, not technicality.
+Technical vocabulary is not forbidden; the question is whether the detail belongs to the choice or to downstream realization.
 
-\section{Cross-document failure mode retained: persistent choices can be forgotten}
-The construction corpus exposed a problem that cannot be solved by adding topic-specific fields to Decision.
+\section{Historical integrity}
+Decision Context may preserve circumstances true when the choice was taken. Later replacement should normally be represented through the future lifecycle/governance model rather than rewriting history to look current. Temporary rollout sequencing remains planning rather than Decision semantics.
 
-\subsection{Vocabulary failure mode}
-Historical MR-0001/ADR-0002 chose a controlled vocabulary. The vocabulary source still exists, but the current MR-0001 Requirement registry has no direct descendants of ADR-0002, while later tooling governed under ADR-0004 consumes that vocabulary.
-
-Conceptually:
-\begin{verbatim}
-Decision exists
-shared governed knowledge exists
-implementation partly exists
-
-BUT
-
-original downstream governance path is weak / no longer explicit
-\end{verbatim}
-This is evidence that correctness cannot depend on programmers or LLMs remembering every old ADR.
-
-\subsection{Handoff positive counterexample}
-Historical ADR-0006 has dedicated downstream Functional/Governance Requirements, including continuity for a new LLM/session. Here the decision-to-realization path remained visible. The contrast is retained as empirical evidence for the future cross-document model.
-
-\section{Cross-document findings retained as OPEN research constraints}
-These are not Decision fields and not yet implementation mechanisms:
+\section{Decision review tests after revision 7}
+The following tests assess the conceptual Decision model:
 \begin{enumerate}
-  \item \textbf{No orphan normative decision} - a persistent accepted choice must not silently lose its downstream effect.
-  \item \textbf{Single-source governed knowledge} - shared vocabulary, taxonomies, patterns and similar knowledge should not be inherited by manual copy.
-  \item \textbf{Effective governed context} - a person/tool/LLM should be able to reconstruct the governed knowledge relevant to the current entity without rereading the repository by memory.
-  \item \textbf{Decision survivability} - persistent decisions should continue to influence work after the original contributor/context is gone.
-  \item \textbf{Recoverability} - knowledge being present somewhere is insufficient if its relevance cannot be discovered.
-  \item \textbf{Coverage awareness} - some cross-cutting obligations may require many consumers/artifacts rather than one implementation file.
-  \item \textbf{No inheritance-by-copy} - inherited/common context should be resolved through governed relations/projections rather than repeated in MR/Decision/next-level documents.
+\item \textbf{Parent}: does the candidate narrow one parent MR?
+\item \textbf{Unique parent}: is that MR the single natural semantic owner?
+\item \textbf{MR discriminability}: if parentage is ambiguous, is the defect in the candidate or in MR boundaries?
+\item \textbf{Contribution}: would removing it remove a significant choice not already governed or derivable?
+\item \textbf{Decision-local Context}: does Context explain this unresolved choice rather than the whole MR?
+\item \textbf{Explicit choice}: is an adopted position actually present?
+\item \textbf{Coherent choice}: can the choice change as one conceptual unit?
+\item \textbf{Consequences}: are material effects/trade-offs represented?
+\item \textbf{Downstream boundary}: are independently checkable obligations descending rather than bloating the Decision?
+\item \textbf{Historical integrity}: does Context preserve why the choice existed without carrying temporary rollout state?
 \end{enumerate}
-The exact relation types, algorithms and serialization remain OPEN until the combined MR -> Decision -> Requirement model exists.
+Authoring heuristics, semantic-authority review, representation conformance and tooling checks are intentionally documented outside this Decision-specific test list.
 
-\section{Historical integrity and temporal semantics}
-Decision Context may preserve facts that were true when the choice was taken. Later evolution should normally create/revise/supersede Decisions through the future lifecycle model rather than rewriting old reasoning to look current.
-
-Temporary rollout statements are different: when they describe only sequencing (first increment, later editor, migration order), they normally belong to planning rather than Decision semantics.
-
-\section{Review tests after revision 6}
+\section{Open Decision questions before candidate closure}
 \begin{enumerate}
-  \item \textbf{Parent} - does the Decision narrow one parent MR?
-  \item \textbf{Unique-parent} - is that MR the single natural semantic owner compared with the other governed MRs?
-  \item \textbf{MR discriminability} - if parentage is ambiguous, is the defect in the Decision or in overlapping MR boundaries?
-  \item \textbf{Decision contribution} - would removing this Decision actually remove a significant choice not already governed or derivable?
-  \item \textbf{Decision-local Context} - does Context explain this unresolved choice rather than the whole MR?
-  \item \textbf{Explicit choice} - is the adopted position understandable without downstream implementation detail?
-  \item \textbf{Coherent choice} - can it reasonably be accepted/rejected/superseded as one unit?
-  \item \textbf{Consequence awareness} - are material effects/trade-offs visible?
-  \item \textbf{No semantic patching} - would a false reading require rewriting rather than a Non-goals patch?
-  \item \textbf{Semantic-owner test} - is the statement owned by DDTA/model, project, ThreatForge tool or ThreatForge project operations?
-  \item \textbf{Tool/model separation} - does ThreatForge support general semantics without silently defining them?
-  \item \textbf{Downstream boundary} - is independently checkable implementation detail descending rather than bloating the Decision?
-  \item \textbf{No ad-hoc cross-cutting fields} - are persistence problems kept as cross-document problems rather than topic-specific Decision fields?
-  \item \textbf{Complete-shape test} - can a consumer distinguish missing/non-conforming structure from an explicitly null value?
-  \item \textbf{Single-authority projection test} - can validators/editors/LLM guidance derive from the canonical model instead of copying semantic inventories?
-  \item \textbf{Tooling non-authority} - do similarity/search diagnostics only surface candidates for semantic review rather than define duplicate/ownership semantics?
-  \item \textbf{Historical integrity} - does the Decision preserve why the choice was taken without carrying temporary rollout status?
-  \item \textbf{Survivability challenge} - if persistent, can the overall model eventually explain how future authors/tools/LLMs discover its effect?
+\item Does re-review of the independent facial-access corpus expose a counterexample to the local core or H-CLOSED-01/H-CLOSED-02?
+\item Where exactly is the threshold between precision intrinsic to a choice and next-level independently checkable detail?
+\item Are consequence labels semantic categories or only authoring aids?
+\item How should legitimate cross-MR relevance eventually be represented without multiple hierarchical ownership?
 \end{enumerate}
 
-\section{Open questions before Decision candidate closure}
+\section{Validation sequence after layering correction}
 \begin{enumerate}
-  \item Does the remainder of the independent facial-access corpus expose any counterexample to the local Decision core or to H-CLOSED-01/H-CLOSED-02?
-  \item Where exactly is the threshold between precision intrinsic to the choice and next-level independently checkable detail?
-  \item Which historical large ADRs should ultimately split after ownership separation and contribution testing?
-  \item Are consequence labels semantic categories or only authoring aids?
-  \item How should legitimate cross-MR relevance be represented without introducing multiple hierarchical ownership?
-  \item What minimal cross-document relation/model preserves persistent decisions without copy inheritance?
-  \item How will the next Requirement model express pervasive/cross-cutting coverage?
-  \item How should effective governed context be projected for humans/tools/LLMs without becoming a new canonical source?
-  \item Is a controlled vocabulary universal DDTA governed knowledge, an optional/profile-specific resource, or only an authoring recommendation?
-  \item Which deterministic retrieval diagnostics are useful for large corpora while keeping semantic duplicate/ownership judgement outside the search algorithm?
-  \item Which future document fields should be nullable, and which collection-valued fields should use a canonical empty collection rather than null?
-  \item Which representation-profile features are necessary to derive executable contracts without making renderer/editor concerns semantic?
+\item preserve the frozen facial-access D1 corpus;
+\item preserve revision 7 as a layering checkpoint;
+\item re-read the ThreatForge construction ADR regression without treating realization principles as metamodel semantics;
+\item write a corrected candidate ADR set only after that regression is stable;
+\item regress all prior evidence if Decision semantics themselves change;
+\item only then proceed to sequential ThreatForge MR-0003/MR-0004/MR-0005 holdouts.
 \end{enumerate}
-
-\section{Planned validation sequence}
-Phase D1 has been authored and frozen. Revision 6 incorporates only the early D2 findings that motivated the new hierarchy/corpus invariants. Before continuing the independent-example evaluation:
-\begin{enumerate}
-  \item reread the complete revision-6 Decision metamodel;
-  \item restart the frozen facial-access D1 corpus from the first Decision using the revision-6 review tests, preserving the D1 text unchanged;
-  \item complete D2 for all eight Decisions and classify each problem as an authoring/decomposition defect or a genuine metamodel counterexample;
-  \item if further correction is required, record the evidence and regress the affected D1 cases plus the sixteen ThreatForge construction ADRs from MR-0001 and MR-0002;
-  \item close the Decision candidate after independent-example validation only when no unresolved counterexample remains.
-\end{enumerate}
-Then sequentially:
-\begin{verbatim}
-MR-0003 holdout
-   -> re-check all prior evidence if corrected
-MR-0004 holdout
-   -> re-check all prior evidence if corrected
-MR-0005 holdout
-\end{verbatim}
 
 \section{Explicitly deferred}
 \begin{itemize}
-  \item lifecycle/status value sets and transitions;
-  \item registry/wrapper placement;
-  \item concrete YAML/Markdown serialization syntax;
-  \item Requirement-specific semantic model;
-  \item effective-context propagation mechanism;
-  \item concrete cross-MR relevance relation, if one is needed;
-  \item universal/optional status of controlled vocabulary governance;
-  \item concrete similarity/search algorithm, index, weighting and thresholds;
-  \item concrete validator/editor implementation;
-  \item migration/refactor of historical ThreatForge ADRs.
+\item lifecycle/status value sets and transitions;
+\item Requirement-specific semantic model;
+\item cross-MR relevance relation, if needed;
+\item cross-document persistence/effective-context relation model;
+\item concrete representation mapping and serialization closure;
+\item concrete ThreatForge support/conformance relation model;
+\item concrete similarity/search algorithms and thresholds;
+\item ThreatForge migration/refactor.
 \end{itemize}
-
 
 \end{document}

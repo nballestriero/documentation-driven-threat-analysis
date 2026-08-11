@@ -6,6 +6,10 @@ This package contains the current document-semantics studies for Macro Requireme
 
 ## Contents
 
+### `00-foundations/`
+
+- `00-foundations/01-model-layering/` - cross-cutting separation between conceptual metamodel, canonical representation contract, model-realization principles and tool support/conformance; includes the executable-projections diagram.
+
 ### `01-mr/`
 
 - `01-mr/01-metamodel/` - general MR metamodel, independent from ThreatForge.
@@ -15,10 +19,9 @@ This package contains the current document-semantics studies for Macro Requireme
 
 ### `02-decision/`
 
-- `02-decision/01-metamodel/` - Decision construction-candidate semantics and closed cross-cutting representation decisions.
+- `02-decision/01-metamodel/` - Decision-specific conceptual semantics plus MR->Decision hierarchy/corpus invariants. Cross-cutting representation/realization rules now live under `00-foundations/`.
 - `02-decision/02-threatforge-comparison/` - 16 historical ThreatForge ADR bodies from MR-0001/MR-0002 versus their revised candidate Decisions; MR-0003/MR-0004/MR-0005 remain untouched holdouts.
 - `02-decision/03-plan/` - frozen experimental work plan before authoring the independent facial-access Decision corpus.
-- `02-decision/04-diagrams/` - reusable model-to-executable-projections diagram and sources.
 - `02-decision/05-example-facial-access/` - Phase D1 independent facial-access Decision authoring corpus; intentionally frozen before D2 analysis.
 
 ### `guidance/`
@@ -63,7 +66,7 @@ Decision
 
 The four fields are semantically required and non-null. Context is decision-local; one Decision expresses one coherent chosen position; Consequences records material effects/trade-offs. `Non-goals`, mandatory embedded Alternatives and a separate mandatory Rationale field are not part of the current core. Lifecycle/status remains a later cross-cutting governance concern.
 
-A closed construction rule may be reopened only by a concrete counterexample from an independent example or sequential holdout, followed by regression over prior evidence. Revision 6 keeps this local field core unchanged.
+A closed construction rule may be reopened only by a concrete counterexample from an independent example or sequential holdout, followed by regression over prior evidence. Revision 7 keeps this local field core unchanged and removes non-Decision layering rules from the Decision-specific closed set.
 
 ## Decision-set coherence after early facial-access D2
 
@@ -82,46 +85,34 @@ local Decision validity
 
 These invariants are part of the metamodel; similarity/search algorithms are not.
 
-## Semantic-owner separation
+## Model layering and semantic authority
 
-Historical ThreatForge ADRs frequently mix choices about the DDTA method/metamodel, governed-project instances, ThreatForge tool support and ThreatForge project operations because model and tool evolved together.
-
-Current rule:
+Revision 7 separates four concerns that had accumulated inside the Decision study:
 
 ```text
-DDTA method / metamodel
-    owns portable general semantics
-
-Governed project
-    owns concrete governed instances and project-specific choices
-
-ThreatForge tool
-    supports authoring/resolution/validation/projection/workflow
-    without becoming owner of general semantics
-
-ThreatForge project operations
-    govern development of ThreatForge itself
-    without becoming universal DDTA rules
+L1 conceptual metamodel
+L2 canonical representation contract
+L3 model realization principles
+L4 tool support / conformance view
 ```
 
-Review test: if ThreatForge were replaced by another tool, a statement that should remain true is probably owned by DDTA/model/method rather than by a ThreatForge product ADR.
+`H-CLOSED-01` and `H-CLOSED-02` remain conceptual metamodel invariants. `D-CLOSED-06`, `D-CLOSED-08`, `D-CLOSED-09` and `R-CLOSED-01..04` retain their conclusions but now live in the cross-cutting layering document at `00-foundations/01-model-layering/DDTA_MODEL_LAYERING_WORKING.*`.
 
-## Cross-cutting representation decisions
+In particular, `R-CLOSED-04` (executable projections from one governed model) is a **model-realization principle**, not a semantic invariant that every governed DDTA project inherits. It therefore cannot by itself make a ThreatForge product ADR redundant.
 
-The working package now also closes the following representation properties for the construction candidate:
+Semantic nullability and its material encoding are also separated: whether a value may be absent is semantic; how an allowed absence is serialized is representational.
 
-1. **Complete canonical shape** - every field declared by a governed document model is structurally present in every canonical instance representation.
-2. **Explicit nullability / empty values** - omission is not equivalent to `null`; nullability and canonical empty values are field-specific.
-3. **Semantic / representation separation** - meaning, types, cardinalities, nullability and invariants are semantic; order, headings, containers, mirrors and serialization mapping belong to governed representation profiles.
-4. **Executable projections from one model** - validators, editor contracts, authoring/LLM assistance and machine-readable schemas should be deterministic projections of one governed canonical document model rather than parallel semantic authorities.
+The model-to-executable-projections diagram now lives under `00-foundations/01-model-layering/diagrams/`.
 
-See `02-decision/04-diagrams/MODEL_TO_EXECUTABLE_PROJECTIONS.svg` for the explanatory structure.
+## Scalable tooling and controlled vocabulary boundary
 
-## Scalable tooling boundary
+Similarity/search algorithms remain tooling assistance for reviewing semantic invariants at scale. They may surface likely duplicate or cross-parent candidates but do not establish semantic equivalence or parent ownership.
 
-The metamodel defines ownership, contribution and coherence properties. A tool may make those properties practical to review on a large corpus by retrieving suspicious pairs or cross-parent overlaps using deterministic/indexable techniques such as lexical similarity, TF-IDF/cosine, BM25-style ranking, fingerprints or term overlap. Such diagnostics surface review candidates; they do not establish semantic duplication or choose the correct parent. Exact algorithms and thresholds remain tooling decisions.
+A controlled vocabulary, if adopted, is governed knowledge independent from ThreatForge. Its universal/optional/profile-specific status remains open; stemming, normalization and ranking remain tooling unless explicitly promoted into governed semantics.
 
-A controlled vocabulary is likewise **not a tool feature by definition**. If adopted, its canonical terms and meanings are governed project/method knowledge that remains valid independently of ThreatForge. A tool may validate, resolve or use that knowledge to normalize derived search projections. Whether controlled vocabulary is universally required by DDTA remains open.
+## ThreatForge support/conformance direction
+
+ThreatForge should eventually make explicit which DDTA contracts it supports, validates, projects or assists with rather than re-declaring those semantics inside tool ADRs. The exact support/coverage relation model is deferred until Requirement and implementation-trace semantics are revisited.
 
 ## Cross-document problems deliberately left open
 
@@ -138,7 +129,7 @@ These are not new Decision fields. Their minimal relation/propagation mechanism 
 
 ## Current Decision validation state
 
-Phase D1 is authored and frozen in `02-decision/05-example-facial-access/FACIAL_ACCESS_DECISION_DEMO.*`. Early Phase D2 review of the first cases triggered revision 6 by exposing ambiguous parent ownership and redundant Decision contribution; the D1 corpus itself remains unchanged. Before D2 continues, the complete revision-6 metamodel should be reread and then the eight frozen Decisions should be evaluated from the beginning under the revised review tests.
+Phase D1 is authored and frozen in `02-decision/05-example-facial-access/FACIAL_ACCESS_DECISION_DEMO.*`. The frozen D1 corpus remains unchanged. Revision 6 added hierarchy/corpus invariants; the subsequent independent-example review and ThreatForge construction regression exposed a layering error in the study itself. Revision 7 checkpoints the corrected separation before the ThreatForge ADR regression is finalized or any candidate ADR is rewritten.
 
 ## Next experimental sequence
 
