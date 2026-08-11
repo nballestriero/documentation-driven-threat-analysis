@@ -63,7 +63,24 @@ Decision
 
 The four fields are semantically required and non-null. Context is decision-local; one Decision expresses one coherent chosen position; Consequences records material effects/trade-offs. `Non-goals`, mandatory embedded Alternatives and a separate mandatory Rationale field are not part of the current core. Lifecycle/status remains a later cross-cutting governance concern.
 
-A closed construction rule may be reopened only by a concrete counterexample from an independent example or sequential holdout, followed by regression over prior evidence.
+A closed construction rule may be reopened only by a concrete counterexample from an independent example or sequential holdout, followed by regression over prior evidence. Revision 6 keeps this local field core unchanged.
+
+## Decision-set coherence after early facial-access D2
+
+Early Phase D2 review of the frozen facial-access corpus exposed a limitation above single-document validity: individually plausible Decisions can still be redundant across different Macro Requirements or have ambiguous semantic ownership. Revision 6 therefore closes two additional hierarchy/corpus invariants:
+
+1. **Unique semantic ownership** - each Decision has exactly one Macro Requirement that naturally owns the unresolved problem; if the same Decision can move unchanged to another MR, review the Decision or MR decomposition instead of duplicating ownership.
+2. **Non-redundant Decision contribution** - each Decision contributes a significant choice not already governed by another applicable Decision and not completely derivable from its parent plus existing Decisions.
+
+The Decision model now distinguishes three review levels:
+
+```text
+local Decision validity
+    -> MR -> Decision hierarchical coherence
+    -> Decision-corpus coherence
+```
+
+These invariants are part of the metamodel; similarity/search algorithms are not.
 
 ## Semantic-owner separation
 
@@ -100,6 +117,12 @@ The working package now also closes the following representation properties for 
 
 See `02-decision/04-diagrams/MODEL_TO_EXECUTABLE_PROJECTIONS.svg` for the explanatory structure.
 
+## Scalable tooling boundary
+
+The metamodel defines ownership, contribution and coherence properties. A tool may make those properties practical to review on a large corpus by retrieving suspicious pairs or cross-parent overlaps using deterministic/indexable techniques such as lexical similarity, TF-IDF/cosine, BM25-style ranking, fingerprints or term overlap. Such diagnostics surface review candidates; they do not establish semantic duplication or choose the correct parent. Exact algorithms and thresholds remain tooling decisions.
+
+A controlled vocabulary is likewise **not a tool feature by definition**. If adopted, its canonical terms and meanings are governed project/method knowledge that remains valid independently of ThreatForge. A tool may validate, resolve or use that knowledge to normalize derived search projections. Whether controlled vocabulary is universally required by DDTA remains open.
+
 ## Cross-document problems deliberately left open
 
 The construction corpus demonstrates that persistent choices can be forgotten or lose explicit downstream coverage even while artifacts survive. The working constraints retained for later combined MR -> Decision -> Requirement modeling are:
@@ -115,7 +138,7 @@ These are not new Decision fields. Their minimal relation/propagation mechanism 
 
 ## Current Decision validation state
 
-Phase D1 is now authored and frozen in `02-decision/05-example-facial-access/FACIAL_ACCESS_DECISION_DEMO.*`. The eight Decisions have **not yet been analyzed** against the construction candidate. The next empirical step is Phase D2; the D1 corpus must remain unchanged while it is evaluated so that any counterexample remains attributable to the independent authoring evidence.
+Phase D1 is authored and frozen in `02-decision/05-example-facial-access/FACIAL_ACCESS_DECISION_DEMO.*`. Early Phase D2 review of the first cases triggered revision 6 by exposing ambiguous parent ownership and redundant Decision contribution; the D1 corpus itself remains unchanged. Before D2 continues, the complete revision-6 metamodel should be reread and then the eight frozen Decisions should be evaluated from the beginning under the revised review tests.
 
 ## Next experimental sequence
 

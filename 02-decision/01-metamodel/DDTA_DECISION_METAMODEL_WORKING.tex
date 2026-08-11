@@ -20,9 +20,9 @@
 
 {\LARGE\bfseries DDTA - Working Metamodel - Decision}\par
 \vspace{4pt}
-{\large\bfseries NON CANONICAL WORKING DRAFT - REVISION 5}\par
+{\large\bfseries NON CANONICAL WORKING DRAFT - REVISION 6}\par
 \vspace{4pt}
-Construction candidate after the ThreatForge ownership-separation review and the first cross-cutting representation-contract decision. Concrete Doc-as-Code syntax, lifecycle storage, Requirement semantics, cross-document propagation implementation and ThreatForge refactoring remain deferred.
+Construction candidate after the ThreatForge ownership-separation review, the complete-shape representation decision and the first independent facial-access Decision review. Revision 6 keeps the Decision-specific field core unchanged and adds cross-document hierarchy/corpus invariants exposed by early Phase D2 evidence. Concrete Doc-as-Code syntax, lifecycle storage, Requirement semantics, cross-document propagation implementation, large-corpus diagnostic algorithms and ThreatForge refactoring remain deferred.
 
 \section{Purpose and evidence boundary}
 This study asks what a governed \textbf{Decision} means immediately below a Macro Requirement. Construction evidence remains intentionally limited to the sixteen historical ADRs of ThreatForge MR-0001 and MR-0002. MR-0003, MR-0004 and MR-0005 remain sequential holdouts and have not influenced this revision.
@@ -35,7 +35,9 @@ Revision 4 established that historical ThreatForge ADRs often conflate three sem
   \item ThreatForge tool / ThreatForge project operations.
 \end{itemize}
 
-Revision 5 adds a separate cross-cutting conclusion: the metamodel should be able to drive a \textbf{complete canonical document shape} and deterministic executable projections without turning serialization details into document semantics.
+Revision 5 added a separate cross-cutting conclusion: the metamodel should be able to drive a \textbf{complete canonical document shape} and deterministic executable projections without turning serialization details into document semantics.
+
+Revision 6 is the first correction triggered by the independent facial-access example. Phase D1 authored and froze eight Decisions without changing the construction candidate. Early Phase D2 review then showed that individually plausible Decision documents can still be redundant across different Macro Requirements or have ambiguous semantic ownership. This revision therefore adds two hierarchy/corpus invariants while leaving the local Decision field core unchanged. The remaining D1 Decisions have not yet been used to introduce further corrections, and ThreatForge MR-0003/MR-0004/MR-0005 remain untouched holdouts.
 
 \section{Semantic position below Macro Requirement}
 \begin{verbatim}
@@ -113,6 +115,52 @@ ThreatForge project operations
     without becoming universal DDTA rules
 \end{verbatim}
 Review test: \textbf{If ThreatForge were replaced by another tool, should the statement still be true?} If yes, it is probably a DDTA/model/method concern and cannot be justified merely as a ThreatForge product Decision.
+
+\section{Cross-document Decision-set invariants now CLOSED}
+These invariants belong to the MR--Decision relation and to the governed Decision set. They are not additional fields inside a Decision document. Early facial-access Phase D2 evidence exposed them because local document validity alone did not prevent repeated or ambiguously owned choices.
+
+\closed{H-CLOSED-01 - Unique semantic ownership}
+\ruletext{Each Decision has exactly one Macro Requirement whose concern is the natural semantic owner of the unresolved problem resolved by that Decision.}
+Different Macro Requirements may mention the same domain objects and vocabulary, and a Decision may be relevant to concerns outside its parent. Relevance does not create multiple hierarchical ownership.
+
+Use the \textbf{unique-parent test}: if a Decision can move under another Macro Requirement without materially changing its Context or chosen meaning, review at least one of the following before accepting it:
+\begin{itemize}
+  \item the Decision may be too broad and contain more than one choice;
+  \item the Decision may be redundant or merely derived from already governed choices;
+  \item the Macro Requirement boundaries may overlap or fail to discriminate semantic responsibility;
+  \item the choice may be genuinely cross-cutting and require a semantic owner different from duplicated child Decisions.
+\end{itemize}
+The metamodel does not resolve ambiguous ownership by copying the same Decision under multiple Macro Requirements.
+
+\closed{H-CLOSED-02 - Non-redundant Decision contribution}
+\ruletext{Each governed Decision contributes a significant choice that is not already owned by another applicable Decision and is not completely determined by its parent Macro Requirement plus the already governed choices.}
+Two Decisions may share terminology, affected actors, consequences or evidence while still owning different choices. The prohibited condition is duplicate semantic ownership of the same choice or promotion of a logically derived statement into a second Decision.
+
+Use the \textbf{Decision-contribution test}: if removing a candidate Decision would not remove a significant project choice that cannot be reconstructed from the parent concern and the remaining governed Decisions, the candidate should be reviewed as a possible duplicate, derived consequence, explanation or downstream obligation rather than accepted as a separate Decision.
+
+\subsection*{Three validation levels}
+\begin{verbatim}
+1. Local Decision validity
+   Context / Decision / Consequences / coherent choice
+
+2. Hierarchical coherence
+   one natural MR owner / discriminable parentage
+
+3. Corpus coherence
+   non-redundant contribution / no duplicate choice ownership
+\end{verbatim}
+The first level can be assessed on one document. The second and third inherently require comparison with governed context beyond the current file.
+
+\section{Metamodel invariants versus scalable tooling}
+\ruletext{The metamodel defines what must be semantically true; tools may provide deterministic diagnostics that make those invariants practical to review on large corpora without becoming semantic authorities.}
+For a small example, reviewers can compare all Decisions directly. In a large real project, a tool may retrieve likely overlaps, cross-parent similarities or conflicts so that humans or governed review processes inspect the small candidate set. Such diagnostics do not decide that two Decisions are duplicates.
+
+Possible retrieval/diagnostic techniques include lexical similarity, term overlap, TF--IDF/cosine, BM25-style ranking, fingerprints or other deterministic/indexable methods. The exact algorithm, tokenization, thresholds, weighting and ranking policy are \textbf{tooling decisions deferred from the metamodel}. A similarity score is evidence for review, not proof of semantic equivalence.
+
+\subsection*{Controlled vocabulary boundary}
+A controlled vocabulary, if a project or the DDTA method adopts one, is \textbf{governed knowledge}, not the tool itself. Its canonical terms and meanings must remain meaningful if ThreatForge is replaced. A tool may consume that governed knowledge to validate terminology, resolve references, normalize a search projection or improve retrieval diagnostics.
+
+This revision does \textbf{not} require every DDTA project to have a controlled vocabulary. Whether vocabulary governance is universal, optional, profile-specific or merely recommended remains open. Search-engine mechanisms such as stemming, token normalization or ranking synonyms remain tooling unless they are explicitly promoted into governed project semantics.
 
 \section{Cross-cutting representation decisions now CLOSED}
 These decisions are \textbf{not Decision fields}. They constrain how governed document models are represented and projected once their semantics are defined.
@@ -216,9 +264,12 @@ Decision Context may preserve facts that were true when the choice was taken. La
 
 Temporary rollout statements are different: when they describe only sequencing (first increment, later editor, migration order), they normally belong to planning rather than Decision semantics.
 
-\section{Review tests after revision 5}
+\section{Review tests after revision 6}
 \begin{enumerate}
   \item \textbf{Parent} - does the Decision narrow one parent MR?
+  \item \textbf{Unique-parent} - is that MR the single natural semantic owner compared with the other governed MRs?
+  \item \textbf{MR discriminability} - if parentage is ambiguous, is the defect in the Decision or in overlapping MR boundaries?
+  \item \textbf{Decision contribution} - would removing this Decision actually remove a significant choice not already governed or derivable?
   \item \textbf{Decision-local Context} - does Context explain this unresolved choice rather than the whole MR?
   \item \textbf{Explicit choice} - is the adopted position understandable without downstream implementation detail?
   \item \textbf{Coherent choice} - can it reasonably be accepted/rejected/superseded as one unit?
@@ -230,38 +281,42 @@ Temporary rollout statements are different: when they describe only sequencing (
   \item \textbf{No ad-hoc cross-cutting fields} - are persistence problems kept as cross-document problems rather than topic-specific Decision fields?
   \item \textbf{Complete-shape test} - can a consumer distinguish missing/non-conforming structure from an explicitly null value?
   \item \textbf{Single-authority projection test} - can validators/editors/LLM guidance derive from the canonical model instead of copying semantic inventories?
+  \item \textbf{Tooling non-authority} - do similarity/search diagnostics only surface candidates for semantic review rather than define duplicate/ownership semantics?
   \item \textbf{Historical integrity} - does the Decision preserve why the choice was taken without carrying temporary rollout status?
   \item \textbf{Survivability challenge} - if persistent, can the overall model eventually explain how future authors/tools/LLMs discover its effect?
 \end{enumerate}
 
 \section{Open questions before Decision candidate closure}
 \begin{enumerate}
-  \item Does an independent facial-access example require separate Rationale despite D-CLOSED-07?
-  \item Does a non-software decision challenge the minimal core?
+  \item Does the remainder of the independent facial-access corpus expose any counterexample to the local Decision core or to H-CLOSED-01/H-CLOSED-02?
   \item Where exactly is the threshold between precision intrinsic to the choice and next-level independently checkable detail?
-  \item Which historical large ADRs should ultimately split after ownership separation?
+  \item Which historical large ADRs should ultimately split after ownership separation and contribution testing?
   \item Are consequence labels semantic categories or only authoring aids?
+  \item How should legitimate cross-MR relevance be represented without introducing multiple hierarchical ownership?
   \item What minimal cross-document relation/model preserves persistent decisions without copy inheritance?
   \item How will the next Requirement model express pervasive/cross-cutting coverage?
   \item How should effective governed context be projected for humans/tools/LLMs without becoming a new canonical source?
+  \item Is a controlled vocabulary universal DDTA governed knowledge, an optional/profile-specific resource, or only an authoring recommendation?
+  \item Which deterministic retrieval diagnostics are useful for large corpora while keeping semantic duplicate/ownership judgement outside the search algorithm?
   \item Which future document fields should be nullable, and which collection-valued fields should use a canonical empty collection rather than null?
   \item Which representation-profile features are necessary to derive executable contracts without making renderer/editor concerns semantic?
 \end{enumerate}
 
 \section{Planned validation sequence}
-Before ThreatForge holdouts:
+Phase D1 has been authored and frozen. Revision 6 incorporates only the early D2 findings that motivated the new hierarchy/corpus invariants. Before continuing the independent-example evaluation:
 \begin{enumerate}
-  \item reread the revision-5 historical-vs-rewrite ADR comparison through the closed semantic and representation rules;
-  \item correct only failures exposed by that reading;
-  \item construct independent facial-access Decisions;
-  \item close the construction candidate if no unresolved semantic defect remains.
+  \item reread the complete revision-6 Decision metamodel;
+  \item restart the frozen facial-access D1 corpus from the first Decision using the revision-6 review tests, preserving the D1 text unchanged;
+  \item complete D2 for all eight Decisions and classify each problem as an authoring/decomposition defect or a genuine metamodel counterexample;
+  \item if further correction is required, record the evidence and regress the affected D1 cases plus the sixteen ThreatForge construction ADRs from MR-0001 and MR-0002;
+  \item close the Decision candidate after independent-example validation only when no unresolved counterexample remains.
 \end{enumerate}
 Then sequentially:
 \begin{verbatim}
 MR-0003 holdout
-   -> re-check construction set if corrected
+   -> re-check all prior evidence if corrected
 MR-0004 holdout
-   -> re-check previous cases if corrected
+   -> re-check all prior evidence if corrected
 MR-0005 holdout
 \end{verbatim}
 
@@ -272,10 +327,12 @@ MR-0005 holdout
   \item concrete YAML/Markdown serialization syntax;
   \item Requirement-specific semantic model;
   \item effective-context propagation mechanism;
+  \item concrete cross-MR relevance relation, if one is needed;
+  \item universal/optional status of controlled vocabulary governance;
+  \item concrete similarity/search algorithm, index, weighting and thresholds;
   \item concrete validator/editor implementation;
   \item migration/refactor of historical ThreatForge ADRs.
 \end{itemize}
 
-The current task remains semantic and model-oriented: determine what a Decision carries, define enough representation discipline to make the model executable by construction, and prevent the case-study tool from becoming an accidental owner of the metamodel it is helping to study.
 
 \end{document}
