@@ -1,0 +1,294 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  10pt,
+  a4paper,
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=2.1cm]{geometry}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  colorlinks=true,
+  linkcolor={Maroon},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+{
+\hypersetup{linkcolor=}
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+\section{ThreatForge Decision regression after model-layering Revision
+7}\label{threatforge-decision-regression-after-model-layering-revision-7}
+
+\begin{quote}
+\textbf{Non-canonical research checkpoint.}
+
+Baseline of the study: Decision model Revision 7 after separating L1
+conceptual semantics, L2 representation contracts, L3 realization
+principles and L4 tool support/conformance. Construction corpus only:
+the sixteen revised candidate ADRs historically associated with
+ThreatForge MR-0001 and MR-0002. ThreatForge MR-0003, MR-0004 and
+MR-0005 remain untouched holdouts.
+\end{quote}
+
+\subsection{Purpose}\label{purpose}
+
+This checkpoint re-runs the construction corpus after discovering that
+\texttt{R-CLOSED-04} had been used at the wrong level. Executable
+projections remain a useful L3 realization principle, but they are not
+an L1 semantic invariant inherited by every governed project. Therefore
+a ThreatForge ADR is not redundant merely because it chooses a concrete
+way to realize that principle.
+
+Each candidate is reviewed through four questions:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Is there a significant choice rather than a consequence, requirement
+  or explanation?
+\item
+  Who owns the choice semantically: DDTA method/metamodel, canonical
+  representation, ThreatForge product/tool, or ThreatForge project
+  operations?
+\item
+  Is the historical parent Macro Requirement the natural semantic owner?
+\item
+  Does the candidate contribute a non-redundant choice without using
+  L2/L3 principles as if they were L1 semantics?
+\end{enumerate}
+
+\subsection{Regression table}\label{regression-table}
+
+\small
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Historical slot
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Revised candidate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Revision 7 result
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Rationale
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{MR-0001\ /\ ADR-0001} & Diátaxis come classificazione comune
+della funzione documentale & \textbf{RELOCATE - Decision DDTA method} &
+Scelta reale (Diátaxis vs classificazioni locali), ma la candidata
+attribuisce la scelta al metodo DDTA. Non è una Decision figlia naturale
+del progetto/tool ThreatForge. \\
+\texttt{MR-0001\ /\ ADR-0002} & Vocabolario governato come fonte unica
+del linguaggio condiviso & \textbf{RELOCATE - DDTA/cross-document
+candidate} & Scelta reale (significati governati vs convenzioni locali),
+ma l'owner è DDTA/cross-document governance. Resta aperto se il
+controlled vocabulary sia universale, opzionale o profile-specific. \\
+\texttt{MR-0001\ /\ ADR-0003} & Supporto ThreatForge alla tracciabilità
+della realizzazione governata & \textbf{REWRITE + REPARENT candidate} &
+Tolto l'uso improprio di R-CLOSED-04, il tema può contenere una vera
+scelta ThreatForge; la rewrite corrente però dichiara soprattutto
+supporto senza scegliere abbastanza. Il concern è più naturale sotto
+MR-0002. \\
+\texttt{MR-0001\ /\ ADR-0004} & Risoluzione contestuale dei valori
+controllati da fonti governate & \textbf{FITS} & Scelta ThreatForge
+autonoma: risolvere i valori nel contesto posseduto dalle fonti
+governate invece di codificare enum/global interpretations nei consumer.
+L3 non prescrive semanticamente questa scelta. \\
+\texttt{MR-0001\ /\ ADR-0006} & Handoff governato per la continuità
+dello sviluppo ThreatForge & \textbf{FITS - parent unresolved} & Scelta
+reale fra continuità informale e handoff governato ricostruibile. È una
+ThreatForge project-operation; il parent MR corrente non va forzato e
+deve essere riesaminato. \\
+\texttt{MR-0001\ /\ ADR-0007} & Contratti eseguibili dei modelli
+documentali consumati da ThreatForge & \textbf{FITS} & Scelta
+architetturale reale: consumer che ricodificano separatamente
+struttura/regole vs una proiezione/contratto eseguibile comune.
+R-CLOSED-04 è L3 e non rende questa ADR semanticamente ridondante. \\
+\texttt{MR-0001\ /\ ADR-0008} & Rappresentazione Doc-as-Code canonica
+dei riferimenti governati & \textbf{RELOCATE - L2 representation
+candidate} & La grammatica {[}id{]} title è una scelta reale di
+rappresentazione, non una Decision del tool. Va rivalutata nella futura
+fase identity/reference/mapping. \\
+\texttt{MR-0001\ /\ ADR-0009} & Supporto ThreatForge a obblighi di
+sicurezza governati derivati dall'analisi & \textbf{NOT STANDALONE
+DECISION candidate} & Non viene eliminata da L3, ma H-CLOSED-02 resta
+decisivo: nella rewrite corrente supportare Security tramite contratti
+sembra coverage/conformance di ADR-0007 + ADR-0010, non una nuova scelta
+autonoma. \\
+\texttt{MR-0001\ /\ ADR-0010} & Consumer ThreatForge estensibili
+dall'inventario governato dei modelli & \textbf{FITS} & Scelta autonoma:
+inventario/dispatch derivato da catalogo/proiezione governata vs liste
+locali, cardinalità fisse o discovery indipendente. Distinta dal modo in
+cui i contratti sono consumati. \\
+\texttt{MR-0002\ /\ ADR-0001} & Separazione tra capacità ThreatForge,
+orchestrazione applicativa e adapter & \textbf{FITS - minor cleanup} &
+Scelta architetturale autonoma. La Decision deve possedere il confine
+capability/application/adapter senza anticipare quale adapter concreto
+venga scelto; VS Code resta ADR-0005. \\
+\texttt{MR-0002\ /\ ADR-0002} & Pubblicazione governata del repository
+ThreatForge & \textbf{FITS} & Scelta di project operation: Git manuale
+vs operazione governata con precondizioni. Il parent MR-0002 è
+naturale. \\
+\texttt{MR-0002\ /\ ADR-0003} & Supporto ThreatForge all'avvio governato
+della realizzazione & \textbf{FITS} & Scelta di prodotto: scaffold
+governato e collegato al contesto vs creazione tecnica scollegata.
+Stati/lifecycle formali restano downstream. \\
+\texttt{MR-0002\ /\ ADR-0004} & Authoring ThreatForge guidato dai
+contratti governati del modello & \textbf{FITS} & Scelta capability
+autonoma: sola validazione a posteriori vs assistenza proattiva derivata
+dai contratti durante authoring. ADR-0007 può fornire la fonte senza
+imporre questa capability. \\
+\texttt{MR-0002\ /\ ADR-0005} & VS Code task come adapter locale sottile
+di ThreatForge & \textbf{FITS} & Scelta concreta di prima integrazione:
+task sottili vs custom extension/altro adapter. Distinta dal confine
+architetturale generale di ADR-0001. \\
+\texttt{MR-0002\ /\ ADR-0006} & Core ThreatForge condiviso per
+assistenza Markdown contestuale & \textbf{FITS} & Scelta autonoma su
+dove vive l'analisi live: core editor-independent vs regole replicate
+negli editor. Distinta da authoring guidato e scelta dei task. \\
+\texttt{MR-0002\ /\ ADR-0007} & Architettura applicativa ThreatForge
+indipendente dai delivery adapter & \textbf{FITS} & Scelta
+architetturale più specifica di ADR-0001: application services +
+ports/adapters + composition boundary. Può cambiare indipendentemente
+dal macro-confine capability/app/adapter. \\
+\end{longtable}
+
+\normalsize
+
+\subsection{Cross-case findings}\label{cross-case-findings}
+
+\subsubsection{F1 - Realization principles do not erase tool
+Decisions}\label{f1---realization-principles-do-not-erase-tool-decisions}
+
+\texttt{R-CLOSED-04} can motivate ThreatForge architecture but cannot be
+used as an L1 inheritance rule. In particular, choosing shared
+executable contracts rather than independently coded consumer rules
+remains a real ThreatForge Decision.
+
+\subsubsection{F2 - Ownership-correct is not
+sufficient}\label{f2---ownership-correct-is-not-sufficient}
+
+A rewrite that merely says `ThreatForge supports governed semantics
+without owning them' may still fail the Decision-contribution test. The
+corrected candidate must identify a genuine alternative in the behavior
+or architecture of ThreatForge.
+
+\subsubsection{F3 - Re-parent after ownership
+correction}\label{f3---re-parent-after-ownership-correction}
+
+When a rewrite changes the semantic owner or narrows the problem, its
+parent relation must be re-evaluated. Historical parentage is evidence,
+not an immutable truth.
+
+\subsubsection{F4 - Support/conformance is not automatically a
+Decision}\label{f4---supportconformance-is-not-automatically-a-decision}
+
+Supporting one concrete model extension through already-chosen generic
+contracts may be L4 coverage rather than another Decision.
+MR-0001/ADR-0009 is the primary construction example.
+
+\subsubsection{F5 - The construction corpus remains evidence, not
+migration}\label{f5---the-construction-corpus-remains-evidence-not-migration}
+
+This checkpoint does not modify historical ThreatForge ADRs. It
+classifies revised candidates so that the next rewrite can test whether
+the Decision metamodel produces a smaller, ownership-correct and
+non-redundant set.
+
+\subsection{Disposition summary}\label{disposition-summary}
+
+\begin{itemize}
+\tightlist
+\item
+  Retain and rewrite/clean as ThreatForge Decisions: MR-0001/ADR-0003,
+  ADR-0004, ADR-0007, ADR-0010 and MR-0002/ADR-0001..ADR-0007.
+\item
+  Retain as a meaningful ThreatForge Decision but keep parent
+  unresolved: MR-0001/ADR-0006 handoff.
+\item
+  Relocate outside the ThreatForge Decision hierarchy: MR-0001/ADR-0001
+  Diátaxis, ADR-0002 vocabulary, ADR-0008 reference representation.
+\item
+  Remove as standalone Decision candidate and use as L4
+  support/conformance case: MR-0001/ADR-0009 Security support.
+\end{itemize}
+
+\subsection{Next step}\label{next-step}
+
+Write a corrected candidate corpus using
+\texttt{Context\ +\ Decision\ +\ Consequences} for actual Decisions,
+with study-only annotations for semantic owner, proposed parent and DDTA
+contract supported. These annotations are not new canonical fields of
+the Decision metamodel.
+
+\end{document}
