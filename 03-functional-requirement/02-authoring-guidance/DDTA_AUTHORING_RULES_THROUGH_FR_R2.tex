@@ -1,0 +1,568 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  10pt,
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+  \setmainfont[]{DejaVu Sans}
+  \setmonofont[]{DejaVu Sans Mono}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=22mm]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{DDTA Authoring Rules Through Functional
+Requirement}\label{ddta-authoring-rules-through-functional-requirement}
+
+\textbf{THESIS WRITING CONTRACT - REVISION 2}
+
+This document turns the current conceptual baseline into repeatable
+authoring questions and review invariants. It intentionally stops before
+formal Base Analysis/BAE and Security Requirement semantics.
+
+\subsection{1. Authoring sequence}\label{1-authoring-sequence}
+
+\includegraphics{diagrams/AUTHORING_SEQUENCE.png}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Problem framing}
+\NormalTok{      |}
+\NormalTok{      v}
+\NormalTok{Macro Requirement}
+\NormalTok{      |}
+\NormalTok{      v}
+\NormalTok{Decision}
+\NormalTok{      |}
+\NormalTok{      v}
+\NormalTok{Functional Requirement}
+\NormalTok{      |}
+\NormalTok{      v}
+\NormalTok{Specialized Requirement (next: Security)}
+\end{Highlighting}
+\end{Shaded}
+
+The hierarchy is deliberately regular for teachability, validation and
+tool support.
+
+\subsection{2. Step 0 - Frame the project
+problem}\label{2-step-0---frame-the-project-problem}
+
+Write one short project-level statement before MR decomposition.
+
+Question:
+
+\begin{quote}
+Which general problem or class of problems must the project address if
+current solution choices are removed?
+\end{quote}
+
+Rules:
+
+\begin{itemize}
+\tightlist
+\item
+  describe problem and boundary, not the chosen architecture;
+\item
+  remove current provider/device/database/framework/algorithm names and
+  test whether the statement still makes sense;
+\item
+  state important out-of-bound responsibilities;
+\item
+  use the framing to test MR completeness/overlap;
+\item
+  do not copy the framing into every MR.
+\end{itemize}
+
+\subsection{3. Macro Requirement
+authoring}\label{3-macro-requirement-authoring}
+
+Question:
+
+\begin{quote}
+Within the framed problem, which stable macro responsibility are we
+governing, what macro result/value must it contribute, why does it
+matter and who is involved?
+\end{quote}
+
+Required body semantics:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Title} - concise domain-understandable responsibility;
+\item
+  \textbf{Intent} - normally 1-2 sentences on purpose/value/outcome;
+\item
+  \textbf{Context} - minimum interpretive background;
+\item
+  \textbf{Stakeholders} - materially affected/benefiting/governing
+  roles;
+\item
+  \textbf{Scope} - semantic responsibility boundary;
+\item
+  \textbf{Assumptions/Constraints} - optional, only if they apply to the
+  whole branch;
+\item
+  \textbf{dependsOn MR} - when another MR is genuinely
+  complementary/dependent.
+\end{itemize}
+
+Review tests:
+
+\begin{itemize}
+\tightlist
+\item
+  problem anchoring;
+\item
+  single concern;
+\item
+  architecture resilience;
+\item
+  temporal stability;
+\item
+  solution-removal;
+\item
+  stakeholder readability;
+\item
+  no atomic obligation;
+\item
+  dependency-vs-containment;
+\item
+  teachability/project-map usefulness.
+\end{itemize}
+
+\subsection{4. Decision authoring}\label{4-decision-authoring}
+
+Question:
+
+\begin{quote}
+Which significant commitment narrows this MR, why must the project take
+that position, and which consequences do we accept?
+\end{quote}
+
+Required body semantics:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Title};
+\item
+  \textbf{Context} - unresolved local tension or reason that only one
+  admissible position remains;
+\item
+  \textbf{Decision} - one coherent commitment;
+\item
+  \textbf{Consequences} - benefits, costs, risks, constraints and
+  downstream obligations.
+\end{itemize}
+
+\subsubsection{4.1 Responsibility-boundary
+question}\label{41-responsibility-boundary-question}
+
+Before FR authoring, explicitly ask:
+
+\begin{quote}
+Does the project implement/own this responsibility internally, or does
+it consume an external service/provider/organizational capability?
+\end{quote}
+
+This is usually a genuine Decision because it changes which FRs are
+project responsibilities.
+
+Example:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{MR Warehouse management}
+\NormalTok{   |}
+\NormalTok{   +{-}{-} Decision: project{-}owned stock authority}
+\NormalTok{   |      {-}\textgreater{} internal receipt/adjustment/reservation/issue FRs}
+\NormalTok{   |}
+\NormalTok{   \textasciigrave{}{-}{-} alternative Decision: external WMS authority}
+\NormalTok{          {-}\textgreater{} API/contract/correlation/mapping/retry FRs}
+\NormalTok{          {-}\textgreater{} WMS internal concurrency/accounting is outside project FR ownership}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{4.2 Necessity/default Decision - rare normalization
+rule}\label{42-necessitydefault-decision---rare-normalization-rule}
+
+If no materially distinct admissible alternative is found, \textbf{do
+not skip the Decision layer}. Write an explicit necessity/default
+Decision only after review.
+
+Checklist:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Context explains why alternatives are absent, immaterial or excluded.
+\item
+  Decision states the project commitment, not a tautology.
+\item
+  Consequences identify downstream responsibilities.
+\item
+  The document is reopenable if constraints/alternatives change.
+\item
+  "We did not look for alternatives" is not a valid justification.
+\end{enumerate}
+
+This is a deliberate methodological trade-off: a rare normalization node
+is preferred over a variable hierarchy because it keeps authoring, IDs,
+validation and tool navigation simpler.
+
+\subsection{5. Functional Requirement
+authoring}\label{5-functional-requirement-authoring}
+
+Question:
+
+\begin{quote}
+Given the parent Decision and an applicable condition/input, which
+subject/capability must perform which functional action on/with which
+object/information, and which observable result or failure behavior must
+follow?
+\end{quote}
+
+Required semantics:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Title} - one coherent operational capability/behavior;
+\item
+  \textbf{Functional obligation} - readable normative prose;
+\item
+  \textbf{Functional clauses} - one or more concrete normative
+  statements;
+\item
+  \textbf{SPO references} - structured subject/predicate/object
+  references supporting the clauses;
+\item
+  \textbf{Parent Decision} - exactly one semantic parent.
+\end{itemize}
+
+FR review tests:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{operationality} - behavior is concrete, not merely a desirable
+  state;
+\item
+  \textbf{independent assessability} - reviewers can determine whether
+  it holds;
+\item
+  \textbf{parent coverage} - the parent Decision actually establishes
+  the responsibility/strategy this FR operationalizes;
+\item
+  \textbf{responsibility boundary} - switching internal/external
+  ownership would materially change the FR branch;
+\item
+  \textbf{decision non-repetition} - FR operationalizes rather than
+  restates;
+\item
+  \textbf{coherent unit} - independently changeable capabilities are
+  split;
+\item
+  \textbf{implementation independence} - different valid implementations
+  can satisfy the same FR;
+\item
+  \textbf{parameter classification} - mutable values are not hard-coded
+  without semantic justification;
+\item
+  \textbf{reference reuse} - governed entities are referenced, not
+  duplicated;
+\item
+  \textbf{method neutrality} - no threat-method vocabulary is needed to
+  author the FR.
+\end{itemize}
+
+\subsection{6. SPO usage}\label{6-spo-usage}
+
+SPO is a structured relation aid, not the whole FR.
+
+Example:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Normative clause:}
+\NormalTok{When a full ReservationRequest is allocatable, InventoryService MUST create one ACTIVE}
+\NormalTok{Reservation for the originating OrderEvaluation; competing requests MUST NOT reserve the}
+\NormalTok{same already{-}frozen quantity.}
+
+\NormalTok{SPO references:}
+\NormalTok{InventoryService {-}{-} creates {-}{-}\textgreater{} Reservation}
+\NormalTok{InventoryService {-}{-} updates {-}{-}\textgreater{} InventoryBalance}
+\NormalTok{InventoryService {-}{-} produces {-}{-}\textgreater{} ReservationResult}
+\end{Highlighting}
+\end{Shaded}
+
+The normative clause owns conditions, correlation, atomicity, lifecycle
+and failure semantics. SPO makes identity/action/object references
+explicit.
+
+A future authoring tool may:
+
+\begin{itemize}
+\tightlist
+\item
+  suggest existing governed subject/object entries;
+\item
+  filter FunctionalPredicate choices by compatible kinds;
+\item
+  detect duplicate references and prose/SPO mismatch;
+\item
+  start an explicit proposal workflow for a missing entry;
+\item
+  never silently create canonical project semantics from nouns in prose.
+\end{itemize}
+
+\subsection{7. FunctionalPredicate
+vocabulary}\label{7-functionalpredicate-vocabulary}
+
+The core defines a predicate metacontract, not an exhaustive verb list.
+
+Candidate areas/examples:
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Area & Examples \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+storage & reads, writes, records, retrieves \\
+communication & sends, receives, requests, returns \\
+lifecycle & creates, activates, suspends, releases, expires, purges \\
+transformation & produces, derives, evaluates, maps \\
+inventory & reserves, releases, increases, decreases, blocks \\
+cryptography & encrypts, decrypts, hashes, derivesKey \\
+signature & signs, verifiesSignature, validatesCertificate \\
+identity/access & verifies, authorizes, denies, commands \\
+\end{longtable}
+
+Every predicate needs stable identity, readable meaning, functional area
+and compatible subject/object kinds. Formal compatibility waits for the
+Base Analysis taxonomy.
+
+\subsection{8. Cross-MR service
+composition}\label{8-cross-mr-service-composition}
+
+Two MRs can jointly provide an end-to-end service without sharing FR
+ownership.
+
+Rules:
+
+\begin{itemize}
+\tightlist
+\item
+  each FR remains inside exactly one
+  \texttt{MR\ -\textgreater{}\ Decision} branch;
+\item
+  a consumer FR may require a service/capability owned by another MR;
+\item
+  consumption does not create a second parent or owner;
+\item
+  the exact canonical relation target (provider FR vs
+  service/capability/BAE/interface) is deferred to Base Analysis.
+\end{itemize}
+
+\subsection{9. No Decisions under FR}\label{9-no-decisions-under-fr}
+
+If a new design choice appears while implementing/reviewing an FR:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  create/revise a Decision under the relevant MR;
+\item
+  create, revise or supersede the affected FR branch;
+\item
+  do not create a Decision as a child of FR.
+\end{enumerate}
+
+This keeps the reading model stable:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{MR {-}\textgreater{} Decision {-}\textgreater{} FR {-}\textgreater{} SpecializedRequirement}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{10. Specialized Requirements and thesis
+scope}\label{10-specialized-requirements-and-thesis-scope}
+
+Specialized Requirements descend from FR and add domain-specific
+constraints without replacing the underlying function.
+
+For the thesis end-to-end implementation/evaluation cycle, the next
+specialization to formalize is:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SecurityRequirement}
+\end{Highlighting}
+\end{Shaded}
+
+Expected future chain:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FR}
+\NormalTok{  {-}\textgreater{} Base Analysis}
+\NormalTok{  {-}\textgreater{} overlay/plugin (first concrete test: STRIDE)}
+\NormalTok{  {-}\textgreater{} Analysis Record / Finding}
+\NormalTok{  {-}\textgreater{} accepted Finding}
+\NormalTok{  {-}\textgreater{} SecurityRequirement}
+\NormalTok{  {-}\textgreater{} effective obligation = FR + applicable SecurityRequirements}
+\NormalTok{  {-}\textgreater{} revised design}
+\NormalTok{  {-}\textgreater{} re{-}analysis}
+\end{Highlighting}
+\end{Shaded}
+
+Governance, Privacy and Performance/Quality specializations remain
+future/generalization work unless a concrete counterexample forces
+earlier treatment.
+
+\subsection{11. Parameter rule}\label{11-parameter-rule}
+
+Do not introduce a generic \texttt{functionalParameters} field.
+
+Classify values by semantics and reference the appropriate governed
+artifact/constraint:
+
+\begin{itemize}
+\tightlist
+\item
+  acquisition medium/strategy -\textgreater{} Decision;
+\item
+  latency/throughput target -\textgreater{} Performance/Quality
+  candidate;
+\item
+  retention -\textgreater{} Governance/Privacy policy candidate;
+\item
+  provider API limit -\textgreater{} InterfaceContract candidate;
+\item
+  tuning/buffer/thread count -\textgreater{} realization/configuration.
+\end{itemize}
+
+\subsection{12. Reopen rule}\label{12-reopen-rule}
+
+The MR/Decision/FR authoring baseline may be reopened if the
+SecurityRequirement or Base Analysis/overlay phase produces a concrete
+counterexample that cannot be represented without breaking these
+invariants.
+
+\end{document}

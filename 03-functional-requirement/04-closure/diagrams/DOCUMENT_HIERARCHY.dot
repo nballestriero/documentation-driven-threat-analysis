@@ -1,0 +1,16 @@
+digraph G {
+  graph [rankdir=TB, bgcolor="transparent", pad=0.2, nodesep=0.4, ranksep=0.55];
+  node [shape=box, style="rounded", fontname="DejaVu Sans", fontsize=12, margin="0.16,0.10"];
+  edge [fontname="DejaVu Sans", fontsize=10];
+  P [label="Project problem framing\n(method precondition)", shape=note];
+  MR [label="Macro Requirement"];
+  D [label="Decision"];
+  FR [label="Functional Requirement"];
+  SR [label="Specialized Requirement"];
+  SEC [label="Security Requirement\n(next thesis specialization)"];
+  P -> MR [label="frames"];
+  MR -> D [label="owns 0..*"];
+  D -> FR [label="owns 0..*"];
+  FR -> SR [label="owns 0..*"];
+  SR -> SEC [style=dashed, label="thesis path"];
+}

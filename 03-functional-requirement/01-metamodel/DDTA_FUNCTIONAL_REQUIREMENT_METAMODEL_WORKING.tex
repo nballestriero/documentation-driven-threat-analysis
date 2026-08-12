@@ -3,6 +3,7 @@
 \PassOptionsToPackage{hyphens}{url}
 %
 \documentclass[
+  10pt,
 ]{article}
 \usepackage{amsmath,amssymb}
 \usepackage{iftex}
@@ -18,6 +19,8 @@
 \usepackage{lmodern}
 \ifPDFTeX\else
   % xetex/luatex font selection
+  \setmainfont[]{DejaVu Sans}
+  \setmonofont[]{DejaVu Sans Mono}
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -36,6 +39,7 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
+\usepackage[margin=22mm]{geometry}
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -74,25 +78,10 @@
 \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
-\usepackage{longtable,booktabs,array}
-\usepackage{calc} % for calculating minipage widths
-% Correct order of tables after \paragraph or \subparagraph
-\usepackage{etoolbox}
-\makeatletter
-\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
-\makeatother
-% Allow footnotes in longtable head/foot
-\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
-\makesavenoteenv{longtable}
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{5}
-\usepackage[margin=2.1cm]{geometry}
-\usepackage{longtable,booktabs,array}
-\usepackage{microtype}
-\setlength{\emergencystretch}{4em}
-\sloppy
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
@@ -108,373 +97,339 @@
 
 \begin{document}
 
-{
-\setcounter{tocdepth}{3}
-\tableofcontents
-}
 \section{DDTA - Working Metamodel - Functional
 Requirement}\label{ddta---working-metamodel---functional-requirement}
 
-\textbf{NON-CANONICAL WORKING DRAFT - REVISION 1}
+\textbf{DOCUMENTATION-LAYER CLOSURE CANDIDATE - REVISION 2}
 
-\subsection{1. Status and purpose}\label{status-and-purpose}
+This revision supersedes the Revision 1 topology experiment. The two
+earlier simplified holdouts that suggested direct
+\texttt{MR\ -\textgreater{}\ FR} parentage are excluded from closure
+evidence. More realistic access-control and warehouse/order experiments
+repeatedly exposed hidden responsibility/solution commitments before
+operational FRs could be written. For the thesis baseline, DDTA
+therefore adopts a regular
+\texttt{MR\ -\textgreater{}\ Decision\ -\textgreater{}\ FR} hierarchy,
+with a controlled necessity/default Decision rule for the rare
+singleton-solution case.
 
-This document starts the Functional Requirement (FR) semantic study
-after the Macro Requirement and Decision models reached a provisional
-upper-layer baseline.
+\subsection{1. Definition}\label{1-definition}
 
-The purpose is not to reproduce ThreatForge's current Requirement
-schema. It is to identify the smallest conceptual model that explains
-what a Functional Requirement means, how it relates vertically to Macro
-Requirements and Decisions, and how it connects downstream to
-realization and verification without embedding implementation into
-requirement semantics.
+A Functional Requirement is a governed, independently assessable
+\textbf{operational obligation} that descends from exactly one Decision
+and states one coherent behavior, service, transition or observable
+result that the project/system must provide under the governed context
+established by its MR and Decision branch.
 
-For this phase, \textbf{Requirement means Functional Requirement unless
-explicitly qualified}. Governance, Security and Privacy are deferred
-specialized-requirement studies.
+It must be specific enough to guide realization and verification without
+prescribing incidental source-code/framework detail.
 
-The current upper-layer baseline remains reopenable. A concrete FR
-counterexample may require a correction to MR or Decision semantics or
-relations, followed by regression over prior evidence.
+\subsubsection{Fundamental question}\label{fundamental-question}
 
-\subsection{2. Evidence boundary}\label{evidence-boundary}
+\begin{quote}
+\textbf{Given the parent Decision and an applicable condition/input,
+which governed subject/capability must perform which functional action
+on or with which governed object/information, and which observable
+outcome or failure behavior must follow?}
+\end{quote}
 
-\subsubsection{2.1 Admitted construction
-evidence}\label{admitted-construction-evidence}
+\subsection{2. Hierarchy and ownership}\label{2-hierarchy-and-ownership}
 
-ThreatForge product-semantic evidence is read at commit:
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{MacroRequirement}
+\NormalTok{    |}
+\NormalTok{    +{-}{-} Decision}
+\NormalTok{           |}
+\NormalTok{           +{-}{-} FunctionalRequirement}
+\NormalTok{                  |}
+\NormalTok{                  +{-}{-} SpecializedRequirement *}
+\end{Highlighting}
+\end{Shaded}
 
-\texttt{cae0f7b6b37f430ac4e857aabf6ef9f87c89dbb1}
-
-Construction evidence is limited to ThreatForge MR-0001 and MR-0002 plus
-the already admitted independent facial-access MR/Decision example.
-
-Selected historical sources used to seed questions, not to define truth,
-are the active Functional Requirement model/profile, the MR-0001/MR-0002
-Requirement registries, and two representative bodies. Their filenames
-are:
+Closed thesis-baseline rules:
 
 \begin{itemize}
 \tightlist
 \item
-  \texttt{functional-requirement.model.yml}
+  \texttt{FunctionalRequirement.parentDecision\ =\ exactly\ 1};
 \item
-  \texttt{functional-requirement-body.profile.yml}
+  owning MR is derived from
+  \texttt{parentDecision\ -\textgreater{}\ MacroRequirement} and must
+  not become a second topology authority;
 \item
-  \texttt{MR-0001.requirements.registry.yml}
+  an L2 registry may materialize the MR id as an indexed/mirrored value,
+  but it is derived;
 \item
-  \texttt{MR-0002.requirements.registry.yml}
+  no Decision is a child of FR;
 \item
-  \texttt{MR-0001ADR-0007REQ-0001\_body.md}
+  FR may have \texttt{0..*} Specialized Requirements;
 \item
-  \texttt{MR-0002ADR-0003REQ-0001\_body.md}
+  the thesis next formal specialization is \texttt{SecurityRequirement};
+  Governance/Privacy/Performance remain future/generalization work
+  unless needed by a concrete counterexample.
 \end{itemize}
 
-All are under the canonical \texttt{docs/reference/project-model/} tree
-at the pinned ThreatForge commit above.
+\subsection{3. Semantic shape}\label{3-semantic-shape}
 
-ThreatForge currently describes the Functional Requirement model as an
-``independently testable governed obligation'' and gives every FR
-registry record both a Macro Requirement ID and Decision ID. Its
-Markdown profile requires \texttt{Intent},
-\texttt{Functional\ obligation}, \texttt{Scope} and \texttt{Acceptance}
-sections. These are historical design choices to test, not automatically
-adopted L1 semantics.
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FunctionalRequirement}
+\NormalTok{|{-} id / lifecycle                 [common governed{-}document concerns]}
+\NormalTok{|{-} title                          [required]}
+\NormalTok{|{-} functionalObligation           [required]}
+\NormalTok{|{-} functionalClause 1..*}
+\NormalTok{|    |{-} normativeStatement        [required]}
+\NormalTok{|    \textasciigrave{}{-} spoReference 1..*         [structured governed references]}
+\NormalTok{|         |{-} subject}
+\NormalTok{|         |{-} predicate}
+\NormalTok{|         \textasciigrave{}{-} object}
+\NormalTok{|{-} parentDecision {-}\textgreater{} Decision 1}
+\NormalTok{\textasciigrave{}{-} specializedRequirement {-}\textgreater{} 0..*}
+\end{Highlighting}
+\end{Shaded}
 
-\subsubsection{2.2 Holdout protection}\label{holdout-protection}
+No FR-local \texttt{Intent} is required in the core. The MR + Decision
+context should explain why the behavior exists; the FR explains what
+operationally must happen.
 
-Do not inspect Requirement content belonging to ThreatForge MR-0003,
-MR-0004 or MR-0005 while constructing this model. Their unconsumed
-Decision/Requirement families remain future vertical holdout evidence.
+Acceptance/verification evidence and realization artifacts remain
+downstream relations, not intrinsic FR fields.
 
-\subsection{3. Fundamental question}\label{fundamental-question}
+\subsection{4. Operationality rule}\label{4-operationality-rule}
 
-The working FR question is:
+An FR must do more than name a desirable state or capability. It must
+expose enough operational semantics that an implementer/reviewer can
+understand what must occur.
+
+Strong forms include:
+
+\begin{itemize}
+\tightlist
+\item
+  event/condition -\textgreater{} required transition;
+\item
+  input/request -\textgreater{} required processing responsibility
+  -\textgreater{} observable result;
+\item
+  lifecycle event -\textgreater{} state change and failure behavior;
+\item
+  interaction request -\textgreater{} governed output/correlation
+  behavior;
+\item
+  concurrency condition -\textgreater{} externally meaningful
+  atomicity/idempotency invariant.
+\end{itemize}
+
+Weak forms such as "provide inventory availability" or "keep
+authorization updated" are insufficient when they hide responsibility
+boundaries, lifecycle, concurrency, correlation or failure semantics
+that materially determine implementation and verification.
+
+\subsection{5. Decision coverage test}\label{5-decision-coverage-test}
+
+Before accepting an FR, ask:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Which parent Decision makes this exact operational responsibility part
+  of the project?
+\item
+  Does the Decision determine an internal vs external responsibility
+  boundary, strategy, policy, interface commitment or other material
+  narrowing?
+\item
+  If no genuine alternative can be identified, has the branch documented
+  a valid necessity/default Decision rather than silently skipping the
+  layer?
+\item
+  Would changing the parent Decision require replacing or materially
+  rewriting this FR? If yes, parentage is semantically strong.
+\item
+  Is the proposed parent merely a tautology invented to hold the FR? If
+  yes, strengthen the Decision commitment or use the necessity/default
+  rule transparently.
+\end{enumerate}
+
+\subsection{6. Normative statement plus SPO
+references}\label{6-normative-statement-plus-spo-references}
+
+The \textbf{normative prose is semantically primary}. SPO makes the
+participating governed references explicit and reusable; it does not
+carry all conditional, concurrency, lifecycle or failure semantics by
+itself.
+
+Readable pattern:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{[Condition,] \textless{}Subject\textgreater{} MUST \textless{}Predicate\textgreater{} \textless{}Object\textgreater{}}
+\NormalTok{[qualifier / observable outcome / failure behavior].}
+\end{Highlighting}
+\end{Shaded}
+
+Example:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{When a ReservationRequest identifies the active order evaluation and full line set,}
+\NormalTok{InventoryService MUST create an ACTIVE Reservation only if the complete set can be}
+\NormalTok{allocated atomically against current stock state; a concurrent request MUST NOT reserve}
+\NormalTok{quantity already frozen by that Reservation.}
+\end{Highlighting}
+\end{Shaded}
+
+Associated SPO references may include:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{InventoryService {-}{-} creates {-}{-}\textgreater{} Reservation}
+\NormalTok{InventoryService {-}{-} updates {-}{-}\textgreater{} InventoryBalance}
+\NormalTok{InventoryService {-}{-} produces {-}{-}\textgreater{} ReservationResult}
+\end{Highlighting}
+\end{Shaded}
+
+The structured triples aid identity reuse and tooling, while the
+normative statement owns atomicity, correlation and failure semantics.
+
+\subsection{7. FunctionalPredicate
+metacontract}\label{7-functionalpredicate-metacontract}
+
+A governed functional predicate has at least:
+
+\begin{itemize}
+\tightlist
+\item
+  stable identity;
+\item
+  readable label;
+\item
+  normative meaning;
+\item
+  functional area;
+\item
+  compatible subject/object kinds (to be bound formally after the Base
+  Analysis taxonomy is closed).
+\end{itemize}
+
+The DDTA core does not freeze an exhaustive verb list. Example extension
+areas include storage, communication, lifecycle, transformation,
+inventory, cryptography, signature and identity/access.
+
+ThreatForge may later offer predicate pickers filtered by subject/object
+kinds, but tooling cannot silently invent project semantics.
+
+\subsection{8. Cross-MR service
+consumption}\label{8-cross-mr-service-consumption}
+
+MRs may be complementary in an end-to-end service. An FR can consume a
+capability owned by another MR branch without gaining a second owner.
+
+For the documentation-layer closure, the \textbf{semantics} are fixed:
 
 \begin{quote}
-\textbf{What must be observably or objectively true of the governed
-project/system so that a macro concern and its applicable choices become
-operational, without prescribing the concrete implementation that makes
-it true?}
+consuming another branch\textquotesingle s governed capability does not
+transfer FR ownership or create a second parent.
 \end{quote}
 
-This question deliberately separates:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{MacroRequirement}
-\NormalTok{    major concern / intended result}
-
-\NormalTok{Decision}
-\NormalTok{    significant choice that narrows the concern}
-
-\NormalTok{FunctionalRequirement}
-\NormalTok{    functional truth/capability/behavior/result that must hold}
-
-\NormalTok{Realization}
-\NormalTok{    concrete artifacts and mechanisms that make it hold}
-
-\NormalTok{Verification}
-\NormalTok{    evidence that supports the claim that it holds}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection{4. Working semantic
-definition}\label{working-semantic-definition}
-
-\textbf{FR-DEF-01 - Functional Requirement, working definition}
-
-A Functional Requirement is a governed, independently assessable
-obligation stating one coherent capability, behavior, service, state
-transition or result that the governed project/system must provide or
-make true. It may operationalize project intent and applicable
-Decisions, but it does not prescribe the concrete realization mechanism
-unless that mechanism is itself intrinsic to the required
-externally/operationally meaningful function.
-
-This definition is a construction hypothesis, not closure.
-
-\subsubsection{4.1 Why ``independently
-assessable''}\label{why-independently-assessable}
-
-A Requirement should permit a meaningful determination of satisfaction
-that is stronger than ``some implementation artifact exists''.
-Assessment may ultimately use tests, checks, inspection or other
-governed evidence, but the exact verification-evidence model is
-downstream.
-
-\subsubsection{4.2 Why ``one coherent''
-function}\label{why-one-coherent-function}
-
-A Requirement may need multiple normative statements to define one
-capability. Multiple sentences do not automatically imply multiple
-Requirements.
-
-Use the split test:
-
-\begin{quote}
-If two obligation groups can be realized, accepted or changed
-independently and neither is necessary to define the same indivisible
-functional capability, review them as separate Functional Requirements.
-\end{quote}
-
-This mirrors the Decision coherence test without assuming one bullet
-equals one semantic entity.
-
-\subsection{5. Candidate semantic shape}\label{candidate-semantic-shape}
-
-Revision 1 intentionally does \textbf{not} freeze the historical
-ThreatForge body sections as the FR semantic core.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{FunctionalRequirement}
-\NormalTok{|{-} title?                 [likely common governed{-}document concern]}
-\NormalTok{|{-} functionalObligation  [strong L1 candidate]}
-\NormalTok{|{-} scope?                 [candidate; requires evidence]}
-\NormalTok{\textasciigrave{}{-} acceptance?            [candidate; may belong to verification contract]}
-\end{Highlighting}
-\end{Shaded}
-
-\texttt{Intent}, present in the historical ThreatForge representation,
-is not yet admitted to the minimum semantic core. Its value must be
-tested against information already recoverable from the parent context
-plus the functional obligation.
-
-\subsubsection{5.1 Candidate-field status}\label{candidate-field-status}
-
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-Candidate
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Revision 1 status
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Question
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-\texttt{title} & common identity/display candidate & Is title intrinsic
-FR semantics or common \texttt{GovernedDocument} semantics? \\
-\texttt{functionalObligation} & \textbf{strong required candidate} & Can
-any valid FR exist without stating what must be true/provided? \\
-\texttt{scope} & open & Does scope carry independent semantic
-information, or can it be expressed by the obligation/context without
-repetition? \\
-\texttt{acceptance} & open & Is acceptance intrinsic Requirement
-semantics or a separate verification contract/evidence relation? \\
-\texttt{intent} & open / suspected non-core & Does FR-local intent add
-non-redundant meaning after MR + Decision + obligation are known? \\
-\end{longtable}
-
-No representation ordering, Markdown heading, normative keyword or YAML
-member is L1 merely because ThreatForge currently enforces it.
-
-\subsection{6. The central vertical relation is still
-open}\label{the-central-vertical-relation-is-still-open}
-
-Historical ThreatForge encodes:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{MR {-}\textgreater{} Decision {-}\textgreater{} FunctionalRequirement}
-\end{Highlighting}
-\end{Shaded}
-
-with one \texttt{decision\_id} and one \texttt{macro\_requirement\_id}
-in each FR registry record. The current logical model treats both as
-relations.
-
-Revision 1 does \textbf{not} close that topology yet.
-
-Two competing hypotheses must be tested.
-
-\subsubsection{H-FR-PARENT-A - Mandatory Decision
-parent}\label{h-fr-parent-a---mandatory-decision-parent}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{MacroRequirement}
-\NormalTok{    1}
-\NormalTok{    |}
-\NormalTok{    *}
-\NormalTok{Decision}
-\NormalTok{    1}
-\NormalTok{    |}
-\NormalTok{    *}
-\NormalTok{FunctionalRequirement}
-\end{Highlighting}
-\end{Shaded}
-
-Every FR is the operational downstream expression of exactly one
-significant governed choice.
-
-Potential advantage: strong vertical trace and simple ownership.
-
-Potential defect: it may force artificial Decisions for functions that
-follow directly from the Macro Requirement/domain obligation without an
-unresolved choice.
-
-\subsubsection{H-FR-PARENT-B - MR ownership plus Decision
-applicability}\label{h-fr-parent-b---mr-ownership-plus-decision-applicability}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{MacroRequirement 1 {-}{-}{-}{-} * FunctionalRequirement}
-
-\NormalTok{Decision * {-}{-}{-}{-} * FunctionalRequirement}
-\NormalTok{          constrains / is operationalized by}
-\end{Highlighting}
-\end{Shaded}
-
-Every FR has one macro-concern owner, while zero or more Decisions may
-constrain or be operationalized by it.
-
-Potential advantage: does not require dummy Decisions.
-
-Potential defect: may weaken the simple descending hierarchy and
-requires an explicit model for applicable Decision context.
-
-The construction and independent examples must decide between these
-hypotheses or expose a smaller third relation model.
-
-\subsubsection{6.1 Direct MR identifier may be
-derived}\label{direct-mr-identifier-may-be-derived}
-
-Even if H-FR-PARENT-A survives, a stored \texttt{macro\_requirement\_id}
-may be a derived/indexed mirror of the Decision parent rather than a
-second independent semantic parent relation.
-
-Identity serialization must not be used as proof of topology.
-
-\subsection{7. Candidate FR invariants}\label{candidate-fr-invariants}
-
-These are working tests. Only \texttt{FR-CAND-01} through
-\texttt{FR-CAND-05} are strong enough to guide initial authoring; none
-is closed before regression.
-
-\subsubsection{FR-CAND-01 - Functional
-obligation}\label{fr-cand-01---functional-obligation}
-
-An FR states a required capability, behavior, service, transition or
-result. Pure rationale, architecture preference, implementation task or
-evidence record is not an FR.
-
-\subsubsection{FR-CAND-02 - Independent
-assessability}\label{fr-cand-02---independent-assessability}
-
-There must be a meaningful way to decide whether the required functional
-truth holds. ``Code exists'' or ``file created'' is not sufficient
-unless file creation itself is the externally/operationally required
-behavior.
-
-\subsubsection{FR-CAND-03 - Coherent requirement
-unit}\label{fr-cand-03---coherent-requirement-unit}
-
-The FR owns one coherent functional capability. Split independently
-realizable/acceptable capability families.
-
-\subsubsection{FR-CAND-04 - Decision
-non-repetition}\label{fr-cand-04---decision-non-repetition}
-
-An FR does not merely restate the parent/applicable Decision. The
-Decision explains which choice was made; the FR states what must
-consequently function or be true.
-
-\subsubsection{FR-CAND-05 - Implementation
-independence}\label{fr-cand-05---implementation-independence}
-
-The FR does not prescribe frameworks, source paths, internal
-class/function layout, code annotations, transport technology or other
-realization detail unless that mechanism is itself part of the required
-observable contract.
-
-\subsubsection{FR-CAND-06 - Realization is a relation, not FR
-content}\label{fr-cand-06---realization-is-a-relation-not-fr-content}
-
-Implementation artifacts may realize an FR, but their existence, paths
-and implementation state belong to realization trace/governance rather
-than the intrinsic FR meaning.
-
-\subsubsection{FR-CAND-07 - Verification is distinct from
-realization}\label{fr-cand-07---verification-is-distinct-from-realization}
-
-Evidence supporting satisfaction is not the same thing as an artifact
-that realizes the Requirement.
-
-\subsubsection{FR-CAND-08 - Specialized constraints do not replace the
-FR}\label{fr-cand-08---specialized-constraints-do-not-replace-the-fr}
-
-Security, Governance and Privacy Requirements may enrich/constrain an
-FR. The underlying functional capability remains owned by the FR.
-
-\subsubsection{FR-CAND-09 - Effective obligation is derived
-context}\label{fr-cand-09---effective-obligation-is-derived-context}
-
-For realization/review, the effective obligation of an FR includes the
-FR plus all applicable specialized Requirements. This is a derived
-governed view, not a reason to copy specialized constraints into the FR
-body.
-
-\subsubsection{FR-CAND-10 - Corpus non-redundancy
-candidate}\label{fr-cand-10---corpus-non-redundancy-candidate}
-
-Two FRs that express the same functional truth under the same effective
-governed context may indicate duplication or incorrect decomposition. A
-corpus-level invariant analogous to Decision \texttt{H-CLOSED-02} is
-plausible but remains open until multiple FR families are analyzed.
-
-\subsection{8. Realization and verification
-boundary}\label{realization-and-verification-boundary}
-
-A Functional Requirement should lead toward implementation without
-becoming implementation.
+The exact canonical target of the non-hierarchical consumption relation
+is deliberately deferred to the Base Analysis phase. It may resolve to a
+governed capability/service/BAE/interface relation rather than always to
+one provider FR.
+
+This avoids prematurely freezing \texttt{FR\ -\textgreater{}\ FR} as the
+only service-composition representation.
+
+\subsection{9. Parameter classification
+rule}\label{9-parameter-classification-rule}
+
+No generic \texttt{functionalParameters} field belongs to the FR core.
+
+A changing value is classified by semantics:
+
+\begin{itemize}
+\tightlist
+\item
+  image vs frame-set vs short video -\textgreater{} Decision/strategy;
+\item
+  response-time target -\textgreater{} quality/performance requirement
+  candidate;
+\item
+  retention duration -\textgreater{} governance/privacy/policy
+  candidate;
+\item
+  API-imposed limit/field -\textgreater{} InterfaceContract candidate;
+\item
+  buffer size or implementation tuning -\textgreater{}
+  realization/configuration.
+\end{itemize}
+
+An FR references the applicable governed rule where necessary instead of
+copying mutable values by default.
+
+\subsection{10. Closed FR invariants for the documentation
+baseline}\label{10-closed-fr-invariants-for-the-documentation-baseline}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Exactly one parent Decision}.
+\item
+  \textbf{Derived MR ownership} - MR comes from the parent Decision
+  branch.
+\item
+  \textbf{Operational obligation} - FR states
+  behavior/service/transition/result, not rationale or architecture
+  preference.
+\item
+  \textbf{Independent assessability} - satisfaction can be meaningfully
+  evaluated.
+\item
+  \textbf{Coherent unit} - one independently meaningful
+  capability/behavior per FR.
+\item
+  \textbf{Decision non-repetition} - FR makes the commitment operational
+  rather than restating it.
+\item
+  \textbf{Implementation independence} - no incidental
+  framework/source/class/algorithm detail unless contractual.
+\item
+  \textbf{Normative prose primary} - SPO supports structured references
+  but does not replace full behavior semantics.
+\item
+  \textbf{SPO consistency} - structured references must not contradict
+  normative prose.
+\item
+  \textbf{Governed-reference reuse} - existing subject/object identities
+  are referenced rather than redefined.
+\item
+  \textbf{No Decision children} - later choices remain MR-level
+  Decisions, not descendants of FR.
+\item
+  \textbf{Specialization downward} - domain-specific constraints
+  enrich/constrain FR through Specialized Requirements.
+\item
+  \textbf{Service-consumption without co-ownership} - consuming another
+  MR\textquotesingle s service/capability does not transfer ownership.
+\item
+  \textbf{Realization separation} - implementation artifacts realize FRs
+  but are not FR semantics.
+\item
+  \textbf{Verification separation} - evidence supports satisfaction but
+  is not the FR or its realization.
+\item
+  \textbf{Method neutrality} - authoring does not require
+  STRIDE/STRIDE-AI terminology.
+\item
+  \textbf{Tool non-authority} - assistance may resolve/suggest/validate
+  but cannot silently create governed semantics.
+\end{enumerate}
+
+\subsection{11. Specialized Requirement
+boundary}\label{11-specialized-requirement-boundary}
 
 Conceptually:
 
@@ -482,341 +437,34 @@ Conceptually:
 \begin{Highlighting}[]
 \NormalTok{FunctionalRequirement}
 \NormalTok{      |}
-\NormalTok{      | realizedBy}
-\NormalTok{      v}
-\NormalTok{RealizationArtifact *}
-\end{Highlighting}
-\end{Shaded}
-
-and independently:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{Requirement}
-\NormalTok{      |}
-\NormalTok{      | verifiedBy}
-\NormalTok{      v}
-\NormalTok{VerificationEvidence *}
-\end{Highlighting}
-\end{Shaded}
-
-Both cardinalities are deliberately open at L1 because an authored
-Requirement may exist before implementation/evidence. Lifecycle may
-later impose stronger conditions for states such as
-implemented/accepted.
-
-One implementation artifact may realize several Requirements, and one
-Requirement may require several artifacts. Therefore no one-file-per-FR
-assumption is admitted.
-
-\subsubsection{8.1 RealizationArtifact is intentionally
-generic}\label{realizationartifact-is-intentionally-generic}
-
-The portable metamodel should not assume that realization means source
-code only. A functional capability may be realized by code,
-configuration, infrastructure, a composed service, or another project
-artifact.
-
-ThreatForge may later support specific artifact classes without making
-those classes universal FR semantics.
-
-\subsection{9. Specialized Requirement
-boundary}\label{specialized-requirement-boundary}
-
-Revision 1 reserves the following future structure without closing its
-common semantics:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{FunctionalRequirement}
-\NormalTok{      |}
-\NormalTok{      +{-}{-} GovernanceRequirement *}
 \NormalTok{      +{-}{-} SecurityRequirement *}
-\NormalTok{      \textasciigrave{}{-}{-} PrivacyRequirement *}
+\NormalTok{      +{-}{-} GovernanceRequirement *   [future/generalization]}
+\NormalTok{      +{-}{-} PrivacyRequirement *      [future/generalization]}
+\NormalTok{      \textasciigrave{}{-}{-} Performance/Quality ?     [future/generalization]}
 \end{Highlighting}
 \end{Shaded}
 
-The current working interpretation is:
+For thesis scope, only \texttt{SecurityRequirement} is required for the
+next closed end-to-end cycle. Its derivation from accepted Findings and
+relation to effective obligation will be formalized after Base Analysis
+and the overlay/plugin contract.
 
-\begin{quote}
-A Specialized Requirement adds an obligation/constraint that the
-realization and/or verification of its Functional Requirement must
-satisfy, without replacing the functional capability owned by the FR.
-\end{quote}
+\subsection{12. Reopen rule}\label{12-reopen-rule}
 
-Whether \texttt{specializes}, \texttt{constrains}, \texttt{appliesTo} or
-another relation name best represents this meaning remains open.
-
-\subsubsection{9.1 Security-specific future
-origin}\label{security-specific-future-origin}
-
-Security is not created merely by the FR hierarchy. The later Security
-model must also preserve analytical provenance:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{AnalysisRecord}
-\NormalTok{    |}
-\NormalTok{    v}
-\NormalTok{CommonFinding}
-\NormalTok{    |}
-\NormalTok{    | accepted}
-\NormalTok{    v}
-\NormalTok{SecurityRequirement}
-\NormalTok{    |}
-\NormalTok{    v}
-\NormalTok{FunctionalRequirement}
-\end{Highlighting}
-\end{Shaded}
-
-The Security Requirement states a product/project obligation. STRIDE or
-STRIDE-AI remains recoverable through the Analysis Record rather than
-becoming a field of the FR.
-
-\subsection{10. Independent facial-access
-probe}\label{independent-facial-access-probe}
-
-The facial-access example deliberately creates a vertical probe that may
-challenge mandatory Decision parentage.
-
-\subsubsection{10.1 Existing upper-layer
-context}\label{existing-upper-layer-context}
-
-Macro concern (facial-access example): facial recognition should
-determine whether the acquired face corresponds to the expected
-authorized person with sufficient quality for the access process.
-
-Existing admitted Decision proposition from the Decision study: the
-recognition result consumed by the access process has stable governed
-semantics independent from raw/model-specific ML score semantics.
-
-\subsubsection{10.2 FR proposition A - acquisition suitable for
-verification}\label{fr-proposition-a---acquisition-suitable-for-verification}
-
-\textbf{Working obligation}
-
-\begin{quote}
-The system must acquire facial information at the access point that is
-sufficient to attempt person verification and must make an insufficient
-acquisition distinguishable from a valid verification result.
-\end{quote}
-
-This looks locally like a Functional Requirement: it states a functional
-capability and can be assessed without naming a camera model, library or
-source file.
-
-But its parentage is intentionally unresolved. It may follow directly
-from the Macro Requirement rather than from the specific Decision about
-stable result semantics.
-
-Therefore this FR is a direct test of H-FR-PARENT-A versus
-H-FR-PARENT-B.
-
-\subsubsection{10.3 FR proposition B - governed verification
-result}\label{fr-proposition-b---governed-verification-result}
-
-\textbf{Working obligation}
-
-\begin{quote}
-For every completed verification attempt, the system must expose a
-result using the governed verification semantics consumed by the access
-process rather than exposing raw model-specific score semantics as the
-functional result.
-\end{quote}
-
-This proposition appears to operationalize the existing stable-semantics
-Decision much more directly.
-
-The pair is useful because both are legitimate functions under the same
-macro concern, while only one is obviously downstream of the known
-Decision.
-
-\subsubsection{10.4 Implementation is
-separate}\label{implementation-is-separate}
-
-Possible realization artifacts such as a camera adapter, capture
-service, face-verification service or score interpreter are not part of
-either FR definition.
-
-Likewise, tests for insufficient capture or stable result mapping are
-verification evidence, not the FR itself.
-
-\subsection{11. ThreatForge construction
-probes}\label{threatforge-construction-probes}
-
-\subsubsection{11.1 Scaffold Requirement}\label{scaffold-requirement}
-
-Historical \texttt{MR-0002ADR-0003REQ-0001} states a coherent user/tool
-capability - create a governed implementation scaffold - but its current
-Functional obligation also includes details such as specific source
-declarations, a deterministic artifact identifier, implementation-trace
-mutation and invocation through a VS Code task.
-
-The FR study must classify these statements rather than assume the whole
-historical body is one semantic Requirement:
+This documentation-layer baseline is reopenable only by a concrete
+counterexample, especially if:
 
 \begin{itemize}
 \tightlist
 \item
-  required functional behavior;
+  SecurityRequirement cannot be attached/constrained without corrupting
+  FR semantics;
 \item
-  consequence of an architectural Decision;
+  Base Analysis cannot be derived/integrated from the documented system
+  facts without changing MR/Decision/FR authoring;
 \item
-  realization/trace mechanism;
-\item
-  specialized Governance constraint;
-\item
-  separate FR that can change independently.
+  a methodology overlay requires information that cannot be expressed
+  without violating the current layer boundaries.
 \end{itemize}
-
-This is a strong construction case for \texttt{FR-CAND-03},
-\texttt{FR-CAND-04} and \texttt{FR-CAND-05}.
-
-\subsubsection{11.2 Canonical profiles
-Requirement}\label{canonical-profiles-requirement}
-
-Historical \texttt{MR-0001ADR-0007REQ-0001} requires canonical logical
-models and representation profiles for active governed document models.
-It is a useful contrast because its obligation is closer to a
-product/tool capability than to a concrete implementation path, yet
-several bullets may still represent separately changeable obligations.
-
-It therefore probes the semantic granularity of one FR versus a family
-of FRs.
-
-\subsection{12. Authoring diagnostics for the construction
-phase}\label{authoring-diagnostics-for-the-construction-phase}
-
-Use these questions when rewriting or authoring candidate FRs:
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  \textbf{Functional truth:} What must actually work or be true?
-\item
-  \textbf{Choice test:} Is this sentence still a choice/trade-off? If
-  yes, it may belong to Decision.
-\item
-  \textbf{Implementation test:} Could a different implementation satisfy
-  the same sentence? If not, is the named mechanism genuinely part of
-  the required contract or merely realization detail?
-\item
-  \textbf{Split test:} Could one obligation change/be accepted without
-  the other? If yes, consider separate FRs.
-\item
-  \textbf{Parent test:} Which MR/Decision context naturally owns this
-  function? Would forcing one Decision parent create a dummy Decision?
-\item
-  \textbf{Verification test:} What observation could establish
-  satisfaction without treating artifact existence as proof?
-\item
-  \textbf{Specialization test:} Is this the function itself, or an
-  additional Security/Governance/Privacy constraint on that function?
-\item
-  \textbf{Copy test:} Is the FR repeating a Decision, controlled
-  vocabulary or specialized constraint that should be
-  referenced/effectively inherited instead?
-\end{enumerate}
-
-\subsection{13. What Revision 1 deliberately does not
-decide}\label{what-revision-1-deliberately-does-not-decide}
-
-\begin{itemize}
-\tightlist
-\item
-  whether every FR has exactly one Decision parent;
-\item
-  whether FR has an independent semantic MR relation or only a
-  derived/mirrored one;
-\item
-  whether \texttt{Intent} is an FR field;
-\item
-  whether \texttt{Scope} is semantically required;
-\item
-  whether acceptance conditions are intrinsic FR semantics or a separate
-  verification contract;
-\item
-  the exact relation names/cardinalities for realization and
-  verification;
-\item
-  FR lifecycle/status;
-\item
-  FR-to-FR dependencies;
-\item
-  the common superclass semantics of Governance/Security/Privacy;
-\item
-  Privacy-specific origin semantics;
-\item
-  Security-specific Finding cardinality beyond the already observed
-  future derivation requirement;
-\item
-  any YAML/Markdown representation profile;
-\item
-  any ThreatForge implementation mechanism.
-\end{itemize}
-
-\subsection{14. Construction sequence from this
-draft}\label{construction-sequence-from-this-draft}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{Revision 1 FR hypotheses}
-\NormalTok{    |}
-\NormalTok{    v}
-\NormalTok{inventory every Functional Requirement in ThreatForge MR{-}0001/MR{-}0002}
-\NormalTok{    |}
-\NormalTok{    v}
-\NormalTok{classify each statement:}
-\NormalTok{FR semantics / Decision / realization / verification / specialization / representation}
-\NormalTok{    |}
-\NormalTok{    v}
-\NormalTok{test parent hypothesis and requirement granularity}
-\NormalTok{    |}
-\NormalTok{    v}
-\NormalTok{author independent facial{-}access FR corpus}
-\NormalTok{    |}
-\NormalTok{    v}
-\NormalTok{vertical MR {-}\textgreater{} Decision {-}\textgreater{} FR regression}
-\NormalTok{    |}
-\NormalTok{    +{-}{-}\textgreater{} no counterexample: strengthen/close candidates}
-\NormalTok{    |}
-\NormalTok{    \textasciigrave{}{-}{-}\textgreater{} counterexample: correct smallest owning layer and regress prior evidence}
-\end{Highlighting}
-\end{Shaded}
-
-Only after the Functional Requirement boundary is stable should the
-study define the shared \texttt{SpecializedRequirement} semantics and
-then test Security/Governance/Privacy individually.
-
-\subsection{15. Revision 1 working
-summary}\label{revision-1-working-summary}
-
-The smallest current hypothesis is intentionally modest:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{FunctionalRequirement}
-\NormalTok{    = governed functional obligation}
-\NormalTok{    + independently assessable satisfaction}
-\NormalTok{    + no intrinsic implementation prescription}
-\end{Highlighting}
-\end{Shaded}
-
-The major unresolved structural question is whether the vertical
-topology is truly:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{MR {-}\textgreater{} Decision {-}\textgreater{} FR}
-\end{Highlighting}
-\end{Shaded}
-
-or whether the evidence requires a weaker relation in which MR owns the
-FR and Decisions constrain/are operationalized by it.
-
-That question should be answered by evidence before the existing
-ThreatForge ID grammar or registry relations are promoted into the DDTA
-conceptual metamodel.
 
 \end{document}

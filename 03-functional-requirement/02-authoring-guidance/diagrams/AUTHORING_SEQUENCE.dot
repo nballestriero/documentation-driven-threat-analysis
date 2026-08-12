@@ -1,0 +1,11 @@
+digraph G {
+  graph [rankdir=LR, bgcolor="transparent", pad=0.2, nodesep=0.35, ranksep=0.45];
+  node [shape=box, style="rounded", fontname="DejaVu Sans", fontsize=11, margin="0.14,0.08"];
+  edge [fontname="DejaVu Sans", fontsize=9];
+  P [label="Problem\nframing", shape=note];
+  MR [label="MR\nmacro responsibility"];
+  D [label="Decision\ncommitment / boundary"];
+  FR [label="FR\noperational behavior"];
+  SEC [label="Security Requirement\n(next phase)", style="rounded,dashed"];
+  P -> MR -> D -> FR -> SEC;
+}

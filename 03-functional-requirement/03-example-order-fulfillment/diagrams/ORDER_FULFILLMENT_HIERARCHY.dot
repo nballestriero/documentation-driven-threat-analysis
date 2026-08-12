@@ -1,0 +1,25 @@
+digraph G {
+  graph [rankdir=LR, bgcolor="transparent", pad=0.15, nodesep=0.25, ranksep=0.6];
+  node [shape=box, style="rounded", fontname="DejaVu Sans", fontsize=9, margin="0.10,0.06"];
+  edge [fontname="DejaVu Sans", fontsize=8];
+  MR1 [label="MR-1\nOrder lifecycle"];
+  MR2 [label="MR-2\nWarehouse / inventory"];
+  MR3 [label="MR-3\nPayment"];
+  MR4 [label="MR-4\nFulfillment / dispatch"];
+  D21 [label="ADR-2.1\nInternal inventory authority"];
+  D25 [label="ADR-2.5\nAtomic all-line reservation"];
+  F21 [label="FR-2.1\nInbound receipt"];
+  F25 [label="FR-2.5\nConcurrent reservation"];
+  D31 [label="ADR-3.1\nExternal PSP"];
+  F31 [label="FR-3.1\nProvider authorization"];
+  D44 [label="ADR-4.4\nPhysical handoff milestone"];
+  F44 [label="FR-4.4\nConfirm handoff"];
+  MR2 -> D21 -> F21;
+  MR2 -> D25 -> F25;
+  MR3 -> D31 -> F31;
+  MR4 -> D44 -> F44;
+  MR1 -> MR2 [style=dashed,label="consumes service"];
+  MR1 -> MR3 [style=dashed,label="consumes service"];
+  MR4 -> MR2 [style=dashed,label="stock allocation/issue"];
+  MR3 -> MR4 [style=dashed,label="capture milestone"];
+}

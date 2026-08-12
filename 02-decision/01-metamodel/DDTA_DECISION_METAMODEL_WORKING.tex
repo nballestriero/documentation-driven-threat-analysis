@@ -1,182 +1,287 @@
-\documentclass[11pt,a4paper]{article}
-\usepackage[margin=2.35cm]{geometry}
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  10pt,
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
 \usepackage{lmodern}
-\usepackage{microtype}
-\usepackage{enumitem}
-\usepackage{booktabs}
-\usepackage{array}
-\usepackage[hidelinks]{hyperref}
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{5.5pt}
-\setlist[itemize]{leftmargin=1.4em,itemsep=2pt,topsep=3pt}
-\setlist[enumerate]{leftmargin=1.6em,itemsep=2pt,topsep=3pt}
-\newcommand{\closed}[1]{\vspace{4pt}\textbf{#1}\par}
-\newcommand{\ruletext}[1]{\begin{quote}\bfseries #1\end{quote}}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+  \setmainfont[]{DejaVu Sans}
+  \setmonofont[]{DejaVu Sans Mono}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=22mm]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
 \begin{document}
 
-{\LARGE\bfseries DDTA - Working Metamodel - Decision}\par
-\vspace{4pt}
-{\large\bfseries NON CANONICAL WORKING DRAFT - REVISION 7}\par
-\vspace{4pt}
-Revision 7 is a layering correction. It keeps the Decision-specific semantic core and the hierarchy/corpus invariants introduced by revision 6, but removes representation, realization, semantic-authority and authoring-review rules from the Decision-specific closed set. Those rules remain part of the study in the separate cross-cutting model-layering foundation document.
+\section{DDTA - Working Metamodel -
+Decision}\label{ddta---working-metamodel---decision}
 
-\section{Purpose and evidence boundary}
-This study asks what a governed \textbf{Decision} means immediately below a Macro Requirement. Construction evidence remains the sixteen historical ThreatForge ADRs of MR-0001/MR-0002, followed by the independent facial-access example. ThreatForge MR-0003, MR-0004 and MR-0005 remain sequential holdouts and are not opened by this revision.
+\textbf{DOCUMENTATION-LAYER CLOSURE CANDIDATE - REVISION 8}
 
-Revision 6 added two genuine cross-document semantic invariants after the independent example exposed ambiguous parentage and redundant Decision contribution. The subsequent ThreatForge regression exposed a different problem in the study itself: a realization principle (executable projections) was being applied as if it were semantic truth of every governed DDTA project. Revision 7 corrects that layering without changing the meaning of Decision.
+Revision 8 preserves the Revision 7 local field core and layering
+separation, but refines the definition of Decision after the Functional
+Requirement experiments. The thesis baseline intentionally keeps a
+regular \texttt{MR\ -\textgreater{}\ Decision\ -\textgreater{}\ FR}
+authoring layer.
 
-\section{Semantic position below Macro Requirement}
-\begin{verbatim}
-Macro Requirement
-    major governed concern/result
-         |
-         v
-Decision
-    significant chosen narrowing of that concern
-         |
-         v
-Requirement-level semantics (to be studied next)
-    independently checkable obligations / downstream effects
-\end{verbatim}
-The last level is intentionally not frozen here. Requirement remains the working name of the next document family.
+\subsection{1. Definition}\label{1-definition}
 
-\section{Decision-specific semantic rules CLOSED for the construction candidate}
-\closed{D-CLOSED-01 - Purpose of Decision}
-\ruletext{A Decision records one significant choice that resolves an unresolved problem or tension within one parent Macro Requirement and narrows that macro concern.}
-Its subject may be a method, policy, convention, operating practice, semantic choice, representation choice, technology or architecture when that is the actual choice being governed.
+A Decision is a governed \textbf{significant commitment} that narrows
+exactly one parent Macro Requirement by fixing a meaningful position,
+responsibility boundary, policy, convention, strategy,
+technology/architecture choice or other project commitment whose
+consequences matter downstream.
 
-\closed{D-CLOSED-02 - Minimal semantic core}
-\begin{verbatim}
-Decision
-|- title
-|- context
-|- decision
-`- consequences
-\end{verbatim}
-All four Decision-specific semantic attributes are required and non-null in the current candidate. Parentage is an explicit semantic relation to the Macro Requirement rather than duplicated prose.
+Normally the commitment selects among plausible alternatives. In the
+rare case where no materially distinct alternative is practical or
+admissible, DDTA still permits an explicit \textbf{necessity/default
+Decision} so that the documentation layer remains regular and the
+commitment is not hidden.
 
-\closed{D-CLOSED-03 - Decision-local Context}
-\ruletext{Context describes the unresolved local decision problem, tension or ambiguity that makes this specific choice necessary inside the already-governed parent concern.}
-If Context mostly explains why the parent MR exists, it is too high-level. Context may preserve historically true circumstances of the choice, but it must not become a cumulative copy of inherited knowledge.
+\subsubsection{Fundamental question}\label{fundamental-question}
 
-\closed{D-CLOSED-04 - One coherent chosen position}
-\ruletext{Decision states one coherent chosen position that can meaningfully be accepted, rejected or superseded as a conceptual unit.}
-Split diagnostic: if A can change while B remains valid and both have independently meaningful trade-offs, the candidate likely contains more than one Decision.
+\begin{quote}
+\textbf{Which significant commitment narrows this Macro Requirement, why
+must the project take that position, and which consequences do we
+accept?}
+\end{quote}
 
-\closed{D-CLOSED-05 - Consequence awareness}
-\ruletext{Consequences record relevant effects and trade-offs accepted because of the choice.}
-Benefit, Cost, Risk and Constraint remain useful authoring labels but are not frozen semantic subtypes.
+For an ordinary choice, Context should expose the unresolved
+alternatives/tension. For a necessity/default Decision, Context must
+explain why alternatives are absent, non-material or excluded by a
+governed constraint.
 
-\closed{D-CLOSED-07 - No mandatory embedded Alternatives or Rationale fields}
-The evidence does not justify mandatory \texttt{alternatives[]} or a separate \texttt{rationale} semantic field. Substantial alternatives may exist as separately governed candidate Decisions. Reasoning is expected to be recoverable from Context + Decision + Consequences unless a future counterexample demonstrates otherwise.
+\subsection{2. Semantic core}\label{2-semantic-core}
 
-\section{Cross-document Decision-set invariants CLOSED}
-These invariants belong to the MR--Decision relation and to the governed Decision set. They are not additional fields inside a Decision.
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Decision}
+\NormalTok{|{-} title}
+\NormalTok{|{-} context}
+\NormalTok{|{-} decision}
+\NormalTok{\textasciigrave{}{-} consequences}
+\end{Highlighting}
+\end{Shaded}
 
-\closed{H-CLOSED-01 - Unique semantic ownership}
-\ruletext{Each Decision has exactly one Macro Requirement whose concern is the natural semantic owner of the unresolved problem resolved by that Decision.}
-Different MRs may mention the same domain objects and vocabulary, and a Decision may be relevant to other concerns. Relevance does not create multiple hierarchical ownership.
+All four are semantically required and non-null.
 
-Unique-parent test: if a Decision can move under another MR without materially changing its Context or chosen meaning, review whether the Decision is too broad, redundant/derived, or whether MR boundaries fail to discriminate responsibility. A genuinely cross-cutting choice is not resolved by copying it under multiple MRs.
+Topology:
 
-\closed{H-CLOSED-02 - Non-redundant Decision contribution}
-\ruletext{Each governed Decision contributes a significant choice that is not already owned by another applicable Decision and is not completely determined by its parent Macro Requirement plus the already governed choices.}
-Two Decisions may share terminology, actors, consequences or evidence while owning different choices. The prohibited condition is duplicate semantic ownership of the same choice or promotion of a logically derived statement into a second Decision.
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{MacroRequirement 1 {-}{-}{-}{-} * Decision 1 {-}{-}{-}{-} * FunctionalRequirement}
+\end{Highlighting}
+\end{Shaded}
 
-Decision-contribution test: if removing a candidate would not remove a significant project choice that cannot be reconstructed from the parent concern and remaining Decisions, review it as a possible duplicate, derived consequence, explanation or downstream obligation.
-
-\section{Three semantic validation levels}
-\begin{verbatim}
-1. Local Decision validity
-   semantic core / local problem / coherent chosen position
-
-2. Hierarchical coherence
-   one natural MR owner / discriminable parentage
-
-3. Corpus coherence
-   non-redundant contribution / no duplicate choice ownership
-\end{verbatim}
-The second and third levels inherently require governed context beyond one file. Tooling may assist review at scale but does not own these semantics.
-
-\section{Rules deliberately relocated from this metamodel}
-Revision 7 retains the historical identifiers but changes their owner:
 \begin{itemize}
-\item \textbf{D-CLOSED-06 - No semantic patching}: authoring/review heuristic, not a Decision invariant. Non-goals remains outside the Decision semantic core.
-\item \textbf{D-CLOSED-08 - Lifecycle is not Decision-specific}: cross-cutting common-governance boundary. Lifecycle/status/history will be modeled separately.
-\item \textbf{D-CLOSED-09 - Semantic-owner separation}: cross-cutting semantic-authority principle applying to DDTA, governed projects and tools.
-\item \textbf{R-CLOSED-01..04}: representation and realization rules; see the model-layering foundation document.
+\tightlist
+\item
+  every Decision has exactly one natural MR semantic owner;
+\item
+  every Functional Requirement has exactly one parent Decision;
+\item
+  an authored Decision may temporarily have zero FR children;
+\item
+  Decision is never a child of Functional Requirement.
 \end{itemize}
-Relocation is not rejection. It prevents rules about serialization or tool architecture from being treated as ontological properties of Decision.
 
-\section{Decision-to-downstream boundary - still partly OPEN}
-Working rule:
-\ruletext{A Decision chooses; downstream governed documents make the chosen consequences operational and independently checkable.}
-The exact semantics of the next Requirement level are not yet closed.
+\subsection{3. Closed Decision
+semantics}\label{3-closed-decision-semantics}
 
-\begin{verbatim}
-choice needed to explain what was adopted
-    -> Decision
-
-independently checkable obligation
-    -> candidate next-level semantics
-
-rollout / migration order
-    -> planning
-
-separable choice with its own trade-offs
-    -> another Decision candidate
-\end{verbatim}
-Technical vocabulary is not forbidden; the question is whether the detail belongs to the choice or to downstream realization.
-
-\section{Historical integrity}
-Decision Context may preserve circumstances true when the choice was taken. Later replacement should normally be represented through the future lifecycle/governance model rather than rewriting history to look current. Temporary rollout sequencing remains planning rather than Decision semantics.
-
-\section{Decision review tests after revision 7}
-The following tests assess the conceptual Decision model:
-\begin{enumerate}
-\item \textbf{Parent}: does the candidate narrow one parent MR?
-\item \textbf{Unique parent}: is that MR the single natural semantic owner?
-\item \textbf{MR discriminability}: if parentage is ambiguous, is the defect in the candidate or in MR boundaries?
-\item \textbf{Contribution}: would removing it remove a significant choice not already governed or derivable?
-\item \textbf{Decision-local Context}: does Context explain this unresolved choice rather than the whole MR?
-\item \textbf{Explicit choice}: is an adopted position actually present?
-\item \textbf{Coherent choice}: can the choice change as one conceptual unit?
-\item \textbf{Consequences}: are material effects/trade-offs represented?
-\item \textbf{Downstream boundary}: are independently checkable obligations descending rather than bloating the Decision?
-\item \textbf{Historical integrity}: does Context preserve why the choice existed without carrying temporary rollout state?
-\end{enumerate}
-Authoring heuristics, semantic-authority review, representation conformance and tooling checks are intentionally documented outside this Decision-specific test list.
-
-\section{Open Decision questions before candidate closure}
-\begin{enumerate}
-\item Does re-review of the independent facial-access corpus expose a counterexample to the local core or H-CLOSED-01/H-CLOSED-02?
-\item Where exactly is the threshold between precision intrinsic to a choice and next-level independently checkable detail?
-\item Are consequence labels semantic categories or only authoring aids?
-\item How should legitimate cross-MR relevance eventually be represented without multiple hierarchical ownership?
-\end{enumerate}
-
-\section{Validation sequence after layering correction}
-\begin{enumerate}
-\item preserve the frozen facial-access D1 corpus;
-\item preserve revision 7 as a layering checkpoint;
-\item re-read the ThreatForge construction ADR regression without treating realization principles as metamodel semantics;
-\item write a corrected candidate ADR set only after that regression is stable;
-\item regress all prior evidence if Decision semantics themselves change;
-\item only then proceed to sequential ThreatForge MR-0003/MR-0004/MR-0005 holdouts.
-\end{enumerate}
-
-\section{Explicitly deferred}
 \begin{itemize}
-\item lifecycle/status value sets and transitions;
-\item Requirement-specific semantic model;
-\item cross-MR relevance relation, if needed;
-\item cross-document persistence/effective-context relation model;
-\item concrete representation mapping and serialization closure;
-\item concrete ThreatForge support/conformance relation model;
-\item concrete similarity/search algorithms and thresholds;
-\item ThreatForge migration/refactor.
+\tightlist
+\item
+  \texttt{D8-CLOSED-01} - one significant commitment narrowing one
+  parent MR;
+\item
+  \texttt{D8-CLOSED-02} - minimal semantic core is
+  \texttt{title/context/decision/consequences};
+\item
+  \texttt{D8-CLOSED-03} - Context is Decision-local;
+\item
+  \texttt{D8-CLOSED-04} - one coherent chosen/committed position;
+\item
+  \texttt{D8-CLOSED-05} - material consequences/trade-offs/downstream
+  effects are represented;
+\item
+  \texttt{D8-CLOSED-06} - no mandatory embedded Alternatives or separate
+  Rationale field;
+\item
+  \texttt{D8-CLOSED-07} - exactly one natural MR semantic owner;
+\item
+  \texttt{D8-CLOSED-08} - each Decision contributes non-redundant
+  governed knowledge;
+\item
+  \texttt{D8-CLOSED-09} - FRs descend from Decision; a Decision may own
+  \texttt{0..*} FRs;
+\item
+  \texttt{D8-CLOSED-10} - no Decision is hierarchically below an FR.
 \end{itemize}
+
+\subsection{4. Genuine-choice Decision versus necessity/default
+Decision}\label{4-genuine-choice-decision-versus-necessitydefault-decision}
+
+The normal case remains a genuine project choice.
+
+Use a \textbf{necessity/default Decision} only when a regular Decision
+layer is required but the author cannot identify a materially distinct
+admissible alternative after reasonable domain review, or when external
+constraints effectively reduce the admissible solution set to one
+position.
+
+A necessity/default Decision is valid only if:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Context names the reason} - e.g. regulatory constraint,
+  contractual boundary, physical impossibility, fixed upstream
+  dependency, or explicitly reviewed absence of material alternatives;
+\item
+  \textbf{Decision states an actual commitment} - not a tautology such
+  as "the system will do what the MR says";
+\item
+  \textbf{Consequences remain material} - the commitment still creates
+  downstream responsibilities/FRs or constrains later design;
+\item
+  \textbf{Reopen trigger is visible} - if the constraining condition
+  changes or a material alternative appears, the Decision is
+  reviewable/supersedable;
+\item
+  \textbf{No ignorance laundering} - "we did not think about
+  alternatives" is insufficient evidence for this mode.
+\end{enumerate}
+
+The metamodel does not require a \texttt{decision\_kind} field at L1.
+The distinction can be expressed in Context/Decision/Consequences unless
+later representation evidence justifies a dedicated field.
+
+\subsection{5. Decision split/merge
+tests}\label{5-decision-splitmerge-tests}
+
+Split commitments that can change independently and have distinct
+consequences/trade-offs. Do not merge choices merely because the same FR
+is affected by both.
+
+Questions:
+
+\begin{itemize}
+\tightlist
+\item
+  What responsibility/solution space is still unresolved inside the MR?
+\item
+  What changes if a different position is adopted?
+\item
+  Does the Decision establish who owns the behavior (internal system vs
+  external service/provider)?
+\item
+  Does it choose a strategy/policy whose operational consequences appear
+  in FRs?
+\item
+  Could part of this Decision change without changing the rest? If yes,
+  consider splitting.
+\item
+  If the Decision is removed, is non-derivable governed commitment
+  knowledge lost?
+\end{itemize}
+
+\subsection{6. Historical and cross-cutting
+boundaries}\label{6-historical-and-cross-cutting-boundaries}
+
+Lifecycle/status, semantic authority, representation, executable
+projections and tool support remain cross-cutting L1/L2/L3/L4 concerns
+rather than Decision-specific fields.
+
+Large-corpus similarity/search may surface review candidates but does
+not decide ownership, equivalence or parentage.
+
+See
+\texttt{../../00-foundations/01-model-layering/DDTA\_MODEL\_LAYERING\_WORKING.*}
+for the layering contract.
 
 \end{document}

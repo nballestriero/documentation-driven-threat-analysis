@@ -1,283 +1,141 @@
 # DDTA - Working Metamodel - Macro Requirement
 
-> **NON CANONICAL WORKING DRAFT**
->
-> This file defines the general document metamodel. ThreatForge-specific observations are excluded and belong to the case-study material.
+**DOCUMENTATION-LAYER CLOSURE CANDIDATE - REVISION 8**
 
-## 1. Scope
+> This revision consolidates the Macro Requirement semantics after the Functional Requirement study. It keeps ThreatForge-specific observations outside the general metamodel and introduces project problem framing as a method precondition, not as a new governed document type.
 
-The metamodel describes the knowledge of a governed project before deciding its concrete Doc-as-Code serialization and before deciding how a software engine validates or assists authoring.
+## 1. Scope and layering
 
-The governed product remains documentation-as-code: versionable, diffable, reviewable files (for example YAML registries and Markdown bodies). A software tool may apply and verify the metamodel, but it is not the subject described by the project's documents.
+The conceptual model describes governed project knowledge before fixing concrete Markdown/YAML encoding or tool behavior. The Doc-as-Code representation remains versionable, diffable and reviewable; a tool may validate or assist the model but does not own project semantics.
 
-### Layer separation
+The layers remain:
 
-1. **Domain metamodel** - meaning of documents, entities and relations.
-2. **Doc-as-Code representation** - how that meaning is serialized in files.
-3. **Engine** - how tools load, validate, correlate, project and assist those files.
+1. **L1 conceptual metamodel** - meaning, concepts, relations, cardinalities and invariants;
+2. **L2 canonical representation** - concrete fields, headings, registries and encoding;
+3. **L3 realization principles** - resolution, validation, projections and authoring assistance;
+4. **L4 tool support/conformance** - which contracts a tool supports.
 
-## 2. Principles already fixed
+## 2. Project problem framing - required method precondition
 
-### Principle 1 - Progressive specialization and semantic containment
+Before decomposing Macro Requirements, the author states the general problem or class of problems addressed by the project and its meaningful boundary, temporarily removing current solution choices.
 
-Governed project knowledge is represented as a hierarchy of progressively specialized governed documents. A Macro Requirement establishes a macro-level subject and purpose; Decisions narrow that subject through explicit choices; Functional Requirements translate those choices into independently verifiable obligations; Specialized Requirements add domain-specific constraints to one Functional Requirement.
+### Fundamental framing question
 
-Hierarchical parentage represents semantic containment and remains distinct from non-hierarchical traceability, evidence and provenance relations.
+> **Which general problem or class of problems must the project address, within which meaningful boundary, if current solution choices are temporarily removed?**
 
-### Principle 2 - Identity independent from textual encoding
+The framing:
 
-Every governed entity has a stable identity independent from the textual encoding of that identity. Hierarchy is established by explicit semantic relationships. Composite identifier formats may mirror ancestry but must not be the authoritative source of topology.
+- uses problem/domain vocabulary rather than current architecture vocabulary;
+- prevents chosen devices, providers, algorithms, databases or analysis methods from becoming accidental MR semantics;
+- is used to test completeness, overlap and stability of the MR set;
+- is **not yet** a `ProjectProblem` or `ProjectContext` governed-document type.
 
-## 3. Progressive disclosure by competence
+The framing is written once for the project. It is not copied into every MR.
 
-The hierarchy increases both specificity and the amount of vertical competence required from the reader.
+## 3. Progressive governed-document hierarchy
 
-- **Macro Requirement** - understandable by stakeholders who understand the project domain, including non-software stakeholders.
-- **Decision** - requires more knowledge of the solution space and project choices.
-- **Functional Requirement** - precise, testable project behaviour or outcome.
-- **Specialized Requirement** - vertical competence such as governance, security, quality or another project-specific discipline.
-- **Analysis models and methodology-specific records** - specialist analytical concepts introduced only when needed.
+For the thesis baseline, the governed authoring hierarchy is intentionally regular:
 
-### Executive-map criterion
+```text
+MacroRequirement
+    |
+    +-- Decision *
+           |
+           +-- FunctionalRequirement *
+                  |
+                  +-- SpecializedRequirement *
+```
 
-Reading only the **title and Intent** of all Macro Requirements of a governed project must produce a recognizable summary of:
+The hierarchy is semantic containment, not identifier-string parsing or folder inference.
 
-- what the project is trying to realize;
-- what general value it produces;
-- why its main blocks of work exist.
+- MR establishes one stable macro responsibility within the framed problem.
+- Decision records the governed commitment that narrows that responsibility.
+- FR states the operational behavior required under that commitment.
+- Specialized Requirements constrain/enrich an FR. For the thesis implementation/evaluation path, the next specialization to formalize is `SecurityRequirement`.
 
-This criterion applies to the **governed project**, not to the tool used to govern it.
+No Decision is a child of an FR. If a later choice changes the design, it remains a Decision under the relevant MR and the affected FR branch is revised/superseded accordingly.
 
-## 4. Domain vocabulary versus metamodel vocabulary
+## 4. Macro Requirement definition
 
-The metamodel must not ban technical words merely because they are technical.
+A Macro Requirement is a governed root document that owns one durable macro responsibility or concern needed to address the framed project problem. It explains the macro purpose/value, minimum context, affected stakeholders and semantic boundary without selecting lower-level solution commitments or stating independently testable functional behavior.
 
-A term belongs in an MR when it is part of the **application domain** and is reasonably understandable to the stakeholders of that domain. For example, a cryptography project may naturally use security terminology; a medical imaging project may naturally use imaging terminology; a facial-recognition access project may naturally use terms such as facial recognition, biometric data or ML model.
+### Fundamental MR question
 
-What the MR must not be forced to contain are technical concepts introduced **only because the documentation model or an analysis method expects them**, such as:
+> **Within the framed project problem, which stable macro responsibility or concern are we governing, what macro result/value must it contribute, why does it matter, and who is involved?**
 
-- component inventories;
-- data-flow decompositions;
-- trust boundaries;
-- protocol details;
-- attack-surface classifications;
-- STRIDE/LINDDUN categories;
-- method-specific threat or privacy taxonomies.
-
-Those concepts normally emerge later, when Decisions, Requirements, a project/system representation or methodology-specific analysis require them.
-
-## 5. Macro Requirement definition
-
-A Macro Requirement identifies one major project concern or macro-capability. It explains why that concern matters, who is affected, and the general result the project seeks at that level.
-
-It is the root document type of the governed-document hierarchy.
-
-### Fundamental question
-
-> **Which major project concern or result are we governing, why does it matter, and who is involved?**
-
-## 6. Candidate information model
+## 5. Semantic shape
 
 | Concept | State | Purpose |
 |---|---|---|
 | `id` | required | stable identity, history and traceability |
 | `title` | required | concise name understandable within the project domain |
-| `lifecycle` | required | current/historical state of the document |
-| `intent` | required | concise statement of the macro purpose, value and desired outcome that justify the MR |
-| `context` | required | minimum background needed to understand the concern |
+| `lifecycle` | required | current/historical governance state |
+| `intent` | required | macro purpose, value and desired outcome |
+| `context` | required | minimum background needed to interpret the concern |
 | `stakeholders` | required | people/groups that benefit, use, govern or are affected |
-| `scope` | open semantic decision | boundary of the macro concern; exact form still under study |
-| `assumptions` | optional | facts accepted as true that materially affect the whole MR |
-| `constraints` | optional | limits that materially constrain the whole MR |
-| `non_goals` | open semantic decision | plausible expectations deliberately outside the MR, if useful |
-
-### Concision
-
-A Macro Requirement must be effective rather than verbose. It should not become a checklist of implementation rules.
-
-- `title`: short noun phrase or short descriptive title;
-- `intent`: normally 1-2 sentences covering macro purpose, value and desired outcome;
-- `context`: only the background needed to interpret the MR;
-- `stakeholders`: macro stakeholder roles, not a technical inventory;
-- assumptions/constraints: only if they affect the whole branch below the MR.
-
-## 7. Decisions already closed
-
-### 7.1 Intent owns the macro purpose, value and desired outcome
-
-`Objective` is **removed** from the Macro Requirement conceptual model. Across the four facial-access examples and the five ThreatForge case-study MRs, a separate Objective did not show stable autonomous semantics: it either paraphrased the Intent or began decomposing it into Decision/Requirement-level behavior.
-
-`Intent` therefore answers both **why the macro concern exists** and **what macro outcome/value it seeks**. It remains concise and must not become a checklist of atomic obligations.
-
-Use the **Intent-completeness test**: if `title + Intent` are insufficient for a domain-competent stakeholder to understand the macro concern and desired result, improve the Intent rather than adding a second Objective field.
-
-Use the **Objective-leakage test** when reviewing legacy or draft material: if a separate objective merely restates Intent, merge the useful wording into Intent; if it enumerates specific behaviors, mechanisms or independently verifiable outcomes, move that content to Scope, Constraints, Decisions or Requirements as appropriate.
-
-### 7.2 Stakeholders are semantically required
-
-The MR must identify the stakeholder groups relevant to its macro concern. Their names may be technical when that is normal domain language, but they should be meaningful to the project community rather than internal implementation labels.
-
-### 7.3 Assumptions and Constraints are distinct
-
-- **Assumption**: something currently treated as true for the branch of work.
-- **Constraint**: a limit within which the branch must operate.
-
-Both are optional and belong in the MR only when they materially influence the whole branch below it.
-
-### 7.4 Parent and children
-
-`MacroRequirement.parent = null`.
-
-A Macro Requirement may own `0..*` Decisions. The child collection is derived from `Decision.parent -> MacroRequirement`; it is not a second topology authority.
-
-### 7.5 Cross-MR dependency
-
-A Macro Requirement may have a non-hierarchical `dependsOn -> MacroRequirement [0..*]` relation when another macro concern is a genuine dependency. The exact Doc-as-Code serialization is deferred.
-
-### 7.6 No Acceptance Criteria at MR level
-
-The MR does not contain atomic acceptance criteria. Evidence of satisfaction emerges from its descendant Requirements and their verification evidence.
-
-### 7.7 Progressive technicality
-
-The MR should be understandable by stakeholders competent in the **project domain** without requiring them to understand implementation decomposition or analysis methodology. More specialized technical knowledge is introduced as documentation descends.
-
-### 7.8 Technical and analytical decomposition normally emerges later
-
-The MR must not be structurally required to enumerate components, services, APIs, data flows, trust boundaries, attack surfaces or threat categories. Those normally emerge at lower documentation or analysis levels.
-
-This does **not** prohibit domain-specific terminology in an MR.
-
-### 7.9 MR prose must be stable with respect to design progress
-
-A Macro Requirement describes a durable project concern, not the current progress of solution design. Statements such as `not yet decided`, `currently evaluating`, `will be chosen later` or equivalent design-status prose normally belong to working notes, Decision lifecycle/status or another planning artifact rather than to the MR body.
-
-Use the **temporal-stability test**: if a sentence becomes obsolete merely because a lower-level Decision is taken, while the macro project concern remains unchanged, the sentence should normally not be part of the MR.
-
-This rule does not forbid time-dependent **domain facts**. For example, an authorization may expire or a biometric enrollment may have a lifecycle because those are properties of the application domain. The rule targets temporary authoring/design state, not legitimate temporal semantics of the project.
-
-### 7.10 Teachability and macro project-map projection
-
-A Macro Requirement must contribute to a project description that can be **taught progressively**, not merely validated. Individually, each MR should provide one understandable conceptual block through its identity, title and Intent. Collectively, the MR set should support a simple didactic map of the project's major concerns and their meaningful relationships without requiring lower-level architecture knowledge.
-
-Use the **teachability test**: a reader who understands the application domain but is new to the project should be able to use the MR set to build a simple mental/graphical map answering:
-
-1. what the main project concerns are;
-2. why each concern exists;
-3. which macro concerns depend on, support or otherwise relate to others when such relations are explicitly governed or can be shown as clearly marked non-canonical teaching interpretations;
-4. how the blocks collectively explain the project's macro functioning without exposing lower-level implementation topology.
-
-Failure of this test is evidence to review MR decomposition, titles, Intent wording or missing explicit cross-MR relations. It is not permission to invent architecture in order to make the picture easier to draw.
-
-### 7.11 Analysis-enabling does not mean analysis-producing
-
-MR content can provide context and documentary evidence useful to later system representation and analysis, but an MR does **not** instantiate canonical analytical elements merely because it names a person, device, datum, ML capability or other domain concept.
-
-A didactic map derived from MRs is therefore not a DFD, architecture diagram or threat-analysis model. Canonical components, actors, data resources, data flows, trust boundaries or method-specific interpretations require later governed modeling/review.
-
-## 8. MR invariants
-
-1. **Root hierarchy** - MR has no parent.
-2. **Stable identity** - identity is distinct from its textual encoding.
-3. **Single macro concern** - the MR expresses one coherent macro responsibility.
-4. **Child containment** - descendants progressively narrow the MR rather than introduce unrelated scope.
-5. **No implementation choice** - choices of solution belong to Decision unless they are intrinsic to the project domain itself.
-6. **No requirement-level obligation** - atomic testable obligations belong to Requirements.
-7. **Broad audience within the domain** - title and Intent can be understood by non-software stakeholders who understand the project domain.
-8. **Project-map usefulness** - titles + Intent of all MR summarize the project and its major work blocks.
-9. **Explicit dependencies** - cross-MR dependencies are not hidden as pseudo-hierarchy.
-10. **Analysis enabling, not analysis producing** - MR provides useful project context without directly instantiating canonical analytical elements or prescribing an analysis paradigm.
-11. **Architecture resilience** - changing a lower-level architecture choice should not normally force the MR to be rewritten if the macro project concern has not changed.
-12. **Temporal stability** - taking or revising a lower-level Decision should not make MR prose obsolete unless the macro project concern itself changes.
-13. **Teachability** - each MR is an understandable macro block and the MR set can support a simple didactic project map without requiring lower-level architecture.
-14. **Projection honesty** - a teaching projection derived from MRs must not be presented as a DFD, architecture model or canonical analysis representation.
-
-## 9. Semantic decisions still open
-
-The Intent/Objective question is now closed: `Objective` is removed and `Intent` owns macro purpose, value and desired outcome. The remaining MR questions below must still be tested before final freeze.
-
-### 9.1 Meaning and shape of Scope
-
-We need examples to determine what `scope` should actually express and whether `included`, `excluded` and `non_goals` are all necessary or partly redundant.
-
-The goal is not to create three places that repeat the same boundary in different words.
-
-### 9.2 When to split or merge Macro Requirements
-
-MR boundaries must not be decided from wording similarity alone. This is especially important when refactoring an existing governed corpus: two rewritten MRs can sound similar because both were described through the same downstream consumer, while their descendant Decisions still govern different project concerns. Conversely, historical separation is not sufficient evidence to keep two MRs if it only mirrors an implementation split.
-
-Before splitting or merging candidate MRs, test the boundary with these questions:
-
-1. **Independent value** - does each candidate express a project-level result that remains meaningful without describing the other?
-2. **Decision-family coherence** - where an existing corpus already has Decisions, do the descendants of each candidate form distinct and internally coherent families of choices?
-3. **Solution-vocabulary removal** - does the distinction survive after removing names of current components, schemas, tools, analysis representations and other chosen mechanisms?
-4. **Dependency versus containment** - can the relation be expressed more accurately as `dependsOn`, rather than by merging concerns or introducing false hierarchy?
-5. **Stakeholder explanation** - can a stakeholder competent in the project domain explain the difference using title + Intent without knowing the implementation?
-6. **Merge stress test** - would a merged MR need to explain substantially different families of Decisions or different kinds of project value?
-7. **Split stress test** - is the separation justified by project concerns, rather than merely by architectural layers, subsystems or workflow stages?
-
-These are currently **boundary-test heuristics**, not yet frozen deterministic invariants. They must be exercised on multiple project examples.
-
-#### Refactoring rule for existing documentation
-
-When an MR already owns a body of Decisions, reconstruct its macro concern from the semantic responsibility of that Decision family before rewriting the MR. A rewritten MR should explain why those Decisions belong together without merely summarizing their current solution vocabulary.
-
-## 10. Derived didactic projection - Macro Project Map
-
-The MR set may support a **Macro Project Map**: a non-canonical, teaching-oriented projection that gives readers a block-level view of the project's major concerns. Its purpose is orientation and progressive disclosure, not system analysis.
-
-A candidate projection uses:
-
-- one block per MR, showing canonical MR identity and title and optionally a shortened Intent;
-- explicit cross-MR relations such as `dependsOn` when available;
-- clearly labeled didactic links only when they are visibly marked as non-canonical interpretation and traceable to supporting MR text;
-- edge labels expressed as verbs/relations rather than unlabeled arrows;
-- textual equivalent/traceability alongside the graphic.
-
-The projection must **not** reinterpret MR blocks as DFD processes, external entities or data stores, and its links are not data flows. Layout, color, coordinates and SVG/HTML are renderer concerns and must remain outside the semantic projection.
-
-### Accessibility / BES-oriented presentation heuristic
-
-The teaching view should favor low cognitive load and progressive disclosure:
-
-1. few blocks per view;
-2. canonical titles, not unexplained synonyms;
-3. one dominant idea per block;
-4. every arrow labeled in text;
-5. meaning never encoded by color alone;
-6. a textual explanation equivalent to the visual map;
-7. stable navigation from a block back to its MR.
-
-### Rendering compatibility observation from ThreatForge
-
-At ThreatForge planning baseline `44f77796469465a6a076596b1b1ba1afdde92db7`, the active Base DFD path already follows a useful pattern: renderer-neutral semantic projection, deterministic layout, and self-contained HTML with embedded accessible SVG and traceability metadata. The active implementation is a custom Node/ESM renderer rather than Graphviz or Mermaid.
-
-This study therefore records a **future reuse direction**, not an implementation decision: a Macro Project Map renderer may share visual tokens, accessibility patterns, deterministic layout utilities and HTML/SVG shell with the DFD renderer while keeping a separate MR-specific semantic contract.
-
-## 11. Observation deferred to the future analysis metamodel
-
-Concrete MR examples show that different concerns inside the same governed project may later benefit from different analysis paradigms. An ML-based capability may justify AI/ML-oriented threat analysis, while another concern in the same project may justify privacy-oriented analysis or a different specialist method.
-
-This observation does **not** change the MR contract and must not introduce method-specific fields into Macro Requirements. The project hierarchy describes project concerns; analysis methodology is a later concern.
-
-The future analysis metamodel should therefore test whether it can:
-
-1. select an analysis method for an explicit analysis scope or set of governed subjects rather than assigning one methodology to an MR by construction;
-2. allow different methods to analyze different, overlapping or complementary parts of one project;
-3. preserve method-specific interpretation without contaminating project knowledge with methodology vocabulary;
-4. converge findings, documentation gaps, proposed requirements and other feedback into one governed project/documentation lifecycle.
-
-These are **deferred design questions**, not frozen analysis-model decisions. They are recorded here so that the MR model does not accidentally preclude multi-method project analysis.
-
-## 12. Doc-as-Code mapping deliberately deferred
-
-The following remain representation questions, not domain-model decisions:
-
-- where each MR concept lives between registry and Markdown body;
-- whether `parent = null` is serialized or implicit;
-- concrete representation of stakeholders, assumptions and constraints;
-- concrete representation of `dependsOn`;
-- final Markdown heading names;
-- deterministic checks that can enforce the semantic contract without pretending to validate human meaning.
-
-**STOP:** Decision is not modeled in this document yet.
+| `scope` | semantically required | boundary of the macro concern; exact L2 encoding remains representational |
+| `assumptions` | optional | facts treated as true for the whole branch |
+| `constraints` | optional | limits applying to the whole branch |
+| `dependsOn` | `MacroRequirement [0..*]` | non-hierarchical dependency on another macro responsibility |
+
+`Objective` remains removed. `Intent` owns macro purpose, value and desired outcome.
+
+## 6. MR authoring questions
+
+1. What general problem/class did the project framing establish?
+2. Which durable responsibility inside that problem does this MR own?
+3. Can a domain-competent stakeholder understand `title + Intent` without knowing the current implementation?
+4. Does the MR remain valid if lower-level providers, devices, algorithms, deployment or architecture change?
+5. Does Context contain only information required to interpret the macro concern rather than the current design state?
+6. Who benefits, governs, uses or is materially affected?
+7. What is inside/outside this MR's responsibility boundary?
+8. Is another MR genuinely complementary/dependent? If yes, use `dependsOn`, not false hierarchy or duplicate ownership.
+9. Has any significant solution choice leaked into MR prose? If so, move it to Decision.
+10. Has any independently assessable behavior leaked into MR prose? If so, move it downstream to an FR under a Decision.
+
+## 7. Closed MR invariants for the documentation baseline
+
+1. **Root hierarchy** - MR has no hierarchical parent.
+2. **Stable identity** - identity is independent from textual/composite encoding.
+3. **Problem anchoring** - every MR is meaningful inside the project problem framing.
+4. **Single macro concern** - one coherent macro responsibility per MR.
+5. **Child narrowing** - Decisions and their FR descendants narrow the MR rather than introduce unrelated scope.
+6. **No solution commitment leakage** - chosen architecture/provider/algorithm/mechanism belongs to Decision unless intrinsic to the problem domain itself.
+7. **No FR-level obligation** - atomic/operational independently assessable behavior belongs downstream.
+8. **Broad domain readability** - MR can be understood by stakeholders competent in the problem domain.
+9. **Architecture resilience** - changing lower-level solution choices should not normally require rewriting the MR.
+10. **Temporal stability** - taking/revising a lower-level Decision should not make MR prose obsolete unless the macro concern changes.
+11. **Explicit dependencies** - cross-MR complementarity/dependency is not hidden as pseudo-hierarchy.
+12. **Teachability** - titles + Intent across the MR set support a useful macro project map.
+13. **Analysis enabling, not analysis producing** - MR provides governed context but does not instantiate canonical analysis elements or method-specific semantics.
+14. **Projection honesty** - a teaching MR map is not a DFD, architecture model or threat model.
+
+## 8. MR split/merge tests
+
+Before splitting or merging candidate MRs, test:
+
+- **independent value** - does each candidate express a project-level result meaningful on its own?
+- **Decision-family coherence** - do its descendant commitments form a coherent family?
+- **solution-vocabulary removal** - does the distinction survive after removing current solution names?
+- **dependency versus containment** - can the relation be expressed more accurately as `dependsOn`?
+- **stakeholder explanation** - can a domain stakeholder explain the distinction from title + Intent?
+- **merge stress** - would merging force substantially different responsibilities/Decision families into one MR?
+- **split stress** - is separation driven by a project responsibility rather than an architectural subsystem?
+
+## 9. Analysis boundary
+
+MRs may later support Base Analysis construction through governed downstream documentation, but they do not directly create canonical BAE, flows, boundaries or method-specific interpretations merely because nouns appear in MR prose.
+
+The next research phase will formalize Base Analysis/BAE and overlay behavior without changing this writing model unless a concrete counterexample requires reopening it.
+
+## 10. Representation deliberately deferred
+
+L2 still decides:
+
+- where MR concepts live between registry and Markdown;
+- exact `scope` syntax;
+- whether parent/null values are materialized;
+- concrete `dependsOn` encoding;
+- any identifier format that mirrors hierarchy.
+
+Identity/topology must remain semantic relations rather than consequences of filenames or composite IDs.
