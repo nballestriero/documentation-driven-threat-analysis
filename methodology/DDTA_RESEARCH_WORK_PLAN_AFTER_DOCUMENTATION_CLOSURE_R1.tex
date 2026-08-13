@@ -1,0 +1,559 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  11pt,
+  a4paper,
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=2.4cm]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+\babelprovide[main,import]{italian}
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdflang={it},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{DDTA research work plan after documentation-layer
+closure}\label{ddta-research-work-plan-after-documentation-layer-closure}
+
+\textbf{WORK PLAN - REVISION 1}
+
+Baseline: \texttt{9a04bc5b98b7f4a2b8400f2b210e7cea6b04d1a9}
+
+This plan \textbf{supersedes earlier sequencing notes} that placed
+formal Base Analysis before SecurityRequirement design. It changes the
+research sequence, not the closed MR/Decision/FR semantic rules.
+SecurityRequirement semantics will be defined method-neutrally before
+Base Analysis/overlay construction; analytical provenance from Finding
+to SEC will be integrated later.
+
+\subsection{1. Current checkpoint}\label{current-checkpoint}
+
+The documentation-authoring metamodel is frozen for the current thesis
+scope through:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Project problem framing [method precondition]}
+\NormalTok{        {-}\textgreater{} MacroRequirement}
+\NormalTok{        {-}\textgreater{} Decision}
+\NormalTok{        {-}\textgreater{} FunctionalRequirement}
+\NormalTok{        {-}\textgreater{} SpecializedRequirement}
+\end{Highlighting}
+\end{Shaded}
+
+Closed working rules include:
+
+\begin{itemize}
+\tightlist
+\item
+  regular \texttt{MR\ -\textgreater{}\ Decision\ -\textgreater{}\ FR}
+  hierarchy;
+\item
+  exactly one MR parent per Decision;
+\item
+  exactly one Decision parent per FR;
+\item
+  controlled necessity/default Decision for rare singleton-solution
+  cases;
+\item
+  no Decision below FR;
+\item
+  normative FR prose is primary and is supported by governed SPO
+  references;
+\item
+  cross-MR capability consumption does not transfer ownership;
+\item
+  exact analytical representation of referenced subjects/services
+  remains deferred.
+\end{itemize}
+
+The documentation baseline is reopenable only for a concrete
+counterexample from the next phases.
+
+\subsection{2. Immediate thesis-writing
+checkpoint}\label{immediate-thesis-writing-checkpoint}
+
+\subsubsection{W0 - Chapter 4 candidate}\label{w0---chapter-4-candidate}
+
+Produce and review a standalone thesis Chapter 4 covering only:
+
+\begin{itemize}
+\tightlist
+\item
+  problem framing;
+\item
+  MR metamodel and authoring rules;
+\item
+  Decision metamodel, responsibility boundary and necessity/default
+  rule;
+\item
+  FR operational semantics, normative prose + SPO, FunctionalPredicate
+  and parameter classification;
+\item
+  cross-MR service consumption and tool-authority boundary;
+\item
+  validation history and explicit reopen conditions.
+\end{itemize}
+
+Do not integrate the chapter into the master thesis file until human
+review is complete.
+
+\textbf{Exit gate:} chapter accepted as an accurate description of the
+current documentation baseline.
+
+\subsection{3. Specialized Requirement and Security Requirement before
+threat
+methods}\label{specialized-requirement-and-security-requirement-before-threat-methods}
+
+\subsubsection{S1 - Minimal SpecializedRequirement
+semantics}\label{s1---minimal-specializedrequirement-semantics}
+
+Define the smallest method-independent meaning shared by specialized
+requirements.
+
+Questions:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  What does specialization add to an FR: constraint, additional
+  obligation, applicability condition, or a combination?
+\item
+  Is the relation conceptually \texttt{specializes},
+  \texttt{constrains}, \texttt{appliesTo}, or something smaller/more
+  neutral?
+\item
+  Can one FR have multiple independent specialized requirements?
+\item
+  How is effective obligation constructed without copying specialized
+  text into the FR?
+\item
+  Which common identity/lifecycle/provenance concepts are inherited from
+  GovernedDocument rather than redefined?
+\end{enumerate}
+
+\textbf{Exit gate:} a minimal common contract that does not assume
+Security, Governance, Privacy or Performance-specific semantics.
+
+\subsubsection{S2 - SecurityRequirement semantic
+model}\label{s2---securityrequirement-semantic-model}
+
+Define \texttt{SecurityRequirement} \textbf{before} STRIDE, STRIDE-AI or
+another threat method is used as construction evidence.
+
+Fundamental research question candidate:
+
+\begin{quote}
+Which additional security obligation must the governed functional
+capability satisfy so that a required security property is preserved
+under the relevant conditions, independently from the method that
+discovered or motivated the obligation?
+\end{quote}
+
+Required tests:
+
+\begin{itemize}
+\tightlist
+\item
+  meaningful with all STRIDE category names removed;
+\item
+  meaningful if a different security method, expert review, incident,
+  penetration test or regulatory assessment motivates it;
+\item
+  clearly distinguishable from FR, Decision, control/implementation
+  mechanism and verification evidence;
+\item
+  does not embed threat-method payload in the SEC semantic core;
+\item
+  supports later analytical provenance without requiring that provenance
+  to define what the SEC means.
+\end{itemize}
+
+\subsubsection{S3 - Independent SecurityRequirement authoring
+corpus}\label{s3---independent-securityrequirement-authoring-corpus}
+
+Author SecurityRequirement examples without running STRIDE.
+
+Use at least two domains already understood by the study, but do not
+derive the corpus from threat-category enumeration. Include positive and
+negative classification examples:
+
+\begin{itemize}
+\tightlist
+\item
+  valid SEC;
+\item
+  statement that is still an FR;
+\item
+  statement that is a Decision;
+\item
+  implementation/control mechanism;
+\item
+  verification/evidence statement.
+\end{itemize}
+
+\textbf{Exit gate:} SEC semantics survive independent review and
+regression without methodology vocabulary.
+
+\subsection{4. Formal Base Analysis
+phase}\label{formal-base-analysis-phase}
+
+\subsubsection{BA1 - Base Analysis responsibility and
+boundary}\label{ba1---base-analysis-responsibility-and-boundary}
+
+Freeze what Base Analysis must provide and must not provide.
+
+Candidate direction to test:
+
+\begin{quote}
+a governed, method-neutral graph of stable analysis-relevant
+system/project subjects and relations, integrated from explicit governed
+documentation and reviewed analytical additions.
+\end{quote}
+
+Do not use STRIDE categories to define the common graph.
+
+\subsubsection{BA2 - BAE ontology}\label{ba2---bae-ontology}
+
+Test and close the smallest generic subject vocabulary needed by real
+project descriptions. Candidate pressure points include:
+
+\begin{itemize}
+\tightlist
+\item
+  Actor;
+\item
+  Component / Service capability;
+\item
+  DataResource;
+\item
+  DataStore;
+\item
+  DataFlow / Interaction;
+\item
+  CommunicationChannel;
+\item
+  InterfaceContract;
+\item
+  Boundary.
+\end{itemize}
+
+Open distinctions must be tested rather than copied from ThreatForge.
+
+\subsubsection{BA3 - Base Analysis relations, provenance and
+authority}\label{ba3---base-analysis-relations-provenance-and-authority}
+
+Formalize:
+
+\begin{itemize}
+\tightlist
+\item
+  stable identity;
+\item
+  source/target/carries and other generic relations;
+\item
+  origin: governed document vs reviewed analytical addition;
+\item
+  authoritative source vs supporting sources;
+\item
+  lifecycle/staleness hooks;
+\item
+  document/SPO reference -\textgreater{} BAE resolution;
+\item
+  cross-MR service/capability consumption target.
+\end{itemize}
+
+\subsubsection{BA4 - Authoring-to-Base-Analysis
+integration}\label{ba4---authoring-to-base-analysis-integration}
+
+Define how MR/Decision/FR authoring creates or references
+analysis-relevant system facts without automatic noun-to-BAE
+canonization.
+
+\textbf{Exit gate:} a method-neutral Base Analysis graph can be built
+from governed documentation plus explicit reviewed additions without
+changing the documentation hierarchy.
+
+\subsection{5. Generic analysis envelope before concrete
+overlay}\label{generic-analysis-envelope-before-concrete-overlay}
+
+\subsubsection{A1 - AnalysisRecord common
+contract}\label{a1---analysisrecord-common-contract}
+
+Reconfirm method-independent fields for an analysis
+execution/interpretation while keeping method-specific payload opaque
+and plugin-owned.
+
+\subsubsection{A2 - Common Finding
+contract}\label{a2---common-finding-contract}
+
+Reconfirm a reviewed common downstream finding envelope that can
+identify affected governed subjects and preserve evidence/rationale
+without copying method-specific taxonomies to the top level.
+
+\subsubsection{A3 - Finding -\textgreater{} SecurityRequirement
+integration}\label{a3---finding---securityrequirement-integration}
+
+Only after S2/S3 and A1/A2 are stable, define analytical provenance:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{AnalysisRecord {-}\textgreater{} Finding {-}\textgreater{} accepted/reviewed {-}\textgreater{} SecurityRequirement}
+\end{Highlighting}
+\end{Shaded}
+
+The test is whether a Finding can propose/justify an SEC that conforms
+to the \textbf{already defined} SEC semantics. If the SEC model must be
+changed merely to fit a method payload, treat that as methodology
+contamination unless a method-independent counterexample justifies the
+change.
+
+\subsection{6. Method-neutral overlay/plugin
+contract}\label{method-neutral-overlayplugin-contract}
+
+\subsubsection{O1 - Generic overlay
+contract}\label{o1---generic-overlay-contract}
+
+Define what every analysis method/plugin may receive and return without
+prescribing a specific taxonomy:
+
+\begin{itemize}
+\tightlist
+\item
+  compatibility/version contract;
+\item
+  scope selection over Base Analysis subjects/relations/FRs;
+\item
+  method-owned payload schema;
+\item
+  diagnostics for missing/inadequate analysis context;
+\item
+  deterministic/common Finding derivation boundary;
+\item
+  failure/incompatibility behavior;
+\item
+  preservation of common records even if a plugin is unavailable.
+\end{itemize}
+
+\textbf{Exit gate:} a hypothetical non-STRIDE security method can
+implement the contract without changing the common core.
+
+\subsection{7. Concrete methodology
+tests}\label{concrete-methodology-tests}
+
+\subsubsection{O2 - STRIDE overlay}\label{o2---stride-overlay}
+
+Implement/use STRIDE as the first concrete overlay only after S1-S3,
+BA1-BA4 and O1 are frozen enough for falsification.
+
+Evaluation questions:
+
+\begin{itemize}
+\tightlist
+\item
+  Does STRIDE consume Base Analysis without method-specific changes to
+  BAE?
+\item
+  Can all STRIDE-specific semantics remain in the plugin payload/logic?
+\item
+  Can findings be expressed in the common Finding envelope?
+\item
+  Can accepted findings produce SEC instances without changing the SEC
+  semantic core?
+\end{itemize}
+
+\subsubsection{O3 - Closed-loop design
+improvement}\label{o3---closed-loop-design-improvement}
+
+Exercise the complete DDTA loop:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{governed documentation}
+\NormalTok{ {-}\textgreater{} Base Analysis}
+\NormalTok{ {-}\textgreater{} STRIDE overlay}
+\NormalTok{ {-}\textgreater{} AnalysisRecord}
+\NormalTok{ {-}\textgreater{} reviewed Finding}
+\NormalTok{ {-}\textgreater{} SecurityRequirement}
+\NormalTok{ {-}\textgreater{} effective obligation (FR + SEC)}
+\NormalTok{ {-}\textgreater{} Decision/FR/design revision where required}
+\NormalTok{ {-}\textgreater{} Base Analysis refresh}
+\NormalTok{ {-}\textgreater{} re{-}analysis}
+\end{Highlighting}
+\end{Shaded}
+
+The goal is not merely threat enumeration. The experiment must show
+whether analysis produces a governed security obligation that changes
+design/documentation and whether re-analysis can observe the changed
+state.
+
+\subsubsection{O4 - STRIDE-AI second implementation/evaluation
+method}\label{o4---stride-ai-second-implementationevaluation-method}
+
+Use STRIDE-AI as the second in-scope method for thesis
+implementation/evaluation. It must reuse the same common Base Analysis,
+AnalysisRecord, Finding and SecurityRequirement contracts.
+
+\subsection{8. Method-neutrality challenges outside primary
+implementation
+scope}\label{method-neutrality-challenges-outside-primary-implementation-scope}
+
+After STRIDE and STRIDE-AI, use LINDDUN and optionally one additional
+method as \textbf{neutrality challenges}, not as required
+implementation/evaluation methods.
+
+Purpose:
+
+\begin{itemize}
+\tightlist
+\item
+  identify assumptions accidentally specific to security-threat
+  taxonomies;
+\item
+  test whether Base Analysis subjects/relations are sufficiently
+  generic;
+\item
+  test whether the overlay contract can describe different analytical
+  semantics;
+\item
+  do not claim full methodology neutrality until these challenges are
+  performed.
+\end{itemize}
+
+\subsection{9. ThreatForge role}\label{threatforge-role}
+
+ThreatForge remains a reference implementation/tooling case study. The
+sequence above first defines DDTA contracts, then checks which contracts
+ThreatForge supports or must be changed to support.
+
+Do not let current ThreatForge schemas establish the semantic truth of
+SecurityRequirement, Base Analysis or overlay contracts.
+
+\subsection{10. Reopen policy}\label{reopen-policy}
+
+Reopen the \texttt{MR\ -\textgreater{}\ Decision\ -\textgreater{}\ FR}
+documentation baseline only if a later phase produces a concrete
+recurring semantic failure, for example:
+
+\begin{itemize}
+\tightlist
+\item
+  SEC cannot constrain/specialize FR without false duplication or
+  ownership;
+\item
+  Base Analysis cannot represent facts required by the documented
+  behavior without changing authoring semantics;
+\item
+  overlay input requires method-specific data to be embedded in
+  MR/Decision/FR;
+\item
+  the constant Decision layer produces a real semantic contradiction
+  rather than the cost of a rare necessity/default node.
+\end{itemize}
+
+Any reopening must name the counterexample and regress all previously
+accepted corpora.
+
+\subsection{11. Next authorized
+microstep}\label{next-authorized-microstep}
+
+After Chapter 4 review, start \textbf{S1: Minimal SpecializedRequirement
+semantics}, then \textbf{S2: SecurityRequirement semantics}, before Base
+Analysis or STRIDE construction work.
+
+\end{document}

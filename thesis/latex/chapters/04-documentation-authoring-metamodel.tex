@@ -1,0 +1,596 @@
+\documentclass[12pt,a4paper,oneside]{report}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[a4paper,margin=2.8cm,headheight=15pt]{geometry}
+\usepackage{setspace}
+\usepackage{parskip}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{seqsplit}
+
+\definecolor{DDTADark}{HTML}{1F2933}
+\definecolor{DDTAGray}{HTML}{EEF1F4}
+\definecolor{DDTABorder}{HTML}{8A97A3}
+\definecolor{DDTAWarn}{HTML}{FFF4D6}
+\definecolor{DDTAWarnBorder}{HTML}{B7791F}
+\definecolor{DDTAInfo}{HTML}{EAF3F8}
+\definecolor{DDTAInfoBorder}{HTML}{3C718C}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=DDTADark,
+  citecolor=DDTADark,
+  urlcolor=DDTAInfoBorder,
+  pdftitle={Capitolo 4 - Metamodello della documentazione e regole di authoring DDTA},
+  pdfauthor={Nicolò Ballestriero}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small Documentation-Driven Threat Analysis}
+\fancyhead[R]{\small Capitolo 4 - bozza di lavoro}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\setstretch{1.18}
+\setlength{\emergencystretch}{3em}
+\setlist[itemize]{leftmargin=*,itemsep=0.28em,topsep=0.35em}
+\setlist[enumerate]{leftmargin=*,itemsep=0.28em,topsep=0.35em}
+
+\newtcolorbox{worknote}[1][Nota di lavoro]{
+  enhanced,breakable,colback=DDTAGray,colframe=DDTABorder,
+  boxrule=0.7pt,arc=1.5mm,left=3mm,right=3mm,top=2.5mm,bottom=2.5mm,
+  title={#1},fonttitle=\bfseries\sffamily,fontupper=\small\sffamily
+}
+\newtcolorbox{epistemicnote}[1][Stato epistemico]{
+  enhanced,breakable,colback=DDTAInfo,colframe=DDTAInfoBorder,
+  boxrule=0.7pt,arc=1.5mm,left=3mm,right=3mm,top=2.5mm,bottom=2.5mm,
+  title={#1},fonttitle=\bfseries\sffamily,fontupper=\small\sffamily
+}
+\newtcolorbox{pendingnote}[1][Confine aperto]{
+  enhanced,breakable,colback=DDTAWarn,colframe=DDTAWarnBorder,
+  boxrule=0.8pt,arc=1.5mm,left=3mm,right=3mm,top=2.5mm,bottom=2.5mm,
+  title={#1},fonttitle=\bfseries\sffamily,fontupper=\small\sffamily
+}
+
+\newcommand{\artifact}[1]{\nolinkurl{#1}}
+\newcommand{\must}{\textbf{MUST}}
+\newcommand{\mr}{\textit{Macro Requirement}}
+\newcommand{\fr}{\textit{Functional Requirement}}
+\newcommand{\adr}{\textit{Decision}}
+\newcommand{\secreq}{\textit{Security Requirement}}
+
+\lstset{
+  basicstyle=\ttfamily\small,
+  frame=single,
+  framerule=0.4pt,
+  rulecolor=\color{DDTABorder},
+  backgroundcolor=\color{DDTAGray},
+  breaklines=true,
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+  aboveskip=0.8em,
+  belowskip=0.8em
+}
+
+\begin{document}
+\setcounter{chapter}{3}
+\chapter{Metamodello della documentazione e regole di authoring DDTA}
+\label{chap:documentation-authoring-metamodel}
+
+\begin{epistemicnote}[Stato del capitolo]
+Questo capitolo descrive la baseline di ricerca raggiunta al commit DDTA
+\artifact{9a04bc5b98b7f4a2b8400f2b210e7cea6b04d1a9}. Il perimetro è intenzionalmente limitato alla scrittura e al metamodello della documentazione fino al \fr. Il modello di \secreq, la Base Analysis, i Base Analysis Elements (BAE), gli overlay di analisi e i plugin metodologici sono fasi successive. La baseline qui descritta è quindi congelata per procedere con la ricerca, ma resta riapribile in presenza di un controesempio concreto prodotto dalle fasi successive.
+\end{epistemicnote}
+
+\section{Scopo del capitolo}
+
+La Documentation-Driven Threat Analysis (DDTA) assume che la documentazione governata di un progetto non sia soltanto un supporto narrativo per persone già a conoscenza del sistema, ma possa costituire una sorgente di conoscenza sufficientemente stabile, strutturata e tracciabile da alimentare analisi successive. Questo obiettivo richiede tuttavia un passaggio preliminare: prima di definire un modello analitico, occorre stabilire \emph{come} la conoscenza progettuale debba essere scritta, organizzata e progressivamente specializzata.
+
+Il problema affrontato in questo capitolo è pertanto anteriore al threat modeling vero e proprio. Non si chiede ancora quali minacce debbano essere identificate, né quale metodologia debba essere applicata. Si chiede invece quale struttura documentale consenta a stakeholder con competenze differenti di descrivere in modo governato:
+
+\begin{itemize}
+  \item il problema generale affrontato dal progetto;
+  \item le macro-responsabilità necessarie a trattarlo;
+  \item le scelte che restringono lo spazio delle soluzioni;
+  \item i comportamenti operativi che devono risultare da tali scelte;
+  \item le identità e le relazioni che dovranno essere riusate nelle fasi successive senza duplicazione semantica.
+\end{itemize}
+
+La risposta proposta è un metamodello documentale progressivo, nel quale il percorso principale è normalizzato come:
+
+\begin{lstlisting}
+Project problem framing      [method precondition]
+        -> Macro Requirement
+        -> Decision
+        -> Functional Requirement
+        -> Specialized Requirement
+\end{lstlisting}
+
+Per il perimetro della tesi, la prima specializzazione che verrà formalizzata dopo questo capitolo è il \secreq. Tale specializzazione verrà definita prima di applicare una metodologia come STRIDE, così da non rendere la semantica del requisito di sicurezza dipendente dalla tassonomia o dal formato di output di un particolare metodo di analisi.
+
+\section{Separazione tra semantica, rappresentazione e tooling}
+
+Un rischio emerso durante la costruzione del corpus è confondere il modello concettuale con la sua serializzazione corrente o con le funzionalità di uno strumento. DDTA separa quindi quattro livelli.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.96\textwidth]{figures/04_layers.pdf}
+  \caption{Separazione tra metamodello, rappresentazione, principi di realizzazione e supporto del tool.}
+  \label{fig:ddta-layers-ch4}
+\end{figure}
+
+\begin{description}
+  \item[L1 - metamodello concettuale.] Definisce significato, concetti, relazioni, cardinalità, nullabilità semantica e invarianti. Una proprietà appartiene a L1 soltanto se deve rimanere vera indipendentemente dal formato dei file e dal software utilizzato.
+  \item[L2 - rappresentazione canonica.] Stabilisce come la semantica L1 viene materializzata: campi YAML, sezioni Markdown, registry, convenzioni di identificazione, ordering, mirror e altri dettagli Doc-as-Code.
+  \item[L3 - principi di realizzazione del modello.] Comprende risoluzione di riferimenti, validazione, indici, proiezioni, suggerimenti di authoring e altre funzioni che rendono il modello eseguibile o utilizzabile su larga scala.
+  \item[L4 - supporto e conformità del tool.] Descrive quali contratti DDTA una specifica implementazione, come ThreatForge, supporta, valida o assiste.
+\end{description}
+
+Questa separazione è particolarmente importante per la tesi. Una regola non diventa parte del metamodello soltanto perché ThreatForge la implementa; analogamente, un campo storico di ThreatForge non diventa automaticamente un requisito del modello generale. Il criterio utilizzato è un test di sostituibilità: se lo strumento venisse sostituito, la proprietà continuerebbe a descrivere il progetto governato? In caso affermativo è candidata a L1/L2; in caso negativo appartiene più probabilmente a L3/L4 o all'architettura del tool.
+
+\section{Problem framing come precondizione metodologica}
+
+\subsection{Perché il modello non parte direttamente dagli MR}
+
+I primi esperimenti hanno mostrato che un \mr può diventare accidentalmente una descrizione della soluzione corrente. Un progetto di controllo degli accessi, ad esempio, può essere formulato sin dall'inizio come ``sistema di riconoscimento facciale con telecamera e modello ML''. Tale formulazione è leggibile, ma contiene già decisioni: il controllo potrebbe essere realizzato tramite badge, impronta, volto, combinazioni di fattori o un servizio esterno. Se queste scelte entrano nell'MR, la successiva gerarchia documentale non rende più visibile dove e perché lo spazio delle soluzioni è stato ristretto.
+
+Per ridurre questo rischio, DDTA introduce un passo di \emph{problem framing} prima della decomposizione in documenti governati. Il framing non è, nella baseline corrente, un nuovo tipo di documento canonico; è una precondizione del metodo di authoring.
+
+La domanda fondamentale è:
+
+\begin{quote}
+\textbf{Quale problema generale o classe di problemi deve affrontare il progetto, entro quale confine significativo, se rimuoviamo temporaneamente le scelte di soluzione correnti?}
+\end{quote}
+
+Il framing deve utilizzare vocabolario del problema e del dominio. Nomi di provider, database, algoritmi, framework, device o metodologie di threat analysis devono essere rimossi a meno che siano intrinseci al problema stesso. La stessa operazione viene usata come test di stabilità: se la formulazione smette di avere senso quando si sostituisce una tecnologia, è probabile che una Decision sia stata incorporata troppo in alto.
+
+\subsection{Funzioni del framing}
+
+Il framing svolge quattro funzioni metodologiche. In primo luogo stabilisce un confine condiviso prima che il progetto venga scomposto. In secondo luogo permette di controllare se gli MR coprono il problema senza sovrapporsi eccessivamente. In terzo luogo crea un riferimento stabile per riconoscere la soluzione-vocabulary leakage. Infine supporta la teachability: un nuovo lettore può comprendere prima il problema e soltanto successivamente le scelte progettuali.
+
+Un esempio sintetico è il seguente:
+
+\begin{lstlisting}
+Problema:
+controllare l'accesso fisico a un'area protetta
+
+Non assunto nel framing:
+- riconoscimento facciale;
+- impronta digitale;
+- telecamera;
+- modello ML;
+- database locale;
+- identity provider esterno.
+\end{lstlisting}
+
+Il framing non crea quindi un livello documentale aggiuntivo. Evita piuttosto che il primo livello governato contenga già informazioni che dovrebbero emergere come scelte.
+
+\section{Gerarchia documentale progressiva}
+
+La baseline della tesi adotta una gerarchia intenzionalmente regolare.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.72\textwidth]{figures/04_document_hierarchy.pdf}
+  \caption{Gerarchia documentale progressiva della baseline DDTA.}
+  \label{fig:document-hierarchy-ch4}
+\end{figure}
+
+La gerarchia rappresenta \emph{contenimento semantico}, non il parsing di un identificatore o di una cartella. Un \mr possiede una famiglia di Decision; una Decision restringe quell'MR mediante un commitment governato; un \fr rende operativo il commitment; un requisito specializzato aggiunge un vincolo verticale alla funzione senza sostituirla.
+
+Le identità testuali possono in futuro riflettere la gerarchia per ragioni di usabilità, ma non devono esserne la fonte di verità. Una relazione parentale deve essere semanticamente esplicita e validabile anche se cambia il formato degli ID.
+
+\section{Macro Requirement}
+
+\subsection{Definizione}
+
+Un \mr è il documento radice che possiede una responsabilità macro durevole necessaria a trattare il problema definito dal framing. Spiega il valore e il risultato macro perseguito, il contesto minimo, gli stakeholder e il confine della responsabilità, senza selezionare una soluzione lower-level e senza specificare comportamenti atomici indipendentemente verificabili.
+
+La domanda fondamentale è:
+
+\begin{quote}
+\textbf{Nel problema di progetto già inquadrato, quale responsabilità o concern macro stabile stiamo governando, quale risultato o valore di livello macro deve contribuire, perché conta e chi coinvolge?}
+\end{quote}
+
+Questa definizione separa l'MR da due concetti adiacenti. Se una frase esprime una scelta che potrebbe essere sostituita con un'altra posizione, appartiene normalmente a Decision. Se esprime un comportamento operativo che può essere valutato indipendentemente, appartiene normalmente a \fr.
+
+\subsection{Forma semantica}
+
+La baseline richiede i concetti riportati nella Tabella~\ref{tab:mr-shape}.
+
+\begin{longtable}{p{0.22\textwidth}p{0.18\textwidth}p{0.50\textwidth}}
+\caption{Forma semantica del Macro Requirement.}\label{tab:mr-shape}\\
+\toprule
+Concetto & Stato & Funzione \\
+\midrule
+\endfirsthead
+\toprule
+Concetto & Stato & Funzione \\
+\midrule
+\endhead
+\texttt{id} & richiesto & identità stabile e tracciabilità \\
+\texttt{title} & richiesto & nome conciso comprensibile nel dominio \\
+\texttt{lifecycle} & richiesto & stato di governance corrente/storico \\
+\texttt{intent} & richiesto & scopo, valore e risultato macro desiderato \\
+\texttt{context} & richiesto & background minimo necessario all'interpretazione \\
+\texttt{stakeholders} & richiesto & ruoli beneficiari, coinvolti, governanti o impattati \\
+\texttt{scope} & richiesto semanticamente & confine della responsabilità macro \\
+\texttt{assumptions} & opzionale & fatti trattati come veri per l'intero branch \\
+\texttt{constraints} & opzionale & limiti applicabili all'intero branch \\
+\texttt{dependsOn} & 0..* MR & dipendenze macro non gerarchiche \\
+\bottomrule
+\end{longtable}
+
+Un campo separato \texttt{Objective} non è mantenuto nel core: nei corpus esaminati duplicava l'Intent oppure iniziava a decomporlo in comportamenti lower-level. L'Intent deve essere conciso, ma sufficientemente informativo da permettere a uno stakeholder competente nel dominio di comprendere il risultato macro cercato.
+
+\subsection{Invarianti dell'MR}
+
+Gli invarianti chiusi per la baseline documentale sono i seguenti:
+
+\begin{enumerate}
+  \item \textbf{Root hierarchy}: l'MR non ha parent gerarchico.
+  \item \textbf{Stable identity}: l'identità non dipende dalla forma testuale dell'ID.
+  \item \textbf{Problem anchoring}: l'MR deve essere interpretabile nel problem framing del progetto.
+  \item \textbf{Single macro concern}: un MR possiede una sola responsabilità macro coerente.
+  \item \textbf{Child narrowing}: Decision e FR discendenti restringono la responsabilità, non introducono scope estraneo.
+  \item \textbf{No solution commitment leakage}: provider, architetture, algoritmi o meccanismi scelti appartengono a Decision, salvo che siano parte intrinseca del dominio del problema.
+  \item \textbf{No FR-level obligation}: comportamenti atomici e operativi appartengono downstream.
+  \item \textbf{Broad domain readability}: il documento è leggibile da stakeholder competenti nel dominio senza richiedere conoscenza dell'implementazione corrente.
+  \item \textbf{Architecture resilience}: sostituire una soluzione lower-level non dovrebbe normalmente richiedere la riscrittura dell'MR.
+  \item \textbf{Temporal stability}: una nuova Decision non rende obsoleto l'MR se la responsabilità macro resta invariata.
+  \item \textbf{Explicit dependency}: relazioni complementari tra MR non devono essere nascoste come pseudo-gerarchia.
+  \item \textbf{Teachability}: il set di title e Intent degli MR deve sostenere una mappa macro comprensibile del progetto.
+  \item \textbf{Analysis enabling, not analysis producing}: l'MR può fornire contesto utile, ma non crea automaticamente elementi analitici o categorie di metodo.
+  \item \textbf{Projection honesty}: una mappa didattica degli MR non deve essere presentata come DFD o threat model canonico.
+\end{enumerate}
+
+\subsection{Split, merge e dipendenze tra MR}
+
+La decomposizione non segue automaticamente l'architettura software. Due sottosistemi non richiedono necessariamente due MR, e due responsabilità di dominio non devono essere fuse soltanto perché oggi sono implementate dallo stesso componente. Il test principale è la stabilità della responsabilità dopo la rimozione del vocabolario della soluzione.
+
+Quando due MR collaborano per fornire uno scopo end-to-end, la collaborazione non implica co-ownership. Un MR può dipendere da una capability prodotta da un altro; la dipendenza macro deve essere resa esplicita senza duplicare la responsabilità. Questo principio verrà raffinato nella Base Analysis, dove dovrà essere definito l'oggetto canonico del consumo di servizio.
+
+\section{Decision}
+
+\subsection{Dalla ``scelta'' al commitment significativo}
+
+Una \adr è un commitment significativo che restringe esattamente un \mr. Il termine commitment è preferito a una definizione basata soltanto sulla presenza di alternative, perché alcune decisioni sono determinate da vincoli regolatori, contrattuali, fisici o organizzativi. Ciò che conta è che il documento registri conoscenza non derivabile che cambia il responsibility boundary, la strategia, la policy, l'architettura o un altro aspetto significativo del progetto e produca conseguenze downstream.
+
+La domanda fondamentale è:
+
+\begin{quote}
+\textbf{Quale commitment significativo restringe questo Macro Requirement, perché il progetto assume questa posizione e quali conseguenze accettiamo?}
+\end{quote}
+
+La forma minima rimane volutamente piccola:
+
+\begin{lstlisting}
+Decision
+|- title
+|- context
+|- decision
+`- consequences
+\end{lstlisting}
+
+Tutti e quattro i concetti sono richiesti e non nulli. \texttt{Context} è locale alla Decision: descrive la tensione, il problema irrisolto o il vincolo che rende necessario prendere posizione. \texttt{Decision} contiene una sola posizione coerente. \texttt{Consequences} rende visibili gli effetti materiali e i downstream obligations. Alternative e Rationale possono essere utili nella rappresentazione, ma non sono campi L1 obbligatori distinti.
+
+\subsection{Decision di responsibility boundary}
+
+Uno dei risultati più importanti dei probe è la necessità di rendere esplicito \emph{chi} possiede un comportamento. Una capability può essere implementata dal progetto oppure consumata da un sistema esterno. Questa scelta modifica direttamente il tipo di FR che il progetto deve possedere.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.90\textwidth]{figures/04_responsibility_boundary.pdf}
+  \caption{Una Decision sul responsibility boundary modifica il branch di FR downstream.}
+  \label{fig:responsibility-boundary-ch4}
+\end{figure}
+
+Nel caso del magazzino, scegliere una authority interna produce obblighi relativi a carico, rettifica, reservation, concorrenza, release e stock issue. Scegliere un WMS esterno sostituisce gran parte di tali obblighi con FR di integrazione: richiesta al provider, correlazione, mapping dei risultati, gestione degli outcome indeterminati, retry e conformità al contratto di interfaccia. Gli invarianti interni del WMS non diventano automaticamente FR del progetto.
+
+Questa osservazione ha corretto i primi esempi, nei quali alcuni FR sembravano discendere direttamente dall'MR soltanto perché la Decision di responsibility boundary era stata assunta implicitamente.
+
+\subsection{Necessity/default Decision}
+
+La baseline della tesi privilegia una gerarchia costante \texttt{MR -> Decision -> FR}. In un caso raro può non emergere una alternativa materialmente distinta. Rimuovere il layer Decision semplificherebbe localmente la semantica, ma renderebbe variabile il modello, gli strumenti di navigazione e le regole di validazione. DDTA adotta quindi una normalizzazione controllata: la \emph{necessity/default Decision}.
+
+Questa Decision è valida soltanto se:
+
+\begin{enumerate}
+  \item il Context spiega perché alternative materialmente diverse sono assenti, non ammissibili o escluse da un vincolo governato;
+  \item il commitment non è una tautologia del tipo ``il sistema farà ciò che dice l'MR'';
+  \item le Consequences sono materiali e creano responsabilità o vincoli downstream;
+  \item il documento può essere riaperto o superseded se il vincolo cambia o appare una nuova alternativa;
+  \item la formula non viene usata per mascherare la mancata esplorazione delle alternative.
+\end{enumerate}
+
+La necessity/default Decision non afferma quindi che esistano alternative inesistenti. Documenta, al contrario, che il progetto ha esaminato il punto di commitment e che lo spazio ammissibile è risultato singleton o non materialmente differenziato.
+
+\subsection{Split e non ridondanza}
+
+Una Decision deve essere divisa quando parti del commitment possono cambiare indipendentemente e possiedono conseguenze o trade-off autonomi. Per esempio, scegliere il riconoscimento facciale come modalità di verifica e scegliere dove risiedono le reference biometriche sono decisioni separabili: il provider delle reference può cambiare lasciando invariata la modalità di verifica.
+
+Viceversa, non si deve creare una Decision per ogni frase tecnica. Una specifica esprime una Decision soltanto quando governa una scelta o un commitment significativo. Meccanismi incidentali, tuning, nomi di classi, path di sorgente o dettagli che possono cambiare senza modificare il contratto governato appartengono alla realizzazione.
+
+\section{Functional Requirement}
+
+\subsection{Definizione operativa}
+
+Un \fr è un obbligo operativo governato e indipendentemente valutabile che discende da esattamente una Decision. Esprime un comportamento, un servizio, una transizione di stato o un risultato osservabile che il progetto deve fornire nel contesto stabilito dal branch MR/Decision.
+
+La domanda fondamentale è:
+
+\begin{quote}
+\textbf{Data la Decision parent e una condizione o input applicabile, quale soggetto o capability governata deve compiere quale azione funzionale su o con quale oggetto/informazione, e quale risultato osservabile o comportamento di failure deve conseguire?}
+\end{quote}
+
+Il vincolo ``operativo'' è essenziale. Frasi come ``fornire disponibilità di magazzino'' o ``mantenere l'autorizzazione aggiornata'' sono spesso troppo deboli: non chiariscono lifecycle, correlation, concurrency, failure semantics o boundary di responsabilità. Un FR deve specificare abbastanza comportamento da consentire a un implementatore di capire cosa deve accadere e a un reviewer di stabilire se l'obbligo è soddisfatto, senza imporre dettagli incidentali di implementazione.
+
+\subsection{Gerarchia e ownership}
+
+La baseline chiude le seguenti regole:
+
+\begin{itemize}
+  \item ogni FR ha esattamente una Decision parent;
+  \item l'MR owner è derivato dal parent della Decision e non costituisce una seconda autorità topologica;
+  \item nessuna Decision è figlia di FR;
+  \item un FR può possedere zero o più requisiti specializzati;
+  \item un nuovo commitment scoperto durante l'implementazione o la review deve essere registrato come Decision sotto l'MR appropriato, con revisione o supersession degli FR interessati.
+\end{itemize}
+
+La gerarchia costante è una scelta metodologica di questa tesi. I primi controesempi a un parent Decision obbligatorio sono stati ritirati come evidenza dopo che una decomposizione più realistica ha mostrato Decision nascoste. Il modello resta comunque riapribile qualora una fase successiva dimostri un fallimento ricorrente non risolvibile mediante la necessity/default Decision.
+
+\subsection{Forma semantica}
+
+La forma concettuale corrente è:
+
+\begin{lstlisting}
+FunctionalRequirement
+|- id / lifecycle
+|- title
+|- functionalObligation
+|- functionalClause 1..*
+|    |- normativeStatement
+|    `- spoReference 1..*
+|         |- subject
+|         |- predicate
+|         `- object
+|- parentDecision -> Decision 1
+`- specializedRequirement -> 0..*
+\end{lstlisting}
+
+Non è richiesto un Intent locale all'FR: la ragione per cui la funzione esiste dovrebbe essere recuperabile dall'MR e dalla Decision. L'FR possiede il \emph{cosa deve funzionare}. Acceptance criteria, prove di soddisfazione e artifact di implementazione rimangono relazioni downstream e non vengono confusi con la semantica del requisito.
+
+\subsection{Normative prose e SPO}
+
+I probe hanno mostrato che una notazione puramente relazionale è insufficiente a descrivere obblighi reali. Concorrenza, idempotenza, condizioni, correlazione e failure semantics non possono essere ridotte senza perdita a una singola tripla. Per questo la prosa normativa rimane primaria, mentre la forma Subject-Predicate-Object (SPO) rende esplicite le identità e le azioni rilevanti.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.86\textwidth]{figures/04_fr_spo.pdf}
+  \caption{Relazione tra clausola normativa, riferimenti SPO, registri governati e supporto del tool.}
+  \label{fig:fr-spo-ch4}
+\end{figure}
+
+Un pattern leggibile è:
+
+\begin{lstlisting}
+[Condition,] <Subject> MUST <Predicate> <Object>
+[qualifier / observable outcome / failure behavior].
+\end{lstlisting}
+
+Un esempio tratto dal corpus di magazzino è:
+
+\begin{lstlisting}
+Quando una ReservationRequest identifica l'OrderEvaluation attiva e l'intero set
+richiesto, InventoryService MUST creare una Reservation ACTIVE soltanto se il set
+completo puo' essere allocato atomicamente sullo stock corrente; una richiesta
+concorrente MUST NOT riservare quantita' gia' congelata dalla Reservation attiva.
+\end{lstlisting}
+
+Le relazioni strutturate associate possono essere:
+
+\begin{lstlisting}
+InventoryService -- creates  --> Reservation
+InventoryService -- updates  --> InventoryBalance
+InventoryService -- produces --> ReservationResult
+\end{lstlisting}
+
+Le triple non sostituiscono la clausola: aiutano a riusare identità governate, costruire indici, validare coerenza e preparare l'integrazione con la Base Analysis.
+
+\subsection{FunctionalPredicate}
+
+Il Predicate non è una stringa libera diversa per ogni documento. DDTA prevede un metacontratto governato per un \textit{FunctionalPredicate}, comprendente almeno:
+
+\begin{itemize}
+  \item identità stabile;
+  \item label leggibile;
+  \item significato normativo;
+  \item area funzionale;
+  \item tipi compatibili di subject e object, da formalizzare dopo la chiusura della tassonomia Base Analysis.
+\end{itemize}
+
+Il core non congela un elenco esaustivo di verbi. Sono invece possibili vocabolari estendibili per area: storage (read, write, update, delete), communication (send, receive, request), lifecycle (activate, suspend, release, expire, purge), cryptography (encrypt, decrypt, hash), signature (sign, verify signature), identity/access e altre aree di dominio.
+
+Questa impostazione rende possibile un supporto di authoring in cui il tool propone subject e object già presenti nel registro e filtra i Predicate compatibili. La proposta non crea però semantica canonica: l'autore o il processo di review rimangono l'autorità che conferma l'identità e il significato del riferimento.
+
+\subsection{Regola sui parametri}
+
+Il corpus ha mostrato che valori numerici o modalità operative cambiano per ragioni semanticamente differenti. Inserire un campo generico \texttt{functionalParameters} nell'FR mescolerebbe responsabilità diverse. Il metodo richiede invece una classificazione.
+
+\begin{itemize}
+  \item ``singolo frame vs N frame vs breve video'' descrive una strategia e appartiene normalmente a Decision;
+  \item un target di latenza o throughput è candidato a requisito di performance/quality;
+  \item una durata di retention è candidata a governance/privacy/policy;
+  \item un limite imposto da un'API può appartenere a un InterfaceContract;
+  \item buffer, thread count o tuning incidentale appartengono alla realizzazione/configurazione.
+\end{itemize}
+
+L'FR deve referenziare la regola governata applicabile quando il valore è necessario, evitando di copiare parametri mutevoli in più documenti.
+
+\subsection{Composizione tra MR senza doppia ownership}
+
+Un servizio end-to-end nasce spesso dalla collaborazione di più branch. Il branch ordine può consumare il servizio di reservation del branch magazzino e l'autorizzazione del branch pagamento. Questo non crea due owner per lo stesso FR.
+
+La semantica chiusa è:
+
+\begin{quote}
+\textbf{Il consumo di una capability governata da un altro MR non trasferisce ownership e non crea un secondo parent per l'FR consumer.}
+\end{quote}
+
+Non è ancora chiuso, invece, il target canonico della relazione di consumo. Potrebbe essere un FR provider, una capability, un service, un BAE o un InterfaceContract. La scelta viene deliberatamente rimandata alla Base Analysis, per non forzare una relazione \texttt{FR -> FR} prima di avere un modello strutturale del sistema.
+
+\section{Regole di authoring end-to-end}
+
+La gerarchia non è soltanto una classificazione. Deve guidare il processo di scrittura. La sequenza proposta è:
+
+\begin{enumerate}
+  \item \textbf{Frame the problem}. Definire problema generale, boundary e out-of-scope rimuovendo temporaneamente la solution vocabulary.
+  \item \textbf{Decompose into MR}. Identificare responsabilità macro stabili, controllando overlap, dipendenze e resilienza alle scelte future.
+  \item \textbf{Expose Decisions}. Per ogni branch chiedere quali commitment definiscono responsibility boundary, policy, strategia, architettura o contratto significativo. Se il solution space è realmente singleton, documentare una necessity/default Decision.
+  \item \textbf{Write operational FRs}. Tradurre ogni Decision in comportamenti osservabili e indipendentemente valutabili.
+  \item \textbf{Add structured references}. Collegare la prosa normativa a subject, predicate e object governati senza duplicare le identità.
+  \item \textbf{Review cross-branch consumption}. Rendere visibili le capability consumate da altri MR senza trasferire ownership.
+  \item \textbf{Specialize downward}. Aggiungere requisiti verticali come SecurityRequirement senza riscrivere il comportamento funzionale di base.
+\end{enumerate}
+
+Per ogni documento viene usata una domanda fondamentale differente. Questo è importante per evitare documenti formalmente corretti ma semanticamente collocati nel layer sbagliato:
+
+\begin{longtable}{p{0.17\textwidth}p{0.73\textwidth}}
+\caption{Domande di authoring per i livelli documentali.}\label{tab:authoring-questions}\\
+\toprule
+Livello & Domanda \\
+\midrule
+\endfirsthead
+\toprule
+Livello & Domanda \\
+\midrule
+\endhead
+Problem framing & Quale problema o classe di problemi affrontiamo se rimuoviamo le soluzioni correnti? \\
+MR & Quale responsabilità macro stabile governiamo, quale valore produce e chi coinvolge? \\
+Decision & Quale commitment significativo restringe questa responsabilità e quali conseguenze accettiamo? \\
+FR & Dato quel commitment, quale comportamento operativo deve accadere, su quali soggetti/oggetti, con quale risultato o failure behavior? \\
+Specialized Requirement & Quale vincolo verticale aggiuntivo deve rispettare la funzione senza sostituirne la semantica? \\
+\bottomrule
+\end{longtable}
+
+\section{Ruolo del tool nell'authoring}
+
+La regolarità della gerarchia è stata scelta anche perché consente un'assistenza più semplice e prevedibile. Questa motivazione non è però sufficiente da sola a definire la semantica: il tool segue il metamodello, non lo determina.
+
+Un sistema come ThreatForge può assistere l'autore in almeno cinque modi:
+
+\begin{itemize}
+  \item mostrare la gerarchia e impedire parentage non ammessi;
+  \item suggerire riferimenti già esistenti, evitando duplicazione di subject/object;
+  \item filtrare i Predicate compatibili con l'area e con i tipi governati;
+  \item segnalare incoerenze tra prosa normativa e SPO;
+  \item avviare una proposta esplicita quando manca una voce nel registro, mantenendo separata la proposta dalla canonizzazione.
+\end{itemize}
+
+Non deve invece estrarre automaticamente nomi dalla prosa e trasformarli in elementi canonici senza review, né usare similarity ranking per decidere equivalenza, parentage o ownership. Search e suggerimenti sono strumenti di scalabilità; l'autorità semantica resta governata.
+
+\section{Validazione mediante probe iterativi}
+
+\subsection{Perché gli esempi iniziali non sono stati trattati come prova definitiva}
+
+La costruzione del modello ha seguito una sequenza di esempi, controesempi e regressioni. Due famiglie di errori sono state particolarmente informative.
+
+Nel dominio del controllo accessi, un primo corpus assumeva già ``riconoscimento facciale'', ``telecamera'' e ``ML'' a livello MR. Alcuni FR sembravano quindi non richiedere una Decision. Rimuovendo tali assunzioni è emerso che la modalità di verifica, la strategia di acquisizione e la source delle reference erano commitment distinti. Il controesempio al parent Decision obbligatorio risultava contaminato dalla presenza di Decision nascoste nei livelli superiori.
+
+Nel primo holdout order/inventory, la funzione di magazzino era ridotta a una query di disponibilità. L'esempio ignorava carico, scarico, rettifiche, reservation lifecycle e concorrenza; questa semplificazione rendeva plausibile un FR diretto dall'MR soltanto perché non era stato modellato il responsibility boundary reale.
+
+Questi esempi non vengono usati come evidenza di closure. Sono mantenuti come storia del processo di falsificazione: mostrano perché un corpus realistico deve essere abbastanza dettagliato da esporre le scelte che un modello troppo sintetico può nascondere.
+
+\subsection{Probe order fulfillment e warehouse management R3}
+
+Il corpus R3 descrive un problema order-to-fulfillment con stock fisico finito, checkout concorrenti, movimenti di magazzino, reservation temporanee, payment authorization, fulfillment e dispatch. Il framing non assume WMS/ERP locale o esterno, database, provider, carrier, protocollo o algoritmo.
+
+Il branch di magazzino introduce esplicitamente una Decision sulla authority operativa: il probe sceglie gestione interna tramite InventoryService e InventoryLedger, ma documenta come alternativa un WMS/ERP esterno. Questa Decision cambia materialmente gli FR downstream e dimostra l'importanza di non confondere ``il sistema deve governare il magazzino'' con ``il progetto deve implementare internamente il ledger''.
+
+Altre Decision distinguono on-hand/reserved/blocked, scelgono reservation temporanee, definiscono atomicità all-lines e stabiliscono milestone di fulfillment. Gli FR risultanti specificano idempotenza, correlazione, concurrency, release/expiry e stock issue senza prescrivere lock, database isolation level o framework.
+
+Il risultato rilevante non è che ogni dominio debba avere queste stesse Decision. Il corpus dimostra piuttosto che una descrizione operativa sufficientemente ricca porta le scelte di responsibility e strategy a diventare visibili prima degli FR, sostenendo la gerarchia regolare adottata per il perimetro della tesi.
+
+\section{Confine verso Security Requirement e Base Analysis}
+
+La chiusura fino a FR non equivale alla chiusura dell'intero DDTA. Il documento produce un input governato, ma non stabilisce ancora come tutti i subject, object, service e interaction debbano essere rappresentati in un grafo analitico comune.
+
+La fase immediatamente successiva verrà divisa intenzionalmente in due passi. Prima verrà definito il metamodello method-neutral di \secreq. Successivamente verranno formalizzati Base Analysis e BAE, quindi il contratto generico di analisi e overlay. Soltanto dopo verrà applicato STRIDE come primo metodo concreto.
+
+Questa sequenza evita una contaminazione importante: se il SecurityRequirement venisse progettato dopo STRIDE, campi o relazioni potrebbero essere introdotti soltanto perché convenienti per categorie come Spoofing o Tampering. Definendo prima il requisito di sicurezza, il test diventa più forte: STRIDE dovrà produrre Finding che possano condurre a istanze del modello SEC già stabilito, non il contrario.
+
+\begin{lstlisting}
+Documentation baseline
+MR -> Decision -> FR
+        |
+        v
+SpecializedRequirement common semantics
+        |
+        v
+SecurityRequirement metamodel        [method-neutral]
+        |
+        v
+Base Analysis / BAE
+        |
+        v
+Analysis Record / Finding common envelope
+        |
+        v
+method-neutral overlay/plugin contract
+        |
+        v
+STRIDE as first concrete method
+        |
+        v
+accepted Finding -> SecurityRequirement instance/provenance
+        |
+        v
+effective obligation -> design change -> re-analysis
+\end{lstlisting}
+
+\begin{pendingnote}[Elementi intenzionalmente non chiusi in questo capitolo]
+Restano fuori dal perimetro: tassonomia BAE, semantica di DataStore/Channel/InterfaceContract, target canonico della service consumption, cardinalità e provenance del SecurityRequirement, Analysis Record, Finding, overlay/plugin, STRIDE, STRIDE-AI e meccanismi di stale/change impact. Questi concetti non devono essere anticipati retroattivamente dentro MR/Decision/FR salvo che un controesempio concreto dimostri l'insufficienza della baseline.
+\end{pendingnote}
+
+\section{Condizioni di riapertura del metamodello documentale}
+
+Il modello descritto in questo capitolo è un checkpoint di ricerca, non una dichiarazione di completezza universale. Per evitare modifiche opportunistiche, vengono stabilite condizioni di riapertura esplicite.
+
+MR, Decision o FR devono essere riaperti soltanto se una fase successiva mostra almeno uno dei seguenti problemi:
+
+\begin{enumerate}
+  \item un SecurityRequirement method-neutral non può specializzare correttamente un FR senza duplicarne o deformarne la semantica;
+  \item la Base Analysis non può essere costruita o integrata a partire dalla conoscenza governata senza richiedere informazioni che il modello di authoring impedisce di esprimere;
+  \item un overlay metodologico richiede source information che non può essere ottenuta senza contaminare la documentazione di progetto con categorie method-specific;
+  \item il layer Decision costante produce un errore semantico ricorrente e concreto, non soltanto il costo occasionale di una necessity/default Decision;
+  \item la service composition richiede ownership multipla o una relazione gerarchica incompatibile con il modello corrente.
+\end{enumerate}
+
+La correzione, se necessaria, dovrà essere attribuita a un controesempio osservabile e seguita da regressione sugli esempi già accettati.
+
+\section{Conclusioni}
+
+La baseline documentale DDTA separa tre domande progettuali che nella documentazione ordinaria tendono spesso a mescolarsi. L'MR stabilisce \emph{quale responsabilità macro} appartiene al progetto; la Decision stabilisce \emph{quale commitment} restringe tale responsabilità; l'FR stabilisce \emph{quale comportamento operativo} deve conseguire. La specializzazione aggiunge vincoli verticali senza invertire la direzione della gerarchia.
+
+Il problem framing riduce l'anticipazione della soluzione; la Decision di responsibility boundary rende visibile ciò che il progetto implementa e ciò che consuma; la necessity/default Decision conserva una gerarchia costante nei rari casi singleton; l'FR combina prosa normativa e SPO per mantenere leggibilità e riferimenti strutturati; il tool può assistere authoring e riuso senza diventare autorità semantica.
+
+Questo capitolo chiude quindi, per il perimetro corrente della tesi, il problema di \emph{come scrivere la documentazione governata fino al Functional Requirement}. Il prossimo passo non è ancora STRIDE. Verrà prima definito il SecurityRequirement come specializzazione metodologicamente neutra, poi il modello Base Analysis/BAE e soltanto successivamente il contratto di overlay e la prima applicazione concreta di una metodologia di threat analysis.
+
+\end{document}

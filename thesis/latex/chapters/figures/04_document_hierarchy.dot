@@ -1,0 +1,16 @@
+digraph G {
+  graph [rankdir=TB, bgcolor="transparent", nodesep=0.35, ranksep=0.48, pad=0.15];
+  node [shape=box, style="rounded", fontname="Helvetica", fontsize=10, margin="0.12,0.07"];
+  edge [fontname="Helvetica", fontsize=9, arrowsize=0.7];
+  problem [label="Problem framing\n(method precondition)", shape=note];
+  mr [label="Macro Requirement\nstable macro responsibility"];
+  dec [label="Decision\nsignificant commitment"];
+  fr [label="Functional Requirement\noperational obligation"];
+  spec [label="Specialized Requirement\nconstraint / enrichment"];
+  sec [label="Security Requirement\nnext specialization to formalize"];
+  problem -> mr [label="frames"];
+  mr -> dec [label="narrows through"];
+  dec -> fr [label="operationalized by"];
+  fr -> spec [label="specialized by"];
+  spec -> sec [style=dashed, label="thesis scope"];
+}

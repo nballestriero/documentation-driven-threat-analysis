@@ -1,0 +1,15 @@
+digraph G {
+  graph [rankdir=TB, bgcolor="transparent", nodesep=0.35, ranksep=0.45, pad=0.12];
+  node [shape=box, style="rounded", fontname="Helvetica", fontsize=9.5, margin="0.12,0.07"];
+  edge [fontname="Helvetica", fontsize=8.5, arrowsize=0.7];
+  prose [label="Normative clause\ncondition + required behavior + outcome/failure", shape=note];
+  spo [label="Structured SPO references\nSubject - Predicate - Object"];
+  registry [label="Governed reference registries\nreuse identities; avoid duplication"];
+  pred [label="FunctionalPredicate vocabulary\narea + meaning + compatible kinds"];
+  tool [label="Authoring tool\nsuggests / filters / validates\nwithout creating semantics"];
+  prose -> spo [label="supported by"];
+  registry -> spo [label="resolves subject/object"];
+  pred -> spo [label="resolves predicate"];
+  tool -> registry [style=dashed];
+  tool -> pred [style=dashed];
+}

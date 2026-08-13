@@ -1,0 +1,16 @@
+digraph G {
+  graph [rankdir=TB, bgcolor="transparent", nodesep=0.3, ranksep=0.48, pad=0.12];
+  node [shape=box, style="rounded", fontname="Helvetica", fontsize=9.5, margin="0.12,0.07"];
+  edge [fontname="Helvetica", fontsize=8.5, arrowsize=0.7];
+  mr [label="MR: Warehouse and inventory management"];
+  decision [label="Decision: who owns operational stock authority?"];
+  internal [label="Internal authority\nInventoryService + ledger"];
+  external [label="External WMS authority\nproject consumes governed API/contract"];
+  intfr [label="FR branch\nreceipt, adjustment, reservation,\nconcurrency, release, stock issue"];
+  extfr [label="FR branch\nrequest, correlation, mapping,\nindeterminate outcome, retry/contract"];
+  mr -> decision;
+  decision -> internal [label="choice A"];
+  decision -> external [label="choice B"];
+  internal -> intfr;
+  external -> extfr;
+}

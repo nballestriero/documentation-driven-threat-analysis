@@ -1,0 +1,10 @@
+digraph G {
+  graph [rankdir=LR, bgcolor="transparent", nodesep=0.35, ranksep=0.45, pad=0.1];
+  node [shape=box, style="rounded", fontname="Helvetica", fontsize=9.5, margin="0.12,0.08"];
+  edge [fontname="Helvetica", fontsize=9, arrowsize=0.7];
+  l1 [label="L1\nConceptual metamodel\nmeaning, relations, invariants"];
+  l2 [label="L2\nCanonical representation\nfields, Markdown/YAML, IDs"];
+  l3 [label="L3\nRealization principles\nresolution, validation, projections"];
+  l4 [label="L4\nTool support / conformance\nauthoring assistance"];
+  l1 -> l2 -> l3 -> l4;
+}
