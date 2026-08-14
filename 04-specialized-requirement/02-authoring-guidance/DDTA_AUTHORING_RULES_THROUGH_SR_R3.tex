@@ -1,0 +1,295 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[a4paper,margin=2.45cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs,longtable,tabularx,array}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc}
+\usepackage{titlesec}
+
+\definecolor{ddtadark}{RGB}{28,38,52}
+\definecolor{ddtagray}{RGB}{242,244,247}
+\definecolor{ddtablue}{RGB}{42,88,135}
+\definecolor{ddtagreen}{RGB}{48,111,78}
+\definecolor{ddtaorange}{RGB}{148,91,25}
+\definecolor{ddtared}{RGB}{140,48,48}
+
+\hypersetup{colorlinks=true,linkcolor=ddtablue,urlcolor=ddtablue,pdftitle={DDTA Authoring Rules Through SpecializedRequirement - Revision 3},pdfauthor={Documentation-Driven Threat Analysis research workspace}}
+\pagestyle{fancy}\fancyhf{}\lhead{DDTA -- Authoring Rules}\rhead{Revision 3 -- through SpecializedRequirement}\cfoot{\thepage}\setlength{\headheight}{14pt}
+\titleformat{\section}{\Large\bfseries\color{ddtadark}}{\thesection}{0.65em}{}
+\titleformat{\subsection}{\large\bfseries\color{ddtadark}}{\thesubsection}{0.65em}{}
+\setlist[itemize]{leftmargin=1.55em,itemsep=.24em,topsep=.35em}
+\setlist[enumerate]{leftmargin=1.75em,itemsep=.24em,topsep=.35em}
+\setlength{\parskip}{.35em}\setlength{\parindent}{0pt}\setlength{\emergencystretch}{3em}
+\lstset{basicstyle=\ttfamily\small,frame=single,framerule=.4pt,rulecolor=\color{ddtablue},backgroundcolor=\color{ddtagray},breaklines=true,columns=fullflexible,keepspaces=true,showstringspaces=false}
+
+\newtcolorbox{closedbox}[1][CLOSED]{enhanced,breakable,colback=ddtagray,colframe=ddtagreen,title={#1},fonttitle=\bfseries}
+\newtcolorbox{candidatebox}[1][CANDIDATE]{enhanced,breakable,colback=white,colframe=ddtaorange,title={#1},fonttitle=\bfseries}
+\newtcolorbox{warningbox}[1][Review]{enhanced,breakable,colback=white,colframe=ddtared,title={#1},fonttitle=\bfseries}
+\newtcolorbox{scopebox}[1][Scope]{enhanced,breakable,colback=white,colframe=ddtablue,title={#1},fonttitle=\bfseries}
+\newcommand{\MR}{\textit{MacroRequirement}}
+\newcommand{\FR}{\textit{FunctionalRequirement}}
+\newcommand{\SR}{\textit{SpecializedRequirement}}
+\newcommand{\Decision}{\textit{Decision}}
+\newcommand{\artifact}[1]{\nolinkurl{#1}}
+
+\begin{document}
+\begin{titlepage}
+\centering\vspace*{2.2cm}
+{\Large Documentation-Driven Threat Analysis\par}\vspace{.8cm}
+{\Huge\bfseries Authoring Rules\par}\vspace{.25cm}
+{\LARGE Through SpecializedRequirement -- Revision 3\par}\vspace{1cm}
+{\large Contratto operativo di authoring e review per la documentazione governata\par}
+\vfill
+\begin{minipage}{.84\textwidth}\small
+\textbf{Research baseline source:} \artifact{3eeac1fc972d89282cd2ffd8700e9af0f5b69610}.\\
+\textbf{Revision feedback:} chiusura S1 di \SR{} e regressione del corpus facial-access senza \texttt{MR-0004}.\\
+\textbf{Data:} 14 agosto 2026.\\[.5em]
+Questa revisione estende il precedente contratto ``Through Functional Requirement R2''. Non formalizza SecurityRequirement, Base Analysis, BAE o metodologie di threat analysis.
+\end{minipage}
+\vfill
+\end{titlepage}
+\tableofcontents\newpage
+
+\section{Scopo e principio di sufficienza}
+Questo documento traduce il baseline concettuale DDTA in domande di authoring e test di review ripetibili. Lo scopo non è ottenere una descrizione perfetta o completa del sistema prima dell'analisi. Lo scopo è produrre la \emph{quantità minima sufficiente di conoscenza governata} perché responsabilità, commitment e comportamenti conosciuti siano interpretabili, revisionabili e analizzabili.
+
+\begin{closedbox}[CLOSED -- minimal sufficient authoring]
+La completezza architetturale, funzionale o di lifecycle non è una precondizione all'analisi. Una successiva analisi può scoprire gap documentali e farli rientrare nel ciclo di authoring e governance.
+\end{closedbox}
+
+\section{Sequenza di authoring}
+\begin{center}
+\begin{tikzpicture}[node distance=7mm,box/.style={draw=ddtadark,rounded corners,align=center,minimum width=55mm,inner sep=5pt},arr/.style={-{Latex[length=2.4mm]},thick}]
+\node[box] (p) {Problem framing\\{\small method precondition}};
+\node[box,below=of p] (m) {MacroRequirement};
+\node[box,below=of m] (r) {Macro Project Map review\\{\small dependencies + isolated-node review}};
+\node[box,below=of r] (d) {Decision};
+\node[box,below=of d] (f) {FunctionalRequirement};
+\node[box,below=of f] (s) {SpecializedRequirement};
+\draw[arr] (p)--(m);\draw[arr] (m)--(r);\draw[arr] (r)--(d);\draw[arr] (d)--(f);\draw[arr] (f)--(s);
+\end{tikzpicture}
+\end{center}
+La Macro Project Map review non è un nuovo tipo di documento L1 e non crea un ulteriore livello gerarchico: è un passo di validazione dell'insieme di MR prima di costruire i branch downstream.
+
+\section{Step 0 -- frame the project problem}
+\textbf{Domanda}
+\begin{quote}
+Quale problema generale o classe di problemi deve affrontare il progetto se rimuoviamo temporaneamente le scelte di soluzione correnti?
+\end{quote}
+\textbf{Regole}
+\begin{itemize}
+\item descrivere problema e boundary, non l'architettura scelta;
+\item rimuovere provider, device, database, framework, algoritmo e protocollo se non sono intrinseci al problema;
+\item dichiarare responsabilità importanti fuori scope;
+\item usare il framing per verificare copertura e overlap degli MR;
+\item non copiare il framing dentro ogni MR.
+\end{itemize}
+
+\section{MacroRequirement authoring}
+\textbf{Domanda}
+\begin{quote}
+Nel problema già inquadrato, quale responsabilità macro stabile e autonomamente significativa stiamo governando, quale risultato o valore macro contribuisce, perché conta e chi coinvolge?
+\end{quote}
+
+\subsection{Semantica del corpo}
+\begin{longtable}{p{.23\textwidth}p{.64\textwidth}}
+\toprule
+Elemento & Funzione \\\midrule\endhead
+Title & nome conciso comprensibile nel dominio \\
+Intent & scopo, valore e risultato macro desiderato \\
+Context & background minimo per interpretare la responsabilità \\
+Stakeholders & ruoli materialmente beneficiari, impattati o governanti \\
+Scope & confine semantico della responsabilità macro \\
+Assumptions/\allowbreak Constraints & opzionali, solo se valgono per l'intero branch \\
+dependsOn MR & dipendenza macro genuina, non pseudo-gerarchia \\
+\bottomrule
+\end{longtable}
+
+\subsection{Review tests}
+\begin{itemize}
+\item problem anchoring;
+\item single macro responsibility;
+\item architecture resilience e temporal stability;
+\item solution-removal;
+\item stakeholder readability;
+\item nessuna obbligazione atomica da FR;
+\item dependency-vs-containment;
+\item teachability / Macro Project Map usefulness;
+\item analysis enabling, not analysis producing.
+\end{itemize}
+
+\subsection{Isolated-MR review}
+Dopo la prima decomposizione costruire il grafo degli MR usando le sole relazioni canoniche \texttt{dependsOn}. Per ogni nodo a grado zero:
+\[
+\deg(m)=\deg^{-}(m)+\deg^{+}(m)=0
+\]
+il metodo richiede \emph{review}, non invalidazione automatica.
+
+\begin{candidatebox}[CANDIDATE -- Isolated-MR review]
+Un MacroRequirement senza relazioni canoniche con altri MR non è invalido. Deve però essere riesaminato esplicitamente. Se il suo contenuto dichiara un concern trasversale o i discendenti previsti risultano prevalentemente proprietà/constraint su comportamenti posseduti da altri branch, l'isolamento è evidenza di possibile errata classificazione come MR.
+\end{candidatebox}
+
+\textbf{Domande di review}
+\begin{enumerate}
+\item Se rimuoviamo questo MR, scompare una responsabilità/capability macro del progetto oppure restano le capability e scompaiono soprattutto proprietà specializzate?
+\item Il suo scope parla prevalentemente di dati, risultati o comportamenti posseduti da altri branch?
+\item I discendenti plausibili sarebbero soprattutto security/privacy/performance/compliance constraints su FR altrui?
+\item Esiste invece una dipendenza macro genuina che non è stata documentata?
+\item L'MR è stato creato principalmente per ``dare una casa'' a una metodologia o a una categoria di analisi?
+\end{enumerate}
+
+\begin{warningbox}[Non trasformare l'heuristic in una falsa invariante]
+Un MR isolato può essere perfettamente valido quando possiede una responsabilità macro autonoma. Il tool può segnalare \texttt{REVIEW REQUIRED}; non deve produrre \texttt{INVALID MR} sulla sola base del grado del nodo.
+\end{warningbox}
+
+\subsection{Regression example -- facial access}
+Il corpus storico conteneva un MR autonomo denominato ``Uso responsabile dei dati biometrici e delle decisioni automatiche''. Il nodo era isolato, mentre il suo contenuto descriveva proprietà trasversali di dati e risultati prodotti negli altri branch. La regressione ha mostrato che la rimozione del nodo non elimina le tre responsabilità macro del progetto: accesso controllato, gestione delle persone autorizzate e riconoscimento facciale.
+
+I contenuti utili vengono riclassificati per natura: la limitazione di finalità dei dati biometrici è candidata a obbligazione specializzata locale sui FR applicabili; la contestabilità/review degli esiti automatici contiene invece una responsabilità operativa autonoma e viene spostata nel branch che governa il processo di accesso come Decision + FR. La lezione non è ``gli MR isolati sono sbagliati'', ma ``un concern trasversale non deve essere promosso a MR solo per renderlo visibile all'analisi''.
+
+\section{Decision authoring}
+\textbf{Domanda}
+\begin{quote}
+Quale commitment significativo restringe questo MR, perché il progetto assume questa posizione e quali conseguenze accettiamo?
+\end{quote}
+\textbf{Corpo minimo:} Title, Context, Decision, Consequences.
+
+\subsection{Responsibility-boundary question}
+Prima degli FR chiedere esplicitamente:
+\begin{quote}
+Il progetto implementa/possiede questa responsabilità oppure consuma una capability esterna, di provider o organizzativa?
+\end{quote}
+Il cambio di boundary può far emergere o scomparire interi FR branch. Un servizio esterno consumato non diventa responsabilità funzionale interna soltanto perché è necessario al sistema.
+
+\subsection{Necessity/default Decision}
+Se non emerge una alternativa materialmente distinta, non saltare automaticamente il layer Decision. Una necessity/default Decision è ammessa solo dopo review e solo quando Context spiega perché lo spazio ammissibile è singleton o non materialmente differenziato; Consequences devono restare materiali e la Decision deve essere riapribile.
+
+\section{FunctionalRequirement authoring}
+\textbf{Domanda}
+\begin{quote}
+Data la Decision parent e una condizione/input applicabile, quale subject/capability deve compiere quale azione funzionale su/con quale oggetto o informazione, e quale risultato osservabile o failure behavior deve conseguire?
+\end{quote}
+
+\subsection{Regole chiuse}
+\begin{itemize}
+\item esattamente una Decision parent;
+\item MR owner derivato dal parent Decision, senza seconda ownership;
+\item comportamento operativo e indipendentemente valutabile;
+\item un solo unità coerente; responsabilità indipendentemente modificabili vanno separate;
+\item implementation independence;
+\item prosa normativa primaria, riferimenti SPO di supporto;
+\item nessuna Decision sotto FR;
+\item service consumption non crea co-ownership;
+\item realization ed evidence sono separati dalla semantica del requisito.
+\end{itemize}
+
+\subsection{Normative prose e SPO}
+Pattern indicativo:
+\begin{lstlisting}
+[Condition,] <Subject> MUST <Predicate> <Object>
+[qualifier / observable result / failure behavior].
+\end{lstlisting}
+La tripla non sostituisce la clausola. Condizioni, correlation, atomicity, lifecycle e failure semantics restano nella prosa normativa.
+
+\subsection{Parameter classification}
+Non introdurre un generico \texttt{functionalParameters}. Classificare il valore per semantica: strategia o medium significativo $\rightarrow$ Decision; target latency/throughput $\rightarrow$ futura specializzazione performance/quality; retention $\rightarrow$ governance/privacy/regulatory concern; provider API limit $\rightarrow$ contract candidate; tuning incidentale $\rightarrow$ realization/configuration.
+
+\section{SpecializedRequirement authoring -- S1 CLOSED}
+\begin{closedbox}[CLOSED -- definizione]
+Uno SpecializedRequirement è una specializzazione normativa governata di un singolo FunctionalRequirement che rafforza le condizioni sotto le quali il parent FR è considerato soddisfatto, imponendo una obbligazione concern-specific che vale insieme all'obbligazione funzionale e non al suo posto.
+\end{closedbox}
+
+\textbf{Domanda}
+\begin{quote}
+Quale obbligazione concern-specific aggiuntiva deve valere insieme alla funzione affinché il parent FR sia considerato soddisfatto, senza ridefinirne la funzione né scegliere come realizzarla?
+\end{quote}
+
+\subsection{Core semantico minimo}
+\begin{lstlisting}
+SpecializedRequirement [abstract]
+    parentFunctionalRequirement : FunctionalRequirement [1]
+    normativeObligation         : [1]
+\end{lstlisting}
+Ogni FR può possedere zero o più SR. Per gli SR applicabili:
+\[
+Effective(F)=F\land S_1\land\cdots\land S_n.
+\]
+Non esiste semantica implicita di override o ``last wins''.
+
+\subsection{Removal, correctness e autonomy tests}
+\begin{description}
+\item[Removal test.] Tolto lo SR, la funzione del parent FR deve restare semanticamente riconoscibile; deve scomparire la proprietà specializzata.
+\item[Functional-correctness test.] Una condizione necessaria alla normale correttezza della funzione resta nell'FR anche se può avere rilevanza di sicurezza o compliance.
+\item[Subordinate-action test.] Uno SR può richiedere una azione positiva aggiuntiva se trigger e risultato sono subordinati alla soddisfazione del parent FR.
+\item[Autonomy test.] Se il comportamento aggiuntivo possiede scopo, trigger, risultato o consumer significativi indipendentemente dal parent FR, deve essere valutato come FR autonomo.
+\item[Mechanism-removal test.] Se eliminando un nome di tecnologia/meccanismo resta una proprietà normativa chiara, la proprietà può essere SR e il meccanismo resta Decision/realization.
+\end{description}
+
+\subsection{Shared concern non significa multi-parent SR}
+Lo stesso concern può applicarsi a FR diversi, anche appartenenti a branch e momenti differenti del sistema. Ciò non rende il singolo SR multi-parent. Una futura fonte normativa condivisa o un meccanismo di reuse può evitare copy/paste, ma non deve essere anticipato nel core finché un controesempio non lo richiede.
+
+\begin{candidatebox}[CANDIDATE -- concern-bucket avoidance]
+Security, privacy, performance o compliance non richiedono MacroRequirement dedicati per diventare analizzabili. Quando un concern rafforza le condizioni di soddisfazione di comportamenti già governati, il junction naturale è SpecializedRequirement e la relativa specializzazione concreta. Una vera responsabilità macro autonoma rimane invece un legittimo MR anche se appartiene allo stesso dominio di concern.
+\end{candidatebox}
+
+\section{Cross-branch composition e effective context}
+Un FR può consumare una capability governata da un altro MR senza co-ownership. Il target canonico della relazione di consumption resta deferred alla Base Analysis. Inoltre parentage e service composition non esauriscono tutto il contesto governato che può influenzare un requisito: Decision sibling, policy o rappresentazioni governate possono richiedere review senza diventare parent. Il meccanismo formale di \emph{effective governed context} resta OPEN e non giustifica oggi una relazione generica \texttt{affects}.
+
+\section{End-to-end review checklist}
+\begin{enumerate}
+\item Frame the problem.
+\item Decompose into MR by stable macro responsibility.
+\item Build/review the Macro Project Map: overlap, dependencies, isolated nodes.
+\item For each isolated node distinguish autonomous MR, missing dependency, or concern bucket.
+\item Expose significant Decisions, especially responsibility boundaries.
+\item Write operational FRs with observable/failure semantics.
+\item Reuse governed references; do not let SPO replace normative prose.
+\item Review cross-branch service consumption without co-ownership.
+\item Add SRs locally where a concern strengthens an FR.
+\item Keep implementation controls, verification evidence and analysis provenance out of the SR core.
+\item On change, trigger transitive review; do not presume preservation or automatic invalidity.
+\end{enumerate}
+
+\section{Tool assistance}
+Il tool può:
+\begin{itemize}
+\item visualizzare la gerarchia e le relazioni \texttt{dependsOn};
+\item costruire la Macro Project Map e segnalare nodi a grado zero come \texttt{REVIEW REQUIRED};
+\item proporre le domande dell'Isolated-MR review, senza riclassificare automaticamente;
+\item suggerire riferimenti già esistenti e prevenire duplicazione accidentale;
+\item validare parentage, cardinalità e coerenza strutturale;
+\item mostrare SR locali e, in futuro, eventuale reuse di fonti normative.
+\end{itemize}
+Il tool non deve inferire da similarity, termini security/privacy o posizione nel grafo che un MR sia invalido, né creare semantica canonica senza review governata.
+
+\section{Status}
+\begin{longtable}{p{.22\textwidth}p{.68\textwidth}}
+\toprule
+Stato & Elementi \\\midrule\endhead
+CLOSED & hierarchy MR$\rightarrow$Decision$\rightarrow$FR$\rightarrow$SR; one Decision parent per FR; one FR parent per SR; normative strengthening; conjunctive SR composition; functional/autonomy boundaries; realization separation; minimal sufficient authoring. \\
+CANDIDATE & Isolated-MR review come heuristic graph-assisted; concern-bucket avoidance come regola di authoring derivata dalla regressione MR-0004. \\
+OPEN & shared normative source/reuse; effective governed context; explicit sibling-Decision impact; lifecycle/supersession details; target canonico service consumption. \\
+DEFERRED & SecurityRequirement-specific fields; Finding/provenance; Base Analysis/BAE; STRIDE/STRIDE-AI; controls; formal Policy/Rule/NormativeSource; ThreatForge conformance. \\
+\bottomrule
+\end{longtable}
+
+\section{Reopen rule}
+Il contratto può essere riaperto soltanto da un controesempio concreto che non sia rappresentabile senza rompere le invarianti correnti. Una segnalazione graph-assisted che produce falsi positivi non riapre automaticamente il metamodello MR: può richiedere solo la revisione dell'heuristic o della sua implementazione.
+
+\appendix
+\section{Traceability}
+Questa R3 deriva dal contratto R2 \artifact{03-functional-requirement/02-authoring-guidance/DDTA_AUTHORING_RULES_THROUGH_FR_R2.md}, dal capitolo \artifact{thesis/latex/chapters/04-documentation-authoring-metamodel.tex}, dal corpus facial-access storico e dalla formalizzazione S1 di SpecializedRequirement prodotta nella fase corrente. Baseline repository: \artifact{nballestriero/documentation-driven-threat-analysis}; commit: \artifact{3eeac1fc972d89282cd2ffd8700e9af0f5b69610}.
+
+\end{document}

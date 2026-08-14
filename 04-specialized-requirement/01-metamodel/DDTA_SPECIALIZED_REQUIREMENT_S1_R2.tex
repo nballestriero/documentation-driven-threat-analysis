@@ -1,0 +1,544 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.multipart,calc}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{fancyhdr}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage{framed}
+
+\definecolor{ddtadark}{RGB}{28,38,52}
+\definecolor{ddtagray}{RGB}{242,244,247}
+\definecolor{ddtablue}{RGB}{42,88,135}
+\definecolor{ddtagreen}{RGB}{48,111,78}
+\definecolor{ddtaorange}{RGB}{148,91,25}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=ddtablue,
+  urlcolor=ddtablue,
+  citecolor=ddtablue,
+  pdftitle={DDTA SpecializedRequirement - S1 Semantic Closure},
+  pdfauthor={Documentation-Driven Threat Analysis research workspace}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{DDTA -- SpecializedRequirement}
+\rhead{S1 semantic closure}
+\cfoot{\thepage}
+\setlength{\headheight}{14pt}
+
+\titleformat{\section}{\Large\bfseries\color{ddtadark}}{\thesection}{0.7em}{}
+\titleformat{\subsection}{\large\bfseries\color{ddtadark}}{\thesubsection}{0.7em}{}
+
+\setlist[itemize]{leftmargin=1.6em,itemsep=0.25em,topsep=0.35em}
+\setlist[enumerate]{leftmargin=1.8em,itemsep=0.25em,topsep=0.35em}
+
+\newcommand{\FR}{\mathsf{FR}}
+\newcommand{\SR}{\mathsf{SR}}
+\newcommand{\Sat}{\mathsf{Sat}}
+\newcommand{\parent}{\mathsf{parentFR}}
+\newcommand{\obl}{\mathsf{obligation}}
+\newcommand{\closed}{\textbf{CLOSED}}
+\newcommand{\openstatus}{\textbf{OPEN}}
+\newcommand{\deferred}{\textbf{DEFERRED}}
+
+\newenvironment{statusbox}[1]{%
+  \def\FrameCommand{\fcolorbox{ddtablue}{ddtagray}}%
+  \MakeFramed{\advance\hsize-2\width\FrameRestore}
+  \noindent\textbf{#1}\par\smallskip
+}{\endMakeFramed}
+
+\begin{document}
+
+\begin{titlepage}
+\centering
+\vspace*{2.2cm}
+{\Large Documentation-Driven Threat Analysis\par}
+\vspace{0.9cm}
+{\Huge\bfseries SpecializedRequirement\par}
+\vspace{0.35cm}
+{\LARGE S1 -- Formalizzazione semantica e chiusura del baseline\par}
+\vspace{1.0cm}
+{\large L'anello di congiunzione tra documentazione governata e specializzazioni concern-specific\par}
+\vfill
+\begin{minipage}{0.82\textwidth}
+\small
+\textbf{Stato.} Working formalization del baseline di ricerca DDTA. Le conclusioni marcate \closed{} sono chiuse per lo scope corrente della tesi e riapribili solo in presenza di un controesempio concreto che non possa essere rappresentato senza perdita o distorsione.
+
+\medskip
+\textbf{Baseline repository.} \texttt{nballestriero/documentation-driven-threat-analysis}, commit \texttt{3eeac1fc972d89282cd2ffd8700e9af0f5b69610}.
+\end{minipage}
+\vfill
+{\large 14 agosto 2026\par}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\section{Scopo e rilevanza}
+
+Questo documento formalizza il risultato del microstudio S1 su \emph{SpecializedRequirement}. Lo scopo non e' definire in anticipo un catalogo di requisiti non funzionali, ne' incorporare una metodologia di analisi nel document metamodel. Lo scopo e' fissare il contratto semantico minimo che consenta a un obbligo funzionale governato di essere rafforzato da obblighi concern-specific senza perdere ownership, leggibilita', incrementabilita' e indipendenza dalla realizzazione.
+
+Nel DDTA, \emph{SpecializedRequirement} costituisce quindi uno snodo delicato: a monte rimane la documentazione governata del progetto; a valle possono esistere specializzazioni concrete motivate da analisi differenti. Nella tesi verra' formalizzata e implementata soltanto la specializzazione \emph{SecurityRequirement}; il concetto generale non deve tuttavia essere definito come sinonimo di sicurezza.
+
+In prospettiva, analisi o review differenti possono motivare obblighi specializzati relativi, per esempio, a sicurezza, prestazioni o vincoli normativi/compliance. Tali esempi indicano l'estensibilita' desiderata del concetto, ma non introducono oggi nuove metaclassi obbligatorie ne' una tassonomia universale dei concern.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+  node distance=12mm and 15mm,
+  box/.style={draw=ddtadark, rounded corners, align=center, inner sep=7pt, minimum width=38mm},
+  future/.style={draw=ddtadark, rounded corners, dashed, align=center, inner sep=6pt, minimum width=35mm},
+  arr/.style={-{Latex[length=2.5mm]}, thick}
+]
+\node[box] (fr) {FunctionalRequirement};
+\node[box, below=of fr] (sr) {SpecializedRequirement\\\textit{abstract}};
+\node[box, below left=13mm and 15mm of sr] (sec) {SecurityRequirement\\\small thesis scope};
+\node[future, below=13mm of sr] (perf) {Performance\\specialization\\\small illustrative};
+\node[future, below right=13mm and 15mm of sr] (reg) {Regulatory /\\Compliance\\specialization\\\small illustrative};
+\draw[arr] (fr) -- node[right, font=\small]{0..*} (sr);
+\draw[arr] (sr) -- (sec);
+\draw[arr,dashed] (sr) -- (perf);
+\draw[arr,dashed] (sr) -- (reg);
+\end{tikzpicture}
+\caption{Ruolo generale di SpecializedRequirement. Le specializzazioni tratteggiate sono esempi di estensibilita', non parti chiuse del metamodel corrente.}
+\end{figure}
+
+\section{Baseline documentale ereditato}
+
+S1 non ridefinisce i livelli gia' chiusi. Assume il seguente authoring model:
+
+\begin{center}
+\begin{tikzpicture}[node distance=8mm, box/.style={draw,rounded corners,align=center,inner sep=6pt,minimum width=45mm}, arr/.style={-{Latex[length=2.5mm]},thick}]
+\node[box] (p) {Project problem framing\\\small method precondition};
+\node[box, below=of p] (mr) {MacroRequirement};
+\node[box, below=of mr] (d) {Decision};
+\node[box, below=of d] (fr) {FunctionalRequirement};
+\node[box, below=of fr] (sr) {SpecializedRequirement};
+\draw[arr] (p)--(mr);
+\draw[arr] (mr)--(d);
+\draw[arr] (d)--(fr);
+\draw[arr] (fr)--(sr);
+\end{tikzpicture}
+\end{center}
+
+Le proprieta' rilevanti ereditate sono:
+\begin{itemize}
+  \item ogni Decision ha esattamente un MacroRequirement parent;
+  \item ogni FunctionalRequirement ha esattamente una Decision parent;
+  \item il MacroRequirement owner del FunctionalRequirement e' derivato attraverso la Decision;
+  \item un FunctionalRequirement descrive un obbligo operativo coerente e indipendentemente assessable;
+  \item normative prose e' primaria; le relazioni strutturate la supportano ma non la sostituiscono;
+  \item Decision, realization e verification non devono essere assorbite nella semantica del FunctionalRequirement;
+  \item un consumer puo' usare capability governate altrove senza acquisirne co-ownership;
+  \item un FunctionalRequirement puo' possedere zero o piu' SpecializedRequirement.
+\end{itemize}
+
+\section{Domanda fondamentale S1}
+
+La domanda usata per delimitare il concetto e':
+
+\begin{statusbox}{Fundamental question}
+Dato un FunctionalRequirement gia' governato, quale ulteriore obbligo normativo, relativo a un concern specializzato, deve valere insieme all'obbligo funzionale affinche' quel FunctionalRequirement sia considerato soddisfatto nelle condizioni pertinenti, senza ridefinirne la funzione ne' scegliere come realizzarla?
+\end{statusbox}
+
+Questa formulazione evita due riduzioni errate:
+\begin{enumerate}
+  \item ridurre SpecializedRequirement a una semplice etichetta di categoria;
+  \item ridurre SpecializedRequirement a un meccanismo di implementazione o controllo.
+\end{enumerate}
+
+\section{Definizione semantica chiusa}
+
+\begin{statusbox}{\closed{} -- Definition}
+Uno \emph{SpecializedRequirement} e' una specializzazione normativa governata di un singolo \emph{FunctionalRequirement} che rafforza le condizioni sotto le quali il parent FunctionalRequirement e' considerato soddisfatto, imponendo un'obbligazione concern-specific che vale insieme all'obbligazione funzionale e non al suo posto.
+\end{statusbox}
+
+La nozione centrale e' quindi \textbf{normative strengthening}. Il termine e' preferito a una lettura troppo stretta di \emph{constraint}: uno SpecializedRequirement puo' restringere comportamenti ammessi, imporre una proprieta', oppure richiedere un'azione positiva subordinata, senza per questo diventare automaticamente un FunctionalRequirement autonomo.
+
+\subsection{Forma matematica minima}
+
+Sia $F \in \FR$ un FunctionalRequirement. Sia inoltre $S \in \SR$ uno SpecializedRequirement tale che $\parent(S)=F$.
+
+Indichiamo con $\Sat(F)$ l'insieme dei comportamenti che soddisfano $F$. L'obbligo effettivo e':
+\[
+  F \land S.
+\]
+
+Di conseguenza:
+\[
+  \Sat(F \land S) \subseteq \Sat(F).
+\]
+
+La relazione e' di non-espansione: aggiungere uno SpecializedRequirement non puo' rendere conformi comportamenti che non soddisfano il FunctionalRequirement. Per uno SpecializedRequirement non ridondante deve esistere almeno un contesto ammissibile nel quale il rafforzamento esclude comportamenti che il solo $F$ avrebbe ammesso.
+
+Con piu' SpecializedRequirement applicabili allo stesso FunctionalRequirement:
+\[
+  \mathsf{Effective}(F)=F \land S_1 \land S_2 \land \cdots \land S_n.
+\]
+
+Non esiste un implicit override e non esiste semantica \emph{last wins}: gli obblighi applicabili compongono congiuntivamente, salvo che una futura semantica esplicita governi diversamente un conflitto.
+
+\section{Cardinalita' e ownership}
+
+\begin{statusbox}{\closed{} -- Cardinality}
+Ogni SpecializedRequirement ha esattamente un FunctionalRequirement come oggetto normativo diretto. Ogni FunctionalRequirement puo' possedere zero o piu' SpecializedRequirement.
+\end{statusbox}
+
+Formalmente:
+\[
+  \parent : \SR \rightarrow \FR
+\]
+e $\parent$ e' una funzione totale.
+
+La cardinalita' non e' una scelta puramente editoriale. E' supportata da tre osservazioni emerse nei probe:
+\begin{enumerate}
+  \item la soddisfazione di una proprieta' specializzata puo' essere valutata localmente rispetto a un FunctionalRequirement;
+  \item due applicazioni dello stesso concern possono evolvere, essere soddisfatte o diventare non applicabili indipendentemente;
+  \item una vera obbligazione indivisibile che coordina piu' FunctionalRequirement non e' automaticamente una ragione per rendere multi-parent SpecializedRequirement: puo' indicare un diverso concetto cross-functional, da modellare separatamente se e quando necessario.
+\end{enumerate}
+
+\subsection{Shared concern non implica shared SpecializedRequirement}
+
+Il test ha usato due comportamenti biometrici plausibili appartenenti a rami diversi: enrollment e recognition. Non e' stata assunta identita' di dispositivi, software, dati, canali o boundary tra le due situazioni.
+
+Una stessa esigenza di confidenzialita' puo' quindi applicarsi localmente a entrambi:
+
+\begin{center}
+\begin{tikzpicture}[
+node distance=11mm and 22mm,
+box/.style={draw,rounded corners,align=center,inner sep=6pt,minimum width=36mm},
+source/.style={draw,dashed,rounded corners,align=center,inner sep=6pt,minimum width=40mm},
+arr/.style={-{Latex[length=2.5mm]},thick}
+]
+\node[source] (c) {common concern /\\normative source\\\small concept not formalized};
+\node[box, below left=of c] (se) {SR-E-C};
+\node[box, below right=of c] (sr) {SR-R-C};
+\node[box, below=of se] (fe) {FR enrollment};
+\node[box, below=of sr] (fr) {FR recognition};
+\draw[arr,dashed] (c)--(se);
+\draw[arr,dashed] (c)--(sr);
+\draw[arr] (se)--(fe);
+\draw[arr] (sr)--(fr);
+\end{tikzpicture}
+\end{center}
+
+Il possibile meccanismo di riuso della fonte normativa rimane aperto. S1 chiude soltanto la localita' dell'applicazione normativa: condividere il concern non crea co-ownership del singolo SpecializedRequirement.
+
+\section{Boundary con FunctionalRequirement}
+
+\subsection{Removal test}
+
+\begin{statusbox}{\closed{} -- Removal behavior}
+Rimuovere uno SpecializedRequirement deve lasciare semanticamente riconoscibile e funzionalmente coerente il parent FunctionalRequirement, pur perdendo la proprieta' specializzata. Se la rimozione elimina una condizione necessaria a descrivere la correttezza ordinaria della funzione, quella condizione appartiene probabilmente al FunctionalRequirement.
+\end{statusbox}
+
+Esempio positivo: rimuovere un obbligo di confidenzialita' dal trasferimento di una capture lascia ancora definibile la funzione di consegna, ma elimina la proprieta' di confidenzialita'.
+
+Esempio negativo: associare la capture alla corretta richiesta e' gia' parte della correttezza funzionale della consegna. Non deve essere spostato in SpecializedRequirement solo perche' un attaccante potrebbe sfruttare una correlazione errata.
+
+\subsection{Security relevance non riclassifica automaticamente la funzione}
+
+\begin{statusbox}{\closed{} -- Functional boundary}
+Una condizione necessaria alla normale correttezza funzionale rimane nel FunctionalRequirement anche quando possiede rilevanza di sicurezza, affidabilita' o altro concern specializzato.
+\end{statusbox}
+
+Questo evita che l'arrivo di una metodologia di analisi svuoti retroattivamente i FunctionalRequirement e trasformi in SpecializedRequirement comportamenti che erano gia' necessari alla funzione.
+
+\section{Azioni positive e autonomia operativa}
+
+Uno dei probe piu' delicati ha testato un obbligo del tipo: una \texttt{RecognitionCapture} non deve essere accettata come valida se non e' stabilito che la sua origine e' autorizzata a fornire evidenza per la richiesta.
+
+Questo obbligo puo' richiedere lavoro positivo nella realizzazione: verifica di credenziali, validazione di una firma, uso di una sessione autenticata, affidamento a una guarantee esterna o altra strategia. La presenza di un verbo operativo non e' pero' il criterio discriminante.
+
+\begin{statusbox}{\closed{} -- Subordinate-action rule}
+Uno SpecializedRequirement puo' richiedere un'azione positiva quando trigger e risultato dell'azione rimangono semanticamente subordinati alla soddisfazione del parent FunctionalRequirement e non costituiscono una capability operativa autonomamente significativa.
+\end{statusbox}
+
+\begin{statusbox}{\closed{} -- Autonomous-capability rule}
+Quando il comportamento aggiuntivo introduce una responsabilita' operativa con scopo, trigger, risultato o consumer significativi indipendentemente dal parent FunctionalRequirement, tale comportamento deve essere valutato come FunctionalRequirement separato anziche' essere assorbito nello SpecializedRequirement.
+\end{statusbox}
+
+Esempio di boundary:
+\begin{itemize}
+  \item \emph{local acceptance condition}: accettare la capture solo se l'origine e' stabilita come autorizzata -- SpecializedRequirement plausibile;
+  \item \emph{general endpoint identity service}: registrare identita' dei dispositivi, mantenerne stato, autenticare peer e servire piu' consumer -- FunctionalRequirement plausibile.
+\end{itemize}
+
+\section{Separation dalla realizzazione}
+
+\begin{statusbox}{\closed{} -- Realization separation}
+Uno SpecializedRequirement stabilisce quale proprieta' o obbligazione aggiuntiva deve valere per la soddisfazione del parent FunctionalRequirement; non stabilisce necessariamente il componente, il layer o il meccanismo che deve realizzarla.
+\end{statusbox}
+
+Il probe sul trasporto ha mostrato un caso importante. Il progetto puo' consumare una rete che non controlla e non possedere alcun FunctionalRequirement del tipo ``provide network connectivity''. Cio' non impedisce di imporre confidenzialita' o integrita' al FunctionalRequirement che consegna dati biometrici.
+
+La proprieta' puo' essere soddisfatta, per esempio, a livello software/end-to-end anche se l'esposizione nasce nel trasporto:
+
+\begin{center}
+\begin{tikzpicture}[node distance=9mm, box/.style={draw,rounded corners,align=center,inner sep=6pt,minimum width=42mm}, ext/.style={draw,dashed,rounded corners,align=center,inner sep=6pt,minimum width=42mm}, arr/.style={-{Latex[length=2.5mm]},thick}]
+\node[box] (cam) {Camera software\\\small protection at endpoint};
+\node[ext, below=of cam] (net) {consumed LAN / Wi-Fi\\\small not security authority};
+\node[box, below=of net] (rec) {Recognition software\\\small verify / unprotect};
+\draw[arr] (cam)--(net);
+\draw[arr] (net)--(rec);
+\end{tikzpicture}
+\end{center}
+
+Da cio' segue una distinzione generale:
+\[
+  \text{required property} \neq \text{provided infrastructure property} \neq \text{realization mechanism}.
+\]
+
+\section{Mutation tests sul modello completo}
+
+S1 e' stato stressato non solo localmente, ma mantenendo il contesto MR $\rightarrow$ Decision $\rightarrow$ FR.
+
+\small
+\begin{longtable}{p{0.24\textwidth}p{0.27\textwidth}p{0.37\textwidth}}
+\toprule
+\textbf{Mutation} & \textbf{Esito su FR/SR} & \textbf{Interpretazione} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Mutation} & \textbf{Esito su FR/SR} & \textbf{Interpretazione} \\
+\midrule
+\endhead
+Ethernet $\rightarrow$ Wi-Fi & FR di consegna invariato dopo review; SR di confidenzialita'/integrita'/provenienza invariati dopo review & Cambia il mezzo e potenzialmente la realizzazione, non necessariamente l'obbligo funzionale o specializzato. \\
+\addlinespace
+Trasporto esterno $\rightarrow$ trasporto project-owned & FR di consegna e SR possono restare invariati; puo' emergere un nuovo FR di transport capability & La ownership della realizzazione puo' cambiare senza cambiare chi richiede la proprieta'. \\
+\addlinespace
+Recognition remoto $\rightarrow$ recognition locale alla camera & Il FR di trasferimento remoto scompare; gli SR figli diventano non applicabili nella forma precedente & Conferma la dipendenza semantica dello SR dal parent FR. \\
+\addlinespace
+Enrollment biometric material $\rightarrow$ opaque reference & Lo SR locale di confidenzialita' sul materiale biometrico viene riesaminato e puo' cessare di applicarsi; lo SR sul recognition branch resta indipendente & Supporta parent singolo e localita' del lifecycle dello SR senza assumere un lifecycle model globale. \\
+\bottomrule
+\end{longtable}
+\normalsize
+
+La regola di change impact risultante rimane concettualmente: una modifica governante invalida la presunzione di validita' dei dipendenti e richiede review; il risultato della review puo' essere retain, revise, replace o non-applicable. La formalizzazione generale del meccanismo di impact awareness non appartiene al core S1.
+
+\section{Minimal semantic core}
+
+Il contratto minimo chiuso e' deliberatamente piccolo:
+
+\begin{verbatim}
+SpecializedRequirement [abstract]
+    extends GovernedDocument
+
+    parentFunctionalRequirement : FunctionalRequirement [1]
+    normativeObligation         : [1]
+\end{verbatim}
+
+\begin{statusbox}{\closed{} -- Minimal core}
+S1 non introduce altri campi obbligatori. Identita', lifecycle, history, provenance comune e altre proprieta' trasversali appartengono al contratto comune di governance e non vengono ridisegnate qui.
+\end{statusbox}
+
+In particolare, il corpus non ha prodotto evidenza sufficiente per rendere obbligatori nel core:
+\begin{itemize}
+  \item \texttt{applicability};
+  \item \texttt{concern} o \texttt{kind};
+  \item fonte normativa / policy / template;
+  \item coverage set;
+  \item threat, finding o risk reference;
+  \item control o realization;
+  \item verification evidence;
+  \item lifecycle phase.
+\end{itemize}
+
+L'assenza dal core non nega l'utilita' futura di tali concetti; evita di trasformare un problema locale di authoring in un prerequisito strutturale per ogni SpecializedRequirement.
+
+\section{Principio di minimal sufficient authoring}
+
+\begin{statusbox}{\closed{} -- Usability principle}
+Il core DDTA deve richiedere solo la documentazione necessaria a rendere governabili e analizzabili le responsabilita' gia' conosciute. Completezza architetturale, funzionale o di lifecycle non e' una precondizione all'analisi; lacune rilevanti possono essere scoperte dall'analisi e rientrare nel ciclo di documentazione.
+\end{statusbox}
+
+La forma desiderata per l'autore rimane quindi semplice:
+
+\begin{verbatim}
+FR:
+  do X
+
+SR:
+  while satisfying X, specialized obligation P must also hold
+\end{verbatim}
+
+DDTA non richiede a un progetto con pochi SpecializedRequirement di costruire preventivamente una policy engine, un lifecycle model completo o un catalogo universale dei concern. Eventuali problemi di riuso o coverage devono essere risolti quando diventano concretamente necessari.
+
+\section{SpecializedRequirement come junction metodologicamente neutro}
+
+Il valore architetturale del concetto e' che mantiene separati tre piani:
+
+\begin{enumerate}
+  \item \textbf{governed functional semantics}: cosa il progetto deve fare;
+  \item \textbf{analysis/review}: quali concern, failure mode, esposizioni o gap emergono durante una tecnica di analisi;
+  \item \textbf{governed specialized obligation}: quale obbligo aggiuntivo viene accettato e deve valere insieme al FunctionalRequirement.
+\end{enumerate}
+
+S1 formalizza il terzo piano senza incorporare nel suo core la struttura interna di una metodologia di analisi. In questo modo il document metamodel non dipende da STRIDE, STRIDE-AI, da una specifica tecnica prestazionale o da un framework normativo.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+node distance=11mm and 16mm,
+box/.style={draw,rounded corners,align=center,inner sep=7pt,minimum width=48mm},
+method/.style={draw,dashed,rounded corners,align=center,inner sep=7pt,minimum width=48mm},
+arr/.style={-{Latex[length=2.5mm]},thick}
+]
+\node[box] (fr) {Governed FunctionalRequirement};
+\node[method, right=of fr] (analysis) {Analysis / review technique\\\small method-specific internals};
+\node[box, below=13mm of $(fr)!0.5!(analysis)$] (sr) {Governed SpecializedRequirement\\\small method-neutral junction};
+\node[box, below=of sr] (spec) {Concrete specialization\\\small SecurityRequirement in thesis scope};
+\draw[arr] (fr)--(sr);
+\draw[arr,dashed] (analysis)--node[right,font=\small]{may motivate/propose}(sr);
+\draw[arr] (sr)--(spec);
+\end{tikzpicture}
+\caption{Junction concettuale. La relazione formale tra output analitici e SR e' deliberatamente deferred; il diagramma mostra il ruolo, non una cardinalita' canonica Finding$\rightarrow$SR.}
+\end{figure}
+
+Il passaggio da un risultato analitico a un SpecializedRequirement governato richiedera' review e provenance nel ciclo DDTA, ma la relazione formale tra Finding/AnalysisRecord e requirement e' fuori da S1. Questa scelta preserva il carattere metodologicamente neutro del concetto generale.
+
+\begin{statusbox}{CANDIDATE forte -- Provenance separation}
+La provenance analitica spiega perche' uno SpecializedRequirement e' stato introdotto; la sua \texttt{normativeObligation} stabilisce invece che cosa deve valere. La prima non sostituisce la seconda e il modello formale di provenance rimane deferred.
+\end{statusbox}
+
+\section{Feedback retroattivo sulla decomposizione MR: il caso MR-0004}
+
+La chiusura S1 ha prodotto un controesempio utile non alla semantica dello SR, ma all'authoring dei MacroRequirement. Nel corpus facial-access sorgente esisteva \texttt{MR-0004 -- Uso responsabile dei dati biometrici e delle decisioni automatiche}. Il nodo era privo di relazioni canoniche con gli altri MR e ospitava due commitment: limitazione di finalita' dei dati biometrici e contestabilita'/review degli esiti automatici.
+
+La regressione successiva mostra che il nodo non e' necessario come macro-responsabilita' autonoma:
+
+\begin{itemize}
+  \item la \emph{purpose limitation} rafforza i FunctionalRequirement che trattano dati biometrici e puo' essere rappresentata come SpecializedRequirement locale sui singoli FR applicabili;
+  \item la \emph{contestabilita'/review} contiene invece una responsabilita' operativa autonoma e puo' essere ricollocata nel ramo che possiede l'esito di accesso, mediante una Decision e un FR di review;
+  \item la possibile fonte normativa condivisa della purpose limitation rimane un problema di riuso/coverage separato dalla cardinalita' del singolo SR.
+\end{itemize}
+
+\begin{statusbox}{CANDIDATE -- concern-bucket avoidance}
+Un concern trasversale non deve essere promosso a MacroRequirement soltanto per fornire una ``casa'' a security, privacy, performance, compliance o ad una metodologia di analisi. Se il progetto conserva tutte le proprie macro-capability rimuovendo quel nodo e perde soprattutto proprieta' che qualificano FR di altri rami, il concern e' candidato a specializzazione downstream anziche' a MR autonomo.
+\end{statusbox}
+
+Questa osservazione rafforza il ruolo di SpecializedRequirement come junction metodologicamente neutro. Una tecnica di analisi puo' attraversare piu' MR e piu' FR, identificare concern e produrre proposte di requisiti specializzati senza richiedere un MR dedicato alla propria tassonomia.
+
+\subsection*{Isolated-MR review come heuristic di authoring}
+
+La Macro Project Map puo' supportare una verifica precoce. Dato il grafo dei MR e delle relazioni canoniche \texttt{dependsOn}, un MR con grado zero viene segnalato per review semantica, non dichiarato invalido.
+
+La domanda proposta e':
+
+\begin{quote}
+\textbf{Se questo MacroRequirement restasse isolato nella Macro Project Map, rappresenterebbe comunque una responsabilita' macro autonomamente significativa, oppure sta soprattutto raccogliendo proprieta' o constraint che specializzano comportamenti posseduti da altri rami?}
+\end{quote}
+
+La review puo' concludere che l'MR e' autonomo e valido, che manca una relazione macro, oppure che il nodo e' un concern-bucket da redistribuire. L'heuristic appartiene all'authoring/tool support e non aggiunge l'invariante ``ogni MR deve avere almeno un edge''.
+
+\section{Invarianti S1 chiuse}
+
+\begin{enumerate}[label=\textbf{S1-CLOSED-\arabic*.}]
+  \item \textbf{Single parent dependence.} Ogni SR specializza esattamente un FR.
+  \item \textbf{Normative strengthening.} Lo SR restringe/rafforza le condizioni di soddisfazione del parent FR e non lo sostituisce.
+  \item \textbf{Functional preservation.} Rimuovere lo SR lascia riconoscibile la funzione del parent FR.
+  \item \textbf{No functional duplication.} Lo SR non deve duplicare condizioni gia' necessarie alla correttezza ordinaria dell'FR.
+  \item \textbf{Concern relevance.} L'obbligo aggiuntivo deve essere concern-specific; la mera rilevanza tematica non giustifica una riclassificazione.
+  \item \textbf{Conjunctive composition.} Piu' SR applicabili allo stesso FR valgono congiuntivamente; nessun implicit override.
+  \item \textbf{Independent governance.} SR differenti possono evolvere e venire riesaminati indipendentemente, pur condividendo eventualmente un concern o una futura fonte normativa.
+  \item \textbf{Decision separation.} Una scelta su come soddisfare lo SR rimane Decision/realization e non diventa figlia dello SR.
+  \item \textbf{Realization separation.} Lo SR non prescrive necessariamente layer, provider, tecnologia o meccanismo di soddisfazione.
+  \item \textbf{Subordinate positive action.} Uno SR puo' imporre comportamento positivo purche' subordinato semanticamente al parent FR.
+  \item \textbf{Autonomy boundary.} Una capability operativa autonomamente significativa deve essere valutata come FR separato.
+  \item \textbf{Minimal authoring.} Riuso, coverage, lifecycle globale e provenance analitica non sono prerequisiti per scrivere un SR valido.
+\end{enumerate}
+
+\section{Negative controls da conservare}
+
+\begin{description}[leftmargin=0pt,labelindent=0pt]
+  \item[NC-SR-01 -- Functional correctness.] Una condizione necessaria alla normale correttezza funzionale non diventa SpecializedRequirement solo perche' puo' avere rilevanza di sicurezza, affidabilita' o altro concern.
+
+  \item[NC-SR-02 -- Autonomous capability.] Un comportamento aggiuntivo non rimane SpecializedRequirement quando acquisisce scopo operativo, trigger, outcome o consumer significativi indipendentemente dal parent FR.
+
+  \item[NC-SR-03 -- Mechanism leakage.] Cifratura, TLS, firma, VLAN, autenticazione di sessione o altri meccanismi non appartengono automaticamente al core SR; possono essere Decision, realization o capability separate.
+
+  \item[NC-SR-04 -- Shared concern.] Il fatto che lo stesso concern valga su piu' FR non rende automaticamente multi-parent il singolo SpecializedRequirement.
+
+  \item[NC-SR-05 -- Concern-bucket MR.] Un concern specializzato non richiede un MacroRequirement dedicato soltanto per essere visibile o analizzabile. La classificazione MR deve dipendere da una responsabilita' macro autonoma, non dal nome della metodologia o della proprieta' trasversale.
+\end{description}
+
+\section{Questioni deliberatamente aperte}
+
+\subsection*{\openstatus}
+\begin{itemize}
+  \item rappresentazione generale della shared normative source e del riuso senza inheritance-by-copy;
+  \item effective governed context e impact awareness tra commitment governati;
+  \item forma canonica della relazione di service/capability consumption;
+  \item mechanics di lifecycle e change impact comuni ai GovernedDocument;
+  \item rappresentazione L2 Markdown/YAML del contratto S1.
+\end{itemize}
+
+\subsection*{\deferred}
+\begin{itemize}
+  \item semantica specifica e campi di SecurityRequirement;
+  \item relazione formale AnalysisRecord/Finding $\rightarrow$ SecurityRequirement;
+  \item Base Analysis / BAE;
+  \item STRIDE, STRIDE-AI e overlay/plugin contract;
+  \item threat/risk fields, controls e verification evidence;
+  \item formalizzazione di eventuali specializzazioni Performance, Regulatory/Governance o altre;
+  \item verdetto finale di methodology neutrality.
+\end{itemize}
+
+\section{Reopen rule}
+
+Le conclusioni S1 sono chiuse per il baseline corrente, non dichiarate universali. Devono essere riaperte se un caso concreto dimostra almeno una delle seguenti condizioni:
+
+\begin{enumerate}
+  \item un obbligo concern-specific valido non puo' essere rappresentato come rafforzamento di un singolo FR senza perdita semantica;
+  \item la cardinalita' \texttt{SR -> exactly 1 FR} produce un fallimento ricorrente non riducibile a riuso/coverage o a un concetto cross-functional distinto;
+  \item una specializzazione concreta necessita di informazione obbligatoria che non puo' essere collocata altrove senza rendere inutilizzabile o ambiguo il contratto SR;
+  \item Base Analysis o il loop end-to-end di analisi dimostrano che il junction SR non e' recuperabile o governabile senza modificare la semantica chiusa.
+\end{enumerate}
+
+Ogni riapertura deve modificare il minimo owning layer e regressare i casi gia' usati: recognition transport, transport responsibility, local-vs-remote recognition, enrollment-vs-recognition shared concern, subordinate-action boundary e la regressione del concern-bucket MR-0004.
+
+\section{Conclusione}
+
+S1 chiude \emph{SpecializedRequirement} come concetto generale, minimale e metodologicamente neutro. Il suo ruolo non e' descrivere una metodologia, ne' rappresentare una soluzione tecnica. Il suo ruolo e' consentire che un FunctionalRequirement governato venga rafforzato da obblighi concern-specific mantenendo ownership locale, composizione esplicita e separazione dalla realizzazione.
+
+Questa posizione rende SpecializedRequirement il punto di giunzione naturale tra il ciclo documentale DDTA e le future specializzazioni prodotte o motivate da analisi differenti. La regressione di MR-0004 mostra inoltre il valore architetturale del junction: security, privacy, performance o compliance non necessitano di MacroRequirement artificiali per attraversare il progetto. La tesi proseguira' con SecurityRequirement come prima specializzazione concreta, ma la validita' del junction non dipende dalla sicurezza come unico concern possibile.
+
+\appendix
+\section{Traceability al baseline di ricerca}
+
+La formalizzazione e' coerente con i checkpoint interni gia' chiusi fino a FunctionalRequirement e con il corpus facial-access usato come probe. I riferimenti principali nel repository baseline sono:
+
+{\small
+\begin{itemize}
+  \item \nolinkurl{_working/ddta-metamodel-working-package/01-mr/01-metamodel/DDTA_MR_METAMODEL_WORKING.md}
+  \item \nolinkurl{02-decision/01-metamodel/DDTA_DECISION_METAMODEL_WORKING.md}
+  \item \nolinkurl{03-functional-requirement/01-metamodel/DDTA_FUNCTIONAL_REQUIREMENT_METAMODEL_WORKING.md}
+  \item \nolinkurl{03-functional-requirement/02-authoring-guidance/DDTA_AUTHORING_RULES_THROUGH_FR_R2.md}
+  \item \nolinkurl{03-functional-requirement/04-closure/DDTA_DOCUMENT_METAMODEL_THROUGH_FR_CLOSURE_R2.md}
+  \item \nolinkurl{_working/ddta-metamodel-working-package/01-mr/03-example-facial-access/FACIAL_ACCESS_EXAMPLE_MR.md}
+  \item \nolinkurl{02-decision/05-example-facial-access/FACIAL_ACCESS_DECISION_DEMO.md}
+  \item companion regression corpus: \nolinkurl{DDTA_FACIAL_ACCESS_CAMERA_S1_STUDY_CORPUS_R2.tex/.pdf}
+\end{itemize}
+}
+
+Questi documenti restano semanticamente anteriori a S1. Il presente testo non modifica automaticamente il repository e non formalizza ancora SecurityRequirement.
+
+\end{document}

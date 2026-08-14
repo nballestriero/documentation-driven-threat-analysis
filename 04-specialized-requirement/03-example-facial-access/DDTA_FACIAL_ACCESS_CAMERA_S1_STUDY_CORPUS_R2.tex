@@ -1,0 +1,767 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[a4paper,margin=2.35cm]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,fit,backgrounds}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{fancyhdr}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage{framed}
+\usepackage{ragged2e}
+
+\definecolor{ddtadark}{RGB}{28,38,52}
+\definecolor{ddtagray}{RGB}{242,244,247}
+\definecolor{ddtablue}{RGB}{42,88,135}
+\definecolor{ddtagreen}{RGB}{48,111,78}
+\definecolor{ddtaorange}{RGB}{148,91,25}
+\definecolor{ddtared}{RGB}{140,48,48}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=ddtablue,
+  urlcolor=ddtablue,
+  citecolor=ddtablue,
+  pdftitle={DDTA Facial-access Camera S1 Study Corpus},
+  pdfauthor={Documentation-Driven Threat Analysis research workspace}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{DDTA -- Facial-access camera corpus}
+\rhead{S1 study material}
+\cfoot{\thepage}
+\setlength{\headheight}{14pt}
+
+\titleformat{\section}{\Large\bfseries\color{ddtadark}}{\thesection}{0.7em}{}
+\titleformat{\subsection}{\large\bfseries\color{ddtadark}}{\thesubsection}{0.7em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{ddtadark}}{\thesubsubsection}{0.7em}{}
+
+\setlist[itemize]{leftmargin=1.55em,itemsep=0.25em,topsep=0.35em}
+\setlist[enumerate]{leftmargin=1.75em,itemsep=0.25em,topsep=0.35em}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{0pt}
+\setlength{\emergencystretch}{2em}
+
+\newcommand{\FR}{\mathsf{FR}}
+\newcommand{\SR}{\mathsf{SR}}
+\newcommand{\MR}{\mathsf{MR}}
+\newcommand{\closed}{\textbf{CLOSED}}
+\newcommand{\candidate}{\textbf{CANDIDATE}}
+\newcommand{\openstatus}{\textbf{OPEN}}
+\newcommand{\deferred}{\textbf{DEFERRED}}
+\newcommand{\sourcebaseline}{\textbf{BASELINE SOURCE}}
+\newcommand{\experimental}{\textbf{S1 EXPERIMENTAL}}
+
+\newenvironment{statusbox}[1]{%
+  \def\FrameCommand{\fcolorbox{ddtablue}{ddtagray}}%
+  \MakeFramed{\advance\hsize-2\width\FrameRestore}
+  \noindent\textbf{#1}\par\smallskip
+}{\endMakeFramed}
+
+\newenvironment{warningbox}[1]{%
+  \def\FrameCommand{\fcolorbox{ddtaorange}{ddtagray}}%
+  \MakeFramed{\advance\hsize-2\width\FrameRestore}
+  \noindent\textbf{#1}\par\smallskip
+}{\endMakeFramed}
+
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
+
+\begin{document}
+
+\begin{titlepage}
+\centering
+\vspace*{1.8cm}
+{\Large Documentation-Driven Threat Analysis\par}
+\vspace{0.8cm}
+{\Huge\bfseries Facial-access Camera Corpus\par}
+\vspace{0.30cm}
+{\LARGE SpecializedRequirement S1 -- esempio integrato e mutazioni controllate\par}
+\vspace{0.9cm}
+{\large Materiale di studio da conservare insieme alla formalizzazione S1\par}
+\vfill
+\begin{minipage}{0.84\textwidth}
+\small
+\textbf{Scopo.} Conservare il corpus concreto usato per stressare il passaggio \emph{MacroRequirement $\rightarrow$ Decision $\rightarrow$ FunctionalRequirement $\rightarrow$ SpecializedRequirement}, mostrando come requisiti specializzati possano restare stabili mentre cambiano architettura, ownership del trasporto e collocazione del riconoscimento.
+
+\medskip
+\textbf{Natura del documento.} Questo non e' una specifica finale del sistema facial-access e non pretende completezza architetturale o di lifecycle. E' un corpus sperimentale plausibile, deliberatamente minimo, costruito per falsificare e spiegare il metamodel DDTA.
+
+\medskip
+\textbf{Baseline repository.} \texttt{nballestriero/documentation-driven-threat-analysis}, commit \texttt{3eeac1fc972d89282cd2ffd8700e9af0f5b69610}.
+\end{minipage}
+\vfill
+{\large 14 agosto 2026\par}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\section{Scopo del corpus e disciplina sperimentale}
+
+Questo documento accompagna la formalizzazione semantica S1 di \emph{SpecializedRequirement}. Il suo ruolo e' diverso: la formalizzazione definisce il contratto generale; questo corpus conserva l'esempio concreto attraverso cui tale contratto e' stato sottoposto a pressione.
+
+L'esempio deve rimanere abbastanza realistico da esporre responsibility boundary, dipendenze e variazioni architetturali, ma non deve trasformarsi in una documentazione perfetta del sistema. DDTA deve poter essere applicato nella pratica a documentazione incompleta ma governata, lasciando alla successiva analisi il compito di evidenziare gap e nuovi obblighi.
+
+\begin{statusbox}{Principio di minimal sufficient authoring}
+Il corpus documenta soltanto responsabilita', commitment e comportamenti necessari al test. Completezza funzionale, architetturale o di lifecycle non e' una precondizione alla successiva analisi. Se un dettaglio mancante diventa rilevante, puo' emergere come documentation gap e rientrare nel ciclo governato.
+\end{statusbox}
+
+\subsection{Separazione tra evidenza ereditata e costruzione S1}
+
+Per evitare retrodatazioni metodologiche, il documento distingue sempre:
+
+\begin{itemize}
+  \item \sourcebaseline{}: elementi gia' presenti nel corpus facial-access o nel contratto MR/Decision/FR al commit di baseline;
+  \item \experimental{}: elementi introdotti durante S1 per costruire il probe camera/recognition e le sue mutazioni;
+  \item \openstatus{}: osservazioni che il corpus espone ma che non vengono ancora promosse a nuova semantica del metamodel.
+\end{itemize}
+
+I vecchi probe facial-access con FunctionalRequirement direttamente sotto MacroRequirement non vengono riutilizzati come closure evidence. Gli FR qui presenti sono ri-autorizzati secondo il contratto corrente \texttt{MR -> Decision -> FR}.
+
+\section{Contesto di progetto ereditato}
+
+\subsection{Problem framing}
+
+Il progetto controlla l'accesso a un'area riservata. Una persona si presenta al varco, il progetto usa riconoscimento facciale come parte della verifica della persona e l'accesso automatico dipende dalle condizioni governate di autorizzazione e verifica.
+
+Il framing non assume collocazione dell'inference, tecnologia di rete, protocollo, algoritmo crittografico o specifico modello ML.
+
+\subsection{MacroRequirement del corpus facial-access: sorgente storica e regressione S1}
+
+La sorgente storica del corpus facial-access contiene quattro MacroRequirement. Questa forma viene conservata come evidenza, ma non e' piu' assunta come decomposizione finale dopo il probe S1.
+
+\begin{longtable}{p{0.16\textwidth}p{0.76\textwidth}}
+\toprule
+\textbf{MR} & \textbf{Responsabilita'/concern nel corpus sorgente} \\
+\midrule
+\endhead
+\texttt{MR-0001} & Accesso controllato all'area riservata. \\
+\texttt{MR-0002} & Gestione delle persone autorizzate. \\
+\texttt{MR-0003} & Riconoscimento facciale per la verifica della persona. \\
+\texttt{MR-0004} & Uso responsabile dei dati biometrici e delle decisioni automatiche. \\
+\bottomrule
+\end{longtable}
+
+\texttt{MR-0001} dipende esplicitamente da \texttt{MR-0002} e \texttt{MR-0003}; \texttt{MR-0004} non possiede invece relazioni canoniche entranti o uscenti nel Macro Project Map sorgente. L'isolamento non rende automaticamente invalido un MR, ma nel caso di \texttt{MR-0004} si combina con un secondo segnale: il suo contenuto qualifica dati e decisioni prodotti da responsabilita' possedute dagli altri rami.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+  node distance=9mm and 13mm,
+  box/.style={draw=ddtadark,rounded corners,align=center,inner sep=6pt,minimum width=43mm},
+  suspect/.style={draw=ddtaorange,rounded corners,align=center,inner sep=6pt,minimum width=46mm},
+  dep/.style={-{Latex[length=2.3mm]},thick,dashed,ddtablue}
+]
+\node[box] (m1) {MR-0001\\Accesso controllato};
+\node[box, below left=of m1] (m2) {MR-0002\\Autorizzazioni};
+\node[box, below right=of m1] (m3) {MR-0003\\Riconoscimento};
+\node[suspect, below=22mm of m1] (m4) {MR-0004\\Uso responsabile biometria\\\small isolated review};
+\draw[dep] (m1) -- node[left,font=\small]{dependsOn} (m2);
+\draw[dep] (m1) -- node[right,font=\small]{dependsOn} (m3);
+\end{tikzpicture}
+\caption{Macro Project Map della sorgente storica. L'isolamento di MR-0004 e' un segnale di review, non una violazione automatica.}
+\end{figure}
+
+\subsection{Regression R1 -- rimozione di MR-0004}
+
+\experimental{}
+
+Il probe S1 riapre \emph{il corpus facial-access}, non la cardinalita' generale degli MR. Si applica un removal/classification test a \texttt{MR-0004}: se il nodo viene rimosso, le tre responsabilita' macro che rendono possibile il servizio restano riconoscibili --- controllo dell'accesso, gestione delle persone autorizzate e riconoscimento. Cio' che si perde sono soprattutto proprieta' trasversali e una responsabilita' di review che possono essere collocate a livelli piu' naturali.
+
+Il risultato della regressione e' quindi:
+
+\begin{center}
+\begin{tikzpicture}[
+  node distance=9mm and 13mm,
+  box/.style={draw=ddtadark,rounded corners,align=center,inner sep=6pt,minimum width=43mm},
+  dep/.style={-{Latex[length=2.3mm]},thick,dashed,ddtablue}
+]
+\node[box] (m1) {MR-0001\\Accesso controllato};
+\node[box, below left=of m1] (m2) {MR-0002\\Autorizzazioni};
+\node[box, below right=of m1] (m3) {MR-0003\\Riconoscimento};
+\draw[dep] (m1) -- node[left,font=\small]{dependsOn} (m2);
+\draw[dep] (m1) -- node[right,font=\small]{dependsOn} (m3);
+\end{tikzpicture}
+\end{center}
+
+\begin{statusbox}{CANDIDATE -- corrected facial-access MR set}
+Per il corpus di studio successivo a S1, \texttt{MR-0004} viene ritirato come MacroRequirement autonomo. La baseline sperimentale usa \texttt{MR-0001}, \texttt{MR-0002} e \texttt{MR-0003}; la semantica utile dei due commitment storicamente ospitati sotto MR-0004 viene redistribuita per natura, senza essere cancellata.
+\end{statusbox}
+
+\subsubsection{Redistribuzione di ADR-4.1 -- Limitazione di finalita' dei dati biometrici}
+
+La limitazione di finalita' non descrive una capability macro separata. Rafforza invece i comportamenti che acquisiscono, registrano, trasferiscono o trattano dati biometrici. Nel contratto S1 la forma naturale e' quindi una famiglia di SpecializedRequirement locali, ciascuno con un solo FR parent, per esempio sui comportamenti di enrollment e sui comportamenti di acquisizione/trasferimento del recognition quando tali dati sono effettivamente trattati.
+
+Una formulazione concettuale comune puo' essere:
+
+\begin{quote}
+Il materiale biometrico trattato nell'esecuzione del FunctionalRequirement MUST essere usato soltanto per le finalita' governate di enrollment, verifica della persona o review direttamente connesse al controllo dell'accesso.
+\end{quote}
+
+Il documento non introduce una metaclasse \texttt{Policy} o \texttt{NormativeSource}. La possibilita' di mantenere una fonte normativa condivisa e applicarla localmente a piu' SR resta \openstatus{}, coerentemente con S1. Non e' necessario duplicare la regola in ogni documento per validare la semantica locale.
+
+\subsubsection{Redistribuzione di ADR-4.2 -- Contestabilita' e review degli esiti automatici}
+
+Il commitment storico non e' soltanto una proprieta' passiva: prevede un processo organizzativo distinto dall'esecuzione del modello. Applicando l'autonomy test S1, la responsabilita' di riesame e' abbastanza significativa da essere trattata come comportamento operativo nel ramo che possiede l'esito di accesso.
+
+Una decomposizione plausibile e minima e':
+
+\begin{description}
+  \item[\texttt{D-1.3} -- Contestabilita' degli esiti automatici.] Sotto \texttt{MR-0001}, il progetto mantiene contestabili e revisionabili gli esiti automatici che incidono negativamente sull'accesso mediante un processo organizzativo distinto dalla sola esecuzione del riconoscimento.
+  \item[\texttt{FR-1.3} -- Review contested automated access outcome.] Quando un esito automatico di accesso viene contestato secondo il processo governato, una capability di review MUST riesaminare le evidenze governate applicabili e produrre un esito di review distinto dall'output automatico originario.
+\end{description}
+
+Ulteriori obblighi necessari a rendere l'esito ricostruibile --- retention, evidence availability, explainability o altri concern --- non vengono inventati in questa regressione. Potranno emergere come FR o SpecializedRequirement quando un caso concreto li richiedera'.
+
+\subsection{Heuristic emersa: Isolated-MR review}
+
+La regressione suggerisce una nuova domanda di authoring che puo' essere supportata dalla Macro Project Map. Sia $G_{MR}=(V,E)$ il grafo dei MacroRequirement e delle relazioni canoniche \texttt{dependsOn}. Se un nodo $m$ ha grado zero,
+\[
+\deg(m)=0,
+\]
+il tool o il reviewer SHOULD richiedere una verifica semantica, senza dichiarare il nodo invalido.
+
+Le possibili conclusioni sono tre:
+\begin{enumerate}
+  \item l'MR e' una responsabilita' macro realmente autonoma e rimane valido;
+  \item manca una relazione macro che dovrebbe essere resa esplicita;
+  \item il nodo raccoglie soprattutto proprieta'/constraint trasversali e deve essere riclassificato o redistribuito downstream.
+\end{enumerate}
+
+La domanda di review e':
+
+\begin{quote}
+\textbf{Se questo MR restasse isolato nella Macro Project Map, rappresenterebbe comunque una responsabilita' macro autonomamente significativa, oppure sta soprattutto raccogliendo proprieta' o constraint che specializzano comportamenti posseduti da altri rami?}
+\end{quote}
+
+Un secondo removal test aiuta la decisione: rimuovendo il nodo, scompare una responsabilita'/capability macro del progetto oppure rimangono le capability e si perdono soltanto proprieta' specializzate come security, privacy, performance o compliance? L'heuristic e' \candidate{} di authoring e tooling; \textbf{non} introduce l'invariante ``ogni MR deve avere almeno una relazione''.
+
+\subsection{Perche' non esiste un MR ``rete''}
+
+Il corpus MR gia' stabilisce che PC, LAN, inference sulla camera, inference su edge computer e protocolli di comunicazione sono, salvo evidenza contraria, scelte di soluzione e non macro-concern autonomi. Un nuovo MR sarebbe giustificato soltanto se la connettivita' divenisse un risultato macro indipendentemente valorizzato con propri stakeholder e famiglie di Decision.
+
+Questa regola impedisce al probe camera di creare una macroarea artificiale soltanto per ospitare Ethernet, Wi-Fi o protezioni di rete.
+
+\section{Decision facial-access ereditate rilevanti}
+
+Il corpus Decision sorgente contiene otto Decision distribuite sui quattro MR storici. Dopo la regressione R1, le due Decision sotto il vecchio MR-0004 non vengono mantenute in quel branch: ADR-4.1 e ADR-4.2 sono state riclassificate come descritto sopra. Per il ramo camera/recognition restano particolarmente rilevanti le due Decision gia' presenti sotto \texttt{MR-0003}:
+
+\begin{description}
+  \item[\texttt{MR-0003/ADR-0001}] Il riconoscimento produce evidenza sulla corrispondenza tra il volto osservato e un'identita' governata; non produce una decisione autonoma di accesso.
+  \item[\texttt{MR-0003/ADR-0002}] Il progetto definisce un significato stabile dell'esito di riconoscimento, separato dalla scala o dal formato grezzo di uno specifico modello ML.
+\end{description}
+
+Queste Decision fissano il significato del riconoscimento, ma il corpus storico deliberatamente non sceglieva deployment placement, topologia di rete o protocollo. Il probe S1 puo' quindi aggiungere tali commitment senza riscrivere retroattivamente il corpus originario.
+
+\section{V0 -- baseline pre-SR del probe camera}
+
+La V0 serve a verificare che il sistema sia semanticamente coerente \emph{prima} dell'introduzione di SpecializedRequirement. Gli SR non devono riparare un errore gia' presente in MR, Decision o FR.
+
+\subsection{D-3.3 -- Placement della responsabilita' di riconoscimento}
+
+\experimental{}
+
+\textbf{Context.} Acquisizione e riconoscimento possono essere co-locati oppure separati. La collocazione cambia le responsabilita' funzionali necessarie al progetto.
+
+\textbf{Decision.} Il componente di acquisizione al punto di accesso, \texttt{CameraSubsystem}, acquisisce l'evidenza. Un componente locale distinto, \texttt{RecognitionProcessor}, esegue il riconoscimento.
+
+\textbf{Consequences.}
+\begin{itemize}
+  \item nasce un responsibility boundary tra acquisizione e riconoscimento;
+  \item l'evidenza necessaria al riconoscimento deve attraversare tale boundary;
+  \item indisponibilita' dell'interazione puo' impedire il riconoscimento;
+  \item una futura collocazione del riconoscimento sulla camera puo' eliminare interi obblighi di trasferimento.
+\end{itemize}
+
+\subsection{FR-3.3 -- Acquire RecognitionCapture}
+
+\experimental{}
+
+\begin{statusbox}{Functional obligation}
+Quando una \texttt{RecognitionRequest} richiede nuova evidenza visiva, il \texttt{CameraSubsystem} MUST acquisire una \texttt{RecognitionCapture} appropriata e associarla alla richiesta che ne ha provocato l'acquisizione.
+\end{statusbox}
+
+Parent Decision: \texttt{D-3.3}.
+
+\subsection{FR-3.4 -- Deliver RecognitionCapture}
+
+\experimental{}
+
+\begin{statusbox}{Functional obligation}
+Per ogni \texttt{RecognitionCapture} destinata alla valutazione remota, il \texttt{CameraSubsystem} MUST consegnare la capture al \texttt{RecognitionProcessor} associandola alla corretta \texttt{RecognitionRequest}; una consegna non completata MUST NOT essere rappresentata come completata con successo.
+\end{statusbox}
+
+Parent Decision: \texttt{D-3.3}.
+
+La correlation tra capture e request e la corretta rappresentazione del fallimento appartengono all'obbligo funzionale. Non vengono spostate in uno SR soltanto perche' un attaccante potrebbe sfruttare un errore di correlazione o di stato.
+
+\subsection{D-3.4 -- Responsibility boundary del trasporto}
+
+\experimental{}
+
+\textbf{Context.} Camera e RecognitionProcessor necessitano di connettivita'. Il progetto puo' possedere tale capability oppure consumare un servizio infrastrutturale disponibile.
+
+\textbf{Decision V0.} Il progetto consuma il servizio di connettivita' locale disponibile e non possiede ne' gestisce l'infrastruttura di trasporto sottostante.
+
+\textbf{Consequences.}
+\begin{itemize}
+  \item il progetto puo' utilizzare il trasporto ma non attribuirgli implicitamente obblighi interni al progetto;
+  \item proprieta' richieste dall'interazione e non garantite dal servizio consumato devono essere ottenute altrove;
+  \item la responsabilita' del progetto resta negli endpoint e nei propri componenti;
+  \item una futura revisione verso un trasporto project-owned puo' introdurre nuovi FR di transport capability.
+\end{itemize}
+
+\subsection{D-3.5 -- Mezzo di interconnessione}
+
+\experimental{}
+
+\textbf{Decision V0.} CameraSubsystem e RecognitionProcessor utilizzano la connettivita' Ethernet cablata disponibile.
+
+Questa Decision e' significativa per deployment e failure/exposure conditions, ma non crea automaticamente un FR ``provide Ethernet''. Nel V0 il progetto non possiede il servizio di trasporto. Una Decision puo' legittimamente avere zero FR figli.
+
+\subsection{Vista V0}
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[scale=0.82,transform shape,
+  box/.style={draw=ddtadark,rounded corners,align=center,inner sep=6pt,minimum width=40mm},
+  sib/.style={draw=ddtablue,rounded corners,align=center,inner sep=5pt,minimum width=38mm},
+  arr/.style={-{Latex[length=2.4mm]},thick},
+  node distance=9mm and 12mm
+]
+\node[box] (mr) {MR-0003\\Riconoscimento facciale};
+\node[box, below left=of mr] (d33) {D-3.3\\remote recognition placement};
+\node[sib, below=of mr] (d34) {D-3.4\\external transport ownership};
+\node[sib, below right=of mr] (d35) {D-3.5\\Ethernet medium};
+\node[box, below left=13mm and -3mm of d33] (f33) {FR-3.3\\Acquire capture};
+\node[box, below right=13mm and -3mm of d33] (f34) {FR-3.4\\Deliver capture};
+\draw[arr] (mr)--(d33);
+\draw[arr] (mr)--(d34);
+\draw[arr] (mr)--(d35);
+\draw[arr] (d33)--(f33);
+\draw[arr] (d33)--(f34);
+\end{tikzpicture}
+\caption{V0 pre-SR. D-3.4 e D-3.5 sono sibling Decision rilevanti, non parent aggiuntivi di FR-3.4.}
+\end{figure}
+
+\subsection{V0 -- controllo sintetico delle invarianti}
+
+\begin{longtable}{p{0.33\textwidth}p{0.15\textwidth}p{0.43\textwidth}}
+\toprule
+\textbf{Test} & \textbf{Esito} & \textbf{Osservazione} \\
+\midrule
+\endhead
+MR single concern / architecture resilience & PASS & La rete non viene promossa a nuovo MR; MR-0003 resta recognition-oriented. \\
+Decision significance & PASS & Placement, ownership del trasporto e mezzo possono cambiare indipendentemente e hanno conseguenze distinte. \\
+FR exactly-one parent & PASS & FR-3.3 e FR-3.4 appartengono a D-3.3. \\
+Operationality & PASS & Acquisizione e consegna sono comportamenti osservabili. \\
+Implementation independence & PASS & FR-3.4 non contiene Ethernet, Wi-Fi, TLS o protocolli. \\
+Failure semantics & PASS & La mancata consegna non puo' essere rappresentata come successo. \\
+No artificial transport FR & PASS & Il trasporto e' consumato esternamente; nessun FR project-owned viene inventato. \\
+\bottomrule
+\end{longtable}
+
+\section{V1 -- aggiunta degli SpecializedRequirement}
+
+La V1 e' ottenuta aggiungendo SR a \texttt{FR-3.4} senza cambiare la V0. Se il requisito specializzato fosse necessario per rendere coerente il comportamento funzionale di base, avremmo un problema nel livello FR.
+
+\subsection{SR-3.4-C -- Confidenzialita'}
+
+\experimental{}
+
+\begin{statusbox}{Normative obligation}
+Durante l'esecuzione di FR-3.4, il contenuto biometrico della \texttt{RecognitionCapture} MUST NOT essere reso intelligibile a soggetti non autorizzati alla sua conoscenza prima della sua accettazione da parte del \texttt{RecognitionProcessor}.
+\end{statusbox}
+
+Lo SR non prescrive cifratura, TLS, WPA, VLAN o un livello specifico dello stack.
+
+\subsection{SR-3.4-I -- Integrita'}
+
+\experimental{}
+
+\begin{statusbox}{Normative obligation}
+Una modifica non autorizzata della \texttt{RecognitionCapture} durante l'esecuzione di FR-3.4 MUST NOT poter essere accettata dal \texttt{RecognitionProcessor} come capture valida associata alla richiesta.
+\end{statusbox}
+
+\subsection{SR-3.4-P -- Provenienza autorizzata}
+
+\experimental{}
+
+\begin{statusbox}{Normative obligation}
+Una \texttt{RecognitionCapture} ricevuta nell'esecuzione di FR-3.4 MUST NOT essere accettata come valida se non e' stabilito che la sua origine e' autorizzata a fornire evidenza per la relativa richiesta.
+\end{statusbox}
+
+Questa formulazione conserva l'obbligo specializzato senza fissare il meccanismo. Una versione piu' prescrittiva come ``il RecognitionProcessor deve verificare un certificato'' sarebbe gia' vicina a una specifica di realizzazione.
+
+\subsection{Composizione effettiva}
+
+Per il contesto nel quale i tre SR sono applicabili:
+\[
+\mathsf{Effective}(\mathrm{FR\mbox{-}3.4}) =
+\mathrm{FR\mbox{-}3.4}
+\land \mathrm{SR\mbox{-}3.4\mbox{-}C}
+\land \mathrm{SR\mbox{-}3.4\mbox{-}I}
+\land \mathrm{SR\mbox{-}3.4\mbox{-}P}.
+\]
+
+La composizione e' congiuntiva. Nessuno SR sostituisce l'obbligo di consegna e nessun ultimo SR scritto prevale implicitamente sugli altri.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+  box/.style={draw=ddtadark,rounded corners,align=center,inner sep=6pt,minimum width=45mm},
+  sr/.style={draw=ddtagreen,rounded corners,align=center,inner sep=5pt,minimum width=38mm},
+  arr/.style={-{Latex[length=2.4mm]},thick},
+  node distance=9mm and 9mm
+]
+\node[box] (f) {FR-3.4\\Deliver RecognitionCapture};
+\node[sr, below left=of f] (c) {SR-3.4-C\\Confidentiality};
+\node[sr, below=of f] (i) {SR-3.4-I\\Integrity};
+\node[sr, below right=of f] (p) {SR-3.4-P\\Authorized provenance};
+\draw[arr] (f)--(c);
+\draw[arr] (f)--(i);
+\draw[arr] (f)--(p);
+\end{tikzpicture}
+\caption{V1: piu' SpecializedRequirement rafforzano congiuntivamente un singolo FunctionalRequirement.}
+\end{figure}
+
+\section{Realization probe -- protezione negli endpoint}
+
+La Decision sul trasporto stabilisce che l'infrastruttura non e' controllata dal progetto. Questo non rende inapplicabili gli SR e non trasferisce al provider la responsabilita' normativa del progetto.
+
+Una possibile realizzazione e':
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+  box/.style={draw=ddtadark,rounded corners,align=center,inner sep=6pt,minimum width=48mm},
+  ext/.style={draw=ddtaorange,rounded corners,dashed,align=center,inner sep=6pt,minimum width=48mm},
+  arr/.style={-{Latex[length=2.4mm]},thick},
+  node distance=8mm
+]
+\node[box] (cam) {Camera software\\\small protect outgoing payload};
+\node[ext, below=of cam] (net) {Consumed LAN / Wi-Fi\\\small no assumed security authority};
+\node[box, below=of net] (rec) {Recognition software\\\small establish provenance, verify, unprotect};
+\draw[arr] (cam)--(net);
+\draw[arr] (net)--(rec);
+\end{tikzpicture}
+\caption{Esempio di realization: l'esposizione nasce nel trasporto, ma la proprieta' puo' essere soddisfatta end-to-end dagli endpoint controllati dal progetto.}
+\end{figure}
+
+\begin{warningbox}{Boundary}
+Il diagramma non rende ``endpoint protection'' parte del core SR. TLS, mTLS, firme, envelope autenticati, device credential o altre tecniche restano Decision/realization. Lo SR specifica che cosa deve valere, non dove o come ottenerlo.
+\end{warningbox}
+
+\section{Mutazione M1 -- Ethernet $\rightarrow$ Wi-Fi}
+
+\subsection{Change}
+
+Viene modificata soltanto \texttt{D-3.5}:
+
+\[
+\text{Ethernet cablata} \quad\longrightarrow\quad \text{Wi-Fi disponibile}.
+\]
+
+La responsibility boundary del trasporto rimane esterna al progetto e Camera/RecognitionProcessor restano separati.
+
+\subsection{Review transitiva}
+
+\begin{longtable}{p{0.25\textwidth}p{0.18\textwidth}p{0.47\textwidth}}
+\toprule
+\textbf{Elemento} & \textbf{Esito review} & \textbf{Motivo} \\
+\midrule
+\endhead
+MR-0003 & retain & Il macro-concern non dipende dal mezzo di rete. \\
+D-3.3 & retain & La separazione camera/processor rimane. \\
+D-3.4 & retain & Il progetto continua a consumare il trasporto. \\
+D-3.5 & revise & Il commitment tecnico cambia da Ethernet a Wi-Fi. \\
+FR-3.4 & retain & La consegna della capture resta la stessa funzione. \\
+SR-3.4-C & retain & La confidenzialita' e' ancora richiesta. \\
+SR-3.4-I & retain & L'integrita' e' ancora richiesta. \\
+SR-3.4-P & retain & La provenienza autorizzata e' ancora richiesta. \\
+Realization & review/change & La tecnica di protezione puo' essere diversa o diventare piu' esplicitamente end-to-end. \\
+\bottomrule
+\end{longtable}
+
+\subsection{Lezione}
+
+Una mutazione architetturale puo' cambiare exposure e realization senza cambiare l'obbligo funzionale o specializzato. Gli SR forniscono stabilita' normativa attraverso una variazione del mezzo, ma soltanto dopo review: la conservazione non e' presunta.
+
+\section{Mutazione M2 -- trasporto esterno $\rightarrow$ project-owned}
+
+\subsection{Change}
+
+\texttt{D-3.4} cambia responsibility boundary:
+
+\[
+\text{consume external transport}
+\quad\longrightarrow\quad
+\text{project owns/manages local transport capability}.
+\]
+
+\subsection{Effetti}
+
+MR-0003 e D-3.3 possono rimanere validi. FR-3.4 continua a richiedere la consegna della RecognitionCapture. Gli SR possono anch'essi rimanere invariati: il fatto che ora il progetto possieda la rete non elimina automaticamente la necessita' di confidenzialita', integrita' o provenienza autorizzata.
+
+La differenza e' che ora il progetto ha assunto una nuova responsabilita' operativa. Puo' quindi diventare giustificato un FR separato, per esempio:
+
+\begin{statusbox}{FR-NET-01 -- candidate introduced only in M2}
+Quando un endpoint governato richiede il trasferimento verso un altro endpoint governato, la \texttt{LocalTransportCapability} MUST effettuare il trasporto secondo il relativo contratto operativo e MUST rendere distinguibile il completamento dalla mancata consegna.
+\end{statusbox}
+
+Questo FR non era giustificato in V0, dove la rete era un servizio consumato. Il cambio di responsibility boundary puo' quindi creare un nuovo ramo funzionale senza cambiare il requisito specializzato del consumer.
+
+\begin{statusbox}{Lezione M2}
+\textbf{Requirement ownership non coincide con realization ownership.} Cambiare chi puo' fornire o realizzare una proprieta' non cambia necessariamente chi la richiede. Un consumer puo' continuare a richiedere confidenzialita' anche quando la protezione viene parzialmente delegata a una capability ora posseduta dal progetto.
+\end{statusbox}
+
+\section{Mutazione M3 -- recognition remoto $\rightarrow$ recognition locale}
+
+\subsection{Change}
+
+\texttt{D-3.3} cambia in modo strutturale:
+
+\[
+\text{Camera acquires; separate processor recognizes}
+\quad\longrightarrow\quad
+\text{Camera acquires and recognizes locally}.
+\]
+
+\subsection{Review}
+
+\begin{longtable}{p{0.27\textwidth}p{0.18\textwidth}p{0.45\textwidth}}
+\toprule
+\textbf{Elemento} & \textbf{Esito} & \textbf{Osservazione} \\
+\midrule
+\endhead
+MR-0003 & retain & Il riconoscimento facciale resta il macro-concern. \\
+D-3.3 & revise/replace & La responsibility placement cambia. \\
+FR-3.3 & review & L'acquisizione puo' restare necessaria, eventualmente con soggetto/contratto rivisto. \\
+FR-3.4 & retire/supersede & Non esiste piu' il trasferimento remoto della RecognitionCapture. \\
+SR-3.4-C & not applicable in old form & Il parent behavior scompare. \\
+SR-3.4-I & not applicable in old form & Il parent behavior scompare. \\
+SR-3.4-P & not applicable in old form & Il parent behavior scompare. \\
+D-3.4 / D-3.5 & review & Possono diventare irrilevanti per il trasferimento di capture, ma non sono automaticamente eliminati da altri usi del progetto. \\
+\bottomrule
+\end{longtable}
+
+\subsection{Lezione}
+
+Questa mutazione conferma la dipendenza semantica dello SR dal parent FR. Gli SR non vengono ``trascinati'' automaticamente su nuovi comportamenti. Se il nuovo design necessita protezione di altri dati, risultati o interazioni, tali obblighi devono essere riesaminati e documentati nel contesto dei nuovi FR.
+
+\section{Mutazione M4 -- representation probe: capture raw $\rightarrow$ opaque reference}
+
+\openstatus{} -- evidence per il problema di effective governed context.
+
+Questa variazione non fa parte della V0 minima; viene conservata perche' espone un problema cross-document gia' noto dalla fase Decision.
+
+Supponiamo una sibling Decision che governi quale rappresentazione attraversa il boundary:
+
+\begin{description}
+  \item[V1] il RecognitionProcessor riceve direttamente la \texttt{RecognitionCapture};
+  \item[V2] il RecognitionProcessor riceve soltanto un \texttt{OpaqueEvidenceReference} che consente di risolvere l'evidenza tramite una capability governata.
+\end{description}
+
+Con V2, il vecchio FR-3.4 non puo' sopravvivere immutato perche' prescrive la consegna della RecognitionCapture. Deve essere revisionato o superseded, per esempio:
+
+\begin{statusbox}{FR-3.4' -- illustrative revised obligation}
+Il \texttt{CameraSubsystem} MUST fornire al \texttt{RecognitionProcessor} il riferimento governato associato alla corretta \texttt{RecognitionRequest} che consente di risolvere l'evidenza richiesta; un riferimento non risolvibile MUST NOT essere rappresentato come consegna valida.
+\end{statusbox}
+
+Gli SR reagiscono in modo differenziato:
+
+\begin{itemize}
+  \item la confidenzialita' del \emph{contenuto biometrico trasferito} puo' diventare non applicabile a quel trasferimento;
+  \item l'integrita' puo' restare un concern, ma la proposizione deve essere riesaminata rispetto al riferimento;
+  \item la provenienza autorizzata puo' restare rilevante con formulazione simile o rivista.
+\end{itemize}
+
+\begin{statusbox}{\openstatus{} -- parentage vs influence}
+FR-3.4 continua ad avere una sola parent Decision, ma una sibling Decision sulla rappresentazione dei dati puo' cambiarne contenuto o validita'. Il corpus conferma che \emph{semantic parentage} non equivale necessariamente all'intero \emph{effective governed context}. Il meccanismo minimo per rappresentare tale contesto resta aperto; non viene introdotta qui una generica relazione \texttt{affects}.
+\end{statusbox}
+
+\section{Probe di azione positiva subordinata}
+
+Uno dei test finali S1 ha usato una formulazione inizialmente operativa:
+
+\begin{quote}
+Prima di accettare una RecognitionCapture, il RecognitionProcessor deve verificare che essa provenga da una sorgente autorizzata.
+\end{quote}
+
+Il test ha mostrato che la presenza di un verbo operativo non trasforma automaticamente lo SR in FR. La boundary corretta e' l'autonomia semantica.
+
+\subsection{Azione subordinata -- plausibile SR}
+
+Se il comportamento esiste soltanto come condizione di accettazione nell'esecuzione di FR-3.4 e perde il proprio oggetto quando FR-3.4 scompare, puo' restare SpecializedRequirement.
+
+La formulazione preferita evita comunque di fissare il meccanismo:
+
+\begin{quote}
+Una RecognitionCapture non deve essere accettata come valida se non e' stabilito che la sua origine e' autorizzata.
+\end{quote}
+
+\subsection{Capability autonoma -- candidate FR}
+
+Se il requisito cresce fino a descrivere una \texttt{DeviceIdentityCapability} che registra identita' di device, mantiene stati di autorizzazione, autentica peer e serve consumer multipli, il comportamento possiede scopo, trigger, outcome e consumer indipendenti. Deve essere valutato come FR separato, non assorbito nello SR locale.
+
+\begin{statusbox}{Boundary S1}
+Uno SR puo' richiedere comportamento positivo aggiuntivo quando tale comportamento e' semanticamente subordinato alla soddisfazione del parent FR. Quando l'azione acquisisce una responsabilita' operativa autonomamente significativa, tende a diventare un FunctionalRequirement separato.
+\end{statusbox}
+
+\section{Negative controls conservati}
+
+\subsection{NC-1 -- correttezza funzionale non diventa SR}
+
+La capture associata a una \texttt{RecognitionRequest} deve essere quella funzionalmente corretta per la richiesta. Una capture della richiesta A non deve essere accidentalmente associata alla richiesta B. Questo resta FR semantics anche se un attaccante potrebbe sfruttare la stessa classe di errore.
+
+\subsection{NC-2 -- security relevance non determina il layer}
+
+Il fatto che un comportamento abbia rilevanza security non implica che debba essere spostato dall'FR allo SR. Il test e' semantico: rimuovendo lo SR, la funzione deve restare riconoscibile e coerente, perdendo soltanto il rafforzamento specializzato.
+
+\subsection{NC-3 -- meccanismo non e' SR}
+
+``Usare TLS'', ``usare WPA3'', ``configurare una VLAN'' o ``verificare un certificato X.509'' non sono automaticamente SpecializedRequirement. Possono essere Decision, realization o control. L'obbligo specializzato deve sopravvivere a piu' realizzazioni valide quando il concern lo consente.
+
+\section{Mini-probe cross-branch: stesso concern, FR distinti}
+
+Questo paragrafo conserva soltanto il minimo necessario del test enrollment/recognition. Non introduce un lifecycle metamodel e non assume che enrollment e runtime usino gli stessi dispositivi, software o canali.
+
+Supponiamo due comportamenti indipendenti:
+
+\begin{itemize}
+  \item \texttt{FR-E}: una capability di enrollment registra o aggiorna il materiale biometrico necessario per un'identita' governata;
+  \item \texttt{FR-R}: una capability di recognition elabora l'osservazione biometrica corrente e produce RecognitionEvidence.
+\end{itemize}
+
+Entrambi possono essere soggetti a confidenzialita', ma le applicazioni possono avere asset, boundary, evidence e realization differenti. Il test ha quindi favorito:
+
+\[
+\text{shared concern/source} \quad\rightarrow\quad
+\begin{cases}
+\mathrm{SR_E} \rightarrow \mathrm{FR_E}\\
+\mathrm{SR_R} \rightarrow \mathrm{FR_R}
+\end{cases}
+\]
+
+anziche' un unico SR multi-parent. Il meccanismo di riuso della fonte normativa rimane aperto e non e' prerequisito per l'authoring minimo.
+
+\section{Sintesi delle variazioni}
+
+\begin{longtable}{p{0.22\textwidth}p{0.24\textwidth}p{0.45\textwidth}}
+\toprule
+\textbf{Mutazione} & \textbf{Elementi principalmente cambiati} & \textbf{Lezione per il metamodel} \\
+\midrule
+\endhead
+M1 Ethernet $\rightarrow$ Wi-Fi & D-3.5, realization & FR e SR possono restare stabili dopo review; la proprieta' non e' legata al mezzo. \\
+M2 external $\rightarrow$ project-owned transport & D-3.4; possibile nuovo FR-NET & Cambiare realization ownership puo' creare nuove responsabilita' senza cambiare chi richiede una proprieta'. \\
+M3 remote $\rightarrow$ local recognition & D-3.3; FR-3.4; SR figli & Quando scompare il parent behavior, gli SR locali non sopravvivono automaticamente. \\
+M4 raw capture $\rightarrow$ opaque reference & sibling Decision; FR-3.4; SR differenziati & Parentage non esaurisce necessariamente l'effective governed context. \\
+\bottomrule
+\end{longtable}
+
+\section{Cosa dimostra il corpus}
+
+\begin{enumerate}
+  \item La V0 e' coerente senza SpecializedRequirement: gli SR non servono a riparare il livello funzionale.
+  \item Uno SR puo' specializzare un'interazione funzionale anche quando l'esposizione nasce in un'infrastruttura che il progetto non controlla.
+  \item La proprieta' specializzata puo' essere realizzata a un layer differente dal layer nel quale nasce l'esposizione.
+  \item Requirement ownership, service consumption e realization ownership sono concetti distinti.
+  \item Uno SR puo' sopravvivere a cambi tecnologici e architetturali se il parent FR e l'obbligo specializzato restano semanticamente validi dopo review.
+  \item Quando il parent FR scompare, gli SR locali devono essere riesaminati e non vengono trasferiti automaticamente.
+  \item Una sibling Decision puo' influenzare il contenuto o la validita' di un FR senza diventarne secondo parent: il problema di effective governed context rimane reale ma non viene risolto con una relazione generica prematura.
+  \item La stessa esigenza specializzata puo' comparire in rami/fasi differenti senza assumere identita' di componenti o un SR multi-parent.
+  \item Un concern trasversale non necessita di un MacroRequirement dedicato per diventare analizzabile: MR-0004 puo' essere rimosso e la sua semantica utile redistribuita come SR locali e come responsabilita' di review sotto il branch appropriato.
+  \item Il Macro Project Map puo' essere usato nella prima fase di authoring per segnalare MR isolati come punti di review semantica, senza trattarli automaticamente come errori.
+\end{enumerate}
+
+\section{Cosa il corpus non pretende di dimostrare}
+
+\begin{itemize}
+  \item Non e' una specifica completa del sistema facial-access.
+  \item Non formalizza tutte le fasi del lifecycle biometrico o ML.
+  \item Non stabilisce il modello Base Analysis/BAE.
+  \item Non formalizza STRIDE, STRIDE-AI o altre metodologie.
+  \item Non definisce Finding, Control, Evidence o provenance analitica.
+  \item Non decide la rappresentazione canonica del riuso di una regola normativa condivisa.
+  \item Non decide il target canonico della relazione di service/capability consumption.
+  \item Non formalizza l'effective governed context o un meccanismo generale di change-impact propagation.
+  \item Non definisce ancora SecurityRequirement come specializzazione concreta: qui gli esempi C/I/P sono SpecializedRequirement concern-specific usati per il test S1.
+\end{itemize}
+
+\section{Stato dei risultati collegati a S1}
+
+\footnotesize
+\begin{longtable}{p{0.25\textwidth}p{0.14\textwidth}p{0.50\textwidth}}
+\toprule
+\textbf{Elemento} & \textbf{Stato} & \textbf{Interpretazione} \\
+\midrule
+\endhead
+SR come normative strengthening di un FR & \closed{} & Rafforza la soddisfazione del parent senza sostituirlo. \\
+SR parent cardinality = 1 FR & \closed{} & Il corpus camera e il mini-probe cross-branch non richiedono multi-parent SR. \\
+FR $\rightarrow$ 0..* SR & \closed{} & Piu' obblighi specializzati possono comporre congiuntivamente. \\
+Positive subordinate action & \closed{} & Ammessa se non diventa capability autonoma. \\
+Realization separation & \closed{} & Layer/meccanismo di protezione non appartengono automaticamente allo SR. \\
+External transport does not block SR & \closed{} & La proprieta' puo' essere ottenuta negli endpoint controllati dal progetto. \\
+Shared normative source representation & \openstatus{} & Il riuso non richiede multi-parent SR, ma la forma canonica della source resta da definire. \\
+Effective governed context & \openstatus{} & M4 mostra la necessita' di impact awareness oltre il solo parentage. \\
+MR-0004 corpus classification & \candidate{} & La regressione S1 ritira il nodo isolato e redistribuisce purpose limitation e review per semantica. \\
+Isolated-MR review heuristic & \candidate{} & degree=0 produce review, non invalidazione automatica; puo' indicare autonomia valida, edge mancante o concern-bucket. \\
+SecurityRequirement-specific semantics & \deferred{} & Prossimo studio dopo la chiusura e conservazione di S1. \\
+\bottomrule
+\end{longtable}
+\normalsize
+
+\section{Traceability al baseline repository}
+
+Il corpus sperimentale e' costruito sopra i seguenti documenti al commit \nolinkurl{3eeac1fc972d89282cd2ffd8700e9af0f5b69610}:
+
+\begin{longtable}{p{0.27\textwidth}p{0.65\textwidth}}
+\toprule
+\textbf{Ruolo} & \textbf{Repository path} \\
+\midrule
+\endhead
+Facial-access MR source & \small\nolinkurl{_working/ddta-metamodel-working-package/01-mr/03-example-facial-access/FACIAL_ACCESS_EXAMPLE_MR.md} \\
+Facial-access Decision corpus & \small\nolinkurl{02-decision/05-example-facial-access/FACIAL_ACCESS_DECISION_DEMO.md} \\
+FR authoring contract & \small\nolinkurl{03-functional-requirement/02-authoring-guidance/DDTA_AUTHORING_RULES_THROUGH_FR_R2.md} \\
+FR/document hierarchy closure & \small\nolinkurl{03-functional-requirement/04-closure/DDTA_DOCUMENT_METAMODEL_THROUGH_FR_CLOSURE_R2.md} \\
+S1 semantic formalization & companion artifact \small\nolinkurl{DDTA_SPECIALIZED_REQUIREMENT_S1_R2.tex/.pdf} \\
+\bottomrule
+\end{longtable}
+
+\section{Conservation note}
+
+Questo documento va conservato come \textbf{study evidence}, non assorbito silenziosamente in una specifica canonica del progetto. La sua utilita' e' rendere ricostruibile il percorso con cui SpecializedRequirement e' stato stressato:
+
+\begin{center}
+\begin{tikzpicture}[
+  box/.style={draw=ddtadark,rounded corners,align=center,inner sep=6pt,minimum width=43mm},
+  arr/.style={-{Latex[length=2.4mm]},thick},
+  node distance=7mm
+]
+\node[box] (v0) {V0 pre-SR\\MR + Decision + FR};
+\node[box, below=of v0] (v1) {V1\\V0 + SpecializedRequirement};
+\node[box, below=of v1] (mut) {Controlled mutations\\M1--M4};
+\node[box, below=of mut] (s1) {S1 closure\\general semantic contract};
+\draw[arr] (v0)--(v1);
+\draw[arr] (v1)--(mut);
+\draw[arr] (mut)--(s1);
+\end{tikzpicture}
+\end{center}
+
+Una futura revisione del metamodel dovrebbe poter tornare a questo corpus e indicare quale mutazione o quale negative control richiede la riapertura di una regola chiusa. Il valore del documento e' quindi anche metodologico: conserva non soltanto il risultato, ma l'evidenza che lo ha reso plausibile.
+
+\end{document}
