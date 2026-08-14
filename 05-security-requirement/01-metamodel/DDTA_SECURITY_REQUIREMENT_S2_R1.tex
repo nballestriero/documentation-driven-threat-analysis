@@ -1,0 +1,772 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[a4paper,margin=2.35cm,headheight=15pt]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,fit,backgrounds}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{fancyhdr}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage{framed}
+\usepackage{ragged2e}
+\usepackage{listings}
+
+\definecolor{ddtadark}{RGB}{28,38,52}
+\definecolor{ddtagray}{RGB}{242,244,247}
+\definecolor{ddtablue}{RGB}{42,88,135}
+\definecolor{ddtagreen}{RGB}{48,111,78}
+\definecolor{ddtaorange}{RGB}{148,91,25}
+\definecolor{ddtared}{RGB}{140,48,48}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=ddtablue,
+  urlcolor=ddtablue,
+  citecolor=ddtablue,
+  pdftitle={DDTA SecurityRequirement S2 - semantic closure and facial-access camera corpus},
+  pdfauthor={Documentation-Driven Threat Analysis research workspace}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{DDTA -- SecurityRequirement}
+\rhead{S2 semantic closure}
+\cfoot{\thepage}
+
+\titleformat{\section}{\Large\bfseries\color{ddtadark}}{\thesection}{0.7em}{}
+\titleformat{\subsection}{\large\bfseries\color{ddtadark}}{\thesubsection}{0.7em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{ddtadark}}{\thesubsubsection}{0.7em}{}
+
+\setlist[itemize]{leftmargin=1.55em,itemsep=0.25em,topsep=0.35em}
+\setlist[enumerate]{leftmargin=1.75em,itemsep=0.25em,topsep=0.35em}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{0pt}
+\setlength{\emergencystretch}{2em}
+
+\lstset{
+  basicstyle=\ttfamily\small,
+  columns=fullflexible,
+  keepspaces=true,
+  frame=single,
+  framerule=0.3pt,
+  rulecolor=\color{ddtagray},
+  backgroundcolor=\color{ddtagray},
+  xleftmargin=0.8em,
+  xrightmargin=0.8em,
+  aboveskip=0.6em,
+  belowskip=0.6em,
+  breaklines=true
+}
+
+\newcommand{\closed}{\textbf{CLOSED}}
+\newcommand{\strongcandidate}{\textbf{STRONG CANDIDATE}}
+\newcommand{\candidate}{\textbf{CANDIDATE}}
+\newcommand{\openstatus}{\textbf{OPEN}}
+\newcommand{\deferred}{\textbf{DEFERRED}}
+\newcommand{\rejected}{\textbf{REJECTED}}
+\newcommand{\FR}{\mathsf{FR}}
+\newcommand{\SR}{\mathsf{SR}}
+\newcommand{\SecR}{\mathsf{SecR}}
+\newcommand{\Sat}{\mathsf{Sat}}
+
+\newenvironment{statusbox}[1]{%
+  \def\FrameCommand{\fcolorbox{ddtablue}{ddtagray}}%
+  \MakeFramed{\advance\hsize-2\width\FrameRestore}
+  \noindent\textbf{#1}\par\smallskip
+}{\endMakeFramed}
+
+\newenvironment{resultbox}[1]{%
+  \def\FrameCommand{\fcolorbox{ddtagreen}{ddtagray}}%
+  \MakeFramed{\advance\hsize-2\width\FrameRestore}
+  \noindent\textbf{#1}\par\smallskip
+}{\endMakeFramed}
+
+\newenvironment{warningbox}[1]{%
+  \def\FrameCommand{\fcolorbox{ddtaorange}{ddtagray}}%
+  \MakeFramed{\advance\hsize-2\width\FrameRestore}
+  \noindent\textbf{#1}\par\smallskip
+}{\endMakeFramed}
+
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
+
+\begin{document}
+
+\begin{titlepage}
+\centering
+\vspace*{1.6cm}
+{\Large Documentation-Driven Threat Analysis\par}
+\vspace{0.8cm}
+{\Huge\bfseries SecurityRequirement\par}
+\vspace{0.30cm}
+{\LARGE S2 - chiusura semantica del metamodel e corpus facial-access camera\par}
+\vspace{0.9cm}
+{\large Dal SpecializedRequirement astratto alla specializzazione di sicurezza concreta\par}
+\vfill
+\begin{minipage}{0.86\textwidth}
+\small
+\textbf{Stato.} Chiusura semantica S2 per il baseline corrente. I probe hanno chiuso il delta minimo di \texttt{SecurityRequirement}; restano fuori Finding, Base Analysis, STRIDE, risk, control e il meccanismo strutturale di provenance.
+
+\medskip
+\textbf{Baseline repository.} \texttt{nballestriero/documentation-driven-threat-analysis}, commit \texttt{b9bbe690ba9f73e38f75ff9e7d8d36a88a16f49a}.
+
+\medskip
+\textbf{Obiettivo.} Formalizzare il minimo delta semantico di SecurityRequirement rispetto a SpecializedRequirement e conservarne la closure evidence sul corpus telecamera gia' usato in S1.
+\end{minipage}
+\vfill
+{\large 14 agosto 2026\par}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\section{Scope S2 e baseline ereditato}
+
+S2 non riapre i layer gia' chiusi. Assume il contratto documentale raggiunto fino a S1.5:
+
+\begin{lstlisting}
+GovernedDocument
+    |
+    +-- MacroRequirement
+    +-- Decision
+    `-- Requirement [abstract]
+            |
+            +-- FunctionalRequirement
+            `-- SpecializedRequirement [abstract]
+\end{lstlisting}
+
+con il contratto comune:
+
+\begin{lstlisting}
+Requirement [abstract]
+    extends GovernedDocument
+    normativeClause : NormativeClause [1..*]
+\end{lstlisting}
+
+Ogni Requirement e' esso stesso una obbligazione normativa governata; tutte le sue clausole devono costituire una sola unita' normativa coerente. Una obbligazione indipendentemente evolvibile o assessable deve essere modellata come Requirement separato.
+
+Per SpecializedRequirement restano chiusi: parent FR singolo, normative strengthening, composizione congiuntiva, removal test, no duplicazione della correttezza funzionale, subordinate positive action, autonomia operativa come boundary verso FR, realization separation e parent dependence.
+
+\begin{statusbox}{S2 boundary}
+S2 determina che cosa renda uno SpecializedRequirement specificamente un SecurityRequirement e quale sia il suo contratto minimo aggiuntivo. La struttura dell'analisi che lo motiva resta downstream e non deve essere incorporata nel requisito per convenienza.
+\end{statusbox}
+
+\section{Due assi da non confondere: tipo e ownership}
+
+La specializzazione di tipo e la catena di ownership sono due viste diverse.
+
+\subsection{Gerarchia di tipo}
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+  node distance=10mm and 16mm,
+  box/.style={draw=ddtadark,rounded corners,align=center,inner sep=6pt,minimum width=43mm},
+  arr/.style={-{Latex[length=2.4mm]},thick}
+]
+\node[box] (gd) {GovernedDocument};
+\node[box, below=of gd] (req) {Requirement\\\textit{abstract}};
+\node[box, below left=of req] (fr) {FunctionalRequirement};
+\node[box, below right=of req] (sr) {SpecializedRequirement\\\textit{abstract}};
+\node[box, below=of sr] (sec) {SecurityRequirement};
+\draw[arr] (gd)--(req);
+\draw[arr] (req)--(fr);
+\draw[arr] (req)--(sr);
+\draw[arr] (sr)--(sec);
+\end{tikzpicture}
+\caption{Gerarchia IS-A. SecurityRequirement e' un tipo concreto di SpecializedRequirement, non un documento figlio aggiuntivo.}
+\end{figure}
+
+\subsection{Catena documentale concreta}
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+  node distance=8mm,
+  box/.style={draw=ddtadark,rounded corners,align=center,inner sep=6pt,minimum width=48mm},
+  arr/.style={-{Latex[length=2.4mm]},thick}
+]
+\node[box] (p) {Project problem framing};
+\node[box, below=of p] (mr) {MacroRequirement};
+\node[box, below=of mr] (d) {Decision};
+\node[box, below=of d] (fr) {FunctionalRequirement};
+\node[box, below=of fr] (sec) {SecurityRequirement\\\small concrete SpecializedRequirement};
+\draw[arr] (p)--(mr);
+\draw[arr] (mr)--(d);
+\draw[arr] (d)--(fr);
+\draw[arr] (fr)--(sec);
+\end{tikzpicture}
+\caption{Ownership/decomposition dei documenti concreti nel caso security.}
+\end{figure}
+
+Non esiste quindi una istanza intermedia \texttt{SpecializedRequirement} tra FR e SecurityRequirement. Lo stesso oggetto concreto e' contemporaneamente SecurityRequirement, SpecializedRequirement, Requirement e GovernedDocument.
+
+\section{Domanda fondamentale S2}
+
+\begin{statusbox}{Fundamental question}
+Dato uno SpecializedRequirement gia' valido rispetto a un singolo FunctionalRequirement, quale informazione e quale semantica aggiuntiva devono essere presenti affinche' esso sia specificamente un SecurityRequirement, senza incorporare la causa analitica, l'attacco, il finding o il controllo che ne motivano o realizzano l'obbligazione?
+\end{statusbox}
+
+La domanda separa quattro concetti:
+
+\begin{enumerate}
+  \item \textbf{obbligazione governata}: il SecurityRequirement stesso;
+  \item \textbf{security property}: la proprieta' di sicurezza che il requisito intende preservare;
+  \item \textbf{security failure mode}: lo stato/comportamento che renderebbe osservabile la perdita di quella proprieta' nel contesto del parent FR;
+  \item \textbf{cause}: attacco, errore, guasto o altro evento capace di condurre al failure mode.
+\end{enumerate}
+
+S2 verifica quali di questi elementi appartengano alla struttura intrinseca del documento e quali debbano restare nella semantica normativa o nell'analysis model.
+
+\section{Sanity check terminologico esterno}
+
+La definizione DDTA non viene derivata da una tassonomia esterna, ma due osservazioni NIST sono utili come controllo di non-contraddizione:
+
+\begin{itemize}
+  \item NIST descrive il rischio di sicurezza dei sistemi in termini di perdita di confidentiality, integrity o availability e riconosce che ulteriori proprieta' come authenticity e accountability possono essere rilevanti;
+  \item la metodologia di risk assessment NIST SP 800-30 contempla sorgenti/eventi adversarial e non-adversarial e dispone template distinti per entrambe le famiglie.
+\end{itemize}
+
+Queste osservazioni non impongono il nostro metamodel, ma supportano una scelta importante: non definire \emph{security} come sinonimo di \emph{attacco intenzionale}.
+
+\begin{warningbox}{Scope discipline}
+La semantica SecurityRequirement puo' essere cause-neutral senza obbligare la tesi a offrire coverage esaustivo di fault, safety, reliability o resilience. Una tecnica di analisi specifica puo' deliberatamente coprire solo una parte delle cause; la limitazione di coverage appartiene all'analysis method, non alla definizione del requisito.
+\end{warningbox}
+
+\section{Definizione semantica chiusa}
+
+\begin{resultbox}{\closed{} - S2 definition}
+Un \emph{SecurityRequirement} e' uno SpecializedRequirement la cui obbligazione normativa preserva una singola proprieta' di sicurezza governata rilevante per il parent FunctionalRequirement e rende identificabile, nelle proprie normative clause, il security failure mode che costituirebbe la perdita o violazione di tale proprieta' nel contesto del parent FR.
+\end{resultbox}
+
+La definizione mantiene quindi:
+
+\[
+  \SecR \subseteq \SR
+\]
+
+ed eredita da S1:
+
+\[
+  \mathsf{Effective}(F)=F \land S_1 \land \cdots \land S_n.
+\]
+
+Il fatto che $S_i$ sia un SecurityRequirement non modifica la semantica congiuntiva: la specializzazione Security determina il concern e il contratto aggiuntivo, non una nuova regola di composizione.
+
+\section{Forma minima: quattro alternative}
+
+Sono state confrontate quattro forme candidate.
+
+\begin{longtable}{p{0.12\textwidth}p{0.31\textwidth}p{0.47\textwidth}}
+\toprule
+\textbf{Forma} & \textbf{Struttura} & \textbf{Problema da testare} \\
+\midrule
+\endhead
+A & nessun nuovo campo & Property e failure mode devono essere ricostruiti interamente dalle clause. \\
+\addlinespace
+B & \texttt{protectedSecurityProperty [1]} & La property diventa interrogabile; failure mode resta single-source nelle clause. \\
+\addlinespace
+C & \texttt{securityFailureMode [1]} & Il failure mode e' strutturato, ma la classificazione/coverage per property resta implicita. \\
+\addlinespace
+D & property + failure mode & Massima esplicitezza, ma possibile duplicazione tra failure mode strutturato e contenuto normativo. \\
+\bottomrule
+\end{longtable}
+
+I probe successivi eliminano le forme ridondanti o semanticamente insufficienti. La closure S2 seleziona la forma B: \texttt{protectedSecurityProperty [1]} e' strutturata, mentre il failure mode rimane obbligatoriamente esplicito nelle normative clause. Le forme A e C sono insufficienti per il contratto desiderato; la forma D rimane non necessaria finche' una identita' strutturale separata del failure mode non sia forzata da un controesempio.
+
+\section{SecurityProperty come delta strutturale}
+
+\subsection{Perche' non basta inferire sempre la property dal testo}
+
+In un singolo documento una property come Confidentiality e' spesso ovvia leggendo la clause. DDTA deve pero' poter sostenere anche query governate quali:
+
+\begin{lstlisting}
+show all SecurityRequirements protecting Confidentiality
+which SecurityProperties are represented under FR-3.4?
+which requirements independently protect Integrity?
+\end{lstlisting}
+
+Se la property non ha una rappresentazione strutturata, il tool dovrebbe reinterpretare continuamente il linguaggio naturale per rispondere. Questo indebolirebbe stable identity, single-source governed knowledge e tool non-authority.
+
+\begin{resultbox}{\closed{} - structural delta}
+\begin{lstlisting}
+SecurityRequirement
+    extends SpecializedRequirement
+
+    protectedSecurityProperty : SecurityProperty [1]
+\end{lstlisting}
+\end{resultbox}
+
+\texttt{SecurityProperty} e' per ora una governed reference concettuale. S2 non chiude un enum universale ne' una tassonomia esaustiva.
+
+\subsection{Perche' cardinalita' uno}
+
+S1.5 ha chiuso il coherent-unit invariant. Se Confidentiality e Integrity possono essere introdotte, soddisfatte, revisionate o ritirate indipendentemente, non devono essere aggregate nello stesso Requirement soltanto perche' entrambe sono security-related.
+
+\begin{lstlisting}
+SR-3.4-C : SecurityRequirement
+    protectedSecurityProperty = Confidentiality
+
+SR-3.4-I : SecurityRequirement
+    protectedSecurityProperty = Integrity
+\end{lstlisting}
+
+La cardinalita' uno non implica che la futura tassonomia SecurityProperty debba essere piatta o mutuamente esclusiva. Una property puo' essere raffinata o specializzata; S2 chiude soltanto un riferimento governante singolo per ogni Requirement coerente.
+
+\section{Security failure mode: semantica obbligatoria, campo non ancora necessario}
+
+Un SecurityRequirement povero come:
+
+\begin{lstlisting}
+Ensure confidentiality.
+\end{lstlisting}
+
+non e' sufficiente per DDTA. La property identifica il concern, ma non dice che cosa significhi concretamente perderlo nel comportamento del parent FR.
+
+S2 richiede quindi failure-mode explicitness:
+
+\begin{resultbox}{\closed{} - SEC-01 Failure-mode explicitness}
+Le normative clause di un SecurityRequirement MUST rendere identificabile lo stato, comportamento o risultato che costituirebbe la violazione della protectedSecurityProperty nel contesto del parent FunctionalRequirement.
+\end{resultbox}
+
+Per ora non viene introdotto:
+
+\begin{lstlisting}
+securityFailureMode : SecurityFailureMode [1]
+\end{lstlisting}
+
+come campo obbligatorio separato. Nei probe correnti il failure mode coincide con informazione normativa gia' necessaria alla clause; duplicarlo come secondo source of truth non aggiunge responsabilita' semantica indipendente.
+
+\begin{statusbox}{OPEN - structural extraction}
+Un futuro analysis/tool layer potra' richiedere una rappresentazione strutturata del failure mode. S2 la introdurra' solo se un controesempio dimostra che la sola explicitness nelle clause non consente governance, analisi o tracciabilita' senza perdita.
+\end{statusbox}
+
+\section{Cause neutrality}
+
+\subsection{Failure mode non e' causa}
+
+La catena concettuale e':
+
+\begin{center}
+\begin{tikzpicture}[
+  node distance=8mm,
+  box/.style={draw=ddtadark,rounded corners,align=center,inner sep=6pt,minimum width=49mm},
+  arr/.style={-{Latex[length=2.4mm]},thick}
+]
+\node[box] (cause) {Cause / threat event\\\small attack, error, fault, other};
+\node[box, below=of cause] (fm) {Security failure mode};
+\node[box, below=of fm] (prop) {Loss / violation\\of SecurityProperty};
+\node[box, below=of prop] (impact) {Possible adverse consequence};
+\draw[arr] (cause)--(fm);
+\draw[arr] (fm)--(prop);
+\draw[arr] (prop)--(impact);
+\end{tikzpicture}
+\end{center}
+
+Il SecurityRequirement governa la proprieta' e il failure mode; la causa spiega come si possa arrivare a quel failure mode e appartiene al futuro analysis model.
+
+\begin{resultbox}{\closed{} - SEC-02 Cause neutrality}
+L'identita' e la validita' normativa di un SecurityRequirement MUST NOT dipendere da una singola causa adversarial o non-adversarial. Attacco, errore umano, misconfiguration, software fault o hardware fault possono motivare review dello stesso failure mode senza diventare parte necessaria dell'identita' del requisito.
+\end{resultbox}
+
+Cause neutrality non significa che tutte le cause siano equivalenti nell'analisi, nella likelihood o nei controlli. Significa soltanto che il requisito non viene ridefinito ogni volta che cambia la spiegazione causale della stessa perdita di proprieta'.
+
+\section{Corpus facial-access camera: baseline funzionale}
+
+Il corpus riusa la decomposizione S1 senza introdurre una nuova architettura.
+
+\subsection{MacroRequirement}
+
+\begin{description}
+  \item[\texttt{MR-0003} - Riconoscimento facciale per la verifica della persona.] Il progetto possiede la responsabilita' macro di produrre evidenza di riconoscimento facciale usabile nel processo di verifica della persona.
+\end{description}
+
+\subsection{Decision di placement}
+
+\begin{description}
+  \item[\texttt{D-3.3} - Recognition placement.] \texttt{CameraSubsystem} acquisisce l'evidenza al punto di accesso; un \texttt{RecognitionProcessor} separato esegue localmente/remotamente rispetto alla camera il riconoscimento governato dal corpus.
+\end{description}
+
+Nel probe corrente la capture deve quindi essere consegnata dal CameraSubsystem al RecognitionProcessor.
+
+\subsection{FunctionalRequirement}
+
+\begin{description}
+  \item[\texttt{FR-3.4} - Deliver RecognitionCapture.] Per ogni \texttt{RecognitionCapture} destinata alla valutazione remota, il \texttt{CameraSubsystem} MUST consegnare la capture al \texttt{RecognitionProcessor} associandola alla corretta \texttt{RecognitionRequest}; una consegna non completata MUST NOT essere rappresentata come completata con successo.
+\end{description}
+
+Questa e' correttezza funzionale ordinaria. Associare la capture alla richiesta sbagliata non viene spostato in SecurityRequirement soltanto perche' potrebbe essere sfruttato da un attaccante.
+
+\section{SR-3.4-C come SecurityRequirement: Confidentiality}
+
+\begin{lstlisting}
+id:
+    SR-3.4-C
+
+type:
+    SecurityRequirement
+
+parentFunctionalRequirement:
+    FR-3.4
+
+protectedSecurityProperty:
+    Confidentiality
+
+normativeClause:
+    Durante la consegna governata da FR-3.4, il contenuto
+    della RecognitionCapture MUST NOT diventare intelligibile
+    a un soggetto non autorizzato ad accedere a quella capture.
+\end{lstlisting}
+
+Il failure mode e' identificabile senza un campo duplicato:
+
+\begin{lstlisting}
+RecognitionCapture becomes intelligible
+or disclosed to an unauthorized subject.
+\end{lstlisting}
+
+\subsection{Regression checks}
+
+\begin{itemize}
+  \item \textbf{Parent ownership}: esattamente FR-3.4 - PASS.
+  \item \textbf{Removal}: senza SR-3.4-C la delivery resta funzione riconoscibile, ma perde confidentiality - PASS.
+  \item \textbf{Security specificity}: property esplicita e failure mode contestualizzato - PASS.
+  \item \textbf{Realization separation}: TLS, payload encryption o altra strategia equivalente non cambiano il Requirement - PASS.
+\end{itemize}
+
+\section{SR-3.4-I come SecurityRequirement: Integrity}
+
+\begin{lstlisting}
+id:
+    SR-3.4-I
+
+type:
+    SecurityRequirement
+
+parentFunctionalRequirement:
+    FR-3.4
+
+protectedSecurityProperty:
+    Integrity
+
+normativeClause:
+    Una RecognitionCapture alterata dopo l'acquisizione
+    MUST NOT essere accettata come la capture governata
+    associata alla relativa RecognitionRequest.
+\end{lstlisting}
+
+Il failure mode e':
+
+\begin{lstlisting}
+altered RecognitionCapture is accepted
+as the governed capture for the request.
+\end{lstlisting}
+
+Il requisito non prescrive hash, MAC, firma, protocollo o layer di protezione. Queste sono possibili realization choices downstream.
+
+\section{SR-3.4-P come SecurityRequirement: Authorized Provenance}
+
+\begin{lstlisting}
+id:
+    SR-3.4-P
+
+type:
+    SecurityRequirement
+
+parentFunctionalRequirement:
+    FR-3.4
+
+protectedSecurityProperty:
+    Authenticity / Authorized Provenance   [candidate label]
+
+normativeClause 1:
+    Una RecognitionCapture MUST NOT essere accettata come
+    evidenza valida se non e' stabilito che la sua origine
+    e' autorizzata a fornire evidenza per la relativa request.
+
+normativeClause 2:
+    Il mancato accertamento di una origine autorizzata
+    MUST NOT essere rappresentato come accettazione riuscita.
+\end{lstlisting}
+
+Le due clause restano un Requirement soltanto se acceptance condition e failure outcome sono parti inseparabili della stessa obbligazione di authorized provenance.
+
+\begin{warningbox}{OPEN - SecurityProperty vocabulary}
+Il label \texttt{Authenticity / Authorized Provenance} e' deliberatamente candidato. S2 non decide ancora se Authorized Provenance sia una SecurityProperty autonoma, un refinement di Authenticity o una governed property definita dal progetto. La tassonomia non deve essere chiusa solo per accomodare il corpus.
+\end{warningbox}
+
+\section{Split test: una property per Requirement}
+
+Consideriamo la proposta errata:
+
+\begin{lstlisting}
+SR-3.4-X
+    protectedSecurityProperty = {Confidentiality, Integrity}
+    clause 1 = capture MUST NOT be disclosed
+    clause 2 = capture MUST NOT be altered and accepted
+\end{lstlisting}
+
+Le due obbligazioni possono essere violate, implementate, assessate e revisionate indipendentemente. Il coherent-unit invariant S1.5 forza quindi lo split:
+
+\begin{lstlisting}
+SR-3.4-C -> Confidentiality
+SR-3.4-I -> Integrity
+\end{lstlisting}
+
+\begin{resultbox}{\closed{} - SEC-03 Single governing security property}
+Ogni SecurityRequirement possiede esattamente un riferimento governante a SecurityProperty. Se due property esprimono obbligazioni indipendentemente evolvibili/assessable, devono essere modellate come SecurityRequirement distinti.
+\end{resultbox}
+
+\section{Cause mutation sullo stesso SecurityRequirement}
+
+Prendiamo SR-3.4-C. Manteniamo invariati property, failure mode e normative clause, cambiando soltanto la causa ipotizzata.
+
+\begin{longtable}{p{0.22\textwidth}p{0.30\textwidth}p{0.35\textwidth}}
+\toprule
+\textbf{Mutation} & \textbf{Cause} & \textbf{Esito sul requisito} \\
+\midrule
+\endhead
+A & malicious network observation/interception & SR-3.4-C invariato; la causa e' adversarial. \\
+\addlinespace
+B & endpoint misconfiguration exposing content & SR-3.4-C invariato; la causa e' non-adversarial/accidentale. \\
+\addlinespace
+C & software defect exposing capture & SR-3.4-C invariato; cambia l'origine causale, non il failure mode. \\
+\addlinespace
+D & hardware replacement/disposal path exposes stored copy & SR-3.4-C puo' continuare a esprimere confidentiality se il trattamento ricade nel parent/applicability governato; eventuale cambio di parent richiede review, non auto-migrazione. \\
+\bottomrule
+\end{longtable}
+
+La mutazione supporta SEC-02: l'attacco non e' prerequisito ontologico del SecurityRequirement.
+
+\section{Caso limite: perdita dati per guasto}
+
+La frase ``perdita dati dovuta a rottura'' non basta da sola a classificare un Requirement come security.
+
+\subsection{Guasto con solo failure funzionale ordinario}
+
+Se un componente si rompe e FR-3.4 non completa la delivery, la clausola funzionale gia' richiede che la consegna fallita non venga rappresentata come successo. Questo rimane FR correctness, anche se il guasto e' grave.
+
+\subsection{Guasto che viola una property di sicurezza governata}
+
+Se invece il progetto governa una property di Availability/Integrity e il failure mode e', per esempio, perdita permanente di un record necessario oppure indisponibilita' non tollerabile di una capability autorizzata, un evento non-adversarial puo' motivare un SecurityRequirement relativo a quella property.
+
+Il criterio non e':
+
+\begin{lstlisting}
+Was there an attacker?
+\end{lstlisting}
+
+ma:
+
+\begin{lstlisting}
+Is there a governed SecurityProperty whose loss is made
+explicit by this Requirement and whose failure mode is
+separate from ordinary functional correctness?
+\end{lstlisting}
+
+Lo stesso fenomeno puo' essere simultaneamente rilevante per reliability/resilience. S2 non pretende di rendere SecurityRequirement l'unica classificazione possibile di ogni guasto.
+
+\section{Availability probe e confine con reliability}
+
+Per stressare il modello senza estendere il corpus canonico, consideriamo un probe illustrativo sotto un FR che processa richieste valide:
+
+\begin{lstlisting}
+protectedSecurityProperty:
+    Availability
+
+normativeClause:
+    Repeated invalid submissions MUST NOT permanently starve
+    governed valid RecognitionRequests from receiving the
+    processing service owned by the parent FR.
+\end{lstlisting}
+
+Il failure mode e' starvation permanente delle richieste valide. Una causa potrebbe essere adversarial (denial-of-service intenzionale) oppure non-adversarial (client difettoso che genera richieste invalide). Il Requirement puo' restare semanticamente uguale.
+
+Negative control: un generico ``the service must never fail'' non e' automaticamente SecurityRequirement; puo' essere reliability/performance e manca di una property/failure mode sufficientemente governati.
+
+\section{Negative controls S2}
+
+\subsection{NC-SEC-01 - Functional correctness}
+
+\begin{lstlisting}
+RecognitionCapture MUST be associated with the correct
+RecognitionRequest.
+\end{lstlisting}
+
+E' necessaria alla funzione di delivery stessa. Rimane in FR-3.4 anche se una associazione errata puo' produrre conseguenze di sicurezza.
+
+\subsection{NC-SEC-02 - Control/realization leakage}
+
+\begin{lstlisting}
+RecognitionCapture MUST be protected with TLS 1.3.
+\end{lstlisting}
+
+Nella forma corrente e' una scelta di realizzazione/Decision candidata, non la semantica minima del SecurityRequirement. Il requisito deve esprimere property e failure mode senza prescrivere incidentalmente il meccanismo.
+
+\subsection{NC-SEC-03 - Attack description}
+
+\begin{lstlisting}
+An attacker MUST NOT perform a MITM attack.
+\end{lstlisting}
+
+Non definisce in modo sufficiente quale property del parent FR debba essere preservata, quale comportamento costituisca failure e quale obbligo governato debba valere. E' una descrizione causale/threat-oriented, non un SecurityRequirement completo.
+
+\subsection{NC-SEC-04 - Generic quality concern}
+
+\begin{lstlisting}
+Delivery should be reliable and fast.
+\end{lstlisting}
+
+Non e' una obligation sufficientemente assessable e non identifica una SecurityProperty. Potrebbe generare futuri Performance/QualityRequirement, ma non e' SecurityRequirement per sola rilevanza operativa.
+
+\section{Architecture mutation regression}
+
+S2 deve conservare le mutation gia' superate da S1.
+
+\begin{longtable}{p{0.23\textwidth}p{0.30\textwidth}p{0.35\textwidth}}
+\toprule
+\textbf{Mutation} & \textbf{FR/SecR} & \textbf{Interpretazione} \\
+\midrule
+\endhead
+Ethernet $\rightarrow$ Wi-Fi & FR-3.4 e SecR possono restare invariati dopo review & Cambia il mezzo, non necessariamente l'obbligo. \\
+\addlinespace
+Transport external $\rightarrow$ project-owned & puo' emergere un nuovo FR di transport capability; SecR su FR-3.4 possono restare & Ownership della realizzazione non trasferisce ownership normativa. \\
+\addlinespace
+Recognition remote $\rightarrow$ local to camera & FR-3.4 scompare; i SecR figli vengono riesaminati e possono diventare non-applicable/retired & Conferma parent dependence e no auto-migration. \\
+\addlinespace
+Raw capture $\rightarrow$ opaque reference & review locale dei SecR interessati & Il modello richiede effective governed context, ma non introduce in S2 una generic \texttt{affects} relation. \\
+\bottomrule
+\end{longtable}
+
+\section{Whole-chain validation}
+
+Il corpus consente ora di attraversare l'intero metamodel della documentazione governata fino alla sicurezza:
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+  node distance=7mm,
+  box/.style={draw=ddtadark,rounded corners,align=center,inner sep=6pt,minimum width=55mm},
+  sec/.style={draw=ddtablue,rounded corners,align=center,inner sep=5pt,minimum width=40mm,font=\small},
+  arr/.style={-{Latex[length=2.4mm]},thick}
+]
+\node[box] (p) {Project framing\\controlled facial-access};
+\node[box, below=of p] (mr) {MR-0003\\Facial recognition for person verification};
+\node[box, below=of mr] (d) {D-3.3\\Recognition placement};
+\node[box, below=of d] (fr) {FR-3.4\\Deliver RecognitionCapture};
+\node[sec, below left=8mm and 13mm of fr] (c) {SR-3.4-C\\SecurityRequirement\\Confidentiality};
+\node[sec, below=8mm of fr] (i) {SR-3.4-I\\SecurityRequirement\\Integrity};
+\node[sec, below right=8mm and 13mm of fr] (p2) {SR-3.4-P\\SecurityRequirement\\Authorized provenance};
+\draw[arr] (p)--(mr);
+\draw[arr] (mr)--(d);
+\draw[arr] (d)--(fr);
+\draw[arr] (fr)--(c);
+\draw[arr] (fr)--(i);
+\draw[arr] (fr)--(p2);
+\end{tikzpicture}
+\caption{Catena documentale concreta. I tre SecurityRequirement sono SpecializedRequirement concreti indipendenti dello stesso FR.}
+\end{figure}
+
+Il passaggio non richiede Threat, Attack, Finding, Control o AnalysisRecord dentro la semantica dei documenti. Questi concetti potranno spiegare coverage, motivazione, plausibilita', risk e realization downstream.
+
+\section{Cosa e' completato con la closure S2}
+
+Con la closure degli invarianti S2, e' dichiarato completo per il baseline corrente il \textbf{governed documentation metamodel through SecurityRequirement}:
+
+\begin{lstlisting}
+Project problem framing [method precondition]
+    -> MacroRequirement
+        -> Decision
+            -> FunctionalRequirement
+                -> SpecializedRequirement [abstract]
+                    -> SecurityRequirement
+\end{lstlisting}
+
+Questo non equivale ancora al full DDTA metamodel. Restano da formalizzare almeno il lato analitico e la sua integrazione:
+
+\begin{lstlisting}
+Governed documentation
+    -> Base Analysis / analyzable representation
+    -> Analysis execution
+    -> Finding / analytical result
+    -> governed feedback / provenance
+    -> requirement or other document change
+\end{lstlisting}
+
+La separazione e' intenzionale: S2 chiude la destinazione normativa senza anticipare la struttura che produrra' o motivara' i cambiamenti.
+
+\section{Stato epistemico S2 dopo il corpus}
+
+\begin{longtable}{p{0.20\textwidth}p{0.70\textwidth}}
+\toprule
+\textbf{Stato} & \textbf{Elementi} \\
+\midrule
+\endhead
+\closed & Baseline MR/Decision/FR; Requirement abstraction S1.5; SpecializedRequirement S1; parent singolo; coherent-unit; provenance distinta dalla semantica. \\
+\addlinespace
+\closed & \texttt{SecurityRequirement IS-A SpecializedRequirement}; definizione property-centered; \texttt{protectedSecurityProperty : SecurityProperty [1]}; failure-mode explicitness; cause neutrality; single governing security property. \\
+\addlinespace
+\candidate & Forma finale del label/property per Authorized Provenance; possibilita' di usare SecurityProperty come governed reference estensibile; availability probe come generality evidence. \\
+\addlinespace
+\openstatus & Tassonomia/gerarchia di SecurityProperty; eventuale futura rappresentazione strutturata di SecurityFailureMode; exact L2 representation; effective governed context. \\
+\addlinespace
+\deferred & Attack, ThreatActor, ThreatEvent, Incident, Vulnerability, Finding, Risk, Control, Base Analysis/BAE, STRIDE formalization, analysis coverage, provenance/change-event model, verification evidence. \\
+\bottomrule
+\end{longtable}
+
+\section{Invarianti S2 chiusi}
+
+\begin{enumerate}[label=\textbf{S2-CLOSED-\arabic*.},leftmargin=*,align=left,labelsep=0.6em]
+  \item \textbf{Subtype.} Ogni SecurityRequirement e' uno SpecializedRequirement e ne conserva tutti gli invarianti.
+  \item \textbf{Security-property anchoring.} Ogni SecurityRequirement riferisce esattamente una SecurityProperty governante.
+  \item \textbf{Failure-mode explicitness.} Le normative clause rendono identificabile che cosa costituisce perdita/violazione della property nel parent FR.
+  \item \textbf{Cause neutrality.} L'identita' normativa non dipende da una specifica causa adversarial o non-adversarial.
+  \item \textbf{Attack non-necessity.} La presenza di un attacco noto non e' prerequisito per la validita' del requisito.
+  \item \textbf{Single coherent security obligation.} Property e clause devono formare una sola unita' normativa; property indipendenti richiedono Requirement distinti.
+  \item \textbf{Functional preservation.} La rimozione del SecurityRequirement lascia riconoscibile il parent FR, pur perdendo la property di sicurezza.
+  \item \textbf{No functional theft.} Una condizione di ordinaria correttezza funzionale non viene spostata in SecurityRequirement per sola security relevance.
+  \item \textbf{No attack-as-requirement.} Descrivere attacker, technique o threat event non sostituisce property, failure mode e obligation.
+  \item \textbf{Realization separation.} Control, protocollo, algoritmo, componente o layer non sono parte necessaria della semantica SecurityRequirement.
+  \item \textbf{Method neutrality.} La semantica SecurityRequirement non richiede STRIDE o altra tecnica specifica.
+  \item \textbf{Provenance separation.} La causa analitica che motiva il requisito non viene incorporata come singolo analysis id intrinseco.
+\end{enumerate}
+
+\section{Reopen criteria e confine successivo}
+
+S2 e' chiuso per il baseline corrente e deve essere riaperto se emerge almeno uno dei seguenti controesempi:
+
+\begin{itemize}
+  \item un SecurityRequirement valido richiede necessariamente due SecurityProperty indipendenti nello stesso Requirement;
+  \item un failure mode non puo' essere governato senza una identita' strutturale separata dalle normative clause;
+  \item la causa adversarial/non-adversarial modifica inevitabilmente l'identita' normativa anche mantenendo invariati property e failure outcome;
+  \item il modello non riesce a distinguere in modo stabile security da ordinary functional correctness o da quality/reliability;
+  \item un caso security concreto forza Attack, Finding, Risk o Control dentro il core del requisito.
+\end{itemize}
+
+\begin{statusbox}{Closure boundary}
+S2 chiude il governed documentation metamodel through SecurityRequirement. I successivi microstep non devono riaprire questa semantica salvo controesempio concreto. La tassonomia SecurityProperty, la possibile identita' strutturale del failure mode e il lato analitico DDTA restano rispettivamente OPEN o DEFERRED secondo lo stato epistemico sopra.
+\end{statusbox}
+
+\section{Riferimenti terminologici di controllo}
+
+\begin{itemize}
+  \item NIST SP 800-30 Rev. 1, \emph{Guide for Conducting Risk Assessments}: threat sources/events e template di assessment adversarial e non-adversarial.
+  \item NIST CSRC Glossary, \emph{Information System-Related Security Risk}: rischio derivante dalla perdita di confidentiality, integrity o availability.
+  \item NIST CSRC Glossary, \emph{Security}: confidentiality, integrity e availability come proprieta' centrali; ulteriori property possono essere rilevanti a seconda del contesto.
+\end{itemize}
+
+Questi riferimenti sono usati solo come sanity check terminologico. Le cardinalita', i boundary e gli invarianti DDTA del presente documento derivano dai probe del metamodel e non sono attribuiti a NIST.
+
+\end{document}
