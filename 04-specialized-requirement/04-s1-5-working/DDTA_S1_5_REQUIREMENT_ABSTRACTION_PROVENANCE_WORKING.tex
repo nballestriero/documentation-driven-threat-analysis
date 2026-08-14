@@ -35,14 +35,14 @@
   linkcolor=DDTADark,
   citecolor=DDTADark,
   urlcolor=DDTABlue,
-  pdftitle={DDTA S1.5 - Requirement abstraction and provenance constraints},
+  pdftitle={DDTA S1.5 - Requirement abstraction closure and provenance constraints},
   pdfauthor={Documentation-Driven Threat Analysis research workspace}
 }
 
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{\small Documentation-Driven Threat Analysis}
-\fancyhead[R]{\small S1.5 working note}
+\fancyhead[R]{\small S1.5 closure revision}
 \fancyfoot[C]{\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
 
@@ -99,7 +99,7 @@
 \vspace{0.8cm}
 {\Huge\bfseries S1.5 Working Note\par}
 \vspace{0.35cm}
-{\LARGE Requirement abstraction and provenance constraints\par}
+{\LARGE Requirement abstraction closure and provenance constraints\par}
 \vspace{1.0cm}
 {\large Formalizzazione temporanea tra SpecializedRequirement S1 e SecurityRequirement S2\par}
 \vfill
@@ -108,10 +108,10 @@
 \textbf{Stato.} Materiale di ricerca temporaneo. Non costituisce un capitolo autonomo della tesi, non promuove ancora una nuova foundation canonica e non chiude il modello di AnalysisRecord, Finding, revision o change event.
 
 \medskip
-\textbf{Baseline repository.} \texttt{nballestriero/documentation-driven-threat-analysis}, commit \texttt{9108917d1ca6dfa030df6625018520db0b05f6bf}.
+\textbf{Baseline repository for this correction.} \artifact{nballestriero/documentation-driven-threat-analysis}, commit \artifact{544ef14d92b50cf956cf6e8dd1000079d757c49c}.
 
 \medskip
-\textbf{Scopo.} Verificare una possibile astrazione comune \texttt{Requirement [abstract]} per FunctionalRequirement e SpecializedRequirement e registrare i vincoli minimi che il futuro modello di provenance dovra' soddisfare.
+\textbf{Scopo.} Chiudere l'astrazione comune \texttt{Requirement [abstract]}, registrare il rigetto della metaclasse \texttt{NormativeObligation} e preservare i vincoli minimi che il futuro modello di provenance dovra' soddisfare.
 \end{minipage}
 \vfill
 {\large 14 agosto 2026\par}
@@ -169,7 +169,7 @@ Questo materiale non giustifica un capitolo autonomo. La consolidazione piu' pla
 ]
 \node[box] (ch) {Capitolo 4 - Documentation metamodel e authoring};
 \node[sub,below=of ch] (gd) {Contratto comune dei GovernedDocument\\\small identity, lifecycle, history/provenance [partly OPEN]};
-\node[sub,below=of gd] (rq) {Requirement abstraction\\\small Requirement [abstract], normative obligation};
+\node[sub,below=of gd] (rq) {Requirement abstraction\\\small Requirement [abstract], normativeClause 1..*};
 \node[sub,below=of rq] (types) {MacroRequirement - Decision - FunctionalRequirement - SpecializedRequirement};
 \draw[arr] (ch)--(gd);\draw[arr] (gd)--(rq);\draw[arr] (rq)--(types);
 \end{tikzpicture}
@@ -187,9 +187,9 @@ La distinzione da preservare e':
 \part*{Parte A - Requirement abstraction}
 \addcontentsline{toc}{section}{Parte A - Requirement abstraction}
 
-\section{Ipotesi S1.5-A}
+\section{Ipotesi S1.5-A e domanda di closure}
 
-L'ipotesi da falsificare e':
+La gerarchia sottoposta a falsificazione e':
 
 \begin{figure}[h]
 \centering
@@ -204,52 +204,66 @@ L'ipotesi da falsificare e':
 \node[box,below right=of req] (sr) {SpecializedRequirement\\\textit{abstract}};
 \draw[arr] (gd)--(req);\draw[arr] (req)--(fr);\draw[arr] (req)--(sr);
 \end{tikzpicture}
-\caption{Candidate common abstraction for requirement documents.}
+\caption{Common abstraction closed by S1.5-A.}
 \end{figure}
+
+La proprieta' comune e' semantica, non una mera uniformita' editoriale:
+
+\begin{quote}
+\textbf{Un Requirement e' una obbligazione normativa governata il cui contenuto normativo costituisce esattamente una unita' di requisito coerente.}
+\end{quote}
+
+Forma minima:
 
 \begin{lstlisting}
 Requirement [abstract]
     extends GovernedDocument
 
-    normativeObligation : NormativeObligation [1]
+    normativeClause : NormativeClause [1..*]
 \end{lstlisting}
 
-L'astrazione e' giustificata solo se la proprieta' comune e' semantica e non una mera uniformita' editoriale.
+Il Requirement e' esso stesso l'obbligazione normativa governata. Non necessita di possedere un secondo oggetto semantico che ripeta la stessa responsabilita'.
 
-\section{Significato di NormativeObligation}
+\section{Alternativa rigettata - metaclasse NormativeObligation}
 
-\texttt{NormativeObligation} non e' un FunctionalRequirement e non e' inizialmente un documento governato autonomo. E' il contenuto normativo semanticamente coerente posseduto da un singolo Requirement.
+La precedente ipotesi S1.5 introduceva:
 
 \begin{lstlisting}
-Requirement [abstract]
+Requirement
     normativeObligation : NormativeObligation [1]
 
 NormativeObligation
     normativeClause : NormativeClause [1..*]
 \end{lstlisting}
 
-Interpretazione candidata:
+La metaclasse aggiuntiva non possiede, nel baseline corrente, identity, lifecycle, governance, parentage, comportamento o semantica evolutiva indipendenti. La sua sola funzione sarebbe racchiudere le clausole normative gia' possedute dal Requirement.
 
-\begin{quote}
-\textbf{Un Requirement possiede una sola obbligazione normativa semanticamente coerente. L'obbligazione puo' richiedere una o piu' clausole normative per essere espressa completamente.}
-\end{quote}
+\begin{openbox}{REJECTED - NormativeObligation metaclass}
+La forma \texttt{Requirement HAS-A NormativeObligation} e' rigettata dal baseline L1 corrente. Il termine ``normative obligation'' rimane linguaggio definitorio: \texttt{Requirement IS-A governed normative obligation}.
+\end{openbox}
 
-Quindi:
+\texttt{NormativeClause} rappresenta una o piu' clausole necessarie a esprimere completamente il Requirement. La sua esatta rappresentazione L2 testuale/strutturata resta separata dall'identita' L1 del Requirement.
+
+\section{Coherent-unit invariant}
+
+Un Requirement puo' richiedere piu' di una clausola testuale, ma le clausole devono esprimere congiuntamente una sola obbligazione normativa coerente:
 
 \begin{lstlisting}
 1 Requirement != 1 textual sentence
 1 Requirement  = 1 coherent normative obligation
 \end{lstlisting}
 
-Una obbligazione multi-clausola resta un solo Requirement soltanto finche' le clausole non diventano unita' di requisito indipendentemente significative, modificabili o valutabili.
+\begin{resultbox}{CLOSED - Requirement coherent-unit rule}
+Tutte le normative clause possedute da un Requirement MUST esprimere congiuntamente esattamente una obbligazione normativa coerente.
+\end{resultbox}
 
-\begin{openbox}{OPEN - metaclass necessity test}
-Resta da falsificare se \texttt{NormativeObligation} debba essere una metaclasse L1 esplicita oppure se sia sufficiente modellare \texttt{Requirement.normativeClause [1..*]} con l'invariante che tutte le clausole costituiscano esattamente una obbligazione normativa coerente.
-\end{openbox}
+\textbf{Split test.} Se una clausola puo' essere introdotta, revisionata, ritirata o valutata indipendentemente senza cambiare l'identita' normativa delle clausole rimanenti, deve essere valutata come Requirement separato anziche' come ulteriore clausola dello stesso Requirement.
+
+Questo evita di aggregare proprieta' specializzate indipendenti soltanto perche' condividono lo stesso parent FR.
 
 \section{FunctionalRequirement come specializzazione}
 
-Forma candidata:
+Forma chiusa:
 
 \begin{lstlisting}
 FunctionalRequirement
@@ -258,7 +272,7 @@ FunctionalRequirement
     parentDecision : Decision [1]
 \end{lstlisting}
 
-La \texttt{normativeObligation} ereditata rimane soggetta agli invarianti FR gia' chiusi:
+Le clausole normative ereditate restano soggette agli invarianti FR gia' chiusi:
 \begin{itemize}
   \item operationality;
   \item independent assessability;
@@ -268,11 +282,11 @@ La \texttt{normativeObligation} ereditata rimane soggetta agli invarianti FR gia
   \item normative prose primary.
 \end{itemize}
 
-L'introduzione di Requirement non rimuove alcun invariante FR. Il precedente concetto L1 \texttt{functionalObligation} e' candidato a essere normalizzato come la \texttt{Requirement.normativeObligation} ereditata. Una rappresentazione L2 puo' conservare label specifiche per l'authoring, pur mantenendo una sola autorita' semantica.
+Il precedente label \texttt{functionalObligation} viene normalizzato a L1 nella semantica comune di Requirement. Una rappresentazione L2 puo' conservare label FR-specifiche per l'authoring, pur mantenendo una sola autorita' semantica.
 
 \section{SpecializedRequirement come specializzazione}
 
-Forma candidata:
+Forma chiusa:
 
 \begin{lstlisting}
 SpecializedRequirement [abstract]
@@ -281,7 +295,7 @@ SpecializedRequirement [abstract]
     parentFunctionalRequirement : FunctionalRequirement [1]
 \end{lstlisting}
 
-La \texttt{normativeObligation} ereditata resta soggetta alle regole CLOSED S1:
+Le clausole normative ereditate restano soggette alle regole CLOSED S1:
 \begin{itemize}
   \item normative strengthening di esattamente un FR;
   \item composizione congiuntiva con il parent FR;
@@ -294,12 +308,12 @@ La \texttt{normativeObligation} ereditata resta soggetta alle regole CLOSED S1:
   \item parent dependence.
 \end{itemize}
 
-L'astrazione comune non indebolisce la semantica S1.
+Il contratto Requirement non indebolisce ne' sostituisce la semantica S1.
 
-\section{Regression probes}
+\section{Regression probes e negative controls}
 
 \small
-\begin{longtable}{p{0.25\textwidth}p{0.47\textwidth}p{0.16\textwidth}}
+\begin{longtable}{p{0.24\textwidth}p{0.49\textwidth}p{0.15\textwidth}}
 \toprule
 \textbf{Probe} & \textbf{Osservazione} & \textbf{Esito} \\
 \midrule
@@ -308,17 +322,19 @@ L'astrazione comune non indebolisce la semantica S1.
 \textbf{Probe} & \textbf{Osservazione} & \textbf{Esito} \\
 \midrule
 \endhead
-FR-3.4 Deliver RecognitionCapture & Resta FR perche' l'obbligazione e' una responsabilita' operativa autonomamente significativa. & PASS \\
+FR-3.4 Deliver RecognitionCapture & Resta un Requirement operativo autonomamente significativo; piu' clausole possono esprimere correlation, delivery e failure semantics come unita' coerente. & PASS \\
 \addlinespace
-SR-3.4-C Confidentiality & Rafforza FR-3.4 senza definire la funzione di consegna. & PASS \\
+SR-3.4-C Confidentiality & Rafforza FR-3.4 e puo' essere espresso direttamente mediante clause senza oggetto NormativeObligation intermedio. & PASS \\
 \addlinespace
-SR-3.4-I Integrity & Usa lo stesso concetto di obbligazione senza perdere la semantica S1. & PASS \\
+SR-3.4-I Integrity & Stessa osservazione: nessuna perdita semantica eliminando la metaclasse wrapper. & PASS \\
 \addlinespace
-SR-3.4-P Authorized provenance & Puo' richiedere comportamento positivo subordinato senza diventare FR. & PASS \\
+SR-3.4-P Authorized provenance & Acceptance condition e failure outcome possono restare piu' clause dello stesso SR finche' inseparabili dalla stessa obbligazione di provenance. & PASS \\
 \addlinespace
-PerformanceRequirement illustrativo & Un target prestazionale concern-specific puo' usare la stessa astrazione senza essere FR. & PASS generality \\
+Confidentiality vs authorized provenance & Possono evolvere, essere soddisfatte o diventare non applicabili indipendentemente: restano SR separati, non clause di un unico security Requirement. & PASS split \\
 \addlinespace
-RegulatoryRequirement illustrativo & Un obbligo normativo/compliance puo' usare la stessa astrazione senza essere FR. & PASS generality \\
+PerformanceRequirement illustrativo & Un target prestazionale concern-specific puo' usare lo stesso contratto di clause mantenendo semantica di subtype. & PASS generality \\
+\addlinespace
+RegulatoryRequirement illustrativo & Un obbligo normativo/compliance puo' usare lo stesso contratto comune senza diventare FR. & PASS generality \\
 \bottomrule
 \end{longtable}
 \normalsize
@@ -335,20 +351,17 @@ Decision IS-NOT-A Requirement
 L'astrazione Requirement non si espande automaticamente a ogni GovernedDocument.
 \end{resultbox}
 
-\section{Stato candidato S1.5-A}
+\section{CLOSED - S1.5-A Requirement abstraction}
 
-\begin{resultbox}{STRONG CANDIDATE - Requirement abstraction}
-\texttt{Requirement [abstract]} e' candidato come superclass comune di FunctionalRequirement e SpecializedRequirement. Ogni Requirement possiede una sola obbligazione normativa semanticamente coerente, esprimibile mediante una o piu' clausole.
+\begin{resultbox}{CLOSED - Requirement abstraction}
+\texttt{Requirement [abstract]} e' la superclass comune di FunctionalRequirement e SpecializedRequirement. Il Requirement e' esso stesso l'obbligazione normativa governata ed e' espresso da una o piu' normative clause che devono formare una sola unita' normativa coerente.
 \end{resultbox}
 
-Forma candidata:
+Forma chiusa:
 
 \begin{lstlisting}
 Requirement [abstract]
     extends GovernedDocument
-    normativeObligation : NormativeObligation [1]
-
-NormativeObligation
     normativeClause : NormativeClause [1..*]
 
 FunctionalRequirement
@@ -360,7 +373,21 @@ SpecializedRequirement [abstract]
     parentFunctionalRequirement : FunctionalRequirement [1]
 \end{lstlisting}
 
-\textbf{Reopen criterion.} Riaprire l'astrazione se una concreta sottoclasse di Requirement non puo' usare il contratto comune senza perdere semantica essenziale, oppure se l'astrazione forza documenti non-requirement a essere modellati come Requirement.
+Invarianti chiusi:
+\begin{enumerate}
+  \item \textbf{Requirement identity}: il Requirement e' l'obbligazione normativa governata; non e' richiesta una metaclasse \texttt{NormativeObligation} separata.
+  \item \textbf{Clause multiplicity}: un Requirement possiede una o piu' normative clause.
+  \item \textbf{Coherent unit}: tutte le clause formano esattamente una obbligazione normativa coerente.
+  \item \textbf{Split on independence}: obblighi indipendentemente evolvibili/assessable sono Requirement distinti.
+  \item \textbf{Subtype preservation}: FR e SR conservano tutti i propri invarianti specifici.
+  \item \textbf{Non-requirement boundary}: Decision e altri documenti governati non diventano Requirement soltanto perche' contengono linguaggio normativo.
+\end{enumerate}
+
+\begin{openbox}{REJECTED - L1 metaclass}
+\texttt{NormativeObligation [metaclass]} e' rigettata: non aggiunge una responsabilita' semantica indipendente nel modello corrente.
+\end{openbox}
+
+\textbf{Reopen criterion.} Riaprire S1.5-A soltanto se un concreto subtype futuro non puo' usare \texttt{normativeClause [1..*]} piu' coherent-unit invariant senza perdita/distorsione, oppure se emerge la necessita' indipendente di identity/lifecycle per una obbligazione separata dal Requirement.
 
 \newpage
 \part*{Parte B - Provenance constraints}
@@ -515,7 +542,7 @@ SR-10
 
 Il modello deve inoltre consentire a una analisi di evidenziare un FunctionalRequirement ordinario mancante, senza costringere ogni output analitico a diventare SpecializedRequirement.
 
-\section{Stato epistemico S1.5}
+\section{Stato epistemico S1.5 dopo la correzione}
 
 \small
 \begin{longtable}{p{0.21\textwidth}p{0.69\textwidth}}
@@ -527,13 +554,13 @@ Il modello deve inoltre consentire a una analisi di evidenziare un FunctionalReq
 \textbf{Stato} & \textbf{Elementi} \\
 \midrule
 \endhead
-\closed & Semantica operativa FR; semantica S1 SpecializedRequirement; SR esattamente un FR parent; provenance distinta dalla normative semantics; analisi non autorita' automatica della documentazione. \\
+\closed & Semantica operativa FR; semantica S1 SpecializedRequirement; SR esattamente un FR parent; provenance distinta dalla normative semantics; analisi non autorita' automatica della documentazione; \texttt{Requirement [abstract]} come superclass comune FR/SR; \texttt{Requirement.normativeClause [1..*]}; coherent-unit e split-on-independence invariants. \\
 \addlinespace
-\strongcandidate & \texttt{Requirement [abstract]} come superclass comune di FR e SR; una sola obbligazione normativa coerente per Requirement; obbligazione esprimibile con una o piu' clausole. \\
+\textbf{REJECTED} & \texttt{NormativeObligation} come metaclasse L1 separata; il termine resta linguaggio definitorio della semantica Requirement. \\
 \addlinespace
 \candidate & Historical many-to-many analysis/change lineage; provenance piu' ampia di Requirement; analyzed $\neq$ changed; analysis motivates/proposes, governance accepts. \\
 \addlinespace
-\openstatus & Contratto completo GovernedDocument; necessita' della metaclasse NormativeObligation; exact lifecycle/history model; ChangeEvent; RequirementRevision; AnalysisRun/AnalysisRecord; analysis type; change-kind vocabulary; supersession/retirement; structured applicability. \\
+\openstatus & Contratto completo GovernedDocument; exact lifecycle/history model; ChangeEvent; RequirementRevision; AnalysisRun/AnalysisRecord; analysis type; change-kind vocabulary; supersession/retirement; structured applicability; rappresentazione L2 esatta delle normative clause. \\
 \addlinespace
 \deferred & Finding; Base Analysis/BAE; STRIDE; SecurityRequirement-specific provenance fields; controls; verification evidence. \\
 \bottomrule
@@ -542,16 +569,18 @@ Il modello deve inoltre consentire a una analisi di evidenziare un FunctionalReq
 
 \section{Prossimo microstep raccomandato}
 
-\begin{enumerate}
-  \item Falsificare la necessita' di una metaclasse L1 \texttt{NormativeObligation} rispetto alla forma piu' minimale \texttt{Requirement.normativeClause [1..*]} con coherence invariant.
-  \item Se non emerge un controesempio, chiudere S1.5-A e normalizzare il contratto comune Requirement.
-  \item Conservare provenance come requisiti e acceptance queries, lasciando OPEN il meccanismo strutturale.
-  \item Avviare S2 con la sola ipotesi \texttt{SecurityRequirement IS-A SpecializedRequirement}.
-  \item Riprendere event/revision/provenance durante la formalizzazione di AnalysisRecord/Finding.
-\end{enumerate}
+S1.5-A e' chiuso per il baseline corrente. I vincoli di provenance sono conservati, mentre il loro meccanismo strutturale resta OPEN.
+
+Il prossimo microstep di ricerca e' quindi S2:
+
+\begin{lstlisting}
+SecurityRequirement IS-A SpecializedRequirement
+\end{lstlisting}
+
+S2 deve determinare soltanto la semantica e l'eventuale contratto minimo aggiuntivo che rende uno SpecializedRequirement specificamente un SecurityRequirement. Finding, Base Analysis, STRIDE, controls e provenance event model restano fuori dal microstep salvo che un controesempio concreto di SecurityRequirement costringa a correggere prima un layer proprietario.
 
 \begin{statusbox}{Conservation note}
-Questa nota deve restare materiale di lavoro fino a quando S1.5-A non viene falsificato o chiuso. La sua eventuale consolidazione nel Capitolo 4 deve preservare la distinzione fra contratto comune dei GovernedDocument, astrazione Requirement e provenance analitica.
+Questa nota rimane materiale di lavoro perche' la parte provenance e' ancora aperta. La sua futura consolidazione nel Capitolo 4 dovra' preservare la distinzione fra contratto comune dei GovernedDocument, astrazione Requirement chiusa in S1.5-A e provenance analitica ancora da formalizzare.
 \end{statusbox}
 
 \end{document}

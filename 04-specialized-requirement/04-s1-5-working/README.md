@@ -1,30 +1,32 @@
-# DDTA S1.5 working note
+# DDTA S1.5 working material
 
-**Status:** temporary research material.
+This directory contains the temporary S1.5 working formalization between SpecializedRequirement S1 and SecurityRequirement S2.
 
-This directory records the S1.5 microstudy between SpecializedRequirement S1 and SecurityRequirement S2.
-It is intentionally **not** a standalone thesis chapter and **not** a new canonical foundation.
+## Current correction
 
-The note studies two distinct questions:
+S1.5-A is now **CLOSED for the current thesis baseline**:
 
-1. whether `FunctionalRequirement` and `SpecializedRequirement` justify a common abstract `Requirement` contract;
-2. which provenance capabilities a future DDTA analysis/history model must preserve without prematurely defining `AnalysisRecord`, `Finding`, revision or change-event machinery.
+```text
+Requirement [abstract]
+    extends GovernedDocument
+    normativeClause : NormativeClause [1..*]
+
+FunctionalRequirement
+    extends Requirement
+
+SpecializedRequirement [abstract]
+    extends Requirement
+```
+
+The previous candidate `NormativeObligation` metaclass is **REJECTED**. `Requirement` is itself the governed normative obligation. One Requirement may use one or more normative clauses, subject to the coherent-unit and split-on-independence invariants.
+
+The provenance part of the working note remains intentionally incomplete: provenance/semantics separation is preserved, while `AnalysisRun`, `Finding`, `GovernedDocumentChangeEvent`, revision history and the acceptance workflow remain OPEN/DEFERRED for their owning later phases.
 
 ## Files
 
-- `DDTA_S1_5_REQUIREMENT_ABSTRACTION_PROVENANCE_WORKING.md` - compact editable working source;
-- `DDTA_S1_5_REQUIREMENT_ABSTRACTION_PROVENANCE_WORKING.tex` - standalone LaTeX formalization;
-- `DDTA_S1_5_REQUIREMENT_ABSTRACTION_PROVENANCE_WORKING.pdf` - rendered study artifact;
-- `SHA256SUMS.txt` - checksums for the three study files.
+- `DDTA_S1_5_REQUIREMENT_ABSTRACTION_PROVENANCE_WORKING.md` - primary working note.
+- `DDTA_S1_5_REQUIREMENT_ABSTRACTION_PROVENANCE_WORKING.tex` - typeset source.
+- `DDTA_S1_5_REQUIREMENT_ABSTRACTION_PROVENANCE_WORKING.pdf` - rendered working artifact.
+- `SHA256SUMS.txt` - checksums for the three working artifacts.
 
-## Baseline
-
-Repository: `nballestriero/documentation-driven-threat-analysis`
-
-Baseline commit: `9108917d1ca6dfa030df6625018520db0b05f6bf`
-
-## Epistemic boundary
-
-`Requirement [abstract]` remains a **STRONG CANDIDATE** pending the final necessity test for an explicit L1 `NormativeObligation` metaclass.
-
-Provenance separation and future lineage requirements are preserved as constraints; the structural provenance mechanism remains **OPEN**.
+This is research material, not a standalone thesis chapter. Future consolidation belongs in Chapter 4 as common governed-document / Requirement structure, while provenance remains a separate cross-document concern.

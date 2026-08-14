@@ -3,7 +3,7 @@
 
 **Status:** TEMPORARY WORKING NOTE  
 **Baseline repository:** `nballestriero/documentation-driven-threat-analysis`  
-**Baseline commit:** `9108917d1ca6dfa030df6625018520db0b05f6bf`  
+**Baseline commit for this correction:** `544ef14d92b50cf956cf6e8dd1000079d757c49c`  
 **Date:** 14 August 2026
 
 > This note is research material, not a thesis chapter and not yet a canonical metamodel artifact. Its purpose is to close, if possible, the common abstraction between FunctionalRequirement and SpecializedRequirement, while recording provenance requirements without prematurely defining AnalysisRecord, Finding, revision history, or change-event machinery.
@@ -59,7 +59,7 @@ Chapter 4 — Documentation metamodel and authoring rules
 |
 +-- Requirement abstraction
 |     Requirement [abstract]
-|     normativeObligation
+|     normativeClause 1..*
 |
 +-- MacroRequirement
 +-- Decision
@@ -79,7 +79,9 @@ The final thesis placement should therefore be a **section/subsection in Chapter
 
 # PART A — Requirement abstraction
 
-## 3. Hypothesis S1.5-A
+## 3. S1.5-A hypothesis and closure question
+
+The tested hierarchy is:
 
 ```text
 GovernedDocument
@@ -92,56 +94,82 @@ Requirement [abstract]
        `-- SpecializedRequirement [abstract]
 ```
 
-with:
+The common abstraction is semantic rather than editorial:
+
+> **A Requirement is a governed normative obligation whose normative content forms exactly one coherent requirement unit.**
+
+The minimal common shape is:
 
 ```text
 Requirement [abstract]
-    normativeObligation : NormativeObligation [1]
+    extends GovernedDocument
+
+    normativeClause : NormativeClause [1..*]
 ```
 
-The abstraction is justified only if the common property is semantic rather than editorial.
+`Requirement` is itself the governed normative obligation. It does not need to own a second semantic object that merely restates the same responsibility.
 
 ---
 
-## 4. Meaning of NormativeObligation
+## 4. Rejected alternative — NormativeObligation metaclass
 
-`NormativeObligation` is **not** a FunctionalRequirement and is not initially an independently governed document.
-
-It is the semantically coherent normative content owned by one `Requirement`.
-
-Candidate structure:
+The previous S1.5 candidate introduced:
 
 ```text
-Requirement [abstract]
+Requirement
     normativeObligation : NormativeObligation [1]
 
 NormativeObligation
     normativeClause : NormativeClause [1..*]
 ```
 
-Interpretation:
+This additional metaclass does not currently own independent identity, lifecycle, governance, parentage, behavior, or evolution semantics. Its only purpose would be to wrap the normative clauses already owned by the Requirement.
 
-> One Requirement owns one semantically coherent normative obligation. That obligation may require one or more normative clauses for complete expression.
+That indirection is therefore rejected for the current L1 baseline:
+
+```text
+REJECTED
+Requirement HAS-A NormativeObligation object
+```
+
+The retained semantics are instead:
+
+```text
+Requirement IS-A governed normative obligation
+```
+
+The phrase **normative obligation** remains definitional language. It is not a separate metaclass.
+
+`NormativeClause` denotes one or more clauses needed to express the Requirement completely; its exact L2 textual/structured representation remains separate from the L1 identity of the Requirement.
+
+---
+
+## 5. Coherent-unit invariant
+
+A Requirement may require more than one textual clause, but those clauses must jointly express one coherent normative obligation.
 
 Therefore:
 
 ```text
 1 Requirement != 1 textual sentence
+1 Requirement  = 1 coherent normative obligation
 ```
 
-but:
+### CLOSED — Requirement coherent-unit rule
 
-```text
-1 Requirement = 1 coherent normative obligation
-```
+> All normative clauses owned by one Requirement MUST jointly express exactly one coherent normative obligation.
 
-A multi-clause obligation remains one Requirement only while the clauses are not independently meaningful requirement units.
+### Split test
+
+If a clause can be introduced, revised, retired, or assessed independently without changing the normative identity of the remaining clauses, it must be evaluated as a separate Requirement rather than as another clause of the same Requirement.
+
+This prevents unrelated specialized properties from being grouped merely because they concern the same parent FR.
 
 ---
 
-## 5. FunctionalRequirement specialization
+## 6. FunctionalRequirement specialization
 
-Candidate shape:
+Closed common shape:
 
 ```text
 FunctionalRequirement
@@ -150,7 +178,7 @@ FunctionalRequirement
     parentDecision : Decision [1]
 ```
 
-Its inherited `normativeObligation` is constrained by existing FR invariants:
+The inherited normative clauses are constrained by the existing CLOSED FR invariants:
 
 - operational;
 - independently assessable;
@@ -160,15 +188,13 @@ Its inherited `normativeObligation` is constrained by existing FR invariants:
 - normative prose primary;
 - ordinary functional correctness remains in the FR.
 
-No FR semantic invariant is removed by introducing `Requirement`.
-
-The existing L1 concept `functionalObligation` is therefore a candidate to be normalized as the inherited `Requirement.normativeObligation`. A representation may still use FR-specific authoring labels if useful, provided there is only one semantic source of truth.
+The former `functionalObligation` label is therefore normalized at L1 into the Requirement semantics. An L2 representation may retain FR-specific authoring labels if useful, provided there is only one semantic source of truth.
 
 ---
 
-## 6. SpecializedRequirement specialization
+## 7. SpecializedRequirement specialization
 
-Candidate shape:
+Closed common shape:
 
 ```text
 SpecializedRequirement [abstract]
@@ -177,7 +203,7 @@ SpecializedRequirement [abstract]
     parentFunctionalRequirement : FunctionalRequirement [1]
 ```
 
-Its inherited `normativeObligation` is constrained by the CLOSED S1 invariants:
+The inherited normative clauses are constrained by the CLOSED S1 invariants:
 
 - normative strengthening of exactly one FR;
 - conjunctive composition with the parent FR;
@@ -189,81 +215,83 @@ Its inherited `normativeObligation` is constrained by the CLOSED S1 invariants:
 - realization independence;
 - parent dependence.
 
-No S1 invariant is weakened by introducing `Requirement`.
+The abstract Requirement contract does not weaken or replace any S1 rule.
 
 ---
 
-## 7. Regression probes
+## 8. Regression and negative-control probes
 
-### 7.1 FR-3.4 — Deliver RecognitionCapture
+### 8.1 FR-3.4 — Deliver RecognitionCapture
 
-The FR remains a `FunctionalRequirement` because its obligation is an independently meaningful operational responsibility.
-
-```text
-Requirement abstraction: PASS
-```
-
-### 7.2 SR-3.4-C — Confidentiality
-
-The SR remains a `SpecializedRequirement` because its obligation narrows acceptable satisfaction of FR-3.4 without defining the delivery function itself.
+The FR remains an independently meaningful operational Requirement. One or more clauses can express correlation, successful delivery, and failure semantics while remaining one coherent operational obligation.
 
 ```text
 PASS
 ```
 
-### 7.3 SR-3.4-I — Integrity
+### 8.2 SR-3.4-C — Confidentiality
 
-The inherited obligation concept is usable without weakening S1 semantics.
-
-```text
-PASS
-```
-
-### 7.4 SR-3.4-P — Authorized provenance
-
-The obligation may require positive subordinate behavior, but it still belongs to SR because it is semantically subordinate to acceptance within the parent FR.
+The SR remains a specialized Requirement because its clauses narrow acceptable satisfaction of FR-3.4 without defining the delivery function itself.
 
 ```text
 PASS
 ```
 
-### 7.5 Illustrative PerformanceRequirement
+### 8.3 SR-3.4-I — Integrity
+
+Integrity can be expressed directly by the SR's normative clauses without a separate NormativeObligation object.
+
+```text
+PASS
+```
+
+### 8.4 SR-3.4-P — Authorized provenance
+
+Authorized provenance may require multiple clauses such as an acceptance condition and a failure outcome. They may remain one SR while they are inseparable parts of one provenance obligation.
+
+```text
+PASS
+```
+
+### 8.5 Split counterexample — confidentiality vs authorized provenance
+
+A confidentiality clause and an authorized-provenance clause can evolve, be satisfied, and become non-applicable independently. They therefore remain separate SpecializedRequirements rather than clauses of one generic security Requirement.
+
+```text
+SPLIT TEST: PASS
+```
+
+### 8.6 Illustrative PerformanceRequirement
 
 Example only, not a committed metaclass:
 
 > While satisfying FR-X under the governed workload condition, completion SHALL occur within the governed response-time bound.
 
-This can use the same `NormativeObligation` abstraction without becoming a FunctionalRequirement.
+The requirement can use the same common clause contract while retaining performance-specific subtype semantics.
 
 ```text
 PASS as generality probe
 ```
 
-### 7.6 Illustrative RegulatoryRequirement
+### 8.7 Illustrative RegulatoryRequirement
 
 Example only, not a committed metaclass:
 
 > While satisfying FR-Y, processing SHALL comply with the applicable governed retention/use obligation.
 
-Again the common abstraction is sufficient.
+Again the common Requirement abstraction is sufficient.
 
 ```text
 PASS as generality probe
 ```
 
----
-
-## 8. Negative control — Decision
+### 8.8 Negative control — Decision
 
 A `Decision` is governed and may contain prescriptive language, but it records a significant commitment that narrows an MR. It is not an operational/specialized satisfaction obligation.
-
-Therefore:
 
 ```text
 Decision IS-NOT-A Requirement
 ```
-
-The `Requirement` abstraction does not expand to every `GovernedDocument`.
 
 ```text
 NEGATIVE CONTROL: PASS
@@ -271,23 +299,16 @@ NEGATIVE CONTROL: PASS
 
 ---
 
-## 9. Candidate S1.5-A closure
+## 9. CLOSED — S1.5-A Requirement abstraction
 
-### STRONG CANDIDATE
+The S1.5-A common contract is closed for the current thesis baseline:
 
 ```text
 Requirement [abstract]
     extends GovernedDocument
 
-    normativeObligation : NormativeObligation [1]
-
-NormativeObligation
     normativeClause : NormativeClause [1..*]
-```
 
-with:
-
-```text
 FunctionalRequirement
     extends Requirement
     parentDecision : Decision [1]
@@ -297,12 +318,28 @@ SpecializedRequirement [abstract]
     parentFunctionalRequirement : FunctionalRequirement [1]
 ```
 
+### CLOSED invariants
+
+1. **Requirement identity:** the Requirement itself is the governed normative obligation; no separate `NormativeObligation` metaclass is required.
+2. **Clause multiplicity:** a Requirement owns one or more normative clauses.
+3. **Coherent unit:** all clauses jointly express exactly one coherent normative obligation.
+4. **Split on independence:** independently evolvable/assessable obligations are separate Requirements.
+5. **Subtype preservation:** FR and SR retain their existing subtype-specific invariants.
+6. **Non-requirement boundary:** governed prescriptive documents such as Decision do not become Requirements merely because they contain normative language.
+
+### REJECTED
+
+```text
+NormativeObligation [metaclass]
+```
+
+It adds no independent semantic responsibility in the current model.
+
 ### Reopen criterion
 
-Reopen the abstraction if a concrete Requirement subtype cannot use the common obligation contract without losing essential subtype semantics, or if the abstraction forces non-requirement documents to be modeled as Requirements.
+Reopen S1.5-A only if a concrete future Requirement subtype cannot use `normativeClause [1..*]` plus the coherent-unit invariant without loss or distortion, or if a separate normative-obligation identity/lifecycle becomes independently necessary.
 
 ---
-
 # PART B — Provenance constraints
 
 ## 10. Existing S1 boundary
@@ -480,7 +517,7 @@ It must also permit an analysis to expose a missing ordinary FunctionalRequireme
 
 ---
 
-# 15. Epistemic status after this note
+# 15. Epistemic status after this correction
 
 ## CLOSED — inherited from earlier work
 
@@ -490,11 +527,19 @@ It must also permit an analysis to expose a missing ordinary FunctionalRequireme
 - provenance != normative semantics;
 - analysis does not automatically canonize documentation.
 
-## STRONG CANDIDATE — S1.5-A
+## CLOSED — S1.5-A
 
-- `Requirement [abstract]` as common superclass of FR and SR;
-- one semantic `NormativeObligation` per Requirement;
-- `NormativeObligation` may contain `1..*` coherent clauses.
+- `Requirement [abstract]` is the common superclass of FR and SR;
+- a Requirement **is** the governed normative obligation;
+- `Requirement.normativeClause : NormativeClause [1..*]`;
+- all clauses of one Requirement form exactly one coherent normative obligation;
+- independently evolvable/assessable obligations split into separate Requirements.
+
+## REJECTED — S1.5-A alternative
+
+- `NormativeObligation` as a separate L1 metaclass.
+
+The term remains useful in definitions, but no independent model element is introduced.
 
 ## CANDIDATE — provenance requirements
 
@@ -513,7 +558,8 @@ It must also permit an analysis to expose a missing ordinary FunctionalRequireme
 - analysis type representation;
 - change-kind vocabulary;
 - supersession/retirement mechanics;
-- structured applicability.
+- structured applicability;
+- exact L2 representation of normative clauses.
 
 ## DEFERRED
 
@@ -527,8 +573,13 @@ It must also permit an analysis to expose a missing ordinary FunctionalRequireme
 
 ## 16. Recommended next action
 
-1. Review/rebut the `Requirement [abstract]` proposal in this note.
-2. If no counterexample appears, close S1.5-A.
-3. Preserve provenance as constraints/acceptance tests, leaving its structure OPEN.
-4. Then start S2: `SecurityRequirement IS-A SpecializedRequirement`.
-5. During later AnalysisRecord/Finding work, reuse the provenance acceptance queries above to falsify the analytical model.
+S1.5-A is closed for the current baseline. Provenance constraints are preserved while their structural mechanism remains OPEN.
+
+The next research microstep is therefore S2:
+
+```text
+SecurityRequirement IS-A SpecializedRequirement
+```
+
+S2 must determine only the semantics and minimal additional contract, if any, that make a SpecializedRequirement specifically a SecurityRequirement. It must not yet formalize Finding, Base Analysis, STRIDE, controls, or the provenance event model unless a concrete SecurityRequirement counterexample forces an earlier correction.
+

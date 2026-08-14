@@ -1,10 +1,14 @@
-# S1.5 commit drop-in
+# S1.5 correction drop-in
 
-This package is designed to be extracted at the root of the repository:
+Extract this package at the repository root:
 
 `C:\Users\user\Documents\TESI`
 
-It is **additive only**. It creates:
+## Expected baseline
+
+`544ef14d92b50cf956cf6e8dd1000079d757c49c`
+
+This correction **replaces only the already committed S1.5 working files** and the associated README/checksum material:
 
 ```text
 04-specialized-requirement/
@@ -14,16 +18,20 @@ It is **additive only**. It creates:
     DDTA_S1_5_REQUIREMENT_ABSTRACTION_PROVENANCE_WORKING.pdf
     README.md
     SHA256SUMS.txt
+
+S1_5_COMMIT_README.md
 ```
 
-No existing thesis chapter or S1 artifact is replaced.
+No thesis chapter, S1 R2 artifact, authoring-rules artifact, facial-access corpus, or `INDEX.md` is modified.
 
-Expected baseline before extraction:
+## Semantic correction
 
-`9108917d1ca6dfa030df6625018520db0b05f6bf`
+- `Requirement [abstract]`: **CLOSED** as common superclass of FunctionalRequirement and SpecializedRequirement.
+- `Requirement.normativeClause : NormativeClause [1..*]`: **CLOSED** with coherent-unit and split-on-independence invariants.
+- `NormativeObligation` as a separate L1 metaclass: **REJECTED**.
+- Provenance constraints: preserved; structural mechanism remains **OPEN**.
+- Next research phase: S2 `SecurityRequirement IS-A SpecializedRequirement`.
 
 Suggested commit message:
 
-`thesis: add S1.5 requirement abstraction working note`
-
-`INDEX.md` is intentionally not modified. The working note can be indexed later if/when S1.5 is closed or promoted.
+`thesis: close S1.5 requirement abstraction`
