@@ -1,0 +1,557 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[a4paper,margin=2.5cm,headheight=15pt]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs,longtable,tabularx,array}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc}
+\usepackage{titlesec}
+
+\definecolor{DDTADark}{HTML}{1F2933}
+\definecolor{DDTAGray}{HTML}{F2F4F7}
+\definecolor{DDTABorder}{HTML}{8A97A3}
+\definecolor{DDTABlue}{HTML}{2A5887}
+\definecolor{DDTAGreen}{HTML}{EAF6EF}
+\definecolor{DDTAGreenBorder}{HTML}{3F7D56}
+\definecolor{DDTAWarn}{HTML}{FFF4D6}
+\definecolor{DDTAWarnBorder}{HTML}{B7791F}
+\definecolor{DDTAInfo}{HTML}{EAF3F8}
+\definecolor{DDTAInfoBorder}{HTML}{3C718C}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=DDTADark,
+  citecolor=DDTADark,
+  urlcolor=DDTABlue,
+  pdftitle={DDTA S1.5 - Requirement abstraction and provenance constraints},
+  pdfauthor={Documentation-Driven Threat Analysis research workspace}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small Documentation-Driven Threat Analysis}
+\fancyhead[R]{\small S1.5 working note}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\titleformat{\section}{\Large\bfseries\color{DDTADark}}{\thesection}{0.7em}{}
+\titleformat{\subsection}{\large\bfseries\color{DDTADark}}{\thesubsection}{0.7em}{}
+\setlist[itemize]{leftmargin=*,itemsep=0.28em,topsep=0.35em}
+\setlist[enumerate]{leftmargin=*,itemsep=0.28em,topsep=0.35em}
+\setlength{\emergencystretch}{3em}
+
+\newtcolorbox{statusbox}[1]{
+  enhanced,breakable,colback=DDTAInfo,colframe=DDTAInfoBorder,
+  boxrule=0.8pt,arc=1.5mm,left=3mm,right=3mm,top=2.5mm,bottom=2.5mm,
+  title={#1},fonttitle=\bfseries\sffamily,fontupper=\small\sffamily
+}
+\newtcolorbox{resultbox}[1]{
+  enhanced,breakable,colback=DDTAGreen,colframe=DDTAGreenBorder,
+  boxrule=0.8pt,arc=1.5mm,left=3mm,right=3mm,top=2.5mm,bottom=2.5mm,
+  title={#1},fonttitle=\bfseries\sffamily,fontupper=\small\sffamily
+}
+\newtcolorbox{openbox}[1]{
+  enhanced,breakable,colback=DDTAWarn,colframe=DDTAWarnBorder,
+  boxrule=0.8pt,arc=1.5mm,left=3mm,right=3mm,top=2.5mm,bottom=2.5mm,
+  title={#1},fonttitle=\bfseries\sffamily,fontupper=\small\sffamily
+}
+
+\lstset{
+  basicstyle=\ttfamily\small,
+  frame=single,
+  framerule=0.4pt,
+  rulecolor=\color{DDTABorder},
+  backgroundcolor=\color{DDTAGray},
+  breaklines=true,
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+  aboveskip=0.8em,
+  belowskip=0.8em
+}
+
+\newcommand{\closed}{\textbf{CLOSED}}
+\newcommand{\candidate}{\textbf{CANDIDATE}}
+\newcommand{\strongcandidate}{\textbf{STRONG CANDIDATE}}
+\newcommand{\openstatus}{\textbf{OPEN}}
+\newcommand{\deferred}{\textbf{DEFERRED}}
+\newcommand{\artifact}[1]{\nolinkurl{#1}}
+
+\begin{document}
+\pagenumbering{gobble}
+
+\begin{titlepage}
+\centering
+\vspace*{2.1cm}
+{\Large Documentation-Driven Threat Analysis\par}
+\vspace{0.8cm}
+{\Huge\bfseries S1.5 Working Note\par}
+\vspace{0.35cm}
+{\LARGE Requirement abstraction and provenance constraints\par}
+\vspace{1.0cm}
+{\large Formalizzazione temporanea tra SpecializedRequirement S1 e SecurityRequirement S2\par}
+\vfill
+\begin{minipage}{0.84\textwidth}
+\small
+\textbf{Stato.} Materiale di ricerca temporaneo. Non costituisce un capitolo autonomo della tesi, non promuove ancora una nuova foundation canonica e non chiude il modello di AnalysisRecord, Finding, revision o change event.
+
+\medskip
+\textbf{Baseline repository.} \texttt{nballestriero/documentation-driven-threat-analysis}, commit \texttt{9108917d1ca6dfa030df6625018520db0b05f6bf}.
+
+\medskip
+\textbf{Scopo.} Verificare una possibile astrazione comune \texttt{Requirement [abstract]} per FunctionalRequirement e SpecializedRequirement e registrare i vincoli minimi che il futuro modello di provenance dovra' soddisfare.
+\end{minipage}
+\vfill
+{\large 14 agosto 2026\par}
+\end{titlepage}
+
+\pagenumbering{roman}
+\tableofcontents
+\newpage
+\pagenumbering{arabic}
+
+\section{Perche' esiste questa nota}
+
+S1 ha chiuso la semantica di \texttt{SpecializedRequirement} come rafforzamento normativo governato di esattamente un \texttt{FunctionalRequirement}. La baseline corrente mantiene tuttavia una asimmetria strutturale:
+
+\begin{lstlisting}
+FunctionalRequirement
+    functionalObligation
+    functionalClause 1..*
+
+SpecializedRequirement
+    normativeObligation
+\end{lstlisting}
+
+La prima domanda S1.5 e' quindi piu' stretta della semantica di SecurityRequirement:
+
+\begin{quote}
+\textbf{FunctionalRequirement e SpecializedRequirement condividono un contratto astratto comune di Requirement?}
+\end{quote}
+
+In parallelo e' emersa una seconda domanda, distinta:
+
+\begin{quote}
+\textbf{Come deve DDTA preservare il fatto che una analisi abbia contribuito all'introduzione, revisione, sostituzione o retirement di documentazione governata?}
+\end{quote}
+
+Le due domande non devono essere fuse:
+
+\begin{lstlisting}
+requirement semantics
+        !=
+analysis/change provenance
+\end{lstlisting}
+
+\section{Collocazione futura nella tesi}
+
+Questo materiale non giustifica un capitolo autonomo. La consolidazione piu' plausibile e' una sezione del Capitolo 4 dedicata alla struttura comune della documentazione governata e, al suo interno o immediatamente dopo, una sottosezione sull'astrazione comune dei Requirement.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+  node distance=8mm,
+  box/.style={draw=DDTADark,rounded corners,align=center,inner sep=6pt,minimum width=72mm},
+  sub/.style={draw=DDTADark,rounded corners,align=left,inner sep=6pt,minimum width=72mm},
+  arr/.style={-{Latex[length=2.4mm]},thick}
+]
+\node[box] (ch) {Capitolo 4 - Documentation metamodel e authoring};
+\node[sub,below=of ch] (gd) {Contratto comune dei GovernedDocument\\\small identity, lifecycle, history/provenance [partly OPEN]};
+\node[sub,below=of gd] (rq) {Requirement abstraction\\\small Requirement [abstract], normative obligation};
+\node[sub,below=of rq] (types) {MacroRequirement - Decision - FunctionalRequirement - SpecializedRequirement};
+\draw[arr] (ch)--(gd);\draw[arr] (gd)--(rq);\draw[arr] (rq)--(types);
+\end{tikzpicture}
+\caption{Collocazione futura proposta. Requirement non coincide con GovernedDocument.}
+\end{figure}
+
+La distinzione da preservare e':
+\begin{itemize}
+  \item \texttt{GovernedDocument} possiede proprieta' trasversali a tutti i documenti governati;
+  \item \texttt{Requirement} accomuna soltanto i documenti che stabiliscono una obbligazione normativa;
+  \item history/provenance e' piu' generale di Requirement e non deve essere confinata a SpecializedRequirement.
+\end{itemize}
+
+\newpage
+\part*{Parte A - Requirement abstraction}
+\addcontentsline{toc}{section}{Parte A - Requirement abstraction}
+
+\section{Ipotesi S1.5-A}
+
+L'ipotesi da falsificare e':
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+  node distance=9mm and 8mm,
+  box/.style={draw=DDTADark,rounded corners,align=center,inner sep=6pt,text width=42mm},
+  arr/.style={-{Latex[length=2.5mm]},thick}
+]
+\node[box] (gd) {GovernedDocument};
+\node[box,below=of gd] (req) {Requirement\\\textit{abstract}};
+\node[box,below left=of req] (fr) {FunctionalRequirement};
+\node[box,below right=of req] (sr) {SpecializedRequirement\\\textit{abstract}};
+\draw[arr] (gd)--(req);\draw[arr] (req)--(fr);\draw[arr] (req)--(sr);
+\end{tikzpicture}
+\caption{Candidate common abstraction for requirement documents.}
+\end{figure}
+
+\begin{lstlisting}
+Requirement [abstract]
+    extends GovernedDocument
+
+    normativeObligation : NormativeObligation [1]
+\end{lstlisting}
+
+L'astrazione e' giustificata solo se la proprieta' comune e' semantica e non una mera uniformita' editoriale.
+
+\section{Significato di NormativeObligation}
+
+\texttt{NormativeObligation} non e' un FunctionalRequirement e non e' inizialmente un documento governato autonomo. E' il contenuto normativo semanticamente coerente posseduto da un singolo Requirement.
+
+\begin{lstlisting}
+Requirement [abstract]
+    normativeObligation : NormativeObligation [1]
+
+NormativeObligation
+    normativeClause : NormativeClause [1..*]
+\end{lstlisting}
+
+Interpretazione candidata:
+
+\begin{quote}
+\textbf{Un Requirement possiede una sola obbligazione normativa semanticamente coerente. L'obbligazione puo' richiedere una o piu' clausole normative per essere espressa completamente.}
+\end{quote}
+
+Quindi:
+
+\begin{lstlisting}
+1 Requirement != 1 textual sentence
+1 Requirement  = 1 coherent normative obligation
+\end{lstlisting}
+
+Una obbligazione multi-clausola resta un solo Requirement soltanto finche' le clausole non diventano unita' di requisito indipendentemente significative, modificabili o valutabili.
+
+\begin{openbox}{OPEN - metaclass necessity test}
+Resta da falsificare se \texttt{NormativeObligation} debba essere una metaclasse L1 esplicita oppure se sia sufficiente modellare \texttt{Requirement.normativeClause [1..*]} con l'invariante che tutte le clausole costituiscano esattamente una obbligazione normativa coerente.
+\end{openbox}
+
+\section{FunctionalRequirement come specializzazione}
+
+Forma candidata:
+
+\begin{lstlisting}
+FunctionalRequirement
+    extends Requirement
+
+    parentDecision : Decision [1]
+\end{lstlisting}
+
+La \texttt{normativeObligation} ereditata rimane soggetta agli invarianti FR gia' chiusi:
+\begin{itemize}
+  \item operationality;
+  \item independent assessability;
+  \item un solo comportamento, servizio, transizione o risultato osservabile coerente;
+  \item completezza della correttezza funzionale ordinaria;
+  \item implementation independence;
+  \item normative prose primary.
+\end{itemize}
+
+L'introduzione di Requirement non rimuove alcun invariante FR. Il precedente concetto L1 \texttt{functionalObligation} e' candidato a essere normalizzato come la \texttt{Requirement.normativeObligation} ereditata. Una rappresentazione L2 puo' conservare label specifiche per l'authoring, pur mantenendo una sola autorita' semantica.
+
+\section{SpecializedRequirement come specializzazione}
+
+Forma candidata:
+
+\begin{lstlisting}
+SpecializedRequirement [abstract]
+    extends Requirement
+
+    parentFunctionalRequirement : FunctionalRequirement [1]
+\end{lstlisting}
+
+La \texttt{normativeObligation} ereditata resta soggetta alle regole CLOSED S1:
+\begin{itemize}
+  \item normative strengthening di esattamente un FR;
+  \item composizione congiuntiva con il parent FR;
+  \item removal test con preservazione della funzione ordinaria;
+  \item nessuna duplicazione della correttezza funzionale;
+  \item concern-specific obligation;
+  \item positive subordinate action ammessa;
+  \item autonomous capability boundary verso FR;
+  \item realization independence;
+  \item parent dependence.
+\end{itemize}
+
+L'astrazione comune non indebolisce la semantica S1.
+
+\section{Regression probes}
+
+\small
+\begin{longtable}{p{0.25\textwidth}p{0.47\textwidth}p{0.16\textwidth}}
+\toprule
+\textbf{Probe} & \textbf{Osservazione} & \textbf{Esito} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Probe} & \textbf{Osservazione} & \textbf{Esito} \\
+\midrule
+\endhead
+FR-3.4 Deliver RecognitionCapture & Resta FR perche' l'obbligazione e' una responsabilita' operativa autonomamente significativa. & PASS \\
+\addlinespace
+SR-3.4-C Confidentiality & Rafforza FR-3.4 senza definire la funzione di consegna. & PASS \\
+\addlinespace
+SR-3.4-I Integrity & Usa lo stesso concetto di obbligazione senza perdere la semantica S1. & PASS \\
+\addlinespace
+SR-3.4-P Authorized provenance & Puo' richiedere comportamento positivo subordinato senza diventare FR. & PASS \\
+\addlinespace
+PerformanceRequirement illustrativo & Un target prestazionale concern-specific puo' usare la stessa astrazione senza essere FR. & PASS generality \\
+\addlinespace
+RegulatoryRequirement illustrativo & Un obbligo normativo/compliance puo' usare la stessa astrazione senza essere FR. & PASS generality \\
+\bottomrule
+\end{longtable}
+\normalsize
+
+\subsection{Negative control - Decision}
+
+Una Decision e' governata e puo' contenere linguaggio prescrittivo, ma registra un commitment significativo che restringe un MR. Non e' una obbligazione di soddisfazione funzionale o specializzata.
+
+\begin{lstlisting}
+Decision IS-NOT-A Requirement
+\end{lstlisting}
+
+\begin{resultbox}{NEGATIVE CONTROL - PASS}
+L'astrazione Requirement non si espande automaticamente a ogni GovernedDocument.
+\end{resultbox}
+
+\section{Stato candidato S1.5-A}
+
+\begin{resultbox}{STRONG CANDIDATE - Requirement abstraction}
+\texttt{Requirement [abstract]} e' candidato come superclass comune di FunctionalRequirement e SpecializedRequirement. Ogni Requirement possiede una sola obbligazione normativa semanticamente coerente, esprimibile mediante una o piu' clausole.
+\end{resultbox}
+
+Forma candidata:
+
+\begin{lstlisting}
+Requirement [abstract]
+    extends GovernedDocument
+    normativeObligation : NormativeObligation [1]
+
+NormativeObligation
+    normativeClause : NormativeClause [1..*]
+
+FunctionalRequirement
+    extends Requirement
+    parentDecision : Decision [1]
+
+SpecializedRequirement [abstract]
+    extends Requirement
+    parentFunctionalRequirement : FunctionalRequirement [1]
+\end{lstlisting}
+
+\textbf{Reopen criterion.} Riaprire l'astrazione se una concreta sottoclasse di Requirement non puo' usare il contratto comune senza perdere semantica essenziale, oppure se l'astrazione forza documenti non-requirement a essere modellati come Requirement.
+
+\newpage
+\part*{Parte B - Provenance constraints}
+\addcontentsline{toc}{section}{Parte B - Provenance constraints}
+
+\section{Confine ereditato da S1}
+
+S1 ha gia' distinto:
+
+\begin{lstlisting}
+provenance = why an obligation/change exists
+semantics  = what the governed obligation requires
+\end{lstlisting}
+
+Il meccanismo formale di provenance era deliberatamente deferred. Anche la change-impact semantics gia' anticipa esiti di review quali:
+
+\begin{lstlisting}
+retain
+revise
+replace
+non-applicable
+\end{lstlisting}
+
+S1.5 deve quindi registrare il requisito futuro del modello, senza chiudere prematuramente AnalysisRecord, Finding, revision history o change-event machinery.
+
+\section{Analysis-to-document provenance requirement}
+
+\begin{statusbox}{CANDIDATE - provenance requirement}
+DDTA deve preservare provenance governata sufficiente a determinare quali cambiamenti accettati della documentazione siano stati motivati da ciascuna esecuzione di analisi e, inversamente, quali esecuzioni di analisi abbiano contribuito all'introduzione, revisione, sostituzione o retirement di ciascun documento governato.
+\end{statusbox}
+
+Il requisito e' potenzialmente applicabile a:
+
+\begin{lstlisting}
+MacroRequirement
+Decision
+FunctionalRequirement
+SpecializedRequirement
+\end{lstlisting}
+
+Il caso facial-access \texttt{MR-0004} mostra gia' perche' la provenance futura non puo' essere confinata ai soli Requirement: una review downstream ha motivato la revisione della decomposizione MR.
+
+\section{Invarianti di provenance preservabili ora}
+
+\subsection{P1 - Provenance separation}
+
+\begin{resultbox}{CLOSED candidate P1}
+La provenance che spiega perche' un Requirement o altro documento governato e' stato introdotto, rivisto, sostituito o ritirato non appartiene alla sua obbligazione normativa.
+\end{resultbox}
+
+Ne segue che un campo intrinseco obbligatorio del tipo:
+
+\begin{lstlisting}
+SecurityRequirement.analysisId : exactly 1
+\end{lstlisting}
+
+non e' sufficiente ne' corretto come semantica del Requirement.
+
+\subsection{P2 - Historical multiplicity}
+
+\begin{resultbox}{CLOSED candidate P2}
+Il futuro modello di provenance deve supportare una singola analisi con effetti su zero o molti documenti governati e un singolo documento governato con cambiamenti motivati da zero o molte analisi nel tempo.
+\end{resultbox}
+
+\begin{lstlisting}
+one analysis execution
+    -> effects on zero or many governed documents
+
+one governed document
+    -> effects motivated by zero or many analyses over time
+\end{lstlisting}
+
+\subsection{P3 - Analysis is not governance authority}
+
+\begin{resultbox}{CLOSED candidate P3}
+Una analisi puo' motivare o proporre una modifica, ma non canonizza automaticamente documentazione governata.
+\end{resultbox}
+
+\begin{center}
+\begin{tikzpicture}[
+  node distance=9mm,
+  box/.style={draw=DDTADark,rounded corners,align=center,inner sep=6pt,minimum width=58mm},
+  arr/.style={-{Latex[length=2.5mm]},thick}
+]
+\node[box] (a) {analysis / review};
+\node[box,below=of a] (g) {governed acceptance / change};
+\node[box,below=of g] (d) {governed document};
+\draw[arr] (a)--node[right,font=\small]{motivates / proposes}(g);
+\draw[arr] (g)--node[right,font=\small]{changes}(d);
+\end{tikzpicture}
+\end{center}
+
+\subsection{P4 - Analyzed is not changed}
+
+\begin{resultbox}{CLOSED candidate P4}
+Il futuro modello deve distinguere un documento incluso nello scope di analisi da un documento effettivamente modificato, dopo governance review, a causa dell'analisi.
+\end{resultbox}
+
+Una analisi che esamina FR-X e non produce alcuna modifica accettata non deve creare una falsa storia di cambiamento.
+
+\section{Meccanismo strutturale deliberatamente OPEN}
+
+La seguente forma e' soltanto illustrativa:
+
+\begin{lstlisting}
+AnalysisRun
+      |
+      v
+GovernedDocumentChangeEvent
+      |
+      v
+GovernedDocument
+\end{lstlisting}
+
+Possibili event kind:
+
+\begin{lstlisting}
+INTRODUCED
+REVISED
+REPLACED
+RETIRED
+\end{lstlisting}
+
+\begin{openbox}{OPEN - structural mechanism}
+S1.5 non chiude AnalysisRun, AnalysisRecord, Finding, GovernedDocumentChangeEvent, RequirementRevision, event ordering, supersession semantics, analysis scope/coverage, governance acceptance workflow o le cardinalita' esatte fra risultati analitici e cambiamenti accettati.
+\end{openbox}
+
+Questi concetti dovranno essere falsificati insieme al futuro modello di analisi.
+
+\section{Acceptance queries per il futuro modello}
+
+Qualunque struttura venga scelta dovra' permettere entrambe le direzioni di interrogazione.
+
+\subsection{Analysis verso accepted changes}
+
+\begin{lstlisting}
+AN-0042
+    +-- introduced SR-10
+    +-- introduced SR-11
+    +-- contributed to revision of FR-7
+    `-- contributed to retirement of SR-3
+\end{lstlisting}
+
+\subsection{Governed document verso analysis lineage}
+
+\begin{lstlisting}
+SR-10
+    +-- introduced after AN-0042
+    +-- revised after AN-0071
+    `-- retired after AN-0108
+\end{lstlisting}
+
+Il modello deve inoltre consentire a una analisi di evidenziare un FunctionalRequirement ordinario mancante, senza costringere ogni output analitico a diventare SpecializedRequirement.
+
+\section{Stato epistemico S1.5}
+
+\small
+\begin{longtable}{p{0.21\textwidth}p{0.69\textwidth}}
+\toprule
+\textbf{Stato} & \textbf{Elementi} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Stato} & \textbf{Elementi} \\
+\midrule
+\endhead
+\closed & Semantica operativa FR; semantica S1 SpecializedRequirement; SR esattamente un FR parent; provenance distinta dalla normative semantics; analisi non autorita' automatica della documentazione. \\
+\addlinespace
+\strongcandidate & \texttt{Requirement [abstract]} come superclass comune di FR e SR; una sola obbligazione normativa coerente per Requirement; obbligazione esprimibile con una o piu' clausole. \\
+\addlinespace
+\candidate & Historical many-to-many analysis/change lineage; provenance piu' ampia di Requirement; analyzed $\neq$ changed; analysis motivates/proposes, governance accepts. \\
+\addlinespace
+\openstatus & Contratto completo GovernedDocument; necessita' della metaclasse NormativeObligation; exact lifecycle/history model; ChangeEvent; RequirementRevision; AnalysisRun/AnalysisRecord; analysis type; change-kind vocabulary; supersession/retirement; structured applicability. \\
+\addlinespace
+\deferred & Finding; Base Analysis/BAE; STRIDE; SecurityRequirement-specific provenance fields; controls; verification evidence. \\
+\bottomrule
+\end{longtable}
+\normalsize
+
+\section{Prossimo microstep raccomandato}
+
+\begin{enumerate}
+  \item Falsificare la necessita' di una metaclasse L1 \texttt{NormativeObligation} rispetto alla forma piu' minimale \texttt{Requirement.normativeClause [1..*]} con coherence invariant.
+  \item Se non emerge un controesempio, chiudere S1.5-A e normalizzare il contratto comune Requirement.
+  \item Conservare provenance come requisiti e acceptance queries, lasciando OPEN il meccanismo strutturale.
+  \item Avviare S2 con la sola ipotesi \texttt{SecurityRequirement IS-A SpecializedRequirement}.
+  \item Riprendere event/revision/provenance durante la formalizzazione di AnalysisRecord/Finding.
+\end{enumerate}
+
+\begin{statusbox}{Conservation note}
+Questa nota deve restare materiale di lavoro fino a quando S1.5-A non viene falsificato o chiuso. La sua eventuale consolidazione nel Capitolo 4 deve preservare la distinzione fra contratto comune dei GovernedDocument, astrazione Requirement e provenance analitica.
+\end{statusbox}
+
+\end{document}
