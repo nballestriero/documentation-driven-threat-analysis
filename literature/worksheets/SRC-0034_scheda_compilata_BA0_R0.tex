@@ -1,0 +1,158 @@
+\documentclass[10.5pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,italian]{babel}
+\usepackage{lmodern,microtype}
+\usepackage[a4paper,margin=1.85cm,headheight=15pt]{geometry}
+\usepackage{enumitem,tabularx,array,longtable,booktabs}
+\usepackage{xcolor,hyperref,xurl,fancyhdr,titlesec,framed}
+\definecolor{ddtadark}{RGB}{28,38,52}
+\definecolor{ddtablue}{RGB}{42,88,135}
+\definecolor{ddtagray}{RGB}{244,246,248}
+\definecolor{ddtagreen}{RGB}{48,111,78}
+\definecolor{ddtaorange}{RGB}{148,91,25}
+\hypersetup{colorlinks=true,linkcolor=ddtablue,urlcolor=ddtablue,
+  pdftitle={SRC-0034 - scheda compilata BA0-R0},
+  pdfauthor={Documentation-Driven Threat Analysis research workspace}}
+\pagestyle{fancy}\fancyhf{}\lhead{DDTA - SRC-0034}\rhead{BA0-R0 bridge rereading}\cfoot{\thepage}
+\titleformat{\section}{\large\bfseries\color{ddtadark}}{}{0pt}{}
+\setlist[itemize]{leftmargin=1.4em,itemsep=0.18em,topsep=0.25em}
+\setlength{\parindent}{0pt}\setlength{\parskip}{0.33em}\setlength{\emergencystretch}{2em}
+\newenvironment{factbox}[1]{\def\FrameCommand{\fcolorbox{ddtablue}{ddtagray}}\MakeFramed{\advance\hsize-2\width\FrameRestore}\noindent\textbf{#1}\par\smallskip}{\endMakeFramed}
+\newenvironment{gatebox}[1]{\def\FrameCommand{\fcolorbox{ddtagreen}{ddtagray}}\MakeFramed{\advance\hsize-2\width\FrameRestore}\noindent\textbf{#1}\par\smallskip}{\endMakeFramed}
+\newenvironment{cautionbox}[1]{\def\FrameCommand{\fcolorbox{ddtaorange}{ddtagray}}\MakeFramed{\advance\hsize-2\width\FrameRestore}\noindent\textbf{#1}\par\smallskip}{\endMakeFramed}
+\begin{document}
+
+\begin{center}
+{\LARGE\bfseries DDTA - Scheda di lettura compilata}\par
+\vspace{0.2em}
+{\large SRC-0034 - BA0-R0 bridge rereading}\par
+\vspace{0.3em}
+{\small Rilettura mirata prima del systems-modeling prior-art corpus. Non sostituisce la source note o l'excerpt ledger esistenti.}
+\end{center}
+
+\begin{factbox}{Identita bibliografica e accesso}
+\begin{tabularx}{\linewidth}{>{\bfseries}p{3.4cm}X}
+Source ID & SRC-0034\\
+Citation key & \texttt{souza2019architecturalmodels}\\
+Titolo & \textit{Deriving architectural models from requirements specifications: A systematic mapping study}\\
+Autori & Eric Souza; Ana Moreira; Miguel Goul\~ao\\
+Anno / venue & 2019; Information and Software Technology 109, 26--39\\
+Tipo di fonte & secondary review / systematic mapping study\\
+Stable identifier & DOI \texttt{10.1016/j.infsof.2019.01.004}\\
+Access version & publisher-formatted institutional repository copy\\
+Local file & \texttt{SRC-0034-souza-moreira-goulao-2019.pdf}\\
+Retrieved & 2026-08-06\\
+Local SHA-256 & \texttt{7560a403216ba0df46be238bf7bf075ef016be2c028182aa6d8a4ee28fd22adf}\\
+Verification state & verified\\
+\end{tabularx}
+\end{factbox}
+
+\section{1. Problema di ricerca e contributo}
+La fonte mappa i metodi proposti per derivare modelli di software architecture da requirements specifications. Il passaggio osservato non e una semplice traduzione sintattica: separa comprensione del problema, ricerca di una soluzione ed evaluation della soluzione, con alternative e trade-off architetturali.
+
+Il corpus finale comprende 39 primary studies selezionati da 2575 candidati. La review organizza i metodi secondo quattro dimensioni NIMSAD: context, benefits to users, method content e validation. Il valore centrale per BA0-R e il confine requirements-to-architecture, non l'identificazione di un metamodel minimo universale.
+
+\section{2. Artefatti iniziali e rappresentazione del sistema}
+Tutti i 39 studi trattano functional requirements; 30 includono anche NFR. Gli input sono eterogenei: textual requirements (20), goal-oriented models (8), unspecified models (6), feature models (2), problem frames (2) e sequence diagram (1). Anche nel sottogruppo testuale compaiono use cases, intermediate models e clustering.
+
+La classificazione DDTA gia registrata e \texttt{requirements\_primary\_with\_model\_mediation}: i requirements sono la sorgente principale, ma la derivazione passa spesso attraverso rappresentazioni strutturate o decisioni dell'architetto.
+
+Le rappresentazioni di output sono a loro volta eterogenee. Diciannove studi non nominano esplicitamente le views; gli altri usano 28 nomi di view per 80 istanze. Lo stesso nome puo indicare semantiche differenti e nomi diversi possono indicare scopi simili. Tredici studi usano ADL standard (inclusi UML, SysML o AADL), 13 notazioni non standard e 13 non identificano la notazione.
+
+\begin{cautionbox}{BA0-R0 consequence}
+La fonte giustifica una pressione contro \texttt{Actor + Asset + Interaction} come core sufficiente, ma non autorizza ancora \texttt{Channel}, \texttt{Store}, \texttt{Interface}, \texttt{Boundary} o altri concetti come BAE first-class. Il corpus e troppo eterogeneo per derivare da solo un minimo comune.
+\end{cautionbox}
+
+\section{3. Traceability, change, automation e ruolo umano}
+Il pattern di automazione osservato e representation-specific: una specifica rappresentazione dei requirements viene trasformata in uno specifico candidate architectural model, seguito da manual analysis and improvement. La review riporta 18 studi parzialmente automatizzati, 8 non automatizzati, 13 senza tool menzionato e nessun approccio end-to-end completamente automatizzato nel corpus storico.
+
+Le decisioni architetturali dipendono comunque da esperienza e intuizione dell'architetto. I compiti umani comprendono identificazione degli architecturally significant requirements, interpretazione di NFR/domain constraints, generazione e confronto di alternative, scelta di pattern/styles/tactics, trade-off, correzione degli artefatti generati ed evaluation della satisfaction.
+
+La traceability requirements-to-architecture e dichiarata come beneficio in un solo studio. Longitudinal synchronization, stale detection e change-impact propagation non sono valutati. La fonte richiama inoltre il rischio di architectural knowledge vaporization: il rationale puo perdersi anche quando la struttura corrente resta visibile.
+
+\section{4. Findings, limiti e relazione con DDTA}
+La review segnala dipendenza da tacit knowledge, terminologia non standard, debole supporto ai novizi, automazione parziale e validation insufficiente. Ventuno studi non dichiarano come valutare l'architettura risultante rispetto ai requirements; quindi:
+
+\begin{center}\ttfamily
+architecture generated $\neq$ requirements satisfied\\
+$\neq$ alternatives compared $\neq$ trade-offs justified $\neq$ architecture validated
+\end{center}
+
+Per DDTA la fonte sostiene il bisogno di separare source evidence, candidate representation, decision/review e accepted representation. Rafforza inoltre l'idea che una view sia una proiezione con semantica dichiarata, non necessariamente il modello canonico.
+
+\begin{gatebox}{Novelty challenge BA0-R0}
+SRC-0034 mostra sovrapposizione con DDTA nel passaggio requirements-to-model/architecture, ma non una pipeline end-to-end equivalente a governed documentation $\rightarrow$ methodology-neutral analyzable representation $\rightarrow$ replaceable security analysis $\rightarrow$ reviewed findings $\rightarrow$ governed change/re-analysis. Il reopen trigger di Chapter 3 non e soddisfatto da questa fonte.
+\end{gatebox}
+
+\section{Metodo di ricerca e corpus}
+Ricerca su IEEE Xplore, ACM Digital Library, ScienceDirect e SpringerLink, con forward snowballing ed expert suggestions. Il protocollo e stato rivisto da tre external reviewers, piloted e controllato con Fabbri's checklist. Il quality gate combina allineamento al problema, formalizzazione del metodo, architecture description, evaluation, limitations, venue ranking e citation information.
+
+E presente una reporting inconsistency conservata nella note DDTA: Table 6 non si riconcilia aritmeticamente nella colonna ScienceDirect; il totale finale di 39 usa il valore mostrato dagli autori senza correzione arbitraria.
+
+\section{Validita temporale}
+\begin{tabularx}{\linewidth}{>{\bfseries}p{4.1cm}X}
+Contribution type & historical systematic mapping study\\
+Primary-study horizon & studi disponibili fino circa al 2016; data di search non esplicitata nella note\\
+Time sensitivity & medium per gap concettuali; high per tool/automation maturity\\
+Ancora applicabile & necessita di decisioni esplicite, multi-view semantics, traceability ed evaluation\\
+Potenzialmente obsoleto & livello di automazione, supporto tool, industrial adoption, assenza di LLM moderni\\
+Corroborazione richiesta & necessaria per qualsiasi claim sullo stato 2026 di tool/LLM\\
+Uso consentito & historical boundary, taxonomy/governance implications\\
+Overclaim vietato & current inventory o impossibilita di automazione piu recente\\
+\end{tabularx}
+
+\section{Relazione con DDTA e implicazioni BA0-R0}
+\textbf{Direttamente supportato}
+\begin{itemize}
+\item Requirements testuali o modellati possono iniziare la derivazione architetturale.
+\item La derivazione include analisi, sintesi e evaluation e non determina una sola soluzione.
+\item Multiple views e ADL sono usate con terminologia eterogenea.
+\item L'automazione parziale non elimina judgment e review architetturale.
+\item Traceability e requirements-satisfaction validation sono deboli nel corpus mappato.
+\end{itemize}
+
+\textbf{Non supportato}
+\begin{itemize}
+\item Un set minimo di primitive BAE per DDTA.
+\item Una canonical neutral representation comune a tutti gli approcci.
+\item Current 2026 LLM/tool maturity.
+\item Derivazione deterministica o correctness automatica dell'architettura.
+\end{itemize}
+
+\textbf{Pressioni da portare a NASA/SysML/KerML}
+\begin{itemize}
+\item distinguere element, relation, property e view;
+\item verificare se behavior, information/flow, interface, channel/link, persistence, state/mode e boundary sono responsabilita semantiche ricorrenti;
+\item distinguere entity, role, relation e property;
+\item verificare canonical model vs projection/view;
+\item mantenere explicit review authority tra extraction e accepted representation.
+\end{itemize}
+
+\section{Citation-ready locations usate nella rilettura}
+\begin{longtable}{p{1.8cm}p{1.15cm}p{1.3cm}p{3.2cm}p{7.1cm}}
+\toprule
+Excerpt & Tipo & PDF p. & Sezione & Proposizione supportata\\
+\midrule
+\endhead
+EX-0002 & P & 1 & Introduction & Architecture derivation distingue problem understanding, solution finding ed evaluation.\\
+EX-0012 & P & 5 & 3.2 Context & Gli input includono requirements testuali e diversi modelli strutturati.\\
+EX-0017 & P & 6 & 3.4 Content & Le architectural views hanno naming e semantiche eterogenee.\\
+EX-0019 & P & 8 & 3.4 Content & UML/SysML/AADL sono solo parte delle notazioni usate.\\
+EX-0020 & P & 8 & 3.4 Content & Nessun fully automated end-to-end approach nel corpus; serve manual improvement.\\
+EX-0023 & P & 10 & 3.5 Validation & Piu di meta dei metodi non esplicita evaluation contro i requirements.\\
+EX-0027 & P & 12 & 7 Related work & Architectural knowledge vaporization durante l'evoluzione.\\
+EX-0028 & P & 12 & Conclusions & Derivazione ancora expert-led e incompletamente validata.\\
+\bottomrule
+\end{longtable}
+
+\section{Follow-up sources per BA0-R}
+Questa rilettura non registra nuove fonti. Conferma soltanto la necessita del seed corpus gia pianificato: NASA-HDBK-1009A, SysML 2.0, KerML 1.0, NASA Systems Engineering Handbook, ISO/IEC/IEEE 42010, AADL, ArchiMate e survey MBSE. Le bibliografie di tali fonti saranno minate separatamente e ogni candidato dovra superare verifica bibliografica/access gate prima di ricevere un nuovo SOURCE-ID.
+
+\begin{gatebox}{BA0-R0 status}
+\textbf{CLOSED.} Exact BAE primitives remain OPEN. BA0 remains PAUSED and BA1 NOT STARTED. Next research microstep: BA0-R1, NASA-HDBK-1009A.
+\end{gatebox}
+
+\vfill
+{\footnotesize\textbf{Evidence governance.} Questa scheda riassume esclusivamente contenuti gia registrati in \texttt{literature/notes/SRC-0034.md} e \texttt{literature/excerpts/SRC-0034.excerpts.yml}. Per citazioni e claim di tesi, usare sempre quei record e le posizioni esatte nella fonte.}
+\end{document}

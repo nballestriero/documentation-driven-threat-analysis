@@ -1,0 +1,127 @@
+\documentclass[10.5pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,italian]{babel}
+\usepackage{lmodern,microtype}
+\usepackage[a4paper,margin=1.85cm,headheight=15pt]{geometry}
+\usepackage{enumitem,tabularx,array,longtable,booktabs}
+\usepackage{xcolor,hyperref,xurl,fancyhdr,titlesec,framed}
+\definecolor{ddtadark}{RGB}{28,38,52}
+\definecolor{ddtablue}{RGB}{42,88,135}
+\definecolor{ddtagray}{RGB}{244,246,248}
+\definecolor{ddtagreen}{RGB}{48,111,78}
+\hypersetup{colorlinks=true,linkcolor=ddtablue,urlcolor=ddtablue,
+  pdftitle={DDTA modello scheda di lettura v2 - LaTeX companion},
+  pdfauthor={Documentation-Driven Threat Analysis research workspace}}
+\pagestyle{fancy}\fancyhf{}\lhead{DDTA - scheda di lettura}\rhead{v2 LaTeX companion}\cfoot{\thepage}
+\titleformat{\section}{\large\bfseries\color{ddtadark}}{}{0pt}{}
+\setlist[itemize]{leftmargin=1.4em,itemsep=0.15em,topsep=0.2em}
+\setlength{\parindent}{0pt}\setlength{\parskip}{0.28em}\setlength{\emergencystretch}{2em}
+\newcommand{\blankline}{\par\noindent\rule{\linewidth}{0.25pt}\vspace{0.42em}}
+\newcommand{\blanklines}[1]{\par\begingroup\count255=0\loop\ifnum\count255<#1\blankline\advance\count255 by 1\repeat\endgroup}
+\newenvironment{promptbox}[1]{%
+  \def\FrameCommand{\fcolorbox{ddtablue}{ddtagray}}%
+  \MakeFramed{\advance\hsize-2\width\FrameRestore}\noindent\textbf{#1}\par\smallskip}{\endMakeFramed}
+\newenvironment{notearea}[1]{\textbf{#1}\par\smallskip}{\par\medskip}
+\begin{document}
+
+\begin{center}
+{\LARGE\bfseries DDTA - Modello scheda di lettura}\par
+\vspace{0.2em}
+{\large Versione 2 - LaTeX companion}\par
+\vspace{0.35em}
+{\small Ausilio di lettura. Il record citabile resta \texttt{notes/<SRC>.md} + \texttt{excerpts/<SRC>.excerpts.yml}.}
+\end{center}
+\vspace{0.4em}
+
+\begin{promptbox}{Identita bibliografica e accesso}
+\begin{tabularx}{\linewidth}{>{\bfseries}p{3.3cm}X}
+Source ID & \\
+Citation key & \\
+Titolo & \\
+Autori / ente & \\
+Anno / versione & \\
+Tipo di fonte & \\
+Identificatore stabile & \\
+Landing URL & \\
+PDF / full-text legale & \\
+File locale & \\
+Data retrieval & \\
+SHA-256 locale & \\
+Verification state & \\
+\end{tabularx}
+\end{promptbox}
+
+\section{1. Problema di ricerca e contributo}
+\textit{Quale problema affronta la fonte? Quale contributo dichiara? Qual e il livello di astrazione?}
+\blanklines{7}
+
+\section{2. Artefatti iniziali e rappresentazione del sistema}
+\textit{Da quali artefatti parte? Quale rappresentazione assume, crea, estrae o deriva? Distinguere fatti sorgente, modelli intermedi, viste e output.}
+\blanklines{9}
+
+\section{3. Traceability, change, automation e ruolo umano}
+\textit{Come collega fonti, requirements, decisioni/evidenze e cambiamento? Cosa e automatizzato e cosa richiede review/decisione umana?}
+\blanklines{9}
+
+\section{4. Findings, limiti e relazione con DDTA / overlay}
+\textit{Che cosa dimostra davvero? Quali limiti dichiara? Quali limiti emergono per DDTA? Quale research gap rimane aperto?}
+\blanklines{10}
+
+\section{Metodo di ricerca e corpus}
+\blanklines{6}
+
+\section{Contributo e findings principali}
+\blanklines{8}
+
+\section{Limitazioni dichiarate dagli autori}
+\blanklines{6}
+
+\section{Validita temporale}
+\begin{tabularx}{\linewidth}{>{\bfseries}p{4.1cm}X}
+Contribution type & \\
+Time sensitivity & \\
+Temporal status & \\
+Evidence window & \\
+Elementi ancora applicabili & \\
+Elementi potenzialmente obsoleti & \\
+Corroborazione contemporanea & \\
+Uso consentito in tesi & \\
+\end{tabularx}
+\vspace{0.4em}
+
+\section{Relazione con Documentation-Driven Threat Analysis}
+\begin{notearea}{Proposizioni direttamente supportate}\blanklines{5}\end{notearea}
+\begin{notearea}{Tensioni o contraddizioni}\blanklines{4}\end{notearea}
+\begin{notearea}{Research gap lasciato aperto}\blanklines{4}\end{notearea}
+\begin{notearea}{Implicazioni per Base Analysis / overlay}\blanklines{5}\end{notearea}
+
+\section{Candidate thesis claims}
+\blanklines{6}
+
+\section{Citation-ready locations}
+\textit{Annotare pagina PDF, pagina stampata, sezione e tipo di uso: C = quotation verificata; P = paraphrase fedele; I = interpretazione del ricercatore.}
+\begin{longtable}{p{1.1cm}p{1.3cm}p{1.8cm}p{3.1cm}p{7.2cm}}
+\toprule
+ID & Tipo & Pagina & Sezione & Proposizione / nota\\
+\midrule
+\endhead
+ & & & & \\
+\addlinespace[1.1em]
+ & & & & \\
+\addlinespace[1.1em]
+ & & & & \\
+\addlinespace[1.1em]
+ & & & & \\
+\addlinespace[1.1em]
+ & & & & \\
+\bottomrule
+\end{longtable}
+
+\section{Follow-up sources}
+\textit{Separare riferimenti foundational, competing/alternative ed empirical/evaluation. Una citazione bibliografica non diventa automaticamente una fonte DDTA registrata.}
+\blanklines{7}
+
+\vfill
+{\footnotesize\color{ddtadark}\textbf{Governance note.} Questa scheda e un worksheet. Le affermazioni usate nella tesi devono risolversi a una fonte registrata e a una posizione esatta nell'excerpt ledger. Quotazione, parafrasi e interpretazione devono restare separate.}
+\end{document}
