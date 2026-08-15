@@ -1,0 +1,264 @@
+schema_version: 1
+source_id: SRC-0047
+citation_key: reinhartzberger2005reflectiveopm
+source_version:
+  stable_identifier: 10.4018/978-1-59140-339-5.ch006
+  accessed_on: '2026-08-15'
+  access_type: author_uploaded_full_text_web_with_embedded_page_markers
+  current_standard_corroboration: ISO 19450:2024 official catalogue metadata only
+excerpts:
+- id: SRC-0047-EX-0001
+  location:
+    pdf_page: 1
+    section: Abstract / Introduction
+    paragraph_or_table: author-uploaded full-text page marker
+  capture_state: location_verified_in_author_uploaded_full_text
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The chapter presents a self-contained reflective OPM metamodel and frames OPM as domain-independent
+    system modeling using objects, processes and links.
+  researcher_interpretation: A modeling kernel can be intentionally compact while still claiming broad system coverage.
+  supported_proposition: A modeling kernel can be intentionally compact while still claiming broad system coverage.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Foundational 2005 source; current OPM standard status is corroborated only by ISO 19450:2024
+    catalogue metadata. Historical tooling claims are not treated as 2026 maturity evidence.
+  verification_state: review_only_verified_location
+  ddta_role: challenge
+- id: SRC-0047-EX-0002
+  location:
+    pdf_page: 3
+    section: Introduction
+    paragraph_or_table: author-uploaded full-text page marker
+  capture_state: location_verified_in_author_uploaded_full_text
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Objects and processes are treated as equally important entities, allowing structure and behavior
+    to be modeled together rather than making behavior subordinate to objects.
+  researcher_interpretation: Behavior need not be a secondary property of structural elements.
+  supported_proposition: Behavior need not be a secondary property of structural elements.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Foundational 2005 source; current OPM standard status is corroborated only by ISO 19450:2024
+    catalogue metadata. Historical tooling claims are not treated as 2026 maturity evidence.
+  verification_state: review_only_verified_location
+  ddta_role: foundation
+- id: SRC-0047-EX-0003
+  location:
+    pdf_page: 6
+    section: OPM Concepts
+    paragraph_or_table: author-uploaded full-text page marker
+  capture_state: location_verified_in_author_uploaded_full_text
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The ontology is organized around entities and links; entities include things and states,
+    while things generalize objects and processes.
+  researcher_interpretation: Recurring DDTA responsibilities do not imply a one-class-per-responsibility ontology.
+  supported_proposition: Recurring DDTA responsibilities do not imply a one-class-per-responsibility ontology.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Foundational 2005 source; current OPM standard status is corroborated only by ISO 19450:2024
+    catalogue metadata. Historical tooling claims are not treated as 2026 maturity evidence.
+  verification_state: review_only_verified_location
+  ddta_role: challenge
+- id: SRC-0047-EX-0004
+  location:
+    pdf_page: 7
+    section: OPM Concepts / complexity management
+    paragraph_or_table: author-uploaded full-text page marker
+  capture_state: location_verified_in_author_uploaded_full_text
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: In-zooming, unfolding and state expressing provide refinement/abstraction mechanisms that
+    preserve one model across different levels of detail.
+  researcher_interpretation: Multi-level diagrams can be projections/refinements of one semantic model.
+  supported_proposition: Multi-level diagrams can be projections/refinements of one semantic model.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Foundational 2005 source; current OPM standard status is corroborated only by ISO 19450:2024
+    catalogue metadata. Historical tooling claims are not treated as 2026 maturity evidence.
+  verification_state: review_only_verified_location
+  ddta_role: comparison
+- id: SRC-0047-EX-0005
+  location:
+    pdf_page: 8
+    section: Bimodal Graphic-Text Representation
+    paragraph_or_table: author-uploaded full-text page marker
+  capture_state: location_verified_in_author_uploaded_full_text
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: OPD graphics and OPL text are defined as semantically equivalent modalities of the same OPM
+    model.
+  researcher_interpretation: Representation modality should be separated from canonical model semantics.
+  supported_proposition: Representation modality should be separated from canonical model semantics.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Foundational 2005 source; current OPM standard status is corroborated only by ISO 19450:2024
+    catalogue metadata. Historical tooling claims are not treated as 2026 maturity evidence.
+  verification_state: review_only_verified_location
+  ddta_role: foundation
+- id: SRC-0047-EX-0006
+  location:
+    pdf_page: 9
+    section: OPM Elements
+    paragraph_or_table: author-uploaded full-text page marker
+  capture_state: location_verified_in_author_uploaded_full_text
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: State is explicit but is owned by an object rather than standing alone; processes transform
+    things by creation, consumption or state change.
+  researcher_interpretation: State can be referencable without being an independent root.
+  supported_proposition: State can be referencable without being an independent root.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Foundational 2005 source; current OPM standard status is corroborated only by ISO 19450:2024
+    catalogue metadata. Historical tooling claims are not treated as 2026 maturity evidence.
+  verification_state: review_only_verified_location
+  ddta_role: challenge
+- id: SRC-0047-EX-0007
+  location:
+    pdf_page: 10
+    section: OPM Elements
+    paragraph_or_table: author-uploaded full-text page marker
+  capture_state: location_verified_in_author_uploaded_full_text
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Any element can be classified systemic or environmental and, independently, physical or informational.
+  researcher_interpretation: Boundary and information distinctions can be classifications/properties rather than
+    root types.
+  supported_proposition: Boundary and information distinctions can be classifications/properties rather than root
+    types.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Foundational 2005 source; current OPM standard status is corroborated only by ISO 19450:2024
+    catalogue metadata. Historical tooling claims are not treated as 2026 maturity evidence.
+  verification_state: review_only_verified_location
+  ddta_role: challenge
+- id: SRC-0047-EX-0008
+  location:
+    pdf_page: 15
+    section: OPM Links
+    paragraph_or_table: author-uploaded full-text page marker
+  capture_state: location_verified_in_author_uploaded_full_text
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Links are split into structural and procedural families; procedural links further distinguish
+    enabling, transformation and event semantics.
+  researcher_interpretation: A generic Interaction edge is too coarse, but a rich relation ontology can carry behavior
+    without many entity roots.
+  supported_proposition: A generic Interaction edge is too coarse, but a rich relation ontology can carry behavior
+    without many entity roots.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Foundational 2005 source; current OPM standard status is corroborated only by ISO 19450:2024
+    catalogue metadata. Historical tooling claims are not treated as 2026 maturity evidence.
+  verification_state: review_only_verified_location
+  ddta_role: comparison
+- id: SRC-0047-EX-0009
+  location:
+    pdf_page: 28
+    section: Element Metamodel
+    paragraph_or_table: author-uploaded full-text page marker
+  capture_state: location_verified_in_author_uploaded_full_text
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Entity specializes into Thing and State; Thing specializes into Object and Process; Element
+    also carries orthogonal affiliation, essence and scope attributes.
+  researcher_interpretation: OPM directly demonstrates entity/role/property separation inside a compact metamodel.
+  supported_proposition: OPM directly demonstrates entity/role/property separation inside a compact metamodel.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Foundational 2005 source; current OPM standard status is corroborated only by ISO 19450:2024
+    catalogue metadata. Historical tooling claims are not treated as 2026 maturity evidence.
+  verification_state: review_only_verified_location
+  ddta_role: foundation
+- id: SRC-0047-EX-0010
+  location:
+    pdf_page: 31
+    section: State Metamodel
+    paragraph_or_table: author-uploaded full-text page marker
+  capture_state: location_verified_in_author_uploaded_full_text
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: State belongs to an object and can itself be hierarchically refined into substates while
+    carrying timing and initial/final/default attributes.
+  researcher_interpretation: State semantics are rich even when state is owned rather than root-independent.
+  supported_proposition: State semantics are rich even when state is owned rather than root-independent.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Foundational 2005 source; current OPM standard status is corroborated only by ISO 19450:2024
+    catalogue metadata. Historical tooling claims are not treated as 2026 maturity evidence.
+  verification_state: review_only_verified_location
+  ddta_role: challenge
+- id: SRC-0047-EX-0011
+  location:
+    pdf_page: 32
+    section: Link Metamodel
+    paragraph_or_table: author-uploaded full-text page marker
+  capture_state: location_verified_in_author_uploaded_full_text
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: A Link has source/destination ends and cardinality; structural links are generally homogeneous
+    while procedural links model time-dependent flow between entities.
+  researcher_interpretation: Connection identity and relation-end semantics may be more fundamental than a Channel
+    root.
+  supported_proposition: Connection identity and relation-end semantics may be more fundamental than a Channel root.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Foundational 2005 source; current OPM standard status is corroborated only by ISO 19450:2024
+    catalogue metadata. Historical tooling claims are not treated as 2026 maturity evidence.
+  verification_state: review_only_verified_location
+  ddta_role: comparison
+- id: SRC-0047-EX-0012
+  location:
+    pdf_page: 37
+    section: Procedural Link Metamodel
+    paragraph_or_table: author-uploaded full-text page marker
+  capture_state: location_verified_in_author_uploaded_full_text
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Procedural links distinguish enabling and transformation; transformations specialize into
+    consuming, resulting and affecting relations, with conditional and event variants.
+  researcher_interpretation: Typed relations can encode much of behavior/flow semantics that DDTA had considered
+    as separate element kinds.
+  supported_proposition: Typed relations can encode much of behavior/flow semantics that DDTA had considered as
+    separate element kinds.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Foundational 2005 source; current OPM standard status is corroborated only by ISO 19450:2024
+    catalogue metadata. Historical tooling claims are not treated as 2026 maturity evidence.
+  verification_state: review_only_verified_location
+  ddta_role: challenge
+- id: SRC-0047-EX-0013
+  location:
+    pdf_page: 42
+    section: Refinement/abstraction / Summary
+    paragraph_or_table: author-uploaded full-text page marker
+  capture_state: location_verified_in_author_uploaded_full_text
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Abstraction may replace lower-level procedural links by a higher-level link, and the source
+    presents view generation from the single OPM model.
+  researcher_interpretation: Projection can alter visible relation granularity without creating a competing source
+    of truth.
+  supported_proposition: Projection can alter visible relation granularity without creating a competing source of
+    truth.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Foundational 2005 source; current OPM standard status is corroborated only by ISO 19450:2024
+    catalogue metadata. Historical tooling claims are not treated as 2026 maturity evidence.
+  verification_state: review_only_verified_location
+  ddta_role: comparison

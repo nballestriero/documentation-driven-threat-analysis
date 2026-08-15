@@ -1,0 +1,137 @@
+schema_version: 1
+source_id: SRC-0046
+citation_key: estefan2008mbse
+source_version:
+  stable_identifier: INCOSE-TD-2007-003-02, Rev. B, May 23 2008
+  accessed_on: '2026-08-15'
+  access_type: public_reference_copy
+excerpts:
+- id: SRC-0046-EX-0001
+  location:
+    pdf_page: 0
+    section: 1.1 Purpose / 1.2 Scope
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Methodology is defined as related processes, methods and tools; the report is a cursory survey,
+    not an assessment.
+  researcher_interpretation: Use the source as a map/bibliography seed, not as evidence that one method is superior.
+  supported_proposition: Use the source as a map/bibliography seed, not as evidence that one method is superior.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: method
+- id: SRC-0046-EX-0002
+  location:
+    pdf_page: 2
+    section: 2.1 PMTE definitions
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Environment includes external objects/conditions/factors and organizational/functional context
+    that enable or constrain methods/tools.
+  researcher_interpretation: Environment/context is a separate semantic concern from the modeled system elements.
+  supported_proposition: Environment/context is a separate semantic concern from the modeled system elements.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: foundation
+- id: SRC-0046-EX-0003
+  location:
+    pdf_page: 15
+    section: 3.1 Harmony-SE
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Harmony-SE identifies required functionality and states/modes and allocates functionality/modes
+    to physical architecture; communication uses service requests/messages.
+  researcher_interpretation: Behavior, state/mode, structure and allocation recur as distinct responsibilities.
+  supported_proposition: Behavior, state/mode, structure and allocation recur as distinct responsibilities.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: comparison
+- id: SRC-0046-EX-0004
+  location:
+    pdf_page: 18
+    section: 3.2 OOSEM
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: OOSEM integrates requirements analysis, logical architecture and candidate allocated architectures
+    with verification and design evolution.
+  researcher_interpretation: A neutral representation should support transition between logical and allocated views
+    without equating them.
+  supported_proposition: A neutral representation should support transition between logical and allocated views
+    without equating them.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: comparison
+- id: SRC-0046-EX-0005
+  location:
+    pdf_page: 42
+    section: 3.6 OPM
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: OPM integrates function, structure and behavior using objects, processes and constrained
+    natural language.
+  researcher_interpretation: Alternative modeling kernels can be much smaller than SysML while preserving multiple
+    semantic dimensions.
+  supported_proposition: Alternative modeling kernels can be much smaller than SysML while preserving multiple semantic
+    dimensions.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: challenge
+- id: SRC-0046-EX-0006
+  location:
+    pdf_page: 59
+    section: References
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The bibliography points to OOSEM, Harmony-SE, Vitech representation relationships, ISO/IEEE
+    architecture description and other foundational methods.
+  researcher_interpretation: Bibliography mining is the primary value of this source for BA0-R.
+  supported_proposition: Bibliography mining is the primary value of this source for BA0-R.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: bibliography
+- id: SRC-0046-EX-0007
+  location:
+    pdf_page: 64
+    section: Appendix OPM concepts
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: OPM represents objects, processes and states as core building blocks.
+  researcher_interpretation: State and transformation semantics recur even in a very different modeling paradigm.
+  supported_proposition: State and transformation semantics recur even in a very different modeling paradigm.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: comparison

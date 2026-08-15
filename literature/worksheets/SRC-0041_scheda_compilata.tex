@@ -1,0 +1,68 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[T1]{fontenc}\usepackage[utf8]{inputenc}\usepackage[english,italian]{babel}
+\usepackage{lmodern,microtype}\usepackage[a4paper,margin=1.85cm,headheight=15pt]{geometry}
+\usepackage{enumitem,tabularx,array,longtable,booktabs,xcolor,hyperref,xurl,fancyhdr,titlesec,framed}
+\definecolor{ddtadark}{RGB}{28,38,52}\definecolor{ddtablue}{RGB}{42,88,135}\definecolor{ddtagray}{RGB}{244,246,248}\definecolor{ddtagreen}{RGB}{48,111,78}\definecolor{ddtaorange}{RGB}{148,91,25}
+\hypersetup{colorlinks=true,linkcolor=ddtablue,urlcolor=ddtablue}\pagestyle{fancy}\fancyhf{}\lhead{DDTA - BA0-R}\rhead{REVIEW-ONLY}\cfoot{\thepage}
+\titleformat{\section}{\large\bfseries\color{ddtadark}}{}{0pt}{}\setlist[itemize]{leftmargin=1.45em,itemsep=.18em,topsep=.2em}
+\setlength{\parindent}{0pt}\setlength{\parskip}{.32em}\setlength{\emergencystretch}{2em}
+\newenvironment{factbox}[1]{\def\FrameCommand{\fcolorbox{ddtablue}{ddtagray}}\MakeFramed{\advance\hsize-2\width\FrameRestore}\noindent\textbf{#1}\par\smallskip}{\endMakeFramed}
+\newenvironment{challenge}[1]{\def\FrameCommand{\fcolorbox{ddtaorange}{ddtagray}}\MakeFramed{\advance\hsize-2\width\FrameRestore}\noindent\textbf{#1}\par\smallskip}{\endMakeFramed}
+
+\begin{document}
+\begin{center}
+{\LARGE\bfseries DDTA - Scheda di lettura compilata}\par
+{\large SRC-0041 - BA0-R systems-modeling prior art}\par
+{\small REVIEW-ONLY: da approvare prima del caricamento nel repository.}\par
+\end{center}
+\begin{factbox}{Identita bibliografica e accesso}
+\begin{tabularx}{\linewidth}{>{\bfseries}p{3.4cm}X}
+Source ID & SRC-0041\\
+Titolo & Kernel Modeling Language (KerML) Version 1.0\\
+Autori/ente & Object Management Group (OMG)\\
+Anno & 2025\\
+Identificatore & KerML 1.0; formal adoption September 2025; current normative PDF OMG file id formal/26-03-01\\
+Accesso & public\_normative\_specification\\
+Verification state & verified\_full\_text\_public\\
+\end{tabularx}
+\end{factbox}
+\section{1. Research problem and contribution}
+Defines a foundational modeling language with semantics for types, features, classes, structures, associations, behaviors, connectors, interactions and flows. It is intentionally more general than the systems-engineering concepts layered by SysML.
+\section{2. Starting artifacts and generated representations}
+The kernel distinguishes data values/types, structural classes, associations/links, behaviors/performances and features. A Structure is primarily structural and does not itself become Behavior, though it may perform or participate in behaviors. Connectors relate features; flows have source/target ends and payload; interactions combine behavior and association semantics.
+\section{3. Traceability, change, automation and human role}
+KerML primarily provides semantic foundations rather than a lifecycle/governance workflow. It gives precise identity/type/relationship semantics suitable for machine-readable interchange but does not itself solve document-to-model authority, human acceptance or analysis-to-document provenance.
+\section{4. Findings, limitations and relationship with DDTA}
+KerML directly falsifies the idea that Interaction should be a generic synonym for “edge”: an Interaction is explicitly both a Behavior and an Association. It suggests separating structural occurrence, behavior, relationship/connector and transfer semantics before deciding DDTA BAE classes. DDTA should reuse the lesson of semantic separation without importing the full KerML ontology.
+\section{Evidenza utile per BA0/BA1}
+\begin{longtable}{p{1.2cm}p{2.0cm}p{4.0cm}p{8.0cm}}
+\toprule
+Pag. & Ruolo & Sezione & Interpretazione DDTA\\
+\midrule
+\endhead
+205 & foundation & 8.3.4.3 Structure & Structure and behavior should remain distinct semantic responsibilities.\\
+\addlinespace[.3em]
+214 & foundation & 8.3.4.5 Connector & Generic relation/connection semantics can be separated from behavioral interaction.\\
+\addlinespace[.3em]
+216 & challenge & 8.3.4.6 Behavior & Internal behavior is not reducible to an interaction between actors.\\
+\addlinespace[.3em]
+247 & foundation & 8.3.4.9 Flow & Flow has structured transfer semantics beyond a generic relation.\\
+\addlinespace[.3em]
+248 & challenge & 8.3.4.9 Interaction & Treating Interaction as a universal edge would distort established modeling semantics.\\
+\addlinespace[.3em]
+297 & challenge & 8.4.4.10 Interactions Semantics & Interaction has a deliberately compound identity.\\
+\addlinespace[.3em]
+357 & foundation & 9.2.7.2.9 Transfer & Payload transfer can be represented independently of the structural connection medium.\\
+\addlinespace[.3em]
+\bottomrule
+\end{longtable}
+\section{Bibliography mining / follow-up}
+\begin{itemize}
+\item SysML 2.0 Language Specification
+\item KerML Semantic Library
+\item Dori/Reinhartz-Berger reflective metamodel as a conceptual-modeling comparison
+\end{itemize}
+\begin{challenge}{Governance note}
+Questa scheda e un ausilio di review. Le future citazioni di tesi devono risolversi alla fonte registrata e a una posizione esatta nell'excerpt ledger approvato. Nessun concetto esterno diventa automaticamente un BAE DDTA.
+\end{challenge}
+\end{document}

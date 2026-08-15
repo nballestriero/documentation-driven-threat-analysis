@@ -1,0 +1,154 @@
+schema_version: 1
+source_id: SRC-0039
+citation_key: nasa2025systemsmodeling
+source_version:
+  stable_identifier: NASA-HDBK-1009A, Revision A, 2025-03-12
+  accessed_on: '2026-08-15'
+  access_type: internet_public_official_nasa_pdf
+excerpts:
+- id: SRC-0039-EX-0001
+  location:
+    pdf_page: 5
+    section: 1.1 Purpose
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The handbook states that its system-modeling method is tool-agnostic and that languages other
+    than SysML can be applied to the section-7 metamodel.
+  researcher_interpretation: A modeling metamodel can be conceptually separated from its concrete notation/tool.
+  supported_proposition: A modeling metamodel can be conceptually separated from its concrete notation/tool.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: foundation
+- id: SRC-0039-EX-0002
+  location:
+    pdf_page: 11
+    section: 4.3.1.2 Modeling Pillars of SysML
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The handbook groups model content into structure, behavior, requirements and parametrics.
+  researcher_interpretation: Structure and behavior are distinct system-modeling responsibilities rather than one
+    generic interaction bucket.
+  supported_proposition: Structure and behavior are distinct system-modeling responsibilities rather than one generic
+    interaction bucket.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: foundation
+- id: SRC-0039-EX-0003
+  location:
+    pdf_page: 14
+    section: 4.3.3 Modeling Framework
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: A metamodel relates modeling elements and relationships across the four pillars and supplies
+    content for diagrams and tables.
+  researcher_interpretation: Canonical model content should precede view generation.
+  supported_proposition: Canonical model content should precede view generation.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: foundation
+- id: SRC-0039-EX-0004
+  location:
+    pdf_page: 23
+    section: 8.3 System Context bdd
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: System context depicts scope/boundaries, system of interest, users and external elements.
+  researcher_interpretation: Boundary/context is a generic systems-modeling responsibility, not inherently a security
+    trust boundary.
+  supported_proposition: Boundary/context is a generic systems-modeling responsibility, not inherently a security
+    trust boundary.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: foundation
+- id: SRC-0039-EX-0005
+  location:
+    pdf_page: 24
+    section: 8.4 System Context ibd
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Internal block views show structure elements interfacing and items flowing across interfaces.
+  researcher_interpretation: Interface and transferred item/flow should not be collapsed into a single generic interaction.
+  supported_proposition: Interface and transferred item/flow should not be collapsed into a single generic interaction.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: challenge
+- id: SRC-0039-EX-0006
+  location:
+    pdf_page: 45
+    section: 9 Generating Diagrams and Tables
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: After the system model is populated, diagrams and tables can be extracted to visualize and
+    communicate model knowledge.
+  researcher_interpretation: Views are projections/renderings of canonical knowledge, not independent sources of
+    truth.
+  supported_proposition: Views are projections/renderings of canonical knowledge, not independent sources of truth.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: foundation
+- id: SRC-0039-EX-0007
+  location:
+    pdf_page: 70
+    section: Appendix F 3.3 Interfaces
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Interfaces may include mechanical, electrical, human, fluid, radio-frequency, data or other
+    interaction types.
+  researcher_interpretation: An interface abstraction can be broader than a communication channel.
+  supported_proposition: An interface abstraction can be broader than a communication channel.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: comparison
+- id: SRC-0039-EX-0008
+  location:
+    pdf_page: 72
+    section: Appendix F 3.4 Modes of Operations
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Modes/configurations, transition conditions and behavior available in each mode are modeled
+    explicitly.
+  researcher_interpretation: State/mode is a recurring semantic responsibility that BA1 must test.
+  supported_proposition: State/mode is a recurring semantic responsibility that BA1 must test.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: foundation

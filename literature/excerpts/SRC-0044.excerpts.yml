@@ -1,0 +1,167 @@
+schema_version: 1
+source_id: SRC-0044
+citation_key: feiler2006aadl
+source_version:
+  stable_identifier: CMU/SEI-2006-TN-011; DOI 10.1184/R1/6584909.v1
+  accessed_on: '2026-08-15'
+  access_type: public_sei_report
+excerpts:
+- id: SRC-0044-EX-0001
+  location:
+    pdf_page: 7
+    section: 3 AADL Language Abstractions
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: AADL separates component abstractions and provides precise language constructs for architecture
+    analysis.
+  researcher_interpretation: An analyzable core can be abstract while retaining formal semantics.
+  supported_proposition: An analyzable core can be abstract while retaining formal semantics.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: foundation
+- id: SRC-0044-EX-0002
+  location:
+    pdf_page: 21
+    section: 4.10-4.11 Partial Specifications
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: AADL supports partial specifications and refinement/extension.
+  researcher_interpretation: Base Analysis need not require a fully detailed implementation model before analysis
+    can begin.
+  supported_proposition: Base Analysis need not require a fully detailed implementation model before analysis can
+    begin.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: foundation
+- id: SRC-0044-EX-0003
+  location:
+    pdf_page: 44
+    section: 6.2 Memory
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Memory is a specific execution-platform component category with properties/constraints.
+  researcher_interpretation: Storage need does not imply Store must be a universal root type.
+  supported_proposition: Storage need does not imply Store must be a universal root type.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: challenge
+- id: SRC-0044-EX-0004
+  location:
+    pdf_page: 46
+    section: 6.3 Bus
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Bus is a specific execution-platform communication component.
+  researcher_interpretation: Channel may be a role/specialization of a generic connection/resource rather than a
+    base root.
+  supported_proposition: Channel may be a role/specialization of a generic connection/resource rather than a base
+    root.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: challenge
+- id: SRC-0044-EX-0005
+  location:
+    pdf_page: 56
+    section: 8 Component Interactions
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: AADL separates ports, connections, accesses, calls and data exchange mechanisms.
+  researcher_interpretation: A single Interaction abstraction risks erasing analysis-relevant distinctions.
+  supported_proposition: A single Interaction abstraction risks erasing analysis-relevant distinctions.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: challenge
+- id: SRC-0044-EX-0006
+  location:
+    pdf_page: 58
+    section: 8.1.2 Port Connections
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Connections have explicit source/destination port semantics.
+  researcher_interpretation: Connection and endpoint identity are analyzable first-class concerns.
+  supported_proposition: Connection and endpoint identity are analyzable first-class concerns.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: foundation
+- id: SRC-0044-EX-0007
+  location:
+    pdf_page: 86
+    section: 9 Modes
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Modes change active subcomponents/connections/properties.
+  researcher_interpretation: State/mode can materially change analyzable architecture.
+  supported_proposition: State/mode can materially change analyzable architecture.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: foundation
+- id: SRC-0044-EX-0008
+  location:
+    pdf_page: 91
+    section: 10 Flows
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Flow declarations and flow paths model logical traversal independently from individual connection
+    declarations.
+  researcher_interpretation: End-to-end flow and structural connection are distinct semantic layers.
+  supported_proposition: End-to-end flow and structural connection are distinct semantic layers.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: foundation
+- id: SRC-0044-EX-0009
+  location:
+    pdf_page: 95
+    section: 11 Properties
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Properties can be associated with architecture elements and extended for analysis needs.
+  researcher_interpretation: Properties/constraints may be preferable to multiplying structural metaclasses.
+  supported_proposition: Properties/constraints may be preferable to multiplying structural metaclasses.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: foundation

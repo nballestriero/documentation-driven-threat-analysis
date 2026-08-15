@@ -1,0 +1,89 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[T1]{fontenc}\usepackage[utf8]{inputenc}\usepackage[english,italian]{babel}
+\usepackage{lmodern,microtype}\usepackage[a4paper,margin=1.85cm,headheight=15pt]{geometry}
+\usepackage{enumitem,tabularx,array,longtable,booktabs,xcolor,hyperref,xurl,fancyhdr,titlesec,framed}
+\definecolor{ddtadark}{RGB}{28,38,52}\definecolor{ddtablue}{RGB}{42,88,135}\definecolor{ddtagray}{RGB}{244,246,248}\definecolor{ddtagreen}{RGB}{48,111,78}\definecolor{ddtaorange}{RGB}{148,91,25}
+\hypersetup{colorlinks=true,linkcolor=ddtablue,urlcolor=ddtablue,pdftitle={SRC-0047 OPM reflective metamodel BA0-R9}}
+\pagestyle{fancy}\fancyhf{}\lhead{DDTA - BA0-R9}\rhead{REVIEW-ONLY}\cfoot{\thepage}
+\titleformat{\section}{\large\bfseries\color{ddtadark}}{}{0pt}{}\setlist[itemize]{leftmargin=1.45em,itemsep=.18em,topsep=.2em}
+\setlength{\parindent}{0pt}\setlength{\parskip}{.32em}\setlength{\emergencystretch}{2em}
+\newenvironment{factbox}[1]{\def\FrameCommand{\fcolorbox{ddtablue}{ddtagray}}\MakeFramed{\advance\hsize-2\width\FrameRestore}\noindent\textbf{#1}\par\smallskip}{\endMakeFramed}
+\newenvironment{challenge}[1]{\def\FrameCommand{\fcolorbox{ddtaorange}{ddtagray}}\MakeFramed{\advance\hsize-2\width\FrameRestore}\noindent\textbf{#1}\par\smallskip}{\endMakeFramed}
+\begin{document}
+\begin{center}{\LARGE\bfseries DDTA - Scheda di lettura compilata}\par
+{\large SRC-0047 - BA0-R9 OPM alternative-kernel challenge}\par
+{\small REVIEW-ONLY: nessuna promozione BAE autorizzata.}\par\end{center}
+\begin{factbox}{Identita bibliografica e accesso}
+\begin{tabularx}{\linewidth}{>{\bfseries}p{3.6cm}X}
+Source ID & SRC-0047\\
+Titolo & A Reflective Meta-Model of Object-Process Methodology: The System Modeling Building Blocks\\
+Autori & Iris Reinhartz-Berger; Dov Dori\\
+Anno / tipo & 2005; primary conceptual book chapter\\
+DOI & \texttt{10.4018/978-1-59140-339-5.ch006}\\
+Accesso letto & author-uploaded public full-text rendering with embedded page markers\\
+Current corroboration & ISO 19450:2024 official catalogue metadata only; normative standard not read\\
+Verification state & verified\_author\_uploaded\_full\_text\_web\\
+\end{tabularx}
+\end{factbox}
+
+\section{1. Research problem and contribution}
+The chapter defines OPM through a reflective metamodel. Its core challenge to BA0-R is that it models complex systems with a deliberately small ontology and gives Object and Process equal ontological status, integrating structure and behavior rather than making one subordinate to the other.
+
+\section{2. Starting artifacts and system representation}
+\begin{verbatim}
+Element
+  +-- Entity
+  |     +-- Thing
+  |     |     +-- Object
+  |     |     `-- Process
+  |     `-- State
+  `-- Link
+        +-- StructuralLink
+        `-- ProceduralLink
+              `-- EventLink
+\end{verbatim}
+State is owned by Object. Structural links represent static relations; procedural links carry enabling, transformation, and event semantics. Orthogonal attributes classify elements as systemic or environmental, and physical or informatical. OPD graphics and OPL text are two modalities of the same model; refinement/abstraction creates multiple diagrams without requiring multiple competing semantic models.
+
+\section{3. Traceability, change, automation and human role}
+This is not a source on DDTA-style provenance or document-to-model acceptance. It does support a sharp separation between canonical model semantics and notation/rendering, and historically reports tool transformations between OPD/OPL and other views. Those tooling claims are not used as current 2026 maturity evidence.
+
+\section{4. Main DDTA challenge}
+\begin{challenge}{Semantic responsibility does not imply a root metaclass}
+OPM can preserve structure, behavior, state, environment, information and flow with a much smaller entity/link kernel. BA1 therefore has to justify whether each DDTA responsibility is an entity, relation, role, property/classification, owned state or derived projection.
+\end{challenge}
+
+\section{Hypothesis effects}
+\begin{tabularx}{\linewidth}{>{\bfseries}p{4.1cm}X}
+Boundary as root & WEAKENED: systemic/environmental is an element affiliation; the boundary can be derived.\\
+State as root & WEAKENED: State is explicit but owned by Object.\\
+Flow as root & WEAKENED: procedural links carry flow/transformation semantics.\\
+Information Object root & WEAKENED: informatical is an orthogonal essence classification.\\
+Channel as root & FURTHER WEAKENED: a communication line can be a physical Link.\\
+Actor/Asset/Interaction core & REJECTION REINFORCED: OPM does not need those as universal foundations.\\
+\end{tabularx}
+
+\section{Citation-ready evidence}
+\begin{longtable}{p{1.0cm}p{2.0cm}p{3.8cm}p{7.7cm}}
+\toprule Pag. & Ruolo & Sezione & Interpretazione DDTA\\\midrule\endhead
+1 & challenge & Abstract/Introduction & A compact kernel can support broad system modeling; class granularity is not predetermined.\\
+6 & challenge & OPM Concepts & Entity/Link plus Object/Process/State directly pressure-tests one-class-per-responsibility assumptions.\\
+7 & comparison & Complexity management & In-zooming/unfolding/state-expression show one model across abstraction levels.\\
+8 & foundation & OPD/OPL bimodality & Representation modality is separate from model semantics.\\
+10 & challenge & OPM Elements & System/environment and physical/information distinctions are classifications of elements.\\
+28 & foundation & Element Metamodel & Entity/Thing/Object/Process/State and Link are combined with orthogonal element attributes.\\
+32 & comparison & Link Metamodel & Source/destination/cardinality and structural/procedural semantics point toward rich relations rather than Channel roots.\\
+37 & challenge & Procedural Link Metamodel & Enabling/consuming/result/effect/event relations encode behavior and flows through typed links.\\
+42 & comparison & Abstraction/Summary & Projection can change visible relation granularity while preserving one underlying model.\\
+\bottomrule
+\end{longtable}
+
+\section{Bibliography mining / follow-up}
+\begin{itemize}
+\item Dori (2002), \textit{Object-Process Methodology - A Holistic Systems Paradigm}: defer unless BA1 needs broader lifecycle semantics.
+\item Dori \& Reinhartz-Berger (2003), reflective OPM development-process metamodel: defer unless governance/evolution representation becomes contested.
+\item ISO 19450:2024: acquire only if normative OPM clause-level claims become necessary.
+\end{itemize}
+\begin{challenge}{Governance note}
+This worksheet is a review aid. Thesis citations must resolve to an approved source record and exact excerpt location. OPM is a falsification source, not DDTA semantic authority.
+\end{challenge}
+\end{document}

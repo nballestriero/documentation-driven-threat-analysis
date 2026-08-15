@@ -1,0 +1,74 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[T1]{fontenc}\usepackage[utf8]{inputenc}\usepackage[english,italian]{babel}
+\usepackage{lmodern,microtype}\usepackage[a4paper,margin=1.85cm,headheight=15pt]{geometry}
+\usepackage{enumitem,tabularx,array,longtable,booktabs,xcolor,hyperref,xurl,fancyhdr,titlesec,framed}
+\definecolor{ddtadark}{RGB}{28,38,52}\definecolor{ddtablue}{RGB}{42,88,135}\definecolor{ddtagray}{RGB}{244,246,248}\definecolor{ddtagreen}{RGB}{48,111,78}\definecolor{ddtaorange}{RGB}{148,91,25}
+\hypersetup{colorlinks=true,linkcolor=ddtablue,urlcolor=ddtablue}\pagestyle{fancy}\fancyhf{}\lhead{DDTA - BA0-R}\rhead{REVIEW-ONLY}\cfoot{\thepage}
+\titleformat{\section}{\large\bfseries\color{ddtadark}}{}{0pt}{}\setlist[itemize]{leftmargin=1.45em,itemsep=.18em,topsep=.2em}
+\setlength{\parindent}{0pt}\setlength{\parskip}{.32em}\setlength{\emergencystretch}{2em}
+\newenvironment{factbox}[1]{\def\FrameCommand{\fcolorbox{ddtablue}{ddtagray}}\MakeFramed{\advance\hsize-2\width\FrameRestore}\noindent\textbf{#1}\par\smallskip}{\endMakeFramed}
+\newenvironment{challenge}[1]{\def\FrameCommand{\fcolorbox{ddtaorange}{ddtagray}}\MakeFramed{\advance\hsize-2\width\FrameRestore}\noindent\textbf{#1}\par\smallskip}{\endMakeFramed}
+
+\begin{document}
+\begin{center}
+{\LARGE\bfseries DDTA - Scheda di lettura compilata}\par
+{\large SRC-0040 - BA0-R systems-modeling prior art}\par
+{\small REVIEW-ONLY: da approvare prima del caricamento nel repository.}\par
+\end{center}
+\begin{factbox}{Identita bibliografica e accesso}
+\begin{tabularx}{\linewidth}{>{\bfseries}p{3.4cm}X}
+Source ID & SRC-0040\\
+Titolo & OMG Systems Modeling Language (SysML) Version 2.0 - Language Specification\\
+Autori/ente & Object Management Group (OMG)\\
+Anno & 2025\\
+Identificatore & SysML 2.0; formal adoption September 2025; current normative Language PDF OMG file id formal/26-03-02\\
+Accesso & public\_normative\_specification\\
+Verification state & verified\_full\_text\_public\\
+\end{tabularx}
+\end{factbox}
+\section{1. Research problem and contribution}
+Defines the semantics and notation of SysML v2 as a general-purpose systems modeling language built on KerML. It provides formal concepts for items, parts, ports, connections, interfaces, flows, actions, states, requirements, cases, views/viewpoints and analysis.
+\section{2. Starting artifacts and generated representations}
+A part is a structural item; ports are connection points; connections relate usages and may have their own properties; interfaces are specialized connections whose ends are ports; flows model transfer of payloads between source and target; actions model behavior over time; states describe modes of occurrence behavior. Views expose, filter and render portions of a model.
+\section{3. Traceability, change, automation and human role}
+The language supports explicit relationships such as satisfy, allocation, exposure/import, view filtering and rendering. A rendered view artifact can preserve correspondence back to model elements. Analysis cases can specify what analysis is to be performed while an external solver controls execution details.
+\section{4. Findings, limitations and relationship with DDTA}
+Actor is not a universal root: an actor parameter is a role played by an external entity and is a PartUsage. Asset is likewise not the generic system object; SysML uses Item/Part semantics. Connection, interface, flow and interaction are distinct. The AnalysisCase construct substantially narrows any DDTA novelty claim around a generic analysis envelope. DDTA must differentiate itself through governed documentation grounding, method overlays, reviewed findings, accepted document change and re-analysis/provenance rather than the existence of an analysis container.
+\section{Evidenza utile per BA0/BA1}
+\begin{longtable}{p{1.2cm}p{2.0cm}p{4.0cm}p{8.0cm}}
+\toprule
+Pag. & Ruolo & Sezione & Interpretazione DDTA\\
+\midrule
+\endhead
+89 & challenge & 7.11 Parts Overview & A generic structural element is more neutral than Actor as a root.\\
+\addlinespace[.3em]
+92 & foundation & 7.12 Ports Overview & Endpoint/interface semantics have an independent responsibility.\\
+\addlinespace[.3em]
+95 & foundation & 7.13 Connections Overview & A channel-like concept may be a specialization/role of a more generic first-class connection.\\
+\addlinespace[.3em]
+105 & foundation & 7.14 Interfaces Overview & Interface should not be equated with flow or payload.\\
+\addlinespace[.3em]
+111 & foundation & 7.15 Flows Overview & Payload, flow and endpoints are semantically separable.\\
+\addlinespace[.3em]
+144 & foundation & 7.18 States & State/mode is explicit behavior semantics, not merely an annotation.\\
+\addlinespace[.3em]
+161 & challenge & 7.21 Requirements & Actor is context-dependent role semantics in SysML, weakening Actor as a generic BAE root.\\
+\addlinespace[.3em]
+169 & challenge & 7.23 Analysis Cases & Generic analysis specification is established prior art.\\
+\addlinespace[.3em]
+171 & challenge & 7.23.3 Trade-Off Analyses & Analysis and trade-study semantics are not DDTA-specific contributions.\\
+\addlinespace[.3em]
+180 & foundation & 7.26 Views and Viewpoints & Strong support for canonical-model-to-view projection.\\
+\addlinespace[.3em]
+\bottomrule
+\end{longtable}
+\section{Bibliography mining / follow-up}
+\begin{itemize}
+\item OMG KerML 1.0
+\item SysML v2 Analysis Domain Library
+\item SysML v2 Requirement Derivation Domain Library
+\end{itemize}
+\begin{challenge}{Governance note}
+Questa scheda e un ausilio di review. Le future citazioni di tesi devono risolversi alla fonte registrata e a una posizione esatta nell'excerpt ledger approvato. Nessun concetto esterno diventa automaticamente un BAE DDTA.
+\end{challenge}
+\end{document}

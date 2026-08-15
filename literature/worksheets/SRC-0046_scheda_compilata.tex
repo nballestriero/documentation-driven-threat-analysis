@@ -1,0 +1,70 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[T1]{fontenc}\usepackage[utf8]{inputenc}\usepackage[english,italian]{babel}
+\usepackage{lmodern,microtype}\usepackage[a4paper,margin=1.85cm,headheight=15pt]{geometry}
+\usepackage{enumitem,tabularx,array,longtable,booktabs,xcolor,hyperref,xurl,fancyhdr,titlesec,framed}
+\definecolor{ddtadark}{RGB}{28,38,52}\definecolor{ddtablue}{RGB}{42,88,135}\definecolor{ddtagray}{RGB}{244,246,248}\definecolor{ddtagreen}{RGB}{48,111,78}\definecolor{ddtaorange}{RGB}{148,91,25}
+\hypersetup{colorlinks=true,linkcolor=ddtablue,urlcolor=ddtablue}\pagestyle{fancy}\fancyhf{}\lhead{DDTA - BA0-R}\rhead{REVIEW-ONLY}\cfoot{\thepage}
+\titleformat{\section}{\large\bfseries\color{ddtadark}}{}{0pt}{}\setlist[itemize]{leftmargin=1.45em,itemsep=.18em,topsep=.2em}
+\setlength{\parindent}{0pt}\setlength{\parskip}{.32em}\setlength{\emergencystretch}{2em}
+\newenvironment{factbox}[1]{\def\FrameCommand{\fcolorbox{ddtablue}{ddtagray}}\MakeFramed{\advance\hsize-2\width\FrameRestore}\noindent\textbf{#1}\par\smallskip}{\endMakeFramed}
+\newenvironment{challenge}[1]{\def\FrameCommand{\fcolorbox{ddtaorange}{ddtagray}}\MakeFramed{\advance\hsize-2\width\FrameRestore}\noindent\textbf{#1}\par\smallskip}{\endMakeFramed}
+
+\begin{document}
+\begin{center}
+{\LARGE\bfseries DDTA - Scheda di lettura compilata}\par
+{\large SRC-0046 - BA0-R systems-modeling prior art}\par
+{\small REVIEW-ONLY: da approvare prima del caricamento nel repository.}\par
+\end{center}
+\begin{factbox}{Identita bibliografica e accesso}
+\begin{tabularx}{\linewidth}{>{\bfseries}p{3.4cm}X}
+Source ID & SRC-0046\\
+Titolo & Survey of Candidate Model-Based Systems Engineering (MBSE) Methodologies, Revision B\\
+Autori/ente & Jeff A. Estefan\\
+Anno & 2008\\
+Identificatore & INCOSE-TD-2007-003-02, Rev. B, May 23 2008\\
+Accesso & public\_reference\_copy\\
+Verification state & verified\_full\_text\_public\\
+\end{tabularx}
+\end{factbox}
+\section{1. Research problem and contribution}
+Provides a cursory survey of leading MBSE methodologies. It explicitly defines methodology as a collection of related processes, methods and tools and distinguishes those from the project environment. The report states that it is a survey, not a comparative assessment.
+\section{2. Starting artifacts and generated representations}
+Methodologies differ substantially. Harmony-SE derives functionality and states/modes and allocates them to physical architecture; OOSEM moves from stakeholder needs/requirements through logical and candidate allocated architectures; OPM integrates object/process/state concepts in one model. The diversity is evidence against assuming one established minimal ontology.
+\section{3. Traceability, change, automation and human role}
+The source discusses repositories, work products and methodology/tool integration but predates modern digital engineering. It is most useful for identifying second-ring sources rather than for current tool maturity or empirical effectiveness.
+\section{4. Findings, limitations and relationship with DDTA}
+The survey shows that structure/behavior/state/allocation recur in different methodologies, but with different conceptual organizations. That supports extracting semantic responsibilities before choosing metaclasses. It also yields bibliography candidates: Wymore, Harmony-SE, OOSEM, Vitech graphical representation relations, JPL State Analysis, Dori OPM and its reflective metamodel.
+\section{Evidenza utile per BA0/BA1}
+\begin{longtable}{p{1.2cm}p{2.0cm}p{4.0cm}p{8.0cm}}
+\toprule
+Pag. & Ruolo & Sezione & Interpretazione DDTA\\
+\midrule
+\endhead
+0 & method & 1.1 Purpose / 1.2 Scope & Use the source as a map/bibliography seed, not as evidence that one method is superior.\\
+\addlinespace[.3em]
+2 & foundation & 2.1 PMTE definitions & Environment/context is a separate semantic concern from the modeled system elements.\\
+\addlinespace[.3em]
+15 & comparison & 3.1 Harmony-SE & Behavior, state/mode, structure and allocation recur as distinct responsibilities.\\
+\addlinespace[.3em]
+18 & comparison & 3.2 OOSEM & A neutral representation should support transition between logical and allocated views without equating them.\\
+\addlinespace[.3em]
+42 & challenge & 3.6 OPM & Alternative modeling kernels can be much smaller than SysML while preserving multiple semantic dimensions.\\
+\addlinespace[.3em]
+59 & bibliography & References & Bibliography mining is the primary value of this source for BA0-R.\\
+\addlinespace[.3em]
+64 & comparison & Appendix OPM concepts & State and transformation semantics recur even in a very different modeling paradigm.\\
+\addlinespace[.3em]
+\bottomrule
+\end{longtable}
+\section{Bibliography mining / follow-up}
+\begin{itemize}
+\item Dori 2002 Object-Process Methodology
+\item Reinhartz-Berger \& Dori 2005 reflective OPM metamodel
+\item Long 2002 Relationships between Common Graphical Representations in Systems Engineering
+\item OOSEM/Harmony-SE foundational references
+\item JPL State Analysis sources
+\end{itemize}
+\begin{challenge}{Governance note}
+Questa scheda e un ausilio di review. Le future citazioni di tesi devono risolversi alla fonte registrata e a una posizione esatta nell'excerpt ledger approvato. Nessun concetto esterno diventa automaticamente un BAE DDTA.
+\end{challenge}
+\end{document}

@@ -1,0 +1,104 @@
+PDF: literature/syntheses/BA0_R_BIBLIOGRAPHY_EXPANSION_LEDGER_R2.pdf
+Pages: 1
+Encrypted: False
+Openable (PyMuPDF): True
+Likely scanned: False
+XFA present: False
+
+PDF: literature/syntheses/BA0_R_BIBLIOGRAPHY_EXPANSION_LEDGER_R3.pdf
+Pages: 3
+Encrypted: False
+Openable (PyMuPDF): True
+Likely scanned: False
+XFA present: False
+
+PDF: literature/syntheses/BA0_R_SYSTEMS_MODELING_RESEARCH_CHECKPOINT_R1.pdf
+Pages: 2
+Encrypted: False
+Openable (PyMuPDF): True
+Likely scanned: False
+XFA present: False
+
+PDF: literature/syntheses/systems-modeling-prior-art-source-cluster-R2.pdf
+Pages: 4
+Encrypted: False
+Openable (PyMuPDF): True
+Likely scanned: False
+XFA present: False
+
+PDF: literature/syntheses/systems-modeling-prior-art-source-cluster-R3.pdf
+Pages: 3
+Encrypted: False
+Openable (PyMuPDF): True
+Likely scanned: False
+XFA present: False
+
+PDF: literature/worksheets/SRC-0039_scheda_compilata.pdf
+Pages: 2
+Encrypted: False
+Openable (PyMuPDF): True
+Likely scanned: False
+XFA present: False
+
+PDF: literature/worksheets/SRC-0040_scheda_compilata.pdf
+Pages: 2
+Encrypted: False
+Openable (PyMuPDF): True
+Likely scanned: False
+XFA present: False
+
+PDF: literature/worksheets/SRC-0041_scheda_compilata.pdf
+Pages: 2
+Encrypted: False
+Openable (PyMuPDF): True
+Likely scanned: False
+XFA present: False
+
+PDF: literature/worksheets/SRC-0042_scheda_compilata.pdf
+Pages: 2
+Encrypted: False
+Openable (PyMuPDF): True
+Likely scanned: False
+XFA present: False
+
+PDF: literature/worksheets/SRC-0043_scheda_compilata.pdf
+Pages: 2
+Encrypted: False
+Openable (PyMuPDF): True
+Likely scanned: False
+XFA present: False
+
+PDF: literature/worksheets/SRC-0044_scheda_compilata.pdf
+Pages: 2
+Encrypted: False
+Openable (PyMuPDF): True
+Likely scanned: False
+XFA present: False
+
+PDF: literature/worksheets/SRC-0045_scheda_compilata.pdf
+Pages: 2
+Encrypted: False
+Openable (PyMuPDF): True
+Likely scanned: False
+XFA present: False
+
+PDF: literature/worksheets/SRC-0046_scheda_compilata.pdf
+Pages: 2
+Encrypted: False
+Openable (PyMuPDF): True
+Likely scanned: False
+XFA present: False
+
+PDF: literature/worksheets/SRC-0047_scheda_compilata.pdf
+Pages: 2
+Encrypted: False
+Openable (PyMuPDF): True
+Likely scanned: False
+XFA present: False
+
+PDF: literature/worksheets/SRC-0048_scheda_compilata.pdf
+Pages: 2
+Encrypted: False
+Openable (PyMuPDF): True
+Likely scanned: False
+XFA present: False

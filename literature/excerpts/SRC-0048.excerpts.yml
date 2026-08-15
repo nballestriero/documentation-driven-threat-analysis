@@ -1,0 +1,219 @@
+schema_version: 1
+source_id: SRC-0048
+citation_key: iso2011architecturedescription
+source_version:
+  stable_identifier: ISO/IEC/IEEE 42010:2011(E), first edition 2011-12-01
+  accessed_on: '2026-08-15'
+  access_type: user_supplied_full_text_copyright_protected
+  local_filename: "ISOIECIEEE 420102011 Systems and software engineering — Architecture description.pdf"
+  sha256: 0b53b9400cd590f9a89d767333ff6d80f2296892a76ab8e08225eae035edb64f
+excerpts:
+- id: SRC-0048-EX-0001
+  location: {pdf_page: 7, printed_page: 1, section: "1 Scope", paragraph_or_table: "scope statement"}
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The standard specifies how architecture descriptions are organized and expressed, including viewpoints, frameworks and architecture description languages.
+  researcher_interpretation: ISO 42010 is governance/description prior art, not a DDTA system-ontology definition.
+  supported_proposition: Architecture-description organization and viewpoint governance are established prior art.
+  thesis_targets: [base-analysis, future-methodology-chapter]
+  temporal_caveat: Historical 2011 edition; do not project clause identity onto the 2022 edition.
+  verification_state: location_verified
+- id: SRC-0048-EX-0002
+  location: {pdf_page: 8, printed_page: 2, section: "3 Terms and definitions", paragraph_or_table: "architecture / architecture description / view / viewpoint / model kind"}
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Architecture is defined in terms of fundamental concepts or properties of a system in its environment, while an architecture description is a work product; view, viewpoint and model kind have distinct meanings.
+  researcher_interpretation: DDTA should separate system/architecture semantics from the work products and conventions used to express them.
+  supported_proposition: Architecture, architecture description, view, viewpoint and model kind are distinct concepts.
+  thesis_targets: [base-analysis, future-methodology-chapter]
+  temporal_caveat: Historical 2011 edition.
+  verification_state: location_verified
+- id: SRC-0048-EX-0003
+  location: {pdf_page: 10, printed_page: 4, section: "4.2.1 Context of architecture description", paragraph_or_table: "system nature and environment"}
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The standard intentionally does not define what constitutes a system; a system is situated in an environment, and what is architecturally fundamental can concern constituents, relations, organization/design principles or evolution principles.
+  researcher_interpretation: ISO 42010 cannot settle the DDTA BAE ontology, and environment/context must remain explicit in interpretation.
+  supported_proposition: ISO 42010 is intentionally ontology-neutral about the internal nature of systems.
+  thesis_targets: [base-analysis]
+  temporal_caveat: Historical 2011 edition.
+  verification_state: location_verified
+- id: SRC-0048-EX-0004
+  location: {pdf_page: 11, printed_page: 5, section: "4.2.2 Architectures and architecture descriptions", paragraph_or_table: "conceptual distinction"}
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The standard distinguishes an abstract architecture from the architecture-description work product and supports document-centric, model-based and repository-based description without prescribing a production method or notation.
+  researcher_interpretation: A DDTA analyzable representation is a design choice layered over governed knowledge, not the only possible form of architecture description.
+  supported_proposition: Architecture-description media and production method are deliberately open.
+  thesis_targets: [base-analysis, future-methodology-chapter]
+  temporal_caveat: Historical 2011 edition.
+  verification_state: location_verified
+- id: SRC-0048-EX-0005
+  location: {pdf_page: 12, printed_page: 6, section: "4.2.3 Stakeholders and concerns", paragraph_or_table: "concern examples"}
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Concerns can arise from needs, requirements, design choices and operations and may include responsibilities, constraints, assumptions, dependencies, quality attributes, decisions, risks, security, privacy and many other interests.
+  researcher_interpretation: Concern is a broad organizing concept and should not be collapsed into a DDTA requirement subtype or a security-only concept.
+  supported_proposition: Concern semantics are broader than requirements or security properties alone.
+  thesis_targets: [base-analysis]
+  temporal_caveat: Historical 2011 edition.
+  verification_state: location_verified
+- id: SRC-0048-EX-0006
+  location: {pdf_page: 12, printed_page: 6, section: "4.2.4 Architecture views and viewpoints", paragraph_or_table: "view/viewpoint relation"}
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: A view addresses stakeholder concerns and is governed by a viewpoint that frames concerns and establishes conventions for constructing, interpreting and analyzing the view.
+  researcher_interpretation: DDTA needs a clear separation between projected content and the reusable conventions that define how that projection is constructed and interpreted.
+  supported_proposition: View and viewpoint are distinct and explicitly related through governance conventions.
+  thesis_targets: [base-analysis, future-methodology-chapter]
+  temporal_caveat: Historical 2011 edition.
+  verification_state: location_verified
+- id: SRC-0048-EX-0007
+  location: {pdf_page: 13, printed_page: 7, section: "4.2.6 AD elements and correspondences", paragraph_or_table: "correspondence concept"}
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Correspondences are explicit relations among architecture-description elements and may be governed by rules; examples include consistency, traceability, dependency, composition, refinement, constraint and obligation.
+  researcher_interpretation: Cross-model relation semantics and consistency rules are mature prior art adjacent to DDTA provenance and view consistency.
+  supported_proposition: Explicit governed relations among model/view elements are established architecture-description prior art.
+  thesis_targets: [base-analysis, provenance]
+  temporal_caveat: Historical 2011 edition.
+  verification_state: location_verified
+- id: SRC-0048-EX-0008
+  location: {pdf_page: 13, printed_page: 7, section: "4.2.7 Architecture decisions and rationale", paragraph_or_table: "decision effects and rationale"}
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Architecture rationale records reasoning about decisions, including bases, alternatives, trade-offs, consequences and sources; decisions can require or change AD elements, trigger trade-off analysis and raise new concerns.
+  researcher_interpretation: Architecture decisions/rationale are not novel DDTA concepts; DDTA must differentiate its governed Decision semantics and lifecycle role.
+  supported_proposition: Decision rationale and trade-off recording are established architecture-description prior art.
+  thesis_targets: [future-methodology-chapter, chapter-3-regression]
+  temporal_caveat: Historical 2011 edition.
+  verification_state: location_verified
+- id: SRC-0048-EX-0009
+  location: {pdf_page: 14, printed_page: 8, section: "4.3 Architecting in the life cycle", paragraph_or_table: "aggregation from work products"}
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Architecture descriptions are life-cycle work products whose content may result from multiple activities or aggregation of information from other work products.
+  researcher_interpretation: Multi-document synthesis is normal architecture-description practice and supports BA3's need to ground analysis knowledge in several governed sources.
+  supported_proposition: Architecture descriptions may aggregate information produced by multiple life-cycle work products.
+  thesis_targets: [base-analysis, provenance]
+  temporal_caveat: Historical 2011 edition.
+  verification_state: location_verified
+- id: SRC-0048-EX-0010
+  location: {pdf_page: 15, printed_page: 9, section: "4.4 Uses of architecture descriptions", paragraph_or_table: "analysis / evaluation uses"}
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Architecture descriptions may be used as input to simulation, system generation and analysis tools and as a basis for review, analysis and evaluation across the life cycle.
+  researcher_interpretation: Generic analyzable models and model-driven analysis are established prior art; DDTA novelty must remain in the governed end-to-end loop.
+  supported_proposition: Architecture descriptions are established inputs to analysis and evaluation activities.
+  thesis_targets: [chapter-3-regression, base-analysis]
+  temporal_caveat: Historical 2011 edition.
+  verification_state: location_verified
+- id: SRC-0048-EX-0011
+  location: {pdf_page: 19, printed_page: 13, section: "5.5 Architecture views", paragraph_or_table: "whole-system coverage and models"}
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: A view is governed by one viewpoint and its models collectively address the viewpoint's concerns across the whole system; individual models may selectively present portions of the system.
+  researcher_interpretation: DDTA should not automatically call a partial diagram or filtered graph an architecture view if it wants ISO-aligned terminology.
+  supported_proposition: Architecture view and partial model/projection have different responsibilities.
+  thesis_targets: [base-analysis, future-methodology-chapter]
+  temporal_caveat: Historical 2011 edition.
+  verification_state: location_verified
+- id: SRC-0048-EX-0012
+  location: {pdf_page: 20, printed_page: 14, section: "5.6 Architecture models", paragraph_or_table: "model sharing across views"}
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: One architecture model may participate in more than one view; sharing models can reduce duplication and inconsistency, and models may be individually constructed or derived from other models.
+  researcher_interpretation: Shared canonical model content is strong prior art, but a single underlying repository is not mandated.
+  supported_proposition: Reuse of shared model content across views is an established consistency mechanism.
+  thesis_targets: [base-analysis]
+  temporal_caveat: Historical 2011 edition.
+  verification_state: location_verified
+- id: SRC-0048-EX-0013
+  location: {pdf_page: 21, printed_page: 15, section: "5.7 Architecture relations", paragraph_or_table: "cross-work-product traceability note"}
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Correspondence mechanisms may be generalized across architecture descriptions and other work products, including requirements specifications, to express traceability and other architecture relations.
+  researcher_interpretation: Requirement-to-model traceability is explicit prior art and must not be claimed as a novel DDTA idea.
+  supported_proposition: Cross-work-product traceability through explicit relations is established prior art.
+  thesis_targets: [provenance, chapter-3-regression]
+  temporal_caveat: Historical 2011 edition.
+  verification_state: location_verified
+- id: SRC-0048-EX-0014
+  location: {pdf_page: 22, printed_page: 16, section: "5.8 Architecture rationale", paragraph_or_table: "decision recording guidance"}
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Key architecture decisions may be recorded with unique identity, affected elements, concerns, owner, rationale, constraints and assumptions, alternatives, consequences, timestamps and source citations.
+  researcher_interpretation: The DDTA Decision layer should be differentiated by its normative ownership/decomposition role, not by merely having identity, consequences or rationale.
+  supported_proposition: Rich decision identity and provenance are established architecture-description prior art.
+  thesis_targets: [chapter-4-regression, provenance]
+  temporal_caveat: Historical 2011 edition.
+  verification_state: location_verified
+- id: SRC-0048-EX-0015
+  location: {pdf_page: 24, printed_page: 18, section: "7 Architecture viewpoints", paragraph_or_table: "model kinds and analysis methods"}
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: A viewpoint specifies concerns, stakeholders and model kinds, and can prescribe languages, modeling techniques, analytical methods, consistency checks, metrics, heuristics and other operations.
+  researcher_interpretation: Method-specific analysis rules can be associated with reusable viewpoint conventions without redefining the underlying system ontology.
+  supported_proposition: Reusable view conventions can include analysis methods and consistency rules.
+  thesis_targets: [base-analysis, future-methodology-chapter]
+  temporal_caveat: Historical 2011 edition.
+  verification_state: location_verified
+- id: SRC-0048-EX-0016
+  location: {pdf_page: 28, printed_page: 22, section: "A.4 Architecture views and viewpoints", paragraph_or_table: "synthetic and projective approaches"}
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The annex describes both a synthetic approach, where views are constructed and integrated using correspondences, and a projective approach, where views are extracted from an underlying repository; the standard is usable with either.
+  researcher_interpretation: The earlier BA0-R claim that a view must be a projection of one canonical model is too strong as a prior-art claim.
+  supported_proposition: ISO 42010 permits both integrated multi-view and repository-projection approaches.
+  thesis_targets: [base-analysis, future-methodology-chapter]
+  temporal_caveat: Historical 2011 edition.
+  verification_state: location_verified
+- id: SRC-0048-EX-0017
+  location: {pdf_page: 29, printed_page: 23, section: "A.6 Correspondences", paragraph_or_table: "multi-view consistency and relation uses"}
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Multiple models create a consistency problem; correspondences can express consistency, traceability, composition, refinement, model transformation and dependencies spanning model kinds.
+  researcher_interpretation: BA4 should include explicit consistency semantics rather than assuming one visualization mechanism eliminates all cross-view inconsistency.
+  supported_proposition: Cross-model consistency requires explicit relation semantics in multi-model descriptions.
+  thesis_targets: [base-analysis, provenance]
+  temporal_caveat: Historical 2011 edition.
+  verification_state: location_verified
+- id: SRC-0048-EX-0018
+  location: {pdf_page: 34, printed_page: 28, section: "B.2.6 Model kinds", paragraph_or_table: "metamodel contents"}
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: A model-kind metamodel can identify entities, their attributes, relationships among entities and constraints on those constructs.
+  researcher_interpretation: The BA1 entity/relationship/property/constraint classification is directly aligned with established modeling practice.
+  supported_proposition: Entity, attribute, relationship and constraint are a recognized metamodel decomposition lens.
+  thesis_targets: [base-analysis]
+  temporal_caveat: Historical 2011 edition.
+  verification_state: location_verified
+- id: SRC-0048-EX-0019
+  location: {pdf_page: 40, printed_page: 34, section: "C.4 RM-ODP examples", paragraph_or_table: "computational and engineering viewpoints"}
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The RM-ODP examples allocate objects, interfaces, interactions, information schemas and communication-channel structure to distinct viewpoints/languages.
+  researcher_interpretation: Semantic responsibilities can be viewpoint/model-kind specific rather than members of one universal root taxonomy.
+  supported_proposition: Interface, interaction and channel concepts can legitimately live in different viewpoint-specific vocabularies.
+  thesis_targets: [base-analysis]
+  temporal_caveat: Historical 2011 edition.
+  verification_state: location_verified

@@ -1,0 +1,63 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[T1]{fontenc}\usepackage[utf8]{inputenc}\usepackage[english,italian]{babel}
+\usepackage{lmodern,microtype}\usepackage[a4paper,margin=1.85cm,headheight=15pt]{geometry}
+\usepackage{enumitem,tabularx,array,longtable,booktabs,xcolor,hyperref,xurl,fancyhdr,titlesec,framed}
+\definecolor{ddtadark}{RGB}{28,38,52}\definecolor{ddtablue}{RGB}{42,88,135}\definecolor{ddtagray}{RGB}{244,246,248}\definecolor{ddtagreen}{RGB}{48,111,78}\definecolor{ddtaorange}{RGB}{148,91,25}
+\hypersetup{colorlinks=true,linkcolor=ddtablue,urlcolor=ddtablue}\pagestyle{fancy}\fancyhf{}\lhead{DDTA - BA0-R}\rhead{REVIEW-ONLY}\cfoot{\thepage}
+\titleformat{\section}{\large\bfseries\color{ddtadark}}{}{0pt}{}\setlist[itemize]{leftmargin=1.45em,itemsep=.18em,topsep=.2em}
+\setlength{\parindent}{0pt}\setlength{\parskip}{.32em}\setlength{\emergencystretch}{2em}
+\newenvironment{factbox}[1]{\def\FrameCommand{\fcolorbox{ddtablue}{ddtagray}}\MakeFramed{\advance\hsize-2\width\FrameRestore}\noindent\textbf{#1}\par\smallskip}{\endMakeFramed}
+\newenvironment{challenge}[1]{\def\FrameCommand{\fcolorbox{ddtaorange}{ddtagray}}\MakeFramed{\advance\hsize-2\width\FrameRestore}\noindent\textbf{#1}\par\smallskip}{\endMakeFramed}
+
+\begin{document}
+\begin{center}
+{\LARGE\bfseries DDTA - Scheda di lettura compilata}\par
+{\large SRC-0043 - BA0-R systems-modeling prior art}\par
+{\small REVIEW-ONLY: da approvare prima del caricamento nel repository.}\par
+\end{center}
+\begin{factbox}{Identita bibliografica e accesso}
+\begin{tabularx}{\linewidth}{>{\bfseries}p{3.4cm}X}
+Source ID & SRC-0043\\
+Titolo & ISO/IEC/IEEE 42010:2022 - Software, systems and enterprise — Architecture description\\
+Autori/ente & ISO; IEC; IEEE\\
+Anno & 2022\\
+Identificatore & ISO/IEC/IEEE 42010:2022, Edition 2, 2022-11\\
+Accesso & paywalled\_normative\_text\\
+Verification state & access\_limited\_official\_abstract\_plus\_conceptual\_model\\
+\end{tabularx}
+\end{factbox}
+\begin{challenge}{ACCESS-LIMITED}
+Normative full text is sold by ISO; not obtained in this review. Official abstract plus public 42010 conceptual-model companion were reviewed. Il worksheet non attribuisce al testo normativo non accessibile affermazioni clause-level.
+\end{challenge}
+\section{1. Research problem and contribution}
+The official abstract specifies requirements for architecture descriptions, frameworks, languages, viewpoints and model kinds. It explicitly distinguishes the architecture of an entity of interest from the architecture description expressing it and does not prescribe a modeling method, notation, tool, format or medium.
+\section{2. Starting artifacts and generated representations}
+The public conceptual-model companion for the 2022 edition shows Entity of Interest, Stakeholders, Perspectives, Concerns, Viewpoints, Views, View Components and Architecture Aspects. Historical public conceptual-model material also documents correspondences and architecture decisions/rationale. These companion pages are not a substitute for the normative clauses.
+\section{3. Traceability, change, automation and human role}
+The official abstract establishes architectural concepts and their relationships as contents of an architecture description. The companion conceptual model presents correspondences for consistency/traceability and decisions/rationale, but this review cannot claim specific 2022 normative requirements beyond the official abstract without the purchased standard.
+\section{4. Findings, limitations and relationship with DDTA}
+Strongly supports architecture/model/view separation and viewpoint-driven projections. It prevents DDTA from presenting concern-oriented views or architecture decisions/rationale as inherently novel. ACCESS LIMITATION: no clause-level claims or PDF page citations are made from the 2022 normative standard.
+\section{Evidenza utile per BA0/BA1}
+\begin{longtable}{p{1.2cm}p{2.0cm}p{4.0cm}p{8.0cm}}
+\toprule
+Pag. & Ruolo & Sezione & Interpretazione DDTA\\
+\midrule
+\endhead
+web & foundation & Official ISO abstract & Representation and view governance are established architecture-description prior art.\\
+\addlinespace[.3em]
+web & comparison & Public 42010 conceptual model - 2022 overview & Views are organized around concerns/aspects, which DDTA must treat as prior art rather than novelty.\\
+\addlinespace[.3em]
+web & challenge & Public 42010 conceptual model - correspondences & Cross-view/model consistency links are established prior art adjacent to DDTA provenance.\\
+\addlinespace[.3em]
+\bottomrule
+\end{longtable}
+\section{Bibliography mining / follow-up}
+\begin{itemize}
+\item Purchase/library access to ISO/IEC/IEEE 42010:2022 if clause-level thesis claims are needed
+\item ISO/IEC/IEEE 42010 public conceptual model
+\item ISO/IEC/IEEE 15288 for lifecycle/system process context
+\end{itemize}
+\begin{challenge}{Governance note}
+Questa scheda e un ausilio di review. Le future citazioni di tesi devono risolversi alla fonte registrata e a una posizione esatta nell'excerpt ledger approvato. Nessun concetto esterno diventa automaticamente un BAE DDTA.
+\end{challenge}
+\end{document}

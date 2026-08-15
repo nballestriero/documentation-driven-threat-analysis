@@ -1,0 +1,64 @@
+schema_version: 1
+source_id: SRC-0045
+citation_key: opengroup2022archimate32
+source_version:
+  stable_identifier: ArchiMate 3.2, released October 2022
+  accessed_on: '2026-08-15'
+  access_type: licensed_full_text_not_obtained
+excerpts:
+- id: SRC-0045-EX-0001
+  location:
+    pdf_page: null
+    section: Official ArchiMate 3.2 licensed-download page
+    paragraph_or_table: target passage / section
+  capture_state: web_location_verified_access_limited
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The Open Group states that version 3.2 was released in October 2022 and requires a personal/member/evaluation/non-commercial/commercial
+    license for the specification.
+  researcher_interpretation: Full normative reading is not available in this review package.
+  supported_proposition: Full normative reading is not available in this review package.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: access
+- id: SRC-0045-EX-0002
+  location:
+    pdf_page: null
+    section: ArchiMate 101 - generic metamodel
+    paragraph_or_table: target passage / section
+  capture_state: web_location_verified_access_limited
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The open community guide separates Active Structure from Behavior and later introduces Passive
+    Structure for stocks/information/goods.
+  researcher_interpretation: A generic system core can distinguish structural performer, behavior and passive information/object
+    semantics.
+  supported_proposition: A generic system core can distinguish structural performer, behavior and passive information/object
+    semantics.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: comparison
+- id: SRC-0045-EX-0003
+  location:
+    pdf_page: null
+    section: ArchiMate 101 - flows, triggering, serving
+    paragraph_or_table: target passage / section
+  capture_state: web_location_verified_access_limited
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The guide models flow, temporal/causal triggering and functional dependency/serving as different
+    relationship semantics.
+  researcher_interpretation: Interaction is too broad as a single relation family.
+  supported_proposition: Interaction is too broad as a single relation family.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: challenge

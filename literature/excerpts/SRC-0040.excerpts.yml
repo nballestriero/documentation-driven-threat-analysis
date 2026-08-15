@@ -1,0 +1,183 @@
+schema_version: 1
+source_id: SRC-0040
+citation_key: omg2025sysml2
+source_version:
+  stable_identifier: SysML 2.0; formal adoption September 2025; current normative Language PDF OMG file id formal/26-03-02
+  accessed_on: '2026-08-15'
+  access_type: public_normative_specification
+excerpts:
+- id: SRC-0040-EX-0001
+  location:
+    pdf_page: 89
+    section: 7.11 Parts Overview
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: A part definition represents a modular unit of structure such as a system, component or external
+    entity and is a kind of item definition.
+  researcher_interpretation: A generic structural element is more neutral than Actor as a root.
+  supported_proposition: A generic structural element is more neutral than Actor as a root.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: challenge
+- id: SRC-0040-EX-0002
+  location:
+    pdf_page: 92
+    section: 7.12 Ports Overview
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Ports are connection points whose features specify what can be exchanged in interactions.
+  researcher_interpretation: Endpoint/interface semantics have an independent responsibility.
+  supported_proposition: Endpoint/interface semantics have an independent responsibility.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: foundation
+- id: SRC-0040-EX-0003
+  location:
+    pdf_page: 95
+    section: 7.13 Connections Overview
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Connections relate items/parts, have ends, and can carry non-end properties whose values
+    may vary over the connection lifetime.
+  researcher_interpretation: A channel-like concept may be a specialization/role of a more generic first-class connection.
+  supported_proposition: A channel-like concept may be a specialization/role of a more generic first-class connection.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: foundation
+- id: SRC-0040-EX-0004
+  location:
+    pdf_page: 105
+    section: 7.14 Interfaces Overview
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: An interface is a specialized connection whose ends are ports.
+  researcher_interpretation: Interface should not be equated with flow or payload.
+  supported_proposition: Interface should not be equated with flow or payload.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: foundation
+- id: SRC-0040-EX-0005
+  location:
+    pdf_page: 111
+    section: 7.15 Flows Overview
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: A flow models transfer from source to target and can carry attributes, items or parts as
+    payload.
+  researcher_interpretation: Payload, flow and endpoints are semantically separable.
+  supported_proposition: Payload, flow and endpoints are semantically separable.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: foundation
+- id: SRC-0040-EX-0006
+  location:
+    pdf_page: 144
+    section: 7.18 States
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: A state can own entry/do/exit actions and can be exhibited by a part.
+  researcher_interpretation: State/mode is explicit behavior semantics, not merely an annotation.
+  supported_proposition: State/mode is explicit behavior semantics, not merely an annotation.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: foundation
+- id: SRC-0040-EX-0007
+  location:
+    pdf_page: 161
+    section: 7.21 Requirements
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Actor parameters represent external roles relative to a requirement subject.
+  researcher_interpretation: Actor is context-dependent role semantics in SysML, weakening Actor as a generic BAE
+    root.
+  supported_proposition: Actor is context-dependent role semantics in SysML, weakening Actor as a generic BAE root.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: challenge
+- id: SRC-0040-EX-0008
+  location:
+    pdf_page: 169
+    section: 7.23 Analysis Cases
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: An analysis case may specify analysis actions and can be solved by external solvers without
+    fixing the solver algorithm.
+  researcher_interpretation: Generic analysis specification is established prior art.
+  supported_proposition: Generic analysis specification is established prior art.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: challenge
+- id: SRC-0040-EX-0009
+  location:
+    pdf_page: 171
+    section: 7.23.3 Trade-Off Analyses
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: TradeStudy is a specialized analysis case for evaluating and comparing alternatives.
+  researcher_interpretation: Analysis and trade-study semantics are not DDTA-specific contributions.
+  supported_proposition: Analysis and trade-study semantics are not DDTA-specific contributions.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: challenge
+- id: SRC-0040-EX-0010
+  location:
+    pdf_page: 180
+    section: 7.26 Views and Viewpoints
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: A view exposes a portion of a model; rendering can preserve model-to-artifact correspondence.
+  researcher_interpretation: Strong support for canonical-model-to-view projection.
+  supported_proposition: Strong support for canonical-model-to-view projection.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: foundation

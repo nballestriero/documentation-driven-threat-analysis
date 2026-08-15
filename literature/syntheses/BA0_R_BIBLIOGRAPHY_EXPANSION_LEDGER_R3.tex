@@ -1,0 +1,32 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[T1]{fontenc}\usepackage[utf8]{inputenc}\usepackage[english,italian]{babel}
+\usepackage{lmodern,microtype}\usepackage[a4paper,margin=1.85cm,headheight=15pt]{geometry}
+\usepackage{enumitem,tabularx,array,longtable,booktabs,pdflscape,xcolor,hyperref,xurl,fancyhdr,titlesec,framed,listings}
+\definecolor{ddtadark}{RGB}{28,38,52}\definecolor{ddtablue}{RGB}{42,88,135}\definecolor{ddtagray}{RGB}{244,246,248}\definecolor{ddtagreen}{RGB}{48,111,78}\definecolor{ddtaorange}{RGB}{148,91,25}
+\hypersetup{colorlinks=true,linkcolor=ddtablue,urlcolor=ddtablue}
+\pagestyle{fancy}\fancyhf{}\lhead{DDTA - BA0-R}\rhead{Research history R3}\cfoot{\thepage}
+\titleformat{\section}{\large\bfseries\color{ddtadark}}{\thesection}{.6em}{}\titleformat{\subsection}{\normalsize\bfseries\color{ddtadark}}{\thesubsection}{.6em}{}
+\setlist[itemize]{leftmargin=1.45em,itemsep=.16em,topsep=.2em}\setlist[enumerate]{leftmargin=1.7em,itemsep=.16em,topsep=.2em}
+\setlength{\parindent}{0pt}\setlength{\parskip}{.32em}\setlength{\emergencystretch}{2em}
+\lstset{basicstyle=\ttfamily\small,frame=single,breaklines=true,backgroundcolor=\color{ddtagray}}
+\newenvironment{challenge}[1]{\def\FrameCommand{\fcolorbox{ddtaorange}{ddtagray}}\MakeFramed{\advance\hsize-2\width\FrameRestore}\noindent\textbf{#1}\par\smallskip}{\endMakeFramed}
+\newenvironment{gate}[1]{\def\FrameCommand{\fcolorbox{ddtagreen}{ddtagray}}\MakeFramed{\advance\hsize-2\width\FrameRestore}\noindent\textbf{#1}\par\smallskip}{\endMakeFramed}
+\hypersetup{pdftitle={BA0-R bibliography expansion ledger Revision 3}}
+\begin{document}\begin{center}{\LARGE\bfseries BA0-R bibliography expansion ledger}\par{\large Revision 3 - research history}\end{center}
+\begin{landscape}\scriptsize
+\begin{longtable}{p{5.2cm}p{2.5cm}p{8.0cm}p{6.4cm}}\toprule Candidate & Origin & Why it may matter & Decision after SRC-0048\\\midrule\endhead
+ISO/IEC/IEEE 42010:2022 full text & SRC-0043/0048 & current normative edition / delta from 2011 & DESIRABLE, NOT BLOCKING; acquire only for current clause-level claims\\
+Clements et al., Views and Beyond & SRC-0048 & deeper view/viewtype semantics & DEFER unless BA4 terminology is contested\\
+Nuseibeh, Kramer \& Finkelstein (1994) & SRC-0048 & cross-view relation theory in RE & DEFER unless BA3/BA4 relation semantics are contested\\
+Boucke (2009), architectural model relations & SRC-0048 & model-relation taxonomy & DEFER unless correspondence semantics become central\\
+Kruchten (2004), architecture decision ontology & SRC-0048 & decision relation vocabulary & DEFER unless Decision mapping is contested\\
+Rozanski \& Woods (2005) & SRC-0048 & viewpoints and perspectives & DEFER; BA4-specific pressure source\\
+RM-ODP / ISO 10746 / ISO 19793 & SRC-0048 & multi-view distributed-system semantics & DEFER unless n-ary correspondence or distributed views become unresolved\\
+Dori (2002), OPM & SRC-0047 & broader OPM theory & DEFER; reflective metamodel sufficient for BA0\\
+ISO 19450:2024 full text & SRC-0047 & current OPM normative semantics & DEFER unless clause-level OPM claims needed\\
+ArchiMate 3.2 full text & SRC-0045 & normative active/behavior/passive semantics & LOW PRIORITY\\
+SAE AS5506 current AADL & SRC-0044 & current AADL normative semantics & DEFER unless AADL-specific claims needed\\
+\bottomrule\end{longtable}\end{landscape}
+\section{Bounded-search decision}
+The current corpus is sufficient to enter BA0. No additional source is mandatory before BA0 unless a concrete downstream counterexample requires it. SRC-0048 changes the view/projection conclusion enough to justify Revision 3, but it does not trigger further open-ended literature expansion.
+\end{document}

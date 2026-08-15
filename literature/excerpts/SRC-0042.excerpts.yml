@@ -1,0 +1,153 @@
+schema_version: 1
+source_id: SRC-0042
+citation_key: nasa2017sehandbook
+source_version:
+  stable_identifier: NASA/SP-2016-6105 Rev 2; NTRS 20170001761
+  accessed_on: '2026-08-15'
+  access_type: internet_public_official_nasa_pdf
+excerpts:
+- id: SRC-0042-EX-0001
+  location:
+    pdf_page: 62
+    section: 4.3 Logical Decomposition
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Logical decomposition transforms requirements into functions and relationships and supports
+    architecture development before detailed implementation.
+  researcher_interpretation: BA can contain implementation-independent system semantics grounded in requirements.
+  supported_proposition: BA can contain implementation-independent system semantics grounded in requirements.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: foundation
+- id: SRC-0042-EX-0002
+  location:
+    pdf_page: 104
+    section: 5.3 Product Verification Guidance
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Operational scenarios cross multiple configuration items and include events, actions, stimuli,
+    information and interactions.
+  researcher_interpretation: Behavioral representation needs more than static structure.
+  supported_proposition: Behavioral representation needs more than static structure.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: foundation
+- id: SRC-0042-EX-0003
+  location:
+    pdf_page: 105
+    section: Figure 5.3-2 End-to-End Data Flow
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Arrows represent one or more data/control flows between hardware, software, subsystem or
+    system configuration items.
+  researcher_interpretation: Flow is a distinct analyzable relation across heterogeneous structural elements.
+  supported_proposition: Flow is a distinct analyzable relation across heterogeneous structural elements.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: foundation
+- id: SRC-0042-EX-0004
+  location:
+    pdf_page: 145
+    section: 6.3 Interface Management
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: System boundaries, organizational structure and interface requirements drive identification
+    of interfaces.
+  researcher_interpretation: Responsibility and interface boundaries are generic engineering concerns.
+  supported_proposition: Responsibility and interface boundaries are generic engineering concerns.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: foundation
+- id: SRC-0042-EX-0005
+  location:
+    pdf_page: 146
+    section: 6.3.1.2 Interface Management Activities
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Interfaces have origin, destination, stimuli and special characteristics and evolve as system
+    structure/architecture emerges.
+  researcher_interpretation: Interface identity/change deserves explicit consideration rather than being inferred
+    only from interaction text.
+  supported_proposition: Interface identity/change deserves explicit consideration rather than being inferred only
+    from interaction text.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: foundation
+- id: SRC-0042-EX-0006
+  location:
+    pdf_page: 147
+    section: 6.3.1.3 Outputs
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Interface decisions, rationale, assumptions and approved changes are retained and configuration-managed.
+  researcher_interpretation: Architecture/interface provenance and change history are established engineering needs.
+  supported_proposition: Architecture/interface provenance and change history are established engineering needs.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: foundation
+- id: SRC-0042-EX-0007
+  location:
+    pdf_page: 186
+    section: Appendix B Architecture
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Architecture is represented by functions, flows, interfaces, relationships, resource-flow
+    items, physical elements, containers, modes, links and communication resources.
+  researcher_interpretation: Actor+Asset+Interaction is far too small as a generic system-modeling vocabulary.
+  supported_proposition: Actor+Asset+Interaction is far too small as a generic system-modeling vocabulary.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: challenge
+- id: SRC-0042-EX-0008
+  location:
+    pdf_page: 236
+    section: Appendix J 3.5 Boundary of Technical Effort
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The boundary distinguishes what the technical team controls from external elements that influence
+    and are influenced by the effort.
+  researcher_interpretation: Strong evidence for responsibility/control boundary distinct from security trust.
+  supported_proposition: Strong evidence for responsibility/control boundary distinct from security trust.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: foundation

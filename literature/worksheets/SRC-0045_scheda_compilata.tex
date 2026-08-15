@@ -1,0 +1,63 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[T1]{fontenc}\usepackage[utf8]{inputenc}\usepackage[english,italian]{babel}
+\usepackage{lmodern,microtype}\usepackage[a4paper,margin=1.85cm,headheight=15pt]{geometry}
+\usepackage{enumitem,tabularx,array,longtable,booktabs,xcolor,hyperref,xurl,fancyhdr,titlesec,framed}
+\definecolor{ddtadark}{RGB}{28,38,52}\definecolor{ddtablue}{RGB}{42,88,135}\definecolor{ddtagray}{RGB}{244,246,248}\definecolor{ddtagreen}{RGB}{48,111,78}\definecolor{ddtaorange}{RGB}{148,91,25}
+\hypersetup{colorlinks=true,linkcolor=ddtablue,urlcolor=ddtablue}\pagestyle{fancy}\fancyhf{}\lhead{DDTA - BA0-R}\rhead{REVIEW-ONLY}\cfoot{\thepage}
+\titleformat{\section}{\large\bfseries\color{ddtadark}}{}{0pt}{}\setlist[itemize]{leftmargin=1.45em,itemsep=.18em,topsep=.2em}
+\setlength{\parindent}{0pt}\setlength{\parskip}{.32em}\setlength{\emergencystretch}{2em}
+\newenvironment{factbox}[1]{\def\FrameCommand{\fcolorbox{ddtablue}{ddtagray}}\MakeFramed{\advance\hsize-2\width\FrameRestore}\noindent\textbf{#1}\par\smallskip}{\endMakeFramed}
+\newenvironment{challenge}[1]{\def\FrameCommand{\fcolorbox{ddtaorange}{ddtagray}}\MakeFramed{\advance\hsize-2\width\FrameRestore}\noindent\textbf{#1}\par\smallskip}{\endMakeFramed}
+
+\begin{document}
+\begin{center}
+{\LARGE\bfseries DDTA - Scheda di lettura compilata}\par
+{\large SRC-0045 - BA0-R systems-modeling prior art}\par
+{\small REVIEW-ONLY: da approvare prima del caricamento nel repository.}\par
+\end{center}
+\begin{factbox}{Identita bibliografica e accesso}
+\begin{tabularx}{\linewidth}{>{\bfseries}p{3.4cm}X}
+Source ID & SRC-0045\\
+Titolo & ArchiMate 3.2 Specification\\
+Autori/ente & The Open Group\\
+Anno & 2022\\
+Identificatore & ArchiMate 3.2, released October 2022\\
+Accesso & licensed\_full\_text\_not\_obtained\\
+Verification state & access\_limited\_license\_plus\_authoritative\_open\_guide\\
+\end{tabularx}
+\end{factbox}
+\begin{challenge}{ACCESS-LIMITED}
+Full specification requires personal/member/evaluation/non-commercial/commercial license. The review uses official licensing metadata and The Open Group Community ArchiMate 101 guide; it does not claim full normative-spec reading. Il worksheet non attribuisce al testo normativo non accessibile affermazioni clause-level.
+\end{challenge}
+\section{1. Research problem and contribution}
+The Open Group describes ArchiMate as an independent enterprise-architecture modeling language. Official access requires accepting a personal or organizational license. An authoritative Open Group Community guide provides a practical non-normative introduction to its generic metamodel.
+\section{2. Starting artifacts and generated representations}
+The open guide distinguishes Active Structure, Behavior and Passive Structure. Passive structure represents stocks/information/goods acted upon by behavior. It distinguishes Flow, Triggering and Serving relationship semantics and then specializes the generic concepts into business, application and technology layers.
+\section{3. Traceability, change, automation and human role}
+The reviewed open guide emphasizes viewpoints/views and a constrained metamodel but is not a lifecycle/governance specification. No DDTA-style provenance conclusions should be attributed to the inaccessible normative 3.2 text.
+\section{4. Findings, limitations and relationship with DDTA}
+The generic Active/Behavior/Passive split is a strong independent challenge to Asset as a root and Interaction as one universal relation. It suggests “asset” is a security interpretation of more neutral passive/information objects. ACCESS LIMITATION: all substantive semantic statements in this sheet are attributed to the open Open Group Community guide, not claimed as clause-level 3.2 normative text.
+\section{Evidenza utile per BA0/BA1}
+\begin{longtable}{p{1.2cm}p{2.0cm}p{4.0cm}p{8.0cm}}
+\toprule
+Pag. & Ruolo & Sezione & Interpretazione DDTA\\
+\midrule
+\endhead
+web & access & Official ArchiMate 3.2 licensed-download page & Full normative reading is not available in this review package.\\
+\addlinespace[.3em]
+web & comparison & ArchiMate 101 - generic metamodel & A generic system core can distinguish structural performer, behavior and passive information/object semantics.\\
+\addlinespace[.3em]
+web & challenge & ArchiMate 101 - flows, triggering, serving & Interaction is too broad as a single relation family.\\
+\addlinespace[.3em]
+\bottomrule
+\end{longtable}
+\section{Bibliography mining / follow-up}
+\begin{itemize}
+\item Obtain ArchiMate 3.2 under appropriate personal/non-commercial license if normative claims become necessary
+\item The Open Group ArchiMate 101 open guide
+\item ArchiMate viewpoint documentation for BA4 comparison
+\end{itemize}
+\begin{challenge}{Governance note}
+Questa scheda e un ausilio di review. Le future citazioni di tesi devono risolversi alla fonte registrata e a una posizione esatta nell'excerpt ledger approvato. Nessun concetto esterno diventa automaticamente un BAE DDTA.
+\end{challenge}
+\end{document}

@@ -1,0 +1,85 @@
+schema_version: 1
+review_only: true
+revision: 3
+baseline: 89e5486e02d07ff5b97082f73a2e22ac1b4319ae
+sources:
+- source_id: SRC-0039
+  landing_url: https://standards.nasa.gov/standard/NASA/NASA-HDBK-1009
+  pdf_url: https://standards.nasa.gov/system/files/tmp/2025-03-12-NASA-HDBK-1009A.pdf
+  access_type: internet_public_official_nasa_pdf
+  licence: Publicly accessible NASA technical handbook; distribution unlimited.
+  retrieved_on: '2026-08-15'
+  repository_storage: forbidden_or_not_included
+- source_id: SRC-0040
+  landing_url: https://www.omg.org/spec/SysML/2.0
+  pdf_url: https://www.omg.org/spec/SysML/2.0/Language/PDF
+  access_type: public_normative_specification
+  licence: OMG specification; public access, OMG copyright applies.
+  retrieved_on: '2026-08-15'
+  repository_storage: forbidden_or_not_included
+- source_id: SRC-0041
+  landing_url: https://www.omg.org/spec/KerML/1.0
+  pdf_url: https://www.omg.org/spec/KerML/1.0/PDF
+  access_type: public_normative_specification
+  licence: OMG specification; public access, OMG copyright applies.
+  retrieved_on: '2026-08-15'
+  repository_storage: forbidden_or_not_included
+- source_id: SRC-0042
+  landing_url: https://www.nasa.gov/reference/systems-engineering-handbook/
+  pdf_url: https://www.nasa.gov/wp-content/uploads/2018/09/nasa_systems_engineering_handbook_0.pdf
+  access_type: internet_public_official_nasa_pdf
+  licence: NASA NTRS distribution public; public use permitted.
+  retrieved_on: '2026-08-15'
+  repository_storage: forbidden_or_not_included
+- source_id: SRC-0043
+  landing_url: https://www.iso.org/standard/74393.html
+  pdf_url: null
+  access_type: paywalled_normative_text
+  licence: Normative full text is sold by ISO; not obtained in this review. Official abstract plus public 42010
+    conceptual-model companion were reviewed.
+  retrieved_on: '2026-08-15'
+  repository_storage: forbidden_or_not_included
+- source_id: SRC-0044
+  landing_url: https://www.sei.cmu.edu/library/the-architecture-analysis-design-language-aadl-an-introduction/
+  pdf_url: https://www.sei.cmu.edu/documents/2103/2006_004_001_14678.pdf
+  access_type: public_sei_report
+  licence: SEI report; public download, reproduction/reuse restrictions stated in report.
+  retrieved_on: '2026-08-15'
+  repository_storage: forbidden_or_not_included
+- source_id: SRC-0045
+  landing_url: https://www.opengroup.org/archimate-licensed-downloads
+  pdf_url: null
+  access_type: licensed_full_text_not_obtained
+  licence: Full specification requires personal/member/evaluation/non-commercial/commercial license. The review
+    uses official licensing metadata and The Open Group Community ArchiMate 101 guide; it does not claim full normative-spec
+    reading.
+  retrieved_on: '2026-08-15'
+  repository_storage: forbidden_or_not_included
+- source_id: SRC-0046
+  landing_url: https://sebokwiki.org/wiki/A_Survey_of_Model-Based_Systems_Engineering_(MBSE)_Methodologies
+  pdf_url: https://www.omgsysml.org/MBSE_Methodology_Survey_RevB.pdf
+  access_type: public_reference_copy
+  licence: Publicly linked reference copy; copyright/reuse terms not treated as open license.
+  retrieved_on: '2026-08-15'
+  repository_storage: forbidden_or_not_included
+- source_id: SRC-0047
+  landing_url: https://www.researchgate.net/publication/228915518_A_Reflective_Meta-Model_of_Object-Process_Methodology_The_System_Modeling_Building_Blocks
+  pdf_url: null
+  access_type: author_uploaded_full_text_web_with_embedded_page_markers
+  licence: Author-uploaded full text; chapter copyright applies. Direct PDF download unavailable in this review
+    environment.
+  retrieved_on: '2026-08-15'
+  repository_storage: forbidden_or_not_included
+  current_standard_corroboration: https://www.iso.org/standard/84612.html (ISO 19450:2024 catalogue metadata only)
+
+- source_id: SRC-0048
+  landing_url: null
+  pdf_url: null
+  access_type: user_supplied_full_text_copyright_protected
+  licence: "Copyright protected ISO/IEC/IEEE standard supplied by the user for research review; redistribution not authorized."
+  source_version: "ISO/IEC/IEEE 42010:2011(E), first edition 2011-12-01"
+  local_filename: "ISOIECIEEE 420102011 Systems and software engineering — Architecture description.pdf"
+  retrieved_on: '2026-08-15'
+  sha256: "0b53b9400cd590f9a89d767333ff6d80f2296892a76ab8e08225eae035edb64f"
+  repository_storage: forbidden
+  related_current_record: "SRC-0043 is the separate access-limited 2022 edition record; equivalence is not assumed."

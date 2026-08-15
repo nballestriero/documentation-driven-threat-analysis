@@ -1,0 +1,64 @@
+schema_version: 1
+source_id: SRC-0043
+citation_key: iso2022architecturedescription
+source_version:
+  stable_identifier: ISO/IEC/IEEE 42010:2022, Edition 2, 2022-11
+  accessed_on: '2026-08-15'
+  access_type: paywalled_normative_text
+excerpts:
+- id: SRC-0043-EX-0001
+  location:
+    pdf_page: null
+    section: Official ISO abstract
+    paragraph_or_table: target passage / section
+  capture_state: web_location_verified_access_limited
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The standard distinguishes architecture from an architecture description and specifies requirements
+    for AD concepts, frameworks, languages, viewpoints and model kinds without prescribing method/notation/tool/media.
+  researcher_interpretation: Representation and view governance are established architecture-description prior art.
+  supported_proposition: Representation and view governance are established architecture-description prior art.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: foundation
+- id: SRC-0043-EX-0002
+  location:
+    pdf_page: null
+    section: Public 42010 conceptual model - 2022 overview
+    paragraph_or_table: target passage / section
+  capture_state: web_location_verified_access_limited
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The 2022 conceptual model uses Entity of Interest, Stakeholder Perspectives, Concerns, Viewpoints,
+    Views, View Components and Architecture Aspects.
+  researcher_interpretation: Views are organized around concerns/aspects, which DDTA must treat as prior art rather
+    than novelty.
+  supported_proposition: Views are organized around concerns/aspects, which DDTA must treat as prior art rather
+    than novelty.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: comparison
+- id: SRC-0043-EX-0003
+  location:
+    pdf_page: null
+    section: Public 42010 conceptual model - correspondences
+    paragraph_or_table: target passage / section
+  capture_state: web_location_verified_access_limited
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The public conceptual-model site explains correspondences as relationships among architecture-description
+    elements for consistency, traceability, dependency and related concerns.
+  researcher_interpretation: Cross-view/model consistency links are established prior art adjacent to DDTA provenance.
+  supported_proposition: Cross-view/model consistency links are established prior art adjacent to DDTA provenance.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: challenge

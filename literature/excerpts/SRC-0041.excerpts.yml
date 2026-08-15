@@ -1,0 +1,129 @@
+schema_version: 1
+source_id: SRC-0041
+citation_key: omg2025kerml
+source_version:
+  stable_identifier: KerML 1.0; formal adoption September 2025; current normative PDF OMG file id formal/26-03-01
+  accessed_on: '2026-08-15'
+  access_type: public_normative_specification
+excerpts:
+- id: SRC-0041-EX-0001
+  location:
+    pdf_page: 205
+    section: 8.3.4.3 Structure
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: A Structure is primarily structural; it may participate in, be acted on by, or perform Behaviors
+    but is not itself behavioral.
+  researcher_interpretation: Structure and behavior should remain distinct semantic responsibilities.
+  supported_proposition: Structure and behavior should remain distinct semantic responsibilities.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: foundation
+- id: SRC-0041-EX-0002
+  location:
+    pdf_page: 214
+    section: 8.3.4.5 Connector
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: A concrete connector relates at least two features; successions add temporal ordering.
+  researcher_interpretation: Generic relation/connection semantics can be separated from behavioral interaction.
+  supported_proposition: Generic relation/connection semantics can be separated from behavioral interaction.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: foundation
+- id: SRC-0041-EX-0003
+  location:
+    pdf_page: 216
+    section: 8.3.4.6 Behavior
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Behavior and Structure are constrained as distinct categories; behaviors own steps/parameters.
+  researcher_interpretation: Internal behavior is not reducible to an interaction between actors.
+  supported_proposition: Internal behavior is not reducible to an interaction between actors.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: challenge
+- id: SRC-0041-EX-0004
+  location:
+    pdf_page: 247
+    section: 8.3.4.9 Flow
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Flows identify payload, source output and target input features.
+  researcher_interpretation: Flow has structured transfer semantics beyond a generic relation.
+  supported_proposition: Flow has structured transfer semantics beyond a generic relation.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: foundation
+- id: SRC-0041-EX-0005
+  location:
+    pdf_page: 248
+    section: 8.3.4.9 Interaction
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Interaction is simultaneously a Behavior and an Association, providing a context for mutually
+    impacting behaviors.
+  researcher_interpretation: Treating Interaction as a universal edge would distort established modeling semantics.
+  supported_proposition: Treating Interaction as a universal edge would distort established modeling semantics.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: challenge
+- id: SRC-0041-EX-0006
+  location:
+    pdf_page: 297
+    section: 8.4.4.10 Interactions Semantics
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The semantic constraints of both Associations and Behaviors apply to Interaction.
+  researcher_interpretation: Interaction has a deliberately compound identity.
+  supported_proposition: Interaction has a deliberately compound identity.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: challenge
+- id: SRC-0041-EX-0007
+  location:
+    pdf_page: 357
+    section: 9.2.7.2.9 Transfer
+    paragraph_or_table: target passage / section
+  capture_state: location_verified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Transfer carries one or more payloads from source to target.
+  researcher_interpretation: Payload transfer can be represented independently of the structural connection medium.
+  supported_proposition: Payload transfer can be represented independently of the structural connection medium.
+  thesis_targets:
+  - base-analysis
+  - future-methodology-chapter
+  temporal_caveat: Use as prior-art evidence within the documented source/version and access boundary.
+  verification_state: review_only_verified_location
+  ddta_role: foundation
