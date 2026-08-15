@@ -1,0 +1,102 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[T1]{fontenc}\usepackage[utf8]{inputenc}\usepackage[english,italian]{babel}
+\usepackage{lmodern,microtype}\usepackage[a4paper,margin=1.85cm,headheight=15pt]{geometry}
+\usepackage{enumitem,tabularx,array,longtable,booktabs,xcolor,hyperref,xurl,fancyhdr,titlesec,framed,listings}
+\definecolor{ddtadark}{RGB}{28,38,52}\definecolor{ddtablue}{RGB}{42,88,135}\definecolor{ddtagray}{RGB}{244,246,248}\definecolor{ddtagreen}{RGB}{48,111,78}\definecolor{ddtaorange}{RGB}{148,91,25}
+\hypersetup{colorlinks=true,linkcolor=ddtablue,urlcolor=ddtablue,pdftitle={BA0-R systems-modeling prior-art gate closure R1}}
+\pagestyle{fancy}\fancyhf{}\lhead{DDTA - BA0-R}\rhead{Closure R1}\cfoot{\thepage}
+\titleformat{\section}{\large\bfseries\color{ddtadark}}{\thesection}{.6em}{}\titleformat{\subsection}{\normalsize\bfseries\color{ddtadark}}{\thesubsection}{.6em}{}
+\setlist[itemize]{leftmargin=1.45em,itemsep=.16em,topsep=.2em}\setlist[enumerate]{leftmargin=1.7em,itemsep=.16em,topsep=.2em}
+\setlength{\parindent}{0pt}\setlength{\parskip}{.32em}\setlength{\emergencystretch}{2em}
+\lstset{basicstyle=\ttfamily\small,frame=single,breaklines=true,backgroundcolor=\color{ddtagray}}
+\newenvironment{gate}[1]{\def\FrameCommand{\fcolorbox{ddtagreen}{ddtagray}}\MakeFramed{\advance\hsize-2\width\FrameRestore}\noindent\textbf{#1}\par\smallskip}{\endMakeFramed}
+\newenvironment{challenge}[1]{\def\FrameCommand{\fcolorbox{ddtaorange}{ddtagray}}\MakeFramed{\advance\hsize-2\width\FrameRestore}\noindent\textbf{#1}\par\smallskip}{\endMakeFramed}
+\begin{document}
+\begin{center}{\LARGE\bfseries BA0-R systems-modeling prior-art gate closure}\par{\large R1}\par\smallskip{\small Closure date: 2026-08-15}\par{\small Expected baseline: \texttt{7acd2fb297f9e83049409268c18dac629cec5fcd}}\end{center}
+
+\begin{gate}{Closure decision}
+BA0-R is CLOSED as a bounded prior-art gate. This closure does not define the Base Analysis metamodel and does not authorize BA1 before BA0 responsibility and non-goals are closed.
+\end{gate}
+
+\section{Purpose}
+BA0-R was opened before Base Analysis semantics and BAE taxonomy design to test whether DDTA was about to reinvent established systems-modeling concepts, and to separate recurring semantic responsibilities from notation-specific or method-specific constructs.
+
+\section{Corpus disposition}
+The BA0-R source records SRC-0039 through SRC-0048 are promoted into the canonical literature registries using the repository's existing verification vocabulary. Detailed access states remain in the source-access registry and in the preserved BA0-R review sidecars.
+
+\small
+\begin{tabularx}{\textwidth}{@{}>{\ttfamily}l l X@{}}
+\toprule
+Source & Status & Note \\
+\midrule
+SRC-0039 & verified & NASA-HDBK-1009A; full public text reviewed. \\
+SRC-0040 & verified & SysML 2.0; public OMG specification reviewed. \\
+SRC-0041 & verified & KerML 1.0; public OMG specification reviewed. \\
+SRC-0042 & verified & NASA SE Handbook Rev. 2; full public text reviewed. \\
+SRC-0043 & partially\_verified & ISO 42010:2022; full normative text not reviewed. \\
+SRC-0044 & verified & AADL introduction; full public SEI report reviewed. \\
+SRC-0045 & partially\_verified & ArchiMate 3.2; licensed normative full text not reviewed. \\
+SRC-0046 & verified & Estefan MBSE survey; full public copy reviewed. \\
+SRC-0047 & verified & Reflective OPM metamodel; author-uploaded full text reviewed. \\
+SRC-0048 & verified & ISO 42010:2011; user-supplied full text reviewed. \\
+\bottomrule
+\end{tabularx}
+\normalsize
+
+The 2011 and 2022 ISO 42010 editions remain separate records. No equivalence of normative clauses is assumed.
+
+\section{Closed research conclusions}
+\begin{enumerate}
+\item \texttt{Actor + Asset + Interaction} is REJECTED as a sufficient generic systems-modeling core for DDTA.
+\item General systems-modeling prior art repeatedly needs semantic responsibilities concerning structure/referents, behavior, information/resources, relations/connections, interfaces/exchanges, state/mode/context, environment/scope, properties/constraints and multiple representations/views.
+\item Recurring semantic responsibility does not imply a first-class DDTA metaclass. BA1 must separately decide entity, relationship, role, property/attribute, constraint or derived/projection representation.
+\item Actor and Asset are poor generic roots; Interaction is insufficient as a universal relation because mature approaches distinguish connection, interface, flow/transfer, behavior/action and payload semantics.
+\item Channel, Store, Contract, Boundary, State, Flow and InformationObject remain OPEN as first-class DDTA types.
+\item Generic model-based analysis, views/viewpoints, cross-model consistency/traceability, architecture decisions and rationale are prior art. DDTA novelty must not be claimed at that level.
+\item A single canonical underlying repository/model is not a universal prior-art requirement. If DDTA selects a canonical projective Base Analysis, it must justify that choice through DDTA-specific needs such as stable identity, provenance, repeatable analysis, change propagation and re-analysis.
+\item View, Model, Projection and Rendering/Diagram are not interchangeable without an explicit DDTA contract.
+\item No Chapter 2, 3 or 4 reopen criterion was met.
+\end{enumerate}
+
+\section{BA0 handoff}
+\begin{challenge}{Pressure-tested BA0 question}
+What is the minimum methodology-neutral analyzable representation DDTA needs, grounded in governed documentation and explicit reviewed analytical additions, so that stable system knowledge can be consumed by multiple analysis methods without becoming a second documentation hierarchy or a general-purpose systems-modeling language?
+\end{challenge}
+
+BA0 must explicitly decide:
+\begin{itemize}
+\item whether \texttt{Base Analysis} is the correct name;
+\item what canonical means within the analysis layer without competing with governed-document authority;
+\item the distinction between grounded fact, derived fact and reviewed analytical addition;
+\item why DDTA needs a shared/canonical representation rather than only synthetic independent views;
+\item non-goals excluding SysML replacement, STRIDE-DFD identity, raw NLP/LLM extraction, tool-native authority and threat/finding/control semantics;
+\item how source inconsistencies are surfaced without silent canonicalization.
+\end{itemize}
+
+\section{Deliberately open concepts}
+No BAE taxonomy is closed. SystemElement, Participant, Capability, Behavior, Interaction, InformationObject, Interface, Connection, Channel, Store/Persistence, Contract, Boundary, State/Mode/Context, Dependency and Allocation remain hypotheses only. TrustBoundary remains especially OPEN because prior-art pressure supports generic scope/responsibility boundaries, not automatic promotion of a security-specific trust classification into the neutral core.
+
+\section{Reopen criteria}
+BA0-R is reopened only if:
+\begin{enumerate}
+\item a newly obtained primary source materially falsifies one of the closed conclusions;
+\item the full ISO/IEC/IEEE 42010:2022 text materially contradicts the 2011-based regression conclusion relevant to DDTA;
+\item BA0 or BA1 produces a recurring concrete counterexample requiring a missing prior-art check; or
+\item a candidate DDTA novelty claim is found to be already satisfied by prior work not represented in BA0-R.
+\end{enumerate}
+Routine downstream refinement is not a reopen trigger.
+
+\section{State after closure}
+\begin{lstlisting}
+Chapters 2-4                      CLOSED / FINAL
+Documentation layer               CLOSED
+W0                                CLOSED
+BA0-R systems-modeling prior art  CLOSED
+BA0 responsibility/non-goals      CURRENT
+BA1 minimal BAE ontology          NOT STARTED
+\end{lstlisting}
+
+\begin{gate}{Next authorized microstep}
+Resume BA0 responsibility/boundary falsification. No BAE type is accepted by this closure.
+\end{gate}
+\end{document}

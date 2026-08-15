@@ -1,6 +1,6 @@
 schema_version: 1
 corpus_status: working
-last_updated: 2026-08-06
+last_updated: 2026-08-15
 sources:
   - id: SRC-0001
     citation_key: shostack2014threat
@@ -306,3 +306,83 @@ sources:
     verification_state: verified
     topics: [RE-NLP-LLM, CS-ASSURANCE, CS-CHANGE, CS-DEVSECOPS]
     ddta_roles: [foundation, comparison, evaluation, challenge]
+  - id: SRC-0039
+    citation_key: nasa2025systemsmodeling
+    title: "NASA Systems Modeling Handbook for Systems Engineering"
+    year: 2025
+    type: standard_guidance
+    verification_state: verified
+    topics: [MD-MDE, MD-VIEW, DE-ARCH, RE-TRACEABILITY]
+    ddta_roles: [foundation, comparison, challenge]
+  - id: SRC-0040
+    citation_key: omg2025sysml2
+    title: "OMG Systems Modeling Language (SysML) Version 2.0 - Language Specification"
+    year: 2025
+    type: standard_guidance
+    verification_state: verified
+    topics: [MD-MDE, MD-VIEW, DE-ARCH, RE-TRACEABILITY]
+    ddta_roles: [foundation, comparison, challenge]
+  - id: SRC-0041
+    citation_key: omg2025kerml
+    title: "Kernel Modeling Language (KerML) Version 1.0"
+    year: 2025
+    type: standard_guidance
+    verification_state: verified
+    topics: [MD-MDE, DE-ARCH]
+    ddta_roles: [foundation, comparison, challenge]
+  - id: SRC-0042
+    citation_key: nasa2017sehandbook
+    title: "NASA Systems Engineering Handbook, Revision 2"
+    year: 2017
+    type: standard_guidance
+    verification_state: verified
+    topics: [DE-ARCH, MD-VIEW, CS-CHANGE, RE-TRACEABILITY]
+    ddta_roles: [foundation, comparison, challenge]
+  - id: SRC-0043
+    citation_key: iso2022architecturedescription
+    title: "ISO/IEC/IEEE 42010:2022 - Software, systems and enterprise - Architecture description"
+    year: 2022
+    type: standard_guidance
+    verification_state: partially_verified
+    topics: [DE-ARCH, MD-VIEW, RE-TRACEABILITY]
+    ddta_roles: [foundation, comparison, challenge]
+  - id: SRC-0044
+    citation_key: feiler2006aadl
+    title: "The Architecture Analysis & Design Language (AADL): An Introduction"
+    year: 2006
+    type: primary_research
+    verification_state: verified
+    topics: [DE-ARCH, MD-MDE, CS-ASSURANCE]
+    ddta_roles: [foundation, comparison, challenge]
+  - id: SRC-0045
+    citation_key: opengroup2022archimate32
+    title: "ArchiMate 3.2 Specification"
+    year: 2022
+    type: standard_guidance
+    verification_state: partially_verified
+    topics: [DE-ARCH, MD-VIEW]
+    ddta_roles: [foundation, comparison, challenge]
+  - id: SRC-0046
+    citation_key: estefan2008mbse
+    title: "Survey of Candidate Model-Based Systems Engineering (MBSE) Methodologies, Revision B"
+    year: 2008
+    type: secondary_review
+    verification_state: verified
+    topics: [MD-MDE, DE-ARCH]
+    ddta_roles: [foundation, comparison]
+  - id: SRC-0047
+    citation_key: reinhartzberger2005reflectiveopm
+    title: "A Reflective Meta-Model of Object-Process Methodology: The System Modeling Building Blocks"
+    year: 2005
+    type: primary_research
+    verification_state: verified
+    topics: [MD-MDE, DE-ARCH, MD-VIEW]
+    ddta_roles: [foundation, comparison, challenge]
+  - id: SRC-0048
+    citation_key: iso2011architecturedescription
+    title: "ISO/IEC/IEEE 42010:2011 - Systems and software engineering - Architecture description"
+    year: 2011
+    type: standard_guidance
+    verification_state: verified
+    topics: [DE-ARCH, MD-VIEW, RE-TRACEABILITY, CS-CHANGE]
+    ddta_roles: [foundation, comparison, challenge]
