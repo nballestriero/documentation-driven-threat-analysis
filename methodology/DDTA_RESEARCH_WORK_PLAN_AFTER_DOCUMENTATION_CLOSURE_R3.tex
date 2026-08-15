@@ -1,0 +1,194 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{lmodern,microtype}
+\usepackage[a4paper,margin=2.2cm,headheight=15pt]{geometry}
+\usepackage{enumitem,booktabs,longtable,array,tabularx}
+\usepackage{xcolor,hyperref,xurl,fancyhdr,titlesec,listings,framed}
+\definecolor{ddtadark}{RGB}{28,38,52}
+\definecolor{ddtagray}{RGB}{242,244,247}
+\definecolor{ddtablue}{RGB}{42,88,135}
+\definecolor{ddtagreen}{RGB}{48,111,78}
+\definecolor{ddtaorange}{RGB}{148,91,25}
+\hypersetup{colorlinks=true,linkcolor=ddtablue,urlcolor=ddtablue,pdftitle={DDTA Research Work Plan after Documentation Closure R3},pdfauthor={Documentation-Driven Threat Analysis research workspace}}
+\pagestyle{fancy}\fancyhf{}\lhead{DDTA research work plan}\rhead{Revision 3}\cfoot{\thepage}
+\titleformat{\section}{\Large\bfseries\color{ddtadark}}{\thesection}{0.7em}{}
+\titleformat{\subsection}{\large\bfseries\color{ddtadark}}{\thesubsection}{0.7em}{}
+\setlist[itemize]{leftmargin=1.55em,itemsep=0.22em,topsep=0.3em}
+\setlist[enumerate]{leftmargin=1.8em,itemsep=0.22em,topsep=0.3em}
+\setlength{\parskip}{0.35em}\setlength{\parindent}{0pt}\setlength{\emergencystretch}{3em}
+\lstset{basicstyle=\ttfamily\small,columns=fullflexible,keepspaces=true,frame=single,framerule=0.3pt,rulecolor=\color{ddtagray},backgroundcolor=\color{ddtagray},xleftmargin=0.8em,xrightmargin=0.8em,breaklines=true}
+\newenvironment{gate}[1]{\def\FrameCommand{\fcolorbox{ddtagreen}{ddtagray}}\MakeFramed{\advance\hsize-2\width\FrameRestore}\noindent\textbf{#1}\par\smallskip}{\endMakeFramed}
+\newenvironment{boundary}[1]{\def\FrameCommand{\fcolorbox{ddtaorange}{ddtagray}}\MakeFramed{\advance\hsize-2\width\FrameRestore}\noindent\textbf{#1}\par\smallskip}{\endMakeFramed}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\begin{document}
+\begin{titlepage}\centering\vspace*{1.8cm}{\Large Documentation-Driven Threat Analysis\par}\vspace{0.8cm}{\Huge\bfseries Research Work Plan\par}\vspace{0.3cm}{\LARGE After documentation-layer closure -- Revision 3\par}\vspace{0.9cm}{\large Systems-modeling prior-art gate before Base Analysis closure\par}\vfill\begin{minipage}{0.86\textwidth}\small
+\textbf{Baseline.} \texttt{eb77d45edd09e3cd2959974bf57b1d066f7cbcbc}.\\[0.45em]
+\textbf{Status.} Chapters 2--4 CLOSED / FINAL; W0 CLOSED. BA0 is paused at entry while a bounded prior-art reading phase (BA0-R) tests systems-modeling, MBSE and architecture-description foundations. BA1 remains not started.\\[0.45em]
+\textbf{Worksheet policy.} Reuse the existing \texttt{DDTA\_modello\_scheda\_lettura\_v2.pdf}; the reusable evidence record remains the Markdown source note plus YAML excerpt ledger.
+\end{minipage}\vfill{\large 15 August 2026\par}\end{titlepage}
+\tableofcontents\newpage
+
+\section{Current checkpoint}
+The governed documentation metamodel remains CLOSED for the current thesis scope through SecurityRequirement. Requirement remains the governed normative obligation; the separate L1 NormativeObligation wrapper remains rejected. SecurityRequirement retains its single protected security property, failure-mode explicitness and cause neutrality.
+\begin{lstlisting}
+Chapter 2                     CLOSED / FINAL
+Chapter 3                     CLOSED / FINAL
+Chapter 4                     CLOSED / FINAL
+Documentation layer           CLOSED
+W0                            CLOSED
+BA0 semantics                 PAUSED AT ENTRY
+BA0-R prior-art research      NEXT
+BA1 BAE ontology              NOT STARTED
+\end{lstlisting}
+
+\section{Literature workflow reused without a new worksheet family}
+BA0-R reuses the existing DDTA literature workflow. No second worksheet schema is introduced.
+\begin{lstlisting}
+literature/worksheets/<SOURCE-ID>_scheda_compilata.pdf
+literature/notes/<SOURCE-ID>.md
+literature/excerpts/<SOURCE-ID>.excerpts.yml
+\end{lstlisting}
+The blank printable aid remains \texttt{literature/worksheets/DDTA\_modello\_scheda\_lettura\_v2.pdf}. The worksheet is a reading aid, not evidentiary authority; thesis claims must resolve to a registered source and an exact citation-ready location.
+
+\subsection{Canonical reading questions}
+\begin{enumerate}
+\item What research problem does the source address and what contribution does it make?
+\item Which artifacts does it start from and how does it assume, create, extract or derive a system representation?
+\item How does it connect sources, requirements, evidence and change, and what is automated or human-reviewed?
+\item What does it demonstrate, what are its limits, and what does it leave open for DDTA and the overlay method?
+\end{enumerate}
+
+\subsection{BA0-R extraction lens}
+The existing note may expand Question 2 and the DDTA relationship section using this phase-local lens:
+\begin{lstlisting}
+SYSTEM REPRESENTATION
+ structure / part / component / participant
+ behavior / function / action
+ information / item / resource
+ flow / exchange
+ interface / port / endpoint
+ connection / channel / link
+ storage / persistence / memory
+ state / mode / condition
+ capability
+ environment / context
+ boundary / scope / responsibility
+ constraint / property
+ contract / schema
+ dependency / allocation
+
+IDENTITY AND SEMANTIC ROLE
+ first-class identity vs role
+ entity vs relationship vs property
+ type vs usage / instance
+ independent mutation
+ ownership / allocation / composition
+
+VIEWS AND ABSTRACTION
+ canonical model vs diagram
+ view / viewpoint / model kind
+ projection and omitted information
+ levels of abstraction
+
+AUTHORITY AND EVOLUTION
+ source of truth
+ authored vs generated content
+ review / acceptance
+ versioning / traceability / change
+
+DDTA CHALLENGE
+ reusable vs language-specific semantics
+ reinvention risk
+ gaps left open for documentation-driven analysis
+\end{lstlisting}
+Do not modify the general source-note template merely to add these prompts unless repeated use proves a genuine general deficiency.
+
+\section{BA0-R -- Systems-modeling prior-art research gate}
+\subsection{Purpose}
+Before defining Base Analysis responsibility or BAE taxonomy, determine how mature non-security modeling approaches represent systems, behavior, information exchange, interfaces, communication, persistence, boundaries, states, views and analysis-enabling semantics. The goal is prior-art falsification, not selection of a modeling language.
+\subsection{Non-goals}
+BA0-R does not define the final BAE metamodel; copy SysML/KerML/AADL/ArchiMate/NASA wholesale; turn Base Analysis into a DFD or threat model; promote current candidate terms to closed metaclasses; or treat bibliography mentions as verified sources.
+\begin{boundary}{Negative-control rule}
+The prior Actor + Asset + Interaction triad is no longer the default core. During BA0-R it is retained only as a negative-control hypothesis for sufficiency.
+\end{boundary}
+
+\section{Fixed seed reading corpus}
+Provisional source IDs are planning reservations. Registry insertion occurs only after bibliographic identity and lawful access are verified.
+\begingroup\small\setlength{\tabcolsep}{3pt}\renewcommand{\arraystretch}{1.12}
+\begin{longtable}{p{1.45cm}p{4.3cm}p{2.3cm}p{5.8cm}}
+\toprule
+\textbf{Step} & \textbf{Source} & \textbf{Authority} & \textbf{Primary BA0-R question}\\\midrule\endfirsthead
+\toprule\textbf{Step} & \textbf{Source} & \textbf{Authority} & \textbf{Primary BA0-R question}\\\midrule\endhead\bottomrule\endfoot
+BA0-R0 & Existing SRC-0034, Souza, Moreira, Goulao (2019) & Existing secondary review & Re-anchor views, ADLs, human architectural decisions, representation-specific transformations and traceability limits. No duplicate source record.\\
+BA0-R1 / SRC-0039 & NASA-HDBK-1009A, \emph{NASA Systems Modeling Handbook for Systems Engineering} (2025) & NASA official guidance & Which model elements/relations support SE work products, and how are diagrams/tables generated from the system model?\\
+BA0-R2 / SRC-0040 & OMG, \emph{System Modeling Language (SysML) Specification}, v2.0 (2025) & Normative standard & Which structure, behavior, interface, flow, requirement, analysis and view concepts are first-class, and what is SysML-specific?\\
+BA0-R3 / SRC-0041 & OMG, \emph{Kernel Modeling Language (KerML) Specification}, v1.0 (2025) & Normative kernel & What is the general semantic kernel beneath SysML, especially identity, feature, relationship, occurrence, behavior and connection semantics?\\
+BA0-R4 / SRC-0042 & NASA, \emph{Systems Engineering Handbook}, NASA/SP-2016-6105 Rev2 & NASA guidance & How are architecture, functions, flows, interfaces, resource-flow items, communication resources and technical-effort boundaries modeled outside security?\\
+BA0-R5 / SRC-0043 & ISO/IEC/IEEE 42010:2022, \emph{Software, systems and enterprise -- Architecture description} & International standard & How are architecture vs architecture description, viewpoints and model kinds separated? Full note only with lawful full-text access.\\
+BA0-R6 / SRC-0044 & Feiler, Gluch, Hudak (2006), \emph{The Architecture Analysis \& Design Language (AADL): An Introduction} & Primary technical report & Which component/interaction/software/hardware/bus/memory concepts enable repeated architectural analysis?\\
+BA0-R7 / SRC-0045 & The Open Group, \emph{ArchiMate 3.2 Specification} (2022) & Standard & Does Active Structure / Behavior / Passive Structure provide a useful counter-model for DDTA hypotheses? Full note only under lawful license.\\
+BA0-R8 / SRC-0046 & Estefan (2008), \emph{Survey of Candidate Model-Based Systems Engineering (MBSE) Methodologies}, Rev. B & INCOSE methodology survey & Which MBSE families and foundational references should enter the second reading ring, and where do representations diverge?\\
+\end{longtable}\endgroup
+
+\subsection{Source-access discipline}
+For every source: verify identity/version; record legal access; record local filename/hash when applicable; keep copyrighted PDFs out of Git unless redistribution is permitted; and never manufacture full-text claims from metadata. ISO 42010 and ArchiMate are explicit access gates: if lawful full text is unavailable, document the limitation and identify an open primary/authoritative replacement for substantive comparison.
+
+\section{Per-source deliverables and bibliography mining}
+For each new source that passes access verification:
+\begin{lstlisting}
+literature.registry.yml                       updated
+source-access.registry.yml                    updated
+literature/notes/SRC-XXXX.md                  completed
+literature/excerpts/SRC-XXXX.excerpts.yml     completed
+literature/worksheets/SRC-XXXX_scheda_compilata.pdf
+                                                generated
+Follow-up sources                              classified
+\end{lstlisting}
+Follow-up references are classified FOUNDATIONAL, COMPETING / ALTERNATIVE, or EMPIRICAL / EVALUATION. A follow-up receives a new source ID only after verification. Seed expansion is allowed only with an explicit rationale.
+
+\section{BA0-R cross-source synthesis and exit gate}
+Cross-source conclusions are written only after source-level reading, under \texttt{literature/syntheses/}. Required outputs cover common semantic responsibilities, divergent choices, entity/relationship/property/role distinctions, views/projections, boundaries, information paths, behavior, authority/evolution, bibliography expansion and a DDTA novelty challenge.
+\begin{gate}{BA0-R exit gate}
+Every mandatory accessible seed source has a completed note, excerpt ledger and worksheet; access exceptions are explicit; a cross-source synthesis exists; no BAE metaclass was accepted merely because one notation contains it; and the novelty/reuse question was challenged. Any material Chapter 2/3 reopen trigger is reported before BA0 resumes.
+\end{gate}
+
+\section{Resume point after BA0-R}
+Unless BA0-R reveals a material falsification, execution returns to the Revision 2 sequence:
+\begin{lstlisting}
+BA0 - Base Analysis responsibility and boundary
+BA1 - Minimal BAE ontology
+BA2 - Relations and canonical action vocabulary
+BA3 - Document-to-BAE derivation, provenance and authority
+BA4 - Multi-level views and projections
+BA5 - Controlled vocabulary and authoring assistance
+BA6 - Base Analysis closure and regression
+\end{lstlisting}
+
+\section{BA0 -- Base Analysis responsibility and boundary}
+After BA0-R, define Base Analysis as a governed, methodology-neutral analyzable representation grounded in governed documentation and explicit reviewed additions. It is not a second narrative hierarchy, a STRIDE DFD, or automatically canonized NLP/LLM extraction. One canonical knowledge base may support several projections, methods cannot redefine its semantic core, and the representation must justify why its responsibilities are not better delegated to an adopted standard/modeling language.
+\begin{gate}{BA0 exit gate}A precise responsibility statement and non-goals are accepted after prior-art synthesis and before BAE taxonomy design.\end{gate}
+
+\section{BA1 -- Minimal BAE ontology}
+Start from semantic responsibilities forced jointly by the governed DDTA corpus and BA0-R evidence, not from a pre-approved type list. Actor + Asset + Interaction is a sufficiency negative control. Structural participant, behavior/function/action, information/resource item, flow/exchange, interface/endpoint, connection/channel, persistence/storage, state/mode, capability, environment/context and boundary remain hypotheses until falsified.
+\begin{gate}{BA1 exit gate}Minimal generic BAE set with definitions, identity/ownership rules, relation/property boundaries and negative controls.\end{gate}
+
+\section{BA2--BA6 summary}
+\textbf{BA2}: close the smallest stable relation vocabulary and separate semantic relation, canonical lexical label and authoring suggestion.\\
+\textbf{BA3}: distinguish governed fact, candidate extraction, reviewed canonical BAE and reviewed analytical addition; close provenance and authority.\\
+\textbf{BA4}: define multiple views as projections of one canonical model, with at least two consistent facial-access views under mutation.\\
+\textbf{BA5}: define controlled-vocabulary/LLM assistance without semantic authority.\\
+\textbf{BA6}: regress corpora/holdout, identity stability, mutations, view consistency, method neutrality and insufficient-information diagnostics.
+\begin{gate}{Base Analysis exit gate}
+A methodology-neutral Base Analysis can be built and reviewed from governed documentation plus explicit reviewed additions, with stable identities, relations, provenance and projections, and with its relationship to existing systems-modeling prior art made explicit.
+\end{gate}
+
+\section{Generic analysis envelope and overlays}
+Only after the Base Analysis gate: A1 AnalysisRecord, A2 Finding, A3 change/provenance integration, O1 generic overlay contract, O2 STRIDE, O3 closed-loop improvement and O4 STRIDE-AI. Later use LINDDUN/another method as neutrality challenges. ThreatForge remains an implementation/tooling case study and never semantic authority.
+
+\section{Next authorized microstep}
+\begin{gate}{Authorized next step}
+Execute only \textbf{BA0-R1}: read NASA-HDBK-1009A deeply enough to populate the existing DDTA source-note, excerpt and worksheet workflow, then mine its bibliography. Before that reading, reread the existing SRC-0034 note as the bridge source. Do not start BA1, STRIDE, AnalysisRecord, Finding or implementation work while BA0-R is open.
+\end{gate}
+\end{document}
