@@ -1,0 +1,177 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{lmodern,microtype}
+\usepackage[a4paper,margin=2.35cm,headheight=15pt]{geometry}
+\usepackage{enumitem,booktabs,longtable,array,tabularx}
+\usepackage{xcolor,hyperref,xurl,fancyhdr,titlesec,listings,framed}
+\definecolor{ddtadark}{RGB}{28,38,52}
+\definecolor{ddtagray}{RGB}{242,244,247}
+\definecolor{ddtablue}{RGB}{42,88,135}
+\definecolor{ddtagreen}{RGB}{48,111,78}
+\definecolor{ddtaorange}{RGB}{148,91,25}
+\hypersetup{colorlinks=true,linkcolor=ddtablue,urlcolor=ddtablue,pdftitle={DDTA Research Work Plan after Documentation Closure R2},pdfauthor={Documentation-Driven Threat Analysis research workspace}}
+\pagestyle{fancy}\fancyhf{}\lhead{DDTA research work plan}\rhead{Revision 2}\cfoot{\thepage}
+\titleformat{\section}{\Large\bfseries\color{ddtadark}}{\thesection}{0.7em}{}
+\titleformat{\subsection}{\large\bfseries\color{ddtadark}}{\thesubsection}{0.7em}{}
+\setlist[itemize]{leftmargin=1.55em,itemsep=0.25em,topsep=0.35em}
+\setlist[enumerate]{leftmargin=1.8em,itemsep=0.25em,topsep=0.35em}
+\setlength{\parskip}{0.35em}\setlength{\parindent}{0pt}\setlength{\emergencystretch}{2em}
+\lstset{basicstyle=\ttfamily\small,columns=fullflexible,keepspaces=true,frame=single,framerule=0.3pt,rulecolor=\color{ddtagray},backgroundcolor=\color{ddtagray},xleftmargin=0.8em,xrightmargin=0.8em,breaklines=true}
+\newenvironment{gate}[1]{\def\FrameCommand{\fcolorbox{ddtagreen}{ddtagray}}\MakeFramed{\advance\hsize-2\width\FrameRestore}\noindent\textbf{#1}\par\smallskip}{\endMakeFramed}
+\newenvironment{boundary}[1]{\def\FrameCommand{\fcolorbox{ddtaorange}{ddtagray}}\MakeFramed{\advance\hsize-2\width\FrameRestore}\noindent\textbf{#1}\par\smallskip}{\endMakeFramed}
+\begin{document}
+\begin{titlepage}\centering\vspace*{2cm}{\Large Documentation-Driven Threat Analysis\par}\vspace{0.8cm}{\Huge\bfseries Research Work Plan\par}\vspace{0.3cm}{\LARGE After documentation-layer closure -- Revision 2\par}\vspace{1cm}{\large From the frozen documentation metamodel to Base Analysis, BAE and multi-method analysis\par}\vfill\begin{minipage}{0.84\textwidth}\small
+\textbf{Baseline.} \texttt{ec6c0107e0d5c0460d2afcbe12dae6f40bc5e6c5}.\\[0.5em]
+\textbf{Status.} Current execution plan after the Chapters 2--4 documentation-layer freeze. W0 is CLOSED and BA0 is NEXT. It supersedes Revision 1 sequencing but does not reopen closed documentation semantics.\end{minipage}\vfill{\large 15 August 2026\par}\end{titlepage}
+\tableofcontents\newpage
+\section{Current checkpoint}
+The governed documentation metamodel is closed for the current thesis scope through:
+\begin{lstlisting}
+Project problem framing [method precondition]
+        -> MacroRequirement
+        -> Decision
+        -> FunctionalRequirement
+        -> SpecializedRequirement [abstract]
+             -> SecurityRequirement
+\end{lstlisting}
+The common requirement abstraction is also closed:
+\begin{lstlisting}
+GovernedDocument
+        |
+        `-- Requirement [abstract]
+                normativeClause : NormativeClause [1..*]
+                |
+                +-- FunctionalRequirement
+                `-- SpecializedRequirement [abstract]
+                        `-- SecurityRequirement
+\end{lstlisting}
+\texttt{Requirement} is the governed normative obligation. The separate L1 \texttt{NormativeObligation} wrapper is rejected. SecurityRequirement adds \texttt{protectedSecurityProperty : SecurityProperty [1]}; its security failure mode must be identifiable in inherited normative clauses and its identity is cause-neutral.
+
+\section{Thesis-writing freeze gate: Chapters 2--4}
+\subsection{W0.1 -- Chapter 2 -- CLOSED}
+Chapter 2 is semantically closed. Only typographical/citation correction, stale forward-reference cleanup and terminology normalization that does not change claims are allowed.
+\subsection{W0.2 -- Chapter 3 -- CLOSED}
+Chapter 3 is semantically closed. G1--G4 and the thesis research scope remain unchanged; finalization is editorial only.
+\subsection{W0.3 -- Chapter 4 -- CLOSED}
+The finalization commit consolidates the already closed results reached after S1R1: Requirement abstraction, normative clauses, rejection of NormativeObligation, S2 SecurityRequirement, protected property, failure-mode explicitness, cause neutrality, single governing security property, and negative boundaries.
+\begin{gate}{W0 exit gate}
+W0 is CLOSED: Chapters 2, 3 and 4 are CLOSED / FINAL for the current thesis scope and are not routinely edited during Base Analysis, Finding, overlay or STRIDE work. The next authorized microstep is BA0.
+\end{gate}
+
+\section{Reopen policy for frozen chapters}
+\subsection{Chapter 2}
+Reopen only for a material literature/factual error, a materially unsupported claim, or falsification of a foundational distinction used by the thesis.
+\subsection{Chapter 3}
+Reopen only if the research gap or evaluated thesis scope is materially falsified/changed, or prior work is found to solve a claimed discontinuity in the evaluated end-to-end sense.
+\subsection{Chapter 4}
+Reopen only for a concrete recurring downstream counterexample that cannot be represented without changing the governed documentation contract. A new BAE relation, plugin-private taxonomy field, vocabulary suggestion or implementation control is not by itself a reopen trigger.
+\begin{boundary}{Reopen discipline}
+Every reopening must name the counterexample, modify the minimum owning layer and regress the previously accepted corpora.
+\end{boundary}
+
+\section{Base Analysis block}
+\subsection{BA0 -- Base Analysis responsibility and boundary}
+Define Base Analysis as a governed, methodology-neutral analyzable representation of system/project knowledge grounded in governed documentation and explicit reviewed additions. Falsify these boundaries:
+\begin{itemize}
+\item not a second narrative documentation hierarchy;
+\item not a STRIDE DFD by definition;
+\item not automatically canonized NLP/LLM extraction;
+\item may integrate reviewed structure derived from several governed documents;
+\item one canonical knowledge base may support several projections;
+\item an analysis method consumes the representation but cannot silently redefine its semantic core.
+\end{itemize}
+\begin{gate}{BA0 exit gate}A precise responsibility statement and non-goals are accepted before BAE taxonomy design.\end{gate}
+
+\subsection{BA1 -- Minimal BAE ontology}
+Start from the smallest vocabulary forced by the facial-access corpus:
+\begin{lstlisting}
+BAE [abstract]
+    +-- Actor
+    +-- Asset
+    `-- Interaction
+\end{lstlisting}
+Pressure-test whether first-class Component/ServiceCapability, DataStore, CommunicationChannel, InterfaceContract, Boundary, Location/Environment or State/Condition are actually necessary. These are hypotheses, not pre-approved metaclasses.
+\begin{gate}{BA1 exit gate}Minimal generic BAE set with definitions, stable identity rules and negative controls.\end{gate}
+
+\subsection{BA2 -- Relations and canonical action vocabulary}
+Define the smallest stable relation vocabulary needed for a graph without uncontrolled synonym growth. Candidate pressure points: source/target participation, produces/consumes/handles, stores/retrieves, dependsOn, boundary relations, invokes/delivers/receives and capability provision/consumption.
+\begin{lstlisting}
+L1 semantic relation
+    !=
+L2 canonical lexical label
+    !=
+L3 authoring suggestion / synonym normalization
+\end{lstlisting}
+Avoid a generic \texttt{affects}-style escape relation and avoid freezing a universal verb taxonomy prematurely.
+
+\subsection{BA3 -- Document-to-BAE derivation, provenance and authority}
+Required distinctions:
+\begin{lstlisting}
+governed document fact
+candidate BAE extraction / suggestion
+reviewed canonical BAE
+reviewed analytical addition
+\end{lstlisting}
+Close stable identity, source references, authoritative/supporting sources, no automatic noun-to-BAE canonization, no automatic synonym merge, explicit candidate acceptance/rejection, BAE-to-document traceability, and explicit reviewed additions.
+
+\subsection{BA4 -- Multi-level views and projections}
+Views are projections of one canonical Base Analysis, not competing authored models. Candidate views:
+\begin{enumerate}
+\item Context / actor view.
+\item Interaction view.
+\item Asset / data-flow view.
+\item Boundary / deployment view, only if boundary is canonical BAE semantics.
+\item Security overlay view projecting SecurityRequirements/properties without turning Base Analysis into a threat-method model.
+\end{enumerate}
+A view may omit information for readability but must not imply that omitted information does not exist.
+
+\subsection{BA5 -- Controlled vocabulary and authoring assistance}
+Tooling may suggest reuse of Actor/Asset/BAE names, canonical actions/predicates, probable duplicates/paraphrases, taxonomy entries, BAE candidates/relations and existing references. Similarity or an LLM output never silently establishes identity, parentage, ownership or canonical BAE status.
+\begin{lstlisting}
+LLM-assisted authoring
+    -> vocabulary / BAE suggestions
+    -> reviewed governed documentation
+
+LLM-assisted analysis preparation
+    -> candidate BAE / relation extraction
+    -> reviewed Base Analysis
+\end{lstlisting}
+\begin{gate}{BA5 exit gate}Assistance reduces synonym/paraphrase drift without making the tool semantic authority.\end{gate}
+
+\subsection{BA6 -- Base Analysis closure and regression}
+Regress closed documentation corpora and at least one structurally different holdout. Verify identity stability under paraphrase, mutation handling, view consistency, absence of method-specific threat categories in the core and explicit diagnostics for insufficient documentation.
+\begin{gate}{Base Analysis exit gate}
+A methodology-neutral Base Analysis can be built and reviewed from governed documentation plus explicit reviewed additions, with stable BAE identities, relations, provenance and projections.
+\end{gate}
+
+\section{Generic analysis envelope}
+\subsection{A1 -- AnalysisRecord}Define common identity, method/version, scope, baseline and execution/provenance envelope with method-owned payload remaining plugin-owned.
+\subsection{A2 -- Finding}Define a reviewed common result envelope that can reference affected BAE and governed requirements without copying method taxonomy into the common core.
+\subsection{A3 -- Change/provenance integration}Resolve S1.5 many-to-many analysis/document history and distinguish analysis scope from accepted change. Test whether a general change-event abstraction is actually necessary.
+
+\section{Method-neutral overlay and concrete evaluations}
+\subsection{O1 -- Generic overlay contract}Define compatibility, scope selection, required BAE/view capabilities, method-owned payload, diagnostics, finding derivation and failure behavior.
+\subsection{O2 -- STRIDE}Use STRIDE only after Base Analysis and O1 are stable enough for falsification.
+\subsection{O3 -- Closed-loop design improvement}
+\begin{lstlisting}
+governed documentation
+ -> Base Analysis / views
+ -> analysis overlay
+ -> AnalysisRecord
+ -> reviewed Finding
+ -> accepted governed change / SecurityRequirement
+ -> Base Analysis refresh
+ -> re-analysis
+\end{lstlisting}
+\subsection{O4 -- STRIDE-AI}Reuse the same common contracts without copying STRIDE-AI-private asset/failure/taxonomy semantics into the common core.
+
+\section{Later neutrality challenges and ThreatForge}
+Use LINDDUN and optionally another method as neutrality challenges after STRIDE/STRIDE-AI; do not claim universal neutrality from two implementations. ThreatForge remains an implementation/tooling case study and never establishes DDTA semantic authority.
+
+\section{Next authorized microstep}
+\begin{gate}{Authorized next step}
+After the W0 finalization commit, execute only \textbf{BA0 -- Base Analysis responsibility and boundary}, immediately pressure-tested on the facial-access camera corpus. Do not start STRIDE, AnalysisRecord, Finding or broad BAE taxonomy enumeration before BA0 is closed.
+\end{gate}
+\end{document}

@@ -37,14 +37,14 @@
   linkcolor=DDTADark,
   citecolor=DDTADark,
   urlcolor=DDTAInfoBorder,
-  pdftitle={Capitolo 4 - Metamodello della documentazione e regole di authoring DDTA - revisione S1R1},
+  pdftitle={Capitolo 4 - Metamodello della documentazione e regole di authoring DDTA - closure finale},
   pdfauthor={Nicolò Ballestriero}
 }
 
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{\small Documentation-Driven Threat Analysis}
-\fancyhead[R]{\small Capitolo 4 - revisione S1R1}
+\fancyhead[R]{\small Capitolo 4 - closure finale}
 \fancyfoot[C]{\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
 
@@ -77,8 +77,8 @@
 \chapter{Metamodello della documentazione e regole di authoring DDTA}
 \label{chap:documentation-authoring-metamodel}
 
-\begin{epistemicnote}[Stato del capitolo - revisione S1R1]
-La versione repository di questo capitolo è presente al commit DDTA \artifact{3eeac1fc972d89282cd2ffd8700e9af0f5b69610} e descrive la closure documentale fino al FunctionalRequirement. Questa revisione di lavoro del 14 agosto 2026 integra due risultati successivi: la chiusura semantica S1 di \sr{} e la regressione del corpus facial-access che ha messo in discussione \texttt{MR-0004}. La regressione non introduce l'invariante ``ogni MR deve essere connesso''; aggiunge invece una heuristic di authoring e tool-assisted review per i MacroRequirement isolati.
+\begin{epistemicnote}[Stato del capitolo - CLOSED / FINAL]
+Questo capitolo consolida il governed documentation metamodel DDTA fino a \secreq{} sulla baseline \artifact{ec6c0107e0d5c0460d2afcbe12dae6f40bc5e6c5}. Integra i risultati già chiusi di MR, Decision e FunctionalRequirement con S1 SpecializedRequirement, S1.5 Requirement abstraction e S2 SecurityRequirement. Non apre Base Analysis, BAE, Finding, STRIDE o il modello strutturale di provenance. Per lo scope corrente della tesi il capitolo è semanticamente chiuso e riapribile soltanto secondo le condizioni esplicite riportate in fondo.
 \end{epistemicnote}
 
 \section{Scopo del capitolo}
@@ -101,11 +101,11 @@ Project problem framing      [method precondition]
         -> Macro Requirement
         -> Decision
         -> Functional Requirement
-        -> Specialized Requirement
-             -> concrete specialization
+        -> Specialized Requirement [abstract]
+             -> Security Requirement
 \end{lstlisting}
 
-Per il perimetro della tesi, la specializzazione concreta studiata end-to-end sarà \secreq. Il contratto generale di \sr{} rimane però metodologicamente neutro: tecniche differenti possono motivare specializzazioni relative a sicurezza, prestazioni o obblighi normativi/compliance senza richiedere MacroRequirement dedicati alla metodologia.
+Per il perimetro della tesi, \secreq{} è la specializzazione concreta chiusa end-to-end. Il contratto generale di \sr{} rimane metodologicamente neutro: tecniche differenti possono motivare specializzazioni relative a sicurezza, prestazioni o obblighi normativi/compliance senza richiedere MacroRequirement dedicati alla metodologia.
 
 \section{Separazione tra semantica, rappresentazione e tooling}
 
@@ -145,21 +145,40 @@ Il framing stabilisce un confine condiviso, consente di controllare coverage e o
 
 \section{Gerarchia documentale progressiva}
 
+La closure finale distingue esplicitamente la gerarchia di tipo dalla catena di ownership dei documenti concreti.
+
+\subsection{Gerarchia di tipo}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[node distance=7mm and 4mm,box/.style={draw=DDTADark,rounded corners,align=center,inner sep=6pt,minimum width=42mm},arr/.style={-{Latex[length=2.4mm]},thick}]
+\node[box] (gd) {GovernedDocument};
+\node[box,below=of gd] (req) {Requirement\\\small abstract};
+\node[box,below left=of req] (fr) {FunctionalRequirement};
+\node[box,below right=of req] (sr) {SpecializedRequirement\\\small abstract};
+\node[box,below=of sr] (sec) {SecurityRequirement};
+\draw[arr] (gd)--(req);\draw[arr] (req)--(fr);\draw[arr] (req)--(sr);\draw[arr] (sr)--(sec);
+\end{tikzpicture}
+\caption{Gerarchia IS-A dei Requirement. MacroRequirement e Decision sono GovernedDocument, ma non Requirement.}
+\end{figure}
+
+\subsection{Catena concreta di authoring e ownership}
+
 \begin{figure}[H]
 \centering
 \begin{tikzpicture}[node distance=7mm,box/.style={draw=DDTADark,rounded corners,align=center,inner sep=6pt,minimum width=58mm},arr/.style={-{Latex[length=2.4mm]},thick}]
 \node[box] (mr) {MacroRequirement};
 \node[box,below=of mr] (d) {Decision};
 \node[box,below=of d] (fr) {FunctionalRequirement};
-\node[box,below=of fr] (sr) {SpecializedRequirement};
+\node[box,below=of fr] (sec) {SecurityRequirement\\\small concrete SpecializedRequirement};
 \draw[arr] (mr)--node[right,font=\small]{1..*} (d);
 \draw[arr] (d)--node[right,font=\small]{0..*} (fr);
-\draw[arr] (fr)--node[right,font=\small]{0..*} (sr);
+\draw[arr] (fr)--node[right,font=\small]{0..*} (sec);
 \end{tikzpicture}
-\caption{Gerarchia documentale progressiva della baseline DDTA.}
+\caption{Percorso concreto nel caso security. Non esiste una istanza SpecializedRequirement intermedia tra FR e SecurityRequirement.}
 \end{figure}
 
-La gerarchia rappresenta contenimento semantico, non il parsing di un ID o di una cartella. Le relazioni parentali devono essere esplicite e validabili anche se cambia la rappresentazione L2.
+La gerarchia rappresenta contenimento semantico e specializzazione, non il parsing di un ID o di una cartella. Le relazioni parentali devono essere esplicite e validabili anche se cambia la rappresentazione L2.
 
 \section{Macro Requirement}
 
@@ -250,7 +269,7 @@ Domande di supporto:
 \begin{enumerate}
   \item Rimuovendo il nodo scompare una capability/responsabilità macro del progetto, oppure rimangono le capability e si perdono soprattutto proprietà specializzate?
   \item Lo scope dell'MR parla prevalentemente di dati, decisioni o comportamenti posseduti da altri rami?
-  \item I suoi discendenti plausibili sarebbero soprattutto security/privacy/performance/compliance constraints su FR altrui?
+  \item I suoi discendenti plausibili sarebbero soprattutto constraint di security, privacy, performance o compliance su FR altrui?
   \item L'isolamento dipende invece da una relazione \texttt{dependsOn} mancante?
   \item Il nodo è stato creato principalmente per dare una ``casa'' a una metodologia o categoria di analisi?
 \end{enumerate}
@@ -329,6 +348,29 @@ La baseline privilegia una gerarchia costante \texttt{MR -> Decision -> FR}. Se 
 
 Una Decision va divisa quando parti del commitment possono cambiare indipendentemente con conseguenze o trade-off autonomi. Non ogni frase tecnica è una Decision: tuning, nomi di classi o dettagli incidentali appartengono alla realizzazione se possono cambiare senza modificare il contratto governato.
 
+\section{Requirement - astrazione comune S1.5}
+
+S1.5 chiude l'astrazione comune fra FunctionalRequirement e SpecializedRequirement:
+
+\begin{quote}
+\textbf{Un Requirement è una obbligazione normativa governata il cui contenuto normativo costituisce esattamente una unità di requisito coerente.}
+\end{quote}
+
+La forma L1 minima è:
+\begin{lstlisting}
+Requirement [abstract]
+    extends GovernedDocument
+    normativeClause : NormativeClause [1..*]
+\end{lstlisting}
+
+Il Requirement è esso stesso l'obbligazione normativa governata. La precedente alternativa \texttt{Requirement HAS-A NormativeObligation} è rigettata: una metaclasse \texttt{NormativeObligation} separata non possiede nel baseline corrente identity, lifecycle, governance o responsabilità semantica indipendenti.
+
+\begin{resultnote}[CLOSED - coherent unit]
+Tutte le normative clause possedute da un Requirement devono esprimere congiuntamente esattamente una obbligazione normativa coerente. Se una clausola può essere introdotta, revisionata, ritirata o valutata indipendentemente senza cambiare l'identità normativa delle altre, deve essere valutata come Requirement separato.
+\end{resultnote}
+
+La rappresentazione L2 esatta delle normative clause resta separata dal contratto L1: prosa normativa e riferimenti strutturati possono supportarsi reciprocamente senza creare una seconda autorità semantica.
+
 \section{Functional Requirement}
 
 \subsection{Definizione operativa}
@@ -352,22 +394,17 @@ La baseline chiude:
 
 \subsection{Forma semantica e normative prose}
 
+A L1 il FunctionalRequirement specializza Requirement e aggiunge il parent Decision:
 \begin{lstlisting}
 FunctionalRequirement
-|- id / lifecycle
-|- title
-|- functionalObligation
-|- functionalClause 1..*
-|    |- normativeStatement
-|    `- spoReference 1..*
-|         |- subject
-|         |- predicate
-|         `- object
-|- parentDecision -> Decision 1
-`- specializedRequirement -> 0..*
+    extends Requirement
+    parentDecision -> Decision 1
+    specializedRequirement -> SpecializedRequirement 0..*
 \end{lstlisting}
 
-La prosa normativa rimane primaria. SPO rende espliciti subject, predicate e object riusabili, ma non sostituisce condizioni, correlazione, atomicità o failure semantics.
+Le \texttt{normativeClause [1..*]} sono ereditate da Requirement e devono, nel caso FR, descrivere una sola obbligazione operativa indipendentemente assessable: comportamento, servizio, transizione o risultato osservabile. Il precedente label \texttt{functionalObligation} viene normalizzato nella semantica comune di Requirement e non costituisce una seconda sorgente L1.
+
+La prosa normativa rimane primaria. Una rappresentazione L2 può supportarla con riferimenti strutturati subject--predicate--object, ma tali riferimenti non sostituiscono condizioni, correlazione, atomicità o failure semantics e non modificano il coherent-unit invariant.
 
 \subsection{FunctionalPredicate e parametri}
 
@@ -379,17 +416,17 @@ Un FR consumer può richiedere una capability posseduta da un altro MR senza acq
 
 \section{Specialized Requirement - semantica comune S1}
 
-S1 chiude il contratto generale prima di formalizzare \secreq.
+S1 chiude il contratto generale prima della specializzazione SecurityRequirement.
 
 \begin{quote}
 \textbf{Uno SpecializedRequirement è una specializzazione normativa governata di un singolo FunctionalRequirement che rafforza le condizioni sotto le quali il parent FR è considerato soddisfatto, imponendo un'obbligazione concern-specific che vale insieme all'obbligazione funzionale e non al suo posto.}
 \end{quote}
 
-La forma minima è:
+La forma L1 aggiornata dopo S1.5 è:
 \begin{lstlisting}
 SpecializedRequirement [abstract]
-|- parentFunctionalRequirement -> FunctionalRequirement 1
-`- normativeObligation         -> 1
+    extends Requirement
+    parentFunctionalRequirement -> FunctionalRequirement 1
 \end{lstlisting}
 
 Per $F$ parent e $S_1,\dots,S_n$ applicabili:
@@ -403,30 +440,59 @@ Le regole principali sono:
   \item rimuovere lo SR deve lasciare riconoscibile la funzione del parent FR;
   \item condizioni necessarie alla normale correttezza funzionale restano nell'FR;
   \item lo SR può richiedere un'azione positiva subordinata, ma una capability operativa autonoma tende a un FR separato;
-  \item lo SR non prescrive necessariamente il meccanismo o layer di realizzazione;
-  \item lo stesso concern può specializzare più FR mediante SR locali distinti; il riuso della fonte normativa è un problema separato.
+  \item lo SR non prescrive il meccanismo o layer di realizzazione;
+  \item lo stesso concern può specializzare più FR mediante SR locali distinti; il riuso della fonte normativa è un problema separato;
+  \item obligation indipendentemente evolvibili o assessable restano Requirement separati anche se condividono il parent FR.
 \end{itemize}
 
 \begin{epistemicnote}[Ruolo metodologicamente neutro]
-SpecializedRequirement è il junction tra documentazione governata e obblighi concern-specific. Una metodologia di analisi non necessita di un proprio MR: può attraversare il progetto e proporre SR sui FR pertinenti. SecurityRequirement è la specializzazione concreta della tesi, non la definizione del concetto generale.
+SpecializedRequirement è il junction tra documentazione governata e obblighi concern-specific. Una metodologia di analisi non necessita di un proprio MR e non diventa autorità semantica dello SR.
 \end{epistemicnote}
+
+\section{Security Requirement - specializzazione concreta S2}
+
+\begin{resultnote}[CLOSED - definizione S2]
+Un SecurityRequirement è uno SpecializedRequirement la cui obbligazione normativa preserva una singola proprietà di sicurezza governata rilevante per il parent FunctionalRequirement e rende identificabile, nelle proprie normative clause, il security failure mode che costituirebbe la perdita o violazione di tale proprietà nel contesto del parent FR.
+\end{resultnote}
+
+Il delta L1 minimo è:
+\begin{lstlisting}
+SecurityRequirement
+    extends SpecializedRequirement
+    protectedSecurityProperty : SecurityProperty [1]
+\end{lstlisting}
+
+Il failure mode è obbligatorio semanticamente ma non viene duplicato in S2 come campo L1 separato: deve essere identificabile nella normative semantics del Requirement. La tassonomia esatta di \texttt{SecurityProperty} resta aperta; la cardinalità singola è invece chiusa dal coherent-unit/split test.
+
+Gli invarianti S2 principali sono:
+\begin{enumerate}
+  \item \textbf{Failure-mode explicitness}: le normative clause rendono identificabile lo stato/comportamento che violerebbe la proprietà nel parent FR.
+  \item \textbf{Cause neutrality}: l'identità del SecurityRequirement non dipende da una specifica causa adversarial o non-adversarial; attacco, errore o guasto appartengono al reasoning/analysis downstream.
+  \item \textbf{Single governing security property}: proprietà indipendentemente evolvibili o assessable producono SecurityRequirement distinti.
+  \item \textbf{Functional boundary}: ordinary functional correctness resta nell'FR anche quando è security-relevant.
+  \item \textbf{Attack boundary}: una descrizione di attacco non è un SecurityRequirement.
+  \item \textbf{Realization boundary}: control, protocollo, algoritmo o deployment mechanism non sono automaticamente SecurityRequirement semantics.
+\end{enumerate}
+
+Il corpus telecamera valida la forma con SecurityRequirement locali di Confidentiality, Integrity e Authorized Provenance sul comportamento \texttt{FR-3.4 Deliver RecognitionCapture}; le cause e le realizzazioni possono mutare senza cambiare automaticamente l'identità normativa del requisito.
 
 \section{Regole di authoring end-to-end}
 
-La sequenza aggiornata è:
+La sequenza finale del layer documentale è:
 \begin{enumerate}
   \item \textbf{Frame the problem}. Definire problema, boundary e out-of-scope rimuovendo solution vocabulary.
   \item \textbf{Decompose into MR}. Identificare responsabilità macro stabili, controllando overlap, dipendenze e resilienza.
-  \item \textbf{Review the Macro Project Map}. Segnalare MR isolati e applicare l'Isolated-MR review prima di proseguire: autonomia valida, edge mancante o concern-bucket?
+  \item \textbf{Review the Macro Project Map}. Segnalare MR isolati e applicare l'Isolated-MR review: autonomia valida, edge mancante o concern-bucket?
   \item \textbf{Expose Decisions}. Esplicitare commitment su responsibility boundary, policy, strategia, architettura o contratto significativo.
-  \item \textbf{Write operational FRs}. Tradurre ogni Decision in comportamenti osservabili e indipendentemente valutabili.
-  \item \textbf{Add structured references}. Collegare la prosa normativa a subject, predicate e object governati.
+  \item \textbf{Write operational FRs}. Tradurre ogni Decision in Requirement operativi osservabili e indipendentemente valutabili.
+  \item \textbf{Add structured references}. Supportare la prosa normativa con riferimenti riusabili senza creare una seconda autorità semantica.
   \item \textbf{Review cross-branch consumption}. Rendere visibili capability consumate senza trasferire ownership.
-  \item \textbf{Specialize downward}. Aggiungere SR concern-specific senza riscrivere la funzione di base.
+  \item \textbf{Specialize downward}. Aggiungere SpecializedRequirement concern-specific senza riscrivere la funzione di base.
+  \item \textbf{Classify security specializations}. Quando lo SR preserva una proprietà di sicurezza, modellarlo come SecurityRequirement, identificare una sola \texttt{protectedSecurityProperty} e rendere esplicito il failure mode nelle normative clause.
 \end{enumerate}
 
 \begin{longtable}{p{0.18\textwidth}p{0.72\textwidth}}
-\caption{Domande di authoring per i livelli documentali.}\label{tab:authoring-questions-r1}\\
+\caption{Domande di authoring per i livelli documentali.}\label{tab:authoring-questions-final}\\
 \toprule
 Livello & Domanda \\
 \midrule
@@ -441,6 +507,7 @@ MR graph review & Se l'MR è isolato, resta una responsabilità macro autonoma o
 Decision & Quale commitment significativo restringe questa responsabilità e quali conseguenze accettiamo? \\
 FR & Dato quel commitment, quale comportamento operativo deve accadere e con quale risultato/failure behavior? \\
 Specialized Requirement & Quale obbligazione concern-specific aggiuntiva deve valere insieme alla funzione senza sostituirla? \\
+Security Requirement & Quale singola proprietà di sicurezza deve essere preservata e quale failure mode nelle clause ne renderebbe osservabile la violazione nel parent FR? \\
 \bottomrule
 \end{longtable}
 
@@ -458,93 +525,98 @@ La regolarità della gerarchia consente assistenza prevedibile, ma il tool segue
 
 Non deve trasformare automaticamente nomi estratti dalla prosa in semantica canonica, né usare similarity ranking per decidere equivalenza, parentage o ownership.
 
+In prospettiva L3/L4, l'assistenza può anche suggerire il riuso di nomi, predicati o voci tassonomiche già governate e segnalare probabili sinonimi/parafrasi. La suggestion non canonizza il termine: identity, ownership e accettazione restano decisioni governate. La formalizzazione del vocabolario BAE e delle proiezioni analitiche appartiene alla Base Analysis e non viene anticipata qui.
+
 \section{Validazione mediante probe iterativi}
 
-La costruzione del modello usa esempi, controesempi e regressioni. I primi facial-access probe e il primo holdout order/inventory non sono stati trattati come prova definitiva perché contenevano Decision implicite o responsabilità semplificate. Il corpus warehouse R3 ha poi sostenuto il parent Decision obbligatorio rendendo esplicito il responsibility boundary.
+La costruzione del modello usa esempi, controesempi, mutation test e regressioni. I primi facial-access probe e il primo holdout order/inventory non sono stati trattati come prova definitiva perché contenevano Decision implicite o responsabilità semplificate. Il corpus warehouse R3 ha sostenuto il parent Decision obbligatorio rendendo esplicito il responsibility boundary.
 
-La regressione MR-0004 aggiunge un tipo diverso di feedback: un livello downstream, SpecializedRequirement, può mostrare che un concern trasversale era stato promosso troppo presto a MacroRequirement. La correzione modifica il minimo owning layer: non altera la semantica dello SR, ma migliora la decomposizione MR e l'authoring question che la verifica.
+La regressione MR-0004 ha mostrato che un concern trasversale può essere stato promosso troppo presto a MacroRequirement. S1 ha poi chiuso SpecializedRequirement come strengthening locale; S1.5 ha rimosso il wrapper NormativeObligation chiudendo Requirement come unità normativa coerente; S2 ha tipizzato i tre SR telecamera come SecurityRequirement e li ha sottoposti a cause/realization/architecture mutation.
 
 \begin{resultnote}[Lezione metodologica]
-La documentazione non deve essere perfetta prima dell'analisi. Deve essere plausibile, governata e sufficientemente strutturata da consentire all'analisi e ai probe successivi di scoprire errori di classificazione, gap e nuovi obblighi. Le correzioni devono essere tracciabili e seguite da regressione sui casi già accettati.
+La documentazione non deve essere perfetta prima dell'analisi. Deve essere plausibile, governata e sufficientemente strutturata da consentire ai probe successivi di scoprire errori di classificazione, gap e nuovi obblighi. Le correzioni devono modificare il minimo owning layer, essere tracciabili e regredire i corpus già accettati.
 \end{resultnote}
 
-\section{Confine verso Security Requirement e Base Analysis}
+\section{Confine verso Base Analysis}
 
-La closure documentale non equivale alla closure dell'intero DDTA. S1 ha ora chiuso la semantica comune di SpecializedRequirement; la fase successiva può studiare SecurityRequirement come prima specializzazione concreta senza derivarne la semantica da STRIDE.
+Con S2 il governed documentation metamodel è chiuso fino a SecurityRequirement. Questa closure non equivale alla closure dell'intero DDTA: il prossimo owning layer è la rappresentazione analizzabile del sistema/progetto.
 
 \begin{lstlisting}
-Documentation baseline
-MR -> Decision -> FR
+Governed documentation                         [CLOSED]
+MR -> Decision -> Requirement
+                     +-- FunctionalRequirement
+                     `-- SpecializedRequirement
+                              `-- SecurityRequirement
         |
         v
-SpecializedRequirement common semantics        [S1 CLOSED]
+Base Analysis / BAE                            [NEXT]
         |
         v
-SecurityRequirement metamodel                   [next]
+AnalysisRecord / Finding                       [OPEN]
         |
         v
-Base Analysis / BAE
+method-neutral overlay/plugin contract         [OPEN]
         |
         v
-Analysis Record / Finding common envelope
+STRIDE / STRIDE-AI                             [DEFERRED]
         |
         v
-method-neutral overlay/plugin contract
+accepted analytical feedback -> governed change
         |
         v
-STRIDE as first concrete method
-        |
-        v
-accepted Finding -> SecurityRequirement provenance
-        |
-        v
-effective obligation -> design change -> re-analysis
+Base Analysis refresh -> re-analysis
 \end{lstlisting}
 
-\begin{pendingnote}[Elementi intenzionalmente non chiusi]
-Restano aperti/deferred: rappresentazione della shared normative source, effective governed context, target canonico della service consumption, lifecycle/change-impact comune, Base Analysis/BAE, Finding/AnalysisRecord, overlay/plugin, STRIDE/STRIDE-AI, controls ed evidence. L'Isolated-MR review non risolve questi problemi e non introduce una generic \texttt{affects} relation.
+\begin{pendingnote}[Elementi intenzionalmente non chiusi dal Capitolo 4]
+Restano fuori dal layer documentale: rappresentazione della shared normative source; contratto completo lifecycle/history/change-event; esatta rappresentazione L2 delle normative clause; tassonomia SecurityProperty; eventuale identità strutturale di SecurityFailureMode; Base Analysis/BAE; Finding/AnalysisRecord; overlay/plugin; STRIDE/STRIDE-AI; Risk, Control ed evidence. Il fatto che questi elementi siano aperti non rende provvisorio il documentation metamodel: ciascuno deve essere formalizzato nel proprio owning layer e può riaprire il Capitolo 4 solo tramite un controesempio concreto.
 \end{pendingnote}
 
 \section{Condizioni di riapertura}
 
-MR, Decision, FR o SR devono essere riaperti soltanto se una fase successiva mostra un controesempio concreto non rappresentabile senza perdita. In particolare:
+Il Capitolo 4 è CLOSED / FINAL per lo scope corrente. MR, Decision, Requirement, FR, SR o SecurityRequirement possono essere riaperti soltanto se una fase successiva mostra un controesempio concreto e ricorrente non rappresentabile senza perdita o distorsione. In particolare:
 \begin{enumerate}
-  \item una specializzazione method-neutral non può rafforzare correttamente un singolo FR;
-  \item la Base Analysis richiede informazione che il modello di authoring impedisce di esprimere;
-  \item una metodologia richiede source information ottenibile soltanto contaminando i documenti con categorie method-specific;
-  \item il layer Decision costante produce un errore semantico ricorrente;
-  \item service composition richiede ownership multipla incompatibile con il modello;
-  \item la nuova heuristic sugli MR isolati produce falsi positivi sistematici tali da spingere a relazioni artificiali o alla perdita di macro-responsabilità valide.
+  \item Base Analysis richiede semantica di progetto che il modello di authoring impedisce attivamente di esprimere;
+  \item una obbligazione method-neutral non può essere posseduta correttamente con i parent/cardinality chiusi;
+  \item un concreto subtype di Requirement non può usare \texttt{normativeClause [1..*]} e coherent-unit senza perdita;
+  \item un SecurityRequirement valido richiede un contratto method-independent incompatibile con S2;
+  \item il layer Decision costante o la composizione cross-branch producono un errore semantico ricorrente, non un semplice costo di authoring;
+  \item una regola qui chiusa forza duplicazione o perdita di authoritative project knowledge.
 \end{enumerate}
 
-Ogni correzione deve modificare il minimo owning layer e regressare i corpus precedenti.
+Non costituiscono da soli condizioni di riapertura: aggiungere un BAE o una relazione analitica, introdurre una nuova vista grafica, aggiungere payload privato a un plugin, suggerire un sinonimo tramite tool/LLM, formalizzare Attack/Finding/Risk/Control o scegliere una nuova realizzazione tecnica.
+
+Ogni riapertura deve nominare il controesempio, modificare il minimo owning layer e regressare i corpus precedenti.
 
 \section{Conclusioni}
 
-La baseline DDTA separa domande che nella documentazione ordinaria tendono a mescolarsi. L'MR stabilisce quale responsabilità macro appartiene al progetto; la Decision stabilisce quale commitment la restringe; l'FR stabilisce quale comportamento operativo deve conseguire; lo SpecializedRequirement aggiunge un'obbligazione concern-specific senza sostituire la funzione.
+La baseline DDTA separa domande che nella documentazione ordinaria tendono a mescolarsi. L'MR stabilisce quale responsabilità macro appartiene al progetto; la Decision stabilisce quale commitment la restringe; il Requirement fornisce l'astrazione normativa comune; l'FR stabilisce quale comportamento operativo deve conseguire; lo SpecializedRequirement rafforza localmente la funzione; il SecurityRequirement rende tale strengthening specificamente security-oriented tramite una singola proprietà di sicurezza governata e un failure mode esplicito nelle clause.
 
-La regressione di MR-0004 rafforza due aspetti. Primo, la Macro Project Map non serve solo alla teachability: può anche segnalare nodi isolati che meritano review semantica. Secondo, i concern trasversali non necessitano di MacroRequirement dedicati per diventare visibili all'analisi. Il junction naturale rimane SpecializedRequirement e la sua specializzazione concreta.
+La regressione MR-0004, la closure S1, la normalizzazione S1.5 e il corpus S2 mostrano che concern trasversali non richiedono MacroRequirement dedicati e che la semantica di sicurezza non deve essere confusa con attacco, finding o control. Il layer documentale resta quindi stabile anche quando cambiano cause, realizzazioni o tecniche di analisi.
 
-Il metodo rimane deliberatamente pratico: non richiede una documentazione perfetta o completa prima dell'analisi. Richiede documentazione governata sufficiente a rendere esplicite responsabilità, commitment e comportamenti conosciuti; l'analisi successiva può scoprire gap e generare feedback che rientra nel ciclo documentale.
+Il metodo rimane deliberatamente pratico: non richiede una documentazione perfetta o completa prima dell'analisi. Richiede documentazione governata sufficiente a rendere esplicite responsabilità, commitment e obbligazioni conosciute. Il prossimo problema scientifico non è riscrivere questi documenti, ma costruire da essi una Base Analysis methodology-neutral con BAE, relazioni, provenance e proiezioni revisionabili.
 
 \appendix
-\chapter*{Traceability della revisione S1R1}
-\addcontentsline{toc}{chapter}{Traceability della revisione S1R1}
+\chapter*{Traceability della closure finale}
+\addcontentsline{toc}{chapter}{Traceability della closure finale}
 
-La revisione è costruita sopra il repository \artifact{nballestriero/documentation-driven-threat-analysis} al commit \artifact{3eeac1fc972d89282cd2ffd8700e9af0f5b69610}. Documenti sorgente principali:
+La finalizzazione è eseguita sulla baseline repository \artifact{ec6c0107e0d5c0460d2afcbe12dae6f40bc5e6c5}. Mantiene le closure precedenti e consolida i seguenti artefatti principali:
 \begin{itemize}
-  \item \artifact{thesis/latex/chapters/04-documentation-authoring-metamodel.tex};
-  \item \artifact{_working/ddta-metamodel-working-package/01-mr/01-metamodel/DDTA_MR_METAMODEL_WORKING.md};
-  \item \artifact{_working/ddta-metamodel-working-package/01-mr/03-example-facial-access/FACIAL_ACCESS_EXAMPLE_MR.md};
-  \item \artifact{02-decision/05-example-facial-access/FACIAL_ACCESS_DECISION_DEMO.md};
-  \item \artifact{03-functional-requirement/02-authoring-guidance/DDTA_AUTHORING_RULES_THROUGH_FR_R2.md};
-  \item \artifact{03-functional-requirement/04-closure/DDTA_DOCUMENT_METAMODEL_THROUGH_FR_CLOSURE_R2.md}.
+  \item \artifact{03-functional-requirement/04-closure/DDTA_DOCUMENT_METAMODEL_THROUGH_FR_CLOSURE_R2.md};
+  \item \artifact{04-specialized-requirement/01-metamodel/DDTA_SPECIALIZED_REQUIREMENT_S1_R2.tex/.pdf};
+  \item \artifact{04-specialized-requirement/03-example-facial-access/DDTA_FACIAL_ACCESS_CAMERA_S1_STUDY_CORPUS_R2.tex/.pdf};
+  \item \artifact{04-specialized-requirement/04-s1-5-working/DDTA_S1_5_REQUIREMENT_ABSTRACTION_PROVENANCE_WORKING.tex/.pdf};
+  \item \artifact{05-security-requirement/01-metamodel/DDTA_SECURITY_REQUIREMENT_S2_R1.tex/.pdf}.
 \end{itemize}
 
-Artefatti companion prodotti durante S1:
-\begin{itemize}
-  \item \artifact{DDTA_SPECIALIZED_REQUIREMENT_S1_R2.tex/.pdf};
-  \item \artifact{DDTA_FACIAL_ACCESS_CAMERA_S1_STUDY_CORPUS_R2.tex/.pdf}.
-\end{itemize}
+Stato finale del blocco documentale:
+\begin{lstlisting}
+MR                    CLOSED
+Decision              CLOSED
+Requirement           CLOSED
+FunctionalRequirement CLOSED
+SpecializedRequirement CLOSED
+SecurityRequirement   CLOSED
+Base Analysis / BAE    NEXT
+\end{lstlisting}
 
 \end{document}
