@@ -1,0 +1,71 @@
+artifact: BA1_T3_CLOSURE_LEDGER_R1
+baseline_reviewed: e88d7e220536863d564f9e3b9fac7f1592a8c440
+phase: BA1
+microstep: BA1-T3
+status: CLOSED_PASS
+ba0: CLOSED
+ba1: CLOSED
+ba2: NOT_STARTED_NEXT_AUTHORIZED
+accepted_identity_families:
+- id: BA1-C1
+  name: BAReferent
+  status: ACCEPTED
+  reason: Independent reusable project-semantic identity is required across propositions, projections and change.
+- id: BA1-C2
+  name: BAProposition
+  status: ACCEPTED
+  reason: Independent assertion identity is required for origin/provenance, diagnosis, reuse and change disposition.
+not_required_as_additional_first_class_metaclass:
+- BAE
+domain_split_dispositions:
+  Participant_Actor: NOT_REQUIRED_BY_CURRENT_EVIDENCE
+  Component_Capability: NOT_REQUIRED_BY_CURRENT_EVIDENCE
+  Information_Resource: NOT_REQUIRED_BY_CURRENT_EVIDENCE
+  Behavior_Event_Transition: NOT_REQUIRED_BY_CURRENT_EVIDENCE
+  Interface_Connection_Channel: NOT_REQUIRED_BY_CURRENT_EVIDENCE
+  Store_Persistence: NOT_REQUIRED_BY_CURRENT_EVIDENCE
+  Contract: NOT_REQUIRED_BY_CURRENT_EVIDENCE
+  Boundary_Externality: NOT_REQUIRED_BY_CURRENT_EVIDENCE
+  State_Mode_Context: NOT_REQUIRED_BY_CURRENT_EVIDENCE
+  Dependency_Allocation: NOT_REQUIRED_BY_CURRENT_EVIDENCE
+  Property_Constraint: NOT_REQUIRED_BY_CURRENT_EVIDENCE
+  DataFlow_Interaction: NOT_REQUIRED_BY_CURRENT_EVIDENCE
+rejected_or_removed:
+  semantic_one_family_collapse: REJECTED
+  proposition_as_project_semantic_target: NOT_REQUIRED_REMOVED_FROM_MINIMAL_CORE
+  document_types_as_bae_types: REJECTED_BY_INHERITANCE
+  method_specific_roots_in_shared_core: REJECTED_AS_NECESSITY
+closed_first_class_split_criterion:
+  identity_required: true
+  subtype_specific_invariants_required: true
+  convenience_alone_sufficient: false
+phase_owners:
+  BA2:
+  - proposition structure
+  - participation roles
+  - relation/action semantics
+  - classification mechanics
+  BA3:
+  - identity/equivalence/lifecycle mechanics
+  - source locators
+  - origin/provenance
+  - diagnostic materialization
+  - stale/change state
+  BA4:
+  - human projections
+  - method projections
+  BA5:
+  - controlled vocabulary
+  - lexical assistance
+  - optional extraction/authoring assistance
+  BA6:
+  - Base Analysis regression
+  - complete Base Analysis closure
+next_authorized_microstep: BA2-T1 minimal BAProposition structural shape and participation-role lower-bound derivation
+ba1_t4_required: false
+reopen_triggers:
+- A governed corpus requires independent subtype-specific invariants not representable over BAReferent and BAProposition.
+- A method-neutral consumer must reconstruct a missing first-class semantic distinction from raw prose.
+- BA2 proposition-role design reveals an unacknowledged third semantic identity family.
+- BA3 cannot preserve assertion-level provenance/diagnosis/change using BAProposition identity.
+- Concrete evidence shows BAProposition identity is reducible without losing any BA0 responsibility.

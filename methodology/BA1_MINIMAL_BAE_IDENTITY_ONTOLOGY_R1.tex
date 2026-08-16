@@ -1,0 +1,400 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  10pt,
+  a4paper,
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\setlength{\emergencystretch}{3em}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{DDTA minimal BAE identity ontology -
+R1}\label{ddta-minimal-bae-identity-ontology---r1}
+
+\textbf{Status:} CLOSED BY BA1-T3
+
+\textbf{Repository baseline reviewed:}
+\texttt{e88d7e220536863d564f9e3b9fac7f1592a8c440}
+
+\textbf{Activation:} applies when the BA1-T3 closure package is accepted
+and committed.
+
+\textbf{Authority note:} this artifact defines the minimal Base Analysis
+semantic identity boundary. Governed project documentation remains
+project authority.
+
+\subsection{1. Closed ontology
+statement}\label{closed-ontology-statement}
+
+For the current thesis scope, the minimal first-class semantic identity
+ontology of Base Analysis contains exactly two families:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BAReferent}
+\NormalTok{BAProposition}
+\end{Highlighting}
+\end{Shaded}
+
+\texttt{BAE} is an umbrella term for Base Analysis elements. BA1 does
+not require an additional \texttt{BAE} metaclass.
+
+The two families are semantic distinctions. One implementation may
+materialize them in separate classes/tables, in one physical container
+with a discriminator, or in another representation, provided the closed
+semantic distinction is preserved.
+
+\subsection{\texorpdfstring{2. \texttt{BAReferent} -
+ACCEPTED}{2. BAReferent - ACCEPTED}}\label{bareferent---accepted}
+
+A \texttt{BAReferent} is an independently identifiable unit of
+methodology-neutral shared project meaning that must be reusable across
+one or more analytical propositions, projections or governed baselines.
+
+A BAReferent is not restricted to a concrete runtime object. Depending
+on governed project meaning, it may denote a participant, capability,
+information/resource concept, behavior/event, milestone, contract,
+store, boundary, state/context or another independently reusable
+semantic referent.
+
+When project meaning must itself be reused, constrained, correlated,
+compared across baselines or targeted by multiple assertions, that
+meaning receives BAReferent identity.
+
+\subsection{\texorpdfstring{3. \texttt{BAProposition} -
+ACCEPTED}{3. BAProposition - ACCEPTED}}\label{baproposition---accepted}
+
+A \texttt{BAProposition} is an independently identifiable
+methodology-neutral analytical assertion about one or more BAReferent
+identities, with enough independent identity to support assertion-level
+origin/provenance, diagnosis, reuse and change disposition.
+
+A BAProposition is not the project-semantic thing it describes. If the
+underlying project meaning needs independent reuse or qualification,
+that meaning is represented as a BAReferent and propositions state the
+relevant semantics about it.
+
+The exact internal structure of a proposition, its participation roles,
+arity, predicates, actions and cardinalities are not closed by BA1. They
+belong to BA2.
+
+\subsection{4. Why two identity families are
+necessary}\label{why-two-identity-families-are-necessary}
+
+Removing BAReferent would force propositions to point to raw source
+strings, document identities or ad-hoc duplicated concepts, weakening
+stable shared semantic identity, projection reuse and change-impact
+reasoning.
+
+Removing BAProposition would force assertion-level origin, uncertainty
+and change disposition into properties of referents or into anonymous
+relation rows. The reviewed corpora require the same referent to survive
+while assertions about it are introduced, revised, superseded, retained
+or diagnosed. Reifying every assertion as an undifferentiated referent
+would merely rename proposition semantics rather than eliminate them.
+
+Therefore semantic collapse into one undifferentiated family is
+rejected.
+
+\subsection{5. Domain kinds are not automatically first-class
+types}\label{domain-kinds-are-not-automatically-first-class-types}
+
+BA1 does not require dedicated first-class metaclasses for:
+
+\begin{itemize}
+\tightlist
+\item
+  Participant / Actor;
+\item
+  Component / Capability;
+\item
+  Information / Resource;
+\item
+  Behavior / Event / Transition;
+\item
+  Interface / Connection / Channel;
+\item
+  Store / Persistence;
+\item
+  Contract;
+\item
+  Boundary / Externality;
+\item
+  State / Mode / Context;
+\item
+  Dependency / Allocation;
+\item
+  Property / Constraint;
+\item
+  DataFlow / Interaction.
+\end{itemize}
+
+A concrete meaning from any of these categories may still be represented
+as a BAReferent when independent identity is required.
+
+Its category may be preserved through method-neutral classification,
+roles, values or propositions. BA1 intentionally does not freeze the
+exact classification vocabulary or cardinality.
+
+\subsection{6. First-class split criterion -
+CLOSED}\label{first-class-split-criterion---closed}
+
+A future dedicated BAE type/family is justified only when concrete
+evidence shows both:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{independent semantic identity} is required across
+  propositions, projections or change; and
+\item
+  \textbf{reusable subtype-specific invariants} cannot be represented
+  honestly as classifications, roles, values or propositions over the
+  accepted families.
+\end{enumerate}
+
+Recurring usefulness, familiar systems-modeling terminology, diagram
+convenience, programming classes, database tables or a method-specific
+category are insufficient by themselves.
+
+\subsection{7. Closed family-boundary
+invariants}\label{closed-family-boundary-invariants}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Two-family minimum:} Base Analysis preserves the semantic
+  distinction between project-semantic referent identity and analytical
+  assertion identity.
+\item
+  \textbf{Referent reuse:} independently reusable project meaning is
+  represented through BAReferent identity.
+\item
+  \textbf{Assertion identity:} independently
+  reviewable/provenance-bearing shared analytical claims are represented
+  through BAProposition identity.
+\item
+  \textbf{No proposition proxy:} BAProposition is not required to serve
+  as a proxy project referent; reusable project meaning receives
+  BAReferent identity.
+\item
+  \textbf{Method neutrality:} neither family embeds STRIDE, STRIDE-AI,
+  DFD or tool-owned semantic categories.
+\item
+  \textbf{Document separation:} governed document kinds remain
+  source-layer concepts and are not copied into Base Analysis as BAE
+  types by inheritance.
+\item
+  \textbf{Classification is cheaper than splitting:} method-neutral
+  semantic kind or participation-role information does not create a new
+  first-class type unless the split criterion is met.
+\item
+  \textbf{Representation independence:} the semantic family boundary
+  does not mandate a programming class hierarchy, graph notation,
+  database schema or persisted canonical graph.
+\item
+  \textbf{Authority preservation:} BAReferent and BAProposition
+  identities do not make Base Analysis project authority; governed
+  documentation remains authoritative.
+\item
+  \textbf{Phase separation:} relation/action structure is BA2;
+  provenance/identity mechanics are BA3; projections BA4; vocabulary
+  assistance BA5; implemented Base Analysis regression BA6.
+\end{enumerate}
+
+\subsection{8. Explicit non-types and downstream
+constructs}\label{explicit-non-types-and-downstream-constructs}
+
+The following are not BA1 domain BAE metaclasses:
+
+\begin{itemize}
+\tightlist
+\item
+  document-layer roots/commitments: \texttt{MacroRequirement} and
+  \texttt{Decision};
+\item
+  document-layer requirement types: \texttt{Requirement} and
+  \texttt{FunctionalRequirement};
+\item
+  \texttt{SpecializedRequirement} (document layer);
+\item
+  \texttt{SecurityRequirement} and \texttt{NormativeClause} (document
+  layer);
+\item
+  grounded, derived and diagnostic/unresolved origin/state categories;
+\item
+  source locator or provenance record;
+\item
+  view/projection;
+\item
+  AnalysisRecord, Finding or Common Finding;
+\item
+  ThreatForge implementation objects;
+\item
+  STRIDE/STRIDE-AI/DFD elements.
+\end{itemize}
+
+Their relevant responsibilities remain source-layer, metadata,
+projection, analysis-envelope or later-phase concerns as already
+allocated by BA0 and the research work plan.
+
+\subsection{9. Correct interpretation of
+specialization}\label{correct-interpretation-of-specialization}
+
+BA1 closure does not claim that all BAReferents are semantically
+identical.
+
+A facial-access delivery behavior, a RecognitionCapture information
+concept, a PaymentProviderContract and an InventoryLedger can all be
+distinct BAReferents with different method-neutral classifications and
+different propositions.
+
+The closure only says that current evidence does not require separate
+\textbf{first-class identity families} for those categories. BA2 may
+define roles/relations/classification mechanics needed to distinguish
+and consume them. A later concrete counterexample may reopen BA1 if
+classification is insufficient and a true subtype-specific invariant is
+required.
+
+\subsection{10. Reopen criteria}\label{reopen-criteria}
+
+Reopen BA1 only for a material identity-ontology counterexample, for
+example:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  a governed corpus requires a semantic kind with independent identity
+  plus subtype-specific invariants that cannot be represented honestly
+  over BAReferent/BAProposition;
+\item
+  a method-neutral consumer cannot construct its required projection
+  without independently reconstructing a missing first-class semantic
+  distinction from raw prose;
+\item
+  BA2 cannot define coherent proposition participation/role semantics
+  without introducing an unacknowledged third identity family;
+\item
+  BA3 shows that assertion-level provenance/diagnosis/change cannot be
+  attached coherently to BAProposition identity;
+\item
+  a concrete case proves BAProposition identity can be removed without
+  losing any BA0 responsibility, materially falsifying the two-family
+  lower bound.
+\end{enumerate}
+
+Do not reopen BA1 merely because a dedicated subtype would make code, a
+diagram, a query or one analysis method more convenient.
+
+\subsection{11. Closure disposition}\label{closure-disposition}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BA1             CLOSED}
+\NormalTok{BAReferent      ACCEPTED first{-}class semantic identity family}
+\NormalTok{BAProposition   ACCEPTED first{-}class semantic identity family}
+\NormalTok{BAE             umbrella term; no additional metaclass required}
+\NormalTok{Domain splits   NOT REQUIRED by current evidence}
+\NormalTok{BA2             NOT STARTED / NEXT AUTHORIZED PHASE}
+\end{Highlighting}
+\end{Shaded}
+
+
+\end{document}
