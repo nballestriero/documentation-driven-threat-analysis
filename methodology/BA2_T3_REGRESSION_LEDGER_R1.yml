@@ -1,0 +1,51 @@
+artifact: BA2_T3_REGRESSION_LEDGER_R1
+revision: R1
+status: COMPLETED_PROVISIONAL_PASS_WITH_REDUCTION
+repository_baseline_reviewed: 4d832bcf90109106d543029cb517be32a6fe7ea7
+phase: BA2
+ba0: CLOSED
+ba1: CLOSED
+ba2: STARTED_NOT_CLOSED
+ba3: NOT_STARTED
+operator_regression:
+  transfer: RETAIN
+  produce: RETAIN
+  create: RETAIN
+  observe: RETAIN
+  transition: RETAIN
+  correlate: RETAIN
+  reference: RETAIN
+  dependOn: RETAIN
+  consumeService: RETAIN
+  realize: RETAIN
+  assignResponsibility: RETAIN_BROADEN
+  ownOrManage: MERGE_INTO_ASSIGN_RESPONSIBILITY
+  constrain: RETAIN
+  classify: RETAIN
+operator_family_facet: REMOVE_FROM_NORMATIVE_CORE
+missing_operator_forced: false
+role_regression:
+  operator_scoped_contracts: PASS
+  input_under_produce: ADD_FORCED_BY_REGRESSION
+  responsibilityKind_under_assignResponsibility: ADD_FORCED_BY_MERGE
+polarity: RETAIN_READY_FOR_CLOSURE_REVIEW
+modifier_regression:
+  condition: RETAIN
+  temporalScope: RETAIN
+  applicability: MERGE_INTO_CONDITION
+  quantification: MOVE_TO_ROLE_CARDINALITY_OR_CONSTRAIN
+  completionOutcome: PROMOTE_TO_CONSTRAIN_WHEN_GOVERNED
+  atomicity: PROMOTE_TO_CONSTRAIN
+  concurrency: PROMOTE_TO_CONSTRAIN
+  idempotency: PROMOTE_TO_CONSTRAIN
+classification:
+  as_proposition: RETAIN
+  stable_registry_contract: REQUIRED
+  exhaustive_universal_enumeration: NOT_REQUIRED
+  ba1_type_promotion: REJECTED
+semantic_key_lexical_separation: PASS
+facial_access_replay: PASS
+order_fulfillment_replay: PASS
+bounded_stride_consumer: PASS_NO_METHOD_LEAKAGE
+ba1_reopen_trigger: false
+next_authorized_microstep: BA2_T4_RELATION_ACTION_VOCABULARY_CLOSURE_REVIEW

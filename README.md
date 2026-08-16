@@ -15,18 +15,18 @@ The repository is intentionally separate from the ThreatForge software repositor
 
 ## Current research checkpoint
 
-The documentation layer, Chapters 2-4, `BA0-R`, the BA0 responsibility/non-goals boundary and the BA1 minimal BAE identity ontology are closed. BA2-T1 derived the lower-bound n-ary structure of `BAProposition`; BA2-T2 now pressure-tests the vocabulary needed to instantiate that structure without copying authoring verbs or importing method-specific taxonomies.
+The documentation layer, Chapters 2-4, `BA0-R`, the BA0 responsibility/non-goals boundary and the BA1 minimal BAE identity ontology are closed. BA2-T1 derived the lower-bound n-ary structure of `BAProposition`; BA2-T2 derived a provisional operator/role/modifier vocabulary architecture; BA2-T3 has now replayed that candidate across the facial-access and order-fulfillment corpora and reduced it before closure review.
 
 The active state and forward rules are recorded in:
 
-- `methodology/DDTA_CURRENT_RESEARCH_STATE_R7.md`
-- `methodology/DDTA_RESEARCH_WORK_PLAN_AFTER_DOCUMENTATION_CLOSURE_R10.md`
+- `methodology/DDTA_CURRENT_RESEARCH_STATE_R8.md`
+- `methodology/DDTA_RESEARCH_WORK_PLAN_AFTER_DOCUMENTATION_CLOSURE_R11.md`
 - `methodology/BA1_MINIMAL_BAE_IDENTITY_ONTOLOGY_R1.md`
 - `methodology/BA2_PROPOSITION_STRUCTURE_CANDIDATE_R1.md`
-- `methodology/BA2_SEMANTIC_VOCABULARY_CANDIDATE_R1.md`
-- `methodology/BA2_T2_OPERATOR_ROLE_MODIFIER_VOCABULARY_PRESSURE_TEST_R1.md`
+- `methodology/BA2_SEMANTIC_VOCABULARY_CANDIDATE_R2.md`
+- `methodology/BA2_T3_CROSS_CORPUS_REGRESSION_R1.md`
 
-`BA0` and `BA1` are **CLOSED**. `BAReferent` and `BAProposition` remain the only accepted first-class semantic identity families. `BA2-T1` is **COMPLETED / PROVISIONAL CANDIDATE**. `BA2-T2` is **COMPLETED / PROVISIONAL PASS WITH VOCABULARY-ARCHITECTURE REFINEMENT**: it retains stable semantic operator keys, operator-scoped role contracts and normalized modifier semantics with an explicit promotion rule. The seed operator/role vocabulary is still **CANDIDATE / NOT CLOSED** and must be regressed before BA2 closure. `BA2` remains **STARTED / NOT CLOSED**.
+`BA0` and `BA1` are **CLOSED**. `BAReferent` and `BAProposition` remain the only accepted first-class semantic identity families. `BA2-T1` is **COMPLETED / PROVISIONAL CANDIDATE**. `BA2-T2` is **COMPLETED / PROVISIONAL PASS WITH VOCABULARY-ARCHITECTURE REFINEMENT**. `BA2-T3` is **COMPLETED / PROVISIONAL PASS WITH REDUCTION**: no missing method-neutral operator is forced by the two corpora, `ownOrManage` is merged into responsibility/authority semantics, the operator-family facet is removed from the normative core, and recurrent atomicity/concurrency/idempotency/failure semantics are promoted to explicit constraints instead of a broad modifier bag. `BA2` remains **STARTED / NOT CLOSED** pending a dedicated closure review.
 
 ## Important scope boundary
 

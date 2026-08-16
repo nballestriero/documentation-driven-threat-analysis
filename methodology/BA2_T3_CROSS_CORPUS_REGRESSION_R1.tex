@@ -1,0 +1,637 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  10pt,
+  a4paper,
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{BA2-T3 - Cross-corpus regression of operator/role/modifier
+candidate and semantic-key/lexical
+separation}\label{ba2-t3---cross-corpus-regression-of-operatorrolemodifier-candidate-and-semantic-keylexical-separation}
+
+\textbf{Revision:} R1
+
+\textbf{Status:} COMPLETED / PROVISIONAL PASS WITH REDUCTION / BA2 NOT
+CLOSED
+
+\textbf{Repository baseline reviewed:}
+\texttt{4d832bcf90109106d543029cb517be32a6fe7ea7}
+
+\textbf{Phase:} BA2 - Relations and canonical action vocabulary
+
+\textbf{BA0:} CLOSED
+
+\textbf{BA1:} CLOSED
+
+\textbf{BA3:} NOT STARTED
+
+\subsection{1. Question}\label{1-question}
+
+BA2-T3 asks only:
+
+\begin{quote}
+Can the BA2-T2 semantic-operator/role/modifier candidate replay both
+governed corpora without raw-prose reconstruction, and which candidate
+distinctions can be removed or promoted while preserving the semantics
+needed by methodology-neutral consumers?
+\end{quote}
+
+This is a regression/reduction step. It does not reward vocabulary
+growth.
+
+\subsection{2. Evidence replayed}\label{2-evidence-replayed}
+
+The regression uses:
+
+\begin{itemize}
+\tightlist
+\item
+  closed BA1 identity ontology (\texttt{BAReferent\ +\ BAProposition});
+\item
+  BA2-T1 n-ary proposition structure;
+\item
+  BA2-T2 R1 vocabulary candidate;
+\item
+  facial-access D-3.3, FR-3.3, FR-3.4, D-3.4, D-3.5 and SR-3.4-C/I/P;
+\item
+  order-fulfillment MR-1 through MR-4, including reservation, payment,
+  fulfillment, provider contracts, lifecycle and physical handoff reuse;
+\item
+  BA0-T2 STRIDE-oriented transfer projection only as a bounded consumer
+  probe.
+\end{itemize}
+
+No source document is changed by this trial.
+
+\subsection{3. Regression strategy}\label{3-regression-strategy}
+
+For every candidate operator the test attempts, in order:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{delete} it and replay the two corpora;
+\item
+  \textbf{merge} it into another key and check for semantic loss;
+\item
+  \textbf{move} the distinction into roles, typed values or constraints
+  where that is more economical;
+\item
+  retain the key only if a consumer would otherwise have to reconstruct
+  relevant project meaning from prose.
+\end{enumerate}
+
+The same discipline is applied to roles, modifier kinds and
+classification.
+
+\subsection{4. Operator regression
+ledger}\label{4-operator-regression-ledger}
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+BA2-T2 key & Regression result & Disposition \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{transfer} & Required for camera delivery and
+order/provider/carrier conveyance; not equivalent to
+reference/dependency & \textbf{RETAIN} \\
+\texttt{produce} & Required to preserve governed output/result
+production; \texttt{map}/\texttt{derive} can use input/result roles plus
+constraints & \textbf{RETAIN} \\
+\texttt{create} & Required for OrderEvaluation, Reservation,
+FulfillmentTask, StockMovement/event establishment & \textbf{RETAIN} \\
+\texttt{observe} & Required to distinguish reading/querying current
+state from creation or mutation & \textbf{RETAIN} \\
+\texttt{transition} & Required for Order/Reservation lifecycle and state
+change & \textbf{RETAIN} \\
+\texttt{correlate} & Same-request/evaluation identity matching is
+stronger than generic reference & \textbf{RETAIN} \\
+\texttt{reference} & FulfillmentTask -\textgreater{} Order/Reservation
+does not imply correlation/dependency & \textbf{RETAIN} \\
+\texttt{dependOn} & Required for commitment gates and physical-handoff
+prerequisites & \textbf{RETAIN} \\
+\texttt{consumeService} & Actual service use without ownership transfer
+is not exhausted by generic dependency & \textbf{RETAIN} \\
+\texttt{realize} & Connectivity -\textgreater{} Ethernet/Wi-Fi change
+must remain mechanically distinct & \textbf{RETAIN} \\
+\texttt{assignResponsibility} & Required for responsibility/authority
+placement; can carry an authority kind & \textbf{RETAIN / BROADEN} \\
+\texttt{ownOrManage} & Can be represented by
+\texttt{assignResponsibility} + \texttt{responsibilityKind} + polarity
+without loss & \textbf{MERGE / REMOVE KEY} \\
+\texttt{constrain} & Required for security, completion, atomicity,
+concurrency, idempotency and admissibility rules & \textbf{RETAIN} \\
+\texttt{classify} & Required for reusable semantic kinds without BA1
+subtype proliferation & \textbf{RETAIN} \\
+\end{longtable}
+
+\subsubsection{Result}\label{result}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BA2{-}T2 seed keys: 14}
+\NormalTok{BA2{-}T3 R2 seed keys: 13}
+\NormalTok{missing operator forced by regression: NONE}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{\texorpdfstring{5. Why \texttt{ownOrManage} collapses but
+\texttt{consumeService} does
+not}{5. Why ownOrManage collapses but consumeService does not}}\label{5-why-ownormanage-collapses-but-consumeservice-does-not}
+
+The facial corpus deliberately states both that the project
+\textbf{consumes} local connectivity and that it does \textbf{not
+own/manage} the underlying transport.
+
+\texttt{consumeService} must remain distinct because it says an actual
+capability/service is used. Ownership/management, however, is one
+authority mode among possible responsibility modes. It can therefore be
+represented under the broader responsibility relation:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{assignResponsibility}
+\NormalTok{  responsibleParty    {-}\textgreater{} project}
+\NormalTok{  responsibilityScope {-}\textgreater{} underlying transport}
+\NormalTok{  responsibilityKind  {-}\textgreater{} ownership/management}
+\NormalTok{  polarity            {-}\textgreater{} negative}
+\end{Highlighting}
+\end{Shaded}
+
+The semantic boundary
+\texttt{service\ consumption\ !=\ ownership/management} remains visible
+even though one operator key is removed.
+
+\subsection{6. Missing-role test}\label{6-missing-role-test}
+
+Two role distinctions are added because the replay cannot remain
+explicit without them.
+
+\subsubsection{\texorpdfstring{6.1 \texttt{input} under
+\texttt{produce}}{6.1 input under produce}}\label{61-input-under-produce}
+
+\texttt{PaymentAdapter\ maps\ provider\ response/outcome\ to\ PaymentAuthorizationResult}
+and \texttt{AvailabilityResult} derives from current accountable
+inventory state. Merely saying that a result is produced loses the
+governed input/result boundary.
+
+The regression therefore adds optional \texttt{input} participation to
+\texttt{produce}.
+
+\subsubsection{\texorpdfstring{6.2 \texttt{responsibilityKind} under
+\texttt{assignResponsibility}}{6.2 responsibilityKind under assignResponsibility}}\label{62-responsibilitykind-under-assignresponsibility}
+
+The merge of ownership/management into responsibility semantics must not
+make ownership, management and generic responsibility indistinguishable.
+A controlled \texttt{responsibilityKind} term preserves that
+distinction.
+
+No other missing role distinction is forced by the current corpora.
+
+\subsection{7. Cardinality test}\label{7-cardinality-test}
+
+The R2 role matrix uses exact maxima only where the current operator
+meaning requires them. It avoids inventing general systems-model
+cardinalities.
+
+Examples:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{transfer:}
+\NormalTok{  source       1}
+\NormalTok{  destination  1..*}
+\NormalTok{  content      1..*}
+
+\NormalTok{correlate:}
+\NormalTok{  correlatedItem      1..*}
+\NormalTok{  correlationContext  1}
+
+\NormalTok{transition:}
+\NormalTok{  subject    1}
+\NormalTok{  fromState  0..1}
+\NormalTok{  toState    1}
+\NormalTok{  actor      0..1}
+
+\NormalTok{consumeService:}
+\NormalTok{  consumer   1..*}
+\NormalTok{  service    1}
+\NormalTok{  provider   0..1}
+\end{Highlighting}
+\end{Shaded}
+
+The matrix is internally compatible with both corpora. No clause
+requires anonymous positional arguments or method-specific DFD slots.
+
+\subsection{8. Lexical-key separation
+regression}\label{8-lexical-key-separation-regression}
+
+The same semantic key remains stable across distinct source verbs:
+
+\begin{itemize}
+\tightlist
+\item
+  delivery/send/submit/emit pressure -\textgreater{} \texttt{transfer}
+  where the governed meaning is conveyance;
+\item
+  read/query pressure -\textgreater{} \texttt{observe};
+\item
+  create/record pressure -\textgreater{} \texttt{create} only when new
+  project-semantic identity/event is established;
+\item
+  transition/release/consume/update pressure -\textgreater{}
+  \texttt{transition} when governed lifecycle/state changes;
+\item
+  produce/derive/map pressure -\textgreater{} \texttt{produce} with
+  explicit inputs/results and separate constraints when normalization
+  rules matter.
+\end{itemize}
+
+The reverse is also important: identical source words do not force
+identical BA semantics. \texttt{record} may mean create an attributable
+StockMovement or persist/update an existing state, depending on the
+governed clause.
+
+\subsubsection{Disposition}\label{disposition}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{semantic key stable across source wording: PASS}
+\NormalTok{source lexical predicate as semantic identity: REJECTED}
+\NormalTok{canonical display synonym work: DEFERRED TO BA5}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{9. Polarity regression}\label{9-polarity-regression}
+
+Negative facts occur in both corpora and do not justify \texttt{notX}
+operator proliferation.
+
+Examples include:
+
+\begin{itemize}
+\tightlist
+\item
+  project does not own/manage transport;
+\item
+  incomplete transfer is not success;
+\item
+  stale/superseded results must not satisfy current commitment gates;
+\item
+  raw provider/carrier status must not directly become governed state;
+\item
+  rejected/indeterminate carrier acceptance is not physical handoff.
+\end{itemize}
+
+Explicit polarity therefore survives as a normalized proposition
+property.
+
+\textbf{Disposition:} \textbf{RETAIN / READY FOR BA2 CLOSURE REVIEW}.
+
+\subsection{10. Modifier-promotion
+regression}\label{10-modifier-promotion-regression}
+
+BA2-T2 allowed a wider modifier candidate set. Replay shows that several
+of those semantics are too important to remain embedded by default.
+
+\subsubsection{\texorpdfstring{10.1 Promote to explicit
+\texttt{constrain}
+propositions}{10.1 Promote to explicit constrain propositions}}\label{101-promote-to-explicit-constrain-propositions}
+
+\begin{itemize}
+\tightlist
+\item
+  completion/failure semantics;
+\item
+  atomicity;
+\item
+  concurrency;
+\item
+  idempotency;
+\item
+  normative exact-once/all-lines quantity rules when they constrain
+  behavior.
+\end{itemize}
+
+These rules recur, are independently reviewable and are useful selection
+points for analysis.
+
+\subsubsection{10.2 Keep only genuinely local
+modifiers}\label{102-keep-only-genuinely-local-modifiers}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{condition} (including local applicability/guard semantics);
+\item
+  \texttt{temporalScope}.
+\end{itemize}
+
+Participant cardinalities are structural role contracts rather than
+modifiers. If a condition or temporal scope becomes independently
+reusable/reviewable, the existing promotion rule moves it into
+referent/proposition semantics.
+
+\subsubsection{Disposition}\label{disposition-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{untyped/free{-}text modifier bag: REJECTED}
+\NormalTok{wide modifier enumeration from T2: REDUCED}
+\NormalTok{condition: RETAIN}
+\NormalTok{ temporalScope: RETAIN}
+\NormalTok{atomicity/concurrency/idempotency/completion rules: PROMOTE TO CONSTRAIN}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{11. Classification
+regression}\label{11-classification-regression}
+
+Classification-as-proposition successfully supplies reusable semantic
+distinctions without turning them into BA1 root types.
+
+A bounded consumer can identify, for example, delivery behavior,
+RecognitionCapture information/resource meaning and Camera/processor
+capability meaning from controlled classification assertions rather than
+from source prose.
+
+The order corpus adds pressure from party, capability,
+information/resource, store and contract meanings.
+
+However, regression does \textbf{not} justify freezing a universal
+semantic-kind taxonomy. Doing so would recreate the general
+systems-modeling ontology that BA1 deliberately avoided.
+
+\subsubsection{Disposition}\label{disposition-2}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{classification{-}as{-}proposition: RETAIN}
+\NormalTok{stable semantic{-}kind registry contract: REQUIRED}
+\NormalTok{fixed exhaustive semantic{-}kind enumeration: REJECTED AS CURRENT{-}SCOPE REQUIREMENT}
+\NormalTok{semantic kind {-}\textgreater{} BA1 metaclass promotion: REJECTED}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{12. Facial-access replay}\label{12-facial-access-replay}
+
+The FR-3.4 branch can be selected mechanically as:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Delivery behavior referent}
+\NormalTok{  transfer(CameraSubsystem, RecognitionProcessor, RecognitionCapture)}
+\NormalTok{  correlate(RecognitionCapture, RecognitionRequest)}
+
+\NormalTok{Connectivity meaning}
+\NormalTok{  consumeService(project context, LocalConnectivity)}
+\NormalTok{  assignResponsibility(project, underlying transport, ownership/management) [negative]}
+\NormalTok{  realize(LocalConnectivity, WiredEthernet)}
+
+\NormalTok{Delivery constraints}
+\NormalTok{  incomplete delivery != successful completion}
+\NormalTok{  confidentiality}
+\NormalTok{  integrity}
+\NormalTok{  authorized provenance}
+\end{Highlighting}
+\end{Shaded}
+
+A future STRIDE overlay can derive source, destination, information,
+correlation, external responsibility and realization without introducing
+\texttt{DataFlow} or \texttt{TrustBoundary} into Base Analysis.
+
+\subsection{13. Order-fulfillment
+replay}\label{13-order-fulfillment-replay}
+
+The order corpus does not force new operator keys:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{requestsCapture}, \texttt{requestsVoid},
+  \texttt{requestsStockIssue} can be represented through
+  transfer/service-consumption/dependency semantics rather than copied
+  as operators;
+\item
+  \texttt{maps} is handled by \texttt{produce} with input/result plus
+  normalization constraints;
+\item
+  \texttt{increases}, \texttt{decreasesReserved}, \texttt{releases} and
+  \texttt{consumes} are lifecycle/state transition and constraint
+  semantics, not separate canonical verbs;
+\item
+  exactly-once, all-or-nothing, concurrency and idempotency are explicit
+  constraints;
+\item
+  the physical handoff remains a reusable event/milestone referent and
+  is not collapsed into carrier acceptance.
+\end{itemize}
+
+The corpus therefore passes without vocabulary growth.
+
+\subsection{14. Bounded method-consumer
+regression}\label{14-bounded-method-consumer-regression}
+
+The BA0-T2 STRIDE-oriented transfer projection remains constructible
+from R2:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{behavior        \textless{}{-} classify(delivery, behavior/event)}
+\NormalTok{source          \textless{}{-} transfer.source}
+\NormalTok{destination     \textless{}{-} transfer.destination}
+\NormalTok{information     \textless{}{-} transfer.content + classification}
+\NormalTok{correlation     \textless{}{-} correlate}
+\NormalTok{responsibility  \textless{}{-} consumeService + assignResponsibility/polarity}
+\NormalTok{realization     \textless{}{-} realize}
+\NormalTok{failure rule    \textless{}{-} constrain}
+\NormalTok{security rules  \textless{}{-} constrain}
+\end{Highlighting}
+\end{Shaded}
+
+STRIDE/DFD categories remain outside Base Analysis.
+
+\textbf{Disposition:} \textbf{PASS}.
+
+\subsection{15. BA1 reopen test}\label{15-ba1-reopen-test}
+
+No operator, role, modifier or classification mechanism requires a third
+first-class semantic identity family.
+
+\textbf{Disposition:} \texttt{BA1\ REMAINS\ CLOSED}.
+
+\subsection{16. Trial disposition}\label{16-trial-disposition}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BA2{-}T1 structural candidate                  RETAINED}
+\NormalTok{exact semantic operator key                  RETAINED}
+\NormalTok{operator{-}family facet                        REMOVED FROM NORMATIVE CORE}
+\NormalTok{operator seed                                REDUCED 14 {-}\textgreater{} 13}
+\NormalTok{ownOrManage                                  MERGED INTO assignResponsibility}
+\NormalTok{missing operator                             NONE FORCED}
+\NormalTok{operator{-}scoped role contracts               PASS / R2 MATRIX}
+\NormalTok{new role: input                              FORCED BY REGRESSION}
+\NormalTok{new role: responsibilityKind                 FORCED BY MERGE}
+\NormalTok{semantic{-}key/lexical separation              PASS}
+\NormalTok{explicit polarity                            RETAIN}
+\NormalTok{modifier vocabulary                          REDUCED}
+\NormalTok{atomicity/concurrency/idempotency/failure     PROMOTE TO constrain}
+\NormalTok{classification{-}as{-}proposition                RETAIN}
+\NormalTok{fixed exhaustive semantic{-}kind taxonomy      NOT REQUIRED}
+\NormalTok{bounded STRIDE consumer                      PASS}
+\NormalTok{third BA1 identity family                     NOT FORCED}
+\NormalTok{BA2{-}T3                                        COMPLETED / PROVISIONAL PASS WITH REDUCTION}
+\NormalTok{BA2                                           STARTED / NOT CLOSED}
+\NormalTok{BA3                                           NOT STARTED}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{17. Smallest unresolved
+set}\label{17-smallest-unresolved-set}
+
+No further discovery microstep is justified by a missing operator or
+corpus counterexample. What remains is a closure review over the reduced
+R2 candidate:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  accept/reject the thirteen-key current-scope seed;
+\item
+  accept/reject the operator-role matrix and ownership/management merge;
+\item
+  accept/reject polarity and the narrowed modifier boundary;
+\item
+  accept/reject the semantic-kind registry contract without a universal
+  enumeration;
+\item
+  verify that the resulting BA2 contract creates no BA1 or BA3
+  responsibility leakage.
+\end{enumerate}
+
+\subsection{18. Next authorized
+microstep}\label{18-next-authorized-microstep}
+
+Execute only:
+
+\begin{quote}
+\textbf{BA2-T4 - relation/action vocabulary closure review over the
+regressed R2 candidate.}
+\end{quote}
+
+BA2-T4 must be a closure review, not another vocabulary-expansion
+exercise. Do not start BA3, formal STRIDE overlays, Common Finding or
+implementation work.
+
+\end{document}
