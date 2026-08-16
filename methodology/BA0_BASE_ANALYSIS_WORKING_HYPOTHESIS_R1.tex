@@ -1,0 +1,151 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[T1]{fontenc}\usepackage[utf8]{inputenc}\usepackage[english]{babel}
+\usepackage{lmodern,microtype}\usepackage[a4paper,margin=1.85cm,headheight=15pt]{geometry}
+\usepackage{enumitem,tabularx,array,booktabs,xcolor,hyperref,xurl,fancyhdr,titlesec,framed,listings}
+\definecolor{ddtadark}{RGB}{28,38,52}\definecolor{ddtablue}{RGB}{42,88,135}\definecolor{ddtagray}{RGB}{244,246,248}\definecolor{ddtaorange}{RGB}{148,91,25}\definecolor{ddtagreen}{RGB}{48,111,78}
+\hypersetup{colorlinks=true,linkcolor=ddtablue,urlcolor=ddtablue,pdftitle={BA0 Base Analysis working hypothesis R1}}
+\pagestyle{fancy}\fancyhf{}\lhead{DDTA - BA0}\rhead{Working hypothesis R1}\cfoot{\thepage}
+\titleformat{\section}{\large\bfseries\color{ddtadark}}{\thesection}{.6em}{}\titleformat{\subsection}{\normalsize\bfseries\color{ddtadark}}{\thesubsection}{.6em}{}
+\setlist[itemize]{leftmargin=1.45em,itemsep=.15em,topsep=.2em}\setlist[enumerate]{leftmargin=1.7em,itemsep=.15em,topsep=.2em}
+\setlength{\parindent}{0pt}\setlength{\parskip}{.32em}\setlength{\emergencystretch}{2em}
+\lstset{basicstyle=\ttfamily\small,frame=single,breaklines=true,backgroundcolor=\color{ddtagray}}
+\newenvironment{hypothesis}[1]{\def\FrameCommand{\fcolorbox{ddtaorange}{ddtagray}}\MakeFramed{\advance\hsize-2\width\FrameRestore}\noindent\textbf{#1}\par\smallskip}{\endMakeFramed}
+\newenvironment{gate}[1]{\def\FrameCommand{\fcolorbox{ddtagreen}{ddtagray}}\MakeFramed{\advance\hsize-2\width\FrameRestore}\noindent\textbf{#1}\par\smallskip}{\endMakeFramed}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries BA0 Base Analysis working hypothesis}\par
+{\large Revision 1 - application checkpoint}\par\smallskip
+{\small Baseline: \texttt{ca957c15d6cf266ba02b45803381e85df0511a62}}
+\end{center}
+
+\begin{hypothesis}{Status: WORKING HYPOTHESIS / NOT CLOSED}
+This document preserves the current BA0 responsibility hypothesis so it can be tested on the DDTA facial-access corpus. It does not close BA0 and does not authorize BA1 ontology design.
+\end{hypothesis}
+
+\section{Method}
+\begin{lstlisting}
+research pressure
+    -> responsibility hypothesis
+    -> concrete application trial
+    -> counterexamples / mutations
+    -> revise or accept responsibility
+    -> only then design the minimal ontology
+\end{lstlisting}
+
+\section{Working responsibility statement}
+\begin{hypothesis}{Candidate responsibility}
+Base Analysis is the DDTA analysis layer that maintains a shared, methodology-neutral and analyzable representation of system knowledge relevant to subsequent analyses. The representation is grounded in governed documentation and may contain derivations and explicitly reviewed analytical additions while preserving their origin. Within the analysis layer only, it provides stable accepted identity and relationships that can be reused by multiple methods and representations without allowing a method, view, tool, or extraction mechanism to silently redefine the semantic core.
+\end{hypothesis}
+
+\section{Authority boundary}
+\begin{lstlisting}
+Governed Documentation
+        |
+        | source authority for governed project knowledge
+        v
++------------------------------------------+
+| Base Analysis                            |
+| accepted analyzable representation       |
+| canonical identity only inside this      |
+| analysis layer                           |
++------------------------------------------+
+        |
+        +--> analysis method A
+        +--> analysis method B
+        +--> projection / model / view A
+        `--> projection / model / view B
+\end{lstlisting}
+
+Here, \texttt{canonical} does not mean global project source of truth. It means one accepted analytical identity may be maintained inside the Base Analysis layer. Governed documents remain authoritative for governed project commitments and requirements.
+
+\section{Meaning of governed}
+The Work Plan calls Base Analysis governed. In this hypothesis, governance means controlled acceptance/rejection/review, inspectable origin, and the ability to invalidate accepted analytical content when its basis changes. It does not imply:
+\begin{lstlisting}
+BaseAnalysis IS-A GovernedDocument
+BAE IS-A GovernedDocument
+\end{lstlisting}
+
+\section{Required origin distinctions}
+The hypothesis needs the following semantic distinctions without deciding how they become metamodel constructs:
+\begin{itemize}
+\item \textbf{Grounded knowledge}: directly supported by governed documentation.
+\item \textbf{Derived knowledge}: analytical structure obtained from governed content without adding a new project commitment.
+\item \textbf{Reviewed analytical addition}: useful analytical structure that is neither asserted by nor mechanically entailed by governed documents, accepted only with explicit analytical status.
+\item \textbf{Conflict/unresolved state}: incompatible source propositions are not silently collapsed into one project truth.
+\end{itemize}
+These are responsibilities, not accepted metaclasses.
+
+\section{Working invariants}
+\begin{enumerate}
+\item \textbf{Source authority.} Governed documentation remains authoritative for governed project knowledge.
+\item \textbf{Analysis-layer canonicality.} One accepted analytical identity may exist inside the DDTA analysis layer only.
+\item \textbf{Explicit origin.} Grounded, derived and reviewed analytical additions remain distinguishable; conflicting source states remain visible.
+\item \textbf{No silent inference authority.} NLP, LLM, heuristic, parser or tool output is not accepted merely because a tool produced it.
+\item \textbf{Method neutrality.} Methods may classify/enrich through method-owned semantics but may not redefine the common core.
+\item \textbf{Representation independence.} Diagram, rendering, projection, view or tool serialization is not semantic authority by itself.
+\item \textbf{Bounded scope.} Base Analysis represents only knowledge needed for DDTA analysis responsibilities.
+\item \textbf{Change alignment.} Accepted analytical content is reviewed when changed governed knowledge invalidates its meaning or basis.
+\item \textbf{Conflict visibility.} Contradictory sources are not silently canonicalized.
+\item \textbf{No method/tool ownership.} ThreatForge, plugins, languages and LLMs cannot own Base Analysis semantics.
+\end{enumerate}
+
+\section{Working non-goals}
+Base Analysis is not, by this hypothesis: a second governed-document hierarchy; a competing source of truth; a general-purpose systems-modeling language; SysML/KerML/AADL/OPM/ArchiMate under DDTA terminology; a STRIDE DFD; a threat model; an AnalysisRecord; a Finding/risk/control/evidence repository; a diagram/view; raw NLP/LLM extraction; a full digital twin; or a tool-native schema that dictates DDTA semantics.
+
+\begin{lstlisting}
+BAE != GovernedDocument   [default working hypothesis]
+\end{lstlisting}
+
+\section{Why a shared representation is being tested}
+BA0-R established that one underlying model is not a universal systems-modeling requirement. DDTA therefore tests a shared representation only for DDTA-specific needs: repeated analysis, multiple methods, reuse of analytical identity, controlled change/re-analysis, provenance, and several representations without unrelated reinterpretations of the same referent.
+
+\newpage
+\section{Responsibility-level falsification so far}
+\begin{lstlisting}
+F1 direct-document-only analysis
+   -> identity/extraction may drift between methods
+F2 conflicting governed sources
+   -> conflict must remain visible
+F3 analytical structure absent from docs
+   -> explicit reviewed-addition status needed
+F4 multiple analysis methods
+   -> common core + method-owned interpretation
+F5 implementation-only mutation
+   -> some identity may remain stable
+F6 structural requirement mutation
+   -> some accepted analytical knowledge must be invalidated
+\end{lstlisting}
+These are pressure tests, not empirical proof.
+
+\section{What remains open}
+The concrete trial must still determine: where grounded ends and derived begins; what analytical additions are legitimate; how conflict constrains analysis; what identity survives different kinds of change; whether every referent needs canonical analytical identity; whether the name Base Analysis remains clear; and which semantic responsibilities require entities versus relations, roles, properties, constraints or projections.
+
+\section{Next microstep: BA0-T1 application trial}
+\begin{gate}{NEXT - still inside BA0}
+Use the facial-access corpus centered on \texttt{FR-3.4 Deliver RecognitionCapture} and relevant Decisions/SecurityRequirements to build a small provisional analytical representation without final BAE type names.
+\end{gate}
+
+For each provisional analytical statement, record:
+\begin{lstlisting}
+source statement(s)
+    -> proposed analytical statement
+    -> origin: grounded / derived / reviewed-addition / conflict
+    -> identity needed? yes / no / uncertain
+    -> why needed by analysis
+    -> reusable by two methods without semantic change?
+\end{lstlisting}
+Then apply one realization mutation expected to preserve some identity and one requirement/architecture mutation expected to invalidate or replace some identity.
+
+\section{State after checkpoint}
+\begin{lstlisting}
+Chapters 2-4                      CLOSED / FINAL
+Documentation layer               CLOSED
+W0                                CLOSED
+BA0-R systems-modeling prior art  CLOSED
+BA0 responsibility/non-goals      WORKING HYPOTHESIS / NOT CLOSED
+BA0-T1 application trial          NEXT
+BA1 minimal BAE ontology          NOT STARTED
+\end{lstlisting}
+
+No BAE type is accepted by this checkpoint.
+\end{document}
