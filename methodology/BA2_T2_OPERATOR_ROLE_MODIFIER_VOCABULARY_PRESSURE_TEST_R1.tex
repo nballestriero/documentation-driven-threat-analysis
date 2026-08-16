@@ -1,0 +1,783 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  10pt,
+  letterpaper,
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{xurl}
+\setlength{\emergencystretch}{3em}
+\usepackage{microtype}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{BA2-T2 - Semantic operator, participation-role and
+scoped-modifier vocabulary pressure
+test}\label{ba2-t2---semantic-operator-participation-role-and-scoped-modifier-vocabulary-pressure-test}
+
+\textbf{Revision:} R1
+
+\textbf{Status:} COMPLETED / PROVISIONAL PASS WITH
+VOCABULARY-ARCHITECTURE REFINEMENT / BA2 NOT CLOSED
+
+\textbf{Repository baseline reviewed:}
+\texttt{f87d05e5ea1cee969246e5eae1dd73b8b6c3a5a1}
+
+\textbf{Phase:} BA2 - Relations and canonical action vocabulary
+
+\textbf{BA0:} CLOSED
+
+\textbf{BA1:} CLOSED
+
+\textbf{BA3:} NOT STARTED
+
+\subsection{1. Question and test
+discipline}\label{question-and-test-discipline}
+
+BA2-T2 asks only:
+
+\begin{quote}
+What is the smallest reusable methodology-neutral vocabulary
+architecture needed to instantiate the BA2-T1 proposition shape across
+the current governed corpora without copying authoring verbs, importing
+method-specific taxonomies or hiding reusable semantics inside generic
+modifiers?
+\end{quote}
+
+The starting structural candidate is:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BAProposition}
+\NormalTok{|{-} semanticOperator   1}
+\NormalTok{|{-} participation      1..*}
+\NormalTok{|    |{-} role          1}
+\NormalTok{|    \textasciigrave{}{-} term          1}
+\NormalTok{\textasciigrave{}{-} scopedModifier     0..*}
+\end{Highlighting}
+\end{Shaded}
+
+BA2-T2 does not close BA2, design BA3 provenance, define views, create a
+formal STRIDE overlay, define Common Finding, or create ThreatForge
+implementation classes.
+
+The pressure discipline is:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{recurring lexical verb}
+\NormalTok{        !=}
+\NormalTok{canonical semantic operator}
+
+\NormalTok{reusable role label}
+\NormalTok{        !=}
+\NormalTok{globally valid role in every proposition}
+
+\NormalTok{local qualifier}
+\NormalTok{        !=}
+\NormalTok{license for an untyped modifier bag}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{2. Evidence basis}\label{evidence-basis}
+
+The test reuses four already-governed evidence families without changing
+them:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  the closed BA1 identity ontology
+  (\texttt{BAReferent\ +\ BAProposition});
+\item
+  the BA2-T1 n-ary role-bound proposition candidate;
+\item
+  facial-access FR-3.4 plus D-3.3/D-3.4/D-3.5 and specialized
+  constraints;
+\item
+  the independent order-fulfillment corpus, including reservation,
+  payment, fulfillment, external providers, lifecycle and physical
+  handoff reuse.
+\end{enumerate}
+
+The BA0-T2 STRIDE-oriented transfer projection is used only as a bounded
+consumer probe. It cannot donate STRIDE/DFD vocabulary to Base Analysis.
+
+\subsection{3. Pressure A - copy document predicates or normalize
+semantic
+operators?}\label{pressure-a---copy-document-predicates-or-normalize-semantic-operators}
+
+The order corpus contains surface predicates such as \texttt{creates},
+\texttt{records}, \texttt{increases}, \texttt{updates}, \texttt{reads},
+\texttt{produces}, \texttt{releases}, \texttt{decreasesReserved},
+\texttt{sends}, \texttt{communicatesWith}, \texttt{maps},
+\texttt{queries}, \texttt{requestsCapture}, \texttt{requestsVoid},
+\texttt{confirmsPick}, \texttt{confirmsHandoff} and
+\texttt{requestsStockIssue}.
+
+A naive BA vocabulary could simply copy all of them.
+
+That alternative fails for three reasons.
+
+First, documentation predicates are authoring vocabulary, not
+automatically canonical Base Analysis semantics. The documentation layer
+itself kept the FunctionalPredicate vocabulary extensible and deferred
+subject/object binding until Base Analysis work.
+
+Second, some surface verbs express the same broader project-semantic
+relation while other similar words conceal materially different
+semantics. \texttt{requestsCapture} and \texttt{requestsVoid}, for
+example, are both requests but differ in governed financial meaning;
+\texttt{confirmsHandoff} is not interchangeable with carrier acceptance.
+
+Third, a method consumer needs stable semantics despite lexical change
+or provider replacement.
+
+\subsubsection{Disposition}\label{disposition}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Copy source predicate list as BA canonical vocabulary: REJECTED}
+\NormalTok{Stable semantic operator key with normative meaning: REQUIRED}
+\NormalTok{Lexical label/synonym as semantic authority: REJECTED}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{4. Pressure B - does an operator-family layer
+help?}\label{pressure-b---does-an-operator-family-layer-help}
+
+The corpora repeatedly distinguish behavioral assertions, stable
+relationships, constraints and reusable classification.
+
+A provisional family facet (\texttt{ACTION}, \texttt{RELATION},
+\texttt{CONSTRAINT}, \texttt{CLASSIFICATION}) helps organize the
+registry and narrow compatible role/modifier contracts.
+
+However, the family alone is too coarse. A consumer cannot treat
+\texttt{transfer}, \texttt{transition} and \texttt{produce} as
+semantically interchangeable merely because all are actions. Likewise
+\texttt{correlate}, \texttt{realize} and \texttt{consumeService} are not
+interchangeable relations.
+
+\subsubsection{Disposition}\label{disposition-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Exact operator key: REQUIRED}
+\NormalTok{Operator{-}family facet: SUPPORTED AS PROVISIONAL ORGANIZING FACET}
+\NormalTok{Operator family as sufficient assertion semantics: REJECTED}
+\NormalTok{Family facet as new BAE identity family: REJECTED}
+\end{Highlighting}
+\end{Shaded}
+
+The family facet remains falsifiable and may collapse later if
+regression shows it adds no semantic value.
+
+\subsection{5. Pressure C - semantic distinctions that must survive
+normalization}\label{pressure-c---semantic-distinctions-that-must-survive-normalization}
+
+The pressure test intentionally tries to merge several recurring
+relations.
+
+\subsubsection{5.1 Correlation versus
+reference}\label{correlation-versus-reference}
+
+\texttt{Reservation} references one \texttt{OrderEvaluation};
+payment/reservation/provider results are correlated to the current
+evaluation; facial capture is correlated with the correct
+\texttt{RecognitionRequest}.
+
+A generic \texttt{relatedTo} operator would erase whether identity
+matching is required for acceptance versus whether one object merely
+references another.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{correlation != generic reference}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Disposition:} distinction
+\texttt{SUPPORTED\ /\ SEED\ KEYS\ CANDIDATE}.
+
+\subsubsection{5.2 Service consumption versus
+ownership}\label{service-consumption-versus-ownership}
+
+Facial access consumes transport while the project does not own/manage
+the underlying transport. Order fulfillment consumes cross-MR
+capabilities without gaining a second owner.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{consumeService != ownOrManage}
+\end{Highlighting}
+\end{Shaded}
+
+Collapsing them would directly lose the responsibility boundary that the
+corpora deliberately govern.
+
+\textbf{Disposition:} distinction
+\texttt{FORCED\ BY\ CURRENT\ EVIDENCE}.
+
+\subsubsection{5.3 Request acceptance versus physical
+handoff}\label{request-acceptance-versus-physical-handoff}
+
+The order corpus explicitly rejects treating carrier request acceptance
+as physical handoff. Stock issue and payment capture depend on the
+governed physical milestone.
+
+A generic \texttt{completed} or \texttt{accepted} relation would erase a
+material business-event distinction.
+
+\textbf{Disposition:} distinct referent/proposition semantics
+\texttt{FORCED\ BY\ CURRENT\ EVIDENCE}.
+
+\subsubsection{5.4 Realization versus
+qualification}\label{realization-versus-qualification}
+
+Ethernet/Wi-Fi can change while the same abstract connectivity meaning
+persists. Treating realization as a free-text modifier would weaken
+selective change impact and reuse.
+
+\textbf{Disposition:} \texttt{realize} relation remains explicit
+\texttt{CANDIDATE}; generic modifier representation \texttt{REJECTED}
+for reusable realizations.
+
+\subsection{6. Pressure D - seed operator
+set}\label{pressure-d---seed-operator-set}
+
+BA2-T2 then asks whether a small seed set can cover the tested evidence
+without pretending to be exhaustive.
+
+The surviving candidate keys are grouped as follows:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ACTION}
+\NormalTok{  transfer}
+\NormalTok{  produce}
+\NormalTok{  create}
+\NormalTok{  observe}
+\NormalTok{  transition}
+
+\NormalTok{RELATION}
+\NormalTok{  correlate}
+\NormalTok{  reference}
+\NormalTok{  dependOn}
+\NormalTok{  consumeService}
+\NormalTok{  realize}
+\NormalTok{  assignResponsibility}
+\NormalTok{  ownOrManage}
+
+\NormalTok{CONSTRAINT}
+\NormalTok{  constrain}
+
+\NormalTok{CLASSIFICATION}
+\NormalTok{  classify}
+\end{Highlighting}
+\end{Shaded}
+
+These names are provisional readable keys. Their exact machine key
+format and lexical aliases remain open.
+
+\subsubsection{Why this is not a verb taxonomy
+closure}\label{why-this-is-not-a-verb-taxonomy-closure}
+
+The seed set is a regression target. A key survives only if collapsing
+it would lose project semantics required by a corpus or consumer. New
+document verbs do not automatically extend it, and later evidence may
+split or merge keys.
+
+\subsubsection{Disposition}\label{disposition-2}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Seed operator set: PROVISIONAL CANDIDATE}
+\NormalTok{Exhaustive operator vocabulary: NOT CLAIMED}
+\NormalTok{BA2 closure: NOT REACHED}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{7. Pressure E - global roles or operator-scoped role
+contracts?}\label{pressure-e---global-roles-or-operator-scoped-role-contracts}
+
+A global role list looks attractive because names such as
+\texttt{source}, \texttt{destination}, \texttt{result} and
+\texttt{context} recur.
+
+But global validity is unsafe. \texttt{source} in a transfer is not BA3
+source provenance. \texttt{target} could mean destination, constraint
+target or analysis-method target. \texttt{context} can mean correlation
+identity, state observation context or applicability context.
+
+The better lower bound is:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{reusable role concept/key}
+\NormalTok{        +}
+\NormalTok{operator{-}scoped compatibility/cardinality contract}
+\end{Highlighting}
+\end{Shaded}
+
+Example contracts:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{transfer:}
+\NormalTok{  source       1}
+\NormalTok{  destination  1}
+\NormalTok{  content      1..*}
+\NormalTok{  request/context 0..*}
+
+\NormalTok{transition:}
+\NormalTok{  subject      1}
+\NormalTok{  fromState    0..1}
+\NormalTok{  toState      1}
+
+\NormalTok{consumeService:}
+\NormalTok{  consumer     1..*}
+\NormalTok{  service      1}
+\NormalTok{  provider     0..1 (or governed cardinality later)}
+
+\NormalTok{classify:}
+\NormalTok{  classifiedReferent 1}
+\NormalTok{  semanticKind       1..*}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Disposition}\label{disposition-3}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{One context{-}free global role contract: REJECTED}
+\NormalTok{Reusable role keys/concepts: SUPPORTED}
+\NormalTok{Operator{-}scoped compatibility/cardinality: REQUIRED}
+\NormalTok{Complete role matrix: OPEN / REGRESSION TARGET}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{8. Pressure F - participant or
+modifier?}\label{pressure-f---participant-or-modifier}
+
+BA2-T1 left the exact modifier boundary open. BA2-T2 tests it against
+condition, state, failure, applicability, realization, atomicity,
+concurrency and polarity.
+
+\subsubsection{8.1 Modifier admissibility
+criterion}\label{modifier-admissibility-criterion}
+
+An embedded modifier is acceptable only if it is local to one
+proposition/binding, introduces no independent participant set, needs no
+independent assertion provenance/review identity, and is not reused as
+project meaning elsewhere.
+
+If those conditions are violated, the semantics must be represented as a
+referent/proposition rather than hidden inside the modifier.
+
+\subsubsection{8.2 Semantics that fit local
+modifiers}\label{semantics-that-fit-local-modifiers}
+
+Current evidence supports candidate modifier kinds for:
+
+\begin{itemize}
+\tightlist
+\item
+  polarity;
+\item
+  local condition/applicability;
+\item
+  quantification/cardinality;
+\item
+  temporal scope;
+\item
+  local completion/failure outcome;
+\item
+  atomicity;
+\item
+  concurrency;
+\item
+  idempotency.
+\end{itemize}
+
+\subsubsection{8.3 Semantics that should not default to
+modifiers}\label{semantics-that-should-not-default-to-modifiers}
+
+Correlation, realization, responsibility/authority, service consumption
+and reusable constraints all have reusable participants or independent
+assertion pressure in the reviewed corpora.
+
+They should therefore remain explicit propositions/participations when
+that semantic pressure exists.
+
+\subsubsection{Disposition}\label{disposition-4}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Untyped/free{-}text modifier bag: REJECTED}
+\NormalTok{Normalized modifier kinds: SUPPORTED / CANDIDATE}
+\NormalTok{Modifier promotion rule: REQUIRED}
+\NormalTok{Exact modifier encoding: OPEN}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{9. Pressure G - explicit
+polarity}\label{pressure-g---explicit-polarity}
+
+The corpora contain important negative semantics:
+
+\begin{itemize}
+\tightlist
+\item
+  project does not own/manage underlying transport;
+\item
+  incomplete delivery is not success;
+\item
+  a concurrent request must not reserve already frozen quantity;
+\item
+  raw provider/carrier states must not directly become governed project
+  state;
+\item
+  an indeterminate/rejected carrier request alone must not count as
+  physical handoff.
+\end{itemize}
+
+Creating \texttt{notOwn}, \texttt{notAccept}, \texttt{notHandoff},
+\texttt{notReserve} keys would make operator vocabulary explode around
+linguistic negation.
+
+A normalized polarity field/modifier separates assertion polarity from
+operator identity.
+
+\subsubsection{Disposition}\label{disposition-5}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Separate notX operator keys by default: REJECTED}
+\NormalTok{Explicit polarity: STRONG CANDIDATE}
+\end{Highlighting}
+\end{Shaded}
+
+Some normative prohibitions will still be represented as positive
+\texttt{constrain} propositions with negative/forbidden outcomes;
+polarity does not eliminate constraint semantics.
+
+\subsection{10. Pressure H - reusable referent
+classification}\label{pressure-h---reusable-referent-classification}
+
+BA2-T1 established that referent classification cannot be reconstructed
+only from contextual roles.
+
+BA2-T2 pressure-tests two alternatives:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  opaque intrinsic \texttt{type} field on BAReferent;
+\item
+  classification through a normal BAProposition using a stable
+  \texttt{classify} operator.
+\end{enumerate}
+
+The proposition form is stronger for the current methodology because
+classification itself may be grounded, derived, disputed or changed
+while the referent identity remains stable. BA3 can then provenance the
+classification assertion without adding a new BA1 type.
+
+Conceptual example:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{operator: classify}
+\NormalTok{participants:}
+\NormalTok{  classifiedReferent {-}\textgreater{} RecognitionCapture}
+\NormalTok{  semanticKind       {-}\textgreater{} information{-}resource}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Disposition}\label{disposition-6}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Classification inferred only from roles: REJECTED}
+\NormalTok{Opaque authoritative referent type field: NOT REQUIRED}
+\NormalTok{Classification{-}as{-}BAProposition: SUPPORTED / STRONG CANDIDATE}
+\NormalTok{Exact semantic{-}kind taxonomy: OPEN}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{11. Pressure I - bounded method
+consumer}\label{pressure-i---bounded-method-consumer}
+
+The BA0-T2 STRIDE-oriented consumer needs behavior, source, destination,
+information, correlation, responsibility/externality, realization,
+failure and project constraints.
+
+The candidate can supply these without importing DFD/STRIDE roots:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{transfer} + source/destination/content/context roles;
+\item
+  \texttt{correlate} where correlation is independently queried;
+\item
+  \texttt{consumeService}, \texttt{assignResponsibility} and negative
+  \texttt{ownOrManage} for responsibility/externality;
+\item
+  \texttt{realize} for current Ethernet realization;
+\item
+  local completion/failure modifier or explicit \texttt{constrain}
+  proposition as warranted;
+\item
+  \texttt{classify} for reusable behavior/information/capability
+  semantic kind.
+\end{itemize}
+
+STRIDE then adds Spoofing/Tampering/Repudiation/Information
+Disclosure/DoS/Elevation semantics outside Base Analysis.
+
+\subsubsection{Disposition}\label{disposition-7}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Bounded method{-}consumer mapping: PASS AT BA2{-}T2 CANDIDATE LEVEL}
+\NormalTok{STRIDE/DFD vocabulary leakage: NOT REQUIRED}
+\NormalTok{Formal method projection contract: DEFERRED TO BA4 / LATER OVERLAY WORK}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{12. Pressure J - does BA2-T2 reopen
+BA1?}\label{pressure-j---does-ba2-t2-reopen-ba1}
+
+No tested operator, role or modifier requires independent first-class
+identity beyond the closed \texttt{BAReferent} and
+\texttt{BAProposition} families.
+
+Operator keys, role keys, modifier kinds and controlled semantic-kind
+values are vocabulary identities/contracts, not project-semantic BAE
+identity families.
+
+If a future case requires one of them to have independent
+project-semantic identity plus subtype-specific invariants not
+representable over BAReferent/BAProposition, that would trigger the BA1
+reopen criterion rather than being silently introduced here.
+
+\subsubsection{Disposition}\label{disposition-8}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Third BA1 identity family: NOT FORCED}
+\NormalTok{BA1: REMAINS CLOSED}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{13. Candidate vocabulary
+architecture}\label{candidate-vocabulary-architecture}
+
+BA2-T2 therefore retains the BA2-T1 structure and refines its vocabulary
+contract:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BAProposition}
+\NormalTok{|{-} semanticOperatorKey   1}
+\NormalTok{|    \textasciigrave{}{-} registry contract:}
+\NormalTok{|         normative meaning}
+\NormalTok{|         provisional family facet}
+\NormalTok{|         compatible roles/cardinalities}
+\NormalTok{|         modifier compatibility}
+\NormalTok{|{-} participation         1..*}
+\NormalTok{|    |{-} roleKey          1}
+\NormalTok{|    \textasciigrave{}{-} term             1}
+\NormalTok{|{-} polarity              1       [STRONG CANDIDATE]}
+\NormalTok{\textasciigrave{}{-} scopedModifier        0..*    [normalized local semantics only]}
+\end{Highlighting}
+\end{Shaded}
+
+Classification is provisionally represented through
+\texttt{BAProposition(classify,\ ...)} rather than by adding a
+first-class BAE type.
+
+\subsection{14. Alternatives rejected or
+deferred}\label{alternatives-rejected-or-deferred}
+
+\begin{itemize}
+\tightlist
+\item
+  document predicate list as BA vocabulary: \textbf{REJECTED};
+\item
+  lexical label as semantic identity: \textbf{REJECTED};
+\item
+  fixed exhaustive operator list: \textbf{NOT CLAIMED / DEFERRED};
+\item
+  family facet as sufficient semantics: \textbf{REJECTED};
+\item
+  global role validity without operator contract: \textbf{REJECTED};
+\item
+  complete compatibility/cardinality matrix: \textbf{OPEN};
+\item
+  untyped modifier bag: \textbf{REJECTED};
+\item
+  correlation/realization/responsibility hidden as modifiers by default:
+  \textbf{REJECTED};
+\item
+  negative operator proliferation: \textbf{REJECTED};
+\item
+  explicit polarity: \textbf{STRONG CANDIDATE};
+\item
+  classification inferred from roles only: \textbf{REJECTED};
+\item
+  classification proposition: \textbf{STRONG CANDIDATE};
+\item
+  exact semantic-kind taxonomy: \textbf{OPEN};
+\item
+  BA3 provenance fields: \textbf{DEFERRED TO BA3};
+\item
+  STRIDE/DFD semantics in shared vocabulary: \textbf{REJECTED}.
+\end{itemize}
+
+\subsection{15. Falsification
+assessment}\label{falsification-assessment}
+
+The candidate would fail if it forced consumers to reinterpret raw prose
+to distinguish correlation, responsibility, realization or state
+semantics; if operator-scoped roles could not cover both corpora; if
+local modifiers routinely needed independent participants/provenance; or
+if a bounded method consumer required method-specific shared-core
+categories.
+
+No such failure is forced by the current evidence.
+
+However, BA2 is not ready to close because the seed key set and
+role/cardinality contracts have not yet been replayed systematically
+across both corpora as a regression suite. The lexical-key separation
+and modifier-promotion edge cases also remain pressure targets.
+
+\subsection{16. Trial disposition}\label{trial-disposition}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BA2{-}T1 structural candidate          RETAINED}
+\NormalTok{Stable semantic operator key         REQUIRED}
+\NormalTok{Seed operator set                    PROVISIONAL CANDIDATE}
+\NormalTok{Operator family facet                PROVISIONAL / FALSIFIABLE}
+\NormalTok{Operator{-}scoped role contracts       REQUIRED}
+\NormalTok{Full role/cardinality matrix         OPEN}
+\NormalTok{Normalized modifier capability       SUPPORTED / CANDIDATE}
+\NormalTok{Explicit polarity                    STRONG CANDIDATE}
+\NormalTok{Modifier promotion rule              REQUIRED}
+\NormalTok{Classification{-}as{-}proposition        STRONG CANDIDATE}
+\NormalTok{Exact semantic{-}kind vocabulary       OPEN}
+\NormalTok{Third BA1 identity family            NOT FORCED}
+\NormalTok{BA1                                  CLOSED}
+\NormalTok{BA2{-}T2                               COMPLETED / PROVISIONAL PASS WITH REFINEMENT}
+\NormalTok{BA2                                  STARTED / NOT CLOSED}
+\NormalTok{BA3                                  NOT STARTED}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{17. Next authorized
+microstep}\label{next-authorized-microstep}
+
+Execute only:
+
+\begin{quote}
+\textbf{BA2-T3 - cross-corpus regression of the operator/role/modifier
+candidate and semantic-key/lexical separation.}
+\end{quote}
+
+Do not start BA3, formal STRIDE overlay design, Common Finding schema or
+implementation work.
+
+\end{document}

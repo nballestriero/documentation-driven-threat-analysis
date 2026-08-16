@@ -15,17 +15,18 @@ The repository is intentionally separate from the ThreatForge software repositor
 
 ## Current research checkpoint
 
-The documentation layer, Chapters 2-4, `BA0-R`, the BA0 responsibility/non-goals boundary and the BA1 minimal BAE identity ontology are closed. BA2 has started with `BA2-T1`, which derives only the lower-bound structural shape of `BAProposition` and the participation mechanism needed to preserve multi-part project facts without reopening BA1.
+The documentation layer, Chapters 2-4, `BA0-R`, the BA0 responsibility/non-goals boundary and the BA1 minimal BAE identity ontology are closed. BA2-T1 derived the lower-bound n-ary structure of `BAProposition`; BA2-T2 now pressure-tests the vocabulary needed to instantiate that structure without copying authoring verbs or importing method-specific taxonomies.
 
 The active state and forward rules are recorded in:
 
-- `methodology/DDTA_CURRENT_RESEARCH_STATE_R6.md`
-- `methodology/DDTA_RESEARCH_WORK_PLAN_AFTER_DOCUMENTATION_CLOSURE_R9.md`
+- `methodology/DDTA_CURRENT_RESEARCH_STATE_R7.md`
+- `methodology/DDTA_RESEARCH_WORK_PLAN_AFTER_DOCUMENTATION_CLOSURE_R10.md`
 - `methodology/BA1_MINIMAL_BAE_IDENTITY_ONTOLOGY_R1.md`
 - `methodology/BA2_PROPOSITION_STRUCTURE_CANDIDATE_R1.md`
-- `methodology/BA2_T1_PROPOSITION_SHAPE_PARTICIPATION_LOWER_BOUND_R1.md`
+- `methodology/BA2_SEMANTIC_VOCABULARY_CANDIDATE_R1.md`
+- `methodology/BA2_T2_OPERATOR_ROLE_MODIFIER_VOCABULARY_PRESSURE_TEST_R1.md`
 
-`BA0` and `BA1` are **CLOSED**. `BAReferent` and `BAProposition` remain the only accepted first-class semantic identity families. `BA2-T1` is **COMPLETED / PROVISIONAL CANDIDATE**: it rejects pure binary SPO as the universal proposition shape and supports an n-ary, explicit role-bound participation structure with a method-neutral semantic operator. The exact operator, role, qualifier and classification vocabularies remain open. `BA2` is **STARTED / NOT CLOSED**.
+`BA0` and `BA1` are **CLOSED**. `BAReferent` and `BAProposition` remain the only accepted first-class semantic identity families. `BA2-T1` is **COMPLETED / PROVISIONAL CANDIDATE**. `BA2-T2` is **COMPLETED / PROVISIONAL PASS WITH VOCABULARY-ARCHITECTURE REFINEMENT**: it retains stable semantic operator keys, operator-scoped role contracts and normalized modifier semantics with an explicit promotion rule. The seed operator/role vocabulary is still **CANDIDATE / NOT CLOSED** and must be regressed before BA2 closure. `BA2` remains **STARTED / NOT CLOSED**.
 
 ## Important scope boundary
 

@@ -1,0 +1,79 @@
+revision: R1
+phase: BA2
+microstep: BA2-T2
+baseline_reviewed: f87d05e5ea1cee969246e5eae1dd73b8b6c3a5a1
+status: COMPLETED / PROVISIONAL PASS WITH VOCABULARY-ARCHITECTURE REFINEMENT / BA2 NOT CLOSED
+identity_boundary:
+  BAReferent: ACCEPTED_BY_BA1
+  BAProposition: ACCEPTED_BY_BA1
+  third_identity_family: NOT_FORCED
+structure:
+  semantic_operator_key: REQUIRED
+  role_bound_participation: RETAINED_FROM_BA2_T1
+  operator_scoped_role_contract: REQUIRED
+  polarity: STRONG_CANDIDATE
+  scoped_modifier: REQUIRED_NORMALIZED_CAPABILITY
+operator_family_facet:
+  status: PROVISIONAL_ORGANIZING_FACET
+  values:
+    - ACTION
+    - RELATION
+    - CONSTRAINT
+    - CLASSIFICATION
+seed_operator_keys:
+  transfer: PROVISIONAL_CANDIDATE
+  produce: PROVISIONAL_CANDIDATE
+  create: PROVISIONAL_CANDIDATE
+  observe: PROVISIONAL_CANDIDATE
+  transition: PROVISIONAL_CANDIDATE
+  correlate: PROVISIONAL_CANDIDATE
+  reference: PROVISIONAL_CANDIDATE
+  dependOn: PROVISIONAL_CANDIDATE
+  consumeService: PROVISIONAL_CANDIDATE
+  realize: PROVISIONAL_CANDIDATE
+  assignResponsibility: PROVISIONAL_CANDIDATE
+  ownOrManage: PROVISIONAL_CANDIDATE
+  constrain: PROVISIONAL_CANDIDATE
+  classify: STRONG_CANDIDATE
+role_contract:
+  global_context_free_role_list: REJECTED
+  reusable_role_concepts: SUPPORTED
+  compatibility_and_cardinality: OPERATOR_SCOPED_REQUIRED
+  full_matrix: OPEN
+modifier_contract:
+  free_text_bag: REJECTED
+  local_modifier_kinds:
+    polarity: STRONG_CANDIDATE
+    condition: PROVISIONAL_CANDIDATE
+    applicability: PROVISIONAL_CANDIDATE
+    quantification: PROVISIONAL_CANDIDATE
+    temporalScope: PROVISIONAL_CANDIDATE
+    completionOutcome: PROVISIONAL_CANDIDATE
+    atomicity: PROVISIONAL_CANDIDATE
+    concurrency: PROVISIONAL_CANDIDATE
+    idempotency: PROVISIONAL_CANDIDATE
+  promotion_rule: REQUIRED
+  semantics_not_default_modifiers:
+    - correlation
+    - realization
+    - responsibility_or_authority
+    - service_consumption
+    - reusable_constraint
+classification:
+  inferred_only_from_roles: REJECTED
+  opaque_authoritative_type_field: NOT_REQUIRED
+  classify_proposition: STRONG_CANDIDATE
+  exact_semantic_kind_vocabulary: OPEN
+method_consumer:
+  bounded_stride_mapping: PASS_AT_CANDIDATE_LEVEL
+  stride_or_dfd_core_leakage: REJECTED
+open_items:
+  - seed_operator_merge_split_regression
+  - full_operator_role_compatibility_cardinality_matrix
+  - machine_stable_key_vs_display_label_and_aliases
+  - operator_family_facet_necessity
+  - modifier_promotion_edge_cases
+  - minimal_referent_semantic_kind_seed_set
+next_authorized_microstep: BA2-T3 - cross-corpus regression of the operator/role/modifier candidate and semantic-key/lexical separation
+ba2: STARTED / NOT CLOSED
+ba3: NOT STARTED
