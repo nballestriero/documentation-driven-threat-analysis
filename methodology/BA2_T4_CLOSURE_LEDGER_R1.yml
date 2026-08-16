@@ -1,0 +1,59 @@
+artifact: BA2_T4_CLOSURE_LEDGER_R1
+revision: R1
+status: CLOSED_PASS
+repository_baseline_reviewed: d16743a6417196ebf53840b1210a645e9dda4245
+phase: BA2
+ba0: CLOSED
+ba1: CLOSED
+ba2_t1: COMPLETED_PROVISIONAL_CANDIDATE
+ba2_t2: COMPLETED_PROVISIONAL_PASS_WITH_REFINEMENT
+ba2_t3: COMPLETED_PROVISIONAL_PASS_WITH_REDUCTION
+ba2_t4: CLOSED_PASS
+ba2: CLOSED_CURRENT_THESIS_SCOPE
+ba3: NOT_STARTED
+proposition_contract:
+  semanticOperatorKey: REQUIRED
+  participation: REQUIRED_1_OR_MORE
+  roleKey: REQUIRED_PER_PARTICIPATION
+  term: BAREFERENT_OR_TYPED_LOCAL_VALUE_WHEN_NO_INDEPENDENT_IDENTITY
+  polarity: REQUIRED_AFFIRMATIVE_OR_NEGATIVE
+  scopedModifier:
+    accepted:
+      - condition
+      - temporalScope
+operator_registry:
+  status: ACCEPTED_CURRENT_SCOPE_MINIMUM
+  exhaustive_universal_claim: false
+  keys:
+    - transfer
+    - produce
+    - create
+    - observe
+    - transition
+    - correlate
+    - reference
+    - dependOn
+    - consumeService
+    - realize
+    - assignResponsibility
+    - constrain
+    - classify
+operator_family_facet: REJECTED_FROM_NORMATIVE_CORE
+role_contracts: ACCEPTED_OPERATOR_SCOPED
+ownership_management_merge: ACCEPTED_ASSIGN_RESPONSIBILITY_PLUS_RESPONSIBILITY_KIND_PLUS_POLARITY
+constraint_promotion:
+  completion_failure: EXPLICIT_CONSTRAIN_WHEN_GOVERNED
+  atomicity: EXPLICIT_CONSTRAIN
+  concurrency: EXPLICIT_CONSTRAIN
+  idempotency: EXPLICIT_CONSTRAIN
+classification:
+  as_proposition: ACCEPTED
+  semantic_kind_registry_contract: ACCEPTED
+  exhaustive_universal_enumeration: NOT_REQUIRED
+  ba1_type_promotion: REJECTED
+semantic_key_lexical_separation: CLOSED
+logical_composition_language: NOT_REQUIRED_BY_CURRENT_EVIDENCE_REOPEN_ON_COUNTEREXAMPLE
+bounded_method_consumer: PASS_NO_STRIDE_DFD_LEAKAGE
+ba1_reopen_trigger: false
+ba2_reopen_only_on_material_counterexample: true
+next_authorized_microstep: BA3_T1_SOURCE_TO_BASE_ANALYSIS_DERIVATION_PROVENANCE_LOWER_BOUND

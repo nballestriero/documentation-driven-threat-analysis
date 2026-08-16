@@ -1,0 +1,398 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[a4paper,margin=2.25cm]{geometry}
+\usepackage{longtable,booktabs,array,calc}
+\usepackage{fancyvrb}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{titlesec}
+\definecolor{ddtadark}{RGB}{30,38,48}
+\definecolor{ddtablue}{RGB}{38,82,126}
+\hypersetup{colorlinks=true,linkcolor=ddtablue,urlcolor=ddtablue,citecolor=ddtablue}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Documentation-Driven Threat Analysis}
+\rhead{BA2 closure}
+\cfoot{\thepage}
+\setlength{\headheight}{14pt}
+\setlist[itemize]{leftmargin=1.5em,itemsep=0.2em,topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.7em,itemsep=0.2em,topsep=0.25em}
+\titleformat{\section}{\Large\bfseries\color{ddtadark}}{\thesection}{0.6em}{}
+\titleformat{\subsection}{\large\bfseries\color{ddtadark}}{\thesubsection}{0.6em}{}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setlength{\emergencystretch}{4em}
+\hbadness=10000
+\hfuzz=20pt
+\sloppy
+\begin{document}
+\section{BA2-T4 - Relation/action vocabulary closure review}\label{ba2-t4---relationaction-vocabulary-closure-review}
+
+\textbf{Revision:} R1
+
+\textbf{Status:} CLOSED / PASS / BA2 CLOSED
+
+\textbf{Repository baseline reviewed:} \texttt{d16743a6417196ebf53840b1210a645e9dda4245}
+
+\textbf{Phase:} BA2 - Relations and canonical action vocabulary
+
+\textbf{BA0:} CLOSED
+
+\textbf{BA1:} CLOSED
+
+\textbf{BA3:} NOT STARTED
+
+\subsection{1. Closure question}\label{closure-question}
+
+BA2-T4 asks only:
+
+\begin{quote}
+Does the regressed R2 proposition/operator/role/modifier candidate preserve the methodology-neutral project meaning required by the current thesis corpora and bounded consumers without material counterexample, hidden method taxonomy, BA1 reopen or BA3 leakage?
+\end{quote}
+
+The review is a closure decision, not a discovery pass. It must not add vocabulary unless a concrete counterexample forces it.
+
+\subsection{2. Evidence reviewed}\label{evidence-reviewed}
+
+The closure review reuses the already-governed evidence chain:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  BA1 closed identity ontology: \texttt{BAReferent\ +\ BAProposition} only;
+\item
+  BA2-T1 explicit semantic operator plus n-ary role-bound participation lower bound;
+\item
+  BA2-T2 operator/role/modifier pressure test;
+\item
+  BA2-T3 systematic replay over facial-access and order-fulfillment;
+\item
+  the reduced R2 operator/role/modifier candidate;
+\item
+  the bounded STRIDE-oriented camera transfer consumer only as a neutrality/consumption probe.
+\end{enumerate}
+
+No new source corpus, method-specific ontology or implementation schema is introduced by T4.
+
+\subsection{3. Exit criterion 1 - thirteen-key seed sufficiency and minimality}\label{exit-criterion-1---thirteen-key-seed-sufficiency-and-minimality}
+
+The R2 seed is:
+
+\begin{verbatim}
+transfer
+produce
+create
+observe
+transition
+correlate
+reference
+dependOn
+consumeService
+realize
+assignResponsibility
+constrain
+classify
+\end{verbatim}
+
+\subsubsection{Adversarial merge review}\label{adversarial-merge-review}
+
+The closure review attempts the remaining plausible merges:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{transfer} into \texttt{produce}: \textbf{REJECTED}. Conveyance from source to destination is mechanically relevant and distinct from result production.
+\item
+  \texttt{produce} into \texttt{create}: \textbf{REJECTED}. A governed result/output can be produced from existing meaning; creation specifically asserts establishment of new project-semantic identity/event occurrence.
+\item
+  \texttt{observe} into \texttt{produce}: \textbf{REJECTED}. Observation must remain distinguishable from output production/state creation because consumers may need side-effect-free read/query semantics.
+\item
+  \texttt{transition} into \texttt{constrain}: \textbf{REJECTED}. A state/lifecycle change is an asserted project fact, not merely a rule restricting admissible state.
+\item
+  \texttt{correlate} into \texttt{reference}: \textbf{REJECTED}. Same-request/evaluation/operation identity matching is stronger than generic reference.
+\item
+  \texttt{reference} into \texttt{dependOn}: \textbf{REJECTED}. Explicit pointing need not imply prerequisite semantics.
+\item
+  \texttt{dependOn} into \texttt{consumeService}: \textbf{REJECTED}. A prerequisite can exist without actual service consumption; consumption preserves a responsibility-relevant interaction.
+\item
+  \texttt{consumeService} into \texttt{assignResponsibility}: \textbf{REJECTED}. Use/consumption does not imply ownership or authority.
+\item
+  \texttt{realize} into \texttt{classify}: \textbf{REJECTED}. Abstract-to-concrete realization is a relation between project meanings, not semantic-kind assignment.
+\item
+  \texttt{assignResponsibility} into \texttt{classify}: \textbf{REJECTED}. Responsibility/authority is scoped relational meaning involving responsible parties, not an intrinsic kind.
+\item
+  \texttt{constrain} into modifiers: \textbf{REJECTED} for governed/reusable rules because they require independent queryability and later provenance/change disposition.
+\item
+  \texttt{classify} into role inference: \textbf{REJECTED} because semantic kind must remain reusable outside one proposition context.
+\end{itemize}
+
+No additional key is forced by the two corpora. No surviving key can be removed without losing a project-semantic distinction already required by reviewed evidence.
+
+\textbf{Disposition:} \texttt{PASS\ /\ CURRENT-SCOPE\ MINIMUM\ ACCEPTED}.
+
+\subsection{4. Exit criterion 2 - operator-role/cardinality coherence}\label{exit-criterion-2---operator-rolecardinality-coherence}
+
+The R2 matrix is checked for three failure modes:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  anonymous positional semantics;
+\item
+  method-specific role concepts;
+\item
+  silent dependence on authoring wording.
+\end{enumerate}
+
+None is forced.
+
+Roles such as source/destination/content, actor/result/input, subject/fromState/toState, correlatedItem/correlationContext, consumer/service/provider and responsibleParty/responsibilityScope/responsibilityKind are method-neutral descriptions of the proposition semantics they support.
+
+Compatibility/cardinality remains operator-scoped. This prevents terms such as \texttt{source}, \texttt{target} or \texttt{context} from becoming globally ambiguous slots and prevents BA3 provenance \texttt{source} from colliding with transfer \texttt{source}.
+
+The accepted cardinalities are current-scope contracts, not universal maxima. A future concrete corpus may reopen the smallest role contract if it requires widening or splitting while preserving method-neutral semantics.
+
+\textbf{Disposition:} \texttt{PASS\ /\ ACCEPT}.
+
+\subsection{5. Exit criterion 3 - ownership/management merge}\label{exit-criterion-3---ownershipmanagement-merge}
+
+BA2-T3 merged \texttt{ownOrManage} into:
+
+\begin{verbatim}
+assignResponsibility
++ responsibilityKind
++ polarity
+\end{verbatim}
+
+The facial-access case still preserves both facts independently:
+
+\begin{verbatim}
+consumeService(LocalConnectivity) = affirmative
+assignResponsibility(project, underlyingTransport,
+  ownership/management) = negative
+\end{verbatim}
+
+Therefore service use does not collapse into ownership/authority and the responsibility boundary remains mechanically visible.
+
+The merge reduces operator proliferation without losing project meaning.
+
+\textbf{Disposition:} \texttt{PASS\ /\ MERGE\ ACCEPTED}.
+
+\subsection{6. Exit criterion 4 - polarity and modifier lower bound}\label{exit-criterion-4---polarity-and-modifier-lower-bound}
+
+Explicit polarity survives because negative semantics occur across both corpora and should not create \texttt{notX} operators.
+
+The closure review retains only:
+
+\begin{verbatim}
+condition
+temporalScope
+\end{verbatim}
+
+as embedded modifier kinds, subject to the promotion rule.
+
+\texttt{condition} covers proposition-local applicability/guards. \texttt{temporalScope} covers proposition-local before/after/during/until semantics. If either becomes reusable, separately reviewable or participant-bearing, it is promoted to explicit referent/proposition semantics.
+
+No current evidence requires a broader embedded modifier language.
+
+\textbf{Disposition:} \texttt{PASS\ /\ ACCEPT}.
+
+\subsection{7. Exit criterion 5 - governed rules as explicit constraints}\label{exit-criterion-5---governed-rules-as-explicit-constraints}
+
+The closure review confirms the BA2-T3 reduction:
+
+\begin{itemize}
+\tightlist
+\item
+  incomplete delivery must not count as successful completion;
+\item
+  atomic full-order reservation;
+\item
+  concurrency exclusion;
+\item
+  idempotent handling;
+\item
+  all-or-nothing commitment;
+\item
+  normalized provider/carrier result semantics;
+\item
+  confidentiality, integrity and authorized provenance restrictions.
+\end{itemize}
+
+When these are governed or analytically relevant, they are independently queryable project rules. Encoding them as broad local modifier flags would weaken provenance, reuse and analysis selection.
+
+They therefore belong in explicit \texttt{constrain} propositions (or another accepted explicit proposition where the semantics warrant it), not in a generic modifier bag.
+
+\textbf{Disposition:} \texttt{PASS\ /\ ACCEPT}.
+
+\subsection{8. Exit criterion 6 - classification-as-proposition}\label{exit-criterion-6---classification-as-proposition}
+
+Classification through \texttt{classify} remains preferable to an opaque intrinsic BAReferent type field because classification itself can later be grounded, derived, disputed, revised or superseded while the referent identity remains stable.
+
+A universal semantic-kind taxonomy is not needed to close BA2. What is required is the registry contract:
+
+\begin{itemize}
+\tightlist
+\item
+  stable controlled method-neutral key;
+\item
+  normative definition;
+\item
+  mechanically consumable distinction;
+\item
+  no STRIDE/DFD/tool-specific meaning;
+\item
+  extension only when a consumer would otherwise need to reinterpret raw prose.
+\end{itemize}
+
+This preserves useful distinctions such as capability, information/resource or behavior/event without creating BA1 subtype families.
+
+\textbf{Disposition:} \texttt{PASS\ /\ ACCEPT\ REGISTRY\ CONTRACT;\ UNIVERSAL\ ENUMERATION\ NOT\ REQUIRED}.
+
+\subsection{9. Exit criterion 7 - semantic key versus lexical label}\label{exit-criterion-7---semantic-key-versus-lexical-label}
+
+BA2-T3 demonstrated that source predicates such as \texttt{deliver}, \texttt{send}, \texttt{submit}, \texttt{reads}, \texttt{queries}, \texttt{creates}, \texttt{records}, \texttt{maps}, \texttt{requestsCapture}, \texttt{confirmsHandoff} and others do not need to become BA operator keys one-for-one.
+
+The closure rule is:
+
+\begin{verbatim}
+source wording
+    !=
+BA semantic key
+    !=
+display label / synonym
+\end{verbatim}
+
+Mapping from governed source to semantic key belongs to BA3 derivation mechanics. Display labels and authoring synonyms belong to BA5.
+
+\textbf{Disposition:} \texttt{PASS\ /\ CLOSED}.
+
+\subsection{10. Exit criterion 8 - BA3 boundary}\label{exit-criterion-8---ba3-boundary}
+
+The following unresolved responsibilities are not defects in BA2:
+
+\begin{itemize}
+\tightlist
+\item
+  exact source locator representation;
+\item
+  many-to-many source-to-BA derivation;
+\item
+  grounded/derived/diagnostic origin state;
+\item
+  assertion acceptance/rejection/stale/superseded lifecycle;
+\item
+  baseline/equivalence/change identity mechanics;
+\item
+  source-to-analysis and analysis-to-source traceability.
+\end{itemize}
+
+They are provenance/authority/lifecycle responsibilities explicitly allocated to BA3.
+
+Likewise canonical display labels/synonyms are BA5 concerns and complete Base Analysis holdout regression is BA6.
+
+\textbf{Disposition:} \texttt{PASS\ /\ NO\ BA3\ LEAKAGE\ REQUIRED\ FOR\ BA2\ CLOSURE}.
+
+\subsection{11. Exit criterion 9 - BA1 reopen test}\label{exit-criterion-9---ba1-reopen-test}
+
+No operator, role, polarity, modifier or semantic-kind value needs independent first-class project-semantic identity beyond \texttt{BAReferent} and \texttt{BAProposition}.
+
+No subtype-specific invariant forces an \texttt{Action}, \texttt{Relation}, \texttt{Role}, \texttt{Participation}, \texttt{Information}, \texttt{State}, \texttt{Boundary}, \texttt{Store} or other new first-class BAE family.
+
+\textbf{Disposition:} \texttt{PASS\ /\ BA1\ REMAINS\ CLOSED}.
+
+\subsection{12. General logical-composition check}\label{general-logical-composition-check}
+
+BA2-T1 left logical-composition language open. T4 checks whether this blocks closure.
+
+Current evidence does not force a general logical-expression metamodel. Compound governed clauses can derive to multiple \texttt{BAProposition} assertions that share relevant \texttt{BAReferent} identities and later share provenance to the same source clause. N-ary participation preserves the atomic scope of each assertion; local condition/time, polarity and explicit constraints cover the reviewed conditional/negative/rule semantics.
+
+A future concrete corpus may reopen BA2 if one atomic governed assertion cannot be preserved without an explicit logical-composition construct.
+
+\textbf{Disposition:} \texttt{NOT\ REQUIRED\ BY\ CURRENT\ EVIDENCE\ /\ REOPEN\ ON\ MATERIAL\ COUNTEREXAMPLE}.
+
+\subsection{13. Bounded method-consumer confirmation}\label{bounded-method-consumer-confirmation}
+
+The camera-transfer consumer remains constructible from the closed candidate:
+
+\begin{itemize}
+\tightlist
+\item
+  delivery behavior via reusable behavior/event meaning and \texttt{transfer};
+\item
+  source/destination/content roles;
+\item
+  \texttt{correlate} for RecognitionRequest;
+\item
+  \texttt{consumeService} plus \texttt{assignResponsibility} for external transport responsibility;
+\item
+  \texttt{realize} for Ethernet/Wi-Fi realization;
+\item
+  \texttt{constrain} for completion and existing security properties;
+\item
+  \texttt{classify} for method-neutral information/capability/behavior distinctions.
+\end{itemize}
+
+No DFD process/data-store/data-flow/trust-boundary root and no STRIDE category is required in Base Analysis.
+
+\textbf{Disposition:} \texttt{PASS\ /\ METHOD\ NEUTRALITY\ PRESERVED}.
+
+\subsection{14. Closure decision}\label{closure-decision}
+
+No material relation/action/role/modifier counterexample remains in the current thesis evidence. All remaining open responsibilities can be allocated honestly to BA3, BA5 or BA6 without weakening mechanical analysis consumption.
+
+Therefore:
+
+\begin{verbatim}
+BA2-T4    CLOSED / PASS
+BA2       CLOSED FOR CURRENT THESIS SCOPE
+BA1       REMAINS CLOSED
+BA3       NOT STARTED
+\end{verbatim}
+
+The canonical BA2 contract is \texttt{BA2\_RELATION\_ACTION\_VOCABULARY\_R1.md}.
+
+\subsection{15. BA2 reopen criteria}\label{ba2-reopen-criteria}
+
+Reopen BA2 only for a concrete governed counterexample showing one of the following:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  the accepted proposition shape cannot preserve an atomic project fact without hidden prose reconstruction;
+\item
+  no accepted semantic operator can preserve a required method-neutral distinction without semantic loss;
+\item
+  an accepted operator-role/cardinality contract cannot represent the governed participant structure and cannot be safely widened without changing semantics;
+\item
+  a required qualifier cannot remain local and cannot be represented through existing explicit propositions;
+\item
+  a general logical-composition construct is required by a concrete atomic governed assertion;
+\item
+  classification cannot supply reusable semantic kind without raw-prose reinterpretation;
+\item
+  a required BA2 distinction turns out to be method-specific and must be removed from the common core.
+\end{enumerate}
+
+Do not reopen BA2 because a new label, diagram, database table, programming class or threat method would be more convenient.
+
+\subsection{16. Next authorized microstep}\label{next-authorized-microstep}
+
+After this closure package is reviewed, committed, pushed and remotely verified, execute only:
+
+\begin{quote}
+\textbf{BA3-T1 - source-to-Base-Analysis derivation and provenance lower-bound pressure test.}
+\end{quote}
+
+Do not start BA4, formal threat-method overlays, Common Finding schema or implementation work.
+
+\end{document}
