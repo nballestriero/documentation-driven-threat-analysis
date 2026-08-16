@@ -1,0 +1,359 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  10pt,
+  letterpaper,
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{xurl}
+\setlength{\emergencystretch}{3em}
+\usepackage{microtype}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{DDTA research work plan after documentation-layer
+closure}\label{ddta-research-work-plan-after-documentation-layer-closure}
+
+\textbf{WORK PLAN - REVISION 9}
+
+\textbf{Status:} active BA2 execution plan after BA2-T1
+proposition-structure lower-bound derivation.
+
+\textbf{Supersedes:} Revision 8 only for forward execution state; R1-R8
+remain historical research records.
+
+\subsection{1. Fixed prior state}\label{fixed-prior-state}
+
+\begin{itemize}
+\tightlist
+\item
+  Chapters 2-4: CLOSED / FINAL for current thesis scope.
+\item
+  Documentation layer: CLOSED.
+\item
+  BA0-R systems-modeling prior-art research: CLOSED.
+\item
+  BA0 responsibility/non-goals: CLOSED.
+\item
+  BA1 minimal BAE identity ontology: CLOSED.
+\item
+  \texttt{BAReferent} and \texttt{BAProposition}: ACCEPTED first-class
+  semantic identity families.
+\item
+  ThreatForge is a case study/tooling instrument, not DDTA semantic
+  authority.
+\end{itemize}
+
+\subsection{2. Closed BA1 identity
+boundary}\label{closed-ba1-identity-boundary}
+
+BA1 accepts exactly:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BAReferent}
+\NormalTok{BAProposition}
+\end{Highlighting}
+\end{Shaded}
+
+No \texttt{Action}, \texttt{Relation}, \texttt{Participation},
+\texttt{Role}, \texttt{Behavior}, \texttt{Information}, \texttt{Store},
+\texttt{Contract}, \texttt{Boundary} or \texttt{State} identity family
+may be added by BA2 unless a concrete counterexample satisfies the BA1
+reopen criteria.
+
+\subsection{3. BA2 objective}\label{ba2-objective}
+
+BA2 defines the smallest stable methodology-neutral
+proposition/relation/action semantics over the BA1 identities while
+preserving:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{semantic identity family}
+\NormalTok{    !=}
+\NormalTok{semantic operator / participation role / modifier}
+\NormalTok{    !=}
+\NormalTok{lexical label / authoring synonym}
+\end{Highlighting}
+\end{Shaded}
+
+BA2 must support mechanical selection/projection without importing
+threat-method categories or requiring consumers to reinterpret raw
+prose.
+
+\subsection{4. BA2-T1 - proposition shape and participation-role lower
+bound}\label{ba2-t1---proposition-shape-and-participation-role-lower-bound}
+
+\textbf{Status: COMPLETED / PROVISIONAL CANDIDATE.}
+
+BA2-T1 tested universal binary SPO, positional n-ary tuples and fixed
+domain/method slots against facial-access and order-fulfillment
+evidence.
+
+\subsubsection{Result}\label{result}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Pure binary SPO as universal core       REJECTED}
+\NormalTok{Binary propositions as special cases   SUPPORTED}
+\NormalTok{Anonymous positional participation      REJECTED}
+\NormalTok{Role{-}bound n{-}ary participation          FORCED CANDIDATE}
+\NormalTok{Explicit semantic operator              FORCED CANDIDATE}
+\NormalTok{Scoped semantic modifier capability     REQUIRED / ENCODING OPEN}
+\NormalTok{Third BA1 identity family               NOT FORCED}
+\end{Highlighting}
+\end{Shaded}
+
+Active lower-bound candidate:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BAProposition}
+\NormalTok{|{-} semanticOperator                  1}
+\NormalTok{|{-} participation                     1..*}
+\NormalTok{|    |{-} role                         1}
+\NormalTok{|    \textasciigrave{}{-} term                         1}
+\NormalTok{\textasciigrave{}{-} scopedModifier                    0..*}
+\end{Highlighting}
+\end{Shaded}
+
+At least one participant term is a BAReferent. Typed local values may
+appear when independent semantic identity is not required.
+
+Referent classification remains separate from contextual proposition
+role. BA2-T1 supports explicit method-neutral classification capability
+but does not freeze its vocabulary or cardinality.
+
+\subsection{5. BA2-T2 - operator, role and modifier vocabulary pressure
+test}\label{ba2-t2---operator-role-and-modifier-vocabulary-pressure-test}
+
+\textbf{NEXT / NOT EXECUTED BY THIS PLAN REVISION.}
+
+BA2-T2 must attempt to derive the smallest reusable methodology-neutral
+vocabulary needed to instantiate the T1 structure.
+
+Pressure areas:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  operator families needed by both corpora without copying document
+  predicate labels mechanically;
+\item
+  role semantics for actor/executor, source/destination,
+  information/object, request/result, correlation/context,
+  provider/consumer/responsibility and affected state;
+\item
+  whether roles are globally canonical or operator-scoped;
+\item
+  operator-role compatibility/cardinality constraints;
+\item
+  representation boundary between role-bound participants and scoped
+  modifiers;
+\item
+  condition, state, failure, applicability, realization,
+  atomicity/concurrency and negation/polarity pressure;
+\item
+  reusable referent classification needed for mechanical human/method
+  projections;
+\item
+  bounded method-consumer mapping without STRIDE/DFD leakage.
+\end{enumerate}
+
+\subsubsection{Exit condition}\label{exit-condition}
+
+Produce a falsifiable vocabulary candidate and explicit
+rejected/deferred alternatives. Do not close BA2 if important
+operator/role/modifier ambiguity remains.
+
+\subsection{6. Later BA2 closure sequence - provisional
+only}\label{later-ba2-closure-sequence---provisional-only}
+
+If BA2-T2 yields a stable vocabulary candidate, later microsteps should
+pressure-test:
+
+\begin{itemize}
+\tightlist
+\item
+  cross-corpus regression;
+\item
+  lexical canonical label versus synonym separation;
+\item
+  role/cardinality consistency;
+\item
+  whether any relation/action semantic identity needs a registry-level
+  stable key;
+\item
+  BA2 closure and reopen criteria.
+\end{itemize}
+
+The exact number of later microsteps is evidence-driven, not
+precommitted.
+
+\subsection{7. BA3 - derivation, provenance and
+authority}\label{ba3---derivation-provenance-and-authority}
+
+Only after BA2 closure, BA3 must close:
+
+\begin{itemize}
+\tightlist
+\item
+  document-to-BAReferent/BAProposition derivation rules;
+\item
+  source locators;
+\item
+  grounded, derived and diagnostic/unresolved materialization;
+\item
+  identity/equivalence/lifecycle rules;
+\item
+  acceptance/rejection/stale semantics;
+\item
+  source-to-analysis and analysis-to-source traceability.
+\end{itemize}
+
+Governed documentation remains project authority.
+
+\subsection{8. BA4 - projections}\label{ba4---projections}
+
+Define derived human and method projections from the same accepted BA
+semantics. No view becomes source authority.
+
+\subsection{9. BA5 - vocabulary and optional
+assistance}\label{ba5---vocabulary-and-optional-assistance}
+
+Define lexical controlled vocabulary, authoring synonyms and optional
+assistance only after semantic operator/role contracts are closed.
+NLP/LLM proposals remain candidate-producing support and cannot
+establish project semantics silently.
+
+\subsection{10. BA6 - Base Analysis closure and
+regression}\label{ba6---base-analysis-closure-and-regression}
+
+Regress the implemented Base Analysis design against closed corpora and
+at least one structurally different holdout. BA6 closes the complete
+Base Analysis design.
+
+\subsection{11. Analysis envelope remains
+downstream}\label{analysis-envelope-remains-downstream}
+
+Only after Base Analysis closure:
+
+\begin{itemize}
+\tightlist
+\item
+  A1 - AnalysisRecord / execution envelope;
+\item
+  A2 - common reviewed Finding boundary;
+\item
+  A3 - change/provenance integration;
+\item
+  formal methodology overlays and STRIDE/STRIDE-AI evaluations.
+\end{itemize}
+
+The earlier STRIDE transfer probe remains only a bounded consumer probe.
+
+\subsection{12. Next authorized
+microstep}\label{next-authorized-microstep}
+
+After the BA2-T1 package is reviewed, committed and remotely verified,
+execute only:
+
+\begin{quote}
+\textbf{BA2-T2 - semantic operator, participation-role and
+scoped-modifier vocabulary pressure test.}
+\end{quote}
+
+Do not start BA3, formal STRIDE overlay design, Common Finding schema or
+implementation work.
+
+\end{document}

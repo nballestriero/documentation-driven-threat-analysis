@@ -1,0 +1,90 @@
+artifact: BA2_T1_PROVISIONAL_LEDGER_R1
+status: COMPLETED / PROVISIONAL CANDIDATE / BA2 NOT CLOSED
+repository_baseline_reviewed: 3d8251328c77177375cccf1c51caa54b7473e21e
+closed_inputs:
+  BA0: CLOSED
+  BA1: CLOSED
+  BAReferent: ACCEPTED
+  BAProposition: ACCEPTED
+dispositions:
+- id: BA2T1-D01
+  question: Pure binary SPO as universal proposition shape
+  disposition: REJECTED
+  reason: Cannot preserve multi-part assertion scope without fragmentation or synthetic
+    proxy referents.
+- id: BA2T1-D02
+  question: Binary propositions as a special case
+  disposition: SUPPORTED
+  reason: Binary is a subset of the generalized proposition shape.
+- id: BA2T1-D03
+  question: Anonymous positional participants
+  disposition: REJECTED
+  reason: Participant meaning cannot depend on undocumented argument positions.
+- id: BA2T1-D04
+  question: Explicit role-bound n-ary participation
+  disposition: FORCED CANDIDATE
+  reason: Facial-access and order-fulfillment claims require multiple distinguishable
+    participants under one assertion scope.
+- id: BA2T1-D05
+  question: Fixed DFD/domain-specific participation slots
+  disposition: REJECTED
+  reason: Not sufficient across structurally different corpora and violates method
+    neutrality.
+- id: BA2T1-D06
+  question: Explicit method-neutral semantic operator key
+  disposition: FORCED CANDIDATE
+  reason: Roles alone do not identify the asserted semantic relation/action.
+- id: BA2T1-D07
+  question: Exhaustive operator vocabulary
+  disposition: DEFERRED
+  reason: BA2-T1 closes only structural lower bound.
+- id: BA2T1-D08
+  question: Proposition-scoped semantic modifier capability
+  disposition: REQUIRED / MATERIAL FORM OPEN
+  reason: Conditions, failure, state, atomicity and concurrency alter assertion meaning
+    without necessarily requiring identity.
+- id: BA2T1-D09
+  question: Free-text modifier bag
+  disposition: REJECTED
+  reason: Would force downstream consumers to reinterpret prose.
+- id: BA2T1-D10
+  question: Participation/Role/Qualifier as new BAE identity families
+  disposition: NOT FORCED
+  reason: Structural/value semantics suffice; no independent identity counterexample
+    found.
+- id: BA2T1-D11
+  question: Referent classification reconstructed only from proposition roles
+  disposition: REJECTED
+  reason: Role is contextual; reusable semantic classification must be independently
+    available when needed.
+- id: BA2T1-D12
+  question: Explicit method-neutral referent classification capability
+  disposition: SUPPORTED / VOCABULARY OPEN
+  reason: Mechanical projections must not reconstruct reusable semantic kind from
+    raw prose.
+- id: BA2T1-D13
+  question: Dedicated Action/Event/Relation BAE identity family
+  disposition: NOT FORCED
+  reason: Reusable behavior identity remains BAReferent; asserted action/relation
+    semantics live in BAProposition structure.
+- id: BA2T1-D14
+  question: BA1 reopen
+  disposition: NOT TRIGGERED
+  reason: No third semantic identity family is required by the tested structural cases.
+candidate_structure:
+  semanticOperator: exactly 1 explicit method-neutral semantic key; vocabulary open
+  participation: 1..* role-bound terms; n-ary capability required
+  term: BAReferent required for at least one participant; typed local value allowed
+    when identity is not required
+  scopedModifier: 0..* capability required; exact representation open
+  classification: explicit reusable method-neutral capability supported; vocabulary/cardinality
+    open
+next_authorized_microstep: BA2-T2 - semantic operator, participation-role and scoped-modifier
+  vocabulary pressure test
+forbidden_in_this_step:
+- BA2 closure
+- BA3 provenance schema
+- BA4 views
+- formal STRIDE overlay
+- Common Finding
+- ThreatForge implementation classes

@@ -1,0 +1,684 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  10pt,
+  letterpaper,
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{xurl}
+\setlength{\emergencystretch}{3em}
+\usepackage{microtype}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{BA2-T1 - BAProposition shape and participation-role lower-bound
+derivation}\label{ba2-t1---baproposition-shape-and-participation-role-lower-bound-derivation}
+
+\textbf{Revision:} R1
+
+\textbf{Status:} COMPLETED / PROVISIONAL CANDIDATE / BA2 NOT CLOSED
+
+\textbf{Repository baseline reviewed:}
+\texttt{3d8251328c77177375cccf1c51caa54b7473e21e}
+
+\textbf{Phase:} BA2 - Relations and canonical action vocabulary
+
+\textbf{BA0:} CLOSED
+
+\textbf{BA1:} CLOSED
+
+\textbf{BA3:} NOT STARTED
+
+\subsection{1. Question and guardrail}\label{question-and-guardrail}
+
+BA2-T1 asks only:
+
+\begin{quote}
+What is the minimum methodology-neutral structural shape required for
+one \texttt{BAProposition} to express reusable project facts over
+\texttt{BAReferent} identities without freezing an exhaustive predicate
+vocabulary or importing a domain/method taxonomy?
+\end{quote}
+
+The test obeys the BA1 closure boundary:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BAReferent     accepted identity family}
+\NormalTok{BAProposition  accepted identity family}
+\end{Highlighting}
+\end{Shaded}
+
+A failure that requires a third semantic identity family would reopen
+BA1. No such failure is found in this microstep.
+
+BA2-T1 does not define provenance/source fields, views, ThreatForge
+classes, STRIDE/DFD semantics, Findings or a complete relation/action
+dictionary.
+
+\subsection{2. Evidence pressure}\label{evidence-pressure}
+
+\subsubsection{2.1 Documentation-layer
+constraint}\label{documentation-layer-constraint}
+
+The FunctionalRequirement metamodel makes normative prose semantically
+primary and explicitly states that SPO references do not carry all
+conditional, concurrency, lifecycle or failure semantics.
+
+Its strong operational patterns include:
+
+\begin{itemize}
+\tightlist
+\item
+  condition -\textgreater{} required transition;
+\item
+  request -\textgreater{} processing responsibility -\textgreater{}
+  observable result;
+\item
+  lifecycle event -\textgreater{} state change and failure behavior;
+\item
+  interaction -\textgreater{} output/correlation behavior;
+\item
+  concurrency condition -\textgreater{} atomicity/idempotency invariant.
+\end{itemize}
+
+Therefore BA2 cannot simply inherit documentation-layer SPO as the
+complete analytical proposition model.
+
+\subsubsection{2.2 Facial-access pressure}\label{facial-access-pressure}
+
+\texttt{FR-3.4} states one delivery meaning with at least these
+distinguishable semantic participants/conditions:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{CameraSubsystem};
+\item
+  \texttt{RecognitionProcessor};
+\item
+  \texttt{RecognitionCapture};
+\item
+  \texttt{RecognitionRequest} correlation;
+\item
+  incomplete delivery must not be represented as success.
+\end{itemize}
+
+The same delivery meaning is later constrained by confidentiality,
+integrity and authorized-origin requirements and survives some mutations
+while being retired by the local-recognition mutation.
+
+\subsubsection{2.3 Order-fulfillment
+pressure}\label{order-fulfillment-pressure}
+
+The independent order corpus adds propositions that combine:
+
+\begin{itemize}
+\tightlist
+\item
+  executor/capability;
+\item
+  request and result;
+\item
+  \texttt{OrderEvaluation} correlation;
+\item
+  \texttt{Reservation} lifecycle;
+\item
+  all-lines atomicity;
+\item
+  competing concurrency;
+\item
+  idempotency;
+\item
+  compensation;
+\item
+  authorized/declined/indeterminate outcomes;
+\item
+  physical handoff reuse across inventory and payment behavior.
+\end{itemize}
+
+The corpus explicitly says its actor/data/store/contract probe kinds are
+authoring substrate only and that final Base Analysis types are
+deferred.
+
+\subsection{3. Alternative A - universal binary
+SPO}\label{alternative-a---universal-binary-spo}
+
+Candidate:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{subject {-}{-} predicate {-}{-}\textgreater{} object}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Test}\label{test}
+
+Binary edges can represent simple facts, and they remain useful
+projections. The problem is using them as the \textbf{only} normative
+proposition shape.
+
+For \texttt{FR-3.4}, four binary edges could encode source, destination,
+information and correlation only if there is a common semantic anchor
+that says they belong to the same delivery assertion. If the anchor is
+the \texttt{BAProposition}, the binary-only claim has already expanded
+into a role-bearing n-ary assertion. If the anchor is a synthetic
+\texttt{BAReferent} created for every relation occurrence, the model
+violates the BA1 distinction by using referent identity as a generic
+proposition proxy.
+
+The order corpus makes the problem stronger: atomicity, concurrency and
+conditional result semantics apply to the joint configuration of
+multiple participants. Splitting them into unrelated triples requires a
+separate grouping/scope mechanism before the original claim can be
+reconstructed.
+
+\subsubsection{Disposition}\label{disposition}
+
+\textbf{REJECTED AS UNIVERSAL SHAPE.} Binary relations remain valid
+special cases or projections of a more general proposition structure.
+
+\subsection{4. Alternative B - one proposition with anonymous ordered
+participants}\label{alternative-b---one-proposition-with-anonymous-ordered-participants}
+
+Candidate:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{operator(participant1, participant2, participant3, ...)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Test}\label{test-1}
+
+Positional ordering is insufficient because the same referent can occupy
+different semantic roles in different propositions, and method consumers
+should not depend on undocumented argument positions.
+
+For example, \texttt{RecognitionCapture} may be transferred information
+in one assertion and the object of an acceptance/validity condition in
+another. \texttt{PaymentProvider} may be a destination/provider
+participant in one proposition and an external authority/context in
+another.
+
+\subsubsection{Disposition}\label{disposition-1}
+
+\textbf{REJECTED.} Participation roles must be explicit.
+
+\subsection{5. Alternative C - fixed domain-specific
+slots}\label{alternative-c---fixed-domain-specific-slots}
+
+Candidate examples:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{source / process / destination / data / store / trustBoundary}
+\end{Highlighting}
+\end{Shaded}
+
+or another fixed architecture/threat-method slot set.
+
+\subsubsection{Test}\label{test-2}
+
+Facial access can be made to look DFD-like, but the order corpus needs
+request/result, correlation, reservation lifecycle, responsibility,
+atomicity, compensation and physical handoff semantics that do not fit
+one fixed DFD tuple without distortion.
+
+A domain-specific slot set would also violate the closed method-neutral
+boundary.
+
+\subsubsection{Disposition}\label{disposition-2}
+
+\textbf{REJECTED AS UNIVERSAL CORE.} Domain/method projections may
+derive such slots later.
+
+\subsection{6. Lower bound 1 - explicit semantic
+operator}\label{lower-bound-1---explicit-semantic-operator}
+
+A set of participants and roles is still ambiguous unless the
+proposition says what semantic assertion connects them.
+
+Therefore every proposition needs an explicit \textbf{method-neutral
+semantic operator key}.
+
+This microstep does not accept a verb list. It accepts only the
+structural responsibility:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BAProposition.semanticOperator = exactly 1 explicit semantic key}
+\end{Highlighting}
+\end{Shaded}
+
+The key must eventually be stable enough for mechanical selection and
+comparison, but whether canonical operators are modeled as controlled
+symbols, registry entries or another representation remains later BA2
+work.
+
+No \texttt{Relation} or \texttt{Action} BAE identity family is created.
+
+\subsection{7. Lower bound 2 - role-bound n-ary
+participation}\label{lower-bound-2---role-bound-n-ary-participation}
+
+A BAProposition must support one or more role-bound semantic terms:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{participation 1..*}
+\NormalTok{    role 1}
+\NormalTok{    term 1}
+\end{Highlighting}
+\end{Shaded}
+
+At least one term must be a \texttt{BAReferent}, preserving the BA1
+definition that a proposition is an assertion about referent identities.
+
+A term may be a typed local value when cross-proposition semantic
+identity is not required. If a condition/state/value must itself be
+reused, compared or constrained across propositions, BA1 already
+provides the promotion path: represent that project meaning as a
+\texttt{BAReferent}.
+
+This form permits unary, binary and higher-arity propositions. N-ary
+support is therefore a \textbf{capability}, not a requirement that every
+proposition have more than two participants.
+
+\subsubsection{Disposition}\label{disposition-3}
+
+\textbf{FORCED CANDIDATE.}
+
+\subsection{8. Lower bound 3 - scoped semantic
+modifiers}\label{lower-bound-3---scoped-semantic-modifiers}
+
+The reviewed clauses show that the truth/meaning of an assertion may
+depend on:
+
+\begin{itemize}
+\tightlist
+\item
+  condition/applicability;
+\item
+  state;
+\item
+  failure/completion rule;
+\item
+  realization;
+\item
+  atomicity/concurrency;
+\item
+  idempotency;
+\item
+  polarity/negative outcome.
+\end{itemize}
+
+Treating this as an untyped prose suffix would defeat the purpose of
+Base Analysis. But forcing every local qualifier to become a
+\texttt{BAReferent} would over-reify project meaning.
+
+BA2-T1 therefore accepts a weaker structural requirement:
+
+\begin{quote}
+a BAProposition must support explicit, proposition-scoped semantic
+modifiers without requiring those modifiers to become BAE identities.
+\end{quote}
+
+The exact modifier schema is intentionally \textbf{OPEN}. BA2-T2 must
+test whether modifiers are best represented through role-bound
+values/referents, normalized qualifier records, separate propositions
+about reusable referents, or a constrained combination.
+
+\subsubsection{Disposition}\label{disposition-4}
+
+\textbf{REQUIRED CAPABILITY / MATERIAL FORM OPEN.}
+
+\subsection{9. Referent classification versus participation
+role}\label{referent-classification-versus-participation-role}
+
+The BA1 closure allowed method-neutral semantic classifications without
+creating subtype roots. BA2-T1 asks whether those classifications can
+instead be reconstructed from proposition roles.
+
+They cannot reliably be collapsed.
+
+Role is contextual; classification is reusable semantic characterization
+of the referent. \texttt{RecognitionCapture} does not cease to be
+information/resource-like project meaning because one proposition uses
+it as an acceptance object. \texttt{PaymentProviderContract} does not
+become a destination type merely because an interaction proposition
+points toward it/provider context.
+
+If a method-neutral consumer must know reusable semantic kind but Base
+Analysis omits it, the consumer would have to reread raw prose or invent
+its own taxonomy, weakening shared semantics.
+
+\subsubsection{Disposition}\label{disposition-5}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{classification derived only from roles         REJECTED}
+\NormalTok{explicit reusable classification capability     SUPPORTED}
+\NormalTok{exact classification vocabulary/cardinality     DEFERRED}
+\end{Highlighting}
+\end{Shaded}
+
+This does not reopen BA1: classification remains cheaper than a
+first-class split.
+
+\subsection{10. Behavior/action identity
+test}\label{behavioraction-identity-test}
+
+BA1 already decided that a behavior/event may be a \texttt{BAReferent}
+when independently reused. BA2-T1 tests whether proposition structure
+now forces a dedicated \texttt{Action} family.
+
+It does not.
+
+A delivery behavior that must be referenced by multiple constraints may
+be a BAReferent. A proposition's semantic operator still expresses the
+assertion currently being made. These are different responsibilities:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{reusable project behavior meaning  {-}\textgreater{} BAReferent}
+\NormalTok{asserted semantic relation/action  {-}\textgreater{} BAProposition operator + participation}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Disposition}\label{disposition-6}
+
+\textbf{NO BA1 REOPEN.} No third identity family is forced.
+
+\subsection{11. Concrete facial-access
+rendering}\label{concrete-facial-access-rendering}
+
+The following labels are illustrative only:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{P{-}FR34{-}DELIVERY}
+\NormalTok{semanticOperator: transfer}
+\NormalTok{participation:}
+\NormalTok{  source              {-}\textgreater{} CameraSubsystem}
+\NormalTok{  destination         {-}\textgreater{} RecognitionProcessor}
+\NormalTok{  information         {-}\textgreater{} RecognitionCapture}
+\NormalTok{  correlationContext  {-}\textgreater{} RecognitionRequest}
+\NormalTok{scopedModifier:}
+\NormalTok{  completion          {-}\textgreater{} incomplete delivery != successful completion}
+\end{Highlighting}
+\end{Shaded}
+
+This is already richer than SPO but still smaller than a domain-specific
+DFD ontology.
+
+If \texttt{FR-3.4\ delivery} is independently reused by specialized
+constraints, its project meaning may additionally be represented as a
+BAReferent and participate explicitly in those propositions. The
+assertion identity \texttt{P-FR34-DELIVERY} does not become the
+project-semantic target.
+
+\subsection{12. Concrete order-fulfillment
+rendering}\label{concrete-order-fulfillment-rendering}
+
+Consider the atomic reservation requirement. One proposition must be
+able to expose, without synthetic document/tool types:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{semanticOperator: reserve / allocate   [illustrative]}
+\NormalTok{participation:}
+\NormalTok{  executor     {-}\textgreater{} InventoryService}
+\NormalTok{  request      {-}\textgreater{} ReservationRequest}
+\NormalTok{  correlation  {-}\textgreater{} OrderEvaluation}
+\NormalTok{  created      {-}\textgreater{} Reservation}
+\NormalTok{  result       {-}\textgreater{} ReservationResult}
+\NormalTok{  affected     {-}\textgreater{} InventoryBalance}
+\NormalTok{scopedModifier:}
+\NormalTok{  atomicity    {-}\textgreater{} all requested lines or none}
+\NormalTok{  concurrency  {-}\textgreater{} competing reservation cannot consume frozen quantity}
+\end{Highlighting}
+\end{Shaded}
+
+The exact canonical roles and operator names are not accepted here. The
+example demonstrates only why the structure must be role-bound and able
+to carry scoped semantics.
+
+\subsection{13. Bounded consumer check}\label{bounded-consumer-check}
+
+The prior bounded STRIDE-oriented consumer needs behavior, source,
+destination, information, correlation, responsibility/externality,
+realization, failure and constraints.
+
+BA2-T1's candidate can expose those semantics without importing STRIDE
+categories:
+
+\begin{itemize}
+\tightlist
+\item
+  referents carry stable project-semantic identity and reusable
+  classification where needed;
+\item
+  propositions carry explicit operator semantics;
+\item
+  role bindings expose participation mechanically;
+\item
+  scoped modifiers preserve conditions/failure semantics;
+\item
+  method-specific categories remain in the consumer.
+\end{itemize}
+
+\subsubsection{Result}\label{result}
+
+\textbf{STRUCTURAL PASS / VOCABULARY NOT YET CLOSED.}
+
+\subsection{14. Falsification summary}\label{falsification-summary}
+
+\begin{itemize}
+\tightlist
+\item
+  Pure binary SPO as universal core: \textbf{REJECTED}.
+\item
+  Binary proposition as a valid special case: \textbf{SUPPORTED}.
+\item
+  Anonymous positional n-ary tuple: \textbf{REJECTED}.
+\item
+  Explicit role-bound n-ary participation: \textbf{FORCED CANDIDATE}.
+\item
+  Fixed domain/method slot model: \textbf{REJECTED}.
+\item
+  Explicit semantic operator key: \textbf{FORCED CANDIDATE}.
+\item
+  Exhaustive operator list: \textbf{DEFERRED}.
+\item
+  Scoped modifier capability: \textbf{REQUIRED / ENCODING OPEN}.
+\item
+  Free-text modifier bag: \textbf{REJECTED}.
+\item
+  Participation/Role/Qualifier as BAE identity families: \textbf{NOT
+  FORCED}.
+\item
+  Referent classification reconstructed only from roles:
+  \textbf{REJECTED}.
+\item
+  Explicit method-neutral classification capability: \textbf{SUPPORTED /
+  VOCABULARY OPEN}.
+\item
+  Dedicated Action/Event/Relation identity family: \textbf{NOT FORCED}.
+\item
+  BA1 reopen: \textbf{NOT TRIGGERED}.
+\end{itemize}
+
+\subsection{15. Provisional candidate}\label{provisional-candidate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BAProposition}
+\NormalTok{|{-} identity                         [BA1 CLOSED]}
+\NormalTok{|{-} semanticOperator                1}
+\NormalTok{|{-} participation                   1..*}
+\NormalTok{|    |{-} role                       1}
+\NormalTok{|    \textasciigrave{}{-} term                       1}
+\NormalTok{\textasciigrave{}{-} scopedModifier                  0..* [capability required; exact shape open]}
+\end{Highlighting}
+\end{Shaded}
+
+Additional constraints:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  at least one participation term is a \texttt{BAReferent};
+\item
+  n-ary participation is supported but not mandatory for every
+  proposition;
+\item
+  role semantics are explicit, not positional;
+\item
+  semantic operator and role vocabularies are method-neutral and still
+  open;
+\item
+  reusable referent classification is separate from contextual
+  participation role;
+\item
+  no new BAE identity family is introduced.
+\end{enumerate}
+
+\subsection{16. What BA2-T1 does not
+decide}\label{what-ba2-t1-does-not-decide}
+
+BA2-T1 does not decide:
+
+\begin{itemize}
+\tightlist
+\item
+  final operator vocabulary;
+\item
+  final participation-role vocabulary;
+\item
+  operator-role compatibility matrix;
+\item
+  role cardinalities;
+\item
+  exact qualifier/modifier representation;
+\item
+  logical composition/negation expression language;
+\item
+  canonical classification vocabulary;
+\item
+  provenance/source fields;
+\item
+  views/projections;
+\item
+  lexical synonyms;
+\item
+  threat-method mappings.
+\end{itemize}
+
+\subsection{17. Next authorized
+microstep}\label{next-authorized-microstep}
+
+Execute only:
+
+\begin{quote}
+\textbf{BA2-T2 - semantic operator, participation-role and
+scoped-modifier vocabulary pressure test.}
+\end{quote}
+
+BA2-T2 must attempt to derive the smallest reusable method-neutral
+semantic vocabulary from the two corpora and bounded consumer while
+keeping lexical synonyms, method-specific categories and provenance out
+of scope.
+
+Do not close BA2 merely because the structural lower bound survives this
+trial.
+
+\end{document}
