@@ -1,0 +1,760 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\setlength{\emergencystretch}{3em}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  colorlinks=true,
+  linkcolor={black},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={black},
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{BA1-T1 - Minimal BAE ontology candidate
+derivation}\label{ba1-t1---minimal-bae-ontology-candidate-derivation}
+
+\textbf{Revision:} R1
+
+\textbf{Status:} COMPLETED / PROVISIONAL CANDIDATE / BA1 NOT CLOSED
+
+\textbf{Repository baseline reviewed:}
+\texttt{83af68cb1a02a6b1e76f591d4c1519f9496be3b3}
+
+\textbf{Phase:} BA1 - Minimal BAE ontology
+
+\textbf{BA0:} CLOSED
+
+\textbf{BA2:} NOT STARTED
+
+\subsection{1. Question and guardrail}\label{1-question-and-guardrail}
+
+BA1-T1 asks only:
+
+\begin{quote}
+What is the smallest falsifiable set of first-class analytical identity
+families needed to realize the closed BA0 responsibilities without
+importing document types, tool structures, threat-method categories or
+general systems-modeling taxonomies by default?
+\end{quote}
+
+The governing rule is:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{semantic responsibility exists}
+\NormalTok{        !=}
+\NormalTok{first{-}class metaclass required}
+\end{Highlighting}
+\end{Shaded}
+
+For every recurring semantic responsibility, BA1-T1 tests whether it can
+remain a relation, role, property/value, constraint/state, provenance or
+diagnostic record, or derived projection before proposing a first-class
+BAE identity.
+
+This microstep does not define relation vocabulary, canonical action
+predicates, identity/equivalence lifecycle rules, provenance
+materialization, projection contracts, AnalysisRecord, Finding or a
+threat-method overlay.
+
+\subsection{2. Closed input boundary from
+BA0}\label{2-closed-input-boundary-from-ba0}
+
+BA0-T3 closed eight responsibilities:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{BA0-C1} authority and provenance boundary;
+\item
+  \texttt{BA0-C2} baseline-scoped shared semantic identity;
+\item
+  \texttt{BA0-C3} method-neutral shared core;
+\item
+  \texttt{BA0-C4} explicit uncertainty and diagnostic localization;
+\item
+  \texttt{BA0-C5} projection readiness and source drill-down;
+\item
+  \texttt{BA0-C6} change-impact traceability;
+\item
+  \texttt{BA0-C7} source-localized feedback handoff;
+\item
+  \texttt{BA0-C8} minimality and representation independence.
+\end{itemize}
+
+BA0 also closed that grounded, derived and diagnostic/unresolved are
+required \textbf{origin/state responsibilities}, not pre-approved domain
+metaclasses. A generic reviewed analytical-addition class is not
+required.
+
+The BA0 boundary already speaks of stable analytical \textbf{referents
+and propositions}. BA1-T1 treats those words as responsibility-level
+evidence and tests whether they deserve distinct first-class identity
+families.
+
+\subsection{3. Evidence base}\label{3-evidence-base}
+
+\subsubsection{3.1 Facial-access branch inherited from
+BA0-T1/T2}\label{31-facial-access-branch-inherited-from-ba0-t1t2}
+
+The branch requires stable recognition of at least:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{CameraSubsystem};
+\item
+  \texttt{RecognitionProcessor};
+\item
+  \texttt{RecognitionCapture};
+\item
+  \texttt{RecognitionRequest};
+\item
+  consumed transport responsibility/context;
+\item
+  current Ethernet realization;
+\item
+  the delivery/correlation/failure statements around \texttt{FR-3.4};
+\item
+  the confidentiality, integrity and authorized-origin conditions
+  constraining that delivery.
+\end{itemize}
+
+BA0-T1 showed that the same referent can participate in grounded and
+derived assertions with different origin. It also showed that a
+plausible invented endpoint is not accepted merely because it is
+convenient to draw.
+
+Mutation M1 (\texttt{Ethernet\ -\textgreater{}\ Wi-Fi}) changes one
+realization while preserving most other meaning. Mutation M3 (remote
+-\textgreater{} local recognition) retires/revises delivery meaning and
+proves that lexical equality alone cannot establish analytical identity.
+
+\subsubsection{3.2 Independent order-fulfillment
+corpus}\label{32-independent-order-fulfillment-corpus}
+
+The revision-3 complete order-fulfillment authoring probe is used as a
+structurally distinct pressure source. It explicitly states that its
+governed references are an authoring substrate and that their final Base
+Analysis types are deferred.
+
+The corpus contains:
+
+\begin{itemize}
+\tightlist
+\item
+  human/external participants (\texttt{Customer},
+  \texttt{WarehouseOperator}, \texttt{PaymentProvider});
+\item
+  project capabilities/services such as \texttt{OrderService},
+  \texttt{InventoryService} and \texttt{PaymentAdapter};
+\item
+  further service referents such as \texttt{FulfillmentService} and
+  \texttt{CarrierAdapter};
+\item
+  lifecycle-bearing concepts such as \texttt{OrderEvaluation},
+  \texttt{Order} and \texttt{Reservation};
+\item
+  result concepts such as \texttt{ReservationResult} and
+  \texttt{PaymentAuthorizationResult};
+\item
+  task concepts such as \texttt{FulfillmentTask};
+\item
+  store candidates such as \texttt{InventoryLedger} and
+  \texttt{ReservationStore};
+\item
+  contract candidates such as \texttt{PaymentProviderContract} and
+  \texttt{CarrierContract};
+\item
+  state and result values (\texttt{ACCEPTED}, \texttt{authorized},
+  \texttt{declined}, \texttt{indeterminate}, reservation lifecycle
+  state);
+\item
+  cross-branch service consumption without ownership transfer;
+\item
+  decisions that change responsibility boundaries (internal inventory
+  authority versus external WMS);
+\item
+  operational statements about correlation, atomicity, idempotency,
+  compensation, concurrency, failure and physical handoff milestones.
+\end{itemize}
+
+The corpus deliberately leaves the exact formal object for cross-MR
+service consumption open for Base Analysis.
+
+\subsubsection{3.3 Documentation-layer
+constraints}\label{33-documentation-layer-constraints}
+
+The FunctionalRequirement baseline makes normative prose semantically
+primary and uses SPO references only to expose reusable participants. It
+explicitly states that SPO alone does not contain all conditional,
+concurrency, lifecycle or failure semantics.
+
+The Decision layer records project commitments; it is not automatically
+an analytical type. The MR working evidence likewise warns that nouns in
+MR prose do not directly create BAEs. The layering work separates L1
+semantics from material representation, tooling and projections.
+
+Therefore BA1 must not copy the
+\texttt{MR\ -\textgreater{}\ Decision\ -\textgreater{}\ FR\ -\textgreater{}\ SR}
+document hierarchy into Base Analysis.
+
+\subsection{4. Lower-bound falsification: can one generic element type
+be
+enough?}\label{4-lower-bound-falsification-can-one-generic-element-type-be-enough}
+
+\subsubsection{Candidate alternative A}\label{candidate-alternative-a}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BAElement}
+\end{Highlighting}
+\end{Shaded}
+
+with every project thing and every analytical claim represented as the
+same undifferentiated kind.
+
+\subsubsection{Test}\label{test}
+
+This collapses two responsibilities that current evidence needs to
+distinguish:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{identity of what the project statement is about}; and
+\item
+  \textbf{identity, origin and evolution of the statement itself}.
+\end{enumerate}
+
+In T1, \texttt{CameraSubsystem} can remain the same referent while the
+statements involving it are retained, revised or retired. The normalized
+delivery tuple is derived even though its referenced participants are
+grounded. In the order corpus, the same \texttt{OrderEvaluation}
+identity participates in multiple independently governed claims about
+reservation, payment, compensation and commitment.
+
+If referent and proposition are one undifferentiated kind, provenance
+and change review can still be implemented with extra flags, but the
+semantic distinction has merely been hidden in properties. That does not
+reduce the required ontology; it obscures it.
+
+\subsubsection{Disposition}\label{disposition}
+
+\textbf{REJECTED AS THE MINIMAL BA1-T1 CANDIDATE.} A single
+undifferentiated analytical element does not preserve the observed
+distinction between identity of a referent and identity/origin of claims
+about it.
+
+\subsection{5. Upper-bound falsification: are domain-specific roots
+already
+forced?}\label{5-upper-bound-falsification-are-domain-specific-roots-already-forced}
+
+The reviewed evidence repeatedly uses structural participants, behavior,
+information, state, interfaces/contracts, stores and boundaries. BA0-R
+also established their recurring semantic relevance.
+
+However, recurring relevance is not sufficient for first-class split.
+
+Current cases can be represented without yet declaring separate root
+metaclasses:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{CameraSubsystem}, \texttt{RecognitionProcessor},
+  \texttt{OrderService}, \texttt{PaymentProvider},
+  \texttt{InventoryLedger} and \texttt{PaymentProviderContract} can all
+  be independently identified referents whose more specific semantic
+  role remains explicit but not yet a metaclass split;
+\item
+  \texttt{RecognitionCapture}, \texttt{RecognitionRequest},
+  \texttt{OrderEvaluation}, \texttt{Reservation} and result objects can
+  be referents with information/resource/lifecycle roles;
+\item
+  delivery, correlation, dependency, ownership, state transition,
+  atomicity, idempotency, applicability and security conditions can be
+  propositions;
+\item
+  a behavior/event that later needs independent cross-statement identity
+  may itself become a referent, without proving today that all behaviors
+  require a separate \texttt{Behavior} metaclass;
+\item
+  state values can remain values/qualifiers or propositions until an
+  independently governed state identity is forced;
+\item
+  a boundary, channel, store or contract can remain a referent role/kind
+  until evidence requires subtype-specific invariants that cannot be
+  expressed without a first-class split.
+\end{itemize}
+
+\subsubsection{Disposition}\label{disposition-1}
+
+\textbf{NOT YET FORCED.} \texttt{Behavior}, \texttt{Information},
+\texttt{Participant}, \texttt{Component/Capability}, \texttt{Boundary},
+\texttt{Channel}, \texttt{Store}, \texttt{Contract},
+\texttt{State/Mode/Context}, \texttt{Interface/Connection},
+\texttt{Dependency} and similar families remain split hypotheses for
+later pressure testing.
+
+\subsection{6. Minimal ontology
+candidate}\label{6-minimal-ontology-candidate}
+
+BA1-T1 therefore proposes exactly two first-class analytical identity
+families.
+
+\subsubsection{\texorpdfstring{BA1-C1 -
+\texttt{BAReferent}}{BA1-C1 - BAReferent}}\label{ba1-c1---bareferent}
+
+\textbf{Status:} CANDIDATE / FIRST-CLASS IDENTITY PRESSURE SUPPORTED /
+NOT ACCEPTED
+
+A \texttt{BAReferent} is an independently identifiable unit of
+methodology-neutral shared project meaning that must be recognizable
+across one or more analytical propositions, projections or governed
+baselines.
+
+A referent may denote structural, human/external,
+informational/resource, behavioral/event, contractual, storage or other
+project meaning. Those semantic kinds are not first-class subtype
+decisions in BA1-T1.
+
+Examples from the evidence include, when independent identity is needed
+by analysis:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{CameraSubsystem}, \texttt{RecognitionProcessor};
+\item
+  \texttt{RecognitionCapture}, \texttt{RecognitionRequest};
+\item
+  \texttt{OrderEvaluation}, \texttt{Reservation};
+\item
+  \texttt{InventoryService}, \texttt{PaymentProvider};
+\item
+  \texttt{PaymentProviderContract}, \texttt{InventoryLedger}.
+\end{itemize}
+
+A governed document is not automatically a \texttt{BAReferent}. The
+project meaning expressed by a document may justify one or more
+referents, while the document remains source authority and provenance
+evidence.
+
+\subsubsection{\texorpdfstring{BA1-C2 -
+\texttt{BAProposition}}{BA1-C2 - BAProposition}}\label{ba1-c2---baproposition}
+
+\textbf{Status:} CANDIDATE / FIRST-CLASS IDENTITY PRESSURE SUPPORTED /
+NOT ACCEPTED
+
+A \texttt{BAProposition} is an independently identifiable
+methodology-neutral analytical assertion expressing shared project
+meaning about one or more referents, with enough identity to carry
+source/origin distinction, be retained/revised/retired or diagnosed, and
+be reused by multiple projections or consumers.
+
+A proposition may express, without pre-closing the later vocabulary:
+
+\begin{itemize}
+\tightlist
+\item
+  relation or dependency;
+\item
+  behavior/action/transfer/transition;
+\item
+  responsibility or ownership context;
+\item
+  correlation;
+\item
+  state/condition/result semantics;
+\item
+  applicability;
+\item
+  constraint/property;
+\item
+  lifecycle/failure/concurrency semantics.
+\end{itemize}
+
+A proposition may itself need to be the target of another proposition.
+For example, a specialized condition may constrain the same delivery
+meaning without forcing a separate \texttt{Behavior} metaclass at this
+stage.
+
+The exact predicate/action vocabulary and structural shape of
+propositions belong to BA2. Exact origin/provenance/source-locator
+materialization belongs to BA3.
+
+\subsubsection{Candidate picture}\label{candidate-picture}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Base Analysis for one governed baseline}
+
+\NormalTok{    BAReferent *}
+\NormalTok{        \^{}}
+\NormalTok{        | referenced by}
+\NormalTok{        |}
+\NormalTok{    BAProposition *}
+
+\NormalTok{BAProposition has identity and may also be targeted by other propositions.}
+\end{Highlighting}
+\end{Shaded}
+
+\texttt{BAE} is used as the umbrella term for Base Analysis elements.
+BA1-T1 does \textbf{not} require an additional concrete or abstract
+\texttt{BAElement} metaclass unless a later shared-field/invariant
+analysis justifies it.
+
+\subsection{7. Why proposition identity is not just a relation
+table}\label{7-why-proposition-identity-is-not-just-a-relation-table}
+
+The evidence requires more than binary edges.
+
+\texttt{FR-3.4} includes source, destination, delivered information,
+request correlation and failure semantics. The order corpus includes
+conditions, atomicity, concurrency, idempotency, lifecycle and
+indeterminate outcomes that cannot be reduced faithfully to one
+subject-predicate-object edge.
+
+SPO remains useful as one structured projection, but the full analytical
+claim is the semantic unit that needs provenance and change review.
+
+Therefore BA1-T1 does not define \texttt{Relation} as a first-class BAE.
+A relation/action may be part of the content of a
+\texttt{BAProposition}; BA2 will decide the minimal relation and action
+vocabulary.
+
+\subsection{8. Mapping the BA0 responsibilities to the
+candidate}\label{8-mapping-the-ba0-responsibilities-to-the-candidate}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{C1 authority/provenance:} referents and especially
+  propositions remain source-aligned; exact provenance records are BA3,
+  not new domain BAEs.
+\item
+  \textbf{C2 shared semantic identity:} \texttt{BAReferent} and
+  \texttt{BAProposition} provide the two identity-bearing families
+  forced by current evidence.
+\item
+  \textbf{C3 method-neutral core:} neither family contains
+  STRIDE/STRIDE-AI or tool-owned categories.
+\item
+  \textbf{C4 diagnostic localization:} diagnostic/unresolved remains
+  status/record over affected identities; no \texttt{Diagnostic} domain
+  BAE is required.
+\item
+  \textbf{C5 projection readiness:} views select/project referents and
+  propositions; \texttt{View} is BA4, not a core BAE type.
+\item
+  \textbf{C6 change-impact traceability:} referent/proposition identity
+  allows selective retain/revise/retire review; exact dependency
+  relations are BA2/BA3.
+\item
+  \textbf{C7 feedback handoff:} source-aligned propositions localize the
+  governed area to review; governance workflow remains outside BA.
+\item
+  \textbf{C8 minimality/independence:} no notation, storage technology,
+  document hierarchy or domain-specific subtype is accepted without
+  separate pressure.
+\end{itemize}
+
+\subsection{9. Explicit non-first-class dispositions in
+BA1-T1}\label{9-explicit-non-first-class-dispositions-in-ba1-t1}
+
+\subsubsection{Not copied from
+documentation}\label{not-copied-from-documentation}
+
+The following are \textbf{not BAE metaclasses by inheritance}:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{MacroRequirement};
+\item
+  \texttt{Decision};
+\item
+  \texttt{Requirement};
+\item
+  \texttt{FunctionalRequirement};
+\item
+  \texttt{SpecializedRequirement};
+\item
+  \texttt{SecurityRequirement};
+\item
+  \texttt{NormativeClause}.
+\end{itemize}
+
+They remain governed-document concepts/source identities. BA3 will later
+define document-to-Base-Analysis derivation and provenance.
+
+\subsubsection{Not promoted from historical/tool
+studies}\label{not-promoted-from-historicaltool-studies}
+
+The following are \textbf{not accepted roots}:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{actor};
+\item
+  \texttt{component};
+\item
+  \texttt{asset};
+\item
+  \texttt{boundary};
+\item
+  \texttt{data\_flow};
+\item
+  ThreatForge-native objects;
+\item
+  STRIDE DFD categories.
+\end{itemize}
+
+\subsubsection{Deferred semantic-kind
+splits}\label{deferred-semantic-kind-splits}
+
+The following remain \textbf{OPEN / DEFERRED AS FIRST-CLASS SPLITS}:
+
+\begin{itemize}
+\tightlist
+\item
+  Participant / actor-like role;
+\item
+  structural element / component / capability;
+\item
+  information / resource;
+\item
+  behavior / event / transition;
+\item
+  interface / connection / channel;
+\item
+  store / persistence;
+\item
+  contract;
+\item
+  boundary / scope boundary;
+\item
+  state / mode / context;
+\item
+  dependency / allocation;
+\item
+  property / constraint as an autonomous element.
+\end{itemize}
+
+They may remain classifications/roles/propositions, or later evidence
+may force a subtype/metaclass split.
+
+\subsubsection{Deferred to later phases rather than domain
+ontology}\label{deferred-to-later-phases-rather-than-domain-ontology}
+
+\begin{itemize}
+\tightlist
+\item
+  source locator, provenance record and origin materialization
+  -\textgreater{} BA3;
+\item
+  diagnostic record/status schema -\textgreater{} BA3;
+\item
+  view/projection -\textgreater{} BA4;
+\item
+  controlled vocabulary and lexical assistance -\textgreater{} BA5;
+\item
+  AnalysisRecord, Finding and methodology output -\textgreater{}
+  post-BA6 analysis envelope.
+\end{itemize}
+
+\subsection{10. Candidate falsification
+criteria}\label{10-candidate-falsification-criteria}
+
+The two-family candidate must be weakened or split if a concrete corpus
+or consumer demonstrates any of the following:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  two referents with the same generic representation require
+  subtype-specific invariants that cannot be expressed without losing
+  reusable semantics;
+\item
+  behavior/event identity cannot be represented honestly as referent
+  plus propositions without ambiguity or unstable reification;
+\item
+  information/resource identity requires distinct lifecycle/typing rules
+  that generic referents cannot preserve;
+\item
+  state/context must be independently identified and related across
+  multiple claims in a way that values/qualifiers/propositions cannot
+  represent cleanly;
+\item
+  boundary/interface/contract/store semantics require independent
+  first-class identity and subtype invariants for multiple analysis
+  consumers;
+\item
+  proposition-as-target becomes ambiguous or creates circular semantics
+  that a dedicated behavior/constraint element would resolve materially;
+\item
+  a method-neutral consumer cannot build its required projection without
+  reconstructing domain kinds independently from raw prose;
+\item
+  a structurally different governed corpus cannot be represented without
+  adding method/tool/document-specific meaning to either family.
+\end{enumerate}
+
+Ordinary requests for a nicer diagram or convenient implementation class
+are not sufficient evidence.
+
+\subsection{11. Result}\label{11-result}
+
+BA1-T1 produces a \textbf{minimal falsifiable ontology candidate}, not
+an accepted ontology:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CANDIDATE}
+\NormalTok{    BAReferent}
+\NormalTok{    BAProposition}
+
+\NormalTok{NOT ACCEPTED YET}
+\NormalTok{    any domain{-}specific subtype/metaclass split}
+\end{Highlighting}
+\end{Shaded}
+
+This candidate is smaller than the historical five-focus study and
+smaller than a general-purpose systems model. It is also stronger than
+an untyped node graph because it preserves the distinction between
+project referent identity and provenance-bearing analytical claim
+identity.
+
+No relation vocabulary is closed by BA1-T1.
+
+\subsection{12. Next authorized
+microstep}\label{12-next-authorized-microstep}
+
+Execute only:
+
+\begin{quote}
+\textbf{BA1-T2 - split-or-collapse pressure test of the two-family
+candidate.}
+\end{quote}
+
+BA1-T2 must deliberately stress \texttt{BAReferent\ +\ BAProposition}
+against at least:
+
+\begin{itemize}
+\tightlist
+\item
+  behavior/event identity and specialized constraints in the
+  facial-access branch;
+\item
+  information/resource lifecycle and correlation in order fulfillment;
+\item
+  internal/external responsibility boundaries plus contract/store
+  candidates;
+\item
+  state/indeterminate semantics and physical handoff event reuse;
+\item
+  one bounded method-consumer projection.
+\end{itemize}
+
+Its purpose is to decide whether any deferred semantic kind is forced to
+become a first-class split, whether the two-family candidate can be
+simplified further, or whether it survives unchanged.
+
+Do not start BA2 unless BA1 is explicitly closed after pressure testing
+and closure review.
+
+\end{document}

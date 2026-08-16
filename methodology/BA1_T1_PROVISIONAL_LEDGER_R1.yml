@@ -1,0 +1,87 @@
+schema: ddta-ba1-t1-provisional-ledger-r1
+status: COMPLETED_PROVISIONAL_CANDIDATE
+repository_baseline: 83af68cb1a02a6b1e76f591d4c1519f9496be3b3
+phase: BA1
+microstep: BA1-T1
+ba0_status: CLOSED
+ba1_status: STARTED_NOT_CLOSED
+ba2_status: NOT_STARTED
+principle: "semantic responsibility exists != first-class metaclass required"
+
+candidate_identity_families:
+  - id: BA1-C1
+    name: BAReferent
+    status: CANDIDATE_NOT_ACCEPTED
+    first_class_pressure: SUPPORTED
+    rationale:
+      - stable referent identity is required across propositions, projections and baselines
+      - facial-access mutations preserve some referents while revising or retiring assertions
+      - order-fulfillment uses recurring independently referenced project concepts across multiple branches
+    alternatives_rejected:
+      - document-type mirroring
+      - actor_asset_component_root_inheritance
+
+  - id: BA1-C2
+    name: BAProposition
+    status: CANDIDATE_NOT_ACCEPTED
+    first_class_pressure: SUPPORTED
+    rationale:
+      - assertion-level origin/provenance differs from referent provenance
+      - independently retained_revised_retired claims occur over stable referents
+      - SPO alone does not capture condition_concurrency_lifecycle_failure semantics
+    alternatives_rejected:
+      - single_undifferentiated_BAElement
+      - relation_edge_only_semantics
+
+non_first_class_at_t1:
+  origin_state:
+    values: [grounded, derived, diagnostic_unresolved]
+    disposition: REQUIRED_RESPONSIBILITY_NOT_DOMAIN_METACLASS
+    later_phase: BA3
+  source_locator:
+    disposition: DEFERRED_MATERIAL_SCHEMA
+    later_phase: BA3
+  diagnostic_record:
+    disposition: DEFERRED_MATERIAL_SCHEMA
+    later_phase: BA3
+  view_projection:
+    disposition: DERIVED_NOT_CORE_DOMAIN_TYPE
+    later_phase: BA4
+  analysis_record_finding:
+    disposition: OUTSIDE_BA1
+    later_phase: post_BA6
+
+deferred_first_class_splits:
+  - Participant
+  - StructuralElement_Component_Capability
+  - Information_Resource
+  - Behavior_Event_Transition
+  - Interface_Connection_Channel
+  - Store_Persistence
+  - Contract
+  - Boundary
+  - State_Mode_Context
+  - Dependency_Allocation
+  - Property_Constraint
+
+rejected_as_preapproved_roots:
+  - actor
+  - component
+  - asset
+  - boundary
+  - data_flow
+  - ThreatForge_native_types
+  - STRIDE_DFD_categories
+  - document_types_MR_Decision_FR_SR
+
+falsification_triggers:
+  - subtype_specific_invariants_cannot_be_preserved_by_generic_referent
+  - behavior_event_identity_requires_dedicated_first_class_split
+  - information_lifecycle_requires_dedicated_first_class_split
+  - state_context_requires_independent_identity
+  - boundary_contract_store_require_dedicated_split_for_shared_consumers
+  - proposition_targeting_is_ambiguous_or_semantically_circular
+  - method_neutral_consumer_must_reconstruct_domain_kinds_from_raw_prose
+  - structurally_distinct_corpus_requires_tool_or_method_specific_core_semantics
+
+next_authorized_microstep: BA1-T2_split_or_collapse_pressure_test

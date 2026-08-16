@@ -15,16 +15,17 @@ The repository is intentionally separate from the ThreatForge software repositor
 
 ## Current research checkpoint
 
-The documentation-layer work through Chapters 2-4 and the systems-modeling prior-art gate `BA0-R` remain closed. `BA0-T1` and `BA0-T2` are completed provisional trials. `BA0-T3` closes the Base Analysis responsibility and non-goals boundary after reducing two R2 overextensions: Base Analysis supports source-localized corrective-feedback handoff but does not own documentation governance, and a generic reviewed analytical-addition class is not required by BA0.
+The documentation layer, Chapters 2-4, `BA0-R`, and the BA0 responsibility/non-goals boundary are closed. `BA1-T1` derives the first falsifiable minimal BAE ontology candidate from the closed BA0 responsibilities and two structurally distinct governed corpora.
 
 The active state and forward rules are recorded in:
 
-- `methodology/DDTA_CURRENT_RESEARCH_STATE_R2.md`
-- `methodology/DDTA_RESEARCH_WORK_PLAN_AFTER_DOCUMENTATION_CLOSURE_R5.md`
+- `methodology/DDTA_CURRENT_RESEARCH_STATE_R3.md`
+- `methodology/DDTA_RESEARCH_WORK_PLAN_AFTER_DOCUMENTATION_CLOSURE_R6.md`
 - `methodology/BA0_BASE_ANALYSIS_RESPONSIBILITY_BOUNDARY_R1.md`
-- `methodology/BA0_T3_RESPONSIBILITY_NON_GOALS_CLOSURE_REVIEW_R1.md`
+- `methodology/BA1_MINIMAL_BAE_ONTOLOGY_CANDIDATE_R1.md`
+- `methodology/BA1_T1_MINIMAL_BAE_ONTOLOGY_CANDIDATE_DERIVATION_R1.md`
 
-`BA0` is **CLOSED**. `BA1` (minimal BAE ontology) is the next phase but remains **NOT STARTED** by the BA0-T3 closure package. No BAE metaclass or relation is accepted by BA0.
+`BA0` is **CLOSED**. `BA1` is **STARTED / NOT CLOSED**. BA1-T1 proposes only two candidate first-class identity families, `BAReferent` and `BAProposition`; neither is accepted until pressure-tested. `BA2` remains **NOT STARTED**.
 
 ## Important scope boundary
 
