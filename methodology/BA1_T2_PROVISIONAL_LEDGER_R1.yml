@@ -1,0 +1,64 @@
+artifact: BA1_T2_PROVISIONAL_LEDGER_R1
+revision: R1
+status: COMPLETED_PROVISIONAL_PASS_WITH_REFINEMENT
+repository_baseline_reviewed: f05fbb7b253392e158a1062df2614b177c13d43e
+phase: BA1
+ba0_status: CLOSED
+ba1_status: OPEN_READY_FOR_CLOSURE_REVIEW
+ba2_status: NOT_STARTED
+
+candidate:
+  BAReferent:
+    status: STRONG_CANDIDATE_NOT_ACCEPTED
+    disposition: RETAIN
+  BAProposition:
+    status: STRONG_CANDIDATE_NOT_ACCEPTED
+    disposition: RETAIN_WITH_REFINED_BOUNDARY
+
+pressure_tests:
+  behavior_event:
+    dedicated_split: NOT_FORCED
+    referent_identity_when_reused: SUPPORTED
+  information_resource:
+    dedicated_split: NOT_FORCED
+  participant_component_capability:
+    dedicated_split: NOT_FORCED
+  boundary_externality:
+    dedicated_split: NOT_FORCED
+  store:
+    dedicated_split: NOT_FORCED
+  contract:
+    dedicated_split: NOT_FORCED
+  state_mode_context:
+    dedicated_split: NOT_FORCED
+  bounded_method_consumer:
+    disposition: PASS_AT_BA1_IDENTITY_ONTOLOGY_LEVEL
+    method_specific_roots_required: false
+  proposition_as_project_target:
+    disposition: NOT_REQUIRED_REMOVED_FROM_MINIMAL_CANDIDATE
+  semantic_single_family_collapse:
+    disposition: REJECTED
+
+no_forced_candidate_split: true
+
+refinement:
+  statement: >-
+    Project-semantic reuse or qualification targets BAReferent identity. BAProposition
+    remains an assertion identity for methodology-neutral meaning and later
+    provenance/diagnostic/change metadata; it is not a proxy project referent by default.
+
+explicitly_not_closed:
+  - relation_vocabulary
+  - canonical_action_vocabulary
+  - semantic_kind_vocabulary
+  - proposition_arity_and_cardinalities
+  - identity_equivalence_lifecycle_rules
+  - provenance_materialization
+  - diagnostic_schema
+  - projection_contracts
+  - controlled_vocabulary
+  - AnalysisRecord
+  - Finding
+  - method_specific_overlay
+
+next_authorized_microstep: BA1_T3_MINIMAL_BAE_ONTOLOGY_CLOSURE_REVIEW

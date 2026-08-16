@@ -1,0 +1,720 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  10pt,
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  colorlinks=true,
+  linkcolor={Maroon},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{BA1-T2 - Split-or-collapse pressure test of the two-family
+candidate}\label{ba1-t2---split-or-collapse-pressure-test-of-the-two-family-candidate}
+
+\textbf{Revision:} R1
+
+\textbf{Status:} COMPLETED / PROVISIONAL PASS WITH MINIMALITY REFINEMENT
+/ BA1 NOT CLOSED
+
+\textbf{Repository baseline reviewed:}
+\texttt{f05fbb7b253392e158a1062df2614b177c13d43e}
+
+\textbf{Phase:} BA1 - Minimal BAE ontology
+
+\textbf{BA0:} CLOSED
+
+\textbf{BA2:} NOT STARTED
+
+\subsection{1. Question and test
+discipline}\label{question-and-test-discipline}
+
+BA1-T2 asks only:
+
+\begin{quote}
+Does the BA1-T1 candidate \texttt{BAReferent\ +\ BAProposition} survive
+deliberate pressure to split recurring semantic kinds into dedicated
+first-class types, and does it also survive the opposite pressure to
+collapse both families into one undifferentiated analytical element?
+\end{quote}
+
+The test does not design the BA2 relation/action vocabulary, BA3
+provenance schema, BA4 views, formal STRIDE overlay, Finding model or
+ThreatForge implementation.
+
+The governing criterion remains:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{independent semantic identity}
+\NormalTok{        +}
+\NormalTok{reusable subtype{-}specific invariants}
+\NormalTok{        {-}\textgreater{} possible first{-}class split}
+
+\NormalTok{recurring usefulness alone}
+\NormalTok{        !=}
+\NormalTok{first{-}class metaclass}
+\end{Highlighting}
+\end{Shaded}
+
+A pressure case may justify an independently identifiable
+\texttt{BAReferent} without justifying a dedicated subtype such as
+\texttt{Behavior}, \texttt{Information}, \texttt{State},
+\texttt{Contract} or \texttt{Store}.
+
+\subsection{2. Starting candidate from
+BA1-T1}\label{starting-candidate-from-ba1-t1}
+
+BA1-T1 proposed two identity families:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BAReferent}
+\NormalTok{BAProposition}
+\end{Highlighting}
+\end{Shaded}
+
+\texttt{BAReferent} covered independently identifiable units of shared
+project meaning. \texttt{BAProposition} covered independently
+identifiable methodology-neutral analytical assertions with
+origin/change/diagnostic pressure.
+
+BA1-T1 deliberately left domain splits open and allowed a proposition to
+be targeted by another proposition. BA1-T2 treats both choices as
+falsifiable rather than inherited truth.
+
+\subsection{3. Pressure A - behavior/event
+identity}\label{pressure-a---behaviorevent-identity}
+
+\subsubsection{3.1 Facial-access delivery}\label{facial-access-delivery}
+
+\texttt{FR-3.4} requires delivery of \texttt{RecognitionCapture} from
+\texttt{CameraSubsystem} to \texttt{RecognitionProcessor}, correlated to
+the correct \texttt{RecognitionRequest}, with incomplete delivery not
+represented as success. Specialized requirements independently constrain
+confidentiality, integrity and authorized provenance during that same
+delivery meaning.
+
+The pressure question is whether this requires a dedicated
+\texttt{Behavior} or \texttt{DataFlow} metaclass.
+
+It does not.
+
+The delivery meaning can have independent analytical identity as a
+\texttt{BAReferent} when multiple propositions need to talk about the
+same behavior. Separate propositions can state its source, destination,
+information, correlation and failure semantics, together with the
+specialized security constraints that apply to it.
+
+This preserves behavior identity without asserting that every
+behavior/event belongs to a dedicated root metaclass.
+
+\subsubsection{3.2 Physical handoff
+milestone}\label{physical-handoff-milestone}
+
+The order-fulfillment corpus gives stronger pressure. The physical
+handoff milestone is defined in the fulfillment branch and reused by
+inventory stock issue and payment capture. Reuse across branches makes
+the milestone a natural independently identifiable semantic object.
+
+Again, the evidence forces \textbf{referent identity}, not a universal
+\texttt{Event} metaclass. The milestone can be a \texttt{BAReferent};
+propositions state who confirms it, when it occurs, and which
+stock/payment behavior depends on it.
+
+\subsubsection{3.3 Disposition}\label{disposition}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Behavior / Event dedicated first{-}class split: NOT FORCED}
+\NormalTok{Behavior/Event referent identity when independently reused: SUPPORTED}
+\end{Highlighting}
+\end{Shaded}
+
+The old historical \texttt{data\_flow} focus is not revived.
+
+\subsection{4. Pressure B - information/resource identity and
+lifecycle}\label{pressure-b---informationresource-identity-and-lifecycle}
+
+The two corpora contain strongly reusable informational/resource-like
+meanings:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{RecognitionCapture};
+\item
+  \texttt{RecognitionRequest};
+\item
+  \texttt{OrderEvaluation};
+\item
+  \texttt{Order};
+\item
+  \texttt{Reservation};
+\item
+  \texttt{ReservationResult};
+\item
+  \texttt{PaymentAuthorizationResult};
+\item
+  \texttt{FulfillmentTask}.
+\end{itemize}
+
+Some carry lifecycle or correlation semantics. \texttt{Reservation}, for
+example, is bound to one \texttt{OrderEvaluation}, has an ACTIVE
+lifecycle state, can be released/expired/consumed and participates in
+idempotent handling.
+
+Those facts require stable referent identity and propositions about
+lifecycle/correlation. They do not establish one reusable set of
+invariants that all information/resource referents share and that
+generic referents cannot preserve.
+
+A subtype may later become useful, but current evidence does not make it
+necessary for correctness or method-neutral reuse.
+
+\subsubsection{Disposition}\label{disposition-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Information / Resource dedicated first{-}class split: NOT FORCED}
+\NormalTok{Lifecycle{-}bearing informational referents: representable as BAReferent + propositions}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{5. Pressure C - responsibility, externality and
+boundaries}\label{pressure-c---responsibility-externality-and-boundaries}
+
+Facial access distinguishes project endpoints from underlying external
+transport responsibility. Order fulfillment distinguishes internal
+project-owned inventory authority from an alternative external WMS and
+places payment/carrier providers behind governed contracts.
+
+The pressure question is whether this forces dedicated
+\texttt{Participant}, \texttt{Component}, \texttt{Capability},
+\texttt{Boundary} or \texttt{ExternalSystem} roots.
+
+It does not.
+
+The independently identifiable parties/capabilities are referents.
+Project ownership, externality, service consumption and responsibility
+placement are propositions or roles over those referents. A named
+responsibility boundary may itself receive referent identity if the
+project needs to reuse that boundary explicitly, but no subtype-specific
+invariant is yet forced.
+
+The critical semantic point is preserved without type proliferation:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{service/capability consumption}
+\NormalTok{        !=}
+\NormalTok{ownership transfer}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Disposition}\label{disposition-2}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Participant / Component / Capability split: NOT FORCED}
+\NormalTok{Boundary / ExternalSystem split: NOT FORCED}
+\NormalTok{Responsibility and externality: proposition/role pressure supported}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{6. Pressure D - Store and Contract
+candidates}\label{pressure-d---store-and-contract-candidates}
+
+The order corpus names the following candidates:
+
+\begin{itemize}
+\tightlist
+\item
+  stores: \texttt{InventoryLedger}, \texttt{ReservationStore};
+\item
+  contracts: \texttt{PaymentProviderContract}, \texttt{CarrierContract}.
+\end{itemize}
+
+All require independent identity if they participate in analysis. But
+the corpus does not establish universal subtype invariants that cannot
+be stated over generic referents:
+
+\begin{itemize}
+\tightlist
+\item
+  a store may be project-owned or merely a candidate realization;
+\item
+  a contract may define a governed interaction boundary while
+  provider-specific raw states remain outside project semantics;
+\item
+  replacement of a provider/contract does not imply that all contracts
+  or stores require a dedicated root type for every consumer.
+\end{itemize}
+
+Their semantic kind must not be lost, but classification is not
+equivalent to a first-class metaclass.
+
+\subsubsection{Disposition}\label{disposition-3}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Store dedicated first{-}class split: NOT FORCED}
+\NormalTok{Contract dedicated first{-}class split: NOT FORCED}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{7. Pressure E - state, context and indeterminate
+outcomes}\label{pressure-e---state-context-and-indeterminate-outcomes}
+
+The order corpus uses values/states such as:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{Order=ACCEPTED};
+\item
+  payment \texttt{authorized}, \texttt{declined},
+  \texttt{indeterminate};
+\item
+  reservation ACTIVE and terminal lifecycle states;
+\item
+  availability/result states such as
+  sufficient/insufficient/indeterminate.
+\end{itemize}
+
+Current evidence supports three honest representations depending on
+semantic need:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  scalar/enumerated value or qualifier when only local value semantics
+  are needed;
+\item
+  proposition when a state condition or transition must be asserted;
+\item
+  \texttt{BAReferent} when a named state/mode/context has independent
+  reusable identity across propositions.
+\end{enumerate}
+
+No current case forces a universal \texttt{State} or \texttt{Context}
+metaclass.
+
+\subsubsection{Disposition}\label{disposition-4}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{State / Mode / Context dedicated first{-}class split: NOT FORCED}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{8. Pressure F -
+proposition-as-target}\label{pressure-f---proposition-as-target}
+
+BA1-T1 allowed a \texttt{BAProposition} to be targeted by another
+proposition. The pressure cases show that this is not required by the
+minimal ontology and can blur two different meanings:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{project meaning being constrained}
+\NormalTok{        !=}
+\NormalTok{analytical assertion record describing that meaning}
+\end{Highlighting}
+\end{Shaded}
+
+For example, \texttt{SR-3.4-C}, \texttt{SR-3.4-I} and \texttt{SR-3.4-P}
+constrain the delivery behavior itself. They do not semantically
+constrain the existence of the analytical proposition record used to
+describe the delivery.
+
+The cleaner minimal rule is:
+
+\begin{itemize}
+\tightlist
+\item
+  if project meaning needs independent reuse/qualification, give that
+  meaning \texttt{BAReferent} identity;
+\item
+  \texttt{BAProposition} asserts methodology-neutral meaning about
+  referents;
+\item
+  provenance, diagnostic and change-state metadata may target
+  proposition identity in BA3, but that is analytical metadata rather
+  than a project-semantic proposition.
+\end{itemize}
+
+BA1-T2 therefore removes proposition-as-project-target as a required
+feature of the minimal candidate.
+
+\subsubsection{Disposition}\label{disposition-5}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BAProposition as target of project{-}semantic BAProposition: NOT REQUIRED / REMOVED FROM MINIMAL CANDIDATE}
+\NormalTok{Proposition identity for provenance/change/diagnostic handling: STILL REQUIRED}
+\end{Highlighting}
+\end{Shaded}
+
+This is a reduction of R1, not a new type.
+
+\subsection{9. Pressure G - bounded method-consumer
+projection}\label{pressure-g---bounded-method-consumer-projection}
+
+The BA0-T2 bounded STRIDE transfer consumer requires a projection
+containing:
+
+\begin{itemize}
+\tightlist
+\item
+  behavior;
+\item
+  source;
+\item
+  destination;
+\item
+  information;
+\item
+  correlation;
+\item
+  responsibility/externality;
+\item
+  current realization;
+\item
+  failure semantics;
+\item
+  confidentiality/integrity/authorized-origin constraints.
+\end{itemize}
+
+The two-family ontology can supply the needed identities without
+importing STRIDE or DFD types:
+
+\begin{itemize}
+\tightlist
+\item
+  independently reused project meanings are \texttt{BAReferent}
+  identities;
+\item
+  methodology-neutral assertions connecting and qualifying those
+  referents are \texttt{BAProposition} identities;
+\item
+  BA2 will define the minimal shared relation/action roles needed to
+  make those propositions mechanically selectable;
+\item
+  the STRIDE consumer adds its own categories and dispositions outside
+  Base Analysis.
+\end{itemize}
+
+The consumer therefore does not need a dedicated \texttt{Actor},
+\texttt{Process}, \texttt{DataStore}, \texttt{DataFlow} or
+\texttt{TrustBoundary} root in BA1.
+
+This is an ontology-level pass, not yet a proof of the final BA2/BA4
+material projection contract.
+
+\subsubsection{Disposition}\label{disposition-6}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Bounded method consumer: PASS AT BA1 IDENTITY{-}ONTOLOGY LEVEL}
+\NormalTok{Method{-}specific type contamination: NOT REQUIRED}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{10. Collapse pressure - can the two families become
+one?}\label{collapse-pressure---can-the-two-families-become-one}
+
+\subsubsection{10.1 Strong collapse
+candidate}\label{strong-collapse-candidate}
+
+The genuine collapse hypothesis is:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BAElement}
+\end{Highlighting}
+\end{Shaded}
+
+with no normative semantic distinction between project referent identity
+and analytical assertion identity.
+
+This fails.
+
+The same referent can remain stable while propositions about it are
+introduced, revised, superseded, invalidated or diagnosed. In facial
+access, \texttt{CameraSubsystem} can persist while delivery/realization
+statements change under mutations. In order fulfillment, one
+\texttt{OrderEvaluation} participates in independently evolving
+propositions about reservation, payment, compensation and commitment.
+
+Claim-level origin/change/diagnostic handling therefore cannot be
+reduced to referent identity without losing a real semantic distinction.
+
+\subsubsection{10.2 Physical single-class implementation is not semantic
+collapse}\label{physical-single-class-implementation-is-not-semantic-collapse}
+
+A storage implementation could materialize both families in one
+table/class with a mandatory discriminator. That does \textbf{not}
+falsify the two-family ontology: the semantic distinction would still
+exist as a normative partition with different invariants.
+
+BA1 concerns semantic identity families, not the number of programming
+classes or database tables.
+
+\subsubsection{Disposition}\label{disposition-7}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Semantic collapse to one undifferentiated family: REJECTED}
+\NormalTok{Single physical implementation class/table: REPRESENTATION CHOICE / IRRELEVANT TO BA1}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{11. Split-pressure summary}\label{split-pressure-summary}
+
+\begin{itemize}
+\tightlist
+\item
+  Behavior/Event: \textbf{NOT FORCED} as dedicated type; independent
+  event/behavior identity can be \texttt{BAReferent}.
+\item
+  Information/Resource: \textbf{NOT FORCED}.
+\item
+  Participant/Component/Capability: \textbf{NOT FORCED}.
+\item
+  Boundary/Externality: \textbf{NOT FORCED}.
+\item
+  Store: \textbf{NOT FORCED}.
+\item
+  Contract: \textbf{NOT FORCED}.
+\item
+  State/Mode/Context: \textbf{NOT FORCED}.
+\item
+  Method-specific DFD/STRIDE roots: \textbf{REJECTED AS BA1 NECESSITY}.
+\item
+  Proposition-as-project-target: \textbf{NOT REQUIRED / REMOVED FROM
+  MINIMAL CANDIDATE}.
+\item
+  Semantic one-family collapse: \textbf{REJECTED}.
+\end{itemize}
+
+No tested case reaches \texttt{FORCED\ CANDIDATE\ SPLIT}.
+
+\subsection{12. Refined two-family
+candidate}\label{refined-two-family-candidate}
+
+BA1-T2 therefore retains exactly two candidate identity families, with a
+sharper boundary.
+
+\subsubsection{\texorpdfstring{BA1-C1 -
+\texttt{BAReferent}}{BA1-C1 - BAReferent}}\label{ba1-c1---bareferent}
+
+\textbf{Status:} STRONG CANDIDATE / NOT ACCEPTED
+
+An independently identifiable unit of methodology-neutral shared project
+meaning that must be reusable across one or more propositions,
+projections or governed baselines.
+
+Its semantic kind may matter and must not be lost, but BA1 does not yet
+require dedicated metaclasses for participant, information,
+behavior/event, store, contract, boundary, state or similar kinds.
+
+When behavior/event/state/context meaning needs independent
+project-semantic reuse, it can itself be represented as a
+\texttt{BAReferent}.
+
+\subsubsection{\texorpdfstring{BA1-C2 -
+\texttt{BAProposition}}{BA1-C2 - BAProposition}}\label{ba1-c2---baproposition}
+
+\textbf{Status:} STRONG CANDIDATE / NOT ACCEPTED
+
+An independently identifiable methodology-neutral analytical assertion
+about one or more \texttt{BAReferent} identities, with enough identity
+for origin/provenance, diagnosis, reuse and change disposition.
+
+A proposition is not itself the project meaning it describes.
+Project-semantic qualification should target referents, while
+proposition provenance/diagnostic state is handled as analytical
+metadata in BA3.
+
+The exact proposition structure, predicates, roles, n-ary representation
+and action vocabulary remain BA2 questions.
+
+\subsection{13. What BA1-T2 does not
+decide}\label{what-ba1-t2-does-not-decide}
+
+BA1-T2 does not decide:
+
+\begin{itemize}
+\tightlist
+\item
+  whether \texttt{BAReferent} and \texttt{BAProposition} share an
+  abstract implementation superclass;
+\item
+  the canonical semantic-kind/classification vocabulary;
+\item
+  relation cardinalities or n-ary proposition encoding;
+\item
+  action/predicate vocabulary;
+\item
+  identity/equivalence/lifecycle mechanics;
+\item
+  source locators and provenance records;
+\item
+  diagnostic record schema;
+\item
+  view/projection contracts;
+\item
+  lexical controlled vocabulary;
+\item
+  AnalysisRecord, Finding or method-specific schemas.
+\end{itemize}
+
+These remain in BA2-BA6 or the later analysis envelope.
+
+\subsection{14. Falsification
+assessment}\label{falsification-assessment}
+
+The two-family candidate would have failed if any tested recurring kind
+required independent subtype-specific invariants that generic referent
+identity could not preserve, or if the bounded method consumer needed
+method-specific roots in the shared core.
+
+No such counterexample was found in the two current corpora.
+
+The candidate would also have been reducible if proposition identity
+could be eliminated without losing independent origin/change/diagnostic
+handling. The collapse test failed.
+
+One R1 feature was weakened: proposition-as-project-target is
+unnecessary and risks confusing assertion records with project meaning.
+Removing it improves minimality.
+
+\subsection{15. Trial disposition}\label{trial-disposition}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BA1{-}T2                         COMPLETED / PROVISIONAL PASS WITH REFINEMENT}
+\NormalTok{BAReferent                     STRONG CANDIDATE / NOT ACCEPTED}
+\NormalTok{BAProposition                  STRONG CANDIDATE / NOT ACCEPTED}
+\NormalTok{Dedicated domain{-}type splits   NOT FORCED BY TESTED EVIDENCE}
+\NormalTok{Semantic one{-}family collapse   REJECTED}
+\NormalTok{BA1                            OPEN / READY FOR DISTINCT CLOSURE REVIEW}
+\NormalTok{BA2                            NOT STARTED}
+\end{Highlighting}
+\end{Shaded}
+
+BA1 is \textbf{not closed by this trial}. The evidence is now stable
+enough to perform a distinct closure review rather than inventing
+another ontology experiment for reassurance.
+
+\subsection{16. Next authorized
+microstep}\label{next-authorized-microstep}
+
+Execute only:
+
+\begin{quote}
+\textbf{BA1-T3 - minimal BAE ontology closure review.}
+\end{quote}
+
+BA1-T3 must test whether the refined two-family boundary is necessary,
+sufficient and correctly phased, and whether every remaining unresolved
+design question genuinely belongs to BA2-BA6.
+
+If no material counterexample remains, BA1-T3 may close BA1 and
+authorize BA2. It must not begin relation/action vocabulary design
+inside the closure review.
+
+\end{document}
