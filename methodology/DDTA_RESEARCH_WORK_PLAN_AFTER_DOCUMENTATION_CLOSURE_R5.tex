@@ -1,0 +1,364 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  10pt,
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  colorlinks=true,
+  linkcolor={black},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={black},
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{DDTA research work plan after documentation-layer
+closure}\label{ddta-research-work-plan-after-documentation-layer-closure}
+
+\textbf{WORK PLAN - REVISION 5}
+
+\textbf{Status:} active after BA0-T3 closure.
+
+\textbf{Supersedes:} Revision 4 only for forward execution state; R1-R4
+remain historical research records.
+
+\subsection{1. Fixed prior state}\label{fixed-prior-state}
+
+\begin{itemize}
+\tightlist
+\item
+  Chapters 2-4: CLOSED / FINAL for current thesis scope.
+\item
+  Documentation layer: CLOSED.
+\item
+  BA0-R systems-modeling prior-art research: CLOSED.
+\item
+  BA0-T1: COMPLETED / PROVISIONAL.
+\item
+  BA0-T2: COMPLETED / PROVISIONAL PASS.
+\item
+  BA0-T3: CLOSED.
+\item
+  BA0 responsibility and non-goals: CLOSED.
+\item
+  No BAE type or relation was accepted by BA0.
+\item
+  ThreatForge remains a case study/tooling instrument, not DDTA semantic
+  authority.
+\end{itemize}
+
+\subsection{2. Closed Base Analysis
+responsibility}\label{closed-base-analysis-responsibility}
+
+The authoritative BA0 responsibility boundary for forward methodology
+work is \href{BA0_BASE_ANALYSIS_RESPONSIBILITY_BOUNDARY_R1.md}{Base
+Analysis responsibility boundary R1}.
+
+Base Analysis is the accepted methodology-neutral analytical
+representation of shared project meaning required by DDTA. It preserves
+source/origin provenance, baseline-scoped semantic identity and explicit
+unresolved state sufficiently to support shared human/method
+projections, source drill-down, change-impact reasoning and
+source-localized feedback handoff.
+
+Governed documentation remains project authority. Method-specific
+interpretation, analysis results, corrective policy decisions and
+documentation governance remain outside the shared Base Analysis core.
+
+Semantic canonicality does not require one permanently materialized
+graph.
+
+\subsection{3. Closed BA0 responsibility
+set}\label{closed-ba0-responsibility-set}
+
+Forward work must preserve:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  BA0-C1 Authority and provenance boundary.
+\item
+  BA0-C2 Baseline-scoped shared semantic identity.
+\item
+  BA0-C3 Method-neutral shared core.
+\item
+  BA0-C4 Explicit uncertainty and diagnostic localization.
+\item
+  BA0-C5 Projection readiness and source drill-down.
+\item
+  BA0-C6 Change-impact traceability.
+\item
+  BA0-C7 Source-localized feedback handoff.
+\item
+  BA0-C8 Minimality and representation independence.
+\end{enumerate}
+
+\texttt{grounded}, \texttt{derived} and \texttt{diagnostic/unresolved}
+are required responsibility-level distinctions. A generic
+\texttt{reviewed\ analytical\ addition} class is not required by BA0 and
+must not be assumed by BA1.
+
+\subsection{4. Sequence after BA0
+closure}\label{sequence-after-ba0-closure}
+
+Do not skip phases:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BA1 {-} Minimal BAE ontology}
+\NormalTok{BA2 {-} Relations and canonical action vocabulary}
+\NormalTok{BA3 {-} Document{-}to{-}BAE derivation, provenance and authority}
+\NormalTok{BA4 {-} Multi{-}level human and method projections}
+\NormalTok{BA5 {-} Controlled vocabulary and optional authoring/extraction assistance}
+\NormalTok{BA6 {-} Base Analysis closure and regression}
+\end{Highlighting}
+\end{Shaded}
+
+BA0 closure authorizes ontology work; it does not pre-approve any type.
+
+\subsection{5. BA1 - Minimal BAE
+ontology}\label{ba1---minimal-bae-ontology}
+
+\subsubsection{BA1-T1 - minimal BAE ontology candidate
+derivation}\label{ba1-t1---minimal-bae-ontology-candidate-derivation}
+
+\textbf{NEXT / NOT EXECUTED BY THIS PLAN REVISION.}
+
+Start from BA0-C1..C8, BA0-R prior-art pressure and governed DDTA
+corpora. For each recurring semantic responsibility required by the
+closed boundary, test whether it needs:
+
+\begin{itemize}
+\tightlist
+\item
+  an independently identified entity;
+\item
+  a relation;
+\item
+  a role;
+\item
+  a property/attribute;
+\item
+  a constraint/state;
+\item
+  a provenance/diagnostic record;
+\item
+  or only a derived/projection construct.
+\end{itemize}
+
+The first pass must prefer the smallest representation that preserves
+the closed responsibilities. \texttt{semantic\ responsibility\ exists}
+does not imply \texttt{first-class\ metaclass}.
+
+Historical \texttt{actor/component/asset/boundary/data\_flow}
+categories, STRIDE DFD constructs, ThreatForge implementation classes
+and SysML/KerML/ArchiMate/AADL concepts are candidate comparisons only.
+None is accepted by inheritance.
+
+\subsubsection{BA1-T1 exit}\label{ba1-t1-exit}
+
+Produce a falsifiable minimal ontology candidate with explicit evidence
+for every proposed first-class identity and an explicit
+rejected/deferred list. Do not begin BA2 relation-vocabulary closure
+until the BA1 candidate has been pressure-tested.
+
+\subsection{6. BA2 - Relations and canonical action
+vocabulary}\label{ba2---relations-and-canonical-action-vocabulary}
+
+After BA1, define the smallest stable semantic relation vocabulary. Keep
+semantic relation, canonical lexical label and authoring synonym
+assistance separate.
+
+\subsection{7. BA3 - Document-to-BAE derivation, provenance and
+authority}\label{ba3---document-to-bae-derivation-provenance-and-authority}
+
+Close exact identity/equivalence/lifecycle rules, source locators,
+grounded/derived/diagnostic material states, review boundaries, stale
+state and document-to-analysis traceability.
+
+If a methodology-neutral shared-core analytical addition becomes
+demonstrably necessary here, do not silently introduce it. Reassess
+whether BA0 must reopen.
+
+Automatic candidate extraction may be evaluated only as optional
+assistance and is not required for thesis validity.
+
+\subsection{8. BA4 - Multi-level human and method
+projections}\label{ba4---multi-level-human-and-method-projections}
+
+Define projections over the same accepted Base Analysis semantics. Test
+progressive human navigation and method-specific views without creating
+a second authored project model. No view is source authority.
+
+\subsection{9. BA5 - Controlled vocabulary and optional
+assistance}\label{ba5---controlled-vocabulary-and-optional-assistance}
+
+Vocabulary reuse, duplicate suggestions, NLP/LLM proposals and candidate
+extraction are optional support. None may silently establish identity,
+equivalence, ownership, project fact or BAE acceptance.
+
+\subsection{10. BA6 - Base Analysis closure and
+regression}\label{ba6---base-analysis-closure-and-regression}
+
+Regress closed corpora and at least one structurally different holdout.
+Verify semantic identity stability, source traceability, projection
+consistency, diagnostic behavior, change/re-analysis scope, method
+neutrality and human drill-down support.
+
+BA6 closes the implemented Base Analysis design; BA0 has already closed
+only the responsibility boundary.
+
+\subsection{11. Analysis envelope after Base Analysis
+closure}\label{analysis-envelope-after-base-analysis-closure}
+
+Only after BA6:
+
+\begin{itemize}
+\tightlist
+\item
+  A1 - AnalysisRecord / execution envelope;
+\item
+  A2 - common reviewed Finding boundary;
+\item
+  A3 - change/provenance integration.
+\end{itemize}
+
+Then define the generic overlay contract and full methodology
+evaluations.
+
+\subsection{12. Method-specific
+evaluations}\label{method-specific-evaluations}
+
+Planned concrete evaluations remain STRIDE and STRIDE-AI over the same
+common core. They are demonstrators of the overlay boundary, not proof
+of universal method support.
+
+The BA0-T2 STRIDE probe remains only a pre-overlay consumer probe and
+does not count as formal STRIDE evaluation.
+
+\subsection{13. Corrective feedback
+boundary}\label{corrective-feedback-boundary}
+
+The general DDTA loop remains:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{analysis / validation / diagnostic}
+\NormalTok{ {-}\textgreater{} source{-}localized corrective candidate}
+\NormalTok{ {-}\textgreater{} governed review}
+\NormalTok{ {-}\textgreater{} correction / clarification / supersession / new requirement or decision}
+\NormalTok{ {-}\textgreater{} Base Analysis revalidation}
+\NormalTok{ {-}\textgreater{} impacted re{-}analysis}
+\end{Highlighting}
+\end{Shaded}
+
+BA0-C7 requires traceable handoff to the governed source area. It does
+not assign the review/acceptance workflow to Base Analysis.
+
+The thesis may still evaluate the narrower accepted
+security-Finding-to-SecurityRequirement path as a specific research
+contribution.
+
+\subsection{14. Next authorized
+microstep}\label{next-authorized-microstep}
+
+Execute only:
+
+\begin{quote}
+\textbf{BA1-T1 - minimal BAE ontology candidate derivation from the
+closed BA0 responsibilities.}
+\end{quote}
+
+Do not start BA2, formal STRIDE overlay design, Common Finding schema or
+implementation work during this microstep.
+
+\end{document}

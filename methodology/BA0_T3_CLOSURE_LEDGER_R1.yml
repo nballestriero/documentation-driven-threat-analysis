@@ -1,0 +1,50 @@
+schema_version: "1.0"
+artifact: BA0_T3_CLOSURE_LEDGER_R1
+status: CLOSED
+reviewed_repository_baseline: ced13f9329c89c759b3608d66c3f81ac79b9469b
+phase: BA0
+ba1_status: NOT_STARTED
+closure_decision: BA0_RESPONSIBILITY_AND_NON_GOALS_CLOSED
+accepted_bae_types: []
+accepted_bae_relations: []
+
+r2_invariant_dispositions:
+  BA0-I1: RETAIN
+  BA0-I2: RETAIN_REFINE
+  BA0-I3: RETAIN
+  BA0-I4: MERGE
+  BA0-I5: RETAIN
+  BA0-I6: MOVE_TO_NON_GOAL
+  BA0-I7: RETAIN_AS_MINIMALITY_CONSTRAINT
+  BA0-I8: RETAIN_REFINE
+  BA0-I9: RETAIN_REFINE
+  BA0-I10: MERGE
+  BA0-I11: RETAIN_REFINE
+  BA0-I12: REDUCE_TO_SOURCE_LOCALIZED_FEEDBACK_HANDOFF
+  BA0-I13: MERGE
+
+closed_responsibilities:
+  BA0-C1: Authority and provenance boundary
+  BA0-C2: Baseline-scoped shared semantic identity
+  BA0-C3: Method-neutral shared core
+  BA0-C4: Explicit uncertainty and diagnostic localization
+  BA0-C5: Projection readiness and source drill-down
+  BA0-C6: Change-impact traceability
+  BA0-C7: Source-localized feedback handoff
+  BA0-C8: Minimality and representation independence
+
+origin_state_disposition:
+  grounded: REQUIRED
+  derived: REQUIRED
+  diagnostic_unresolved: REQUIRED
+  reviewed_analytical_addition: DEFERRED_NOT_REQUIRED_BY_BA0
+
+key_reductions:
+  - Base Analysis does not own governed corrective-document workflow or acceptance.
+  - A general reviewed analytical-addition class is not established as necessary by BA0 evidence.
+  - Progressive teachability closes as projection readiness and source drill-down, not as a visualization/usability claim.
+  - Change awareness closes as traceability for impact identification, not as re-analysis orchestration.
+  - Diagnostic responsibility applies when uncertainty is encountered; universal automatic contradiction detection is not required.
+
+next_authorized_microstep: BA1-T1_MINIMAL_BAE_ONTOLOGY_CANDIDATE_DERIVATION
+reopen_on_material_responsibility_counterexample: true

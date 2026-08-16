@@ -15,15 +15,16 @@ The repository is intentionally separate from the ThreatForge software repositor
 
 ## Current research checkpoint
 
-The documentation-layer work through Chapters 2-4 remains closed for the current thesis scope. The systems-modeling prior-art checkpoint `BA0-R` is closed. `BA0-T1` is completed provisionally. `BA0-T2` tests the next boundary: progressive human comprehension, bounded method-specific consumption, and source-targeted corrective feedback.
+The documentation-layer work through Chapters 2-4 and the systems-modeling prior-art gate `BA0-R` remain closed. `BA0-T1` and `BA0-T2` are completed provisional trials. `BA0-T3` closes the Base Analysis responsibility and non-goals boundary after reducing two R2 overextensions: Base Analysis supports source-localized corrective-feedback handoff but does not own documentation governance, and a generic reviewed analytical-addition class is not required by BA0.
 
-The active state and successor rules are recorded in:
+The active state and forward rules are recorded in:
 
-- `methodology/DDTA_CURRENT_RESEARCH_STATE_R1.md`
-- `methodology/DDTA_RESEARCH_WORK_PLAN_AFTER_DOCUMENTATION_CLOSURE_R4.md`
-- `methodology/BA0_BASE_ANALYSIS_WORKING_HYPOTHESIS_R2.md`
+- `methodology/DDTA_CURRENT_RESEARCH_STATE_R2.md`
+- `methodology/DDTA_RESEARCH_WORK_PLAN_AFTER_DOCUMENTATION_CLOSURE_R5.md`
+- `methodology/BA0_BASE_ANALYSIS_RESPONSIBILITY_BOUNDARY_R1.md`
+- `methodology/BA0_T3_RESPONSIBILITY_NON_GOALS_CLOSURE_REVIEW_R1.md`
 
-`BA1` (minimal BAE ontology) remains **NOT STARTED** until BA0 responsibility and non-goals are explicitly closed.
+`BA0` is **CLOSED**. `BA1` (minimal BAE ontology) is the next phase but remains **NOT STARTED** by the BA0-T3 closure package. No BAE metaclass or relation is accepted by BA0.
 
 ## Important scope boundary
 
