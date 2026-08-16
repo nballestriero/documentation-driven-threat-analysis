@@ -1,0 +1,139 @@
+schema_version: 1
+trial_id: BA0-T1
+revision: 1
+status: completed_provisional_trial
+ba0_status: revised_working_candidate_not_closed
+ba1_status: not_started
+repository_baseline: bc0143eb8493ca91d3094eca9f8fbf9c7e6a3e58
+source:
+  path: 04-specialized-requirement/03-example-facial-access/DDTA_FACIAL_ACCESS_CAMERA_S1_STUDY_CORPUS_R2.tex
+  blob_sha: d54fdecc7d4968a88b74ea96343b37f38bb9b6d1
+  corpus_status_note: >-
+    Experimental DDTA study corpus. In this trial, grounded means directly
+    supported by a statement in this pinned corpus, not production-system truth.
+
+origin_labels:
+  G: grounded_in_selected_source_statement
+  D: derived_analytical_structure_without_new_project_commitment
+  A: reviewed_analytical_addition_candidate
+  C: conflict_between_source_claims
+
+referents:
+  - id: T-R01
+    label: CameraSubsystem
+    origin: G
+    basis: [D-3.3, FR-3.4]
+    identity_pressure: yes
+    bae_type: open
+  - id: T-R02
+    label: RecognitionProcessor
+    origin: G
+    basis: [D-3.3, FR-3.4]
+    identity_pressure: yes_in_v0_review_under_m3
+    bae_type: open
+  - id: T-R03
+    label: RecognitionCapture
+    origin: G
+    basis: [FR-3.3, FR-3.4, SR-3.4-C, SR-3.4-I, SR-3.4-P]
+    identity_pressure: yes_for_concrete_capture_correlation_type_vs_instance_open
+    bae_type: open
+  - id: T-R04
+    label: RecognitionRequest
+    origin: G
+    basis: [FR-3.3, FR-3.4]
+    identity_pressure: yes_for_correlation
+    bae_type: open
+  - id: T-R05
+    label: consumed_local_connectivity_transport_service
+    origin: G
+    basis: [D-3.4]
+    identity_pressure: uncertain
+    bae_type: open
+  - id: T-R06
+    label: Ethernet_realization
+    origin: G
+    basis: [D-3.5]
+    identity_pressure: no_or_uncertain
+    bae_type: open
+
+statements:
+  - id: T-S01
+    proposition: CameraSubsystem delivers RecognitionCapture to RecognitionProcessor correlated with RecognitionRequest
+    origin: D
+    basis: [FR-3.4]
+    identity_needed: yes_for_repeated_reference_and_mutation_comparison
+  - id: T-S02
+    proposition: incomplete delivery is not successful completion
+    origin: G
+    basis: [FR-3.4]
+    identity_needed: no_separate_entity_decision
+  - id: T-S03
+    proposition: acquisition and recognition are separate responsibility placements in V0
+    origin: G
+    basis: [D-3.3]
+    identity_needed: uncertain_relation_or_property
+  - id: T-S04
+    proposition: RecognitionCapture crosses the D-3.3 separation in V0
+    origin: D
+    basis: [D-3.3, FR-3.4]
+    identity_needed: uncertain
+  - id: T-S05
+    proposition: project consumes local connectivity and does not own/manage underlying transport in V0
+    origin: G
+    basis: [D-3.4]
+    identity_needed: uncertain
+  - id: T-S06
+    proposition: current connectivity realization is Ethernet
+    origin: G
+    basis: [D-3.5]
+    identity_needed: no_or_uncertain
+  - id: T-S07
+    proposition: confidentiality condition applies to biometric content during FR-3.4
+    origin: G
+    basis: [SR-3.4-C]
+    identity_needed: downstream_requirement_reference_only
+  - id: T-S08
+    proposition: unauthorized modification must not be accepted as valid capture
+    origin: G
+    basis: [SR-3.4-I]
+    identity_needed: downstream_requirement_reference_only
+  - id: T-S09
+    proposition: received capture requires authorized origin for validity
+    origin: G
+    basis: [SR-3.4-P]
+    identity_needed: downstream_requirement_reference_only
+
+analytical_addition_probe:
+  id: T-X01
+  label: RecognitionIngressEndpoint
+  origin: A
+  accepted: false
+  reason: >-
+    No selected source statement requires an independently meaningful ingress
+    endpoint, and the baseline trial can express delivery, correlation, ownership,
+    mutation and SR applicability without inventing it.
+
+mutations:
+  M1:
+    description: Ethernet_to_WiFi
+    source_basis: corpus_mutation_M1
+    retain: [T-R01, T-R02, T-R03, T-R04, T-R05, T-S01, T-S02, T-S03, T-S04, T-S05, T-S07, T-S08, T-S09]
+    revise_or_replace: [T-R06, T-S06]
+    lesson: stable_shared_meaning_can_survive_realization_change
+  M3:
+    description: remote_recognition_to_local_recognition
+    source_basis: corpus_mutation_M3
+    retain: [T-R01]
+    review: [T-R02, T-R03, T-R04, T-R05, T-R06]
+    retire_or_replace: [T-S01, T-S02, T-S03, T-S04]
+    not_applicable_old_form: [T-S07, T-S08, T-S09]
+    lesson: stable_identity_requires_semantic_continuity_not_name_matching
+
+hypothesis_results:
+  shared_semantic_contract_useful: supported_by_T1
+  one_persisted_canonical_graph_required: not_proven_open
+  grounded_derived_addition_distinction: supported_with_statement_level_refinement
+  every_semantic_responsibility_first_class: falsified_by_T1
+  silent_tool_inference_authority: rejected
+
+next_step: BA0-T2_conflict_plus_necessary_analytical_addition_stress_test
