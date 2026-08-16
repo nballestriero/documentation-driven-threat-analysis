@@ -1,0 +1,436 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  10pt,
+  a4paper,
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{BA0 Base Analysis working hypothesis -
+R2}\label{ba0-base-analysis-working-hypothesis---r2}
+
+\textbf{Status: STRONG CANDIDATE / NOT CLOSED}\\
+\textbf{Supersedes for active BA0 reasoning:}
+\texttt{BA0\_BASE\_ANALYSIS\_WORKING\_HYPOTHESIS\_R1.md}\\
+\textbf{Evidence incorporated:} BA0-R closure, BA0-T1, BA0-T2.
+
+\subsection{1. Working responsibility
+statement}\label{1-working-responsibility-statement}
+
+For a governed documentation baseline, Base Analysis provides an
+\textbf{accepted, methodology-neutral analyzable representation of
+shared project meaning} grounded in governed documentation and explicit
+reviewed analytical additions.
+
+Its responsibility is to make that meaning reusable across:
+
+\begin{itemize}
+\tightlist
+\item
+  progressive human understanding and source drill-down;
+\item
+  multiple analysis consumers and method-specific projections;
+\item
+  explicit provenance and source-localized diagnostics;
+\item
+  change impact, revalidation and targeted re-analysis;
+\item
+  governed corrective feedback from analysis back to project
+  documentation.
+\end{itemize}
+
+Base Analysis is not project authority. Governed documentation is.
+
+\subsection{2. Canonicality clarified}\label{2-canonicality-clarified}
+
+\texttt{Canonical} means accepted semantic identity and meaning
+\textbf{within the analysis layer for a governed baseline}. It does not
+require:
+
+\begin{itemize}
+\tightlist
+\item
+  one permanently stored graph;
+\item
+  one graph database;
+\item
+  one serialization;
+\item
+  one diagram;
+\item
+  one modeling language implementation.
+\end{itemize}
+
+A Base Analysis may be reused or reproducibly rebuilt, provided accepted
+identities, provenance, review decisions and source alignment remain
+stable enough for the intended analyses and change comparisons.
+
+\subsection{3. Authority boundary}\label{3-authority-boundary}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{governed documentation  = project authority}
+\NormalTok{Base Analysis            = accepted analytical representation}
+\NormalTok{projection/view          = derived presentation or method input}
+\NormalTok{analysis interpretation  = method{-}owned semantics}
+\NormalTok{candidate finding/gap    = reviewable analysis output}
+\NormalTok{corrective candidate     = proposed governed{-}document change}
+\end{Highlighting}
+\end{Shaded}
+
+No derived layer may silently replace the authority of governed
+documentation.
+
+\subsection{4. Working invariants}\label{4-working-invariants}
+
+\subsubsection{BA0-I1 - Source
+authority}\label{ba0-i1---source-authority}
+
+Accepted Base Analysis claims that state project facts must be grounded
+in governed documentation or explicitly identified as reviewed
+analytical additions. Analysis output cannot silently create governed
+project truth.
+
+\subsubsection{BA0-I2 - Analysis-layer semantic
+canonicality}\label{ba0-i2---analysis-layer-semantic-canonicality}
+
+For a governed baseline, accepted analytical referents and propositions
+must have stable enough identity and meaning to be reused across views,
+consumers and re-analysis. Physical persistence is an implementation
+choice.
+
+\subsubsection{BA0-I3 - Explicit origin and
+provenance}\label{ba0-i3---explicit-origin-and-provenance}
+
+Grounded statements, derivations, reviewed additions and unresolved
+diagnostics must retain origin and source traceability sufficient for
+review and drill-down.
+
+\subsubsection{BA0-I4 - No silent inference
+authority}\label{ba0-i4---no-silent-inference-authority}
+
+NLP, LLMs, similarity, graph construction, tool defaults or analyst
+shortcuts may propose candidate structure but cannot silently establish
+identity, equivalence, ownership, project facts or governed commitments.
+
+\subsubsection{BA0-I5 - Method
+neutrality}\label{ba0-i5---method-neutrality}
+
+The common Base Analysis core contains shared project semantics, not
+STRIDE, STRIDE-AI or other method-owned threat categories. Methods may
+add isolated interpretation in their own analysis layer.
+
+\subsubsection{BA0-I6 - Representation
+independence}\label{ba0-i6---representation-independence}
+
+The responsibility statement is independent from graph databases,
+diagrams, DFD notation, SysML, JSON/YAML schemas or one renderer.
+Concrete representations must preserve the accepted semantics they claim
+to realize.
+
+\subsubsection{BA0-I7 - Bounded modeling
+scope}\label{ba0-i7---bounded-modeling-scope}
+
+Base Analysis includes only shared semantics justified by project
+understanding, analysis reuse, provenance, diagnostics or
+change/re-analysis needs. It is not a general-purpose digital twin or
+complete systems model by default.
+
+\subsubsection{BA0-I8 - Change alignment and scoped
+revalidation}\label{ba0-i8---change-alignment-and-scoped-revalidation}
+
+When governed documentation changes, affected analytical semantics and
+dependent analyses must be identifiable for review or re-execution
+without automatically invalidating unrelated work.
+
+\subsubsection{BA0-I9 - Diagnostic visibility and
+localization}\label{ba0-i9---diagnostic-visibility-and-localization}
+
+Contradiction, ambiguity, missing context or insufficient analysis basis
+must not be silently canonicalized. A diagnostic should preserve enough
+source/referent/context information to localize targeted review.
+
+\subsubsection{BA0-I10 - No method/tool semantic
+ownership}\label{ba0-i10---no-methodtool-semantic-ownership}
+
+ThreatForge, a renderer, an extraction pipeline, a graph engine or a
+methodology plugin may implement/support DDTA contracts but does not
+establish the DDTA semantic core by implementation accident.
+
+\subsubsection{BA0-I11 - Progressive
+teachability}\label{ba0-i11---progressive-teachability}
+
+Accepted Base Analysis semantics must support non-authoritative
+overview-to-detail projections that let a human progressively understand
+the project and reach exact governed sources without rereading the whole
+corpus first.
+
+This is a representational responsibility, not a claim that any specific
+visualization has empirically proven lower reading time.
+
+\subsubsection{BA0-I12 - Governed corrective
+feedback}\label{ba0-i12---governed-corrective-feedback}
+
+Analysis may emit source-targeted corrective documentation candidates
+for gaps, contradictions, missing decisions, missing requirements or
+other justified issues. Only governed review may accept the change as
+project truth; accepted source changes trigger Base Analysis
+revalidation.
+
+\subsubsection{BA0-I13 - Consumer isolation with shared
+meaning}\label{ba0-i13---consumer-isolation-with-shared-meaning}
+
+A specific analysis consumer may select/project the Base Analysis facts
+it needs and attach method-owned interpretation, but it should not have
+to reconstruct the same project meaning independently or redefine shared
+semantics in order to operate.
+
+\subsection{5. Working origin classes}\label{5-working-origin-classes}
+
+The exact material schema remains open, but BA0 still needs to
+distinguish at least:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{grounded} - directly supported by governed documentation;
+\item
+  \textbf{derived} - analytical structure/statement justified from
+  grounded sources without a new project commitment;
+\item
+  \textbf{reviewed analytical addition} - analysis-layer addition
+  accepted for analytical use but not pretending to be governed project
+  truth;
+\item
+  \textbf{diagnostic / unresolved} - conflict, ambiguity, missing
+  information or insufficiency that prevents a justified canonical
+  choice.
+\end{itemize}
+
+A diagnostic is not intended to become a permanent substitute for
+repairing governed documentation when the source itself needs
+correction.
+
+\subsection{6. Progressive human
+understanding}\label{6-progressive-human-understanding}
+
+Human-facing views are projections of accepted Base Analysis semantics.
+A useful project navigation path is:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{project / macro concerns}
+\NormalTok{        {-}\textgreater{} decisions and responsibility boundaries}
+\NormalTok{        {-}\textgreater{} functional behavior}
+\NormalTok{        {-}\textgreater{} specialized constraints}
+\NormalTok{        {-}\textgreater{} method{-}relevant view}
+\NormalTok{        {-}\textgreater{} exact proposition / source clause}
+\end{Highlighting}
+\end{Shaded}
+
+Different views may omit different information, but omission must not
+create contradictory authored models.
+
+\subsection{7. Specific-analysis
+consumption}\label{7-specific-analysis-consumption}
+
+A methodology-specific consumer should be able to:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  declare/select the shared semantics it requires;
+\item
+  build a method-specific projection or interpretation;
+\item
+  keep its taxonomy/evidence payload outside the common core;
+\item
+  return results, insufficiencies or documentation gaps with provenance
+  to the shared semantics and governed sources.
+\end{enumerate}
+
+BA0-T2 demonstrates this boundary only with a bounded STRIDE transfer
+probe. Universal methodology support is not claimed.
+
+\subsection{8. Governed feedback loop}\label{8-governed-feedback-loop}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{governed documentation}
+\NormalTok{ {-}\textgreater{} Base Analysis}
+\NormalTok{ {-}\textgreater{} human/method projection}
+\NormalTok{ {-}\textgreater{} analysis result or diagnostic}
+\NormalTok{ {-}\textgreater{} corrective documentation candidate}
+\NormalTok{ {-}\textgreater{} governed review}
+\NormalTok{ {-}\textgreater{} accepted correction / clarification / supersession}
+\NormalTok{ {-}\textgreater{} Base Analysis revalidation or rebuild}
+\NormalTok{ {-}\textgreater{} impacted analysis re{-}execution}
+\end{Highlighting}
+\end{Shaded}
+
+Not every analysis result requires a documentation change, and not every
+documentation gap must become a SecurityRequirement. The semantic owner
+and document kind depend on the issue discovered. The thesis may
+separately evaluate a narrower accepted-Finding-to-SecurityRequirement
+path.
+
+\subsection{9. Explicit non-goals}\label{9-explicit-non-goals}
+
+BA0 is not responsible for:
+
+\begin{itemize}
+\tightlist
+\item
+  reliable automatic extraction from arbitrary narrative/legacy
+  documentation;
+\item
+  silently accepting LLM/NLP outputs;
+\item
+  defining the final BAE type taxonomy;
+\item
+  copying a complete existing systems-modeling language;
+\item
+  becoming a STRIDE DFD or another threat-method model by definition;
+\item
+  proving universal support for all analysis methods;
+\item
+  enforcing one persisted graph/storage technology;
+\item
+  encoding every useful semantic responsibility as a first-class
+  metaclass;
+\item
+  empirically proving that one visualization improves human
+  comprehension or effort.
+\end{itemize}
+
+\subsection{10. Open questions reserved for later
+phases}\label{10-open-questions-reserved-for-later-phases}
+
+Still open after T2:
+
+\begin{itemize}
+\tightlist
+\item
+  which semantic responsibilities become first-class BAE types versus
+  relations/properties/projections;
+\item
+  exact identity/equivalence and lifecycle rules;
+\item
+  minimal relation vocabulary;
+\item
+  material provenance schema and source locators;
+\item
+  formal consumer/overlay contract;
+\item
+  exact view types and projection contracts;
+\item
+  broader method-neutrality and holdout regression.
+\end{itemize}
+
+These belong to BA1-BA6 only after BA0 responsibility closes.
+
+\subsection{11. Status and next step}\label{11-status-and-next-step}
+
+R2 is a \textbf{STRONG CANDIDATE}, not BA0 closure.
+
+The next authorized microstep is
+\texttt{BA0-T3\ -\ responsibility\ and\ non-goals\ closure\ review}. BA1
+must not start until BA0 is explicitly closed.
+
+\end{document}

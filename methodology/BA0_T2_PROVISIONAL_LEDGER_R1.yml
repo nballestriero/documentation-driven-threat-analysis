@@ -1,0 +1,75 @@
+schema_version: 1
+trial_id: BA0-T2
+revision: 1
+status: completed_provisional_pass
+repository_baseline: 1d445025f640be4a817dd32707f05e51fdfe46c0
+ba0_status: strong_candidate_not_closed
+ba1_status: not_started
+
+focus:
+  automatic_arbitrary_narrative_extraction: out_of_scope_not_required
+  human_teachability: explicit_trial_axis
+  specific_analysis_consumption: bounded_STRIDE_transfer_probe
+  corrective_feedback: source_targeted_candidate_generation
+  physical_single_graph_persistence: not_required
+
+source:
+  path: 04-specialized-requirement/03-example-facial-access/DDTA_FACIAL_ACCESS_CAMERA_S1_STUDY_CORPUS_R2.tex
+  blob_sha: d54fdecc7d4968a88b74ea96343b37f38bb9b6d1
+  inherited_semantic_ledger: methodology/BA0_T1_FR3_4_PROVISIONAL_LEDGER_R1.yml
+
+progressive_view_levels:
+  - level: 0
+    purpose: project_concern_orientation
+    content: [MR-0001, MR-0002, MR-0003]
+  - level: 1
+    purpose: recognition_decision_context
+    content: [D-3.3, D-3.4, D-3.5]
+  - level: 2
+    purpose: behavior
+    content: [FR-3.3, FR-3.4]
+  - level: 3
+    purpose: specialized_constraints
+    content: [SR-3.4-C, SR-3.4-I, SR-3.4-P]
+  - level: 4
+    purpose: exact_source_drilldown
+    content: [source_document, clause_identity, baseline_provenance]
+
+consumer_probe:
+  method: STRIDE
+  status: bounded_pre_overlay_probe_not_O2
+  scope: FR-3.4_transfer
+  input_projection:
+    behavior: deliver RecognitionCapture
+    source: CameraSubsystem
+    destination: RecognitionProcessor
+    information: RecognitionCapture
+    correlation: RecognitionRequest
+    transport_responsibility: external_consumed_service
+    transport_realization: wired_Ethernet_V0
+    failure_rule: incomplete_delivery_is_not_success
+    constraints: [confidentiality, integrity, authorized_provenance]
+  dispositions:
+    spoofing: existing_SR_3_4_P
+    tampering: existing_SR_3_4_I
+    repudiation: insufficient_basis_no_inference
+    information_disclosure: existing_SR_3_4_C
+    denial_of_service: documentation_gap_candidate_access_behavior_when_verification_unavailable
+    elevation_of_privilege: insufficient_transfer_scope_drill_into_access_authorization_if_needed
+
+corrective_feedback:
+  artifact: methodology/BA0_T2_CORRECTIVE_DOCUMENTATION_CANDIDATE_R1.md
+  authority: review_required_not_governed_project_truth
+  semantic_owner_candidate: MR-0001_controlled_access_branch
+  decision_policy: unresolved_by_trial
+  post_acceptance_rebuild_and_rerun: deferred_to_real_governance
+
+results:
+  progressive_human_comprehension_support: structural_pass
+  method_specific_consumption_without_core_contamination: bounded_pass
+  source_localized_corrective_document_generation: pass
+  empirical_human_effort_reduction: not_tested
+  arbitrary_narrative_extraction: out_of_scope
+  BAE_types_accepted: []
+
+next_step: BA0-T3_responsibility_and_non_goals_closure_review

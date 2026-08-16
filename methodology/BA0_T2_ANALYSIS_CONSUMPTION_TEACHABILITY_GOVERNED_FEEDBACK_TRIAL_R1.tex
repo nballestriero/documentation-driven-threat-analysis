@@ -1,0 +1,562 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  10pt,
+  a4paper,
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{BA0-T2 - Analysis consumption, teachability and governed
+corrective-feedback
+trial}\label{ba0-t2---analysis-consumption-teachability-and-governed-corrective-feedback-trial}
+
+\textbf{Revision:} R1\\
+\textbf{Status:} COMPLETED / PROVISIONAL PASS\\
+\textbf{Repository baseline:}
+\texttt{1d445025f640be4a817dd32707f05e51fdfe46c0}\\
+\textbf{BA0 status after trial:} STRONG CANDIDATE / NOT CLOSED\\
+\textbf{BA1 status:} NOT STARTED
+
+\subsection{1. Research correction incorporated by this
+trial}\label{1-research-correction-incorporated-by-this-trial}
+
+BA0-T2 does \textbf{not} test reliable automatic extraction from
+arbitrary narrative documentation. Current DDTA evaluation starts from
+governed, portable-by-construction documentation. NLP/LLM migration or
+extraction may be future work and, if introduced, remains
+candidate-producing assistance rather than semantic authority.
+
+The trial instead asks:
+
+\begin{quote}
+Can the same accepted Base Analysis semantics derived from governed
+documentation support progressive human understanding and a concrete
+method-specific analysis consumer, while keeping method semantics
+outside the common core and returning analysis-driven documentation gaps
+to the governed authoring loop?
+\end{quote}
+
+This trial also rejects a second false target: Base Analysis is not
+required to be one permanently materialized graph. T1 already left
+physical persistence open. What must be stable is accepted semantic
+identity, origin/provenance and the ability to reuse or reproducibly
+rebuild the relevant representation for a governed baseline.
+
+\subsection{2. Source corpus and inherited T1
+semantics}\label{2-source-corpus-and-inherited-t1-semantics}
+
+The trial uses the facial-access camera/recognition study corpus and the
+T1 provisional ledger without changing either source.
+
+The relevant governed-study facts are:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{MR-0003} owns facial-recognition concern; \texttt{MR-0001}
+  owns controlled access and depends on recognition.
+\item
+  \texttt{D-3.3}: \texttt{CameraSubsystem} acquires evidence while a
+  distinct local \texttt{RecognitionProcessor} performs recognition. The
+  separation creates a responsibility boundary and interaction
+  unavailability may prevent recognition.
+\item
+  \texttt{FR-3.4}: each \texttt{RecognitionCapture} for remote
+  evaluation must be delivered from \texttt{CameraSubsystem} to
+  \texttt{RecognitionProcessor}, correlated with the correct
+  \texttt{RecognitionRequest}; incomplete delivery must not be
+  represented as success.
+\item
+  \texttt{D-3.4}: the project consumes local connectivity and does not
+  own/manage the underlying transport infrastructure.
+\item
+  \texttt{D-3.5}: the current V0 transport realization is wired
+  Ethernet.
+\item
+  \texttt{SR-3.4-C}: biometric content must not become intelligible to
+  unauthorized parties during FR-3.4 before acceptance.
+\item
+  \texttt{SR-3.4-I}: unauthorized modification must not be accepted as a
+  valid capture.
+\item
+  \texttt{SR-3.4-P}: a received capture must not be accepted unless its
+  origin is authorized for the request.
+\end{itemize}
+
+No BAE type is inferred from this list.
+
+\subsection{3. Trial A - progressive human
+comprehension}\label{3-trial-a---progressive-human-comprehension}
+
+\subsubsection{3.1 Progressive disclosure
+ladder}\label{31-progressive-disclosure-ladder}
+
+A reader must not need to scan the complete corpus before understanding
+the branch. The same accepted semantics can be exposed through
+increasingly detailed projections:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LEVEL 0 {-} project concerns}
+\NormalTok{MR{-}0001 Controlled access}
+\NormalTok{    depends on MR{-}0002 Authorization}
+\NormalTok{    depends on MR{-}0003 Recognition}
+
+\NormalTok{LEVEL 1 {-} recognition decisions}
+\NormalTok{MR{-}0003}
+\NormalTok{    D{-}3.3 acquisition/recognition responsibility placement}
+\NormalTok{    D{-}3.4 external transport responsibility}
+\NormalTok{    D{-}3.5 current Ethernet realization}
+
+\NormalTok{LEVEL 2 {-} behavior}
+\NormalTok{D{-}3.3}
+\NormalTok{    FR{-}3.3 Acquire RecognitionCapture}
+\NormalTok{    FR{-}3.4 Deliver RecognitionCapture}
+
+\NormalTok{LEVEL 3 {-} constraints on FR{-}3.4}
+\NormalTok{    SR{-}3.4{-}C confidentiality}
+\NormalTok{    SR{-}3.4{-}I integrity}
+\NormalTok{    SR{-}3.4{-}P authorized provenance}
+
+\NormalTok{LEVEL 4 {-} exact source drill{-}down}
+\NormalTok{    source document + clause/identity + baseline provenance}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{3.2 Questions answerable
+progressively}\label{32-questions-answerable-progressively}
+
+Without first reading unrelated branches, the scoped reader can answer:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Why does the branch exist?} Controlled access depends on
+  recognition.
+\item
+  \textbf{Who acquires and who recognizes?} CameraSubsystem acquires;
+  RecognitionProcessor recognizes in V0.
+\item
+  \textbf{What crosses the responsibility separation?}
+  RecognitionCapture associated with RecognitionRequest.
+\item
+  \textbf{Who owns the transport?} The project consumes, but does not
+  own/manage, the underlying local transport.
+\item
+  \textbf{What medium is currently used?} Wired Ethernet in V0.
+\item
+  \textbf{Which security properties constrain transfer?}
+  Confidentiality, integrity and authorized provenance.
+\item
+  \textbf{Where can each statement be verified?} By drilling down to
+  D-3.3, FR-3.4, D-3.4, D-3.5 and the three SR source clauses.
+\end{itemize}
+
+\subsubsection{3.3 Result}\label{33-result}
+
+\textbf{STRUCTURAL PASS.} The corpus plus accepted T1 semantics support
+a coherent overview-to-source ladder without converting the view into a
+second authority.
+
+\textbf{Limitation:} this is not an empirical human-subject study and
+does not quantify reading-time reduction, comprehension accuracy or
+onboarding effort. BA0-T2 demonstrates the representational
+responsibility, not a measured usability superiority claim.
+
+\subsection{4. Trial B - bounded specific-analysis
+consumer}\label{4-trial-b---bounded-specific-analysis-consumer}
+
+\subsubsection{4.1 Why STRIDE is used
+here}\label{41-why-stride-is-used-here}
+
+STRIDE is used only as a \textbf{bounded consumer probe} over the FR-3.4
+transfer. This does not start the formal STRIDE overlay phase, define a
+Common Finding schema, or import STRIDE categories into Base Analysis.
+Method-owned interpretation remains method-owned.
+
+\subsubsection{4.2 Method input
+projection}\label{42-method-input-projection}
+
+The consumer can select the following from the same Base Analysis
+semantics:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{behavior:        deliver RecognitionCapture}
+\NormalTok{source:          CameraSubsystem}
+\NormalTok{destination:     RecognitionProcessor}
+\NormalTok{information:     RecognitionCapture}
+\NormalTok{correlation:     RecognitionRequest}
+\NormalTok{responsibility:  project endpoints; underlying transport external}
+\NormalTok{realization:     Ethernet in V0}
+\NormalTok{failure rule:    incomplete delivery != successful completion}
+\NormalTok{constraints:     confidentiality, integrity, authorized provenance}
+\end{Highlighting}
+\end{Shaded}
+
+The projection is smaller and method-oriented, but it does not create
+new project facts.
+
+\subsubsection{4.3 Bounded STRIDE
+disposition}\label{43-bounded-stride-disposition}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Spoofing:} authorized origin is already constrained by
+  \texttt{SR-3.4-P}. \textbf{Consequence:} no new project fact is
+  inferred.
+\item
+  \textbf{Tampering:} unauthorized modification is constrained by
+  \texttt{SR-3.4-I}. \textbf{Consequence:} no new project fact is
+  inferred.
+\item
+  \textbf{Repudiation:} the transfer subset does not provide enough
+  basis to assert a required non-repudiation/audit property.
+  \textbf{Consequence:} do not invent a requirement; broaden scope only
+  if the analysis question requires it.
+\item
+  \textbf{Information disclosure:} confidentiality is constrained by
+  \texttt{SR-3.4-C}. \textbf{Consequence:} no new project fact is
+  inferred.
+\item
+  \textbf{Denial of service:} \texttt{D-3.3} acknowledges that
+  interaction unavailability may prevent recognition; \texttt{FR-3.4}
+  defines honest failure semantics but not the access-control policy
+  when verification is unavailable. \textbf{Consequence:} emit a
+  documentation-gap candidate, not an automatic SecurityRequirement.
+\item
+  \textbf{Elevation of privilege:} the transfer subset does not define
+  the authorization/privilege semantics needed for a defensible EoP
+  conclusion. \textbf{Consequence:} do not infer; drill into the
+  access/authorization branch if required.
+\end{itemize}
+
+\subsubsection{4.4 Result}\label{44-result}
+
+\textbf{PASS FOR CONSUMPTION BOUNDARY.} A concrete method can select a
+method-specific projection from shared semantics and produce
+method-owned dispositions without changing Base Analysis.
+
+The probe also exposes a useful negative result: insufficient context is
+a legitimate analysis outcome. Base Analysis must support drill-down or
+targeted documentation feedback rather than encouraging the method/tool
+to invent missing project semantics.
+
+\subsection{5. Trial C - governed corrective
+feedback}\label{5-trial-c---governed-corrective-feedback}
+
+The denial-of-service-oriented question localizes a gap:
+
+\begin{quote}
+What access-control behavior is permitted when facial verification
+cannot complete because the recognition interaction is unavailable?
+\end{quote}
+
+The selected corpus states that unavailability may prevent recognition
+and that incomplete transfer is not success, but it does not state the
+access outcome policy.
+
+BA0-T2 therefore produces
+\texttt{BA0\_T2\_CORRECTIVE\_DOCUMENTATION\_CANDIDATE\_R1.md}.
+
+The candidate:
+
+\begin{itemize}
+\tightlist
+\item
+  points back to the exact branch and source facts that caused the
+  question;
+\item
+  proposes the \texttt{MR-0001} controlled-access branch as semantic
+  owner candidate;
+\item
+  requires collision/ownership review before introducing a new Decision
+  identity;
+\item
+  deliberately leaves the project Decision unresolved;
+\item
+  lists downstream FR/SR consequences that should be reviewed after
+  governance chooses the policy.
+\end{itemize}
+
+\subsubsection{Result}\label{result}
+
+\textbf{PASS FOR CORRECTIVE-DOCUMENT GENERATION AND LOCALIZATION.} The
+analysis can return a structured, source-targeted authoring task without
+silently mutating Base Analysis.
+
+\textbf{Not demonstrated in this trial:} actual governed acceptance of
+one access policy, post-acceptance Base Analysis rebuild, or rerun
+evidence. Those require a real governed project decision and must not be
+simulated as project truth merely to make the trial appear complete.
+
+\subsection{6. Cross-document consistency audit and
+repairs}\label{6-cross-document-consistency-audit-and-repairs}
+
+The repository review performed with BA0-T2 found four important
+state-alignment issues.
+
+\subsubsection{6.1 Root README was
+obsolete}\label{61-root-readme-was-obsolete}
+
+The root \texttt{README.md} still presented the historical primary-focus
+study as the repository\textquotesingle s initial/main orientation. That
+is misleading after BA0-R and T1. The drop-in replaces the README with
+the current DDTA research boundary and points to the active
+state/work-plan artifacts.
+
+\subsubsection{\texorpdfstring{6.2 \texttt{primary-analysis-focus.md}
+could be misread as current
+ontology}{6.2 primary-analysis-focus.md could be misread as current ontology}}\label{62-primary-analysis-focusmd-could-be-misread-as-current-ontology}
+
+The historical five-focus proposition remains useful as study history,
+but it is not the accepted Base Analysis taxonomy. The file is retained
+and explicitly relabeled
+\texttt{SUPERSEDED\ AS\ A\ GENERAL\ BASE-ANALYSIS\ RULE} while
+preserving its original proposition for reproducibility.
+
+\subsubsection{6.3 Active terminology could imply physical canonical
+persistence}\label{63-active-terminology-could-imply-physical-canonical-persistence}
+
+\texttt{research/terminology.md} used \texttt{canonical\ model} without
+the T1 distinction between semantic canonicality and physical
+persistence. The correction defines Base Analysis as an accepted
+analyzable representation that may be reused or reproducibly rebuilt.
+
+\subsubsection{6.4 T1\textquotesingle s forward pointer is obsolete but
+historically
+valid}\label{64-t1s-forward-pointer-is-obsolete-but-historically-valid}
+
+The checksum-sealed T1 artifacts name a conflict/addition stress test as
+their intended successor. They are not rewritten.
+\texttt{BA0\_T1\_SUCCESSOR\_SUPERSESSION\_NOTE\_R1.md} supersedes only
+that forward pointer.
+
+Historical work-plan revisions and \texttt{\_working/} teachability maps
+are also preserved. The old teachability map is already explicitly
+non-canonical; its lesson is reused, not promoted retroactively as
+authority.
+
+\subsection{7. BA0 responsibility refinements supported by
+T2}\label{7-ba0-responsibility-refinements-supported-by-t2}
+
+T2 supports the following \textbf{working} responsibilities; none is a
+BAE type:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Source authority:} governed documentation remains project
+  authority.
+\item
+  \textbf{Accepted analytical semantics:} Base Analysis provides stable
+  accepted meaning/identity for a governed baseline, whether reused or
+  reproducibly rebuilt.
+\item
+  \textbf{Progressive human teachability:} the same semantics must
+  support overview-to-detail-to-source navigation through
+  non-authoritative projections.
+\item
+  \textbf{Method-consumer neutrality:} a method may select/project
+  required semantics and add method-owned interpretation without
+  redefining the common core.
+\item
+  \textbf{Explicit provenance and drill-down:} a reader or analysis
+  result must be able to return to the governed basis of relevant
+  statements.
+\item
+  \textbf{Diagnostic insufficiency:} missing context, contradiction or
+  ambiguity can be surfaced as a localized diagnostic instead of being
+  silently resolved by tools.
+\item
+  \textbf{Corrective feedback:} analysis may produce source-targeted
+  corrective documentation candidates; acceptance belongs to governed
+  documentation review.
+\item
+  \textbf{Change-aware revalidation:} once governed sources change,
+  affected Base Analysis semantics and dependent analyses must be
+  identifiable for review/re-execution without invalidating unrelated
+  work.
+\end{enumerate}
+
+\subsection{8. Non-goals reinforced by
+T2}\label{8-non-goals-reinforced-by-t2}
+
+BA0 does not require or define:
+
+\begin{itemize}
+\tightlist
+\item
+  reliable automatic extraction from arbitrary narrative;
+\item
+  one permanently persisted graph database or storage format;
+\item
+  STRIDE categories in the common core;
+\item
+  a universal threat-analysis ontology;
+\item
+  automatic acceptance of findings or corrective documents;
+\item
+  a BAE type merely because a view or method finds a concept useful;
+\item
+  empirical proof that progressive views reduce human reading time.
+\end{itemize}
+
+\subsection{9. Falsification
+assessment}\label{9-falsification-assessment}
+
+The working hypothesis would have been weakened if the method probe
+required a second independent reconstruction of project meaning, if the
+teachability view could not preserve drill-down to sources, or if
+method-specific interpretation had to become common Base Analysis
+semantics.
+
+None of those failures was forced by the FR-3.4 probe. Instead, the same
+accepted statements supported both human and STRIDE-oriented
+projections, while the method-specific gap was returned to documentation
+governance.
+
+This is \textbf{provisional evidence}, not universal proof. One branch
+and one bounded method probe cannot establish all future method
+requirements or full-project teachability.
+
+\subsection{10. Trial disposition}\label{10-trial-disposition}
+
+\begin{itemize}
+\tightlist
+\item
+  Human progressive-view responsibility: \textbf{SUPPORTED / STRUCTURAL
+  PASS}.
+\item
+  Method-specific consumption without core contamination:
+  \textbf{SUPPORTED / BOUNDED PASS}.
+\item
+  Corrective-document localization/generation: \textbf{SUPPORTED /
+  PASS}.
+\item
+  Automatic arbitrary-narrative extraction: \textbf{OUT OF SCOPE / NOT
+  REQUIRED}.
+\item
+  Physical single-graph persistence: \textbf{NOT REQUIRED BY T2; remains
+  implementation-neutral}.
+\item
+  Empirical human-effort reduction: \textbf{NOT TESTED}.
+\item
+  Governed acceptance and post-repair rerun of the access-policy gap:
+  \textbf{DEFERRED TO REAL GOVERNANCE}.
+\item
+  BA0 responsibility/non-goals: \textbf{STRONG CANDIDATE / NOT CLOSED}.
+\item
+  BA1: \textbf{NOT STARTED}.
+\end{itemize}
+
+\subsection{11. Next microstep}\label{11-next-microstep}
+
+After this package is reviewed and committed, execute only:
+
+\begin{quote}
+\textbf{BA0-T3 - responsibility and non-goals closure review.}
+\end{quote}
+
+BA0-T3 must decide whether the combined BA0-R, T1 and T2 evidence is
+sufficient to close the Base Analysis responsibility boundary. It must
+not begin BAE taxonomy design unless BA0 is explicitly closed.
+
+\end{document}

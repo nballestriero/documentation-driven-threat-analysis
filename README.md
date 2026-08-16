@@ -1,54 +1,44 @@
 # Documentation-Driven Threat Analysis
 
-Research companion repository for the ThreatForge project.
+Research repository for the Documentation-Driven Threat Analysis (DDTA) thesis work and its controlled ThreatForge case study.
 
 ## Purpose
 
-This repository preserves structured research data, methodological decisions,
-project baselines, longitudinal observations and thesis evidence related to
-Documentation-Driven Threat Analysis.
+DDTA studies how **portable-by-construction governed project documentation** can support a methodology-neutral Base Analysis, human project understanding, methodology-specific threat-analysis consumers, governed corrective feedback, and change-aware re-analysis.
 
-It is intentionally separate from the ThreatForge software repository:
+The repository is intentionally separate from the ThreatForge software repository:
 
-- ThreatForge governs and implements the software product.
-- This repository governs research observations and thesis-relevant evidence.
-- Records in this repository do not create product obligations for ThreatForge.
-- Claims about ThreatForge must reference a stable repository baseline.
+- governed DDTA documentation and research artifacts define the research subject;
+- ThreatForge is an implementation/case-study instrument, never the semantic authority for DDTA;
+- analysis methods consume Base Analysis semantics but do not redefine the shared core;
+- accepted project commitments remain in governed project documentation, not in tool output or unreviewed analysis artifacts.
 
-## Initial study
+## Current research checkpoint
 
-The first study evaluates the proposition:
+The documentation-layer work through Chapters 2-4 remains closed for the current thesis scope. The systems-modeling prior-art checkpoint `BA0-R` is closed. `BA0-T1` is completed provisionally. `BA0-T2` tests the next boundary: progressive human comprehension, bounded method-specific consumption, and source-targeted corrective feedback.
 
-> Every Functional Requirement should identify one primary Base Analysis focus.
+The active state and successor rules are recorded in:
 
-The initial candidate mapping covers the 24 Functional Requirements present in
-ThreatForge baseline `TF-BL-0001`, commit
-`b8ffdbc5c6b6ae68ff5afefe2ab44116362d15e3`.
+- `methodology/DDTA_CURRENT_RESEARCH_STATE_R1.md`
+- `methodology/DDTA_RESEARCH_WORK_PLAN_AFTER_DOCUMENTATION_CLOSURE_R4.md`
+- `methodology/BA0_BASE_ANALYSIS_WORKING_HYPOTHESIS_R2.md`
 
-## Repository layout
+`BA1` (minimal BAE ontology) remains **NOT STARTED** until BA0 responsibility and non-goals are explicitly closed.
 
-```text
-baselines/
-  threat-forge-baselines.registry.yml
+## Important scope boundary
 
-governance/
-  decisions/
-    TADR-0001_separate_research_repository.md
+The current thesis does **not** require reliable automatic migration from arbitrary, legacy, or unstructured narrative documentation. DDTA is evaluated on governed documentation intentionally authored to satisfy an analysis-readiness contract. NLP/LLM-assisted migration or extraction may be future work; any such output would remain candidate material requiring provenance and review.
 
-methodology/
-  primary-analysis-focus.md
+## Historical studies
 
-studies/
-  requirement-primary-focus/
-    STUDY-0001.md
-    requirement-primary-focus.registry.yml
-    findings.md
+Earlier studies, including `studies/requirement-primary-focus/`, remain preserved as research history. Their local results are not automatically current DDTA invariants or a pre-approved BAE taxonomy. In particular, the historical `actor/component/asset/boundary/data_flow` focus set must not be read as the accepted Base Analysis ontology.
 
-thesis/
-  README.md
-```
+## Repository orientation
 
-## Status
-
-This is an experimental research corpus. The initial records are candidates
-requiring review. They are not canonical ThreatForge Base Analysis records.
+- `methodology/` - active and historical methodology checkpoints, Base Analysis trials, work plans and state records.
+- `literature/` - registered literature evidence, notes, excerpts and syntheses.
+- `00-foundations/` through `05-security-requirement/` - documentation/metamodel research artifacts.
+- `research/` - research questions, candidate contributions, hypotheses and terminology.
+- `studies/` - bounded empirical or corpus studies; study-local results do not become methodology rules without explicit promotion.
+- `_working/` - non-canonical historical/experimental workspace.
+- `thesis/` - thesis drafting and evidence-management material.
