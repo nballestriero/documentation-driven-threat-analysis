@@ -1,0 +1,513 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}\usepackage[utf8]{inputenc}\usepackage{lmodern}\usepackage{microtype}
+\usepackage[a4paper,margin=2.25cm]{geometry}\usepackage{longtable,booktabs,array,calc}\usepackage{fancyvrb}
+\usepackage{xcolor}\usepackage{hyperref}\usepackage{xurl}\usepackage{fancyhdr}\usepackage{enumitem}\usepackage{parskip}\usepackage{titlesec}
+\definecolor{ddtadark}{RGB}{30,38,48}\definecolor{ddtablue}{RGB}{38,82,126}
+\hypersetup{colorlinks=true,linkcolor=ddtablue,urlcolor=ddtablue,citecolor=ddtablue}
+\pagestyle{fancy}\fancyhf{}\lhead{Documentation-Driven Threat Analysis}\rhead{BA3-T2 pressure test}\cfoot{\thepage}\setlength{\headheight}{14pt}
+\setlist[itemize]{leftmargin=1.5em,itemsep=0.2em,topsep=0.25em}\setlist[enumerate]{leftmargin=1.7em,itemsep=0.2em,topsep=0.25em}
+\titleformat{\section}{\Large\bfseries\color{ddtadark}}{}{0em}{}\titleformat{\subsection}{\large\bfseries\color{ddtadark}}{}{0em}{}\titleformat{\subsubsection}{\normalsize\bfseries\color{ddtadark}}{}{0em}{}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\setlength{\emergencystretch}{4em}\hbadness=10000\hfuzz=20pt\sloppy
+\begin{document}
+\section{DDTA BA3-T2 cross-baseline identity, staleness and lifecycle
+pressure test -
+R1}\label{ddta-ba3-t2-cross-baseline-identity-staleness-and-lifecycle-pressure-test---r1}
+
+\textbf{Status:} COMPLETED / PROVISIONAL PASS WITH IDENTITY-LIFECYCLE
+REFINEMENT
+
+\textbf{Repository baseline reviewed:}
+\texttt{52864d2ce177abdd694436306d8152db688effa0}
+
+\textbf{Executed microstep:}
+\texttt{BA3-T2\ -\ cross-baseline\ identity,\ staleness\ and\ lifecycle\ pressure\ test}
+
+\textbf{Scope discipline:} this test does not close BA3, does not
+redesign BA2, does not define BA4 projections, AnalysisRecord/Common
+Finding, STRIDE overlays or ThreatForge implementation state.
+
+\subsection{1. Question under test}\label{question-under-test}
+
+BA3-T1 proved that every BA identity needs baseline-scoped
+origin/provenance. T2 asks what happens when the governed baseline
+changes:
+
+\begin{quote}
+Which BA meanings remain the same identities, which must be reviewed,
+which are replaced, and which disappear?
+\end{quote}
+
+The test deliberately uses concrete governed mutations instead of
+inventing a generic lifecycle state machine.
+
+\subsection{2. Candidate attacked}\label{candidate-attacked}
+
+T1 left these questions open:
+
+\begin{itemize}
+\tightlist
+\item
+  cross-baseline identity/equivalence;
+\item
+  accepted/rejected/stale/superseded/retired semantics;
+\item
+  diagnostic resolution after source correction.
+\end{itemize}
+
+The pressure hypothesis was intentionally minimal:
+
+\begin{verbatim}
+H1 same source ID -> same BA identity
+H2 one lifecycle rule can serve BAReferent and BAProposition
+H3 source revise can be copied as BA revise
+H4 originState can carry acceptance/freshness meaning
+\end{verbatim}
+
+All four hypotheses were attacked by the mutation corpus.
+
+\subsection{3. Test A - M1 Ethernet to
+Wi-Fi}\label{test-a---m1-ethernet-to-wi-fi}
+
+\subsubsection{3.1 Governed mutation}\label{governed-mutation}
+
+The facial-access corpus changes only \texttt{D-3.5}:
+
+\begin{verbatim}
+Ethernet available -> Wi-Fi available
+\end{verbatim}
+
+Transport remains externally consumed; camera and recognition processor
+remain separated; FR-3.4 and its specialized constraints survive after
+review.
+
+\subsubsection{3.2 Identity pressure}\label{identity-pressure}
+
+The abstract \texttt{LocalConnectivity} meaning survives. The concrete
+realization does not.
+
+If same document identity implied same BA proposition identity, the
+assertion:
+
+\begin{verbatim}
+realize(LocalConnectivity, WiredEthernet)
+\end{verbatim}
+
+would have to mutate in place into:
+
+\begin{verbatim}
+realize(LocalConnectivity, WiFi)
+\end{verbatim}
+
+That would make proposition identity denote two different normalized
+assertions over history.
+
+\subsubsection{3.3 Result}\label{result}
+
+\begin{verbatim}
+LocalConnectivity referent                         RETAIN
+WiredEthernet referent                            RETIRE if unused elsewhere
+WiFi referent                                     INTRODUCE
+old realize proposition                           REPLACE / SUPERSEDED
+transfer/correlation/security propositions        RETAIN after review
+same D-3.5 source identity -> same BA proposition REJECTED
+\end{verbatim}
+
+\textbf{Finding A:} source-document continuity and BA assertion
+continuity are independent decisions.
+
+\subsection{4. Test B - M2 external to project-owned
+transport}\label{test-b---m2-external-to-project-owned-transport}
+
+\subsubsection{4.1 Governed mutation}\label{governed-mutation-1}
+
+\texttt{D-3.4} changes from consumed external transport to project
+ownership/management.
+
+\subsubsection{4.2 Polarity pressure}\label{polarity-pressure}
+
+BA2 represents the V0 boundary as a negative responsibility assertion.
+Project ownership changes that truth value.
+
+Keeping one proposition identity while flipping polarity would violate
+assertion identity:
+
+\begin{verbatim}
+assignResponsibility[negative](project, transport, ownership/management)
+\end{verbatim}
+
+becomes:
+
+\begin{verbatim}
+assignResponsibility[affirmative](project, transport, ownership/management)
+\end{verbatim}
+
+\subsubsection{4.3 Result}\label{result-1}
+
+\begin{verbatim}
+abstract transport/connectivity referent          RETAIN if meaning survives
+negative responsibility proposition               REPLACE / SUPERSEDED
+affirmative responsibility proposition            INTRODUCE as successor
+external consumeService proposition               RETIRE if consumption ceases
+transfer + specialized constraints                RETAIN after review
+new project-owned transport branch                INTRODUCE as needed
+\end{verbatim}
+
+\textbf{Finding B:} changing responsibility relations does not
+automatically split the referent whose responsibility changed.
+
+\subsection{5. Test C - M3 remote to local
+recognition}\label{test-c---m3-remote-to-local-recognition}
+
+\subsubsection{5.1 Governed mutation}\label{governed-mutation-2}
+
+Recognition moves onto the camera. The remote RecognitionCapture
+transfer disappears.
+
+\subsubsection{5.2 Retire versus replace
+pressure}\label{retire-versus-replace-pressure}
+
+A bad lifecycle rule would transform the old transfer proposition into
+any new local processing behavior merely because both concern
+recognition.
+
+That would destroy the proposition's identity semantics.
+
+\subsubsection{5.3 Result}\label{result-2}
+
+\begin{verbatim}
+CameraSubsystem referent                           RETAIN
+RecognitionCapture referent
+  RETAIN if acquisition meaning survives
+RecognitionProcessor                               REVIEW / possibly RETIRE
+remote delivery behavior referent                  RETIRE
+remote transfer proposition                        RETIRE
+old delivery-targeted constraints
+  RETIRE old form unless successor authored
+D-3.3 placement proposition
+  REPLACE when successor meaning is materialized
+D-3.4/D-3.5 related elements
+  STALE FOR REVIEW where relevance was transfer-dependent
+\end{verbatim}
+
+\textbf{Finding C:} no successor is required merely because a
+neighboring function remains. \texttt{RETIRE} and \texttt{REPLACE} are
+materially different.
+
+\subsection{6. Test D - order-fulfillment internal versus external
+WMS}\label{test-d---order-fulfillment-internal-versus-external-wms}
+
+The order corpus states that \texttt{ADR-2.1} internal inventory
+authority is a genuine responsibility-boundary choice: an external WMS
+would replace many project-owned inventory FRs with
+integration/API/contract obligations.
+
+This provides an independent domain control.
+
+Expected BA effect:
+
+\begin{itemize}
+\tightlist
+\item
+  stable order/evaluation and governed result meanings may retain
+  identity;
+\item
+  internal inventory authority/capability/store meanings may retire or
+  be replaced;
+\item
+  internal mutation propositions retire/supersede;
+\item
+  external service/contract referents and consumption/normalization
+  propositions are introduced;
+\item
+  payment and fulfillment meanings outside the affected boundary do not
+  become stale merely because MR-2 changed.
+\end{itemize}
+
+\textbf{Finding D:} mutation-local lifecycle handling generalizes beyond
+the camera corpus without requiring a domain taxonomy.
+
+\subsection{7. Family-specific identity
+tests}\label{family-specific-identity-tests}
+
+\subsubsection{7.1 BAReferent test}\label{bareferent-test}
+
+Retain identity when the independently reusable project-semantic thing
+remains the same despite changed propositions around it.
+
+Mutation examples forcing retention:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{LocalConnectivity} across Ethernet/Wi-Fi;
+\item
+  \texttt{RecognitionCapture} across remote/local recognition when
+  capture itself remains required;
+\item
+  order-evaluation/result semantics across provider-boundary changes
+  where governed meaning is preserved.
+\end{itemize}
+
+\subsubsection{7.2 BAProposition test}\label{baproposition-test}
+
+Retain identity only under normalized assertion equivalence.
+
+A proposition identity therefore cannot survive a material change in:
+
+\begin{itemize}
+\tightlist
+\item
+  operator;
+\item
+  polarity;
+\item
+  role-bound participant identity/value;
+\item
+  governed constraint value;
+\item
+  local condition/temporal scope.
+\end{itemize}
+
+Source wording and provenance may change without forcing replacement.
+
+\textbf{Result:} one shared retention rule for both BA1 families is
+rejected.
+
+\subsection{8. Review-state pressure}\label{review-state-pressure}
+
+Origin state alone cannot encode review state.
+
+Examples:
+
+\begin{verbatim}
+DERIVED + ACCEPTED
+DERIVED + REJECTED
+DIAGNOSTIC_UNRESOLVED + ACCEPTED
+GROUNDED + STALE relative to new baseline
+\end{verbatim}
+
+Therefore
+\texttt{PENDING\_REVIEW\ \textbar{}\ ACCEPTED\ \textbar{}\ REJECTED} is
+required as a separate analytical review dimension.
+
+This does not give BA project authority. It records whether analytical
+materialization is admitted to the accepted Base Analysis.
+
+\subsection{9. Staleness pressure}\label{staleness-pressure}
+
+A new governed baseline does not invalidate all old BA meaning.
+
+The minimum staleness rule is dependency-local:
+
+\begin{verbatim}
+changed source locator
+  -> directly grounded dependent BA elements need review
+
+stale/replaced/retired derivation basis
+  -> derived dependents need review
+
+replaced/retired proposition participant
+  -> proposition needs review
+\end{verbatim}
+
+M3 also shows that effective context can matter even where the direct
+source file of an element did not change.
+
+Therefore exact change-impact closure remains open, but \texttt{STALE}
+is required as a target-baseline revalidation state.
+
+\subsection{10. Supersession versus
+retirement}\label{supersession-versus-retirement}
+
+The mutation corpus forces both:
+
+\subsubsection{SUPERSEDED}\label{superseded}
+
+A successor exists and takes over the earlier semantic responsibility.
+
+Examples:
+
+\begin{itemize}
+\tightlist
+\item
+  Ethernet realization proposition -\textgreater{} Wi-Fi realization
+  proposition;
+\item
+  negative ownership proposition -\textgreater{} affirmative ownership
+  proposition;
+\item
+  remote placement proposition -\textgreater{} local placement
+  proposition.
+\end{itemize}
+
+\subsubsection{RETIRED}\label{retired}
+
+The old meaning ceases and no successor identity is required.
+
+Examples:
+
+\begin{itemize}
+\tightlist
+\item
+  remote capture-transfer proposition after local recognition;
+\item
+  delivery-behavior referent if no longer used;
+\item
+  external service-consumption proposition after project ownership, if
+  no external consumption remains.
+\end{itemize}
+
+Collapsing both into \texttt{inactive} would lose change explanation and
+targeted downstream invalidation.
+
+\subsection{11. Diagnostic resolution
+test}\label{diagnostic-resolution-test}
+
+Suppose baseline B0 contains an accepted \texttt{DIAGNOSTIC\_UNRESOLVED}
+element because sources conflict or are insufficient. B1 corrects the
+governed documentation.
+
+Rejected behavior:
+
+\begin{verbatim}
+same diagnostic identity
+originState: DIAGNOSTIC_UNRESOLVED -> GROUNDED
+\end{verbatim}
+
+That rewrites history.
+
+Accepted provisional behavior:
+
+\begin{verbatim}
+issue disappears       -> diagnostic RETIRE
+new unresolved issue   -> diagnostic REPLACE / SUPERSEDE
+new factual meaning    -> separate GROUNDED/DERIVED BA element
+                         with own provenance
+\end{verbatim}
+
+Thus origin remains historical while lifecycle expresses resolution.
+
+\subsection{\texorpdfstring{12. Why BA-level \texttt{REVISE} is not
+required}{12. Why BA-level REVISE is not required}}\label{why-ba-level-revise-is-not-required}
+
+The source corpus itself uses review labels such as \texttt{revise},
+\texttt{revise/replace} and \texttt{retire/supersede} for governed
+documents.
+
+Those labels are not a BA identity ontology.
+
+At BA semantic identity level:
+
+\begin{itemize}
+\tightlist
+\item
+  non-identity metadata/provenance refresh with same meaning
+  -\textgreater{} \texttt{RETAIN};
+\item
+  changed meaning with successor -\textgreater{} \texttt{REPLACE};
+\item
+  disappeared meaning -\textgreater{} \texttt{RETIRE}.
+\end{itemize}
+
+Adding \texttt{REVISE} would blur the exact boundary T2 is trying to
+protect: whether semantic identity survived.
+
+\subsection{13. Minimum candidate after
+pressure}\label{minimum-candidate-after-pressure}
+
+\begin{verbatim}
+Origin/provenance dimension:
+  GROUNDED | DERIVED | DIAGNOSTIC_UNRESOLVED
+
+Review dimension:
+  PENDING_REVIEW | ACCEPTED | REJECTED
+
+Freshness dimension:
+  CURRENT | STALE
+
+Cross-baseline continuity disposition:
+  RETAIN | REPLACE | RETIRE
+
+Derived historical interpretation:
+  accepted REPLACE -> SUPERSEDED
+  accepted RETIRE  -> RETIRED
+\end{verbatim}
+
+No new BAE family is forced.
+
+\subsection{14. Negative controls}\label{negative-controls}
+
+\begin{itemize}
+\tightlist
+\item
+  Do not make Git commit ancestry the semantic identity rule.
+\item
+  Do not use document IDs as BA proposition identity.
+\item
+  Do not preserve proposition identity solely because source wording is
+  similar.
+\item
+  Do not replace a referent merely because
+  ownership/provider/realization changed.
+\item
+  Do not auto-transfer retired security constraints to a new behavior.
+\item
+  Do not mark the whole BA stale because one source file changed.
+\item
+  Do not treat \texttt{REJECTED} analytical material as governed project
+  truth.
+\item
+  Do not mutate a resolved diagnostic into a grounded fact.
+\end{itemize}
+
+\subsection{15. BA1 / BA2 reopen check}\label{ba1-ba2-reopen-check}
+
+No mutation requires a third identity family or a new
+operator/role/modifier semantic.
+
+The pressure is absorbed by:
+
+\begin{itemize}
+\tightlist
+\item
+  BA1 identities;
+\item
+  BA2 proposition structure;
+\item
+  BA3 provenance + continuity/lifecycle metadata.
+\end{itemize}
+
+\begin{verbatim}
+BA1 reopen trigger: false
+BA2 reopen trigger: false
+\end{verbatim}
+
+\subsection{16. Exit disposition}\label{exit-disposition}
+
+\begin{verbatim}
+BA3-T2              COMPLETED / PROVISIONAL PASS
+                    WITH IDENTITY-LIFECYCLE REFINEMENT
+BA3                 STARTED / NOT CLOSED
+BA1                 REMAINS CLOSED
+BA2                 REMAINS CLOSED
+\end{verbatim}
+
+The remaining BA3 work is narrower: derivation-rule reproducibility,
+effective dependency/change-impact lineage and feedback provenance,
+followed by closure review.
+
+\subsection{17. Next falsification
+target}\label{next-falsification-target}
+
+Only after this package is committed, pushed and remotely verified:
+
+\begin{quote}
+\textbf{BA3-T3 - derivation-rule reproducibility and change-impact
+lineage pressure test.}
+\end{quote}
+
+T3 should use the facial M4 effective-governed-context pressure plus
+provider-state normalization/order boundary cases. It must not start BA4
+or method-specific analysis schemas.
+
+\end{document}

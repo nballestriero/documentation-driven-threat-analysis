@@ -1,0 +1,53 @@
+artifact: BA3_T2_PROVISIONAL_LEDGER_R1
+revision: R1
+status: COMPLETED_PROVISIONAL_PASS_WITH_IDENTITY_LIFECYCLE_REFINEMENT
+repository_baseline_reviewed: 52864d2ce177abdd694436306d8152db688effa0
+phase: BA3
+ba0: CLOSED
+ba1: CLOSED
+ba2: CLOSED
+ba3: STARTED_NOT_CLOSED
+ba4: NOT_STARTED
+identity_continuity:
+  stable_cross_baseline_identity_capability: REQUIRED
+  ba_referent_rule: RETAIN_WHEN_REUSABLE_REFERENT_MEANING_SURVIVES
+  ba_proposition_rule: RETAIN_ONLY_UNDER_NORMALIZED_ASSERTION_EQUIVALENCE
+  same_source_document_identity_implies_same_ba_identity: REJECTED
+  source_revision_maps_to_ba_revision: REJECTED
+continuity_disposition:
+  RETAIN: REQUIRED
+  REPLACE: REQUIRED
+  RETIRE: REQUIRED
+  REVISE_AS_FOURTH_BA_IDENTITY_DISPOSITION: NOT_REQUIRED
+review_state:
+  PENDING_REVIEW: REQUIRED
+  ACCEPTED: REQUIRED
+  REJECTED: REQUIRED
+  separate_from_origin_state: REQUIRED
+freshness:
+  CURRENT: REQUIRED
+  STALE: REQUIRED
+  stale_means_historically_invalid: REJECTED
+historical_lifecycle:
+  accepted_replace_means: SUPERSEDED
+  accepted_retire_means: RETIRED
+  delete_historical_provenance_on_replace: REJECTED
+diagnostic_resolution:
+  unresolved_to_grounded_in_place: REJECTED
+  issue_disappears: RETIRE
+  materially_new_unresolved_issue: REPLACE
+mutation_regression:
+  facial_m1_ethernet_to_wifi: PASS
+  facial_m2_external_to_project_owned_transport: PASS
+  facial_m3_remote_to_local_recognition: PASS
+  order_internal_external_wms_control: PASS
+staleness_lower_bound:
+  direct_source_change: REVIEW_REQUIRED
+  derivation_basis_change: REVIEW_REQUIRED
+  replaced_or_retired_participant: REVIEW_REQUIRED
+  global_whole_ba_invalidation_on_any_file_change: REJECTED
+origin_review_lifecycle_collapse: REJECTED
+new_lifecycle_bae_family: NOT_FORCED
+ba1_reopen_trigger: false
+ba2_reopen_trigger: false
+next_authorized_microstep: BA3_T3_DERIVATION_RULE_REPRODUCIBILITY_CHANGE_IMPACT_LINEAGE_PRESSURE_TEST
