@@ -1,0 +1,395 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  10pt,
+  a4paper,
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{microtype}
+\usepackage{longtable,booktabs,array}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{fvextra}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,breakanywhere,commandchars=\\\{\}}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{DDTA Research Methodology}
+\fancyhead[R]{BA5 / Controlled Authoring}
+\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}
+\emergencystretch=3em
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={DDTA research work plan after documentation-layer closure - R22},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\title{DDTA research work plan after documentation-layer closure - R22}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{DDTA research work plan after documentation-layer
+closure}\label{ddta-research-work-plan-after-documentation-layer-closure}
+
+\textbf{WORK PLAN - REVISION 22}
+
+\textbf{Status:} active plan after BA5 canonical
+registry/controlled-authoring closure.
+
+\textbf{Supersedes:} Revision 21 only for forward execution state;
+R1-R21 remain historical research records.
+
+\subsection{1. Fixed prior state}\label{1-fixed-prior-state}
+
+\begin{itemize}
+\tightlist
+\item
+  Chapters 2-4: CLOSED / FINAL for current thesis scope.
+\item
+  Documentation layer: CLOSED.
+\item
+  BA0 responsibility/non-goals: CLOSED.
+\item
+  BA1 minimal BAE identity ontology: CLOSED.
+\item
+  BA2 relation/action vocabulary: CLOSED BY BA2-T4.
+\item
+  BA3 provenance/derivation/identity/lifecycle/change-revalidation:
+  CLOSED BY BA3-T4.
+\item
+  BA4 projection boundary/traceability/coverage/interpretation: CLOSED
+  BY BA4-T3.
+\item
+  BA5 canonical semantic registry/controlled authoring: CLOSED BY
+  BA5-T3.
+\item
+  \texttt{BAReferent} and \texttt{BAProposition}: ACCEPTED first-class
+  semantic identity families.
+\item
+  ThreatForge remains a case study/tooling instrument, not DDTA semantic
+  authority.
+\end{itemize}
+
+\subsection{2. BA5 closure carried
+forward}\label{2-ba5-closure-carried-forward}
+
+BA5 closes the strict controlled-authoring hypothesis:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{semantically operative DDTA binding}
+\NormalTok{    {-}\textgreater{} exact canonical token/name}
+
+\NormalTok{unregistered alias / synonym}
+\NormalTok{    {-}\textgreater{} not normative semantic input}
+
+\NormalTok{free explanatory prose}
+\NormalTok{    {-}\textgreater{} allowed outside semantic bindings}
+\end{Highlighting}
+\end{Shaded}
+
+The closed registry responsibilities are domain-scoped: referent names,
+BA2 operators, operator-scoped roles, semantic kinds and
+controlled-value domains remain distinct in authority/scope even when
+physically co-located.
+
+Normative synonym machinery is \textbf{REJECTED AS UNNECESSARY} for the
+current thesis scope. Optional lexical search, translation, migration or
+NLP/LLM assistance remains \textbf{DEFERRED} and must not become
+semantic authority.
+
+\subsection{3. BA5 extension/reopen
+rule}\label{3-ba5-extensionreopen-rule}
+
+Do not reopen BA5 for convenience.
+
+Reopen only the smallest BA5 responsibility on concrete evidence that
+exact canonical bindings plus presentation-local wording cannot preserve
+required shared meaning or reproducibility.
+
+A materially new operator or role contract reopens BA2, not BA5. A new
+independently reusable identity applies the BA1 split criterion.
+Method-specific terminology remains downstream.
+
+\subsection{4. BA6 objective - complete Base Analysis integrated
+regression and
+closure}\label{4-ba6-objective---complete-base-analysis-integrated-regression-and-closure}
+
+\textbf{Status: NOT STARTED / NEXT PHASE.}
+
+BA6 is the integration/adversarial closure phase for the complete
+BA0-BA5 design. It is not a new ontology-building phase by default.
+
+The integrated chain under test is:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{governed documentation}
+\NormalTok{ {-}\textgreater{} canonical registry{-}controlled authoring}
+\NormalTok{ {-}\textgreater{} accepted Base Analysis}
+\NormalTok{ {-}\textgreater{} BA3 provenance / review / continuity}
+\NormalTok{ {-}\textgreater{} multiple BA4 projections}
+\NormalTok{ {-}\textgreater{} governed project change}
+\NormalTok{ {-}\textgreater{} BA revalidation / rebuild}
+\NormalTok{ {-}\textgreater{} projection rebuild / comparison}
+\end{Highlighting}
+\end{Shaded}
+
+BA6 must determine whether the closed responsibilities work together
+without requiring consumers to reconstruct missing shared
+methodology-neutral meaning from raw prose.
+
+\subsection{5. BA6 evidence minimum}\label{5-ba6-evidence-minimum}
+
+The phase must include:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  regression over the closed facial-access corpus and mutation
+  pressures;
+\item
+  regression over the closed order/WMS/provider corpus and change
+  pressures;
+\item
+  at least one structurally different holdout not used to tune the
+  BA0-BA5 lower bounds;
+\item
+  canonical-name and registry-revision resolution through the complete
+  chain;
+\item
+  provenance/source drill-down from projection to BA to governed source;
+\item
+  change localization, BA3 continuity/revalidation and projection
+  rebuild;
+\item
+  at least two materially different consumers/projections; and
+\item
+  explicit search for a material counterexample requiring the smallest
+  BA0-BA5 reopen.
+\end{enumerate}
+
+The holdout is for integration falsification, not for silently expanding
+DDTA into a universal systems-modeling language.
+
+\subsection{6. BA6 guardrails}\label{6-ba6-guardrails}
+
+Do not:
+
+\begin{itemize}
+\tightlist
+\item
+  add a new BAE family without a material BA1 counterexample;
+\item
+  add a BA2 operator/role merely for convenience;
+\item
+  weaken BA3 source/provenance/change accountability;
+\item
+  let a projection repair missing shared BA meaning by rereading raw
+  prose;
+\item
+  let method taxonomy redefine BA semantics;
+\item
+  reintroduce synonym normalization without a BA5 material
+  counterexample;
+\item
+  treat ThreatForge runtime classes as DDTA semantics;
+\item
+  start AnalysisRecord, Common Finding or formal STRIDE/STRIDE-AI schema
+  design; or
+\item
+  declare Base Analysis closed before the integrated regression passes.
+\end{itemize}
+
+\subsection{7. BA6 counterexample
+routing}\label{7-ba6-counterexample-routing}
+
+Use the smallest-responsibility rule:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{material counterexample}
+\NormalTok{    {-}\textgreater{} identify exact failed responsibility}
+\NormalTok{    {-}\textgreater{} reopen only that BA phase/contract}
+\NormalTok{    {-}\textgreater{} repair and rerun affected regression}
+\end{Highlighting}
+\end{Shaded}
+
+Examples:
+
+\begin{itemize}
+\tightlist
+\item
+  missing independent semantic identity -\textgreater{} BA1;
+\item
+  missing method-neutral proposition/operator/role semantics
+  -\textgreater{} BA2;
+\item
+  unreproducible provenance/change continuity -\textgreater{} BA3;
+\item
+  projection coverage/trace/interpretation failure -\textgreater{} BA4;
+\item
+  canonical registry/authoring failure -\textgreater{} BA5.
+\end{itemize}
+
+Do not redesign Base Analysis wholesale from one local failure.
+
+\subsection{8. BA6 exit condition}\label{8-ba6-exit-condition}
+
+BA6 may close the complete Base Analysis milestone only if:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  the closed corpora regress without material semantic loss;
+\item
+  the structurally different holdout does not force an unresolved
+  shared-semantic gap;
+\item
+  source drill-down and historical reproducibility remain intact;
+\item
+  governed change can be localized and revalidated without whole-BA
+  invalidation by default;
+\item
+  multiple projections can be rebuilt without becoming project
+  authority;
+\item
+  canonical registry/controlled-authoring semantics survive integration;
+  and
+\item
+  any discovered counterexample has been routed to and resolved in the
+  smallest responsible phase.
+\end{enumerate}
+
+Only then may the state become:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BASE ANALYSIS    CLOSED FOR CURRENT THESIS SCOPE}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{9. Downstream analysis envelope remains
+blocked}\label{9-downstream-analysis-envelope-remains-blocked}
+
+Until BA6 closes, do not start:
+
+\begin{itemize}
+\tightlist
+\item
+  A1 - AnalysisRecord / execution envelope;
+\item
+  A2 - common reviewed Finding boundary;
+\item
+  A3 - analysis change/provenance integration;
+\item
+  formal STRIDE/STRIDE-AI overlay schemas; or
+\item
+  ThreatForge implementation work that would imply unclosed semantic
+  authority.
+\end{itemize}
+
+\subsection{10. Next authorized work}\label{10-next-authorized-work}
+
+The next authorized phase is:
+
+\begin{quote}
+\textbf{BA6 - complete Base Analysis integrated regression and closure.}
+\end{quote}
+
+Before execution, define the smallest first BA6 microstep against the
+closed BA0-BA5 contract. Revision 22 intentionally does not invent a BA6
+microstep count or execute BA6 inside the BA5-T3 closure package.
+
+\end{document}

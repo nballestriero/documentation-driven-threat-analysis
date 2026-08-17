@@ -1,0 +1,57 @@
+schemaVersion: 1
+artifact: BA5_T3_CLOSURE_LEDGER_R1
+status: CLOSED
+result: PASS
+repositoryBaselineReviewed: 8d8dae5f7c28d83b70cbdea090028e4ec0f93571
+phase: BA5
+microstep: BA5-T3
+question: >-
+  Can DDTA close its canonical registry and controlled-authoring boundary without
+  normative synonym machinery, semantic-authority leakage, or a BA0-BA4 reopen?
+inputs:
+  - BA5_T1_CANONICAL_REFERENT_NAMING_CONTROLLED_AUTHORING_TRIAL_R1
+  - BA5_T2_CANONICAL_SEMANTIC_REGISTRY_COVERAGE_GOVERNED_EXTENSION_R1
+  - BA2_RELATION_ACTION_VOCABULARY_R1
+  - BA3_PROVENANCE_DERIVATION_LIFECYCLE_CHANGE_CONTRACT_R1
+  - BA4_PROJECTION_BOUNDARY_TRACEABILITY_INTERPRETATION_COVERAGE_CONTRACT_R1
+trials:
+  referentAlias: PASS
+  operatorAlias: PASS
+  roleAlias: PASS
+  semanticKindAlias: PASS
+  controlledValueAlias: PASS
+  crossDomainSameToken: PASS_WITH_DOMAIN_SCOPE
+  governedRename: PASS_WITH_BA3_RETAIN
+  registryEvolution: PASS_WITH_IMMUTABLE_REVISION
+  naturalLanguageBoundary: PASS_WITH_SEMANTIC_OPERABILITY_BOUNDARY
+  incompatibleProjections: PASS
+  methodOwnedAggregation: PASS
+  typedLiteral: PASS
+  governedExtension: PASS
+  newOperatorRoleRouting: PASS_WITH_BA2_REOPEN_RULE
+  toolLlmAuthority: PASS
+  translationPresentation: PASS
+closure:
+  BA5_T1: COMPLETED_PROVISIONAL_PASS
+  BA5_T2: COMPLETED_PROVISIONAL_PASS
+  BA5_T3: CLOSED_PASS
+  BA5: CLOSED_FOR_CURRENT_THESIS_SCOPE
+  BA6: NOT_STARTED_NEXT_PHASE
+dispositions:
+  normativeSynonymAliasRegistry: REJECTED_AS_UNNECESSARY
+  hiddenLexicalNormalization: REJECTED
+  optionalLexicalNlpAssistance: DEFERRED
+  newBAEFamily: NOT_FORCED
+  newBA2Operator: NOT_FORCED
+  reopenBA0: NOT_TRIGGERED
+  reopenBA1: NOT_TRIGGERED
+  reopenBA2: NOT_TRIGGERED
+  reopenBA3: NOT_TRIGGERED
+  reopenBA4: NOT_TRIGGERED
+nextAuthorizedPhase: BA6_COMPLETE_BASE_ANALYSIS_INTEGRATED_REGRESSION_AND_CLOSURE
+notes:
+  - Free explanatory prose remains allowed outside semantically operative bindings.
+  - Canonical referent names are baseline/naming-scope scoped and are not BA identity.
+  - Operators and roles remain governed by the closed BA2 contract.
+  - Extensible semantic-kind and controlled-value domains use governed immutable revisions.
+  - This ledger does not execute BA6.

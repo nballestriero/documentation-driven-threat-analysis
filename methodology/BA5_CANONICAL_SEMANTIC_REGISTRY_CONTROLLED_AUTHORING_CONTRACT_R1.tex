@@ -1,0 +1,785 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  10pt,
+  a4paper,
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{microtype}
+\usepackage{longtable,booktabs,array}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{fvextra}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,breakanywhere,commandchars=\\\{\}}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{DDTA Research Methodology}
+\fancyhead[R]{BA5 / Controlled Authoring}
+\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}
+\emergencystretch=3em
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={DDTA BA5 canonical semantic registry and controlled-authoring contract - R1},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\title{DDTA BA5 canonical semantic registry and controlled-authoring
+contract - R1}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{DDTA BA5 canonical semantic registry and controlled-authoring
+contract -
+R1}\label{ddta-ba5-canonical-semantic-registry-and-controlled-authoring-contract---r1}
+
+\textbf{Status:} CLOSED BY BA5-T3 / ACCEPTED FOR CURRENT THESIS SCOPE
+
+\textbf{Closure baseline reviewed:}
+\texttt{8d8dae5f7c28d83b70cbdea090028e4ec0f93571}
+
+\textbf{Closed dependencies:} documentation layer; closed BA0-BA4
+contracts; BA5-T1 canonical referent naming; and BA5-T2 domain-scoped
+registry/governed-extension pressure test.
+
+\subsection{1. Closure statement}\label{1-closure-statement}
+
+BA5 closes the minimum lexical and controlled-authoring boundary
+required by the current DDTA thesis evidence.
+
+The closed position is intentionally strict:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{semantically operative DDTA position}
+\NormalTok{    {-}\textgreater{} exact canonical token or canonical referent name}
+
+\NormalTok{unregistered alias / synonym}
+\NormalTok{    {-}\textgreater{} not normative semantic input}
+
+\NormalTok{free explanatory prose}
+\NormalTok{    {-}\textgreater{} may remain natural language}
+\NormalTok{       provided it does not create a second semantic identifier/key}
+\end{Highlighting}
+\end{Shaded}
+
+The result is a controlled semantic authoring contract, not a universal
+controlled natural language and not an NLP normalization layer.
+
+For the current thesis scope, synonym/alias machinery is \textbf{NOT
+REQUIRED} in the normative DDTA core. Optional migration or authoring
+assistance may be studied later, but any such mechanism remains
+candidate-producing and cannot silently establish semantic equivalence.
+
+\subsection{2. Semantic-operability
+boundary}\label{2-semantic-operability-boundary}
+
+Canonical enforcement applies where a token carries DDTA semantics
+mechanically or governably, including:
+
+\begin{itemize}
+\tightlist
+\item
+  a governed shared referent name used as a semantic reference;
+\item
+  a \texttt{semanticOperatorKey};
+\item
+  an operator-scoped \texttt{roleKey};
+\item
+  a controlled \texttt{semanticKind} key;
+\item
+  a controlled semantic value such as polarity, modifier kind or a
+  governed responsibility kind; and
+\item
+  another future registry-controlled methodology-neutral value admitted
+  under the extension rules below.
+\end{itemize}
+
+Canonical enforcement does \textbf{not} require every word in narrative
+prose to come from a DDTA dictionary.
+
+Example:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Human prose:}
+\NormalTok{  The entrance camera sends the capture to recognition.}
+
+\NormalTok{Semantically operative binding:}
+\NormalTok{  transfer}
+\NormalTok{    source      {-}\textgreater{} cameraIngresso}
+\NormalTok{    destination {-}\textgreater{} recognitionProcessor}
+\NormalTok{    content     {-}\textgreater{} recognitionCapture}
+\end{Highlighting}
+\end{Shaded}
+
+The word \texttt{sends} may exist as human prose. It is not a second
+operator key and does not authorize \texttt{send} as an alias of
+\texttt{transfer}.
+
+\subsection{3. Closed registry lower
+bound}\label{3-closed-registry-lower-bound}
+
+The smallest current-scope registry model is a logical set of
+domain-scoped registries:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CanonicalSemanticRegistrySet                    [logical umbrella; NOT BAE]}
+\NormalTok{|}
+\NormalTok{+{-}{-} CanonicalReferentNameRegistry                [project{-}governed]}
+\NormalTok{|    |{-} governedBaselineKey                 1}
+\NormalTok{|    |{-} namingScopeKey                      1}
+\NormalTok{|    \textasciigrave{}{-} canonicalName {-}\textgreater{} governed referent binding}
+\NormalTok{|}
+\NormalTok{+{-}{-} SemanticOperatorRegistry                     [BA2 contract{-}governed]}
+\NormalTok{|    |{-} registryRevisionKey                 1 immutable}
+\NormalTok{|    \textasciigrave{}{-} semanticOperatorKey {-}\textgreater{} normative BA2 meaning}
+\NormalTok{|}
+\NormalTok{+{-}{-} OperatorRoleRegistry                         [BA2 contract{-}governed]}
+\NormalTok{|    |{-} registryRevisionKey                 1 immutable}
+\NormalTok{|    \textasciigrave{}{-} (semanticOperatorKey, roleKey) {-}\textgreater{} BA2 role contract}
+\NormalTok{|}
+\NormalTok{+{-}{-} SemanticKindRegistry                         [method{-}neutral, extensible]}
+\NormalTok{|    |{-} registryRevisionKey                 1 immutable}
+\NormalTok{|    \textasciigrave{}{-} semanticKindKey {-}\textgreater{} normative method{-}neutral definition}
+\NormalTok{|}
+\NormalTok{\textasciigrave{}{-}{-} ControlledValueRegistry                 0..* [domain{-}scoped]}
+\NormalTok{     |{-} valueDomainKey                       1}
+\NormalTok{     |{-} registryRevisionKey                  1 immutable}
+\NormalTok{     \textasciigrave{}{-} canonicalValueKey {-}\textgreater{} normative domain meaning}
+\end{Highlighting}
+\end{Shaded}
+
+This is a semantic responsibility model. It does not require separate
+databases, graph node families, schema classes or ThreatForge tables.
+
+Physical co-location is allowed if a consumer can mechanically recover
+domain, governing scope/authority, immutable revision where applicable,
+canonical key and normative definition/binding.
+
+\subsection{4. Domain-scoped resolution, not one flat
+namespace}\label{4-domain-scoped-resolution-not-one-flat-namespace}
+
+Token equality across semantic domains does not establish semantic
+equality.
+
+For example:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{project referent canonicalName = source}
+\NormalTok{BA2 role                        = transfer/source}
+\end{Highlighting}
+\end{Shaded}
+
+These may coexist because their lookup domains differ.
+
+The closed rule is:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{same domain + same active scope/revision + same canonical token}
+\NormalTok{    {-}\textgreater{} one unambiguous registry meaning/binding}
+
+\NormalTok{same token in different domains}
+\NormalTok{    {-}\textgreater{} allowed when domain resolution remains explicit}
+\end{Highlighting}
+\end{Shaded}
+
+A universal flat token namespace is \textbf{REJECTED AS OVER-STRONG}.
+
+\subsection{5. Canonical referent
+naming}\label{5-canonical-referent-naming}
+
+For one governed baseline and naming scope:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{one named shared project referent}
+\NormalTok{    {-}\textgreater{} one exact canonicalName}
+\end{Highlighting}
+\end{Shaded}
+
+Every governed semantic reference and every derived view that presents
+that same referent as shared project meaning uses the exact canonical
+name.
+
+Example:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cameraIngresso}
+\end{Highlighting}
+\end{Shaded}
+
+is not silently interchangeable with:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{entryCamera}
+\NormalTok{cameraEntrata}
+\NormalTok{CameraIngresso}
+\NormalTok{camera\_ingresso}
+\end{Highlighting}
+\end{Shaded}
+
+A view may add descriptive prose around the reference, but the
+machine-significant/shared entity identifier remains canonical.
+
+\subsubsection{5.1 Name is not semantic
+identity}\label{51-name-is-not-semantic-identity}
+
+The canonical name remains lexical metadata, not the \texttt{BAReferent}
+identity key.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BAReferent semantic identity != canonicalName}
+\end{Highlighting}
+\end{Shaded}
+
+A governed rename across baselines can therefore retain the same
+semantic identity under BA3:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{B0  canonicalName = cameraIngresso}
+\NormalTok{B1  canonicalName = cameraNord}
+
+\NormalTok{BA3 continuity = RETAIN}
+\NormalTok{    when the independently reusable project meaning is unchanged}
+\end{Highlighting}
+\end{Shaded}
+
+Historical B0 artifacts keep \texttt{cameraIngresso}; current B1
+semantic references and rebuilt shared projections use
+\texttt{cameraNord}.
+
+\subsection{6. Canonical operator
+registry}\label{6-canonical-operator-registry}
+
+The thirteen BA2 current-scope operator keys remain exact canonical
+keys:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{transfer}
+\NormalTok{produce}
+\NormalTok{create}
+\NormalTok{observe}
+\NormalTok{transition}
+\NormalTok{correlate}
+\NormalTok{reference}
+\NormalTok{dependOn}
+\NormalTok{consumeService}
+\NormalTok{realize}
+\NormalTok{assignResponsibility}
+\NormalTok{constrain}
+\NormalTok{classify}
+\end{Highlighting}
+\end{Shaded}
+
+An authoring word such as \texttt{send}, \texttt{deliver},
+\texttt{read}, \texttt{use} or \texttt{owns} does not become an
+alternative operator key merely because it may express related
+natural-language meaning.
+
+A material new method-neutral operator cannot be admitted through BA5.
+It requires the smallest BA2 reopen under the BA2 extension rule.
+
+\subsection{7. Operator-scoped roles}\label{7-operator-scoped-roles}
+
+Role lookup is closed as:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(semanticOperatorKey, roleKey)}
+\end{Highlighting}
+\end{Shaded}
+
+Examples:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{transfer/source}
+\NormalTok{transfer/destination}
+\NormalTok{transfer/content}
+
+\NormalTok{consumeService/consumer}
+\NormalTok{consumeService/service}
+\NormalTok{consumeService/provider}
+
+\NormalTok{classify/classifiedReferent}
+\NormalTok{classify/semanticKind}
+\end{Highlighting}
+\end{Shaded}
+
+Aliases such as \texttt{src}, \texttt{dst}, \texttt{payload} or a
+context-free role dictionary are not normative replacements.
+
+This preserves the BA2 rule that role validity and cardinality are
+operator-scoped.
+
+A material role-contract change is a BA2 semantic change, not a BA5
+lexical extension.
+
+\subsection{8. Semantic-kind registry}\label{8-semantic-kind-registry}
+
+\texttt{semanticKind} remains a controlled, method-neutral and
+evidence-gated registry domain.
+
+A registry entry requires:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  a stable canonical key;
+\item
+  a normative method-neutral definition;
+\item
+  a distinction needed by reusable human/method consumers without
+  raw-prose reconstruction; and
+\item
+  no method-specific meaning.
+\end{enumerate}
+
+Current evidence includes kinds such as \texttt{store} and
+\texttt{contract}. The registry contract is closed, not a universal
+exhaustive taxonomy.
+
+\texttt{channel} remains \textbf{DEFERRED / EVIDENCE-GATED}: familiarity
+or modeling convenience is insufficient to admit it. A concrete governed
+case must demonstrate a required shared method-neutral distinction.
+
+A lexical alternative such as \texttt{repository} is not automatically a
+synonym for \texttt{store}. It is either rejected as an alias, or - if
+it denotes a genuinely different method-neutral concept - evaluated as a
+separate evidence-backed candidate.
+
+\subsection{9. Controlled-value
+domains}\label{9-controlled-value-domains}
+
+Reusable finite or governed semantic distinctions may use domain-scoped
+controlled registries.
+
+Current examples include:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{polarity}
+\NormalTok{  affirmative}
+\NormalTok{  negative}
+
+\NormalTok{scopedModifierKind}
+\NormalTok{  condition}
+\NormalTok{  temporalScope}
+
+\NormalTok{responsibilityKind}
+\NormalTok{  ownership}
+\NormalTok{  management}
+\NormalTok{  ... only governed evidence{-}backed extensions}
+\end{Highlighting}
+\end{Shaded}
+
+Ordinary typed/local literals are not auto-registered:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{timeout = 30s}
+\NormalTok{retryCount = 3}
+\end{Highlighting}
+\end{Shaded}
+
+If a value requires independent reusable identity across propositions,
+projections or change, BA1 requires a \texttt{BAReferent} rather than
+registry inflation.
+
+\subsection{10. Immutable registry revision
+requirement}\label{10-immutable-registry-revision-requirement}
+
+A semantic registry whose content or normative definitions can evolve
+resolves through an immutable revision identity.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{registry domain}
+\NormalTok{+ registryRevisionKey}
+\NormalTok{+ canonical token}
+\NormalTok{    {-}\textgreater{} one inspectable normative meaning}
+\end{Highlighting}
+\end{Shaded}
+
+This is required for reproducible historical interpretation. Reusing the
+same key with silently changed meaning is rejected.
+
+Project referent names are instead anchored to the immutable governed
+documentation baseline and naming scope. Their history is handled
+through BA3 continuity and governed baseline history rather than by
+turning names into BA identity.
+
+\subsection{11. Governed extension
+workflow}\label{11-governed-extension-workflow}
+
+An unknown proposed token is classified before admission:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{candidate token}
+\NormalTok{    |}
+\NormalTok{    +{-}{-} same meaning as an existing canonical token?}
+\NormalTok{    |      {-}\textgreater{} REJECT alias}
+\NormalTok{    |      {-}\textgreater{} use existing canonical token}
+\NormalTok{    |}
+\NormalTok{    +{-}{-} method{-}specific taxonomy / presentation term?}
+\NormalTok{    |      {-}\textgreater{} keep downstream in projection/method}
+\NormalTok{    |}
+\NormalTok{    +{-}{-} meaning requires independent reusable identity?}
+\NormalTok{    |      {-}\textgreater{} represent through BAReferent}
+\NormalTok{    |}
+\NormalTok{    +{-}{-} new method{-}neutral semanticKind or extensible value?}
+\NormalTok{    |      {-}\textgreater{} evidence + normative definition + review}
+\NormalTok{    |      {-}\textgreater{} new immutable registry revision}
+\NormalTok{    |}
+\NormalTok{    \textasciigrave{}{-}{-} new operator or role{-}contract semantics?}
+\NormalTok{           {-}\textgreater{} smallest BA2 reopen}
+\end{Highlighting}
+\end{Shaded}
+
+A tool or model may create an extension \textbf{candidate}, but
+acceptance is a governed methodological/project decision according to
+the relevant domain authority.
+
+\subsection{12. Projection boundary}\label{12-projection-boundary}
+
+BA4 method freedom remains intact.
+
+When a projection renders a shared \texttt{BAReferent}, the canonical
+project name is preserved:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{[FlowParticipant]  cameraIngresso}
+\NormalTok{[AssuranceSubject] cameraIngresso}
+\end{Highlighting}
+\end{Shaded}
+
+\texttt{FlowParticipant} and \texttt{AssuranceSubject} may be
+projection-owned kinds.
+
+A genuinely method-owned aggregation or interpretation may have a local
+label, for example:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{external{-}ingress{-}exposure}
+\end{Highlighting}
+\end{Shaded}
+
+provided it remains explicitly method-owned, BA-trace-bound and is not
+presented as a replacement project name or BA semantic kind.
+
+Method-local taxonomy does not enter the BA registry merely because
+several methods use similar words.
+
+\subsection{13. Tool-support boundary}\label{13-tool-support-boundary}
+
+A conforming tool may:
+
+\begin{itemize}
+\tightlist
+\item
+  validate exact tokens in their semantic domain;
+\item
+  validate canonical referent names in the active baseline/scope;
+\item
+  offer context-sensitive completion;
+\item
+  reject duplicate/colliding names inside one naming scope;
+\item
+  reject unknown operator/role/value keys;
+\item
+  show the normative definition and immutable registry revision;
+\item
+  propose an existing canonical token as an explicit correction; and
+\item
+  create a candidate request for governed registry extension.
+\end{itemize}
+
+A conforming tool may not silently:
+
+\begin{itemize}
+\tightlist
+\item
+  treat an alias as equivalent;
+\item
+  mint an accepted canonical term;
+\item
+  alter an immutable registry definition;
+\item
+  reinterpret a method term as shared BA semantics;
+\item
+  change a closed BA2 operator/role contract; or
+\item
+  turn LLM/NLP confidence into semantic authority.
+\end{itemize}
+
+ThreatForge, if used, remains one implementation/case-study instrument
+subject to this contract.
+
+\subsection{14. Cross-layer authority
+rule}\label{14-cross-layer-authority-rule}
+
+The authority chain remains:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{governed project documentation / authoring registration}
+\NormalTok{    {-}\textgreater{} accepted Base Analysis using closed semantic registries}
+\NormalTok{        {-}\textgreater{} derived human/method projections}
+\NormalTok{            {-}\textgreater{} downstream analysis findings}
+\NormalTok{                {-}\textgreater{} governed documentation candidate}
+\end{Highlighting}
+\end{Shaded}
+
+BA and tooling do not become project authority by enforcing canonical
+vocabulary.
+
+A registry-owned normative BA meaning also does not make a methodology
+projection authoritative over BA.
+
+\subsection{15. No-synonym closure
+disposition}\label{15-no-synonym-closure-disposition}
+
+The integrated T1/T2/T3 pressure does not produce a material case that
+requires normative synonym support.
+
+Therefore, for the current thesis scope:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{normative alias/synonym registry                 REJECTED AS UNNECESSARY}
+\NormalTok{hidden lexical normalization                    REJECTED}
+\NormalTok{automatic arbitrary{-}narrative migration         NOT REQUIRED}
+\NormalTok{NLP/LLM semantic equivalence                    REJECTED AS AUTHORITY}
+\NormalTok{optional assistive synonym/search mechanisms    DEFERRED}
+\end{Highlighting}
+\end{Shaded}
+
+This is not a claim that synonyms do not exist in natural language. It
+is a design decision that portable-by-construction DDTA authoring does
+not need to admit them into the semantic contract unless later evidence
+falsifies the controlled-authoring hypothesis.
+
+\subsection{16. Closure invariants}\label{16-closure-invariants}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Canonical semantic input:} every semantically operative
+  registry position uses an exact canonical token.
+\item
+  \textbf{Natural-language freedom outside bindings:} prose may remain
+  natural language but cannot create a second normative semantic key or
+  referent identifier.
+\item
+  \textbf{Domain-scoped resolution:} canonical tokens resolve within an
+  explicit semantic domain and governing scope/revision.
+\item
+  \textbf{Referent-name consistency:} one named shared referent has one
+  exact canonical name per governed baseline/naming scope.
+\item
+  \textbf{Name/identity separation:} canonical name is not BA semantic
+  identity; BA3 continuity governs rename history.
+\item
+  \textbf{Operator stability:} BA2 operators remain exact closed keys;
+  BA5 cannot extend them by aliasing.
+\item
+  \textbf{Role context:} role keys are interpreted under their operator
+  contract.
+\item
+  \textbf{Evidence-gated extensibility:} semantic kinds and extensible
+  controlled values grow only through governed evidence-backed revision.
+\item
+  \textbf{Literal restraint:} ordinary local literals do not inflate the
+  registry.
+\item
+  \textbf{Projection separation:} method-local vocabulary remains
+  downstream; shared referent rendering preserves canonical project
+  naming.
+\item
+  \textbf{Tool non-authority:} tools may validate, complete and propose,
+  never silently approve semantic equivalence or extension.
+\item
+  \textbf{Historical reproducibility:} evolving semantic registries
+  resolve through immutable revisions; project renames remain
+  baseline-historical.
+\item
+  \textbf{No synonym requirement:} normative aliases are absent unless a
+  future material counterexample forces reopening.
+\item
+  \textbf{Representation independence:} registry responsibilities do not
+  mandate a storage technology or class hierarchy.
+\end{enumerate}
+
+\subsection{17. Reopen criteria}\label{17-reopen-criteria}
+
+Reopen only the smallest BA5 responsibility if concrete evidence
+demonstrates that:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  a single shared referent needs two simultaneous normative identifiers
+  in one baseline/naming scope to preserve required project meaning;
+\item
+  a required shared semantic binding cannot be authored or consumed with
+  one canonical operator/role/kind/value without material semantic loss;
+\item
+  a methodology-neutral consumer requires synonym equivalence rather
+  than an exact token plus projection-local presentation;
+\item
+  multilingual or accessibility needs cannot be satisfied with
+  descriptive presentation while retaining one canonical semantic
+  binding;
+\item
+  governed registry revision cannot preserve historical interpretation
+  without lexical aliases;
+\item
+  the extension workflow cannot admit a genuinely new method-neutral
+  concept without treating a synonym as normative; or
+\item
+  tool-independent reproducibility fails because exact canonical lookup
+  is insufficient.
+\end{enumerate}
+
+If the counterexample is actually a new operator/role semantic
+distinction, reopen BA2 rather than BA5. If it requires a new
+independently reusable identity family, apply the BA1 split criterion.
+If it is method-specific, keep it downstream.
+
+Do not reopen BA5 merely because aliases, translations, fuzzy search or
+NLP would improve convenience.
+
+\subsection{18. Final closure
+disposition}\label{18-final-closure-disposition}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BA5{-}T1    COMPLETED / PROVISIONAL PASS WITH CANONICAL{-}REFERENT{-}NAMING LOWER{-}BOUND}
+\NormalTok{BA5{-}T2    COMPLETED / PROVISIONAL PASS WITH DOMAIN{-}SCOPED REGISTRY AND GOVERNED{-}EXTENSION REFINEMENT}
+\NormalTok{BA5{-}T3    CLOSED / PASS}
+\NormalTok{BA5       CLOSED FOR CURRENT THESIS SCOPE}
+
+\NormalTok{canonical referent name discipline             ACCEPTED}
+\NormalTok{canonical semantic token discipline             ACCEPTED}
+\NormalTok{domain{-}scoped registry resolution               ACCEPTED}
+\NormalTok{immutable semantic registry revision            ACCEPTED}
+\NormalTok{operator{-}scoped role lookup                     ACCEPTED}
+\NormalTok{governed extension workflow                     ACCEPTED}
+\NormalTok{normative synonym/alias registry                REJECTED AS UNNECESSARY}
+\NormalTok{optional lexical assistance                     DEFERRED}
+\NormalTok{new BAE family                                  NOT FORCED}
+\NormalTok{new BA2 operator                                NOT FORCED}
+\NormalTok{BA0 / BA1 / BA2 / BA3 / BA4 reopen             NOT TRIGGERED}
+\NormalTok{BA6                                             NOT STARTED / NEXT PHASE}
+\end{Highlighting}
+\end{Shaded}
+
+BA5 closure does not close Base Analysis as a whole. Only BA6 may
+perform the integrated Base Analysis regression and close the complete
+BA milestone for the current thesis scope.
+
+\end{document}

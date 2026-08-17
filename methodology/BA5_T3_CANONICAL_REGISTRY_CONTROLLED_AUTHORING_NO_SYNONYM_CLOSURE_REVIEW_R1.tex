@@ -1,0 +1,682 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  10pt,
+  a4paper,
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{microtype}
+\usepackage{longtable,booktabs,array}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{fvextra}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,breakanywhere,commandchars=\\\{\}}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{DDTA Research Methodology}
+\fancyhead[R]{BA5 / Controlled Authoring}
+\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}
+\emergencystretch=3em
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={DDTA BA5-T3 canonical registry, controlled-authoring and no-synonym closure review - R1},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\title{DDTA BA5-T3 canonical registry, controlled-authoring and
+no-synonym closure review - R1}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{DDTA BA5-T3 canonical registry, controlled-authoring and
+no-synonym closure review -
+R1}\label{ddta-ba5-t3-canonical-registry-controlled-authoring-and-no-synonym-closure-review---r1}
+
+\textbf{Status:} CLOSED / PASS
+
+\textbf{Repository baseline reviewed:}
+\texttt{8d8dae5f7c28d83b70cbdea090028e4ec0f93571}
+
+\textbf{Microstep:}
+\texttt{BA5-T3\ -\ canonical\ registry,\ controlled-authoring\ and\ no-synonym\ closure\ review}
+
+\textbf{Scope boundary:} this review closes BA5 only if the integrated
+T1/T2 contract survives adversarial pressure. It does not execute BA6,
+does not add a method schema and does not introduce ThreatForge
+implementation semantics.
+
+\subsection{1. Question under test}\label{1-question-under-test}
+
+The closure question is:
+
+\begin{quote}
+Can DDTA, for its semantically operative authoring surface, rely on
+exact canonical referent names and exact domain-scoped semantic tokens,
+with governed extension and tool enforcement, without normative
+synonym/alias machinery and without reopening BA0-BA4?
+\end{quote}
+
+The burden of proof is on additional lexical machinery. Convenience is
+not sufficient evidence.
+
+\subsection{2. Inputs integrated by T3}\label{2-inputs-integrated-by-t3}
+
+T3 integrates:
+
+\begin{itemize}
+\tightlist
+\item
+  BA5-T1 exact canonical referent naming;
+\item
+  BA5-T2 domain-scoped operator/role/kind/value registries;
+\item
+  BA2 closed operator and operator-scoped role semantics;
+\item
+  BA3 cross-baseline identity continuity;
+\item
+  BA4 shared-rendering and method-owned interpretation separation; and
+\item
+  the portable-by-construction documentation assumption already fixed by
+  the project.
+\end{itemize}
+
+The review attacks the combined contract rather than repeating the
+individual T1/T2 trials.
+
+\subsection{3. Falsification matrix}\label{3-falsification-matrix}
+
+The integrated attacks and dispositions are:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{C1 - referent alias:} second normative identifier required
+  -\textgreater{} \textbf{PASS; alias rejected}.
+\item
+  \textbf{C2 - operator alias:} \texttt{send} required beside
+  \texttt{transfer} -\textgreater{} \textbf{PASS}.
+\item
+  \textbf{C3 - role alias:} \texttt{src} required beside \texttt{source}
+  -\textgreater{} \textbf{PASS}.
+\item
+  \textbf{C4 - semantic-kind alias:} \texttt{repository} required beside
+  \texttt{store} for the same meaning -\textgreater{} \textbf{PASS}.
+\item
+  \textbf{C5 - controlled-value alias:} \texttt{owner} required beside
+  \texttt{ownership} -\textgreater{} \textbf{PASS}.
+\item
+  \textbf{C6 - same token in two domains:} flat collision makes lookup
+  unusable -\textgreater{} \textbf{PASS WITH DOMAIN-SCOPE}.
+\item
+  \textbf{C7 - governed rename B0 to B1:} name must become BA
+  identity/alias history -\textgreater{} \textbf{PASS WITH BA3 RETAIN}.
+\item
+  \textbf{C8 - registry evolution:} historical semantics cannot be
+  replayed -\textgreater{} \textbf{PASS WITH IMMUTABLE REVISION}.
+\item
+  \textbf{C9 - ordinary human prose:} all prose must become controlled
+  language -\textgreater{} \textbf{PASS WITH OPERABILITY BOUNDARY}.
+\item
+  \textbf{C10 - incompatible projections:} local taxonomy must leak into
+  BA -\textgreater{} \textbf{PASS}.
+\item
+  \textbf{C11 - method-owned aggregation:} shared referent must be
+  renamed -\textgreater{} \textbf{PASS WITH BA4 BOUNDARY}.
+\item
+  \textbf{C12 - typed literal:} every local value must become registry
+  vocabulary -\textgreater{} \textbf{PASS; literal remains local}.
+\item
+  \textbf{C13 - genuine new semantic kind:} no extension path exists
+  without synonyms -\textgreater{} \textbf{PASS WITH GOVERNED
+  EXTENSION}.
+\item
+  \textbf{C14 - material new operator/role:} BA5 must silently change
+  BA2 -\textgreater{} \textbf{PASS; routed to BA2 reopen}.
+\item
+  \textbf{C15 - tool/LLM alias suggestion:} suggestion must become truth
+  -\textgreater{} \textbf{PASS; candidate only}.
+\item
+  \textbf{C16 - translated/descriptive presentation:} second semantic
+  identifier is unavoidable -\textgreater{} \textbf{PASS; binding
+  remains canonical}.
+\end{itemize}
+
+No trial produces a material counterexample that forces normative
+synonym support.
+
+\subsection{4. C1 - referent alias
+attack}\label{4-c1---referent-alias-attack}
+
+Start with:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{canonical project referent:}
+\NormalTok{  cameraIngresso}
+\end{Highlighting}
+\end{Shaded}
+
+Attack:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{D1 {-}\textgreater{} cameraIngresso}
+\NormalTok{D2 {-}\textgreater{} entryCamera}
+\NormalTok{human view {-}\textgreater{} Camera Ingresso}
+\end{Highlighting}
+\end{Shaded}
+
+If all three intend the same shared referent, the additional identifiers
+are not admitted as normative semantic names. The author/view uses
+\texttt{cameraIngresso} for the semantic reference.
+
+Descriptive prose can still say "entrance camera" around that reference.
+
+\textbf{Result:} PASS. No alias registry is required.
+
+\subsection{5. C2/C3 - operator and role alias
+attacks}\label{5-c2c3---operator-and-role-alias-attacks}
+
+Canonical binding:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{transfer}
+\NormalTok{  source      {-}\textgreater{} cameraIngresso}
+\NormalTok{  destination {-}\textgreater{} recognitionProcessor}
+\NormalTok{  content     {-}\textgreater{} recognitionCapture}
+\end{Highlighting}
+\end{Shaded}
+
+Attacks:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{send}
+\NormalTok{src}
+\NormalTok{dst}
+\NormalTok{payload}
+\end{Highlighting}
+\end{Shaded}
+
+None is needed as a normative key. A human authoring interface may
+search for or suggest \texttt{transfer}, \texttt{source},
+\texttt{destination}, \texttt{content}, but the persisted/accepted
+semantic binding remains exact.
+
+\textbf{Result:} PASS.
+
+\subsection{6. C4/C5 - semantic-kind and controlled-value
+aliases}\label{6-c4c5---semantic-kind-and-controlled-value-aliases}
+
+Attacks:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{repository  {-}\textgreater{} intended same meaning as store}
+\NormalTok{owner       {-}\textgreater{} intended same responsibility meaning as ownership}
+\end{Highlighting}
+\end{Shaded}
+
+When the intended meaning is already represented, the alternative token
+is rejected as a second normative key.
+
+If \texttt{repository} actually denotes a materially different
+methodology-neutral concept, it is not treated as a synonym. It becomes
+an evidence-backed candidate under the semantic-kind extension rule.
+
+\textbf{Result:} PASS. Lexical difference does not decide semantic
+difference.
+
+\subsection{7. C6 - cross-domain token
+collision}\label{7-c6---cross-domain-token-collision}
+
+Attack:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{referent canonicalName = source}
+\NormalTok{transfer roleKey        = source}
+\end{Highlighting}
+\end{Shaded}
+
+A flat global dictionary fails here, but T2 already refined the
+hypothesis to domain-scoped resolution.
+
+Lookup remains unambiguous because the two tokens resolve through
+different domains/scopes.
+
+\textbf{Result:} PASS WITH DOMAIN-SCOPE REFINEMENT retained. No semantic
+collapse.
+
+\subsection{8. C7 - cross-baseline
+rename}\label{8-c7---cross-baseline-rename}
+
+Attack:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{B0  cameraIngresso}
+\NormalTok{B1  cameraNord}
+\end{Highlighting}
+\end{Shaded}
+
+If the independently reusable project meaning survives, BA3 can RETAIN
+the same \texttt{BAReferent} identity while the current baseline changes
+its canonical name.
+
+Historical material does not need an alias bridge:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{B0 artifacts {-}\textgreater{} cameraIngresso}
+\NormalTok{B1 artifacts {-}\textgreater{} cameraNord}
+\NormalTok{continuity   {-}\textgreater{} BA3 RETAIN}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Result:} PASS. Name remains baseline-scoped lexical metadata
+rather than semantic identity.
+
+\subsection{9. C8 - semantic registry
+evolution}\label{9-c8---semantic-registry-evolution}
+
+Attack: keep token \texttt{store} while silently changing its normative
+definition.
+
+This would destroy historical reproducibility.
+
+The closed answer is immutable registry revision resolution:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SemanticKindRegistry@R1 / store}
+\NormalTok{SemanticKindRegistry@R2 / store}
+\end{Highlighting}
+\end{Shaded}
+
+If R2 changes meaning materially, the change is inspectable and
+historical BA continues to resolve R1. A semantic change cannot be
+hidden behind the same unversioned token.
+
+\textbf{Result:} PASS WITH IMMUTABLE REVISION requirement retained.
+
+\subsection{10. C9 - natural-language
+pressure}\label{10-c9---natural-language-pressure}
+
+A too-strong interpretation would require every sentence to use only
+canonical verbs and nouns. That is unnecessary and would convert BA5
+into a controlled-natural-language project.
+
+The smallest sufficient boundary is:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{human explanation}
+\NormalTok{    may use natural language}
+
+\NormalTok{machine{-}significant / governed semantic binding}
+\NormalTok{    must use canonical registry key/name}
+\end{Highlighting}
+\end{Shaded}
+
+For example "sends" in prose does not create a \texttt{send} operator
+when the semantic binding is \texttt{transfer}.
+
+\textbf{Result:} PASS WITH OPERABILITY BOUNDARY. This is a minimization,
+not a relaxation of semantic consistency.
+
+\subsection{11. C10/C11 - projection incompatibility
+pressure}\label{11-c10c11---projection-incompatibility-pressure}
+
+Two incompatible consumers may classify/render the same shared referent
+differently:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FlowParticipant(cameraIngresso)}
+\NormalTok{AssuranceSubject(cameraIngresso)}
+\end{Highlighting}
+\end{Shaded}
+
+The projection-owned kinds differ while the shared referent name is
+stable.
+
+A genuinely method-owned aggregation may instead use:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{external{-}ingress{-}exposure}
+\end{Highlighting}
+\end{Shaded}
+
+because that label denotes a downstream method item rather than the
+shared referent. BA4 trace and interpretation rules preserve the
+boundary.
+
+\textbf{Result:} PASS. Method terminology does not need to enter the BA
+registry.
+
+\subsection{12. C12 - literal inflation
+attack}\label{12-c12---literal-inflation-attack}
+
+Attack:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{timeout = 30s}
+\end{Highlighting}
+\end{Shaded}
+
+Registering every local value would turn the registry into a universal
+value store. The controlled-value registry applies only to reusable
+governed semantic distinctions.
+
+\texttt{30s} remains a typed/local value unless independent reusable
+semantic identity forces a \texttt{BAReferent} under BA1.
+
+\textbf{Result:} PASS. Registry inflation is not required.
+
+\subsection{13. C13/C14 - extension routing
+pressure}\label{13-c13c14---extension-routing-pressure}
+
+\subsubsection{New method-neutral semantic
+kind}\label{new-method-neutral-semantic-kind}
+
+A genuinely new kind may be admitted only after evidence, method-neutral
+definition and review, producing a new immutable registry revision.
+
+\subsubsection{New operator or role
+semantic}\label{new-operator-or-role-semantic}
+
+A materially new operator or changed role contract is not a lexical
+addition. It reopens the smallest BA2 responsibility.
+
+Therefore BA5 cannot become a backdoor for semantic expansion.
+
+\textbf{Result:} PASS.
+
+\subsection{14. C15 - tool/LLM authority
+attack}\label{14-c15---toolllm-authority-attack}
+
+Attack:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{user writes: send}
+\NormalTok{model confidence: 0.97 that send == transfer}
+\end{Highlighting}
+\end{Shaded}
+
+Allowed behavior:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{"send is not a registered operator; did you mean transfer?"}
+\end{Highlighting}
+\end{Shaded}
+
+Rejected behavior:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{silently persist transfer}
+\NormalTok{or register send as an accepted synonym}
+\end{Highlighting}
+\end{Shaded}
+
+The author/governance path decides accepted semantic binding. The model
+remains assistance, not authority.
+
+\textbf{Result:} PASS.
+
+\subsection{15. C16 - translation/accessibility
+pressure}\label{15-c16---translationaccessibility-pressure}
+
+A human view may need explanatory or translated presentation.
+
+This does not force a second normative semantic identifier. For example:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Entrance camera (\textasciigrave{}cameraIngresso\textasciigrave{})}
+\end{Highlighting}
+\end{Shaded}
+
+may be presentation text while the underlying/shared semantic reference
+remains \texttt{cameraIngresso}.
+
+If a downstream method owns a translated/local item rather than the
+shared referent, BA4 method-owned labeling applies.
+
+\textbf{Result:} PASS. Translation support and semantic aliasing remain
+distinct responsibilities.
+
+\subsection{16. Cross-corpus closure
+reasoning}\label{16-cross-corpus-closure-reasoning}
+
+The two already reviewed project pressures remain compatible with the
+closed BA5 boundary:
+
+\begin{itemize}
+\tightlist
+\item
+  facial-access cases use stable named referents plus the closed BA2
+  operators/roles for transfer, correlation, service consumption,
+  realization, responsibility and constraints;
+\item
+  order, WMS and provider cases use stable referent naming plus
+  dependency, service, responsibility and classification semantics and
+  governed project-specific mappings without requiring a second
+  normative lexical key.
+\end{itemize}
+
+T3 does not claim arbitrary prose migration. It asks whether
+intentionally analysis-ready governed documentation can preserve the
+shared semantics using canonical bindings. The reviewed cases do not
+falsify that claim.
+
+A structurally different holdout remains reserved for BA6 integrated
+regression, as required by the work plan.
+
+\subsection{17. BA0-BA4 reopen review}\label{17-ba0-ba4-reopen-review}
+
+\subsubsection{BA0}\label{ba0}
+
+No authority/non-goal responsibility fails. Documentation remains
+project authority.
+
+\textbf{Disposition:} NOT TRIGGERED.
+
+\subsubsection{BA1}\label{ba1}
+
+Canonical keys/names do not require a third BAE identity family.
+
+\textbf{Disposition:} NOT TRIGGERED.
+
+\subsubsection{BA2}\label{ba2}
+
+No new operator or role is materially forced by T3. The existing
+extension rule remains adequate.
+
+\textbf{Disposition:} NOT TRIGGERED.
+
+\subsubsection{BA3}\label{ba3}
+
+Cross-baseline rename and historical interpretation are handled by
+existing continuity/provenance responsibilities plus immutable registry
+revision references where applicable.
+
+\textbf{Disposition:} NOT TRIGGERED.
+
+\subsubsection{BA4}\label{ba4}
+
+Shared rendering and method-owned interpretation remain separable. No
+projection counterexample requires method taxonomy to become BA
+vocabulary.
+
+\textbf{Disposition:} NOT TRIGGERED.
+
+\subsection{18. What T3 explicitly does not
+claim}\label{18-what-t3-explicitly-does-not-claim}
+
+T3 does not claim:
+
+\begin{itemize}
+\tightlist
+\item
+  that natural language has no synonyms;
+\item
+  that arbitrary legacy prose can be migrated automatically;
+\item
+  that semantic-kind vocabulary is universally complete;
+\item
+  that future projects can never force BA5 reopening;
+\item
+  that translations or fuzzy search are useless;
+\item
+  that an LLM cannot assist authoring;
+\item
+  that ThreatForge determines canonical vocabulary; or
+\item
+  that Base Analysis as a whole is closed.
+\end{itemize}
+
+It claims only that current DDTA evidence does not require normative
+synonym machinery in the semantic core when authoring is controlled by
+construction.
+
+\subsection{19. Closure decision}\label{19-closure-decision}
+
+The integrated T1/T2 contract survives the T3 adversarial review without
+a material counterexample.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BA5{-}T3       CLOSED / PASS}
+\NormalTok{BA5          CLOSED FOR CURRENT THESIS SCOPE}
+
+\NormalTok{synonym support in normative core      REJECTED AS UNNECESSARY}
+\NormalTok{optional lexical/NLP assistance        DEFERRED}
+\NormalTok{BA0{-}BA4 reopen                         NOT TRIGGERED}
+\NormalTok{BA6                                    NOT STARTED / NEXT PHASE}
+\end{Highlighting}
+\end{Shaded}
+
+The final BA5 contract is recorded in the companion R1 contract artifact
+included in this package.
+
+\subsection{20. Next boundary}\label{20-next-boundary}
+
+BA5 closure authorizes BA6 as the next phase, but this microstep does
+\textbf{not} execute it.
+
+BA6 must regress the complete BA0-BA5 design through the integrated
+chain:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{governed documentation}
+\NormalTok{ {-}\textgreater{} canonical controlled authoring}
+\NormalTok{ {-}\textgreater{} accepted BA}
+\NormalTok{ {-}\textgreater{} BA3 provenance/change continuity}
+\NormalTok{ {-}\textgreater{} multiple BA4 projections}
+\NormalTok{ {-}\textgreater{} governed change}
+\NormalTok{ {-}\textgreater{} rebuild / re{-}analysis}
+\end{Highlighting}
+\end{Shaded}
+
+Only BA6 may close the complete Base Analysis milestone for the current
+thesis scope.
+
+\end{document}
