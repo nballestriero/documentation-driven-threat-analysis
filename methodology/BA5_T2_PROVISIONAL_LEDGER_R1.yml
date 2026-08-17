@@ -1,0 +1,47 @@
+phase: BA5
+trial: BA5-T2
+status: COMPLETED_PROVISIONAL_PASS_WITH_DOMAIN_SCOPED_REGISTRY_AND_GOVERNED_EXTENSION_REFINEMENT
+repository_baseline_reviewed: 85622414b2ff52d58f3cd11776fef4b3753afc7d
+inputs:
+  ba5_t1_canonical_referent_naming: accepted_provisional_lower_bound
+  ba2_operator_registry: closed_13_keys
+  ba2_roles: operator_scoped
+  ba2_semantic_kind_registry_contract: extensible_not_universal
+hypothesis:
+  exact_canonical_tokens_without_normative_synonyms: survives_t2
+refinements:
+  flat_global_token_namespace: rejected
+  registry_domain_context_resolution: required
+  operator_role_key: composite_operator_and_role_context
+  immutable_registry_revision_resolution: required
+  semantic_kind_registry: controlled_extensible_evidence_gated
+  controlled_value_registry: domain_scoped_where_reusable
+  literal_auto_registration: rejected
+extension_routing:
+  alias_of_existing: reject_and_use_existing
+  method_specific: keep_downstream
+  requires_independent_identity: promote_to_bareferent
+  extensible_method_neutral_domain: governed_extension_new_immutable_revision
+  closed_ba2_operator_or_role_contract: smallest_ba2_reopen_candidate
+dispositions:
+  exact_13_operator_keys: REQUIRED
+  operator_scoped_role_keys: REQUIRED
+  semantic_kind_store: ACCEPTED_FOR_T2_PRESSURE
+  semantic_kind_contract: ACCEPTED_FOR_T2_PRESSURE
+  semantic_kind_channel: DEFERRED_EVIDENCE_GATED
+  polarity_affirmative_negative: ACCEPTED_EXACT_KEYS
+  modifier_condition_temporalScope: ACCEPTED_EXACT_KEYS
+  responsibility_kind_domain: REQUIRED
+  responsibility_ownership_management: ACCEPTED_FOR_T2_PRESSURE
+  alias_synonym_normative_entries: REJECTED
+  method_taxonomy_in_ba_registry: REJECTED
+  tool_context_validation_completion: ALLOWED
+  tool_semantic_equivalence_or_approval: REJECTED
+  new_bae_family: NOT_FORCED
+  ba1_reopen: NOT_TRIGGERED
+  ba2_reopen: NOT_TRIGGERED
+  ba3_reopen: NOT_TRIGGERED
+  ba4_reopen: NOT_TRIGGERED
+  documentation_metamodel_reopen: NOT_TRIGGERED
+ba5_state: STARTED_NOT_CLOSED
+next_microstep: BA5-T3 canonical registry controlled-authoring and no-synonym closure review
