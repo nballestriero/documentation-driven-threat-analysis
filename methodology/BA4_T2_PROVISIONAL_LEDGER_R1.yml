@@ -1,0 +1,54 @@
+schemaVersion: 1
+artifact: BA4_T2_PROVISIONAL_LEDGER_R1
+status: COMPLETED_PROVISIONAL_PASS_WITH_INTERPRETATION_COVERAGE_REFINEMENT
+baselineReviewed: f90ef3a0bc0b7712cb8081165c28e8923aec9e2d
+phase: BA4
+microstep: BA4-T2
+closedDependencies:
+  BA0: CLOSED
+  BA1: CLOSED
+  BA2: CLOSED
+  BA3: CLOSED
+inputCandidate: methodology/BA4_PROJECTION_BOUNDARY_TRACEABILITY_CANDIDATE_R1.md
+outputCandidate: methodology/BA4_PROJECTION_BOUNDARY_INTERPRETATION_COVERAGE_CANDIDATE_R2.md
+pressureTargets:
+  - incompatible_method_taxonomies
+  - method_interpretation_reproducibility
+  - aggressive_lossy_coverage
+  - diagnostic_stale_projection
+  - cross_projection_consistency
+  - facial_M1_M4_rebuild
+  - order_WMS_provider_rebuild
+provisionalDispositions:
+  incompatibleMethodTaxonomies: PASS
+  universalSharedProjectionOntology: REJECTED
+  crossProjectionComparisonViaBATrace: PASS
+  descriptorPlusTraceAloneForMultipleRules: REJECTED
+  interpretationRuleRef: REQUIRED
+  universalProjectionDSL: REJECTED
+  coverageMode:
+    status: REQUIRED
+    values:
+      - EXHAUSTIVE_FOR_DECLARED_SCOPE
+      - SELECTIVE
+  qualificationPolicy: REQUIRED
+  exhaustiveOmissionAsProjectNegation: REJECTED
+  exhaustiveOmissionAsProjectionDefect: REQUIRED
+  diagnosticStaleReviewProjection: PASS_WITH_QUALIFICATION_PRESERVATION
+  nonCurrentBasisAsCurrentSharedTruth: REJECTED
+  projectionItemCrossBaselineLifecycle: NOT_REQUIRED
+  newBAEFamily: NOT_FORCED
+  newBA2Operator: NOT_FORCED
+  BA1Reopen: NOT_TRIGGERED
+  BA2Reopen: NOT_TRIGGERED
+  BA3Reopen: NOT_TRIGGERED
+  BA4: STARTED_NOT_CLOSED
+nextMicrostep: BA4-T3_projection_boundary_interpretation_coverage_cross_projection_closure_review
+guardrails:
+  - no_complete_STRIDE_or_STRIDE_AI_schema
+  - no_AnalysisRecord_or_Common_Finding
+  - no_ThreatForge_semantic_authority
+  - no_universal_projection_ontology
+  - no_BA0_BA3_reopen_without_material_counterexample
+  - no_BA5
+  - no_BA6

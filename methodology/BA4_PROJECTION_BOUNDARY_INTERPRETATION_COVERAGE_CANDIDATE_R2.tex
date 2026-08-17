@@ -1,0 +1,892 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[a4paper,margin=2.25cm]{geometry}
+\usepackage{longtable,booktabs,array,calc}
+\usepackage{fancyvrb}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{titlesec}
+\definecolor{ddtadark}{RGB}{30,38,48}
+\definecolor{ddtablue}{RGB}{38,82,126}
+\hypersetup{colorlinks=true,linkcolor=ddtablue,urlcolor=ddtablue,citecolor=ddtablue}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Documentation-Driven Threat Analysis}
+\rhead{BA4 projection candidate R2}
+\cfoot{\thepage}
+\setlength{\headheight}{14pt}
+\setlist[itemize]{leftmargin=1.5em,itemsep=0.2em,topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.7em,itemsep=0.2em,topsep=0.25em}
+\titleformat{\section}{\Large\bfseries\color{ddtadark}}{}{0em}{}
+\titleformat{\subsection}{\large\bfseries\color{ddtadark}}{}{0em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{ddtadark}}{}{0em}{}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setlength{\emergencystretch}{4em}
+\hbadness=10000
+\hfuzz=20pt
+\sloppy
+\begin{document}
+\section{DDTA BA4 projection boundary, interpretation and coverage
+candidate -
+R2}\label{ddta-ba4-projection-boundary-interpretation-and-coverage-candidate---r2}
+
+\textbf{Status:} PROVISIONAL CANDIDATE AFTER BA4-T2 / NOT CLOSED / BA4
+OPEN
+
+\textbf{Derived by:} BA4-T2 method-owned interpretation, coverage loss
+and cross-projection consistency pressure test
+
+\textbf{Repository baseline reviewed:}
+\texttt{f90ef3a0bc0b7712cb8081165c28e8923aec9e2d}
+
+\textbf{Refines:}
+\texttt{BA4\_PROJECTION\_BOUNDARY\_TRACEABILITY\_CANDIDATE\_R1.md}; R1
+remains immutable research history.
+
+\textbf{Closed dependencies:} BA0 responsibility boundary; BA1
+\texttt{BAReferent\ +\ BAProposition}; BA2 proposition semantics; BA3
+provenance/derivation/lifecycle/change contract.
+
+\subsection{1. Purpose}\label{1-purpose}
+
+BA4-T2 asks whether the T1 projection lower bound survives when two
+consumer methods impose intentionally incompatible local taxonomies on
+the same accepted Base Analysis, when selection becomes aggressively
+lossy, and when a projection explicitly surfaces non-current or
+unresolved BA state.
+
+The pressure target is not whether two diagrams can be rendered. The
+target is whether the projection contract can keep four boundaries
+honest at the same time:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  shared BA meaning remains the common methodology-neutral basis;
+\item
+  consumer interpretation remains consumer-owned even when it is
+  reproducibly derived;
+\item
+  omission/completeness is stated relative to the projection contract
+  rather than silently becoming project semantics; and
+\item
+  cross-projection comparison can be explained through BA trace without
+  inventing a universal projection ontology.
+\end{enumerate}
+
+BA4 remains representation-independent. No graph, class model, storage
+schema, rendering notation or executable rule language is mandated.
+
+\subsection{2. Refined provisional lower-bound
+contract}\label{2-refined-provisional-lower-bound-contract}
+
+T2 preserves the T1 separation among projection definition,
+baseline-scoped materialization and projection-local items, but refines
+the coverage and method-interpretation responsibilities.
+
+\begin{verbatim}
+BAProjectionDescriptor                         [projection metadata; NOT BAE]
+|- projectionKey                         1
+|- projectionRevisionKey                 1     immutable
+|- consumerPurpose                       1
+|- selectionCoverageContract             1
+|    |- eligibleBAScope                  1
+|    |- coverageMode                     1
+|    |    EXHAUSTIVE_FOR_DECLARED_SCOPE
+|    |    | SELECTIVE
+|    |- qualificationPolicy              1
+|    `- omissionSemantics                1
+|- mappingContract                       1
+|- interpretationBoundary                1
+`- interpretationRuleDescriptor          0..*
+     |- ruleKey                          1
+     |- inputRoleContract                1..*
+     |- applicabilityContract            1
+     |- outputKindContract               1
+     `- normativeDefinition              1
+
+BAProjectionMaterialization                    [derived artifact; NOT BAE]
+|- projectionRef                         1     projectionKey@revision
+|- sourceBABaselineKey                   1
+`- item                                  0..*
+
+BAProjectionItem                               [projection-local; NOT BAE]
+|- projectionItemKey                     1
+|- projectionOwnedKind                   1
+|- traceBinding                           1..*
+|    |- traceRoleKey                      1
+|    `- baElementRef                      1     BA element @ BA baseline
+|- sharedSemanticRendering               0..1
+|- methodOwnedInterpretation             0..1
+`- interpretationRuleRef                 0..1
+     [required when methodOwnedInterpretation is meaning-bearing]
+\end{verbatim}
+
+The nested shapes above are semantic responsibilities. An implementation
+may combine them physically.
+
+\texttt{interpretationRuleDescriptor} is consumer/projection metadata,
+not a BA3 derivation rule and not a BAE family. Its rule keys are scoped
+to one immutable projection revision.
+
+\subsection{3. T1 responsibilities that survive
+unchanged}\label{3-t1-responsibilities-that-survive-unchanged}
+
+The following T1 findings survive the stronger pressure without material
+revision:
+
+\begin{verbatim}
+projection derived from accepted BA                   REQUIRED
+projection is project authority                        REJECTED
+immutable projection revision                          REQUIRED
+meaning-bearing item -> BA trace                       REQUIRED
+mandatory duplicate GovernedSourceRef                  REJECTED
+role-bound multi-input trace                 REQUIRED WHEN ROLES DIFFER
+projection-local item identity               REQUIRED WHEN MEANING-BEARING
+projection item identity -> BAE identity                REJECTED
+method-owned interpretation -> shared BA                REJECTED
+BA change -> projection rebuild                         REQUIRED
+second project lifecycle in projection                  REJECTED
+\end{verbatim}
+
+The authority chain remains:
+
+\begin{verbatim}
+governed documentation
+    -> accepted Base Analysis
+        -> projection materialization
+            -> method-owned interpretation
+\end{verbatim}
+
+No arrow reverses merely because a projection is useful, reproducible or
+analysis-relevant.
+
+\subsection{4. Two intentionally incompatible method
+projections}\label{4-two-intentionally-incompatible-method-projections}
+
+T2 uses two bounded projection families over the same facial-access BA
+basis. Their local taxonomies are intentionally not aligned.
+
+\subsubsection{4.1 Projection F - flow/exposure
+oriented}\label{41-projection-f---flowexposure-oriented}
+
+Illustrative projection-owned kinds:
+
+\begin{verbatim}
+FlowParticipant
+FlowExchange
+ExposureAnnotation
+\end{verbatim}
+
+A BA transfer may project to a \texttt{FlowExchange}:
+
+\begin{verbatim}
+transfer(
+  source      -> CameraSubsystem,
+  destination -> RecognitionProcessor,
+  content     -> RecognitionCapture)
+\end{verbatim}
+
+The method may additionally interpret:
+
+\begin{verbatim}
+consumeService(project, LocalConnectivity)
++
+assignResponsibility[negative](
+  project,
+  underlyingTransport,
+  ownership/management)
+\end{verbatim}
+
+as a method-owned annotation such as:
+
+\begin{verbatim}
+externally-provided-transport-exposure
+\end{verbatim}
+
+That label is not BA meaning.
+
+\subsubsection{4.2 Projection A - assurance/responsibility
+oriented}\label{42-projection-a---assuranceresponsibility-oriented}
+
+Illustrative projection-owned kinds:
+
+\begin{verbatim}
+AssuranceSubject
+AuthorityPlacement
+ContractDependency
+NormalizationExpectation
+\end{verbatim}
+
+The same BA service/responsibility basis may instead be interpreted as:
+
+\begin{verbatim}
+delegated-assurance-dependency
+\end{verbatim}
+
+The projection may emphasize responsibility placement, service contracts
+and governed normalized results while omitting ordinary flow
+interactions.
+
+\texttt{externally-provided-transport-exposure} and
+\texttt{delegated-assurance-dependency} are intentionally different
+local taxonomies. Neither is the canonical projection of the other, and
+neither becomes a BA semantic key.
+
+\subsection{5. No universal projection ontology is
+required}\label{5-no-universal-projection-ontology-is-required}
+
+The two method projections can disagree about:
+
+\begin{itemize}
+\tightlist
+\item
+  category names;
+\item
+  item granularity;
+\item
+  whether one BA element becomes an item, annotation or supporting
+  trace;
+\item
+  whether several BA elements are aggregated into one method item; and
+\item
+  which BA facts are outside their selection scope.
+\end{itemize}
+
+This difference is not itself inconsistency.
+
+The common denominator is the accepted BA trace:
+
+\begin{verbatim}
+Projection F item
+    -> BA trace set / role bindings
+
+Projection A item
+    -> BA trace set / role bindings
+\end{verbatim}
+
+Cross-projection comparison may compute trace overlap, disjointness or
+shared BA basis. It does not require a new shared
+\texttt{ProjectionConcept}, \texttt{ProjectionRelation} or
+method-category equivalence identity.
+
+A same-looking label in two projections does not establish shared
+identity. Different labels over overlapping BA trace do not establish
+contradiction.
+
+\subsection{6. T1 trace plus descriptor is insufficient for non-trivial
+method
+interpretation}\label{6-t1-trace-plus-descriptor-is-insufficient-for-non-trivial-method-interpretation}
+
+T1 already requires an immutable projection descriptor and role-bound BA
+trace. T2 constructs a counterexample where one descriptor revision
+contains several method-owned interpretation rules that can consume
+overlapping BA inputs.
+
+Suppose one projection revision permits both:
+
+\begin{verbatim}
+R-ext-service:
+  serviceUse + responsibilityBoundary
+      -> externally-provided-transport-exposure
+
+R-assurance-gap:
+  serviceUse + responsibilityBoundary + constraintSet
+      -> assurance-dependency-review
+\end{verbatim}
+
+An item that records only:
+
+\begin{verbatim}
+traceBinding:
+  serviceUse             -> <BA consumeService>
+  responsibilityBoundary -> <BA negative responsibility>
+\end{verbatim}
+
+is not enough to identify which local interpretation rule produced its
+method-owned meaning.
+
+Therefore T2 requires:
+
+\begin{verbatim}
+methodOwnedInterpretation present
+    -> interpretationRuleRef required
+\end{verbatim}
+
+The reference resolves within the immutable projection revision to an
+inspectable consumer-owned rule descriptor.
+
+This requirement is narrower than BA3 derivation:
+
+\begin{verbatim}
+BA3 derivation rule
+  methodology-neutral
+  may produce accepted shared BA meaning
+
+BA4 interpretation rule
+  consumer/method-owned
+  produces only projection-local interpretation
+\end{verbatim}
+
+The registries must not be merged.
+
+\subsection{7. Projection interpretation
+reproducibility}\label{7-projection-interpretation-reproducibility}
+
+For method-owned interpretation, reproducibility means an independent
+reviewer can determine, from:
+
+\begin{verbatim}
+same accepted BA baseline/materialization
++ same role-bound trace basis
++ same immutable projection revision
++ same interpretation rule
+\end{verbatim}
+
+whether the same materially equivalent local interpretation is
+justified, or whether the rule is not applicable.
+
+It does not require:
+
+\begin{itemize}
+\tightlist
+\item
+  byte-identical projection serialization;
+\item
+  identical generated item IDs;
+\item
+  one software implementation;
+\item
+  one rendering layout; or
+\item
+  promotion of the interpretation into BA.
+\end{itemize}
+
+If the same rule revision and same role-bound BA basis permit materially
+incompatible local meanings without explicit method uncertainty, the
+projection rule is insufficient and must be refined inside the method
+projection.
+
+\subsection{8. Coverage needs an explicit
+mode}\label{8-coverage-needs-an-explicit-mode}
+
+T1 requires a \texttt{selectionCoverageContract}, but aggressive
+lossiness exposes a missing distinction.
+
+Two projection contracts may both declare an eligible scope such as
+\texttt{current\ accepted\ transfer\ propositions}, yet mean different
+things:
+
+\begin{verbatim}
+Projection X:
+  show every eligible transfer
+
+Projection Y:
+  show a selected subset useful for one question
+\end{verbatim}
+
+The resulting omissions have different projection semantics.
+
+T2 therefore closes a provisional coverage-mode distinction:
+
+\begin{verbatim}
+EXHAUSTIVE_FOR_DECLARED_SCOPE
+  every BA element eligible under the declared scope/qualification
+  is expected to be represented according to the mapping contract
+
+SELECTIVE
+  the projection intentionally permits omission of otherwise eligible BA
+  elements; omission carries no completeness claim
+\end{verbatim}
+
+This is completeness relative to BA and the projection descriptor, not
+completeness of project documentation.
+
+\subsection{9. Exhaustive omission is a projection defect, not project
+negation}\label{9-exhaustive-omission-is-a-projection-defect-not-project-negation}
+
+For \texttt{EXHAUSTIVE\_FOR\_DECLARED\_SCOPE}:
+
+\begin{verbatim}
+eligible accepted BA element omitted
+    -> projection materialization defect / incomplete build
+\end{verbatim}
+
+It does \textbf{not} mean:
+
+\begin{verbatim}
+project says element is false
+project documentation is incomplete
+BA element does not exist
+\end{verbatim}
+
+For \texttt{SELECTIVE}:
+
+\begin{verbatim}
+item omitted
+    -> no conclusion beyond this projection's selection choice
+\end{verbatim}
+
+This distinction prevents two opposite errors:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  treating lossy omission as project absence; and
+\item
+  allowing a projection that claims complete BA coverage to silently
+  omit eligible meaning.
+\end{enumerate}
+
+No universal query language is required. The descriptor only needs an
+inspectable scope and enough construction semantics to review whether
+the declared coverage mode was met.
+
+\subsection{10. Qualification policy for diagnostic, stale and pending
+BA
+state}\label{10-qualification-policy-for-diagnostic-stale-and-pending-ba-state}
+
+T2 explicitly pressure-tests a review-oriented projection that may
+select:
+
+\begin{verbatim}
+DIAGNOSTIC_UNRESOLVED
+STALE
+PENDING_REVIEW
+\end{verbatim}
+
+The T1 rule that admissible review/freshness states belong to the
+coverage contract is retained and made explicit as
+\texttt{qualificationPolicy}.
+
+A normal current-state method projection may declare, for example:
+
+\begin{verbatim}
+qualificationPolicy:
+  ACCEPTED + CURRENT shared BA only
+\end{verbatim}
+
+A review projection may instead include stale or diagnostic material.
+
+The critical invariant is:
+
+\begin{quote}
+A projection may expose a non-current or unresolved BA element, but it
+must not present it as a current accepted project fact.
+\end{quote}
+
+The projection may resolve BA3 state through its \texttt{BAElementRef};
+it does not need to duplicate BA3 lifecycle metadata as a second
+authority.
+
+\subsection{11. Qualification propagation to method
+interpretation}\label{11-qualification-propagation-to-method-interpretation}
+
+A method-owned interpretation may be useful even when its BA basis is
+stale or diagnostic, for example to show what analysis output is
+potentially affected.
+
+However:
+
+\begin{verbatim}
+stale/unresolved BA basis
+    -> method interpretation may be shown as review-oriented/local
+    -> MUST NOT become current shared project truth
+\end{verbatim}
+
+T2 does not introduce a new projection lifecycle enum. The
+descriptor\textquotesingle s qualification policy and interpretation
+boundary must preserve the source BA qualification in the
+rendered/consumed semantics.
+
+A method tool may use UI badges such as \texttt{review},
+\texttt{stale\ basis} or \texttt{diagnostic\ basis}; these are
+presentation choices, not new BA or BA4 semantic state families.
+
+\subsection{12. Cross-projection consistency
+contract}\label{12-cross-projection-consistency-contract}
+
+Cross-projection consistency is intentionally weaker than taxonomy
+agreement.
+
+For two materializations over the same BA baseline, the minimum
+consistency conditions are:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  each projection identifies the same source BA baseline it actually
+  consumed;
+\item
+  each shared semantic rendering is supportable by its own traced BA
+  basis;
+\item
+  each method-owned interpretation is explicitly local and references
+  its applicable local rule when required;
+\item
+  each projection satisfies its own declared coverage mode and
+  qualification policy; and
+\item
+  comparison across projections uses BA trace/BA3 continuity rather than
+  assumed method-category equivalence.
+\end{enumerate}
+
+Therefore the following can both be valid:
+
+\begin{verbatim}
+Projection F:
+  externally-provided-transport-exposure
+
+Projection A:
+  delegated-assurance-dependency
+\end{verbatim}
+
+when both trace honestly to the same service/responsibility BA basis
+under different method rules.
+
+\subsection{13. What counts as a real cross-projection
+contradiction}\label{13-what-counts-as-a-real-cross-projection-contradiction}
+
+A contradiction is not merely different method interpretation.
+
+A material projection inconsistency exists when, for example:
+
+\begin{itemize}
+\tightlist
+\item
+  a projection presents a shared semantic rendering that inverts BA
+  polarity;
+\item
+  a projection claims \texttt{EXHAUSTIVE\_FOR\_DECLARED\_SCOPE} while
+  omitting an eligible BA item;
+\item
+  an item claims current project meaning from stale/unresolved basis
+  contrary to its qualification policy;
+\item
+  a method-owned interpretation is presented as BA/project truth; or
+\item
+  a projection claims to use baseline B1 while tracing to an
+  unacknowledged B0 BA materialization.
+\end{itemize}
+
+These are projection-contract violations. They do not require a new BA
+proposition that says two projections conflict.
+
+\subsection{14. M1-M4 rebuild pressure across incompatible
+projections}\label{14-m1-m4-rebuild-pressure-across-incompatible-projections}
+
+\subsubsection{14.1 M1 - Ethernet to
+Wi-Fi}\label{141-m1---ethernet-to-wi-fi}
+
+BA retains the transfer and service-use meaning while replacing the
+realization proposition.
+
+Projection F may remain materially unchanged if its coverage ignores
+realization technology.
+
+Projection A may replace a local realization/assurance item because it
+includes technology realization in its declared scope.
+
+Different projection deltas are expected and consistent because both
+rebuild from BA@B1 under different contracts.
+
+\subsubsection{14.2 M2 - external transport to project-owned
+transport}\label{142-m2---external-transport-to-project-owned-transport}
+
+The BA responsibility proposition changes from negative to affirmative
+and external service consumption may retire.
+
+Projection F\textquotesingle s
+\texttt{externally-provided-transport-exposure} interpretation ceases to
+be applicable and disappears on rebuild.
+
+Projection A may instead produce a project-owned authority-placement
+item.
+
+No projection item mutates the BA proposition and no cross-method common
+category is required.
+
+\subsubsection{14.3 M3 - remote to local
+recognition}\label{143-m3---remote-to-local-recognition}
+
+When the remote transfer is retired, Projection F must remove the
+corresponding flow exchange if its coverage is exhaustive for current
+transfers.
+
+Projection A may retain unrelated responsibility/contract items if their
+BA basis remains accepted/current.
+
+A projection that retains the old flow only because its B0 local item
+existed violates rebuild semantics.
+
+\subsubsection{14.4 M4 - representation conflict and stale
+transfer}\label{144-m4---representation-conflict-and-stale-transfer}
+
+When BA marks the old capture-transfer meaning stale and localizes a
+diagnostic, a normal current-state flow projection excludes it under its
+qualification policy.
+
+A review projection may expose:
+
+\begin{verbatim}
+stale transfer basis
++ diagnostic/unresolved representation conflict
+\end{verbatim}
+
+but must visibly preserve those qualifications.
+
+Neither method projection may silently invent
+\texttt{OpaqueEvidenceReference} project truth before governance
+resolves the source inconsistency.
+
+\subsection{15. Order/WMS responsibility-boundary
+pressure}\label{15-orderwms-responsibility-boundary-pressure}
+
+When project-owned inventory moves toward an external WMS:
+
+\begin{itemize}
+\tightlist
+\item
+  a flow/integration projection may emphasize new
+  \texttt{consumeService} interactions and external exchanges;
+\item
+  an assurance/responsibility projection may emphasize moved authority,
+  contract dependency and responsibility boundaries; and
+\item
+  internal mutation propositions retired by BA disappear only from
+  projections whose selection includes them.
+\end{itemize}
+
+The projection families can therefore change in very different shapes
+while remaining consistent with the same BA transition.
+
+No \texttt{ExternalSystem}, \texttt{TrustBoundary} or
+\texttt{IntegrationRisk} metaclass is forced into BA merely because one
+method projection wants it.
+
+\subsection{16. Provider normalization
+pressure}\label{16-provider-normalization-pressure}
+
+Provider-state normalization remains a useful authority control.
+
+A method projection that needs \texttt{PaymentAuthorizationResult} must
+consume the accepted normalized BA meaning. It may add a method-local
+interpretation such as an assurance state or decision branch, but it
+must not bypass BA3 by mapping raw provider vocabulary privately into a
+supposedly shared result.
+
+Thus:
+
+\begin{verbatim}
+provider raw state
+  -> governed mapping / BA3 derivation
+  -> accepted BA PaymentAuthorizationResult
+  -> method projection interpretation
+\end{verbatim}
+
+not:
+
+\begin{verbatim}
+provider raw state
+  -> hidden method mapping
+  -> shared project truth
+\end{verbatim}
+
+\subsection{17. Cross-projection comparison needs no new shared
+identity}\label{17-cross-projection-comparison-needs-no-new-shared-identity}
+
+T2 explicitly tries to force a common identity between method items.
+
+The attempt fails under current evidence because BA trace already
+provides the shared semantic anchor.
+
+For same-baseline comparison:
+
+\begin{verbatim}
+item A trace set
+  INTERSECT
+item B trace set
+\end{verbatim}
+
+is sufficient to identify shared or overlapping BA basis.
+
+For cross-baseline comparison, the BA3 continuity of the traced BA
+elements supplies the semantic bridge before the projections are
+rebuilt.
+
+A persistent method-to-method equivalence relation would add consumer
+taxonomy into the shared core without a demonstrated methodology-neutral
+need.
+
+Therefore:
+
+\begin{verbatim}
+SharedProjectionConcept identity                  NOT FORCED
+method-category equivalence relation              NOT FORCED
+new BA2 operator for projection comparison         NOT FORCED
+\end{verbatim}
+
+\subsection{18. Projection descriptor revision
+changes}\label{18-projection-descriptor-revision-changes}
+
+A projection descriptor revision is consumer evolution, not project
+semantic change.
+
+If the BA baseline is unchanged but the projection descriptor changes:
+
+\begin{verbatim}
+projection@descriptor-R1 remains historical
+projection@descriptor-R2 is rebuilt from same BA
+\end{verbatim}
+
+Different local items do not imply that BA changed.
+
+If a method wants continuity between its own projection items across
+descriptor revisions, that remains method/tool-local history unless a
+later concrete BA4 responsibility forces otherwise.
+
+BA4-T2 still finds no need to duplicate BA3
+\texttt{RETAIN\ \textbar{}\ REPLACE\ \textbar{}\ RETIRE} for projection
+items.
+
+\subsection{19. Reopen checks}\label{19-reopen-checks}
+
+T2 finds no material counterexample to the closed BA0-BA3
+responsibilities.
+
+\begin{itemize}
+\tightlist
+\item
+  BA1 still supplies all shared project-semantic identity required by
+  both incompatible methods.
+\item
+  BA2 operators/roles preserve the method-neutral facts consumed by both
+  projections.
+\item
+  BA3 supplies source provenance, review/freshness, continuity and
+  change impact needed to qualify/rebuild projection input.
+\end{itemize}
+
+A method-specific taxonomy need is not evidence for BA reopen.
+
+Reopen the smallest earlier responsibility only if a method cannot
+obtain required \textbf{shared methodology-neutral project meaning} from
+accepted BA without reconstructing it from governed prose or inventing
+it privately.
+
+No reviewed T2 case demonstrates that failure.
+
+\subsection{20. Refined provisional
+dispositions}\label{20-refined-provisional-dispositions}
+
+\begin{verbatim}
+T1 projection authority boundary                         PASS / RETAIN
+T1 BA trace lower bound                                  PASS / RETAIN
+T1 role-bound multi-input trace                          PASS / RETAIN
+T1 generic selectionCoverageContract                     REFINED
+Coverage mode distinction                                REQUIRED
+  EXHAUSTIVE_FOR_DECLARED_SCOPE | SELECTIVE
+Exhaustive eligible omission -> project absence           REJECTED
+Exhaustive eligible omission -> projection defect         REQUIRED
+Qualification policy                          REQUIRED
+Diagnostic/stale review projection            PASS WITH QUALIFICATION
+Non-current BA -> current shared projection truth         REJECTED
+Descriptor + trace alone for non-trivial method rule      REJECTED
+interpretationRuleRef                         REQUIRED FOR METHOD INTERPRETATION
+Universal projection rule language                       REJECTED
+Two incompatible method taxonomies                       PASS
+Universal shared projection ontology                     REJECTED
+Cross-projection taxonomy agreement                      NOT REQUIRED
+Cross-projection comparison via BA trace                 PASS
+New shared projection identity/relation                  NOT FORCED
+Projection item BA-like lifecycle                        NOT FORCED
+New BAE family                                           NOT FORCED
+New BA2 operator                                         NOT FORCED
+BA1 / BA2 / BA3 reopen                                   NOT TRIGGERED
+BA4                                                      STARTED / NOT CLOSED
+\end{verbatim}
+
+\subsection{21. Falsification rules}\label{21-falsification-rules}
+
+Revise this candidate if a concrete projection/corpus demonstrates that:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  non-trivial method-owned interpretation is reproducibly reviewable
+  without identifying the applicable local rule;
+\item
+  selective and exhaustive-within-scope projections can be collapsed
+  without losing omission/completeness semantics;
+\item
+  a stale/diagnostic projection can omit source qualification without
+  being mistaken for current shared truth;
+\item
+  two incompatible method taxonomies require a shared projection
+  ontology rather than BA trace;
+\item
+  cross-projection comparison requires a first-class shared identity not
+  recoverable from BA identity/trace;
+\item
+  projection rebuild under M1-M4/order/provider requires a second
+  project lifecycle model; or
+\item
+  a method consumer exposes missing shared methodology-neutral meaning
+  that cannot be represented by closed BA1-BA3.
+\end{enumerate}
+
+No reviewed T2 evidence currently forces those revisions.
+
+\subsection{22. Smallest unresolved set after
+BA4-T2}\label{22-smallest-unresolved-set-after-ba4-t2}
+
+The remaining BA4 work is now a distinct integrated closure review
+rather than another taxonomy expansion.
+
+The smallest unresolved set is:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  try to remove or merge \texttt{coverageMode}, qualification policy and
+  \texttt{interpretationRuleRef} without reintroducing T2 failures;
+\item
+  verify that shared rendering, method interpretation and projection
+  completeness remain orthogonal across both corpora;
+\item
+  regress T1/T2 projection rebuild and cross-projection comparison under
+  M1-M4/order/WMS/provider;
+\item
+  verify once more that BA trace is sufficient as the common denominator
+  without method-category equivalence; and
+\item
+  close BA4 for current thesis scope or reopen only the smallest failed
+  BA4 responsibility.
+\end{enumerate}
+
+\subsection{23. Next falsification
+target}\label{23-next-falsification-target}
+
+Only after this package is reviewed, committed, pushed and remotely
+verified:
+
+\begin{quote}
+\textbf{BA4-T3 - projection boundary, interpretation/coverage and
+cross-projection closure review.}
+\end{quote}
+
+Do not start BA5 before BA4 is explicitly closed.
+
+\end{document}
