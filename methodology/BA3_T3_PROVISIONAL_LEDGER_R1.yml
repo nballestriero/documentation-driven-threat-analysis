@@ -1,0 +1,55 @@
+artifact: BA3_T3_PROVISIONAL_LEDGER_R1
+status: COMPLETED_PROVISIONAL_PASS_WITH_DERIVATION_IMPACT_REFINEMENT
+repository_baseline_reviewed: 5fc0b92809ece193deaba4206488d78f981f7855
+scope: BA3_T3_ONLY
+prior_state:
+  ba0: CLOSED
+  ba1: CLOSED
+  ba2: CLOSED
+  ba3_t1: COMPLETED_PROVISIONAL_PASS_WITH_LOWER_BOUND_CANDIDATE
+  ba3_t2: COMPLETED_PROVISIONAL_PASS_WITH_IDENTITY_LIFECYCLE_REFINEMENT
+derivation_reproducibility:
+  plain_untyped_basis: REJECTED
+  role_bound_basis: REQUIRED
+  immutable_rule_revision: REQUIRED
+  inspectable_rule_registry_contract: REQUIRED
+  universal_exhaustive_rule_taxonomy: NOT_REQUIRED
+  executable_derivation_language: REJECTED
+  semantic_replay: REQUIRED
+  byte_identical_replay: NOT_REQUIRED
+rule_descriptor_minimum:
+  stable_rule_key: REQUIRED
+  immutable_revision_key: REQUIRED
+  input_role_contract: REQUIRED
+  applicability_contract: REQUIRED
+  output_semantic_contract: REQUIRED
+  normative_method_neutral_definition: REQUIRED
+change_impact:
+  revalidation_context: REQUIRED
+  revalidation_context_is_ba2_depend_on: REJECTED
+  parentage_only_for_m4: REJECTED
+  direct_source_change_seed: REQUIRED
+  derivation_basis_propagation: REQUIRED
+  replaced_retired_participant_seed: REQUIRED
+  context_dependency_propagation: REQUIRED
+  whole_ba_invalidation_on_any_file_change: REJECTED
+m4:
+  sibling_representation_change_stales_old_transfer: PASS
+  auto_rewrite_without_governed_fr_correction: REJECTED
+  unresolved_conflict_localized_as_diagnostic: REQUIRED_WHEN_NO_GOVERNED_RESOLUTION
+provider_normalization:
+  hidden_tool_mapping: REJECTED
+  governed_mapping_basis: REQUIRED_FOR_DERIVED_MAPPING
+  cross_domain_payment_wms_carrier: PASS
+feedback_authority:
+  analysis_candidate_as_ba_source: REJECTED
+  rejected_candidate_changes_project_truth: false
+  accepted_correction_requires_governed_baseline: true
+  new_ba_analysis_identity_family: NOT_FORCED
+reopen:
+  ba1: false
+  ba2: false
+  ba3_t1: false
+  ba3_t2: false
+ba3_status_after_t3: STARTED_NOT_CLOSED
+next_authorized_microstep: BA3_T4_PROVENANCE_IDENTITY_DERIVATION_CHANGE_IMPACT_CLOSURE_REVIEW

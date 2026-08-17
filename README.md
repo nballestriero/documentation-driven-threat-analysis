@@ -15,20 +15,22 @@ The repository is intentionally separate from the ThreatForge software repositor
 
 ## Current research checkpoint
 
-The documentation layer, Chapters 2-4, `BA0-R`, the BA0 responsibility/non-goals boundary, the BA1 minimal BAE identity ontology and **BA2 relation/action vocabulary are closed for the current thesis scope**. BA3 is active: BA3-T1 established the provenance/origin lower bound and BA3-T2 has now pressure-tested cross-baseline semantic identity, staleness and lifecycle against controlled responsibility/realization mutations.
+The documentation layer, Chapters 2-4, `BA0-R`, the BA0 responsibility/non-goals boundary, the BA1 minimal BAE identity ontology and **BA2 relation/action vocabulary are closed for the current thesis scope**. BA3 is active: BA3-T1 established provenance/origin, BA3-T2 pressure-tested cross-baseline identity/lifecycle, and BA3-T3 has now refined derivation reproducibility plus localized change-impact lineage using effective governed context and provider-state normalization.
 
 The active state and forward rules are recorded in:
 
-- `methodology/DDTA_CURRENT_RESEARCH_STATE_R11.md`
-- `methodology/DDTA_RESEARCH_WORK_PLAN_AFTER_DOCUMENTATION_CLOSURE_R14.md`
+- `methodology/DDTA_CURRENT_RESEARCH_STATE_R12.md`
+- `methodology/DDTA_RESEARCH_WORK_PLAN_AFTER_DOCUMENTATION_CLOSURE_R15.md`
 - `methodology/BA1_MINIMAL_BAE_IDENTITY_ONTOLOGY_R1.md`
 - `methodology/BA2_RELATION_ACTION_VOCABULARY_R1.md`
 - `methodology/BA3_PROVENANCE_DERIVATION_CANDIDATE_R1.md`
 - `methodology/BA3_T1_SOURCE_TO_BA_PROVENANCE_LOWER_BOUND_R1.md`
 - `methodology/BA3_IDENTITY_LIFECYCLE_CANDIDATE_R1.md`
 - `methodology/BA3_T2_CROSS_BASELINE_IDENTITY_STALENESS_LIFECYCLE_R1.md`
+- `methodology/BA3_DERIVATION_CHANGE_IMPACT_CANDIDATE_R1.md`
+- `methodology/BA3_T3_DERIVATION_REPRODUCIBILITY_CHANGE_IMPACT_R1.md`
 
-`BA0`, `BA1` and `BA2` are **CLOSED**. `BAReferent` and `BAProposition` remain the only accepted first-class semantic identity families. `BA3-T1` is **COMPLETED / PROVISIONAL PASS WITH LOWER-BOUND CANDIDATE**. `BA3-T2` is **COMPLETED / PROVISIONAL PASS WITH IDENTITY-LIFECYCLE REFINEMENT**: referents and propositions now have distinct cross-baseline continuity tests; source revision does not dictate BA identity revision; review/freshness remain separate from origin; and `RETAIN / REPLACE / RETIRE` plus `STALE / SUPERSEDED / RETIRED` semantics are pressure-tested across facial-access and order-fulfillment responsibility mutations. `BA3` remains **STARTED / NOT CLOSED** pending derivation-rule and change-impact lineage pressure.
+`BA0`, `BA1` and `BA2` are **CLOSED**. `BAReferent` and `BAProposition` remain the only accepted first-class semantic identity families. `BA3-T1` is **COMPLETED / PROVISIONAL PASS WITH LOWER-BOUND CANDIDATE**; `BA3-T2` is **COMPLETED / PROVISIONAL PASS WITH IDENTITY-LIFECYCLE REFINEMENT**; and `BA3-T3` is **COMPLETED / PROVISIONAL PASS WITH DERIVATION-IMPACT REFINEMENT**. T3 requires role-bound derivation basis, immutable inspectable derivation-rule revisions and explicit `revalidationContext` for effective governed context; it preserves localized staleness and the documentation-authority feedback gate without adding a BAE family or BA2 operator. `BA3` remains **STARTED / NOT CLOSED** pending one integrated closure review.
 
 ## Important scope boundary
 

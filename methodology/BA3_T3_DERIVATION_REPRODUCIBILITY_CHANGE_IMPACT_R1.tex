@@ -1,0 +1,629 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[a4paper,margin=2.25cm]{geometry}
+\usepackage{longtable,booktabs,array,calc}
+\usepackage{fancyvrb}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{titlesec}
+\definecolor{ddtadark}{RGB}{30,38,48}
+\definecolor{ddtablue}{RGB}{38,82,126}
+\hypersetup{colorlinks=true,linkcolor=ddtablue,urlcolor=ddtablue,citecolor=ddtablue}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Documentation-Driven Threat Analysis}
+\rhead{BA3-T3 pressure test}
+\cfoot{\thepage}
+\setlength{\headheight}{14pt}
+\setlist[itemize]{leftmargin=1.5em,itemsep=0.2em,topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.7em,itemsep=0.2em,topsep=0.25em}
+\titleformat{\section}{\Large\bfseries\color{ddtadark}}{}{0em}{}
+\titleformat{\subsection}{\large\bfseries\color{ddtadark}}{}{0em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{ddtadark}}{}{0em}{}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setlength{\emergencystretch}{4em}
+\hbadness=10000
+\hfuzz=20pt
+\sloppy
+\begin{document}
+\section{DDTA BA3-T3 derivation-rule reproducibility and change-impact
+lineage pressure test -
+R1}\label{ddta-ba3-t3-derivation-rule-reproducibility-and-change-impact-lineage-pressure-test---r1}
+
+\textbf{Status:} COMPLETED / PROVISIONAL PASS WITH DERIVATION-IMPACT
+REFINEMENT
+
+\textbf{Repository baseline tested:}
+\texttt{5fc0b92809ece193deaba4206488d78f981f7855}
+
+\textbf{Scope:} only BA3-T3. BA4, formal threat-method overlays,
+AnalysisRecord, Common Finding and implementation design remain out of
+scope.
+
+\subsection{1. Test objective}\label{test-objective}
+
+BA3-T3 tests three falsifiable propositions left open by T2:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \texttt{derivationBasis\ +\ derivationRuleRef} is enough for
+  reproducible review only if the basis and rule semantics are
+  sufficiently explicit;
+\item
+  direct source provenance plus BA structure is enough for localized
+  change impact only if all meaning-relevant governed context is
+  represented;
+\item
+  the analysis-to-correction feedback loop can remain outside BA source
+  authority while still being traceable back into the next governed
+  baseline.
+\end{enumerate}
+
+The test uses concrete mutation/provider cases rather than constructing
+a generic dependency engine.
+
+\subsection{2. Starting lower bound}\label{starting-lower-bound}
+
+Before T3, BA3 had:
+
+\begin{verbatim}
+BAOriginAttachment
+|- targetElement
+|- governedBaselineKey
+|- originState
+|- sourceLink
+|- derivationBasis
+`- derivationRuleRef
+
+BABaselineReview
+|- targetElement
+|- evaluatedBaselineKey
+|- reviewState
+`- freshness
+
+BACrossBaselineContinuity
+|- priorElement
+|- targetBaselineKey
+|- disposition
+|- successorElement
+`- continuityBasis
+\end{verbatim}
+
+T2 also identified a staleness candidate when known effective governed
+context changes, but the exact representation of that context remained
+open.
+
+\subsection{3. Falsification attempt A - plain derivation-basis
+list}\label{falsification-attempt-a---plain-derivation-basis-list}
+
+\subsubsection{Hypothesis A0}\label{hypothesis-a0}
+
+\begin{quote}
+A derived BA element can remain reproducible with an unordered/untyped
+list of basis references plus an opaque rule reference.
+\end{quote}
+
+\subsubsection{Pressure case}\label{pressure-case}
+
+The order/payment corpus distinguishes provider-specific raw status from
+governed project status. A normalization derivation needs at least two
+conceptually different inputs:
+
+\begin{verbatim}
+provider vocabulary/status evidence
+project-governed mapping/contract
+\end{verbatim}
+
+If both are stored merely as:
+
+\begin{verbatim}
+derivationBasis = [source-A, source-B]
+\end{verbatim}
+
+a reviewer cannot determine which source is the mapping authority, which
+one provides the raw vocabulary, or whether a tool silently embedded the
+mapping.
+
+\subsubsection{Result}\label{result}
+
+\begin{verbatim}
+A0 REJECTED
+\end{verbatim}
+
+The basis must be role-bound under the referenced rule:
+
+\begin{verbatim}
+inputRoleKey -> basisRef
+\end{verbatim}
+
+The role key belongs to the rule contract, not BA2 proposition
+participation.
+
+\subsection{4. Falsification attempt B - opaque/unversioned derivation
+rule}\label{falsification-attempt-b---opaqueunversioned-derivation-rule}
+
+\subsubsection{Hypothesis B0}\label{hypothesis-b0}
+
+\begin{quote}
+\texttt{derivationRuleRef\ =\ provider-normalization} is sufficient even
+if the rule definition can change in place.
+\end{quote}
+
+\subsubsection{Counterexample}\label{counterexample}
+
+Suppose revision R1 maps provider outcomes using one governed status
+interpretation and revision R2 changes applicability/output semantics.
+If historical derived elements reference only the mutable name,
+replaying B0 later can silently use R2 and produce a different BA
+result.
+
+\subsubsection{Result}\label{result-1}
+
+\begin{verbatim}
+B0 REJECTED
+\end{verbatim}
+
+A derivation reference must resolve to an immutable rule revision. The
+registry entry must expose input roles, applicability, output semantic
+contract and a method-neutral normative definition/rationale.
+
+An implementation can store these as one document or several fields; the
+semantic responsibility is what matters.
+
+\subsection{5. Reproducibility
+threshold}\label{reproducibility-threshold}
+
+The test deliberately rejects machine-execution as the threshold.
+
+Required:
+
+\begin{verbatim}
+same baseline
++ same role-bound basis
++ same immutable rule revision
++ same accepted semantic registries
+    -> materially equivalent semantic result
+       or an explicit non-applicability/diagnostic outcome
+\end{verbatim}
+
+Not required:
+
+\begin{verbatim}
+same UUID
+same JSON byte order
+same graph traversal order
+same software implementation
+same LLM/tool version
+\end{verbatim}
+
+If hidden analyst/tool judgment is required to choose among materially
+different outputs, the derivation is not reproducible enough for silent
+\texttt{ACCEPTED} status.
+
+\subsection{6. Provider-state normalization
+replay}\label{provider-state-normalization-replay}
+
+\subsubsection{Governed payment case}\label{governed-payment-case}
+
+The corpus governs \texttt{PaymentAuthorizationResult} as:
+
+\begin{verbatim}
+authorized
+ declined
+ indeterminate
+\end{verbatim}
+
+while provider-specific raw states remain behind the adapter/contract
+boundary.
+
+A valid derived normalization needs a governed source that authorizes
+the concrete mapping. The method-neutral rule may say:
+
+\begin{quote}
+apply the governed provider-to-project status mapping and materialize
+the corresponding controlled project semantic result.
+\end{quote}
+
+It may not say, without governed evidence:
+
+\begin{verbatim}
+provider APPROVED means authorized
+\end{verbatim}
+
+\subsubsection{Cross-domain control}\label{cross-domain-control}
+
+The same pattern appears in:
+
+\begin{itemize}
+\tightlist
+\item
+  external WMS reservation results;
+\item
+  carrier acceptance/status normalization;
+\item
+  any provider-specific raw result mapped behind a governed project
+  contract.
+\end{itemize}
+
+\subsubsection{Result}\label{result-2}
+
+\begin{verbatim}
+PASS
+\end{verbatim}
+
+One rule-registry contract works across the distinct domains without
+importing payment/WMS/carrier vocabulary into Base Analysis core
+semantics.
+
+\subsection{7. Falsification attempt C - direct provenance is enough for
+M4}\label{falsification-attempt-c---direct-provenance-is-enough-for-m4}
+
+\subsubsection{Hypothesis C0}\label{hypothesis-c0}
+
+\begin{quote}
+A grounded proposition needs only its direct source links; sibling
+governed context can be ignored until the direct FR changes.
+\end{quote}
+
+\subsubsection{B0}\label{b0}
+
+The camera corpus has remote recognition and \texttt{FR-3.4} delivers
+\texttt{RecognitionCapture} to \texttt{RecognitionProcessor}.
+
+A grounded BA proposition is:
+
+\begin{verbatim}
+P0 = transfer(CameraSubsystem,
+              RecognitionProcessor,
+              RecognitionCapture)
+\end{verbatim}
+
+\subsubsection{B1 mutation}\label{b1-mutation}
+
+A sibling representation Decision changes the boundary representation:
+
+\begin{verbatim}
+RecognitionCapture -> OpaqueEvidenceReference
+\end{verbatim}
+
+while, as an adversarial intermediate state, the old FR text has not yet
+been corrected.
+
+With only \texttt{sourceLink(FR-3.4)}, P0 receives no change trigger and
+can be falsely treated as current.
+
+\subsubsection{Result}\label{result-3}
+
+\begin{verbatim}
+C0 REJECTED
+\end{verbatim}
+
+The proposition requires an explicit \texttt{revalidationContext} link
+to the representation commitment when that commitment is known to
+determine validity/applicability.
+
+\subsection{8. M4 authority test - stale/diagnose, do not
+invent}\label{m4-authority-test---stalediagnose-do-not-invent}
+
+Once the sibling representation Decision changes, T3 tests two possible
+reactions.
+
+\subsubsection{Alternative 1 - silent
+rewrite}\label{alternative-1---silent-rewrite}
+
+\begin{verbatim}
+P0 capture-transfer
+    -> automatically rewrite to
+P1 opaque-reference-transfer
+\end{verbatim}
+
+without governed FR correction.
+
+\begin{verbatim}
+REJECTED
+\end{verbatim}
+
+This would allow BA to repair project documentation and become a second
+authority.
+
+\subsubsection{Alternative 2 - localized
+revalidation}\label{alternative-2---localized-revalidation}
+
+\begin{verbatim}
+changed revalidation context
+    -> P0 STALE / PENDING_REVIEW
+    -> source/context inconsistency localized
+    -> DIAGNOSTIC_UNRESOLVED if no governed resolution exists
+\end{verbatim}
+
+After governance corrects/supersedes \texttt{FR-3.4}, the next baseline
+can ground P1 from the corrected FR and apply T2 \texttt{REPLACE}
+continuity to P0.
+
+\begin{verbatim}
+PASS
+\end{verbatim}
+
+This is the required behavior.
+
+\subsection{\texorpdfstring{9. Why \texttt{revalidationContext} is not a
+generic dependency
+graph}{9. Why revalidationContext is not a generic dependency graph}}\label{why-revalidationcontext-is-not-a-generic-dependency-graph}
+
+The pressure test tries three representations.
+
+\subsubsection{Parentage only}\label{parentage-only}
+
+Fails M4 because the influential Decision is sibling context.
+
+\subsubsection{\texorpdfstring{BA2
+\texttt{dependOn}}{BA2 dependOn}}\label{ba2-dependon}
+
+Rejected because it would assert project-semantic prerequisite meaning
+that may not exist.
+
+\subsubsection{\texorpdfstring{Generic
+\texttt{affects}}{Generic affects}}\label{generic-affects}
+
+Rejected as too weak/underspecified for the current lower bound; it
+invites a broad dependency ontology without saying what analytical
+responsibility the edge carries.
+
+\subsubsection{Retained minimum}\label{retained-minimum}
+
+\begin{verbatim}
+revalidationContext(targetElement, contextRef)
+\end{verbatim}
+
+with one precise analytical meaning: a material change to the context is
+a reason to revalidate the target.
+
+\subsection{10. Localized staleness algorithm
+probe}\label{localized-staleness-algorithm-probe}
+
+Starting changed governed source set \texttt{DeltaSource}, the lower
+bound can seed review without scanning every BA element semantically
+from scratch:
+
+\begin{verbatim}
+Seed S with elements whose:
+  sourceLink intersects DeltaSource
+  OR revalidationContext intersects DeltaSource
+
+Repeat:
+  if a derived element has a basisRef in S -> add it to S
+  if an element has revalidationContext to a BA element in S -> add it to S
+  if a proposition binds a referent
+     replaced/retired through T2 review
+     -> add it to S
+
+For each element in S:
+  mark PENDING_REVIEW / STALE for target baseline
+  resolve semantically to RETAIN | REPLACE | RETIRE
+\end{verbatim}
+
+This is a responsibility-level algorithm sketch, not an implementation
+data structure or scheduler.
+
+\subsubsection{Negative control}\label{negative-control}
+
+\begin{verbatim}
+one changed file -> all BA elements stale
+\end{verbatim}
+
+remains rejected.
+
+\subsection{11. Rule revision change
+probe}\label{rule-revision-change-probe}
+
+A derived BA element records the immutable rule revision used in its
+historical origin.
+
+If a later methodology revision changes the rule itself, historical
+meaning is not rewritten. For a new materialization/review context the
+element is re-evaluated under the explicitly selected current rule
+revision.
+
+Possible T2 outcomes:
+
+\begin{verbatim}
+same semantic result -> RETAIN
+materially different result -> REPLACE
+no longer applicable -> RETIRE or DIAGNOSTIC_UNRESOLVED
+\end{verbatim}
+
+This prevents methodological drift from silently changing the meaning
+attributed to an older baseline.
+
+\subsection{12. Feedback lineage
+pressure}\label{feedback-lineage-pressure}
+
+\subsubsection{Analysis-produced
+candidate}\label{analysis-produced-candidate}
+
+A downstream analysis may identify a gap in, for example, the
+representation/FR relationship. To localize corrective feedback it can
+carry:
+
+\begin{verbatim}
+BAElementRef@B0
+GovernedSourceRef@B0
+\end{verbatim}
+
+obtained from Base Analysis provenance.
+
+\subsubsection{Rejected correction}\label{rejected-correction}
+
+If governance rejects the proposed correction:
+
+\begin{verbatim}
+analysis output exists
+project documentation unchanged
+BA source authority unchanged
+\end{verbatim}
+
+No new grounded BA element is introduced.
+
+\subsubsection{Accepted correction}\label{accepted-correction}
+
+If governance accepts the correction:
+
+\begin{verbatim}
+analysis/candidate
+    motivates
+new governed documentation B1
+    grounds
+BA@B1
+\end{verbatim}
+
+The BA@B1 \texttt{sourceLink} points to B1 governed documentation,
+\textbf{not} to the finding/candidate that motivated it. T2 continuity
+connects BA@B0 and BA@B1 where appropriate.
+
+\subsubsection{Result}\label{result-4}
+
+\begin{verbatim}
+PASS WITHOUT NEW BA ANALYSIS IDENTITY
+\end{verbatim}
+
+The BA layer already exposes the handles required for downstream
+analysis/change provenance. Exact AnalysisRecord/change-event lineage
+remains downstream work and is not forced into BA3.
+
+\subsection{13. Cross-layer authority
+invariant}\label{cross-layer-authority-invariant}
+
+The complete tested chain is:
+
+\begin{verbatim}
+governed docs B0
+    -> BA B0
+    -> downstream analysis
+    -> corrective documentation candidate
+    -> governed review
+    -> governed docs B1
+    -> BA B1
+\end{verbatim}
+
+The only transitions that establish project truth are governed-document
+acceptance transitions. BA derivation rules and analysis outputs never
+bypass that gate.
+
+\subsection{14. Reopen checks}\label{reopen-checks}
+
+\subsubsection{BA1}\label{ba1}
+
+No new independently reusable project-semantic identity family is
+required. Rule descriptors and revalidation links are metadata
+responsibilities.
+
+\begin{verbatim}
+BA1 REOPEN: false
+\end{verbatim}
+
+\subsubsection{BA2}\label{ba2}
+
+No new project-semantic operator is required. In particular,
+\texttt{revalidationContext} is not \texttt{dependOn} and does not enter
+the BA2 operator registry.
+
+\begin{verbatim}
+BA2 REOPEN: false
+\end{verbatim}
+
+\subsubsection{BA3-T1}\label{ba3-t1}
+
+T1 is refined by role-binding \texttt{derivationBasis}; its
+provenance/origin responsibilities remain valid.
+
+\begin{verbatim}
+T1 REOPEN: false
+\end{verbatim}
+
+\subsubsection{BA3-T2}\label{ba3-t2}
+
+T2 staleness/lifecycle semantics remain valid; T3 supplies the
+previously open effective-context representation needed to seed them.
+
+\begin{verbatim}
+T2 REOPEN: false
+\end{verbatim}
+
+\subsection{15. Disposition table}\label{disposition-table}
+
+\begin{verbatim}
+Plain untyped derivationBasis list                 REJECTED
+Role-bound derivationBasisBinding                  REQUIRED
+Mutable/opaque derivation rule                     REJECTED
+Immutable inspectable rule revision                REQUIRED
+Universal executable rule language                 REJECTED
+Semantic replay reproducibility                    REQUIRED
+M4 parentage-only change detection                 REJECTED
+Explicit revalidationContext                       REQUIRED
+revalidationContext -> BA2 dependOn                REJECTED
+Global BA invalidation on any source change        REJECTED
+Localized staleness propagation                    PASS
+Auto-repair BA from sibling source                 REJECTED
+Provider mapping hidden in tool                    REJECTED
+Governed provider mapping as derivation basis      REQUIRED
+  when the mapping itself is derived
+Analysis finding/candidate as BA source             REJECTED
+New BAE family                                     NOT FORCED
+BA1/BA2 reopen                                     NOT TRIGGERED
+Distinct BA3 closure review                        REQUIRED
+\end{verbatim}
+
+\subsection{16. Exit condition
+assessment}\label{exit-condition-assessment}
+
+BA3-T3 exits with:
+
+\begin{verbatim}
+COMPLETED / PROVISIONAL PASS WITH DERIVATION-IMPACT REFINEMENT
+\end{verbatim}
+
+The T1/T2 lower bounds survive with two refinements:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  derivation basis is role-bound and references an immutable inspectable
+  rule revision;
+\item
+  explicit \texttt{revalidationContext} captures
+  non-source/non-derivation governed context needed to seed localized
+  review.
+\end{enumerate}
+
+The feedback loop requires no new BA authority or BAE family.
+
+A distinct BA3 closure review is still required because T1-T3 have
+accumulated multiple orthogonal metadata responsibilities that must be
+adversarially checked for redundancy, contradiction and cross-corpus
+sufficiency before BA4 begins.
+
+\subsection{17. Next authorized
+microstep}\label{next-authorized-microstep}
+
+Only after this package is reviewed, committed, pushed and remotely
+verified:
+
+\begin{quote}
+\textbf{BA3-T4 - provenance, identity/lifecycle and
+derivation/change-impact closure review.}
+\end{quote}
+
+Do not start BA4 until that review either closes BA3 or reopens the
+smallest failed BA3 responsibility.
+
+\end{document}
