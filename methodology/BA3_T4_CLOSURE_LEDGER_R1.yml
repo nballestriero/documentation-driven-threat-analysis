@@ -1,0 +1,64 @@
+schema: ddta-ba3-t4-closure-ledger-r1
+microstep: BA3-T4
+baseline_reviewed: a20a590d771b1053ecbd095d8a8c4255ae762bfe
+status: CLOSED
+outcome: PASS
+phase_disposition:
+  BA0: CLOSED
+  BA1: CLOSED
+  BA2: CLOSED
+  BA3_T1: COMPLETED_PROVISIONAL_PASS
+  BA3_T2: COMPLETED_PROVISIONAL_PASS_IDENTITY_LIFECYCLE_REFINEMENT
+  BA3_T3: COMPLETED_PROVISIONAL_PASS_DERIVATION_IMPACT_REFINEMENT
+  BA3_T4: CLOSED_PASS
+  BA3: CLOSED_FOR_CURRENT_THESIS_SCOPE
+  BA4: NOT_STARTED_NEXT
+accepted_responsibilities:
+  - independent_provenance_on_BAReferent_and_BAProposition
+  - many_to_many_baseline_scoped_governed_source_lineage
+  - origin_state_grounded_derived_diagnostic_unresolved
+  - direct_source_vs_role_bound_derivation_basis_separation
+  - immutable_inspectable_derivation_rule_revision
+  - semantic_replay_reproducibility
+  - review_state_pending_accepted_rejected
+  - freshness_current_stale
+  - family_specific_cross_baseline_identity_rules
+  - continuity_retain_replace_retire
+  - replace_implies_superseded
+  - retire_implies_retired
+  - explicit_narrow_revalidation_context
+  - localized_staleness_propagation
+  - governed_document_authority_feedback_gate
+rejected_reductions:
+  - provenance_on_only_one_BA1_family
+  - baseline_free_source_locator
+  - source_copy_as_authority
+  - merge_sourceLink_and_derivationBasisBinding
+  - merge_revalidationContext_into_sourceLink
+  - merge_revalidationContext_into_derivation_basis
+  - revalidationContext_as_BA2_dependOn
+  - collapse_grounded_and_derived
+  - collapse_diagnostic_unresolved_into_rejected
+  - remove_review_state
+  - collapse_freshness_into_review_state
+  - untyped_derivation_basis
+  - mutable_or_hidden_rule_semantics
+  - universal_executable_derivation_language_requirement
+  - one_identity_rule_for_referent_and_proposition
+  - BA_level_revise_disposition
+  - merge_replace_and_retire
+  - remove_continuity_basis
+  - independent_superseded_retired_state_machine
+  - whole_BA_invalidation_on_any_file_change
+  - analysis_output_as_BA_source_authority
+not_forced:
+  - third_BAE_identity_family
+  - new_BA2_operator
+  - universal_derivation_rule_taxonomy
+  - general_dependency_graph
+  - ThreatForge_implementation_schema
+reopen:
+  BA1: NOT_TRIGGERED
+  BA2: NOT_TRIGGERED
+  BA3: NO_CURRENT_COUNTEREXAMPLE
+next_authorized_microstep: BA4-T1_projection_boundary_traceability_semantic_preservation_lower_bound_trial

@@ -1,0 +1,467 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[a4paper,margin=2.25cm]{geometry}
+\usepackage{longtable,booktabs,array,calc}
+\usepackage{fancyvrb}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{titlesec}
+\definecolor{ddtadark}{RGB}{30,38,48}
+\definecolor{ddtablue}{RGB}{38,82,126}
+\hypersetup{colorlinks=true,linkcolor=ddtablue,urlcolor=ddtablue,citecolor=ddtablue}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Documentation-Driven Threat Analysis}
+\rhead{BA3-T4 closure review}
+\cfoot{\thepage}
+\setlength{\headheight}{14pt}
+\setlist[itemize]{leftmargin=1.5em,itemsep=0.2em,topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.7em,itemsep=0.2em,topsep=0.25em}
+\titleformat{\section}{\Large\bfseries\color{ddtadark}}{}{0em}{}
+\titleformat{\subsection}{\large\bfseries\color{ddtadark}}{}{0em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{ddtadark}}{}{0em}{}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setlength{\emergencystretch}{4em}
+\hbadness=10000
+\hfuzz=20pt
+\sloppy
+\begin{document}
+\section{BA3-T4 - Provenance, identity/lifecycle and derivation/change-impact closure review}\label{ba3-t4---provenance-identitylifecycle-and-derivationchange-impact-closure-review}
+
+\textbf{Revision:} R1
+
+\textbf{Status:} CLOSED / PASS / BA3 CLOSED
+
+\textbf{Repository baseline reviewed:} \texttt{a20a590d771b1053ecbd095d8a8c4255ae762bfe}
+
+\textbf{Phase:} BA3 - provenance, derivation, identity/lifecycle and change-revalidation mechanics
+
+\textbf{BA0:} CLOSED
+
+\textbf{BA1:} CLOSED
+
+\textbf{BA2:} CLOSED
+
+\textbf{BA4:} NOT STARTED
+
+\subsection{1. Closure question}\label{closure-question}
+
+BA3-T4 asks only:
+
+\begin{quote}
+Can the combined BA3-T1/T2/T3 contract be reduced, merged or simplified without losing source drill-down, derivation reproducibility, uncertainty localization, cross-baseline identity history, targeted revalidation or the governed-document authority boundary?
+\end{quote}
+
+The review is adversarial closure, not vocabulary discovery. No new BA3 mechanism is accepted unless removal/collapse pressure exposes a concrete material counterexample.
+
+\subsection{2. Evidence reviewed}\label{evidence-reviewed}
+
+The closure review reuses the controlled evidence already established by the BA3 sequence:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  BA0 responsibility/non-goals and governed-document authority boundary;
+\item
+  BA1 closed \texttt{BAReferent\ +\ BAProposition} identity ontology;
+\item
+  BA2 closed proposition/operator/role semantics;
+\item
+  BA3-T1 provenance/origin lower bound;
+\item
+  BA3-T2 M1/M2/M3 and order/WMS identity/lifecycle pressure;
+\item
+  BA3-T3 M4, provider-state normalization and feedback-authority pressure;
+\item
+  diagnostic resolution across governed correction.
+\end{enumerate}
+
+No new method-specific ontology, STRIDE schema, ThreatForge runtime model or arbitrary implementation requirement is introduced.
+
+\subsection{3. Reduction review - provenance and baseline scope}\label{reduction-review---provenance-and-baseline-scope}
+
+\subsubsection{3.1 Remove provenance from one BA1 identity family}\label{remove-provenance-from-one-ba1-identity-family}
+
+\textbf{Attempt:} keep proposition provenance only and infer referent provenance from participating propositions, or vice versa.
+
+\textbf{Result:} REJECTED.
+
+A referent can survive while propositions about it change, and a proposition can cite a clause whose participating referents are supported across different source branches. Removing independent provenance from either family makes source drill-down and lifecycle review depend on indirect reconstruction.
+
+\textbf{Disposition:} \texttt{PASS\ /\ INDEPENDENT\ PROVENANCE\ RETAINED}.
+
+\subsubsection{3.2 Remove immutable governed-baseline scope}\label{remove-immutable-governed-baseline-scope}
+
+\textbf{Attempt:} identify source evidence by document identity + locator only.
+
+\textbf{Result:} REJECTED.
+
+M1 directly falsifies this reduction: \texttt{D-3.5} can remain the recognizable Decision area while its realization changes from Ethernet to Wi-Fi. A baseline-free source pointer can conflate materially different governed meanings.
+
+\textbf{Disposition:} \texttt{PASS\ /\ BASELINE\ SCOPE\ RETAINED}.
+
+\subsubsection{3.3 Replace exact locator with copied source prose}\label{replace-exact-locator-with-copied-source-prose}
+
+\textbf{Attempt:} copy source text into BA and treat the copy as evidence.
+
+\textbf{Result:} REJECTED.
+
+The copy can drift and would create a second authority. Exact drill-down to the governed baseline remains the semantic lower bound; cached excerpts remain non-authoritative display aids.
+
+\textbf{Disposition:} \texttt{PASS\ /\ GOVERNED\ LOCATOR\ RETAINED}.
+
+\subsection{4. Reduction review - source, derivation and context links}\label{reduction-review---source-derivation-and-context-links}
+
+\subsubsection{\texorpdfstring{4.1 Merge \texttt{sourceLink} and \texttt{derivationBasisBinding}}{4.1 Merge sourceLink and derivationBasisBinding}}\label{merge-sourcelink-and-derivationbasisbinding}
+
+\textbf{Attempt:} use one undifferentiated \texttt{evidence} relation.
+
+\textbf{Result:} REJECTED.
+
+Direct governed support and analytical derivation input answer different authority questions. A derived classification may use an accepted BA proposition as basis, but that proposition is not itself the project authority for the classification. Conversely, a grounded transfer needs direct source support without being analytically derived.
+
+\textbf{Disposition:} \texttt{PASS\ /\ SEMANTIC\ SEPARATION\ RETAINED}.
+
+\subsubsection{\texorpdfstring{4.2 Merge \texttt{revalidationContext} into \texttt{sourceLink}}{4.2 Merge revalidationContext into sourceLink}}\label{merge-revalidationcontext-into-sourcelink}
+
+\textbf{Attempt:} treat every context that can invalidate an element as direct source provenance.
+
+\textbf{Result:} REJECTED by M4.
+
+The sibling representation Decision must make the old capture-transfer meaning stale, but it does not directly ground a successor \texttt{transfer(...\ OpaqueEvidenceReference)} proposition. Promoting it to source authority would permit silent BA repair from context rather than governance.
+
+\textbf{Disposition:} \texttt{PASS\ /\ REVALIDATION\ CONTEXT\ RETAINED}.
+
+\subsubsection{\texorpdfstring{4.3 Merge \texttt{revalidationContext} into derivation basis}{4.3 Merge revalidationContext into derivation basis}}\label{merge-revalidationcontext-into-derivation-basis}
+
+\textbf{Attempt:} treat effective context as an analytical derivation input.
+
+\textbf{Result:} REJECTED.
+
+M4's old transfer is grounded in \texttt{FR-3.4}; the sibling Decision affects its validity but does not make the proposition derived. The same problem appears wherever a grounded assertion's applicability depends on a separately governed context.
+
+\textbf{Disposition:} \texttt{PASS\ /\ CONTEXT\ IS\ NOT\ DERIVATION}.
+
+\subsubsection{\texorpdfstring{4.4 Promote \texttt{revalidationContext} to BA2 \texttt{dependOn}}{4.4 Promote revalidationContext to BA2 dependOn}}\label{promote-revalidationcontext-to-ba2-dependon}
+
+\textbf{Attempt:} reuse the project-semantic dependency operator.
+
+\textbf{Result:} REJECTED.
+
+A revalidation trigger does not assert that the project-semantic target requires the context as a domain prerequisite. Doing so would invent project meaning merely to support analysis bookkeeping.
+
+\textbf{Disposition:} \texttt{PASS\ /\ BA2\ REMAINS\ CLOSED}.
+
+\subsection{5. Reduction review - origin, review and freshness dimensions}\label{reduction-review---origin-review-and-freshness-dimensions}
+
+\subsubsection{\texorpdfstring{5.1 Collapse \texttt{GROUNDED} and \texttt{DERIVED}}{5.1 Collapse GROUNDED and DERIVED}}\label{collapse-grounded-and-derived}
+
+\textbf{Attempt:} treat every accepted BA element as simply source-backed.
+
+\textbf{Result:} REJECTED.
+
+Provider normalization and method-neutral classification require explicit analytical transformation. Collapsing origin would allow tool/analyst inference to masquerade as directly governed project truth.
+
+\subsubsection{\texorpdfstring{5.2 Collapse \texttt{DIAGNOSTIC\_UNRESOLVED} into \texttt{REJECTED}}{5.2 Collapse DIAGNOSTIC\_UNRESOLVED into REJECTED}}\label{collapse-diagnostic_unresolved-into-rejected}
+
+\textbf{Attempt:} treat unresolved meaning as a failed candidate.
+
+\textbf{Result:} REJECTED.
+
+A localized contradiction/ambiguity can itself be an accepted analytical diagnostic even though no project-semantic answer is accepted. M4 can require exactly this outcome when sibling Decision and FR remain inconsistent.
+
+\subsubsection{\texorpdfstring{5.3 Remove \texttt{reviewState}}{5.3 Remove reviewState}}\label{remove-reviewstate}
+
+\textbf{Attempt:} infer acceptance from presence in the BA store.
+
+\textbf{Result:} REJECTED.
+
+Tool/analyst candidates and replacement proposals require a state before acceptance, and rejected candidates may remain auditable without entering accepted BA meaning.
+
+\subsubsection{\texorpdfstring{5.4 Collapse \texttt{freshness} into \texttt{reviewState}}{5.4 Collapse freshness into reviewState}}\label{collapse-freshness-into-reviewstate}
+
+\textbf{Attempt:} use \texttt{PENDING\_REVIEW} as the only marker for both new candidates and impacted prior meaning.
+
+\textbf{Result:} REJECTED.
+
+A new unreviewed candidate and a previously accepted meaning made suspect by a target-baseline change are different analytical conditions. Historical acceptance for \texttt{B0} must coexist with staleness relative to \texttt{B1}; freshness therefore remains a distinct semantic dimension even if an implementation computes or co-locates it.
+
+\textbf{Disposition for Section 5:} \texttt{PASS\ /\ ORIGIN\ !=\ REVIEW\ !=\ FRESHNESS}.
+
+\subsection{6. Reduction review - derivation reproducibility}\label{reduction-review---derivation-reproducibility}
+
+\subsubsection{\texorpdfstring{6.1 Return to untyped \texttt{derivationBasis}}{6.1 Return to untyped derivationBasis}}\label{return-to-untyped-derivationbasis}
+
+\textbf{Attempt:} record only an unordered set of basis references.
+
+\textbf{Result:} REJECTED by provider normalization.
+
+The raw provider vocabulary and the governed project mapping are not interchangeable inputs. The rule must know which basis item fills which input responsibility.
+
+\subsubsection{6.2 Allow mutable/unversioned rule references}\label{allow-mutableunversioned-rule-references}
+
+\textbf{Attempt:} reference a logical rule key whose meaning can change in place.
+
+\textbf{Result:} REJECTED.
+
+The same basis could produce a different accepted result while historical provenance still points to the same rule name. Exact immutable rule revision is therefore necessary for replay.
+
+\subsubsection{6.3 Require a universal executable derivation language}\label{require-a-universal-executable-derivation-language}
+
+\textbf{Attempt:} close BA3 only if every derivation can be expressed in one executable DSL.
+
+\textbf{Result:} REJECTED AS UNNECESSARY.
+
+Current evidence requires inspectable input roles, applicability, output semantics and normative rationale. Semantic replay is sufficient; byte-identical/tool-identical execution is not a BA0 responsibility.
+
+\subsubsection{6.4 Require exhaustive derivation-rule enumeration before closure}\label{require-exhaustive-derivation-rule-enumeration-before-closure}
+
+\textbf{Attempt:} predefine every future rule key.
+
+\textbf{Result:} REJECTED AS UNNECESSARY.
+
+The descriptor contract is closed; the inventory remains corpus-driven and extensible. A new rule key that satisfies the closed descriptor does not by itself reopen BA3.
+
+\textbf{Disposition:} \texttt{PASS\ /\ ROLE-BOUND\ BASIS\ +\ IMMUTABLE\ INSPECTABLE\ RULE\ IS\ THE\ CURRENT\ LOWER\ BOUND}.
+
+\subsection{7. Reduction review - continuity and lifecycle}\label{reduction-review---continuity-and-lifecycle}
+
+\subsubsection{7.1 Use one identity-continuity rule for referents and propositions}\label{use-one-identity-continuity-rule-for-referents-and-propositions}
+
+\textbf{Attempt:} retain/replace both families under one generic textual or source-based equivalence test.
+
+\textbf{Result:} REJECTED.
+
+M1 preserves \texttt{LocalConnectivity} referent identity while replacing the Ethernet realization proposition. M3 can preserve capture identity while retiring remote-transfer assertion identity. Referent reuse and assertion identity therefore have materially different continuity tests.
+
+\subsubsection{\texorpdfstring{7.2 Copy source-layer \texttt{revise} into BA lifecycle}{7.2 Copy source-layer revise into BA lifecycle}}\label{copy-source-layer-revise-into-ba-lifecycle}
+
+\textbf{Attempt:} add or reuse a BA \texttt{REVISE} state whenever a governed document is revised.
+
+\textbf{Result:} REJECTED.
+
+One source revision can cause some BA identities to retain, others to replace and others to retire. Source revision is not BA semantic identity disposition.
+
+\subsubsection{\texorpdfstring{7.3 Merge \texttt{REPLACE} and \texttt{RETIRE}}{7.3 Merge REPLACE and RETIRE}}\label{merge-replace-and-retire}
+
+\textbf{Attempt:} use one generic \texttt{CHANGE/END} disposition.
+
+\textbf{Result:} REJECTED.
+
+M1 realization change has a semantic successor; M3 remote transfer can simply cease to exist. Successor identity versus no successor is analytically material and must remain explicit.
+
+\subsubsection{\texorpdfstring{7.4 Remove \texttt{continuityBasis}}{7.4 Remove continuityBasis}}\label{remove-continuitybasis}
+
+\textbf{Attempt:} store only the disposition and successor link.
+
+\textbf{Result:} REJECTED.
+
+Cross-baseline identity decisions would become opaque precisely when source wording, realization or document location changes while semantic identity is retained. Baseline-scoped evidence/rationale is required for reproducible continuity review.
+
+\subsubsection{\texorpdfstring{7.5 Store \texttt{SUPERSEDED} and \texttt{RETIRED} as independent lifecycle state machines}{7.5 Store SUPERSEDED and RETIRED as independent lifecycle state machines}}\label{store-superseded-and-retired-as-independent-lifecycle-state-machines}
+
+\textbf{Attempt:} create another first-class status dimension.
+
+\textbf{Result:} REJECTED AS REDUNDANT.
+
+They are historical interpretations of accepted \texttt{REPLACE} and \texttt{RETIRE}. No separate semantic family/state machine is required.
+
+\textbf{Disposition:} \texttt{PASS\ /\ RETAIN\ \textbar{}\ REPLACE\ \textbar{}\ RETIRE\ WITH\ FAMILY-SPECIFIC\ IDENTITY\ RULES\ RETAINED}.
+
+\subsection{8. Cross-corpus localized-change regression}\label{cross-corpus-localized-change-regression}
+
+\subsubsection{8.1 Facial M1 - Ethernet -\textgreater{} Wi-Fi}\label{facial-m1---ethernet---wi-fi}
+
+Expected closed behavior:
+
+\begin{verbatim}
+LocalConnectivity                         RETAIN
+WiredEthernet                             RETIRE if unused elsewhere
+WiFi                                      INTRODUCE
+realize(LocalConnectivity, WiredEthernet) REPLACE -> WiFi successor
+\end{verbatim}
+
+Only directly sourced/context-linked semantics are candidates for revalidation. A transport-realization change does not by itself invalidate unrelated transfer or responsibility assertions, and it does not force BA-wide staleness.
+
+\textbf{Result:} PASS.
+
+\subsubsection{8.2 Facial M2 - external -\textgreater{} project-owned transport}\label{facial-m2---external---project-owned-transport}
+
+The negative responsibility proposition is replaced by affirmative project responsibility; external service consumption retires if consumption ceases; new transport obligations may be introduced. Abstract connectivity and unrelated consumer meaning can retain.
+
+\textbf{Result:} PASS.
+
+\subsubsection{8.3 Facial M3 - remote -\textgreater{} local recognition}\label{facial-m3---remote---local-recognition}
+
+The remote transfer proposition retires; it is not rewritten as a local-processing assertion. Retirement/replacement of the \texttt{RecognitionProcessor} participant and explicit context links localize affected transport semantics. Unrelated project meaning is not invalidated globally.
+
+\textbf{Result:} PASS.
+
+\subsubsection{8.4 Facial M4 - raw capture -\textgreater{} opaque reference}\label{facial-m4---raw-capture---opaque-reference}
+
+The sibling representation Decision is explicit \texttt{revalidationContext} for the affected old transfer meaning. When it changes, the old proposition becomes stale. If \texttt{FR-3.4} remains inconsistent, BA emits/localizes \texttt{DIAGNOSTIC\_UNRESOLVED}; it does not synthesize a successor project commitment from the sibling Decision.
+
+\textbf{Result:} PASS / decisive evidence that direct source parentage alone is insufficient.
+
+\subsubsection{8.5 Order/WMS responsibility control}\label{orderwms-responsibility-control}
+
+Internal inventory authority semantics retire/replace when responsibility moves to an external WMS. Service/contract/normalization meaning is introduced as required. Unrelated payment/fulfillment/order identities do not become stale without explicit source/basis/context/participant impact.
+
+\textbf{Result:} PASS.
+
+\subsubsection{8.6 Provider-state normalization}\label{provider-state-normalization}
+
+A derived governed result uses role-bound raw-vocabulary and governed-mapping inputs under an immutable generic normalization rule. If either input changes, only dependent derived meaning becomes stale. Missing or contradictory mapping yields diagnostic/rejection rather than tool-private truth.
+
+\textbf{Result:} PASS.
+
+\textbf{Disposition for Section 8:} \texttt{PASS\ /\ NO\ OVER-INVALIDATION\ OR\ UNDER-INVALIDATION\ COUNTEREXAMPLE\ SURVIVES\ CURRENT\ EVIDENCE}.
+
+\subsection{9. Diagnostic resolution regression}\label{diagnostic-resolution-regression}
+
+A prior accepted \texttt{DIAGNOSTIC\_UNRESOLVED} identity is historical analytical truth for its baseline.
+
+After governed correction:
+
+\begin{verbatim}
+issue removed                        -> old diagnostic RETIRE
+materially different issue remains  -> old diagnostic REPLACE
+new grounded/derived meaning         -> own origin/provenance/review
+\end{verbatim}
+
+Retyping the old diagnostic in place as \texttt{GROUNDED} would falsify its historical origin.
+
+\textbf{Disposition:} \texttt{PASS}.
+
+\subsection{10. Feedback-authority regression}\label{feedback-authority-regression}
+
+The candidate chain remains:
+
+\begin{verbatim}
+governed docs B0
+ -> BA B0
+ -> downstream analysis
+ -> corrective documentation candidate
+ -> governed review
+ -> governed docs B1
+ -> BA B1
+\end{verbatim}
+
+Two adversarial reductions fail:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  using the analysis finding/candidate as \texttt{sourceLink} for \texttt{BA@B1} - \textbf{REJECTED}, because analysis would become project authority;
+\item
+  patching BA directly after an accepted analysis decision before governed documentation changes - \textbf{REJECTED}, because the authoritative commitment would exist only in BA/tool state.
+\end{enumerate}
+
+The accepted correction grounds the next BA only through governed documentation \texttt{B1}.
+
+No \texttt{AnalysisRecord}, Finding identity or change-event identity is required inside BA3 to preserve this authority boundary.
+
+\textbf{Disposition:} \texttt{PASS\ /\ GOVERNED\ DOCUMENTATION\ REMAINS\ SOLE\ PROJECT\ AUTHORITY}.
+
+\subsection{11. BA1 reopen test}\label{ba1-reopen-test}
+
+The combined BA3 mechanics require semantic identity for project referents and analytical assertions, but not for a third BAE family.
+
+Provenance attachments, review records, continuity records, rule descriptors, source references, baseline keys and revalidation contexts have metadata responsibilities. None demonstrates both BA1 split criteria: independent project-semantic identity plus reusable subtype-specific invariants that cannot be represented honestly outside a new BAE family.
+
+\textbf{Disposition:} \texttt{PASS\ /\ BA1\ REMAINS\ CLOSED}.
+
+\subsection{12. BA2 reopen test}\label{ba2-reopen-test}
+
+BA3 uses metadata relations such as source, basis, continuity and revalidation context, but these are not project-semantic assertions.
+
+No current case forces a BA2 \texttt{affects}, \texttt{derivedFrom}, \texttt{revalidates}, \texttt{supersedes} or lifecycle operator. Existing project meaning remains representable with the closed 13-key registry.
+
+\textbf{Disposition:} \texttt{PASS\ /\ BA2\ REMAINS\ CLOSED}.
+
+\subsection{13. Analytical-materialization identity check}\label{analytical-materialization-identity-check}
+
+T4 also asks whether \texttt{governedBaselineKey} is insufficient because derivation-rule revisions can evolve independently of project documentation.
+
+Current evidence does not force a new first-class BA materialization identity: every accepted derived element records the exact immutable rule revision used, and the current thesis requires one accepted BA materialization per governed baseline/review context rather than concurrent semantically divergent accepted variants.
+
+This remains an explicit reopen criterion: if a concrete workflow requires multiple concurrent accepted BA materializations for the same governed baseline and their semantic-registry/rule-version context cannot be recovered from element provenance, reopen only this BA3 baseline/materialization responsibility.
+
+\textbf{Disposition:} \texttt{PASS\ FOR\ CURRENT\ SCOPE\ /\ NO\ NEW\ BASELINE\ BAE\ FAMILY\ OR\ MANDATORY\ KEY\ FORCED}.
+
+\subsection{14. Representation-independence/minimality check}\label{representation-independenceminimality-check}
+
+Several contracts can be physically co-located without semantic loss:
+
+\begin{itemize}
+\tightlist
+\item
+  source/basis/context links may share one edge table with distinct link kinds;
+\item
+  review/freshness may share one record;
+\item
+  reverse source-to-BA navigation may be computed;
+\item
+  lifecycle historical labels may be derived from accepted continuity dispositions.
+\end{itemize}
+
+What cannot be removed is the ability to recover the distinct semantic questions.
+
+This is the closure-level interpretation of the project rule:
+
+\begin{verbatim}
+semantic responsibility exists
+    !=
+must become first-class metaclass / class / table / graph node
+\end{verbatim}
+
+\textbf{Disposition:} \texttt{PASS\ /\ SEMANTIC\ CONTRACT\ FROZEN,\ PHYSICAL\ REPRESENTATION\ OPEN}.
+
+\subsection{15. Closure decision}\label{closure-decision}
+
+No material counterexample survives the integrated reduction/regression review.
+
+The current evidence does not force:
+
+\begin{itemize}
+\tightlist
+\item
+  reopening BA1 or BA2;
+\item
+  a new first-class BAE family;
+\item
+  a new BA2 operator;
+\item
+  a universal derivation DSL;
+\item
+  a general dependency graph;
+\item
+  whole-BA invalidation;
+\item
+  analysis-output authority;
+\item
+  or implementation-specific storage semantics.
+\end{itemize}
+
+The T1/T2/T3 responsibilities are therefore accepted as the current-scope lower bound, with the physical-combination freedom and reopen criteria recorded in \texttt{BA3\_PROVENANCE\_DERIVATION\_LIFECYCLE\_CHANGE\_CONTRACT\_R1.md}.
+
+\begin{verbatim}
+BA3-T1   COMPLETED / PROVISIONAL PASS
+BA3-T2   COMPLETED / PROVISIONAL PASS
+BA3-T3   COMPLETED / PROVISIONAL PASS
+BA3-T4   CLOSED / PASS
+BA3      CLOSED FOR CURRENT THESIS SCOPE
+\end{verbatim}
+
+\textbf{Next phase:} BA4 projections. BA4 is not executed by this closure package.
+
+\end{document}

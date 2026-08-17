@@ -1,0 +1,527 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[a4paper,margin=2.25cm]{geometry}
+\usepackage{longtable,booktabs,array,calc}
+\usepackage{fancyvrb}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{titlesec}
+\definecolor{ddtadark}{RGB}{30,38,48}
+\definecolor{ddtablue}{RGB}{38,82,126}
+\hypersetup{colorlinks=true,linkcolor=ddtablue,urlcolor=ddtablue,citecolor=ddtablue}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Documentation-Driven Threat Analysis}
+\rhead{BA3 closed provenance/lifecycle contract}
+\cfoot{\thepage}
+\setlength{\headheight}{14pt}
+\setlist[itemize]{leftmargin=1.5em,itemsep=0.2em,topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.7em,itemsep=0.2em,topsep=0.25em}
+\titleformat{\section}{\Large\bfseries\color{ddtadark}}{}{0em}{}
+\titleformat{\subsection}{\large\bfseries\color{ddtadark}}{}{0em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{ddtadark}}{}{0em}{}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setlength{\emergencystretch}{4em}
+\hbadness=10000
+\hfuzz=20pt
+\sloppy
+\begin{document}
+\section{DDTA BA3 provenance, derivation, lifecycle and change contract - R1}\label{ddta-ba3-provenance-derivation-lifecycle-and-change-contract---r1}
+
+\textbf{Status:} CLOSED BY BA3-T4 / ACCEPTED FOR CURRENT THESIS SCOPE
+
+\textbf{Closure baseline reviewed:} \texttt{a20a590d771b1053ecbd095d8a8c4255ae762bfe}
+
+\textbf{Closed dependencies:} BA0 responsibility boundary; BA1 \texttt{BAReferent\ +\ BAProposition}; BA2 relation/action vocabulary; BA3-T1 provenance/origin lower bound; BA3-T2 identity/lifecycle refinement; BA3-T3 derivation/change-impact refinement.
+
+\subsection{1. Closure statement}\label{closure-statement}
+
+BA3 closes the smallest methodology-neutral provenance, derivation, review/lifecycle and change-revalidation contract required by the current DDTA thesis evidence.
+
+The contract connects governed project documentation to accepted Base Analysis while preserving four properties simultaneously:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  every materialized Base Analysis identity can be drilled back to the governed meaning that supports or localizes it;
+\item
+  methodology-neutral derived meaning can be independently reviewed and semantically replayed;
+\item
+  accepted meaning can survive, be replaced or disappear across governed baselines without rewriting history; and
+\item
+  governed change can mark only potentially affected Base Analysis meaning for revalidation without making Base Analysis or an analysis tool a second source of project truth.
+\end{enumerate}
+
+BA3 remains representation-independent. The contracts below are semantic responsibilities, not mandatory classes, tables, graph node kinds or serialized record shapes.
+
+\subsection{2. Closed semantic responsibilities at a glance}\label{closed-semantic-responsibilities-at-a-glance}
+
+The following responsibilities remain distinct even if one implementation stores them in a common physical edge/metadata mechanism:
+
+\begin{verbatim}
+sourceLink
+  What governed material directly supports/localizes
+  this BA meaning?
+
+derivationBasisBinding
+  What role-bound governed/BA inputs were used
+  to derive this meaning?
+
+derivationRuleRef
+  Under what immutable method-neutral rule revision
+  were those inputs interpreted?
+
+revalidationContext
+  What governed/BA context, if materially changed,
+  is sufficient to require revalidation?
+
+reviewState
+  Has this analytical materialization/candidate been
+  accepted, rejected or not yet reviewed?
+
+freshness
+  Is previously accepted meaning current or potentially
+  impacted for the evaluated baseline?
+
+cross-baseline continuity
+  Does prior semantic identity RETAIN, REPLACE or RETIRE
+  in the target baseline?
+
+continuityBasis
+  What baseline-scoped evidence justifies
+  that continuity decision?
+\end{verbatim}
+
+None of these responsibilities is a new first-class BAE identity family.
+
+\subsection{3. Closed origin/provenance contract}\label{closed-originprovenance-contract}
+
+Every materialized \texttt{BAReferent} and \texttt{BAProposition} independently carries, or resolves unambiguously to, provenance/origin metadata with this semantic minimum:
+
+\begin{verbatim}
+BAOriginAttachment                         [metadata contract; NOT a BAE family]
+|- targetElement             1     BAReferent | BAProposition
+|- governedBaselineKey       1
+|- originState               1     GROUNDED | DERIVED | DIAGNOSTIC_UNRESOLVED
+|- sourceLink                0..*  -> GovernedSourceRef
+|- derivationBasisBinding    0..*
+|    |- inputRoleKey         1
+|    `- basisRef             1     GovernedSourceRef | BAElementRef
+|- derivationRuleRef         0..1  [required for DERIVED]
+`- revalidationContext       0..*  -> GovernedSourceRef | BAElementRef
+\end{verbatim}
+
+A governed source reference resolves at least:
+
+\begin{verbatim}
+immutable governed baseline
++ governed document identity
++ exact baseline-relative locator
+\end{verbatim}
+
+The baseline identity may be physically inherited from the containing attachment when unambiguous; the semantic responsibility remains mandatory.
+
+A \texttt{BAElementRef} used by BA3 resolves both semantic identity and the relevant governed-baseline materialization.
+
+\subsubsection{3.1 Origin-state rules}\label{origin-state-rules}
+
+\texttt{GROUNDED} means that the BA meaning is directly supported by governed project documentation, even if wording is normalized into the closed BA1/BA2 semantics.
+
+\begin{verbatim}
+GROUNDED
+  sourceLink                1..*
+  derivationBasisBinding    0
+  derivationRuleRef         0
+\end{verbatim}
+
+\texttt{DERIVED} means that BA adds methodology-neutral analytical structure not directly stated as a project commitment.
+
+\begin{verbatim}
+DERIVED
+  derivationBasisBinding    1..*
+  derivationRuleRef         1
+  sourceLink                0..*  [optional direct contextual evidence]
+\end{verbatim}
+
+The transitive derivation lineage of an accepted derived element terminates in governed source material for the same governed baseline.
+
+\texttt{DIAGNOSTIC\_UNRESOLVED} means that governed meaning is conflicting, ambiguous, incomplete or insufficient for an honest accepted semantic answer.
+
+\begin{verbatim}
+DIAGNOSTIC_UNRESOLVED
+  sourceLink + derivationBasisBinding >= 1
+\end{verbatim}
+
+A diagnostic is accepted as an analytical diagnostic, not as project truth.
+
+\subsection{4. Direct source, derivation basis and revalidation context remain separate}\label{direct-source-derivation-basis-and-revalidation-context-remain-separate}
+
+The closure review rejects merging these responsibilities.
+
+\texttt{sourceLink} denotes direct governed support/localization. It is the path for source drill-down and project authority.
+
+\texttt{derivationBasisBinding} denotes the inputs used by a methodology-neutral analytical transformation. A BA element referenced as a derivation input does not become project authority; authority remains in its transitive governed lineage.
+
+\texttt{revalidationContext} denotes context whose material change can invalidate applicability, truth or identity even when that context is not the direct source or a derivation input.
+
+The M4 facial mutation is the decisive negative control: a sibling representation Decision can make the old \texttt{FR-3.4} capture-transfer meaning stale without directly grounding a successor transfer proposition. Treating the sibling Decision as \texttt{sourceLink} would overstate project authority; treating it as derivation basis would falsely imply that the old grounded proposition was analytically derived.
+
+Therefore:
+
+\begin{verbatim}
+sourceLink != derivationBasisBinding != revalidationContext
+\end{verbatim}
+
+Physical co-storage is allowed; semantic collapse is not.
+
+\subsection{5. Closed derivation-rule contract}\label{closed-derivation-rule-contract}
+
+\texttt{derivationRuleRef} resolves to one immutable revision of an inspectable method-neutral rule/rationale descriptor.
+
+\begin{verbatim}
+BADerivationRuleDescriptor
+  [methodology metadata; NOT a BAE family]
+|- ruleKey                   1
+|- ruleRevisionKey           1     immutable
+|- inputRoleContract         1..*
+|- applicabilityContract     1
+|- outputSemanticContract    1
+`- normativeDefinition       1
+\end{verbatim}
+
+The representation may combine these fields, but the referenced revision must make inspectable:
+
+\begin{itemize}
+\tightlist
+\item
+  the role and meaning of each input;
+\item
+  when the rule is applicable;
+\item
+  what methodology-neutral BA meaning it may produce; and
+\item
+  why the transformation does not create an ungoverned project commitment.
+\end{itemize}
+
+A free-form rule name backed by hidden tool/LLM logic is insufficient.
+
+A universal or executable derivation programming language is not required. Rule descriptors are extended only when a concrete accepted derived case needs a new method-neutral transformation contract.
+
+\subsubsection{5.1 Reproducibility criterion}\label{reproducibility-criterion}
+
+Derivation reproducibility is semantic replay/review, not byte-identical regeneration.
+
+Given:
+
+\begin{verbatim}
+same governed baseline
++ same role-bound derivation basis
++ same immutable derivation-rule revision
++ same accepted BA1/BA2 semantic registries
+\end{verbatim}
+
+an independent reviewer must be able either to reconstruct materially equivalent BA semantics or to determine that the derivation is not applicable and reject/diagnose it.
+
+If the same role-bound inputs and rule revision permit two materially different accepted meanings without an explicit unresolved choice, the rule contract is insufficient and must be refined rather than silently accepted.
+
+\subsection{6. Closed review/freshness contract}\label{closed-reviewfreshness-contract}
+
+Origin, review and freshness answer different questions and remain semantically orthogonal.
+
+\begin{verbatim}
+BABaselineReview
+|- targetElement          1     BAReferent | BAProposition
+|- evaluatedBaselineKey   1
+|- reviewState            1     PENDING_REVIEW | ACCEPTED | REJECTED
+`- freshness              1     CURRENT | STALE
+\end{verbatim}
+
+\texttt{reviewState} governs admission of analytical materialization/candidates into the accepted BA for the evaluated baseline.
+
+\texttt{freshness} records whether previously accepted meaning is still usable as current meaning for that baseline or is a revalidation candidate.
+
+The distinction is required because, for example:
+
+\begin{verbatim}
+new candidate
+  PENDING_REVIEW + CURRENT
+prior accepted impacted item
+  PENDING_REVIEW + STALE
+accepted diagnostic
+  ACCEPTED + CURRENT
+rejected derived candidate
+  REJECTED + CURRENT or STALE
+  as historically applicable
+\end{verbatim}
+
+\texttt{STALE} is not retroactive invalidity. Meaning can remain accepted/valid for \texttt{B0} while being stale for review relative to \texttt{B1}.
+
+\subsection{7. Closed cross-baseline continuity contract}\label{closed-cross-baseline-continuity-contract}
+
+\begin{verbatim}
+BACrossBaselineContinuity
+|- priorElement           1     BAElementRef@priorBaseline
+|- targetBaselineKey      1
+|- disposition            1     RETAIN | REPLACE | RETIRE
+|- successorElement       0..1  [required for REPLACE]
+`- continuityBasis        1..*  GovernedSourceRef | BAElementRef
+\end{verbatim}
+
+\texttt{continuityBasis} preserves why an identity-continuity decision was made; it does not replace source provenance or derivation lineage.
+
+An introduced element with no predecessor has no continuity obligation.
+
+Accepted disposition has these historical interpretations:
+
+\begin{verbatim}
+RETAIN   same semantic identity survives the reviewed baseline change
+REPLACE  prior identity is SUPERSEDED by an accepted successor
+RETIRE   prior identity is RETIRED; no successor identity is required
+\end{verbatim}
+
+\texttt{SUPERSEDED} and \texttt{RETIRED} are derived historical interpretations, not additional first-class lifecycle dimensions.
+
+\subsubsection{\texorpdfstring{7.1 \texttt{BAReferent} identity rule}{7.1 BAReferent identity rule}}\label{bareferent-identity-rule}
+
+Retain a \texttt{BAReferent} when the same independently reusable methodology-neutral project meaning survives the governed change.
+
+Changes in wording, locator, realization technology, ownership relation, provider placement or propositions about the referent do not by themselves force new referent identity.
+
+Replace or retire the referent when the independently reusable meaning itself changes materially or ceases to exist.
+
+\subsubsection{\texorpdfstring{7.2 \texttt{BAProposition} identity rule}{7.2 BAProposition identity rule}}\label{baproposition-identity-rule}
+
+Retain a \texttt{BAProposition} only when its normalized assertion meaning remains materially equivalent, including:
+
+\begin{verbatim}
+semanticOperatorKey
+polarity
+role-bound participants / controlled local values
+condition / temporalScope
+\end{verbatim}
+
+Participant equivalence is evaluated through accepted referent continuity, not lexical labels.
+
+A material change to operator, polarity, participant binding, governed constraint value or local modifier requires replacement or retirement; the old proposition is not silently edited in place.
+
+\subsection{8. Closed change-impact and revalidation contract}\label{closed-change-impact-and-revalidation-contract}
+
+A prior accepted BA element becomes a staleness candidate for a target baseline when at least one relevant explicit dependency changes materially:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  one of its direct \texttt{sourceLink} targets changes or disappears;
+\item
+  one of its \texttt{derivationBasisBinding.basisRef} inputs changes, becomes stale, is replaced or is retired;
+\item
+  one of a proposition's role-bound \texttt{BAReferent} participants is replaced or retired;
+\item
+  one of its \texttt{revalidationContext} sources changes/disappears or a referenced BA element becomes stale/replaced/retired; or
+\item
+  an immutable derivation-rule revision used to rematerialize a derived element changes.
+\end{enumerate}
+
+The minimum propagation rule is:
+
+\begin{verbatim}
+changed source / basis / participant / context / rule
+        -> seed only explicitly affected BA elements
+        -> propagate through explicit derivation/context links
+           and proposition participant identity
+        -> mark potentially affected elements PENDING_REVIEW / STALE
+        -> semantic review resolves RETAIN | REPLACE | RETIRE
+\end{verbatim}
+
+Staleness is a request for semantic review, not an automatic semantic edit.
+
+A repository-file change does not invalidate the whole BA by default. Source-unit and explicit dependency scope determine the candidate impact set.
+
+\texttt{revalidationContext} is intentionally narrow:
+
+\begin{verbatim}
+material change may require revalidation
+\end{verbatim}
+
+It does not assert a project-semantic prerequisite and therefore is not BA2 \texttt{dependOn} or a generic \texttt{affects} proposition.
+
+\subsection{9. Regression disposition across the current corpora}\label{regression-disposition-across-the-current-corpora}
+
+The closed contract preserves the reviewed mutation behavior:
+
+\begin{itemize}
+\tightlist
+\item
+  M1 Ethernet -\textgreater{} Wi-Fi: retain abstract connectivity; replace the realization proposition; do not wholesale stale unrelated transfer/responsibility meaning.
+\item
+  M2 external -\textgreater{} project-owned transport: replace responsibility polarity and retire external consumption where it ceases; retain unrelated consumer semantics unless explicitly impacted.
+\item
+  M3 remote -\textgreater{} local recognition: retire the remote transfer rather than rewriting it into local processing; participant/context changes localize affected transport meaning.
+\item
+  M4 raw capture -\textgreater{} opaque reference: sibling representation change makes the old capture-transfer meaning stale through \texttt{revalidationContext}; conflicting governed sources yield \texttt{DIAGNOSTIC\_UNRESOLVED}, not silent BA repair.
+\item
+  order/WMS responsibility change: retire/replace internal authority meaning and introduce external service/contract meaning without invalidating unrelated order/payment/fulfillment BA.
+\item
+  provider-state normalization: raw provider vocabulary and governed mapping remain role-distinct derivation inputs; project-specific mapping cannot be hidden inside the tool/rule.
+\item
+  diagnostic resolution: an old unresolved diagnostic is retired or replaced after governed correction; it is not retyped in place as grounded project truth.
+\end{itemize}
+
+No current case requires a third BAE identity family, a fourteenth BA2 operator or a general systems-model dependency graph.
+
+\subsection{10. Closed feedback/authority boundary}\label{closed-feedbackauthority-boundary}
+
+The cross-layer authority chain is:
+
+\begin{verbatim}
+governed docs B0
+ -> accepted BA B0
+ -> downstream analysis
+ -> corrective documentation candidate
+ -> governed review
+ -> governed docs B1
+ -> accepted BA B1
+\end{verbatim}
+
+A downstream analysis output may reference \texttt{BAElementRef@B0} and \texttt{GovernedSourceRef@B0} and may propose a correction.
+
+It must not become the \texttt{sourceLink} authority for grounded BA meaning.
+
+If the correction is rejected, no new governed project truth exists and BA does not change merely because analysis proposed something.
+
+If accepted, the new authority is the corrected governed documentation in \texttt{B1}; the next BA grounds/derives from that governed material and uses cross-baseline continuity to relate old and new BA identities.
+
+Historical analysis/change-event motivation belongs downstream and is not required as a new BA identity family.
+
+\subsection{11. Explicit non-requirements}\label{explicit-non-requirements}
+
+BA3 closure does not require:
+
+\begin{itemize}
+\tightlist
+\item
+  a third \texttt{BAReferent}/\texttt{BAProposition}-peer identity family;
+\item
+  a \texttt{Provenance}, \texttt{Lifecycle}, \texttt{Rule}, \texttt{Context} or \texttt{Baseline} BAE metaclass;
+\item
+  a new BA2 \texttt{affects}, \texttt{derivedFrom}, \texttt{revalidates} or lifecycle operator;
+\item
+  source-document revision states copied one-to-one into BA lifecycle;
+\item
+  a BA-level \texttt{REVISE} disposition in addition to \texttt{RETAIN\ \textbar{}\ REPLACE\ \textbar{}\ RETIRE};
+\item
+  a universal exhaustive derivation-rule taxonomy;
+\item
+  an unrestricted executable derivation language;
+\item
+  a general dependency/system graph;
+\item
+  whole-BA invalidation on any repository-file change;
+\item
+  AnalysisRecord, Finding/Common Finding or method-specific overlay semantics;
+\item
+  ThreatForge classes, database tables or runtime state;
+\item
+  one canonical graph/JSON/relational storage representation.
+\end{itemize}
+
+\subsection{12. Representation-independence rule}\label{representation-independence-rule}
+
+An implementation may physically combine or derive parts of the metadata above when the closed semantic distinctions remain mechanically recoverable and auditable.
+
+For example, one graph edge table may encode source, basis and context link kinds; one review record may co-locate acceptance and freshness; a continuity index may derive reverse source-to-BA navigation.
+
+This is allowed only if consumers can still answer the distinct closed questions without reconstructing them from raw prose or hidden tool behavior.
+
+The closure is therefore a semantic contract, not a physical metamodel mandate.
+
+\subsection{13. BA3 reopen criteria}\label{ba3-reopen-criteria}
+
+Reopen only the smallest affected BA3 responsibility when a concrete counterexample shows that the closed contract cannot preserve a required BA0 responsibility. Material triggers include:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  a governed corpus cannot preserve source drill-down or independent referent/proposition provenance under the closed origin contract;
+\item
+  current \texttt{GROUNDED\ \textbar{}\ DERIVED\ \textbar{}\ DIAGNOSTIC\_UNRESOLVED} states cannot distinguish project authority, analytical derivation and unresolved uncertainty without semantic distortion;
+\item
+  a derived case cannot be review-reproduced with role-bound basis plus an immutable inspectable rule descriptor;
+\item
+  a concrete change is materially under-invalidated even with direct source, basis, participant and \texttt{revalidationContext} links, or materially over-invalidated unless a different context contract is introduced;
+\item
+  \texttt{RETAIN\ \textbar{}\ REPLACE\ \textbar{}\ RETIRE} or the family-specific identity rules cannot represent a concrete cross-baseline change honestly;
+\item
+  accepted/rejected/freshness semantics cannot prevent candidate promotion or preserve historical validity;
+\item
+  the authority feedback chain requires new BA semantics rather than downstream analysis/change provenance;
+\item
+  a concrete case forces a new first-class BA identity family or BA2 operator under the existing BA1/BA2 reopen criteria; or
+\item
+  the same governed baseline must support multiple concurrent accepted BA materializations whose semantic-registry/rule revision identity cannot be recovered from the closed provenance metadata.
+\end{enumerate}
+
+Do not reopen BA3 merely because an implementation prefers another storage shape, a new derivation-rule key is added within the closed descriptor contract, or a threat method wants additional method-owned semantics.
+
+\subsection{14. Closure disposition}\label{closure-disposition}
+
+\begin{verbatim}
+Independent provenance on BAReferent / BAProposition
+  ACCEPTED
+Many-to-many governed source lineage
+  ACCEPTED
+Immutable governed-baseline context
+  ACCEPTED
+GROUNDED / DERIVED / DIAGNOSTIC_UNRESOLVED
+  ACCEPTED
+Direct source vs derivation basis separation
+  ACCEPTED
+Role-bound derivation basis
+  ACCEPTED
+Immutable inspectable derivation-rule revision
+  ACCEPTED
+Semantic replay reproducibility
+  ACCEPTED
+PENDING_REVIEW / ACCEPTED / REJECTED
+  ACCEPTED
+CURRENT / STALE semantic distinction
+  ACCEPTED
+BAReferent family-specific continuity rule
+  ACCEPTED
+BAProposition strict assertion-continuity rule
+  ACCEPTED
+RETAIN | REPLACE | RETIRE
+  ACCEPTED
+REPLACE -> SUPERSEDED / RETIRE -> RETIRED
+  ACCEPTED
+Explicit narrow revalidationContext
+  ACCEPTED
+Localized staleness propagation
+  ACCEPTED
+Analysis/corrective candidate as BA source authority
+  REJECTED
+New BAE family
+  NOT FORCED
+New BA2 operator
+  NOT FORCED
+BA1 reopen
+  NOT TRIGGERED
+BA2 reopen
+  NOT TRIGGERED
+BA3
+  CLOSED FOR CURRENT THESIS SCOPE
+\end{verbatim}
+
+The next phase is BA4 projections. BA4 may consume this closed contract but must not redefine it absent a material counterexample satisfying the reopen criteria above.
+
+\end{document}
