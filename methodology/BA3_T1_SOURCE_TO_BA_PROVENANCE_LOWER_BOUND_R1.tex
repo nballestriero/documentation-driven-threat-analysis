@@ -1,0 +1,411 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[a4paper,margin=2.25cm]{geometry}
+\usepackage{longtable,booktabs,array,calc}
+\usepackage{fancyvrb}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{titlesec}
+\definecolor{ddtadark}{RGB}{30,38,48}
+\definecolor{ddtablue}{RGB}{38,82,126}
+\hypersetup{colorlinks=true,linkcolor=ddtablue,urlcolor=ddtablue,citecolor=ddtablue}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Documentation-Driven Threat Analysis}
+\rhead{BA3-T1 provenance}
+\cfoot{\thepage}
+\setlength{\headheight}{14pt}
+\setlist[itemize]{leftmargin=1.5em,itemsep=0.2em,topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.7em,itemsep=0.2em,topsep=0.25em}
+\titleformat{\section}{\Large\bfseries\color{ddtadark}}{}{0em}{}
+\titleformat{\subsection}{\large\bfseries\color{ddtadark}}{}{0em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{ddtadark}}{}{0em}{}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setlength{\emergencystretch}{4em}
+\hbadness=10000
+\hfuzz=20pt
+\sloppy
+\begin{document}
+\section{BA3-T1 - Source-to-Base-Analysis derivation and provenance lower-bound pressure test}\label{ba3-t1---source-to-base-analysis-derivation-and-provenance-lower-bound-pressure-test}
+
+\textbf{Revision:} R1
+
+\textbf{Status:} COMPLETED / PROVISIONAL PASS WITH LOWER-BOUND CANDIDATE / BA3 NOT CLOSED
+
+\textbf{Repository baseline reviewed:} \texttt{97ad32fb427f808521f9fe13fb6901465ccfd715}
+
+\textbf{Phase:} BA3 - Derivation, provenance and authority mechanics
+
+\textbf{BA0:} CLOSED
+
+\textbf{BA1:} CLOSED
+
+\textbf{BA2:} CLOSED
+
+\textbf{BA4:} NOT STARTED
+
+\subsection{1. Question and test discipline}\label{1-question-and-test-discipline}
+
+BA3-T1 asks only:
+
+\begin{quote}
+What provenance/origin information must exist on Base Analysis identities so that a consumer can reproducibly reach the governed source baseline, distinguish direct grounding from analytical derivation and unresolved diagnostics, and preserve many-to-many source lineage without making Base Analysis or an analysis tool project authority?
+\end{quote}
+
+This is a lower-bound derivation. It does not close BA3 and does not design the complete lifecycle/change model.
+
+\subsection{2. Evidence basis}\label{2-evidence-basis}
+
+The test reuses only already-accepted evidence:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  BA0 requires source/origin provenance, baseline-scoped identity, source drill-down, uncertainty localization, change-impact traceability and source-localized feedback;
+\item
+  BA1 accepts independent \texttt{BAReferent} and \texttt{BAProposition} identities, including assertion-level provenance pressure;
+\item
+  BA2 closes the proposition/operator/role semantics that provenance must annotate without redefining them;
+\item
+  facial-access provides direct grounding, reusable terms, consumed-service/responsibility/realization separation and explicit architecture mutations;
+\item
+  order fulfillment provides cross-branch reuse, correlation, provider normalization and a physical handoff milestone reused by several document branches;
+\item
+  S1.5 already established provenance != normative semantics, historical many-to-many analysis/change lineage and analysis != governance authority.
+\end{enumerate}
+
+No new corpus or threat-method vocabulary is introduced.
+
+\subsection{3. Pressure A - attach provenance to propositions only?}\label{3-pressure-a---attach-provenance-to-propositions-only}
+
+Alternative A records provenance only on \texttt{BAProposition} and assumes participating referents inherit it.
+
+This fails. \texttt{RecognitionCapture} participates in acquisition, transfer, constraints and classifications; its identity is supported across more than one source location. A particular transfer proposition can be grounded only in \texttt{FR-3.4}. The proposition\textquotesingle s source set therefore cannot stand in for the referent\textquotesingle s own lineage.
+
+The reverse collapse also fails: source support for a referent does not establish the provenance of each independently reviewable assertion about it.
+
+\subsubsection{Disposition}\label{disposition}
+
+\begin{verbatim}
+Provenance only on BAProposition: REJECTED
+Provenance only on BAReferent:    REJECTED
+Independent origin metadata on both: REQUIRED
+\end{verbatim}
+
+\subsection{4. Pressure B - one source per BA element?}\label{4-pressure-b---one-source-per-ba-element}
+
+A one-to-one \texttt{sourceId} looks minimal but fails both directions.
+
+One clause can normalize into multiple explicit BA propositions. Conversely, one reusable meaning can be supported by several document branches. The order physical-handoff milestone is a direct multi-branch pressure case.
+
+\subsubsection{Disposition}\label{disposition-1}
+
+\begin{verbatim}
+Single sourceId field: REJECTED
+Many-to-many governed source <-> BA lineage: REQUIRED
+Reverse source-to-BA queryability: REQUIRED CAPABILITY
+Separate reverse-edge semantic identity: NOT REQUIRED
+\end{verbatim}
+
+\subsection{5. Pressure C - what must a source locator contain?}\label{5-pressure-c---what-must-a-source-locator-contain}
+
+A locator must support exact drill-down but must not copy the source prose into Base Analysis as a competing authority.
+
+\texttt{documentIdentity} alone may be insufficient when several governed units are stored in one artifact or when only one clause/section supports the semantic assertion. Line numbers alone are representation-fragile. A copied text excerpt can become stale and appear authoritative.
+
+The lower bound is an immutable baseline context plus logical document identity plus an exact local resolver.
+
+\subsubsection{Disposition}\label{disposition-2}
+
+\begin{verbatim}
+governedBaselineKey: REQUIRED
+documentIdentity:    REQUIRED
+exact local locator: REQUIRED
+source text copy as authority: REJECTED
+line number as universal locator form: REJECTED
+content hash: NOT FORCED
+\end{verbatim}
+
+\subsection{6. Pressure D - is baseline context really necessary?}\label{6-pressure-d---is-baseline-context-really-necessary}
+
+Yes.
+
+The facial mutation from Ethernet to Wi-Fi is enough to falsify an unversioned source pointer. A pointer that says only \texttt{D-3.5} can refer to materially different realization semantics in different governed revisions.
+
+The lower bound therefore requires a baseline identity that cannot silently move.
+
+Git commit SHA is a current realization, not a semantic requirement.
+
+\subsubsection{Disposition}\label{disposition-3}
+
+\begin{verbatim}
+Immutable governed-baseline identity: REQUIRED
+Git as mandatory provenance mechanism: REJECTED
+Cross-baseline BA identity rules: OPEN / LATER BA3
+\end{verbatim}
+
+\subsection{7. Pressure E - origin-state collapse}\label{7-pressure-e---origin-state-collapse}
+
+Could all BA elements simply be marked \texttt{source-traceable}?
+
+No. That would erase the authority difference among:
+
+\begin{itemize}
+\tightlist
+\item
+  meaning directly supported by governed documentation;
+\item
+  analytical structure inferred/normalized beyond what is directly stated;
+\item
+  an unresolved diagnostic that explicitly refuses to choose project meaning.
+\end{itemize}
+
+The BA0 lower bound therefore survives materially.
+
+\subsubsection{Disposition}\label{disposition-4}
+
+\begin{verbatim}
+GROUNDED               REQUIRED
+DERIVED                REQUIRED
+DIAGNOSTIC_UNRESOLVED  REQUIRED
+Generic traceable flag REJECTED
+\end{verbatim}
+
+\subsection{8. Pressure F - grounded does not mean verbatim}\label{8-pressure-f---grounded-does-not-mean-verbatim}
+
+A danger is treating any normalization as derivation. That would make almost every BA proposition derived merely because BA2 uses canonical semantic keys rather than authoring verbs.
+
+The better boundary is semantic:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{GROUNDED}: the underlying project meaning is directly asserted by governed documentation, even if BA normalizes representation;
+\item
+  \texttt{DERIVED}: the analytical statement adds method-neutral structure that is justified but not directly stated as a project commitment.
+\end{itemize}
+
+Therefore \texttt{deliver} -\textgreater{} \texttt{transfer} can remain grounded, while an inferred semantic-kind classification can be derived.
+
+\subsubsection{Disposition}\label{disposition-5}
+
+\begin{verbatim}
+Grounded == verbatim source syntax: REJECTED
+Grounded == directly supported project meaning: ACCEPTED CANDIDATE
+\end{verbatim}
+
+\subsection{9. Pressure G - derived basis versus ultimate source authority}\label{9-pressure-g---derived-basis-versus-ultimate-source-authority}
+
+Recording only the ultimate source locators for a derived proposition is insufficient. A reviewer would know \emph{where} the authoritative project meaning lives but not \emph{how} the analytical conclusion was obtained.
+
+Recording only BA-element parents is also insufficient if the chain cannot reach the governed baseline.
+
+A derived element therefore needs:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  explicit derivation basis;
+\item
+  an inspectable method-neutral derivation rule/rationale reference;
+\item
+  source lineage whose transitive closure reaches governed source material in the same baseline.
+\end{enumerate}
+
+The exact derivation-rule registry is not closed by T1.
+
+\subsubsection{Disposition}\label{disposition-6}
+
+\begin{verbatim}
+Derivation basis: REQUIRED
+Inspectable derivation rule/rationale reference: REQUIRED CANDIDATE
+Ultimate governed-source lineage: REQUIRED
+Silent analyst/tool inference: REJECTED
+Exact rule registry: OPEN
+\end{verbatim}
+
+\subsection{10. Pressure H - multi-branch referent support}\label{10-pressure-h---multi-branch-referent-support}
+
+One reusable BAReferent must not be duplicated merely because several document branches support it.
+
+The physical handoff milestone in the order corpus is reused by fulfillment, inventory and payment. Its provenance therefore holds multiple source links while its semantic identity remains one BAReferent if BA1 identity criteria say the meaning is the same.
+
+The same principle applies to a facial-access term such as \texttt{RecognitionCapture} reused across acquisition and delivery.
+
+\subsubsection{Disposition}\label{disposition-7}
+
+\begin{verbatim}
+Duplicate referent per source branch: REJECTED
+One referent + multiple source links: SUPPORTED / LOWER BOUND
+Exact cross-wording identity/equivalence rules: OPEN / LATER BA3
+\end{verbatim}
+
+\subsection{11. Pressure I - does T1 need acceptance/review lifecycle?}\label{11-pressure-i---does-t1-need-acceptancereview-lifecycle}
+
+Origin and review are orthogonal.
+
+A \texttt{DERIVED} element may be accepted for analytical use; a \texttt{GROUNDED} element may later become stale after source change; a \texttt{DIAGNOSTIC\_UNRESOLVED} item may itself be accepted as a valid diagnostic while not being accepted as project fact.
+
+Therefore encoding \texttt{accepted/rejected/stale/superseded} into \texttt{originState} would overload one field and make change semantics ambiguous.
+
+Current evidence forces the separation but not the complete lifecycle state machine in T1.
+
+\subsubsection{Disposition}\label{disposition-8}
+
+\begin{verbatim}
+originState == review/lifecycle state: REJECTED
+Separate review/lifecycle dimension: FORCED AS FUTURE BA3 RESPONSIBILITY
+Exact review/lifecycle vocabulary: OPEN
+\end{verbatim}
+
+\subsection{12. Pressure J - method finding or ThreatForge state as provenance?}\label{12-pressure-j---method-finding-or-threatforge-state-as-provenance}
+
+Rejected.
+
+A STRIDE finding, methodology-plugin result or ThreatForge runtime object can point to BA identities and source locators in its own analysis layer. It cannot serve as governed \texttt{sourceLink} for a grounded/shared BA project fact.
+
+If downstream analysis motivates a change, governance must accept/change documentation first; the new governed source then becomes the authority for subsequent BA revalidation.
+
+\subsubsection{Disposition}\label{disposition-9}
+
+\begin{verbatim}
+Method finding as governed source: REJECTED
+ThreatForge runtime object as source authority: REJECTED
+Analysis result -> automatic BA project fact: REJECTED
+Governed-document round trip preserved: PASS
+\end{verbatim}
+
+\subsection{13. Candidate lower bound}\label{13-candidate-lower-bound}
+
+BA3-T1 retains this candidate:
+
+\begin{verbatim}
+BAOriginAttachment
+|- targetElement            1     BAReferent | BAProposition
+|- governedBaselineKey      1
+|- originState              1     GROUNDED | DERIVED | DIAGNOSTIC_UNRESOLVED
+|- sourceLink               0..*  -> GovernedSourceRef
+|- derivationBasis          0..*  -> GovernedSourceRef | BAElementRef
+`- derivationRuleRef        0..1  [required for DERIVED; exact form OPEN]
+
+GovernedSourceRef
+|- documentIdentity         1
+`- locator                  1
+\end{verbatim}
+
+This is a semantic metadata contract, not a storage schema or new BAE family.
+
+\subsection{14. Bounded corpus replay}\label{14-bounded-corpus-replay}
+
+\subsubsection{14.1 Facial access}\label{141-facial-access}
+
+The candidate can distinguish:
+
+\begin{itemize}
+\tightlist
+\item
+  grounded \texttt{RecognitionCapture} identity with more than one source anchor;
+\item
+  grounded FR-3.4 transfer and correlation assertions;
+\item
+  grounded D-3.4 negative responsibility placement;
+\item
+  grounded D-3.5 Ethernet realization;
+\item
+  derived classification without pretending the semantic-kind key was authored in the source;
+\item
+  baseline-specific provenance so a later Wi-Fi realization is not conflated with the earlier Ethernet one.
+\end{itemize}
+
+\subsubsection{14.2 Order fulfillment}\label{142-order-fulfillment}
+
+The candidate can distinguish:
+
+\begin{itemize}
+\tightlist
+\item
+  one source clause yielding multiple normalized propositions;
+\item
+  one \texttt{OrderEvaluation}/Reservation/payment meaning reused across several FRs;
+\item
+  the physical handoff milestone with support from several MR branches;
+\item
+  derived provider-normalization/classification semantics whose basis remains reviewable;
+\item
+  source-to-BA reverse lookup for localized change impact.
+\end{itemize}
+
+No third identity family is forced.
+
+\subsection{15. BA0 responsibility check}\label{15-ba0-responsibility-check}
+
+\begin{verbatim}
+BA0-C1 authority/provenance boundary       PASS
+BA0-C2 baseline-scoped identity            PASS / LOWER BOUND
+BA0-C4 diagnostics/unresolved              PASS
+BA0-C5 source drill-down                   PASS
+BA0-C6 change-impact traceability          PASS / LIFECYCLE OPEN
+BA0-C7 source-localized feedback            PASS / ANALYSIS LATER
+BA0-C8 representation independence         PASS
+\end{verbatim}
+
+\subsection{16. Trial disposition}\label{16-trial-disposition}
+
+\begin{verbatim}
+Provenance target both BA1 families       REQUIRED
+Many-to-many source lineage               REQUIRED
+Baseline-scoped exact source locator       REQUIRED
+Grounded/derived/diagnostic states         REQUIRED
+Derived basis distinct from source authority REQUIRED
+Derivation rule/rationale reference        REQUIRED CANDIDATE / EXACT FORM OPEN
+Acceptance/review lifecycle                OPEN / LATER BA3
+New provenance BAE family                  NOT FORCED
+BA1 reopen                                 NOT TRIGGERED
+BA2 reopen                                 NOT TRIGGERED
+BA3-T1                                     COMPLETED / PROVISIONAL PASS
+BA3                                        STARTED / NOT CLOSED
+BA4                                        NOT STARTED
+\end{verbatim}
+
+\subsection{17. Explicit unresolved set}\label{17-explicit-unresolved-set}
+
+BA3-T1 does not close:
+
+\begin{itemize}
+\tightlist
+\item
+  cross-baseline identity/equivalence retention;
+\item
+  stale/superseded/retired semantics after source change;
+\item
+  accepted/rejected/review state;
+\item
+  diagnostic resolution lifecycle;
+\item
+  exact derivation-rule registry/materialization;
+\item
+  full change-impact propagation and downstream analysis feedback lineage.
+\end{itemize}
+
+These are real provenance/lifecycle targets, not a license to expand BA2 semantics.
+
+\subsection{18. Next authorized microstep}\label{18-next-authorized-microstep}
+
+Execute only:
+
+\begin{quote}
+\textbf{BA3-T2 - cross-baseline identity, staleness and lifecycle pressure test.}
+\end{quote}
+
+Use concrete governed mutations to attack retention/equivalence and stale/superseded/review semantics. Do not start BA4, formal threat-method overlays, Common Finding or implementation work.
+
+\end{document}

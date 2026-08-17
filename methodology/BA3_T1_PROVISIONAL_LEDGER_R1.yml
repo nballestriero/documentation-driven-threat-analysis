@@ -1,0 +1,49 @@
+artifact: BA3_T1_PROVISIONAL_LEDGER_R1
+revision: R1
+status: COMPLETED_PROVISIONAL_PASS_WITH_LOWER_BOUND_CANDIDATE
+repository_baseline_reviewed: 97ad32fb427f808521f9fe13fb6901465ccfd715
+phase: BA3
+ba0: CLOSED
+ba1: CLOSED
+ba2: CLOSED
+ba3: STARTED_NOT_CLOSED
+ba4: NOT_STARTED
+provenance_target:
+  ba_referent: REQUIRED
+  ba_proposition: REQUIRED
+  independent_per_identity: REQUIRED
+source_lineage:
+  many_to_many: REQUIRED
+  reverse_queryability: REQUIRED_CAPABILITY
+  separate_reverse_edge_identity: NOT_REQUIRED
+source_locator:
+  governed_baseline_key: REQUIRED
+  document_identity: REQUIRED
+  exact_local_locator: REQUIRED
+  copied_source_prose_as_authority: REJECTED
+  line_number_as_universal_form: REJECTED
+  content_hash: NOT_FORCED
+  git_as_mandatory_mechanism: REJECTED
+origin_state:
+  GROUNDED: REQUIRED
+  DERIVED: REQUIRED
+  DIAGNOSTIC_UNRESOLVED: REQUIRED
+  generic_traceable_flag: REJECTED
+derived_semantics:
+  derivation_basis: REQUIRED
+  derivation_rule_or_rationale_ref: REQUIRED_CANDIDATE
+  exact_rule_registry: OPEN
+  silent_tool_or_analyst_inference: REJECTED
+lifecycle_boundary:
+  origin_equals_review_state: REJECTED
+  acceptance_review_lifecycle: OPEN_LATER_BA3
+method_authority_boundary:
+  method_finding_as_governed_source: REJECTED
+  threatforge_runtime_as_governed_source: REJECTED
+  analysis_output_auto_promoted_to_ba_project_fact: REJECTED
+regression:
+  facial_access: PASS
+  order_fulfillment: PASS
+ba1_reopen_trigger: false
+ba2_reopen_trigger: false
+next_authorized_microstep: BA3_T2_CROSS_BASELINE_IDENTITY_STALENESS_LIFECYCLE_PRESSURE_TEST

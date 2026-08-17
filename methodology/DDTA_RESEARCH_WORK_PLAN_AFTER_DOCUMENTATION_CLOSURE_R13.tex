@@ -1,0 +1,221 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[a4paper,margin=2.25cm]{geometry}
+\usepackage{longtable,booktabs,array,calc}
+\usepackage{fancyvrb}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{titlesec}
+\definecolor{ddtadark}{RGB}{30,38,48}
+\definecolor{ddtablue}{RGB}{38,82,126}
+\hypersetup{colorlinks=true,linkcolor=ddtablue,urlcolor=ddtablue,citecolor=ddtablue}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Documentation-Driven Threat Analysis}
+\rhead{Research work plan R13}
+\cfoot{\thepage}
+\setlength{\headheight}{14pt}
+\setlist[itemize]{leftmargin=1.5em,itemsep=0.2em,topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.7em,itemsep=0.2em,topsep=0.25em}
+\titleformat{\section}{\Large\bfseries\color{ddtadark}}{}{0em}{}
+\titleformat{\subsection}{\large\bfseries\color{ddtadark}}{}{0em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{ddtadark}}{}{0em}{}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setlength{\emergencystretch}{4em}
+\hbadness=10000
+\hfuzz=20pt
+\sloppy
+\begin{document}
+\section{DDTA research work plan after documentation-layer closure}\label{ddta-research-work-plan-after-documentation-layer-closure}
+
+\textbf{WORK PLAN - REVISION 13}
+
+\textbf{Status:} active BA3 execution plan after BA3-T1 provenance/derivation lower-bound pressure testing.
+
+\textbf{Supersedes:} Revision 12 only for forward execution state; R1-R12 remain historical research records.
+
+\subsection{1. Fixed prior state}\label{1-fixed-prior-state}
+
+\begin{itemize}
+\tightlist
+\item
+  Chapters 2-4: CLOSED / FINAL for current thesis scope.
+\item
+  Documentation layer: CLOSED.
+\item
+  BA0-R systems-modeling prior-art research: CLOSED.
+\item
+  BA0 responsibility/non-goals: CLOSED.
+\item
+  BA1 minimal BAE identity ontology: CLOSED.
+\item
+  BA2 relation/action vocabulary: \textbf{CLOSED BY BA2-T4}.
+\item
+  \texttt{BAReferent} and \texttt{BAProposition}: ACCEPTED first-class semantic identity families.
+\item
+  ThreatForge is a case study/tooling instrument, not DDTA semantic authority.
+\end{itemize}
+
+\subsection{2. Closed BA2 dependency}\label{2-closed-ba2-dependency}
+
+BA3 must annotate, trace and govern provenance for the already-closed BA2 proposition semantics. It must not reopen operator/role semantics without a material counterexample.
+
+\subsection{3. BA3 objective}\label{3-ba3-objective}
+
+BA3 defines the smallest derivation/provenance/authority mechanics that connect governed documentation to Base Analysis while preserving:
+
+\begin{verbatim}
+governed documentation = project authority
+Base Analysis          = accepted analytical representation
+analysis result         = method-owned / reviewable
+corrective candidate    = proposed documentation change
+\end{verbatim}
+
+\subsection{4. BA3-T1 - source-to-Base-Analysis derivation and provenance lower bound}\label{4-ba3-t1---source-to-base-analysis-derivation-and-provenance-lower-bound}
+
+\textbf{Status: COMPLETED / PROVISIONAL PASS WITH LOWER-BOUND CANDIDATE.}
+
+BA3-T1 pressure-tested provenance target, multiplicity, source locators, baseline context, origin states, derivation basis and authority leakage across the current corpora.
+
+\subsubsection{Result}\label{result}
+
+\begin{verbatim}
+Provenance on BAReferent                         REQUIRED
+Provenance on BAProposition                      REQUIRED
+Many-to-many source <-> BA lineage               REQUIRED
+Immutable governed-baseline context              REQUIRED
+Logical document identity + exact locator         REQUIRED
+Source prose copy as BA authority                REJECTED
+GROUNDED / DERIVED / DIAGNOSTIC_UNRESOLVED        REQUIRED
+Derived basis separate from ultimate authority    REQUIRED
+Inspectable derivation rule/rationale reference  REQUIRED CANDIDATE
+Exact derivation-rule registry                    OPEN
+Acceptance/review lifecycle                       NOT CLOSED BY T1
+New provenance BAE identity family                NOT FORCED
+Method finding / ThreatForge state as source       REJECTED
+BA1 / BA2 reopen                                  NOT TRIGGERED
+\end{verbatim}
+
+\subsubsection{Active lower-bound candidate}\label{active-lower-bound-candidate}
+
+\begin{verbatim}
+BAOriginAttachment
+|- targetElement            1     BAReferent | BAProposition
+|- governedBaselineKey      1
+|- originState              1     GROUNDED | DERIVED | DIAGNOSTIC_UNRESOLVED
+|- sourceLink               0..*  -> GovernedSourceRef
+|- derivationBasis          0..*  -> GovernedSourceRef | BAElementRef
+`- derivationRuleRef        0..1  [required for DERIVED; exact form OPEN]
+
+GovernedSourceRef
+|- documentIdentity         1
+`- locator                  1
+\end{verbatim}
+
+The contract is representation-independent metadata, not a third BAE family.
+
+\subsection{5. Why BA3 remains open}\label{5-why-ba3-remains-open}
+
+T1 closes no lifecycle/equivalence contract. Material unresolved questions remain:
+
+\begin{itemize}
+\tightlist
+\item
+  whether a BA identity is retained or replaced when governed sources change;
+\item
+  when an existing element becomes stale, superseded or retired;
+\item
+  how accepted/rejected/review state relates to origin state;
+\item
+  how a diagnostic is resolved/replaced after source correction;
+\item
+  exact derivation-rule registry/material form;
+\item
+  downstream change-impact and feedback lineage.
+\end{itemize}
+
+These cannot be answered by adding more source fields; they require mutation pressure.
+
+\subsection{6. BA3-T2 - cross-baseline identity, staleness and lifecycle pressure test}\label{6-ba3-t2---cross-baseline-identity-staleness-and-lifecycle-pressure-test}
+
+\textbf{NEXT / NOT EXECUTED BY THIS PLAN REVISION.}
+
+BA3-T2 must use concrete governed mutations rather than inventing lifecycle vocabulary in the abstract.
+
+It must pressure-test at least:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  facial M1 Ethernet -\textgreater{} Wi-Fi: retained abstract connectivity meaning versus changed realization proposition/source;
+\item
+  facial M2 externally consumed transport -\textgreater{} project-owned transport: responsibility-boundary change and affected proposition identity;
+\item
+  facial M3 recognition moved onto camera: retirement/supersession of transfer obligations while unrelated referents may survive;
+\item
+  structurally comparable order-fulfillment responsibility-boundary changes where a provider/capability moves internal/external;
+\item
+  whether \texttt{BAReferent} and \texttt{BAProposition} use the same retain/revise/replace rules or need distinct lifecycle rules;
+\item
+  when an element becomes \texttt{STALE}, \texttt{SUPERSEDED}, \texttt{RETIRED} or remains current after source change;
+\item
+  whether per-element \texttt{ACCEPTED} / \texttt{REJECTED} / review state is required separately from origin state;
+\item
+  how \texttt{DIAGNOSTIC\_UNRESOLVED} material is resolved or superseded after governed correction;
+\item
+  whether any mutation forces BA1/BA2 reopen rather than only BA3 lifecycle handling.
+\end{enumerate}
+
+\subsubsection{BA3-T2 exit condition}\label{ba3-t2-exit-condition}
+
+Produce a falsifiable identity/lifecycle candidate and the smallest unresolved set. Do not close BA3 merely because the mutation examples can be manually explained.
+
+\subsection{7. BA4 - projections}\label{7-ba4---projections}
+
+Only after BA3 closes, define derived human and method projections from the same accepted BA semantics. No view becomes project authority.
+
+\subsection{8. BA5 - lexical vocabulary and optional assistance}\label{8-ba5---lexical-vocabulary-and-optional-assistance}
+
+Only after BA3/BA4 boundaries are stable, define display labels, authoring synonyms and optional assistance. NLP/LLM proposals remain candidate-producing support.
+
+\subsection{9. BA6 - complete Base Analysis regression and closure}\label{9-ba6---complete-base-analysis-regression-and-closure}
+
+Regress the complete BA0-BA5 design against the closed corpora and at least one structurally different holdout. BA6 may reopen only the smallest earlier responsibility on a material counterexample.
+
+\subsection{10. Analysis envelope remains downstream}\label{10-analysis-envelope-remains-downstream}
+
+Only after Base Analysis closure:
+
+\begin{itemize}
+\tightlist
+\item
+  A1 - AnalysisRecord / execution envelope;
+\item
+  A2 - common reviewed Finding boundary;
+\item
+  A3 - change/provenance integration;
+\item
+  formal methodology overlays and STRIDE/STRIDE-AI evaluations.
+\end{itemize}
+
+The earlier STRIDE transfer probe remains only a bounded consumer probe.
+
+\subsection{11. Next authorized microstep}\label{11-next-authorized-microstep}
+
+Only after the BA3-T1 package is reviewed, committed, pushed and remotely verified, execute:
+
+\begin{quote}
+\textbf{BA3-T2 - cross-baseline identity, staleness and lifecycle pressure test.}
+\end{quote}
+
+Do not start BA4, formal threat-method overlays, Common Finding schema or implementation work.
+
+\end{document}

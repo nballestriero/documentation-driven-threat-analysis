@@ -1,0 +1,380 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[a4paper,margin=2.25cm]{geometry}
+\usepackage{longtable,booktabs,array,calc}
+\usepackage{fancyvrb}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{titlesec}
+\definecolor{ddtadark}{RGB}{30,38,48}
+\definecolor{ddtablue}{RGB}{38,82,126}
+\hypersetup{colorlinks=true,linkcolor=ddtablue,urlcolor=ddtablue,citecolor=ddtablue}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Documentation-Driven Threat Analysis}
+\rhead{BA3 provenance candidate}
+\cfoot{\thepage}
+\setlength{\headheight}{14pt}
+\setlist[itemize]{leftmargin=1.5em,itemsep=0.2em,topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.7em,itemsep=0.2em,topsep=0.25em}
+\titleformat{\section}{\Large\bfseries\color{ddtadark}}{}{0em}{}
+\titleformat{\subsection}{\large\bfseries\color{ddtadark}}{}{0em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{ddtadark}}{}{0em}{}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setlength{\emergencystretch}{4em}
+\hbadness=10000
+\hfuzz=20pt
+\sloppy
+\begin{document}
+\section{DDTA BA3 provenance/derivation lower-bound candidate - R1}\label{ddta-ba3-provenancederivation-lower-bound-candidate---r1}
+
+\textbf{Status:} PROVISIONAL CANDIDATE AFTER BA3-T1 / NOT CLOSED / BA3 OPEN
+
+\textbf{Derived by:} BA3-T1 source-to-Base-Analysis derivation and provenance lower-bound pressure test
+
+\textbf{Repository baseline reviewed:} \texttt{97ad32fb427f808521f9fe13fb6901465ccfd715}
+
+\textbf{Closed dependencies:} BA0 responsibility boundary; BA1 \texttt{BAReferent\ +\ BAProposition}; BA2 relation/action vocabulary.
+
+\subsection{1. Purpose}\label{1-purpose}
+
+BA3-T1 asks for the smallest provenance/origin contract needed to connect the closed Base Analysis semantics to governed documentation without making Base Analysis a second project authority.
+
+The lower bound is intentionally metadata-oriented. It does \textbf{not} add a third BAE identity family, define a database schema, define analysis records/findings, or solve the complete BA3 lifecycle problem.
+
+\subsection{2. Candidate lower-bound contract}\label{2-candidate-lower-bound-contract}
+
+Every accepted \texttt{BAReferent} and every accepted \texttt{BAProposition} must independently carry, or resolve to, an origin/provenance attachment with this semantic minimum:
+
+\begin{verbatim}
+BAOriginAttachment                         [metadata contract; NOT a BAE family]
+|- targetElement       1     BAReferent | BAProposition
+|- governedBaselineKey 1     immutable baseline identity
+|- originState         1     GROUNDED | DERIVED | DIAGNOSTIC_UNRESOLVED
+|- sourceLink          0..*  -> GovernedSourceRef
+|- derivationBasis     0..*  -> GovernedSourceRef | BAElementRef
+`- derivationRuleRef   0..1  required for DERIVED
+
+GovernedSourceRef
+|- documentIdentity    1     governed document ID
+`- locator             1     exact baseline-relative source anchor
+\end{verbatim}
+
+\texttt{BAOriginAttachment} and \texttt{GovernedSourceRef} are semantic metadata contracts. They are not new \texttt{BAReferent}/\texttt{BAProposition} subclasses and do not imply any physical class/table/edge implementation.
+
+\subsection{3. Why provenance attaches to both BA1 identity families}\label{3-why-provenance-attaches-to-both-ba1-identity-families}
+
+\texttt{BAReferent} and \texttt{BAProposition} have different independent semantic identities.
+
+A proposition can be grounded in one clause while its participating referents are supported across several clauses or document branches. Conversely, a referent can remain stable while propositions about it are introduced, revised, derived or diagnosed independently.
+
+Therefore:
+
+\begin{verbatim}
+provenance(BAProposition) does not imply provenance(BAReferent)
+provenance(BAReferent)    does not imply provenance(BAProposition)
+\end{verbatim}
+
+\textbf{Candidate invariant:} every materialized BA1 identity has independently inspectable provenance/origin metadata.
+
+\subsection{4. Many-to-many source derivation is required}\label{4-many-to-many-source-derivation-is-required}
+
+The current corpora already force both directions:
+
+\begin{verbatim}
+one governed clause/document unit
+    -> zero, one or many BAReferents/BAPropositions
+
+one BAReferent/BAProposition
+    -> one or many governed source units
+\end{verbatim}
+
+Examples:
+
+\begin{itemize}
+\tightlist
+\item
+  facial \texttt{FR-3.4} can support the delivery proposition, correlation proposition and reusable delivery behavior meaning;
+\item
+  \texttt{RecognitionCapture} is reused across acquisition and delivery sources rather than duplicated per clause;
+\item
+  the order-fulfillment physical handoff milestone is supported/reused across fulfillment, inventory and payment branches.
+\end{itemize}
+
+A single \texttt{sourceId} field on a BA element is therefore insufficient.
+
+No separate reverse-link identity is required by the lower bound: a source-to-BA index may be computed from the same many-to-many provenance links.
+
+\subsection{5. Governed source locator lower bound}\label{5-governed-source-locator-lower-bound}
+
+A source locator must permit exact drill-down to the governed material that justifies or localizes the BA element while avoiding a copied prose payload as a second authority.
+
+The minimum contract is:
+
+\begin{verbatim}
+governedBaselineKey
++ documentIdentity
++ locator
+\end{verbatim}
+
+\texttt{documentIdentity} names the governed logical document or document unit (\texttt{D-3.4}, \texttt{FR-3.4}, \texttt{SR-3.4-C}, etc.). \texttt{locator} resolves the exact relevant source unit inside that baseline. A realization may use a clause ID, structured fragment identifier, repository path plus section anchor, URI, JSON pointer or another stable resolver.
+
+The lower bound does \textbf{not} require line numbers, a source-text copy or a content hash. Those may be implementation hardening or UI aids, but they are not semantic authority.
+
+A cached excerpt, when used, is non-authoritative display material; the governed source identified by the locator remains authoritative.
+
+\subsection{6. Baseline identity is required}\label{6-baseline-identity-is-required}
+
+Document identity and local locator alone are insufficient because the same logical source may change meaning across governed revisions.
+
+The facial-access mutation family provides the direct pressure: a current interconnection realization can change from Ethernet to Wi-Fi while the logical Decision identity/area remains recognizable. A provenance pointer such as \texttt{D-3.5} without baseline context could silently conflate two different governed meanings.
+
+Therefore every BA origin attachment is scoped to exactly one immutable governed baseline identity.
+
+A Git commit SHA is an acceptable realization in the current repository, but Git is \textbf{not} mandated by the semantic contract.
+
+The exact cross-baseline identity/equivalence rules for BA elements remain a later BA3 question.
+
+\subsection{7. Origin-state lower bound}\label{7-origin-state-lower-bound}
+
+BA0 already closes three responsibility-level origin states. BA3-T1 gives them minimum operational meaning.
+
+\subsubsection{\texorpdfstring{7.1 \texttt{GROUNDED}}{7.1 GROUNDED}}\label{71-grounded}
+
+Meaning: the BA element states/denotes project meaning directly supported by governed documentation, although the BA representation may normalize wording into the closed BA1/BA2 semantics.
+
+Minimum rule:
+
+\begin{verbatim}
+originState      = GROUNDED
+sourceLink       = 1..*
+derivationBasis  = 0
+derivationRuleRef= 0
+\end{verbatim}
+
+Normalization such as source wording \texttt{deliver} -\textgreater{} semantic key \texttt{transfer} does not make the proposition \texttt{DERIVED} when the underlying meaning is directly stated by the governed source.
+
+\subsubsection{\texorpdfstring{7.2 \texttt{DERIVED}}{7.2 DERIVED}}\label{72-derived}
+
+Meaning: the BA element adds methodology-neutral analytical structure that is justified by governed meaning but is not itself directly stated as a project commitment.
+
+Minimum rule:
+
+\begin{verbatim}
+originState       = DERIVED
+derivationBasis   = 1..*
+derivationRuleRef = 1
+\end{verbatim}
+
+The basis may cite governed source references and/or already materialized BA elements. Its transitive lineage must terminate in governed source material from the same baseline.
+
+A derived element may also carry \texttt{sourceLink} entries for direct contextual evidence, but those links do not convert the derived conclusion into a grounded project fact.
+
+\texttt{derivationRuleRef} identifies an inspectable method-neutral normalization/inference rationale or rule. The exact rule registry and representation are \textbf{OPEN}; what is rejected is an unrecorded analyst/tool inference that cannot be reviewed.
+
+\subsubsection{\texorpdfstring{7.3 \texttt{DIAGNOSTIC\_UNRESOLVED}}{7.3 DIAGNOSTIC\_UNRESOLVED}}\label{73-diagnostic_unresolved}
+
+Meaning: Base Analysis has localized conflict, ambiguity, missing information or insufficient basis and cannot silently choose a project-semantic answer.
+
+Minimum rule:
+
+\begin{verbatim}
+originState = DIAGNOSTIC_UNRESOLVED
+sourceLink + derivationBasis >= 1
+\end{verbatim}
+
+The diagnostic must point to the governed source area and/or BA meaning that creates the unresolved condition. It is accepted as an analytical diagnostic, \textbf{not} as a governed project fact.
+
+The exact diagnostic-kind vocabulary and resolution lifecycle remain open.
+
+\subsection{8. Direct source authority versus derivation basis}\label{8-direct-source-authority-versus-derivation-basis}
+
+A derived statement must preserve two different questions:
+
+\begin{verbatim}
+Where is the project authority ultimately located?
+        !=
+What evidence/BA meaning was used to derive this analytical statement?
+\end{verbatim}
+
+The source authority is always governed documentation. \texttt{derivationBasis} records the inputs to the analytical derivation; it does not promote those BA elements to project authority.
+
+This distinction is required for source drill-down and for diagnosing why a derived classification/relation changes when one underlying source changes.
+
+\subsection{9. Facial-access replay}\label{9-facial-access-replay}
+
+Illustrative provenance (identifiers and locator syntax are not implementation commitments):
+
+\begin{verbatim}
+BAReferent RecognitionCapture
+  baseline: <B0>
+  state: GROUNDED
+  sourceLink:
+    - FR-3.3 / exact clause anchor
+    - FR-3.4 / exact clause anchor
+
+BAProposition P-FR34-transfer
+  operator: transfer
+  baseline: <B0>
+  state: GROUNDED
+  sourceLink:
+    - FR-3.4 / delivery obligation anchor
+
+BAProposition P-D34-responsibility
+  operator: assignResponsibility
+  polarity: negative
+  baseline: <B0>
+  state: GROUNDED
+  sourceLink:
+    - D-3.4 / transport-responsibility Decision anchor
+
+BAProposition P-D35-realization
+  operator: realize
+  baseline: <B0>
+  state: GROUNDED
+  sourceLink:
+    - D-3.5 / Ethernet realization anchor
+\end{verbatim}
+
+A reusable semantic-kind classification may instead be derived:
+
+\begin{verbatim}
+BAProposition P-classify-capture
+  operator: classify
+  classifiedReferent -> RecognitionCapture
+  semanticKind       -> information-resource
+  baseline: <B0>
+  state: DERIVED
+  derivationBasis:
+    - RecognitionCapture
+    - P-FR34-transfer
+  derivationRuleRef:
+    - <controlled method-neutral classification rule>
+\end{verbatim}
+
+The classification can therefore be reviewed independently without pretending the source literally contained the BA semantic-kind key.
+
+\subsection{10. Multi-branch referent replay}\label{10-multi-branch-referent-replay}
+
+The order corpus reuses the governed physical handoff milestone across fulfillment, stock issue and payment capture.
+
+A single reusable BAReferent can therefore have several source links:
+
+\begin{verbatim}
+BAReferent PhysicalHandoffMilestone
+  baseline: <B0>
+  state: GROUNDED
+  sourceLink:
+    - ADR-2.7 / stock-issue milestone
+    - ADR-3.4 / payment-capture milestone
+    - ADR-4.4 / physical-handoff definition
+    - FR-4.4  / handoff confirmation behavior
+\end{verbatim}
+
+This does not create four document-local BA referents merely to simplify provenance. Identity equivalence across wording remains BA1/BA3 governed semantic work, not a storage shortcut.
+
+\subsection{11. Negative control - method findings and tool state}\label{11-negative-control---method-findings-and-tool-state}
+
+Threat-method results and ThreatForge runtime state are not governed source provenance.
+
+Rejected patterns:
+
+\begin{verbatim}
+sourceLink -> STRIDE finding
+sourceLink -> ThreatForge object id
+GROUNDED proposition because a plugin inferred it
+\end{verbatim}
+
+A method-specific finding may reference BA elements and governed source locators in its own downstream analysis record. If it motivates a documentation correction, only the accepted governed change can later ground new/revised BA meaning.
+
+This preserves:
+
+\begin{verbatim}
+analysis may diagnose/propose
+        !=
+analysis governs project truth
+\end{verbatim}
+
+\subsection{12. Acceptance/review state is not the same as origin state}\label{12-acceptancereview-state-is-not-the-same-as-origin-state}
+
+BA3-T1 finds no current evidence requiring a complete per-element review/lifecycle state machine in the origin lower bound.
+
+\texttt{GROUNDED}, \texttt{DERIVED} and \texttt{DIAGNOSTIC\_UNRESOLVED} answer \textbf{where/how the analytical meaning originates}. They do not answer whether a BA element is newly proposed, accepted, rejected, stale, superseded or retired.
+
+Those lifecycle/review questions are materially distinct and remain open for later BA3 pressure.
+
+\subsection{13. Lower-bound dispositions}\label{13-lower-bound-dispositions}
+
+\begin{verbatim}
+Provenance on BAReferent                         REQUIRED
+Provenance on BAProposition                      REQUIRED
+Independent provenance per BA1 identity          REQUIRED
+Many-to-many source <-> BA mapping                REQUIRED
+Immutable governed-baseline context              REQUIRED
+Exact source drill-down locator                   REQUIRED
+Copy of governed prose inside BA as authority     REJECTED
+GROUNDED / DERIVED / DIAGNOSTIC_UNRESOLVED        REQUIRED
+Derived analytical basis                         REQUIRED
+Inspectable derivation rule/rationale reference  REQUIRED CANDIDATE
+Exact derivation-rule registry                    OPEN
+Per-element acceptance/review lifecycle           NOT CLOSED BY T1
+Third BAE identity family for provenance           NOT FORCED
+Method finding as governed source                 REJECTED
+ThreatForge runtime state as governed source       REJECTED
+BA1 reopen                                        NOT TRIGGERED
+BA2 reopen                                        NOT TRIGGERED
+BA3                                                STARTED / NOT CLOSED
+\end{verbatim}
+
+\subsection{14. Falsification rule}\label{14-falsification-rule}
+
+Revise this lower bound if a concrete governed corpus demonstrates that:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  provenance on only one BA1 identity family is sufficient without losing source drill-down/revalidation;
+\item
+  one-to-one source provenance preserves the reviewed multi-source/multi-proposition cases without duplication or ambiguity;
+\item
+  a source locator without immutable baseline context cannot conflate revised meaning;
+\item
+  \texttt{grounded}, \texttt{derived} and \texttt{diagnostic/unresolved} can be collapsed without permitting silent inference authority or losing uncertainty localization;
+\item
+  a derived element can be reproducibly reviewed without an explicit basis/rationale; or
+\item
+  current requirements force provenance metadata to become a third project-semantic BAE identity family.
+\end{enumerate}
+
+No reviewed evidence currently forces such a revision.
+
+\subsection{15. Explicit unresolved set after BA3-T1}\label{15-explicit-unresolved-set-after-ba3-t1}
+
+BA3 remains open. The smallest unresolved set is:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  cross-baseline identity/equivalence and retain/change rules for \texttt{BAReferent} and \texttt{BAProposition};
+\item
+  accepted/rejected/stale/superseded/retired lifecycle and review semantics;
+\item
+  diagnostic resolution/replacement behavior after governed source correction;
+\item
+  exact derivation-rule/rationale registry and whether all derived cases need the same material form;
+\item
+  change-impact propagation and source-to-analysis / analysis-to-source feedback mechanics.
+\end{enumerate}
+
+The next pressure target should attack the first three together using concrete baseline mutations rather than expanding the provenance schema.
+
+\end{document}
