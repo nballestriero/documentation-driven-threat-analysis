@@ -1,0 +1,632 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[a4paper,margin=2.25cm]{geometry}
+\usepackage{longtable,booktabs,array,calc}
+\usepackage{fancyvrb}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{titlesec}
+\definecolor{ddtadark}{RGB}{30,38,48}
+\definecolor{ddtablue}{RGB}{38,82,126}
+\hypersetup{colorlinks=true,linkcolor=ddtablue,urlcolor=ddtablue,citecolor=ddtablue}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Documentation-Driven Threat Analysis}
+\rhead{BA4-T1 projection pressure test}
+\cfoot{\thepage}
+\setlength{\headheight}{14pt}
+\setlist[itemize]{leftmargin=1.5em,itemsep=0.2em,topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.7em,itemsep=0.2em,topsep=0.25em}
+\titleformat{\section}{\Large\bfseries\color{ddtadark}}{}{0em}{}
+\titleformat{\subsection}{\large\bfseries\color{ddtadark}}{}{0em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{ddtadark}}{}{0em}{}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setlength{\emergencystretch}{4em}
+\hbadness=10000
+\hfuzz=20pt
+\sloppy
+\begin{document}
+\section{DDTA BA4-T1 projection boundary, traceability and semantic-preservation trial - R1}\label{ddta-ba4-t1-projection-boundary-traceability-and-semantic-preservation-trial---r1}
+
+\textbf{Status:} COMPLETED / PROVISIONAL PASS WITH PROJECTION-BOUNDARY LOWER-BOUND
+
+\textbf{Repository baseline reviewed:} \texttt{ac49f02ca37d47e872b3ce5194f6dd0e26574d75}
+
+\textbf{Executed scope:} BA4-T1 only.
+
+\subsection{1. Trial question}\label{1-trial-question}
+
+Can one accepted Base Analysis materialization support a human-oriented projection and a bounded method-oriented projection while preserving shared project meaning, explicit traceability and the governed-document authority boundary?
+
+The trial is adversarial rather than demonstrative: every proposed projection convenience is tested for whether it silently adds shared meaning, hides lossiness, bypasses BA provenance or creates a second lifecycle authority.
+
+\subsection{2. Fixed input contract}\label{2-fixed-input-contract}
+
+The trial assumes only already-closed Base Analysis semantics:
+
+\begin{verbatim}
+BA1
+  BAReferent
+  BAProposition
+
+BA2
+  semantic operator
+  role-bound participation
+  polarity
+  condition / temporalScope where admissible
+
+BA3
+  baseline-scoped provenance
+  GROUNDED / DERIVED / DIAGNOSTIC_UNRESOLVED
+  review/freshness
+  RETAIN / REPLACE / RETIRE
+  role-bound derivation
+  revalidationContext
+\end{verbatim}
+
+No method-specific category is added to those inputs.
+
+\subsection{3. Primary facial-access BA slice}\label{3-primary-facial-access-ba-slice}
+
+The pressure slice uses the already-reviewed shared meaning around recognition delivery:
+
+\begin{verbatim}
+BAReferents
+  CameraSubsystem
+  RecognitionProcessor
+  RecognitionCapture
+  RecognitionRequest
+  LocalConnectivity
+  WiredEthernet
+  underlying transport responsibility scope
+
+BAPropositions
+  transfer(CameraSubsystem,
+           RecognitionProcessor,
+           RecognitionCapture)
+
+  correlate(RecognitionCapture,
+            RecognitionRequest)
+
+  consumeService(project,
+                 LocalConnectivity)
+
+  assignResponsibility[negative](project,
+                                 underlying transport,
+                                 ownership/management)
+
+  realize(LocalConnectivity,
+          WiredEthernet)
+
+  constrain(delivery behavior,
+            incomplete delivery != successful completion)
+
+  constrain(delivery behavior,
+            confidentiality / integrity / authorized provenance)
+\end{verbatim}
+
+The exact physical materialization is intentionally irrelevant. The trial operates over the closed semantic responsibilities.
+
+\subsection{4. Human-oriented projection trial}\label{4-human-oriented-projection-trial}
+
+\subsubsection{4.1 Projection purpose}\label{41-projection-purpose}
+
+Create a compact human view of the recognition-delivery branch without requiring the reader to navigate raw governed prose.
+
+\subsubsection{4.2 Allowed transformation}\label{42-allowed-transformation}
+
+The trial allows:
+
+\begin{itemize}
+\tightlist
+\item
+  selection of the relevant BA slice;
+\item
+  ordering by reading intent rather than source-document order;
+\item
+  human display labels;
+\item
+  grouping under \texttt{Recognition\ delivery};
+\item
+  aggregation of explicit constraints into an enumerated protection group.
+\end{itemize}
+
+\subsubsection{4.3 Produced view}\label{43-produced-view}
+
+\begin{verbatim}
+Recognition delivery
+
+CameraSubsystem delivers RecognitionCapture to RecognitionProcessor.
+The capture is correlated to RecognitionRequest.
+The project consumes LocalConnectivity but does not own/manage
+its underlying transport infrastructure.
+LocalConnectivity is realized by WiredEthernet.
+Delivery has explicit completion, confidentiality, integrity
+and authorized-provenance constraints.
+\end{verbatim}
+
+Every meaning-bearing sentence/group is trace-bound to the underlying BA referents/propositions.
+
+\subsubsection{4.4 Semantic-preservation checks}\label{44-semantic-preservation-checks}
+
+\texttt{deliver} is used only as a human display rendering of BA \texttt{transfer} with the same source/destination/content bindings.
+
+The negative responsibility proposition remains negative.
+
+The constraint group enumerates the underlying obligations rather than concluding \texttt{secure\ channel} or \texttt{safe\ delivery}.
+
+Result: \textbf{PASS}.
+
+\subsection{5. Negative human-view controls}\label{5-negative-human-view-controls}
+
+\subsubsection{H-N1 - stronger aggregate}\label{h-n1---stronger-aggregate}
+
+Input:
+
+\begin{verbatim}
+confidentiality constraint
+integrity constraint
+authorized provenance constraint
+\end{verbatim}
+
+Candidate rendering:
+
+\begin{verbatim}
+"the transport is secure"
+\end{verbatim}
+
+Disposition: \textbf{REJECTED}.
+
+Reason: the phrase is a stronger and ambiguous project conclusion. It is not a mere grouping/rename.
+
+\subsubsection{H-N2 - erased polarity}\label{h-n2---erased-polarity}
+
+Input:
+
+\begin{verbatim}
+assignResponsibility[negative](project, transport, ownership/management)
+\end{verbatim}
+
+Candidate rendering:
+
+\begin{verbatim}
+"the project manages transport"
+\end{verbatim}
+
+Disposition: \textbf{REJECTED}.
+
+\subsubsection{H-N3 - omitted scope interpreted as false}\label{h-n3---omitted-scope-interpreted-as-false}
+
+A view omits concurrency/idempotency because its purpose is only recognition delivery.
+
+Inference:
+
+\begin{verbatim}
+omitted -> project has no such constraints
+\end{verbatim}
+
+Disposition: \textbf{REJECTED}.
+
+This is the concrete pressure that forces \texttt{selectionCoverageContract}.
+
+\subsection{6. Bounded method-oriented projection trial}\label{6-bounded-method-oriented-projection-trial}
+
+\subsubsection{6.1 Projection purpose}\label{61-projection-purpose}
+
+Create a flow-oriented threat-analysis view that can reason about interaction structure while leaving method taxonomy downstream.
+
+No STRIDE category or full DFD schema is defined.
+
+\subsubsection{6.2 Projection-owned constructs}\label{62-projection-owned-constructs}
+
+\begin{verbatim}
+MethodNode
+MethodInteraction
+MethodAnnotation
+\end{verbatim}
+
+These constructs are local to the consumer projection.
+
+\subsubsection{6.3 Shared mapping}\label{63-shared-mapping}
+
+\begin{verbatim}
+CameraSubsystem
+  -> MethodNode(camera)
+
+RecognitionProcessor
+  -> MethodNode(recognition)
+
+transfer(CameraSubsystem,
+         RecognitionProcessor,
+         RecognitionCapture)
+  -> MethodInteraction(camera -> recognition)
+     payload = RecognitionCapture
+\end{verbatim}
+
+Trace bindings preserve the source/destination/content BA meaning.
+
+Result: \textbf{PASS} as projection mapping.
+
+The method node and method interaction are not promoted into BA families.
+
+\subsection{7. Method-owned interpretation pressure}\label{7-method-owned-interpretation-pressure}
+
+The method projection wants an exposure annotation associated with externally supplied transport.
+
+Its BA basis is:
+
+\begin{verbatim}
+serviceUse
+  -> consumeService(project, LocalConnectivity)
+
+responsibilityBoundary
+  -> assignResponsibility[negative](project,
+                                    underlying transport,
+                                    ownership/management)
+\end{verbatim}
+
+The projection may produce:
+
+\begin{verbatim}
+MethodAnnotation:
+  externally-provided-transport-exposure
+\end{verbatim}
+
+Disposition: \textbf{ALLOWED AS METHOD-OWNED INTERPRETATION}.
+
+It must remain:
+
+\begin{itemize}
+\tightlist
+\item
+  explicitly owned by the method/projection;
+\item
+  trace-bound to the BA basis;
+\item
+  outside BA1/BA2 shared semantics;
+\item
+  unable to become a grounded BA source.
+\end{itemize}
+
+The same mapping promoted to a new BA proposition is \textbf{REJECTED} by this trial.
+
+\subsection{8. Why direct source extraction inside projection fails}\label{8-why-direct-source-extraction-inside-projection-fails}
+
+Negative pattern:
+
+\begin{verbatim}
+projection engine
+  reads D-3.4 prose directly
+  invents method node/edge/shared labels
+  records only source locator
+\end{verbatim}
+
+This bypasses the accepted shared BA representation and can reconstruct project meaning differently for each consumer.
+
+Disposition: \textbf{REJECTED for shared DDTA projection semantics}.
+
+A view may follow BA3 provenance to show source context, but the shared semantic basis must remain BA when BA already represents the needed project meaning.
+
+This preserves the DDTA purpose that each method should not rediscover the same project facts from documentation independently.
+
+\subsection{9. Projection trace shape trial}\label{9-projection-trace-shape-trial}
+
+\subsubsection{9.1 Flat list pressure}\label{91-flat-list-pressure}
+
+A simple method interaction can trace to one \texttt{transfer} proposition plus participant referents.
+
+A flat BA reference list is reviewable when every reference has obvious contribution.
+
+\subsubsection{9.2 Multi-input interpretation pressure}\label{92-multi-input-interpretation-pressure}
+
+The exposure annotation uses service use and responsibility boundary for different purposes.
+
+If the trace is only:
+
+\begin{verbatim}
+[BA-P1, BA-P2]
+\end{verbatim}
+
+an independent reviewer cannot know which input satisfies which part of the projection mapping contract.
+
+Role-bound trace is therefore required \textbf{where contribution roles differ}:
+
+\begin{verbatim}
+serviceUse             -> BA-P1
+responsibilityBoundary -> BA-P2
+\end{verbatim}
+
+Disposition: \textbf{PASS / REQUIRED WHEN ROLES DIFFER}.
+
+The role keys remain projection-contract scoped and do not reopen BA2.
+
+\subsection{10. Projection-local identity pressure}\label{10-projection-local-identity-pressure}
+
+\subsubsection{10.1 Meaning-bearing item}\label{101-meaning-bearing-item}
+
+A method interaction must be independently selectable and traceable in the view.
+
+Without a projection-local address/key, trace inspection can only point to an unstable render position.
+
+Disposition: \textbf{projection-local identity/address REQUIRED for meaning-bearing items}.
+
+\subsubsection{10.2 Layout primitive}\label{102-layout-primitive}
+
+A line segment or table cell has no independent semantic trace requirement.
+
+Disposition: \textbf{no semantic identity required}.
+
+\subsubsection{10.3 Cross-baseline identity}\label{103-cross-baseline-identity}
+
+T1 finds no evidence that projection items need BA-like semantic continuity across baselines.
+
+A deterministic local key may be useful operationally, but \texttt{RETAIN\ \textbar{}\ REPLACE\ \textbar{}\ RETIRE} is not copied into projection semantics.
+
+Disposition: \textbf{NOT REQUIRED BY T1}.
+
+\subsection{11. Coverage and completeness pressure}\label{11-coverage-and-completeness-pressure}
+
+The bounded method projection selects interaction-oriented facts.
+
+It may intentionally omit:
+
+\begin{itemize}
+\tightlist
+\item
+  some realization detail;
+\item
+  unrelated fulfillment semantics;
+\item
+  diagnostic records outside its purpose;
+\item
+  constraints not consumed by this projection revision.
+\end{itemize}
+
+The consumer must be able to determine that the projection is selective.
+
+Therefore the descriptor must expose sufficient selection/coverage semantics to answer:
+
+\begin{verbatim}
+What BA elements are eligible for this projection?
+What states are admissible?
+Does absence mean out-of-scope or evaluated-not-matched?
+\end{verbatim}
+
+BA4-T1 does not force a universal completeness metric or query language.
+
+\subsection{12. Diagnostic pressure}\label{12-diagnostic-pressure}
+
+Consider an accepted BA diagnostic created by M4 because sibling representation context conflicts with an unchanged FR.
+
+Negative projection:
+
+\begin{verbatim}
+DIAGNOSTIC_UNRESOLVED transfer meaning
+  -> current flow item without warning
+\end{verbatim}
+
+Disposition: \textbf{REJECTED}.
+
+A normal accepted/current projection excludes or visibly qualifies it according to the descriptor. A review-oriented projection may include the diagnostic explicitly.
+
+This uses BA3 state rather than creating a projection-owned truth state.
+
+\subsection{13. M1 change replay - Ethernet to Wi-Fi}\label{13-m1-change-replay---ethernet-to-wi-fi}
+
+B0 projection contains:
+
+\begin{verbatim}
+realization item -> WiredEthernet
+\end{verbatim}
+
+BA3 B1 continuity says the old realization proposition is replaced by the Wi-Fi proposition, while the transfer proposition may be retained.
+
+T1 projection rule:
+
+\begin{verbatim}
+keep projection@B0 as historical
+build projection@B1 from accepted BA@B1
+\end{verbatim}
+
+Consequences:
+
+\begin{itemize}
+\tightlist
+\item
+  flow interaction remains materially equivalent if its traced \texttt{transfer} meaning is retained;
+\item
+  realization display/method annotation uses Wi-Fi if selected by the projection;
+\item
+  no projection item is semantically rewritten in B0;
+\item
+  no second \texttt{REPLACE} state machine is required.
+\end{itemize}
+
+Result: \textbf{PASS}.
+
+\subsection{14. M3 change replay - remote to local recognition}\label{14-m3-change-replay---remote-to-local-recognition}
+
+BA3 retires the remote capture-transfer proposition.
+
+Negative behavior:
+
+\begin{verbatim}
+projection item existed in B0
+  -> preserve it in B1 regardless of BA
+\end{verbatim}
+
+Disposition: \textbf{REJECTED}.
+
+Correct behavior:
+
+\begin{verbatim}
+rebuild from BA@B1
+  -> no remote interaction unless another accepted BA proposition supports it
+\end{verbatim}
+
+Result: \textbf{PASS}.
+
+\subsection{15. M4 change replay - representation conflict}\label{15-m4-change-replay---representation-conflict}
+
+When the representation Decision changes while the old FR remains inconsistent, BA3 marks affected meaning stale/unresolved rather than silently rewriting it.
+
+A method projection that bypasses BA and reads the Decision alone could fabricate a new interaction payload while governance remains inconsistent.
+
+Disposition: \textbf{REJECTED}.
+
+A projection must consume the accepted BA state. Review projections may expose the unresolved condition; normal current projections may not present stale meaning as current project truth.
+
+This directly supports the projection-\textgreater BA trace boundary.
+
+\subsection{16. Order/provider control}\label{16-orderprovider-control}
+
+\subsubsection{16.1 Human gate view}\label{161-human-gate-view}
+
+A human order-evaluation view selects:
+
+\begin{verbatim}
+reservation result
+payment authorization result
+full-order gate/atomicity meaning
+\end{verbatim}
+
+It may omit inventory-concurrency implementation detail under its coverage contract.
+
+Omission is not absence. \textbf{PASS}.
+
+\subsubsection{16.2 Provider normalization}\label{162-provider-normalization}
+
+A method projection needs \texttt{PaymentAuthorizationResult}.
+
+Correct:
+
+\begin{verbatim}
+consume accepted BA normalized result
+\end{verbatim}
+
+Rejected:
+
+\begin{verbatim}
+read raw provider status
+apply projection-private project mapping
+present result as shared project meaning
+\end{verbatim}
+
+The latter would recreate exactly the hidden mapping authority rejected by BA3-T3.
+
+\subsection{17. BAE-family pressure}\label{17-bae-family-pressure}
+
+Candidate additions considered:
+
+\begin{verbatim}
+BAProjection
+BAViewItem
+DFDNode
+MethodInteraction
+\end{verbatim}
+
+None is forced as a BA1 family.
+
+Reason:
+
+\begin{itemize}
+\tightlist
+\item
+  projection descriptor/materialization/item identity is consumer-artifact identity;
+\item
+  method node/interaction identity belongs to the method-owned projection;
+\item
+  shared project meanings remain traced BAReferents/BAPropositions;
+\item
+  no subtype-specific shared invariant requires a third BAE family.
+\end{itemize}
+
+Disposition: \textbf{BA1 REOPEN NOT TRIGGERED}.
+
+\subsection{18. BA2/BA3 reopen pressure}\label{18-ba2ba3-reopen-pressure}
+
+The human and method projections obtain the needed shared project meaning from the closed BA2 operators/roles and BA3 provenance/lifecycle metadata.
+
+No new methodology-neutral operator is needed.
+
+No missing provenance or change mechanism appears.
+
+Projection-specific mapping/trace roles are not BA2 roles, and method annotations are downstream.
+
+Disposition:
+
+\begin{verbatim}
+BA2 reopen  NOT TRIGGERED
+BA3 reopen  NOT TRIGGERED
+\end{verbatim}
+
+\subsection{19. Minimal accepted T1 candidate}\label{19-minimal-accepted-t1-candidate}
+
+\begin{verbatim}
+Projection definition
+  immutable revision
+  consumer purpose
+  selection/coverage contract
+  mapping contract
+  interpretation boundary
+
+Projection materialization
+  source BA baseline
+  meaning-bearing items
+
+Meaning-bearing item
+  projection-local key/address
+  projection-owned kind
+  1..* trace bindings to BA
+  role-bound trace where contributions differ
+  shared rendering and/or explicit method-owned interpretation
+\end{verbatim}
+
+No stronger structure is justified by T1.
+
+\subsection{20. T1 provisional ledger summary}\label{20-t1-provisional-ledger-summary}
+
+\begin{verbatim}
+Human projection from same BA                     PASS
+Bounded method projection from same BA             PASS
+Selection without coverage semantics               FAIL
+Omission == negation                               FAIL
+Display rename preserving BA meaning               PASS
+Stronger human aggregation                         FAIL
+Grouping with preserved member trace               PASS
+Method-owned interpretation with BA trace          PASS
+Method interpretation promoted into BA             FAIL
+Meaning-bearing item without BA trace               FAIL
+Mandatory duplicate GovernedSourceRef in view       NOT REQUIRED
+Role-bound multi-input trace                        REQUIRED
+Projection-local item identity                      REQUIRED WHEN MEANING-BEARING
+Projection cross-baseline lifecycle                 NOT REQUIRED
+Rebuild after BA change                             PASS / REQUIRED
+New BAE family                                      NOT FORCED
+New BA2 operator                                    NOT FORCED
+BA1/BA2/BA3 reopen                                  NOT TRIGGERED
+BA4                                                 STARTED / NOT CLOSED
+\end{verbatim}
+
+\subsection{21. Next pressure target}\label{21-next-pressure-target}
+
+BA4-T1 is insufficient to close BA4.
+
+The next smallest falsification target is:
+
+\begin{quote}
+\textbf{BA4-T2 - method-owned interpretation, coverage loss and cross-projection consistency pressure test.}
+\end{quote}
+
+T2 should use at least two incompatible method-oriented projections over the same BA, exercise diagnostics/stale views and aggressive selection/aggregation, and test whether the revisioned descriptor plus role-bound BA trace is sufficient for reproducible method-owned interpretation without introducing shared projection ontology.
+
+Do not start BA5, BA6, AnalysisRecord/Common Finding or a complete STRIDE/STRIDE-AI schema.
+
+\end{document}

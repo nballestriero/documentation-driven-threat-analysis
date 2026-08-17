@@ -1,0 +1,45 @@
+trial: BA4-T1
+status: COMPLETED_PROVISIONAL_PASS
+phase_status: STARTED_NOT_CLOSED
+baseline_reviewed: ac49f02ca37d47e872b3ce5194f6dd0e26574d75
+result_label: PROJECTION_BOUNDARY_LOWER_BOUND
+primary_pressure:
+  - human_oriented_projection_from_same_BA
+  - bounded_method_oriented_projection_from_same_BA
+  - selection_coverage_lossiness
+  - projection_to_BA_traceability
+  - method_owned_interpretation_boundary
+  - projection_rebuild_after_BA_change
+controls:
+  - facial_M1_ethernet_to_wifi
+  - facial_M3_remote_to_local_recognition
+  - facial_M4_representation_context_conflict
+  - order_gate_view
+  - provider_state_normalization
+accepted:
+  projection_derived_from_accepted_BA: REQUIRED
+  immutable_projection_revision: REQUIRED
+  inspectable_selection_coverage_contract: REQUIRED
+  meaning_bearing_projection_item_trace_to_BA: REQUIRED
+  projection_local_identity_when_meaning_bearing: REQUIRED
+  role_bound_trace_when_contribution_roles_differ: REQUIRED
+  human_selection_renaming_grouping: PASS_WITH_SEMANTIC_PRESERVATION
+  downstream_method_owned_interpretation: ALLOWED
+  BA_change_projection_rebuild: REQUIRED
+rejected:
+  projection_as_project_authority: REJECTED
+  omission_as_negation_or_absence: REJECTED
+  mandatory_duplicate_governed_source_provenance: REJECTED
+  stronger_shared_aggregation_than_BA_basis: REJECTED
+  method_owned_interpretation_promoted_to_BA: REJECTED
+  projection_descriptor_as_BA3_derivation_rule_registry: REJECTED
+  second_project_lifecycle_in_projection: REJECTED
+not_forced:
+  new_BAE_family: NOT_FORCED
+  new_BA2_operator: NOT_FORCED
+  cross_baseline_projection_semantic_identity: NOT_REQUIRED_BY_T1
+reopen:
+  BA1: NOT_TRIGGERED
+  BA2: NOT_TRIGGERED
+  BA3: NOT_TRIGGERED
+next_authorized_microstep: BA4-T2_method_owned_interpretation_coverage_loss_cross_projection_consistency

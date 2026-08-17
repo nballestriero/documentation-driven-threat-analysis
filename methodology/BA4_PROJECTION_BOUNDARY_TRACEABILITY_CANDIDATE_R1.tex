@@ -1,0 +1,606 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[a4paper,margin=2.25cm]{geometry}
+\usepackage{longtable,booktabs,array,calc}
+\usepackage{fancyvrb}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{titlesec}
+\definecolor{ddtadark}{RGB}{30,38,48}
+\definecolor{ddtablue}{RGB}{38,82,126}
+\hypersetup{colorlinks=true,linkcolor=ddtablue,urlcolor=ddtablue,citecolor=ddtablue}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Documentation-Driven Threat Analysis}
+\rhead{BA4 projection boundary candidate}
+\cfoot{\thepage}
+\setlength{\headheight}{14pt}
+\setlist[itemize]{leftmargin=1.5em,itemsep=0.2em,topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.7em,itemsep=0.2em,topsep=0.25em}
+\titleformat{\section}{\Large\bfseries\color{ddtadark}}{}{0em}{}
+\titleformat{\subsection}{\large\bfseries\color{ddtadark}}{}{0em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{ddtadark}}{}{0em}{}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setlength{\emergencystretch}{4em}
+\hbadness=10000
+\hfuzz=20pt
+\sloppy
+\begin{document}
+\section{DDTA BA4 projection boundary and traceability candidate - R1}\label{ddta-ba4-projection-boundary-and-traceability-candidate---r1}
+
+\textbf{Status:} PROVISIONAL CANDIDATE AFTER BA4-T1 / NOT CLOSED / BA4 OPEN
+
+\textbf{Derived by:} BA4-T1 projection boundary, traceability and semantic-preservation lower-bound trial
+
+\textbf{Repository baseline reviewed:} \texttt{ac49f02ca37d47e872b3ce5194f6dd0e26574d75}
+
+\textbf{Closed dependencies:} BA0 responsibility boundary; BA1 \texttt{BAReferent\ +\ BAProposition}; BA2 proposition semantics; BA3 provenance/derivation/lifecycle/change contract.
+
+\subsection{1. Purpose}\label{1-purpose}
+
+BA4-T1 asks for the smallest representation-independent contract by which one accepted Base Analysis can be projected into different consumer views without allowing the view to become project authority or silently redefine shared BA meaning.
+
+The trial uses two projections over the same facial-access BA materialization:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  a human-oriented project-understanding view; and
+\item
+  a bounded flow-oriented threat-analysis view.
+\end{enumerate}
+
+The method-oriented view is deliberately not a complete STRIDE, STRIDE-AI or DFD schema. Its projection-owned node/interaction/annotation constructs exist only to pressure the boundary between shared BA meaning and consumer interpretation.
+
+BA4-T1 also uses order/provider examples as a negative/control replay for omission, aggregation and change handling.
+
+\subsection{2. Provisional lower-bound contract}\label{2-provisional-lower-bound-contract}
+
+The smallest candidate separates a projection \textbf{definition}, one baseline-scoped \textbf{materialization}, and meaning-bearing \textbf{projection items}.
+
+\begin{verbatim}
+BAProjectionDescriptor                 [projection metadata; NOT BAE]
+|- projectionKey                 1
+|- projectionRevisionKey         1     immutable
+|- consumerPurpose               1
+|- selectionCoverageContract     1
+|- mappingContract               1
+`- interpretationBoundary        1
+
+BAProjectionMaterialization            [derived artifact; NOT BAE]
+|- projectionRef                 1     projectionKey@revision
+|- sourceBABaselineKey           1
+`- item                          0..*
+
+BAProjectionItem                   [projection-local; NOT BAE]
+|- projectionItemKey             1     local to materialization
+|- projectionOwnedKind           1
+|- traceBinding                  1..*
+|    |- traceRoleKey             1     projection-contract scoped
+|    `- baElementRef         1     BA element @ BA baseline
+|- sharedSemanticRendering       0..1
+`- methodOwnedInterpretation     0..1
+\end{verbatim}
+
+The representation may combine these responsibilities. The candidate does not require classes, graph nodes, tables, JSON records or one persisted projection artifact.
+
+\subsection{3. Projection is derived consumer state, not Base Analysis authority}\label{3-projection-is-derived-consumer-state-not-base-analysis-authority}
+
+A projection is built from an accepted BA materialization for one governed/BA baseline.
+
+It may make information easier to read or consume, but it does not create a new source of project truth.
+
+The authority chain remains:
+
+\begin{verbatim}
+governed documentation
+        -> accepted Base Analysis
+                -> projection
+\end{verbatim}
+
+A projection may not reverse that arrow by treating a projection-local item or method-owned interpretation as the source of a new grounded BA element.
+
+If a projection exposes a possible missing project fact, that result remains downstream analysis/candidate material. Project truth changes only through governed documentation and subsequent BA rebuild/revalidation under BA3.
+
+\subsection{4. Why a revisioned projection descriptor is required}\label{4-why-a-revisioned-projection-descriptor-is-required}
+
+A label such as \texttt{facial-flow-view} is insufficient if the selection or mapping semantics can change underneath it.
+
+Two builds from the same BA baseline can differ materially when one implementation silently changes:
+
+\begin{itemize}
+\tightlist
+\item
+  what BA operators are selected;
+\item
+  whether diagnostics are included;
+\item
+  how several BA elements are grouped;
+\item
+  how a BA \texttt{transfer} is mapped to a method interaction;
+\item
+  whether a negative responsibility proposition contributes to a method annotation.
+\end{itemize}
+
+Therefore a projection reference resolves to one immutable revision of an inspectable descriptor.
+
+The descriptor does \textbf{not} need a general executable language. It must make the selection/coverage, mapping and interpretation boundary sufficiently clear for independent review and rebuild.
+
+This projection descriptor is distinct from the BA3 \texttt{BADerivationRuleDescriptor}:
+
+\begin{verbatim}
+BA3 derivation rule
+  method-neutral
+  may produce accepted shared BA meaning
+
+BA4 projection descriptor
+  consumer-specific and possibly method-specific
+  produces projection-owned meaning only
+\end{verbatim}
+
+Merging these registries would permit method semantics to leak into Base Analysis and is rejected.
+
+\subsection{5. Selection requires an explicit coverage contract}\label{5-selection-requires-an-explicit-coverage-contract}
+
+A projection is normally lossy. It may intentionally omit BA meaning outside its consumer purpose.
+
+Therefore omission cannot carry project-semantic negation.
+
+Candidate invariant:
+
+\begin{quote}
+A projection definition must state what BA meaning is eligible/in-scope for selection and what an omitted BA element means for that projection.
+\end{quote}
+
+For ordinary selective projections:
+
+\begin{verbatim}
+not present in projection
+    !=
+false in project
+    !=
+absent from Base Analysis
+\end{verbatim}
+
+It normally means only \texttt{outside\ this\ projection\textquotesingle{}s\ selection/coverage\ or\ not\ selected\ by\ this\ projection\ revision}.
+
+Without this contract, a flow view that selects \texttt{transfer} propositions but omits responsibility or constraint propositions could make a consumer infer that those project meanings do not exist.
+
+The coverage contract may be expressed by operator families, semantic kinds, explicit queries, named projection rules or another inspectable representation. BA4-T1 does not require one universal query language.
+
+\subsection{6. Traceability lower bound}\label{6-traceability-lower-bound}
+
+Every \textbf{meaning-bearing projection item} must trace to one or more BA identities/materializations.
+
+The minimum path is:
+
+\begin{verbatim}
+projection item
+   -> BAElementRef@sourceBABaseline
+       -> BA3 origin/provenance
+           -> governed source
+\end{verbatim}
+
+The projection therefore does not need to duplicate \texttt{GovernedSourceRef} as semantic provenance.
+
+A view may cache a source label, excerpt or locator for navigation, but that duplicate is convenience/display material. The BA3 provenance chain remains authoritative for source drill-down.
+
+A projection item that expresses shared project meaning by reading governed prose directly while bypassing existing BA meaning is rejected for BA4 shared projection purposes. If a consumer repeatedly needs such missing shared meaning, that may become evidence for the smallest BA1/BA2/BA3 reopen, but the projection may not silently repair the core.
+
+\subsection{7. Why trace bindings are role-bound}\label{7-why-trace-bindings-are-role-bound}
+
+A simple list of BA references is enough only when every referenced BA element contributes in the same undifferentiated way.
+
+The method-oriented pressure case uses both:
+
+\begin{verbatim}
+consumeService(project, LocalConnectivity)
++
+assignResponsibility[negative](project,
+                               underlyingTransport,
+                               ownership/management)
+\end{verbatim}
+
+to create a projection-owned exposure annotation.
+
+The two BA inputs are not interchangeable. One says the project consumes a service; the other denies a responsibility/authority kind.
+
+Therefore a projection contract may bind them as:
+
+\begin{verbatim}
+traceBinding:
+  serviceUse            -> <consumeService proposition>
+  responsibilityBoundary-> <negative assignResponsibility proposition>
+\end{verbatim}
+
+\texttt{traceRoleKey} is scoped to the projection contract. It is \textbf{not} a new BA2 proposition role registry.
+
+\subsection{8. Projection-local identity is not BAE identity}\label{8-projection-local-identity-is-not-bae-identity}
+
+A meaning-bearing projection item needs a stable local address within one materialization so that:
+
+\begin{itemize}
+\tightlist
+\item
+  trace bindings can point to it;
+\item
+  a user can select or inspect it;
+\item
+  a rendering can distinguish one item from another;
+\item
+  a rebuild can be reviewed.
+\end{itemize}
+
+This does not make the item a \texttt{BAReferent} or \texttt{BAProposition}.
+
+The projection item identity is local to the projection materialization unless a later consumer contract chooses stronger continuity for UI/tool reasons.
+
+BA4-T1 does \textbf{not} require cross-baseline semantic identity for projection items.
+
+Pure rendering primitives such as glyphs, text spans, table cells, connector bends or layout boxes do not require projection-semantic identity merely because they appear on screen.
+
+\subsection{9. Semantic-preserving human projection}\label{9-semantic-preserving-human-projection}
+
+The facial-access BA can support a human-oriented view such as:
+
+\begin{verbatim}
+Recognition delivery
+
+- CameraSubsystem transfers RecognitionCapture to RecognitionProcessor.
+- The capture is correlated with RecognitionRequest.
+- The project consumes LocalConnectivity.
+- The project does not own/manage the underlying transport.
+- LocalConnectivity is realized by WiredEthernet.
+- Delivery remains subject to governed completion and C/I/provenance
+  constraints.
+\end{verbatim}
+
+Each bullet/group traces to the relevant BA referents/propositions.
+
+The human projection may:
+
+\begin{itemize}
+\tightlist
+\item
+  choose a human-readable order;
+\item
+  use display labels instead of BA semantic keys;
+\item
+  group related facts under a heading;
+\item
+  aggregate several constraint propositions into a visibly enumerated group.
+\end{itemize}
+
+It may not strengthen the meaning. For example:
+
+\begin{verbatim}
+C/I/provenance constraints exist
+       -> "delivery protections" group         PASS
+
+C/I/provenance constraints exist
+       -> "the channel is secure"              REJECTED
+\end{verbatim}
+
+The latter is a stronger conclusion not entailed merely by the selected BA facts.
+
+BA4-T1 does not define the lexical synonym registry that would govern general authoring/display vocabulary. That remains BA5. A projection-local human label is presentation metadata, not a new stable BA semantic key.
+
+\subsection{10. Shared semantic rendering preservation test}\label{10-shared-semantic-rendering-preservation-test}
+
+For a projection item presented as shared project meaning, the rendering must be materially supportable by its traced BA basis without adding a stronger project claim.
+
+The minimum reviewer test is:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  identify the traced BA elements;
+\item
+  inspect their accepted operator/roles/polarity/modifiers/origin qualifications as applicable;
+\item
+  verify that the projection rendering does not invert, strengthen or erase material meaning; and
+\item
+  verify that a reader can reach the BA elements and governed source chain without re-interpreting raw prose.
+\end{enumerate}
+
+Meaning-bearing qualifications cannot disappear merely for display convenience.
+
+Examples:
+
+\begin{verbatim}
+negative responsibility
+  -> display as affirmative ownership           REJECTED
+
+DIAGNOSTIC_UNRESOLVED
+  -> display as established project fact        REJECTED
+
+conditional proposition
+  -> omit condition while presenting as general REJECTED
+
+transfer(...)
+  -> human label "delivery" with same roles     PASS
+\end{verbatim}
+
+This is semantic preservation, not byte or notation identity.
+
+\subsection{11. Bounded method-oriented projection}\label{11-bounded-method-oriented-projection}
+
+The same BA materialization can feed a bounded flow-oriented threat-analysis projection.
+
+Illustrative projection-owned constructs:
+
+\begin{verbatim}
+MethodNode
+MethodInteraction
+MethodAnnotation
+\end{verbatim}
+
+These are deliberately downstream and do not become BA1 families.
+
+A projection may map:
+
+\begin{verbatim}
+CameraSubsystem BAReferent
+  -> MethodNode(camera)
+
+RecognitionProcessor BAReferent
+  -> MethodNode(recognition)
+
+transfer(CameraSubsystem,
+         RecognitionProcessor,
+         RecognitionCapture)
+  -> MethodInteraction(camera -> recognition)
+     payload = RecognitionCapture
+\end{verbatim}
+
+The method interaction traces to the BA \texttt{transfer} proposition and its participating BA referents.
+
+The projection may also derive a method-owned annotation from the service-use/responsibility combination, for example an \texttt{externally-provided-transport-exposure} tag. That tag is \textbf{not} a shared BA proposition and does not require a new BA operator.
+
+The critical boundary is:
+
+\begin{verbatim}
+BA says:
+  project consumes LocalConnectivity
+  project does not own/manage underlying transport
+
+method projection may interpret:
+  externally-provided-transport-exposure
+
+but BA does not become:
+  externally-provided-transport-exposure
+\end{verbatim}
+
+The method-owned annotation must remain explicitly owned by the projection/method and trace to its BA basis.
+
+\subsection{12. Selection, renaming, grouping and aggregation dispositions}\label{12-selection-renaming-grouping-and-aggregation-dispositions}
+
+\subsubsection{12.1 Selection}\label{121-selection}
+
+PASS when the coverage contract makes scope/omission semantics inspectable.
+
+REJECTED when omission is implicitly treated as negation, absence or completeness.
+
+\subsubsection{12.2 Renaming}\label{122-renaming}
+
+PASS for display labels that preserve the selected BA meaning.
+
+REJECTED when a display label silently adds a new project qualification.
+
+Example:
+
+\begin{verbatim}
+transfer -> "delivery"                 PASS
+transfer -> "authenticated delivery"
+  REJECTED unless traced BA supports it
+\end{verbatim}
+
+\subsubsection{12.3 Grouping}\label{123-grouping}
+
+PASS when grouping changes navigation/presentation and preserves per-item trace.
+
+A group title may be descriptive, but it may not assert a stronger shared proposition than the group members support.
+
+\subsubsection{12.4 Aggregation}\label{124-aggregation}
+
+PASS for summaries whose semantics remain no stronger than their traced BA basis, such as counts, enumerated sets or a group of explicitly listed constraints.
+
+If aggregation produces a new consumer interpretation, it becomes projection/method-owned interpretation rather than shared semantic rendering.
+
+\subsection{13. Diagnostics and non-current BA state}\label{13-diagnostics-and-non-current-ba-state}
+
+The default normal-purpose projection uses accepted/current BA elements for its source baseline.
+
+A projection specifically intended for review/change analysis may include accepted diagnostics, stale elements or pending candidates, but it must preserve those qualifications visibly under its descriptor.
+
+In particular:
+
+\begin{verbatim}
+ACCEPTED diagnostic
+    !=
+accepted project fact
+\end{verbatim}
+
+and a projection may not convert the former into the latter.
+
+The admissible BA review/freshness states are therefore part of the projection selection/coverage contract rather than a new projection lifecycle ontology.
+
+\subsection{14. Cross-baseline rebuild without a second project lifecycle}\label{14-cross-baseline-rebuild-without-a-second-project-lifecycle}
+
+A projection materialization is scoped to one BA baseline.
+
+When a new BA baseline exists, BA4 does not copy BA3 \texttt{RETAIN\ \textbar{}\ REPLACE\ \textbar{}\ RETIRE} into a second projection semantic lifecycle.
+
+Instead:
+
+\begin{verbatim}
+projection@B0 remains historical for B0
+new target B1
+   -> apply same or revised projection descriptor to accepted BA@B1
+   -> build projection@B1
+\end{verbatim}
+
+\subsubsection{M1 control - Ethernet to Wi-Fi}\label{m1-control---ethernet-to-wi-fi}
+
+If the transfer proposition is retained, the flow interaction can be rebuilt with materially equivalent meaning.
+
+The realization view item changes because:
+
+\begin{verbatim}
+realize(LocalConnectivity, WiredEthernet)
+    REPLACE
+realize(LocalConnectivity, WiFi)
+\end{verbatim}
+
+Projection@B0 is not rewritten. Projection@B1 follows the accepted BA@B1 result.
+
+\subsubsection{M3 control - remote to local recognition}\label{m3-control---remote-to-local-recognition}
+
+When the remote transfer proposition is retired, the B1 flow projection must not preserve that interaction merely because a projection item existed at B0.
+
+It disappears from the rebuilt projection unless a different accepted BA proposition independently supports another method interaction.
+
+\subsubsection{M4 control - changed representation context}\label{m4-control---changed-representation-context}
+
+If the old capture transfer is stale/unresolved in BA while governance is inconsistent, a normal current projection cannot present the old transfer as current project truth. A review projection may surface the diagnostic explicitly.
+
+This demonstrates that projection validity follows BA3 semantics; it does not define its own project lifecycle authority.
+
+\subsection{15. Order/provider control}\label{15-orderprovider-control}
+
+The order corpus provides two useful controls.
+
+First, a human transaction-gate projection can group reservation and payment gates while keeping each gate\textquotesingle s BA trace. Omission of compensation/concurrency facts from that specific view means only \texttt{out\ of\ projection\ coverage}, not \texttt{absent\ from\ project\ meaning}.
+
+Second, a method projection may turn:
+
+\begin{verbatim}
+raw provider normalization basis
++ governed PaymentAuthorizationResult semantics
+\end{verbatim}
+
+into a consumer-specific status/interaction annotation. The projection may not bypass BA3 and remap raw provider prose privately into a shared result.
+
+If the method needs the governed normalized result, it must consume that accepted BA meaning. Provider-private vocabulary stays outside the shared projection unless explicitly displayed as non-authoritative context.
+
+\subsection{16. No new BAE family is forced}\label{16-no-new-bae-family-is-forced}
+
+The projection pressure introduces several identities/records, but none meets the BA1 first-class split criterion.
+
+\texttt{BAProjectionDescriptor}, \texttt{BAProjectionMaterialization} and \texttt{BAProjectionItem} are consumer/view metadata or artifacts. Their identity exists to build, render and trace a view, not to represent independently reusable shared project meaning or a shared analytical assertion.
+
+Therefore:
+
+\begin{verbatim}
+new BAE family for Projection        NOT FORCED
+new BAE family for ViewItem          NOT FORCED
+DFD/method node as BAReferent type   REJECTED
+method interaction as BAProposition  REJECTED unless project meaning
+  independently exists in BA semantics
+\end{verbatim}
+
+A method node may trace to a BAReferent, but the method taxonomy remains downstream.
+
+\subsection{17. Reopen checks}\label{17-reopen-checks}
+
+BA4-T1 does not expose a material counterexample to BA1, BA2 or BA3.
+
+\begin{itemize}
+\tightlist
+\item
+  BA1 already permits reusable project meaning to be represented as BAReferent without method-specific subtype families.
+\item
+  BA2 roles/operators preserve the shared facts needed by both tested projections.
+\item
+  BA3 provides the baseline-scoped provenance, review/freshness and continuity needed for projection rebuild and source drill-down.
+\end{itemize}
+
+A future projection requirement may reopen the smallest earlier responsibility only if a consumer cannot obtain required \textbf{shared methodology-neutral project meaning} from accepted BA without reconstructing it from raw prose.
+
+A desire for a convenient method-specific node, edge, label, threat category or UI state is not such a counterexample.
+
+\subsection{18. Provisional dispositions}\label{18-provisional-dispositions}
+
+\begin{verbatim}
+Projection is project authority                         REJECTED
+Projection is derived from accepted BA                  REQUIRED
+Immutable projection revision                           REQUIRED
+Inspectable selection/coverage contract                 REQUIRED
+Omission == negation/absence                            REJECTED
+Meaning-bearing projection item trace to BA             REQUIRED
+Mandatory duplicate source provenance in projection     REJECTED
+Local item identity              REQUIRED WHEN MEANING-BEARING
+Projection cross-baseline identity  NOT REQUIRED BY T1
+Pure layout primitive semantic identity                 NOT REQUIRED
+Role-bound multi-input trace     REQUIRED WHERE ROLES DIFFER
+Human select/rename/group        PASS WITH PRESERVATION
+Shared aggregation stronger than BA basis               REJECTED
+Method-owned interpretation      ALLOWED DOWNSTREAM
+Method-owned interpretation promoted to BA              REJECTED
+Projection descriptor == BA3 rule registry              REJECTED
+BA replacement/retirement -> projection rebuild         REQUIRED
+Second project lifecycle in projection                  REJECTED
+New BAE family                                          NOT FORCED
+New BA2 operator                                        NOT FORCED
+BA1 reopen                                              NOT TRIGGERED
+BA2 reopen                                              NOT TRIGGERED
+BA3 reopen                                              NOT TRIGGERED
+BA4                              STARTED / NOT CLOSED
+\end{verbatim}
+
+\subsection{19. Falsification rules}\label{19-falsification-rules}
+
+Revise this candidate if a concrete projection demonstrates that:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  a selective/lossy view can remain semantically safe without any inspectable coverage/omission contract;
+\item
+  meaning-bearing projection items can be reviewed and source-drilled without trace to BA identities;
+\item
+  direct projection-to-governed-source extraction is sufficient without bypassing required shared BA meaning;
+\item
+  mutable projection mapping semantics under one projection reference cannot change the consumer result materially;
+\item
+  multi-input method interpretation remains reproducible without distinguishing input roles when the inputs serve different meanings;
+\item
+  BA replacement/retirement requires an independent project-semantic projection lifecycle rather than baseline-scoped rebuild; or
+\item
+  a method projection forces a new BA1 family or BA2 operator because required shared project meaning cannot be represented by the closed core.
+\end{enumerate}
+
+No reviewed BA4-T1 evidence currently forces such a revision.
+
+\subsection{20. Smallest unresolved set after BA4-T1}\label{20-smallest-unresolved-set-after-ba4-t1}
+
+BA4 remains open. The next material questions are:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  whether two different method-oriented projections with incompatible local taxonomies can share the same BA without hidden semantic leakage;
+\item
+  whether method-owned interpretation needs a stricter reproducibility contract than the current revisioned projection descriptor plus role-bound trace;
+\item
+  whether selection/coverage remains safe under more aggressively lossy projections and accepted diagnostics/stale-state views;
+\item
+  how to compare/rebuild projections across M1-M4 and order/WMS changes without accidentally creating projection semantic authority; and
+\item
+  whether cross-projection consistency requires any shared construct beyond BA trace and the closed BA semantics.
+\end{enumerate}
+
+The next pressure target should attack those questions without defining a complete threat methodology or closing BA4 prematurely.
+
+\end{document}

@@ -1,0 +1,258 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[a4paper,margin=2.25cm]{geometry}
+\usepackage{longtable,booktabs,array,calc}
+\usepackage{fancyvrb}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{titlesec}
+\definecolor{ddtadark}{RGB}{30,38,48}
+\definecolor{ddtablue}{RGB}{38,82,126}
+\hypersetup{colorlinks=true,linkcolor=ddtablue,urlcolor=ddtablue,citecolor=ddtablue}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Documentation-Driven Threat Analysis}
+\rhead{Research work plan R17}
+\cfoot{\thepage}
+\setlength{\headheight}{14pt}
+\setlist[itemize]{leftmargin=1.5em,itemsep=0.2em,topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.7em,itemsep=0.2em,topsep=0.25em}
+\titleformat{\section}{\Large\bfseries\color{ddtadark}}{}{0em}{}
+\titleformat{\subsection}{\large\bfseries\color{ddtadark}}{}{0em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{ddtadark}}{}{0em}{}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setlength{\emergencystretch}{4em}
+\hbadness=10000
+\hfuzz=20pt
+\sloppy
+\begin{document}
+\section{DDTA research work plan after documentation-layer closure}\label{ddta-research-work-plan-after-documentation-layer-closure}
+
+\textbf{WORK PLAN - REVISION 17}
+
+\textbf{Status:} active BA4 execution plan after BA4-T1 projection-boundary/traceability pressure testing.
+
+\textbf{Supersedes:} Revision 16 only for forward execution state; R1-R16 remain historical research records.
+
+\subsection{1. Fixed prior state}\label{1-fixed-prior-state}
+
+\begin{itemize}
+\tightlist
+\item
+  Chapters 2-4: CLOSED / FINAL for current thesis scope.
+\item
+  Documentation layer: CLOSED.
+\item
+  BA0 responsibility/non-goals: CLOSED.
+\item
+  BA1 minimal BAE identity ontology: CLOSED.
+\item
+  BA2 relation/action vocabulary: CLOSED BY BA2-T4.
+\item
+  BA3 provenance/derivation/identity/lifecycle/change-revalidation mechanics: CLOSED BY BA3-T4.
+\item
+  \texttt{BAReferent} and \texttt{BAProposition}: ACCEPTED first-class semantic identity families.
+\item
+  ThreatForge is a case study/tooling instrument, not DDTA semantic authority.
+\end{itemize}
+
+\subsection{2. BA4 objective}\label{2-ba4-objective}
+
+BA4 defines the smallest contract by which one accepted Base Analysis can support multiple derived human and methodology-oriented views without making any view project authority or allowing consumer-specific taxonomies to redefine the shared core.
+
+BA4 remains representation-independent and does not design a general system-modeling notation.
+
+\subsection{3. BA4-T1 - projection boundary, traceability and semantic-preservation lower-bound trial}\label{3-ba4-t1---projection-boundary-traceability-and-semantic-preservation-lower-bound-trial}
+
+\textbf{Status: COMPLETED / PROVISIONAL PASS WITH PROJECTION-BOUNDARY LOWER-BOUND.}
+
+T1 used one human-oriented projection and one bounded flow-oriented method projection over the same accepted facial-access BA meaning, with order/provider controls.
+
+\subsubsection{Main dispositions}\label{main-dispositions}
+
+\begin{verbatim}
+projection derived from accepted BA                   REQUIRED
+immutable projection revision                         REQUIRED
+selection/coverage contract                           REQUIRED
+omission == negation/absence                          REJECTED
+meaning-bearing projection item trace to BA           REQUIRED
+mandatory duplicate governed-source provenance        REJECTED
+local item identity               REQUIRED WHEN MEANING-BEARING
+role-bound multi-input trace      REQUIRED WHERE ROLES DIFFER
+semantic-preserving selection/rename/group            PASS
+stronger shared aggregation                           REJECTED
+method-owned interpretation                           ALLOWED DOWNSTREAM
+method interpretation promoted into BA                REJECTED
+projection item cross-baseline lifecycle              NOT REQUIRED BY T1
+BA change -> baseline-scoped projection rebuild       REQUIRED
+new BAE family                                        NOT FORCED
+new BA2 operator                                      NOT FORCED
+BA1 / BA2 / BA3 reopen                                NOT TRIGGERED
+\end{verbatim}
+
+\subsubsection{Active provisional shape}\label{active-provisional-shape}
+
+\begin{verbatim}
+BAProjectionDescriptor                 [NOT BAE]
+|- projectionKey
+|- projectionRevisionKey              immutable
+|- consumerPurpose
+|- selectionCoverageContract
+|- mappingContract
+`- interpretationBoundary
+
+BAProjectionMaterialization            [NOT BAE]
+|- projectionRef
+|- sourceBABaselineKey
+`- item 0..*
+
+BAProjectionItem                       [projection-local]
+|- projectionItemKey
+|- projectionOwnedKind
+|- traceBinding 1..*
+|    |- traceRoleKey
+|    `- baElementRef
+|- sharedSemanticRendering 0..1
+`- methodOwnedInterpretation 0..1
+\end{verbatim}
+
+No one physical representation is mandated.
+
+\subsection{4. T1 boundary invariants to preserve under further pressure}\label{4-t1-boundary-invariants-to-preserve-under-further-pressure}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  a projection does not become project authority;
+\item
+  shared semantic rendering must not strengthen, invert or erase material BA meaning;
+\item
+  method-owned interpretation stays explicitly downstream;
+\item
+  omission is interpreted only under an inspectable coverage contract;
+\item
+  source drill-down remains projection -\textgreater{} BA -\textgreater{} BA3 provenance -\textgreater{} governed source;
+\item
+  projection-local identity is not BAE identity;
+\item
+  projection rebuild follows accepted BA change rather than creating a second project lifecycle model.
+\end{enumerate}
+
+These are provisional until BA4 closure.
+
+\subsection{5. Why BA4 remains open}\label{5-why-ba4-remains-open}
+
+T1 used only one bounded method-oriented mapping family. It does not yet prove that the boundary survives when two methods impose incompatible taxonomies, when projection selection becomes highly lossy, or when method-owned interpretations are more strongly derived.
+
+The current lower bound also needs pressure against diagnostic/stale views and cross-projection consistency after BA change.
+
+\subsection{6. BA4-T2 - method-owned interpretation, coverage loss and cross-projection consistency pressure test}\label{6-ba4-t2---method-owned-interpretation-coverage-loss-and-cross-projection-consistency-pressure-test}
+
+\textbf{NEXT / NOT EXECUTED BY THIS PLAN REVISION.}
+
+BA4-T2 must perform only the next projection pressure step.
+
+It must test at least:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  two bounded method-oriented projections with intentionally incompatible local taxonomies derived from the same accepted BA;
+\item
+  whether each method can add its own interpretation without forcing method semantics back into BA or into a shared projection ontology;
+\item
+  whether the revisioned projection descriptor plus role-bound BA trace is sufficient to review/rebuild method-owned interpretation;
+\item
+  aggressively lossy selection where omission/completeness errors are likely;
+\item
+  a projection intentionally exposing \texttt{DIAGNOSTIC\_UNRESOLVED}, \texttt{STALE} or review-oriented BA state without converting it into project truth;
+\item
+  M1-M4 plus order/WMS/provider rebuild behavior across projection families;
+\item
+  whether cross-projection comparison needs any new shared identity or relation beyond BA trace; and
+\item
+  whether a material counterexample forces only the smallest BA1/BA2/BA3/BA4 responsibility reopen.
+\end{enumerate}
+
+\subsubsection{BA4-T2 guardrails}\label{ba4-t2-guardrails}
+
+Do not:
+
+\begin{itemize}
+\tightlist
+\item
+  define a complete STRIDE or STRIDE-AI ontology/schema;
+\item
+  define AnalysisRecord or Common Finding;
+\item
+  make DFD/threat-method categories BA1 types;
+\item
+  introduce a universal projection ontology merely to reconcile method taxonomies;
+\item
+  design ThreatForge classes/tables/UI;
+\item
+  reopen BA0-BA3 without a concrete shared-semantic counterexample;
+\item
+  start BA5 or BA6.
+\end{itemize}
+
+\subsubsection{BA4-T2 exit condition}\label{ba4-t2-exit-condition}
+
+Produce a falsifiable refinement or rejection of the T1 projection lower bound and identify the next smallest BA4 pressure target. Do not close BA4 merely because two method projections can be rendered.
+
+\subsection{7. BA5 - lexical vocabulary and optional assistance}\label{7-ba5---lexical-vocabulary-and-optional-assistance}
+
+Only after BA4 boundaries are stable, define display labels, authoring synonyms and optional assistance. Preserve:
+
+\begin{verbatim}
+source lexical wording
+        !=
+stable BA semantic key
+        !=
+display label / authoring synonym
+\end{verbatim}
+
+BA4 projection-local labels do not preempt BA5 lexical design.
+
+\subsection{8. BA6 - complete Base Analysis regression and closure}\label{8-ba6---complete-base-analysis-regression-and-closure}
+
+Regress the complete BA0-BA5 design against the closed corpora and at least one structurally different holdout. BA6 may reopen only the smallest earlier responsibility on a material counterexample.
+
+Only BA6 may close the complete Base Analysis milestone for the current thesis scope.
+
+\subsection{9. Analysis envelope remains downstream}\label{9-analysis-envelope-remains-downstream}
+
+Only after Base Analysis closure:
+
+\begin{itemize}
+\tightlist
+\item
+  A1 - AnalysisRecord / execution envelope;
+\item
+  A2 - common reviewed Finding boundary;
+\item
+  A3 - change/provenance integration;
+\item
+  formal methodology overlays and STRIDE/STRIDE-AI evaluations.
+\end{itemize}
+
+\subsection{10. Next authorized microstep}\label{10-next-authorized-microstep}
+
+Only after the BA4-T1 package is reviewed, committed, pushed and remotely verified, execute:
+
+\begin{quote}
+\textbf{BA4-T2 - method-owned interpretation, coverage loss and cross-projection consistency pressure test.}
+\end{quote}
+
+Do not start BA5, BA6 or downstream analysis schemas before BA4-T2 is completed and reviewed.
+
+\end{document}
