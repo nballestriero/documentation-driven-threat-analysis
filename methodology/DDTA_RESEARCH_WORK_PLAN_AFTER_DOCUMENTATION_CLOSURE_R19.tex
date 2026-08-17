@@ -1,0 +1,355 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  11pt,
+  a4paper,
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=2.25cm]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\usepackage{microtype}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Documentation-Driven Threat Analysis}
+\rhead{BA4 closure}
+\cfoot{\thepage}
+\setlength{\headheight}{14pt}
+\setlength{\emergencystretch}{4em}
+\hbadness=10000
+\hfuzz=20pt
+\sloppy
+\begin{document}
+
+\section{DDTA research work plan after documentation-layer
+closure}\label{ddta-research-work-plan-after-documentation-layer-closure}
+
+\textbf{WORK PLAN - REVISION 19}
+
+\textbf{Status:} active plan after BA4 integrated closure.
+
+\textbf{Supersedes:} Revision 18 only for forward execution state;
+R1-R18 remain historical research records.
+
+\subsection{1. Fixed prior state}\label{fixed-prior-state}
+
+\begin{itemize}
+\tightlist
+\item
+  Chapters 2-4: CLOSED / FINAL for current thesis scope.
+\item
+  Documentation layer: CLOSED.
+\item
+  BA0 responsibility/non-goals: CLOSED.
+\item
+  BA1 minimal BAE identity ontology: CLOSED.
+\item
+  BA2 relation/action vocabulary: CLOSED BY BA2-T4.
+\item
+  BA3 provenance/derivation/identity/lifecycle/change-revalidation:
+  CLOSED BY BA3-T4.
+\item
+  BA4 projection boundary/traceability/coverage/interpretation: CLOSED
+  BY BA4-T3.
+\item
+  \texttt{BAReferent} and \texttt{BAProposition}: ACCEPTED first-class
+  semantic identity families.
+\item
+  ThreatForge remains a case study/tooling instrument, not DDTA semantic
+  authority.
+\end{itemize}
+
+\subsection{2. BA4 closure result}\label{ba4-closure-result}
+
+BA4 closes the smallest current-scope projection contract for:
+
+\begin{itemize}
+\tightlist
+\item
+  immutable revisioned projection definitions;
+\item
+  explicit eligible BA scope;
+\item
+  \texttt{EXHAUSTIVE\_FOR\_DECLARED\_SCOPE\ \textbar{}\ SELECTIVE}
+  coverage semantics;
+\item
+  qualification policy for current/stale/diagnostic/pending BA inputs;
+\item
+  meaning-bearing projection-item trace to BA;
+\item
+  role-bound trace where contribution roles differ;
+\item
+  semantic-preserving shared rendering;
+\item
+  explicitly downstream method-owned interpretation;
+\item
+  projection-local interpretation-rule accountability;
+\item
+  BA trace plus BA3 continuity as the cross-projection common anchor;
+  and
+\item
+  baseline-scoped projection rebuild without a second project lifecycle.
+\end{itemize}
+
+BA4-T3 removes independent \texttt{omissionSemantics} as redundant
+because omission meaning is fixed by the coverage mode.
+
+No universal projection ontology, universal projection DSL, new BAE
+family, new BA2 operator or BA1-BA3 reopen is forced.
+
+The active closure artifact is:
+
+\begin{itemize}
+\tightlist
+\item
+  \path{methodology/BA4_PROJECTION_BOUNDARY_TRACEABILITY_INTERPRETATION_COVERAGE_CONTRACT_R1.md}
+\end{itemize}
+
+BA4-T1/T2 artifacts remain immutable research derivation history.
+
+\subsection{3. Base Analysis status after
+BA4}\label{base-analysis-status-after-ba4}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BA0   CLOSED}
+\NormalTok{BA1   CLOSED}
+\NormalTok{BA2   CLOSED}
+\NormalTok{BA3   CLOSED}
+\NormalTok{BA4   CLOSED}
+\NormalTok{BA5   NOT STARTED / NEXT}
+\NormalTok{BA6   NOT STARTED}
+\end{Highlighting}
+\end{Shaded}
+
+The Base Analysis milestone as a whole is not yet closed. BA5 must
+establish lexical/display/assistance boundaries and BA6 must perform the
+integrated corpus plus holdout closure regression.
+
+\subsection{4. BA5 objective - lexical vocabulary and optional
+assistance}\label{ba5-objective---lexical-vocabulary-and-optional-assistance}
+
+BA5 defines the smallest boundary among source wording, stable BA
+semantic keys, projection-local display labels, authoring synonyms and
+optional assistance.
+
+The phase must preserve:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{source lexical wording}
+\NormalTok{    != stable BA semantic key}
+\NormalTok{    != projection{-}local display label}
+\NormalTok{    != authoring synonym}
+\end{Highlighting}
+\end{Shaded}
+
+The purpose is not to build a universal natural-language lexicon. It is
+to prevent convenient labels, synonyms or model-generated suggestions
+from silently becoming semantic authority.
+
+NLP/LLM support, if later admitted, remains candidate-producing
+assistance subject to provenance/review and cannot create project or BA
+truth by itself.
+
+\subsection{5. BA5-T1 - stable semantic key, display-label and
+authoring-synonym boundary
+trial}\label{ba5-t1---stable-semantic-key-display-label-and-authoring-synonym-boundary-trial}
+
+\textbf{NEXT / NOT EXECUTED BY THIS PLAN REVISION.}
+
+BA5-T1 must perform only the first lexical-boundary trial.
+
+It must pressure-test at least:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  one BA semantic key rendered with several human display labels without
+  changing BA identity/meaning;
+\item
+  one source phrase that should not become the stable BA key merely
+  because it is common in the documentation;
+\item
+  projection-local method labels that must remain distinct from BA
+  semantic keys;
+\item
+  authoring synonyms that can help humans express existing semantics
+  without creating new semantics;
+\item
+  ambiguity where one lexical phrase can map to more than one existing
+  BA meaning and therefore cannot be silently normalized;
+\item
+  whether lexical metadata requires any new first-class BAE family or
+  BA2 operator; and
+\item
+  whether a material counterexample forces the smallest BA1-BA4 reopen.
+\end{enumerate}
+
+\subsubsection{BA5-T1 guardrails}\label{ba5-t1-guardrails}
+
+Do not:
+
+\begin{itemize}
+\tightlist
+\item
+  introduce automatic arbitrary-narrative migration;
+\item
+  authorize NLP/LLM output as semantic truth;
+\item
+  define a universal domain lexicon;
+\item
+  convert projection-local method taxonomy into BA vocabulary;
+\item
+  define AnalysisRecord/Common Finding;
+\item
+  design ThreatForge classes/tables/UI;
+\item
+  reopen BA0-BA4 without a material shared-semantic counterexample;
+\item
+  start BA6.
+\end{itemize}
+
+\subsubsection{BA5-T1 exit condition}\label{ba5-t1-exit-condition}
+
+Produce a falsifiable lexical responsibility lower-bound candidate and
+the next smallest BA5 pressure target. Do not close BA5 from one lexical
+trial.
+
+\subsection{6. BA6 - complete Base Analysis regression and
+closure}\label{ba6---complete-base-analysis-regression-and-closure}
+
+Only after BA5 closes, regress the complete BA0-BA5 design against the
+closed corpora and at least one structurally different holdout.
+
+BA6 may reopen only the smallest earlier responsibility on a material
+counterexample.
+
+Only BA6 may close the complete Base Analysis milestone for current
+thesis scope.
+
+\subsection{7. Analysis envelope remains
+downstream}\label{analysis-envelope-remains-downstream}
+
+Only after Base Analysis closure:
+
+\begin{itemize}
+\tightlist
+\item
+  A1 - AnalysisRecord / execution envelope;
+\item
+  A2 - common reviewed Finding boundary;
+\item
+  A3 - change/provenance integration;
+\item
+  formal methodology overlays and STRIDE/STRIDE-AI evaluations.
+\end{itemize}
+
+\subsection{8. Next authorized
+microstep}\label{next-authorized-microstep}
+
+Only after the BA4-T3 closure package is reviewed, committed, pushed and
+remotely verified, execute:
+
+\begin{quote}
+\textbf{BA5-T1 - stable semantic key, display-label and
+authoring-synonym boundary trial.}
+\end{quote}
+
+Do not start optional assistance, BA6 or downstream analysis schemas
+before BA5-T1 is completed and reviewed.
+
+\end{document}

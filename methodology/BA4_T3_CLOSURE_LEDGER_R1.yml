@@ -1,0 +1,64 @@
+artifact: BA4_T3_CLOSURE_LEDGER_R1
+status: CLOSED / PASS
+reviewed_baseline: dcb4605448de4ac5331f10ff090a9f2ab677427e
+scope: BA4-T3 projection boundary, interpretation/coverage and cross-projection closure review only
+ba4_status_after_package: CLOSED FOR CURRENT THESIS SCOPE
+dispositions:
+- responsibility: projection derived from accepted BA
+  disposition: RETAIN / REQUIRED
+- responsibility: immutable projection revision
+  disposition: RETAIN / REQUIRED
+- responsibility: eligibleBAScope
+  disposition: RETAIN / REQUIRED
+- responsibility: coverageMode
+  disposition: RETAIN / REQUIRED
+- responsibility: omissionSemantics independent field
+  disposition: REMOVE / REDUNDANT
+- responsibility: qualificationPolicy
+  disposition: RETAIN / REQUIRED
+- responsibility: meaning-bearing item BA trace
+  disposition: RETAIN / REQUIRED
+- responsibility: traceRoleKey
+  disposition: RETAIN WHERE CONTRIBUTION ROLES DIFFER
+- responsibility: shared semantic rendering
+  disposition: RETAIN WITH SEMANTIC PRESERVATION
+- responsibility: method-owned interpretation
+  disposition: RETAIN DOWNSTREAM
+- responsibility: interpretationRuleRef
+  disposition: RETAIN WHEN METHOD-OWNED INTERPRETATION IS MEANING-BEARING
+- responsibility: universal projection DSL
+  disposition: REJECTED
+- responsibility: universal projection ontology
+  disposition: REJECTED
+- responsibility: shared cross-projection identity
+  disposition: NOT FORCED
+- responsibility: BA trace + BA3 continuity common anchor
+  disposition: ACCEPTED
+- responsibility: projection item BA-like lifecycle
+  disposition: REJECTED AS UNNECESSARY
+- responsibility: new BAE family
+  disposition: NOT FORCED
+- responsibility: new BA2 operator
+  disposition: NOT FORCED
+- responsibility: BA1 reopen
+  disposition: NOT TRIGGERED
+- responsibility: BA2 reopen
+  disposition: NOT TRIGGERED
+- responsibility: BA3 reopen
+  disposition: NOT TRIGGERED
+regressions:
+  facial_M1: PASS
+  facial_M2: PASS
+  facial_M3: PASS
+  facial_M4: PASS
+  order_WMS: PASS
+  provider_normalization: PASS
+  human_projection_plus_two_incompatible_method_projections: PASS
+next_authorized_microstep: BA5-T1 - stable semantic key, display-label and authoring-synonym boundary trial
+forbidden_in_this_package:
+- BA5-T1 execution
+- optional NLP/LLM assistance
+- BA6
+- formal STRIDE/STRIDE-AI schema
+- AnalysisRecord/Common Finding
+- ThreatForge implementation model

@@ -1,0 +1,870 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  11pt,
+  a4paper,
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=2.25cm]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\usepackage{microtype}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Documentation-Driven Threat Analysis}
+\rhead{BA4 closure}
+\cfoot{\thepage}
+\setlength{\headheight}{14pt}
+\setlength{\emergencystretch}{4em}
+\hbadness=10000
+\hfuzz=20pt
+\sloppy
+\begin{document}
+
+\section{DDTA BA4 projection boundary, traceability, interpretation and
+coverage contract -
+R1}\label{ddta-ba4-projection-boundary-traceability-interpretation-and-coverage-contract---r1}
+
+\textbf{Status:} CLOSED BY BA4-T3 / ACCEPTED FOR CURRENT THESIS SCOPE
+
+\textbf{Closure baseline reviewed:}
+\texttt{dcb4605448de4ac5331f10ff090a9f2ab677427e}
+
+\textbf{Closed dependencies:} BA0 responsibility boundary; BA1
+\texttt{BAReferent\ +\ BAProposition}; BA2 proposition semantics; BA3
+provenance/derivation/lifecycle/change contract; BA4-T1
+projection-boundary lower bound; BA4-T2 interpretation/coverage
+refinement.
+
+\subsection{1. Closure statement}\label{closure-statement}
+
+BA4 closes the smallest current-scope contract by which one accepted
+Base Analysis can support multiple human and methodology-oriented
+projections without allowing a projection to become project authority or
+consumer taxonomy to redefine shared BA meaning.
+
+The final contract preserves six properties simultaneously:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  every meaning-bearing projection item can be traced to accepted BA
+  meaning for one BA baseline;
+\item
+  shared semantic rendering cannot strengthen, invert or erase material
+  BA meaning;
+\item
+  method-owned interpretation may be richer than BA rendering but
+  remains explicitly downstream and review-reproducible;
+\item
+  projection lossiness and completeness are stated relative to an
+  explicit declared scope and coverage mode;
+\item
+  stale, diagnostic and pending BA material may be surfaced only under
+  an explicit qualification policy that preserves its
+  non-current/unresolved character; and
+\item
+  projection rebuild and cross-projection comparison use BA
+  identity/trace and BA3 continuity rather than a second project
+  lifecycle or universal projection ontology.
+\end{enumerate}
+
+BA4 remains representation-independent. These are semantic
+responsibilities, not mandatory classes, graph nodes, tables, JSON
+records, UI objects or one executable projection language.
+
+\subsection{2. Final projection lower
+bound}\label{final-projection-lower-bound}
+
+The final current-scope lower bound separates a revisioned projection
+definition, a baseline-scoped materialization and meaning-bearing
+projection items.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BAProjectionDescriptor                         [projection metadata; NOT BAE]}
+\NormalTok{|{-} projectionKey                         1}
+\NormalTok{|{-} projectionRevisionKey                 1 immutable}
+\NormalTok{|{-} consumerPurpose                       1}
+\NormalTok{|{-} selectionCoverageContract             1}
+\NormalTok{|    |{-} eligibleBAScope                  1}
+\NormalTok{|    |{-} coverageMode                     1}
+\NormalTok{|    |    EXHAUSTIVE\_FOR\_DECLARED\_SCOPE}
+\NormalTok{|    |    | SELECTIVE}
+\NormalTok{|    \textasciigrave{}{-} qualificationPolicy              1}
+\NormalTok{|{-} mappingContract                       1}
+\NormalTok{\textasciigrave{}{-} interpretationRuleDescriptor          0..*}
+\NormalTok{     |{-} ruleKey                          1}
+\NormalTok{     |{-} inputRoleContract                1..*}
+\NormalTok{     |{-} applicabilityContract            1}
+\NormalTok{     |{-} outputKindContract               1}
+\NormalTok{     \textasciigrave{}{-} normativeDefinition              1}
+
+\NormalTok{BAProjectionMaterialization                    [derived artifact; NOT BAE]}
+\NormalTok{|{-} projectionRef                         1 projectionKey@revision}
+\NormalTok{|{-} sourceBABaselineKey                   1}
+\NormalTok{\textasciigrave{}{-} item                                  0..*}
+
+\NormalTok{BAProjectionItem                               [projection{-}local; NOT BAE]}
+\NormalTok{|{-} projectionItemKey                     1 local to materialization}
+\NormalTok{|{-} projectionOwnedKind                   1}
+\NormalTok{|{-} traceBinding                           1..*}
+\NormalTok{|    |{-} baElementRef                      1 BA element @ source BA baseline}
+\NormalTok{|    \textasciigrave{}{-} traceRoleKey                      0..1}
+\NormalTok{|         [required where contribution roles differ]}
+\NormalTok{|{-} sharedSemanticRendering               0..1}
+\NormalTok{|{-} methodOwnedInterpretation             0..1}
+\NormalTok{\textasciigrave{}{-} interpretationRuleRef                 0..1}
+\NormalTok{     [required for meaning{-}bearing method{-}owned interpretation]}
+\end{Highlighting}
+\end{Shaded}
+
+An implementation may combine or derive these responsibilities
+physically. The semantic distinctions remain mandatory where applicable.
+
+\subsection{3. Authority and ownership
+boundary}\label{authority-and-ownership-boundary}
+
+The authority chain is fixed:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{governed documentation}
+\NormalTok{    {-}\textgreater{} accepted Base Analysis}
+\NormalTok{        {-}\textgreater{} projection materialization}
+\NormalTok{            {-}\textgreater{} optional method{-}owned interpretation}
+\end{Highlighting}
+\end{Shaded}
+
+A projection is derived consumer state. It is never the source of a
+grounded BA element and never project documentation authority.
+
+If a projection exposes a possible gap, missing fact or corrective idea,
+that output remains downstream candidate material. Project truth changes
+only through governed documentation and a subsequent accepted BA
+baseline.
+
+A method-owned interpretation does not become shared BA meaning merely
+because it is reproducible, useful or supported by several BA elements.
+
+\subsection{4. Immutable projection
+revision}\label{immutable-projection-revision}
+
+A projection reference resolves to one immutable, inspectable revision.
+A stable key without revision identity is insufficient because
+selection, qualification, mapping and interpretation rules can change
+while the BA baseline remains fixed.
+
+Therefore:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{same BA baseline}
+\NormalTok{+ projection descriptor R1}
+\NormalTok{    !=}
+\NormalTok{same BA baseline}
+\NormalTok{+ projection descriptor R2}
+\end{Highlighting}
+\end{Shaded}
+
+The two materializations may differ without implying any change in
+project meaning.
+
+The projection descriptor is consumer-specific and is distinct from the
+BA3 method-neutral derivation-rule registry. Merging those registries is
+rejected because it would allow method semantics to become shared BA
+derivation semantics.
+
+\subsection{5. Coverage contract}\label{coverage-contract}
+
+\subsubsection{5.1 Eligible BA scope}\label{eligible-ba-scope}
+
+\texttt{eligibleBAScope} states which accepted BA meanings are
+candidates for inclusion under the projection purpose. It may be
+expressed through operators, semantic kinds, named rules, inspectable
+queries or another bounded representation. BA4 does not require a
+universal query language.
+
+\subsubsection{5.2 Coverage mode}\label{coverage-mode}
+
+The final contract retains two semantically distinct coverage modes:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{EXHAUSTIVE\_FOR\_DECLARED\_SCOPE}
+\NormalTok{SELECTIVE}
+\end{Highlighting}
+\end{Shaded}
+
+For \texttt{EXHAUSTIVE\_FOR\_DECLARED\_SCOPE}, every BA element that is
+eligible under the declared scope and qualification policy is expected
+to be represented according to the mapping contract.
+
+For \texttt{SELECTIVE}, omission of otherwise eligible BA meaning is
+permitted and carries no completeness claim.
+
+The mode must be semantically explicit. It may be serialized as an enum,
+fixed textual contract or equivalent inspectable representation.
+
+\subsubsection{5.3 Omission semantics are derived, not independently
+configurable}\label{omission-semantics-are-derived-not-independently-configurable}
+
+BA4-T3 removes \texttt{omissionSemantics} as a separate mandatory
+responsibility.
+
+Its meaning is closed by \texttt{coverageMode}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{EXHAUSTIVE\_FOR\_DECLARED\_SCOPE}
+\NormalTok{  eligible + qualified BA element omitted}
+\NormalTok{      {-}\textgreater{} projection materialization defect}
+
+\NormalTok{SELECTIVE}
+\NormalTok{  eligible BA element omitted}
+\NormalTok{      {-}\textgreater{} no project{-}semantic conclusion}
+\end{Highlighting}
+\end{Shaded}
+
+In neither case does omission mean that the project fact is false,
+absent from BA or absent from governed documentation.
+
+Allowing an independent omission policy would permit a projection to
+reinterpret absence inconsistently with its declared completeness mode,
+so the extra field is rejected as unnecessary configurability.
+
+\subsection{6. Qualification policy}\label{qualification-policy}
+
+Coverage and qualification are orthogonal responsibilities even when
+physically stored in one coverage contract.
+
+\texttt{eligibleBAScope} answers:
+
+\begin{quote}
+What BA meaning is relevant to this projection purpose?
+\end{quote}
+
+\texttt{coverageMode} answers:
+
+\begin{quote}
+Does the projection claim complete representation of that declared
+scope?
+\end{quote}
+
+\texttt{qualificationPolicy} answers:
+
+\begin{quote}
+Which BA review/freshness/origin qualifications are admissible as
+projection inputs and how must they remain visible in consumed meaning?
+\end{quote}
+
+A current-state projection may select only \texttt{ACCEPTED\ +\ CURRENT}
+BA meaning. A review-oriented projection may intentionally include
+\texttt{STALE}, \texttt{PENDING\_REVIEW} or
+\texttt{DIAGNOSTIC\_UNRESOLVED} material.
+
+The critical invariant is:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{accepted diagnostic != accepted project fact}
+\NormalTok{stale BA basis       != current project truth}
+\end{Highlighting}
+\end{Shaded}
+
+Qualification may be resolved through the traced BA element and BA3
+metadata; BA4 does not duplicate BA3 state as a second lifecycle
+authority.
+
+Collapsing qualification into rendering alone is rejected because
+non-visual consumers can still misconsume stale or diagnostic basis. The
+admissibility policy is therefore part of the projection contract, while
+visual badges or labels remain presentation choices.
+
+\subsection{7. Traceability lower bound}\label{traceability-lower-bound}
+
+Every meaning-bearing projection item traces to one or more BA element
+materializations belonging to \texttt{sourceBABaselineKey}.
+
+The minimum drill-down path is:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{projection item}
+\NormalTok{    {-}\textgreater{} BAElementRef@sourceBABaseline}
+\NormalTok{        {-}\textgreater{} BA3 provenance}
+\NormalTok{            {-}\textgreater{} governed source}
+\end{Highlighting}
+\end{Shaded}
+
+Duplicating \texttt{GovernedSourceRef} in every projection item is not
+required. A projection may cache source labels or excerpts for
+navigation, but BA3 remains the authoritative source-lineage layer.
+
+A projection that bypasses accepted BA and rereads governed prose to
+reconstruct already-shared meaning fails the BA4 shared projection
+contract. If a consumer repeatedly needs shared methodology-neutral
+meaning that is absent from BA, that is evidence for the smallest
+BA1/BA2/BA3 reopen - not permission for the projection to silently
+repair BA.
+
+\subsection{8. Role-bound trace}\label{role-bound-trace}
+
+A bare BA reference set is sufficient only when the referenced elements
+contribute in an undifferentiated way.
+
+When several BA inputs play different semantic roles in a mapping or
+interpretation, trace roles are required. Example:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{serviceUse}
+\NormalTok{  {-}\textgreater{} consumeService(...)}
+
+\NormalTok{responsibilityBoundary}
+\NormalTok{  {-}\textgreater{} assignResponsibility[negative](...)}
+\end{Highlighting}
+\end{Shaded}
+
+The trace roles are projection-contract scoped. They are not new BA2
+proposition roles.
+
+BA4-T3 therefore minimizes the final shape by making
+\texttt{traceRoleKey} conditional rather than mandatory on every single
+trace binding.
+
+\subsection{9. Shared semantic
+rendering}\label{shared-semantic-rendering}
+
+A projection item presented as shared project meaning must be materially
+supportable by its traced BA basis without strengthening, inversion or
+loss of material qualification.
+
+Allowed transformations include:
+
+\begin{itemize}
+\tightlist
+\item
+  selection under the coverage contract;
+\item
+  human-readable ordering;
+\item
+  presentation labels that preserve meaning;
+\item
+  grouping for navigation; and
+\item
+  aggregation whose shared semantics are no stronger than the traced BA
+  basis.
+\end{itemize}
+
+Examples:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{transfer(...) {-}\textgreater{} "delivery" with same participants                 PASS}
+\NormalTok{several explicit constraints {-}\textgreater{} visibly enumerated constraint group PASS}
+\NormalTok{negative responsibility {-}\textgreater{} affirmative ownership                    REJECTED}
+\NormalTok{conditional proposition {-}\textgreater{} unconditional statement                  REJECTED}
+\NormalTok{C/I/provenance constraints {-}\textgreater{} "the channel is secure"               REJECTED}
+\NormalTok{DIAGNOSTIC\_UNRESOLVED {-}\textgreater{} established project fact                    REJECTED}
+\end{Highlighting}
+\end{Shaded}
+
+The test is semantic preservation, not byte, notation or layout
+identity.
+
+\subsection{10. Method-owned
+interpretation}\label{method-owned-interpretation}
+
+A projection may add a consumer-specific interpretation beyond simple
+rendering, for example:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{externally{-}provided{-}transport{-}exposure}
+\end{Highlighting}
+\end{Shaded}
+
+or a different method may derive:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{delegated{-}assurance{-}dependency}
+\end{Highlighting}
+\end{Shaded}
+
+from overlapping BA basis.
+
+These local categories need not agree and are not BA semantic keys.
+
+A meaning-bearing method-owned interpretation must:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  remain explicitly consumer/method owned;
+\item
+  trace to its BA input basis;
+\item
+  identify the applicable local interpretation rule; and
+\item
+  remain incapable of becoming shared BA/project truth without the
+  governed-document feedback path.
+\end{enumerate}
+
+\subsection{11. Interpretation rule
+accountability}\label{interpretation-rule-accountability}
+
+BA4-T3 confirms that
+\texttt{projectionRevisionKey\ +\ role-bound\ BA\ trace} is insufficient
+when one projection revision contains multiple interpretation rules over
+overlapping inputs.
+
+Therefore \texttt{interpretationRuleRef} remains required for
+meaning-bearing method-owned interpretation.
+
+The reference resolves within the immutable projection revision to an
+inspectable consumer-owned descriptor containing at least:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ruleKey}
+\NormalTok{inputRoleContract}
+\NormalTok{applicabilityContract}
+\NormalTok{outputKindContract}
+\NormalTok{normativeDefinition}
+\end{Highlighting}
+\end{Shaded}
+
+No universal executable DSL is required.
+
+Review reproducibility means that an independent reviewer can determine
+from the same BA baseline, same role-bound trace basis, same projection
+revision and same local rule whether materially equivalent local
+interpretation is justified or the rule is non-applicable.
+
+The output remains projection-local even when reproducible.
+
+\subsection{12. Shared rendering and method interpretation remain
+distinct under
+aggregation}\label{shared-rendering-and-method-interpretation-remain-distinct-under-aggregation}
+
+BA4-T3 explicitly tries to collapse shared aggregation and method
+interpretation.
+
+The collapse fails.
+
+If an aggregate merely reorganizes or summarizes entailed BA meaning
+without a stronger claim, it may remain shared semantic rendering.
+
+If aggregation produces a new consumer conclusion, classification,
+exposure, assurance judgment or method-specific abstraction, it is
+method-owned interpretation and requires local rule accountability.
+
+Example:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{confidentiality + integrity + provenance constraints}
+\NormalTok{    {-}\textgreater{} enumerated "delivery constraints" group}
+\NormalTok{       SHARED RENDERING}
+
+\NormalTok{same basis}
+\NormalTok{    {-}\textgreater{} "high{-}assurance channel"}
+\NormalTok{       METHOD{-}OWNED at best, if a method rule justifies it;}
+\NormalTok{       never shared BA merely by aggregation}
+\end{Highlighting}
+\end{Shaded}
+
+Thus storage may combine the two fields, but ownership semantics may not
+be erased.
+
+\subsection{13. Cross-projection
+consistency}\label{cross-projection-consistency}
+
+Cross-projection consistency is intentionally weaker than taxonomy
+agreement.
+
+For two projections over the same BA baseline, the final minimum
+requires:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  truthful \texttt{sourceBABaselineKey};
+\item
+  shared renderings supportable by each item's own BA trace;
+\item
+  method interpretations explicitly local and rule-accountable where
+  required;
+\item
+  satisfaction of each projection's own coverage mode and qualification
+  policy; and
+\item
+  comparison through BA trace rather than assumed method-category
+  equivalence.
+\end{enumerate}
+
+Therefore two different method labels over overlapping BA basis may both
+be valid.
+
+A material projection inconsistency exists when a projection violates BA
+meaning or its own descriptor, for example by inverting polarity,
+omitting an eligible item under exhaustive coverage, presenting stale
+basis as current truth, promoting local interpretation to BA authority
+or claiming one BA baseline while tracing silently to another.
+
+No BA proposition saying ``the projections conflict'' is required merely
+to detect such a projection-contract violation.
+
+\subsection{14. BA trace is the shared cross-projection
+anchor}\label{ba-trace-is-the-shared-cross-projection-anchor}
+
+BA4-T3 again tries to force \texttt{SharedProjectionConcept} identity or
+method-category equivalence relations.
+
+The attempt fails for current evidence.
+
+Same-baseline comparison can use trace overlap and role bindings:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Projection A item {-}\textgreater{} BA trace set}
+\NormalTok{Projection B item {-}\textgreater{} BA trace set}
+
+\NormalTok{compare shared/overlapping/disjoint BA basis}
+\end{Highlighting}
+\end{Shaded}
+
+Across baselines, BA3 continuity
+(\texttt{RETAIN\ \textbar{}\ REPLACE\ \textbar{}\ RETIRE}) supplies the
+semantic bridge before each projection is rebuilt.
+
+Different labels do not establish contradiction. Same labels do not
+establish shared identity.
+
+A universal projection ontology would add method taxonomy to the shared
+core without a methodology-neutral project need and is rejected.
+
+\subsection{15. Projection-local
+identity}\label{projection-local-identity}
+
+Meaning-bearing projection items need a local address within one
+materialization for trace, inspection and rendering. That identity is
+projection-local and is not a \texttt{BAReferent} or
+\texttt{BAProposition} identity.
+
+Pure layout primitives do not require semantic identity.
+
+BA4 does not require cross-baseline projection-item identity or a
+BA-like item lifecycle. A method/tool may maintain its own UI/history
+continuity, but this remains consumer-owned unless later evidence
+demonstrates a shared DDTA responsibility.
+
+\subsection{16. Rebuild and lifecycle
+boundary}\label{rebuild-and-lifecycle-boundary}
+
+A projection materialization is scoped to one BA baseline and one
+immutable projection revision.
+
+When BA changes:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{projection@B0 remains historical}
+\NormalTok{accepted BA@B1 becomes new projection input}
+\NormalTok{projection@B1 is rebuilt}
+\end{Highlighting}
+\end{Shaded}
+
+When only the projection descriptor changes:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{projection@descriptor{-}R1 remains historical}
+\NormalTok{same accepted BA}
+\NormalTok{    {-}\textgreater{} build projection@descriptor{-}R2}
+\end{Highlighting}
+\end{Shaded}
+
+BA4 does not duplicate BA3
+\texttt{RETAIN\ \textbar{}\ REPLACE\ \textbar{}\ RETIRE} into a second
+project lifecycle for projection items.
+
+A rebuilt projection follows accepted BA meaning. A retired BA transfer
+cannot remain in a current exhaustive transfer projection merely because
+a local projection item existed at B0.
+
+\subsection{17. Integrated facial M1-M4
+regression}\label{integrated-facial-m1-m4-regression}
+
+\subsubsection{M1 - Ethernet to Wi-Fi}\label{m1---ethernet-to-wi-fi}
+
+The BA transfer/service-use meaning may retain while the realization
+proposition is replaced. A flow projection that excludes realization can
+remain materially stable; an assurance/realization projection can
+change. Different projection deltas are consistent when each follows its
+own coverage contract.
+
+\subsubsection{M2 - external to project-owned
+transport}\label{m2---external-to-project-owned-transport}
+
+Negative responsibility may be replaced by affirmative responsibility
+and external service use may retire. A local
+\texttt{externally-provided-transport-exposure} interpretation becomes
+non-applicable on rebuild. Another method may produce a project-owned
+authority-placement item. No common method category is needed.
+
+\subsubsection{M3 - remote to local
+recognition}\label{m3---remote-to-local-recognition}
+
+Retirement of the remote transfer removes the corresponding exchange
+from a current exhaustive transfer projection. Unrelated
+responsibility/contract items can remain if their BA basis remains
+current.
+
+\subsubsection{M4 - representation
+conflict}\label{m4---representation-conflict}
+
+A current-state projection excludes stale/unresolved transfer meaning
+under its qualification policy. A review projection may expose the stale
+transfer and diagnostic conflict only with their qualification
+preserved. Neither projection may invent the post-resolution project
+truth before governance resolves the documentation.
+
+All four controls pass without a projection lifecycle ontology or BA
+reopen.
+
+\subsection{18. Order/WMS and provider
+regression}\label{orderwms-and-provider-regression}
+
+Under WMS externalization, flow/integration and assurance/responsibility
+projections can change in different shapes because they cover different
+BA meanings. Internal mutation propositions retired by BA disappear only
+from projections whose declared scope includes them; new
+service/contract meanings may appear where eligible.
+
+Provider normalization preserves the authority chain:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{provider raw state}
+\NormalTok{    {-}\textgreater{} governed mapping / BA3 derivation}
+\NormalTok{        {-}\textgreater{} accepted normalized BA meaning}
+\NormalTok{            {-}\textgreater{} projection / method interpretation}
+\end{Highlighting}
+\end{Shaded}
+
+A method projection may not privately map raw provider vocabulary into
+supposedly shared project truth.
+
+These controls pass without \texttt{ExternalSystem},
+\texttt{TrustBoundary}, \texttt{IntegrationRisk} or other method
+categories becoming BA1 types.
+
+\subsection{19. No new BAE family or BA2 operator is
+forced}\label{no-new-bae-family-or-ba2-operator-is-forced}
+
+\texttt{BAProjectionDescriptor}, \texttt{BAProjectionMaterialization},
+projection items, local interpretation rules and coverage
+responsibilities exist to build, review and consume views. They do not
+represent independently reusable methodology-neutral project meaning or
+shared project assertions.
+
+Therefore:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{new BAE family for Projection                     NOT FORCED}
+\NormalTok{new BAE family for ProjectionItem                 NOT FORCED}
+\NormalTok{method node/interaction as BA type                REJECTED}
+\NormalTok{SharedProjectionConcept                           NOT FORCED}
+\NormalTok{method{-}category equivalence BA relation           NOT FORCED}
+\NormalTok{new BA2 operator for projection comparison        NOT FORCED}
+\NormalTok{BA1 reopen                                        NOT TRIGGERED}
+\NormalTok{BA2 reopen                                        NOT TRIGGERED}
+\NormalTok{BA3 reopen                                        NOT TRIGGERED}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{20. Final dispositions}\label{final-dispositions}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{projection as project authority                         REJECTED}
+\NormalTok{projection derived from accepted BA                     REQUIRED}
+\NormalTok{immutable projection revision                           REQUIRED}
+\NormalTok{eligible BA scope                                       REQUIRED}
+\NormalTok{coverageMode                                            REQUIRED}
+\NormalTok{  EXHAUSTIVE\_FOR\_DECLARED\_SCOPE | SELECTIVE}
+\NormalTok{independent omissionSemantics field                     REJECTED AS REDUNDANT}
+\NormalTok{qualificationPolicy                                     REQUIRED}
+\NormalTok{meaning{-}bearing item {-}\textgreater{} BA trace                        REQUIRED}
+\NormalTok{role{-}bound trace                                        REQUIRED WHERE ROLES DIFFER}
+\NormalTok{mandatory duplicate governed{-}source provenance          REJECTED}
+\NormalTok{shared semantic rendering                               ALLOWED WITH PRESERVATION}
+\NormalTok{method{-}owned interpretation                             ALLOWED DOWNSTREAM}
+\NormalTok{method interpretation {-}\textgreater{} shared BA                      REJECTED}
+\NormalTok{interpretationRuleRef                                   REQUIRED WHEN METHOD MEANING{-}BEARING}
+\NormalTok{universal projection DSL                                REJECTED}
+\NormalTok{shared rendering + method interpretation collapse       REJECTED}
+\NormalTok{universal projection ontology                           REJECTED}
+\NormalTok{cross{-}projection shared identity                        NOT FORCED}
+\NormalTok{BA trace + BA3 continuity as common anchor              ACCEPTED}
+\NormalTok{projection item BA{-}like lifecycle                       REJECTED AS UNNECESSARY}
+\NormalTok{projection rebuild after BA change                      REQUIRED}
+\NormalTok{new BAE family                                          NOT FORCED}
+\NormalTok{new BA2 operator                                        NOT FORCED}
+\NormalTok{BA1 / BA2 / BA3 reopen                                  NOT TRIGGERED}
+\NormalTok{BA4                                                     CLOSED FOR CURRENT THESIS SCOPE}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{21. Reopen criteria}\label{reopen-criteria}
+
+Reopen only the smallest BA4 responsibility if a concrete governed
+corpus/projection demonstrates one of the following:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  an explicit selective/exhaustive coverage distinction cannot express a
+  required completeness contract;
+\item
+  qualification policy cannot prevent non-current/unresolved BA meaning
+  from being consumed as current shared truth;
+\item
+  shared semantic rendering cannot preserve required project meaning
+  without new methodology-neutral BA semantics;
+\item
+  non-trivial method-owned interpretation cannot be independently
+  reviewed using BA trace plus an inspectable local rule revision;
+\item
+  two projections require a shared methodology-neutral semantic identity
+  that is not recoverable from BA identity/trace;
+\item
+  projection rebuild requires shared cross-baseline projection-item
+  lifecycle semantics rather than BA3 continuity and rebuild;
+\item
+  source drill-down through projection -\textgreater{} BA
+  -\textgreater{} BA3 provenance loses required governed-source
+  accountability; or
+\item
+  a consumer exposes missing shared methodology-neutral project meaning
+  that cannot be represented by the closed BA1-BA3 contract.
+\end{enumerate}
+
+Do not reopen BA4 merely because a method introduces a new local
+category, a projection changes rendering technology, a UI wants stable
+item IDs, a projection descriptor receives a new revision, or a tool
+prefers a different storage model.
+
+\subsection{22. Closure consequence}\label{closure-consequence}
+
+BA4 is closed for current thesis scope.
+
+The Base Analysis milestone as a whole remains open because BA5
+lexical/assistance boundaries and BA6 integrated regression/holdout
+closure are still required.
+
+The next phase may start only with the smallest BA5 lexical-boundary
+trial defined by the active work plan after this closure package becomes
+an official Git baseline.
+
+\end{document}

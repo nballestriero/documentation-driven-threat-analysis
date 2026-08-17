@@ -1,0 +1,549 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  11pt,
+  a4paper,
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=2.25cm]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\usepackage{microtype}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Documentation-Driven Threat Analysis}
+\rhead{BA4 closure}
+\cfoot{\thepage}
+\setlength{\headheight}{14pt}
+\setlength{\emergencystretch}{4em}
+\hbadness=10000
+\hfuzz=20pt
+\sloppy
+\begin{document}
+
+\section{DDTA BA4-T3 projection closure review -
+R1}\label{ddta-ba4-t3-projection-closure-review---r1}
+
+\textbf{Status:} CLOSED / PASS
+
+\textbf{Repository baseline reviewed:}
+\texttt{dcb4605448de4ac5331f10ff090a9f2ab677427e}
+
+\textbf{Executed scope:} BA4-T3 only - integrated projection boundary,
+interpretation/coverage and cross-projection closure review.
+
+\subsection{1. Closure question}\label{closure-question}
+
+Can the combined BA4-T1/T2 candidate be reduced further while still
+preserving authority, semantic rendering, coverage/completeness,
+qualification, method-rule accountability, cross-projection comparison
+and change rebuild?
+
+The review attempts to falsify the candidate by deleting or merging
+responsibilities before accepting closure.
+
+\subsection{2. Inputs}\label{inputs}
+
+The review uses:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{BA4\_PROJECTION\_BOUNDARY\_TRACEABILITY\_CANDIDATE\_R1.md};
+\item
+  \texttt{BA4\_T1\_PROJECTION\_BOUNDARY\_TRACEABILITY\_SEMANTIC\_PRESERVATION\_R1.md};
+\item
+  \texttt{BA4\_PROJECTION\_BOUNDARY\_INTERPRETATION\_COVERAGE\_CANDIDATE\_R2.md};
+\item
+  \texttt{BA4\_T2\_METHOD\_INTERPRETATION\_COVERAGE\_CROSS\_PROJECTION\_R1.md};
+\item
+  \texttt{DDTA\_CURRENT\_RESEARCH\_STATE\_R15.md};
+\item
+  closed BA1, BA2 and BA3 contracts; and
+\item
+  the facial M1-M4, order/WMS and provider-normalization controls
+  already used by BA4-T1/T2.
+\end{itemize}
+
+No complete threat-method schema, AnalysisRecord/Common Finding or
+ThreatForge implementation model is introduced.
+
+\subsection{3. Attack A - remove
+coverageMode}\label{attack-a---remove-coveragemode}
+
+Candidate simplification:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{selectionCoverageContract:}
+\NormalTok{  "current transfer propositions"}
+\end{Highlighting}
+\end{Shaded}
+
+with no explicit statement of selective vs exhaustive intent.
+
+Two valid consumers can read that same scope as:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{A: show every current transfer}
+\NormalTok{B: show only transfers useful to one analysis question}
+\end{Highlighting}
+\end{Shaded}
+
+The omission of one eligible transfer therefore cannot be classified as
+either a defect or an intentional omission.
+
+\textbf{Disposition:} removal \textbf{REJECTED}. \texttt{coverageMode}
+remains semantically required.
+
+The mode does not require one serialization; an unambiguous textual
+equivalent is sufficient.
+
+\subsection{4. Attack B - retain omissionSemantics as an independent
+field}\label{attack-b---retain-omissionsemantics-as-an-independent-field}
+
+T2 carried both \texttt{coverageMode} and \texttt{omissionSemantics}.
+
+T3 asks whether the latter adds independent necessary semantics.
+
+Once mode semantics are fixed:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{EXHAUSTIVE\_FOR\_DECLARED\_SCOPE}
+\NormalTok{  omitted eligible+qualified item {-}\textgreater{} projection defect}
+
+\NormalTok{SELECTIVE}
+\NormalTok{  omitted eligible item {-}\textgreater{} no project{-}semantic conclusion}
+\end{Highlighting}
+\end{Shaded}
+
+an independent omission policy can only duplicate those rules or
+contradict them.
+
+\textbf{Disposition:} \texttt{omissionSemantics} as an independent
+mandatory field \textbf{REJECTED AS REDUNDANT}.
+
+This is the only material simplification accepted by the closure review.
+
+\subsection{5. Attack C - collapse qualificationPolicy into generic
+coverage
+text}\label{attack-c---collapse-qualificationpolicy-into-generic-coverage-text}
+
+A scope such as \texttt{transfer\ propositions} does not state whether
+stale, diagnostic or pending material is admissible.
+
+A current-state projection and a review projection can have the same
+semantic topic but intentionally different admissible BA state.
+
+If the distinction is hidden only in rendering conventions, a non-visual
+consumer can ingest stale/unresolved basis as if current.
+
+\textbf{Disposition:} semantic collapse \textbf{REJECTED}.
+
+\texttt{qualificationPolicy} may be physically nested in coverage
+metadata, but its responsibility remains distinct.
+
+\subsection{6. Attack D - remove
+interpretationRuleRef}\label{attack-d---remove-interpretationruleref}
+
+The T2 overlapping-rule counterexample is replayed:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{R1: serviceUse + responsibilityBoundary}
+\NormalTok{    {-}\textgreater{} external{-}service exposure}
+
+\NormalTok{R2: serviceUse + responsibilityBoundary + constraints}
+\NormalTok{    {-}\textgreater{} assurance dependency review}
+\end{Highlighting}
+\end{Shaded}
+
+An item with only a BA trace does not identify which local rule produced
+its meaning when several rules overlap.
+
+\textbf{Disposition:} removal \textbf{REJECTED}.
+
+\texttt{interpretationRuleRef} remains required for meaning-bearing
+method-owned interpretation. It remains projection-local and never
+becomes a BA3 derivation rule.
+
+\subsection{7. Attack E - make trace roles mandatory
+everywhere}\label{attack-e---make-trace-roles-mandatory-everywhere}
+
+A single BA element mapped directly to one human bullet does not need an
+artificial contribution role merely to satisfy serialization uniformity.
+
+However, role distinctions are essential when multiple BA inputs
+contribute differently to one interpretation.
+
+\textbf{Disposition:} universal mandatory role key \textbf{REJECTED};
+conditional role binding \textbf{ACCEPTED}.
+
+Final rule:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{traceRoleKey required where contribution roles differ}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{8. Attack F - collapse shared rendering and method-owned
+interpretation}\label{attack-f---collapse-shared-rendering-and-method-owned-interpretation}
+
+\subsubsection{F1 semantic-preserving
+aggregate}\label{f1-semantic-preserving-aggregate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{C constraint}
+\NormalTok{I constraint}
+\NormalTok{provenance constraint}
+\NormalTok{    {-}\textgreater{} enumerated "delivery constraints" group}
+\end{Highlighting}
+\end{Shaded}
+
+The group is no stronger than its BA basis and can remain shared
+rendering.
+
+\subsubsection{F2 consumer conclusion}\label{f2-consumer-conclusion}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{same constraint basis}
+\NormalTok{    {-}\textgreater{} "high{-}assurance channel"}
+\end{Highlighting}
+\end{Shaded}
+
+This is a stronger consumer interpretation. If admissible at all, it
+requires a method-owned rule and cannot be presented as shared BA
+meaning.
+
+\textbf{Disposition:} collapse \textbf{REJECTED}.
+
+The semantic distinction remains even if one physical item contains both
+a shared rendering and local annotations.
+
+\subsection{9. Attack G - force one shared projection
+ontology}\label{attack-g---force-one-shared-projection-ontology}
+
+T3 replays three projections over the same BA:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  a human project-understanding view;
+\item
+  a flow/exposure method view; and
+\item
+  an assurance/responsibility method view.
+\end{enumerate}
+
+The method views use intentionally incompatible local categories. Both
+can remain valid because their common denominator is role-bound BA
+trace, not category equivalence.
+
+The human view can group the same BA basis without adopting either
+method taxonomy.
+
+\textbf{Disposition:} universal projection ontology \textbf{REJECTED}.
+
+No \texttt{SharedProjectionConcept} or method-category equivalence
+relation is forced.
+
+\subsection{10. Attack H - require cross-baseline projection-item
+identity}\label{attack-h---require-cross-baseline-projection-item-identity}
+
+M1-M4 are replayed under rebuild semantics.
+
+A local projection item at B0 may disappear, split or be represented
+differently at B1 because the BA meaning or the projection descriptor
+changed.
+
+The project-semantic continuity already exists in BA3. Adding
+\texttt{RETAIN\ \textbar{}\ REPLACE\ \textbar{}\ RETIRE} to projection
+items duplicates authority without current evidence.
+
+\textbf{Disposition:} projection-item BA-like lifecycle \textbf{REJECTED
+AS UNNECESSARY}.
+
+Method/UI continuity remains tool-owned if desired.
+
+\subsection{11. Integrated rebuild
+regression}\label{integrated-rebuild-regression}
+
+\subsubsection{M1 Ethernet -\textgreater{}
+Wi-Fi}\label{m1-ethernet---wi-fi}
+
+Flow projection may remain materially stable while realization/assurance
+projection changes. PASS: different projection deltas are expected
+because coverage differs.
+
+\subsubsection{M2 external -\textgreater{} project-owned
+transport}\label{m2-external---project-owned-transport}
+
+The external-service exposure interpretation becomes non-applicable when
+the BA responsibility/service basis changes. A different method can
+produce a project-owned authority item. PASS: no common method category
+is required.
+
+\subsubsection{M3 remote -\textgreater{} local
+recognition}\label{m3-remote---local-recognition}
+
+Retired remote transfer disappears from a current exhaustive flow view.
+Unrelated responsibility items can remain. PASS: rebuild follows BA
+rather than local item history.
+
+\subsubsection{M4 raw capture -\textgreater{} opaque reference
+conflict}\label{m4-raw-capture---opaque-reference-conflict}
+
+A current projection excludes stale/unresolved transfer meaning; a
+review projection may surface it with qualification. PASS: no projection
+invents post-resolution project truth.
+
+\subsection{12. Order/WMS regression}\label{orderwms-regression}
+
+Externalizing inventory authority can produce large deltas in an
+integration projection and different deltas in a
+responsibility/assurance projection.
+
+Each remains consistent if it follows its own declared scope, mode and
+qualification policy and traces to accepted BA.
+
+No method-local \texttt{ExternalSystem}, \texttt{TrustBoundary} or
+\texttt{IntegrationRisk} category is forced into BA.
+
+\textbf{Disposition:} PASS.
+
+\subsection{13. Provider-normalization
+regression}\label{provider-normalization-regression}
+
+A consumer needing \texttt{PaymentAuthorizationResult} must consume
+accepted normalized BA meaning.
+
+The negative pattern remains rejected:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{provider raw vocabulary}
+\NormalTok{    {-}\textgreater{} hidden method mapping}
+\NormalTok{        {-}\textgreater{} supposedly shared project result}
+\end{Highlighting}
+\end{Shaded}
+
+The accepted path remains:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{provider raw vocabulary}
+\NormalTok{    {-}\textgreater{} governed mapping / BA3 derivation}
+\NormalTok{        {-}\textgreater{} accepted BA meaning}
+\NormalTok{            {-}\textgreater{} projection interpretation}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Disposition:} PASS.
+
+\subsection{14. Orthogonality check}\label{orthogonality-check}
+
+The closure review confirms four independent questions:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{trace}
+\NormalTok{  Which BA meaning supports this projection item?}
+
+\NormalTok{coverage}
+\NormalTok{  Is the view selective or exhaustive for its declared eligible scope?}
+
+\NormalTok{qualification}
+\NormalTok{  Which BA states are admissible, and how is non{-}current meaning preserved?}
+
+\NormalTok{interpretation rule}
+\NormalTok{  Which consumer{-}owned rule justifies this non{-}trivial local meaning?}
+\end{Highlighting}
+\end{Shaded}
+
+No pair can be merged without losing a reviewed distinction.
+
+Physical co-location remains allowed.
+
+\subsection{15. Earlier-layer reopen
+checks}\label{earlier-layer-reopen-checks}
+
+No material counterexample forces an earlier reopen.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BA1: BAReferent + BAProposition remain sufficient       PASS}
+\NormalTok{BA2: current operator/role vocabulary remains sufficient PASS}
+\NormalTok{BA3: provenance/lifecycle/change continuity sufficient  PASS}
+\end{Highlighting}
+\end{Shaded}
+
+A method-specific node, edge, risk class, assurance class, UI state or
+local identifier is not a shared-semantic counterexample.
+
+\subsection{16. Closure decision}\label{closure-decision}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BA4{-}T3   CLOSED / PASS}
+\NormalTok{BA4      CLOSED FOR CURRENT THESIS SCOPE}
+\end{Highlighting}
+\end{Shaded}
+
+The accepted final contract is:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{BA4\_PROJECTION\_BOUNDARY\_TRACEABILITY\_INTERPRETATION\_COVERAGE\_CONTRACT\_R1.md}
+\end{itemize}
+
+BA4-T1/T2 artifacts remain immutable research derivation history.
+
+\subsection{17. Closure ledger summary}\label{closure-ledger-summary}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{projection authority                                    REJECTED}
+\NormalTok{immutable projection revision                           RETAIN}
+\NormalTok{eligibleBAScope                                         RETAIN}
+\NormalTok{coverageMode                                            RETAIN}
+\NormalTok{independent omissionSemantics                           REMOVE / REDUNDANT}
+\NormalTok{qualificationPolicy                                     RETAIN}
+\NormalTok{BA trace                                                RETAIN}
+\NormalTok{traceRoleKey mandatory everywhere                       REJECT}
+\NormalTok{traceRoleKey where roles differ                         RETAIN}
+\NormalTok{shared semantic rendering                               RETAIN}
+\NormalTok{method{-}owned interpretation                             RETAIN}
+\NormalTok{interpretationRuleRef                                   RETAIN WHEN APPLICABLE}
+\NormalTok{universal projection DSL                                REJECT}
+\NormalTok{universal projection ontology                           REJECT}
+\NormalTok{cross{-}projection shared identity                        NOT FORCED}
+\NormalTok{BA trace + BA3 continuity common anchor                 ACCEPT}
+\NormalTok{projection lifecycle ontology                           REJECT}
+\NormalTok{new BAE family                                          NOT FORCED}
+\NormalTok{new BA2 operator                                        NOT FORCED}
+\NormalTok{BA1/BA2/BA3 reopen                                      NOT TRIGGERED}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{18. BA4 reopen criteria}\label{ba4-reopen-criteria}
+
+Reopen only the smallest responsibility on a material case where the
+final contract cannot express necessary projection completeness, cannot
+preserve qualification, cannot reproduce method-owned interpretation,
+loses source drill-down, requires a shared semantic identity beyond BA
+trace, or cannot rebuild from BA3 continuity without a second shared
+lifecycle.
+
+Do not reopen for ordinary method taxonomy growth, UI identity needs,
+renderer changes, new projection revisions or storage preferences.
+
+\subsection{19. Next phase boundary}\label{next-phase-boundary}
+
+BA5 may begin only after this BA4 closure package is committed, pushed
+and remotely verified.
+
+BA5 must not reinterpret projection-local labels as BA semantic keys.
+Its first trial must pressure the boundary among source wording, stable
+BA semantic keys, projection display labels and authoring synonyms
+before optional assistance is considered.
+
+\end{document}
