@@ -15,19 +15,21 @@ The repository is intentionally separate from the ThreatForge software repositor
 
 ## Current research checkpoint
 
-The documentation layer, Chapters 2-4, `BA0-R`, the BA0 responsibility/non-goals boundary, the BA1 minimal BAE identity ontology, the **BA2 relation/action vocabulary, BA3 provenance/derivation/identity/lifecycle/change-revalidation mechanics and BA4 projection boundary/traceability/coverage/interpretation contract are closed for the current thesis scope**. BA4-T3 has completed the integrated adversarial closure review over T1/T2, including human and incompatible method projections, coverage/qualification pressure and facial M1-M4 plus order/WMS/provider rebuild controls.
+The documentation layer, Chapters 2-4, `BA0-R`, the BA0 responsibility/non-goals boundary, the BA1 minimal BAE identity ontology, the **BA2 relation/action vocabulary, BA3 provenance/derivation/identity/lifecycle/change-revalidation mechanics and BA4 projection boundary/traceability/coverage/interpretation contract are closed for the current thesis scope**. BA5 is now active: BA5-T1 has pressure-tested a stronger controlled-authoring hypothesis in which a governed project referent has one exact canonical name per baseline/naming scope and derived shared views must preserve that name rather than introducing synonyms or aliases.
 
 The active state and forward rules are recorded in:
 
-- `methodology/DDTA_CURRENT_RESEARCH_STATE_R16.md`
-- `methodology/DDTA_RESEARCH_WORK_PLAN_AFTER_DOCUMENTATION_CLOSURE_R19.md`
+- `methodology/DDTA_CURRENT_RESEARCH_STATE_R17.md`
+- `methodology/DDTA_RESEARCH_WORK_PLAN_AFTER_DOCUMENTATION_CLOSURE_R20.md`
 - `methodology/BA1_MINIMAL_BAE_IDENTITY_ONTOLOGY_R1.md`
 - `methodology/BA2_RELATION_ACTION_VOCABULARY_R1.md`
 - `methodology/BA3_PROVENANCE_DERIVATION_LIFECYCLE_CHANGE_CONTRACT_R1.md`
 - `methodology/BA4_PROJECTION_BOUNDARY_TRACEABILITY_INTERPRETATION_COVERAGE_CONTRACT_R1.md`
 - `methodology/BA4_T3_PROJECTION_CLOSURE_REVIEW_R1.md`
+- `methodology/BA5_CANONICAL_REFERENT_NAMING_REGISTRY_CANDIDATE_R1.md`
+- `methodology/BA5_T1_CANONICAL_REFERENT_NAMING_CONTROLLED_AUTHORING_TRIAL_R1.md`
 
-`BA0`, `BA1`, `BA2`, `BA3` and `BA4` are **CLOSED FOR THE CURRENT THESIS SCOPE**. `BAReferent` and `BAProposition` remain the only accepted first-class semantic identity families. BA4 closes revisioned baseline-scoped projections, explicit selective/exhaustive coverage, qualification policy, BA trace, semantic-preserving shared rendering, downstream rule-accountable method interpretation, cross-projection comparison through BA trace/BA3 continuity and rebuild without a second project lifecycle. Independent `omissionSemantics` is removed as redundant because omission meaning is fixed by coverage mode. No new BAE family or BA2 operator is forced. `BA5` lexical vocabulary/assistance boundaries are **NOT STARTED / NEXT**.
+`BA0`, `BA1`, `BA2`, `BA3` and `BA4` are **CLOSED FOR THE CURRENT THESIS SCOPE**. `BAReferent` and `BAProposition` remain the only accepted first-class semantic identity families. `BA5-T1` is **COMPLETED / PROVISIONAL PASS WITH CANONICAL-REFERENT-NAMING LOWER-BOUND**: one governed referent name is exact and canonical within a baseline/naming scope; synonymous entity identifiers are not admitted; shared projections preserve the canonical name; method-owned type/category labels remain separate; and a governed rename across baselines may retain BAReferent identity under BA3. `BA5` remains **STARTED / NOT CLOSED**.
 
 ## Important scope boundary
 

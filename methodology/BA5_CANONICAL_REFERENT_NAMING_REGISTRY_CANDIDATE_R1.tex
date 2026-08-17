@@ -1,0 +1,692 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  10pt,
+  a4paper,
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=23mm]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  colorlinks=true,
+  linkcolor={black},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{DDTA BA5 canonical referent naming and controlled-registry
+candidate -
+R1}\label{ddta-ba5-canonical-referent-naming-and-controlled-registry-candidate---r1}
+
+\textbf{Status:} PROVISIONAL CANDIDATE AFTER BA5-T1 / BA5 OPEN
+
+\textbf{Repository baseline reviewed:}
+\texttt{aa4b785dc72c2fbcd20fd04976e77fca3d07bf25}
+
+\textbf{Closed dependencies:} documentation layer; BA0 responsibility
+boundary; BA1 \texttt{BAReferent\ +\ BAProposition}; BA2 semantic
+registries; BA3 provenance/continuity; BA4 projection contract.
+
+\subsection{1. Purpose}\label{purpose}
+
+BA5-T1 replaces the initial synonym-first pressure with a stronger
+falsifiable authoring hypothesis:
+
+\begin{quote}
+For project referents that are named in governed DDTA material, one
+exact canonical name is used across the governed baseline, accepted Base
+Analysis and every derived view that presents that referent as shared
+project meaning. Synonymous or alternative entity identifiers are not
+normative input.
+\end{quote}
+
+The motivating example is deliberately simple:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{canonical project referent name:}
+\NormalTok{  cameraIngresso}
+\end{Highlighting}
+\end{Shaded}
+
+If \texttt{cameraIngresso} denotes one governed project referent, a
+second document or derived shared view does not rename it to
+\texttt{entryCamera}, \texttt{cameraEntrata}, \texttt{CameraIngresso} or
+another alias.
+
+The purpose is not stylistic uniformity. The purpose is to make
+cross-document identity, projection comparison, source drill-down and
+tool integration mechanically reliable without requiring synonym
+resolution before the Base Analysis architecture itself has been fully
+regressed.
+
+\subsection{2. Provisional lower-bound
+rule}\label{provisional-lower-bound-rule}
+
+For one governed baseline and naming scope:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{one shared named project referent}
+\NormalTok{    {-}\textgreater{} exactly one canonicalName token}
+
+\NormalTok{same referent across governed documents}
+\NormalTok{    {-}\textgreater{} same exact canonicalName}
+
+\NormalTok{same referent exposed by accepted BA / shared projection rendering}
+\NormalTok{    {-}\textgreater{} same exact canonicalName}
+
+\NormalTok{alternative lexical identifier for same referent}
+\NormalTok{    {-}\textgreater{} REJECTED as normative authoring}
+\end{Highlighting}
+\end{Shaded}
+
+Exact means token equality under the declared project convention. Case
+or formatting variants do not silently alias:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cameraIngresso}
+\NormalTok{CameraIngresso}
+\NormalTok{camera\_ingresso}
+\NormalTok{entryCamera}
+\end{Highlighting}
+\end{Shaded}
+
+are distinct lexical tokens. Only the registered canonical token is
+accepted for the referent.
+
+\subsection{3. Name is not identity}\label{name-is-not-identity}
+
+The strongest negative control in T1 is a governed rename.
+
+BA1 identity and BA3 continuity already establish that lexical wording
+does not define semantic identity. BA3 explicitly permits a
+\texttt{BAReferent} to RETAIN when the same independently reusable
+methodology-neutral project meaning survives a change in wording.
+
+Therefore BA5 must not make:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{canonicalName == BAReferent identity}
+\end{Highlighting}
+\end{Shaded}
+
+The current lower bound is instead:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BAReferent semantic identity}
+\NormalTok{    != canonicalName}
+
+\NormalTok{canonicalName}
+\NormalTok{    is baseline{-}scoped governed lexical metadata}
+\NormalTok{    used consistently wherever that referent is named}
+\end{Highlighting}
+\end{Shaded}
+
+Example:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{B0:}
+\NormalTok{  same semantic referent R{-}camera{-}entry}
+\NormalTok{  canonicalName = cameraIngresso}
+
+\NormalTok{B1 governed rename:}
+\NormalTok{  same semantic referent retained by BA3}
+\NormalTok{  canonicalName = cameraNord}
+\end{Highlighting}
+\end{Shaded}
+
+Historical B0 material remains \texttt{cameraIngresso}; current B1
+governed documents, BA rendering and rebuilt shared projections use
+\texttt{cameraNord}.
+
+A rename is therefore a governed lexical change, not automatically a new
+BAE identity.
+
+\subsection{4. Canonical-name registry
+responsibility}\label{canonical-name-registry-responsibility}
+
+BA5-T1 requires a governed canonical-name registry responsibility, but
+does not mandate one physical database, JSON registry, graph node family
+or ThreatForge table.
+
+The semantic minimum is:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CanonicalReferentNameRegistry             [governed lexical responsibility; NOT BAE]}
+\NormalTok{|{-} governedBaselineKey               1}
+\NormalTok{|{-} namingScopeKey                    1}
+\NormalTok{\textasciigrave{}{-} entry                             0..*}
+\NormalTok{     |{-} canonicalName                1 exact token}
+\NormalTok{     \textasciigrave{}{-} governedReferentBinding      1 unambiguous within baseline/scope}
+\end{Highlighting}
+\end{Shaded}
+
+An accepted BA materialization must be able to resolve a named
+\texttt{BAReferent} to that canonical token without inventing a synonym.
+
+The registry may be realized as governed authoring metadata, a generated
+validated symbol table over governed files, or another auditable
+mechanism. The physical realization is deferred.
+
+\subsection{5. Registry authority
+boundary}\label{registry-authority-boundary}
+
+The registry does not make Base Analysis or ThreatForge project
+authority.
+
+The authority chain remains:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{governed project authoring / canonical{-}name registration}
+\NormalTok{    {-}\textgreater{} governed documentation baseline}
+\NormalTok{        {-}\textgreater{} accepted BA materialization}
+\NormalTok{            {-}\textgreater{} derived views}
+\end{Highlighting}
+\end{Shaded}
+
+A tool may enforce or validate the registered name, but may not silently
+decide that an unregistered alias is equivalent.
+
+If the author attempts:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{entryCamera}
+\end{Highlighting}
+\end{Shaded}
+
+when the registered referent is:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cameraIngresso}
+\end{Highlighting}
+\end{Shaded}
+
+the minimum valid behavior is rejection or an explicit correction
+proposal. Automatic hidden alias normalization is outside the accepted
+T1 core.
+
+\subsection{6. Cross-document naming
+invariant}\label{cross-document-naming-invariant}
+
+For a named referent, every semantic reference in governed DDTA
+documents uses the canonical token.
+
+Allowed:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{The component \textasciigrave{}cameraIngresso\textasciigrave{} transfers ...}
+\NormalTok{Decision D{-}X constrains \textasciigrave{}cameraIngresso\textasciigrave{} ...}
+\NormalTok{FR{-}Y requires \textasciigrave{}cameraIngresso\textasciigrave{} ...}
+\end{Highlighting}
+\end{Shaded}
+
+Rejected as an alternative identifier for the same referent:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{entry camera}
+\NormalTok{cameraEntrata}
+\NormalTok{CameraIngresso}
+\end{Highlighting}
+\end{Shaded}
+
+Free explanatory prose may surround the canonical token, but an
+alternative phrase must not become a second machine-significant
+identifier for the same referent.
+
+BA5-T1 does not attempt automatic migration of arbitrary legacy
+narrative prose.
+
+\subsection{7. Uniqueness lower bound}\label{uniqueness-lower-bound}
+
+Two different shared referents in the same governed baseline/naming
+scope cannot resolve to the same canonical token.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{referent A {-}\textgreater{} cameraIngresso}
+\NormalTok{referent B {-}\textgreater{} cameraIngresso}
+\end{Highlighting}
+\end{Shaded}
+
+is rejected because consumers could not know which identity a source or
+projection reference denotes.
+
+The lower bound therefore requires canonical-name uniqueness within a
+declared naming scope.
+
+T1 does not yet freeze whether a future implementation uses one
+project-global namespace or explicit sub-namespaces. That is a
+representation/governance detail for later pressure if concrete projects
+require it.
+
+\subsection{8. Shared projection
+rendering}\label{shared-projection-rendering}
+
+BA4 permits presentation labels that preserve shared meaning. BA5-T1
+narrows that freedom for shared referent naming:
+
+\begin{quote}
+A projection may choose its own layout, local item kind, grouping and
+method vocabulary, but when it displays a traced BAReferent as the
+shared project entity, it uses the referent's canonical name.
+\end{quote}
+
+Allowed:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{[FlowParticipant] cameraIngresso}
+\NormalTok{[AssuranceSubject] cameraIngresso}
+\end{Highlighting}
+\end{Shaded}
+
+Here \texttt{FlowParticipant} and \texttt{AssuranceSubject} are
+projection-owned kinds; \texttt{cameraIngresso} remains the shared
+entity name.
+
+Rejected when presented as the same shared entity:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{[FlowParticipant] Entry Camera}
+\NormalTok{[AssuranceSubject] Ingress Sensor}
+\end{Highlighting}
+\end{Shaded}
+
+The method may still create a genuinely method-owned interpretation item
+such as:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{external{-}ingress{-}exposure}
+\end{Highlighting}
+\end{Shaded}
+
+provided that item is explicitly method-owned, trace-bound and not
+presented as a replacement name for \texttt{cameraIngresso}.
+
+\subsection{9. Aggregation and local method
+items}\label{aggregation-and-local-method-items}
+
+A projection-local item need not correspond one-to-one with a
+BAReferent. A method may aggregate several BA elements under a local
+analysis item.
+
+In that case the local item may have a method-owned label because it is
+not claiming to be the canonical project entity.
+
+The boundary is:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{label denotes shared BAReferent}
+\NormalTok{    {-}\textgreater{} canonicalName required}
+
+\NormalTok{label denotes projection{-}owned aggregation/interpretation}
+\NormalTok{    {-}\textgreater{} local label allowed}
+\NormalTok{       + BA trace required}
+\NormalTok{       + must not masquerade as shared referent identity}
+\end{Highlighting}
+\end{Shaded}
+
+This preserves BA4 method freedom without sacrificing shared entity
+naming consistency.
+
+\subsection{10. Operator, role and semantic-kind
+keys}\label{operator-role-and-semantic-kind-keys}
+
+BA2 already closes stable canonical semantic keys such as:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{transfer}
+\NormalTok{consumeService}
+\NormalTok{assignResponsibility}
+\NormalTok{source}
+\NormalTok{destination}
+\NormalTok{content}
+\NormalTok{store}
+\NormalTok{contract}
+\end{Highlighting}
+\end{Shaded}
+
+The same controlled-registry philosophy is compatible with those keys,
+but BA5-T1 does not reopen or redesign their registries.
+
+T1 is intentionally limited to the referent-name boundary. The next BA5
+pressure target may test whether the same exact-token/no-synonym
+authoring rule can cover the complete operative BA vocabulary and
+registry-extension workflow without semantic loss.
+
+\subsection{11. Tool-support boundary}\label{tool-support-boundary}
+
+The initial tool hypothesis is intentionally narrow.
+
+A tool may:
+
+\begin{itemize}
+\tightlist
+\item
+  validate exact canonical-name use;
+\item
+  prevent duplicate names in the active naming scope;
+\item
+  offer completion from the accepted registry;
+\item
+  flag an unregistered token;
+\item
+  present a candidate correction or candidate registry-extension
+  request.
+\end{itemize}
+
+A tool may not, by default:
+
+\begin{itemize}
+\tightlist
+\item
+  create a hidden synonym dictionary;
+\item
+  silently map an alias to a canonical referent;
+\item
+  mint a new accepted referent name without governance;
+\item
+  use method taxonomy as a replacement project name; or
+\item
+  make a lexical guess into project or BA truth.
+\end{itemize}
+
+This keeps ThreatForge or any future tool in an enforcement/assistance
+role rather than semantic authority.
+
+\subsection{12. Mutation pressure}\label{mutation-pressure}
+
+\subsubsection{N1 - second document introduces an
+alias}\label{n1---second-document-introduces-an-alias}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{D1: cameraIngresso}
+\NormalTok{D2: entryCamera}
+\end{Highlighting}
+\end{Shaded}
+
+If both intend the same referent, \texttt{entryCamera} is rejected as
+normative authoring. The author must use \texttt{cameraIngresso} or
+perform a governed rename.
+
+Result: \textbf{PASS}.
+
+\subsubsection{N2 - case/format
+variation}\label{n2---caseformat-variation}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cameraIngresso}
+\NormalTok{CameraIngresso}
+\NormalTok{camera\_ingresso}
+\end{Highlighting}
+\end{Shaded}
+
+Only the registered exact token is accepted.
+
+Result: \textbf{PASS}.
+
+\subsubsection{N3 - derived human view renames the
+entity}\label{n3---derived-human-view-renames-the-entity}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BAReferent {-}\textgreater{} cameraIngresso}
+\NormalTok{view label {-}\textgreater{} Entry Camera}
+\end{Highlighting}
+\end{Shaded}
+
+If the label claims to name the shared entity, reject it. A descriptive
+section heading may differ, but the entity reference itself remains
+canonical.
+
+Result: \textbf{PASS}.
+
+\subsubsection{N4 - method projection uses local type
+vocabulary}\label{n4---method-projection-uses-local-type-vocabulary}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FlowParticipant(cameraIngresso)}
+\NormalTok{AssuranceSubject(cameraIngresso)}
+\end{Highlighting}
+\end{Shaded}
+
+The local kind may vary while the entity name remains exact.
+
+Result: \textbf{PASS}.
+
+\subsubsection{N5 - governed rename across
+baselines}\label{n5---governed-rename-across-baselines}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{B0 cameraIngresso}
+\NormalTok{B1 cameraNord}
+\end{Highlighting}
+\end{Shaded}
+
+If the same project meaning survives, BA3 may RETAIN referent identity
+while B1 adopts the new canonical name. Historical B0 remains unchanged.
+
+Result: \textbf{PASS WITH REFINEMENT} - canonical name is
+baseline-scoped and must not be used as BAE identity.
+
+\subsubsection{N6 - two referents request the same
+token}\label{n6---two-referents-request-the-same-token}
+
+Within one naming scope, reject the collision or require distinct
+canonical names before the governed baseline is accepted.
+
+Result: \textbf{PASS}.
+
+\subsection{13. Reopen checks}\label{reopen-checks}
+
+BA5-T1 finds no material reason to reopen closed BA responsibilities.
+
+\begin{itemize}
+\tightlist
+\item
+  BA1 remains sufficient: canonical naming is metadata over
+  \texttt{BAReferent}, not a third identity family.
+\item
+  BA2 remains sufficient: naming does not require a \texttt{nameOf}
+  operator.
+\item
+  BA3 already handles retained identity under wording/name change across
+  baselines.
+\item
+  BA4 remains sufficient: the new rule narrows permissible shared
+  rendering labels but does not alter projection identity, coverage,
+  trace or interpretation mechanics.
+\item
+  The closed document metamodel need not be reopened: this is a
+  cross-document controlled-authoring/governance constraint, not a new
+  MR/Decision/FR/SR structural field family.
+\end{itemize}
+
+\subsection{14. Provisional
+dispositions}\label{provisional-dispositions}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{one named referent {-}\textgreater{} one canonicalName per baseline/scope       REQUIRED}
+\NormalTok{exact canonical token in governed semantic references           REQUIRED}
+\NormalTok{exact canonical token in shared derived referent rendering      REQUIRED}
+\NormalTok{synonymous entity identifiers as normative authoring             REJECTED}
+\NormalTok{case/format variants as implicit aliases                         REJECTED}
+\NormalTok{canonical{-}name collision within naming scope                     REJECTED}
+\NormalTok{canonicalName == BAReferent identity                              REJECTED}
+\NormalTok{governed rename + BA3 RETAIN                                     PASS}
+\NormalTok{projection{-}owned type/category labels                            ALLOWED}
+\NormalTok{method{-}owned non{-}referent item labels                            ALLOWED DOWNSTREAM}
+\NormalTok{tool exact validation/completion                                 ALLOWED}
+\NormalTok{tool hidden synonym normalization                                REJECTED IN T1 CORE}
+\NormalTok{new BAE family                                                   NOT FORCED}
+\NormalTok{new BA2 operator                                                 NOT FORCED}
+\NormalTok{BA1 / BA2 / BA3 / BA4 reopen                                    NOT TRIGGERED}
+\NormalTok{documentation metamodel reopen                                   NOT TRIGGERED}
+\NormalTok{BA5                                                              STARTED / NOT CLOSED}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{15. Falsification rules}\label{falsification-rules}
+
+Revise this candidate if concrete controlled-authoring/integration
+evidence demonstrates that:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  one shared referent must have two concurrent normative names in the
+  same baseline/scope to preserve necessary project meaning;
+\item
+  exact canonical naming makes a required methodology projection
+  impossible rather than merely less convenient;
+\item
+  a canonical rename cannot be handled through existing BA3 continuity
+  without semantic identity loss;
+\item
+  the registry cannot enforce uniqueness without introducing a missing
+  shared identity responsibility;
+\item
+  method-specific labels must replace canonical entity names to preserve
+  method semantics; or
+\item
+  a materially different corpus cannot be authored/integrated without
+  synonym equivalence in the semantic core.
+\end{enumerate}
+
+Until such evidence exists, synonym machinery remains unnecessary
+complexity.
+
+\subsection{16. Smallest unresolved set after
+BA5-T1}\label{smallest-unresolved-set-after-ba5-t1}
+
+The next smallest BA5 question is no longer general synonym handling. It
+is registry coverage and extension:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  test exact canonical authoring across operators, roles, semantic kinds
+  and controlled values already closed by BA2;
+\item
+  define the minimum governed extension workflow when a genuinely new
+  canonical term is required;
+\item
+  verify tool validation/completion can enforce the registry without
+  becoming semantic authority; and
+\item
+  determine whether any concrete integration case forces
+  aliases/synonyms despite the no-synonym default.
+\end{enumerate}
+
+Do not start BA6 until BA5 is explicitly closed.
+
+\end{document}

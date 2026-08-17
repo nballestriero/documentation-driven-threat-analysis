@@ -1,0 +1,367 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  10pt,
+  a4paper,
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=23mm]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  colorlinks=true,
+  linkcolor={black},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{DDTA research work plan after documentation-layer
+closure}\label{ddta-research-work-plan-after-documentation-layer-closure}
+
+\textbf{WORK PLAN - REVISION 20}
+
+\textbf{Status:} active BA5 execution plan after BA5-T1 canonical
+referent naming and controlled-authoring pressure testing.
+
+\textbf{Supersedes:} Revision 19 only for forward execution state;
+R1-R19 remain historical research records.
+
+\subsection{1. Fixed prior state}\label{fixed-prior-state}
+
+\begin{itemize}
+\tightlist
+\item
+  Chapters 2-4: CLOSED / FINAL for current thesis scope.
+\item
+  Documentation layer: CLOSED.
+\item
+  BA0 responsibility/non-goals: CLOSED.
+\item
+  BA1 minimal BAE identity ontology: CLOSED.
+\item
+  BA2 relation/action vocabulary: CLOSED BY BA2-T4.
+\item
+  BA3 provenance/derivation/identity/lifecycle/change-revalidation:
+  CLOSED BY BA3-T4.
+\item
+  BA4 projection boundary/traceability/coverage/interpretation: CLOSED
+  BY BA4-T3.
+\item
+  \texttt{BAReferent} and \texttt{BAProposition}: ACCEPTED first-class
+  semantic identity families.
+\item
+  ThreatForge remains a case study/tooling instrument, not DDTA semantic
+  authority.
+\end{itemize}
+
+\subsection{2. BA5 objective - canonical semantic registry and
+controlled
+authoring}\label{ba5-objective---canonical-semantic-registry-and-controlled-authoring}
+
+BA5 now starts from the stronger hypothesis that semantic authoring
+should be canonical by construction rather than synonym-normalized after
+the fact.
+
+For named project referents and, subject to later pressure, the wider
+operative BA vocabulary:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{registered canonical token}
+\NormalTok{    {-}\textgreater{} normative semantic authoring}
+
+\NormalTok{unregistered alias / synonym}
+\NormalTok{    {-}\textgreater{} not silently equivalent}
+\end{Highlighting}
+\end{Shaded}
+
+The purpose is to maximize cross-document and cross-view consistency
+before investing in lexical normalization machinery.
+
+NLP/LLM assistance remains downstream candidate-producing help and is
+not required by the current core hypothesis.
+
+\subsection{3. BA5-T1 result}\label{ba5-t1-result}
+
+\textbf{Status: COMPLETED / PROVISIONAL PASS WITH
+CANONICAL-REFERENT-NAMING LOWER-BOUND.}
+
+T1 establishes provisionally:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{one named referent {-}\textgreater{} one exact canonicalName per baseline/scope   REQUIRED}
+\NormalTok{same referent same name across governed semantic references        REQUIRED}
+\NormalTok{same referent same name across shared derived views                REQUIRED}
+\NormalTok{alias/synonym as second normative entity identifier                REJECTED}
+\NormalTok{case/format variant as implicit alias                              REJECTED}
+\NormalTok{canonical{-}name collision in one naming scope                       REJECTED}
+\NormalTok{canonicalName == BAReferent identity                                REJECTED}
+\NormalTok{governed cross{-}baseline rename + BA3 RETAIN                         PASS}
+\NormalTok{projection{-}owned type/category labels                              ALLOWED}
+\NormalTok{method{-}owned non{-}referent labels                                   ALLOWED DOWNSTREAM}
+\NormalTok{tool exact validation/completion                                   ALLOWED}
+\NormalTok{tool hidden alias normalization                                    REJECTED IN CORE}
+\end{Highlighting}
+\end{Shaded}
+
+The decisive refinement is that naming invariance is baseline-scoped. A
+governed rename does not itself force new \texttt{BAReferent} identity.
+
+\subsection{4. Why this does not reopen
+BA1-BA4}\label{why-this-does-not-reopen-ba1-ba4}
+
+\begin{itemize}
+\tightlist
+\item
+  BA1 identity remains semantic; canonical name is lexical metadata.
+\item
+  BA2 already distinguishes stable semantic keys from lexical wording
+  and needs no \texttt{nameOf} operator.
+\item
+  BA3 already supports RETAIN under wording/name change when meaning
+  survives.
+\item
+  BA4 projection-local taxonomy remains free; only the shared referent
+  name is constrained when a projection presents that referent.
+\end{itemize}
+
+No new BAE family or BA2 operator is forced.
+
+\subsection{5. Registry responsibility}\label{registry-responsibility}
+
+BA5-T1 requires an auditable governed canonical-name registry
+responsibility for named referents, but does not mandate one physical
+implementation.
+
+Minimum properties:
+
+\begin{itemize}
+\tightlist
+\item
+  baseline/scope binding;
+\item
+  exact canonical token;
+\item
+  unambiguous referent resolution;
+\item
+  uniqueness within the active naming scope;
+\item
+  no normative alias equivalence by default.
+\end{itemize}
+
+A tool may enforce the registry, but cannot become semantic authority by
+inventing equivalence or accepted terms.
+
+\subsection{6. BA5-T2 - canonical semantic registry coverage and
+governed-extension pressure
+test}\label{ba5-t2---canonical-semantic-registry-coverage-and-governed-extension-pressure-test}
+
+\textbf{NEXT / NOT EXECUTED BY THIS PLAN REVISION.}
+
+BA5-T2 must pressure-test whether the same controlled-registry
+discipline can cover the wider operative BA vocabulary already
+established by BA2 without introducing unnecessary lexical machinery.
+
+It must test at least:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  the thirteen accepted \texttt{semanticOperatorKey} values;
+\item
+  operator-scoped \texttt{roleKey} values;
+\item
+  method-neutral \texttt{semanticKind} keys, including current evidence
+  such as \texttt{store} and \texttt{contract};
+\item
+  controlled values such as responsibility kinds and other
+  non-identifiable semantic values;
+\item
+  exact-token validation and registry lookup across documentation
+  -\textgreater{} BA -\textgreater{} projections;
+\item
+  the minimum governed workflow for admitting a genuinely new canonical
+  term;
+\item
+  attempted alias/synonym introduction as a negative control; and
+\item
+  whether tool completion/validation can operate without
+  semantic-authority leakage.
+\end{enumerate}
+
+\subsubsection{BA5-T2 guardrails}\label{ba5-t2-guardrails}
+
+Do not:
+
+\begin{itemize}
+\tightlist
+\item
+  build a synonym ontology by default;
+\item
+  perform arbitrary-narrative migration;
+\item
+  authorize NLP/LLM output as semantic truth;
+\item
+  convert method-specific projection taxonomy into BA vocabulary;
+\item
+  create new BAE families merely to store lexical keys;
+\item
+  reopen BA0-BA4 without a material semantic counterexample;
+\item
+  start BA6.
+\end{itemize}
+
+\subsubsection{BA5-T2 exit condition}\label{ba5-t2-exit-condition}
+
+Produce the next smallest controlled-registry lower-bound refinement and
+identify whether any concrete evidence actually forces synonym/alias
+support.
+
+Do not close BA5 unless the integrated lexical/registry responsibilities
+have survived sufficient pressure.
+
+\subsection{7. BA6 - complete Base Analysis regression and
+closure}\label{ba6---complete-base-analysis-regression-and-closure}
+
+Only after BA5 closes, regress the complete BA0-BA5 design against the
+closed corpora and at least one structurally different holdout.
+
+BA6 should emphasize the complete integration path:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{governed documentation}
+\NormalTok{ {-}\textgreater{} canonical registry{-}controlled authoring}
+\NormalTok{ {-}\textgreater{} accepted BA}
+\NormalTok{ {-}\textgreater{} provenance/change continuity}
+\NormalTok{ {-}\textgreater{} multiple projections}
+\NormalTok{ {-}\textgreater{} rebuild / cross{-}projection comparison}
+\end{Highlighting}
+\end{Shaded}
+
+BA6 may reopen only the smallest earlier responsibility on a material
+counterexample.
+
+Only BA6 may close the complete Base Analysis milestone for current
+thesis scope.
+
+\subsection{8. Analysis envelope remains
+downstream}\label{analysis-envelope-remains-downstream}
+
+Only after Base Analysis closure:
+
+\begin{itemize}
+\tightlist
+\item
+  A1 - AnalysisRecord / execution envelope;
+\item
+  A2 - common reviewed Finding boundary;
+\item
+  A3 - change/provenance integration;
+\item
+  formal methodology overlays and STRIDE/STRIDE-AI evaluations.
+\end{itemize}
+
+\subsection{9. Next authorized
+microstep}\label{next-authorized-microstep}
+
+Only after the BA5-T1 package is reviewed, committed, pushed and
+remotely verified, execute:
+
+\begin{quote}
+\textbf{BA5-T2 - canonical semantic registry coverage and
+governed-extension pressure test.}
+\end{quote}
+
+Do not start BA6 or downstream analysis schemas before BA5 is explicitly
+closed.
+
+\end{document}

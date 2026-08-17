@@ -1,0 +1,35 @@
+phase: BA5
+trial: BA5-T1
+status: COMPLETED_PROVISIONAL_PASS_WITH_CANONICAL_REFERENT_NAMING_LOWER_BOUND
+repository_baseline_reviewed: aa4b785dc72c2fbcd20fd04976e77fca3d07bf25
+hypothesis:
+  one_named_referent_one_exact_canonical_name_per_baseline_scope: required
+  aliases_as_normative_semantic_identifiers: rejected
+  shared_projection_referent_rename: rejected
+  tool_enforcement_without_semantic_authority: required
+refinement:
+  canonical_name_is_not_ba_identity: true
+  canonical_name_scope: governed_baseline_and_naming_scope
+  governed_cross_baseline_rename_may_retain_referent_identity: true
+dispositions:
+  exact_canonical_token: REQUIRED
+  cross_document_same_name: REQUIRED
+  cross_shared_projection_same_name: REQUIRED
+  alias_synonym_normative_identifier: REJECTED
+  case_format_implicit_alias: REJECTED
+  same_scope_name_collision: REJECTED
+  canonical_name_as_ba_identity: REJECTED
+  governed_rename_with_ba3_retain: PASS
+  projection_owned_type_label: ALLOWED
+  method_owned_non_referent_label: ALLOWED_DOWNSTREAM
+  tool_exact_validation_completion: ALLOWED
+  tool_hidden_alias_normalization: REJECTED_IN_CORE
+  new_bae_family: NOT_FORCED
+  new_ba2_operator: NOT_FORCED
+  ba1_reopen: NOT_TRIGGERED
+  ba2_reopen: NOT_TRIGGERED
+  ba3_reopen: NOT_TRIGGERED
+  ba4_reopen: NOT_TRIGGERED
+  documentation_metamodel_reopen: NOT_TRIGGERED
+ba5_state: STARTED_NOT_CLOSED
+next_microstep: BA5-T2 canonical semantic registry coverage and governed-extension pressure test
