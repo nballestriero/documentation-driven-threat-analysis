@@ -37,6 +37,21 @@ The active state and forward rules are recorded in:
 
 The current thesis does **not** require reliable automatic migration from arbitrary, legacy, or unstructured narrative documentation. DDTA is evaluated on governed documentation intentionally authored to satisfy an analysis-readiness contract. NLP/LLM-assisted migration, fuzzy search, translations or synonym suggestions may be future/optional assistance; any semantic candidate they produce remains subject to the governed canonical registry and review boundary.
 
+## Document authority gate
+
+**Chronological recency is not document authority.** Before a repository artifact is used as a primary source for current Base Analysis, consult:
+
+- `governance/document-authority/document-authority.registry.yml`
+- `governance/document-authority/README.md`
+
+Artifacts under `_working/`, historical study corpora, superseded checkpoints and non-canonical examples remain valuable research evidence but MUST NOT be treated as current governed project documentation unless the authority registry explicitly permits primary-BA use.
+
+The current governed facial-access validation corpus is rooted at:
+
+- `governed-corpora/facial-access/current/`
+
+Its authority is intentionally separate from the historical facial-access material retained under `_working/`, `02-decision/05-example-facial-access/` and `04-specialized-requirement/03-example-facial-access/`.
+
 ## Historical studies
 
 Earlier studies, including `studies/requirement-primary-focus/`, remain preserved as research history. Their local results are not automatically current DDTA invariants or a pre-approved BAE taxonomy. In particular, the historical `actor/component/asset/boundary/data_flow` focus set must not be read as the accepted Base Analysis ontology.
@@ -46,6 +61,8 @@ Earlier studies, including `studies/requirement-primary-focus/`, remain preserve
 - `methodology/` - active and historical methodology checkpoints, Base Analysis trials, work plans and state records.
 - `literature/` - registered literature evidence, notes, excerpts and syntheses.
 - `00-foundations/` through `05-security-requirement/` - documentation/metamodel research artifacts.
+- `governance/document-authority/` - repository-wide source-authority classification used before current-project Base Analysis.
+- `governed-corpora/` - explicitly authority-classified governed validation corpora; historical research corpora remain in their original locations.
 - `research/` - research questions, candidate contributions, hypotheses and terminology.
 - `studies/` - bounded empirical or corpus studies; study-local results do not become methodology rules without explicit promotion.
 - `_working/` - non-canonical historical/experimental workspace.

@@ -1,0 +1,82 @@
+schemaVersion: 1
+registryKey: ddta-document-authority
+basedOnRepositoryCommit: eef1031e47f91f60f18121aba09b6386699f8317
+
+rules:
+  chronologicalRecencyImpliesAuthority: false
+  unclassifiedArtifactPrimaryBASourceAllowed: false
+  workingTreeDefaultAuthority: EXPERIMENTAL_NON_CANONICAL
+  primaryBASourceRequiredAuthority:
+    - CURRENT_GOVERNED
+
+authorityClasses:
+  - CURRENT_GOVERNED
+  - CLOSURE_AUTHORITY
+  - HISTORICAL
+  - SUPERSEDED
+  - EXPERIMENTAL_NON_CANONICAL
+
+researchRoles:
+  - REGRESSION_EVIDENCE
+  - CURRENT_THESIS_VALIDATION_CORPUS
+
+entries:
+  - familyKey: facial-access-historical-mr-example
+    pathPrefix: _working/ddta-metamodel-working-package/01-mr/03-example-facial-access/
+    authorityStatus: EXPERIMENTAL_NON_CANONICAL
+    researchRole: REGRESSION_EVIDENCE
+    primaryBASourceAllowed: false
+    introducedAtCommit: 37b101c8700d5be2abc8ba8d44595eb9e73db48d
+    lastVerifiedSemanticRevisionCommit: 2db7604e0bedf10c4aeb3795a210e141e8db9218
+    retainedFor:
+      - MR metamodel research history
+      - teachability regression
+      - old-vs-current documentation comparison
+    successor:
+      authorityBaselineKey: FACIAL-ACCESS-GOV-R1
+      pathPrefix: governed-corpora/facial-access/current/
+
+  - familyKey: facial-access-historical-decision-demo
+    pathPrefix: 02-decision/05-example-facial-access/
+    authorityStatus: EXPERIMENTAL_NON_CANONICAL
+    researchRole: REGRESSION_EVIDENCE
+    primaryBASourceAllowed: false
+    retainedFor:
+      - Decision authoring research history
+      - migration provenance
+      - old-vs-current documentation comparison
+    successor:
+      authorityBaselineKey: FACIAL-ACCESS-GOV-R1
+      pathPrefix: governed-corpora/facial-access/current/
+
+  - familyKey: facial-access-s1-camera-study
+    pathPrefix: 04-specialized-requirement/03-example-facial-access/
+    authorityStatus: EXPERIMENTAL_NON_CANONICAL
+    researchRole: REGRESSION_EVIDENCE
+    primaryBASourceAllowed: false
+    retainedFor:
+      - SpecializedRequirement falsification evidence
+      - architecture mutation regression
+      - historical camera and transport pressure cases
+    successor:
+      authorityBaselineKey: FACIAL-ACCESS-GOV-R1
+      pathPrefix: governed-corpora/facial-access/current/
+
+  - familyKey: facial-access-current-governed-validation-corpus
+    pathPrefix: governed-corpora/facial-access/current/
+    authorityStatus: CURRENT_GOVERNED
+    researchRole: CURRENT_THESIS_VALIDATION_CORPUS
+    authorityBaselineKey: FACIAL-ACCESS-GOV-R1
+    primaryBASourceAllowed: true
+    migratedFromRepositoryCommit: eef1031e47f91f60f18121aba09b6386699f8317
+    scope:
+      - MR-0003 identity-verification branch
+      - Decisions needed to select facial recognition and current camera/recognition placement
+      - Functional requirements used by the camera transfer trial
+      - Security requirements specializing the delivery behavior
+      - explicit unresolved documentation gaps
+    exclusions:
+      - complete production specification
+      - complete facial-access project migration
+      - Base Analysis materialization
+      - methodology-specific threat semantics

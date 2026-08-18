@@ -1,0 +1,44 @@
+schemaVersion: 1
+corpusKey: facial-access-current
+corpusRevision: R1
+authorityBaselineKey: FACIAL-ACCESS-GOV-R1
+authorityStatus: CURRENT_GOVERNED
+primaryBASourceAllowed: true
+basedOnRepositoryCommit: eef1031e47f91f60f18121aba09b6386699f8317
+
+scope:
+  project: facial-access
+  branchRoot: MR-0003
+  branchTitle: "Verifica dell'identità al punto di accesso"
+  completenessClaim: bounded-branch-validation-corpus
+
+documents:
+  - path: MR-0003_IDENTITY_VERIFICATION.md
+    kind: MacroRequirement
+    ids: [MR-0003]
+  - path: DECISIONS.md
+    kind: DecisionCollection
+    ids: [D-3.1, D-3.2, D-3.3, D-3.4, D-3.5, D-3.6]
+  - path: FUNCTIONAL_REQUIREMENTS.md
+    kind: FunctionalRequirementCollection
+    ids: [FR-3.2.1, FR-3.3.1, FR-3.4.1, FR-3.4.2]
+  - path: SECURITY_REQUIREMENTS.md
+    kind: SecurityRequirementCollection
+    ids: [SEC-3.4.2-C, SEC-3.4.2-I, SEC-3.4.2-P]
+  - path: DOCUMENTATION_GAPS.md
+    kind: GovernedDocumentationDiagnostic
+    authorityNote: diagnostics are not project commitments until resolved through documentation governance
+  - path: HISTORICAL_TO_CURRENT_MIGRATION.md
+    kind: MigrationProvenance
+
+historicalEvidence:
+  - pathPrefix: _working/ddta-metamodel-working-package/01-mr/03-example-facial-access/
+    primaryBASourceAllowed: false
+  - pathPrefix: 02-decision/05-example-facial-access/
+    primaryBASourceAllowed: false
+  - pathPrefix: 04-specialized-requirement/03-example-facial-access/
+    primaryBASourceAllowed: false
+
+analysisPrecondition:
+  pinConcreteGitCommitContainingThisCorpus: true
+  useAuthorityRegistry: governance/document-authority/document-authority.registry.yml
