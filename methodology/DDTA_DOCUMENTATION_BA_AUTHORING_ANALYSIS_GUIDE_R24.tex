@@ -1,0 +1,1842 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  9pt,
+  a4paper,
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+  \setmainfont[]{DejaVu Sans}
+  \setmonofont[]{DejaVu Sans Mono}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=17mm]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={DDTA - Guida integrata per scrittura della documentazione e Base Analysis},
+  pdfauthor={Documentation-Driven Threat Analysis - thesis working appendix},
+  colorlinks=true,
+  linkcolor={Maroon},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\title{DDTA - Guida integrata per scrittura della documentazione e Base
+Analysis}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{Regole, gate, vincoli e protocollo di co-authoring R24}
+\author{Documentation-Driven Threat Analysis - thesis working appendix}
+\date{Baseline 9cc17a148726bd0734db51e26ac74e031020f340}
+
+\begin{document}
+\maketitle
+
+{
+\hypersetup{linkcolor=}
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+\textbf{Stato:} CANDIDATE APPENDIX / R24 WORKING INTEGRATION\\
+\textbf{Baseline repository di riferimento:}
+\texttt{9cc17a148726bd0734db51e26ac74e031020f340}\\
+\textbf{Scopo:} consolidare in un unico riferimento stampabile le regole
+di authoring della documentazione, i contratti chiusi della Base
+Analysis e il protocollo R24 di co-authoring documentazione/BA emerso
+dalla sperimentazione BA6.
+
+\begin{quote}
+\textbf{Regola di lettura dello stato.} Questa guida distingue sempre
+tra: \textbf{CLOSED} (contratto gia chiuso dalla ricerca),
+\textbf{R24-WORKING} (regola operativa proposta dall'esperimento
+corrente e ancora da validare) e \textbf{CORPUS-SPECIFIC} (vincolo o
+convenzione applicabile al caso facial-access, non automaticamente
+generalizzabile).
+\end{quote}
+
+\subsection{1. Principio di autorita e ciclo documentazione - Base
+Analysis}\label{principio-di-autorita-e-ciclo-documentazione---base-analysis}
+
+\subsubsection{1.1 Autorita semantica -
+CLOSED}\label{autorita-semantica---closed}
+
+La documentazione governata e l'autorita sul significato del progetto.
+La Base Analysis (BA) e una rappresentazione analitica
+metodologia-neutrale, ricostruibile e tracciabile di quel significato.
+
+La BA:
+
+\begin{itemize}
+\tightlist
+\item
+  non sostituisce la documentazione;
+\item
+  non crea automaticamente project truth;
+\item
+  non completa silenziosamente ambiguita, conflitti o informazioni
+  mancanti;
+\item
+  puo evidenziare lacune, incoerenze o informazioni non rappresentabili;
+\item
+  puo produrre una proposta di correzione documentale, ma la correzione
+  diventa autoritativa solo dopo review e accettazione nella
+  documentazione governata.
+\end{itemize}
+
+Catena di autorita chiusa da BA3:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{governed documentation B0}
+\NormalTok{  {-}\textgreater{} accepted BA B0}
+\NormalTok{  {-}\textgreater{} downstream analysis / diagnostics}
+\NormalTok{  {-}\textgreater{} corrective documentation candidate}
+\NormalTok{  {-}\textgreater{} governed review}
+\NormalTok{  {-}\textgreater{} governed documentation B1}
+\NormalTok{  {-}\textgreater{} accepted BA B1}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{1.2 Co-authoring come processo di qualita -
+R24-WORKING}\label{co-authoring-come-processo-di-qualita---r24-working}
+
+R24 tratta documentazione e BA come \textbf{due processi distinti ma
+complementari}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DOCUMENTATION AUTHORING / REWRITE}
+\NormalTok{        |}
+\NormalTok{        | authoritative project meaning}
+\NormalTok{        v}
+\NormalTok{BASE ANALYSIS RECONSTRUCTION}
+\NormalTok{        |}
+\NormalTok{        | identity / relations / provenance / gaps}
+\NormalTok{        v}
+\NormalTok{HUMAN{-}READABLE STORY + BA{-}DERIVED VIEW}
+\NormalTok{        |}
+\NormalTok{        | clarity / completeness / abstraction check}
+\NormalTok{        v}
+\NormalTok{DOCUMENTATION CORRECTION CANDIDATE}
+\NormalTok{        |}
+\NormalTok{        \textasciigrave{}{-}{-} governed review {-}{-}\textgreater{} next documentation baseline}
+\end{Highlighting}
+\end{Shaded}
+
+Il processo e iterativo, ma non circolare sul piano dell'autorita: la BA
+puo diagnosticare e proporre; solo la documentazione governata puo
+accettare il nuovo significato di progetto.
+
+\subsection{2. Gate preliminare: autorita delle
+fonti}\label{gate-preliminare-autorita-delle-fonti}
+
+\subsubsection{2.1 Authority gate - CLOSED /
+REQUIRED}\label{authority-gate---closed-required}
+
+Prima di estrarre semantica BA:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  identificare la baseline immutabile del repository/documentazione;
+\item
+  identificare i documenti \texttt{CURRENT\_GOVERNED} ammessi come
+  primary BA source;
+\item
+  separare materiale historical, working, non-canonical e regression
+  evidence;
+\item
+  registrare i rami non migrati e gli \texttt{OPEN} noti;
+\item
+  non usare un documento come primary source solo perche si trova nel
+  repository o sembra piu recente.
+\end{enumerate}
+
+\textbf{Gate A0 - PASS} solo quando l'autorita di ogni fonte usata e non
+ambigua.
+
+\textbf{STOP} se una fonte necessaria non ha stato di autorita
+determinabile.
+
+\subsubsection{2.2 Regola historical/current -
+CLOSED}\label{regola-historicalcurrent---closed}
+
+Il materiale storico puo essere usato per:
+
+\begin{itemize}
+\tightlist
+\item
+  confronto;
+\item
+  regression evidence;
+\item
+  ricostruzione candidata;
+\item
+  proposta di migrazione.
+\end{itemize}
+
+Non puo essere presentato come current project truth finche non e
+riscritto, revisionato e accettato nel corpus governato corrente.
+
+\subsection{3. Gerarchia documentale e separazione dei
+livelli}\label{gerarchia-documentale-e-separazione-dei-livelli}
+
+Gerarchia della documentazione per il baseline della tesi:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Project problem framing   [precondizione di metodo]}
+\NormalTok{        |}
+\NormalTok{MacroRequirement}
+\NormalTok{        |}
+\NormalTok{        +{-}{-} Decision 0..*}
+\NormalTok{               |}
+\NormalTok{               +{-}{-} FunctionalRequirement 0..*}
+\NormalTok{                      |}
+\NormalTok{                      +{-}{-} SpecializedRequirement 0..*}
+\NormalTok{                             |}
+\NormalTok{                             \textasciigrave{}{-}{-} SecurityRequirement [specializzazione corrente]}
+\end{Highlighting}
+\end{Shaded}
+
+Regole generali:
+
+\begin{itemize}
+\tightlist
+\item
+  la gerarchia e semantica, non dedotta dal nome file o dalla codifica
+  dell'ID;
+\item
+  ogni Decision ha esattamente un owner MR naturale;
+\item
+  ogni FR ha esattamente una parent Decision;
+\item
+  ogni Specialized/Security Requirement ha esattamente una parent FR;
+\item
+  una Decision non e figlia di un FR;
+\item
+  i livelli non devono essere compressi in un singolo documento o grafo
+  se questo distrugge la leggibilita dell'astrazione.
+\end{itemize}
+
+\subsection{4. Project problem framing}\label{project-problem-framing}
+
+\textbf{Stato:} CLOSED come precondizione di metodo; non e un nuovo tipo
+documentale governato.
+
+Domanda fondamentale:
+
+\begin{quote}
+Quale problema generale o classe di problemi deve affrontare il
+progetto, entro quale confine significativo, rimuovendo temporaneamente
+le soluzioni correnti?
+\end{quote}
+
+Regole:
+
+\begin{itemize}
+\tightlist
+\item
+  scrivere una sola volta a livello progetto;
+\item
+  usare vocabolario di problema/dominio, non architettura corrente;
+\item
+  non usare provider, device, algoritmo, database, framework o metodo di
+  threat analysis come definizione accidentale del problema;
+\item
+  esplicitare responsabilita importanti fuori scope;
+\item
+  usare il framing per verificare completezza, sovrapposizione e
+  stabilita dell'insieme degli MR;
+\item
+  non duplicare il framing dentro ogni MR.
+\end{itemize}
+
+\textbf{Gate D0 - Project framing}
+
+PASS se un lettore competente nel dominio comprende problema e confine
+senza conoscere l'implementazione corrente.
+
+\subsection{5. MacroRequirement - regole di
+scrittura}\label{macrorequirement---regole-di-scrittura}
+
+\textbf{Stato:} DOCUMENTATION-LAYER CLOSURE CANDIDATE REVISION 8, usato
+come contratto di authoring corrente.
+
+\subsubsection{5.1 Scopo}\label{scopo}
+
+Un MR governa \textbf{una sola responsabilita o concern macro durevole}
+necessario ad affrontare il problema di progetto.
+
+Domanda fondamentale:
+
+\begin{quote}
+Quale responsabilita/concern macro stabile stiamo governando, quale
+risultato o valore deve contribuire, perche e importante e chi
+coinvolge?
+\end{quote}
+
+\subsubsection{5.2 Semantica richiesta}\label{semantica-richiesta}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{id} - identita stabile e tracciabile;
+\item
+  \texttt{title} - nome conciso comprensibile nel dominio;
+\item
+  \texttt{lifecycle} - stato current/historical;
+\item
+  \texttt{intent} - scopo, valore e outcome macro desiderato;
+\item
+  \texttt{context} - minimo background interpretativo;
+\item
+  \texttt{stakeholders} - persone/gruppi coinvolti, beneficiari,
+  responsabili o impattati;
+\item
+  \texttt{scope} - confine semantico della responsabilita;
+\item
+  \texttt{assumptions} - opzionali, solo se valgono per tutto il ramo;
+\item
+  \texttt{constraints} - opzionali, solo se valgono per tutto il ramo;
+\item
+  \texttt{dependsOn} - \texttt{MacroRequirement\ {[}0..*{]}} per
+  dipendenza/complementarita non gerarchica.
+\end{itemize}
+
+\texttt{Objective} resta rimosso: \texttt{Intent} porta scopo, valore e
+outcome macro.
+
+\subsubsection{5.3 Invarianti MR}\label{invarianti-mr}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  nessun parent gerarchico;
+\item
+  identita indipendente dalla codifica testuale dell'ID;
+\item
+  ancoraggio al project problem framing;
+\item
+  un solo macro-concern coerente;
+\item
+  le Decision figlie restringono il concern, non introducono scope
+  estraneo;
+\item
+  nessun leakage di scelta significativa di soluzione, salvo che sia
+  intrinseca al dominio del problema;
+\item
+  nessuna obbligazione atomica/operativa indipendentemente testabile:
+  appartiene a FR;
+\item
+  leggibilita per stakeholder competenti nel dominio;
+\item
+  resilienza a cambi di provider/device/algoritmo/deployment;
+\item
+  stabilita temporale rispetto a cambi di Decision inferiori;
+\item
+  dipendenze cross-MR esplicite, non pseudo-gerarchie;
+\item
+  \texttt{title\ +\ intent} dell'intero set MR deve supportare una macro
+  project map utile;
+\item
+  MR abilita l'analisi ma non crea direttamente elementi/metodologie di
+  threat analysis;
+\item
+  una mappa didattica MR non deve essere presentata come DFD,
+  architettura o threat model.
+\end{enumerate}
+
+\subsubsection{5.4 Split / merge test}\label{split-merge-test}
+
+Prima di dividere o fondere MR, verificare:
+
+\begin{itemize}
+\tightlist
+\item
+  valore indipendente del concern;
+\item
+  coerenza della futura famiglia di Decision;
+\item
+  sopravvivenza della distinzione eliminando i nomi della soluzione
+  corrente;
+\item
+  dipendenza vs contenimento;
+\item
+  spiegabilita da \texttt{title\ +\ intent};
+\item
+  merge stress: la fusione forzerebbe responsabilita/famiglie di
+  Decision sostanzialmente diverse?
+\item
+  split stress: la divisione nasce da responsabilita di progetto o solo
+  da un sottosistema architetturale?
+\end{itemize}
+
+\subsubsection{5.5 Gate MR}\label{gate-mr}
+
+\textbf{Gate D1 - MR authoring PASS} quando:
+
+\begin{itemize}
+\tightlist
+\item
+  ogni MR soddisfa gli invarianti sopra;
+\item
+  l'insieme completo degli MR racconta una storia macro coerente;
+\item
+  le dipendenze cross-MR necessarie sono esplicite o marcate
+  \texttt{OPEN};
+\item
+  un lettore non ha bisogno delle Decision per capire cosa il progetto
+  vuole ottenere a livello macro.
+\end{itemize}
+
+\subsection{6. Decision - regole di
+scrittura}\label{decision---regole-di-scrittura}
+
+\textbf{Stato:} DOCUMENTATION-LAYER CLOSURE CANDIDATE REVISION 8.
+
+\subsubsection{6.1 Scopo}\label{scopo-1}
+
+Una Decision e un \textbf{commitment significativo governato} che
+restringe esattamente un MR fissando una posizione, politica, strategy,
+responsibility boundary, convenzione o scelta tecnologico/architetturale
+con conseguenze downstream.
+
+Domanda fondamentale:
+
+\begin{quote}
+Quale commitment significativo restringe questo MR, perche il progetto
+deve prendere questa posizione e quali conseguenze accettiamo?
+\end{quote}
+
+\subsubsection{6.2 Core semantico
+obbligatorio}\label{core-semantico-obbligatorio}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Decision}
+\NormalTok{|{-} title}
+\NormalTok{|{-} context}
+\NormalTok{|{-} decision}
+\NormalTok{\textasciigrave{}{-} consequences}
+\end{Highlighting}
+\end{Shaded}
+
+Tutti e quattro sono semanticamente richiesti e non null.
+
+\subsubsection{6.3 Regole}\label{regole}
+
+\begin{itemize}
+\tightlist
+\item
+  una Decision = un commitment coerente;
+\item
+  Context descrive la tensione/alternativa locale ancora aperta prima
+  della scelta;
+\item
+  Decision descrive la posizione scelta, non una tautologia;
+\item
+  Consequences espone benefici, costi, trade-off, responsabilita e
+  obblighi downstream materiali;
+\item
+  split di commitment che possono cambiare indipendentemente;
+\item
+  ogni Decision ha un solo MR semantic owner;
+\item
+  una Decision puo temporaneamente avere \texttt{0..*} FR: zero FR non e
+  invalidita automatica, ma e un \textbf{segnale di
+  traceability/completeness da revisionare};
+\item
+  non creare Decision sotto FR.
+\end{itemize}
+
+\subsubsection{6.4 Responsibility-boundary
+gate}\label{responsibility-boundary-gate}
+
+Prima di scrivere gli FR, chiedere esplicitamente:
+
+\begin{quote}
+Il progetto implementa/possiede questa responsabilita oppure consuma una
+capability/servizio esterno/organizzativo?
+\end{quote}
+
+Il confine cambia quali FR sono responsabilita del progetto.
+
+\subsubsection{6.5 Necessity/default
+Decision}\label{necessitydefault-decision}
+
+Consentita solo se, dopo review, non esiste alternativa materialmente
+distinta ammissibile.
+
+Deve:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  spiegare in Context perche le alternative sono assenti/non
+  materiali/escluse;
+\item
+  dichiarare un commitment reale;
+\item
+  produrre conseguenze downstream materiali;
+\item
+  essere riapribile se cambia il vincolo o emerge una alternativa;
+\item
+  non usare ``non abbiamo cercato alternative'' come giustificazione.
+\end{enumerate}
+
+\subsubsection{6.6 Gate Decision}\label{gate-decision}
+
+\textbf{Gate D2 - Decision level PASS} quando:
+
+\begin{itemize}
+\tightlist
+\item
+  tutte le Decision rilevanti dei diversi MR sono state esaminate allo
+  stesso livello di astrazione;
+\item
+  ogni Decision restringe chiaramente il proprio MR;
+\item
+  la storia MR rimane valida e viene solo concretizzata, non riscritta
+  accidentalmente;
+\item
+  i responsibility boundary necessari agli FR sono espliciti;
+\item
+  le Decision senza FR sono revisionate e motivate oppure registrate
+  come gap/candidate.
+\end{itemize}
+
+\subsection{7. FunctionalRequirement - regole di
+scrittura}\label{functionalrequirement---regole-di-scrittura}
+
+\textbf{Stato:} THESIS WRITING CONTRACT THROUGH FR - REVISION 2.
+
+\subsubsection{7.1 Domanda fondamentale}\label{domanda-fondamentale}
+
+\begin{quote}
+Data la parent Decision e una condizione/input applicabile, quale
+soggetto/capability deve eseguire quale azione funzionale su/con quale
+oggetto/informazione, e quale risultato osservabile o comportamento di
+failure deve seguire?
+\end{quote}
+
+\subsubsection{7.2 Semantica richiesta}\label{semantica-richiesta-1}
+
+\begin{itemize}
+\tightlist
+\item
+  titolo: un comportamento/capability operativo coerente;
+\item
+  obbligazione funzionale in prosa normativa leggibile;
+\item
+  una o piu clausole normative concrete;
+\item
+  riferimenti strutturati subject/predicate/object come supporto;
+\item
+  esattamente una parent Decision.
+\end{itemize}
+
+\subsubsection{7.3 Regole}\label{regole-1}
+
+\begin{itemize}
+\tightlist
+\item
+  comportamento concreto e indipendentemente valutabile;
+\item
+  non ripetere la Decision: operationalizzarla;
+\item
+  preservare condizioni, correlation, lifecycle, atomicity/failure
+  semantics nella clausola normativa;
+\item
+  strutture SPO/relazionali supportano la prosa, non la sostituiscono;
+\item
+  split di capability che possono cambiare indipendentemente;
+\item
+  mantenere implementation independence quando piu implementazioni
+  valide possono soddisfare lo stesso FR;
+\item
+  valori mutevoli non vanno hard-coded senza giustificazione semantica;
+\item
+  riusare riferimenti governati invece di duplicare entita;
+\item
+  nessun vocabolario di threat method necessario per scrivere FR.
+\end{itemize}
+
+\subsubsection{7.4 Cross-MR service
+composition}\label{cross-mr-service-composition}
+
+Due MR possono collaborare a un servizio end-to-end senza condividere
+ownership degli FR:
+
+\begin{itemize}
+\tightlist
+\item
+  ogni FR rimane in un solo ramo \texttt{MR\ -\textgreater{}\ Decision};
+\item
+  un consumer FR puo richiedere servizio/capability posseduta da un
+  altro MR;
+\item
+  il consumo non crea un secondo parent;
+\item
+  se il target canonico del legame non e governato, registrare
+  \texttt{OPEN}; non inventarlo nella BA.
+\end{itemize}
+
+\subsubsection{7.5 Parameter rule}\label{parameter-rule}
+
+Non introdurre un generico \texttt{functionalParameters}.
+
+Classificare il valore per semantica, per esempio:
+
+\begin{itemize}
+\tightlist
+\item
+  medium/strategy di acquisizione -\textgreater{} Decision;
+\item
+  latency/throughput -\textgreater{} Performance/Quality candidate;
+\item
+  retention -\textgreater{} Governance/Privacy candidate;
+\item
+  provider API limit -\textgreater{} InterfaceContract candidate;
+\item
+  buffer/thread/tuning -\textgreater{} realization/configuration.
+\end{itemize}
+
+\subsubsection{7.6 Gate FR}\label{gate-fr}
+
+\textbf{Gate D3 - FR level PASS} quando:
+
+\begin{itemize}
+\tightlist
+\item
+  ogni FR ha parent Decision unica e coerente;
+\item
+  ogni commitment operativo necessario e materializzato oppure
+  esplicitamente gap;
+\item
+  i flussi funzionali possono essere raccontati senza ricostruire
+  comportamento essenziale da prosa di MR/Decision non
+  operationalizzata;
+\item
+  il modello non richiede di inventare attori, request, store, output o
+  bindings non governati.
+\end{itemize}
+
+\subsection{8. SpecializedRequirement /
+SecurityRequirement}\label{specializedrequirement-securityrequirement}
+
+\textbf{Stato:} SecurityRequirement metamodel S2 CLOSED per il current
+thesis baseline.
+
+\subsubsection{8.1 Boundary}\label{boundary}
+
+\texttt{SecurityRequirement\ IS-A\ SpecializedRequirement} e
+restringe/enrich un FR senza sostituire la sua funzione.
+
+\subsubsection{8.2 Regole
+SecurityRequirement}\label{regole-securityrequirement}
+
+\begin{itemize}
+\tightlist
+\item
+  esattamente una parent FR;
+\item
+  \texttt{protectedSecurityProperty\ :\ SecurityProperty\ {[}1{]}};
+\item
+  una sola governing security property per SR;
+\item
+  clausola normativa con failure mode esplicito;
+\item
+  cause neutrality: il requisito descrive la proprieta/failure anche se
+  la causa puo essere adversarial o non-adversarial;
+\item
+  non trasformare functional correctness in security solo perche puo
+  essere attaccata;
+\item
+  non usare l'SR come descrizione di attacco;
+\item
+  non prescrivere automaticamente TLS, mTLS, certificate, VLAN, firma,
+  device credential o altri meccanismi: sono realization/Decision
+  separate se governate;
+\item
+  la taxonomy \texttt{SecurityProperty} completa e ancora deferred; non
+  inventarla per comodita.
+\end{itemize}
+
+\subsubsection{8.3 Gate SR}\label{gate-sr}
+
+\textbf{Gate D4 - Specialized/Security PASS} quando:
+
+\begin{itemize}
+\tightlist
+\item
+  ogni SR ha parent FR unica;
+\item
+  protegge una sola property governante;
+\item
+  failure mode e osservabile/esplicito;
+\item
+  il requisito non confonde funzione, minaccia e realizzazione tecnica;
+\item
+  l'aggiunta degli SR non altera la storia funzionale, ma la vincola.
+\end{itemize}
+
+\subsection{9. Base Analysis - BA1 identity
+contract}\label{base-analysis---ba1-identity-contract}
+
+\textbf{Stato:} CLOSED BY BA1-T3.
+
+La BA contiene esattamente due famiglie first-class di identita
+semantica:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BAReferent}
+\NormalTok{BAProposition}
+\end{Highlighting}
+\end{Shaded}
+
+\texttt{BAE} e soltanto un termine ombrello, non una terza metaclasse.
+
+\subsubsection{9.1 BAReferent}\label{bareferent}
+
+Unita di significato di progetto metodologia-neutrale, identificabile
+indipendentemente e riusabile tra proposition, projection o baseline.
+
+Puo rappresentare participant, capability, information/resource,
+behavior/event, contract, store, boundary, state/context ecc. \textbf{La
+categoria non crea automaticamente una nuova famiglia BA.}
+
+\subsubsection{9.2 BAProposition}\label{baproposition}
+
+Asserzione metodologia-neutrale identificabile indipendentemente su uno
+o piu BAReferent, con identita sufficiente per provenance, diagnosis,
+reuse e change disposition.
+
+\subsubsection{9.3 Promotion rule}\label{promotion-rule}
+
+Non creare un BAReferent per ogni nome della prosa.
+
+Un significato locale viene promosso a BAReferent quando necessita
+identita/reuse indipendente tra proposition, projection o change. Se una
+condizione/valore locale non necessita identita indipendente, puo
+restare local value/modifier nei limiti di BA2.
+
+\subsubsection{9.4 Split criterion}\label{split-criterion}
+
+Una nuova famiglia first-class e giustificata solo se entrambe sono
+vere:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  serve identita semantica indipendente;
+\item
+  invarianti subtype-specific riusabili non possono essere rappresentati
+  onestamente con classification, roles, values o proposition sui due
+  tipi esistenti.
+\end{enumerate}
+
+Convenienza di diagramma, classe software, tabella DB o categoria di un
+metodo non basta.
+
+\subsection{10. Base Analysis - BA2 proposition/relation
+contract}\label{base-analysis---ba2-propositionrelation-contract}
+
+\textbf{Stato:} CLOSED BY BA2-T4.
+
+\subsubsection{10.1 Shape}\label{shape}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BAProposition}
+\NormalTok{|{-} semanticOperatorKey   1}
+\NormalTok{|{-} participation         1..*}
+\NormalTok{|    |{-} roleKey          1}
+\NormalTok{|    \textasciigrave{}{-} term             1}
+\NormalTok{|{-} polarity              1}
+\NormalTok{\textasciigrave{}{-} scopedModifier        0..* [condition | temporalScope only]}
+\end{Highlighting}
+\end{Shaded}
+
+\texttt{term} e normalmente un \texttt{BAReferent}; un local value
+controllato e ammesso solo se non richiede identita indipendente.
+
+\subsubsection{10.2 Operator registry e role
+contract}\label{operator-registry-e-role-contract}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Operator
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Required roles
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Optional roles
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Cardinalita
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{transfer} & \texttt{source}, \texttt{destination},
+\texttt{content} & - & source \texttt{1}; destination \texttt{1..*};
+content \texttt{1..*} \\
+\texttt{produce} & \texttt{actor}, \texttt{result} & \texttt{input} &
+actor \texttt{1}; result \texttt{1..*}; input \texttt{0..*} \\
+\texttt{create} & \texttt{actor}, \texttt{created} & - & actor
+\texttt{1}; created \texttt{1..*} \\
+\texttt{observe} & \texttt{actor}, \texttt{observed} & \texttt{result} &
+actor \texttt{1}; observed \texttt{1..*}; result \texttt{0..*} \\
+\texttt{transition} & \texttt{subject}, \texttt{toState} &
+\texttt{actor}, \texttt{fromState} & subject \texttt{1}; toState
+\texttt{1}; actor \texttt{0..1}; fromState \texttt{0..1} \\
+\texttt{correlate} & \texttt{correlatedItem},
+\texttt{correlationContext} & - & correlatedItem \texttt{1..*};
+correlationContext \texttt{1} \\
+\texttt{reference} & \texttt{referencer}, \texttt{referenced} & - &
+referencer \texttt{1}; referenced \texttt{1..*} \\
+\texttt{dependOn} & \texttt{dependent}, \texttt{prerequisite} & - &
+dependent \texttt{1}; prerequisite \texttt{1..*} \\
+\texttt{consumeService} & \texttt{consumer}, \texttt{service} &
+\texttt{provider} & consumer \texttt{1..*}; service \texttt{1}; provider
+\texttt{0..1} \\
+\texttt{realize} & \texttt{abstract}, \texttt{realization} & - &
+abstract \texttt{1}; realization \texttt{1..*} \\
+\texttt{assignResponsibility} & \texttt{responsibleParty},
+\texttt{responsibilityScope}, \texttt{responsibilityKind} & - & party
+\texttt{1..*}; scope \texttt{1}; kind \texttt{1} \\
+\texttt{constrain} & \texttt{constraintTarget}, \texttt{constraintValue}
+& - & target \texttt{1}; value \texttt{1..*} \\
+\texttt{classify} & \texttt{classifiedReferent}, \texttt{semanticKind} &
+- & referent \texttt{1}; kind \texttt{1..*} \\
+\end{longtable}
+
+\subsubsection{10.3 Polarity}\label{polarity}
+
+Ogni proposition espone:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{polarity = affirmative | negative}
+\end{Highlighting}
+\end{Shaded}
+
+La negazione non crea operatori \texttt{notX}.
+
+\subsubsection{10.4 Scoped modifiers}\label{scoped-modifiers}
+
+Solo due modifier embedded sono ammessi nel lower bound:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{condition};
+\item
+  \texttt{temporalScope}.
+\end{itemize}
+
+Possono rimanere embedded solo se sono locali alla proposition, non
+introducono participant indipendenti, non richiedono provenance/review
+autonoma e non sono riusati altrove.
+
+Failure semantics, atomicity, concurrency, idempotency, correlation,
+realization, responsibility, service consumption e reusable constraints
+\textbf{non} sono generic modifier: vanno esplicitati con
+referent/proposition appropriati.
+
+\subsubsection{10.5 Classification}\label{classification}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{classify}
+\NormalTok{  classifiedReferent {-}\textgreater{} \textless{}BAReferent\textgreater{}}
+\NormalTok{  semanticKind       {-}\textgreater{} \textless{}controlled method{-}neutral key\textgreater{}}
+\end{Highlighting}
+\end{Shaded}
+
+La taxonomy dei \texttt{semanticKind} non e universalmente chiusa. Il
+kind deve avere definizione metodo-neutrale e valore reale per consumer
+umani/metodologici, non essere introdotto solo per scegliere un'icona.
+
+\subsubsection{10.6 Lexical separation}\label{lexical-separation}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{source wording != stable BA semantic key != display wording}
+\end{Highlighting}
+\end{Shaded}
+
+\texttt{deliver}, \texttt{send}, \texttt{submit} possono esprimere
+\texttt{transfer}; il testo naturale non crea alias normativi.
+
+\subsubsection{10.7 BA2 extension gate}\label{ba2-extension-gate}
+
+Nuovo operator/role solo se un caso governato dimostra che:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  il significato e metodo-neutrale;
+\item
+  operatori/roles/polarity/constraints/modifiers esistenti non bastano
+  senza perdita;
+\item
+  la distinzione serve a reuse/consumption/change reasoning;
+\item
+  non e solo lessicale, implementativa, documentale o method-specific.
+\end{enumerate}
+
+Riaprire \textbf{solo} il contratto BA2 minimo interessato.
+
+\subsection{11. Base Analysis - BA3 provenance, review e
+change}\label{base-analysis---ba3-provenance-review-e-change}
+
+\textbf{Stato:} CLOSED BY BA3-T4.
+
+\subsubsection{11.1 BAOriginAttachment}\label{baoriginattachment}
+
+Ogni BAReferent/BAProposition materializzato porta o risolve
+univocamente a:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BAOriginAttachment}
+\NormalTok{  targetElement             1}
+\NormalTok{  governedBaselineKey       1}
+\NormalTok{  originState               1}
+\NormalTok{  sourceLink                0..*}
+\NormalTok{  derivationBasisBinding    0..*}
+\NormalTok{    inputRoleKey            1}
+\NormalTok{    basisRef                1}
+\NormalTok{  derivationRuleRef         0..1}
+\NormalTok{  revalidationContext       0..*}
+\end{Highlighting}
+\end{Shaded}
+
+\texttt{sourceLink}, \texttt{derivationBasisBinding} e
+\texttt{revalidationContext} hanno responsabilita diverse e non vanno
+semanticamente fusi.
+
+\subsubsection{11.2 Origin state}\label{origin-state}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GROUNDED}
+\NormalTok{  sourceLink 1..*}
+\NormalTok{  no derivation basis/rule}
+
+\NormalTok{DERIVED}
+\NormalTok{  derivationBasisBinding 1..*}
+\NormalTok{  derivationRuleRef 1}
+\NormalTok{  sourceLink optional}
+
+\NormalTok{DIAGNOSTIC\_UNRESOLVED}
+\NormalTok{  source/evidence basis \textgreater{}= 1}
+\NormalTok{  no silent completion}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{11.3 Derivation rule}\label{derivation-rule}
+
+Un \texttt{DERIVED} deve puntare a revisione immutabile e ispezionabile
+di:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BADerivationRuleDescriptor}
+\NormalTok{  ruleKey}
+\NormalTok{  ruleRevisionKey [immutable]}
+\NormalTok{  inputRoleContract}
+\NormalTok{  applicabilityContract}
+\NormalTok{  outputSemanticContract}
+\NormalTok{  normativeDefinition}
+\end{Highlighting}
+\end{Shaded}
+
+Logica nascosta di tool/LLM non e sufficiente.
+
+\subsubsection{11.4 Review e freshness}\label{review-e-freshness}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{reviewState = PENDING\_REVIEW | ACCEPTED | REJECTED}
+\NormalTok{freshness   = CURRENT | STALE}
+\end{Highlighting}
+\end{Shaded}
+
+Sono dimensioni ortogonali. E consentito, ad esempio,
+\texttt{PENDING\_REVIEW\ +\ CURRENT}.
+
+\subsubsection{11.5 Cross-baseline
+continuity}\label{cross-baseline-continuity}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{RETAIN | REPLACE | RETIRE}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  BAReferent RETAIN se sopravvive lo stesso significato riusabile
+  metodologia-neutrale;
+\item
+  wording, locator, tecnologia di realization o relazioni mutate non
+  forzano da sole nuova identity;
+\item
+  BAProposition RETAIN solo se operator, polarity, role-bound
+  participants/local values e condition/temporalScope restano
+  materialmente equivalenti;
+\item
+  cambi materiali richiedono REPLACE o RETIRE, non editing storico
+  silenzioso.
+\end{itemize}
+
+\subsubsection{11.6 Change impact}\label{change-impact}
+
+Un change rende candidato \texttt{STALE} solo il significato
+esplicitamente dipendente da source, derivation basis, participants,
+revalidation context o derivation rule cambiati. Nessuna invalidazione
+dell'intera BA per un generico repository change.
+
+\subsection{12. Base Analysis - BA5 canonical
+semantics}\label{base-analysis---ba5-canonical-semantics}
+
+\textbf{Stato:} CLOSED BY BA5-T3.
+
+\subsubsection{12.1 Operative semantic
+position}\label{operative-semantic-position}
+
+Ogni posizione semanticamente operativa usa token canonico esatto:
+
+\begin{itemize}
+\tightlist
+\item
+  canonical referent name;
+\item
+  \texttt{semanticOperatorKey};
+\item
+  \texttt{(semanticOperatorKey,\ roleKey)};
+\item
+  \texttt{semanticKind};
+\item
+  controlled value (polarity, modifier kind, responsibility kind, ecc.).
+\end{itemize}
+
+La prosa puo restare naturale se non crea un secondo semantic key.
+
+\subsubsection{12.2 Canonical referent
+name}\label{canonical-referent-name}
+
+Per baseline governata e naming scope:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{one named shared project referent {-}\textgreater{} one exact canonicalName}
+\end{Highlighting}
+\end{Shaded}
+
+Ma:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BAReferent semantic identity != canonicalName}
+\end{Highlighting}
+\end{Shaded}
+
+Un rename puo quindi essere \texttt{RETAIN} se il significato e
+invariato.
+
+\subsubsection{12.3 No normative synonyms}\label{no-normative-synonyms}
+
+Per il current thesis scope:
+
+\begin{itemize}
+\tightlist
+\item
+  alias/synonym registry normativo: REJECTED AS UNNECESSARY;
+\item
+  hidden lexical normalization: REJECTED;
+\item
+  NLP/LLM semantic equivalence come autorita: REJECTED;
+\item
+  assistenza fuzzy/search/synonym: eventualmente downstream e
+  candidate-producing.
+\end{itemize}
+
+\subsubsection{12.4 Extension workflow}\label{extension-workflow}
+
+Un token non noto va classificato:
+
+\begin{itemize}
+\tightlist
+\item
+  stesso significato di token esistente -\textgreater{} usare canonical
+  token, rifiutare alias;
+\item
+  method-specific/presentation -\textgreater{} tenere downstream;
+\item
+  richiede identity riusabile -\textgreater{} BAReferent;
+\item
+  nuovo semanticKind/controlled value -\textgreater{} evidence +
+  definition + review + registry revision immutabile;
+\item
+  nuovo operator/role semantics -\textgreater{} smallest BA2 reopen.
+\end{itemize}
+
+\subsection{13. BA4 / projection
+boundary}\label{ba4-projection-boundary}
+
+\textbf{Stato:} boundary chiuso; nessuna nuova sintassi introdotta qui.
+
+\begin{itemize}
+\tightlist
+\item
+  le projection sono downstream della BA;
+\item
+  una projection puo scegliere layout, aggregazioni e termini
+  method-owned;
+\item
+  non puo creare project truth o modificare BA semantics;
+\item
+  quando visualizza un shared BAReferent conserva il canonical project
+  name;
+\item
+  una vista didattica, flow view o threat-method view deve essere
+  dichiarata come projection, non come fonte BA.
+\end{itemize}
+
+\subsection{14. Protocollo R24: analisi breadth-first per
+livello}\label{protocollo-r24-analisi-breadth-first-per-livello}
+
+\textbf{Stato:} R24-WORKING - nuova regola operativa da
+falsificare/validare.
+
+Il problema osservato in BA6 e che una ricostruzione depth-first
+(\texttt{MR\ -\textgreater{}\ Decision\ -\textgreater{}\ FR\ -\textgreater{}\ SR}
+su un singolo ramo) puo essere localmente precisa ma distruggere la
+storia globale e mescolare livelli di astrazione.
+
+Nuovo ordine:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LEVEL 0  authority + project framing}
+\NormalTok{LEVEL 1  ALL MacroRequirements}
+\NormalTok{LEVEL 2  ALL Decisions}
+\NormalTok{LEVEL 3  ALL FunctionalRequirements}
+\NormalTok{LEVEL 4  ALL Specialized/SecurityRequirements}
+\NormalTok{LEVEL 5  integrated BA{-}derived views / readiness for overlays}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Regola:} non scendere al livello successivo finche la vista
+corrente non e semanticamente coerente e umanamente leggibile, salvo
+falsification test esplicitamente isolato.
+
+\subsubsection{14.1 Tre passaggi dentro ogni
+livello}\label{tre-passaggi-dentro-ogni-livello}
+
+Per ogni livello:
+
+\textbf{Pass A - Identity / vocabulary}
+
+\begin{itemize}
+\tightlist
+\item
+  identificare significati che richiedono BAReferent;
+\item
+  riusare identity gia materializzate;
+\item
+  proporre canonical name senza creare sinonimi;
+\item
+  classificare solo quando il \texttt{semanticKind} e giustificato
+  semanticamente.
+\end{itemize}
+
+\textbf{Pass B - Proposition / relations}
+
+\begin{itemize}
+\tightlist
+\item
+  estrarre le relazioni necessarie con BA2;
+\item
+  non aspettare il grafo finale per accorgersi che i nodi sono
+  scollegati;
+\item
+  non inventare edge per rendere il grafo bello;
+\item
+  relazioni non esprimibili o non governate diventano diagnostics.
+\end{itemize}
+
+\textbf{Pass C - Human story / projection}
+
+\begin{itemize}
+\tightlist
+\item
+  produrre una breve storia in prosa \textbf{solo dai facts BA
+  materializzati};
+\item
+  produrre un grafo/view \textbf{solo dalla BA}, non rileggendo la prosa
+  per aggiungere collegamenti mancanti;
+\item
+  confrontare BA story con source documentation;
+\item
+  nodi isolati, salti causali e handoff non risolti sono segnali di
+  review, non difetti grafici da nascondere.
+\end{itemize}
+
+\subsection{15. Gate BA per livello}\label{gate-ba-per-livello}
+
+\subsubsection{15.1 Gate B0 -
+authority/provenance}\label{gate-b0---authorityprovenance}
+
+PASS quando ogni elemento BA ha source authority determinabile e
+provenance coerente.
+
+\subsubsection{15.2 Gate B1 - MR global
+story}\label{gate-b1---mr-global-story}
+
+PASS quando:
+
+\begin{itemize}
+\tightlist
+\item
+  tutti gli MR in scope sono stati analizzati insieme;
+\item
+  la BA produce una macro story semplice e comprensibile;
+\item
+  le principali dipendenze/handoff tra concern sono espresse o
+  \texttt{DIAGNOSTIC\_UNRESOLVED};
+\item
+  non servono elementi di Decision/FR per capire il valore macro del
+  progetto;
+\item
+  le views MR non mescolano dettagli architetturali inferiori.
+\end{itemize}
+
+\subsubsection{15.3 Gate B2 - Decision
+story}\label{gate-b2---decision-story}
+
+PASS quando:
+
+\begin{itemize}
+\tightlist
+\item
+  tutte le Decision in scope raffinano la macro story senza contraddirla
+  accidentalmente;
+\item
+  le principali strategie, responsibility boundary e realization choices
+  sono collegate ai concern astratti che concretizzano;
+\item
+  le Decision indipendenti sono separate;
+\item
+  i commitment senza conseguenza operativa sono revisionati.
+\end{itemize}
+
+\subsubsection{15.4 Gate B3 - Functional
+story}\label{gate-b3---functional-story}
+
+PASS quando:
+
+\begin{itemize}
+\tightlist
+\item
+  l'insieme degli FR produce un flow operativo comprensibile;
+\item
+  request, input, output, actor/capability, correlation e failure
+  behavior necessari sono governati o esplicitamente unresolved;
+\item
+  le cross-MR composition sono traceable senza doppia parentage;
+\item
+  il grafo funzionale non richiede edge inventati dalla visualizzazione.
+\end{itemize}
+
+\subsubsection{15.5 Gate B4 - Specialized/Security
+constraints}\label{gate-b4---specializedsecurity-constraints}
+
+PASS quando:
+
+\begin{itemize}
+\tightlist
+\item
+  ogni constraint si attacca a funzione/meaning gia comprensibile;
+\item
+  security property e failure semantics restano distinti da attack
+  description e realization;
+\item
+  l'aggiunta di security non sostituisce o riscrive la funzione.
+\end{itemize}
+
+\subsubsection{15.6 Gate B5 - integrated
+readability}\label{gate-b5---integrated-readability}
+
+PASS quando un lettore puo navigare:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{macro project story}
+\NormalTok{  {-}\textgreater{} decision refinement}
+\NormalTok{  {-}\textgreater{} functional flow}
+\NormalTok{  {-}\textgreater{} specialized/security constraints}
+\end{Highlighting}
+\end{Shaded}
+
+senza che un singolo grafo mostri obbligatoriamente tutti i livelli
+contemporaneamente.
+
+\subsection{16. Diagnostica: dove appartiene il
+problema?}\label{diagnostica-dove-appartiene-il-problema}
+
+\textbf{Stato:} R24-WORKING.
+
+Ogni problema emerso dalla BA deve essere classificato prima di
+correggere qualcosa:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{DOC\_GAP} - significato necessario ma non
+  governato/documentato;
+\item
+  \texttt{DOC\_STRUCTURE} - informazione presente ma collocata al
+  livello/documento sbagliato o con ownership ambigua;
+\item
+  \texttt{VOCABULARY\_DRIFT} - stesso significato espresso con termini
+  incoerenti che impediscono riuso/canonical binding;
+\item
+  \texttt{BA\_GAP} - documentazione e chiara ma i contratti BA chiusi
+  non riescono a preservarne il significato;
+\item
+  \texttt{PROJECTION\_GAP} - BA e sufficiente ma la view/grafo/story non
+  la rende leggibile;
+\item
+  \texttt{NO\_GAP} - differenza puramente presentazionale o dettaglio
+  non governato/non richiesto.
+\end{itemize}
+
+\textbf{Regola:} prima si classifica, poi si decide quale layer
+riaprire.
+
+\subsection{17. Convenzioni R24 da
+validare}\label{convenzioni-r24-da-validare}
+
+\textbf{Stato:} R24-WORKING, non contratti chiusi.
+
+\subsubsection{17.1 Canonical name visibile accanto alla
+prosa}\label{canonical-name-visibile-accanto-alla-prosa}
+
+Candidate pattern:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{persona presente al punto di accesso \textless{}UserAtGate\textgreater{}}
+\NormalTok{identita governata \textless{}GovernedIdentity\textgreater{}}
+\end{Highlighting}
+\end{Shaded}
+
+Obiettivo: mantenere leggibilita naturale e rendere il riferimento
+esatto recuperabile.
+
+Vincoli:
+
+\begin{itemize}
+\tightlist
+\item
+  non introdurre una seconda sintassi semantica;
+\item
+  il canonical name e governato/registrato solo dopo acceptance;
+\item
+  durante la ricostruzione puo essere \texttt{PENDING\_REVIEW};
+\item
+  se la proposta cambia, la documentazione candidate cambia attraverso
+  review, non per mutazione invisibile della BA.
+\end{itemize}
+
+\subsubsection{17.2 ID basato sulla prima
+origine}\label{id-basato-sulla-prima-origine}
+
+Candidate pattern:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{MR{-}0003{-}01}
+\NormalTok{D{-}3.2{-}03}
+\NormalTok{FR{-}3.4.1{-}02}
+\end{Highlighting}
+\end{Shaded}
+
+Indica il documento in cui l'identity e stata \textbf{prima
+materializzata in BA}, non la sua gerarchia semantica. Le occorrenze
+successive riusano la stessa identity.
+
+\subsubsection{17.3 Occurrence/sourceLink
+index}\label{occurrencesourcelink-index}
+
+Per ogni identity riusata, raccogliere tutte le occorrenze tramite
+\texttt{sourceLink}/locator.
+
+Questo puo supportare in futuro indicatori di:
+
+\begin{itemize}
+\tightlist
+\item
+  frequenza;
+\item
+  dispersione tra documenti/livelli;
+\item
+  continuita tra baseline;
+\item
+  stabilita terminologica;
+\item
+  focus del linguaggio.
+\end{itemize}
+
+Tali indicatori sono \textbf{derived diagnostics}, non project semantics
+e non criteri automatici di acceptance finche non definiti/validati.
+
+\subsubsection{17.4 semanticKind e
+grafica}\label{semantickind-e-grafica}
+
+\texttt{semanticKind} puo essere usato da una projection per scegliere
+icone/forme, ma:
+
+\begin{itemize}
+\tightlist
+\item
+  il kind deve essere ammesso per una distinzione metodo-neutrale utile;
+\item
+  la necessita di un'icona non giustifica un nuovo kind;
+\item
+  la presentation mapping resta BA4/projection-owned.
+\end{itemize}
+
+\subsection{18. Human-readability rules}\label{human-readability-rules}
+
+\textbf{Stato:} R24-WORKING / BA6 pressure.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  ogni livello deve avere una storia in prosa breve prima di una vista
+  dettagliata;
+\item
+  la prosa di spiegazione e la structured BA devono esprimere lo stesso
+  meaning, non diventare due autorita indipendenti;
+\item
+  una view deve dichiarare cosa include/esclude e quale livello
+  rappresenta;
+\item
+  non mostrare per default MR, Decision, FR e SR nello stesso piano
+  grafico;
+\item
+  il grafo e un test della BA: non deve leggere nuovamente i documenti
+  per inventare edge;
+\item
+  visualizzare chiaramente \texttt{GROUNDED}, \texttt{DERIVED},
+  \texttt{DIAGNOSTIC\_UNRESOLVED} quando la distinzione e materialmente
+  rilevante;
+\item
+  \texttt{PENDING\_REVIEW} non significa project truth accettata;
+\item
+  un nodo isolato puo indicare: identity superflua, relation non
+  estratta, documentation gap o abstraction mismatch; va diagnosticato,
+  non collegato arbitrariamente;
+\item
+  la storia end-to-end puo attraversare piu MR: non forzare un singolo
+  MR a descrivere responsabilita di altri rami;
+\item
+  una storia globale incompleta per branch non migrati deve dichiarare
+  il confine invece di usare materiale historical come current truth.
+\end{enumerate}
+
+\subsection{19. Controlli negativi emersi dal corpus
+facial-access}\label{controlli-negativi-emersi-dal-corpus-facial-access}
+
+\textbf{Stato:} CORPUS-SPECIFIC falsification controls, utili come
+esempi metodologici.
+
+\subsubsection{19.1 Cross-MR access-decision
+consumer}\label{cross-mr-access-decision-consumer}
+
+Il consumer dell'evidenza di verifica appartiene al ramo della decisione
+di accesso; se il ramo non e migrato nello stesso baseline:
+
+\begin{itemize}
+\tightlist
+\item
+  mantenere riferimento cross-scope unresolved;
+\item
+  non inventare canonical target definitivo;
+\item
+  non usare un componente ipotizzato come project truth.
+\end{itemize}
+
+\subsubsection{19.2 Quality/sufficiency
+criterion}\label{qualitysufficiency-criterion}
+
+Se il corpus riconosce un criterio di sufficienza/qualita ma non
+definisce soglia/requisito specializzato:
+
+\begin{itemize}
+\tightlist
+\item
+  materializzare il gap/candidate;
+\item
+  non inventare threshold durante BA;
+\item
+  non nascondere il criterio dentro il significato di un outcome.
+\end{itemize}
+
+\subsubsection{19.3 Transfer-to-channel/path
+binding}\label{transfer-to-channelpath-binding}
+
+Se \texttt{delivery}, responsibility boundary e medium sono documentati
+ma manca il binding strutturale ``THIS transfer uses THIS path'':
+
+\begin{itemize}
+\tightlist
+\item
+  non aggiungere \texttt{channel} a \texttt{transfer} per comodita;
+\item
+  testare prima se documentazione o derivazione riproducibile possono
+  esprimere il binding;
+\item
+  riaprire BA2 solo con controesempio concreto.
+\end{itemize}
+
+\subsubsection{19.4 Intermediate transport
+nodes}\label{intermediate-transport-nodes}
+
+Switch, firewall o hop intermedi:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{governed + required for declared analysis {-}\textgreater{} must remain recoverable}
+\NormalTok{required for declared analysis but undocumented {-}\textgreater{} documentation gap}
+\NormalTok{not governed / not required {-}\textgreater{} do not invent}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{19.5 Test/code evidence
+linkage}\label{testcode-evidence-linkage}
+
+Il current baseline non chiude un metamodel di test/code trace.
+
+\begin{itemize}
+\tightlist
+\item
+  non inventare link a test/code nella BA;
+\item
+  gli FR/SR possono diventare target stabili per future evidence;
+\item
+  la capacita di collegamento downstream puo essere misurata come
+  risultato dell'esperimento, senza creare semantics non governate.
+\end{itemize}
+
+\subsection{20. Protocollo di correzione della
+documentazione}\label{protocollo-di-correzione-della-documentazione}
+
+Quando la BA trova un problema:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  registrare il BA diagnostic con evidence/provenance;
+\item
+  classificare il problema (\texttt{DOC\_GAP}, \texttt{DOC\_STRUCTURE},
+  ecc.);
+\item
+  formulare una \textbf{documentation correction candidate} separata;
+\item
+  mostrare quale source meaning viene aggiunto/spostato/chiarito;
+\item
+  non marcare come \texttt{GROUNDED} il nuovo meaning prima
+  dell'accettazione documentale;
+\item
+  sottoporre la correzione a review;
+\item
+  se accettata, creare nuova governed baseline;
+\item
+  ricostruire/revalidare BA e applicare BA3
+  \texttt{RETAIN\ \textbar{}\ REPLACE\ \textbar{}\ RETIRE}.
+\end{enumerate}
+
+\subsection{21. Reopen discipline}\label{reopen-discipline}
+
+Non riaprire un contratto chiuso perche una soluzione sarebbe piu
+comoda.
+
+Ordine di diagnosi:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{source/documentation insufficiente?}
+\NormalTok{  {-}\textgreater{} correggere/proporre documentazione}
+
+\NormalTok{source chiara, BA non esprime il meaning?}
+\NormalTok{  {-}\textgreater{} smallest affected BA contract reopen candidate}
+
+\NormalTok{BA sufficiente, view incomprensibile?}
+\NormalTok{  {-}\textgreater{} projection/readability correction}
+\end{Highlighting}
+\end{Shaded}
+
+Nuova family -\textgreater{} BA1 split criterion.\\
+Nuovo operator/role -\textgreater{} BA2 extension criterion.\\
+Nuova provenance/change need -\textgreater{} BA3 criterion.\\
+Problema solo di view -\textgreater{} BA4.\\
+Nuovo canonical kind/value -\textgreater{} BA5 evidence-gated
+extension.\\
+Synonym convenience -\textgreater{} non riaprire BA5.
+
+\subsection{22. Checklist stampabile per una sessione di
+lavoro}\label{checklist-stampabile-per-una-sessione-di-lavoro}
+
+\subsubsection{Prima della sessione}\label{prima-della-sessione}
+
+\begin{itemize}
+\tightlist
+\item[$\square$]
+  baseline e authority verificate;
+\item[$\square$]
+  scope/livello dichiarato;
+\item[$\square$]
+  tutti i documenti dello stesso livello disponibili;
+\item[$\square$]
+  historical/current separati;
+\item[$\square$]
+  OPEN noti caricati.
+\end{itemize}
+
+\subsubsection{Durante Pass A -
+identity}\label{durante-pass-a---identity}
+
+\begin{itemize}
+\tightlist
+\item[$\square$]
+  nessun noun-to-referent automatico;
+\item[$\square$]
+  reuse di identity esistenti;
+\item[$\square$]
+  canonical name unico/candidate;
+\item[$\square$]
+  semanticKind solo se semanticamente giustificato;
+\item[$\square$]
+  sourceLink/occurrence registrati.
+\end{itemize}
+
+\subsubsection{Durante Pass B -
+proposition}\label{durante-pass-b---proposition}
+
+\begin{itemize}
+\tightlist
+\item[$\square$]
+  solo operator BA2 canonici;
+\item[$\square$]
+  role/cardinality rispettati;
+\item[$\square$]
+  polarity esplicita;
+\item[$\square$]
+  local modifier solo condition/temporalScope ammessi;
+\item[$\square$]
+  nessun edge inventato per il diagramma;
+\item[$\square$]
+  unresolved -\textgreater{} diagnostic.
+\end{itemize}
+
+\subsubsection{Durante Pass C -
+story/view}\label{durante-pass-c---storyview}
+
+\begin{itemize}
+\tightlist
+\item[$\square$]
+  storia generata dai facts BA;
+\item[$\square$]
+  view dello stesso livello di astrazione;
+\item[$\square$]
+  grounded/derived/unresolved distinguibili;
+\item[$\square$]
+  nodi isolati revisionati;
+\item[$\square$]
+  handoff cross-MR espliciti;
+\item[$\square$]
+  confronto con source documentation completato.
+\end{itemize}
+
+\subsubsection{Gate finale del livello}\label{gate-finale-del-livello}
+
+\begin{itemize}
+\tightlist
+\item[$\square$]
+  la storia e comprensibile senza scendere al livello successivo;
+\item[$\square$]
+  tutte le lacune sono classificate;
+\item[$\square$]
+  nessuna lacuna e stata silenziosamente riparata;
+\item[$\square$]
+  documentation candidates separate da accepted BA;
+\item[$\square$]
+  decisione esplicita: PASS / REWORK / REOPEN CANDIDATE.
+\end{itemize}
+
+\subsection{23. Fonti metodologiche
+consolidate}\label{fonti-metodologiche-consolidate}
+
+Repository baseline \texttt{9cc17a148726bd0734db51e26ac74e031020f340}:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{\_working/ddta-metamodel-working-package/01-mr/01-metamodel/DDTA\_MR\_METAMODEL\_WORKING.md}
+\item
+  \texttt{02-decision/01-metamodel/DDTA\_DECISION\_METAMODEL\_WORKING.md}
+\item
+  \texttt{03-functional-requirement/02-authoring-guidance/DDTA\_AUTHORING\_RULES\_THROUGH\_FR\_R2.md}
+\item
+  \texttt{05-security-requirement/01-metamodel/DDTA\_SECURITY\_REQUIREMENT\_S2\_R1.*}
+\item
+  \texttt{methodology/BA1\_MINIMAL\_BAE\_IDENTITY\_ONTOLOGY\_R1.md}
+\item
+  \texttt{methodology/BA2\_RELATION\_ACTION\_VOCABULARY\_R1.md}
+\item
+  \texttt{methodology/BA3\_PROVENANCE\_DERIVATION\_LIFECYCLE\_CHANGE\_CONTRACT\_R1.md}
+\item
+  \texttt{methodology/BA5\_CANONICAL\_SEMANTIC\_REGISTRY\_CONTROLLED\_AUTHORING\_CONTRACT\_R1.md}
+\item
+  \texttt{governed-corpora/facial-access/current/} per i falsification
+  controls e la prova R23/R24.
+\end{itemize}
+
+\subsection{24. Disposizione R24}\label{disposizione-r24}
+
+Questa guida \textbf{non chiude} R24. Consolida i contratti gia chiusi e
+formula il nuovo protocollo di lavoro da testare.
+
+La prossima sperimentazione deve verificare se il co-authoring
+breadth-first:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  preserva autorita e tracciabilita;
+\item
+  migliora la comprensibilita della storia a ogni livello;
+\item
+  riduce i nodi BA isolati prodotti da extraction locale;
+\item
+  distingue meglio lacune documentali da limiti della BA;
+\item
+  produce una documentazione riscritta piu adatta a review, code/test
+  trace futuro e analisi specialistiche downstream.
+\end{enumerate}
+
+\end{document}
