@@ -1,7 +1,7 @@
 # DDTA Documentation and Base Analysis Authoring Guide - R1
 
 **Status:** R24 WORKING AUTHORING CONTRACT  
-**Baseline:** `2be2c1749e2b29a3afa8c8040ce4c51be90b65d1`  
+**Current refinement baseline:** `954c714ae365d22b05924f7020b641e894809f6f`  
 **Purpose:** keep project documentation simple to write/read while preserving enough normalized meaning in Base Analysis for test derivation and later analysis.
 
 ## 1. Core rule
@@ -49,21 +49,13 @@ Question:
 
 > Which stable macro responsibility is governed, which result/value must it contribute, which inputs or other responsibilities are relevant, and what is outside its scope?
 
-MRs normally govern:
-
-- stable responsibility;
-- intent/value;
-- context;
-- scope boundary;
-- stakeholders;
-- macro assumptions/constraints;
-- direct MR dependencies.
+MRs normally govern stable responsibility, intent/value, context, scope boundary, stakeholders, macro assumptions/constraints and direct MR dependencies.
 
 MRs should not normally govern the detailed algorithm or branch logic used to construct a result.
 
 ### BA at MR level
 
-Extract only the available macro semantics, for example:
+Extract only available macro semantics:
 
 ```text
 produce
@@ -87,9 +79,11 @@ A Decision should not be inflated with implementation detail merely to make late
 
 ### BA at Decision level
 
-Represent the policy/commitment that is explicitly governed.
+Represent the policy/commitment explicitly governed.
 
-Do not infer a complete operational `IF / THEN / ELSE` mapping unless the Decision itself explicitly governs that complete mapping and the documentation model intentionally places that detail there. In the current DDTA hierarchy, operational result construction is expected at FR level.
+A Decision may also govern a semantic distinction or allowed domain that later FRs must preserve. BA may represent such a domain with `constrain` when the source actually governs it.
+
+Do not infer a complete operational `IF / THEN / ELSE` mapping unless the documentation explicitly governs that mapping. In the current DDTA hierarchy, detailed result construction is normally expected at FR level.
 
 ## 5. FunctionalRequirement authoring
 
@@ -119,27 +113,62 @@ ELSE ...
 
 Do not split one coherent decision into one FR per truth-table row unless the behaviors are independently changeable responsibilities.
 
-### 5.2 Testability check
+### 5.2 When the FR governs only the allowed semantic outcomes
 
-For an FR containing a decision rule, a reviewer should be able to derive the relevant input combinations and expected outcomes without inventing project meaning.
+An FR does not need to invent the algorithm that selects an outcome merely to be testable.
 
-If the FR leaves a branch unspecified, the test expectation for that branch is also unspecified. Do not silently complete it.
+For example, it may govern:
+
+```text
+IdentityVerificationEvidence outcome MUST be one of:
+  POSITIVE
+  NEGATIVE
+  INCONCLUSIVE
+```
+
+while leaving thresholds, model scores and technical selection rules to later governed detail.
+
+This still supports useful tests: produced evidence must expose one governed outcome, and an unsupported fourth outcome is non-compliant.
+
+### 5.3 Testability check
+
+A reviewer should be able to derive expected observable obligations without inventing project meaning.
+
+For a `decisionRule`, derive relevant input combinations and expected outcomes.
+
+For an allowed vocabulary, verify that observed/produced semantic values belong to the governed domain and preserve the documented distinctions.
+
+If documentation leaves a branch or selection algorithm unspecified, tests must not silently invent it.
 
 ## 6. Base Analysis after FR
 
-When an FR explicitly governs result construction, BA may add a `decisionRule` proposition in addition to the earlier macro proposition.
+Use the smallest construct matching the governed meaning.
 
-Example:
+### 6.1 Production
 
 ```text
 produce
-  actor  -> ControlledAreaAccess
-  input  -> AccessAuthorizationState
-  input  -> IdentityVerificationEvidence
-  result -> AccessDecision
+  actor  -> IdentityVerification
+  result -> IdentityVerificationEvidence
 ```
 
-followed later by:
+says **what is produced**.
+
+### 6.2 Allowed result domain
+
+```text
+constrain
+  constraintTarget -> IdentityVerificationEvidence
+  constraintValue
+    property   -> outcome
+    vocabulary -> [POSITIVE, NEGATIVE, INCONCLUSIVE]
+```
+
+says **which governed values are allowed for a property**.
+
+It does not say which value is present in a particular runtime occurrence and does not say how one value is selected.
+
+### 6.3 Conditional result construction
 
 ```text
 decisionRule
@@ -158,9 +187,17 @@ decisionRule
     AccessDecision = NOT_ALLOW
 ```
 
-The second proposition adds operational detail. It does not replace the first.
+says **how governed conditions select a result**, but only when the source FR actually governs that complete mapping.
 
-## 7. Do not misuse other BA semantics
+The three constructs are complementary:
+
+```text
+produce      -> what result exists/is made available
+constrain    -> allowed governed semantic domain
+decisionRule -> conditional selection/construction of a result
+```
+
+## 7. Do not misuse BA semantics
 
 ### `condition`
 
@@ -172,13 +209,38 @@ Do not use it to hide `IF / THEN / ELSE` result construction inside `produce`.
 
 Use for a real reusable/queryable restriction.
 
-Do not use a free-text constraint blob merely because BA lacks a more specific representation.
+For a finite allowed semantic domain, prefer the controlled structured form:
+
+```text
+constraintValue
+  property   -> <controlled semantic key>
+  vocabulary -> [<controlled typed values>]
+```
+
+Example:
+
+```text
+property   -> outcome
+vocabulary -> [POSITIVE, NEGATIVE, INCONCLUSIVE]
+```
+
+Do not repeat one `allowedValue` role for every vocabulary entry when one controlled vocabulary list preserves the meaning more clearly.
+
+Do not use free-text `constraintValue` as a fallback for structured decision logic.
+
+Do not infer that a vocabulary declaration assigns a runtime value or defines the algorithm selecting one.
+
+If the vocabulary later needs independent reuse, provenance or change identity, promote it according to BA1 instead of hiding that identity inside the local list.
+
+### `decisionRule`
+
+Use when governed documentation states conditional result selection/construction.
+
+Do not use it merely because a result has several possible values.
 
 ### `dependOn`
 
-Use for genuine prerequisites/dependencies.
-
-Example:
+Use for genuine prerequisites/dependencies:
 
 ```text
 C dependOn A
@@ -187,7 +249,7 @@ C dependOn B
 
 This is analytically useful because loss or compromise of B may propagate impact to C even when B looks non-critical in isolation.
 
-`dependOn` therefore supports dependency paths, availability propagation and indirect criticality analysis. It is not a replacement for decision logic.
+`dependOn` supports dependency paths, availability propagation and indirect criticality analysis. It is not a replacement for decision logic.
 
 ### `classify`
 
@@ -195,7 +257,7 @@ Keep classification as proposition semantics. Independent classification identit
 
 ## 8. Documentation-to-BA detail rule
 
-Use this review question at every step:
+At every step ask:
 
 > Is this BA detail explicitly governed by the documentation at this level, or am I pulling a lower-level design/functional detail upward because the analysis model can express it?
 
@@ -208,10 +270,12 @@ MR BA
   referents + macro relations
 
 Decision BA
-  explicit policy/commitment semantics
+  explicit policy/commitment/semantic-domain constraints
 
 FR BA
-  operational behavior, including decisionRule when governed
+  operational behavior
+  allowed result domains when governed
+  decisionRule only when conditional selection is governed
 
 Specialized Requirement BA
   specialized constraints/obligations when governed
@@ -227,6 +291,7 @@ Examples:
 - `transfer` -> information movement;
 - `correlate` -> binding/correlation integrity;
 - `transition` -> lifecycle/state analysis;
+- structured `constrain` vocabulary -> governed domain, unsupported-value detection and completeness checks;
 - `decisionRule` -> decision paths, decision tables and functional test cases;
 - `classify` -> later taxonomy projections.
 
@@ -248,12 +313,14 @@ BA can expose ambiguity or missing branches. It must never silently repair proje
 
 ## 11. Facial-access checkpoint
 
-For the current R24 facial-access branch:
+Current R24 findings:
 
-- MR-0001 already supports a `produce` proposition for `AccessDecision`;
-- ADR-0001 governs a conjunctive access policy;
-- the current FR wording must be reviewed before materializing a complete `decisionRule`, because BA must not infer `MUST ALLOW` on the positive branch unless that obligation is explicitly governed;
-- the project document is therefore intentionally unchanged by this guide update.
+- `MR-0001` already supports `produce(... -> AccessDecision)`;
+- `MR-0001ADR-0001` governs a conjunctive access policy;
+- `decisionRule` is used only after the corresponding FR explicitly governs the complete conditional mapping;
+- the next verification Decision/FR candidate under `MR-0003` distinguishes `POSITIVE`, `NEGATIVE` and `INCONCLUSIVE` without yet governing a selection algorithm;
+- its BA representation therefore uses `constrain` with `property -> outcome` and `vocabulary -> [POSITIVE, NEGATIVE, INCONCLUSIVE]`;
+- no `valueOf`, `transition`, `classify` or `decisionRule` is introduced merely to represent that allowed outcome domain.
 
 ## 12. Working acceptance rule
 

@@ -1,29 +1,31 @@
 # DDTA BA2 relation/action vocabulary - R2
 
-**Status:** R24 WORKING REVISION / BA2-T4 REOPENED ONLY FOR FR DECISION-RULE CAPABILITY  
-**R24 counterexample baseline:** `2be2c1749e2b29a3afa8c8040ce4c51be90b65d1`  
+**Status:** R24 WORKING REVISION / BA2-T4 REOPENED FOR FR DECISION-RULE AND STRUCTURED CONSTRAINT-VALUE CAPABILITY  
+**Current refinement baseline:** `954c714ae365d22b05924f7020b641e894809f6f`  
 **Supersedes for active R24 work:** `BA2_RELATION_ACTION_VOCABULARY_R1.md`  
 **Identity dependency:** `BA1_MINIMAL_BAE_IDENTITY_ONTOLOGY_R1.md` (`BAReferent + BAProposition`)
 
 ## 1. Revision scope
 
-R2 changes only the smallest BA2 contract forced by the R24 facial-access FR pressure test.
+R2 changes only the smallest BA2 contract forced by the R24 facial-access pressure tests.
 
-The governed documentation can state at MR level that a capability `produce`s a result from inputs, while an FR can later state exactly how that result is determined through an `IF / THEN / ELSE` rule. Encoding that FR logic as:
+The first pressure test showed that governed FR logic of the form `IF / THEN / ELSE` cannot be represented honestly as:
 
-- a `condition` on the earlier `produce` proposition;
+- a `condition` on an earlier `produce` proposition;
 - a free-text `constrain` value; or
-- a chain of `dependOn` relations
+- a chain of `dependOn` relations.
 
-loses or distorts meaning.
+R2 therefore introduced `decisionRule` for explicit operational result construction.
 
-R2 therefore adds one operator-specific structured capability: `decisionRule`.
+A second pressure test now clarifies a different case: a governed project meaning may have a finite allowed semantic domain without the documentation governing how one value is selected at runtime. For example, `IdentityVerificationEvidence` may expose an `outcome` whose governed vocabulary is `[POSITIVE, NEGATIVE, INCONCLUSIVE]` while thresholds, scores and selection logic remain unspecified.
 
-No other BA2 operator is removed or redefined by this revision.
+That case is a true constraint, not a decision rule. R2 therefore also permits a structured controlled `constraintValue` for property vocabularies.
+
+No existing BA2 operator is removed by this refinement.
 
 ## 2. BA proposition shape
 
-The R2 proposition lower bound is:
+The R2 proposition lower bound remains:
 
 ```text
 BAProposition
@@ -38,7 +40,7 @@ BAProposition
 
 `semanticOperatorKey`, `roleKey`, `polarity`, `scopedModifier` and `operatorStructure` are BA2 semantic structure, not new BA1 identity families.
 
-A participation `term` is normally a `BAReferent`. A controlled typed local value is permitted only when the meaning does not require independent identity across propositions, projections or change. If it does, BA1 requires promotion to `BAReferent`.
+A participation `term` is normally a `BAReferent`. A controlled typed local value is permitted only when the meaning does not require independent identity across propositions, projections or change. A controlled local value may be scalar or may use an operator-specific structured value shape explicitly admitted by BA2. If the meaning itself requires independent identity, BA1 requires promotion to `BAReferent`.
 
 ## 3. Semantic operator registry
 
@@ -76,7 +78,7 @@ decisionRule
 | `consumeService` | Assert actual consumption/use of a capability or service without transferring its ownership or responsibility. |
 | `realize` | Assert that a more concrete project meaning realizes/materializes an abstract project meaning. |
 | `assignResponsibility` | Assert placement or denial of a governed responsibility/authority kind over a project-semantic scope. |
-| `constrain` | Assert a reusable or independently queryable restriction on behavior, state, acceptance, applicability or other governed project meaning. |
+| `constrain` | Assert a reusable or independently queryable restriction on behavior, state, acceptance, applicability, allowed semantic domain or other governed project meaning. |
 | `classify` | Assert assignment of a reusable method-neutral semantic kind to a `BAReferent`. |
 | `decisionRule` | Assert an operationally governed mapping that determines a result from one or more inputs through explicit conditional outcome branches. |
 
@@ -103,7 +105,7 @@ Role validity and cardinality remain operator-scoped.
 
 ## 5. `decisionRule` operator structure
 
-`decisionRule` is the first accepted operator that requires an operator-local structured semantic payload.
+`decisionRule` requires an operator-local structured semantic payload.
 
 Minimum shape:
 
@@ -125,8 +127,6 @@ An omitted `ELSE` has no implied meaning. BA must not invent the missing branch.
 
 The condition structure is local to `decisionRule`; it is not a new BAE identity family and it is not a general logic language for every BA proposition.
 
-Current lower bound:
-
 ```text
 comparison
   referent      -> <BAReferent>
@@ -145,8 +145,6 @@ not
 
 Additional comparison operators are added only when governed evidence requires them.
 
-A value remains local only when it does not need independent project-semantic identity across propositions, projections or change. Otherwise it is promoted under BA1.
-
 ### 5.2 Result assignment lower bound
 
 ```text
@@ -161,7 +159,7 @@ The rule represents only outcomes explicitly governed by the source FR. It must 
 
 The textual or serialized order of conditions does not assert temporal, procedural or short-circuit evaluation order.
 
-If evaluation order is itself governed project meaning, it must be represented explicitly through the appropriate BA semantics rather than inferred from the shape of a decision tree or expression.
+If evaluation order is itself governed project meaning, it must be represented explicitly rather than inferred from a decision-tree or expression layout.
 
 ## 6. Documentation-level admission rule
 
@@ -183,49 +181,37 @@ Decision
   -> policy / commitment that narrows the MR
 
 FR
-  -> decisionRule when the FR explicitly governs IF / THEN / ELSE behavior
+  -> constrain allowed result semantics when governed
+  -> decisionRule only when the FR explicitly governs conditional result selection
 ```
 
-This rule prevents Base Analysis from pulling operational detail upward into documentation layers that intentionally remain more abstract.
+This prevents Base Analysis from pulling operational detail upward into documentation layers that intentionally remain more abstract.
 
 ## 7. Relationship to `produce`
 
-`decisionRule` does not replace `produce`.
+`decisionRule` and `constrain` do not replace `produce`.
 
-Example progression:
+At MR level:
 
 ```text
-MR-grounded proposition
-
 produce
-  actor  -> ControlledAreaAccess
-  input  -> AccessAuthorizationState
-  input  -> IdentityVerificationEvidence
-  result -> AccessDecision
+  actor  -> IdentityVerification
+  result -> IdentityVerificationEvidence
 ```
 
-Later, only after an FR explicitly governs result construction:
+A later Decision/FR may add a governed result-domain constraint without changing the `produce` proposition:
 
 ```text
-FR-grounded proposition
-
-decisionRule
-  actor  -> ControlledAreaAccess
-  input  -> AccessAuthorizationState
-  input  -> IdentityVerificationEvidence
-  result -> AccessDecision
-
-  IF
-    allOf
-      AccessAuthorizationState equals VALID
-      IdentityVerificationEvidence equals POSITIVE
-  THEN
-    AccessDecision = ALLOW
-  ELSE
-    AccessDecision = NOT_ALLOW
+constrain
+  constraintTarget -> IdentityVerificationEvidence
+  constraintValue
+    property   -> outcome
+    vocabulary -> [POSITIVE, NEGATIVE, INCONCLUSIVE]
 ```
 
-The second proposition adds operational construction semantics. It does not silently replace or rewrite the earlier `produce` proposition.
+If a later FR additionally governs exactly how inputs select one of those outcomes, BA may then add `decisionRule`.
+
+These propositions add progressively governed semantic detail; they do not silently replace the earlier proposition.
 
 ## 8. Relationship to `condition`
 
@@ -251,9 +237,67 @@ The former changes when the production proposition applies; the latter governs w
 
 ## 9. Relationship to `constrain`
 
-`constrain` remains the representation for a reusable or independently queryable restriction.
+`constrain` represents a reusable or independently queryable restriction.
 
-Do not use a free-text `constraintValue` as a fallback container for a decision rule when the project governs structured conditional behavior.
+A `constraintValue` must not be used as an unstructured prose escape hatch when BA can preserve the governed distinction structurally.
+
+### 9.1 Structured property-vocabulary constraint
+
+When governed documentation restricts the allowed semantic domain of a property without governing how one value is selected, `constraintValue` may use this controlled structured form:
+
+```text
+constraintValue
+  property   -> <controlled semantic key>
+  vocabulary -> [<controlled typed local value | BAReferent> 1..*]
+```
+
+Semantics:
+
+> the named property of `constraintTarget` is constrained to the listed governed vocabulary.
+
+Example:
+
+```text
+constrain
+  constraintTarget -> IdentityVerificationEvidence
+  constraintValue
+    property   -> outcome
+    vocabulary -> [POSITIVE, NEGATIVE, INCONCLUSIVE]
+```
+
+This asserts the governed outcome domain. It does **not** assert which value a particular runtime occurrence has and it does **not** assert the algorithm, threshold or condition that selects a value.
+
+The vocabulary is a controlled local value list when its identity is needed only inside this constraint. If the vocabulary itself becomes independently reusable, referenced, provenance-bearing or change-addressable project meaning, normal BA1 promotion to `BAReferent` applies.
+
+The `property` key is likewise controlled BA2 semantic content; it is not automatically a BAReferent.
+
+### 9.2 Boundary with `decisionRule`
+
+Use:
+
+```text
+constrain
+```
+
+for:
+
+```text
+outcome ∈ [POSITIVE, NEGATIVE, INCONCLUSIVE]
+```
+
+Use:
+
+```text
+decisionRule
+```
+
+only when governed documentation says how conditions select a value, for example:
+
+```text
+IF A AND B
+THEN outcome = POSITIVE
+ELSE outcome = ...
+```
 
 A true constraint remains a `constrain` proposition even when a `decisionRule` also exists.
 
@@ -263,7 +307,7 @@ A true constraint remains a `constrain` proposition even when a `decisionRule` a
 
 It means prerequisite/dependency, not conditional result construction.
 
-This distinction is analytically important. If:
+If:
 
 ```text
 C dependOn A
@@ -296,7 +340,7 @@ A modifier may remain embedded only when it:
 3. needs no independent assertion-level provenance/review/change identity;
 4. is not reused elsewhere as project meaning.
 
-The new `decisionRule.rule.IF` condition is operator structure, not the generic `condition` modifier.
+The `decisionRule.rule.IF` condition is operator structure, not the generic `condition` modifier. The structured `constrain.constraintValue` is a controlled participation value, not a scoped modifier.
 
 ## 13. Logical-composition boundary
 
@@ -313,22 +357,17 @@ anyOf
 not
 ```
 
-This does not authorize arbitrary logical expressions as a universal BA2 mechanism.
-
-A future corpus may widen only this smallest affected contract when needed.
+The structured property-vocabulary constraint does not add logical-expression syntax; it declares an allowed finite semantic domain.
 
 ## 14. Analysis-consumer value
 
-The purpose of `decisionRule` is not to reproduce source prose in another syntax. It must allow consumers to derive or inspect, without reconstructing the FR from raw text:
+BA structure should allow consumers to reuse governed meaning without reparsing prose.
 
-- which inputs influence a governed result;
-- which condition combinations select an outcome;
-- whether a branch is missing rather than silently inferred;
-- decision tables or decision-tree views;
-- positive and negative functional test cases;
-- change impact when a condition, value or branch changes.
+Examples:
 
-`dependOn` remains separately available for prerequisite and impact-propagation analysis.
+- `decisionRule` -> which inputs influence a result; decision paths/tables; positive and negative functional tests; branch change impact;
+- `constrain` with property vocabulary -> allowed governed values; detection of values outside the governed domain; downstream rule/test completeness against the known vocabulary;
+- `dependOn` -> prerequisite paths, propagated impact and indirect criticality.
 
 ## 15. Identity and lifecycle
 
@@ -338,13 +377,15 @@ R2 does not reopen BA1.
 
 A `decisionRule` is a `BAProposition`. Its local comparisons, logical nodes and result assignments are structured assertion content, not automatically independent BAReferents or BAPropositions.
 
-If one of those meanings becomes independently reusable, provenance-bearing or change-addressable project meaning, normal BA1 promotion rules apply.
+A structured property-vocabulary `constraintValue` is likewise local assertion content unless BA1 identity criteria require promotion of the vocabulary or one of its values.
 
-Under BA3, a material change to the rule condition, input binding, result binding or governed branch assignment changes normalized assertion meaning and therefore requires the appropriate replacement/retirement handling rather than silent mutation of proposition identity.
+Under BA3, a material change to a decision-rule condition/branch or to a governed property/vocabulary changes normalized proposition meaning and requires the appropriate replacement/retirement handling rather than silent mutation.
 
-## 16. R24 facial-access counterexample
+## 16. R24 facial-access pressure tests
 
-At MR level the current documentation supports:
+### 16.1 Access-decision construction
+
+At MR level:
 
 ```text
 produce
@@ -354,39 +395,56 @@ produce
   result -> AccessDecision
 ```
 
-The current project FR wording is not modified by this BA2 revision.
+BA must not upgrade an `access may be allowed only when ...` policy into `MUST ALLOW` unless the governed FR states that obligation. Once the FR explicitly governs a complete mapping, BA may add `decisionRule`.
 
-Before materializing an FR-grounded `decisionRule`, project documentation must explicitly govern the complete branch mapping intended to be represented. In particular, BA must not upgrade an "access may be allowed only when ..." policy into `MUST ALLOW` on the positive branch unless the governed FR states that obligation.
+### 16.2 Verification-outcome domain
 
-Once an FR explicitly states a complete mapping such as:
+The current R24 analysis of the next verification Decision/FR candidate distinguishes:
 
 ```text
-IF authorization is valid AND verification is positive
-THEN ControlledAreaAccess MUST produce AccessDecision = ALLOW
-ELSE ControlledAreaAccess MUST produce AccessDecision = NOT_ALLOW
+POSITIVE
+NEGATIVE
+INCONCLUSIVE
 ```
 
-BA may represent that mapping directly as `decisionRule` and downstream tooling may derive the corresponding test matrix.
+without governing an implementation algorithm that selects among them.
+
+The corresponding BA candidate is therefore:
+
+```text
+constrain
+  constraintTarget -> IdentityVerificationEvidence
+  constraintValue
+    property   -> outcome
+    vocabulary -> [POSITIVE, NEGATIVE, INCONCLUSIVE]
+```
+
+This is sufficient to preserve the governed semantic domain. `classify`, `transition`, a new `valueOf` operator and `decisionRule` are not required merely to state this domain.
 
 ## 17. R2 disposition
 
 ```text
-BA1 identity families                         UNCHANGED
-Existing 13 BA2 operators                    UNCHANGED
-New operator: decisionRule                   R24 WORKING ACCEPTED
-operatorStructure capability                 R24 WORKING ACCEPTED
-Local decision condition: comparison          R24 WORKING ACCEPTED
-Local composition: allOf / anyOf / not       R24 WORKING ACCEPTED
-Result assignment                            R24 WORKING ACCEPTED
-Implicit branch completion                    REJECTED
-Implicit evaluation order                     REJECTED
-condition as decision-rule substitute         REJECTED
-free-text constrain as decision-rule fallback REJECTED
-dependOn as decision-rule substitute          REJECTED
-dependOn prerequisite/impact semantics        RETAINED
-classify                                      RETAINED / UNCHANGED
-General-purpose BA logical DSL                NOT INTRODUCED
-Project-document detail pulled above FR       REJECTED
+BA1 identity families                              UNCHANGED
+Existing 13 BA2 operators                         UNCHANGED
+New operator: decisionRule                        R24 WORKING ACCEPTED
+operatorStructure for decisionRule                R24 WORKING ACCEPTED
+Local decision condition: comparison               R24 WORKING ACCEPTED
+Local composition: allOf / anyOf / not            R24 WORKING ACCEPTED
+Result assignment                                 R24 WORKING ACCEPTED
+Implicit branch completion                         REJECTED
+Implicit evaluation order                          REJECTED
+condition as decision-rule substitute              REJECTED
+free-text constrain as decision-rule fallback      REJECTED
+structured constrain property + vocabulary         R24 WORKING ACCEPTED
+constrain for allowed governed result domain       R24 WORKING ACCEPTED
+runtime-value assertion implied by vocabulary      REJECTED
+selection algorithm implied by vocabulary          REJECTED
+new valueOf operator for current evidence          NOT JUSTIFIED
+dependOn as decision-rule substitute               REJECTED
+dependOn prerequisite/impact semantics             RETAINED
+classify                                           RETAINED / UNCHANGED
+General-purpose BA logical DSL                     NOT INTRODUCED
+Project-document detail pulled above source level  REJECTED
 ```
 
 This revision remains subject to the ongoing R24 corpus and downstream analysis pressure test.
