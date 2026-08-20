@@ -2,7 +2,7 @@
 
 **Status:** WORKING PLAN / CANDIDATE  
 **Original experiment input baseline:** `9cc17a148726bd0734db51e26ac74e031020f340`  
-**Current continuation baseline:** `63c2308118bc0d7faae59938ee90634730be95f7`  
+**Current continuation baseline:** `7950912e8cd1037ffacd5a440d1d4e8bb8453aab`  
 **Active research correction:** replace branch-local depth-first BA execution with documentation/BA co-authoring performed breadth-first by semantic level.  
 **Preserved closures:** BA1, BA2, BA3 and BA5 remain closed unless a concrete R24 counterexample triggers the smallest applicable reopen criterion. The current MR experiment has produced one such pressure point candidate (behavioral vs non-behavioral referent nature), recorded for review but not yet accepted as a reopen or contract change.
 
@@ -362,11 +362,11 @@ R24 will produce:
 7. migration mapping and final experiment disposition;
 8. a later handoff/drop-in package for the accepted next step.
 
-## 19. Current R24 checkpoint - MR Title + Intent
+## 19. Current R24 checkpoint - complete MacroRequirement semantic shape
 
-**Checkpoint status:** ACTIVE / R24-WORKING / MR LEVEL ONLY.
+**Checkpoint status:** ACTIVE / R24-WORKING / MR LEVEL ONLY / D1 NOT YET DECIDED.
 
-The experiment has completed a first macro pass through Project Problem Framing plus `Title + Intent` for the complete candidate MR set. Decisions remain intentionally unopened.
+The experiment has completed the Project Problem Framing and a breadth-first authoring pass over the complete current MacroRequirement semantic shape for all four candidate MRs. Decisions remain intentionally unopened.
 
 ### 19.1 Candidate MR set now under analysis
 
@@ -377,18 +377,35 @@ The experiment has completed a first macro pass through Project Problem Framing 
 
 The current MR-0004 is a new macro responsibility for identity management. The historical biometric/privacy concern is not forced into the macro MR set; governance/privacy/security concerns may emerge later at the appropriate Decision/FR/Specialized/Security level if governed evidence requires them.
 
-### 19.2 Current Title + Intent BA
-
-The current BA story contains the following principal reusable meanings:
+The four MRs have now been authored through:
 
 ```text
-BEHAVIORAL candidate referents
+id
+title
+lifecycle
+intent
+context
+stakeholders
+scope
+assumptions
+constraints
+dependsOn
+```
+
+`assumptions` and `constraints` remain empty where no branch-wide statement is justified. `dependsOn` is used only for non-hierarchical macro dependency/complementarity.
+
+### 19.2 Current MR-level BA checkpoint
+
+The current BA story retains the following principal reusable meanings:
+
+```text
+BEHAVIORAL pressure-test referents
 *<IdentityManagement>
 *<AccessAuthorizationManagement>
 *<IdentityVerification>
 *<ControlledAreaAccess>
 
-NON-BEHAVIORAL candidate referents
+NON-BEHAVIORAL pressure-test referents
 #<GovernedIdentity>
 #<AccessAuthorizationState>
 #<PersonAtAccessPoint>
@@ -396,19 +413,43 @@ NON-BEHAVIORAL candidate referents
 #<AccessDecision>
 ```
 
-and propositions P01-P06 based on the closed BA2 operators `create`, `correlate` and `produce`.
+P01-P06 are retained from the Intent checkpoint:
 
-### 19.3 Documentation correction already exposed by BA
+- `P01 @<create>`: `*<IdentityManagement>` creates `#<GovernedIdentity>`;
+- `P02 @<correlate>`: `#<AccessAuthorizationState>` and `#<GovernedIdentity>` participate in the correlation context `*<AccessAuthorizationManagement>`;
+- `P03 @<produce>`: `*<AccessAuthorizationManagement>` produces `#<AccessAuthorizationState>`;
+- `P04 @<correlate>`: `#<PersonAtAccessPoint>` and `#<GovernedIdentity>` participate in the correlation context `*<IdentityVerification>`;
+- `P05 @<produce>`: `*<IdentityVerification>` produces `#<IdentityVerificationEvidence>`;
+- `P06 @<produce>`: `*<ControlledAreaAccess>` uses `#<IdentityVerificationEvidence>` and `#<AccessAuthorizationState>` as inputs and produces `#<AccessDecision>`.
+
+The completed `dependsOn` fields add four grounded dependency propositions:
+
+- `P07 @<dependOn>`: `*<ControlledAreaAccess>` depends on `*<AccessAuthorizationManagement>`;
+- `P08 @<dependOn>`: `*<ControlledAreaAccess>` depends on `*<IdentityVerification>`;
+- `P09 @<dependOn>`: `*<AccessAuthorizationManagement>` depends on `*<IdentityManagement>`;
+- `P10 @<dependOn>`: `*<IdentityVerification>` depends on `*<IdentityManagement>`.
+
+P01-P10 currently remain `originState: GROUNDED` and `reviewState: PENDING_REVIEW`. This checkpoint does not turn them into accepted BA merely because the working documentation contains their source meaning.
+
+### 19.3 Documentation/BA corrections and diagnostics exposed so far
 
 The earlier Title + Intent set introduced `GovernedIdentity` only in the verification branch even though it is a reusable project meaning needed by both verification and authorization. Applying the MR split/merge tests led to a distinct identity-management MR. The revised macro story now makes `GovernedIdentity` originate from MR-0004 and be reused by MR-0002 and MR-0003.
 
-This is retained as evidence that BA can expose a documentation-structure gap without becoming authority over the correction.
+The full MR pass also made cross-MR dependencies explicit in documentation rather than leaving them to a renderer or reader to infer. These dependencies are represented by P07-P10.
+
+The completed Scope fields expose additional semantics that the current BA proposition set does not yet represent cleanly. They remain explicit diagnostics rather than being repaired by invention:
+
+- MR-0001: the responsibility to make access possible only when the access conditions are satisfied;
+- MR-0002: maintenance of authorization state over time;
+- MR-0004: maintenance of governed-identity validity/availability over time.
+
+These OPEN items must be classified before D1 as documentation gaps, BA vocabulary/operator gaps, occurrence/projection issues, or acceptable unresolved items at the current abstraction level.
 
 ### 19.4 BA pressure point - behavioral vs non-behavioral referent nature
 
-A new pressure point has emerged: BA1 currently gives both behavioral meanings (capability/process/responsibility-like referents) and non-behavioral meanings (entity/information/state/evidence/decision-like referents) the same first-class `BAReferent` identity, while BA2 role keys describe only how a referent participates in a proposition.
+BA1 currently gives both behavioral meanings (capability/process/responsibility-like referents) and non-behavioral meanings (entity/information/state/evidence/decision-like referents) the same first-class `BAReferent` identity, while BA2 role keys describe only how a referent participates in a proposition.
 
-The experiment therefore uses the following **working authoring/projection notation only**:
+The experiment therefore continues to use the following **working authoring/projection notation only**:
 
 ```text
 *<CanonicalName>  = candidate BEHAVIORAL BAReferent
@@ -416,49 +457,59 @@ The experiment therefore uses the following **working authoring/projection notat
 @<operatorKey>    = BA2 semantic operator
 ```
 
-This distinction is **PENDING_REVIEW**. It is not yet part of BA1, BA2 or BA5 closure and must not be treated as project truth. The smallest-contract disposition remains open. Candidate outcomes to test include:
+This distinction is **PENDING_REVIEW**. It is not yet part of BA1, BA2 or BA5 closure and must not be treated as project truth or accepted BA core. The smallest-contract disposition remains open. Candidate outcomes to test include:
 
 - no core change: express the distinction through existing `classify` + controlled `semanticKind`;
 - a minimal BAReferent semantic-nature field or equivalent BA1 refinement;
 - authoring/projection-only notation if no downstream semantic value is demonstrated.
 
-The distinction should be retained and tested across the remaining MR fields and later abstraction levels before deciding whether a BA reopen is justified.
+The distinction has now been pressure-tested across the complete MR semantic shape and P01-P10, but this evidence is not yet sufficient by itself to accept a BA reopen.
 
 ### 19.5 Projection checkpoint
 
-A macro graph has been produced as a human-readable projection of the current BA and retained as research evidence. The graph is not authority. Projection work must continue to obey:
+Projection remains subordinate to BA. The current experiment has established the following constraints for the next standalone macro graph:
 
-- no relation without a BAProposition;
+- every displayed relation must derive from a BAProposition;
 - no renderer-created project meaning;
-- n-ary BA semantics must not be replaced by arbitrary pairwise claims;
-- presentation rules may expose the experimental behavioral/non-behavioral distinction, but cannot make that distinction authoritative.
+- n-ary BA semantics must preserve proposition roles instead of being collapsed into arbitrary pairwise arrows;
+- a proposition/relation node or equivalent hyperedge representation is the current candidate for `correlate` and multi-input `produce`;
+- presentation may expose the experimental behavioral/non-behavioral distinction, but cannot make that distinction authoritative.
 
-The current image is useful as the visual baseline for a later reusable projection template; formalizing that template is secondary to completing the MR semantics.
+No currently generated graph is treated as accepted project truth. A graph remains a regenerable human projection of recorded BA only.
 
-## 20. Immediate next step - finish MacroRequirement fields breadth-first
+### 19.6 Current project-documentation artifacts
 
-Do **not** open Decisions yet. Stay at R24 Phase 1 and complete the remaining canonical MR fields **one field at a time across the whole MR set**.
+The current working project documentation is retained as a paired source/rendered artifact:
+
+- `methodology/DDTA_FACIAL_ACCESS_PROJECT_DOCUMENTATION_WORKING_R24_MR_COMPLETE.tex`;
+- `methodology/DDTA_FACIAL_ACCESS_PROJECT_DOCUMENTATION_WORKING_R24_MR_COMPLETE.pdf`.
+
+The document contains the approved two-paragraph Project Problem Framing, the four MR candidates through `dependsOn`, the aligned MR-level BA P01-P10, and explicit OPEN diagnostics. It is a research working artifact, not a declaration that Gate D1 has passed.
+
+## 20. Immediate next step - audit the complete MacroRequirement set for D1
+
+Do **not** open Decisions yet. Stay at R24 Phase 1 and review the completed MR set as a whole.
 
 Current order:
 
-1. `Context` for MR-0001/2/3/4;
-2. rebuild/review BA and record the delta caused by Context;
-3. `Stakeholders` for MR-0001/2/3/4;
-4. rebuild/review BA and record the delta;
-5. `Scope` for MR-0001/2/3/4;
-6. rebuild/review BA and record the delta;
-7. optional `Assumptions` only where they apply to the whole branch;
-8. optional `Constraints` only where they apply to the whole branch;
-9. `dependsOn` / cross-MR complementarity where governed and necessary;
-10. rerun the complete MR-level BA Pass A/B/C and reassess Gate D1 / R24-G1.
+1. keep the approved two-paragraph Project Problem Framing unchanged unless a concrete review finding requires a governed correction;
+2. keep MR-0001..MR-0004 and their currently authored fields through `dependsOn` as the working MR candidate set;
+3. preserve P01-P10 as the current BA checkpoint with `reviewState: PENDING_REVIEW`;
+4. preserve `*` / `#` as pressure-test notation only, not accepted BA core;
+5. review each MR against the R24 MR invariants and split/merge criteria;
+6. review the four-MR set for completeness, overlap, stable responsibility boundaries and explicit cross-MR dependency;
+7. audit every OPEN mismatch exposed by Scope and classify it before attempting any correction;
+8. rerun the complete MR-level BA Identity/Vocabulary, Proposition/Relation and Human-story/View passes;
+9. decide Gate D1 / R24-G1 only after the complete MR set passes the audit or the remaining unresolved reason is explicitly accepted;
+10. only after D1 PASS open Decisions breadth-first across all MR branches.
 
-For each field, explicitly record whether the new documentation:
+For every change considered during this audit, explicitly record whether it:
 
-- creates a new BAReferent;
-- creates a new BAProposition;
-- changes/clarifies an existing proposition;
+- changes governed/candidate documentation meaning;
+- creates, retires or modifies a BAReferent;
+- creates, retires or modifies a BAProposition;
 - resolves or creates a documentation gap;
-- adds only human interpretive background with no BA delta;
-- provides further evidence for or against the behavioral/non-behavioral pressure point.
+- exposes a BA contract pressure point;
+- affects only projection/readability without changing BA meaning.
 
-Only after the complete MR set passes the MR gate should the experiment descend breadth-first to Decisions.
+Do not repair a failed D1 review by descending into Decision or FR detail.

@@ -1,0 +1,365 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{lmodern}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{parskip}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+
+\newcommand{\bbeh}[1]{\texttt{*<#1>}}
+\newcommand{\bnon}[1]{\texttt{\#<#1>}}
+\newcommand{\baop}[1]{\texttt{@<#1>}}
+\newcommand{\BAhead}[1]{\par\noindent\textbf{#1}\par}
+\newcommand{\BAlabel}[1]{\par\noindent\textbf{#1}\par}
+\newcommand{\BAsmall}[1]{\par\noindent{\small #1}\par}
+\newcommand{\BABox}[1]{%
+  \fcolorbox{gray!55}{gray!7}{%
+    \begin{minipage}[t]{0.94\linewidth}\raggedright\scriptsize #1\end{minipage}%
+  }%
+}
+\newcommand{\MRsep}{\par\vspace{0.8em}\hrule\vspace{1.0em}}
+\newcommand{\Field}[1]{\par\medskip\noindent\textbf{#1}\par\smallskip}
+\newenvironment{compactitems}{\begin{itemize}[leftmargin=1.35em,itemsep=0.1em,topsep=0.2em,parsep=0pt]}{\end{itemize}}
+
+\title{DDTA -- Facial Access\\Project Documentation}
+\author{Documentation-Driven Threat Analysis}
+\date{Working document -- R24 -- MacroRequirements completi}
+
+\begin{document}
+\maketitle
+
+\section{Project Problem Framing}
+
+\noindent
+\begin{minipage}[t]{0.64\textwidth}
+Il progetto affronta il problema di controllare l'accesso a un'area fisica riservata, determinando se una persona che si presenta a un punto di accesso possa entrare e rendendo possibile l'apertura del varco solo quando le condizioni di accesso previste dall'organizzazione risultano soddisfatte.
+
+Rientrano nel problema la gestione delle condizioni che determinano chi pu\`o accedere, la verifica della persona che si presenta, la decisione relativa all'accesso e le conseguenze dell'uso di informazioni personali o biometriche necessarie al processo.
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\textwidth}
+\BABox{
+\BAhead{Base Analysis}
+Il framing definisce il confine del problema. La BA inline riportata nelle pagine successive ricostruisce esclusivamente significati supportati dai campi MR ormai compilati fino a \texttt{dependsOn}; eventuali elementi ancora non materializzati restano diagnostici da riesaminare nel pass BA completo.
+}
+\end{minipage}
+
+\section{MacroRequirements -- campi completi con Base Analysis inline}
+
+\textbf{Convenzione di lettura.} La colonna sinistra contiene la documentazione MR in costruzione. La colonna destra mostra la Base Analysis materializzabile o il delta diagnostico osservabile dal testo affiancato. In questo checkpoint sperimentale, \bbeh{CanonicalName} indica un BAReferent candidato \textbf{BEHAVIORAL}; \bnon{CanonicalName} indica un BAReferent candidato \textbf{NON-BEHAVIORAL}; \baop{semanticOperatorKey} indica un operatore BA2. I marcatori \texttt{*}, \texttt{\#} e \texttt{@} non fanno parte del nome canonico o della chiave semantica. La distinzione BEHAVIORAL/NON-BEHAVIORAL resta un \textbf{pressure point R24 PENDING\_REVIEW}, non una modifica gi\`a accettata del contratto BA.
+
+\newpage
+
+% -----------------------------------------------------------------------------
+% MR-0001
+% -----------------------------------------------------------------------------
+\noindent
+\begin{minipage}[t]{0.64\textwidth}\small
+\subsection*{MR-0001 -- Controllo dell'accesso all'area riservata}
+
+\Field{ID} \texttt{MR-0001}
+
+\Field{Lifecycle} current
+
+\Field{Intent}
+Consentire a \bbeh{ControlledAreaAccess} di determinare se un tentativo di accesso all'area riservata possa essere consentito, usando \bnon{IdentityVerificationEvidence} e \bnon{AccessAuthorizationState} per \baop{produce} \bnon{AccessDecision} coerente con le condizioni stabilite dall'organizzazione.
+
+\Field{Context}
+Nel controllo di un accesso, la decisione relativa al tentativo deve essere formulata tenendo insieme due informazioni concettualmente distinte: l'evidenza relativa alla verifica della persona che si presenta e lo stato di autorizzazione associato all'identit\`a governata rilevante. \bbeh{ControlledAreaAccess} costituisce il punto del problema in cui tali informazioni assumono significato congiunto ai fini della decisione di accesso.
+
+\Field{Stakeholders}
+\begin{compactitems}
+  \item persone che si presentano al punto di accesso;
+  \item organizzazione responsabile dell'area riservata e delle condizioni di accesso.
+\end{compactitems}
+
+\Field{Scope}
+Rientrano nella responsabilit\`a il controllo del tentativo di accesso, la determinazione dell'esito sulla base delle condizioni necessarie e il fatto che l'accesso possa essere reso possibile quando tale esito lo consente.
+
+Non rientrano nella responsabilit\`a la definizione e il mantenimento delle autorizzazioni di accesso, la gestione delle identit\`a, la verifica della persona che si presenta al punto di accesso n\'e le scelte tecniche con cui la decisione o l'apertura del varco vengono realizzate.
+
+\Field{Assumptions (optional)} Nessuna assunzione macro esplicita.
+
+\Field{Constraints (optional)} Nessun vincolo macro esplicito.
+
+\Field{dependsOn}
+\begin{compactitems}
+  \item \texttt{MR-0002};
+  \item \texttt{MR-0003}.
+\end{compactitems}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\textwidth}
+\BABox{
+\BAhead{Base Analysis}
+\BAlabel{BAReferent gi\`a presenti}
+\bbeh{ControlledAreaAccess}\par
+\bnon{IdentityVerificationEvidence}\par
+\bnon{AccessAuthorizationState}\par
+\bnon{AccessDecision}
+
+\BAlabel{P06 -- \baop{produce}}
+actor $\rightarrow$ \bbeh{ControlledAreaAccess}\par
+input $\rightarrow$ \bnon{IdentityVerificationEvidence}\par
+input $\rightarrow$ \bnon{AccessAuthorizationState}\par
+result $\rightarrow$ \bnon{AccessDecision}\par
+originState: GROUNDED\par
+reviewState: PENDING\_REVIEW
+
+\BAlabel{P07 -- \baop{dependOn}}
+dependent $\rightarrow$ \bbeh{ControlledAreaAccess}\par
+prerequisite $\rightarrow$ \bbeh{AccessAuthorizationManagement}\par
+prerequisite $\rightarrow$ \bbeh{IdentityVerification}\par
+originState: GROUNDED\par
+reviewState: PENDING\_REVIEW
+
+\BAlabel{Delta dei nuovi campi}
+Context stabilizza l'interpretazione di P06 senza aggiungere referent. Stakeholders non produce delta strutturale al livello corrente. Scope chiarisce il confine della responsabilit\`a e rende osservabile il consumo di risultati prodotti da altri MR senza inglobarne le responsabilit\`a.
+
+\BAlabel{OPEN per il pass BA completo}
+Lo Scope include anche l'effetto di rendere possibile l'accesso quando l'esito lo consente. Questo significato governato non \`e ancora rappresentato separatamente da P06: non viene inventato qui un nuovo referent o operatore; resta da riesaminare nel pass BA completo.
+}
+\end{minipage}
+
+\newpage
+
+% -----------------------------------------------------------------------------
+% MR-0002
+% -----------------------------------------------------------------------------
+\noindent
+\begin{minipage}[t]{0.64\textwidth}\small
+\subsection*{MR-0002 -- Gestione delle autorizzazioni di accesso}
+
+\Field{ID} \texttt{MR-0002}
+
+\Field{Lifecycle} current
+
+\Field{Intent}
+Consentire a \bbeh{AccessAuthorizationManagement} di stabilire e mantenere nel tempo lo stato delle autorizzazioni di accesso definite dall'organizzazione, di \baop{correlate} \bnon{AccessAuthorizationState} con la relativa \bnon{GovernedIdentity} e di \baop{produce} \bnon{AccessAuthorizationState} aggiornato e utilizzabile da \bbeh{ControlledAreaAccess}.
+
+\Field{Context}
+L'autorizzazione di accesso esprime una condizione attribuita dall'organizzazione a una \bnon{GovernedIdentity} e rilevante per stabilire se l'accesso possa essere consentito. Tale condizione pu\`o essere mantenuta nel tempo indipendentemente dalla presenza di una persona al punto di accesso e viene rappresentata, per il processo di accesso, mediante \bnon{AccessAuthorizationState}.
+
+\Field{Stakeholders}
+\begin{compactitems}
+  \item organizzazione e soggetti da essa delegati alla gestione delle autorizzazioni;
+  \item persone alle cui identit\`a sono associate autorizzazioni di accesso.
+\end{compactitems}
+
+\Field{Scope}
+Rientrano nella responsabilit\`a la definizione e il mantenimento nel tempo delle autorizzazioni di accesso associate alle identit\`a governate e la disponibilit\`a dello stato di autorizzazione necessario al controllo dell'accesso.
+
+Non rientrano nella responsabilit\`a la gestione delle identit\`a a cui le autorizzazioni si riferiscono, la verifica della persona che si presenta al punto di accesso, la decisione relativa al singolo tentativo di accesso n\'e le modalit\`a tecniche con cui le autorizzazioni vengono memorizzate, aggiornate o rese disponibili.
+
+\Field{Assumptions (optional)} Nessuna assunzione macro esplicita.
+
+\Field{Constraints (optional)} Nessun vincolo macro esplicito.
+
+\Field{dependsOn}
+\begin{compactitems}
+  \item \texttt{MR-0004}.
+\end{compactitems}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\textwidth}
+\BABox{
+\BAhead{Base Analysis}
+\BAlabel{BAReferent gi\`a presenti}
+\bbeh{AccessAuthorizationManagement}\par
+\bnon{AccessAuthorizationState}\par
+\bnon{GovernedIdentity}
+
+\BAlabel{P02 -- \baop{correlate}}
+correlatedItem $\rightarrow$ \bnon{AccessAuthorizationState}\par
+correlatedItem $\rightarrow$ \bnon{GovernedIdentity}\par
+correlationContext $\rightarrow$ \bbeh{AccessAuthorizationManagement}\par
+originState: GROUNDED\par
+reviewState: PENDING\_REVIEW
+
+\BAlabel{P03 -- \baop{produce}}
+actor $\rightarrow$ \bbeh{AccessAuthorizationManagement}\par
+result $\rightarrow$ \bnon{AccessAuthorizationState}\par
+originState: GROUNDED\par
+reviewState: PENDING\_REVIEW
+
+\BAlabel{P08 -- \baop{dependOn}}
+dependent $\rightarrow$ \bbeh{AccessAuthorizationManagement}\par
+prerequisite $\rightarrow$ \bbeh{IdentityManagement}\par
+originState: GROUNDED\par
+reviewState: PENDING\_REVIEW
+
+\BAlabel{Delta dei nuovi campi}
+Context stabilizza il significato temporale e identitario dello stato di autorizzazione. Stakeholders non produce delta strutturale al livello corrente. Scope conferma che MR-0002 possiede l'autorizzazione ma non ingloba identit\`a, verifica o decisione di accesso. \texttt{dependsOn} rende governata la dipendenza diretta da MR-0004.
+}
+\end{minipage}
+
+\newpage
+
+% -----------------------------------------------------------------------------
+% MR-0003
+% -----------------------------------------------------------------------------
+\noindent
+\begin{minipage}[t]{0.64\textwidth}\small
+\subsection*{MR-0003 -- Verifica della persona al punto di accesso}
+
+\Field{ID} \texttt{MR-0003}
+
+\Field{Lifecycle} current
+
+\Field{Intent}
+Consentire a \bbeh{IdentityVerification} di stabilire a quale \bnon{GovernedIdentity} corrisponde \bnon{PersonAtAccessPoint}, e di \baop{produce} \bnon{IdentityVerificationEvidence} utilizzabile da \bbeh{ControlledAreaAccess}.
+
+\Field{Context}
+Al punto di accesso, \bnon{PersonAtAccessPoint} e \bnon{GovernedIdentity} rappresentano significati distinti: il primo riguarda la persona che si presenta in quel momento, mentre il secondo costituisce il riferimento governato al quale la persona pu\`o essere ricondotta. \bbeh{IdentityVerification} riguarda la determinazione di questa corrispondenza e la disponibilit\`a della relativa \bnon{IdentityVerificationEvidence}.
+
+\Field{Stakeholders}
+\begin{compactitems}
+  \item persone che si presentano al punto di accesso;
+  \item organizzazione che utilizza l'evidenza di verifica nel processo di accesso.
+\end{compactitems}
+
+\Field{Scope}
+Rientrano nella responsabilit\`a la verifica della persona che si presenta al punto di accesso, la determinazione della sua corrispondenza con una identit\`a governata e la disponibilit\`a dell'evidenza risultante necessaria al controllo dell'accesso.
+
+Non rientrano nella responsabilit\`a la gestione delle identit\`a governate, la definizione o il mantenimento delle autorizzazioni di accesso, la decisione relativa al singolo tentativo di accesso n\'e le modalit\`a tecniche con cui la verifica viene realizzata.
+
+\Field{Assumptions (optional)} Nessuna assunzione macro esplicita.
+
+\Field{Constraints (optional)} Nessun vincolo macro esplicito.
+
+\Field{dependsOn}
+\begin{compactitems}
+  \item \texttt{MR-0004}.
+\end{compactitems}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\textwidth}
+\BABox{
+\BAhead{Base Analysis}
+\BAlabel{BAReferent gi\`a presenti}
+\bbeh{IdentityVerification}\par
+\bnon{GovernedIdentity}\par
+\bnon{PersonAtAccessPoint}\par
+\bnon{IdentityVerificationEvidence}
+
+\BAlabel{P04 -- \baop{correlate}}
+correlatedItem $\rightarrow$ \bnon{PersonAtAccessPoint}\par
+correlatedItem $\rightarrow$ \bnon{GovernedIdentity}\par
+correlationContext $\rightarrow$ \bbeh{IdentityVerification}\par
+originState: GROUNDED\par
+reviewState: PENDING\_REVIEW
+
+\BAlabel{P05 -- \baop{produce}}
+actor $\rightarrow$ \bbeh{IdentityVerification}\par
+result $\rightarrow$ \bnon{IdentityVerificationEvidence}\par
+originState: GROUNDED\par
+reviewState: PENDING\_REVIEW
+
+\BAlabel{P09 -- \baop{dependOn}}
+dependent $\rightarrow$ \bbeh{IdentityVerification}\par
+prerequisite $\rightarrow$ \bbeh{IdentityManagement}\par
+originState: GROUNDED\par
+reviewState: PENDING\_REVIEW
+
+\BAlabel{Delta dei nuovi campi}
+Context rende esplicita la distinzione tra persona presente e identit\`a governata e stabilizza P04. Stakeholders non produce delta strutturale al livello corrente. Scope mantiene la verifica separata da identit\`a, autorizzazione e decisione. \texttt{dependsOn} rende governata la dipendenza diretta da MR-0004.
+}
+\end{minipage}
+
+\newpage
+
+% -----------------------------------------------------------------------------
+% MR-0004
+% -----------------------------------------------------------------------------
+\noindent
+\begin{minipage}[t]{0.64\textwidth}\small
+\subsection*{MR-0004 -- Gestione delle identit\`a}
+
+\Field{ID} \texttt{MR-0004}
+
+\Field{Lifecycle} current
+
+\Field{Intent}
+Consentire a \bbeh{IdentityManagement} di \baop{create} e mantenere le \bnon{GovernedIdentity} necessarie al controllo degli accessi, rendendole disponibili alle responsabilit\`a di progetto che devono riferirsi a un'identit\`a governata.
+
+\Field{Context}
+Le diverse responsabilit\`a coinvolte nel controllo degli accessi devono poter fare riferimento in modo coerente alle stesse identit\`a nel tempo. \bbeh{IdentityManagement} rende disponibile questo riferimento governato attraverso \bnon{GovernedIdentity}, permettendone il riuso nei diversi momenti in cui il progetto deve riferirsi all'identit\`a di una persona.
+
+\Field{Stakeholders}
+\begin{compactitems}
+  \item organizzazione e soggetti da essa delegati alla gestione delle identit\`a;
+  \item persone alle quali le \bnon{GovernedIdentity} si riferiscono.
+\end{compactitems}
+
+\Field{Scope}
+Rientrano nella responsabilit\`a la creazione e il mantenimento nel tempo delle identit\`a governate necessarie al controllo degli accessi e la loro disponibilit\`a alle altre responsabilit\`a di progetto che devono riferirsi in modo coerente all'identit\`a di una persona.
+
+Non rientrano nella responsabilit\`a la definizione o il mantenimento delle autorizzazioni di accesso associate alle identit\`a, la verifica della persona che si presenta al punto di accesso, la decisione relativa al singolo tentativo di accesso n\'e le modalit\`a tecniche con cui le identit\`a vengono rappresentate, memorizzate o gestite.
+
+\Field{Assumptions (optional)} Nessuna assunzione macro esplicita.
+
+\Field{Constraints (optional)} Nessun vincolo macro esplicito.
+
+\Field{dependsOn} Nessuna dipendenza MR esplicita.
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\textwidth}
+\BABox{
+\BAhead{Base Analysis}
+\BAlabel{BAReferent gi\`a presenti}
+\bbeh{IdentityManagement}\par
+\bnon{GovernedIdentity}
+
+\BAlabel{P01 -- \baop{create}}
+actor $\rightarrow$ \bbeh{IdentityManagement}\par
+created $\rightarrow$ \bnon{GovernedIdentity}\par
+originState: GROUNDED\par
+reviewState: PENDING\_REVIEW
+
+\BAlabel{Delta dei nuovi campi}
+Context stabilizza il ruolo di \bnon{GovernedIdentity} come riferimento condiviso e riusabile. Stakeholders non produce delta strutturale al livello corrente. Scope conferma che MR-0004 possiede la gestione dell'identit\`a ma non autorizzazione, verifica o decisione di accesso. Non emerge una dipendenza MR diretta da governare.
+
+\BAlabel{OPEN per il pass BA completo}
+Intent e Scope parlano anche di mantenimento nel tempo delle identit\`a. P01 rappresenta esplicitamente \baop{create}, ma non materializza ancora separatamente la semantica di mantenimento. Nessuna relazione viene inventata in questo checkpoint.
+}
+\end{minipage}
+
+\newpage
+
+% -----------------------------------------------------------------------------
+% CHECKPOINT
+% -----------------------------------------------------------------------------
+\section{Checkpoint del ciclo MR -- campi completi}
+
+\subsection*{Documentazione MR completata}
+Per ciascun MacroRequirement sono ora stati attraversati in ordine i campi \texttt{id}, \texttt{title}, \texttt{lifecycle}, \texttt{intent}, \texttt{context}, \texttt{stakeholders}, \texttt{scope}, \texttt{assumptions}, \texttt{constraints} e \texttt{dependsOn}. I campi opzionali \texttt{assumptions} e \texttt{constraints} non hanno prodotto contenuto macro necessario nel caso di studio corrente.
+
+\subsection*{Delta BA osservato dai campi successivi a Title + Intent}
+\begin{compactitems}
+  \item \textbf{Context:} non richiede nuovi BAReferent o BAProposition; stabilizza e disambigua l'interpretazione della struttura gi\`a emersa da Title + Intent.
+  \item \textbf{Stakeholders:} al livello corrente non richiede incremento strutturale della BA.
+  \item \textbf{Scope:} chiarisce i confini delle responsabilit\`a e rende diagnosticabile il riuso cross-MR senza trasformare il riuso in una relazione normativa inventata dalla BA.
+  \item \textbf{Assumptions / Constraints:} nessun delta nel caso di studio corrente.
+  \item \textbf{dependsOn:} introduce semantica governata di dipendenza e permette di materializzare tre nuove BAProposition con l'operatore BA2 \baop{dependOn}: P07, P08 e P09, senza creare nuovi BAReferent.
+\end{compactitems}
+
+\subsection*{Cross-MR verification}
+Le dipendenze documentate coincidono con i collegamenti che la BA precedente poteva gi\`a segnalare come handoff cross-MR sulla base di proposition e provenance:
+
+\begin{compactitems}
+  \item MR-0001 $\rightarrow$ MR-0002: \bnon{AccessAuthorizationState} prodotto da P03 e usato come input da P06;
+  \item MR-0001 $\rightarrow$ MR-0003: \bnon{IdentityVerificationEvidence} prodotto da P05 e usato come input da P06;
+  \item MR-0002 $\rightarrow$ MR-0004: \bnon{GovernedIdentity} creato in P01 e correlato in P02;
+  \item MR-0003 $\rightarrow$ MR-0004: \bnon{GovernedIdentity} creato in P01 e correlato in P04.
+\end{compactitems}
+
+Questo suggerisce un diagnostico R24 deterministico da conservare: un handoff cross-MR osservabile da BA + provenance pu\`o essere segnalato come \emph{unresolved} finch\'e la documentazione non governa la relazione; un \texttt{dependsOn} coerente pu\`o poi risolvere la segnalazione. La BA non deve generare automaticamente \texttt{dependsOn} e un \texttt{dependsOn} privo di evidenza semantica BA deve poter essere segnalato per revisione.
+
+\subsection*{Pressure point BA da conservare}
+La distinzione sperimentale \bbeh{CanonicalName} = BEHAVIORAL e \bnon{CanonicalName} = NON-BEHAVIORAL continua a ricevere evidenza dai nuovi campi, ma resta \textbf{PENDING\_REVIEW}. Non viene ancora deciso se debba essere espressa tramite \texttt{classify/semanticKind}, mediante una minima ridefinizione di BAReferent o soltanto come convenzione di authoring/proiezione.
+
+\subsection*{OPEN prima del Gate D1 / R24-G1}
+Prima di dichiarare chiuso il livello MR va eseguito il pass BA completo A/B/C sull'intero set. In particolare occorre riesaminare senza inventare semantica: (1) l'effetto, ora esplicito nello Scope di MR-0001, di rendere possibile l'accesso quando l'esito lo consente; (2) la semantica di mantenimento nel tempo presente in MR-0002 e MR-0004 ma non ancora materializzata separatamente nelle proposition correnti; (3) la coerenza complessiva delle nuove P07--P09 con il contratto BA2 \texttt{dependOn}.
+
+\end{document}
