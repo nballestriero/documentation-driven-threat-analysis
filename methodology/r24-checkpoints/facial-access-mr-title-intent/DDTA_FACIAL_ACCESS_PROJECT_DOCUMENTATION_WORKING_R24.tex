@@ -1,0 +1,241 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{lmodern}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{parskip}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage[hidelinks]{hyperref}
+
+\newcommand{\bbeh}[1]{\texttt{*<#1>}}
+\newcommand{\bnon}[1]{\texttt{\#<#1>}}
+\newcommand{\baop}[1]{\texttt{@<#1>}}
+\newcommand{\barole}[1]{\texttt{#1}}
+\newcommand{\BAhead}[1]{\par\noindent\textbf{#1}\par}
+\newcommand{\BAlabel}[1]{\par\noindent\textbf{#1}\par}
+\newcommand{\BAsmall}[1]{\par\noindent{\small #1}\par}
+\newcommand{\BABox}[1]{%
+  \fcolorbox{gray!55}{gray!7}{%
+    \begin{minipage}[t]{0.94\linewidth}\raggedright\footnotesize #1\end{minipage}%
+  }%
+}
+\newcommand{\MRsep}{\par\vspace{0.8em}\hrule\vspace{1.0em}}
+
+\title{DDTA -- Facial Access\\Project Documentation}
+\author{Documentation-Driven Threat Analysis}
+\date{Working document -- R24}
+
+\begin{document}
+\maketitle
+
+\section{Project Problem Framing}
+
+\noindent
+\begin{minipage}[t]{0.64\textwidth}
+Il progetto affronta il problema di controllare l'accesso a un'area fisica riservata, determinando se una persona che si presenta a un punto di accesso possa entrare e rendendo possibile l'apertura del varco solo quando le condizioni di accesso previste dall'organizzazione risultano soddisfatte.
+
+Rientrano nel problema la gestione delle condizioni che determinano chi pu\`o accedere, la verifica della persona che si presenta, la decisione relativa all'accesso e le conseguenze dell'uso di informazioni personali o biometriche necessarie al processo.
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\textwidth}
+\BABox{
+\BAhead{Base Analysis}
+Il framing definisce il confine del problema. In questo ciclo non materializziamo BAReferent o BAProposition dal framing da solo; la BA inline inizia con i campi \emph{Title + Intent} degli MR.
+}
+\end{minipage}
+
+\section{MacroRequirements -- Title + Intent con Base Analysis inline}
+
+\textbf{Convenzione di lettura.} La colonna sinistra contiene la documentazione governata in costruzione. La colonna destra mostra esclusivamente la Base Analysis materializzabile dal testo affiancato. In questo checkpoint sperimentale, \bbeh{CanonicalName} indica un BAReferent candidato \textbf{BEHAVIORAL}; \bnon{CanonicalName} indica un BAReferent candidato \textbf{NON-BEHAVIORAL}; \baop{semanticOperatorKey} indica un operatore BA2. I marcatori \texttt{*}, \texttt{\#} e \texttt{@} non fanno parte del nome canonico o della chiave semantica. La distinzione BEHAVIORAL/NON-BEHAVIORAL \`e un \textbf{pressure point R24 PENDING\_REVIEW}: non modifica ancora il contratto BA chiuso.
+
+\newpage
+
+\noindent
+\begin{minipage}[t]{0.64\textwidth}
+\subsection*{MR-0001 -- Controllo dell'accesso all'area riservata}
+\textbf{Lifecycle:} current
+
+\textbf{Intent}
+
+Consentire a \bbeh{ControlledAreaAccess} di determinare se un tentativo di accesso all'area riservata possa essere consentito, usando \bnon{IdentityVerificationEvidence} e \bnon{AccessAuthorizationState} per \baop{produce} \bnon{AccessDecision} coerente con le condizioni stabilite dall'organizzazione.
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\textwidth}
+\BABox{
+\BAhead{Elementi BA al primo livello}
+\BAlabel{BAReferent}
+\bbeh{ControlledAreaAccess}
+\emph{responsabilit\`a macro di controllo dell'accesso}
+
+\BAlabel{BAReferent}
+\bnon{IdentityVerificationEvidence}
+\emph{input riusato da MR-0003}
+
+\BAlabel{BAReferent}
+\bnon{AccessAuthorizationState}
+\emph{input riusato da MR-0002}
+
+\BAlabel{BAReferent}
+\bnon{AccessDecision}
+\emph{risultato della responsabilit\`a macro}
+
+\BAlabel{BAProposition P06}
+semanticOperatorKey: \baop{produce}\par
+actor $\rightarrow$ \bbeh{ControlledAreaAccess}\par
+input $\rightarrow$ \bnon{IdentityVerificationEvidence}\par
+input $\rightarrow$ \bnon{AccessAuthorizationState}\par
+result $\rightarrow$ \bnon{AccessDecision}\par
+polarity: affirmative\par
+originState: GROUNDED\par
+reviewState: PENDING\_REVIEW
+}
+\end{minipage}
+\MRsep
+
+\newpage
+
+\noindent
+\begin{minipage}[t]{0.64\textwidth}
+\subsection*{MR-0002 -- Gestione delle autorizzazioni di accesso}
+\textbf{Lifecycle:} current
+
+\textbf{Intent}
+
+Consentire a \bbeh{AccessAuthorizationManagement} di stabilire e mantenere nel tempo lo stato delle autorizzazioni di accesso definite dall'organizzazione, di \baop{correlate} \bnon{AccessAuthorizationState} con la relativa \bnon{GovernedIdentity} e di \baop{produce} \bnon{AccessAuthorizationState} aggiornato e utilizzabile da \bbeh{ControlledAreaAccess}.
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\textwidth}
+\BABox{
+\BAhead{Elementi BA al primo livello}
+\BAlabel{BAReferent}
+\bbeh{AccessAuthorizationManagement}
+\emph{responsabilit\`a macro di gestione delle autorizzazioni}
+
+\BAlabel{BAReferent}
+\bnon{AccessAuthorizationState}
+\emph{stato di autorizzazione prodotto}
+
+\BAlabel{BAReferent}
+\bnon{GovernedIdentity}
+\emph{referent riusato; responsabilit\`a di origine in MR-0004}
+
+
+\BAlabel{BAProposition P02}
+semanticOperatorKey: \baop{correlate}\par
+correlatedItem $\rightarrow$ \bnon{AccessAuthorizationState}\par
+correlatedItem $\rightarrow$ \bnon{GovernedIdentity}\par
+correlationContext $\rightarrow$ \bbeh{AccessAuthorizationManagement}\par
+polarity: affirmative\par
+originState: GROUNDED\par
+reviewState: PENDING\_REVIEW
+
+\BAlabel{BAProposition P03}
+semanticOperatorKey: \baop{produce}\par
+actor $\rightarrow$ \bbeh{AccessAuthorizationManagement}\par
+result $\rightarrow$ \bnon{AccessAuthorizationState}\par
+polarity: affirmative\par
+originState: GROUNDED\par
+reviewState: PENDING\_REVIEW
+}
+\end{minipage}
+\MRsep
+
+\newpage
+
+\noindent
+\begin{minipage}[t]{0.64\textwidth}
+\subsection*{MR-0003 -- Verifica della persona al punto di accesso}
+\textbf{Lifecycle:} current
+
+\textbf{Intent}
+
+Consentire a \bbeh{IdentityVerification} di stabilire a quale \bnon{GovernedIdentity} corrisponde \bnon{PersonAtAccessPoint}, e di \baop{produce} \bnon{IdentityVerificationEvidence} utilizzabile da \bbeh{ControlledAreaAccess}.
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\textwidth}
+\BABox{
+\BAhead{Elementi BA al primo livello}
+\BAlabel{BAReferent}
+\bbeh{IdentityVerification}
+\emph{responsabilit\`a macro di verifica}
+
+\BAlabel{BAReferent}
+\bnon{GovernedIdentity}
+\emph{referent riusato da MR-0004}
+
+\BAlabel{BAReferent}
+\bnon{PersonAtAccessPoint}
+\emph{persona che si presenta al punto di accesso}
+
+\BAlabel{BAReferent}
+\bnon{IdentityVerificationEvidence}
+\emph{risultato della verifica}
+
+
+\BAlabel{BAProposition P04}
+semanticOperatorKey: \baop{correlate}\par
+correlatedItem $\rightarrow$ \bnon{PersonAtAccessPoint}\par
+correlatedItem $\rightarrow$ \bnon{GovernedIdentity}\par
+correlationContext $\rightarrow$ \bbeh{IdentityVerification}\par
+polarity: affirmative\par
+originState: GROUNDED\par
+reviewState: PENDING\_REVIEW
+
+\BAlabel{BAProposition P05}
+semanticOperatorKey: \baop{produce}\par
+actor $\rightarrow$ \bbeh{IdentityVerification}\par
+result $\rightarrow$ \bnon{IdentityVerificationEvidence}\par
+polarity: affirmative\par
+originState: GROUNDED\par
+reviewState: PENDING\_REVIEW
+}
+\end{minipage}
+\MRsep
+
+\noindent
+\begin{minipage}[t]{0.64\textwidth}
+\subsection*{MR-0004 -- Gestione delle identit\`a}
+\textbf{Lifecycle:} current
+
+\textbf{Intent}
+
+Consentire a \bbeh{IdentityManagement} di \baop{create} e mantenere le \bnon{GovernedIdentity} necessarie al controllo degli accessi, rendendole disponibili alle responsabilit\`a di progetto che devono riferirsi a un'identit\`a governata.
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\textwidth}
+\BABox{
+\BAhead{Elementi BA al primo livello}
+\BAlabel{BAReferent}
+\bbeh{IdentityManagement}
+\emph{responsabilit\`a macro di gestione delle identit\`a}
+
+\BAlabel{BAReferent}
+\bnon{GovernedIdentity}
+\emph{identit\`a governata introdotta da questo MR}
+
+\BAlabel{BAProposition P01}
+semanticOperatorKey: \baop{create}\par
+actor $\rightarrow$ \bbeh{IdentityManagement}\par
+created $\rightarrow$ \bnon{GovernedIdentity}\par
+polarity: affirmative\par
+originState: GROUNDED\par
+reviewState: PENDING\_REVIEW
+}
+\end{minipage}
+\MRsep
+
+\newpage
+\section{Checkpoint del ciclo MR -- Title + Intent}
+
+L'introduzione di MR-0004 assegna a \bnon{GovernedIdentity} una responsabilit\`a macro di origine distinta. Lo stesso referent viene poi riusato da MR-0002 per collegare l'autorizzazione all'identit\`a e da MR-0003 per verificare la persona presente al punto di accesso.
+
+MR-0001 riceve \bnon{IdentityVerificationEvidence} e \bnon{AccessAuthorizationState} come input per produrre \bnon{AccessDecision}. A questo livello non vengono inferiti dettagli su come le identit\`a siano mantenute, come le autorizzazioni siano determinate o come la verifica sia realizzata.
+
+\subsection*{Pressure point BA da conservare}
+
+Il ciclo ha evidenziato una distinzione semantica generale che la BA corrente non rende esplicita come propriet\`a intrinseca del BAReferent: alcuni referent rappresentano comportamento/capacit\`a/processi, altri rappresentano entit\`a, informazioni, stati, evidenze o decisioni. La notazione sperimentale di questo documento usa \bbeh{CanonicalName} per i referent candidati \textbf{BEHAVIORAL} e \bnon{CanonicalName} per i referent candidati \textbf{NON-BEHAVIORAL}. Questa distinzione \`e \textbf{PENDING\_REVIEW} e deve essere trattata come possibile pressione per una futura ridefinizione minima della BA, non come modifica gi\`a accettata.
+
+\subsection*{Prossimo passo del livello MR}
+
+Restare al livello MacroRequirement. Completare i campi rimanenti \textbf{uno alla volta}, iniziando da \textbf{Context} per l'intero set MR; dopo ogni campo, ricostruire la BA e verificare quali BAReferent, BAProposition, classificazioni o gap vengono aggiunti, chiariti oppure lasciati invariati. Non aprire le Decision finch\'e il Gate D1 / R24-G1 non \`e riesaminato sull'MR completo.
+
+\end{document}

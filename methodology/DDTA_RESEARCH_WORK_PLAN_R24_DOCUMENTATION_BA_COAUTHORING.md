@@ -1,9 +1,10 @@
 # DDTA Research Work Plan R24 - Documentation / Base Analysis Co-authoring
 
 **Status:** WORKING PLAN / CANDIDATE  
-**Repository baseline:** `9cc17a148726bd0734db51e26ac74e031020f340`  
+**Original experiment input baseline:** `9cc17a148726bd0734db51e26ac74e031020f340`  
+**Current continuation baseline:** `63c2308118bc0d7faae59938ee90634730be95f7`  
 **Active research correction:** replace branch-local depth-first BA execution with documentation/BA co-authoring performed breadth-first by semantic level.  
-**Preserved closures:** BA1, BA2, BA3 and BA5 remain closed unless a concrete R24 counterexample triggers the smallest applicable reopen criterion.
+**Preserved closures:** BA1, BA2, BA3 and BA5 remain closed unless a concrete R24 counterexample triggers the smallest applicable reopen criterion. The current MR experiment has produced one such pressure point candidate (behavioral vs non-behavioral referent nature), recorded for review but not yet accepted as a reopen or contract change.
 
 ## 1. Purpose
 
@@ -361,15 +362,103 @@ R24 will produce:
 7. migration mapping and final experiment disposition;
 8. a later handoff/drop-in package for the accepted next step.
 
-## 19. Immediate next step after installing this plan
+## 19. Current R24 checkpoint - MR Title + Intent
 
-Do **not** resume the old MR-0003 depth-first branch.
+**Checkpoint status:** ACTIVE / R24-WORKING / MR LEVEL ONLY.
 
-Start R24 Phase 0/1 only:
+The experiment has completed a first macro pass through Project Problem Framing plus `Title + Intent` for the complete candidate MR set. Decisions remain intentionally unopened.
 
-1. verify authority/baseline;
-2. collect current MR-0003 and historical MR-0001/2/4;
-3. write/review the project problem framing;
-4. rewrite the four MR candidates as one coherent macro set;
-5. perform MR-level BA Pass A/B/C;
-6. stop at Gate R24-G1 for human review before opening any Decision document.
+### 19.1 Candidate MR set now under analysis
+
+1. `MR-0001 - Controllo dell'accesso all'area riservata`;
+2. `MR-0002 - Gestione delle autorizzazioni di accesso`;
+3. `MR-0003 - Verifica della persona al punto di accesso`;
+4. `MR-0004 - Gestione delle identita`.
+
+The current MR-0004 is a new macro responsibility for identity management. The historical biometric/privacy concern is not forced into the macro MR set; governance/privacy/security concerns may emerge later at the appropriate Decision/FR/Specialized/Security level if governed evidence requires them.
+
+### 19.2 Current Title + Intent BA
+
+The current BA story contains the following principal reusable meanings:
+
+```text
+BEHAVIORAL candidate referents
+*<IdentityManagement>
+*<AccessAuthorizationManagement>
+*<IdentityVerification>
+*<ControlledAreaAccess>
+
+NON-BEHAVIORAL candidate referents
+#<GovernedIdentity>
+#<AccessAuthorizationState>
+#<PersonAtAccessPoint>
+#<IdentityVerificationEvidence>
+#<AccessDecision>
+```
+
+and propositions P01-P06 based on the closed BA2 operators `create`, `correlate` and `produce`.
+
+### 19.3 Documentation correction already exposed by BA
+
+The earlier Title + Intent set introduced `GovernedIdentity` only in the verification branch even though it is a reusable project meaning needed by both verification and authorization. Applying the MR split/merge tests led to a distinct identity-management MR. The revised macro story now makes `GovernedIdentity` originate from MR-0004 and be reused by MR-0002 and MR-0003.
+
+This is retained as evidence that BA can expose a documentation-structure gap without becoming authority over the correction.
+
+### 19.4 BA pressure point - behavioral vs non-behavioral referent nature
+
+A new pressure point has emerged: BA1 currently gives both behavioral meanings (capability/process/responsibility-like referents) and non-behavioral meanings (entity/information/state/evidence/decision-like referents) the same first-class `BAReferent` identity, while BA2 role keys describe only how a referent participates in a proposition.
+
+The experiment therefore uses the following **working authoring/projection notation only**:
+
+```text
+*<CanonicalName>  = candidate BEHAVIORAL BAReferent
+#<CanonicalName>  = candidate NON-BEHAVIORAL BAReferent
+@<operatorKey>    = BA2 semantic operator
+```
+
+This distinction is **PENDING_REVIEW**. It is not yet part of BA1, BA2 or BA5 closure and must not be treated as project truth. The smallest-contract disposition remains open. Candidate outcomes to test include:
+
+- no core change: express the distinction through existing `classify` + controlled `semanticKind`;
+- a minimal BAReferent semantic-nature field or equivalent BA1 refinement;
+- authoring/projection-only notation if no downstream semantic value is demonstrated.
+
+The distinction should be retained and tested across the remaining MR fields and later abstraction levels before deciding whether a BA reopen is justified.
+
+### 19.5 Projection checkpoint
+
+A macro graph has been produced as a human-readable projection of the current BA and retained as research evidence. The graph is not authority. Projection work must continue to obey:
+
+- no relation without a BAProposition;
+- no renderer-created project meaning;
+- n-ary BA semantics must not be replaced by arbitrary pairwise claims;
+- presentation rules may expose the experimental behavioral/non-behavioral distinction, but cannot make that distinction authoritative.
+
+The current image is useful as the visual baseline for a later reusable projection template; formalizing that template is secondary to completing the MR semantics.
+
+## 20. Immediate next step - finish MacroRequirement fields breadth-first
+
+Do **not** open Decisions yet. Stay at R24 Phase 1 and complete the remaining canonical MR fields **one field at a time across the whole MR set**.
+
+Current order:
+
+1. `Context` for MR-0001/2/3/4;
+2. rebuild/review BA and record the delta caused by Context;
+3. `Stakeholders` for MR-0001/2/3/4;
+4. rebuild/review BA and record the delta;
+5. `Scope` for MR-0001/2/3/4;
+6. rebuild/review BA and record the delta;
+7. optional `Assumptions` only where they apply to the whole branch;
+8. optional `Constraints` only where they apply to the whole branch;
+9. `dependsOn` / cross-MR complementarity where governed and necessary;
+10. rerun the complete MR-level BA Pass A/B/C and reassess Gate D1 / R24-G1.
+
+For each field, explicitly record whether the new documentation:
+
+- creates a new BAReferent;
+- creates a new BAProposition;
+- changes/clarifies an existing proposition;
+- resolves or creates a documentation gap;
+- adds only human interpretive background with no BA delta;
+- provides further evidence for or against the behavioral/non-behavioral pressure point.
+
+Only after the complete MR set passes the MR gate should the experiment descend breadth-first to Decisions.
