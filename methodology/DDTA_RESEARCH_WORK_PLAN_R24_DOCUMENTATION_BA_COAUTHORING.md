@@ -2,7 +2,7 @@
 
 **Status:** WORKING PLAN / CANDIDATE  
 **Original experiment input baseline:** `9cc17a148726bd0734db51e26ac74e031020f340`  
-**Current continuation baseline:** `7950912e8cd1037ffacd5a440d1d4e8bb8453aab`  
+**Current continuation baseline:** `6fd2a83e58eb6b8f8eb3168ae7e72b5f65835562`
 **Active research correction:** replace branch-local depth-first BA execution with documentation/BA co-authoring performed breadth-first by semantic level.  
 **Preserved closures:** BA1, BA2, BA3 and BA5 remain closed unless a concrete R24 counterexample triggers the smallest applicable reopen criterion. The current MR experiment has produced one such pressure point candidate (behavioral vs non-behavioral referent nature), recorded for review but not yet accepted as a reopen or contract change.
 
@@ -422,20 +422,21 @@ P01-P06 are retained from the Intent checkpoint:
 - `P05 @<produce>`: `*<IdentityVerification>` produces `#<IdentityVerificationEvidence>`;
 - `P06 @<produce>`: `*<ControlledAreaAccess>` uses `#<IdentityVerificationEvidence>` and `#<AccessAuthorizationState>` as inputs and produces `#<AccessDecision>`.
 
-The completed `dependsOn` fields add four grounded dependency propositions:
+The completed `dependsOn` fields add three grounded dependency propositions:
 
-- `P07 @<dependOn>`: `*<ControlledAreaAccess>` depends on `*<AccessAuthorizationManagement>`;
-- `P08 @<dependOn>`: `*<ControlledAreaAccess>` depends on `*<IdentityVerification>`;
-- `P09 @<dependOn>`: `*<AccessAuthorizationManagement>` depends on `*<IdentityManagement>`;
-- `P10 @<dependOn>`: `*<IdentityVerification>` depends on `*<IdentityManagement>`.
+- `P07 @<dependOn>`: `*<ControlledAreaAccess>` depends on both `*<AccessAuthorizationManagement>` and `*<IdentityVerification>` through two `prerequisite` participations in the same proposition;
+- `P08 @<dependOn>`: `*<AccessAuthorizationManagement>` depends on `*<IdentityManagement>`;
+- `P09 @<dependOn>`: `*<IdentityVerification>` depends on `*<IdentityManagement>`.
 
-P01-P10 currently remain `originState: GROUNDED` and `reviewState: PENDING_REVIEW`. This checkpoint does not turn them into accepted BA merely because the working documentation contains their source meaning.
+The four documented direct MR dependency links are therefore represented by three BAPropositions: the BA2 `dependOn` role contract permits one `dependent` and one or more `prerequisite` participations, so MR-0001 does not require two arbitrary pairwise propositions.
+
+P01-P09 currently remain `originState: GROUNDED` and `reviewState: PENDING_REVIEW`. This checkpoint does not turn them into accepted BA merely because the working documentation contains their source meaning.
 
 ### 19.3 Documentation/BA corrections and diagnostics exposed so far
 
 The earlier Title + Intent set introduced `GovernedIdentity` only in the verification branch even though it is a reusable project meaning needed by both verification and authorization. Applying the MR split/merge tests led to a distinct identity-management MR. The revised macro story now makes `GovernedIdentity` originate from MR-0004 and be reused by MR-0002 and MR-0003.
 
-The full MR pass also made cross-MR dependencies explicit in documentation rather than leaving them to a renderer or reader to infer. These dependencies are represented by P07-P10.
+The full MR pass also made cross-MR dependencies explicit in documentation rather than leaving them to a renderer or reader to infer. These dependencies are represented by P07-P09.
 
 The completed Scope fields expose additional semantics that the current BA proposition set does not yet represent cleanly. They remain explicit diagnostics rather than being repaired by invention:
 
@@ -463,7 +464,7 @@ This distinction is **PENDING_REVIEW**. It is not yet part of BA1, BA2 or BA5 cl
 - a minimal BAReferent semantic-nature field or equivalent BA1 refinement;
 - authoring/projection-only notation if no downstream semantic value is demonstrated.
 
-The distinction has now been pressure-tested across the complete MR semantic shape and P01-P10, but this evidence is not yet sufficient by itself to accept a BA reopen.
+The distinction has now been pressure-tested across the complete MR semantic shape and P01-P09, but this evidence is not yet sufficient by itself to accept a BA reopen.
 
 ### 19.5 Projection checkpoint
 
@@ -484,7 +485,7 @@ The current working project documentation is retained as a paired source/rendere
 - `methodology/DDTA_FACIAL_ACCESS_PROJECT_DOCUMENTATION_WORKING_R24_MR_COMPLETE.tex`;
 - `methodology/DDTA_FACIAL_ACCESS_PROJECT_DOCUMENTATION_WORKING_R24_MR_COMPLETE.pdf`.
 
-The document contains the approved two-paragraph Project Problem Framing, the four MR candidates through `dependsOn`, the aligned MR-level BA P01-P10, and explicit OPEN diagnostics. It is a research working artifact, not a declaration that Gate D1 has passed.
+The document contains the approved two-paragraph Project Problem Framing, the four MR candidates through `dependsOn`, the aligned MR-level BA P01-P09, and explicit OPEN diagnostics. It is a research working artifact, not a declaration that Gate D1 has passed.
 
 ## 20. Immediate next step - audit the complete MacroRequirement set for D1
 
@@ -494,7 +495,7 @@ Current order:
 
 1. keep the approved two-paragraph Project Problem Framing unchanged unless a concrete review finding requires a governed correction;
 2. keep MR-0001..MR-0004 and their currently authored fields through `dependsOn` as the working MR candidate set;
-3. preserve P01-P10 as the current BA checkpoint with `reviewState: PENDING_REVIEW`;
+3. preserve P01-P09 as the current BA checkpoint with `reviewState: PENDING_REVIEW`;
 4. preserve `*` / `#` as pressure-test notation only, not accepted BA core;
 5. review each MR against the R24 MR invariants and split/merge criteria;
 6. review the four-MR set for completeness, overlap, stable responsibility boundaries and explicit cross-MR dependency;
