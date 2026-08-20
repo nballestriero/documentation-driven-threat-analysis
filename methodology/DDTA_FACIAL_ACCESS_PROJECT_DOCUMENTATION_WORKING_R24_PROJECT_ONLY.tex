@@ -1,0 +1,287 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{lmodern}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{parskip}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+
+\newcommand{\bbeh}[1]{\texttt{*<#1>}}
+\newcommand{\bnon}[1]{\texttt{\#<#1>}}
+\newcommand{\baop}[1]{\texttt{@<#1>}}
+\newcommand{\Field}[1]{\par\medskip\noindent\textbf{#1}\par\smallskip}
+\newcommand{\SideBox}[1]{%
+  \fcolorbox{gray!45}{gray!6}{%
+    \begin{minipage}[t]{0.94\linewidth}\raggedright\small #1\end{minipage}%
+  }%
+}
+\newenvironment{compactitems}{\begin{itemize}[leftmargin=1.35em,itemsep=0.12em,topsep=0.2em,parsep=0pt]}{\end{itemize}}
+
+\title{DDTA -- Facial Access\\Project Documentation}
+\author{Documentation-Driven Threat Analysis}
+\date{Working project documentation -- R24}
+
+\begin{document}
+\maketitle
+
+\section{Project Problem Framing}
+
+Il progetto affronta il problema di controllare l'accesso a un'area fisica riservata, determinando se una persona che si presenta a un punto di accesso possa entrare e rendendo possibile l'apertura del varco solo quando le condizioni di accesso previste dall'organizzazione risultano soddisfatte.
+
+Rientrano nel problema la gestione delle condizioni che determinano chi può accedere, la verifica della persona che si presenta, la decisione relativa all'accesso e le conseguenze dell'uso di informazioni personali o biometriche necessarie al processo.
+
+\newpage
+
+% -----------------------------------------------------------------------------
+% MR-0001
+% -----------------------------------------------------------------------------
+\section{MacroRequirements}
+\noindent
+\begin{minipage}[t]{0.64\textwidth}\small
+\subsection*{MR-0001 -- Controllo dell'accesso all'area riservata}
+
+\Field{Intent}
+Consentire a \bbeh{ControlledAreaAccess} di determinare se un tentativo di accesso all'area riservata possa essere consentito, usando \bnon{IdentityVerificationEvidence} e \bnon{AccessAuthorizationState} per \baop{produce} \bnon{AccessDecision} coerente con le condizioni stabilite dall'organizzazione.
+
+\Field{Context}
+Nel controllo di un accesso, la decisione relativa al tentativo deve essere formulata tenendo insieme due informazioni concettualmente distinte: l'evidenza relativa alla verifica della persona che si presenta e lo stato di autorizzazione associato all'identità governata rilevante. \bbeh{ControlledAreaAccess} costituisce il punto del problema in cui tali informazioni assumono significato congiunto ai fini della decisione di accesso.
+
+\Field{Scope}
+Rientrano nella responsabilità il controllo del tentativo di accesso, la determinazione dell'esito sulla base delle condizioni necessarie e il fatto che l'accesso possa essere reso possibile quando tale esito lo consente.
+
+Non rientrano nella responsabilità la definizione e il mantenimento delle autorizzazioni di accesso, la gestione delle identità, la verifica della persona che si presenta al punto di accesso né le scelte tecniche con cui la decisione o l'apertura del varco vengono realizzate.
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\textwidth}
+\SideBox{
+\textbf{ID}\par
+\texttt{MR-0001}
+
+\medskip\textbf{Lifecycle}\par
+current
+
+\medskip\textbf{Stakeholders}\par
+\begin{compactitems}
+  \item persone che si presentano al punto di accesso;
+  \item organizzazione responsabile dell'area riservata e delle condizioni di accesso.
+\end{compactitems}
+
+\medskip\textbf{Assumptions}\par
+Nessuna assunzione macro esplicita.
+
+\medskip\textbf{Constraints}\par
+Nessun vincolo macro esplicito.
+
+\medskip\textbf{dependsOn}\par
+\texttt{MR-0002}\par
+\texttt{MR-0003}
+}
+\end{minipage}
+
+\newpage
+
+% -----------------------------------------------------------------------------
+% MR-0002
+% -----------------------------------------------------------------------------
+\noindent
+\begin{minipage}[t]{0.64\textwidth}\small
+\subsection*{MR-0002 -- Gestione delle autorizzazioni di accesso}
+
+\Field{Intent}
+Consentire a \bbeh{AccessAuthorizationManagement} di stabilire e mantenere nel tempo lo stato delle autorizzazioni di accesso definite dall'organizzazione, di \baop{correlate} \bnon{AccessAuthorizationState} con la relativa \bnon{GovernedIdentity} e di \baop{produce} \bnon{AccessAuthorizationState} aggiornato e utilizzabile da \bbeh{ControlledAreaAccess}.
+
+\Field{Context}
+L'autorizzazione di accesso esprime una condizione attribuita dall'organizzazione a una \bnon{GovernedIdentity} e rilevante per stabilire se l'accesso possa essere consentito. Tale condizione può essere mantenuta nel tempo indipendentemente dalla presenza di una persona al punto di accesso e viene rappresentata, per il processo di accesso, mediante \bnon{AccessAuthorizationState}.
+
+\Field{Scope}
+Rientrano nella responsabilità la definizione e il mantenimento nel tempo delle autorizzazioni di accesso associate alle identità governate e la disponibilità dello stato di autorizzazione necessario al controllo dell'accesso.
+
+Non rientrano nella responsabilità la gestione delle identità a cui le autorizzazioni si riferiscono, la verifica della persona che si presenta al punto di accesso, la decisione relativa al singolo tentativo di accesso né le modalità tecniche con cui le autorizzazioni vengono memorizzate, aggiornate o rese disponibili.
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\textwidth}
+\SideBox{
+\textbf{ID}\par
+\texttt{MR-0002}
+
+\medskip\textbf{Lifecycle}\par
+current
+
+\medskip\textbf{Stakeholders}\par
+\begin{compactitems}
+  \item organizzazione e soggetti da essa delegati alla gestione delle autorizzazioni;
+  \item persone alle cui identità sono associate autorizzazioni di accesso.
+\end{compactitems}
+
+\medskip\textbf{Assumptions}\par
+Nessuna assunzione macro esplicita.
+
+\medskip\textbf{Constraints}\par
+Nessun vincolo macro esplicito.
+
+\medskip\textbf{dependsOn}\par
+\texttt{MR-0004}
+}
+\end{minipage}
+
+\newpage
+
+% -----------------------------------------------------------------------------
+% MR-0003
+% -----------------------------------------------------------------------------
+\noindent
+\begin{minipage}[t]{0.64\textwidth}\small
+\subsection*{MR-0003 -- Verifica della persona al punto di accesso}
+
+\Field{Intent}
+Consentire a \bbeh{IdentityVerification} di stabilire a quale \bnon{GovernedIdentity} corrisponde \bnon{PersonAtAccessPoint}, e di \baop{produce} \bnon{IdentityVerificationEvidence} utilizzabile da \bbeh{ControlledAreaAccess}.
+
+\Field{Context}
+Al punto di accesso, \bnon{PersonAtAccessPoint} e \bnon{GovernedIdentity} rappresentano significati distinti: il primo riguarda la persona che si presenta in quel momento, mentre il secondo costituisce il riferimento governato al quale la persona può essere ricondotta. \bbeh{IdentityVerification} riguarda la determinazione di questa corrispondenza e la disponibilità della relativa \bnon{IdentityVerificationEvidence}.
+
+\Field{Scope}
+Rientrano nella responsabilità la verifica della persona che si presenta al punto di accesso, la determinazione della sua corrispondenza con una identità governata e la disponibilità dell'evidenza risultante necessaria al controllo dell'accesso.
+
+Non rientrano nella responsabilità la gestione delle identità governate, la definizione o il mantenimento delle autorizzazioni di accesso, la decisione relativa al singolo tentativo di accesso né le modalità tecniche con cui la verifica viene realizzata.
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\textwidth}
+\SideBox{
+\textbf{ID}\par
+\texttt{MR-0003}
+
+\medskip\textbf{Lifecycle}\par
+current
+
+\medskip\textbf{Stakeholders}\par
+\begin{compactitems}
+  \item persone che si presentano al punto di accesso;
+  \item organizzazione che utilizza l'evidenza di verifica nel processo di accesso.
+\end{compactitems}
+
+\medskip\textbf{Assumptions}\par
+Nessuna assunzione macro esplicita.
+
+\medskip\textbf{Constraints}\par
+Nessun vincolo macro esplicito.
+
+\medskip\textbf{dependsOn}\par
+\texttt{MR-0004}
+}
+\end{minipage}
+
+\newpage
+
+% -----------------------------------------------------------------------------
+% MR-0004
+% -----------------------------------------------------------------------------
+\noindent
+\begin{minipage}[t]{0.64\textwidth}\small
+\subsection*{MR-0004 -- Gestione delle identità}
+
+\Field{Intent}
+Consentire a \bbeh{IdentityManagement} di \baop{create} e mantenere le \bnon{GovernedIdentity} necessarie al controllo degli accessi, rendendole disponibili alle responsabilità di progetto che devono riferirsi a un'identità governata.
+
+\Field{Context}
+Le diverse responsabilità coinvolte nel controllo degli accessi devono poter fare riferimento in modo coerente alle stesse identità nel tempo. \bbeh{IdentityManagement} rende disponibile questo riferimento governato attraverso \bnon{GovernedIdentity}, permettendone il riuso nei diversi momenti in cui il progetto deve riferirsi all'identità di una persona.
+
+\Field{Scope}
+Rientrano nella responsabilità la creazione e il mantenimento nel tempo delle identità governate necessarie al controllo degli accessi e la loro disponibilità alle altre responsabilità di progetto che devono riferirsi in modo coerente all'identità di una persona.
+
+Non rientrano nella responsabilità la definizione o il mantenimento delle autorizzazioni di accesso associate alle identità, la verifica della persona che si presenta al punto di accesso, la decisione relativa al singolo tentativo di accesso né le modalità tecniche con cui le identità vengono rappresentate, memorizzate o gestite.
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\textwidth}
+\SideBox{
+\textbf{ID}\par
+\texttt{MR-0004}
+
+\medskip\textbf{Lifecycle}\par
+current
+
+\medskip\textbf{Stakeholders}\par
+\begin{compactitems}
+  \item organizzazione e soggetti da essa delegati alla gestione delle identità;
+  \item persone alle quali le \bnon{GovernedIdentity} si riferiscono.
+\end{compactitems}
+
+\medskip\textbf{Assumptions}\par
+Nessuna assunzione macro esplicita.
+
+\medskip\textbf{Constraints}\par
+Nessun vincolo macro esplicito.
+
+\medskip\textbf{dependsOn}\par
+Nessuna dipendenza MR esplicita.
+}
+\end{minipage}
+
+\newpage
+
+% -----------------------------------------------------------------------------
+% ADR-0001
+% -----------------------------------------------------------------------------
+\section{Decisions}
+\noindent
+\begin{minipage}[t]{0.64\textwidth}\small
+\subsection*{ADR-0001 -- Politica congiuntiva per la decisione di accesso}
+
+\Field{Context}
+\bbeh{ControlledAreaAccess} determina \bnon{AccessDecision} utilizzando \bnon{AccessAuthorizationState} e \bnon{IdentityVerificationEvidence}, che rappresentano condizioni distinte del controllo dell'accesso.
+
+Il MacroRequirement stabilisce che entrambe partecipino alla determinazione dell'esito, ma non stabilisce quale relazione debba intercorrere tra i rispettivi esiti affinché l'accesso possa essere consentito. In particolare, resta da stabilire se ciascuna condizione sia necessaria oppure se una delle due possa risultare sufficiente in assenza dell'altra.
+
+\Field{Decision}
+Il progetto adotta una \textbf{politica congiuntiva} per \bnon{AccessDecision}: l'accesso può essere consentito soltanto quando \bnon{AccessAuthorizationState} indica che la relativa identità governata è autorizzata e \bnon{IdentityVerificationEvidence} supporta positivamente la verifica della persona che si presenta al punto di accesso.
+
+\bnon{AccessAuthorizationState} e \bnon{IdentityVerificationEvidence} costituiscono entrambe condizioni necessarie; nessuna delle due è sufficiente, da sola, a determinare un \bnon{AccessDecision} che consenta l'accesso.
+
+\Field{Consequences}
+\begin{compactitems}
+  \item una verifica positiva della persona non attribuisce né sostituisce l'autorizzazione di accesso;
+  \item un'autorizzazione valida non sostituisce la verifica della persona richiesta dal processo di accesso;
+  \item il comportamento funzionale successivo deve preservare la congiunzione delle due condizioni;
+  \item il significato di verifica positiva, la gestione degli esiti non conclusivi e le modalità con cui autorizzazione e verifica vengono ottenute restano scelte separate.
+\end{compactitems}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\textwidth}
+\SideBox{
+\textbf{Parent MacroRequirement}\par
+\texttt{MR-0001}
+
+\medskip\textbf{Title}\par
+Politica congiuntiva per la decisione di accesso
+}
+\end{minipage}
+
+\newpage
+
+% -----------------------------------------------------------------------------
+% FR-0001
+% -----------------------------------------------------------------------------
+\section{FunctionalRequirements}
+\noindent
+\begin{minipage}[t]{0.64\textwidth}\small
+\subsection*{FR-0001 -- Determinazione congiuntiva dell'esito di accesso}
+
+\Field{Obbligazione funzionale}
+Quando \bbeh{ControlledAreaAccess} determina \bnon{AccessDecision} per un tentativo di accesso, deve considerare \bnon{AccessAuthorizationState} e \bnon{IdentityVerificationEvidence} rilevanti per tale decisione.
+
+\bbeh{ControlledAreaAccess} \textbf{DEVE} produrre un \bnon{AccessDecision} che consenta l'accesso solo quando:
+\begin{compactitems}
+  \item \bnon{AccessAuthorizationState} indica un'autorizzazione valida; \textbf{e}
+  \item \bnon{IdentityVerificationEvidence} supporta positivamente la verifica della persona.
+\end{compactitems}
+
+Quando almeno una delle due condizioni non risulta soddisfatta, \bbeh{ControlledAreaAccess} \textbf{DEVE} produrre un \bnon{AccessDecision} che non consenta l'accesso.
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\textwidth}
+\SideBox{
+\textbf{Parent Decision}\par
+\texttt{ADR-0001}
+}
+\end{minipage}
+
+\end{document}
