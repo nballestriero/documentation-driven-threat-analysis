@@ -1,8 +1,8 @@
 # DDTA R24 - repository-alignment / decision-rule checkpoint
 
-**Status:** WORKING CHECKPOINT / REPOSITORY ALIGNMENT PASS  
-**Repository baseline:** `452a6e9aa0684f2d10fa2ef514fa24aaafe91c22`  
-**Purpose:** record the current R24 research state, the authority boundary, the accepted BA pressure-test findings, and the remaining alignment work before project authoring resumes.
+**Status:** WORKING CHECKPOINT / REPOSITORY ALIGNMENT COMPLETE  
+**Repository baseline reviewed:** `1912bc9a90bf076c50caf496f7f135bece010bad`  
+**Purpose:** record the current R24 research state, the authority boundary, the accepted BA pressure-test findings, and the completed repository-alignment state before project authoring resumes.
 
 ## 1. Authority boundary
 
@@ -205,30 +205,41 @@ Before adding any BA operator or richer structure, R24 must first decide what in
 
 This is a future pressure test after repository alignment and exact project wording are stabilized.
 
-## 7. Repository-alignment findings recorded by this checkpoint
+## 7. Repository-alignment closure
 
-The repository audit identified the following forward-facing alignment work:
+The repository-alignment audit was repeated against baseline `1912bc9a90bf076c50caf496f7f135bece010bad` before this closure pass.
 
-1. This checkpoint contained the earlier refinement baseline `6dd5c57d24b1254a2c74716ee45ab1ea2ad7e18d`; this revision realigns it to repository baseline `452a6e9aa0684f2d10fa2ef514fa24aaafe91c22`.
-2. `BA2_RELATION_ACTION_VOCABULARY_R2.md` still carries the earlier `Current refinement baseline` metadata and requires a metadata-only review before any semantic change is considered.
-3. Root `README.md` presents an earlier research state and must be realigned to distinguish the governed baseline from R24 working methodology/project work.
-4. Root `INDEX.md` is a stale working-package-style index and must not continue to appear as an accurate repository map.
-5. The repository governance material must make the `CURRENT_GOVERNED` versus R24 working-successor boundary unambiguous.
-6. `governance/decisions/TADR-0001_separate_research_repository.md` has lifecycle metadata that requires review against the repository structure already in use.
-7. BA1 and other forward-facing methodology metadata/cross-references should be reviewed for stale sequencing references, without reopening closed semantics merely for editorial alignment.
-8. Generated PDFs and other derived artifacts should be regenerated only after the source alignment pass is complete.
-9. Historical snapshots, drop-ins, checksums and explicitly non-canonical research packages are preserved unless they incorrectly claim current authority.
+At that reviewed baseline:
 
-## 8. Exact next repository-alignment microstep
+1. Root `README.md` correctly distinguishes `FACIAL_ACCESS_CURRENT_R1` as `CURRENT_GOVERNED` from the R24 working successor/research material.
+2. Root `INDEX.md` is aligned as the repository map rather than the older working-package-style index.
+3. `governance/document-authority/` preserves the explicit authority boundary: R24 working material is not promoted merely because it is newer.
+4. `governance/decisions/TADR-0001_separate_research_repository.md` is lifecycle-aligned with the repository practice already in use.
+5. `BA2_RELATION_ACTION_VOCABULARY_R2.md` is the active R24 working BA2 revision and is aligned with the findings in this checkpoint; the unresolved authorization representation remains an open project-semantics pressure point.
+6. BA1, BA3, BA4 and BA5 remain closed for their accepted scopes. Their R24 alignment notes correct forward-use sequencing without reopening those closed semantics.
+7. `DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R1.md` is aligned with the current `decisionRule` lower bound and no longer treats `AccessAuthorizationState.authorized = TRUE` as grounded facial-access meaning.
+8. The tracked `.tex/.pdf` renderings associated with the aligned BA1, BA3, BA4 and BA5 Markdown contracts are regenerated in this closure pass so those artifact triads remain synchronized.
+9. Historical state/work-plan snapshots, drop-ins, checksums and explicitly non-canonical working packages remain historical evidence unless they incorrectly claim current authority.
 
-Review `methodology/BA2_RELATION_ACTION_VOCABULARY_R2.md` **only for alignment metadata and forward references** against repository baseline:
+No additional forward-facing repository-alignment debt was identified by the repeated audit. Repository alignment is complete once this closure pass is committed and pushed.
+## 8. Exact next research microstep
+
+After this closure pass is committed and pushed, resume the Facial Access vertical slice at `MR-0003` rather than performing another repository-alignment pass:
 
 ```text
-452a6e9aa0684f2d10fa2ef514fa24aaafe91c22
+MR-0003 wording
+  -> MR-0003ADR-0001
+  -> MR-0003ADR-0001FR-0001
+  -> minimum justified BA derivation
+  -> downstream analysis / test usefulness check
 ```
 
-Do not reopen BA2 semantics during that microstep unless the file contains a direct semantic contradiction with the accepted findings recorded above.
+The vertical slice must preserve the current authority boundary: R24 remains working/non-canonical until an explicit promotion or supersession decision changes that status.
 
-After the repository-alignment queue is closed, resume the R24 project vertical slice at the exact `MR-0003ADR-0001` / `MR-0003ADR-0001FR-0001` wording pressure test.
+The authorization-side normalized comparison remains open until governed project semantics justify its property/value structure. Do not materialize `AccessAuthorizationState.authorized = TRUE`, scalar `AccessAuthorizationState = AUTHORIZED`, or an equivalent normalized authorization comparison without that evidence.
+
+A verification-selection `decisionRule` remains **NOT JUSTIFIED** while the project source governs only the correspondence outcome domain/meaning and not the selection conditions, thresholds or algorithm.
+
+Before BA2 is considered stable beyond this working R24 lower bound, pressure-test it against at least one non-Facial-Access governed domain.
 
 Normative keywords in project prose remain English (`MUST`, `MUST NOT`, etc.). Semantic operator keywords remain English (`produce`, `dependOn`, `decisionRule`, `condition`, `constrain`, `classify`, `actor`, `result`).
