@@ -15,7 +15,9 @@ The repository is intentionally separate from the ThreatForge software repositor
 
 ## Current research checkpoint
 
-DDTA is currently in an **R24 working research / repository-alignment pass**. Earlier BA0-BA5 closure results remain historical lower bounds, but they must not be read as proof that the complete Base Analysis is permanently closed.
+DDTA is currently in an **R24 working research pass after completed repository alignment**. Earlier BA0-BA5 closure results remain historical lower bounds, but they must not be read as proof that the complete Base Analysis is permanently closed.
+
+The active research step is `methodology/DDTA_RESEARCH_WORK_PLAN_AFTER_DOCUMENTATION_CLOSURE_R23.md`: a bounded literature-backed investigation of recurring problem/domain/requirements/security patterns triggered by the Facial Access identification-versus-verification semantic mismatch. This step precedes further `MR-0003` authoring and does not make any pattern catalog project authority.
 
 The current R24 work has specifically reopened **BA2** only where concrete documentation-driven pressure tests require refinement. The active BA2 working revision is `methodology/BA2_RELATION_ACTION_VOCABULARY_R2.md`; BA1 identity remains `BAReferent + BAProposition`, and no other BA layer is reopened merely for editorial cleanup.
 
@@ -32,6 +34,7 @@ governed project meaning
 
 The active forward-facing R24 records are:
 
+- `methodology/DDTA_RESEARCH_WORK_PLAN_AFTER_DOCUMENTATION_CLOSURE_R23.md`
 - `methodology/DDTA_R24_DECISION_RULE_CHECKPOINT.md`
 - `methodology/BA2_RELATION_ACTION_VOCABULARY_R2.md`
 - `methodology/DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R1.md`

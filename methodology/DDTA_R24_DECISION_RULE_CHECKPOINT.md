@@ -224,15 +224,28 @@ At that reviewed baseline:
 No additional forward-facing repository-alignment debt was identified by the repeated audit. Repository alignment is complete once this closure pass is committed and pushed.
 ## 8. Exact next research microstep
 
-After this closure pass is committed and pushed, resume the Facial Access vertical slice at `MR-0003` rather than performing another repository-alignment pass:
+Repository alignment is complete. Before resuming the Facial Access vertical slice at `MR-0003`, R24 now executes the bounded literature/pattern step defined by `DDTA_RESEARCH_WORK_PLAN_AFTER_DOCUMENTATION_CLOSURE_R23.md`.
+
+The trigger is a material semantic-classification question discovered during human review: the current Facial Access use case begins with a person whose governed identity is not yet known, while the working project model currently uses `IdentityVerification`. R24 must determine whether literature-backed problem/domain/requirements/security patterns can help discriminate identification, verification, authentication, authorization and access-decision responsibilities without importing architecture or becoming project authority.
+
+The active sequence is:
 
 ```text
-MR-0003 wording
+R23 literature source registration / access verification
+  -> standard reading cards + citation-ready excerpts
+  -> cross-source pattern synthesis
+  -> DDTA pattern-template candidate
+  -> Facial Access identification/verification pressure test
+  -> return to MR-0003 wording
   -> MR-0003ADR-0001
   -> MR-0003ADR-0001FR-0001
   -> minimum justified BA derivation
   -> downstream analysis / test usefulness check
 ```
+
+The first R23 reading microstep is `PAT-LIT-03 â€” The Domain Theory for Requirements Engineering`, using the existing `literature/templates/source-note.template.md`. `PAT-LIT-*` is a work-plan-local label; the source receives a real `SRC-*` identity only when it is registered in the literature corpus.
+
+No pattern catalog, pattern match or design pattern becomes project authority. Pattern research must not automatically emit project requirements, BA referents, BA propositions or BA2 operators.
 
 The vertical slice must preserve the current authority boundary: R24 remains working/non-canonical until an explicit promotion or supersession decision changes that status.
 
