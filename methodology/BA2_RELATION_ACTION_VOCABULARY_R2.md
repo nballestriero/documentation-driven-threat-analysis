@@ -1,9 +1,10 @@
 # DDTA BA2 relation/action vocabulary - R2
 
 **Status:** R24 WORKING REVISION / BA2-T4 REOPENED FOR DECISION-RULE, STRUCTURED CONSTRAINT-VALUE, AND PROPERTY-ADDRESSED COMPARISON
-**Current refinement baseline:** `6dd5c57d24b1254a2c74716ee45ab1ea2ad7e18d`
+**Current refinement baseline:** `8b00c246e4432b1f8fda64110a61b98f874215ff`
 **Supersedes for active R24 work:** `BA2_RELATION_ACTION_VOCABULARY_R1.md`  
 **Identity dependency:** `BA1_MINIMAL_BAE_IDENTITY_ONTOLOGY_R1.md` (`BAReferent + BAProposition`)
+**Repository-alignment checkpoint:** `DDTA_R24_DECISION_RULE_CHECKPOINT.md`
 
 ## 1. Revision scope
 
@@ -440,15 +441,9 @@ This is sufficient to preserve the governed semantic domain. `classify`, `transi
 
 ### 16.3 Property-addressed decision comparison
 
-The access-policy pressure test consumes properties of richer semantic inputs rather than scalarizing the inputs themselves. The relevant condition shape is:
+The verification-side pressure test consumes a governed property of a richer semantic input rather than scalarizing the input itself. Once the candidate MR-0003 Decision/FR wording is inserted, the grounded comparison shape is:
 
 ```text
-comparison
-  referent      -> AccessAuthorizationState
-  property      -> authorized
-  comparisonKey -> equals
-  value         -> TRUE
-
 comparison
   referent      -> IdentityVerificationEvidence
   property      -> correspondence
@@ -456,8 +451,13 @@ comparison
   value         -> TRUE
 ```
 
-This is semantically different from asserting `AccessAuthorizationState = TRUE` or `IdentityVerificationEvidence = TRUE`. The current evidence therefore justifies required `comparison.property`. It does not justify a `property` field on `resultAssignment`: `AccessDecision = ALLOW | NOT_ALLOW` remains sufficient for the reviewed result semantics.
+This is semantically different from asserting `IdentityVerificationEvidence = TRUE`, which would collapse the evidence object with the value of its governed `correspondence` property.
 
+`AccessAuthorizationState` is deliberately not used as supporting evidence in this pressure test. The current MR-0002 project documentation does not yet govern an `authorized` property, a `TRUE/FALSE` authorization vocabulary, or another normalized value structure sufficient to materialize an authorization comparison. That side remains an open project-semantics pressure point.
+
+The current evidence therefore continues to justify required `comparison.property` for the reviewed R24 lower bound, while no property-less governed counterexample has yet been accepted.
+
+No current evidence justifies `resultAssignment.property`; the existing `target + value` result-assignment lower bound remains unchanged.
 ## 17. R2 disposition
 
 ```text
