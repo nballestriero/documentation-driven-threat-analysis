@@ -15,24 +15,65 @@ The repository is intentionally separate from the ThreatForge software repositor
 
 ## Current research checkpoint
 
-The documentation layer, Chapters 2-4, `BA0-R`, the BA0 responsibility/non-goals boundary, the BA1 minimal BAE identity ontology, and the **BA2 relation/action vocabulary, BA3 provenance/derivation/identity/lifecycle/change-revalidation mechanics, BA4 projection boundary/traceability/coverage/interpretation contract and BA5 canonical semantic registry/controlled-authoring boundary are closed for the current thesis scope**. BA5-T3 has completed the integrated closure review over the T1 exact referent-naming lower bound and T2 domain-scoped registry/governed-extension refinement. The strict no-normative-synonym hypothesis survives current pressure: semantic bindings use exact canonical names/keys; natural-language explanation remains free outside those bindings; tool assistance may validate/propose but cannot establish semantic equivalence.
+DDTA is currently in an **R24 working research / repository-alignment pass**. Earlier BA0-BA5 closure results remain historical lower bounds, but they must not be read as proof that the complete Base Analysis is permanently closed.
 
-The active state and forward rules are recorded in:
+The current R24 work has specifically reopened **BA2** only where concrete documentation-driven pressure tests require refinement. The active BA2 working revision is `methodology/BA2_RELATION_ACTION_VOCABULARY_R2.md`; BA1 identity remains `BAReferent + BAProposition`, and no other BA layer is reopened merely for editorial cleanup.
 
-- `methodology/DDTA_CURRENT_RESEARCH_STATE_R19.md`
-- `methodology/DDTA_RESEARCH_WORK_PLAN_AFTER_DOCUMENTATION_CLOSURE_R22.md`
+The current R24 research flow is:
+
+```text
+governed project meaning
+  -> authoring / review gates
+  -> minimum justified Base Analysis
+  -> downstream analysis / test usefulness
+  -> semantic pressure test
+  -> smallest justified methodology revision
+```
+
+The active forward-facing R24 records are:
+
+- `methodology/DDTA_R24_DECISION_RULE_CHECKPOINT.md`
+- `methodology/BA2_RELATION_ACTION_VOCABULARY_R2.md`
+- `methodology/DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R1.md`
+- `methodology/DDTA_FACIAL_ACCESS_PROJECT_DOCUMENTATION_WORKING_R24_PROJECT_ONLY.tex`
 - `methodology/BA1_MINIMAL_BAE_IDENTITY_ONTOLOGY_R1.md`
-- `methodology/BA2_RELATION_ACTION_VOCABULARY_R1.md`
 - `methodology/BA3_PROVENANCE_DERIVATION_LIFECYCLE_CHANGE_CONTRACT_R1.md`
 - `methodology/BA4_PROJECTION_BOUNDARY_TRACEABILITY_INTERPRETATION_COVERAGE_CONTRACT_R1.md`
-- `methodology/BA4_T3_PROJECTION_CLOSURE_REVIEW_R1.md`
 - `methodology/BA5_CANONICAL_SEMANTIC_REGISTRY_CONTROLLED_AUTHORING_CONTRACT_R1.md`
-- `methodology/BA5_T1_CANONICAL_REFERENT_NAMING_CONTROLLED_AUTHORING_TRIAL_R1.md`
-- `methodology/BA5_T2_CANONICAL_SEMANTIC_REGISTRY_COVERAGE_GOVERNED_EXTENSION_R1.md`
-- `methodology/BA5_T3_CANONICAL_REGISTRY_CONTROLLED_AUTHORING_NO_SYNONYM_CLOSURE_REVIEW_R1.md`
 
-`BA0`, `BA1`, `BA2`, `BA3`, `BA4` and `BA5` are **CLOSED FOR THE CURRENT THESIS SCOPE**. `BAReferent` and `BAProposition` remain the only accepted first-class semantic identity families. BA5 closes exact canonical referent naming per baseline/naming scope, exact domain-scoped BA semantic keys, operator-scoped roles, immutable revisions for evolving semantic registries, governed evidence-backed extension, and a tool non-authority boundary. A flat global namespace and normative alias/synonym registry are rejected; optional lexical/NLP assistance is deferred. **Base Analysis as a whole is not yet closed:** BA6 complete integrated regression/closure is **NOT STARTED / NEXT PHASE** and is the only phase that may close the complete BA milestone.
+Earlier state/work-plan records such as R19 and R22 remain research history and must not be used as the sole description of the current R24 state.
 
+### Current authority boundary
+
+The current governed facial-access corpus remains:
+
+- `governed-corpora/facial-access/current/` (`FACIAL_ACCESS_CURRENT_R1`)
+
+The R24 project document:
+
+- `methodology/DDTA_FACIAL_ACCESS_PROJECT_DOCUMENTATION_WORKING_R24_PROJECT_ONLY.tex`
+
+is a **working successor candidate used for methodology pressure testing**. It is not `CURRENT_GOVERNED` and does not supersede `FACIAL_ACCESS_CURRENT_R1` by chronology alone.
+
+Historical drop-ins, checksums, snapshots, superseded checkpoints and explicitly non-canonical working packages remain preserved as research evidence.
+
+### Current BA2 R24 lower bound
+
+R24 currently retains fourteen BA2 operator concepts, including `decisionRule`, and accepts structured property-vocabulary constraints where governed documentation requires them.
+
+The current comparison lower bound remains property-addressed:
+
+```text
+comparison
+  referent      -> <BAReferent>
+  property      -> <controlled semantic key>
+  comparisonKey -> equals | notEquals
+  value         -> <controlled typed local value | BAReferent>
+```
+
+A property-less comparison is not admitted without a concrete governed counterexample. `AccessAuthorizationState.authorized = TRUE` is **not** currently accepted as governed facial-access evidence because the current MR-0002 working documentation does not define that property/vocabulary.
+
+The full BA milestone remains subject to ongoing corpus, documentation-authoring, downstream-analysis and regression pressure tests.
 ## Important scope boundary
 
 The current thesis does **not** require reliable automatic migration from arbitrary, legacy, or unstructured narrative documentation. DDTA is evaluated on governed documentation intentionally authored to satisfy an analysis-readiness contract. NLP/LLM-assisted migration, fuzzy search, translations or synonym suggestions may be future/optional assistance; any semantic candidate they produce remains subject to the governed canonical registry and review boundary.
