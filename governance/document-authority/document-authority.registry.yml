@@ -1,6 +1,6 @@
 schemaVersion: 1
 registryKey: ddta-document-authority
-basedOnRepositoryCommit: eef1031e47f91f60f18121aba09b6386699f8317
+basedOnRepositoryCommit: 1b04773a3f103fa3e2710f3937ef97c8190a5477
 
 rules:
   chronologicalRecencyImpliesAuthority: false
@@ -62,6 +62,21 @@ entries:
       authorityBaselineKey: FACIAL-ACCESS-GOV-R1
       pathPrefix: governed-corpora/facial-access/current/
 
+  - familyKey: facial-access-r24-working-successor-candidate
+    pathPrefix: methodology/DDTA_FACIAL_ACCESS_PROJECT_DOCUMENTATION_WORKING_R24_PROJECT_ONLY.tex
+    authorityStatus: EXPERIMENTAL_NON_CANONICAL
+    primaryBASourceAllowed: false
+    retainedFor:
+      - R24 documentation-authoring pressure test
+      - Base Analysis derivation and regression research
+      - candidate successor review against FACIAL-ACCESS-GOV-R1
+    scope:
+      - working facial-access project documentation
+      - methodology pressure testing before explicit promotion
+    exclusions:
+      - CURRENT_GOVERNED authority
+      - automatic supersession of FACIAL-ACCESS-GOV-R1
+      - primary Base Analysis source use before explicit promotion
   - familyKey: facial-access-current-governed-validation-corpus
     pathPrefix: governed-corpora/facial-access/current/
     authorityStatus: CURRENT_GOVERNED
