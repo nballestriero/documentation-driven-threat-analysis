@@ -1,7 +1,7 @@
 # DDTA BA2 relation/action vocabulary - R2
 
-**Status:** R24 WORKING REVISION / BA2-T4 REOPENED FOR FR DECISION-RULE AND STRUCTURED CONSTRAINT-VALUE CAPABILITY  
-**Current refinement baseline:** `954c714ae365d22b05924f7020b641e894809f6f`  
+**Status:** R24 WORKING REVISION / BA2-T4 REOPENED FOR DECISION-RULE, STRUCTURED CONSTRAINT-VALUE, AND PROPERTY-ADDRESSED COMPARISON
+**Current refinement baseline:** `6dd5c57d24b1254a2c74716ee45ab1ea2ad7e18d`
 **Supersedes for active R24 work:** `BA2_RELATION_ACTION_VOCABULARY_R1.md`  
 **Identity dependency:** `BA1_MINIMAL_BAE_IDENTITY_ONTOLOGY_R1.md` (`BAReferent + BAProposition`)
 
@@ -17,9 +17,11 @@ The first pressure test showed that governed FR logic of the form `IF / THEN / E
 
 R2 therefore introduced `decisionRule` for explicit operational result construction.
 
-A second pressure test now clarifies a different case: a governed project meaning may have a finite allowed semantic domain without the documentation governing how one value is selected at runtime. For example, `IdentityVerificationEvidence` may expose an `outcome` whose governed vocabulary is `[POSITIVE, NEGATIVE, INCONCLUSIVE]` while thresholds, scores and selection logic remain unspecified.
+A second pressure test clarifies a different case: a governed project meaning may have a finite allowed semantic domain without the documentation governing how one value is selected at runtime. For example, `IdentityVerificationEvidence` may expose a `correspondence` property whose governed vocabulary is `[TRUE, FALSE, UNKNOWN]` while thresholds, scores and selection logic remain unspecified.
 
-That case is a true constraint, not a decision rule. R2 therefore also permits a structured controlled `constraintValue` for property vocabularies.
+That case is a true constraint, not a decision rule. R2 therefore permits a structured controlled `constraintValue` for property vocabularies.
+
+A third pressure test distinguishes the semantic object from the property tested by a decision condition. `IdentityVerificationEvidence = TRUE` would collapse the evidence object with the truth value of its governed `correspondence` property. The current R24 lower bound therefore requires `decisionRule.comparison` to address an explicit controlled `property`. This does not promote the property to `BAReferent` and does not introduce a general three-valued logic.
 
 No existing BA2 operator is removed by this refinement.
 
@@ -130,6 +132,7 @@ The condition structure is local to `decisionRule`; it is not a new BAE identity
 ```text
 comparison
   referent      -> <BAReferent>
+  property      -> <controlled semantic key>
   comparisonKey -> equals | notEquals
   value         -> <controlled typed local value | BAReferent>
 
@@ -142,6 +145,10 @@ anyOf
 not
   condition -> <decisionCondition> [1]
 ```
+
+`property` is required in the current R24 lower bound because the reviewed decision conditions test a governed property of a richer semantic referent rather than equating the whole referent with a scalar value. A property-less comparison is not admitted until a concrete governed counterexample requires it.
+
+The property key is controlled BA2 semantic content and is not automatically a `BAReferent`. `TRUE`, `FALSE` and `UNKNOWN` are controlled values only where the governed source defines that vocabulary; this structure does not define global truth tables or logical propagation for `UNKNOWN`.
 
 Additional comparison operators are added only when governed evidence requires them.
 
@@ -205,8 +212,8 @@ A later Decision/FR may add a governed result-domain constraint without changing
 constrain
   constraintTarget -> IdentityVerificationEvidence
   constraintValue
-    property   -> outcome
-    vocabulary -> [POSITIVE, NEGATIVE, INCONCLUSIVE]
+    property   -> correspondence
+    vocabulary -> [TRUE, FALSE, UNKNOWN]
 ```
 
 If a later FR additionally governs exactly how inputs select one of those outcomes, BA may then add `decisionRule`.
@@ -261,8 +268,8 @@ Example:
 constrain
   constraintTarget -> IdentityVerificationEvidence
   constraintValue
-    property   -> outcome
-    vocabulary -> [POSITIVE, NEGATIVE, INCONCLUSIVE]
+    property   -> correspondence
+    vocabulary -> [TRUE, FALSE, UNKNOWN]
 ```
 
 This asserts the governed outcome domain. It does **not** assert which value a particular runtime occurrence has and it does **not** assert the algorithm, threshold or condition that selects a value.
@@ -282,7 +289,7 @@ constrain
 for:
 
 ```text
-outcome ∈ [POSITIVE, NEGATIVE, INCONCLUSIVE]
+correspondence ∈ [TRUE, FALSE, UNKNOWN]
 ```
 
 Use:
@@ -295,11 +302,23 @@ only when governed documentation says how conditions select a value, for example
 
 ```text
 IF A AND B
-THEN outcome = POSITIVE
-ELSE outcome = ...
+THEN correspondence = TRUE
+ELSE correspondence = ...
 ```
 
 A true constraint remains a `constrain` proposition even when a `decisionRule` also exists.
+
+The two structures are complementary:
+
+```text
+constrain
+  -> referent.property ∈ vocabulary
+
+comparison
+  -> referent.property comparisonKey value
+```
+
+The constraint defines the governed domain; the comparison tests one governed property value inside a decision condition.
 
 ## 10. Relationship to `dependOn`
 
@@ -357,7 +376,7 @@ anyOf
 not
 ```
 
-The structured property-vocabulary constraint does not add logical-expression syntax; it declares an allowed finite semantic domain.
+The structured property-vocabulary constraint does not add logical-expression syntax; it declares an allowed finite semantic domain. Likewise, using `[TRUE, FALSE, UNKNOWN]` for a governed property does not introduce general three-valued logical operators, truth tables or propagation rules.
 
 ## 14. Analysis-consumer value
 
@@ -397,17 +416,15 @@ produce
 
 BA must not upgrade an `access may be allowed only when ...` policy into `MUST ALLOW` unless the governed FR states that obligation. Once the FR explicitly governs a complete mapping, BA may add `decisionRule`.
 
-### 16.2 Verification-outcome domain
+### 16.2 Verification-correspondence domain
 
-The current R24 analysis of the next verification Decision/FR candidate distinguishes:
+The current R24 analysis of the next verification Decision/FR candidate models the correspondence asserted by `IdentityVerificationEvidence` with the controlled property vocabulary:
 
 ```text
-POSITIVE
-NEGATIVE
-INCONCLUSIVE
+correspondence -> [TRUE, FALSE, UNKNOWN]
 ```
 
-without governing an implementation algorithm that selects among them.
+where `TRUE` means the evidence supports correspondence, `FALSE` means the evidence supports non-correspondence, and `UNKNOWN` means the evidence does not support either conclusion sufficiently. The source does not govern an implementation algorithm, threshold or score selecting among those values.
 
 The corresponding BA candidate is therefore:
 
@@ -415,11 +432,31 @@ The corresponding BA candidate is therefore:
 constrain
   constraintTarget -> IdentityVerificationEvidence
   constraintValue
-    property   -> outcome
-    vocabulary -> [POSITIVE, NEGATIVE, INCONCLUSIVE]
+    property   -> correspondence
+    vocabulary -> [TRUE, FALSE, UNKNOWN]
 ```
 
-This is sufficient to preserve the governed semantic domain. `classify`, `transition`, a new `valueOf` operator and `decisionRule` are not required merely to state this domain.
+This is sufficient to preserve the governed semantic domain. `classify`, `transition`, a new `valueOf` operator and `decisionRule` are not required merely to state this domain. `UNKNOWN` is a governed local value, not authorization to introduce general three-valued BA logic.
+
+### 16.3 Property-addressed decision comparison
+
+The access-policy pressure test consumes properties of richer semantic inputs rather than scalarizing the inputs themselves. The relevant condition shape is:
+
+```text
+comparison
+  referent      -> AccessAuthorizationState
+  property      -> authorized
+  comparisonKey -> equals
+  value         -> TRUE
+
+comparison
+  referent      -> IdentityVerificationEvidence
+  property      -> correspondence
+  comparisonKey -> equals
+  value         -> TRUE
+```
+
+This is semantically different from asserting `AccessAuthorizationState = TRUE` or `IdentityVerificationEvidence = TRUE`. The current evidence therefore justifies required `comparison.property`. It does not justify a `property` field on `resultAssignment`: `AccessDecision = ALLOW | NOT_ALLOW` remains sufficient for the reviewed result semantics.
 
 ## 17. R2 disposition
 
@@ -429,8 +466,11 @@ Existing 13 BA2 operators                         UNCHANGED
 New operator: decisionRule                        R24 WORKING ACCEPTED
 operatorStructure for decisionRule                R24 WORKING ACCEPTED
 Local decision condition: comparison               R24 WORKING ACCEPTED
+comparison.property required in current lower bound  R24 WORKING ACCEPTED
+property-less comparison without counterexample      NOT JUSTIFIED
 Local composition: allOf / anyOf / not            R24 WORKING ACCEPTED
 Result assignment                                 R24 WORKING ACCEPTED
+resultAssignment.property                            NOT JUSTIFIED
 Implicit branch completion                         REJECTED
 Implicit evaluation order                          REJECTED
 condition as decision-rule substitute              REJECTED
@@ -443,6 +483,7 @@ new valueOf operator for current evidence          NOT JUSTIFIED
 dependOn as decision-rule substitute               REJECTED
 dependOn prerequisite/impact semantics             RETAINED
 classify                                           RETAINED / UNCHANGED
+TRUE/FALSE/UNKNOWN as universal BA truth logic      NOT INTRODUCED
 General-purpose BA logical DSL                     NOT INTRODUCED
 Project-document detail pulled above source level  REJECTED
 ```

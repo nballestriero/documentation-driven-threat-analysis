@@ -1,7 +1,7 @@
 # DDTA R24 - FR decision-rule / BA checkpoint
 
 **Status:** WORKING CHECKPOINT  
-**Current refinement baseline:** `954c714ae365d22b05924f7020b641e894809f6f`
+**Current refinement baseline:** `6dd5c57d24b1254a2c74716ee45ab1ea2ad7e18d`
 
 ## Accepted findings
 
@@ -24,7 +24,12 @@ constraintValue
 
 11. The vocabulary form does not assert a runtime value and does not define a selection algorithm.
 12. No new `valueOf` operator is justified by the current evidence.
-13. No general cleanup/removal of other BA operators is authorized by this checkpoint.
+13. The reviewed access-rule conditions test properties of richer semantic inputs; `IdentityVerificationEvidence = TRUE` and `AccessAuthorizationState = TRUE` would collapse object and property semantics.
+14. The current R24 `decisionRule.comparison` lower bound therefore requires `property -> <controlled semantic key>`.
+15. No property-less comparison is admitted without a concrete governed counterexample.
+16. `resultAssignment` remains `target + value`; no `resultAssignment.property` is justified by current evidence.
+17. `[TRUE, FALSE, UNKNOWN]` is a governed local vocabulary where documented; it does not introduce general three-valued BA truth tables or logical propagation.
+18. No general cleanup/removal of other BA operators is authorized by this checkpoint.
 
 ## Semantic separation now accepted
 
@@ -37,6 +42,9 @@ constrain
 
 decisionRule
   -> how governed conditions select/construct a result value
+
+comparison
+  -> which governed property of an input is compared with which value
 
 dependOn
   -> which prerequisite/dependency can propagate impact
@@ -70,8 +78,16 @@ Distinzione dell'esito non conclusivo della verifica
 Candidate governed semantic domain:
 
 ```text
-IdentityVerificationEvidence.outcome ∈
-  [POSITIVE, NEGATIVE, INCONCLUSIVE]
+IdentityVerificationEvidence.correspondence ∈
+  [TRUE, FALSE, UNKNOWN]
+```
+
+with project meaning:
+
+```text
+TRUE     -> evidence supports correspondence
+FALSE    -> evidence supports non-correspondence
+UNKNOWN  -> evidence supports neither conclusion sufficiently
 ```
 
 The current BA representation is therefore:
@@ -80,28 +96,49 @@ The current BA representation is therefore:
 constrain
   constraintTarget -> IdentityVerificationEvidence
   constraintValue
-    property   -> outcome
-    vocabulary -> [POSITIVE, NEGATIVE, INCONCLUSIVE]
+    property   -> correspondence
+    vocabulary -> [TRUE, FALSE, UNKNOWN]
 ```
 
-This representation intentionally does not invent thresholds, ML scores, retry rules or a decision algorithm.
+This representation intentionally does not invent thresholds, ML scores, retry rules or a decision algorithm, and it does not introduce a general three-valued logical calculus.
+
+For access-rule conditions, the accepted BA2 pressure-test shape is:
+
+```text
+comparison
+  referent      -> AccessAuthorizationState
+  property      -> authorized
+  comparisonKey -> equals
+  value         -> TRUE
+
+comparison
+  referent      -> IdentityVerificationEvidence
+  property      -> correspondence
+  comparisonKey -> equals
+  value         -> TRUE
+```
+
+`property` is required in the current R24 comparison lower bound. `resultAssignment` remains unchanged because the reviewed result semantics can still be represented directly as `AccessDecision = ALLOW | NOT_ALLOW`.
 
 ## Project-documentation status
 
 This checkpoint does **not** yet insert the candidate `MR-0003ADR-0001` or its FR into the active facial-access project document.
 
-The next project-authoring microstep is to review and accept their exact project wording. Only then should the corresponding BA proposition receive a project proposition ID and provenance binding.
+The Decision/FR semantic direction has now been accepted in analysis: the Decision chooses a three-valued correspondence model, while the FR owns the testable meanings of `TRUE`, `FALSE` and `UNKNOWN`. The active project document is still unchanged.
+
+The next project-authoring microstep is to write and review the exact project wording using that accepted separation. Only then should the corresponding BA proposition receive a project proposition ID and provenance binding.
 
 Normative keywords in Italian project prose remain English (`MUST`, `MUST NOT`, etc.).
 
 ## Exact next analysis microstep
 
-Review the candidate `MR-0003ADR-0001` and immediate FR projection for semantic sufficiency:
+Write the exact `MR-0003ADR-0001` and `MR-0003ADR-0001FR-0001` project text using the accepted separation:
 
-- `POSITIVE` means evidence supports correspondence;
-- `NEGATIVE` means evidence supports non-correspondence;
-- `INCONCLUSIVE` means evidence supports neither conclusion sufficiently;
-- the three outcomes remain distinct;
-- no implementation threshold or retry behavior is introduced.
+- Decision -> choose the three-valued correspondence model;
+- FR -> govern `IdentityVerificationEvidence.correspondence`;
+- `TRUE` -> evidence supports correspondence;
+- `FALSE` -> evidence supports non-correspondence;
+- `UNKNOWN` -> evidence supports neither conclusion sufficiently;
+- no implementation threshold, retry behavior or general three-valued logical calculus is introduced.
 
-If accepted, insert the Decision/FR into governed project documentation and materialize the corresponding `constrain` proposition. Then continue to the next historical Decision candidate.
+After the wording is accepted, insert the Decision/FR into governed project documentation and materialize the corresponding `constrain` proposition. The unresolved positive branch of `MR-0001ADR-0001FR-0001` remains a separate project-authoring issue.

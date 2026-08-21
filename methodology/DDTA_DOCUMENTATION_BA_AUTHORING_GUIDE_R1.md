@@ -1,7 +1,7 @@
 # DDTA Documentation and Base Analysis Authoring Guide - R1
 
 **Status:** R24 WORKING AUTHORING CONTRACT  
-**Current refinement baseline:** `954c714ae365d22b05924f7020b641e894809f6f`  
+**Current refinement baseline:** `6dd5c57d24b1254a2c74716ee45ab1ea2ad7e18d`
 **Purpose:** keep project documentation simple to write/read while preserving enough normalized meaning in Base Analysis for test derivation and later analysis.
 
 ## 1. Core rule
@@ -120,10 +120,14 @@ An FR does not need to invent the algorithm that selects an outcome merely to be
 For example, it may govern:
 
 ```text
-IdentityVerificationEvidence outcome MUST be one of:
-  POSITIVE
-  NEGATIVE
-  INCONCLUSIVE
+IdentityVerificationEvidence correspondence MUST be one of:
+  TRUE
+  FALSE
+  UNKNOWN
+
+TRUE means the evidence supports correspondence.
+FALSE means the evidence supports non-correspondence.
+UNKNOWN means the evidence supports neither conclusion sufficiently.
 ```
 
 while leaving thresholds, model scores and technical selection rules to later governed detail.
@@ -160,8 +164,8 @@ says **what is produced**.
 constrain
   constraintTarget -> IdentityVerificationEvidence
   constraintValue
-    property   -> outcome
-    vocabulary -> [POSITIVE, NEGATIVE, INCONCLUSIVE]
+    property   -> correspondence
+    vocabulary -> [TRUE, FALSE, UNKNOWN]
 ```
 
 says **which governed values are allowed for a property**.
@@ -178,9 +182,9 @@ decisionRule
   result -> AccessDecision
 
   IF
-    AccessAuthorizationState = VALID
+    AccessAuthorizationState.authorized = TRUE
     AND
-    IdentityVerificationEvidence = POSITIVE
+    IdentityVerificationEvidence.correspondence = TRUE
   THEN
     AccessDecision = ALLOW
   ELSE
@@ -188,6 +192,18 @@ decisionRule
 ```
 
 says **how governed conditions select a result**, but only when the source FR actually governs that complete mapping.
+
+In BA, a decision comparison over a property uses the explicit property-addressed shape:
+
+```text
+comparison
+  referent      -> IdentityVerificationEvidence
+  property      -> correspondence
+  comparisonKey -> equals
+  value         -> TRUE
+```
+
+The current R24 lower bound requires `property`; do not encode a richer semantic object as if the whole referent were equal to a scalar (`IdentityVerificationEvidence = TRUE`).
 
 The three constructs are complementary:
 
@@ -220,8 +236,8 @@ constraintValue
 Example:
 
 ```text
-property   -> outcome
-vocabulary -> [POSITIVE, NEGATIVE, INCONCLUSIVE]
+property   -> correspondence
+vocabulary -> [TRUE, FALSE, UNKNOWN]
 ```
 
 Do not repeat one `allowedValue` role for every vocabulary entry when one controlled vocabulary list preserves the meaning more clearly.
@@ -236,7 +252,13 @@ If the vocabulary later needs independent reuse, provenance or change identity, 
 
 Use when governed documentation states conditional result selection/construction.
 
-Do not use it merely because a result has several possible values.
+When a condition tests a governed property of an input referent, state that property explicitly in `comparison`. In the current R24 lower bound `comparison.property` is required.
+
+Do not use `IdentityVerificationEvidence = TRUE` when the governed meaning is `IdentityVerificationEvidence.correspondence = TRUE`.
+
+Do not use `decisionRule` merely because a result has several possible values.
+
+A vocabulary such as `[TRUE, FALSE, UNKNOWN]` does not by itself define three-valued logical operators or truth tables.
 
 ### `dependOn`
 
@@ -318,9 +340,12 @@ Current R24 findings:
 - `MR-0001` already supports `produce(... -> AccessDecision)`;
 - `MR-0001ADR-0001` governs a conjunctive access policy;
 - `decisionRule` is used only after the corresponding FR explicitly governs the complete conditional mapping;
-- the next verification Decision/FR candidate under `MR-0003` distinguishes `POSITIVE`, `NEGATIVE` and `INCONCLUSIVE` without yet governing a selection algorithm;
-- its BA representation therefore uses `constrain` with `property -> outcome` and `vocabulary -> [POSITIVE, NEGATIVE, INCONCLUSIVE]`;
-- no `valueOf`, `transition`, `classify` or `decisionRule` is introduced merely to represent that allowed outcome domain.
+- the next verification Decision/FR candidate under `MR-0003` governs `IdentityVerificationEvidence.correspondence` with `[TRUE, FALSE, UNKNOWN]` without governing a selection algorithm;
+- its BA representation therefore uses `constrain` with `property -> correspondence` and `vocabulary -> [TRUE, FALSE, UNKNOWN]`;
+- `UNKNOWN` is a local governed value, not a general BA logical system;
+- access-rule conditions consume explicit properties such as `AccessAuthorizationState.authorized` and `IdentityVerificationEvidence.correspondence`;
+- the current R24 `comparison` lower bound therefore requires `property`, while `resultAssignment` remains `target + value`;
+- no `valueOf`, `transition`, `classify` or verification `decisionRule` is introduced merely to represent the allowed correspondence domain.
 
 ## 12. Working acceptance rule
 
