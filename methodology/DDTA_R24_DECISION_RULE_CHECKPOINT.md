@@ -1,7 +1,7 @@
 # DDTA R24 - repository-alignment / decision-rule checkpoint
 
-**Status:** WORKING CHECKPOINT / REPOSITORY ALIGNMENT COMPLETE  
-**Repository baseline reviewed:** `1912bc9a90bf076c50caf496f7f135bece010bad`  
+**Status:** WORKING CHECKPOINT / REPOSITORY ALIGNMENT COMPLETE
+**Repository baseline reviewed:** `1912bc9a90bf076c50caf496f7f135bece010bad`
 **Purpose:** record the current R24 research state, the authority boundary, the accepted BA pressure-test findings, and the completed repository-alignment state before project authoring resumes.
 
 ## 1. Authority boundary
