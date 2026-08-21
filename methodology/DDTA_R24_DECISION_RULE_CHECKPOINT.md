@@ -243,7 +243,7 @@ R23 literature source registration / access verification
   -> downstream analysis / test usefulness check
 ```
 
-The first R23 reading microstep is `PAT-LIT-03 â€” The Domain Theory for Requirements Engineering`, using the existing `literature/templates/source-note.template.md`. `PAT-LIT-*` is a work-plan-local label; the source receives a real `SRC-*` identity only when it is registered in the literature corpus.
+The first R23 reading microstep is `PAT-LIT-03 — The Domain Theory for Requirements Engineering`, using the existing `literature/templates/source-note.template.md`. `PAT-LIT-*` is a work-plan-local label; the source receives a real `SRC-*` identity only when it is registered in the literature corpus.
 
 No pattern catalog, pattern match or design pattern becomes project authority. Pattern research must not automatically emit project requirements, BA referents, BA propositions or BA2 operators.
 
