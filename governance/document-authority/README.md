@@ -31,20 +31,31 @@ Chronological recency, directory depth, filename wording and tool/LLM confidence
 
 ## Current facial-access rule
 
-`governed-corpora/facial-access/current/` is the current governed **thesis validation corpus** for the facial-access branch introduced by this package.
+`governed-corpora/facial-access/current/` remains the current governed **thesis validation corpus**, registered as `FACIAL_ACCESS_CURRENT_R1` / `FACIAL-ACCESS-GOV-R1`, and is eligible as a primary BA source within its declared scope.
 
-The following remain historical/non-canonical evidence and are not primary sources for the new BA:
+The R24 working project document:
+
+- `methodology/DDTA_FACIAL_ACCESS_PROJECT_DOCUMENTATION_WORKING_R24_PROJECT_ONLY.tex`
+
+is explicitly classified in `document-authority.registry.yml` as `EXPERIMENTAL_NON_CANONICAL` with `primaryBASourceAllowed: false`.
+
+It is a working successor candidate used to pressure-test documentation authoring, BA derivation and downstream analysis. It does **not** supersede `FACIAL_ACCESS_CURRENT_R1` by chronology, filename, abstraction quality or research preference. Promotion requires an explicit authority change in the registry.
+
+The following older facial-access materials remain historical/non-canonical evidence and are not primary sources for the current BA:
 
 - `_working/ddta-metamodel-working-package/01-mr/03-example-facial-access/`
 - `02-decision/05-example-facial-access/`
 - `04-specialized-requirement/03-example-facial-access/`
 
-They are intentionally not deleted or rewritten.
-
+Historical and working evidence is intentionally preserved rather than rewritten to look current.
 ## Baseline discipline
 
-The package that introduces this registry is based on repository baseline:
+The package that introduced this registry was based on repository baseline:
 
 `eef1031e47f91f60f18121aba09b6386699f8317`
 
-The current facial-access corpus uses logical governed baseline key `FACIAL-ACCESS-GOV-R1`. A concrete BA run must additionally pin the Git commit containing the applied package; this file deliberately does not guess that future commit SHA.
+That commit remains historical provenance for the introduction of the authority gate; it is not the repository's current HEAD.
+
+The current facial-access corpus uses logical governed baseline key `FACIAL-ACCESS-GOV-R1`. Every concrete BA run must additionally pin the actual Git commit used as its source baseline.
+
+The registry may record a later repository commit when its authority classifications are reviewed or extended. That metadata does not change the governed baseline key and does not promote any working artifact by chronology alone.
