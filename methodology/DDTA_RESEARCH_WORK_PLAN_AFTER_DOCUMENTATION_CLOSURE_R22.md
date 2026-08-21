@@ -6,7 +6,9 @@ title: "DDTA research work plan after documentation-layer closure - R22"
 
 **WORK PLAN - REVISION 22**
 
-**Status:** active plan after BA5 canonical registry/controlled-authoring closure.
+**Status:** HISTORICAL WORK PLAN / SUPERSEDED FOR CURRENT R24 FORWARD EXECUTION.
+
+**Current forward pointer:** `DDTA_R24_DECISION_RULE_CHECKPOINT.md`. The R22 body is retained as the work-plan record for its original execution state.
 
 **Supersedes:** Revision 21 only for forward execution state; R1-R21 remain historical research records.
 

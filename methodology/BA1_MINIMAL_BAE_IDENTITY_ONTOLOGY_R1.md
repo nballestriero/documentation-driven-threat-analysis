@@ -1,6 +1,7 @@
 # DDTA minimal BAE identity ontology - R1
 
 **Status:** CLOSED BY BA1-T3
+**R24 alignment note:** BA1 identity semantics remain retained. Statements below that describe BA2 as `NOT STARTED / NEXT AUTHORIZED PHASE` are closure-time sequencing, not current execution state. Current R24 forward state is recorded in `DDTA_R24_DECISION_RULE_CHECKPOINT.md`; the active BA2 working revision is `BA2_RELATION_ACTION_VOCABULARY_R2.md`.
 
 **Repository baseline reviewed:** `e88d7e220536863d564f9e3b9fac7f1592a8c440`
 

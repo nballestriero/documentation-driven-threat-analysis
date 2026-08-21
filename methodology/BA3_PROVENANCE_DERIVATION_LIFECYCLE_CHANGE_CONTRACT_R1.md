@@ -1,6 +1,7 @@
 # DDTA BA3 provenance, derivation, lifecycle and change contract - R1
 
 **Status:** CLOSED BY BA3-T4 / ACCEPTED FOR CURRENT THESIS SCOPE
+**R24 alignment note:** the BA3 provenance/lifecycle/change contract remains retained. Statements below that no new BA2 operator was forced and that BA4 was the next phase describe the BA3 closure corpus and closure-time sequence. R24 later reopened BA2 on concrete documentation pressure; current BA2 semantics are in `BA2_RELATION_ACTION_VOCABULARY_R2.md`. This alignment does not reopen BA3.
 
 **Closure baseline reviewed:** `a20a590d771b1053ecbd095d8a8c4255ae762bfe`
 

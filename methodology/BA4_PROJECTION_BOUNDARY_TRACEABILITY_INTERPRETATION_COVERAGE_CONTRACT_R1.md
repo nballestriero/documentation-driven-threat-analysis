@@ -1,6 +1,7 @@
 # DDTA BA4 projection boundary, traceability, interpretation and coverage contract - R1
 
 **Status:** CLOSED BY BA4-T3 / ACCEPTED FOR CURRENT THESIS SCOPE
+**R24 alignment note:** the BA4 projection contract remains retained. Statements below that BA2 reopening was not triggered and that BA5 was the next phase are closure-time dispositions, not the current R24 execution sequence. Current forward state is governed by `DDTA_R24_DECISION_RULE_CHECKPOINT.md`. This alignment does not reopen BA4.
 
 **Closure baseline reviewed:** `dcb4605448de4ac5331f10ff090a9f2ab677427e`
 

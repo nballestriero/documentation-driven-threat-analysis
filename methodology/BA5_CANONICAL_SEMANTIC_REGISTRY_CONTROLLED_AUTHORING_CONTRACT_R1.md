@@ -5,6 +5,7 @@ title: "DDTA BA5 canonical semantic registry and controlled-authoring contract -
 # DDTA BA5 canonical semantic registry and controlled-authoring contract - R1
 
 **Status:** CLOSED BY BA5-T3 / ACCEPTED FOR CURRENT THESIS SCOPE
+**R24 alignment note:** the BA5 canonical-registry/controlled-authoring contract remains retained. `BA6 NOT STARTED / NEXT PHASE` and `BA0 / BA1 / BA2 / BA3 / BA4 reopen NOT TRIGGERED` below are BA5 closure-time dispositions. R24 later reopened BA2 on concrete evidence without thereby reopening BA5. Current forward execution state is recorded in `DDTA_R24_DECISION_RULE_CHECKPOINT.md`.
 
 **Closure baseline reviewed:** `8d8dae5f7c28d83b70cbdea090028e4ec0f93571`
 

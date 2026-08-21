@@ -1,7 +1,8 @@
 # DDTA Documentation and Base Analysis Authoring Guide - R1
 
 **Status:** R24 WORKING AUTHORING CONTRACT  
-**Current refinement baseline:** `6dd5c57d24b1254a2c74716ee45ab1ea2ad7e18d`
+**Current refinement baseline:** `0fc9ea67eb13a47d0acd2ad36a174bcf6e6aa237`
+**R24 checkpoint:** `DDTA_R24_DECISION_RULE_CHECKPOINT.md`
 **Purpose:** keep project documentation simple to write/read while preserving enough normalized meaning in Base Analysis for test derivation and later analysis.
 
 ## 1. Core rule
@@ -174,26 +175,25 @@ It does not say which value is present in a particular runtime occurrence and do
 
 ### 6.3 Conditional result construction
 
+`decisionRule` says **how governed conditions select or construct a result**, but only when the source FR actually governs the mapping represented by the rule.
+
+The BA2 minimum shape is:
+
 ```text
 decisionRule
-  actor  -> ControlledAreaAccess
-  input  -> AccessAuthorizationState
-  input  -> IdentityVerificationEvidence
-  result -> AccessDecision
+  actor  -> <BAReferent>
+  input  -> <BAReferent> [1..*]
+  result -> <BAReferent>
 
-  IF
-    AccessAuthorizationState.authorized = TRUE
-    AND
-    IdentityVerificationEvidence.correspondence = TRUE
-  THEN
-    AccessDecision = ALLOW
-  ELSE
-    AccessDecision = NOT_ALLOW
+  rule
+    IF    <decisionCondition>
+    THEN  <resultAssignment> [1..*]
+    ELSE  <resultAssignment> [0..*]
 ```
 
-says **how governed conditions select a result**, but only when the source FR actually governs that complete mapping.
+An omitted `ELSE` has no implied meaning. BA must not invent a missing branch.
 
-In BA, a decision comparison over a property uses the explicit property-addressed shape:
+When a decision condition tests a governed property of a richer input referent, use the explicit property-addressed comparison shape. The current R24 verification-side pressure test uses:
 
 ```text
 comparison
@@ -203,16 +203,19 @@ comparison
   value         -> TRUE
 ```
 
-The current R24 lower bound requires `property`; do not encode a richer semantic object as if the whole referent were equal to a scalar (`IdentityVerificationEvidence = TRUE`).
+This is semantically different from `IdentityVerificationEvidence = TRUE`, which would collapse the evidence object with the value of its `correspondence` property.
 
-The three constructs are complementary:
+Do **not** use `AccessAuthorizationState.authorized = TRUE` as grounded facial-access meaning in the current R24 project. MR-0002 does not yet govern an `authorized` property, a `TRUE/FALSE` authorization vocabulary, or another normalized value structure sufficient to materialize that comparison.
+
+The current R24 lower bound still requires `comparison.property`; the unresolved authorization representation is an open project-semantics pressure point, not a property-less counterexample.
+
+The three constructs remain complementary:
 
 ```text
 produce      -> what result exists/is made available
 constrain    -> allowed governed semantic domain
 decisionRule -> conditional selection/construction of a result
 ```
-
 ## 7. Do not misuse BA semantics
 
 ### `condition`
@@ -337,16 +340,16 @@ BA can expose ambiguity or missing branches. It must never silently repair proje
 
 Current R24 findings:
 
-- `MR-0001` already supports `produce(... -> AccessDecision)`;
-- `MR-0001ADR-0001` governs a conjunctive access policy;
-- `decisionRule` is used only after the corresponding FR explicitly governs the complete conditional mapping;
-- the next verification Decision/FR candidate under `MR-0003` governs `IdentityVerificationEvidence.correspondence` with `[TRUE, FALSE, UNKNOWN]` without governing a selection algorithm;
-- its BA representation therefore uses `constrain` with `property -> correspondence` and `vocabulary -> [TRUE, FALSE, UNKNOWN]`;
-- `UNKNOWN` is a local governed value, not a general BA logical system;
-- access-rule conditions consume explicit properties such as `AccessAuthorizationState.authorized` and `IdentityVerificationEvidence.correspondence`;
-- the current R24 `comparison` lower bound therefore requires `property`, while `resultAssignment` remains `target + value`;
-- no `valueOf`, `transition`, `classify` or verification `decisionRule` is introduced merely to represent the allowed correspondence domain.
-
+- `MR-0001` supports the coarse `produce(... -> AccessDecision)` meaning;
+- the conjunctive access-policy work and its exact operational mapping remain subject to the current project wording/FR pressure test before a complete access `decisionRule` is materialized;
+- the authorization-side normalized comparison remains unresolved: current MR-0002 does not govern `AccessAuthorizationState.authorized`, a `TRUE/FALSE` authorization vocabulary, or an equivalent normalized value structure;
+- the candidate verification Decision/FR under `MR-0003` preserves `IdentityVerificationEvidence.correspondence` with `[TRUE, FALSE, UNKNOWN]` without governing a selection algorithm;
+- its BA candidate therefore uses `constrain` with `property -> correspondence` and `vocabulary -> [TRUE, FALSE, UNKNOWN]`;
+- `UNKNOWN` is a local governed value where documented, not a general BA logical system;
+- the verification-side comparison `IdentityVerificationEvidence.correspondence = TRUE` is property-addressed and semantically well-formed once the project source governs that meaning;
+- the current R24 `comparison` lower bound requires `property`, while `resultAssignment` remains `target + value`;
+- no property-less comparison has yet been justified by a concrete governed counterexample;
+- no `valueOf`, verification `transition`, verification `classify` or verification-selection `decisionRule` is introduced merely to represent the allowed correspondence domain.
 ## 12. Working acceptance rule
 
 A documentation/BA representation is acceptable when it is:

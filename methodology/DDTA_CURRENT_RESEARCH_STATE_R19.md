@@ -1,4 +1,7 @@
 # DDTA current research state - R19
+**Forward-use status:** HISTORICAL STATE SNAPSHOT / SUPERSEDED FOR CURRENT R24 ORIENTATION  
+**Current forward pointers:** root `README.md` and `DDTA_R24_DECISION_RULE_CHECKPOINT.md`  
+**Preservation rule:** the R19 body remains unchanged as the research-state record for its original baseline.
 
 **Prepared against repository baseline:** `8d8dae5f7c28d83b70cbdea090028e4ec0f93571`
 
