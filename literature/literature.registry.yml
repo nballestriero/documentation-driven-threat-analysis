@@ -1,6 +1,6 @@
 schema_version: 1
 corpus_status: working
-last_updated: 2026-08-15
+last_updated: 2026-08-21
 sources:
   - id: SRC-0001
     citation_key: shostack2014threat
@@ -386,3 +386,147 @@ sources:
     verification_state: verified
     topics: [DE-ARCH, MD-VIEW, RE-TRACEABILITY, CS-CHANGE]
     ddta_roles: [foundation, comparison, challenge]
+  - id: SRC-0049
+    citation_key: sutcliffeMaiden1998domainTheory
+    title: "The Domain Theory for Requirements Engineering"
+    year: 1998
+    type: primary_research
+    verification_state: verified
+    topics: [DE-KNOWLEDGE, MD-MDE, CS-HUMAN]
+    ddta_roles: [foundation, comparison, challenge]
+  - id: SRC-0050
+    citation_key: fernandez2022abstractSecurityPatterns
+    title: "Abstract security patterns and the design of secure systems"
+    year: 2022
+    type: primary_research
+    verification_state: verified
+    topics: [RE-SECURITY, MD-MDS, DE-KNOWLEDGE, CS-ASSURANCE]
+    ddta_roles: [foundation, comparison, challenge]
+  - id: SRC-0051
+    citation_key: jackson1995problemsRequirements
+    title: "Problems and requirements (software development)"
+    year: 1995
+    type: primary_research
+    verification_state: verified
+    topics: [RE-PRE, DE-KNOWLEDGE]
+    ddta_roles: [foundation]
+  - id: SRC-0052
+    citation_key: sutcliffe2000domainAnalysisReuse
+    title: "Domain analysis for software reuse"
+    year: 2000
+    type: primary_research
+    verification_state: verified
+    topics: [DE-KNOWLEDGE, MD-MDE, CS-HUMAN]
+    ddta_roles: [foundation, comparison, challenge]
+  - id: SRC-0053
+    citation_key: fernandezBuglioni2013securityPatternsPractice
+    title: "Security Patterns in Practice: Designing Secure Architectures Using Software Patterns"
+    year: 2013
+    type: book
+    verification_state: verified
+    topics: [RE-SECURITY, MD-MDS, DE-ARCH]
+    ddta_roles: [foundation, comparison, challenge]
+  - id: SRC-0054
+    citation_key: jackson2001problemFrames
+    title: "Problem Frames: Analysing and Structuring Software Development Problems"
+    year: 2001
+    type: book
+    verification_state: verified
+    topics: [RE-PRE, DE-KNOWLEDGE, MD-VIEW]
+    ddta_roles: [foundation, comparison, challenge]
+  - id: SRC-0055
+    citation_key: fowler1997analysisPatterns
+    title: "Analysis Patterns: Reusable Object Models"
+    year: 1997
+    type: book
+    verification_state: verified
+    topics: [MD-MDE, DE-KNOWLEDGE, DE-ARCH]
+    ddta_roles: [comparison, context, challenge]
+  - id: SRC-0056
+    citation_key: withall2007softwareRequirementPatterns
+    title: "Software Requirement Patterns"
+    year: 2007
+    type: book
+    verification_state: verified
+    topics: [DE-QUALITY, RE-PRE, DE-KNOWLEDGE]
+    ddta_roles: [comparison, context]
+  - id: SRC-0057
+    citation_key: maiden2005generatingRequirementsPatterns
+    title: "Generating requirements from systems models using patterns: a case study"
+    year: 2005
+    type: primary_research
+    verification_state: verified
+    topics: [MD-MDE, RE-TRACEABILITY, DE-QUALITY]
+    ddta_roles: [comparison, evaluation]
+  - id: SRC-0058
+    citation_key: mavin2009ears
+    title: "Easy Approach to Requirements Syntax (EARS)"
+    year: 2009
+    type: primary_research
+    verification_state: verified
+    topics: [DE-QUALITY, RE-PRE]
+    ddta_roles: [comparison, evaluation, context]
+  - id: SRC-0059
+    citation_key: cox2005derivingRequirementsProblemFrames
+    title: "Deriving requirements from process models via the problem frames approach"
+    year: 2005
+    type: primary_research
+    verification_state: verified
+    topics: [RE-PRE, RE-TRACEABILITY, MD-VIEW, CS-HUMAN]
+    ddta_roles: [comparison, evaluation, challenge]
+  - id: SRC-0060
+    citation_key: sutcliffe2009domainDimensions
+    title: "Requirements Engineering Domain Dimensions"
+    year: 2009
+    type: primary_research
+    verification_state: verified
+    topics: [DE-KNOWLEDGE, RE-PRE]
+    ddta_roles: [comparison, challenge, context]
+  - id: SRC-0061
+    citation_key: gamma1994designPatterns
+    title: "Design Patterns: Elements of Reusable Object-Oriented Software"
+    year: 1994
+    type: book
+    verification_state: verified
+    topics: [DE-ARCH, MD-MDE]
+    ddta_roles: [comparison, context]
+  - id: SRC-0062
+    citation_key: hohpeWoolf2003enterpriseIntegrationPatterns
+    title: "Enterprise Integration Patterns: Designing, Building, and Deploying Messaging Solutions"
+    year: 2003
+    type: book
+    verification_state: verified
+    topics: [DE-ARCH, MD-MDE]
+    ddta_roles: [comparison, context]
+  - id: SRC-0063
+    citation_key: jackson2000problemAnalysisStructure
+    title: "Problem Analysis and Structure"
+    year: 2000
+    type: primary_research
+    verification_state: verified
+    topics: [RE-PRE, DE-KNOWLEDGE, MD-VIEW]
+    ddta_roles: [foundation, comparison, challenge]
+  - id: SRC-0064
+    citation_key: hall2002relatingRequirementsArchitectures
+    title: "Relating software requirements and architectures using problem frames"
+    year: 2002
+    type: primary_research
+    verification_state: verified
+    topics: [DE-ARCH, RE-PRE, MD-VIEW]
+    ddta_roles: [comparison, challenge, context]
+  - id: SRC-0065
+    citation_key: li2008progressingProblems
+    title: "Progressing problems from requirements to specifications in problem frames"
+    year: 2008
+    type: primary_research
+    verification_state: verified
+    topics: [RE-TRACEABILITY, RE-PRE, MD-MDE, CS-HUMAN]
+    ddta_roles: [foundation, comparison, challenge, evaluation]
+  - id: SRC-0066
+    citation_key: hohpe2002enterpriseIntegrationPatternsPlop
+    title: "Enterprise Integration Patterns"
+    year: 2002
+    type: primary_research
+    verification_state: verified
+    topics: [DE-ARCH, MD-MDE]
+    ddta_roles: [comparison, context]

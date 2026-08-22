@@ -1,0 +1,27 @@
+schema_version: 1
+source_id: SRC-0060
+citation_key: sutcliffe2009domainDimensions
+source_version:
+  stable_identifier: 10.4230/DagSemProc.08412.12
+  edition_or_version: FULL-TEXT REVIEWED — open-access Dagstuhl note
+  accessed_on: '2026-08-21'
+  local_filename: null
+  sha256: null
+excerpts:
+- id: SRC-0060-EX-0001
+  location:
+    pdf_page: null
+    printed_page: pp. 1-2
+    section: Entire note
+    paragraph_or_table: null
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The note proposes multiple non-orthogonal dimensions for application/domain genres and describes them
+    as initial ideas/tools for thought.
+  researcher_interpretation: Supports flexible discriminators rather than a rigid taxonomy.
+  supported_proposition: Supports flexible discriminators rather than a rigid taxonomy.
+  thesis_targets:
+  - R23_PATTERN_LITERATURE
+  temporal_caveat: No significant technological dependence.
+  verification_state: location_verified

@@ -1,0 +1,93 @@
+schema_version: 1
+source_id: SRC-0064
+citation_key: hall2002relatingRequirementsArchitectures
+source_version:
+  stable_identifier: 10.1109/ICRE.2002.1048516
+  edition_or_version: FULL-TEXT REVIEWED — user-supplied accepted-manuscript repository copy
+  accessed_on: '2026-08-21'
+  local_filename: 82901924.pdf
+  sha256: 4f6f79f57f5e9a6d7fb291ad71211ae5d1683c8bec821036811a53e4a82c2ca6
+excerpts:
+- id: SRC-0064-EX-0001
+  location:
+    pdf_page: null
+    printed_page: '2'
+    section: Abstract and Introduction
+    paragraph_or_table: null
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The paper states Problem Frames should delay solution-space thinking, then studies the practical pressure
+    of existing architecture.
+  researcher_interpretation: Explicit boundary framing.
+  supported_proposition: Explicit boundary framing.
+  thesis_targets:
+  - R23_PATTERN_LITERATURE
+  temporal_caveat: Specific service examples/notation are historical.
+  verification_state: location_verified
+- id: SRC-0064-EX-0002
+  location:
+    pdf_page: null
+    printed_page: '3'
+    section: Section 2 Problem Frames
+    paragraph_or_table: null
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Each frame has a frame concern/correctness argument and does not imply a particular development method.
+  researcher_interpretation: Supports method-neutral problem analysis.
+  supported_proposition: Supports method-neutral problem analysis.
+  thesis_targets:
+  - R23_PATTERN_LITERATURE
+  temporal_caveat: Specific service examples/notation are historical.
+  verification_state: location_verified
+- id: SRC-0064-EX-0003
+  location:
+    pdf_page: null
+    printed_page: '6'
+    section: Classical approach discussion
+    paragraph_or_table: null
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Treating architectural services as ad hoc given domains creates complexity and can move the problem
+    outside a recognised frame.
+  researcher_interpretation: Shows a concrete failure mode of mixing levels.
+  supported_proposition: Shows a concrete failure mode of mixing levels.
+  thesis_targets:
+  - R23_PATTERN_LITERATURE
+  temporal_caveat: Specific service examples/notation are historical.
+  verification_state: location_verified
+- id: SRC-0064-EX-0004
+  location:
+    pdf_page: null
+    printed_page: '7'
+    section: Section 4
+    paragraph_or_table: null
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The extension annotates the machine with existing architectural services whose properties can be used
+    in the correctness argument.
+  researcher_interpretation: Architectural assumptions/support are explicit rather than hidden.
+  supported_proposition: Architectural assumptions/support are explicit rather than hidden.
+  thesis_targets:
+  - R23_PATTERN_LITERATURE
+  temporal_caveat: Specific service examples/notation are historical.
+  verification_state: location_verified
+- id: SRC-0064-EX-0005
+  location:
+    pdf_page: null
+    printed_page: '9'
+    section: Conclusion
+    paragraph_or_table: null
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The authors identify methodological implications and state that larger cases are needed.
+  researcher_interpretation: Evidence remains bounded.
+  supported_proposition: Evidence remains bounded.
+  thesis_targets:
+  - R23_PATTERN_LITERATURE
+  temporal_caveat: Specific service examples/notation are historical.
+  verification_state: location_verified

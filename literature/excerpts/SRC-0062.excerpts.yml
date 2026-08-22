@@ -1,0 +1,26 @@
+schema_version: 1
+source_id: SRC-0062
+citation_key: hohpeWoolf2003enterpriseIntegrationPatterns
+source_version:
+  stable_identifier: ISBN 978-0-321-20068-6
+  edition_or_version: COMPARATIVE PUBLISHER MATERIAL REVIEWED — full book not obtained
+  accessed_on: '2026-08-21'
+  local_filename: null
+  sha256: null
+excerpts:
+- id: SRC-0062-EX-0001
+  location:
+    pdf_page: null
+    printed_page: Publisher overview / TOC
+    section: Introduction and pattern catalogue overview
+    paragraph_or_table: null
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The book organises recurring messaging/integration solutions into a consistent pattern language.
+  researcher_interpretation: Useful downstream comparison; not project-semantic evidence.
+  supported_proposition: Useful downstream comparison; not project-semantic evidence.
+  thesis_targets:
+  - R23_PATTERN_LITERATURE
+  temporal_caveat: Specific JMS/MSMQ/TIBCO/BizTalk-era examples are historically dated.
+  verification_state: preview_or_access_limited_location

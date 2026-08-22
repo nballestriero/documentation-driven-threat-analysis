@@ -1,0 +1,60 @@
+schema_version: 1
+source_id: SRC-0066
+citation_key: hohpe2002enterpriseIntegrationPatternsPlop
+source_version:
+  stable_identifier: PLoP 2002 final draft, 2002-07-23
+  edition_or_version: FULL-TEXT REVIEWED — author-site PLoP final draft
+  accessed_on: '2026-08-21'
+  local_filename: null
+  sha256: null
+excerpts:
+- id: SRC-0066-EX-0001
+  location:
+    pdf_page: null
+    printed_page: '1'
+    section: Introduction
+    paragraph_or_table: null
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The paper motivates reusable integration patterns as a vocabulary for recurring integration design
+    problems.
+  researcher_interpretation: Clear downstream comparator.
+  supported_proposition: Clear downstream comparator.
+  thesis_targets:
+  - R23_PATTERN_LITERATURE
+  temporal_caveat: Specific EAI/messaging products and technology assumptions are time-sensitive.
+  verification_state: location_verified
+- id: SRC-0066-EX-0002
+  location:
+    pdf_page: null
+    printed_page: early pattern-language sections
+    section: Pattern format / organisation
+    paragraph_or_table: null
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Patterns are organised around recurring integration concerns and collectively form textual/visual language.
+  researcher_interpretation: Useful anatomy comparison after R23 synthesis.
+  supported_proposition: Useful anatomy comparison after R23 synthesis.
+  thesis_targets:
+  - R23_PATTERN_LITERATURE
+  temporal_caveat: Specific EAI/messaging products and technology assumptions are time-sensitive.
+  verification_state: location_verified
+- id: SRC-0066-EX-0003
+  location:
+    pdf_page: null
+    printed_page: conclusion
+    section: Scope/collection
+    paragraph_or_table: null
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The pattern collection is presented as practitioner design knowledge rather than a universal semantic
+    ontology.
+  researcher_interpretation: Supports non-authoritative use.
+  supported_proposition: Supports non-authoritative use.
+  thesis_targets:
+  - R23_PATTERN_LITERATURE
+  temporal_caveat: Specific EAI/messaging products and technology assumptions are time-sensitive.
+  verification_state: location_verified

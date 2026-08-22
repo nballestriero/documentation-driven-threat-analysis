@@ -1,0 +1,112 @@
+schema_version: 1
+source_id: SRC-0065
+citation_key: li2008progressingProblems
+source_version:
+  stable_identifier: 10.21954/ou.ro.0000fa79
+  edition_or_version: FULL-TEXT REVIEWED — user-supplied Open Research Online thesis
+  accessed_on: '2026-08-21'
+  local_filename: 228376756.pdf
+  sha256: d7592e3630e059006d79b5106cd82b4d859d4c615017452003cbce0b5b3a343f
+excerpts:
+- id: SRC-0065-EX-0001
+  location:
+    pdf_page: null
+    printed_page: '4'
+    section: Abstract
+    paragraph_or_table: null
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The thesis frames systematic derivation of specifications from requirements as an open problem and
+    develops formal and semi-formal progression techniques.
+  researcher_interpretation: Establishes contribution and scope.
+  supported_proposition: Establishes contribution and scope.
+  thesis_targets:
+  - R23_PATTERN_LITERATURE
+  temporal_caveat: Specific formalisation/tool assumptions are historical; conceptual progression is less time-sensitive.
+  verification_state: location_verified
+- id: SRC-0065-EX-0002
+  location:
+    pdf_page: null
+    printed_page: 16-17
+    section: Section 1.1 Aim and Research Methodology
+    paragraph_or_table: null
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The thesis adopts the distinction between environment-oriented requirements and machine-interface specifications
+    and treats problem understanding as prior to solution.
+  researcher_interpretation: Strong boundary evidence.
+  supported_proposition: Strong boundary evidence.
+  thesis_targets:
+  - R23_PATTERN_LITERATURE
+  temporal_caveat: Specific formalisation/tool assumptions are historical; conceptual progression is less time-sensitive.
+  verification_state: location_verified
+- id: SRC-0065-EX-0003
+  location:
+    pdf_page: null
+    printed_page: 39-40
+    section: Literature Survey, Problem Frames
+    paragraph_or_table: null
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Problem decomposition may match basic frames, use heuristics or analyst knowledge; progression is a
+    separate underdeveloped transformation idea.
+  researcher_interpretation: Separates recognition/decomposition from progression.
+  supported_proposition: Separates recognition/decomposition from progression.
+  thesis_targets:
+  - R23_PATTERN_LITERATURE
+  temporal_caveat: Specific formalisation/tool assumptions are historical; conceptual progression is less time-sensitive.
+  verification_state: location_verified
+- id: SRC-0065-EX-0004
+  location:
+    pdf_page: null
+    printed_page: 44-49
+    section: Chapter 3 Problem Progression
+    paragraph_or_table: null
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Progression transforms problem context and requirement toward the machine while preserving the solution
+    relation through domain properties/assumptions.
+  researcher_interpretation: Potential model for explicit derivation provenance.
+  supported_proposition: Potential model for explicit derivation provenance.
+  thesis_targets:
+  - R23_PATTERN_LITERATURE
+  temporal_caveat: Specific formalisation/tool assumptions are historical; conceptual progression is less time-sensitive.
+  verification_state: location_verified
+- id: SRC-0065-EX-0005
+  location:
+    pdf_page: null
+    printed_page: 187-188
+    section: Case-study discussion
+    paragraph_or_table: null
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Semi-formal progression manipulates small portions using rule conditions and states assumptions explicitly;
+    some low-level design remains for the developer.
+  researcher_interpretation: Shows bounded transformation rather than automatic design.
+  supported_proposition: Shows bounded transformation rather than automatic design.
+  thesis_targets:
+  - R23_PATTERN_LITERATURE
+  temporal_caveat: Specific formalisation/tool assumptions are historical; conceptual progression is less time-sensitive.
+  verification_state: location_verified
+- id: SRC-0065-EX-0006
+  location:
+    pdf_page: null
+    printed_page: 189 onward
+    section: Chapter 7 Discussion/Conclusions
+    paragraph_or_table: null
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Formal and semi-formal approaches have different scope/complexity; real stakeholder/domain knowledge
+    and tool support remain limitations.
+  researcher_interpretation: Evidence is substantial but not universal.
+  supported_proposition: Evidence is substantial but not universal.
+  thesis_targets:
+  - R23_PATTERN_LITERATURE
+  temporal_caveat: Specific formalisation/tool assumptions are historical; conceptual progression is less time-sensitive.
+  verification_state: location_verified

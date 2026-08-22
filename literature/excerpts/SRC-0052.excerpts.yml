@@ -1,0 +1,93 @@
+schema_version: 1
+source_id: SRC-0052
+citation_key: sutcliffe2000domainAnalysisReuse
+source_version:
+  stable_identifier: 10.1016/S0164-1212(99)00096-5
+  edition_or_version: FULL-TEXT REVIEWED — author-uploaded journal article
+  accessed_on: '2026-08-21'
+  local_filename: null
+  sha256: null
+excerpts:
+- id: SRC-0052-EX-0001
+  location:
+    pdf_page: null
+    printed_page: 175-176
+    section: Introduction; Theory of reusable problem models
+    paragraph_or_table: null
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The paper distinguishes problem-domain models from solution-domain patterns and motivates reusable
+    generic problem models.
+  researcher_interpretation: Supports R23's level separation.
+  supported_proposition: Supports R23's level separation.
+  thesis_targets:
+  - R23_PATTERN_LITERATURE
+  temporal_caveat: Specific reuse infrastructure and COM-era implementation examples are obsolete.
+  verification_state: location_verified
+- id: SRC-0052-EX-0002
+  location:
+    pdf_page: null
+    printed_page: '177'
+    section: Meta-schema, state transitions
+    paragraph_or_table: null
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Structure objects plus state transitions are described as strong class discriminators; secondary states
+    may occur across many classes.
+  researcher_interpretation: Direct evidence for critical semantic discriminators.
+  supported_proposition: Direct evidence for critical semantic discriminators.
+  thesis_targets:
+  - R23_PATTERN_LITERATURE
+  temporal_caveat: Specific reuse infrastructure and COM-era implementation examples are obsolete.
+  verification_state: location_verified
+- id: SRC-0052-EX-0003
+  location:
+    pdf_page: null
+    printed_page: 184-185
+    section: Section 4.1, Matching requirements to reusable models
+    paragraph_or_table: null
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The recognition method partitions the application, identifies goals, then analyses objects, structures,
+    agents and state transitions using goodness-of-fit.
+  researcher_interpretation: Candidate recognition can be a guided walkthrough rather than label lookup.
+  supported_proposition: Candidate recognition can be a guided walkthrough rather than label lookup.
+  thesis_targets:
+  - R23_PATTERN_LITERATURE
+  temporal_caveat: Specific reuse infrastructure and COM-era implementation examples are obsolete.
+  verification_state: location_verified
+- id: SRC-0052-EX-0004
+  location:
+    pdf_page: null
+    printed_page: 188-189
+    section: Section 6.3, Reusing generic models
+    paragraph_or_table: null
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Reported novice reuse produced copy-cat errors from surface transfer and insufficient specialisation.
+  researcher_interpretation: Strong failure mode for any DDTA authoring aid.
+  supported_proposition: Strong failure mode for any DDTA authoring aid.
+  thesis_targets:
+  - R23_PATTERN_LITERATURE
+  temporal_caveat: Specific reuse infrastructure and COM-era implementation examples are obsolete.
+  verification_state: location_verified
+- id: SRC-0052-EX-0005
+  location:
+    pdf_page: null
+    printed_page: '191'
+    section: Discussion / future work
+    paragraph_or_table: null
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Coverage, repository scale, industrial assessment and mappings to solution-level patterns remain open.
+  researcher_interpretation: Catalogue completeness and applicability must remain bounded.
+  supported_proposition: Catalogue completeness and applicability must remain bounded.
+  thesis_targets:
+  - R23_PATTERN_LITERATURE
+  temporal_caveat: Specific reuse infrastructure and COM-era implementation examples are obsolete.
+  verification_state: location_verified

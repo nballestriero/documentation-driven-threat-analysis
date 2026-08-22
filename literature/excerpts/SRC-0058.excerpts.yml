@@ -1,0 +1,61 @@
+schema_version: 1
+source_id: SRC-0058
+citation_key: mavin2009ears
+source_version:
+  stable_identifier: 10.1109/RE.2009.9
+  edition_or_version: FULL-TEXT REVIEWED — author-uploaded accepted paper
+  accessed_on: '2026-08-21'
+  local_filename: null
+  sha256: null
+excerpts:
+- id: SRC-0058-EX-0001
+  location:
+    pdf_page: null
+    printed_page: paper p. 4
+    section: Section 4.1 Generic requirements syntax
+    paragraph_or_table: null
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The generic form separates optional preconditions, optional trigger, system name and response in a
+    fixed temporal order.
+  researcher_interpretation: Useful for prose structure, not semantic-class selection.
+  supported_proposition: Useful for prose structure, not semantic-class selection.
+  thesis_targets:
+  - R23_PATTERN_LITERATURE
+  temporal_caveat: No major conceptual obsolescence; empirical evidence remains historically bounded.
+  verification_state: location_verified
+- id: SRC-0058-EX-0002
+  location:
+    pdf_page: null
+    printed_page: paper pp. 4-5
+    section: Requirement types
+    paragraph_or_table: null
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The paper specialises the syntax into ubiquitous, event-driven, unwanted-behaviour, state-driven and
+    optional-feature forms.
+  researcher_interpretation: Shows authoring patterns classified by sentence activation context.
+  supported_proposition: Shows authoring patterns classified by sentence activation context.
+  thesis_targets:
+  - R23_PATTERN_LITERATURE
+  temporal_caveat: No major conceptual obsolescence; empirical evidence remains historically bounded.
+  verification_state: location_verified
+- id: SRC-0058-EX-0003
+  location:
+    pdf_page: null
+    printed_page: paper results/conclusion
+    section: Case results
+    paragraph_or_table: null
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The case reports shorter/simpler requirements and qualitative improvement, but on a bounded aerospace
+    regulatory extraction exercise.
+  researcher_interpretation: Evidence should not be generalized to semantic correctness.
+  supported_proposition: Evidence should not be generalized to semantic correctness.
+  thesis_targets:
+  - R23_PATTERN_LITERATURE
+  temporal_caveat: No major conceptual obsolescence; empirical evidence remains historically bounded.
+  verification_state: location_verified

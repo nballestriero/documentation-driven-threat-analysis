@@ -1,0 +1,79 @@
+schema_version: 1
+source_id: SRC-0050
+citation_key: fernandez2022abstractSecurityPatterns
+source_version:
+  stable_identifier: 10.1186/s42400-022-00109-w
+  edition_or_version: FULL-TEXT REVIEWED — open-access version of record
+  accessed_on: '2026-08-21'
+  local_filename: null
+  sha256: null
+excerpts:
+- id: SRC-0050-EX-0001
+  location:
+    pdf_page: null
+    printed_page: article pp. 1-2
+    section: Abstract and Introduction
+    paragraph_or_table: null
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Security restrictions are argued to originate in application semantics and threats, with implementation
+    detail deferred.
+  researcher_interpretation: Supports a semantic-before-architecture boundary.
+  supported_proposition: Supports a semantic-before-architecture boundary.
+  thesis_targets:
+  - R23_PATTERN_LITERATURE
+  temporal_caveat: Specific concrete technologies/pattern examples may age; conceptual distinctions are less time-sensitive.
+  verification_state: location_verified
+- id: SRC-0050-EX-0002
+  location:
+    pdf_page: null
+    printed_page: article section 'Abstract security patterns (ASPs)'
+    section: Authenticator example
+    paragraph_or_table: null
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The abstract Authenticator concerns a subject that identifies itself and presents proof; authentication
+    precedes later access-control decisions.
+  researcher_interpretation: 'Useful discriminator: this flow presupposes an identity claim rather than discovering identity
+    from an unknown population.'
+  supported_proposition: 'Useful discriminator: this flow presupposes an identity claim rather than discovering identity from
+    an unknown population.'
+  thesis_targets:
+  - R23_PATTERN_LITERATURE
+  temporal_caveat: Specific concrete technologies/pattern examples may age; conceptual distinctions are less time-sensitive.
+  verification_state: location_verified
+- id: SRC-0050-EX-0003
+  location:
+    pdf_page: null
+    printed_page: article section 'ASPs in secure conceptual models'
+    section: Authenticator / Authorizer
+    paragraph_or_table: null
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Authenticator controls entry to a functional entity, whereas Authorizer governs access to specific
+    resources.
+  researcher_interpretation: Supports keeping authentication and authorization responsibilities distinct.
+  supported_proposition: Supports keeping authentication and authorization responsibilities distinct.
+  thesis_targets:
+  - R23_PATTERN_LITERATURE
+  temporal_caveat: Specific concrete technologies/pattern examples may age; conceptual distinctions are less time-sensitive.
+  verification_state: location_verified
+- id: SRC-0050-EX-0004
+  location:
+    pdf_page: null
+    printed_page: article conclusion
+    section: Conclusions and future work
+    paragraph_or_table: null
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The authors state there is no automatic way to build ASPs and call for a stronger catalogue.
+  researcher_interpretation: Prevents treating a security-pattern catalogue as automatic or complete.
+  supported_proposition: Prevents treating a security-pattern catalogue as automatic or complete.
+  thesis_targets:
+  - R23_PATTERN_LITERATURE
+  temporal_caveat: Specific concrete technologies/pattern examples may age; conceptual distinctions are less time-sensitive.
+  verification_state: location_verified

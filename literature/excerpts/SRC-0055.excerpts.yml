@@ -1,0 +1,27 @@
+schema_version: 1
+source_id: SRC-0055
+citation_key: fowler1997analysisPatterns
+source_version:
+  stable_identifier: ISBN 978-0-201-89542-1
+  edition_or_version: TARGETED PUBLISHER PREVIEW REVIEWED — full book not obtained
+  accessed_on: '2026-08-21'
+  local_filename: null
+  sha256: null
+excerpts:
+- id: SRC-0055-EX-0001
+  location:
+    pdf_page: null
+    printed_page: Publisher preview
+    section: Preface / Structure of this Book
+    paragraph_or_table: null
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The preview positions analysis patterns as conceptual business models and support patterns as the bridge
+    to software architecture/implementation.
+  researcher_interpretation: Supports R23's level distinction.
+  supported_proposition: Supports R23's level distinction.
+  thesis_targets:
+  - R23_PATTERN_LITERATURE
+  temporal_caveat: Specific OO notation/implementation guidance may be dated.
+  verification_state: preview_or_access_limited_location

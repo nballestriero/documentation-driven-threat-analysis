@@ -1,0 +1,95 @@
+schema_version: 1
+source_id: SRC-0049
+citation_key: sutcliffeMaiden1998domainTheory
+source_version:
+  stable_identifier: 10.1109/32.667878
+  edition_or_version: FULL-TEXT REVIEWED — author-uploaded IEEE article
+  accessed_on: '2026-08-21'
+  local_filename: null
+  sha256: null
+excerpts:
+- id: SRC-0049-EX-0001
+  location:
+    pdf_page: null
+    printed_page: '174'
+    section: Abstract; Section 1
+    paragraph_or_table: null
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The paper proposes generic application models, analogical matching and critical-difference rules for
+    distinguishing model families and levels.
+  researcher_interpretation: Direct support for R23's search for reusable semantic discriminators.
+  supported_proposition: Direct support for R23's search for reusable semantic discriminators.
+  thesis_targets:
+  - R23_PATTERN_LITERATURE
+  temporal_caveat: Prototype UI/CASE-tool implementation details and assumptions about 1990s tooling are technologically obsolete.
+  verification_state: location_verified
+- id: SRC-0049-EX-0002
+  location:
+    pdf_page: null
+    printed_page: 175-176
+    section: Section 2.1, Domain Matcher
+    paragraph_or_table: null
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Candidate models are discriminated primarily by structure/state transitions, then by activities, relationships,
+    goals, events/conditions, properties and labels.
+  researcher_interpretation: A DDTA recognition aid should privilege semantic structure over terminology.
+  supported_proposition: A DDTA recognition aid should privilege semantic structure over terminology.
+  thesis_targets:
+  - R23_PATTERN_LITERATURE
+  temporal_caveat: Prototype UI/CASE-tool implementation details and assumptions about 1990s tooling are technologically obsolete.
+  verification_state: location_verified
+- id: SRC-0049-EX-0003
+  location:
+    pdf_page: null
+    printed_page: 176-179
+    section: Section 2.2, validating requirements
+    paragraph_or_table: null
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The tool explains mappings and inconsistencies while the requirements engineer confirms or rejects
+    the current match and adds further facts.
+  researcher_interpretation: Pattern matching can remain mixed-initiative and reviewable rather than authoritative.
+  supported_proposition: Pattern matching can remain mixed-initiative and reviewable rather than authoritative.
+  thesis_targets:
+  - R23_PATTERN_LITERATURE
+  temporal_caveat: Prototype UI/CASE-tool implementation details and assumptions about 1990s tooling are technologically obsolete.
+  verification_state: location_verified
+- id: SRC-0049-EX-0004
+  location:
+    pdf_page: null
+    printed_page: 189-190
+    section: Related work / limitations
+    paragraph_or_table: null
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The authors leave open whether a finite set of generic models exists and state that stability in tests
+    does not prove completeness.
+  researcher_interpretation: A DDTA catalogue must not be treated as exhaustive.
+  supported_proposition: A DDTA catalogue must not be treated as exhaustive.
+  thesis_targets:
+  - R23_PATTERN_LITERATURE
+  temporal_caveat: Prototype UI/CASE-tool implementation details and assumptions about 1990s tooling are technologically obsolete.
+  verification_state: location_verified
+- id: SRC-0049-EX-0005
+  location:
+    pdf_page: null
+    printed_page: '190'
+    section: Future work
+    paragraph_or_table: null
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The paper calls for broader coverage, usability/industrial assessment, integration and better handling
+    of viewpoints.
+  researcher_interpretation: Evidence base is promising but bounded and historically limited.
+  supported_proposition: Evidence base is promising but bounded and historically limited.
+  thesis_targets:
+  - R23_PATTERN_LITERATURE
+  temporal_caveat: Prototype UI/CASE-tool implementation details and assumptions about 1990s tooling are technologically obsolete.
+  verification_state: location_verified

@@ -1,5 +1,5 @@
 schema_version: 1
-last_updated: 2026-08-15
+last_updated: 2026-08-21
 sources:
   - source_id: SRC-0002
     landing_url: "https://discovery.ucl.ac.uk/id/eprint/749/"
@@ -298,3 +298,150 @@ sources:
     sha256: "0b53b9400cd590f9a89d767333ff6d80f2296892a76ab8e08225eae035edb64f"
     repository_storage: forbidden
     related_current_record: "SRC-0043 is the separate access-limited 2022 edition record; equivalence is not assumed."
+  - source_id: SRC-0049
+    landing_url: "https://doi.org/10.1109/32.667878"
+    pdf_url: "https://www.researchgate.net/publication/220071223_The_Domain_Theory_for_Requirements_Engineering"
+    access_type: author_uploaded_full_text_web
+    licence: "Author-uploaded full text by Alistair G. Sutcliffe; copyright IEEE; reuse terms not stated."
+    retrieved_on: "2026-08-21"
+    sha256: null
+    repository_storage: forbidden
+  - source_id: SRC-0050
+    landing_url: "https://link.springer.com/article/10.1186/s42400-022-00109-w"
+    pdf_url: "https://link.springer.com/content/pdf/10.1186/s42400-022-00109-w.pdf"
+    access_type: open_access_version_of_record
+    licence: "CC BY 4.0"
+    retrieved_on: "2026-08-21"
+    sha256: null
+    repository_storage: forbidden
+  - source_id: SRC-0051
+    landing_url: "https://dblp.org/rec/conf/re/Jackson95"
+    pdf_url: null
+    access_type: metadata_only_full_text_not_obtained
+    licence: "IEEE conference paper; full-text reuse/access rights not established in this review."
+    retrieved_on: "2026-08-21"
+    sha256: null
+    repository_storage: forbidden
+  - source_id: SRC-0052
+    landing_url: "https://doi.org/10.1016/S0164-1212(99)00096-5"
+    pdf_url: "https://www.researchgate.net/publication/223379670_Domain_analysis_for_software_reuse"
+    access_type: author_uploaded_full_text_web
+    licence: "Author-uploaded full text by Alistair G. Sutcliffe; copyright Elsevier; reuse terms not stated."
+    retrieved_on: "2026-08-21"
+    sha256: null
+    repository_storage: forbidden
+  - source_id: SRC-0053
+    landing_url: "https://www.wiley-vch.de/en/areas-interest/computing-computer-sciences/security-patterns-in-practice-978-1-119-99894-5"
+    pdf_url: null
+    access_type: publisher_metadata_and_targeted_preview
+    licence: "Commercial Wiley book; O'Reilly preview access only in this review."
+    retrieved_on: "2026-08-21"
+    sha256: null
+    repository_storage: forbidden
+  - source_id: SRC-0054
+    landing_url: "https://oro.open.ac.uk/7513/"
+    pdf_url: null
+    access_type: publisher_and_repository_preview_full_text_not_obtained
+    licence: "Commercial Addison-Wesley book; no legal full-text copy obtained in this review."
+    retrieved_on: "2026-08-21"
+    sha256: null
+    repository_storage: forbidden
+  - source_id: SRC-0055
+    landing_url: "https://www.informit.com/store/analysis-patterns-reusable-object-models-9780201895421"
+    pdf_url: null
+    access_type: publisher_preview_full_text_not_obtained
+    licence: "Commercial Addison-Wesley book; publisher preview only."
+    retrieved_on: "2026-08-21"
+    sha256: null
+    repository_storage: forbidden
+  - source_id: SRC-0056
+    landing_url: "https://www.microsoftpressstore.com/store/software-requirement-patterns-9780735623989"
+    pdf_url: "https://www.microsoftpressstore.com/content/images/9780735623989/samplepages/9780735623989.pdf"
+    access_type: publisher_sample_full_text_not_obtained
+    licence: "Commercial Microsoft Press book; sample pages publicly supplied by publisher."
+    retrieved_on: "2026-08-21"
+    sha256: null
+    repository_storage: forbidden
+  - source_id: SRC-0057
+    landing_url: "https://doi.org/10.1007/s00766-005-0010-9"
+    pdf_url: null
+    access_type: publisher_abstract_subscription_full_text_not_obtained
+    licence: "Springer subscription article; full text not obtained."
+    retrieved_on: "2026-08-21"
+    sha256: null
+    repository_storage: forbidden
+  - source_id: SRC-0058
+    landing_url: "https://doi.org/10.1109/RE.2009.9"
+    pdf_url: "https://www.researchgate.net/publication/224079416_Easy_approach_to_requirements_syntax_EARS"
+    access_type: author_uploaded_full_text
+    licence: "Author-uploaded accepted IEEE paper; copyright/reuse restrictions apply."
+    retrieved_on: "2026-08-21"
+    sha256: null
+    repository_storage: forbidden
+  - source_id: SRC-0059
+    landing_url: "https://doi.org/10.1016/j.infsof.2004.09.002"
+    pdf_url: null
+    access_type: publisher_indexed_text_no_stable_full_pdf
+    licence: "Elsevier article; only publisher-indexed/abstract text reviewed."
+    retrieved_on: "2026-08-21"
+    sha256: null
+    repository_storage: forbidden
+  - source_id: SRC-0060
+    landing_url: "https://drops.dagstuhl.de/entities/document/10.4230/DagSemProc.08412.12"
+    pdf_url: "https://drops.dagstuhl.de/storage/16dagstuhl-seminar-proceedings/dsp-vol08412/DagSemProc.08412.12/DagSemProc.08412.12.pdf"
+    access_type: open_access_official_pdf
+    licence: "CC BY 4.0"
+    retrieved_on: "2026-08-21"
+    sha256: null
+    repository_storage: forbidden
+  - source_id: SRC-0061
+    landing_url: "https://www.informit.com/store/design-patterns-elements-of-reusable-object-oriented-9780201633610"
+    pdf_url: null
+    access_type: publisher_intro_preview_full_text_not_obtained
+    licence: "Commercial Addison-Wesley book; official preview only."
+    retrieved_on: "2026-08-21"
+    sha256: null
+    repository_storage: forbidden
+  - source_id: SRC-0062
+    landing_url: "https://www.informit.com/store/enterprise-integration-patterns-designing-building-9780321200686"
+    pdf_url: null
+    access_type: publisher_samples_full_text_not_obtained
+    licence: "Commercial Addison-Wesley book; official samples only."
+    retrieved_on: "2026-08-21"
+    sha256: null
+    repository_storage: forbidden
+  - source_id: SRC-0063
+    landing_url: "https://www.cs.le.ac.uk/SoftSD/resources/MJ.MarktCh3.pdf"
+    pdf_url: "https://www.cs.le.ac.uk/SoftSD/resources/MJ.MarktCh3.pdf"
+    access_type: user_supplied_full_text_with_public_academic_copy
+    licence: "Copyrighted conference/summer-school paper; research review only; repository storage forbidden."
+    local_filename: "mj-marktoberdorf.pdf"
+    retrieved_on: "2026-08-21"
+    sha256: "ad773dda313abd416ad0875d74dba018c742074d528daca2b810c32f7d5bf931"
+    repository_storage: forbidden
+  - source_id: SRC-0064
+    landing_url: "https://oro.open.ac.uk/3334/"
+    pdf_url: "https://oro.open.ac.uk/3334/4/re02.hall.pdf"
+    access_type: open_access_repository_accepted_manuscript
+    licence: "Open Research Online accepted manuscript; copyright/moral rights retained; redistribution terms governed by ORO/publisher."
+    local_filename: "82901924.pdf"
+    retrieved_on: "2026-08-21"
+    sha256: "4f6f79f57f5e9a6d7fb291ad71211ae5d1683c8bec821036811a53e4a82c2ca6"
+    repository_storage: forbidden
+  - source_id: SRC-0065
+    landing_url: "https://oro.open.ac.uk/64121/"
+    pdf_url: "https://oro.open.ac.uk/64121/1/13890034.pdf"
+    access_type: open_access_repository_thesis
+    licence: "CC BY-NC-ND 4.0 on the current ORO repository copy; thesis copyright held by the author."
+    local_filename: "228376756.pdf"
+    retrieved_on: "2026-08-21"
+    sha256: "d7592e3630e059006d79b5106cd82b4d859d4c615017452003cbce0b5b3a343f"
+    repository_storage: forbidden
+  - source_id: SRC-0066
+    landing_url: "https://www.enterpriseintegrationpatterns.com/"
+    pdf_url: "https://www.enterpriseintegrationpatterns.com/docs/Enterprise%20Integration%20Patterns%20-%20PLoP%20Final%20Draft%203.pdf"
+    access_type: public_author_site_conference_draft
+    licence: "Copyright Â© 2002 Gregor Hohpe; PLoP reproduction permission stated in the paper; no repository redistribution assumed."
+    retrieved_on: "2026-08-21"
+    sha256: null
+    repository_storage: forbidden

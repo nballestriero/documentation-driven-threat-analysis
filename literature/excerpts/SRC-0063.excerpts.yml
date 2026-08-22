@@ -1,0 +1,97 @@
+schema_version: 1
+source_id: SRC-0063
+citation_key: jackson2000problemAnalysisStructure
+source_version:
+  stable_identifier: Proceedings of NATO Summer School, Marktoberdorf, August 2000
+  edition_or_version: FULL-TEXT REVIEWED — user-supplied copy; public author/academic-hosted copy also found
+  accessed_on: '2026-08-21'
+  local_filename: mj-marktoberdorf.pdf
+  sha256: ad773dda313abd416ad0875d74dba018c742074d528daca2b810c32f7d5bf931
+excerpts:
+- id: SRC-0063-EX-0001
+  location:
+    pdf_page: null
+    printed_page: '1'
+    section: Abstract and Introduction
+    paragraph_or_table: null
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Problem frames capture recognised subproblem classes and associated concerns while deliberately resisting
+    solution-oriented analysis.
+  researcher_interpretation: Primary support for problem-class recognition.
+  supported_proposition: Primary support for problem-class recognition.
+  thesis_targets:
+  - R23_PATTERN_LITERATURE
+  temporal_caveat: Examples and notation are historical but conceptual content is low sensitivity.
+  verification_state: location_verified
+- id: SRC-0063-EX-0002
+  location:
+    pdf_page: null
+    printed_page: '3'
+    section: Section 2.3 Descriptions
+    paragraph_or_table: null
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Jackson separates requirement, intrinsic domain properties and machine specification and relates them
+    through an adequacy implication.
+  researcher_interpretation: Strong problem/solution boundary evidence.
+  supported_proposition: Strong problem/solution boundary evidence.
+  thesis_targets:
+  - R23_PATTERN_LITERATURE
+  temporal_caveat: Examples and notation are historical but conceptual content is low sensitivity.
+  verification_state: location_verified
+- id: SRC-0063-EX-0003
+  location:
+    pdf_page: null
+    printed_page: 8-9
+    section: Section 5 Problem Decomposition
+    paragraph_or_table: null
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Realistic problems exceed elementary frames; outside-in, inside-out, tempo and composite-frame strategies
+    are proposed.
+  researcher_interpretation: Catalogue use is heuristic and decompositional, not exhaustive.
+  supported_proposition: Catalogue use is heuristic and decompositional, not exhaustive.
+  thesis_targets:
+  - R23_PATTERN_LITERATURE
+  temporal_caveat: Examples and notation are historical but conceptual content is low sensitivity.
+  verification_state: location_verified
+- id: SRC-0063-EX-0004
+  location:
+    pdf_page: null
+    printed_page: 12-13
+    section: Sections 6.4-6.5
+    paragraph_or_table: null
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The package-router example shows identities difficulties where machine-observed phenomena do not identify
+    the participating sensor/package/bin mapping.
+  researcher_interpretation: Direct semantic discriminator relevant to identity-related responsibilities without predetermining
+    Facial Access.
+  supported_proposition: Direct semantic discriminator relevant to identity-related responsibilities without predetermining
+    Facial Access.
+  thesis_targets:
+  - R23_PATTERN_LITERATURE
+  temporal_caveat: Examples and notation are historical but conceptual content is low sensitivity.
+  verification_state: location_verified
+- id: SRC-0063-EX-0005
+  location:
+    pdf_page: null
+    printed_page: 16-17
+    section: Sections 7.5 and 8
+    paragraph_or_table: null
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Subproblem descriptions can conflict; the summary emphasizes problem-world focus, model-vs-real-world
+    distinction and delayed composition.
+  researcher_interpretation: Supports governance of contradictions and separation from premature design.
+  supported_proposition: Supports governance of contradictions and separation from premature design.
+  thesis_targets:
+  - R23_PATTERN_LITERATURE
+  temporal_caveat: Examples and notation are historical but conceptual content is low sensitivity.
+  verification_state: location_verified

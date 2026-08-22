@@ -1,0 +1,43 @@
+schema_version: 1
+source_id: SRC-0059
+citation_key: cox2005derivingRequirementsProblemFrames
+source_version:
+  stable_identifier: 10.1016/j.infsof.2004.09.002
+  edition_or_version: PARTIAL FULL-TEXT INDEX REVIEWED — stable legal PDF not obtained
+  accessed_on: '2026-08-21'
+  local_filename: null
+  sha256: null
+excerpts:
+- id: SRC-0059-EX-0001
+  location:
+    pdf_page: null
+    printed_page: Publisher abstract / indexed article text
+    section: Abstract and industrial discussion
+    paragraph_or_table: null
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: The source treats framing as difficult and reports use of process models to make context explicit before
+    selecting problem frames.
+  researcher_interpretation: Supports an upstream context-first recognition step.
+  supported_proposition: Supports an upstream context-first recognition step.
+  thesis_targets:
+  - R23_PATTERN_LITERATURE
+  temporal_caveat: Specific modelling/tooling details may be dated.
+  verification_state: preview_or_access_limited_location
+- id: SRC-0059-EX-0002
+  location:
+    pdf_page: null
+    printed_page: Publisher indexed article text
+    section: Industrial case discussion
+    paragraph_or_table: null
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Accessible text reports that the project problem did not always map easily to the basic frame set.
+  researcher_interpretation: Direct negative evidence against exhaustive catalogue assumptions.
+  supported_proposition: Direct negative evidence against exhaustive catalogue assumptions.
+  thesis_targets:
+  - R23_PATTERN_LITERATURE
+  temporal_caveat: Specific modelling/tooling details may be dated.
+  verification_state: preview_or_access_limited_location

@@ -1,0 +1,27 @@
+schema_version: 1
+source_id: SRC-0056
+citation_key: withall2007softwareRequirementPatterns
+source_version:
+  stable_identifier: ISBN 978-0-7356-2398-9
+  edition_or_version: TARGETED PUBLISHER SAMPLE REVIEWED — full book not obtained
+  accessed_on: '2026-08-21'
+  local_filename: null
+  sha256: null
+excerpts:
+- id: SRC-0056-EX-0001
+  location:
+    pdf_page: null
+    printed_page: Publisher sample/description
+    section: Book description
+    paragraph_or_table: null
+  capture_state: location_identified
+  usage_mode: paraphrase
+  verbatim_excerpt: null
+  faithful_paraphrase: Each requirement pattern is described as conveying needed information, questions, pitfalls, extra requirements
+    and advice.
+  researcher_interpretation: Supports treating authoring patterns as review prompts rather than automatic semantics.
+  supported_proposition: Supports treating authoring patterns as review prompts rather than automatic semantics.
+  thesis_targets:
+  - R23_PATTERN_LITERATURE
+  temporal_caveat: Unassessed detailed examples; general authoring concepts are low sensitivity.
+  verification_state: preview_or_access_limited_location
