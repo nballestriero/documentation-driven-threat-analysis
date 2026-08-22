@@ -17,7 +17,7 @@ The repository is intentionally separate from the ThreatForge software repositor
 
 DDTA is currently in an **R24 working research pass after completed repository alignment**. Earlier BA0-BA5 closure results remain historical lower bounds, but they must not be read as proof that the complete Base Analysis is permanently closed.
 
-The active research step is `methodology/DDTA_RESEARCH_WORK_PLAN_AFTER_DOCUMENTATION_CLOSURE_R23.md`: a bounded literature-backed investigation of recurring problem/domain/requirements/security patterns triggered by the Facial Access identification-versus-verification semantic mismatch. This step precedes further `MR-0003` authoring and does not make any pattern catalog project authority.
+The active research step remains `methodology/DDTA_RESEARCH_WORK_PLAN_AFTER_DOCUMENTATION_CLOSURE_R23.md`, now refined by `methodology/DDTA_R24_SEMANTIC_REVIEW_CHECKPOINT_R1.md`. The R23 literature pass and pressure tests no longer assume an identification-versus-verification conclusion: they exposed a material semantic ambiguity around the information available when the current `MR-0003` responsibility starts. Pattern/domain knowledge remains optional review knowledge, never project authority.
 
 The current R24 work has specifically reopened **BA2** only where concrete documentation-driven pressure tests require refinement. The active BA2 working revision is `methodology/BA2_RELATION_ACTION_VOCABULARY_R2.md`; BA1 identity remains `BAReferent + BAProposition`, and no other BA layer is reopened merely for editorial cleanup.
 
@@ -25,17 +25,22 @@ The current R24 research flow is:
 
 ```text
 governed project meaning
-  -> authoring / review gates
+  -> progressive authoring
+  -> semantic sufficiency review
   -> minimum justified Base Analysis
+  -> semantic regression back-check
+       -> if discrepancy: governed correction candidate -> updated documentation -> rebuilt BA
   -> downstream analysis / test usefulness
-  -> semantic pressure test
   -> smallest justified methodology revision
 ```
 
 The active forward-facing R24 records are:
 
 - `methodology/DDTA_RESEARCH_WORK_PLAN_AFTER_DOCUMENTATION_CLOSURE_R23.md`
-- `methodology/DDTA_R24_DECISION_RULE_CHECKPOINT.md`
+- `methodology/DDTA_R24_SEMANTIC_REVIEW_CHECKPOINT_R1.md`
+- `literature/syntheses/R23_SEMANTIC_RECOGNITION_SYNTHESIS_R1.md`
+- `studies/semantic-review/R24_SEMANTIC_REVIEW_PRESSURE_TESTS_R1.md`
+- `methodology/DDTA_R24_DECISION_RULE_CHECKPOINT.md` (carried-forward BA2 lower-bound evidence; superseded for forward execution)
 - `methodology/BA2_RELATION_ACTION_VOCABULARY_R2.md`
 - `methodology/DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R1.md`
 - `methodology/DDTA_FACIAL_ACCESS_PROJECT_DOCUMENTATION_WORKING_R24_PROJECT_ONLY.tex`

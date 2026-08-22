@@ -1,8 +1,10 @@
 # DDTA R24 - repository-alignment / decision-rule checkpoint
 
-**Status:** WORKING CHECKPOINT / REPOSITORY ALIGNMENT COMPLETE
+**Status:** RETAINED BA2 LOWER-BOUND CHECKPOINT / SUPERSEDED FOR FORWARD EXECUTION
 **Repository baseline reviewed:** `1912bc9a90bf076c50caf496f7f135bece010bad`
-**Purpose:** record the current R24 research state, the authority boundary, the accepted BA pressure-test findings, and the completed repository-alignment state before project authoring resumes.
+**Purpose:** retain the repository-alignment and BA2 pressure-test findings accepted at this checkpoint. Forward semantic-review execution is now governed by `DDTA_R24_SEMANTIC_REVIEW_CHECKPOINT_R1.md` and the updated R23 work plan.
+
+**Forward-use note:** sections that describe the next R23 reading/pattern step are historical execution state. They must not override the newer semantic-sufficiency / BA-regression checkpoint. The BA2 lower-bound findings remain carried forward unless a later concrete pressure test explicitly reopens them. In particular, this file's verification-oriented candidate wording is not authority for closing the current `MR-0003` semantic ambiguity.
 
 ## 1. Authority boundary
 
@@ -222,7 +224,9 @@ At that reviewed baseline:
 9. Historical state/work-plan snapshots, drop-ins, checksums and explicitly non-canonical working packages remain historical evidence unless they incorrectly claim current authority.
 
 No additional forward-facing repository-alignment debt was identified by the repeated audit. Repository alignment is complete once this closure pass is committed and pushed.
-## 8. Exact next research microstep
+## 8. Historical next research microstep — superseded
+
+The sequence below records what was next when this checkpoint was written. For current execution use `DDTA_R24_SEMANTIC_REVIEW_CHECKPOINT_R1.md` and `DDTA_RESEARCH_WORK_PLAN_AFTER_DOCUMENTATION_CLOSURE_R23.md`.
 
 Repository alignment is complete. Before resuming the Facial Access vertical slice at `MR-0003`, R24 now executes the bounded literature/pattern step defined by `DDTA_RESEARCH_WORK_PLAN_AFTER_DOCUMENTATION_CLOSURE_R23.md`.
 

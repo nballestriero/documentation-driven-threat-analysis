@@ -4,6 +4,8 @@
 
 This document turns the current conceptual baseline into repeatable authoring questions and review invariants. It intentionally stops before formal Base Analysis/BAE and Security Requirement semantics.
 
+**R24 research note:** `methodology/DDTA_R24_SEMANTIC_REVIEW_CHECKPOINT_R1.md` is pressure-testing a lightweight semantic-sufficiency / discrimination review and a post-BA semantic-regression back-check. Those candidate refinements are not yet promoted into this Revision 2 writing contract; the current rules remain the baseline against which the refinement is tested.
+
 ## 1. Authoring sequence
 
 ![DDTA authoring sequence](diagrams/AUTHORING_SEQUENCE.png)

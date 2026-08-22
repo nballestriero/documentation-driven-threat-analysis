@@ -2,8 +2,10 @@
 
 **Status:** R24 WORKING AUTHORING CONTRACT  
 **Current refinement baseline:** `0fc9ea67eb13a47d0acd2ad36a174bcf6e6aa237`
-**R24 checkpoint:** `DDTA_R24_DECISION_RULE_CHECKPOINT.md`
+**R24 checkpoint:** `DDTA_R24_SEMANTIC_REVIEW_CHECKPOINT_R1.md`
 **Purpose:** keep project documentation simple to write/read while preserving enough normalized meaning in Base Analysis for test derivation and later analysis.
+
+**R24 research note:** the semantic-sufficiency / semantic-regression mechanism in the current checkpoint is an experimental refinement under pressure test. It is **not yet promoted** into this guide's stable question set or into new mandatory document fields. This guide remains the current authoring baseline while real documentation → BA → regression cycles continue.
 
 ## 1. Core rule
 
@@ -336,9 +338,11 @@ governed documentation
 
 BA can expose ambiguity or missing branches. It must never silently repair project documentation.
 
-## 11. Facial-access checkpoint
+## 11. Historical Facial-access BA2 checkpoint — superseded for forward semantic interpretation
 
-Current R24 findings:
+The BA2 findings below remain useful lower-bound evidence, but their verification-oriented labels must not be used to close the current `MR-0003` semantic ambiguity. For forward semantic review use `DDTA_R24_SEMANTIC_REVIEW_CHECKPOINT_R1.md`.
+
+Current R24 findings at the earlier checkpoint:
 
 - `MR-0001` supports the coarse `produce(... -> AccessDecision)` meaning;
 - the conjunctive access-policy work and its exact operational mapping remain subject to the current project wording/FR pressure test before a complete access `decisionRule` is materialized;

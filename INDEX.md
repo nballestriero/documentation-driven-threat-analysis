@@ -9,14 +9,15 @@ It is not a semantic authority registry and it does not determine which project 
 
 For the current R24 research state, use:
 
-- `methodology/DDTA_R24_DECISION_RULE_CHECKPOINT.md`
+- `methodology/DDTA_R24_SEMANTIC_REVIEW_CHECKPOINT_R1.md`
+- `methodology/DDTA_RESEARCH_WORK_PLAN_AFTER_DOCUMENTATION_CLOSURE_R23.md`
 - `README.md`
 
 ## Current authority boundary
 
 The current governed facial-access validation baseline is:
 
-- `governed-corpora/facial-access/current/` â€” registered as `FACIAL_ACCESS_CURRENT_R1`
+- `governed-corpora/facial-access/current/` — registered as `FACIAL_ACCESS_CURRENT_R1`
 
 The current R24 facial-access project document is:
 
@@ -28,21 +29,25 @@ The R24 document is a working successor candidate used for methodology pressure 
 
 ### Documentation and metamodel research
 
-- `00-foundations/` â€” cross-cutting model-layering and foundational DDTA semantics.
-- `02-decision/` â€” Decision metamodel research, examples, regressions and historical construction work.
-- `03-functional-requirement/` â€” Functional Requirement metamodel and authoring guidance.
-- `04-specialized-requirement/` â€” Specialized Requirement research and examples.
-- `05-security-requirement/` â€” Security Requirement research.
+- `00-foundations/` — cross-cutting model-layering and foundational DDTA semantics.
+- `02-decision/` — Decision metamodel research, examples, regressions and historical construction work.
+- `03-functional-requirement/` — Functional Requirement metamodel and authoring guidance.
+- `04-specialized-requirement/` — Specialized Requirement research and examples.
+- `05-security-requirement/` — Security Requirement research.
 
 These directories contain both active methodological evidence and historical research material. Their local chronology does not override the repository authority gate.
 
 ### Base Analysis and current methodology work
 
-- `methodology/` â€” current and historical methodology checkpoints, BA contracts, authoring guidance, R24 project documentation and regression work.
+- `methodology/` — current and historical methodology checkpoints, BA contracts, authoring guidance, R24 project documentation and regression work.
 
 Current R24 forward-facing records include:
 
-- `methodology/DDTA_R24_DECISION_RULE_CHECKPOINT.md`
+- `methodology/DDTA_R24_SEMANTIC_REVIEW_CHECKPOINT_R1.md`
+- `methodology/DDTA_RESEARCH_WORK_PLAN_AFTER_DOCUMENTATION_CLOSURE_R23.md`
+- `literature/syntheses/R23_SEMANTIC_RECOGNITION_SYNTHESIS_R1.md`
+- `studies/semantic-review/R24_SEMANTIC_REVIEW_PRESSURE_TESTS_R1.md`
+- `methodology/DDTA_R24_DECISION_RULE_CHECKPOINT.md` (carried-forward BA2 lower-bound evidence)
 - `methodology/BA2_RELATION_ACTION_VOCABULARY_R2.md`
 - `methodology/DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R1.md`
 - `methodology/DDTA_FACIAL_ACCESS_PROJECT_DOCUMENTATION_WORKING_R24_PROJECT_ONLY.tex`
@@ -55,25 +60,25 @@ Earlier Rxx state records and work plans remain research history unless a curren
 
 ### Source authority and governed corpora
 
-- `governance/` â€” repository governance and authority decisions.
-- `governance/document-authority/` â€” repository-wide classification of document authority for current Base Analysis.
-- `governed-corpora/` â€” explicitly authority-classified governed validation corpora.
+- `governance/` — repository governance and authority decisions.
+- `governance/document-authority/` — repository-wide classification of document authority for current Base Analysis.
+- `governed-corpora/` — explicitly authority-classified governed validation corpora.
 
 Chronological recency is not authority.
 
 ### Literature and research evidence
 
-- `literature/` â€” literature records, notes, excerpts, syntheses and research evidence.
-- `research/` â€” research questions, hypotheses, candidate contributions and terminology.
-- `studies/` â€” bounded empirical/corpus studies whose local results require explicit promotion before becoming DDTA methodology rules.
+- `literature/` — literature records, notes, excerpts, syntheses and research evidence.
+- `research/` — research questions, hypotheses, candidate contributions and terminology.
+- `studies/` — bounded empirical/corpus studies whose local results require explicit promotion before becoming DDTA methodology rules.
 
 ### Thesis material
 
-- `thesis/` â€” thesis drafting, evidence management and thesis-specific material.
+- `thesis/` — thesis drafting, evidence management and thesis-specific material.
 
 ### Non-canonical / historical workspace
 
-- `_working/` â€” non-canonical historical or experimental workspace.
+- `_working/` — non-canonical historical or experimental workspace.
 
 Material under `_working/` remains useful research evidence but is not current governed project documentation merely because it exists in the repository.
 
@@ -93,10 +98,12 @@ These are preserved for reproducibility and history. They must not be interprete
 
 ```text
 governed project meaning
-  -> authoring / review gates
+  -> progressive authoring
+  -> semantic sufficiency review
   -> minimum justified Base Analysis
+  -> semantic regression back-check
+       -> discrepancy: governed correction candidate -> updated documentation -> rebuilt BA
   -> downstream analysis / test usefulness
-  -> semantic pressure test
   -> smallest justified methodology revision
 ```
 
@@ -120,13 +127,14 @@ For a reviewer entering the repository during R24:
 1. `README.md`
 2. `governance/document-authority/README.md`
 3. `governance/document-authority/document-authority.registry.yml`
-4. `methodology/DDTA_R24_DECISION_RULE_CHECKPOINT.md`
-5. `methodology/DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R1.md`
-6. `methodology/BA1_MINIMAL_BAE_IDENTITY_ONTOLOGY_R1.md`
-7. `methodology/BA2_RELATION_ACTION_VOCABULARY_R2.md`
-8. `methodology/BA3_PROVENANCE_DERIVATION_LIFECYCLE_CHANGE_CONTRACT_R1.md`
-9. `methodology/BA4_PROJECTION_BOUNDARY_TRACEABILITY_INTERPRETATION_COVERAGE_CONTRACT_R1.md`
-10. `methodology/BA5_CANONICAL_SEMANTIC_REGISTRY_CONTROLLED_AUTHORING_CONTRACT_R1.md`
+4. `methodology/DDTA_R24_SEMANTIC_REVIEW_CHECKPOINT_R1.md`
+5. `methodology/DDTA_RESEARCH_WORK_PLAN_AFTER_DOCUMENTATION_CLOSURE_R23.md`
+6. `methodology/DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R1.md`
+7. `methodology/BA1_MINIMAL_BAE_IDENTITY_ONTOLOGY_R1.md`
+8. `methodology/BA2_RELATION_ACTION_VOCABULARY_R2.md`
+9. `methodology/BA3_PROVENANCE_DERIVATION_LIFECYCLE_CHANGE_CONTRACT_R1.md`
+10. `methodology/BA4_PROJECTION_BOUNDARY_TRACEABILITY_INTERPRETATION_COVERAGE_CONTRACT_R1.md`
+11. `methodology/BA5_CANONICAL_SEMANTIC_REGISTRY_CONTROLLED_AUTHORING_CONTRACT_R1.md`
 
 The R24 project document and governed facial-access baseline should then be read side-by-side according to the authority distinction above.
 

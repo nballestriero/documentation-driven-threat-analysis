@@ -6,21 +6,25 @@ title: "DDTA research work plan after documentation-layer closure - R23"
 
 **WORK PLAN - REVISION 23**
 
-**Status:** ACTIVE R24 WORK PLAN — LITERATURE-BACKED SYSTEM / SEMANTIC PATTERN RESEARCH.
+**Status:** ACTIVE R24 WORK PLAN — SEMANTIC SUFFICIENCY / BA REGRESSION PRESSURE TESTING.
 
-**Prepared against repository baseline:** `df404acb2cfcfb4880badefe34c4df7948f28b42`
+**Initially prepared against repository baseline:** `df404acb2cfcfb4880badefe34c4df7948f28b42`
+
+**Current refinement baseline:** `87a612663d1e4827b7f67e83182838586e53d7ba`
 
 **Supersedes:** Revision 22 only for forward execution state. R1-R22 remain historical research records.
 
-**Current R24 checkpoint:** `DDTA_R24_DECISION_RULE_CHECKPOINT.md`
+**Current R24 checkpoint:** `DDTA_R24_SEMANTIC_REVIEW_CHECKPOINT_R1.md`
+
+**Carried-forward BA2 lower-bound checkpoint:** `DDTA_R24_DECISION_RULE_CHECKPOINT.md`
 
 ## 1. Trigger for this revision
 
 Repository alignment is complete. The Facial Access vertical slice was about to resume at `MR-0003` when a material semantic-classification problem emerged during human review.
 
-The project use case begins with a person presenting at the access point while their governed identity is not yet known. The system must first determine which registered/governed identity, if any, corresponds to that person and only afterwards determine the relevant authorization state and access decision.
+Human review found that the current R24 `MR-0003` wording can support materially different readings depending on what is already known when the responsibility starts. In particular, the available evidence does not explicitly establish whether a specific `GovernedIdentity` is already selected/available as a reference before correspondence is determined.
 
-The current R24 working documentation uses the name `IdentityVerification`, while the reviewed behavior may instead involve an identification / one-to-many recognition problem before any one-to-one verification or authorization step.
+The current R24 working documentation uses the name `IdentityVerification`, but that label must not be used as evidence to decide the unresolved entry-state fact or to force an identification/verification classification.
 
 This is not treated as a wording-only defect. It exposes a more general methodology question:
 
@@ -46,7 +50,7 @@ The following state is retained:
 
 ## 3. R23 objective
 
-Determine, from literature and controlled comparison, whether DDTA should adopt a lightweight pattern-based authoring/review aid for recurring system problem semantics.
+Determine, from literature and controlled comparison, whether DDTA should adopt a lightweight semantic-sufficiency / semantic-discrimination review integrated into existing authoring, with reusable problem/domain knowledge as optional candidate-generation support and Base Analysis derivation as a second semantic pressure test.
 
 The research must distinguish at least four levels instead of collapsing them:
 
@@ -67,6 +71,14 @@ design / integration / implementation pattern
 The working hypothesis is that DDTA may benefit primarily from the first three levels while design patterns remain downstream comparison material.
 
 The hypothesis is **not accepted in advance**.
+
+Current working result after the R23 reading and pressure-test pass:
+
+- a mandatory DDTA pattern card is **not** justified as the next artifact;
+- pattern/domain knowledge is more defensible as optional review knowledge that proposes candidate interpretations and critical differences;
+- the smallest promising DDTA change is a semantic-sufficiency review with escalation only when a material ambiguity is plausible;
+- Base Analysis derivation should also be used as a post-authoring semantic regression/back-check without becoming project authority;
+- no new metamodel field, document type or BA operator is justified by the current evidence.
 
 ## 4. Research questions
 
@@ -233,67 +245,77 @@ registered SRC identity
 
 The reading note must answer the existing four repository reading questions; R23 adds no replacement questionnaire.
 
-## 9. Cross-source synthesis gate
+### 8.1 Current R23 corpus state
 
-Do not design the DDTA pattern template directly from one source.
+At refinement baseline `87a612663d1e4827b7f67e83182838586e53d7ba`, the R23 pattern/semantic corpus is registered as `SRC-0049` through `SRC-0066`.
 
-After the reading pass, create a synthesis under `literature/syntheses/` that compares at least:
+The corpus contains full, partial, preview and access-limited sources. Cross-source claims must therefore remain bounded by the source notes actually read and by their recorded access limitations.
 
-1. what each source calls a pattern/frame/model;
-2. problem vs solution level;
-3. recognition/applicability mechanism;
-4. discriminators / critical differences / negative cases;
-5. required semantic roles or structure;
-6. consequences and trade-offs;
-7. relationship to requirements authoring;
-8. relationship to architecture/design;
-9. human vs automated matching;
-10. authority assumptions;
-11. known limitations and evidence base;
-12. implications for DDTA and thesis claims.
+The working synthesis for the current transition is:
 
-## 10. Pattern-template design gate
+- `literature/syntheses/R23_SEMANTIC_RECOGNITION_SYNTHESIS_R1.md`
 
-Only after the synthesis may DDTA propose a pattern-card/template.
+This working synthesis satisfies the gate needed to resume controlled method pressure testing. It does not claim exhaustive literature closure or general empirical validation.
 
-The template must remain a **working authoring/review aid**, not project authority.
+## 9. Cross-source synthesis gate — working gate satisfied
 
-At minimum it must be tested against these failure modes:
+Do not design DDTA review structure directly from one source.
 
-- pattern name suggests the wrong semantic problem;
-- two patterns are superficially similar but differ on a critical precondition;
-- pattern application silently introduces architecture;
-- pattern match automatically emits requirements or BA propositions;
-- pattern vocabulary becomes a hidden canonical ontology without governance;
-- pattern catalog is treated as exhaustive when the project does not fit;
-- downstream design pattern is mistaken for a project problem pattern.
+The current working cross-source synthesis is:
 
-The exact fields and syntax remain open until the literature synthesis is complete.
+- `literature/syntheses/R23_SEMANTIC_RECOGNITION_SYNTHESIS_R1.md`
 
-## 11. Pilot pressure test
+It compares problem/solution level, recognition mechanisms, critical differences, authoring relation, design relation, human judgment, authority assumptions, limitations and DDTA implications.
 
-The first template candidate must be pressure-tested on the Facial Access semantic confusion that triggered R23.
+The synthesis is sufficient to resume controlled authoring/BA pressure testing, but it is not a claim of exhaustive literature closure.
 
-The pilot must discriminate, without assuming the conclusion in advance:
+## 10. Semantic-review mechanism gate
+
+The next mandatory artifact is **not** a pattern-card/template.
+
+The current candidate mechanism is:
 
 ```text
-identification / one-to-many recognition
-verification / one-to-one comparison
-authentication
-authorization
-access decision / policy gate
+normal DDTA authoring
+    -> semantic sufficiency check
+    -> if materially unstable: inspect relevant semantic dimensions
+    -> minimal competing readings
+    -> critical difference
+    -> governed-evidence question
+    -> clarify / place / unresolved
 ```
 
-The pilot must answer:
+Reusable problem/domain/pattern knowledge may help generate candidate readings or critical-difference hints. It remains optional review knowledge and cannot substitute for governed project evidence.
 
-- what information is known before each responsibility starts?
-- what population or specific identity is in scope?
-- what question is the responsibility answering?
-- what semantic outputs must later responsibilities consume?
-- what failure/ambiguity outcomes are materially distinct?
-- which terms in the current R24 project documentation are misleading or overloaded?
+Current evidence does not justify:
 
-Only after this pressure test may `MR-0003` wording and capability/referent naming resume.
+- six mandatory semantic fields on every document;
+- a new semantic-review document type;
+- a universal pattern taxonomy;
+- automatic pattern matching;
+- automatic requirement or BA generation.
+
+## 11. Pressure-test status and next empirical cycle
+
+The preliminary Facial Access pressure test is complete at the semantic-review level.
+
+It found a material critical difference without closing the domain classification:
+
+> Before correspondence determination begins, is a specific `GovernedIdentity` already available/selected as the reference?
+
+The current working evidence does not explicitly close that fact.
+
+Cross-LLM blind replication independently recovered the same discriminator family. One grounded replication carries a documented contamination caveat because an allowed DDTA guide exposed Facial Access labels after the blind result had been frozen.
+
+A controlled synthetic record-coherence case exercised a different discriminator family. A retrospective ThreatForge implementation-promotion case exercised another: what proposition verification evidence actually justifies.
+
+These tests are recorded in:
+
+- `studies/semantic-review/R24_SEMANTIC_REVIEW_PRESSURE_TESTS_R1.md`
+
+The next empirical cycle must now return to real Facial Access documentation, then derive the minimum justified BA and run a post-BA semantic regression back-check.
+
+Do not classify the responsibility from the `IdentityVerification` label and do not rename it before governed evidence closes or preserves the ambiguity.
 
 ## 12. Guardrails
 
@@ -305,45 +327,56 @@ During R23:
 - do not add a BA2 operator because a pattern catalog uses a familiar verb;
 - do not derive BA propositions automatically from a pattern match;
 - do not treat design patterns as project authority;
+- do not turn the six semantic observation dimensions into mandatory document fields without additional evidence;
+- do not let BA resolve a semantic ambiguity that project documentation leaves open;
+- do not let a post-BA discrepancy automatically mutate governed documentation; it produces a correction candidate for governed review;
 - do not copy copyrighted source PDFs into Git;
 - do not make a thesis claim from an unverified candidate source;
 - do not treat the 14-source corpus as exhaustive if reading reveals a material missing source.
 
-## 13. Exit condition
+## 13. Transition condition
 
-R23's pattern-literature step may close only when:
+R23's literature/semantic-recognition step may transition into applied authoring/BA pressure testing when:
 
-1. the selected core sources have repository source notes and citation-ready locations;
-2. bibliographic identity and legal access are registered for every source actually used;
-3. the cross-source synthesis is complete;
-4. the difference between problem/domain/requirement/design pattern levels is explicit;
-5. the synthesis identifies supported candidate fields and unsupported assumptions for a DDTA pattern template;
-6. a first pattern template is drafted only from the synthesis;
-7. the template passes the Facial Access identification/verification pressure test without becoming project authority;
-8. any required additional literature has either been read or explicitly deferred with rationale.
+1. the selected source corpus is registered with its access limitations;
+2. the source notes used for current claims are available;
+3. a cross-source working synthesis exists;
+4. problem/domain/requirement/design pattern levels remain explicit;
+5. the synthesis distinguishes literature-backed recognition principles from the DDTA-specific integration;
+6. the Facial Access test identifies a material critical difference without forcing a domain label;
+7. at least one independent or non-Facial-Access pressure test is recorded with limitations;
+8. no mandatory pattern template, new metamodel field or automatic BA derivation is assumed;
+9. the next cycle explicitly tests documentation → minimum BA → semantic regression.
+
+`DDTA_R24_SEMANTIC_REVIEW_CHECKPOINT_R1.md` records that working transition. This is a transition to applied pressure testing, not final method closure.
 
 ## 14. Forward sequence
 
 The active sequence is:
 
 ```text
-R23 source registration / access verification
-    -> reading cards using the existing source-note template
-    -> citation-ready excerpts
-    -> cross-source pattern synthesis
-    -> DDTA pattern-template candidate
-    -> Facial Access identification/verification pressure test
-    -> return to MR-0003 wording
-    -> MR-0003ADR-0001
-    -> MR-0003ADR-0001FR-0001
+R23 registered corpus + source notes
+    -> R23 semantic-recognition synthesis
+    -> R24 semantic-review checkpoint
+    -> return to MR-0003 neutral semantic review
+    -> determine whether the critical entry-state fact is governed / conflicting / unresolved
+    -> clarify MR only if the fact defines the stable responsibility
+    -> create/use a Decision only for a genuine project choice
+    -> FR operationalization
     -> minimum justified BA derivation
+    -> semantic regression back-check
+    -> if needed: governed documentation correction candidate -> rebuild BA
     -> downstream analysis / test usefulness check
+    -> repeat on another real governed responsibility
+    -> only then promote stable guide/method/thesis wording
 ```
 
 ## 15. Exact next microstep
 
-The exact next microstep after R23 is committed is:
+The exact next microstep after this checkpoint is applied is:
 
-> Register and obtain/verify legal access for `PAT-LIT-03 — The Domain Theory for Requirements Engineering`, assign its repository `SRC-*` identity, and create its reading note from `literature/templates/source-note.template.md`.
+> Return to `MR-0003` in the R24 working Facial Access project documentation. Ignore the `IdentityVerification` label while reconstructing the responsibility, then inspect available project evidence for the critical entry-state fact: whether a specific `GovernedIdentity` is already available/selected before correspondence determination begins.
 
-Do not start the DDTA pattern template during that microstep.
+Classify that evidence as affirmed, denied, conflicting or not specified.
+
+Do not rename the capability and do not create a Decision merely to resolve missing evidence during that microstep.
