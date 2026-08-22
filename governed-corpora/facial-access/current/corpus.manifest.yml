@@ -2,15 +2,15 @@ schemaVersion: 1
 corpusKey: facial-access-current
 corpusRevision: R1
 authorityBaselineKey: FACIAL-ACCESS-GOV-R1
-authorityStatus: CURRENT_GOVERNED
-primaryBASourceAllowed: true
+authorityStatus: SUPERSEDED
+primaryBASourceAllowed: false
 basedOnRepositoryCommit: eef1031e47f91f60f18121aba09b6386699f8317
 
 scope:
   project: facial-access
   branchRoot: MR-0003
   branchTitle: "Verifica dell'identità al punto di accesso"
-  completenessClaim: bounded-branch-validation-corpus
+  completenessClaim: superseded-bounded-branch-validation-corpus
 
 documents:
   - path: MR-0003_IDENTITY_VERIFICATION.md

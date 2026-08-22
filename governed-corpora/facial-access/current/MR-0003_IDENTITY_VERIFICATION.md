@@ -1,6 +1,8 @@
 # MR-0003 — Verifica dell'identità al punto di accesso
 
-**Lifecycle:** current
+**Lifecycle:** superseded
+**Authority:** `SUPERSEDED` — not a primary Base Analysis source.
+**R24 semantic-review note:** this R1 is preserved as regression evidence. The semantic review found that it does not explicitly govern whether a specific governed identity is already determined when the responsibility begins. The candidate successor is under `governed-corpora/facial-access/candidate-r2/` and is not current authority until explicit promotion.
 
 ## Intent
 

@@ -1,13 +1,13 @@
-# Facial-access governed validation corpus — current R1
+# Facial-access governed validation corpus — superseded R1
 
-**Authority:** `CURRENT_GOVERNED`
+**Authority:** `SUPERSEDED`
 **Authority baseline key:** `FACIAL-ACCESS-GOV-R1`
 **Package source repository baseline:** `eef1031e47f91f60f18121aba09b6386699f8317`
-**Primary BA source allowed:** yes, after this package is reviewed and committed.
+**Primary BA source allowed:** no. Retained as regression evidence.
 
 ## Purpose
 
-This corpus materializes a current facial-access documentation slice using the documentation semantics closed before BA6. It exists specifically to separate current governed project meaning from the historical/non-canonical examples retained elsewhere in the repository.
+This corpus preserves the former governed facial-access documentation slice as regression evidence. It is no longer current project authority after the R24 MR-0003 semantic-review finding.
 
 It is a **thesis validation corpus**, not a claim of production-system completeness.
 
@@ -49,4 +49,4 @@ Sibling Decisions D-3.5 and D-3.6 affect the execution context of FR-3.4.2 but a
 
 ## Analysis boundary
 
-No Base Analysis is materialized in this corpus. The next experiment must build a new BA from these current governed sources, then compare it with a BA built from the historical corpus strictly as regression evidence.
+No Base Analysis is materialized in this corpus. No accepted current BA may now be derived from this superseded corpus. It remains available for regression, provenance and comparison with a future explicitly promoted governed successor.

@@ -6,6 +6,8 @@
 
 **Forward-use note:** sections that describe the next R23 reading/pattern step are historical execution state. They must not override the newer semantic-sufficiency / BA-regression checkpoint. The BA2 lower-bound findings remain carried forward unless a later concrete pressure test explicitly reopens them. In particular, this file's verification-oriented candidate wording is not authority for closing the current `MR-0003` semantic ambiguity.
 
+**Post-finding authority alignment:** Section 1 records the authority state at this checkpoint's reviewed baseline. `FACIAL_ACCESS_CURRENT_R1` has since been explicitly `SUPERSEDED` by the R24 MR-0003 semantic-review finding. The candidate-r2 remains `EXPERIMENTAL_NON_CANONICAL`; neither is a current primary BA source pending explicit promotion.
+
 ## 1. Authority boundary
 
 The repository currently contains two intentionally different facial-access layers.

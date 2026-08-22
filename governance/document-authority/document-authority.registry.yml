@@ -1,6 +1,6 @@
 schemaVersion: 1
 registryKey: ddta-document-authority
-basedOnRepositoryCommit: 1b04773a3f103fa3e2710f3937ef97c8190a5477
+basedOnRepositoryCommit: fa8f5affe29143764230e43ec52514bf7f3ee8df
 
 rules:
   chronologicalRecencyImpliesAuthority: false
@@ -77,20 +77,43 @@ entries:
       - CURRENT_GOVERNED authority
       - automatic supersession of FACIAL-ACCESS-GOV-R1
       - primary Base Analysis source use before explicit promotion
+
+  - familyKey: facial-access-r24-mr0003-semantic-successor-candidate
+    pathPrefix: governed-corpora/facial-access/candidate-r2/
+    authorityStatus: EXPERIMENTAL_NON_CANONICAL
+    primaryBASourceAllowed: false
+    retainedFor:
+      - R24 MR-0003 semantic-correction pressure test
+      - downstream Decision and FunctionalRequirement compatibility review
+      - candidate Base Analysis derivation after explicit promotion
+    scope:
+      - MR-0003 successor candidate only
+      - identity-not-yet-determined entry-state clarification
+    exclusions:
+      - CURRENT_GOVERNED authority
+      - primary Base Analysis source use before explicit promotion
+      - automatic promotion of existing downstream Decision or FunctionalRequirement semantics
+
   - familyKey: facial-access-current-governed-validation-corpus
     pathPrefix: governed-corpora/facial-access/current/
-    authorityStatus: CURRENT_GOVERNED
-    researchRole: CURRENT_THESIS_VALIDATION_CORPUS
+    authorityStatus: SUPERSEDED
+    researchRole: REGRESSION_EVIDENCE
     authorityBaselineKey: FACIAL-ACCESS-GOV-R1
-    primaryBASourceAllowed: true
+    primaryBASourceAllowed: false
     migratedFromRepositoryCommit: eef1031e47f91f60f18121aba09b6386699f8317
+    retainedFor:
+      - R24 semantic-review regression evidence
+      - old-vs-candidate MR-0003 comparison
+      - downstream Decision and FunctionalRequirement compatibility review
     scope:
-      - MR-0003 identity-verification branch
-      - Decisions needed to select facial recognition and current camera/recognition placement
-      - Functional requirements used by the camera transfer trial
+      - superseded MR-0003 identity-verification branch
+      - Decisions previously used to select facial recognition and camera/recognition placement
+      - Functional requirements previously used by the camera transfer trial
       - Security requirements specializing the delivery behavior
       - explicit unresolved documentation gaps
     exclusions:
+      - current project authority after the R24 MR-0003 semantic finding
+      - primary Base Analysis source use
       - complete production specification
       - complete facial-access project migration
       - Base Analysis materialization

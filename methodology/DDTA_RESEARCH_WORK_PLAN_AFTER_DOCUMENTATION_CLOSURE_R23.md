@@ -39,7 +39,7 @@ No current project document, BA operator, BA proposition or authority classifica
 The following state is retained:
 
 - repository alignment: **COMPLETE**;
-- current governed facial-access baseline: `FACIAL_ACCESS_CURRENT_R1`;
+- facial-access authority state: `FACIAL_ACCESS_CURRENT_R1` is **SUPERSEDED**; the MR-0003 candidate-r2 is **EXPERIMENTAL_NON_CANONICAL**, and no facial-access baseline is currently eligible as a primary BA source;
 - R24 facial-access project documentation: **EXPERIMENTAL_NON_CANONICAL / working successor candidate**;
 - BA1 identity semantics: retained;
 - BA2 R2: active R24 working lower bound;
@@ -373,10 +373,8 @@ R23 registered corpus + source notes
 
 ## 15. Exact next microstep
 
-The exact next microstep after this checkpoint is applied is:
+The exact next microstep after the R24 MR-0003 semantic-review finding is:
 
-> Return to `MR-0003` in the R24 working Facial Access project documentation. Ignore the `IdentityVerification` label while reconstructing the responsibility, then inspect available project evidence for the critical entry-state fact: whether a specific `GovernedIdentity` is already available/selected before correspondence determination begins.
+> Review `D-3.1`, `D-3.2` and `FR-3.2.1` against the corrected MR-0003 meaning, checking whether any downstream artifact silently assumes a preselected `GovernedIdentity`.
 
-Classify that evidence as affirmed, denied, conflicting or not specified.
-
-Do not rename the capability and do not create a Decision merely to resolve missing evidence during that microstep.
+Do not promote candidate-r2 and do not derive an accepted BA until downstream compatibility review is complete.

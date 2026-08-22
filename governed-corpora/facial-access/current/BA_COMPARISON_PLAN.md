@@ -1,6 +1,6 @@
 # Next experiment — old documentation vs current documentation in Base Analysis
 
-**Status:** `DEFERRED` until the document-authority/current-corpus package is committed and its Git baseline is pinned.
+**Status:** `SUPERSEDED PLAN / DO NOT EXECUTE AS WRITTEN` — retained as regression-planning evidence.
 
 No BA is materialized here.
 
@@ -16,7 +16,7 @@ Use the historical MR/Decision/S1 facial-access material strictly with `primaryB
 
 ### B — current governed
 
-Use `FACIAL-ACCESS-GOV-R1` at the concrete Git commit that contains it.
+`FACIAL-ACCESS-GOV-R1` is now `SUPERSEDED` and MUST NOT be used as the current governed source set. A future comparison must use an explicitly promoted successor baseline and may retain R1 only as regression evidence.
 
 ## Comparison dimensions
 

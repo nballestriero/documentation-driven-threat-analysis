@@ -15,15 +15,17 @@ For the current R24 research state, use:
 
 ## Current authority boundary
 
-The current governed facial-access validation baseline is:
+The former facial-access validation baseline:
 
-- `governed-corpora/facial-access/current/` — registered as `FACIAL_ACCESS_CURRENT_R1`
+- `governed-corpora/facial-access/current/` — `FACIAL_ACCESS_CURRENT_R1` / `FACIAL-ACCESS-GOV-R1`
 
-The current R24 facial-access project document is:
+is now `SUPERSEDED` and retained as regression evidence after the R24 MR-0003 semantic-review finding.
 
-- `methodology/DDTA_FACIAL_ACCESS_PROJECT_DOCUMENTATION_WORKING_R24_PROJECT_ONLY.tex`
+The explicit MR-0003 successor candidate is:
 
-The R24 document is a working successor candidate used for methodology pressure testing. It is not `CURRENT_GOVERNED` and does not supersede `FACIAL_ACCESS_CURRENT_R1` by chronology alone.
+- `governed-corpora/facial-access/candidate-r2/`
+
+It is `EXPERIMENTAL_NON_CANONICAL` and cannot be used as a primary BA source before downstream compatibility review and explicit promotion. The broader R24 project document remains a separate non-canonical authoring/pressure-test artifact.
 
 ## Repository map
 
@@ -47,6 +49,7 @@ Current R24 forward-facing records include:
 - `methodology/DDTA_RESEARCH_WORK_PLAN_AFTER_DOCUMENTATION_CLOSURE_R23.md`
 - `literature/syntheses/R23_SEMANTIC_RECOGNITION_SYNTHESIS_R1.md`
 - `studies/semantic-review/R24_SEMANTIC_REVIEW_PRESSURE_TESTS_R1.md`
+- `studies/semantic-review/R24_MR0003_SEMANTIC_REVIEW_FINDING_R1.md`
 - `methodology/DDTA_R24_DECISION_RULE_CHECKPOINT.md` (carried-forward BA2 lower-bound evidence)
 - `methodology/BA2_RELATION_ACTION_VOCABULARY_R2.md`
 - `methodology/DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R1.md`
@@ -111,14 +114,16 @@ For facial-access work, the authority flow is currently:
 
 ```text
 FACIAL_ACCESS_CURRENT_R1
-  -> R24 working successor candidate
-  -> BA pressure tests
-  -> downstream analysis / regression
-  -> explicit promotion / supersession decision
+  -> SUPERSEDED / regression evidence
+  -> R24 MR-0003 candidate-r2
+       EXPERIMENTAL_NON_CANONICAL
+  -> downstream Decision / FunctionalRequirement compatibility review
+  -> explicit promotion decision
   -> next governed baseline
+  -> minimum justified BA and semantic regression
 ```
 
-No working artifact becomes governed by recency alone.
+No working artifact becomes governed by recency alone, and no accepted BA should be derived from the candidate before explicit promotion.
 
 ## Reading order for current work
 
@@ -128,15 +133,16 @@ For a reviewer entering the repository during R24:
 2. `governance/document-authority/README.md`
 3. `governance/document-authority/document-authority.registry.yml`
 4. `methodology/DDTA_R24_SEMANTIC_REVIEW_CHECKPOINT_R1.md`
-5. `methodology/DDTA_RESEARCH_WORK_PLAN_AFTER_DOCUMENTATION_CLOSURE_R23.md`
-6. `methodology/DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R1.md`
-7. `methodology/BA1_MINIMAL_BAE_IDENTITY_ONTOLOGY_R1.md`
-8. `methodology/BA2_RELATION_ACTION_VOCABULARY_R2.md`
-9. `methodology/BA3_PROVENANCE_DERIVATION_LIFECYCLE_CHANGE_CONTRACT_R1.md`
-10. `methodology/BA4_PROJECTION_BOUNDARY_TRACEABILITY_INTERPRETATION_COVERAGE_CONTRACT_R1.md`
-11. `methodology/BA5_CANONICAL_SEMANTIC_REGISTRY_CONTROLLED_AUTHORING_CONTRACT_R1.md`
+5. `studies/semantic-review/R24_MR0003_SEMANTIC_REVIEW_FINDING_R1.md`
+6. `methodology/DDTA_RESEARCH_WORK_PLAN_AFTER_DOCUMENTATION_CLOSURE_R23.md`
+7. `methodology/DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R1.md`
+8. `methodology/BA1_MINIMAL_BAE_IDENTITY_ONTOLOGY_R1.md`
+9. `methodology/BA2_RELATION_ACTION_VOCABULARY_R2.md`
+10. `methodology/BA3_PROVENANCE_DERIVATION_LIFECYCLE_CHANGE_CONTRACT_R1.md`
+11. `methodology/BA4_PROJECTION_BOUNDARY_TRACEABILITY_INTERPRETATION_COVERAGE_CONTRACT_R1.md`
+12. `methodology/BA5_CANONICAL_SEMANTIC_REGISTRY_CONTROLLED_AUTHORING_CONTRACT_R1.md`
 
-The R24 project document and governed facial-access baseline should then be read side-by-side according to the authority distinction above.
+The superseded R1 facial-access corpus, the MR-0003 candidate-r2 and the broader R24 working project document should then be read according to the authority distinction above.
 
 ## Historical preservation rule
 

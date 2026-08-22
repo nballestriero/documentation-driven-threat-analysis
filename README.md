@@ -40,6 +40,7 @@ The active forward-facing R24 records are:
 - `methodology/DDTA_R24_SEMANTIC_REVIEW_CHECKPOINT_R1.md`
 - `literature/syntheses/R23_SEMANTIC_RECOGNITION_SYNTHESIS_R1.md`
 - `studies/semantic-review/R24_SEMANTIC_REVIEW_PRESSURE_TESTS_R1.md`
+- `studies/semantic-review/R24_MR0003_SEMANTIC_REVIEW_FINDING_R1.md`
 - `methodology/DDTA_R24_DECISION_RULE_CHECKPOINT.md` (carried-forward BA2 lower-bound evidence; superseded for forward execution)
 - `methodology/BA2_RELATION_ACTION_VOCABULARY_R2.md`
 - `methodology/DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R1.md`
@@ -53,17 +54,23 @@ Earlier state/work-plan records such as R19 and R22 remain research history and 
 
 ### Current authority boundary
 
-The current governed facial-access corpus remains:
+The former facial-access validation baseline:
 
-- `governed-corpora/facial-access/current/` (`FACIAL_ACCESS_CURRENT_R1`)
+- `governed-corpora/facial-access/current/` (`FACIAL_ACCESS_CURRENT_R1` / `FACIAL-ACCESS-GOV-R1`)
 
-The R24 project document:
+is now **`SUPERSEDED`** following the R24 MR-0003 semantic-review finding and is not eligible as a primary Base Analysis source.
+
+The explicit MR-0003 successor candidate is:
+
+- `governed-corpora/facial-access/candidate-r2/`
+
+It is `EXPERIMENTAL_NON_CANONICAL` with `primaryBASourceAllowed: false`. No replacement facial-access baseline is `CURRENT_GOVERNED` until the downstream Decision/FunctionalRequirement compatibility review is completed and an explicit promotion is recorded.
+
+The broader R24 project document:
 
 - `methodology/DDTA_FACIAL_ACCESS_PROJECT_DOCUMENTATION_WORKING_R24_PROJECT_ONLY.tex`
 
-is a **working successor candidate used for methodology pressure testing**. It is not `CURRENT_GOVERNED` and does not supersede `FACIAL_ACCESS_CURRENT_R1` by chronology alone.
-
-Historical drop-ins, checksums, snapshots, superseded checkpoints and explicitly non-canonical working packages remain preserved as research evidence.
+remains a non-canonical authoring/pressure-test artifact. Historical drop-ins, checksums, snapshots, superseded checkpoints and explicitly non-canonical working packages remain preserved as research evidence.
 
 ### Current BA2 R24 lower bound
 
@@ -95,11 +102,15 @@ The current thesis does **not** require reliable automatic migration from arbitr
 
 Artifacts under `_working/`, historical study corpora, superseded checkpoints and non-canonical examples remain valuable research evidence but MUST NOT be treated as current governed project documentation unless the authority registry explicitly permits primary-BA use.
 
-The current governed facial-access validation corpus is rooted at:
+There is temporarily no `CURRENT_GOVERNED` facial-access validation corpus. The superseded R1 remains at:
 
 - `governed-corpora/facial-access/current/`
 
-Its authority is intentionally separate from the historical facial-access material retained under `_working/`, `02-decision/05-example-facial-access/` and `04-specialized-requirement/03-example-facial-access/`.
+and the non-canonical MR-0003 successor candidate is staged at:
+
+- `governed-corpora/facial-access/candidate-r2/`
+
+The authority registry remains the deciding source gate. Historical facial-access material under `_working/`, `02-decision/05-example-facial-access/` and `04-specialized-requirement/03-example-facial-access/` also remains non-primary research evidence.
 
 ## Historical studies
 
