@@ -441,7 +441,7 @@ sources:
     landing_url: "https://www.enterpriseintegrationpatterns.com/"
     pdf_url: "https://www.enterpriseintegrationpatterns.com/docs/Enterprise%20Integration%20Patterns%20-%20PLoP%20Final%20Draft%203.pdf"
     access_type: public_author_site_conference_draft
-    licence: "Copyright Â© 2002 Gregor Hohpe; PLoP reproduction permission stated in the paper; no repository redistribution assumed."
+    licence: "Copyright © 2002 Gregor Hohpe; PLoP reproduction permission stated in the paper; no repository redistribution assumed."
     retrieved_on: "2026-08-21"
     sha256: null
     repository_storage: forbidden
