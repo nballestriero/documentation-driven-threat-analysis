@@ -10,7 +10,7 @@ title: "DDTA research work plan after documentation-layer closure - R23"
 
 **Initially prepared against repository baseline:** `df404acb2cfcfb4880badefe34c4df7948f28b42`
 
-**Current refinement baseline:** `daf0cc43233b0fb266cea3f3ba0d6a27bb327987`
+**Current refinement baseline:** `2cf49e0e48e688b1696742300b7ade03b8dc51cc`
 
 **Supersedes:** Revision 22 only for forward execution state. R1-R22 remain historical research records.
 
@@ -389,30 +389,20 @@ Closed historical contracts are not silently rewritten. If the later full-corpus
 
 ## 15. Exact next microstep
 
-The exact next microstep is a **complete methodology/Base Analysis audit before any integrated guide rewrite**.
+The non-mutating methodology/Base Analysis audit has established the documentation carry-forward set and resolved the two principal synchronization hazards found during review:
 
-The audit must inventory and cross-check at least:
+- S1 versus S1.5 Requirement abstraction: S1.5-A is carried forward; the separate `NormativeObligation` metaclass is rejected for forward use while S1-specific SpecializedRequirement invariants remain retained;
+- BA5 versus active BA2 R2: BA5 retains canonical-registry/controlled-authoring responsibility while BA2 R2 owns the current fourteen-operator vocabulary and operator-local structure.
 
-- the active authoring/methodology records, including `DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R1.md`, `DDTA_R24_SEMANTIC_REVIEW_CHECKPOINT_R1.md` and this work plan;
-- the retained BA contracts: BA0 responsibility boundary, BA1 identity ontology, active BA2 R2 vocabulary, BA3 provenance/lifecycle/change, BA4 projection contract and BA5 canonical semantic registry;
-- the carried-forward `DDTA_R24_DECISION_RULE_CHECKPOINT.md` lower-bound evidence;
-- R23/R24 literature synthesis and semantic-review pressure-test/finding records that contain candidate observations which may need promotion, merging or explicit rejection;
-- document-layer guidance for Problem Framing, MacroRequirement, Decision, FunctionalRequirement, SpecializedRequirement and SecurityRequirement, far enough to detect duplicated, conflicting or missing authoring questions;
-- historical/working artifacts only when they contain a material observation that has not yet been explicitly dispositioned in the forward-facing methodology.
+`DDTA_DOCUMENTATION_METHOD_BASELINE_R24_CHECKPOINT_R1.md` now freezes the forward documentation-method question set, including the qualified R24 semantic-sufficiency, consumed-service assurance-coverage and downstream-propagation review rules.
 
-The audit output must make each material observation traceable and give it one explicit disposition:
+The exact next microstep is:
 
-```text
-observation / rule
-    source artifact
-    current authority/status
-    current semantic owner
-    overlap / conflict / redundancy
-    proposed forward destination
-    disposition = RETAIN | MERGE | REVISE | DEFER | REJECT
-```
+> Draft `methodology/DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R2.md` directly from the documentation-method checkpoint, preserving explicit CLOSED / WORKING / OPEN status distinctions and without rewriting historical closure artifacts.
 
-Do not rewrite the integrated authoring guide or create the integrated BA guide until this audit has established the carry-forward set. Do not resume the remaining Facial Access carry-forward except where it is used as audit evidence.
+After that guide has been reviewed, create the operational `methodology/DDTA_BASE_ANALYSIS_STEP_BY_STEP_GUIDE_R1.md` from the retained BA0-BA5 contracts and the audited BA2/BA5 integration.
+
+Do not update README/INDEX to point to either future guide until the corresponding files exist and have been reviewed. Do not physically move/archive historical research artifacts in this phase. Do not resume the remaining Facial Access carry-forward until both integrated guides have been reviewed.
 
 ## 16. Base Analysis completion status
 
