@@ -50,6 +50,7 @@ Current R24 forward-facing records include:
 - `literature/syntheses/R23_SEMANTIC_RECOGNITION_SYNTHESIS_R1.md`
 - `studies/semantic-review/R24_SEMANTIC_REVIEW_PRESSURE_TESTS_R1.md`
 - `studies/semantic-review/R24_MR0003_SEMANTIC_REVIEW_FINDING_R1.md`
+- `studies/semantic-review/R24_MR0003_DOWNSTREAM_COMPATIBILITY_REVIEW_R1.md`
 - `methodology/DDTA_R24_DECISION_RULE_CHECKPOINT.md` (carried-forward BA2 lower-bound evidence)
 - `methodology/BA2_RELATION_ACTION_VOCABULARY_R2.md`
 - `methodology/DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R1.md`

@@ -1,27 +1,41 @@
 schemaVersion: 1
 corpusKey: facial-access-candidate-r2
-corpusRevision: R2-CANDIDATE-1
+corpusRevision: R2-CANDIDATE-2
 authorityBaselineKey: FACIAL-ACCESS-R24-MR0003-CANDIDATE-1
 authorityStatus: EXPERIMENTAL_NON_CANONICAL
 primaryBASourceAllowed: false
-basedOnRepositoryCommit: fa8f5affe29143764230e43ec52514bf7f3ee8df
+basedOnRepositoryCommit: 524cf65218cced7dd436bc6a69c9b1d64f57c3f2
 
 scope:
   project: facial-access
   branchRoot: MR-0003
   branchTitle: "Determinazione dell'identità al punto di accesso"
-  completenessClaim: mr-only-semantic-successor-candidate
+  completenessClaim: mr-d3.1-d3.2-fr3.2.1-semantic-successor-candidate
 
 documents:
   - path: MR-0003_IDENTITY_DETERMINATION.md
     kind: MacroRequirement
     ids: [MR-0003]
+  - path: DECISIONS.md
+    kind: DecisionSet
+    ids: [D-3.1, D-3.2]
+  - path: FUNCTIONAL_REQUIREMENTS.md
+    kind: FunctionalRequirementSet
+    ids: [FR-3.2.1]
 
-reviewPreconditions:
-  - review D-3.1 and D-3.2 against the corrected MR meaning
-  - review FR-3.2.1 against the corrected MR meaning
-  - verify that no downstream artifact silently assumes a preselected GovernedIdentity
-  - promote only after explicit governance review
+compatibilityReview:
+  completed:
+    - D-3.1 reviewed as semantically continuous after terminology alignment
+    - D-3.2 reviewed as requiring semantic-propagation correction
+    - FR-3.2.1 reviewed as requiring material compatibility correction
+    - neutral-label reconstruction eliminates the preselected-identity reading for this reviewed chain
+  remainingBeforePromotion:
+    - review D-3.3 through D-3.6 for compatibility and carry-forward
+    - review FR-3.3.1, FR-3.4.1 and FR-3.4.2 for compatibility and carry-forward
+    - review Security Requirements and documentation gaps in the superseded R1 branch
+    - verify that no remaining downstream artifact silently assumes a preselected GovernedIdentity
+    - assemble a coherent full successor baseline
+    - perform explicit governance promotion
 
 analysisPrecondition:
   primaryBASourceAllowed: false

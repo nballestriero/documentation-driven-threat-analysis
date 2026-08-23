@@ -373,8 +373,10 @@ R23 registered corpus + source notes
 
 ## 15. Exact next microstep
 
-The exact next microstep after the R24 MR-0003 semantic-review finding is:
+The reviewed chain `MR-0003 -> D-3.1 -> D-3.2 -> FR-3.2.1` is now locally coherent in candidate-r2 and remains `EXPERIMENTAL_NON_CANONICAL`.
 
-> Review `D-3.1`, `D-3.2` and `FR-3.2.1` against the corrected MR-0003 meaning, checking whether any downstream artifact silently assumes a preselected `GovernedIdentity`.
+The exact next microstep is:
 
-Do not promote candidate-r2 and do not derive an accepted BA until downstream compatibility review is complete.
+> Review the remaining superseded-R1 downstream branch for compatibility and carry-forward: `D-3.3` through `D-3.6`, `FR-3.3.1`, `FR-3.4.1`, `FR-3.4.2`, the Security Requirements, and `DOCUMENTATION_GAPS.md`. Check specifically whether any remaining artifact silently assumes a preselected `GovernedIdentity`.
+
+Do not promote candidate-r2 and do not derive an accepted BA until a coherent full successor branch has been assembled and explicitly promoted.
