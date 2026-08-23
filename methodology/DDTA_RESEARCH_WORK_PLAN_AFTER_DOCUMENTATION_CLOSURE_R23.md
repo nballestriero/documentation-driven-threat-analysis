@@ -6,11 +6,11 @@ title: "DDTA research work plan after documentation-layer closure - R23"
 
 **WORK PLAN - REVISION 23**
 
-**Status:** ACTIVE R24 WORK PLAN — SEMANTIC SUFFICIENCY / BA REGRESSION PRESSURE TESTING.
+**Status:** ACTIVE R24 WORK PLAN - INTEGRATED METHODOLOGY/BA AUDIT BEFORE DOCUMENTATION REWRITE.
 
 **Initially prepared against repository baseline:** `df404acb2cfcfb4880badefe34c4df7948f28b42`
 
-**Current refinement baseline:** `87a612663d1e4827b7f67e83182838586e53d7ba`
+**Current refinement baseline:** `daf0cc43233b0fb266cea3f3ba0d6a27bb327987`
 
 **Supersedes:** Revision 22 only for forward execution state. R1-R22 remain historical research records.
 
@@ -352,31 +352,93 @@ R23's literature/semantic-recognition step may transition into applied authoring
 
 ## 14. Forward sequence
 
+The Facial Access downstream carry-forward review is temporarily paused after the reviewed `MR-0003 -> D-3.1 -> D-3.2 -> FR-3.2.1` chain. Review of the remaining Decisions exposed a more general methodology question about consumption of common services, ownership boundaries, service guarantees and residual obligations. That question must be integrated without losing earlier semantic-review, authoring or Base Analysis findings.
+
 The active sequence is:
 
 ```text
-R23 registered corpus + source notes
-    -> R23 semantic-recognition synthesis
-    -> R24 semantic-review checkpoint
-    -> return to MR-0003 neutral semantic review
-    -> determine whether the critical entry-state fact is governed / conflicting / unresolved
-    -> clarify MR only if the fact defines the stable responsibility
-    -> create/use a Decision only for a genuine project choice
-    -> FR operationalization
-    -> minimum justified BA derivation
-    -> semantic regression back-check
-    -> if needed: governed documentation correction candidate -> rebuild BA
-    -> downstream analysis / test usefulness check
-    -> repeat on another real governed responsibility
-    -> only then promote stable guide/method/thesis wording
+current R24 state
+    -> complete non-mutating audit of forward-facing DDTA methodology,
+       document-authoring rules, BA0-BA5 contracts and relevant R24 evidence
+    -> disposition every material rule/observation:
+       RETAIN | MERGE | REVISE | DEFER | REJECT
+    -> rewrite the integrated documentation-authoring guide
+       (`DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R2.md` candidate)
+    -> create one operational Base Analysis step-by-step guide
+       over the retained BA contracts
+       (`DDTA_BASE_ANALYSIS_STEP_BY_STEP_GUIDE_R1.md` candidate)
+    -> resume Facial Access candidate-r2 documentation review and carry-forward
+    -> assemble a coherent complete successor project-documentation baseline
+    -> only after that project-documentation rewrite, update the test-program documentation
+    -> explicit governance promotion of the coherent successor baseline
+    -> derive the minimum justified Base Analysis from the complete governed documentation
+    -> run full post-BA semantic and structural regression
+    -> evaluate which BA structures are materially useful, redundant, missing or over-modeled
+    -> reopen/supersede only the smallest BA contract forced by evidence
+    -> perform the integrated BA completion/regression step only after that retest
+    -> downstream analysis / test usefulness
 ```
+
+This sequence intentionally separates three activities that must not be conflated:
+
+- auditing and consolidating the methodology;
+- completing governed project documentation;
+- completing and validating Base Analysis against that complete documentation.
+
+Closed historical contracts are not silently rewritten. If the later full-corpus BA retest falsifies, duplicates or makes a retained structure unnecessary, the smallest affected contract is reopened or superseded with an explicit disposition.
 
 ## 15. Exact next microstep
 
-The reviewed chain `MR-0003 -> D-3.1 -> D-3.2 -> FR-3.2.1` is now locally coherent in candidate-r2 and remains `EXPERIMENTAL_NON_CANONICAL`.
+The exact next microstep is a **complete methodology/Base Analysis audit before any integrated guide rewrite**.
 
-The exact next microstep is:
+The audit must inventory and cross-check at least:
 
-> Review the remaining superseded-R1 downstream branch for compatibility and carry-forward: `D-3.3` through `D-3.6`, `FR-3.3.1`, `FR-3.4.1`, `FR-3.4.2`, the Security Requirements, and `DOCUMENTATION_GAPS.md`. Check specifically whether any remaining artifact silently assumes a preselected `GovernedIdentity`.
+- the active authoring/methodology records, including `DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R1.md`, `DDTA_R24_SEMANTIC_REVIEW_CHECKPOINT_R1.md` and this work plan;
+- the retained BA contracts: BA0 responsibility boundary, BA1 identity ontology, active BA2 R2 vocabulary, BA3 provenance/lifecycle/change, BA4 projection contract and BA5 canonical semantic registry;
+- the carried-forward `DDTA_R24_DECISION_RULE_CHECKPOINT.md` lower-bound evidence;
+- R23/R24 literature synthesis and semantic-review pressure-test/finding records that contain candidate observations which may need promotion, merging or explicit rejection;
+- document-layer guidance for Problem Framing, MacroRequirement, Decision, FunctionalRequirement, SpecializedRequirement and SecurityRequirement, far enough to detect duplicated, conflicting or missing authoring questions;
+- historical/working artifacts only when they contain a material observation that has not yet been explicitly dispositioned in the forward-facing methodology.
 
-Do not promote candidate-r2 and do not derive an accepted BA until a coherent full successor branch has been assembled and explicitly promoted.
+The audit output must make each material observation traceable and give it one explicit disposition:
+
+```text
+observation / rule
+    source artifact
+    current authority/status
+    current semantic owner
+    overlap / conflict / redundancy
+    proposed forward destination
+    disposition = RETAIN | MERGE | REVISE | DEFER | REJECT
+```
+
+Do not rewrite the integrated authoring guide or create the integrated BA guide until this audit has established the carry-forward set. Do not resume the remaining Facial Access carry-forward except where it is used as audit evidence.
+
+## 16. Base Analysis completion status
+
+Base Analysis as a whole is **NOT CLOSED**.
+
+The current forward interpretation is:
+
+```text
+BA0  responsibility boundary                         retained closed scope
+BA1  BAReferent + BAProposition identity            retained closed scope
+BA2  relation/action vocabulary                     active R24 working revision R2
+BA3  provenance/derivation/lifecycle/change         retained closed scope
+BA4  projection/traceability/interpretation         retained closed scope
+BA5  canonical semantic registry/controlled authoring retained closed scope
+BA6 / integrated BA completion-regression           not completed
+```
+
+The earlier BA work was intentionally prevented from becoming final project analysis while project documentation was being corrected and stabilized. The current Facial Access authority state also prevents an accepted current BA because no coherent successor baseline has yet been explicitly promoted.
+
+After the complete governed project documentation is available, DDTA must derive/rederive the minimum justified BA from that complete baseline and pressure-test the retained BA structures against the whole corpus. Existing BA structures are not preserved merely because they already exist: the retest must determine what is materially significant, what is missing, what needs refinement and what is redundant or over-modeled.
+
+Any removal, merge or semantic change to a retained closed-scope BA contract must follow its reopen/supersession discipline rather than silently editing historical closure evidence.
+
+Until then:
+
+- no accepted Facial Access BA;
+- no BA6/integrated BA closure claim;
+- no test-program documentation rewrite before the project-documentation rewrite;
+- no methodology rule is promoted solely because it appeared useful in one pressure-test case.
