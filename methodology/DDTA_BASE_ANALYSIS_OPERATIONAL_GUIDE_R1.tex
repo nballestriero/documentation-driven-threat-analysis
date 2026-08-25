@@ -1,0 +1,1400 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[a4paper,margin=2.2cm,headheight=15pt]{geometry}
+\usepackage{booktabs,longtable,tabularx,array}
+\usepackage{ragged2e}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,fit}
+\usepackage{titlesec}
+\usepackage{amsmath,amssymb}
+
+\definecolor{ddtadark}{RGB}{28,38,52}
+\definecolor{ddtagray}{RGB}{244,246,248}
+\definecolor{ddtablue}{RGB}{42,88,135}
+\definecolor{ddtagreen}{RGB}{48,111,78}
+\definecolor{ddtaorange}{RGB}{148,91,25}
+\definecolor{ddtared}{RGB}{140,48,48}
+\definecolor{ddtapurple}{RGB}{92,63,122}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=ddtablue,
+  urlcolor=ddtablue,
+  citecolor=ddtablue,
+  pdftitle={DDTA Base Analysis Operational Guide R1},
+  pdfauthor={Documentation-Driven Threat Analysis research workspace}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{DDTA -- Base Analysis Operational Guide}
+\rhead{Organic method and procedure}
+\cfoot{\thepage}
+
+\titleformat{\section}{\Large\bfseries\color{ddtadark}}{\thesection}{0.7em}{}
+\titleformat{\subsection}{\large\bfseries\color{ddtadark}}{\thesubsection}{0.7em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{ddtadark}}{\thesubsubsection}{0.7em}{}
+
+\setlist[itemize]{leftmargin=1.55em,itemsep=0.24em,topsep=0.35em}
+\setlist[enumerate]{leftmargin=1.75em,itemsep=0.24em,topsep=0.35em}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{0pt}
+\setlength{\emergencystretch}{3em}
+
+\lstset{
+  basicstyle=\ttfamily\small,
+  columns=fullflexible,
+  keepspaces=true,
+  frame=single,
+  framerule=0.3pt,
+  rulecolor=\color{ddtablue},
+  backgroundcolor=\color{ddtagray},
+  xleftmargin=0.6em,
+  xrightmargin=0.6em,
+  aboveskip=0.5em,
+  belowskip=0.5em,
+  breaklines=true,
+  showstringspaces=false
+}
+
+\newtcolorbox{statusclosed}[1][CLOSED]{enhanced,breakable,colback=ddtagray,colframe=ddtagreen,title={#1},fonttitle=\bfseries}
+\newtcolorbox{statusworking}[1][R24 WORKING]{enhanced,breakable,colback=white,colframe=ddtaorange,title={#1},fonttitle=\bfseries}
+\newtcolorbox{statusopen}[1][OPEN / DEFERRED]{enhanced,breakable,colback=white,colframe=ddtapurple,title={#1},fonttitle=\bfseries}
+\newtcolorbox{goodbox}[1][CORRETTO / PREFERIBILE]{enhanced,breakable,colback=white,colframe=ddtagreen,title={#1},fonttitle=\bfseries}
+\newtcolorbox{badbox}[1][DA EVITARE]{enhanced,breakable,colback=white,colframe=ddtared,title={#1},fonttitle=\bfseries}
+\newtcolorbox{reviewbox}[1][REVIEW]{enhanced,breakable,colback=white,colframe=ddtaorange,title={#1},fonttitle=\bfseries}
+\newtcolorbox{examplebox}[1][ESEMPIO FACIAL ACCESS]{enhanced,breakable,colback=ddtagray,colframe=ddtablue,title={#1},fonttitle=\bfseries}
+\newtcolorbox{sourcebox}[1][TESTO DOCUMENTALE]{enhanced,breakable,colback=white,colframe=ddtapurple,title={#1},fonttitle=\bfseries}
+\newtcolorbox{conceptbox}[1][CONCETTO]{enhanced,breakable,colback=white,colframe=ddtablue,title={#1},fonttitle=\bfseries}
+
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+
+\newcommand{\BA}{\textit{Base Analysis}}
+\newcommand{\BAR}{\textit{BAReferent}}
+\newcommand{\BAP}{\textit{BAProposition}}
+\newcommand{\code}[1]{\nolinkurl{#1}}
+\newcommand{\artifact}[1]{\nolinkurl{#1}}
+\newcommand{\normtrace}[1]{\par\smallskip{\footnotesize\color{ddtablue}\textit{Tracciabilita' normativa: #1.}}\par\smallskip}
+
+
+\begin{document}
+
+\begin{titlepage}
+\centering
+\vspace*{1.5cm}
+{\Large Documentation-Driven Threat Analysis\par}
+\vspace{0.8cm}
+{\Huge\bfseries Base Analysis Operational Guide\par}
+\vspace{0.25cm}
+{\LARGE Revision 1 -- procedura organica, source-first examples, regressione e projection\par}
+\vspace{0.9cm}
+{\large Una procedura continua dalla documentazione governata alla minima Base Analysis giustificata\par}
+\vfill
+\begin{minipage}{0.86\textwidth}
+\small
+\textbf{Stato.} R24 DRAFT FOR REVIEW. La guida integra i contratti BA0--BA5, la revisione BA2 R2 e il checkpoint documentale R24. Non chiude BA6 e non dichiara completa la Base Analysis della tesi.
+
+\medskip
+\textbf{Repository baseline di riferimento.} \code{7aeb3a1e0373357fa31c35110d9160de3e2e7d79}.
+
+\medskip
+\textbf{Esempio ricorrente.} Facial Access / telecamera viene usato come caso didattico. Il corpus R1 e' SUPERSEDED e il candidate R2 e' EXPERIMENTAL\_NON\_CANONICAL: nessun esempio di questa guida costituisce una BA Facial Access accettata.
+\end{minipage}
+\vfill
+{\large 25 agosto 2026\par}
+\end{titlepage}
+
+\pagenumbering{roman}
+\tableofcontents
+\newpage
+\pagenumbering{arabic}
+
+\section{Che cos'e' Base Analysis}
+
+\begin{statusclosed}[CONFINE STABILE DELLA BASE ANALYSIS]
+Per una baseline documentale governata, Base Analysis e' la rappresentazione analitica condivisa, methodology-neutral, del significato di progetto necessario a DDTA. Puo' normalizzare e derivare struttura analitica, ma non puo' creare silenziosamente project commitment.
+\end{statusclosed}
+\normtrace{BA0 responsibility boundary}
+
+La distinzione piu' importante e':
+
+\begin{lstlisting}
+governed project documentation
+    = project authority
+
+Base Analysis
+    = shared analytical representation of governed meaning
+
+method projection / threat analysis / test view
+    = downstream consumer interpretation
+\end{lstlisting}
+
+\BA{} non e' quindi un secondo documento di progetto, non e' un threat model specifico, non e' una tassonomia STRIDE, e non e' obbligatoriamente un grafo persistito. Il contratto BA e' semanticamente representation-independent.
+
+\begin{badbox}
+\begin{lstlisting}
+"La BA dice che il progetto usa TLS, quindi TLS e' un requisito."
+\end{lstlisting}
+La direzione di authority e' invertita: se TLS non e' governato dalla documentazione, la BA non puo' promuoverlo a project truth.
+\end{badbox}
+
+\begin{goodbox}
+\begin{lstlisting}
+governed documentation
+    -> minimum justified BA
+    -> analysis / diagnostic
+    -> correction candidate
+    -> governed review
+    -> updated documentation
+    -> rebuilt BA
+\end{lstlisting}
+\end{goodbox}
+
+\subsection{BAE, BAReferent e BAProposition}
+
+\code{BAE} e' un termine ombrello per ``Base Analysis element''. Non e' necessario introdurre una terza metaclasse \code{BAE}.
+
+Il minimo chiuso da BA1 contiene esattamente due famiglie di identita' semantica di prima classe:
+
+\begin{center}
+\begin{tikzpicture}[
+  node distance=12mm and 18mm,
+  box/.style={draw=ddtadark,rounded corners,align=center,inner sep=7pt,minimum width=45mm},
+  arr/.style={-{Latex[length=2.2mm]},thick}
+]
+\node[box] (bae) {BAE\\{\small umbrella term}};
+\node[box,below left=of bae] (r) {BAReferent\\{\small reusable project meaning}};
+\node[box,below right=of bae] (p) {BAProposition\\{\small reusable analytical assertion}};
+\draw[arr] (bae)--(r);
+\draw[arr] (bae)--(p);
+\end{tikzpicture}
+\end{center}
+
+\begin{conceptbox}[BAReferent]
+Una identita' riusabile di significato di progetto methodology-neutral: persona presente, identita' governata, capability, informazione, comportamento, stato, servizio, contratto o altro significato che debba essere referenziato stabilmente da piu' proposizioni/proiezioni o attraverso il cambiamento.
+\end{conceptbox}
+
+\begin{conceptbox}[BAProposition]
+Una asserzione analitica methodology-neutral, con identita' propria, su uno o piu' BAReferent. La sua identita' consente provenance, review, diagnosi e change disposition a livello dell'asserzione.
+\end{conceptbox}
+
+
+\section{Coordinate concettuali per leggere la procedura}
+
+Per leggere correttamente la guida serve una sola coordinata preliminare: DDTA separa il significato concettuale dalla sua rappresentazione e dal tooling.
+
+\subsection{L1--L4: dove vive una regola}
+
+In sintesi:
+
+\begin{longtable}{L{0.12\textwidth}L{0.76\textwidth}}
+\toprule
+\textbf{Layer} & \textbf{Domanda} \\
+\midrule\endhead
+L1 & Quali concetti, relazioni, cardinalita' e invarianti definiscono la semantica DDTA? \\
+L2 & Come una istanza L1 viene materializzata in una rappresentazione canonica? \\
+L3 & Come software, validator e automazione consumano L1+L2 senza diventare authority parallela? \\
+L4 & Quale supporto/conformance offre uno specifico tool? \\
+\bottomrule
+\end{longtable}
+
+
+\section{La procedura organica}
+La procedura non segue la numerazione storica BA0--BA5. Segue invece il ciclo con cui il significato viene stabilizzato, rappresentato, verificato e riusato.
+
+\begin{center}
+\begin{tikzpicture}[
+  node distance=5.5mm,
+  box/.style={draw=ddtadark,rounded corners,align=center,inner sep=5pt,minimum width=82mm},
+  arr/.style={-{Latex[length=2.3mm]},thick}
+]
+\node[box] (a) {1. Seleziona la fonte governata};
+\node[box,below=of a] (s) {2. Stabilizza il significato prima di modellarlo};
+\node[box,below=of s] (m) {3. Seleziona il minimo significato condiviso};
+\node[box,below=of m] (i) {4. Dai identita' ai significati riusabili};
+\node[box,below=of i] (p) {5. Formula proposizioni con operatori/ruoli canonici};
+\node[box,below=of p] (o) {6. Collega ogni elemento a evidenza, derivazione e review};
+\node[box,below=of o] (b) {7. Accetta solo la minima BA giustificata};
+\node[box,below=of b] (r) {8. Regredisci la BA contro la documentazione};
+\node[box,below=of r] (c) {9. Revalida dopo il cambiamento};
+\node[box,below=of c] (v) {10. Costruisci projection e feedback downstream};
+\draw[arr] (a)--(s);\draw[arr] (s)--(m);\draw[arr] (m)--(i);\draw[arr] (i)--(p);\draw[arr] (p)--(o);\draw[arr] (o)--(b);\draw[arr] (b)--(r);\draw[arr] (r)--(c);\draw[arr] (c)--(v);
+\end{tikzpicture}
+\end{center}
+
+\begin{conceptbox}[La procedura in una frase]
+Parti solo da significato governato sufficientemente stabile; assegna identita' soltanto a cio' che deve essere riusato; esprimi soltanto le asserzioni necessarie con vocabolario controllato; rendi visibile da dove provengono e quanto sono accettate; quindi verifica che la BA non abbia aggiunto, perso o invertito significato prima di consegnarla ai consumer.
+\end{conceptbox}
+
+\section{Preparare la fonte governata}
+\subsection{Verificare authority e baseline}
+
+\begin{statusclosed}[SOURCE AUTHORITY GATE]
+\textbf{Domanda:} quale baseline documentale governata e quale source set sono autorizzati come base della BA che sto costruendo?
+\end{statusclosed}
+\normtrace{governance + BA0 authority boundary}
+
+Prima di derivare un solo BAReferent verificare:
+
+\begin{itemize}
+\item identita' immutabile della governed baseline;
+\item authority status dei documenti;
+\item eventuali artifact superseded, candidate o working;
+\item source locator sufficiente per drill-down;
+\item eventuali gap/contraddizioni gia' esplicitamente registrati.
+\end{itemize}
+
+\begin{examplebox}[Facial Access -- authority]
+Il candidate R2 di MR-0003 e' \code{EXPERIMENTAL_NON_CANONICAL}. Puo' essere usato come pressure-test e esempio didattico, ma non puo' ancora fondare una BA Facial Access accettata.
+\end{examplebox}
+
+\begin{badbox}
+\begin{lstlisting}
+candidate-r2 is newer
+    -> derive accepted BA
+\end{lstlisting}
+Recency non e' authority.
+\end{badbox}
+
+\begin{goodbox}
+\begin{lstlisting}
+explicitly promoted governed baseline
+    -> eligible source for accepted BA
+\end{lstlisting}
+\end{goodbox}
+
+
+\subsection{Stabilizzare il significato prima della BA}
+
+\begin{statusworking}[R24 WORKING -- STABILIZZARE IL SIGNIFICATO PRIMA DI MODELLARLO]
+Prima di normalizzare una responsabilita' in BA, verificare che la documentazione governi un significato sufficientemente stabile. BA non deve scegliere tra due letture materiali sopravvissute nel source.
+\end{statusworking}
+
+La domanda pratica e':
+
+\begin{quote}
+Ignorando titolo e nomi suggestivi, due reviewer competenti potrebbero derivare strutture BA materialmente diverse pur restando fedeli al testo governato?
+\end{quote}
+
+\subsection{Facial Access: il caso MR-0003}
+
+Per capire perche' la semantic sufficiency review esiste, conviene partire dal testo governato e non dalla BA.
+
+\begin{sourcebox}[TESTO DOCUMENTALE -- MR-0003 R1 SUPERSEDED]
+\textbf{Intent}
+
+Consentire al processo di accesso di stabilire se la persona presente al punto di accesso corrisponde a un'identita' governata, producendo evidenza di verifica interpretabile senza far coincidere la verifica della persona con la decisione organizzativa di autorizzazione o apertura.
+
+\medskip
+\textbf{Context}
+
+Il controllo dell'accesso richiede evidenza sulla corrispondenza tra la persona presente e un'identita' governata. Il modo con cui tale evidenza viene ottenuta e' una scelta di progetto che puo' evolvere: il MacroRequirement non fissa riconoscimento facciale, sensore, modello ML, placement dell'elaborazione, rete o protocollo.
+
+\medskip
+\textbf{Scope}
+
+Include il macro-concern di ottenere e rendere consumabile evidenza di verifica dell'identita' al punto di accesso.
+\end{sourcebox}
+
+Il testo e' leggibile, ma non stabilisce esplicitamente lo stato della specifica identita' governata quando la responsabilita' inizia. Da qui rimanevano due letture materialmente diverse:
+
+\begin{examplebox}[Lettura A -- identity non ancora determinata]
+\begin{lstlisting}
+person present
+    -> responsibility
+    -> determine WHICH governed identity corresponds
+\end{lstlisting}
+\end{examplebox}
+
+\begin{examplebox}[Lettura B -- identity gia' selezionata]
+\begin{lstlisting}
+person present + specific governed identity
+    -> responsibility
+    -> determine WHETHER they correspond
+\end{lstlisting}
+\end{examplebox}
+
+La differenza non e' solo lessicale. Cambia il semantic entry state e cambia il ruolo della specifica \code{GovernedIdentity}: nella lettura A e' un risultato determinato dalla responsabilita'; nella lettura B e' gia' un input/riferimento.
+
+La smallest critical proposition era:
+
+\begin{quote}
+Una specifica \code{GovernedIdentity} e' gia' disponibile/selezionata come riferimento prima che inizi la responsabilita'.
+\end{quote}
+
+Prima della clarification di progetto la classificazione era:
+
+\begin{lstlisting}
+AFFIRMED       no
+DENIED         no
+CONFLICTING    no
+NOT SPECIFIED  yes
+\end{lstlisting}
+
+\begin{badbox}[Derivazione prematura]
+\begin{lstlisting}
+produce
+  actor  -> IdentityDetermination
+  input  -> PersonAtAccessPoint
+  input  -> GovernedIdentity
+  result -> IdentityDeterminationOutcome
+\end{lstlisting}
+Qui la BA ha scelto la lettura B senza governed evidence.
+\end{badbox}
+
+\begin{goodbox}[Comportamento corretto prima della clarification]
+\begin{lstlisting}
+DIAGNOSTIC_UNRESOLVED
+  source -> MR-0003
+  issue  -> specific identity at entry is NOT SPECIFIED
+\end{lstlisting}
+La BA preserva l'insufficienza invece di chiuderla.
+\end{goodbox}
+
+La clarification di progetto ha poi stabilito che la specifica identita' non e' ancora determinata all'ingresso. Il candidate R2 rende il fatto esplicito:
+
+\begin{sourcebox}[TESTO DOCUMENTALE -- MR-0003 CANDIDATE R2]
+\textbf{Context}
+
+Quando questa responsabilita' inizia, la persona e' presente al punto di accesso ma la specifica identita' governata che le corrisponde non e' ancora determinata.
+
+Le identita' governate costituiscono riferimenti gia' gestiti dal progetto; questa responsabilita' non le crea ne' le amministra, ma determina quale identita' governata corrisponde alla persona presente.
+\end{sourcebox}
+
+Solo dopo questa correzione una futura BA puo' essere testata contro la regola semantica:
+
+\begin{lstlisting}
+SPECIFIC_IDENTITY is not preselected at entry
+identity-determination responsibility determines which identity corresponds
+\end{lstlisting}
+
+\begin{conceptbox}[SOURCE FIRST]
+Prima si legge e si stabilizza il testo governato. Solo dopo si propone una struttura BA. Se due strutture materialmente diverse restano compatibili con il source, la BA non deve scegliere in base al nome dell'operatore, all'abitudine del reviewer o alla forma del grafo.
+\end{conceptbox}
+
+Questo non autorizza ancora una BA accettata finche' il successor corpus non viene governato/promosso.
+
+
+\section{Selezionare il minimo significato condiviso}
+
+\begin{statusclosed}[PRINCIPIO DI MINIMALITA']
+Rappresentare solo il significato shared e methodology-neutral che un consumer deve poter riusare senza ricostruire la prosa, e solo quando tale significato e' giustificato dalla documentazione o da una derivazione methodology-neutral esplicita.
+\end{statusclosed}
+\normtrace{BA0 minimality and method-neutral shared core}
+
+Per ogni candidato chiedere:
+
+\begin{enumerate}
+\item Serve a preservare una distinzione di progetto materialmente riusabile?
+\item Deve essere referenziabile da piu' proposizioni/proiezioni o attraverso baseline diverse?
+\item E' source-grounded o deriva da una regola methodology-neutral ispezionabile?
+\item Sto aggiungendo struttura solo perche' un grafo/schema puo' esprimerla?
+\item Sto importando un dettaglio di design non governato al livello documentale corrente?
+\end{enumerate}
+
+\begin{badbox}[Over-modeling della telecamera]
+Nel solo intento di rappresentare la determinazione dell'identita', introdurre automaticamente:
+\begin{lstlisting}
+FaceEmbedding
+ConfidenceScore
+Threshold
+Top1Candidate
+ModelVersion
+1toNMatchingMode
+\end{lstlisting}
+se la documentazione non li governa e non sono necessari per la distinzione analitica corrente.
+\end{badbox}
+
+\begin{goodbox}[Minimum sufficient BA]
+Rappresentare persona presente, identita' governata, esito/responsabilita' e relazioni necessarie solo quando il governed source le rende stabili e riusabili.
+\end{goodbox}
+
+
+\section{Dare identita' al significato riusabile}
+
+\begin{statusclosed}[IDENTITA' ANALITICHE DI PRIMA CLASSE]
+Per ogni significato candidato chiedere prima: necessita' di identita' indipendente come project-semantic referent, oppure e' una asserzione su referent gia' identificati?
+\end{statusclosed}
+\normtrace{BA1 identity ontology}
+
+\subsection{Quando un significato diventa BAReferent}
+
+Usare \BAR{} quando il significato deve essere riusato, tracciato, vincolato o confrontato indipendentemente.
+
+\begin{examplebox}
+Possibili referent didattici nel dominio camera/facial access:
+\begin{lstlisting}
+PersonAtAccessPoint
+GovernedIdentity
+IdentityDeterminationOutcome
+RecognitionCapture
+RecognitionProcessor
+CommunicationService
+\end{lstlisting}
+La lista e' illustrativa: l'ammissione reale dipende dalla baseline governata e dai criteri di identita'.
+\end{examplebox}
+
+\subsection{Quando un contenuto diventa BAProposition}
+
+Usare \BAP{} quando il contenuto e' una asserzione indipendentemente reviewable/provenance-bearing sui referent.
+
+\begin{examplebox}
+\begin{lstlisting}
+transfer(
+  source      = CameraSubsystem,
+  destination = RecognitionProcessor,
+  content     = RecognitionCapture
+)
+\end{lstlisting}
+L'interazione e' una proposition; i partecipanti sono referent.
+\end{examplebox}
+
+\subsection{Non creare un tipo per ogni categoria familiare}
+
+\begin{badbox}
+\begin{lstlisting}
+new first-class BA family:
+  Component
+  Information
+  Channel
+  State
+  Contract
+  Actor
+\end{lstlisting}
+solo perche' queste categorie sono comode o familiari.
+\end{badbox}
+
+\begin{goodbox}
+\begin{lstlisting}
+BAReferent
+  + method-neutral classification / proposition semantics
+\end{lstlisting}
+finche' un concrete counterexample non richiede identita' + subtype-specific invariants non rappresentabili altrimenti.
+\end{goodbox}
+
+
+\subsection{Stabilizzare nomi e binding canonici mentre si modella}
+
+\begin{statusclosed}[BINDING CANONICI DURANTE L'AUTHORING]
+Canonicalizzazione non e' un ultimo passaggio di pulizia. Va applicata mentre si creano referent, operatori, ruoli e controlled values.
+\end{statusclosed}
+\normtrace{BA5 canonical semantic registry and controlled authoring}
+
+Per uno stesso referent condiviso in una baseline/naming scope:
+
+\begin{lstlisting}
+one shared referent -> one exact canonicalName
+\end{lstlisting}
+
+\begin{examplebox}[Telecamera]
+\begin{lstlisting}
+canonicalName = cameraIngresso
+\end{lstlisting}
+Non sono automaticamente equivalenti come binding semanticamente operativi:
+\begin{lstlisting}
+entryCamera
+cameraEntrata
+CameraIngresso
+camera_ingresso
+\end{lstlisting}
+La prosa umana puo' variare grammaticalmente; il binding condiviso resta canonico.
+\end{examplebox}
+
+\subsection{Name is not identity}
+
+\begin{lstlisting}
+BAReferent semantic identity != canonicalName
+\end{lstlisting}
+
+Un rename governato puo' quindi mantenere la stessa identita' BA sotto BA3 se il significato riusabile e' invariato.
+
+\subsection{Operator e role keys}
+
+\begin{badbox}
+\begin{lstlisting}
+send/src/dst/payload
+\end{lstlisting}
+come alias normativi di:
+\begin{lstlisting}
+transfer/source/destination/content
+\end{lstlisting}
+\end{badbox}
+
+\begin{goodbox}
+La prosa puo' dire ``la telecamera invia la capture''; il binding BA usa l'operatore/ruoli canonici definiti da BA2.
+\end{goodbox}
+
+
+\subsection{Estendere il lessico solo quando l'evidenza lo forza}
+
+Quando compare un token/concept nuovo, non aggiungerlo direttamente per convenience.
+
+\begin{lstlisting}
+candidate token
+  |
+  +-- alias of existing meaning?
+  |      -> reject alias; use canonical token
+  |
+  +-- method-specific category?
+  |      -> keep downstream in projection
+  |
+  +-- needs independent reusable identity?
+  |      -> BAReferent candidate
+  |
+  +-- new method-neutral semanticKind/value?
+  |      -> evidence + definition + governed registry revision
+  |
+  `-- new operator / role semantics?
+         -> smallest BA2 reopen
+\end{lstlisting}
+
+\begin{examplebox}[Perche' channel non diventa automaticamente semanticKind]
+La familiarita' del termine ``channel'' nei diagrammi di sicurezza non e' sufficiente. Serve un concrete governed case che dimostri una distinzione methodology-neutral riusabile non gia' rappresentabile con referent/propositions correnti.
+\end{examplebox}
+
+
+\section{Formulare le proposizioni}
+
+\begin{statusworking}[R24 WORKING -- ESPRIMERE LE ASSERZIONI CON OPERATORI E RUOLI CONTROLLATI]
+Una BAProposition usa un semanticOperatorKey, participation role-bound, polarity, eventuali scopedModifier e -- solo dove ammesso -- operatorStructure.
+\end{statusworking}
+\normtrace{active BA2 R2 proposition semantics}
+
+Forma minima corrente:
+
+\begin{lstlisting}
+BAProposition
+|- semanticOperatorKey   1
+|- participation         1..*
+|    |- roleKey          1
+|    `- term             1
+|- polarity              1
+|- scopedModifier        0..* [condition / temporalScope]
+`- operatorStructure     0..1 [currently decisionRule]
+\end{lstlisting}
+
+\subsection{Come scegliere una BAProposition: partire dal source, non dal vocabolario}
+
+La difficolta' principale nell'uso delle \BAP{} non dovrebbe essere ricordare quattordici verbi tecnici. La procedura deve partire da una frase governata e chiedere quale differenza semantica deve essere preservata.
+
+\begin{conceptbox}[PROCEDURA SOURCE-FIRST]
+Per ogni proposition candidate:
+
+\begin{enumerate}
+\item riportare il testo documentale che contiene l'asserzione;
+\item isolare il minimo effetto/relazione realmente governato;
+\item neutralizzare i nomi specifici quando aiutano a vedere la struttura;
+\item individuare uno o piu' operatori candidati;
+\item chiedere quale fatto materiale distingue i candidati;
+\item verificare se il source governa quel fatto;
+\item scegliere l'operatore solo se la distinzione e' sostenuta;
+\item se la distinzione e' materiale ma non governata, mantenere un diagnostic/unresolved;
+\item se due operatori restano praticamente intercambiabili in molti casi reali senza perdita downstream, registrare il caso come evidenza di possibile ridondanza/over-factoring BA2 da riesaminare nel full-corpus retest.
+\end{enumerate}
+\end{conceptbox}
+
+\begin{reviewbox}[USABILITA' COME EVIDENZA]
+Una distinzione difficile da usare non e' automaticamente sbagliata, ma nemmeno va difesa solo perche' esiste nel contratto. Ci sono almeno due spiegazioni possibili:
+
+\begin{lstlisting}
+A. learning curve
+   source text repeatedly forces the distinction
+   and downstream consumers use it materially
+
+B. vocabulary over-factoring
+   source text often does not distinguish the operators
+   and downstream behavior is materially the same
+\end{lstlisting}
+
+Gli esempi documentali servono anche a discriminare A da B. La decisione finale su merge/remove/revise resta differita al complete-corpus BA retest.
+\end{reviewbox}
+
+\subsection{Vocabolario di operatori corrente}
+
+\footnotesize
+\begin{longtable}{L{0.25\textwidth}L{0.61\textwidth}}
+\toprule
+\textbf{Operator} & \textbf{Significato methodology-neutral} \\
+\midrule\endhead
+\code{transfer} & Conveyance di content da source a una o piu' destination. \\
+\code{produce} & Un actor/capability rende disponibili uno o piu' result, opzionalmente da input espliciti. \\
+\code{create} & Stabilisce una nuova project-semantic item o event occurrence. \\
+\code{observe} & Ispeziona/legge/query state o meaning esistente senza affermarne creazione/cambiamento. \\
+\code{transition} & Cambiamento governato di state/lifecycle di un subject. \\
+\code{correlate} & Vincolo di same-request/evaluation/context identity tra item. \\
+\code{reference} & Riferimento esplicito senza implicare correlation, dependency o ownership. \\
+\code{dependOn} & Un project meaning richiede un altro meaning/result/capability/milestone come prerequisito. \\
+\code{consumeService} & Consumo/uso effettivo di capability/service senza trasferirne ownership/responsibility. \\
+\code{realize} & Un meaning piu' concreto realizza/materializza un meaning astratto. \\
+\code{assignResponsibility} & Assegna o nega una responsibility/authority kind su uno scope. \\
+\code{constrain} & Restrizione riusabile/queryable su behavior, state, acceptance, applicability o allowed semantic domain. \\
+\code{classify} & Assegna un semanticKind methodology-neutral a un BAReferent. \\
+\code{decisionRule} & Mapping operativo governato che determina un result da input tramite conditional outcome branches. \\
+\bottomrule
+\end{longtable}
+\normalsize
+
+\subsection{Operator role quick reference}
+
+\scriptsize
+\begin{longtable}{L{0.16\textwidth}L{0.28\textwidth}L{0.21\textwidth}L{0.22\textwidth}}
+\toprule
+\textbf{Operator} & \textbf{Required roles} & \textbf{Optional} & \textbf{Cardinality} \\
+\midrule\endhead
+transfer & source, destination, content & -- & source 1; destination 1..*; content 1..* \\
+produce & actor, result & input & actor 1; result 1..*; input 0..* \\
+create & actor, created & -- & actor 1; created 1..* \\
+observe & actor, observed & result & actor 1; observed 1..*; result 0..* \\
+transition & subject, toState & actor, fromState & subject 1; toState 1; actor/fromState 0..1 \\
+correlate & correlatedItem, correlationContext & -- & item 1..*; context 1 \\
+reference & referencer, referenced & -- & referencer 1; referenced 1..* \\
+dependOn & dependent, prerequisite & -- & dependent 1; prerequisite 1..* \\
+consumeService & consumer, service & provider & consumer 1..*; service 1; provider 0..1 \\
+realize & abstract, realization & -- & abstract 1; realization 1..* \\
+assignResponsibility & responsibleParty, responsibilityScope, responsibilityKind & -- & party 1..*; scope 1; kind 1 \\
+constrain & constraintTarget, constraintValue & -- & target 1; value 1..* \\
+classify & classifiedReferent, semanticKind & -- & referent 1; kind 1..* \\
+decisionRule & actor, input, result & -- & actor 1; input 1..*; result 1 \\
+\bottomrule
+\end{longtable}
+\normalsize
+
+\subsection{Contrasto 1 -- produce vs create: partire dal testo}
+
+\begin{sourcebox}[TESTO DOCUMENTALE -- MR-0003 CANDIDATE R2]
+Le identita' governate costituiscono riferimenti gia' gestiti dal progetto; questa responsabilita' \textbf{non le crea ne' le amministra}, ma determina quale identita' governata corrisponde alla persona presente.
+\end{sourcebox}
+
+\begin{sourcebox}[TESTO DOCUMENTALE -- D-3.2 CANDIDATE R2]
+La capacita' di riconoscimento \textbf{produce un esito governato della determinazione dell'identita'}.
+
+Quando la determinazione riesce, l'esito \textbf{rende disponibile la specifica identita' governata determinata come corrispondente alla persona presente}.
+\end{sourcebox}
+
+La differenza materiale da preservare e':
+
+\begin{lstlisting}
+create
+  -> establishment of a new project-semantic item/event
+
+produce
+  -> make a governed result/output available
+\end{lstlisting}
+
+Qui il source risolve direttamente il dubbio: l'identita' esiste gia' come riferimento governato e non viene creata dal riconoscimento.
+
+\begin{badbox}[NON SUPPORTATO DAL SOURCE]
+\begin{lstlisting}
+create
+  actor   -> RecognitionCapability
+  created -> GovernedIdentity
+\end{lstlisting}
+Questo affermerebbe che il riconoscimento istituisce una nuova identita' governata, in contrasto con il testo.
+\end{badbox}
+
+\begin{goodbox}[CANDIDATE DIDATTICO COERENTE COL SOURCE]
+\begin{lstlisting}
+produce
+  actor  -> RecognitionCapability
+  input  -> PersonAtAccessPoint
+  result -> GovernedIdentity
+  result -> IdentityDeterminationOutcome
+\end{lstlisting}
+La proposition non e' accettata perche' il corpus R2 non e' ancora promosso; mostra soltanto come il testo discrimina \code{produce} da \code{create}.
+\end{goodbox}
+
+\begin{reviewbox}[QUANDO LA DIFFERENZA SEMBRA ARTIFICIOSA]
+Se il source dicesse soltanto ``la capability restituisce X'' e non fosse materialmente rilevante se X e' nuovo o preesistente, non sarebbe corretto inventare la distinzione per soddisfare il vocabolario. La domanda sarebbe: \emph{questa differenza cambia identita', lifecycle, provenance, change-impact o projection?} Se no in molti casi, il full-corpus retest deve verificare se \code{produce}/\code{create} sono davvero entrambi necessari.
+\end{reviewbox}
+
+
+\subsection{Contrasto 2 -- transfer vs consumeService: due frasi, due significati}
+
+Il corpus R1 e' superseded, ma e' utile come regression evidence perche' contiene entrambe le asserzioni in modo esplicito.
+
+\begin{sourcebox}[TESTO DOCUMENTALE -- FR-3.4.2 R1 SUPERSEDED]
+Per ogni \code{RecognitionCapture} destinata alla valutazione nel \code{RecognitionProcessor} separato, \code{CameraSubsystem} MUST \textbf{consegnare la capture al RecognitionProcessor} associandola alla corretta \code{RecognitionRequest}.
+
+Una consegna non completata MUST NOT essere rappresentata come completata con successo.
+\end{sourcebox}
+
+Questa frase governa il conveyance di un contenuto tra source e destination:
+
+\begin{goodbox}
+\begin{lstlisting}
+transfer
+  source      -> CameraSubsystem
+  destination -> RecognitionProcessor
+  content     -> RecognitionCapture
+\end{lstlisting}
+\end{goodbox}
+
+Un'altra Decision governa invece chi possiede il trasporto:
+
+\begin{sourcebox}[TESTO DOCUMENTALE -- D-3.5 R1 SUPERSEDED]
+Nel baseline R1 il progetto \textbf{consuma il servizio di connettivita' locale disponibile} e non possiede ne' gestisce l'infrastruttura di trasporto sottostante.
+\end{sourcebox}
+
+Questa frase governa l'uso di una capability/service senza trasferirne ownership:
+
+\begin{goodbox}
+\begin{lstlisting}
+consumeService
+  consumer -> RecognitionDelivery
+  service  -> CommunicationService
+\end{lstlisting}
+\end{goodbox}
+
+Le due proposition possono coesistere perche' rispondono a domande diverse:
+
+\begin{lstlisting}
+transfer:
+  what content moves, from where, to where?
+
+consumeService:
+  what capability/service is actually used,
+  without taking ownership?
+\end{lstlisting}
+
+\begin{badbox}
+Usare \code{transfer} per affermare ownership della rete, oppure usare \code{consumeService} come sinonimo generico di ``dipende da''.
+\end{badbox}
+
+
+\subsection{Contrasto 3 -- reference vs correlate: leggere l'obbligo di associazione}
+
+\begin{sourcebox}[TESTO DOCUMENTALE -- FR-3.4.1/FR-3.4.2 R1 SUPERSEDED]
+Quando una \code{RecognitionRequest} richiede nuova evidenza visiva, \code{CameraSubsystem} MUST acquisire una \code{RecognitionCapture} appropriata e \textbf{associarla alla richiesta che ne ha provocato l'acquisizione}.
+
+Durante la delivery, la capture deve essere consegnata \textbf{associandola alla corretta RecognitionRequest}.
+\end{sourcebox}
+
+Un semplice \code{reference} afferma che un meaning punta a un altro. Qui il source chiede qualcosa di piu': preservare il matching della capture con la request corretta.
+
+\begin{goodbox}
+Quando il matching same-request/context e' parte dell'obbligo, \code{correlate} e' il candidato semantico piu' specifico.
+\end{goodbox}
+
+\begin{reviewbox}
+Se la documentazione dicesse solo ``la capture contiene un riferimento alla request'', senza governare la correttezza del matching come relazione necessaria, \code{reference} potrebbe essere sufficiente. La scelta non viene dalla parola italiana ``associare'' ma dal fatto materiale richiesto.
+\end{reviewbox}
+
+
+\subsection{Contrasto 4 -- constrain vs decisionRule: dominio ammesso non significa logica di selezione}
+
+Il candidate R2 di FR-3.2.1 governa quali classi di esito devono restare distinguibili, ma non governa score, threshold o algoritmo che seleziona una classe.
+
+\begin{sourcebox}[TESTO DOCUMENTALE -- FR-3.2.1 CANDIDATE R2]
+Quando viene eseguita la determinazione dell'identita' mediante la strategia governata corrente, la capability di riconoscimento MUST produrre un esito governato della determinazione dell'identita' e MUST mantenere distinguibili almeno:
+
+\begin{itemize}
+\item determinazione riuscita;
+\item determinazione negativa;
+\item esito non conclusivo.
+\end{itemize}
+
+Quando l'esito indica una determinazione riuscita, MUST rendere disponibile la specifica identita' governata determinata come corrispondente alla persona presente.
+\end{sourcebox}
+
+Dal source possiamo dire che esiste un dominio semantico minimo di outcome distinguibili. Non possiamo dire come un modello selezioni l'outcome.
+
+\begin{goodbox}[CANDIDATE DI CONSTRAINT]
+\begin{lstlisting}
+constrain
+  constraintTarget -> IdentityDeterminationOutcome
+  constraintValue
+    property   -> outcomeKind
+    vocabulary -> [SUCCESS, NEGATIVE, INCONCLUSIVE]
+\end{lstlisting}
+Questa forma e' didattica: i canonical token effettivi richiederebbero registrazione/governance. Il punto e' distinguere ``allowed semantic domain'' da ``selection logic''.
+\end{goodbox}
+
+\begin{badbox}[DECISION RULE INVENTATA]
+\begin{lstlisting}
+IF score > threshold
+THEN outcome = SUCCESS
+ELSE outcome = NEGATIVE
+\end{lstlisting}
+Score e threshold non sono governati dal candidate FR. La BA starebbe importando una realizzazione plausibile, non ricostruendo il source.
+\end{badbox}
+
+\begin{conceptbox}[DISCRIMINATORE]
+\begin{lstlisting}
+constrain:
+  which values/properties are allowed or restricted?
+
+decisionRule:
+  which governed conditions select/construct which result?
+\end{lstlisting}
+
+Se la documentazione governa solo il primo fatto, non usare \code{decisionRule}.
+\end{conceptbox}
+
+\section{Collegare ogni elemento a evidenza, derivazione e stato}
+
+\begin{statusclosed}[ORIGINE, DERIVAZIONE, REVIEW E CAMBIAMENTO]
+Ogni BAReferent e BAProposition materializzato deve portare, o risolvere univocamente a, metadata sufficienti per capire origine, derivazione, stato di review/freshness e impatto del cambiamento.
+\end{statusclosed}
+\normtrace{BA3 provenance, derivation, lifecycle and change}
+
+\subsection{Tre origin states}
+
+\begin{longtable}{L{0.27\textwidth}L{0.60\textwidth}}
+\toprule
+\textbf{State} & \textbf{Significato} \\
+\midrule\endhead
+\code{GROUNDED} & Significato direttamente supportato dalla documentazione governata, anche se normalizzato nel vocabolario BA. \\
+\code{DERIVED} & Struttura methodology-neutral ottenuta da input espliciti tramite una regola ispezionabile e revisionata. \\
+\code{DIAGNOSTIC_UNRESOLVED} & Ambiguita', conflitto, insufficienza o missing information preservati senza trasformarli in project truth. \\
+\bottomrule
+\end{longtable}
+
+\begin{examplebox}[MR-0003 prima della clarification]
+L'ambiguita' A/B sulla presenza di una specifica identity all'entry e' il tipo di situazione che richiede \code{DIAGNOSTIC_UNRESOLVED}, non una scelta silenziosa della BA.
+\end{examplebox}
+
+\subsection{sourceLink != derivationBasisBinding != revalidationContext}
+
+Le tre relazioni rispondono a domande diverse:
+
+\begin{longtable}{L{0.28\textwidth}L{0.59\textwidth}}
+\toprule
+\textbf{Responsabilita'} & \textbf{Domanda} \\
+\midrule\endhead
+\code{sourceLink} & Quale governed material supporta/localizza direttamente questo BA meaning? \\
+\code{derivationBasisBinding} & Quali input role-bound sono stati usati per derivare questo meaning? \\
+\code{revalidationContext} & Quale contesto, se cambia materialmente, e' sufficiente a richiedere revalidation anche se non e' direct source o derivation input? \\
+\bottomrule
+\end{longtable}
+
+\begin{examplebox}[Telecamera -- perche' revalidationContext esiste]
+Nel regression case BA3, una sibling Decision sulla rappresentazione della capture puo' rendere stale una vecchia proposition di capture-transfer senza essere la direct source della proposition e senza averla analiticamente derivata. Quel contesto non va falsamente trasformato in \code{sourceLink} o \code{derivationBasisBinding}.
+\end{examplebox}
+
+\subsection{Review e freshness sono ortogonali}
+
+\begin{lstlisting}
+reviewState:
+  PENDING_REVIEW | ACCEPTED | REJECTED
+
+freshness:
+  CURRENT | STALE
+\end{lstlisting}
+
+Esempi:
+
+\begin{lstlisting}
+new candidate                 -> PENDING_REVIEW + CURRENT
+prior accepted impacted item  -> PENDING_REVIEW + STALE
+accepted diagnostic           -> ACCEPTED + CURRENT
+\end{lstlisting}
+
+\code{STALE} non cancella retroattivamente la validita' storica dell'elemento nella baseline precedente.
+
+
+\section{Assemblare la minima Base Analysis accettabile}
+
+Una BA per una baseline puo' essere chiamata ``accepted'' solo dopo review esplicita degli elementi/materialization necessari.
+
+\begin{reviewbox}[Acceptance checklist]
+Per ogni elemento che entra nella BA accettata verificare:
+\begin{enumerate}
+\item source baseline autorizzata;
+\item BA1 identity corretta;
+\item BA2 operator/role/structure coerenti con il source;
+\item BA5 canonical binding risolto;
+\item origin state corretto;
+\item sourceLink o derivation lineage sufficienti;
+\item nessuna project choice inventata;
+\item reviewState = ACCEPTED;
+\item freshness coerente con la baseline valutata;
+\item unresolved material mantenuto come diagnostic, non trasformato in fact.
+\end{enumerate}
+\end{reviewbox}
+
+\begin{badbox}
+``Accepted BA'' come semplice export automatico di tutto cio' che un parser/LLM riesce a estrarre.
+\end{badbox}
+
+\begin{goodbox}
+Accepted BA come minimo shared semantic core reviewato, riproducibile e tracciabile.
+\end{goodbox}
+
+
+\section{Regredire la Base Analysis contro la documentazione}
+
+\begin{statusworking}[R24 WORKING -- semantic regression]
+Dopo aver costruito la minima BA giustificata, verificare che la normalizzazione non abbia introdotto scelte, perso distinzioni o esposto un limite di espressivita' BA.
+\end{statusworking}
+
+Domande:
+
+\begin{enumerate}
+\item Ogni meaning-bearing BA element torna a governed evidence o a una derivazione methodology-neutral esplicita?
+\item La BA richiede un fatto non governato?
+\item Due reviewer possono ricostruire BA materialmente diverse dalla stessa documentazione stabile?
+\item La BA ha perso una distinzione materiale presente nel source?
+\item La BA rappresenta una scelta piu' forte della documentazione?
+\item Il problema e' davvero documentale, oppure e' un limite BA2/BA1/BA4?
+\end{enumerate}
+
+\subsection{Diagnosi possibili}
+
+\begin{lstlisting}
+ONE BA / ONE STABLE MEANING
+MULTIPLE MATERIAL BA CANDIDATES
+BA REQUIRES UNSUPPORTED FACT
+BA LOSES GOVERNED MATERIAL DISTINCTION
+BA EXPOSES SOURCE CONFLICT
+BA EXPRESSIVENESS PROBLEM
+\end{lstlisting}
+
+\subsection{Facial Access -- role-aware regression hypothesis}
+
+Il controlled MR-0003 test ha mostrato che la sola connettivita' di un graph puo' collassare due meaning diversi, mentre i participation roles li distinguono:
+
+\begin{examplebox}[A -- identity non preselected]
+\begin{lstlisting}
+produce
+  input  -> PERSON
+  result -> IDENTITY
+  result -> EVIDENCE
+\end{lstlisting}
+\end{examplebox}
+
+\begin{examplebox}[B -- identity preselected]
+\begin{lstlisting}
+produce
+  input  -> PERSON
+  input  -> IDENTITY
+  result -> EVIDENCE
+\end{lstlisting}
+\end{examplebox}
+
+\begin{statusworking}
+Questo e' PROMISING / ONE CONTROLLED CASE. Non e' un teorema generale e non impone un graph metamodel obbligatorio.
+\end{statusworking}
+
+Per il caso corretto il regression invariant e':
+
+\begin{quote}
+La specifica GovernedIdentity non deve diventare un input pre-esistente della responsibility di identity determination se la documentazione governata stabilisce che viene determinata dalla responsibility stessa.
+\end{quote}
+
+\begin{badbox}
+Se la BA non riesce a distinguere A/B, concludere automaticamente ``documentazione sbagliata''.
+\end{badbox}
+
+\begin{goodbox}
+Classificare prima la diagnosi: documentation ambiguity, BA derivation error, missing governed fact oppure BA expressiveness problem.
+\end{goodbox}
+
+
+\section{Gestire l'evoluzione tra baseline}
+
+\begin{statusclosed}[BA3 continuity]
+Tra baseline diverse non mutare silenziosamente l'identita' storica. Usare \code{RETAIN | REPLACE | RETIRE} secondo il significato, non secondo il nome del file o del nodo.
+\end{statusclosed}
+
+\subsection{Continuita' di un referent}
+
+\begin{lstlisting}
+RETAIN
+  same independently reusable meaning survives
+
+REPLACE
+  prior meaning is materially superseded by successor meaning
+
+RETIRE
+  prior meaning ceases; no successor identity required
+\end{lstlisting}
+
+\subsection{Continuita' di una proposition}
+
+Una proposition si RETAIN solo se resta materialmente equivalente per:
+
+\begin{lstlisting}
+operator
+polarity
+role-bound participants / local values
+condition / temporalScope
+\end{lstlisting}
+
+\subsection{Camera regressions utili}
+
+\begin{examplebox}[Ethernet -> Wi-Fi]
+Il meaning astratto di connectivity puo' RETAIN; una proposition che materializza la realization Ethernet puo' essere REPLACE. Non serve invalidare tutta la BA.
+\end{examplebox}
+
+\begin{examplebox}[External transport -> project-owned transport]
+Responsibility polarity/ownership puo' essere REPLACE; external consumeService puo' RETIRE se il servizio esterno non esiste piu'. Consumer meaning non correlato non viene invalidato automaticamente.
+\end{examplebox}
+
+\begin{examplebox}[Remote -> local recognition]
+La vecchia transfer proposition verso un processor remoto puo' RETIRE. Non va riscritta come ``local processing'': una relazione che non esiste piu' si ritira.
+\end{examplebox}
+
+
+\section{Produrre projection per i consumer}
+
+\begin{statusclosed}[PROJECTION COME CONSUMER DOWNSTREAM]
+Una projection e' derived consumer state costruita sopra una BA accettata. Non e' project authority e non puo' ridefinire il significato shared.
+\end{statusclosed}
+\normtrace{BA4 projection boundary, traceability, interpretation and coverage}
+
+Authority chain:
+
+\begin{lstlisting}
+governed documentation
+    -> accepted BA
+        -> projection materialization
+            -> optional method-owned interpretation
+\end{lstlisting}
+
+\subsection{Coverage}
+
+Due modalita' chiuse:
+
+\begin{lstlisting}
+EXHAUSTIVE_FOR_DECLARED_SCOPE
+SELECTIVE
+\end{lstlisting}
+
+Nella prima, omettere un BA element eleggibile e qualificato e' un projection defect. Nella seconda, omissione non autorizza nessuna conclusione sul project meaning.
+
+\subsection{Qualification}
+
+Una current-state projection puo' ammettere solo \code{ACCEPTED + CURRENT}. Una review projection puo' includere \code{STALE}, \code{PENDING_REVIEW} o \code{DIAGNOSTIC_UNRESOLVED}, ma deve preservarne la qualificazione.
+
+\subsection{Shared rendering: giusto e sbagliato}
+
+\begin{goodbox}
+\begin{lstlisting}
+transfer(CameraSubsystem, RecognitionProcessor, RecognitionCapture)
+    -> human rendering: "delivery of RecognitionCapture"
+\end{lstlisting}
+con gli stessi partecipanti e senza rafforzare la semantica.
+\end{goodbox}
+
+\begin{badbox}
+Da SecurityRequirements distinti di confidentiality, integrity e authorized provenance derivare come shared rendering:
+\begin{lstlisting}
+"the channel is secure"
+\end{lstlisting}
+Perde le distinzioni e introduce una conclusione piu' forte/non governata.
+\end{badbox}
+
+\subsection{Method-owned interpretation}
+
+Una projection puo' aggiungere una interpretazione locale, ad esempio:
+
+\begin{lstlisting}
+externally-provided-transport-exposure
+\end{lstlisting}
+
+ma deve essere esplicitamente method-owned, trace-bound e rule-accountable. Non entra automaticamente nel BA registry ne' nella documentazione di progetto.
+
+
+\subsection{Feedback senza inversione di authority}
+
+\begin{statusclosed}[BA0/BA3/BA4 authority boundary]
+Analisi e projection possono localizzare un problema e proporre una correzione. Solo la documentazione governata puo' accettare il nuovo project meaning.
+\end{statusclosed}
+
+\begin{lstlisting}
+governed docs B0
+ -> accepted BA B0
+ -> projection / analysis
+ -> finding / correction candidate
+ -> governed review
+ -> governed docs B1
+ -> accepted BA B1
+\end{lstlisting}
+
+Se una correction candidate viene rifiutata, nessuna nuova project truth esiste e la BA non cambia solo perche' un metodo l'ha proposta.
+
+
+\section{Esempio organico end-to-end: telecamera e determinazione dell'identita'}
+Questa sezione ricompone in un unico flusso le regole precedenti usando Facial Access come esempio didattico. Non costituisce una BA Facial Access accettata: il candidate R2 resta \code{EXPERIMENTAL_NON_CANONICAL}.
+
+\subsection{1. Governed meaning disponibile}
+
+L'esempio non parte dalla struttura BA ma dai documenti.
+
+\begin{sourcebox}[MR-0003 CANDIDATE R2]
+Quando questa responsabilita' inizia, la persona e' presente al punto di accesso ma la specifica identita' governata che le corrisponde non e' ancora determinata.
+
+Le identita' governate costituiscono riferimenti gia' gestiti dal progetto; questa responsabilita' non le crea ne' le amministra, ma determina quale identita' governata corrisponde alla persona presente.
+\end{sourcebox}
+
+Da questo testo possiamo normalizzare, senza ancora scegliere operatori:
+
+\begin{lstlisting}
+PersonAtAccessPoint is present at entry
+specific GovernedIdentity is NOT yet determined
+responsibility determines WHICH GovernedIdentity corresponds
+\end{lstlisting}
+
+La strategia di progetto e' poi ristretta dalla Decision:
+
+\begin{sourcebox}[D-3.1 CANDIDATE R2]
+Nel baseline candidato il progetto usa riconoscimento facciale come strategia per determinare quale identita' governata corrisponde alla persona presente al punto di accesso.
+\end{sourcebox}
+
+\subsection{2. Significati che possono richiedere identita' riusabile}
+
+Una futura BA, se la baseline venisse promossa, potrebbe dover riusare significati come:
+
+\begin{lstlisting}
+PersonAtAccessPoint
+GovernedIdentity
+IdentityDeterminationOutcome
+RecognitionCapability
+\end{lstlisting}
+
+La presenza nell'elenco non e' automatica: ciascun candidato deve soddisfare il criterio di identita' indipendente.
+
+\subsection{3. Asserzione minima}
+
+Prima di scegliere l'operatore, leggiamo la Decision che governa il risultato:
+
+\begin{sourcebox}[D-3.2 CANDIDATE R2]
+La capacita' di riconoscimento produce un esito governato della determinazione dell'identita'.
+
+Quando la determinazione riesce, l'esito rende disponibile la specifica identita' governata determinata come corrispondente alla persona presente.
+
+La capacita' di riconoscimento non concede, estende o revoca l'autorizzazione e non decide autonomamente l'accesso o l'apertura del varco.
+\end{sourcebox}
+
+Il source usa due fatti materiali:
+
+\begin{lstlisting}
+1. an outcome is produced
+2. on successful determination,
+   an already-governed identity is made available
+\end{lstlisting}
+
+Una forma didattica compatibile e':
+
+\begin{lstlisting}
+produce
+  actor  -> RecognitionCapability
+  input  -> PersonAtAccessPoint
+  result -> GovernedIdentity
+  result -> IdentityDeterminationOutcome
+\end{lstlisting}
+
+Qui \code{GovernedIdentity} e' un result reso disponibile come identita' determinata, non una nuova identita' istituita.
+
+\begin{badbox}[Perche' non usare create]
+\begin{lstlisting}
+create
+  actor   -> RecognitionCapability
+  created -> GovernedIdentity
+\end{lstlisting}
+Il source dice esplicitamente che le identita' governate sono gia' gestite dal progetto e che questa responsabilita' non le crea.
+\end{badbox}
+
+\subsection{4. Un dettaglio di realizzazione separato}
+
+Se un'altra parte della documentazione governa una camera separata dal processor e una capture che attraversa il boundary, una proposizione differente puo' essere:
+
+\begin{lstlisting}
+transfer
+  source      -> CameraSubsystem
+  destination -> RecognitionProcessor
+  content     -> RecognitionCapture
+\end{lstlisting}
+
+Se il trasferimento usa un servizio di connettivita' non posseduto dal branch:
+
+\begin{lstlisting}
+consumeService
+  consumer -> RecognitionDelivery
+  service  -> CommunicationService
+\end{lstlisting}
+
+Le due proposizioni non sono sinonime: una governa il conveyance del contenuto, l'altra l'uso di una capability di servizio.
+
+\subsection{5. Evidenza e stato}
+
+Ogni elemento accettabile deve poter rispondere almeno a:
+
+\begin{lstlisting}
+what governed source supports me?
+am I GROUNDED, DERIVED or DIAGNOSTIC_UNRESOLVED?
+what change would require my revalidation?
+\end{lstlisting}
+
+Se la specifica identity all'ingresso fosse ancora NOT SPECIFIED, la forma A sopra non dovrebbe essere accettata come project meaning: la BA dovrebbe preservare la diagnosi.
+
+\subsection{6. Regression}
+
+Prima della projection, neutralizzare i nomi e chiedere:
+
+\begin{quote}
+La struttura derivata richiede una specifica GovernedIdentity come input preesistente alla responsibility?
+\end{quote}
+
+Se si', la BA ha reintrodotto la lettura B e deve essere riesaminata.
+
+\subsection{7. Projection}
+
+Solo dopo una BA accettata un consumer puo' renderla in un flow view, assurance view o altra projection. La projection puo' rinominare per leggibilita' solo se il rendering non rafforza, inverte o cancella il significato condiviso.
+
+\section{Retest integrato sul corpus completo}
+
+\begin{statusopen}[INTEGRATED BASE ANALYSIS MILESTONE NOT CLOSED]
+BA0, BA1, BA3, BA4 e BA5 mantengono scope chiusi; BA2 e' una active R24 working revision. Il milestone integrato BA6 non e' stato completato.
+\end{statusopen}
+
+Dopo una complete governed project-documentation baseline, DDTA deve:
+
+\begin{enumerate}
+\item derivare/rederivare la minima BA giustificata sull'intero corpus;
+\item eseguire semantic + structural regression;
+\item misurare quali strutture sono realmente riusate dai consumer downstream;
+\item identificare missing structure, redundancy e over-modeling;
+\item riaprire/supersedere solo il piu' piccolo contratto forzato dall'evidenza;
+\item evitare di conservare una struttura solo perche' era gia' ``closed'' in uno scope precedente.
+\end{enumerate}
+
+Questioni esplicitamente ancora aperte includono:
+
+\begin{itemize}
+\item se tutti i quattordici operatori BA2 restano necessari nel full-corpus retest;
+\item se role-aware semantic topology diventa un regression tool standard o resta diagnostica opzionale;
+\item se service guarantee/required-property comparison richiede nuova struttura first-class;
+\item il meccanismo completo BA6/integrated closure.
+\end{itemize}
+
+
+\section{Checkpoint di usabilita' delle BAProposition}
+
+La procedura organica non assume che il vocabolario BA2 sia definitivamente ottimale solo perche' e' stato costruito incrementalmente.
+
+Durante il prossimo full-corpus retest registrare, per ogni proposition reale:
+
+\begin{longtable}{L{0.31\textwidth}L{0.57\textwidth}}
+\toprule
+\textbf{Domanda} & \textbf{Evidenza da raccogliere} \\
+\midrule\endhead
+Il source discrimina chiaramente l'operatore? & Quale frase/fatto materiale elimina le alternative? \\
+La distinzione cambia la BA? & Identita', ruoli, provenance, lifecycle, change impact, projection o test cambiano? \\
+Reviewer diversi convergono? & Scelgono lo stesso operatore partendo dal source, senza usare solo il label? \\
+La distinzione viene riusata downstream? & Un consumer ottiene valore dalla distinzione senza rileggere la prosa? \\
+Due operatori ricorrono come equivalenti? & Se si', possibile MERGE/REVISE/REJECT da valutare nel BA2 retest. \\
+\bottomrule
+\end{longtable}
+
+\begin{statusopen}[NON CHIUSO DA QUESTA GUIDA]
+Se il retest mostra che una distinzione come \code{produce}/\code{create} richiede spesso interpretazioni sottili senza produrre differenze materiali downstream, il risultato non va nascosto come ``errore dell'utente''. E' evidenza metodologica per riesaminare il piu' piccolo contratto BA2 coinvolto.
+\end{statusopen}
+
+\section{Checklist operativa compatta}
+
+\small
+\begin{longtable}{L{0.08\textwidth}L{0.30\textwidth}L{0.50\textwidth}}
+\toprule
+\textbf{Step} & \textbf{Domanda} & \textbf{STOP condition} \\
+\midrule\endhead
+0 & Source authority risolta? & candidate/working source usato come project authority \\
+1 & Meaning semanticamente stabile? & piu' letture materiali / critical proposition non governata \\
+2 & Il detail e' necessario e justified? & structure aggiunta solo per convenience \\
+3 & Referent o proposition? & nuova identity family senza split criterion \\
+4 & Canonical binding risolto? & alias/synonym usato come semantic input \\
+5 & Operator/roles corrispondono al meaning? & operator scelto per somiglianza linguistica \\
+6 & Local value o reusable identity? & registry/referent inflation non giustificata \\
+7 & Origin/provenance/change context completo? & source, derivation e context semanticamente collassati \\
+8 & Elemento accettabile? & unsupported fact o unresolved trasformato in fact \\
+9 & Regression preserva il source meaning? & multiple BA candidates / lost distinction / expressiveness mismatch \\
+10 & Continuity corretta? & silent mutation della history \\
+11 & Projection resta downstream? & projection strengthening/inversion/authority leak \\
+12 & Feedback torna alla governance? & analysis output usato come grounded source \\
+13 & Service property e' davvero guaranteed? & NOT SPECIFIED trattato come guarantee/denial \\
+14 & Nuovo token/concept passa extension workflow? & convenience-based semantic extension \\
+15 & Full-corpus evidence supporta la struttura? & BA closure dichiarata prima del retest integrato \\
+\bottomrule
+\end{longtable}
+\normalsize
+
+
+\section{Glossario minimo}
+
+\begin{longtable}{L{0.34\textwidth}L{0.53\textwidth}}
+\toprule
+\textbf{Termine} & \textbf{Significato operativo} \\
+\midrule\endhead
+Base Analysis & shared methodology-neutral analytical representation del governed project meaning. \\
+BAE & umbrella term per BA elements; non richiede una metaclasse separata. \\
+BAReferent & identita' di project-semantic meaning riusabile. \\
+BAProposition & asserzione analitica riusabile/provenance-bearing su BAReferent. \\
+GROUNDED & direttamente supportato dalla governed documentation. \\
+DERIVED & metodologia-neutral structure derivata da basis + immutable inspectable rule. \\
+DIAGNOSTIC\_UNRESOLVED & insufficienza/conflitto/ambiguita' preservati senza fingere project truth. \\
+CURRENT / STALE & freshness rispetto alla baseline valutata. \\
+RETAIN / REPLACE / RETIRE & disposition di continuita' cross-baseline. \\
+Projection & downstream derived consumer state sopra accepted BA. \\
+Canonical token & semantic key esatto in un dominio/registry revision. \\
+\bottomrule
+\end{longtable}
+
+
+\appendix
+\section{Mappa dei contratti BA0--BA5}
+La numerazione BA0--BA5 compare qui soltanto come \textbf{mappa di tracciabilita' dei contratti di ricerca}. Non e' la procedura operativa presentata nel corpo della guida.
+
+\begin{longtable}{L{0.12\textwidth}L{0.24\textwidth}L{0.53\textwidth}}
+\toprule
+\textbf{Contratto} & \textbf{Status R24} & \textbf{Responsabilita' che alimenta la procedura} \\
+\midrule\endhead
+BA0 & CLOSED & authority boundary, method neutrality, explicit uncertainty, minimality \\
+BA1 & CLOSED & independent identity of reusable referents and propositions \\
+BA2 & R24 WORKING R2 & proposition structure, operators, roles, local structured semantics \\
+BA3 & CLOSED & provenance, derivation, review/freshness, continuity and revalidation \\
+BA4 & CLOSED & projection boundary, trace, coverage, qualification and method-owned interpretation \\
+BA5 & CLOSED & canonical names/tokens, controlled registries and extension discipline \\
+BA6 & NOT COMPLETED & integrated full-corpus regression/completion milestone \\
+\bottomrule
+\end{longtable}
+
+\begin{reviewbox}[Come usare questa tabella]
+Quando una regola operativa viene contestata o deve essere modificata, questa mappa permette di risalire al contratto che la possiede. Durante l'authoring quotidiano, invece, si segue il flusso semantico del corpo della guida, non la numerazione BA0--BA5.
+\end{reviewbox}
+
+\section{Source map della guida}
+
+Questa guida sintetizza, senza sostituirli come evidence record, i seguenti contratti/artifact:
+
+\begin{itemize}
+\item \artifact{methodology/BA0_BASE_ANALYSIS_RESPONSIBILITY_BOUNDARY_R1.md};
+\item \artifact{methodology/BA1_MINIMAL_BAE_IDENTITY_ONTOLOGY_R1.md};
+\item \artifact{methodology/BA2_RELATION_ACTION_VOCABULARY_R2.md};
+\item \artifact{methodology/BA3_PROVENANCE_DERIVATION_LIFECYCLE_CHANGE_CONTRACT_R1.md};
+\item \artifact{methodology/BA4_PROJECTION_BOUNDARY_TRACEABILITY_INTERPRETATION_COVERAGE_CONTRACT_R1.md};
+\item \artifact{methodology/BA5_CANONICAL_SEMANTIC_REGISTRY_CONTROLLED_AUTHORING_CONTRACT_R1.md};
+\item \artifact{methodology/DDTA_DOCUMENTATION_METHOD_BASELINE_R24_CHECKPOINT_R1.md};
+\item \artifact{methodology/DDTA_R24_SEMANTIC_REVIEW_CHECKPOINT_R1.md};
+\item \artifact{studies/semantic-review/R24_MR0003_SEMANTIC_REVIEW_FINDING_R1.md};
+\item \artifact{studies/semantic-review/R24_MR0003_DOWNSTREAM_COMPATIBILITY_REVIEW_R1.md}.
+\end{itemize}
+
+\begin{statusclosed}[Final operating principle]
+Base Analysis deve essere abbastanza ricca da preservare e rendere riusabile il significato governato, ma abbastanza povera da non diventare una seconda fonte di verita', un systems metamodel universale o una tassonomia del metodo di analisi.
+\end{statusclosed}
+
+
+\end{document}

@@ -10,7 +10,7 @@ title: "DDTA research work plan after documentation-layer closure - R23"
 
 **Initially prepared against repository baseline:** `df404acb2cfcfb4880badefe34c4df7948f28b42`
 
-**Current refinement baseline:** `2cf49e0e48e688b1696742300b7ade03b8dc51cc`
+**Current refinement baseline:** `7aeb3a1e0373357fa31c35110d9160de3e2e7d79`
 
 **Supersedes:** Revision 22 only for forward execution state. R1-R22 remain historical research records.
 
@@ -363,10 +363,10 @@ current R24 state
     -> disposition every material rule/observation:
        RETAIN | MERGE | REVISE | DEFER | REJECT
     -> rewrite the integrated documentation-authoring guide
-       (`DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R2.md` candidate)
+       (`DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R2.tex` / `.pdf` R24 draft)
     -> create one operational Base Analysis step-by-step guide
        over the retained BA contracts
-       (`DDTA_BASE_ANALYSIS_STEP_BY_STEP_GUIDE_R1.md` candidate)
+       (`DDTA_BASE_ANALYSIS_OPERATIONAL_GUIDE_R1.tex` / `.pdf` R24 draft)
     -> resume Facial Access candidate-r2 documentation review and carry-forward
     -> assemble a coherent complete successor project-documentation baseline
     -> only after that project-documentation rewrite, update the test-program documentation
@@ -389,20 +389,18 @@ Closed historical contracts are not silently rewritten. If the later full-corpus
 
 ## 15. Exact next microstep
 
-The non-mutating methodology/Base Analysis audit has established the documentation carry-forward set and resolved the two principal synchronization hazards found during review:
+The documentation-method checkpoint has now been operationalized into two repository-ready R24 draft guides:
 
-- S1 versus S1.5 Requirement abstraction: S1.5-A is carried forward; the separate `NormativeObligation` metaclass is rejected for forward use while S1-specific SpecializedRequirement invariants remain retained;
-- BA5 versus active BA2 R2: BA5 retains canonical-registry/controlled-authoring responsibility while BA2 R2 owns the current fourteen-operator vocabulary and operator-local structure.
+- `methodology/DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R2.tex` with derived PDF;
+- `methodology/DDTA_BASE_ANALYSIS_OPERATIONAL_GUIDE_R1.tex` with derived PDF.
 
-`DDTA_DOCUMENTATION_METHOD_BASELINE_R24_CHECKPOINT_R1.md` now freezes the forward documentation-method question set, including the qualified R24 semantic-sufficiency, consumed-service assurance-coverage and downstream-propagation review rules.
+Both guides remain **R24 DRAFT FOR REVIEW**. They do not close Base Analysis as a whole, do not promote a Facial Access BA, and do not authorize physical archive/move of historical research artifacts.
 
 The exact next microstep is:
 
-> Draft `methodology/DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R2.md` directly from the documentation-method checkpoint, preserving explicit CLOSED / WORKING / OPEN status distinctions and without rewriting historical closure artifacts.
+> Review the two guide drafts as repository artifacts, then prepare a small orientation/alignment update for `README.md`, `INDEX.md` and this work plan only if the guide paths and draft status are accepted.
 
-After that guide has been reviewed, create the operational `methodology/DDTA_BASE_ANALYSIS_STEP_BY_STEP_GUIDE_R1.md` from the retained BA0-BA5 contracts and the audited BA2/BA5 integration.
-
-Do not update README/INDEX to point to either future guide until the corresponding files exist and have been reviewed. Do not physically move/archive historical research artifacts in this phase. Do not resume the remaining Facial Access carry-forward until both integrated guides have been reviewed.
+Do not resume the remaining Facial Access carry-forward until the guide review and repository orientation alignment are complete. Do not rewrite the test-program documentation before the project-documentation rewrite.
 
 ## 16. Base Analysis completion status
 

@@ -1,0 +1,919 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[a4paper,margin=2.25cm,headheight=15pt]{geometry}
+\usepackage{booktabs,longtable,tabularx,array}
+\usepackage{ragged2e}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,fit}
+\usepackage{titlesec}
+\usepackage{amsmath,amssymb}
+
+\definecolor{ddtadark}{RGB}{28,38,52}
+\definecolor{ddtagray}{RGB}{244,246,248}
+\definecolor{ddtablue}{RGB}{42,88,135}
+\definecolor{ddtagreen}{RGB}{48,111,78}
+\definecolor{ddtaorange}{RGB}{148,91,25}
+\definecolor{ddtared}{RGB}{140,48,48}
+\definecolor{ddtapurple}{RGB}{92,63,122}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=ddtablue,
+  urlcolor=ddtablue,
+  citecolor=ddtablue,
+  pdftitle={DDTA Documentation and Base Analysis Authoring Guide R2},
+  pdfauthor={Documentation-Driven Threat Analysis research workspace}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{DDTA -- Authoring Guide R2}
+\rhead{Documentation method}
+\cfoot{\thepage}
+
+\titleformat{\section}{\Large\bfseries\color{ddtadark}}{\thesection}{0.7em}{}
+\titleformat{\subsection}{\large\bfseries\color{ddtadark}}{\thesubsection}{0.7em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{ddtadark}}{\thesubsubsection}{0.7em}{}
+
+\setlist[itemize]{leftmargin=1.55em,itemsep=0.24em,topsep=0.35em}
+\setlist[enumerate]{leftmargin=1.75em,itemsep=0.24em,topsep=0.35em}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{0pt}
+\setlength{\emergencystretch}{3em}
+
+\lstset{
+  basicstyle=\ttfamily\small,
+  columns=fullflexible,
+  keepspaces=true,
+  frame=single,
+  framerule=0.3pt,
+  rulecolor=\color{ddtablue},
+  backgroundcolor=\color{ddtagray},
+  xleftmargin=0.6em,
+  xrightmargin=0.6em,
+  aboveskip=0.5em,
+  belowskip=0.5em,
+  breaklines=true,
+  showstringspaces=false
+}
+
+\newtcolorbox{statusclosed}[1][CLOSED]{enhanced,breakable,colback=ddtagray,colframe=ddtagreen,title={#1},fonttitle=\bfseries}
+\newtcolorbox{statusworking}[1][R24 WORKING]{enhanced,breakable,colback=white,colframe=ddtaorange,title={#1},fonttitle=\bfseries}
+\newtcolorbox{statusopen}[1][OPEN / DEFERRED]{enhanced,breakable,colback=white,colframe=ddtapurple,title={#1},fonttitle=\bfseries}
+\newtcolorbox{goodbox}[1][CORRETTO / PREFERIBILE]{enhanced,breakable,colback=white,colframe=ddtagreen,title={#1},fonttitle=\bfseries}
+\newtcolorbox{badbox}[1][DA EVITARE]{enhanced,breakable,colback=white,colframe=ddtared,title={#1},fonttitle=\bfseries}
+\newtcolorbox{reviewbox}[1][REVIEW]{enhanced,breakable,colback=white,colframe=ddtaorange,title={#1},fonttitle=\bfseries}
+\newtcolorbox{examplebox}[1][ESEMPIO FACIAL ACCESS]{enhanced,breakable,colback=ddtagray,colframe=ddtablue,title={#1},fonttitle=\bfseries}
+
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+
+\newcommand{\MR}{\textit{MacroRequirement}}
+\newcommand{\Decision}{\textit{Decision}}
+\newcommand{\FR}{\textit{FunctionalRequirement}}
+\newcommand{\Req}{\textit{Requirement}}
+\newcommand{\SR}{\textit{SpecializedRequirement}}
+\newcommand{\SecR}{\textit{SecurityRequirement}}
+\newcommand{\BA}{\textit{Base Analysis}}
+\newcommand{\code}[1]{\texttt{#1}}
+
+\begin{document}
+
+\begin{titlepage}
+\centering
+\vspace*{1.5cm}
+{\Large Documentation-Driven Threat Analysis\par}
+\vspace{0.8cm}
+{\Huge\bfseries Documentation and Base Analysis Authoring Guide\par}
+\vspace{0.25cm}
+{\LARGE Revision 2 -- documentation method\par}
+\vspace{0.9cm}
+{\large Guida operativa dalla problem framing al handoff verso Base Analysis\par}
+\vfill
+\begin{minipage}{0.86\textwidth}
+\small
+\textbf{Stato.} R24 DRAFT FOR REVIEW. La guida e' derivata dal checkpoint documentale R24 e conserva esplicitamente la distinzione fra regole CLOSED, refinement R24 WORKING e questioni OPEN/DEFERRED.
+
+\medskip
+\textbf{Repository baseline di riferimento.} \code{7aeb3a1e0373357fa31c35110d9160de3e2e7d79}.
+
+\medskip
+\textbf{Esempio ricorrente.} Il caso Facial Access viene usato come esempio didattico. Gli artifact R1 sono SUPERSEDED e servono solo come regression evidence; il candidate R2 e' EXPERIMENTAL\_NON\_CANONICAL e non costituisce ancora una baseline governata per una BA accettata.
+\end{minipage}
+\vfill
+{\large 23 agosto 2026\par}
+\end{titlepage}
+
+\pagenumbering{roman}
+\tableofcontents
+\newpage
+\pagenumbering{arabic}
+
+\section{Come usare questa guida}
+
+Questa guida non sostituisce la documentazione di progetto con un metamodel pesante. Il principio operativo e':
+
+\begin{statusclosed}[Principio -- minimum sufficient governed meaning]
+Documentare al livello corrente la minima conoscenza governata sufficiente a rendere stabile il significato, verificabile la responsabilita' e possibile una successiva normalizzazione in Base Analysis senza inventare dettagli.
+\end{statusclosed}
+
+La sequenza di lavoro e':
+
+\begin{center}
+\begin{tikzpicture}[
+  node distance=6mm,
+  box/.style={draw=ddtadark,rounded corners,align=center,inner sep=5pt,minimum width=62mm},
+  arr/.style={-{Latex[length=2.3mm]},thick}
+]
+\node[box] (a) {0. Authority gate};
+\node[box,below=of a] (p) {1. Project problem framing};
+\node[box,below=of p] (m) {2. MacroRequirement};
+\node[box,below=of m] (s) {3. Semantic-sufficiency gate};
+\node[box,below=of s] (d) {4. Decision};
+\node[box,below=of d] (f) {5. FunctionalRequirement};
+\node[box,below=of f] (r) {6. Requirement coherent-unit / split};
+\node[box,below=of r] (sr) {7. SpecializedRequirement};
+\node[box,below=of sr] (sec) {8. SecurityRequirement};
+\node[box,below=of sec] (svc) {9. Cross-MR / consumed-service boundary};
+\node[box,below=of svc] (t) {10. Canonical terminology};
+\node[box,below=of t] (reg) {11. Downstream semantic propagation};
+\node[box,below=of reg] (g) {12. Completeness / promotion gate};
+\node[box,below=of g] (ba) {13. Handoff to Base Analysis};
+\draw[arr] (a)--(p);\draw[arr] (p)--(m);\draw[arr] (m)--(s);\draw[arr] (s)--(d);\draw[arr] (d)--(f);\draw[arr] (f)--(r);\draw[arr] (r)--(sr);\draw[arr] (sr)--(sec);\draw[arr] (sec)--(svc);\draw[arr] (svc)--(t);\draw[arr] (t)--(reg);\draw[arr] (reg)--(g);\draw[arr] (g)--(ba);
+\end{tikzpicture}
+\end{center}
+
+Non ogni step crea un nuovo tipo di documento. Alcuni sono gate o review step. In particolare semantic sufficiency, Macro Project Map review, downstream regression e service-guarantee review sono discipline di controllo, non nuove classi L1.
+
+\subsection{Legenda epistemica}
+
+\begin{longtable}{L{0.25\textwidth}L{0.64\textwidth}}
+\toprule
+\textbf{Etichetta} & \textbf{Significato} \\
+\midrule\endhead
+CLOSED & Regola gia' chiusa nel proprio scope e portata avanti nel baseline corrente. \\
+R24 WORKING & Refinement supportato da pressure test ma non ancora generalizzato come closure universale. \\
+OPEN / DEFERRED & Questione preservata esplicitamente; non deve essere chiusa per comodita' narrativa o di tooling. \\
+\bottomrule
+\end{longtable}
+
+\section{Regole trasversali prima dei singoli documenti}
+
+\subsection{Recency non e' authority}
+
+\begin{statusclosed}
+Prima di usare un artifact chiedere sempre quale baseline e quale source set sono autorizzati per l'operazione corrente. Un file piu' nuovo non diventa governato per cronologia.
+\end{statusclosed}
+
+\begin{badbox}
+\begin{lstlisting}
+"Questo file e' il piu' recente, quindi e' il requisito corrente."
+\end{lstlisting}
+\end{badbox}
+
+\begin{goodbox}
+\begin{lstlisting}
+"Questo artifact e' candidate / working evidence.
+La baseline governata si determina tramite il registry di authority."
+\end{lstlisting}
+\end{goodbox}
+
+\subsection{Documentation authority e analysis feedback}
+
+La direzione di authority e':
+
+\begin{lstlisting}
+governed documentation
+    -> Base Analysis
+    -> downstream analysis / diagnostic
+    -> correction candidate
+    -> governed review
+    -> updated documentation
+    -> rebuilt Base Analysis
+\end{lstlisting}
+
+Una BA o un'analisi possono esporre un problema, ma non possono riparare silenziosamente il significato del progetto.
+
+\section{Step 1 -- Project problem framing}
+
+\begin{statusclosed}
+\textbf{Domanda fondamentale:} se rimuoviamo le scelte di soluzione correnti, quale problema generale o classe di problemi deve affrontare il progetto, e che cosa e' dentro o fuori dal boundary?
+\end{statusclosed}
+
+La problem framing e' una precondizione di metodo, non un ulteriore document type L1.
+
+\subsection{Checklist}
+
+\begin{itemize}
+\item eliminare provider, device, database, framework, algoritmo e protocollo quando non sono intrinseci al problema;
+\item dichiarare le responsabilita' importanti fuori scope;
+\item usare il framing per verificare copertura e overlap degli MR;
+\item non duplicare meccanicamente lo stesso framing in ogni MR.
+\end{itemize}
+
+\begin{badbox}[DA EVITARE -- framing gia' soluzione]
+\begin{lstlisting}
+Il progetto deve usare una telecamera IP Ethernet e un PC locale
+per riconoscere il volto e aprire il tornello.
+\end{lstlisting}
+Problema: camera, Ethernet, PC e apertura del tornello sono gia' scelte o realizzazioni. Il framing non lascia visibile il problema indipendentemente dalla soluzione.
+\end{badbox}
+
+\begin{goodbox}[PREFERIBILE -- framing del problema]
+\begin{lstlisting}
+Il progetto deve controllare l'accesso a un'area riservata,
+distinguendo la persona presente, il relativo stato di autorizzazione
+e la decisione sul singolo tentativo di accesso.
+\end{lstlisting}
+La formulazione sopravvive alla sostituzione della camera, del riconoscimento facciale, della rete o del meccanismo fisico di apertura.
+\end{goodbox}
+
+\section{Step 2 -- MacroRequirement}
+
+\begin{statusclosed}
+\textbf{Domanda fondamentale:} nel problema gia' inquadrato, quale responsabilita' macro stabile stiamo governando, quale risultato o valore macro contribuisce, perche' conta e chi coinvolge?
+\end{statusclosed}
+
+\subsection{Corpo minimo}
+
+\begin{lstlisting}
+Title
+Intent
+Context
+Stakeholders
+Scope
+Assumptions/Constraints [solo se branch-wide]
+dependsOn MR [quando genuino]
+\end{lstlisting}
+
+\subsection{Review questions}
+
+\begin{itemize}
+\item esiste una sola macro-responsabilita' coerente?
+\item resta significativa cambiando tecnologia/architettura?
+\item contiene gia' un comportamento atomico da FR?
+\item contiene gia' una scelta di soluzione da Decision?
+\item una dependency e' confusa con containment?
+\item Intent + Context + Scope determinano un solo significato stabile?
+\end{itemize}
+
+\subsection{Esempio reale: MR-0003 prima e dopo la semantic review}
+
+Il superseded R1 recitava, in sintesi:
+
+\begin{examplebox}[REGRESSION EVIDENCE -- formulazione R1]
+\begin{lstlisting}
+MR-0003 -- Verifica dell'identita' al punto di accesso
+
+Intent:
+stabilire se la persona presente corrisponde a un'identita' governata.
+\end{lstlisting}
+\end{examplebox}
+
+Questa formulazione ammetteva due letture materialmente diverse:
+
+\begin{lstlisting}
+A. l'identita' specifica non e' ancora nota;
+   la responsabilita' determina QUALE GovernedIdentity corrisponde.
+
+B. una GovernedIdentity specifica e' gia' selezionata;
+   la responsabilita' determina SE la persona corrisponde a quella identita'.
+\end{lstlisting}
+
+Non era quindi ``sbagliata'' in senso sintattico: era semanticamente insufficiente per distinguere due responsabilita' diverse.
+
+\begin{goodbox}[CANDIDATE R2 -- responsabilita' resa stabile]
+\begin{lstlisting}
+MR-0003 -- Determinazione dell'identita' al punto di accesso
+
+Quando questa responsabilita' inizia, la persona e' presente
+ma la specifica identita' governata che le corrisponde
+non e' ancora determinata.
+
+La responsabilita' determina quale identita' governata
+corrisponde alla persona presente.
+\end{lstlisting}
+\end{goodbox}
+
+\begin{badbox}[DA EVITARE -- MR che assorbe la realizzazione]
+\begin{lstlisting}
+MR-0003 -- Riconoscimento facciale tramite CameraSubsystem
+su Ethernet verso RecognitionProcessor.
+\end{lstlisting}
+Qui strategia, placement e comunicazione sono anticipati nel MacroRequirement. La sostituzione del mezzo o del componente costringerebbe a riscrivere una responsabilita' che dovrebbe restare stabile.
+\end{badbox}
+
+\subsection{Macro Project Map / isolated-MR review}
+
+\begin{statusworking}[R24 / S1 CANDIDATE HEURISTIC]
+Un MR isolato non e' invalido. Un nodo isolato attiva review, soprattutto quando il contenuto sembra una raccolta di proprieta' trasversali su comportamenti posseduti da altri branch.
+\end{statusworking}
+
+Domande:
+
+\begin{enumerate}
+\item Rimuovendo l'MR scompare una vera macro-capability/responsabilita'?
+\item Oppure restano le capability e scompaiono principalmente proprieta' specializzate?
+\item I discendenti plausibili sarebbero soprattutto security/privacy/performance/compliance requirements su FR altrui?
+\item Manca una vera relazione \code{dependsOn}?
+\item L'MR e' stato creato solo per dare una ``casa'' a una metodologia o concern category?
+\end{enumerate}
+
+\section{Step 3 -- Semantic-sufficiency gate}
+
+\begin{statusworking}
+Questo step e' un refinement R24 sotto pressure test. Le dimensioni A--F sono dimensioni di osservazione, non campi obbligatori del metamodel.
+\end{statusworking}
+
+\textbf{Trigger question:}
+
+\begin{quote}
+Ignorando titolo e nomi suggestivi, il testo governato determina una sola responsabilita'/commitment/obligation stabile, oppure possono sopravvivere letture materialmente diverse?
+\end{quote}
+
+\subsection{Dimensioni di osservazione}
+
+\begin{lstlisting}
+A  context / boundary
+B  participants / domains / relations
+C  initial / known / observable state
+D  events / activities / state transitions
+E  required effect / outcome / responsibility
+F  domain properties / constraints
+\end{lstlisting}
+
+\subsection{Procedura minima}
+
+\begin{enumerate}
+\item ricostruire il significato usando neutral labels quando utile;
+\item formare le piu' piccole letture materialmente diverse;
+\item individuare la proposizione minima che le separa;
+\item chiedere se la differenza cambia responsabilita', relazione, stato, outcome o downstream structure;
+\item cercare evidenza governata;
+\item classificare la proposizione come \code{AFFIRMED}, \code{DENIED}, \code{NOT SPECIFIED} o \code{CONFLICTING};
+\item correggere il livello che possiede semanticamente il significato.
+\end{enumerate}
+
+\begin{examplebox}[MR-0003 -- critical proposition]
+\begin{lstlisting}
+Una specifica GovernedIdentity e' gia' disponibile/selezionata
+come riferimento prima che inizi la responsabilita'.
+\end{lstlisting}
+Nel caso Facial Access la clarification di progetto ha reso la proposizione \code{DENIED}; la responsabilita' deve determinare quale identita' corrisponde.
+\end{examplebox}
+
+\begin{badbox}[DA EVITARE -- inference che chiude il gap]
+\begin{lstlisting}
+"Si chiama verifica, quindi certamente esiste gia'
+un'identita' specifica da verificare."
+\end{lstlisting}
+Titolo, pattern, esperienza di dominio o LLM possono suggerire una lettura, non diventano project authority.
+\end{badbox}
+
+\begin{goodbox}[CORRETTO -- mantenere l'incertezza]
+\begin{lstlisting}
+Evidence: NOT SPECIFIED
+Action: formulate discriminator question / return to semantic owner.
+\end{lstlisting}
+\end{goodbox}
+
+\section{Step 4 -- Decision}
+
+\begin{statusclosed}[CLOSED CORE / FORWARD WORDING REFINED]
+\textbf{Domanda fondamentale:} quale \emph{material project commitment} restringe questo MR, perche' il progetto assume questa posizione e quali conseguenze materiali seguono?
+\end{statusclosed}
+
+Usare \emph{material project commitment} evita l'equivoco che ogni Decision debba rappresentare una libera scelta fra molte alternative. Il commitment puo' essere \code{SELECTABLE}, \code{NECESSITY-CONSTRAINED} o \code{DEFAULT}, ma non puo' essere un wrapper vuoto.
+
+\subsection{Corpo minimo}
+
+\begin{lstlisting}
+Title
+Context
+Decision
+Consequences
+\end{lstlisting}
+
+\subsection{Ownership test}
+
+Per ogni Decision chiedere anche:
+
+\begin{quote}
+Questa proposizione e' una scelta/necessita' adottata per realizzare questo MR, oppure descrive semplicemente una proprieta' di qualcosa che il branch consuma?
+\end{quote}
+
+\begin{goodbox}[CORRETTO -- Decision direttamente pertinente a MR-0003]
+\begin{lstlisting}
+D-3.1 -- Strategia di determinazione dell'identita'
+mediante riconoscimento facciale
+
+Decision:
+Il progetto usa riconoscimento facciale come strategia
+per determinare quale identita' governata corrisponde
+alla persona presente.
+\end{lstlisting}
+La Decision restringe direttamente la realizzazione di MR-0003 senza cambiare la responsabilita' macro.
+\end{goodbox}
+
+\begin{badbox}[DA EVITARE -- proprieta' infrastrutturale presentata automaticamente come Decision del MR]
+\begin{lstlisting}
+D-3.x -- La rete e' Ethernet cablata.
+\end{lstlisting}
+Se ``Ethernet cablata'' e' solo una proprieta' del servizio di comunicazione disponibile e potrebbe servire anche altri branch, non e' automaticamente una Decision posseduta da MR-0003. Serve prima il test di ownership/placement.
+\end{badbox}
+
+\begin{badbox}[DA EVITARE -- implementation detail anticipato]
+\begin{lstlisting}
+D-3.1 -- Usare il modello FaceNet vX, soglia 0.83,
+telecamera modello Y e TLS 1.3.
+\end{lstlisting}
+La Decision miscela strategia, algoritmo, threshold, dispositivo e protezione del trasporto. Questi commitment possono avere ownership e lifecycle differenti.
+\end{badbox}
+
+\section{Step 5 -- FunctionalRequirement}
+
+\begin{statusclosed}
+\textbf{Domanda fondamentale:} data la Decision parent e gli input/condizioni applicabili, che cosa MUST fare il subject/capability, su quale significato governato, e quale risultato osservabile o failure behavior MUST seguire?
+\end{statusclosed}
+
+\subsection{Review checklist}
+
+\begin{itemize}
+\item comportamento operativo;
+\item independently assessable;
+\item esattamente una parent Decision;
+\item parent Decision pertinente;
+\item non ripetere la Decision;
+\item una sola unita' funzionale coerente;
+\item separare comportamenti indipendentemente modificabili;
+\item implementation independence;
+\item riuso delle identita'/riferimenti governati;
+\item testability senza inventare significato.
+\end{itemize}
+
+\begin{goodbox}[CANDIDATE R2 -- FR-3.2.1]
+\begin{lstlisting}
+Quando viene eseguita la determinazione dell'identita',
+la capability di riconoscimento MUST produrre un esito governato
+e MUST mantenere distinguibili almeno:
+- determinazione riuscita;
+- determinazione negativa;
+- esito non conclusivo.
+
+Quando la determinazione riesce, MUST rendere disponibile
+la specifica identita' governata determinata come corrispondente.
+\end{lstlisting}
+La clausola governa il comportamento e il risultato, senza decidere authorization/access e senza imporre il meccanismo interno.
+\end{goodbox}
+
+\begin{badbox}[DA EVITARE -- realism non governato]
+\begin{lstlisting}
+Il RecognitionProcessor MUST identificare la persona
+quando confidence > 0.82 e MUST usare top-1 matching 1:N.
+\end{lstlisting}
+Nel baseline corrente confidence, score, threshold, ranking e semantica 1:N non sono governati. Introdurli per ``realismo'' rende la documentazione meno stabile e inventa project meaning.
+\end{badbox}
+
+\begin{badbox}[DA EVITARE -- FR che invade authorization/access decision]
+\begin{lstlisting}
+Se il volto viene riconosciuto, il sistema MUST autorizzare
+l'accesso e aprire il varco.
+\end{lstlisting}
+Il riconoscimento determina l'identita'; autorizzazione e decisione del singolo tentativo appartengono ad altre responsabilita'.
+\end{badbox}
+
+\subsection{Allowed domain vs decision rule}
+
+\begin{goodbox}
+\begin{lstlisting}
+Outcome MUST be one of:
+  SUCCESS
+  NEGATIVE
+  INCONCLUSIVE
+\end{lstlisting}
+Questo governa un dominio di risultati.
+\end{goodbox}
+
+\begin{badbox}
+\begin{lstlisting}
+IF score >= 0.82 THEN SUCCESS
+ELSE IF score < 0.40 THEN NEGATIVE
+ELSE INCONCLUSIVE
+\end{lstlisting}
+Se soglie e mapping non sono governati, questa apparente testabilita' e' semantic invention.
+\end{badbox}
+
+\section{Step 6 -- Common Requirement coherent-unit / split}
+
+\begin{statusclosed}[S1.5-A CLOSED]
+Un Requirement e' esso stesso una obbligazione normativa governata e possiede una o piu' normative clauses.
+\end{statusclosed}
+
+\begin{lstlisting}
+Requirement [abstract]
+    extends GovernedDocument
+    normativeClause : NormativeClause [1..*]
+\end{lstlisting}
+
+Regola:
+
+\begin{lstlisting}
+1 Requirement != 1 sentence
+1 Requirement  = 1 coherent normative obligation
+\end{lstlisting}
+
+\textbf{Split test:} una parte puo' essere introdotta, modificata, ritirata o valutata indipendentemente senza cambiare l'identita' normativa delle altre? Se si', valutare Requirement separati.
+
+\begin{badbox}[DA EVITARE -- generic secure requirement]
+\begin{lstlisting}
+RecognitionCapture MUST be secure, confidential,
+integrity-protected and from an authorized source.
+\end{lstlisting}
+Confidentiality, integrity e authorized provenance possono evolvere ed essere valutate indipendentemente. Un unico requisito rende difficile ownership, change e verifica.
+\end{badbox}
+
+\begin{goodbox}[PREFERIBILE -- split per obbligazioni indipendenti]
+\begin{lstlisting}
+SEC-C  Confidentiality
+SEC-I  Integrity
+SEC-P  Authorized provenance
+\end{lstlisting}
+Ogni SecurityRequirement conserva una sola obbligazione coerente e una singola protected security property.
+\end{goodbox}
+
+\section{Step 7 -- SpecializedRequirement}
+
+\begin{statusclosed}[S1 CLOSED + S1.5 COMMON ABSTRACTION]
+\textbf{Domanda fondamentale:} quale obbligazione concern-specific aggiuntiva deve valere insieme al parent FR perche' la funzione sia considerata soddisfatta, senza ridefinire la funzione ne' scegliere come realizzarla?
+\end{statusclosed}
+
+Checks:
+
+\begin{itemize}
+\item esattamente un parent FR;
+\item strengthening, non replacement;
+\item removal test: tolto lo SR, la funzione ordinaria resta riconoscibile;
+\item ordinary functional correctness non duplicata;
+\item obbligazioni indipendenti separate;
+\item subordinate positive behavior puo' esistere, ma resta subordinato al concern;
+\item nessun control/mechanism obbligato senza Decision pertinente.
+\end{itemize}
+
+\begin{goodbox}
+\begin{lstlisting}
+Parent FR:
+CameraSubsystem MUST deliver RecognitionCapture
+al RecognitionProcessor corretto.
+
+Specialized obligation:
+Durante tale delivery, una capture modificata senza autorizzazione
+MUST NOT poter essere accettata come valida.
+\end{lstlisting}
+Il secondo requisito restringe la soddisfazione del delivery ma non ridefinisce la funzione di delivery.
+\end{goodbox}
+
+\begin{badbox}
+\begin{lstlisting}
+SpecializedRequirement:
+CameraSubsystem MUST deliver RecognitionCapture.
+\end{lstlisting}
+Questa clausola duplica la correttezza funzionale del parent FR invece di specializzarla.
+\end{badbox}
+
+\section{Step 8 -- SecurityRequirement}
+
+\begin{statusclosed}[S2 CLOSED]
+Un SecurityRequirement e' uno SpecializedRequirement che preserva una singola proprieta' di sicurezza governata rilevante per il parent FR e rende identificabile nelle normative clauses il failure mode che ne costituisce perdita/violazione.
+\end{statusclosed}
+
+\begin{lstlisting}
+SecurityRequirement
+    extends SpecializedRequirement
+    protectedSecurityProperty : SecurityProperty [1]
+\end{lstlisting}
+
+\begin{goodbox}[CONFIDENTIALITY -- forma mechanism-neutral]
+\begin{lstlisting}
+Durante il delivery di RecognitionCapture,
+il contenuto biometrico MUST NOT diventare intelligibile
+a soggetti non autorizzati prima della sua accettazione
+da parte del RecognitionProcessor.
+\end{lstlisting}
+Failure mode: il contenuto diventa intelligibile a un soggetto non autorizzato durante il comportamento protetto.
+\end{goodbox}
+
+\begin{badbox}[DA EVITARE -- control scambiato per requirement]
+\begin{lstlisting}
+RecognitionCapture MUST essere protetta con TLS 1.3 e mTLS.
+\end{lstlisting}
+TLS/mTLS sono possibili scelte di realization. Il SecurityRequirement deve prima dire quale proprieta' va preservata e quale failure mode e' inaccettabile.
+\end{badbox}
+
+\begin{badbox}[DA EVITARE -- causa scambiata per requisito]
+\begin{lstlisting}
+Il sistema MUST impedire gli attacchi man-in-the-middle.
+\end{lstlisting}
+Un attacco e' una possibile causa. Il requisito deve governare l'obbligazione sul comportamento/proprieta' del parent FR; la tecnica di analysis puo' poi collegare cause e failure mode.
+\end{badbox}
+
+\section{Step 9 -- Cross-MR e consumed-service boundary}
+
+\subsection{Consumption vs ownership}
+
+\begin{statusclosed}
+Una branch puo' consumare una capability/servizio senza acquisirne ownership, senza un secondo parent e senza importare automaticamente la realizzazione interna del servizio.
+\end{statusclosed}
+
+\begin{lstlisting}
+consumer branch
+    -> consumes Service S
+
+consumption != ownership
+consumption != second parent
+shared service != shared FR ownership
+\end{lstlisting}
+
+\begin{examplebox}[Camera -> RecognitionProcessor]
+La separazione fra acquisizione in \code{CameraSubsystem} e riconoscimento in \code{RecognitionProcessor} crea la necessita' di rendere disponibile \code{RecognitionCapture} al processor. Questa interazione puo' consumare un servizio di comunicazione senza trasformare MR-0003 nel proprietario dell'infrastruttura di rete.
+\end{examplebox}
+
+\begin{badbox}[DA EVITARE -- importare la rete nel MR]
+\begin{lstlisting}
+MR-0003 deve fornire Ethernet, switch, VLAN e routing
+per il trasferimento della capture.
+\end{lstlisting}
+Se la comunicazione e' una capability consumata, il consumer non possiede automaticamente questi dettagli.
+\end{badbox}
+
+\subsection{Required property vs governed service guarantee}
+
+\begin{statusworking}[R24 WORKING INTEGRATION CANDIDATE]
+Quando il consumer fa affidamento su una proprieta' P del servizio, confrontare la proprieta' richiesta con le sole garanzie governate del servizio. L'assenza di una garanzia non genera automaticamente un requisito o un meccanismo.
+\end{statusworking}
+
+\begin{lstlisting}
+consumer requires property P
+        |
+        v
+does governed service evidence guarantee P?
+        |
+        +-- AFFIRMED
+        |      -> consumer may rely on the governed guarantee
+        |
+        `-- DENIED / NOT SPECIFIED / CONFLICTING
+               -> coverage / assurance question remains
+               -> determine semantic owner
+               -> only then create/change an artifact if justified
+\end{lstlisting}
+
+\begin{goodbox}[CORRETTO -- informazione minima oggi]
+\begin{lstlisting}
+MR-0003 realization consumes CommunicationService
+for RecognitionCapture delivery.
+
+Service confidentiality guarantee: NOT SPECIFIED.
+\end{lstlisting}
+Questo consente di rimandare i dettagli di rete senza assumere proprieta' inesistenti.
+\end{goodbox}
+
+\begin{badbox}[DA EVITARE -- inferenza automatica]
+\begin{lstlisting}
+CommunicationService confidentiality = NOT SPECIFIED
+therefore
+MR-0003 MUST use TLS.
+\end{lstlisting}
+Il passaggio e' illegittimo: \code{NOT SPECIFIED} non significa ``assenza'', e anche un coverage gap richiede prima ownership/placement review.
+\end{badbox}
+
+\begin{reviewbox}[Regola pratica]
+Non scrivere ``il canale e' sicuro''. Scrivere, quando serve, quali proprieta' il consumer richiede e quali proprieta' il servizio governa come garantite. La stessa communication capability puo' servire Camera->PC e PC->turnstile con requisiti diversi sui due flussi.
+\end{reviewbox}
+
+\section{Step 10 -- Canonical terminology e review bindings}
+
+\begin{statusclosed}[BA5 DISCIPLINE / AUTHORING APPLICATION]
+La prosa puo' restare naturale; i binding semanticamente operativi devono usare identita' e termini governati stabili. Grammatical variation e' ammessa, uncontrolled synonymy no.
+\end{statusclosed}
+
+\begin{goodbox}
+\begin{lstlisting}
+GovernedIdentity
+GovernedIdentity determinata
+alla GovernedIdentity corrispondente
+\end{lstlisting}
+Le flessioni grammaticali cambiano la superficie, non la semantic identity.
+\end{goodbox}
+
+\begin{badbox}
+\begin{lstlisting}
+GovernedIdentity
+AuthorizedPerson
+KnownUser
+RecognizedProfile
+\end{lstlisting}
+Se questi termini indicano lo stesso significato senza una regola governata, introducono synonym drift e rendono piu' difficile capire se esistano concetti diversi.
+\end{badbox}
+
+\subsection{Temporary review markers}
+
+Durante review possono essere usati marker come:
+
+\begin{lstlisting}
+*<RESPONSIBILITY_A>
+#<GOVERNED_IDENTITY>
+@<produce>
+\end{lstlisting}
+
+Devono restare visibili finche' servono alla review e devono essere rimossi nella prosa finale di progetto.
+
+\section{Step 11 -- Downstream semantic propagation}
+
+\begin{statusworking}[R24 WORKING -- ONE REAL DOWNSTREAM CASE]
+Una correzione upstream richiede review dei discendenti non solo per contraddizione diretta, ma anche per perdita di una distinzione governata, precondizioni silenziose o ownership mal posizionata.
+\end{statusworking}
+
+\subsection{Facial Access propagation example}
+
+Dopo la correzione di MR-0003, il downstream corretto deve preservare:
+
+\begin{lstlisting}
+entry:
+  person present
+  specific GovernedIdentity not yet determined
+
+responsibility:
+  determine which GovernedIdentity corresponds
+
+success outcome:
+  make that specific GovernedIdentity available
+\end{lstlisting}
+
+\begin{goodbox}[D-3.2 / FR-3.2.1 -- distinction preserved]
+La Decision e l'FR candidate R2 dicono esplicitamente che il riconoscimento rende disponibile la specifica identita' determinata e non decide autorizzazione o accesso.
+\end{goodbox}
+
+\begin{badbox}[DA EVITARE -- child non contraddittorio ma lossy]
+\begin{lstlisting}
+Recognition MUST compare the person with GovernedIdentity
+and output positive/negative.
+\end{lstlisting}
+La frase puo' non contraddire esplicitamente MR-0003, ma reintroduce la possibilita' che una specifica identita' sia gia' input alla responsabilita'.
+\end{badbox}
+
+Quando possibile, riusare la \emph{smallest critical proposition} come downstream regression question.
+
+\section{Step 12 -- Documentation completeness e promotion gate}
+
+\begin{statusclosed}[ACTIVE GOVERNANCE DISCIPLINE]
+Una candidate baseline non diventa primary BA source perche' appare coerente o piu' recente. Serve una promozione esplicita dopo la composizione e review del successore completo.
+\end{statusclosed}
+
+Prima della promozione chiedere:
+
+\begin{itemize}
+\item tutti i branch richiesti sono assemblati coerentemente?
+\item le correzioni upstream sono state propagate/reviewed?
+\item i \code{NOT SPECIFIED} noti restano intenzionalmente aperti?
+\item i documenti finali sono privi di marker temporanei e research commentary?
+\item l'authority registry riflette il nuovo stato?
+\end{itemize}
+
+\begin{badbox}
+\begin{lstlisting}
+"Il candidate R2 e' scritto meglio, quindi lo usiamo per la BA corrente."
+\end{lstlisting}
+Una candidate non e' current authority senza promotion.
+\end{badbox}
+
+\section{Step 13 -- Handoff a Base Analysis}
+
+\begin{statusclosed}
+Documentation remains project authority. Base Analysis normalizza solo il significato gia' governato e non anticipa il dettaglio che il progetto ha intenzionalmente lasciato aperto.
+\end{statusclosed}
+
+Domanda di handoff:
+
+\begin{quote}
+Esiste sufficiente significato governato per derivare la minima Base Analysis senza scegliere interpretazioni non supportate o importare dettagli di livello inferiore?
+\end{quote}
+
+Se no, tornare al semantic owner nel document layer.
+
+\begin{examplebox}[MR-0003 -- BA boundary]
+Una futura BA derivata dal successor governato non deve richiedere una specifica \code{GovernedIdentity} come input preesistente della responsabilita' di determinazione. Se la BA la richiede, si attiva una semantic regression review: potrebbe essere un errore di derivazione, una perdita espressiva della BA o un problema documentale, ma non una nuova project truth.
+\end{examplebox}
+
+\section{Step 14 -- BA / analysis feedback senza authority inversion}
+
+Un mismatch BA non dimostra automaticamente un difetto documentale. Le diagnosi minime sono:
+
+\begin{lstlisting}
+documentation ambiguity
+BA derivation error
+missing governed fact
+BA expressiveness problem
+\end{lstlisting}
+
+Il loop corretto e':
+
+\begin{lstlisting}
+governed documentation
+    -> minimum justified BA
+    -> semantic / structural regression
+    -> diagnostic
+    -> correction candidate
+    -> governed review
+    -> updated documentation
+    -> rebuilt BA
+\end{lstlisting}
+
+\section{Checklist compatta documento per documento}
+
+\begin{longtable}{L{0.18\textwidth}L{0.73\textwidth}}
+\toprule
+\textbf{Step} & \textbf{Domande da non saltare} \\
+\midrule\endhead
+Authority & Quale baseline e' autorizzata? Sto usando recency come authority? \\
+Framing & Il problema resta valido rimuovendo la soluzione corrente? Boundary chiaro? \\
+MR & Una macro-responsabilita'? Significato stabile? Niente scelta tecnica o FR atomico? \\
+Semantic sufficiency & Esistono letture materialmente diverse? Qual e' la smallest critical proposition? Evidenza AFFIRMED/DENIED/NOT SPECIFIED/CONFLICTING? \\
+Decision & Quale material commitment restringe il MR? E' davvero posseduto da questo MR? Conseguenze materiali? \\
+FR & Quale comportamento MUST? Risultato osservabile? Una coherent functional unit? Testabile senza inventare significato? \\
+Requirement split & Le clausole formano una sola obbligazione coerente? Possono evolvere/essere assessed indipendentemente? \\
+SR & Strengthening di un solo FR? Removal test? Niente duplicazione funzionale o realization leakage? \\
+SecurityRequirement & Una sola security property? Failure mode identificabile? Niente generic ``secure'', cause o control prematuro? \\
+Consumed service & Consumption o ownership? Se serve P, il service governa davvero P? NOT SPECIFIED resta NOT SPECIFIED? \\
+Terminology & Stessa semantic identity, stesso governed term/binding? Marker temporanei rimossi dal final prose? \\
+Propagation & La correzione upstream e' preservata nei child? Ci sono silent preconditions o semantic loss? \\
+Promotion & Successor completo? Gap espliciti? Authority registry aggiornato? \\
+BA handoff & Posso derivare la minimum BA senza inventare? Se la BA diverge, quale diagnosi e' plausibile? \\
+\bottomrule
+\end{longtable}
+
+\section{Known open items -- non chiudere per comodita'}
+
+\begin{statusopen}
+La guida conserva esplicitamente i seguenti punti aperti o evidence-gated.
+\end{statusopen}
+
+\begin{enumerate}
+\item rappresentazione document-layer/L1 esatta del target di un consumed service/capability;
+\item universal service-property contract;
+\item automatic residual-obligation generation;
+\item provenance/change-event model completo fra analysis e governed-document revisions;
+\item general role-aware BA topology regression method;
+\item integrated Base Analysis / BA6 closure;
+\item necessita'/ridondanza finale dei current BA2 operators dopo full-corpus retest;
+\item eventuale reopen della regular Decision layer solo davanti a concrete recurring counterexamples;
+\item universal taxonomy of semantic patterns;
+\item network-specific metamodel.
+\end{enumerate}
+
+\section{Evidence map e status degli esempi}
+
+Gli esempi non hanno tutti la stessa authority. La guida usa esplicitamente il loro status:
+
+\begin{description}
+\item[Forward checkpoint.] \nolinkurl{methodology/DDTA_DOCUMENTATION_METHOD_BASELINE_R24_CHECKPOINT_R1.md} -- question set e status epistemici correnti.
+\item[FR authoring closure evidence.] \nolinkurl{03-functional-requirement/02-authoring-guidance/DDTA_AUTHORING_RULES_THROUGH_FR_R2.md} -- framing, MR, Decision, FR e service composition.
+\item[S1 SpecializedRequirement closure.] CLOSED EVIDENCE -- strengthening, removal test e parent dependence.
+\item[S1.5-A Requirement abstraction.] CLOSED nel proprio scope -- \code{Requirement}, \code{normativeClause[1..*]} e split rule.
+\item[S2 SecurityRequirement closure.] CLOSED EVIDENCE -- \code{protectedSecurityProperty} e failure-mode semantics.
+\item[MR-0003 R1.] \nolinkurl{governed-corpora/facial-access/current/MR-0003_IDENTITY_VERIFICATION.md} -- SUPERSEDED regression evidence; usato per mostrare l'ambiguita' pre-correction.
+\item[MR-0003 candidate R2.] \nolinkurl{governed-corpora/facial-access/candidate-r2/MR-0003_IDENTITY_DETERMINATION.md} -- EXPERIMENTAL\_NON\_CANONICAL; usato come esempio di wording candidato corretto.
+\item[Candidate Decisions.] \nolinkurl{governed-corpora/facial-access/candidate-r2/DECISIONS.md} -- EXPERIMENTAL\_NON\_CANONICAL; esempi D-3.1 e D-3.2.
+\item[Candidate FunctionalRequirement.] \nolinkurl{governed-corpora/facial-access/candidate-r2/FUNCTIONAL_REQUIREMENTS.md} -- EXPERIMENTAL\_NON\_CANONICAL; esempio FR-3.2.1.
+\item[SecurityRequirements R1.] \nolinkurl{governed-corpora/facial-access/current/SECURITY_REQUIREMENTS.md} -- SUPERSEDED regression evidence; esempi mechanism-neutral di confidentiality, integrity e authorized provenance.
+\end{description}
+
+\section{Final acceptance rule for this guide}
+
+Una rappresentazione documentale e' accettabile quando e':
+
+\begin{enumerate}
+\item leggibile da autori e reviewer di progetto;
+\item fedele al livello di astrazione governato;
+\item semanticamente sufficiente per evitare letture materialmente divergenti dove il progetto ha gia' una risposta;
+\item esplicitamente incompleta dove il progetto non ha ancora governato la risposta;
+\item abbastanza testabile al livello FR/SR pertinente senza inventare meccanismi;
+\item abbastanza stabile da poter evolvere la realization senza riscrivere responsabilita' che non sono cambiate;
+\item pronta per una Base Analysis minima che normalizza, non crea, il significato.
+\end{enumerate}
+
+\begin{statusworking}[R24 DRAFT DISPOSITION]
+Questa R2 e' una guida operativa derivata dal checkpoint documentale. Prima della promozione forward definitiva deve essere riletta contro il checkpoint, verificata sugli esempi Facial Access e poi usata per il successivo full documentation rewrite. Le regole R24 WORKING restano esplicitamente candidate finche' ulteriori pressure test non ne giustificano la closure.
+\end{statusworking}
+
+\end{document}
