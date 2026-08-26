@@ -1,16 +1,16 @@
 schemaVersion: 1
 corpusKey: facial-access-candidate-r2
-corpusRevision: R2-CANDIDATE-6
+corpusRevision: R2-CANDIDATE-12
 authorityBaselineKey: FACIAL-ACCESS-R24-MR0003-CANDIDATE-1
 authorityStatus: EXPERIMENTAL_NON_CANONICAL
 primaryBASourceAllowed: false
-basedOnRepositoryCommit: 2c1de421b1c2b6c6ab7c4a2ae07ef5bb1dbe0255
+basedOnRepositoryCommit: 42aea43040b0db892e195ffe39645f76f8d14062
 
 scope:
   project: facial-access
   branchRoot: MR-0003
   branchTitle: "Determinazione dell'identità al punto di accesso"
-  completenessClaim: mr-d3.1-d3.2-d3.4-d3.5-d3.6-fr3.2.1-with-d3.3-merged-semantic-successor-candidate
+  completenessClaim: mr-d3.1-d3.2-d3.4-d3.5-d3.6-fr3.2.1-fr3.2.2-fr3.4.1-fr3.4.2-sec3.4.2c-sec3.4.2i-sec3.4.2p-with-d3.3-merged-semantic-successor-candidate
 
 documents:
   - path: MR-0003_IDENTITY_DETERMINATION.md
@@ -21,7 +21,10 @@ documents:
     ids: [D-3.1, D-3.2, D-3.4, D-3.5, D-3.6]
   - path: FUNCTIONAL_REQUIREMENTS.md
     kind: FunctionalRequirementSet
-    ids: [FR-3.2.1]
+    ids: [FR-3.2.1, FR-3.2.2, FR-3.4.1, FR-3.4.2]
+  - path: SECURITY_REQUIREMENTS.md
+    kind: SecurityRequirementSet
+    ids: [SEC-3.4.2-C, SEC-3.4.2-I, SEC-3.4.2-P]
 
 compatibilityReview:
   completed:
@@ -32,10 +35,15 @@ compatibilityReview:
     - D-3.5 carried forward with consumed-service responsibility boundary retained and assurance/coverage review replacing automatic residual-obligation inference
     - D-3.6 carried forward as the governed medium used by the current interaction, while transport-service ownership remains external and unsupported topology/property inference remains prohibited
     - FR-3.2.1 reviewed as requiring material compatibility correction
+    - FR-3.3.1 reviewed as semantically useful but no longer valid under its historical parent; useful outcome-availability obligation carried forward as FR-3.2.2 under D-3.2
+    - FR-3.4.1 carried forward under D-3.4 with RecognitionRequest renamed to IdentityDeterminationRequest, explicit no-preselected-identity semantics, and unsupported capture-quality wording removed
+    - FR-3.4.2 carried forward under D-3.4 as RecognitionCapture delivery to RecognitionProcessor with the IdentityDeterminationRequest binding preserved and unsupported delivery-status semantics omitted
+    - SEC-3.4.2-C carried forward under FR-3.4.2 with confidentiality scoped to RecognitionCapture content during delivery and unsupported acceptance-milestone wording removed
+    - SEC-3.4.2-I carried forward under FR-3.4.2 with integrity protecting RecognitionCapture and its IdentityDeterminationRequest binding while unsupported acceptance/validity semantics remain excluded
+    - SEC-3.4.2-P carried forward under FR-3.4.2 with authorized provenance scoped to RecognitionCapture origin for the relevant IdentityDeterminationRequest while unsupported acceptance/attestation semantics remain excluded
     - neutral-label reconstruction eliminates the preselected-identity reading for this reviewed chain
   remainingBeforePromotion:
-    - review FR-3.3.1, FR-3.4.1 and FR-3.4.2 for compatibility and carry-forward
-    - review Security Requirements and documentation gaps in the superseded R1 branch
+    - review documentation gaps in the superseded R1 branch
     - verify that no remaining downstream artifact silently assumes a preselected GovernedIdentity
     - assemble a coherent full successor baseline
     - perform explicit governance promotion
