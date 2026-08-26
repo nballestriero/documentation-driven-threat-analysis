@@ -1,16 +1,16 @@
 schemaVersion: 1
 corpusKey: facial-access-candidate-r2
-corpusRevision: R2-CANDIDATE-2
+corpusRevision: R2-CANDIDATE-6
 authorityBaselineKey: FACIAL-ACCESS-R24-MR0003-CANDIDATE-1
 authorityStatus: EXPERIMENTAL_NON_CANONICAL
 primaryBASourceAllowed: false
-basedOnRepositoryCommit: 524cf65218cced7dd436bc6a69c9b1d64f57c3f2
+basedOnRepositoryCommit: 2c1de421b1c2b6c6ab7c4a2ae07ef5bb1dbe0255
 
 scope:
   project: facial-access
   branchRoot: MR-0003
   branchTitle: "Determinazione dell'identità al punto di accesso"
-  completenessClaim: mr-d3.1-d3.2-fr3.2.1-semantic-successor-candidate
+  completenessClaim: mr-d3.1-d3.2-d3.4-d3.5-d3.6-fr3.2.1-with-d3.3-merged-semantic-successor-candidate
 
 documents:
   - path: MR-0003_IDENTITY_DETERMINATION.md
@@ -18,7 +18,7 @@ documents:
     ids: [MR-0003]
   - path: DECISIONS.md
     kind: DecisionSet
-    ids: [D-3.1, D-3.2]
+    ids: [D-3.1, D-3.2, D-3.4, D-3.5, D-3.6]
   - path: FUNCTIONAL_REQUIREMENTS.md
     kind: FunctionalRequirementSet
     ids: [FR-3.2.1]
@@ -27,10 +27,13 @@ compatibilityReview:
   completed:
     - D-3.1 reviewed as semantically continuous after terminology alignment
     - D-3.2 reviewed as requiring semantic-propagation correction
+    - D-3.3 reviewed as semantically useful but redundant as a separate sibling Decision; useful semantic-stability content merged into D-3.2
+    - D-3.4 carried forward with revised responsibility-boundary wording; RecognitionCapture is acquired by CameraSubsystem and recognition is performed by distinct RecognitionProcessor
+    - D-3.5 carried forward with consumed-service responsibility boundary retained and assurance/coverage review replacing automatic residual-obligation inference
+    - D-3.6 carried forward as the governed medium used by the current interaction, while transport-service ownership remains external and unsupported topology/property inference remains prohibited
     - FR-3.2.1 reviewed as requiring material compatibility correction
     - neutral-label reconstruction eliminates the preselected-identity reading for this reviewed chain
   remainingBeforePromotion:
-    - review D-3.3 through D-3.6 for compatibility and carry-forward
     - review FR-3.3.1, FR-3.4.1 and FR-3.4.2 for compatibility and carry-forward
     - review Security Requirements and documentation gaps in the superseded R1 branch
     - verify that no remaining downstream artifact silently assumes a preselected GovernedIdentity
