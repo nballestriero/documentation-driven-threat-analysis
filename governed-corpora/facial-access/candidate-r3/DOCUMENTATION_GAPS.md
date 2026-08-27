@@ -149,12 +149,50 @@ not governed
 
 DG-FA-004 è quindi **REFRAMED — NOT A CURRENT DOCUMENTATION GAP / CONCRETE BA2 SEGMENT-IDENTITY PRESSURE RETAINED**.
 
-## OPEN — DG-FA-005: test/code evidence linkage
+## DEFERRED / OUTSIDE CURRENT DOCUMENTATION+BA CLOSURE SCOPE — DG-FA-005: test/code evidence linkage
 
-I Security Requirements sono documenti autonomi e quindi possono diventare target stabili per test, verification evidence e code trace.
+La domanda storica osservava che Security Requirements autonomi possono in futuro costituire target stabili per test, verification evidence e code trace.
 
-Il candidate non introduce ancora un metamodel di test/code trace. La BA non deve inventarlo; il confronto futuro può misurare se l'estrazione dei vincoli dalla prosa alta verso SR migliora concretamente la possibilità di collegare evidence downstream.
+La review R24 corrente **non apre questo filone**. Il percorso closure-critical della tesi è prima:
 
+```text
+documentation closure
+    -> promotion
+    -> minimum BA rebuild / stabilization
+    -> full documentation <-> BA consolidation
+    -> guide revision
+    -> complete human-readable documentation + BA analysis
+    -> BA-derived tables / graphs / diagrams
+    -> thesis revision possible before threat-method evaluation
+    -> stable pre-analysis baseline
+    -> STRIDE / STRIDE-AI integration
+    -> governed feedback to documentation
+```
+
+Lifecycle documentale avanzato, test evidence, code traceability e implementation linkage vengono riesaminati solo successivamente, se restano utili al contributo della tesi.
+
+Questa disposition non afferma che un futuro traceability contract sia inutile o già risolto. Stabilisce soltanto che:
+
+```text
+test/code/lifecycle traceability
+    -> not required for current documentation closure
+    -> not required for promotion
+    -> not required for minimum accepted BA rebuild
+    -> not a current promotion blocker
+
+new project-document field
+    -> do not add now
+
+new BA contract
+    -> do not add now
+
+new lifecycle / test / code metamodel
+    -> do not add now
+```
+
+I Security Requirements correnti restano invariati. Nessun collegamento a test, evidence o codice viene inventato nel corpus candidato.
+
+DG-FA-005 è quindi **DEFERRED / OUTSIDE CURRENT DOCUMENTATION+BA CLOSURE SCOPE** e resta come possibile tema successivo, non come gap da risolvere prima della promotion.
 ## OPEN — DG-FA-006: positive access-decision branch
 
 Durante la review di DG-FA-001 è emerso un pressure point distinto dal consumer binding.

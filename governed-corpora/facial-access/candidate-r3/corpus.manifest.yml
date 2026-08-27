@@ -1,16 +1,16 @@
 schemaVersion: 1
 corpusKey: facial-access-candidate-r3
-corpusRevision: R3-CANDIDATE-4
+corpusRevision: R3-CANDIDATE-5
 authorityBaselineKey: FACIAL-ACCESS-R24-INTEGRATED-CANDIDATE-1
 authorityStatus: EXPERIMENTAL_NON_CANONICAL
 researchRole: CURRENT_THESIS_VALIDATION_CORPUS
 primaryBASourceAllowed: false
-basedOnRepositoryCommit: 1af0975084f8d8d392e8556ac1e267d0ced2545b
+basedOnRepositoryCommit: fefc35b73579d88179f868faf70c1b8e9d24bf57
 
 scope:
   project: facial-access
   integrationRoots: [MR-0001, MR-0002, MR-0003]
-  completenessClaim: dg-fa-001-through-dg-fa-004-reviewed-integrated-successor-with-retained-ba-segment-identity-pressure
+  completenessClaim: dg-fa-001-through-dg-fa-004-reviewed-dg-fa-005-deferred-successor-with-retained-ba-segment-identity-pressure
 
 documents:
   - path: MR-0001_ACCESS_CONTROL.md
@@ -72,6 +72,13 @@ provenance:
     pipelineTypeJustified: false
     transferBehaviorWorkingCandidateRetained: true
     ba2ModificationAuthorized: false
+  dgFa005Finding:
+    gap: DG-FA-005
+    disposition: DEFERRED_OUTSIDE_CURRENT_DOCUMENTATION_BA_CLOSURE_SCOPE
+    currentPromotionBlocker: false
+    documentationSemanticChangeRequired: false
+    baContractChangeAuthorized: false
+    lifecycleTestCodeMetamodelAuthorized: false
 
 reviewState:
   completed:
@@ -84,17 +91,18 @@ reviewState:
     - DG-FA-002 resolved and reframed as governed outcome-conclusiveness semantics under D-3.2 and FR-3.2.1
     - DG-FA-003 resolved at documentation semantic level; BA representation pressure retained without adding cross-reference or channel/path metadata
     - DG-FA-004 reframed: hidden provider hops are not a documentation gap; concrete BA2 segment-identity pressure retained for promoted BA rebuild
+    - DG-FA-005 deferred outside current documentation and BA closure scope; no test/code/lifecycle contract added
   explicitlyNotSpecified:
     - mandatory ALLOW result when successful identity determination and required authorization condition are both satisfied
     - normalized AccessAuthorizationState property or value vocabulary
     - authorization lookup, cache, freshness, retry, exception or technical retrieval semantics
     - concrete RecognitionCapture quality criterion or quantitative sufficiency threshold
     - internal score, confidence, threshold, ranking or model-output rule used by a realization to reach the governed outcome
-  nextGapReview: DG-FA-005
+  nextGapReview: AUTH-C
   remainingBeforePromotion:
-    - review DG-FA-005 as the next bounded documentation-gap microstep
+    - review AUTH-C as the next bounded clarification microstep
+    - review AUTH-P as a separate bounded clarification microstep
     - review DG-FA-006 with its semantic owner at the appropriate bounded step
-    - reconcile AUTH-C and AUTH-P clarification questions
     - perform full successor semantic regression
     - perform explicit governance promotion
 
@@ -104,3 +112,5 @@ analysisPrecondition:
   dgFa003RepresentationPressureRetainedForPromotedBARebuild: true
   dgFa004SegmentIdentityPressureRetainedForPromotedBARebuild: true
   transferBehaviorWorkingCandidateAcceptedAsBA2: false
+  dgFa005DeferredOutsideCurrentDocumentationBAClosureScope: true
+  lifecycleTestCodeTraceRequiredBeforePromotion: false

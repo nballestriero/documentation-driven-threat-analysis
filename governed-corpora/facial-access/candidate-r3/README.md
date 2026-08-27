@@ -2,12 +2,12 @@
 
 **Lifecycle:** candidate
 **Authority:** `EXPERIMENTAL_NON_CANONICAL`
-**Corpus revision:** `R3-CANDIDATE-4`
+**Corpus revision:** `R3-CANDIDATE-5`
 **Primary BA source allowed:** no
 
 ## Purpose
 
-This directory is the **active R24 experimental Facial Access successor candidate** after the bounded reviews of `DG-FA-001 — cross-MR consumer binding`, `DG-FA-002 — quality/sufficiency criterion`, `DG-FA-003 — transfer-to-channel/path binding` and `DG-FA-004 — intermediate transport nodes / governed multi-stage flow pressure`.
+This directory is the **active R24 experimental Facial Access successor candidate** after the bounded reviews of `DG-FA-001 — cross-MR consumer binding`, `DG-FA-002 — quality/sufficiency criterion`, `DG-FA-003 — transfer-to-channel/path binding`, `DG-FA-004 — intermediate transport nodes / governed multi-stage flow pressure`, and the bounded deferral of `DG-FA-005 — test/code evidence linkage`.
 
 It integrates the reviewed `MR-0003` identity-determination branch from `candidate-r2` with the minimum downstream project documentation required to represent a real governed access-decision consumer:
 
@@ -125,7 +125,7 @@ This is **not** an accepted BA2 change. It must be reproduced during the minimum
 
 No first-class `Pipeline` type, `contains` / `partOf` relation, generalized behavior role, channel/path document field or provider-internal node is justified by this review.
 
-## Deliberately unresolved meaning
+6342## Deliberately unresolved meaning
 
 R3 does **not** state that:
 
@@ -141,4 +141,4 @@ R3 also does not introduce an internal vocabulary such as `AUTHORIZED / NOT_AUTH
 
 ## Next bounded review
 
-The next documentation-gap microstep is **DG-FA-005 only — test/code evidence linkage**. DG-FA-006 and the existing Security Requirement authorization-evidence clarification questions remain pending.
+The next bounded clarification microstep is **AUTH-C only**. `AUTH-P` and `DG-FA-006` remain pending and must be reviewed separately.

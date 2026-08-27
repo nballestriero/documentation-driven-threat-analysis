@@ -119,13 +119,13 @@ The active experimental successor is now:
 
 ```text
 corpusKey: facial-access-candidate-r3
-corpusRevision: R3-CANDIDATE-4
+corpusRevision: R3-CANDIDATE-5
 authorityStatus: EXPERIMENTAL_NON_CANONICAL
 researchRole: CURRENT_THESIS_VALIDATION_CORPUS
 primaryBASourceAllowed: false
 ```
 
-`candidate-r3` integrates the reviewed MR-0003 successor chain with the reviewed MR-0001 access-decision consumer and MR-0002 authorization-to-identity binding. `DG-FA-001` is resolved at semantic level, `DG-FA-002` is resolved / reframed as governed outcome-conclusiveness semantics, `DG-FA-003` is resolved at documentation semantic level with its BA representation pressure explicitly retained, and `DG-FA-004` is reframed from hidden transport nodes into a concrete BA segment-identity pressure without introducing project topology. The earlier `candidate-r2` remains unchanged as regression/provenance evidence.
+`candidate-r3` integrates the reviewed MR-0003 successor chain with the reviewed MR-0001 access-decision consumer and MR-0002 authorization-to-identity binding. `DG-FA-001` is resolved at semantic level, `DG-FA-002` is resolved / reframed as governed outcome-conclusiveness semantics, `DG-FA-003` is resolved at documentation semantic level with its BA representation pressure explicitly retained, `DG-FA-004` is reframed from hidden transport nodes into a concrete BA segment-identity pressure without introducing project topology, and `DG-FA-005` is deferred outside the current documentation + BA closure scope. The earlier `candidate-r2` remains unchanged as regression/provenance evidence.
 
 Therefore:
 
@@ -275,7 +275,7 @@ DG-FA-001  cross-MR consumer binding              RESOLVED_AT_SEMANTIC_LEVEL
 DG-FA-002  quality/sufficiency criterion          RESOLVED / REFRAMED
 DG-FA-003  transfer-to-channel/path binding       RESOLVED DOC SEMANTICS / BA PRESSURE RETAINED
 DG-FA-004  intermediate transport nodes           REFRAMED / NOT DOC GAP / BA2 SEGMENT-IDENTITY PRESSURE
-DG-FA-005  test/code evidence linkage              NEXT REVIEW
+DG-FA-005  test/code evidence linkage              DEFERRED / OUTSIDE CURRENT DOC+BA CLOSURE
 DG-FA-006  positive access-decision branch        OPEN / NOT SPECIFIED
 ```
 
@@ -301,7 +301,9 @@ For each remaining gap:
 6. do not invent a solution;
 7. update candidate documentation only after explicit disposition.
 
-The next bounded documentation-gap microstep is **DG-FA-005 only**.
+`DG-FA-005` is deferred and is not a current promotion blocker.
+
+The next bounded clarification microstep is **AUTH-C only**. `AUTH-P` and `DG-FA-006` remain separate later reviews.
 
 ## 7. Required full-candidate regression before promotion
 
@@ -513,13 +515,14 @@ Do not:
 The active forward sequence is:
 
 ```text
-R3-CANDIDATE-4
+R3-CANDIDATE-5
     -> DG-FA-001 resolved at semantic level
     -> DG-FA-002 resolved / reframed under D-3.2 and FR-3.2.1
     -> DG-FA-003 resolved at documentation semantic level / BA pressure retained
     -> DG-FA-004 reframed / BA2 segment-identity pressure retained
-    -> review DG-FA-005
-    -> reconcile AUTH-C / AUTH-P clarification questions
+    -> DG-FA-005 deferred outside current documentation + BA closure scope
+    -> review AUTH-C
+    -> review AUTH-P
     -> review DG-FA-006 at the appropriate bounded semantic-owner step
     -> full successor semantic regression
     -> explicit governance promotion
@@ -527,8 +530,17 @@ R3-CANDIDATE-4
     -> full post-BA regression
     -> evaluate transfer/delivery/service/medium structural pressure
     -> reopen/supersede smallest forced BA contract only if necessary
-    -> downstream threat-analysis usefulness test
-    -> BA6 completion decision
+    -> controlled BA usefulness / BA6 completion
+    -> full documentation <-> BA consolidation
+    -> revise Documentation Authoring Guide
+    -> revise Base Analysis Operational Guide
+    -> produce complete human-readable documentation + BA analysis
+    -> derive tables / graphs / diagrams from BA as non-authoritative renderings
+    -> revise or rewrite thesis chapters that can be completed before threat-method evaluation
+    -> freeze stable pre-analysis documentation / BA / thesis baseline
+    -> integrate STRIDE and STRIDE-AI over the same accepted BA
+    -> evaluate governed feedback from analysis results into documentation
+    -> only afterwards revisit lifecycle / test evidence / code traceability if still useful
 ```
 
 Each documentation-gap microstep is reviewed separately. Do not batch unresolved semantic decisions for convenience.
@@ -541,9 +553,9 @@ It does not:
 
 - promote candidate R3;
 - accept a Facial Access BA;
-- close DG-FA-005 through DG-FA-006;
+- resolve AUTH-C, AUTH-P or DG-FA-006;
 - close BA as a whole;
 - claim that the security-property authorization models already exist;
 - claim that wired Ethernet describes hidden provider topology.
 
-The next authorized project-semantics action is **DG-FA-005 review only**.
+The next authorized project-semantics action is **AUTH-C review only**.
