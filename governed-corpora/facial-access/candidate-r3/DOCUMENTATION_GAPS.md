@@ -59,26 +59,95 @@ Resta invece una **Base Analysis representation pressure**. Dopo l'eventuale pro
 
 Nessuna modifica a BA2 è autorizzata in questa review.
 
-## CANDIDATE — DG-FA-004: intermediate transport nodes
+## REFRAMED — DG-FA-004: governed multi-stage / segmented-flow preservation
 
-Il corpus non governa switch, firewall o altri hop intermedi.
+La formulazione storica di DG-FA-004 era centrata su switch, firewall o altri hop intermedi del trasporto.
 
-Questa assenza NON è automaticamente un difetto: il progetto consuma un servizio di connettività e può non possedere tali dettagli.
+La review R24 conclude che l'assenza di nodi interni del provider **non è un documentation gap nel baseline corrente**: `D-3.5` governa il consumo di un servizio di connettività senza ownership/gestione dell'infrastruttura sottostante e `D-3.6` vieta di inferire topologia, hop, protocolli o proprietà non governate dal fatto che l'interazione corrente usa Ethernet cablata.
 
-Diventa documentation gap se un declared analysis scope richiede di comprendere nodi/intermediari governati necessari alla macro-funzionalità e la documentazione autorevole non consente di recuperarli.
-
-Regola proposta da testare:
+Il caso Facial Access espone però una pressione più generale e materialmente rilevante: il candidate governa già una pipeline multi-stage / branched in cui relazioni e proprietà non sono uniformi lungo l'intero flusso.
 
 ```text
-governed intermediate node/capability
+CameraSubsystem
+    -> RecognitionCapture delivery
+    -> RecognitionProcessor
+    -> IdentityDeterminationOutcome
+    -> ControlledAreaAccess
+         ^
+         |
+         +-- AccessAuthorizationState
+             concerning the same GovernedIdentity
+    -> AccessDecision
+```
+
+La realizzazione fisica dell'apertura del varco resta fuori dal responsibility boundary corrente e non viene aggiunta.
+
+In particolare `SEC-3.4.2-C`, `SEC-3.4.2-I` e `SEC-3.4.2-P` sono scoped a `FR-3.4.2`: `Confidentiality`, `Integrity` e `AuthorizedProvenance` riguardano il delivery governato della `RecognitionCapture` e non devono essere propagate automaticamente all'`IdentityDeterminationOutcome`, all'`AccessAuthorizationState`, all'`AccessDecision` o all'intera pipeline.
+
+Il working BA pressure test ha trovato:
+
+```text
+BA1
+    -> sufficient for current stage / behavior identities
+
+existing BA2
+    -> can represent multiple stages
+    -> can represent branch / convergence
+    -> can preserve same-identity correlation
+    -> can preserve opaque ungoverned provider regions without inventing hops
+
+remaining pressure
+    -> reusable semantic identity of THIS transfer behavior
+       when consumed service, medium and security properties
+       must address the same governed segment
+```
+
+La smallest working solution sopravvissuta al test è un ruolo opzionale candidato:
+
+```text
+transfer
+  behavior    -> <BAReferent> [0..1]   # working candidate, not accepted BA2
+  source      -> <BAReferent> [1]
+  destination -> <BAReferent> [1..*]
+  content     -> <BAReferent> [1..*]
+```
+
+Nel caso corrente il `behavior` referent denoterebbe il delivery governato della `RecognitionCapture`, consentendo a proposizioni distinte su servizio consumato, realizzazione Ethernet e proprietà di sicurezza segment-specific di riferirsi allo stesso significato senza trasformare il contenuto, gli endpoint o l'intera pipeline nel target.
+
+Questa review **non modifica BA2**. Il candidato deve essere ritestato durante il minimum BA rebuild dopo eventuale promotion; BA2 viene riaperto solo se il representation failure persiste.
+
+Non sono giustificati in questo microstep:
+
+```text
+Pipeline come nuova famiglia first-class
+Pipeline BAReferent obbligatorio
+contains / partOf tra pipeline e stage
+nuovo operatore pipeline
+channel / path document field
+provider-internal nodes
+behavior generalizzato a tutti gli operatori BA2
+generic BAProposition semanticSubject
+```
+
+Regola R24 locale risultante:
+
+```text
+governed intermediate stage / behavior
     -> must remain recoverable
 
-required-for-declared-analysis but undocumented
-    -> documentation gap
+segment-specific governed property
+    -> must remain attached to the correct governed segment/behavior
 
-not governed / not required
+downstream need for hidden provider topology
+AND project authority does not govern it
+    -> consumer uncertainty / coverage question
+    -> not automatically a documentation gap
+
+not governed
     -> do not invent
 ```
+
+DG-FA-004 è quindi **REFRAMED — NOT A CURRENT DOCUMENTATION GAP / CONCRETE BA2 SEGMENT-IDENTITY PRESSURE RETAINED**.
 
 ## OPEN — DG-FA-005: test/code evidence linkage
 

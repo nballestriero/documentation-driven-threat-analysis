@@ -2,12 +2,12 @@
 
 **Lifecycle:** candidate
 **Authority:** `EXPERIMENTAL_NON_CANONICAL`
-**Corpus revision:** `R3-CANDIDATE-3`
+**Corpus revision:** `R3-CANDIDATE-4`
 **Primary BA source allowed:** no
 
 ## Purpose
 
-This directory is the **active R24 experimental Facial Access successor candidate** after the bounded reviews of `DG-FA-001 — cross-MR consumer binding`, `DG-FA-002 — quality/sufficiency criterion` and `DG-FA-003 — transfer-to-channel/path binding`.
+This directory is the **active R24 experimental Facial Access successor candidate** after the bounded reviews of `DG-FA-001 — cross-MR consumer binding`, `DG-FA-002 — quality/sufficiency criterion`, `DG-FA-003 — transfer-to-channel/path binding` and `DG-FA-004 — intermediate transport nodes / governed multi-stage flow pressure`.
 
 It integrates the reviewed `MR-0003` identity-determination branch from `candidate-r2` with the minimum downstream project documentation required to represent a real governed access-decision consumer:
 
@@ -93,6 +93,38 @@ No new hard-coded reference from `D-3.5` or `D-3.6` to `FR-3.4.2` is added merel
 
 The future promoted BA rebuild must still prove that it can preserve this binding reproducibly. Failure to do so remains a BA2 representation pressure, not permission to rewrite project truth for tooling convenience.
 
+## DG-FA-004 result carried into R3
+
+The historical intermediate-node question is not a current documentation defect. Provider-internal switches, firewalls, routers, hops or topology are not governed by the candidate and are not invented.
+
+The bounded review instead used the actual Facial Access responsibility chain as a multi-stage / branched pressure test:
+
+```text
+CameraSubsystem
+    -> RecognitionProcessor
+    -> IdentityDeterminationOutcome
+    -> ControlledAreaAccess
+         ^
+         |
+         +-- AccessAuthorizationState
+             concerning the same GovernedIdentity
+    -> AccessDecision
+```
+
+The test found that current BA1 identity semantics are sufficient and current BA2 can represent the stages, branching/convergence, same-identity correlation and opaque ungoverned provider regions.
+
+A concrete BA2 representation pressure remains when several independently governed facts must address the same transfer segment. For `FR-3.4.2`, the consumed connectivity service, current wired-Ethernet realization and `Confidentiality` / `Integrity` / `AuthorizedProvenance` obligations all concern the governed `RecognitionCapture` delivery and must not be generalized to the whole pipeline.
+
+The smallest working candidate that survived the bounded falsification test is optional reusable behavior identity on `transfer`:
+
+```text
+transfer.behavior -> <BAReferent> [0..1]
+```
+
+This is **not** an accepted BA2 change. It must be reproduced during the minimum BA rebuild after explicit promotion before the BA2 contract may be reopened.
+
+No first-class `Pipeline` type, `contains` / `partOf` relation, generalized behavior role, channel/path document field or provider-internal node is justified by this review.
+
 ## Deliberately unresolved meaning
 
 R3 does **not** state that:
@@ -109,4 +141,4 @@ R3 also does not introduce an internal vocabulary such as `AUTHORIZED / NOT_AUTH
 
 ## Next bounded review
 
-The next documentation-gap microstep is **DG-FA-004 only — intermediate transport nodes**. DG-FA-005, DG-FA-006 and the existing Security Requirement authorization-evidence clarification questions remain pending.
+The next documentation-gap microstep is **DG-FA-005 only — test/code evidence linkage**. DG-FA-006 and the existing Security Requirement authorization-evidence clarification questions remain pending.
