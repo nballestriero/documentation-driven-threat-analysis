@@ -235,8 +235,22 @@ Non viene inferito che `CameraSubsystem` e `RecognitionProcessor` costituiscano 
 
 AUTH-C è quindi **PRESERVED CLARIFICATION / ANALYSIS-RELEVANT PROJECT MEANING NOT SPECIFIED / NON-BLOCKING FOR THE CURRENT PROCESS-DEMONSTRATION CORPUS**.
 
-### AUTH-P
+### AUTH-P — PRESERVED / NOT SPECIFIED / NON-BLOCKING
 
-Quale evidenza governata determina quali origini sono autorizzate a fornire `RecognitionCapture` per una `IdentityDeterminationRequest`?
+`SEC-3.4.2-P` governa già la proprietà `AuthorizedProvenance`, il comportamento protetto (`RecognitionCapture` durante `FR-3.4.2`), il binding alla relativa `IdentityDeterminationRequest` e il failure mode in cui la capture viene consegnata senza che la provenienza sia stabilita come autorizzata per quella richiesta.
 
-Queste domande restano clarification questions e non vengono convertite automaticamente in nuovi requisiti in questo microstep.
+Il candidate governa inoltre `CameraSubsystem` come responsibility owner funzionale dell'acquisizione e del delivery. Questo fatto non viene però silenziosamente rafforzato in una policy completa di provenance: il corpus non governa la base/evidenza completa con cui una specifica origine viene stabilita come autorizzata a fornire una `RecognitionCapture` per una specifica `IdentityDeterminationRequest`.
+
+Questa informazione resta esplicitamente:
+
+```text
+evidence / authorization basis establishing an origin
+as authorized for IdentityDeterminationRequest X
+    -> NOT SPECIFIED
+```
+
+Per il corpus corrente, orientato a dimostrare il processo DDTA, ciò non richiede di inventare ora device identity, credenziali, certificati, firme, mTLS, attestation, chiavi, MAC, allow-list o altri meccanismi tecnici.
+
+Il SecurityRequirement resta un anchor governato a cui future analisi possono riferire findings o clarification question senza diventare automaticamente autorità di progetto.
+
+AUTH-P è quindi **PRESERVED CLARIFICATION / ANALYSIS-RELEVANT PROJECT MEANING NOT SPECIFIED / NON-BLOCKING FOR THE CURRENT PROCESS-DEMONSTRATION CORPUS**.

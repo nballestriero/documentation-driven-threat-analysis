@@ -1,16 +1,16 @@
 schemaVersion: 1
 corpusKey: facial-access-candidate-r3
-corpusRevision: R3-CANDIDATE-6
+corpusRevision: R3-CANDIDATE-7
 authorityBaselineKey: FACIAL-ACCESS-R24-INTEGRATED-CANDIDATE-1
 authorityStatus: EXPERIMENTAL_NON_CANONICAL
 researchRole: CURRENT_THESIS_VALIDATION_CORPUS
 primaryBASourceAllowed: false
-basedOnRepositoryCommit: 1305b03301bf5790a5083e78526a9c24940587c0
+basedOnRepositoryCommit: 59f7d09b98112139bb0445e48e6a99cfe748d5aa
 
 scope:
   project: facial-access
   integrationRoots: [MR-0001, MR-0002, MR-0003]
-  completenessClaim: dg-fa-001-through-dg-fa-004-reviewed-dg-fa-005-deferred-auth-c-preserved-successor-with-retained-ba-segment-identity-pressure
+  completenessClaim: dg-fa-001-through-dg-fa-004-reviewed-dg-fa-005-deferred-auth-c-auth-p-preserved-successor-with-retained-ba-segment-identity-pressure
 
 documents:
   - path: MR-0001_ACCESS_CONTROL.md
@@ -89,6 +89,17 @@ provenance:
     newProjectPolicyIntroduced: false
     newRequirementOrDecisionIntroduced: false
     baContractChangeAuthorized: false
+  authPFinding:
+    gap: AUTH-P
+    disposition: PRESERVED_NOT_SPECIFIED_NON_BLOCKING_PROCESS_DEMONSTRATION
+    securityRequirementAnchor: SEC-3.4.2-P
+    protectedSecurityProperty: AuthorizedProvenance
+    functionalSourceOwner: CameraSubsystem
+    authorizationEvidenceBasisSpecified: false
+    currentPromotionBlocker: false
+    newProjectPolicyIntroduced: false
+    newRequirementOrDecisionIntroduced: false
+    baContractChangeAuthorized: false
 
 reviewState:
   completed:
@@ -103,6 +114,7 @@ reviewState:
     - DG-FA-004 reframed: hidden provider hops are not a documentation gap; concrete BA2 segment-identity pressure retained for promoted BA rebuild
     - DG-FA-005 deferred outside current documentation and BA closure scope; no test/code/lifecycle contract added
     - AUTH-C preserved as explicit NOT SPECIFIED confidentiality-authorization clarification and treated as non-blocking for the process-demonstration corpus
+    - AUTH-P preserved as explicit NOT SPECIFIED authorized-provenance evidence clarification and treated as non-blocking for the process-demonstration corpus
   explicitlyNotSpecified:
     - mandatory ALLOW result when successful identity determination and required authorization condition are both satisfied
     - normalized AccessAuthorizationState property or value vocabulary
@@ -110,10 +122,10 @@ reviewState:
     - concrete RecognitionCapture quality criterion or quantitative sufficiency threshold
     - internal score, confidence, threshold, ranking or model-output rule used by a realization to reach the governed outcome
     - complete authorization basis determining which subjects may know RecognitionCapture content
-  nextGapReview: AUTH-P
+    - complete evidence or authorization basis establishing which origins may provide RecognitionCapture for a specific IdentityDeterminationRequest
+  nextGapReview: DG-FA-006
   remainingBeforePromotion:
-    - review AUTH-P as the next bounded clarification microstep
-    - review DG-FA-006 with its semantic owner at the appropriate bounded step
+    - review DG-FA-006 as the next bounded semantic-owner microstep
     - perform full successor semantic regression
     - perform explicit governance promotion
 
@@ -126,3 +138,4 @@ analysisPrecondition:
   dgFa005DeferredOutsideCurrentDocumentationBAClosureScope: true
   lifecycleTestCodeTraceRequiredBeforePromotion: false
   authCClarificationRequiredToBeSpecifiedBeforePromotion: false
+  authPClarificationRequiredToBeSpecifiedBeforePromotion: false

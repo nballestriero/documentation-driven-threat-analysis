@@ -27,7 +27,7 @@ The active integrated R24 Facial Access successor candidate is:
 
 It is `EXPERIMENTAL_NON_CANONICAL`, has `primaryBASourceAllowed: false`, and is current only for R24 experimentation and remaining documentation-gap review. The earlier `candidate-r2/` remains unchanged as MR-0003-only regression/provenance evidence.
 
-The activation record is `methodology/DDTA_R24_FACIAL_ACCESS_CANDIDATE_R3_ACTIVATION_CHECKPOINT_R1.md`. The bounded `DG-FA-002` disposition is recorded in `methodology/DDTA_R24_FACIAL_ACCESS_DG_FA_002_CHECKPOINT_R1.md`; the bounded `DG-FA-003` disposition is recorded in `methodology/DDTA_R24_FACIAL_ACCESS_DG_FA_003_CHECKPOINT_R1.md`; the bounded `DG-FA-004` disposition is recorded in `methodology/DDTA_R24_FACIAL_ACCESS_DG_FA_004_CHECKPOINT_R1.md`; the bounded `DG-FA-005` deferral is recorded in `methodology/DDTA_R24_FACIAL_ACCESS_DG_FA_005_CHECKPOINT_R1.md`; the bounded `AUTH-C` disposition is recorded in `methodology/DDTA_R24_FACIAL_ACCESS_AUTH_C_CHECKPOINT_R1.md`. The broader R24 project document remains a separate non-canonical authoring/pressure-test artifact.
+The activation record is `methodology/DDTA_R24_FACIAL_ACCESS_CANDIDATE_R3_ACTIVATION_CHECKPOINT_R1.md`. The bounded `DG-FA-002` disposition is recorded in `methodology/DDTA_R24_FACIAL_ACCESS_DG_FA_002_CHECKPOINT_R1.md`; the bounded `DG-FA-003` disposition is recorded in `methodology/DDTA_R24_FACIAL_ACCESS_DG_FA_003_CHECKPOINT_R1.md`; the bounded `DG-FA-004` disposition is recorded in `methodology/DDTA_R24_FACIAL_ACCESS_DG_FA_004_CHECKPOINT_R1.md`; the bounded `DG-FA-005` deferral is recorded in `methodology/DDTA_R24_FACIAL_ACCESS_DG_FA_005_CHECKPOINT_R1.md`; the bounded `AUTH-C` disposition is recorded in `methodology/DDTA_R24_FACIAL_ACCESS_AUTH_C_CHECKPOINT_R1.md`; the bounded `AUTH-P` disposition is recorded in `methodology/DDTA_R24_FACIAL_ACCESS_AUTH_P_CHECKPOINT_R1.md`. The broader R24 project document remains a separate non-canonical authoring/pressure-test artifact.
 
 ## Repository map
 
@@ -128,7 +128,8 @@ FACIAL_ACCESS_CURRENT_R1
        DG-FA-004 reframed: not a documentation gap / BA2 segment-identity pressure retained
        DG-FA-005 deferred outside current documentation+BA closure scope
        AUTH-C preserved as explicit NOT SPECIFIED analysis-relevant clarification / non-blocking
-  -> remaining semantic clarification review beginning with AUTH-P
+       AUTH-P preserved as explicit NOT SPECIFIED analysis-relevant clarification / non-blocking
+  -> remaining semantic gap review: DG-FA-006
   -> full successor semantic regression
   -> explicit promotion decision
   -> next governed baseline

@@ -119,13 +119,13 @@ The active experimental successor is now:
 
 ```text
 corpusKey: facial-access-candidate-r3
-corpusRevision: R3-CANDIDATE-6
+corpusRevision: R3-CANDIDATE-7
 authorityStatus: EXPERIMENTAL_NON_CANONICAL
 researchRole: CURRENT_THESIS_VALIDATION_CORPUS
 primaryBASourceAllowed: false
 ```
 
-`candidate-r3` integrates the reviewed MR-0003 successor chain with the reviewed MR-0001 access-decision consumer and MR-0002 authorization-to-identity binding. `DG-FA-001` is resolved at semantic level, `DG-FA-002` is resolved / reframed as governed outcome-conclusiveness semantics, `DG-FA-003` is resolved at documentation semantic level with its BA representation pressure explicitly retained, `DG-FA-004` is reframed from hidden transport nodes into a concrete BA segment-identity pressure without introducing project topology, and `DG-FA-005` is deferred outside the current documentation + BA closure scope. `AUTH-C` is preserved as explicit analysis-relevant project meaning `NOT SPECIFIED` and is non-blocking for the current process-demonstration corpus. The earlier `candidate-r2` remains unchanged as regression/provenance evidence.
+`candidate-r3` integrates the reviewed MR-0003 successor chain with the reviewed MR-0001 access-decision consumer and MR-0002 authorization-to-identity binding. `DG-FA-001` is resolved at semantic level, `DG-FA-002` is resolved / reframed as governed outcome-conclusiveness semantics, `DG-FA-003` is resolved at documentation semantic level with its BA representation pressure explicitly retained, `DG-FA-004` is reframed from hidden transport nodes into a concrete BA segment-identity pressure without introducing project topology, and `DG-FA-005` is deferred outside the current documentation + BA closure scope. `AUTH-C` and `AUTH-P` are preserved as explicit analysis-relevant project meaning `NOT SPECIFIED` and are non-blocking for the current process-demonstration corpus. The earlier `candidate-r2` remains unchanged as regression/provenance evidence.
 
 Therefore:
 
@@ -287,9 +287,12 @@ the confidentiality obligation remains governed by SEC-3.4.2-C;
 the complete authorization basis for knowing RecognitionCapture
 content is intentionally not specified in the current demonstration corpus.
 
-AUTH-P
-which governed evidence determines which origins are authorized
-to provide RecognitionCapture for an IdentityDeterminationRequest?
+AUTH-P  PRESERVED / NOT SPECIFIED / NON-BLOCKING
+the AuthorizedProvenance obligation remains governed by SEC-3.4.2-P;
+CameraSubsystem remains the functional acquisition/delivery owner;
+the complete evidence or authorization basis establishing an origin
+as authorized for a specific IdentityDeterminationRequest is
+intentionally not specified in the current demonstration corpus.
 ```
 
 For each remaining gap:
@@ -304,7 +307,7 @@ For each remaining gap:
 
 `DG-FA-005` is deferred and is not a current promotion blocker.
 
-AUTH-C is preserved explicitly and is not a current promotion blocker. The next bounded clarification microstep is **AUTH-P only**. `DG-FA-006` remains a separate later review.
+AUTH-C and AUTH-P are preserved explicitly and are not current promotion blockers. The next bounded semantic-owner microstep is **DG-FA-006 only**.
 
 ## 7. Required full-candidate regression before promotion
 
@@ -516,15 +519,15 @@ Do not:
 The active forward sequence is:
 
 ```text
-R3-CANDIDATE-6
+R3-CANDIDATE-7
     -> DG-FA-001 resolved at semantic level
     -> DG-FA-002 resolved / reframed under D-3.2 and FR-3.2.1
     -> DG-FA-003 resolved at documentation semantic level / BA pressure retained
     -> DG-FA-004 reframed / BA2 segment-identity pressure retained
     -> DG-FA-005 deferred outside current documentation + BA closure scope
     -> AUTH-C preserved / NOT SPECIFIED / non-blocking
-    -> review AUTH-P
-    -> review DG-FA-006 at the appropriate bounded semantic-owner step
+    -> AUTH-P preserved / NOT SPECIFIED / non-blocking
+    -> review DG-FA-006 at the bounded semantic-owner step
     -> full successor semantic regression
     -> explicit governance promotion
     -> minimum justified BA rebuild
@@ -554,9 +557,9 @@ It does not:
 
 - promote candidate R3;
 - accept a Facial Access BA;
-- resolve AUTH-P or DG-FA-006;
+- resolve DG-FA-006;
 - close BA as a whole;
 - claim that the security-property authorization models already exist;
 - claim that wired Ethernet describes hidden provider topology.
 
-The next authorized project-semantics action is **AUTH-P review only**.
+The next authorized project-semantics action is **DG-FA-006 review only**.

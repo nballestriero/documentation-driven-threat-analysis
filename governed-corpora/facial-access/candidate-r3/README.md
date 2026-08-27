@@ -2,7 +2,7 @@
 
 **Lifecycle:** candidate
 **Authority:** `EXPERIMENTAL_NON_CANONICAL`
-**Corpus revision:** `R3-CANDIDATE-6`
+**Corpus revision:** `R3-CANDIDATE-7`
 **Primary BA source allowed:** no
 
 ## Purpose
@@ -133,6 +133,16 @@ The complete project-specific basis that determines who is authorized to know th
 
 AUTH-C is non-blocking for the current promotion path. No new Decision, Functional Requirement, Security Requirement, authorization vocabulary, BA contract or technical mechanism is introduced.
 
+## AUTH-P disposition carried into R3
+
+`SEC-3.4.2-P` remains the governed `AuthorizedProvenance` obligation for `RecognitionCapture` during the `FR-3.4.2` delivery behavior.
+
+`CameraSubsystem` remains the governed functional acquisition/delivery owner, but the complete project-specific evidence or authorization basis that establishes an origin as authorized for a particular `IdentityDeterminationRequest` remains explicitly `NOT SPECIFIED`.
+
+For the current process-demonstration corpus this is preserved as an analysis-relevant clarification rather than filled with an invented provenance or attestation policy.
+
+AUTH-P is non-blocking for the current promotion path. No new Decision, Functional Requirement, Security Requirement, origin vocabulary, BA contract or technical mechanism is introduced.
+
 ## Deliberately unresolved meaning
 
 R3 does **not** state that:
@@ -149,4 +159,4 @@ R3 also does not introduce an internal vocabulary such as `AUTHORIZED / NOT_AUTH
 
 ## Next bounded review
 
-The next bounded clarification microstep is **AUTH-P only**. `DG-FA-006` remains pending and must be reviewed separately.
+The next bounded semantic microstep is **DG-FA-006 only**.
