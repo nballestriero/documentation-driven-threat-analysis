@@ -2,7 +2,7 @@
 
 **Lifecycle:** candidate
 **Authority:** `EXPERIMENTAL_NON_CANONICAL`
-**Corpus revision:** `R3-CANDIDATE-7`
+**Corpus revision:** `R3-CANDIDATE-8`
 **Primary BA source allowed:** no
 
 ## Purpose
@@ -143,20 +143,27 @@ For the current process-demonstration corpus this is preserved as an analysis-re
 
 AUTH-P is non-blocking for the current promotion path. No new Decision, Functional Requirement, Security Requirement, origin vocabulary, BA contract or technical mechanism is introduced.
 
-## Deliberately unresolved meaning
+## DG-FA-006 resolution carried into R3
 
-R3 does **not** state that:
+The bounded semantic-owner review confirmed that the positive access-decision branch is part of the core functional meaning owned by `MR-0001`.
+
+`D-1.1` and `FR-1.1` now govern:
 
 ```text
 successful identity determination
-AND authorization condition satisfied
-    -> MUST ALLOW
+AND required authorization condition satisfied
+    for the same GovernedIdentity
+    -> AccessDecision MUST ALLOW
 ```
 
-The historical documentation governed the necessary conditions for an allowing decision but did not fully govern that positive branch as a mandatory result. This remains an explicit diagnostic gap (`DG-FA-006`) rather than being repaired by Base Analysis.
+The existing negative constraints remain unchanged: `NEGATIVE` and `INCONCLUSIVE` cannot result in an allowing decision, and a successful determination without the required authorization condition cannot result in an allowing decision.
 
-R3 also does not introduce an internal vocabulary such as `AUTHORIZED / NOT_AUTHORIZED`, `TRUE / FALSE / UNKNOWN`, or `AccessAuthorizationState.authorized = TRUE`.
+This resolution does not introduce an internal vocabulary such as `AUTHORIZED / NOT_AUTHORIZED`, `TRUE / FALSE / UNKNOWN`, or `AccessAuthorizationState.authorized = TRUE`. It also does not introduce retry, exception, contextual-policy or physical gate-opening semantics.
 
-## Next bounded review
+No BA contract is changed by this disposition.
 
-The next bounded semantic microstep is **DG-FA-006 only**.
+## Next bounded step
+
+The bounded documentation-gap review is complete for the currently registered R3 gap set.
+
+The next authorized step is **full successor semantic regression**.

@@ -193,26 +193,40 @@ new lifecycle / test / code metamodel
 I Security Requirements correnti restano invariati. Nessun collegamento a test, evidence o codice viene inventato nel corpus candidato.
 
 DG-FA-005 è quindi **DEFERRED / OUTSIDE CURRENT DOCUMENTATION+BA CLOSURE SCOPE** e resta come possibile tema successivo, non come gap da risolvere prima della promotion.
-## OPEN — DG-FA-006: positive access-decision branch
+## RESOLVED — DG-FA-006: positive access-decision branch
 
-Durante la review di DG-FA-001 è emerso un pressure point distinto dal consumer binding.
+Durante la review di DG-FA-001 è emerso un pressure point distinto dal consumer binding: il candidate governava le condizioni necessarie per consentire l'accesso, ma non governava ancora se la loro presenza congiunta imponesse il ramo positivo.
 
-Il candidate governa che un `AccessDecision` che consente l'accesso richiede congiuntamente:
+La review del semantic owner `MR-0001` conferma che questa era una lacuna nella semantica funzionale centrale dell'`AccessDecision`, non una informazione accessoria da lasciare al downstream consumer.
 
-- una determinazione dell'identità riuscita; e
-- la condizione di autorizzazione richiesta per la stessa `GovernedIdentity` determinata.
-
-Il candidate governa inoltre che `NEGATIVE` e `INCONCLUSIVE` non soddisfano la condizione di determinazione riuscita necessaria a consentire l'accesso.
-
-Non è invece ancora governata la proposizione più forte:
+`D-1.1` e `FR-1.1` governano ora il ramo positivo minimo:
 
 ```text
 IF identity determination is successful
 AND the required authorization condition is satisfied
+    for the same GovernedIdentity
 THEN AccessDecision MUST ALLOW
 ```
 
-Questa insufficienza resta `NOT SPECIFIED`. Non deve essere colmata dalla Base Analysis e non diventa automaticamente un nuovo Requirement o una nuova Decision senza review del semantic owner.
+Restano governati anche i vincoli già presenti:
+
+```text
+NEGATIVE
+    -> MUST NOT ALLOW
+
+INCONCLUSIVE
+    -> MUST NOT ALLOW
+
+SUCCESS
+AND required authorization condition not satisfied
+    -> MUST NOT ALLOW
+```
+
+La risoluzione non introduce `AccessAuthorizationState.authorized = TRUE`, un enum `AUTHORIZED / NOT_AUTHORIZED / UNKNOWN`, retry, eccezioni, policy contestuali, apertura fisica del varco o altri meccanismi tecnici.
+
+DG-FA-006 è quindi **RESOLVED — CORE FUNCTIONAL SEMANTIC GAP / MINIMAL POSITIVE BRANCH GOVERNED**.
+
+Nessuna modifica BA è autorizzata in questo microstep; il significato deve essere derivato dalla documentazione dopo eventuale promotion.
 
 ## Existing Security Requirement clarification questions
 

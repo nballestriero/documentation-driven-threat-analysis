@@ -25,6 +25,8 @@ Un tentativo di accesso può essere consentito soltanto quando la determinazione
 
 La determinazione riuscita dell'identità e la condizione di autorizzazione corrispondente sono entrambe necessarie; nessuna delle due è sufficiente, da sola, a consentire il tentativo di accesso.
 
+Quando entrambe le condizioni risultano soddisfatte per lo stesso tentativo e la stessa `GovernedIdentity`, la politica congiuntiva richiede che l'`AccessDecision` consenta l'accesso.
+
 ### Consequences
 
 - una determinazione riuscita dell'identità non concede né sostituisce l'autorizzazione di accesso;
@@ -32,4 +34,5 @@ La determinazione riuscita dell'identità e la condizione di autorizzazione corr
 - l'`AccessAuthorizationState` rilevante deve riferirsi alla stessa `GovernedIdentity` resa disponibile dalla determinazione riuscita;
 - `NEGATIVE` e `INCONCLUSIVE` non soddisfano la condizione di determinazione riuscita necessaria per consentire l'accesso, pur restando esiti semanticamente distinti;
 - retry, intervento umano, eccezioni e attuazione fisica del varco restano fuori da questa Decision;
-- questa Decision non stabilisce che la presenza congiunta delle due condizioni necessarie sia sufficiente a imporre un `AccessDecision` che consenta l'accesso; tale positive branch resta esplicitamente `NOT SPECIFIED` nel candidate R3.
+- quando la determinazione dell'identità è riuscita e la condizione di autorizzazione richiesta risulta soddisfatta per la stessa `GovernedIdentity`, l'`AccessDecision` deve consentire l'accesso;
+- la Decision non introduce un vocabolario interno di `AccessAuthorizationState` né ulteriori condizioni di policy non governate.
