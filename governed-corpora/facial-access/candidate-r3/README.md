@@ -2,11 +2,12 @@
 
 **Lifecycle:** candidate
 **Authority:** `EXPERIMENTAL_NON_CANONICAL`
+**Corpus revision:** `R3-CANDIDATE-2`
 **Primary BA source allowed:** no
 
 ## Purpose
 
-This directory is the **active R24 experimental Facial Access successor candidate** after the bounded review of `DG-FA-001 — cross-MR consumer binding`.
+This directory is the **active R24 experimental Facial Access successor candidate** after the bounded reviews of `DG-FA-001 — cross-MR consumer binding` and `DG-FA-002 — quality/sufficiency criterion`.
 
 It integrates the reviewed `MR-0003` identity-determination branch from `candidate-r2` with the minimum downstream project documentation required to represent a real governed access-decision consumer:
 
@@ -15,9 +16,9 @@ It integrates the reviewed `MR-0003` identity-determination branch from `candida
 - `MR-0003 — Determinazione dell'identità al punto di accesso`;
 - `MR-0001_DECISIONS.md` containing `D-1.1` for the conjunctive access-policy commitment;
 - `MR-0001_FUNCTIONAL_REQUIREMENTS.md` containing `FR-1.1` for the reviewed operational cross-MR binding;
-- the already-reviewed `MR-0003` Decisions, Functional Requirements and Security Requirements inherited from candidate R2 in branch-specific files.
+- the reviewed `MR-0003` Decisions, Functional Requirements and Security Requirements inherited from candidate R2 and refined where explicitly recorded by bounded R24 gap review.
 
-`candidate-r2/` remains unchanged as the MR-0003-only semantic-successor checkpoint and provenance evidence for this integration step.
+`candidate-r2/` remains unchanged as the MR-0003-only semantic-successor checkpoint and provenance evidence for this integration sequence.
 
 ## Authority boundary
 
@@ -46,6 +47,29 @@ MR-0001 / ControlledAreaAccess
 
 This resolves the semantic question represented by historical `@ACCESS_DECISION_CONSUMER` without inventing a technical component or protocol.
 
+## DG-FA-002 result carried into R3
+
+The historical phrase "quality sufficient to support the access decision" is not carried forward as a standalone capture-quality obligation.
+
+The bounded review distinguishes:
+
+```text
+RecognitionCapture quality criterion
+    -> NOT SPECIFIED / no standalone SpecializedRequirement justified
+
+governed identity-determination outcome
+    -> SUCCESS | NEGATIVE | INCONCLUSIVE
+
+INCONCLUSIVE
+    -> available recognition information supports neither
+       successful determination of a specific GovernedIdentity
+       nor a negative determination
+```
+
+The semantic owners of this retained meaning are `D-3.2` and `FR-3.2.1`. No score, confidence, threshold, ranking, `1:N` rule or other quantitative realization criterion is introduced.
+
+The historical placeholder `@IDENTITY_EVIDENCE_QUALITY_CRITERION` is retired. If a future project baseline governs a concrete quality obligation for `RecognitionCapture`, that obligation must be reviewed separately rather than inferred from this disposition.
+
 ## Deliberately unresolved meaning
 
 R3 does **not** state that:
@@ -62,4 +86,4 @@ R3 also does not introduce an internal vocabulary such as `AUTHORIZED / NOT_AUTH
 
 ## Next bounded review
 
-The next documentation-gap microstep is **DG-FA-002 only**. DG-FA-003 through DG-FA-005 and the existing Security Requirement authorization-evidence clarification questions remain pending.
+The next documentation-gap microstep is **DG-FA-003 only — transfer-to-channel/path binding**. DG-FA-004, DG-FA-005, DG-FA-006 and the existing Security Requirement authorization-evidence clarification questions remain pending.

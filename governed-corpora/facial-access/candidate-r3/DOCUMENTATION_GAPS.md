@@ -25,13 +25,19 @@ MR-0001 / ControlledAreaAccess
 
 La risoluzione non introduce un componente tecnico canonico, una API o un protocollo. Il consumer governato è la responsabilità `MR-0001` che possiede il controllo del tentativo e la decisione di accesso.
 
-## OPEN — DG-FA-002: quality/sufficiency criterion
+## RESOLVED / REFRAMED — DG-FA-002: quality/sufficiency criterion
 
-Il corpus storico parlava di qualità "sufficiente" per supportare la decisione di accesso. Il successor non nasconde quel criterio nel MacroRequirement, ma il candidate corrente non possiede ancora uno SpecializedRequirement governato che definisca come giudicare la sufficienza.
+La formulazione storica "qualità sufficiente per supportare la decisione di accesso" aggregava qualità dell'input, semantica dell'esito di riconoscimento e uso downstream dell'esito.
 
-**Placeholder:** `@IDENTITY_EVIDENCE_QUALITY_CRITERION`
+La review R24 non identifica evidenza sufficiente per introdurre un requisito quantitativo o uno `SpecializedRequirement` autonomo sulla qualità della `RecognitionCapture`.
 
-**Specialization review candidate:** valutare un requisito specializzato verificabile collegabile a test/evidence. Non inventare soglie durante la BA.
+Il significato rilevante viene invece governato da `D-3.2` e `FR-3.2.1`: quando le informazioni disponibili alla capability di riconoscimento non consentono di sostenere né una determinazione riuscita di una specifica `GovernedIdentity` né una determinazione negativa, l'`IdentityDeterminationOutcome` deve essere non conclusivo.
+
+Questa semantica non introduce score, confidence, threshold, ranking o altri criteri quantitativi della realizzazione.
+
+Il placeholder storico `@IDENTITY_EVIDENCE_QUALITY_CRITERION` è ritirato.
+
+Un futuro criterio concreto di qualità della `RecognitionCapture`, se il progetto ne governerà uno, dovrà essere riesaminato separatamente come possibile specializzazione di `FR-3.4.1`; non viene inventato in questa review.
 
 ## OPEN — DG-FA-003: transfer-to-channel/path binding
 

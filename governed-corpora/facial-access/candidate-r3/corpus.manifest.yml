@@ -1,16 +1,16 @@
 schemaVersion: 1
 corpusKey: facial-access-candidate-r3
-corpusRevision: R3-CANDIDATE-1
+corpusRevision: R3-CANDIDATE-2
 authorityBaselineKey: FACIAL-ACCESS-R24-INTEGRATED-CANDIDATE-1
 authorityStatus: EXPERIMENTAL_NON_CANONICAL
 researchRole: CURRENT_THESIS_VALIDATION_CORPUS
 primaryBASourceAllowed: false
-basedOnRepositoryCommit: 7f43a4c81433c9b4c3c941194eae46f6cab257f8
+basedOnRepositoryCommit: 3ec279e2f94d327c6ebb23e25c58d90ee75bdae0
 
 scope:
   project: facial-access
   integrationRoots: [MR-0001, MR-0002, MR-0003]
-  completenessClaim: dg-fa-001-integrated-successor-with-reviewed-mr0003-r2-chain-and-explicit-open-positive-access-branch
+  completenessClaim: dg-fa-001-and-dg-fa-002-reviewed-integrated-successor-with-explicit-open-transport-and-positive-access-branch
 
 documents:
   - path: MR-0001_ACCESS_CONTROL.md
@@ -50,6 +50,12 @@ provenance:
     gap: DG-FA-001
     disposition: RESOLVED_AT_SEMANTIC_LEVEL
     consumerResponsibility: MR-0001
+  dgFa002Finding:
+    gap: DG-FA-002
+    disposition: RESOLVED_REFRAMED
+    semanticOwners: [D-3.2, FR-3.2.1]
+    retiredPlaceholder: "@IDENTITY_EVIDENCE_QUALITY_CRITERION"
+    captureQualitySpecializedRequirementJustified: false
 
 reviewState:
   completed:
@@ -59,13 +65,16 @@ reviewState:
     - D-1.1 reviewed as conjunctive necessary-condition access-policy commitment
     - FR-1.1 reviewed as the operational cross-MR consumer and same-identity authorization binding
     - DG-FA-001 resolved semantically by a unique governed downstream responsibility
+    - DG-FA-002 resolved and reframed as governed outcome-conclusiveness semantics under D-3.2 and FR-3.2.1
   explicitlyNotSpecified:
     - mandatory ALLOW result when successful identity determination and required authorization condition are both satisfied
     - normalized AccessAuthorizationState property or value vocabulary
     - authorization lookup, cache, freshness, retry, exception or technical retrieval semantics
-  nextGapReview: DG-FA-002
+    - concrete RecognitionCapture quality criterion or quantitative sufficiency threshold
+    - internal score, confidence, threshold, ranking or model-output rule used by a realization to reach the governed outcome
+  nextGapReview: DG-FA-003
   remainingBeforePromotion:
-    - review DG-FA-002 through DG-FA-005 one at a time
+    - review DG-FA-003 through DG-FA-005 one at a time
     - review DG-FA-006 with its semantic owner at the appropriate bounded step
     - reconcile AUTH-C and AUTH-P clarification questions
     - perform full successor semantic regression

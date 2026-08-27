@@ -27,7 +27,7 @@ The active integrated R24 Facial Access successor candidate is:
 
 It is `EXPERIMENTAL_NON_CANONICAL`, has `primaryBASourceAllowed: false`, and is current only for R24 experimentation and remaining documentation-gap review. The earlier `candidate-r2/` remains unchanged as MR-0003-only regression/provenance evidence.
 
-The activation record is `methodology/DDTA_R24_FACIAL_ACCESS_CANDIDATE_R3_ACTIVATION_CHECKPOINT_R1.md`. The broader R24 project document remains a separate non-canonical authoring/pressure-test artifact.
+The activation record is `methodology/DDTA_R24_FACIAL_ACCESS_CANDIDATE_R3_ACTIVATION_CHECKPOINT_R1.md`. The bounded `DG-FA-002` disposition is recorded in `methodology/DDTA_R24_FACIAL_ACCESS_DG_FA_002_CHECKPOINT_R1.md`. The broader R24 project document remains a separate non-canonical authoring/pressure-test artifact.
 
 ## Repository map
 
@@ -123,7 +123,8 @@ FACIAL_ACCESS_CURRENT_R1
   -> R24 integrated candidate-r3
        EXPERIMENTAL_NON_CANONICAL / active experimental successor
        DG-FA-001 resolved at semantic level
-  -> remaining documentation-gap review beginning with DG-FA-002
+       DG-FA-002 resolved / reframed under D-3.2 + FR-3.2.1
+  -> remaining documentation-gap review beginning with DG-FA-003
   -> full successor semantic regression
   -> explicit promotion decision
   -> next governed baseline

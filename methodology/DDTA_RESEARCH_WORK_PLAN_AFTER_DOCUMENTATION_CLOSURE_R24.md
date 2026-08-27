@@ -119,13 +119,13 @@ The active experimental successor is now:
 
 ```text
 corpusKey: facial-access-candidate-r3
-corpusRevision: R3-CANDIDATE-1
+corpusRevision: R3-CANDIDATE-2
 authorityStatus: EXPERIMENTAL_NON_CANONICAL
 researchRole: CURRENT_THESIS_VALIDATION_CORPUS
 primaryBASourceAllowed: false
 ```
 
-`candidate-r3` integrates the reviewed MR-0003 successor chain with the reviewed MR-0001 access-decision consumer and MR-0002 authorization-to-identity binding. `DG-FA-001` is resolved at semantic level in this candidate. The earlier `candidate-r2` remains unchanged as regression/provenance evidence.
+`candidate-r3` integrates the reviewed MR-0003 successor chain with the reviewed MR-0001 access-decision consumer and MR-0002 authorization-to-identity binding. `DG-FA-001` is resolved at semantic level and `DG-FA-002` is resolved / reframed as governed outcome-conclusiveness semantics in this candidate. The earlier `candidate-r2` remains unchanged as regression/provenance evidence.
 
 Therefore:
 
@@ -134,7 +134,7 @@ Therefore:
 - promotion requires completion of the remaining bounded gap review, full semantic regression and an explicit governance step;
 - the candidate must not be treated as `CURRENT_GOVERNED` merely because it is the active R24 experimental successor.
 
-## 4. Candidate R2 content now reviewed
+## 4. Candidate R3 content now reviewed
 
 ### 4.1 MacroRequirement
 
@@ -272,8 +272,8 @@ Current state:
 
 ```text
 DG-FA-001  cross-MR consumer binding              RESOLVED_AT_SEMANTIC_LEVEL
-DG-FA-002  quality/sufficiency criterion          NEXT REVIEW
-DG-FA-003  transfer-to-channel/path binding       OPEN
+DG-FA-002  quality/sufficiency criterion          RESOLVED / REFRAMED
+DG-FA-003  transfer-to-channel/path binding       NEXT REVIEW
 DG-FA-004  intermediate transport nodes           CANDIDATE / NOT YET REVIEWED
 DG-FA-005  test/code evidence linkage              OPEN
 DG-FA-006  positive access-decision branch        OPEN / NOT SPECIFIED
@@ -301,7 +301,7 @@ For each remaining gap:
 6. do not invent a solution;
 7. update candidate documentation only after explicit disposition.
 
-The next bounded documentation-gap microstep is **DG-FA-002 only**.
+The next bounded documentation-gap microstep is **DG-FA-003 only**.
 
 ## 7. Required full-candidate regression before promotion
 
@@ -489,9 +489,9 @@ Do not:
 The active forward sequence is:
 
 ```text
-R3-CANDIDATE-1
+R3-CANDIDATE-2
     -> DG-FA-001 resolved at semantic level
-    -> review DG-FA-002
+    -> DG-FA-002 resolved / reframed under D-3.2 and FR-3.2.1
     -> review DG-FA-003
     -> review DG-FA-004
     -> review DG-FA-005
@@ -517,9 +517,9 @@ It does not:
 
 - promote candidate R3;
 - accept a Facial Access BA;
-- close DG-FA-002 through DG-FA-006;
+- close DG-FA-003 through DG-FA-006;
 - close BA as a whole;
 - claim that the security-property authorization models already exist;
 - claim that wired Ethernet describes hidden provider topology.
 
-The next authorized project-semantics action is **DG-FA-002 review only**.
+The next authorized project-semantics action is **DG-FA-003 review only**.
