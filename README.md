@@ -38,6 +38,7 @@ The active forward-facing R24 records are:
 
 - `methodology/DDTA_RESEARCH_WORK_PLAN_AFTER_DOCUMENTATION_CLOSURE_R23.md`
 - `methodology/DDTA_R24_SEMANTIC_REVIEW_CHECKPOINT_R1.md`
+- `methodology/DDTA_R24_FACIAL_ACCESS_CANDIDATE_R3_ACTIVATION_CHECKPOINT_R1.md`
 - `literature/syntheses/R23_SEMANTIC_RECOGNITION_SYNTHESIS_R1.md`
 - `studies/semantic-review/R24_SEMANTIC_REVIEW_PRESSURE_TESTS_R1.md`
 - `studies/semantic-review/R24_MR0003_SEMANTIC_REVIEW_FINDING_R1.md`
@@ -59,19 +60,17 @@ The former facial-access validation baseline:
 
 - `governed-corpora/facial-access/current/` (`FACIAL_ACCESS_CURRENT_R1` / `FACIAL-ACCESS-GOV-R1`)
 
-is now **`SUPERSEDED`** following the R24 MR-0003 semantic-review finding and is not eligible as a primary Base Analysis source.
+is **`SUPERSEDED`** and retained as regression evidence.
 
-The explicit MR-0003 successor candidate is:
+The active integrated R24 Facial Access successor candidate is:
 
-- `governed-corpora/facial-access/candidate-r2/`
+- `governed-corpora/facial-access/candidate-r3/`
 
-It is `EXPERIMENTAL_NON_CANONICAL` with `primaryBASourceAllowed: false`. No replacement facial-access baseline is `CURRENT_GOVERNED` until the downstream Decision/FunctionalRequirement compatibility review is completed and an explicit promotion is recorded.
+It is `EXPERIMENTAL_NON_CANONICAL`, has `researchRole: CURRENT_THESIS_VALIDATION_CORPUS`, and keeps `primaryBASourceAllowed: false`. It is current only for R24 experimentation and remaining documentation-gap review; it is not `CURRENT_GOVERNED` and cannot be the primary source of an accepted Facial Access BA.
 
-The broader R24 project document:
+The earlier `governed-corpora/facial-access/candidate-r2/` remains unchanged as the MR-0003-only semantic-successor checkpoint and regression/provenance evidence.
 
-- `methodology/DDTA_FACIAL_ACCESS_PROJECT_DOCUMENTATION_WORKING_R24_PROJECT_ONLY.tex`
-
-remains a non-canonical authoring/pressure-test artifact. Historical drop-ins, checksums, snapshots, superseded checkpoints and explicitly non-canonical working packages remain preserved as research evidence.
+The broader R24 project document remains a separate non-canonical authoring/pressure-test artifact.
 
 ### Current BA2 R24 lower bound
 
@@ -107,11 +106,11 @@ There is temporarily no `CURRENT_GOVERNED` facial-access validation corpus. The 
 
 - `governed-corpora/facial-access/current/`
 
-and the non-canonical MR-0003 successor candidate is staged at:
+The active non-canonical integrated successor for R24 experimentation is:
 
-- `governed-corpora/facial-access/candidate-r2/`
+- `governed-corpora/facial-access/candidate-r3/`
 
-The authority registry remains the deciding source gate. Historical facial-access material under `_working/`, `02-decision/05-example-facial-access/` and `04-specialized-requirement/03-example-facial-access/` also remains non-primary research evidence.
+The earlier `candidate-r2/` remains retained as regression/provenance evidence. The authority registry remains the deciding source gate.
 
 ## Historical studies
 

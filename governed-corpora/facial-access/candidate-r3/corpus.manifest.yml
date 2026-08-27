@@ -1,0 +1,76 @@
+schemaVersion: 1
+corpusKey: facial-access-candidate-r3
+corpusRevision: R3-CANDIDATE-1
+authorityBaselineKey: FACIAL-ACCESS-R24-INTEGRATED-CANDIDATE-1
+authorityStatus: EXPERIMENTAL_NON_CANONICAL
+researchRole: CURRENT_THESIS_VALIDATION_CORPUS
+primaryBASourceAllowed: false
+basedOnRepositoryCommit: 7f43a4c81433c9b4c3c941194eae46f6cab257f8
+
+scope:
+  project: facial-access
+  integrationRoots: [MR-0001, MR-0002, MR-0003]
+  completenessClaim: dg-fa-001-integrated-successor-with-reviewed-mr0003-r2-chain-and-explicit-open-positive-access-branch
+
+documents:
+  - path: MR-0001_ACCESS_CONTROL.md
+    kind: MacroRequirement
+    ids: [MR-0001]
+  - path: MR-0002_ACCESS_AUTHORIZATION.md
+    kind: MacroRequirement
+    ids: [MR-0002]
+  - path: MR-0003_IDENTITY_DETERMINATION.md
+    kind: MacroRequirement
+    ids: [MR-0003]
+  - path: MR-0001_DECISIONS.md
+    kind: DecisionSet
+    ids: [D-1.1]
+  - path: MR-0003_DECISIONS.md
+    kind: DecisionSet
+    ids: [D-3.1, D-3.2, D-3.4, D-3.5, D-3.6]
+  - path: MR-0001_FUNCTIONAL_REQUIREMENTS.md
+    kind: FunctionalRequirementSet
+    ids: [FR-1.1]
+  - path: MR-0003_FUNCTIONAL_REQUIREMENTS.md
+    kind: FunctionalRequirementSet
+    ids: [FR-3.2.1, FR-3.2.2, FR-3.4.1, FR-3.4.2]
+  - path: MR-0003_SECURITY_REQUIREMENTS.md
+    kind: SecurityRequirementSet
+    ids: [SEC-3.4.2-C, SEC-3.4.2-I, SEC-3.4.2-P]
+  - path: DOCUMENTATION_GAPS.md
+    kind: DocumentationGapSet
+    ids: [DG-FA-001, DG-FA-002, DG-FA-003, DG-FA-004, DG-FA-005, DG-FA-006, AUTH-C, AUTH-P]
+
+provenance:
+  inheritedCandidate:
+    corpusKey: facial-access-candidate-r2
+    corpusRevision: R2-CANDIDATE-12
+    retainedUnmodifiedInRepository: true
+  integrationFinding:
+    gap: DG-FA-001
+    disposition: RESOLVED_AT_SEMANTIC_LEVEL
+    consumerResponsibility: MR-0001
+
+reviewState:
+  completed:
+    - MR-0003 branch Decisions, Functional Requirements and Security Requirements inherited from candidate R2
+    - MR-0001 macro responsibility reviewed and materially revised for IdentityDeterminationOutcome semantics
+    - MR-0002 reviewed for GovernedIdentity to AccessAuthorizationState semantic binding only
+    - D-1.1 reviewed as conjunctive necessary-condition access-policy commitment
+    - FR-1.1 reviewed as the operational cross-MR consumer and same-identity authorization binding
+    - DG-FA-001 resolved semantically by a unique governed downstream responsibility
+  explicitlyNotSpecified:
+    - mandatory ALLOW result when successful identity determination and required authorization condition are both satisfied
+    - normalized AccessAuthorizationState property or value vocabulary
+    - authorization lookup, cache, freshness, retry, exception or technical retrieval semantics
+  nextGapReview: DG-FA-002
+  remainingBeforePromotion:
+    - review DG-FA-002 through DG-FA-005 one at a time
+    - review DG-FA-006 with its semantic owner at the appropriate bounded step
+    - reconcile AUTH-C and AUTH-P clarification questions
+    - perform full successor semantic regression
+    - perform explicit governance promotion
+
+analysisPrecondition:
+  primaryBASourceAllowed: false
+  doNotDeriveAcceptedBAUntilExplicitPromotion: true

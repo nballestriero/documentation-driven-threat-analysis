@@ -17,15 +17,17 @@ For the current R24 research state, use:
 
 The former facial-access validation baseline:
 
-- `governed-corpora/facial-access/current/` — `FACIAL_ACCESS_CURRENT_R1` / `FACIAL-ACCESS-GOV-R1`
+- `governed-corpora/facial-access/current/` â€” `FACIAL_ACCESS_CURRENT_R1` / `FACIAL-ACCESS-GOV-R1`
 
-is now `SUPERSEDED` and retained as regression evidence after the R24 MR-0003 semantic-review finding.
+is `SUPERSEDED` and retained as regression evidence.
 
-The explicit MR-0003 successor candidate is:
+The active integrated R24 Facial Access successor candidate is:
 
-- `governed-corpora/facial-access/candidate-r2/`
+- `governed-corpora/facial-access/candidate-r3/`
 
-It is `EXPERIMENTAL_NON_CANONICAL` and cannot be used as a primary BA source before downstream compatibility review and explicit promotion. The broader R24 project document remains a separate non-canonical authoring/pressure-test artifact.
+It is `EXPERIMENTAL_NON_CANONICAL`, has `primaryBASourceAllowed: false`, and is current only for R24 experimentation and remaining documentation-gap review. The earlier `candidate-r2/` remains unchanged as MR-0003-only regression/provenance evidence.
+
+The activation record is `methodology/DDTA_R24_FACIAL_ACCESS_CANDIDATE_R3_ACTIVATION_CHECKPOINT_R1.md`. The broader R24 project document remains a separate non-canonical authoring/pressure-test artifact.
 
 ## Repository map
 
@@ -117,14 +119,18 @@ For facial-access work, the authority flow is currently:
 FACIAL_ACCESS_CURRENT_R1
   -> SUPERSEDED / regression evidence
   -> R24 MR-0003 candidate-r2
-       EXPERIMENTAL_NON_CANONICAL
-  -> downstream Decision / FunctionalRequirement compatibility review
+       EXPERIMENTAL_NON_CANONICAL / retained checkpoint
+  -> R24 integrated candidate-r3
+       EXPERIMENTAL_NON_CANONICAL / active experimental successor
+       DG-FA-001 resolved at semantic level
+  -> remaining documentation-gap review beginning with DG-FA-002
+  -> full successor semantic regression
   -> explicit promotion decision
   -> next governed baseline
   -> minimum justified BA and semantic regression
 ```
 
-No working artifact becomes governed by recency alone, and no accepted BA should be derived from the candidate before explicit promotion.
+No working artifact becomes governed by recency alone, and no accepted BA should be derived from candidate R3 before explicit promotion.
 
 ## Reading order for current work
 

@@ -115,21 +115,24 @@ No BA operator is added merely because documentation uses a familiar verb or bec
 
 The historical/current R1 Facial Access corpus remains superseded evidence.
 
-The active successor is still:
+The active experimental successor is now:
 
 ```text
-corpusKey: facial-access-candidate-r2
-corpusRevision: R2-CANDIDATE-12
+corpusKey: facial-access-candidate-r3
+corpusRevision: R3-CANDIDATE-1
 authorityStatus: EXPERIMENTAL_NON_CANONICAL
+researchRole: CURRENT_THESIS_VALIDATION_CORPUS
 primaryBASourceAllowed: false
 ```
+
+`candidate-r3` integrates the reviewed MR-0003 successor chain with the reviewed MR-0001 access-decision consumer and MR-0002 authorization-to-identity binding. `DG-FA-001` is resolved at semantic level in this candidate. The earlier `candidate-r2` remains unchanged as regression/provenance evidence.
 
 Therefore:
 
 - no accepted/current Facial Access BA may yet be derived;
 - working BA pressure tests are allowed;
-- promotion requires explicit review and a coherent successor baseline;
-- the candidate must not be treated as project authority merely because its review is advanced.
+- promotion requires completion of the remaining bounded gap review, full semantic regression and an explicit governance step;
+- the candidate must not be treated as `CURRENT_GOVERNED` merely because it is the active R24 experimental successor.
 
 ## 4. Candidate R2 content now reviewed
 
@@ -263,19 +266,20 @@ The project may require Confidentiality/Integrity/AuthorizedProvenance for its i
 
 ## 6. Documentation-gap review is the next mandatory phase
 
-The next chat must review the existing gaps **one at a time**, preserving their diagnostic status.
+The existing gaps remain diagnostic and are reviewed one at a time against active candidate R3.
 
-Current R1 gap set to re-evaluate against candidate R2:
+Current state:
 
 ```text
-DG-FA-001  cross-MR consumer binding
-DG-FA-002  quality/sufficiency criterion
-DG-FA-003  transfer-to-channel/path binding
-DG-FA-004  intermediate transport nodes
-DG-FA-005  test/code evidence linkage
+DG-FA-001  cross-MR consumer binding              RESOLVED_AT_SEMANTIC_LEVEL
+DG-FA-002  quality/sufficiency criterion          NEXT REVIEW
+DG-FA-003  transfer-to-channel/path binding       OPEN
+DG-FA-004  intermediate transport nodes           CANDIDATE / NOT YET REVIEWED
+DG-FA-005  test/code evidence linkage              OPEN
+DG-FA-006  positive access-decision branch        OPEN / NOT SPECIFIED
 ```
 
-Additional clarification questions exposed by the SR review must be checked against this set rather than automatically creating new requirements:
+Additional clarification questions exposed by the SR review remain pending:
 
 ```text
 AUTH-C
@@ -287,7 +291,7 @@ which governed evidence determines which origins are authorized
 to provide RecognitionCapture for an IdentityDeterminationRequest?
 ```
 
-For each gap:
+For each remaining gap:
 
 1. show relevant current MR;
 2. show relevant parent Decision(s);
@@ -297,7 +301,7 @@ For each gap:
 6. do not invent a solution;
 7. update candidate documentation only after explicit disposition.
 
-The **first microstep of the next chat is DG-FA-001 only**.
+The next bounded documentation-gap microstep is **DG-FA-002 only**.
 
 ## 7. Required full-candidate regression before promotion
 
@@ -485,15 +489,15 @@ Do not:
 The active forward sequence is:
 
 ```text
-R2-CANDIDATE-12
-    -> review DG-FA-001
+R3-CANDIDATE-1
+    -> DG-FA-001 resolved at semantic level
     -> review DG-FA-002
     -> review DG-FA-003
     -> review DG-FA-004
     -> review DG-FA-005
     -> reconcile AUTH-C / AUTH-P clarification questions
+    -> review DG-FA-006 at the appropriate bounded semantic-owner step
     -> full successor semantic regression
-    -> coherent successor baseline assembly
     -> explicit governance promotion
     -> minimum justified BA rebuild
     -> full post-BA regression
@@ -511,11 +515,11 @@ This R24 plan records forward execution state only.
 
 It does not:
 
-- promote candidate R2;
+- promote candidate R3;
 - accept a Facial Access BA;
-- close the documentation gaps;
+- close DG-FA-002 through DG-FA-006;
 - close BA as a whole;
 - claim that the security-property authorization models already exist;
 - claim that wired Ethernet describes hidden provider topology.
 
-The next authorized project-semantics action is **DG-FA-001 review only**.
+The next authorized project-semantics action is **DG-FA-002 review only**.
