@@ -1,16 +1,16 @@
 schemaVersion: 1
 corpusKey: facial-access-candidate-r3
-corpusRevision: R3-CANDIDATE-5
+corpusRevision: R3-CANDIDATE-6
 authorityBaselineKey: FACIAL-ACCESS-R24-INTEGRATED-CANDIDATE-1
 authorityStatus: EXPERIMENTAL_NON_CANONICAL
 researchRole: CURRENT_THESIS_VALIDATION_CORPUS
 primaryBASourceAllowed: false
-basedOnRepositoryCommit: fefc35b73579d88179f868faf70c1b8e9d24bf57
+basedOnRepositoryCommit: 1305b03301bf5790a5083e78526a9c24940587c0
 
 scope:
   project: facial-access
   integrationRoots: [MR-0001, MR-0002, MR-0003]
-  completenessClaim: dg-fa-001-through-dg-fa-004-reviewed-dg-fa-005-deferred-successor-with-retained-ba-segment-identity-pressure
+  completenessClaim: dg-fa-001-through-dg-fa-004-reviewed-dg-fa-005-deferred-auth-c-preserved-successor-with-retained-ba-segment-identity-pressure
 
 documents:
   - path: MR-0001_ACCESS_CONTROL.md
@@ -79,6 +79,16 @@ provenance:
     documentationSemanticChangeRequired: false
     baContractChangeAuthorized: false
     lifecycleTestCodeMetamodelAuthorized: false
+  authCFinding:
+    gap: AUTH-C
+    disposition: PRESERVED_NOT_SPECIFIED_NON_BLOCKING_PROCESS_DEMONSTRATION
+    securityRequirementAnchor: SEC-3.4.2-C
+    protectedSecurityProperty: Confidentiality
+    authorizationBasisSpecified: false
+    currentPromotionBlocker: false
+    newProjectPolicyIntroduced: false
+    newRequirementOrDecisionIntroduced: false
+    baContractChangeAuthorized: false
 
 reviewState:
   completed:
@@ -92,16 +102,17 @@ reviewState:
     - DG-FA-003 resolved at documentation semantic level; BA representation pressure retained without adding cross-reference or channel/path metadata
     - DG-FA-004 reframed: hidden provider hops are not a documentation gap; concrete BA2 segment-identity pressure retained for promoted BA rebuild
     - DG-FA-005 deferred outside current documentation and BA closure scope; no test/code/lifecycle contract added
+    - AUTH-C preserved as explicit NOT SPECIFIED confidentiality-authorization clarification and treated as non-blocking for the process-demonstration corpus
   explicitlyNotSpecified:
     - mandatory ALLOW result when successful identity determination and required authorization condition are both satisfied
     - normalized AccessAuthorizationState property or value vocabulary
     - authorization lookup, cache, freshness, retry, exception or technical retrieval semantics
     - concrete RecognitionCapture quality criterion or quantitative sufficiency threshold
     - internal score, confidence, threshold, ranking or model-output rule used by a realization to reach the governed outcome
-  nextGapReview: AUTH-C
+    - complete authorization basis determining which subjects may know RecognitionCapture content
+  nextGapReview: AUTH-P
   remainingBeforePromotion:
-    - review AUTH-C as the next bounded clarification microstep
-    - review AUTH-P as a separate bounded clarification microstep
+    - review AUTH-P as the next bounded clarification microstep
     - review DG-FA-006 with its semantic owner at the appropriate bounded step
     - perform full successor semantic regression
     - perform explicit governance promotion
@@ -114,3 +125,4 @@ analysisPrecondition:
   transferBehaviorWorkingCandidateAcceptedAsBA2: false
   dgFa005DeferredOutsideCurrentDocumentationBAClosureScope: true
   lifecycleTestCodeTraceRequiredBeforePromotion: false
+  authCClarificationRequiredToBeSpecifiedBeforePromotion: false

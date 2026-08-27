@@ -2,7 +2,7 @@
 
 **Lifecycle:** candidate
 **Authority:** `EXPERIMENTAL_NON_CANONICAL`
-**Corpus revision:** `R3-CANDIDATE-5`
+**Corpus revision:** `R3-CANDIDATE-6`
 **Primary BA source allowed:** no
 
 ## Purpose
@@ -125,7 +125,15 @@ This is **not** an accepted BA2 change. It must be reproduced during the minimum
 
 No first-class `Pipeline` type, `contains` / `partOf` relation, generalized behavior role, channel/path document field or provider-internal node is justified by this review.
 
-6342## Deliberately unresolved meaning
+## AUTH-C disposition carried into R3
+
+`SEC-3.4.2-C` remains the governed `Confidentiality` obligation for `RecognitionCapture` during the `FR-3.4.2` delivery behavior.
+
+The complete project-specific basis that determines who is authorized to know the capture content remains explicitly `NOT SPECIFIED`. For the current process-demonstration corpus this is preserved as an analysis-relevant clarification rather than filled with an invented authorization policy.
+
+AUTH-C is non-blocking for the current promotion path. No new Decision, Functional Requirement, Security Requirement, authorization vocabulary, BA contract or technical mechanism is introduced.
+
+## Deliberately unresolved meaning
 
 R3 does **not** state that:
 
@@ -141,4 +149,4 @@ R3 also does not introduce an internal vocabulary such as `AUTHORIZED / NOT_AUTH
 
 ## Next bounded review
 
-The next bounded clarification microstep is **AUTH-C only**. `AUTH-P` and `DG-FA-006` remain pending and must be reviewed separately.
+The next bounded clarification microstep is **AUTH-P only**. `DG-FA-006` remains pending and must be reviewed separately.

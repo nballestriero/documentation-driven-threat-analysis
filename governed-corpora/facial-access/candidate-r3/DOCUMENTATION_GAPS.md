@@ -216,9 +216,24 @@ Questa insufficienza resta `NOT SPECIFIED`. Non deve essere colmata dalla Base A
 
 ## Existing Security Requirement clarification questions
 
-### AUTH-C
+### AUTH-C — PRESERVED / NOT SPECIFIED / NON-BLOCKING
 
-Quale evidenza governata determina chi è autorizzato a conoscere il contenuto di `RecognitionCapture`?
+`SEC-3.4.2-C` governa già la proprietà `Confidentiality`, il contenuto protetto (`RecognitionCapture` durante `FR-3.4.2`) e il failure mode di intelligibilità a un soggetto non autorizzato.
+
+Il candidate non governa invece la base completa con cui determinare quali soggetti siano autorizzati alla conoscenza della `RecognitionCapture`.
+
+Questa informazione resta esplicitamente:
+
+```text
+authorization basis for knowing RecognitionCapture content
+    -> NOT SPECIFIED
+```
+
+Per il corpus corrente, orientato a dimostrare il processo DDTA, ciò non richiede di inventare ora una policy completa, un elenco di soggetti, un nuovo Requirement/Decision o un meccanismo tecnico. Il SecurityRequirement resta un anchor governato a cui future analisi possono riferire findings o clarification question senza diventare automaticamente autorità di progetto.
+
+Non viene inferito che `CameraSubsystem` e `RecognitionProcessor` costituiscano l'insieme completo dei soggetti autorizzati. L'`AccessAuthorizationState` governato da `MR-0002` riguarda l'autorizzazione di accesso associata a una `GovernedIdentity` e non viene riusato come policy di disclosure della `RecognitionCapture`.
+
+AUTH-C è quindi **PRESERVED CLARIFICATION / ANALYSIS-RELEVANT PROJECT MEANING NOT SPECIFIED / NON-BLOCKING FOR THE CURRENT PROCESS-DEMONSTRATION CORPUS**.
 
 ### AUTH-P
 
