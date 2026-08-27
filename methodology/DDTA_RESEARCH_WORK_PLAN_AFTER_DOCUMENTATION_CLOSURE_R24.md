@@ -119,13 +119,13 @@ The active experimental successor is now:
 
 ```text
 corpusKey: facial-access-candidate-r3
-corpusRevision: R3-CANDIDATE-2
+corpusRevision: R3-CANDIDATE-3
 authorityStatus: EXPERIMENTAL_NON_CANONICAL
 researchRole: CURRENT_THESIS_VALIDATION_CORPUS
 primaryBASourceAllowed: false
 ```
 
-`candidate-r3` integrates the reviewed MR-0003 successor chain with the reviewed MR-0001 access-decision consumer and MR-0002 authorization-to-identity binding. `DG-FA-001` is resolved at semantic level and `DG-FA-002` is resolved / reframed as governed outcome-conclusiveness semantics in this candidate. The earlier `candidate-r2` remains unchanged as regression/provenance evidence.
+`candidate-r3` integrates the reviewed MR-0003 successor chain with the reviewed MR-0001 access-decision consumer and MR-0002 authorization-to-identity binding. `DG-FA-001` is resolved at semantic level, `DG-FA-002` is resolved / reframed as governed outcome-conclusiveness semantics, and `DG-FA-003` is resolved at documentation semantic level with its BA representation pressure explicitly retained. The earlier `candidate-r2` remains unchanged as regression/provenance evidence.
 
 Therefore:
 
@@ -273,8 +273,8 @@ Current state:
 ```text
 DG-FA-001  cross-MR consumer binding              RESOLVED_AT_SEMANTIC_LEVEL
 DG-FA-002  quality/sufficiency criterion          RESOLVED / REFRAMED
-DG-FA-003  transfer-to-channel/path binding       NEXT REVIEW
-DG-FA-004  intermediate transport nodes           CANDIDATE / NOT YET REVIEWED
+DG-FA-003  transfer-to-channel/path binding       RESOLVED DOC SEMANTICS / BA PRESSURE RETAINED
+DG-FA-004  intermediate transport nodes           NEXT REVIEW
 DG-FA-005  test/code evidence linkage              OPEN
 DG-FA-006  positive access-decision branch        OPEN / NOT SPECIFIED
 ```
@@ -301,7 +301,7 @@ For each remaining gap:
 6. do not invent a solution;
 7. update candidate documentation only after explicit disposition.
 
-The next bounded documentation-gap microstep is **DG-FA-003 only**.
+The next bounded documentation-gap microstep is **DG-FA-004 only**.
 
 ## 7. Required full-candidate regression before promotion
 
@@ -389,32 +389,30 @@ This is concrete pressure for `correlate` or another existing structure, but the
 
 ### 9.5 Delivery / consumed service / medium binding
 
-This remains the most important BA2 pressure point:
+After `DG-FA-003`, this remains the most important retained BA2 **representation** pressure, but no longer an open documentation-semantics gap.
+
+The bounded documentation review established that the existing project sources already identify the same governed interaction without adding a new extraction-oriented cross-reference:
 
 ```text
-transfer
+FR-3.4.2
+    RecognitionCapture delivery
     CameraSubsystem -> RecognitionProcessor
-    content RecognitionCapture
 
-        ?
-        |
-RecognitionCaptureDelivery
-        |
-consumeService
-        v
-ConnectivityService
-        |
-current medium
-        v
-WIRED_ETHERNET
+D-3.5
+    available ConnectivityService supports that delivery
+
+D-3.6
+    current governed interaction medium = WIRED_ETHERNET
 ```
 
-Do not modify BA2 until the documentation-gap review and promoted BA rebuild establish whether:
+No `channel`/`path` document field and no new hard-coded reference to `FR-3.4.2` is justified merely to help BA extraction.
 
-1. documentation can express the binding better;
-2. BA can derive it reproducibly from sufficient governed sources;
-3. `transfer` genuinely needs an optional channel/behavior binding;
-4. another smaller representation solves the problem.
+Do not modify BA2 now. During the minimum BA rebuild after promotion, pressure-test whether:
+
+1. the BA can derive the binding reproducibly from the existing governed sources;
+2. existing BA structures preserve the material delivery/service/medium distinction;
+3. `transfer` genuinely needs an optional channel/behavior binding only if a concrete representation failure remains;
+4. another smaller representation solves the problem without inventing topology.
 
 ## 10. Post-BA regression
 
@@ -489,10 +487,10 @@ Do not:
 The active forward sequence is:
 
 ```text
-R3-CANDIDATE-2
+R3-CANDIDATE-3
     -> DG-FA-001 resolved at semantic level
     -> DG-FA-002 resolved / reframed under D-3.2 and FR-3.2.1
-    -> review DG-FA-003
+    -> DG-FA-003 resolved at documentation semantic level / BA pressure retained
     -> review DG-FA-004
     -> review DG-FA-005
     -> reconcile AUTH-C / AUTH-P clarification questions
@@ -517,9 +515,9 @@ It does not:
 
 - promote candidate R3;
 - accept a Facial Access BA;
-- close DG-FA-003 through DG-FA-006;
+- close DG-FA-004 through DG-FA-006;
 - close BA as a whole;
 - claim that the security-property authorization models already exist;
 - claim that wired Ethernet describes hidden provider topology.
 
-The next authorized project-semantics action is **DG-FA-003 review only**.
+The next authorized project-semantics action is **DG-FA-004 review only**.

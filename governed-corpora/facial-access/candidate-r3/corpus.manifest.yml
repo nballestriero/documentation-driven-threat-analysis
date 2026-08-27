@@ -1,16 +1,16 @@
 schemaVersion: 1
 corpusKey: facial-access-candidate-r3
-corpusRevision: R3-CANDIDATE-2
+corpusRevision: R3-CANDIDATE-3
 authorityBaselineKey: FACIAL-ACCESS-R24-INTEGRATED-CANDIDATE-1
 authorityStatus: EXPERIMENTAL_NON_CANONICAL
 researchRole: CURRENT_THESIS_VALIDATION_CORPUS
 primaryBASourceAllowed: false
-basedOnRepositoryCommit: 3ec279e2f94d327c6ebb23e25c58d90ee75bdae0
+basedOnRepositoryCommit: 4b4938e3d3e313bb17ab5f610376029d7d8d087a
 
 scope:
   project: facial-access
   integrationRoots: [MR-0001, MR-0002, MR-0003]
-  completenessClaim: dg-fa-001-and-dg-fa-002-reviewed-integrated-successor-with-explicit-open-transport-and-positive-access-branch
+  completenessClaim: dg-fa-001-through-dg-fa-003-reviewed-integrated-successor-with-retained-ba-transport-representation-pressure
 
 documents:
   - path: MR-0001_ACCESS_CONTROL.md
@@ -56,6 +56,13 @@ provenance:
     semanticOwners: [D-3.2, FR-3.2.1]
     retiredPlaceholder: "@IDENTITY_EVIDENCE_QUALITY_CRITERION"
     captureQualitySpecializedRequirementJustified: false
+  dgFa003Finding:
+    gap: DG-FA-003
+    disposition: RESOLVED_AT_DOCUMENTATION_SEMANTIC_LEVEL_BA_REPRESENTATION_PRESSURE_RETAINED
+    documentationSemanticBindingSufficient: true
+    newCrossReferenceRequired: false
+    newChannelOrPathFieldJustified: false
+    ba2ModificationAuthorized: false
 
 reviewState:
   completed:
@@ -66,15 +73,16 @@ reviewState:
     - FR-1.1 reviewed as the operational cross-MR consumer and same-identity authorization binding
     - DG-FA-001 resolved semantically by a unique governed downstream responsibility
     - DG-FA-002 resolved and reframed as governed outcome-conclusiveness semantics under D-3.2 and FR-3.2.1
+    - DG-FA-003 resolved at documentation semantic level; BA representation pressure retained without adding cross-reference or channel/path metadata
   explicitlyNotSpecified:
     - mandatory ALLOW result when successful identity determination and required authorization condition are both satisfied
     - normalized AccessAuthorizationState property or value vocabulary
     - authorization lookup, cache, freshness, retry, exception or technical retrieval semantics
     - concrete RecognitionCapture quality criterion or quantitative sufficiency threshold
     - internal score, confidence, threshold, ranking or model-output rule used by a realization to reach the governed outcome
-  nextGapReview: DG-FA-003
+  nextGapReview: DG-FA-004
   remainingBeforePromotion:
-    - review DG-FA-003 through DG-FA-005 one at a time
+    - review DG-FA-004 through DG-FA-005 one at a time
     - review DG-FA-006 with its semantic owner at the appropriate bounded step
     - reconcile AUTH-C and AUTH-P clarification questions
     - perform full successor semantic regression
@@ -83,3 +91,4 @@ reviewState:
 analysisPrecondition:
   primaryBASourceAllowed: false
   doNotDeriveAcceptedBAUntilExplicitPromotion: true
+  dgFa003RepresentationPressureRetainedForPromotedBARebuild: true

@@ -39,26 +39,25 @@ Il placeholder storico `@IDENTITY_EVIDENCE_QUALITY_CRITERION` è ritirato.
 
 Un futuro criterio concreto di qualità della `RecognitionCapture`, se il progetto ne governerà uno, dovrà essere riesaminato separatamente come possibile specializzazione di `FR-3.4.1`; non viene inventato in questa review.
 
-## OPEN — DG-FA-003: transfer-to-channel/path binding
+## RESOLVED AT DOCUMENTATION SEMANTIC LEVEL / BA REPRESENTATION PRESSURE RETAINED — DG-FA-003: transfer-to-channel/path binding
 
-`FR-3.4.2` governa il delivery; `D-3.5` governa il responsibility boundary del trasporto; `D-3.6` governa Ethernet nel baseline candidato.
+La review R24 distingue la sufficienza semantica della documentazione dalla futura capacità della Base Analysis di rappresentare il binding.
 
-La documentazione non possiede ancora una relazione strutturale univoca equivalente a:
+Il candidate governa già, mediante significati e referenti condivisi:
 
-```text
-THIS transfer
-    uses
-THIS connectivity/path
-```
+- `FR-3.4.2`: il delivery della `RecognitionCapture` da `CameraSubsystem` a `RecognitionProcessor`, preservando il binding con la `IdentityDeterminationRequest`;
+- `D-3.5`: il consumo di un servizio di connettività disponibile per supportare il delivery della `RecognitionCapture`, senza ownership o gestione project-owned dell'infrastruttura sottostante;
+- `D-3.6`: l'uso della connettività Ethernet cablata disponibile per il delivery della `RecognitionCapture` tra `CameraSubsystem` e `RecognitionProcessor` nel baseline candidato.
 
-**Placeholder:** `@FR-3.4.2-TRANSPORT-BINDING`
+Questi significati identificano semanticamente la stessa interazione governata senza richiedere un nuovo field documentale `channel`, `path` o equivalente.
 
-Questo gap deve essere testato prima di modificare BA2. Alternative da falsificare:
+Il placeholder storico `@FR-3.4.2-TRANSPORT-BINDING` è quindi ritirato come **documentation gap**.
 
-1. la documentazione può esprimere meglio il binding usando relazioni già governate;
-2. la BA può derivare il binding in modo riproducibile da fonti sufficienti;
-3. il contratto `transfer` necessita davvero un ruolo opzionale `channel`/analogo;
-4. serve una diversa modellazione minima, senza trasformare BA in topologia di rete.
+La review non aggiunge nuove cross-reference hard-coded verso `FR-3.4.2` soltanto per facilitare extraction/tooling: una relazione duplicata può diventare stale o falsa dopo split, rinumerazione o revisione semantica del documento referenziato. Le cross-reference già governate dalla documentazione restano invariate; non ne viene introdotta una nuova per questo scopo.
+
+Resta invece una **Base Analysis representation pressure**. Dopo l'eventuale promotion, la BA dovrà dimostrare di poter preservare in modo riproducibile il collegamento tra delivery, servizio consumato e mezzo governato corrente usando le fonti esistenti. Un'eventuale insufficienza della rappresentazione BA dovrà essere trattata come pressione/counterexample BA2, non come autorizzazione retroattiva a inventare project meaning, topologia, hop o proprietà del provider.
+
+Nessuna modifica a BA2 è autorizzata in questa review.
 
 ## CANDIDATE — DG-FA-004: intermediate transport nodes
 
