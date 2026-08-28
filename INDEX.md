@@ -10,7 +10,7 @@ It is not a semantic authority registry and it does not determine which project 
 For the current R24 research state, use:
 
 - `methodology/DDTA_R24_SEMANTIC_REVIEW_CHECKPOINT_R1.md`
-- `methodology/DDTA_RESEARCH_WORK_PLAN_AFTER_DOCUMENTATION_CLOSURE_R23.md`
+- `methodology/DDTA_RESEARCH_WORK_PLAN_AFTER_DOCUMENTATION_CLOSURE_R24.md`
 - `README.md`
 
 ## Current authority boundary
@@ -25,9 +25,9 @@ The active integrated R24 Facial Access successor candidate is:
 
 - `governed-corpora/facial-access/candidate-r3/`
 
-It is `EXPERIMENTAL_NON_CANONICAL`, has `primaryBASourceAllowed: false`, and is current only for R24 experimentation and remaining documentation-gap review. The earlier `candidate-r2/` remains unchanged as MR-0003-only regression/provenance evidence.
+It is `EXPERIMENTAL_NON_CANONICAL`, has `primaryBASourceAllowed: false`, and is current as the R24 pre-promotion validation corpus after completed bounded gap review and full successor semantic regression. The earlier `candidate-r2/` remains unchanged as MR-0003-only regression/provenance evidence.
 
-The activation record is `methodology/DDTA_R24_FACIAL_ACCESS_CANDIDATE_R3_ACTIVATION_CHECKPOINT_R1.md`. The bounded `DG-FA-002` disposition is recorded in `methodology/DDTA_R24_FACIAL_ACCESS_DG_FA_002_CHECKPOINT_R1.md`; the bounded `DG-FA-003` disposition is recorded in `methodology/DDTA_R24_FACIAL_ACCESS_DG_FA_003_CHECKPOINT_R1.md`; the bounded `DG-FA-004` disposition is recorded in `methodology/DDTA_R24_FACIAL_ACCESS_DG_FA_004_CHECKPOINT_R1.md`; the bounded `DG-FA-005` deferral is recorded in `methodology/DDTA_R24_FACIAL_ACCESS_DG_FA_005_CHECKPOINT_R1.md`; the bounded `AUTH-C` disposition is recorded in `methodology/DDTA_R24_FACIAL_ACCESS_AUTH_C_CHECKPOINT_R1.md`; the bounded `AUTH-P` disposition is recorded in `methodology/DDTA_R24_FACIAL_ACCESS_AUTH_P_CHECKPOINT_R1.md`; the bounded `DG-FA-006` resolution is recorded in `methodology/DDTA_R24_FACIAL_ACCESS_DG_FA_006_CHECKPOINT_R1.md`. The broader R24 project document remains a separate non-canonical authoring/pressure-test artifact.
+The activation record is `methodology/DDTA_R24_FACIAL_ACCESS_CANDIDATE_R3_ACTIVATION_CHECKPOINT_R1.md`. The bounded `DG-FA-002` disposition is recorded in `methodology/DDTA_R24_FACIAL_ACCESS_DG_FA_002_CHECKPOINT_R1.md`; the bounded `DG-FA-003` disposition is recorded in `methodology/DDTA_R24_FACIAL_ACCESS_DG_FA_003_CHECKPOINT_R1.md`; the bounded `DG-FA-004` disposition is recorded in `methodology/DDTA_R24_FACIAL_ACCESS_DG_FA_004_CHECKPOINT_R1.md`; the bounded `DG-FA-005` deferral is recorded in `methodology/DDTA_R24_FACIAL_ACCESS_DG_FA_005_CHECKPOINT_R1.md`; the bounded `AUTH-C` disposition is recorded in `methodology/DDTA_R24_FACIAL_ACCESS_AUTH_C_CHECKPOINT_R1.md`; the bounded `AUTH-P` disposition is recorded in `methodology/DDTA_R24_FACIAL_ACCESS_AUTH_P_CHECKPOINT_R1.md`; the bounded `DG-FA-006` resolution is recorded in `methodology/DDTA_R24_FACIAL_ACCESS_DG_FA_006_CHECKPOINT_R1.md`; the full successor semantic regression closure is recorded in `methodology/DDTA_R24_FACIAL_ACCESS_FULL_SEMANTIC_REGRESSION_CHECKPOINT_R1.md`. The broader R24 project document remains a separate non-canonical authoring/pressure-test artifact.
 
 ## Repository map
 
@@ -48,7 +48,7 @@ These directories contain both active methodological evidence and historical res
 Current R24 forward-facing records include:
 
 - `methodology/DDTA_R24_SEMANTIC_REVIEW_CHECKPOINT_R1.md`
-- `methodology/DDTA_RESEARCH_WORK_PLAN_AFTER_DOCUMENTATION_CLOSURE_R23.md`
+- `methodology/DDTA_RESEARCH_WORK_PLAN_AFTER_DOCUMENTATION_CLOSURE_R24.md`
 - `literature/syntheses/R23_SEMANTIC_RECOGNITION_SYNTHESIS_R1.md`
 - `studies/semantic-review/R24_SEMANTIC_REVIEW_PRESSURE_TESTS_R1.md`
 - `studies/semantic-review/R24_MR0003_SEMANTIC_REVIEW_FINDING_R1.md`
@@ -130,7 +130,7 @@ FACIAL_ACCESS_CURRENT_R1
        AUTH-C preserved as explicit NOT SPECIFIED analysis-relevant clarification / non-blocking
        AUTH-P preserved as explicit NOT SPECIFIED analysis-relevant clarification / non-blocking
        DG-FA-006 resolved: conjunctive positive access-decision branch governed
-  -> full successor semantic regression
+  -> full successor semantic regression PASSED / propagation aligned
   -> explicit promotion decision
   -> next governed baseline
   -> minimum justified BA and semantic regression
@@ -147,7 +147,7 @@ For a reviewer entering the repository during R24:
 3. `governance/document-authority/document-authority.registry.yml`
 4. `methodology/DDTA_R24_SEMANTIC_REVIEW_CHECKPOINT_R1.md`
 5. `studies/semantic-review/R24_MR0003_SEMANTIC_REVIEW_FINDING_R1.md`
-6. `methodology/DDTA_RESEARCH_WORK_PLAN_AFTER_DOCUMENTATION_CLOSURE_R23.md`
+6. `methodology/DDTA_RESEARCH_WORK_PLAN_AFTER_DOCUMENTATION_CLOSURE_R24.md`
 7. `methodology/DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R1.md`
 8. `methodology/BA1_MINIMAL_BAE_IDENTITY_ONTOLOGY_R1.md`
 9. `methodology/BA2_RELATION_ACTION_VOCABULARY_R2.md`

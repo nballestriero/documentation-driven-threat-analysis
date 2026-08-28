@@ -102,20 +102,21 @@ entries:
     authorityBaselineKey: FACIAL-ACCESS-R24-INTEGRATED-CANDIDATE-1
     primaryBASourceAllowed: false
     retainedFor:
-      - active R24 Facial Access documentation-gap review
+      - completed R24 bounded documentation-gap review evidence
       - integrated cross-MR semantic pressure testing
-      - successor regression before explicit governance promotion
+      - regression-closed successor candidate awaiting explicit governance promotion
       - future minimum BA derivation only after explicit promotion
     scope:
       - integrated MR-0001 access-decision responsibility
       - MR-0002 authorization-to-GovernedIdentity semantic binding
       - reviewed MR-0003 identity-determination successor chain inherited from candidate-r2
-      - DG-FA-001 semantic resolution and remaining explicit documentation gaps
+      - governed DG-FA-001 through DG-FA-006 dispositions plus preserved AUTH-C / AUTH-P clarifications
+      - full successor semantic regression passed after propagation alignment
     exclusions:
       - CURRENT_GOVERNED authority
       - primary Base Analysis source use before explicit promotion
       - accepted Base Analysis derivation before explicit promotion
-      - automatic closure of DG-FA-002 through DG-FA-006 or AUTH-C / AUTH-P
+      - automatic promotion or reinterpretation of reviewed gap / clarification dispositions
 
   - familyKey: facial-access-current-governed-validation-corpus
     pathPrefix: governed-corpora/facial-access/current/

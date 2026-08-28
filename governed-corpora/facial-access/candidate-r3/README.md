@@ -2,7 +2,7 @@
 
 **Lifecycle:** candidate
 **Authority:** `EXPERIMENTAL_NON_CANONICAL`
-**Corpus revision:** `R3-CANDIDATE-8`
+**Corpus revision:** `R3-CANDIDATE-9`
 **Primary BA source allowed:** no
 
 ## Purpose
@@ -22,7 +22,7 @@ It integrates the reviewed `MR-0003` identity-determination branch from `candida
 
 ## Authority boundary
 
-This candidate is current **for R24 experimentation and further documentation-gap review only**.
+This candidate is current **for R24 pre-promotion validation and governance preparation only**.
 
 It is not `CURRENT_GOVERNED`, it is not a primary Base Analysis source, and it does not authorize an accepted Facial Access BA. Explicit governance promotion remains mandatory before accepted BA derivation.
 
@@ -162,8 +162,18 @@ This resolution does not introduce an internal vocabulary such as `AUTHORIZED / 
 
 No BA contract is changed by this disposition.
 
+## Full successor semantic regression result
+
+The full regression passes after correction of propagation-only defects:
+
+- the DG-FA-006 positive branch is propagated consistently into the MR-0003 cross-branch integration text;
+- the MR-0003 Security Requirement set reflects the completed `AUTH-C` / `AUTH-P` dispositions and candidate R3 state;
+- forward-facing candidate, repository, work-plan and authority metadata are aligned to completed gap review and regression closure.
+
+No new project-semantics gap was found and no BA contract change is justified by the regression.
+
 ## Next bounded step
 
-The bounded documentation-gap review is complete for the currently registered R3 gap set.
+The next authorized step is **EXPLICIT GOVERNANCE PROMOTION DECISION ONLY**.
 
-The next authorized step is **full successor semantic regression**.
+The candidate remains `EXPERIMENTAL_NON_CANONICAL` and `primaryBASourceAllowed: false` until that separate human-governance microstep is completed.

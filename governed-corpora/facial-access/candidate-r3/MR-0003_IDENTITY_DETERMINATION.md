@@ -42,4 +42,4 @@ Nel candidate R3 il consumer governato dell'`IdentityDeterminationOutcome` è la
 
 Quando la determinazione riesce e rende disponibile una specifica `GovernedIdentity`, lo stato di autorizzazione utilizzato da `MR-0001` per il tentativo deve riferirsi a quella stessa identità governata. `MR-0002` possiede il significato di `AccessAuthorizationState` come stato riferito a una `GovernedIdentity`; `MR-0001` possiede la decisione sul singolo tentativo di accesso.
 
-Questa integrazione non introduce un consumer tecnico, una API o un protocollo e non stabilisce che determinazione riuscita più condizione di autorizzazione soddisfatta siano sufficienti a imporre un esito `ALLOW`.
+Questa integrazione non introduce un consumer tecnico, una API o un protocollo. La regola positiva secondo cui una determinazione riuscita combinata con la condizione di autorizzazione richiesta per la stessa `GovernedIdentity` impone un `AccessDecision` che consente l'accesso è governata downstream da `D-1.1` e `FR-1.1` sotto `MR-0001`; `MR-0003` non possiede né ridefinisce l'`AccessDecision`.

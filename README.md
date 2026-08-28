@@ -17,7 +17,7 @@ The repository is intentionally separate from the ThreatForge software repositor
 
 DDTA is currently in an **R24 working research pass after completed repository alignment**. Earlier BA0-BA5 closure results remain historical lower bounds, but they must not be read as proof that the complete Base Analysis is permanently closed.
 
-The active research step remains `methodology/DDTA_RESEARCH_WORK_PLAN_AFTER_DOCUMENTATION_CLOSURE_R23.md`, now refined by `methodology/DDTA_R24_SEMANTIC_REVIEW_CHECKPOINT_R1.md`. The R23 literature pass and pressure tests no longer assume an identification-versus-verification conclusion: they exposed a material semantic ambiguity around the information available when the current `MR-0003` responsibility starts. Pattern/domain knowledge remains optional review knowledge, never project authority.
+The active forward execution record is `methodology/DDTA_RESEARCH_WORK_PLAN_AFTER_DOCUMENTATION_CLOSURE_R24.md`, carried alongside `methodology/DDTA_R24_SEMANTIC_REVIEW_CHECKPOINT_R1.md`. The bounded Facial Access documentation-gap review and full successor semantic regression are complete for candidate R3; the candidate remains `EXPERIMENTAL_NON_CANONICAL` pending an explicit governance-promotion decision. The R23 literature pass and pressure tests remain historical evidence for the semantic ambiguity that triggered R24. Pattern/domain knowledge remains optional review knowledge, never project authority.
 
 The current R24 work has specifically reopened **BA2** only where concrete documentation-driven pressure tests require refinement. The active BA2 working revision is `methodology/BA2_RELATION_ACTION_VOCABULARY_R2.md`; BA1 identity remains `BAReferent + BAProposition`, and no other BA layer is reopened merely for editorial cleanup.
 
@@ -36,7 +36,7 @@ governed project meaning
 
 The active forward-facing R24 records are:
 
-- `methodology/DDTA_RESEARCH_WORK_PLAN_AFTER_DOCUMENTATION_CLOSURE_R23.md`
+- `methodology/DDTA_RESEARCH_WORK_PLAN_AFTER_DOCUMENTATION_CLOSURE_R24.md`
 - `methodology/DDTA_R24_SEMANTIC_REVIEW_CHECKPOINT_R1.md`
 - `methodology/DDTA_R24_FACIAL_ACCESS_CANDIDATE_R3_ACTIVATION_CHECKPOINT_R1.md`
 - `methodology/DDTA_R24_FACIAL_ACCESS_DG_FA_002_CHECKPOINT_R1.md`
@@ -46,6 +46,7 @@ The active forward-facing R24 records are:
 - `methodology/DDTA_R24_FACIAL_ACCESS_AUTH_C_CHECKPOINT_R1.md`
 - `methodology/DDTA_R24_FACIAL_ACCESS_AUTH_P_CHECKPOINT_R1.md`
 - `methodology/DDTA_R24_FACIAL_ACCESS_DG_FA_006_CHECKPOINT_R1.md`
+- `methodology/DDTA_R24_FACIAL_ACCESS_FULL_SEMANTIC_REGRESSION_CHECKPOINT_R1.md`
 - `literature/syntheses/R23_SEMANTIC_RECOGNITION_SYNTHESIS_R1.md`
 - `studies/semantic-review/R24_SEMANTIC_REVIEW_PRESSURE_TESTS_R1.md`
 - `studies/semantic-review/R24_MR0003_SEMANTIC_REVIEW_FINDING_R1.md`
@@ -73,7 +74,7 @@ The active integrated R24 Facial Access successor candidate is:
 
 - `governed-corpora/facial-access/candidate-r3/`
 
-It is `EXPERIMENTAL_NON_CANONICAL`, has `researchRole: CURRENT_THESIS_VALIDATION_CORPUS`, and keeps `primaryBASourceAllowed: false`. It is current only for R24 experimentation and remaining documentation-gap review; it is not `CURRENT_GOVERNED` and cannot be the primary source of an accepted Facial Access BA.
+It is `EXPERIMENTAL_NON_CANONICAL`, has `researchRole: CURRENT_THESIS_VALIDATION_CORPUS`, and keeps `primaryBASourceAllowed: false`. The bounded documentation-gap review and full successor semantic regression are complete; it remains a pre-promotion R24 validation corpus, is not `CURRENT_GOVERNED`, and cannot be the primary source of an accepted Facial Access BA.
 
 The earlier `governed-corpora/facial-access/candidate-r2/` remains unchanged as the MR-0003-only semantic-successor checkpoint and regression/provenance evidence.
 

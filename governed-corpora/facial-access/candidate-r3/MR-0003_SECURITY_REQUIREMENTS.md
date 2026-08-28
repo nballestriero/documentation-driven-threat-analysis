@@ -1,9 +1,9 @@
-# Security Requirements — MR-0003 candidate R2
+# Security Requirements — MR-0003 candidate R3
 
 **Lifecycle:** candidate
 **Authority:** `EXPERIMENTAL_NON_CANONICAL` — not a primary Base Analysis source.
 
-This file contains only the Security Requirements reviewed in the current downstream semantic-compatibility sequence. It does not yet claim complete carry-forward of the superseded R1 branch.
+This file preserves the reviewed MR-0003 Security Requirement set inherited through candidate R2 and the completed bounded AUTH-C / AUTH-P dispositions carried into candidate R3. The current R3 Security Requirement carry-forward review is complete for this branch.
 
 ## SEC-3.4.2-C — Confidentiality of RecognitionCapture
 
@@ -20,7 +20,7 @@ Il precedente `SEC-3.4.2-C — Confidentiality of RecognitionCapture` mantiene i
 
 Il wording storico `contenuto biometrico` è semplificato a `contenuto della RecognitionCapture` per non introdurre un sotto-oggetto semantico non necessario. Il riferimento storico all'accettazione da parte di `RecognitionProcessor` non viene carried forward, perché il candidate corrente non governa ancora un milestone o stato di acceptance distinto dal comportamento di delivery.
 
-La definizione dei soggetti autorizzati alla conoscenza della `RecognitionCapture` resta una governed clarification question da riesaminare con i documentation gaps; questo SecurityRequirement non inventa tale evidenza.
+La bounded review `AUTH-C` ha preservato esplicitamente come `NOT SPECIFIED` la base completa con cui il progetto determina quali soggetti siano autorizzati alla conoscenza della `RecognitionCapture`; la clarification è non-blocking per il corpus dimostrativo corrente e questo SecurityRequirement non inventa tale evidenza.
 
 TLS, mTLS, firme, certificati, VLAN, credenziali o altri meccanismi di realizzazione non sono prescritti da questo SecurityRequirement.
 
@@ -62,7 +62,7 @@ Il termine storico `RecognitionRequest` è riallineato a `IdentityDeterminationR
 
 Il riferimento storico all'accettazione della capture come valida non viene carried forward, perché il candidate corrente non governa ancora un milestone di acceptance, uno stato `valid` o un comportamento di validation separato.
 
-La definizione dell'evidenza governata che stabilisce quali origini siano autorizzate a fornire una `RecognitionCapture` per una `IdentityDeterminationRequest` resta una governed clarification question da riesaminare con i documentation gaps.
+La bounded review `AUTH-P` ha preservato esplicitamente come `NOT SPECIFIED` la base/evidenza completa con cui il progetto stabilisce quali origini siano autorizzate a fornire una `RecognitionCapture` per una `IdentityDeterminationRequest`; la clarification è non-blocking per il corpus dimostrativo corrente.
 
 Questo SecurityRequirement non prescrive certificati, firme, device credentials, mTLS, attestation, chiavi, MAC o altri meccanismi di realizzazione. `AuthorizedProvenance` resta distinta da `Integrity`.
 

@@ -1,16 +1,16 @@
 schemaVersion: 1
 corpusKey: facial-access-candidate-r3
-corpusRevision: R3-CANDIDATE-8
+corpusRevision: R3-CANDIDATE-9
 authorityBaselineKey: FACIAL-ACCESS-R24-INTEGRATED-CANDIDATE-1
 authorityStatus: EXPERIMENTAL_NON_CANONICAL
 researchRole: CURRENT_THESIS_VALIDATION_CORPUS
 primaryBASourceAllowed: false
-basedOnRepositoryCommit: 4b2dce0a2817ce94daeedaa620a81097308dfad1
+basedOnRepositoryCommit: e96e51f3ea652ab547830f76e8bbabcb65c29030
 
 scope:
   project: facial-access
   integrationRoots: [MR-0001, MR-0002, MR-0003]
-  completenessClaim: dg-fa-001-through-dg-fa-006-reviewed-auth-c-auth-p-preserved-successor-ready-for-full-semantic-regression-with-retained-ba-segment-identity-pressure
+  completenessClaim: dg-fa-001-through-dg-fa-006-reviewed-auth-c-auth-p-preserved-full-successor-semantic-regression-passed-pre-promotion-candidate-with-retained-ba-segment-identity-pressure
 
 documents:
   - path: MR-0001_ACCESS_CONTROL.md
@@ -109,14 +109,22 @@ provenance:
     newFunctionalRequirementIntroduced: false
     accessAuthorizationStateVocabularyIntroduced: false
     baContractChangeAuthorized: false
+  fullSuccessorSemanticRegressionFinding:
+    disposition: PASS_AFTER_PROPAGATION_ALIGNMENT
+    newProjectSemanticGapFound: false
+    dgFa006PropagationAligned: true
+    authCAuthPStatePropagationAligned: true
+    forwardStateMetadataAligned: true
+    baContractChangeAuthorized: false
+    promotionPerformed: false
 
 reviewState:
   completed:
     - MR-0003 branch Decisions, Functional Requirements and Security Requirements inherited from candidate R2
     - MR-0001 macro responsibility reviewed and materially revised for IdentityDeterminationOutcome semantics
     - MR-0002 reviewed for GovernedIdentity to AccessAuthorizationState semantic binding only
-    - D-1.1 reviewed as conjunctive necessary-condition access-policy commitment
-    - FR-1.1 reviewed as the operational cross-MR consumer and same-identity authorization binding
+    - D-1.1 reviewed as the conjunctive access-policy commitment including the governed positive branch
+    - FR-1.1 reviewed as the operational cross-MR consumer, same-identity authorization binding and normative positive AccessDecision branch
     - DG-FA-001 resolved semantically by a unique governed downstream responsibility
     - DG-FA-002 resolved and reframed as governed outcome-conclusiveness semantics under D-3.2 and FR-3.2.1
     - DG-FA-003 resolved at documentation semantic level; BA representation pressure retained without adding cross-reference or channel/path metadata
@@ -125,6 +133,7 @@ reviewState:
     - AUTH-C preserved as explicit NOT SPECIFIED confidentiality-authorization clarification and treated as non-blocking for the process-demonstration corpus
     - AUTH-P preserved as explicit NOT SPECIFIED authorized-provenance evidence clarification and treated as non-blocking for the process-demonstration corpus
     - DG-FA-006 resolved at MR-0001 semantic owner: successful identity determination plus the required authorization condition for the same GovernedIdentity now requires an allowing AccessDecision
+    - full successor semantic regression passed after propagation alignment; no new project-semantics gap found and no BA contract change justified
   explicitlyNotSpecified:
     - normalized AccessAuthorizationState property or value vocabulary
     - authorization lookup, cache, freshness, retry, exception or technical retrieval semantics
@@ -132,9 +141,9 @@ reviewState:
     - internal score, confidence, threshold, ranking or model-output rule used by a realization to reach the governed outcome
     - complete authorization basis determining which subjects may know RecognitionCapture content
     - complete evidence or authorization basis establishing which origins may provide RecognitionCapture for a specific IdentityDeterminationRequest
-  nextGapReview: FULL-SUCCESSOR-SEMANTIC-REGRESSION
+  nextGapReview: NONE
+  nextStep: EXPLICIT-GOVERNANCE-PROMOTION
   remainingBeforePromotion:
-    - perform full successor semantic regression
     - perform explicit governance promotion
 
 analysisPrecondition:
@@ -148,3 +157,5 @@ analysisPrecondition:
   authCClarificationRequiredToBeSpecifiedBeforePromotion: false
   authPClarificationRequiredToBeSpecifiedBeforePromotion: false
   dgFa006PositiveBranchResolved: true
+  fullSuccessorSemanticRegressionPassed: true
+  explicitGovernancePromotionCompleted: false

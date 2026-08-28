@@ -119,19 +119,19 @@ The active experimental successor is now:
 
 ```text
 corpusKey: facial-access-candidate-r3
-corpusRevision: R3-CANDIDATE-8
+corpusRevision: R3-CANDIDATE-9
 authorityStatus: EXPERIMENTAL_NON_CANONICAL
 researchRole: CURRENT_THESIS_VALIDATION_CORPUS
 primaryBASourceAllowed: false
 ```
 
-`candidate-r3` integrates the reviewed MR-0003 successor chain with the reviewed MR-0001 access-decision consumer and MR-0002 authorization-to-identity binding. `DG-FA-001` is resolved at semantic level, `DG-FA-002` is resolved / reframed as governed outcome-conclusiveness semantics, `DG-FA-003` is resolved at documentation semantic level with its BA representation pressure explicitly retained, `DG-FA-004` is reframed from hidden transport nodes into a concrete BA segment-identity pressure without introducing project topology, and `DG-FA-005` is deferred outside the current documentation + BA closure scope. `AUTH-C` and `AUTH-P` are preserved as explicit analysis-relevant project meaning `NOT SPECIFIED` and are non-blocking for the current process-demonstration corpus. `DG-FA-006` is resolved at the `MR-0001` semantic owner by governing the minimal positive access-decision branch in `D-1.1` and `FR-1.1`. The earlier `candidate-r2` remains unchanged as regression/provenance evidence.
+`candidate-r3` integrates the reviewed MR-0003 successor chain with the reviewed MR-0001 access-decision consumer and MR-0002 authorization-to-identity binding. `DG-FA-001` is resolved at semantic level, `DG-FA-002` is resolved / reframed as governed outcome-conclusiveness semantics, `DG-FA-003` is resolved at documentation semantic level with its BA representation pressure explicitly retained, `DG-FA-004` is reframed from hidden transport nodes into a concrete BA segment-identity pressure without introducing project topology, and `DG-FA-005` is deferred outside the current documentation + BA closure scope. `AUTH-C` and `AUTH-P` are preserved as explicit analysis-relevant project meaning `NOT SPECIFIED` and are non-blocking for the current process-demonstration corpus. `DG-FA-006` is resolved at the `MR-0001` semantic owner by governing the minimal positive access-decision branch in `D-1.1` and `FR-1.1`. Full successor semantic regression passes after propagation alignment, with no new project-semantics gap and no BA contract change justified. The earlier `candidate-r2` remains unchanged as regression/provenance evidence.
 
 Therefore:
 
 - no accepted/current Facial Access BA may yet be derived;
 - working BA pressure tests are allowed;
-- promotion requires completion of the remaining bounded gap review, full semantic regression and an explicit governance step;
+- the bounded gap review and full successor semantic regression are complete; promotion still requires a separate explicit governance step;
 - the candidate must not be treated as `CURRENT_GOVERNED` merely because it is the active R24 experimental successor.
 
 ## 4. Candidate R3 content now reviewed
@@ -226,12 +226,12 @@ AuthorizedProvenance
 
 The Security Requirements do not prescribe TLS, mTLS, signatures, certificates, MACs, credentials, attestation, VLANs or other mechanisms.
 
-Open authorization evidence is not silently invented:
+Authorization evidence is not silently invented:
 
-- who is authorized to know the capture content?
-- what governed evidence establishes which origins are authorized to provide a capture for a request?
+- the complete basis determining who is authorized to know the capture content remains `NOT SPECIFIED` under the preserved `AUTH-C` disposition;
+- the complete evidence / authorization basis establishing which origins are authorized to provide a capture for a request remains `NOT SPECIFIED` under the preserved `AUTH-P` disposition.
 
-Those are clarification/gap questions.
+Both clarifications are non-blocking for the current process-demonstration corpus.
 
 ## 5. Consumed-service assurance rule retained
 
@@ -264,9 +264,9 @@ coverage gap != automatic control/mechanism
 
 The project may require Confidentiality/Integrity/AuthorizedProvenance for its information even when it consumes the transport service. It may only rely on the service for those properties when governed service evidence guarantees them.
 
-## 6. Documentation-gap review is the next mandatory phase
+## 6. Documentation-gap review and successor semantic regression closure
 
-The existing gaps remain diagnostic and are reviewed one at a time against active candidate R3.
+The registered candidate R3 gap set has now been reviewed through bounded semantic-owner steps. The dispositions remain diagnostic evidence and are not reinterpreted by this regression closure.
 
 Current state:
 
@@ -279,7 +279,7 @@ DG-FA-005  test/code evidence linkage              DEFERRED / OUTSIDE CURRENT DO
 DG-FA-006  positive access-decision branch        RESOLVED / MINIMAL POSITIVE BRANCH GOVERNED
 ```
 
-Additional clarification questions exposed by the SR review remain pending:
+Additional clarification meanings exposed by the SR review remain explicitly preserved:
 
 ```text
 AUTH-C  PRESERVED / NOT SPECIFIED / NON-BLOCKING
@@ -295,23 +295,15 @@ as authorized for a specific IdentityDeterminationRequest is
 intentionally not specified in the current demonstration corpus.
 ```
 
-For each remaining gap:
+`DG-FA-005` remains deferred and is not a current promotion blocker.
 
-1. show relevant current MR;
-2. show relevant parent Decision(s);
-3. show relevant FR/SR when applicable;
-4. show historical gap wording;
-5. determine whether the gap is still real, resolved, reframed or outside current scope;
-6. do not invent a solution;
-7. update candidate documentation only after explicit disposition.
+AUTH-C and AUTH-P remain explicitly preserved and are not current promotion blockers. DG-FA-006 remains resolved at the `MR-0001` semantic owner.
 
-`DG-FA-005` is deferred and is not a current promotion blocker.
+The full successor semantic regression found propagation-only defects, corrected them without adding new project meaning, and passes after alignment. No further documentation-gap review is required before the explicit governance-promotion decision.
 
-AUTH-C and AUTH-P are preserved explicitly and are not current promotion blockers. DG-FA-006 is resolved at the `MR-0001` semantic owner. The bounded documentation-gap review is complete; the next step is **full successor semantic regression**.
+## 7. Full-candidate regression result
 
-## 7. Required full-candidate regression before promotion
-
-After gap review, perform a full semantic regression across the successor candidate.
+The full semantic regression has been performed across the successor candidate.
 
 At minimum verify:
 
@@ -324,9 +316,30 @@ At minimum verify:
 - authorization/provenance evidence gaps are explicit rather than inferred;
 - no score/confidence/threshold/ranking/`1:N` semantics have been added without governed evidence.
 
+Regression result:
+
+```text
+core semantics
+    -> PASS
+
+new project-semantics gap
+    -> NONE FOUND
+
+propagation / forward-state defects
+    -> FOUND AND CORRECTED
+
+BA contract change
+    -> NOT JUSTIFIED
+
+promotion
+    -> NOT PERFORMED
+```
+
+The corrected propagation defects were limited to the stale DG-FA-006 statement in the MR-0003 cross-branch text, stale AUTH-C / AUTH-P review-state wording in the MR-0003 Security Requirement set, and forward-state metadata describing gap review / regression as still pending.
+
 ## 8. Successor assembly and promotion gate
 
-Only after gap review and full regression:
+Gap review and full regression are now complete. The remaining authority gate is:
 
 ```text
 assemble coherent successor baseline
@@ -519,7 +532,7 @@ Do not:
 The active forward sequence is:
 
 ```text
-R3-CANDIDATE-8
+R3-CANDIDATE-9
     -> DG-FA-001 resolved at semantic level
     -> DG-FA-002 resolved / reframed under D-3.2 and FR-3.2.1
     -> DG-FA-003 resolved at documentation semantic level / BA pressure retained
@@ -528,7 +541,7 @@ R3-CANDIDATE-8
     -> AUTH-C preserved / NOT SPECIFIED / non-blocking
     -> AUTH-P preserved / NOT SPECIFIED / non-blocking
     -> DG-FA-006 resolved / minimal positive access-decision branch governed
-    -> full successor semantic regression
+    -> full successor semantic regression PASS / propagation aligned
     -> explicit governance promotion
     -> minimum justified BA rebuild
     -> full post-BA regression
@@ -561,4 +574,4 @@ It does not:
 - claim that the security-property authorization models already exist;
 - claim that wired Ethernet describes hidden provider topology.
 
-The next authorized action is **full successor semantic regression only**.
+The next authorized action is **explicit governance promotion decision only**.
