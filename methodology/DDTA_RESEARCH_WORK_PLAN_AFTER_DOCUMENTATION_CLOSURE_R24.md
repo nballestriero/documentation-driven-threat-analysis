@@ -115,24 +115,26 @@ No BA operator is added merely because documentation uses a familiar verb or bec
 
 The historical/current R1 Facial Access corpus remains superseded evidence.
 
-The active experimental successor is now:
+The current governed successor is now:
 
 ```text
 corpusKey: facial-access-candidate-r3
 corpusRevision: R3-CANDIDATE-9
-authorityStatus: EXPERIMENTAL_NON_CANONICAL
+authorityBaselineKey: FACIAL-ACCESS-GOV-R2
+authorityStatus: CURRENT_GOVERNED
 researchRole: CURRENT_THESIS_VALIDATION_CORPUS
-primaryBASourceAllowed: false
+primaryBASourceAllowed: true
 ```
 
 `candidate-r3` integrates the reviewed MR-0003 successor chain with the reviewed MR-0001 access-decision consumer and MR-0002 authorization-to-identity binding. `DG-FA-001` is resolved at semantic level, `DG-FA-002` is resolved / reframed as governed outcome-conclusiveness semantics, `DG-FA-003` is resolved at documentation semantic level with its BA representation pressure explicitly retained, `DG-FA-004` is reframed from hidden transport nodes into a concrete BA segment-identity pressure without introducing project topology, and `DG-FA-005` is deferred outside the current documentation + BA closure scope. `AUTH-C` and `AUTH-P` are preserved as explicit analysis-relevant project meaning `NOT SPECIFIED` and are non-blocking for the current process-demonstration corpus. `DG-FA-006` is resolved at the `MR-0001` semantic owner by governing the minimal positive access-decision branch in `D-1.1` and `FR-1.1`. Full successor semantic regression passes after propagation alignment, with no new project-semantics gap and no BA contract change justified. The earlier `candidate-r2` remains unchanged as regression/provenance evidence.
 
 Therefore:
 
-- no accepted/current Facial Access BA may yet be derived;
-- working BA pressure tests are allowed;
-- the bounded gap review and full successor semantic regression are complete; promotion still requires a separate explicit governance step;
-- the candidate must not be treated as `CURRENT_GOVERNED` merely because it is the active R24 experimental successor.
+- explicit human governance promotion has been completed in place for `FACIAL-ACCESS-GOV-R2`;
+- the promoted documentation is now eligible as the primary source for the minimum justified Facial Access BA rebuild;
+- no accepted/current Facial Access BA exists yet merely because the documentation was promoted;
+- the bounded gap review and full successor semantic regression remain the semantic basis for the promotion;
+- the `candidate-r3/` path name is retained as provenance and does not reduce its `CURRENT_GOVERNED` authority.
 
 ## 4. Candidate R3 content now reviewed
 
@@ -337,30 +339,30 @@ promotion
 
 The corrected propagation defects were limited to the stale DG-FA-006 statement in the MR-0003 cross-branch text, stale AUTH-C / AUTH-P review-state wording in the MR-0003 Security Requirement set, and forward-state metadata describing gap review / regression as still pending.
 
-## 8. Successor assembly and promotion gate
+## 8. Successor assembly and promotion gate — completed
 
-Gap review and full regression are now complete. The remaining authority gate is:
-
-```text
-assemble coherent successor baseline
-        |
-        v
-check completeness and authority metadata
-        |
-        v
-explicit human governance promotion
-```
-
-Promotion must be explicit.
-
-Before promotion:
+Gap review and full regression were completed before the authority change. The explicit human governance decision has now promoted the regression-closed corpus in place.
 
 ```text
-authorityStatus: EXPERIMENTAL_NON_CANONICAL
-primaryBASourceAllowed: false
+source revision
+    R3-CANDIDATE-9
+
+promotion source commit
+    4d6aa85385b79be926125d4e61390ac185f63cfd
+
+authority baseline
+    FACIAL-ACCESS-GOV-R2
+
+authorityStatus
+    CURRENT_GOVERNED
+
+primaryBASourceAllowed
+    true
 ```
 
-After promotion, update authority metadata only through an explicit governed microstep. Do not equate "review complete" with "promoted".
+The promotion changes authority metadata only. It does not add, delete or reinterpret project semantic commitments and does not modify any BA contract.
+
+The historical regression checkpoint remains correct in recording `PROMOTION -> NOT PERFORMED` at the time that regression was closed; the separate promotion checkpoint records the later authority decision.
 
 ## 9. Minimum justified BA rebuild after promotion
 
@@ -515,7 +517,7 @@ This test is evidence for preservation of a governed material distinction, not a
 
 Do not:
 
-- derive an accepted BA before promotion;
+- derive an accepted BA from any source other than the explicitly promoted `FACIAL-ACCESS-GOV-R2` baseline and its pinned concrete promotion commit;
 - add score, confidence, threshold, ranking or `1:N` semantics;
 - add a Decision/FR merely to satisfy hierarchy shape;
 - invent a project-owned transport FR from D-3.5;
@@ -542,8 +544,9 @@ R3-CANDIDATE-9
     -> AUTH-P preserved / NOT SPECIFIED / non-blocking
     -> DG-FA-006 resolved / minimal positive access-decision branch governed
     -> full successor semantic regression PASS / propagation aligned
-    -> explicit governance promotion
-    -> minimum justified BA rebuild
+    -> explicit governance promotion COMPLETED
+         FACIAL-ACCESS-GOV-R2 / CURRENT_GOVERNED
+    -> minimum justified BA rebuild NEXT
     -> full post-BA regression
     -> evaluate transfer/delivery/service/medium structural pressure
     -> reopen/supersede smallest forced BA contract only if necessary
@@ -568,10 +571,10 @@ This R24 plan records forward execution state only.
 
 It does not:
 
-- promote candidate R3;
-- accept a Facial Access BA;
+- accept a Facial Access BA merely because the documentation baseline is promoted;
 - close BA as a whole;
+- accept the retained `transfer.behavior` working candidate as BA2;
 - claim that the security-property authorization models already exist;
 - claim that wired Ethernet describes hidden provider topology.
 
-The next authorized action is **explicit governance promotion decision only**.
+The explicit governance promotion is complete. The next authorized action is **minimum justified Base Analysis rebuild only**.

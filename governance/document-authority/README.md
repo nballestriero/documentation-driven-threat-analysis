@@ -31,19 +31,33 @@ Chronological recency, directory depth, filename wording and tool/LLM confidence
 
 ## Current facial-access rule
 
-`governed-corpora/facial-access/current/`, registered as `FACIAL_ACCESS_CURRENT_R1` / `FACIAL-ACCESS-GOV-R1`, is now `SUPERSEDED` after the R24 MR-0003 semantic-review finding and has `primaryBASourceAllowed: false`.
+The current governed Facial Access R24 baseline is:
 
-The explicit MR-0003 successor candidate:
+- `governed-corpora/facial-access/candidate-r3/`
+- authority baseline `FACIAL-ACCESS-GOV-R2`
+
+It was explicitly promoted **in place** from the regression-closed `R3-CANDIDATE-9` corpus after full successor semantic regression. Its effective authority is `CURRENT_GOVERNED` and `primaryBASourceAllowed: true`.
+
+The directory name `candidate-r3/` is retained as provenance. Filename or directory wording does not override the explicit registry classification.
+
+The former governed R1 corpus:
+
+- `governed-corpora/facial-access/current/`
+- `FACIAL-ACCESS-GOV-R1`
+
+remains `SUPERSEDED` with `primaryBASourceAllowed: false` and is retained as regression evidence.
+
+The earlier MR-0003-only successor candidate:
 
 - `governed-corpora/facial-access/candidate-r2/`
 
-is classified as `EXPERIMENTAL_NON_CANONICAL` with `primaryBASourceAllowed: false`. It exists to review the corrected MR meaning against the downstream Decisions and Functional Requirements before any promotion.
+remains `EXPERIMENTAL_NON_CANONICAL` with `primaryBASourceAllowed: false` and is retained for regression/provenance evidence.
 
 The broader R24 working project document:
 
 - `methodology/DDTA_FACIAL_ACCESS_PROJECT_DOCUMENTATION_WORKING_R24_PROJECT_ONLY.tex`
 
-also remains `EXPERIMENTAL_NON_CANONICAL`. At this point there is deliberately no `CURRENT_GOVERNED` facial-access baseline. Promotion of a replacement requires an explicit authority change after compatibility review; chronology, filename, abstraction quality or research preference are insufficient.
+also remains `EXPERIMENTAL_NON_CANONICAL`.
 
 The following older facial-access materials remain historical/non-canonical evidence and are not primary sources for an accepted current BA:
 
@@ -60,6 +74,8 @@ The package that introduced this registry was based on repository baseline:
 
 That commit remains historical provenance for the introduction of the authority gate; it is not the repository's current HEAD.
 
-The superseded facial-access R1 corpus retains logical baseline key `FACIAL-ACCESS-GOV-R1` for historical provenance. The MR-0003 successor candidate uses `FACIAL-ACCESS-R24-MR0003-CANDIDATE-1` and is not a governed BA source.
+The superseded facial-access R1 corpus retains logical baseline key `FACIAL-ACCESS-GOV-R1` for historical provenance. The promoted integrated R24 successor uses `FACIAL-ACCESS-GOV-R2`. Candidate-r2 retains its candidate-only provenance and is not a governed BA source.
 
-Every future accepted BA run must pin both an explicitly promoted authority baseline and the concrete Git commit used as its source baseline. The registry may record a later repository commit when authority classifications are reviewed or extended; that metadata does not promote any working artifact by chronology alone.
+Every accepted BA run must pin both the explicitly promoted authority baseline `FACIAL-ACCESS-GOV-R2` and the concrete Git commit containing the promotion state used as its source baseline. The promotion decision was prepared against `4d6aa85385b79be926125d4e61390ac185f63cfd`; that source commit records the regression-closed candidate immediately before the authority change.
+
+The registry may record later repository commits when authority classifications are reviewed or extended; chronology alone never promotes a working artifact.

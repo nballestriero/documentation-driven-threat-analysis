@@ -1,7 +1,9 @@
 # Security Requirements — MR-0003 candidate R3
 
-**Lifecycle:** candidate
-**Authority:** `EXPERIMENTAL_NON_CANONICAL` — not a primary Base Analysis source.
+**Lifecycle:** current governed
+**Authority:** `CURRENT_GOVERNED` — primary Base Analysis source allowed.
+**Promotion baseline:** `FACIAL-ACCESS-GOV-R2`
+**Promotion provenance:** promoted in place from `R3-CANDIDATE-9`; candidate-era wording below is retained as review/provenance text and does not reduce current authority.
 
 This file preserves the reviewed MR-0003 Security Requirement set inherited through candidate R2 and the completed bounded AUTH-C / AUTH-P dispositions carried into candidate R3. The current R3 Security Requirement carry-forward review is complete for this branch.
 

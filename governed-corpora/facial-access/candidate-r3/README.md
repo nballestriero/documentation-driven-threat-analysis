@@ -1,9 +1,11 @@
 # Facial Access — integrated successor candidate R3
 
-**Lifecycle:** candidate
-**Authority:** `EXPERIMENTAL_NON_CANONICAL`
+**Lifecycle:** current governed
+**Authority:** `CURRENT_GOVERNED`
 **Corpus revision:** `R3-CANDIDATE-9`
-**Primary BA source allowed:** no
+**Authority baseline:** `FACIAL-ACCESS-GOV-R2`
+**Primary BA source allowed:** yes
+**Promotion provenance:** promoted in place from the regression-closed R3 candidate at `4d6aa85385b79be926125d4e61390ac185f63cfd`; the directory name is retained for provenance and does not reduce current authority.
 
 ## Purpose
 
@@ -22,9 +24,9 @@ It integrates the reviewed `MR-0003` identity-determination branch from `candida
 
 ## Authority boundary
 
-This candidate is current **for R24 pre-promotion validation and governance preparation only**.
+This corpus is the **current governed R24 Facial Access baseline** under `FACIAL-ACCESS-GOV-R2`.
 
-It is not `CURRENT_GOVERNED`, it is not a primary Base Analysis source, and it does not authorize an accepted Facial Access BA. Explicit governance promotion remains mandatory before accepted BA derivation.
+The promotion is authority-only: the regression-closed `R3-CANDIDATE-9` semantic content is promoted in place, while the path `candidate-r3/` is retained as provenance. `primaryBASourceAllowed: true` now permits the minimum BA rebuild, provided that the promoted authority baseline and the concrete Git commit containing the promotion are pinned.
 
 ## DG-FA-001 result carried into R3
 
@@ -121,7 +123,7 @@ The smallest working candidate that survived the bounded falsification test is o
 transfer.behavior -> <BAReferent> [0..1]
 ```
 
-This is **not** an accepted BA2 change. It must be reproduced during the minimum BA rebuild after explicit promotion before the BA2 contract may be reopened.
+This is **not** an accepted BA2 change. It must be reproduced during the minimum BA rebuild against this promoted baseline before the BA2 contract may be reopened.
 
 No first-class `Pipeline` type, `contains` / `partOf` relation, generalized behavior role, channel/path document field or provider-internal node is justified by this review.
 
@@ -131,7 +133,7 @@ No first-class `Pipeline` type, `contains` / `partOf` relation, generalized beha
 
 The complete project-specific basis that determines who is authorized to know the capture content remains explicitly `NOT SPECIFIED`. For the current process-demonstration corpus this is preserved as an analysis-relevant clarification rather than filled with an invented authorization policy.
 
-AUTH-C is non-blocking for the current promotion path. No new Decision, Functional Requirement, Security Requirement, authorization vocabulary, BA contract or technical mechanism is introduced.
+AUTH-C was non-blocking for promotion and remains preserved in the governed baseline. No new Decision, Functional Requirement, Security Requirement, authorization vocabulary, BA contract or technical mechanism is introduced.
 
 ## AUTH-P disposition carried into R3
 
@@ -141,7 +143,7 @@ AUTH-C is non-blocking for the current promotion path. No new Decision, Function
 
 For the current process-demonstration corpus this is preserved as an analysis-relevant clarification rather than filled with an invented provenance or attestation policy.
 
-AUTH-P is non-blocking for the current promotion path. No new Decision, Functional Requirement, Security Requirement, origin vocabulary, BA contract or technical mechanism is introduced.
+AUTH-P was non-blocking for promotion and remains preserved in the governed baseline. No new Decision, Functional Requirement, Security Requirement, origin vocabulary, BA contract or technical mechanism is introduced.
 
 ## DG-FA-006 resolution carried into R3
 
@@ -172,8 +174,25 @@ The full regression passes after correction of propagation-only defects:
 
 No new project-semantics gap was found and no BA contract change is justified by the regression.
 
+## Governance promotion result
+
+The regression-closed R3 corpus has been **PROMOTED IN PLACE** by explicit human governance.
+
+```text
+authorityStatus
+    CURRENT_GOVERNED
+
+authorityBaselineKey
+    FACIAL-ACCESS-GOV-R2
+
+primaryBASourceAllowed
+    true
+```
+
+No project semantic content and no BA contract is changed by the promotion.
+
 ## Next bounded step
 
-The next authorized step is **EXPLICIT GOVERNANCE PROMOTION DECISION ONLY**.
+The next authorized step is **MINIMUM JUSTIFIED BASE ANALYSIS REBUILD ONLY**.
 
-The candidate remains `EXPERIMENTAL_NON_CANONICAL` and `primaryBASourceAllowed: false` until that separate human-governance microstep is completed.
+The BA must be derived again from this promoted documentation baseline; the earlier working BA pressure test is evidence, not an accepted BA to reuse mechanically.

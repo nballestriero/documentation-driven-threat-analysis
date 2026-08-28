@@ -1,7 +1,9 @@
 # Decisions — MR-0003 candidate R3
 
-**Lifecycle:** candidate
-**Authority:** `EXPERIMENTAL_NON_CANONICAL` — not a primary Base Analysis source.
+**Lifecycle:** current governed
+**Authority:** `CURRENT_GOVERNED` — primary Base Analysis source allowed.
+**Promotion baseline:** `FACIAL-ACCESS-GOV-R2`
+**Promotion provenance:** promoted in place from `R3-CANDIDATE-9`; candidate-era wording below is retained as review/provenance text and does not reduce current authority.
 **Parent candidate:** `MR-0003 — Determinazione dell'identità al punto di accesso`
 
 This file preserves the reviewed MR-0003 Decision set inherited from candidate R2 and records the bounded `DG-FA-002` refinement in `D-3.2`.

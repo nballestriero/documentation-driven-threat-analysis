@@ -1,16 +1,16 @@
 schemaVersion: 1
 corpusKey: facial-access-candidate-r3
 corpusRevision: R3-CANDIDATE-9
-authorityBaselineKey: FACIAL-ACCESS-R24-INTEGRATED-CANDIDATE-1
-authorityStatus: EXPERIMENTAL_NON_CANONICAL
+authorityBaselineKey: FACIAL-ACCESS-GOV-R2
+authorityStatus: CURRENT_GOVERNED
 researchRole: CURRENT_THESIS_VALIDATION_CORPUS
-primaryBASourceAllowed: false
-basedOnRepositoryCommit: e96e51f3ea652ab547830f76e8bbabcb65c29030
+primaryBASourceAllowed: true
+basedOnRepositoryCommit: 4d6aa85385b79be926125d4e61390ac185f63cfd
 
 scope:
   project: facial-access
   integrationRoots: [MR-0001, MR-0002, MR-0003]
-  completenessClaim: dg-fa-001-through-dg-fa-006-reviewed-auth-c-auth-p-preserved-full-successor-semantic-regression-passed-pre-promotion-candidate-with-retained-ba-segment-identity-pressure
+  completenessClaim: promoted-current-governed-r3-candidate-9-successor-after-full-semantic-regression-with-retained-ba-segment-identity-pressure
 
 documents:
   - path: MR-0001_ACCESS_CONTROL.md
@@ -38,8 +38,10 @@ documents:
     kind: SecurityRequirementSet
     ids: [SEC-3.4.2-C, SEC-3.4.2-I, SEC-3.4.2-P]
   - path: DOCUMENTATION_GAPS.md
-    kind: DocumentationGapSet
+    kind: GovernedDocumentationDiagnostic
     ids: [DG-FA-001, DG-FA-002, DG-FA-003, DG-FA-004, DG-FA-005, DG-FA-006, AUTH-C, AUTH-P]
+    primaryBASourceAllowed: false
+    authorityNote: diagnostic dispositions and explicit NOT SPECIFIED meanings remain traceable but are not standalone project commitments
 
 provenance:
   inheritedCandidate:
@@ -116,7 +118,15 @@ provenance:
     authCAuthPStatePropagationAligned: true
     forwardStateMetadataAligned: true
     baContractChangeAuthorized: false
-    promotionPerformed: false
+    promotionPerformedAtRegressionCheckpoint: false
+  governancePromotionFinding:
+    disposition: PROMOTED_CURRENT_GOVERNED
+    authorityBaselineKey: FACIAL-ACCESS-GOV-R2
+    promotionSourceRepositoryCommit: 4d6aa85385b79be926125d4e61390ac185f63cfd
+    promotedInPlace: true
+    semanticContentChangedByPromotion: false
+    baContractChangeAuthorized: false
+    primaryBASourceAllowed: true
 
 reviewState:
   completed:
@@ -134,6 +144,7 @@ reviewState:
     - AUTH-P preserved as explicit NOT SPECIFIED authorized-provenance evidence clarification and treated as non-blocking for the process-demonstration corpus
     - DG-FA-006 resolved at MR-0001 semantic owner: successful identity determination plus the required authorization condition for the same GovernedIdentity now requires an allowing AccessDecision
     - full successor semantic regression passed after propagation alignment; no new project-semantics gap found and no BA contract change justified
+    - explicit human governance promotion completed in place; authority changed without changing governed project semantics or BA contracts
   explicitlyNotSpecified:
     - normalized AccessAuthorizationState property or value vocabulary
     - authorization lookup, cache, freshness, retry, exception or technical retrieval semantics
@@ -142,13 +153,14 @@ reviewState:
     - complete authorization basis determining which subjects may know RecognitionCapture content
     - complete evidence or authorization basis establishing which origins may provide RecognitionCapture for a specific IdentityDeterminationRequest
   nextGapReview: NONE
-  nextStep: EXPLICIT-GOVERNANCE-PROMOTION
-  remainingBeforePromotion:
-    - perform explicit governance promotion
+  nextStep: MINIMUM-JUSTIFIED-BA-REBUILD
+  remainingBeforePromotion: []
 
 analysisPrecondition:
-  primaryBASourceAllowed: false
-  doNotDeriveAcceptedBAUntilExplicitPromotion: true
+  primaryBASourceAllowed: true
+  doNotDeriveAcceptedBAUntilExplicitPromotion: false
+  pinPromotedAuthorityBaseline: FACIAL-ACCESS-GOV-R2
+  pinConcretePromotionCommitBeforeAcceptedBA: true
   dgFa003RepresentationPressureRetainedForPromotedBARebuild: true
   dgFa004SegmentIdentityPressureRetainedForPromotedBARebuild: true
   transferBehaviorWorkingCandidateAcceptedAsBA2: false
@@ -158,4 +170,4 @@ analysisPrecondition:
   authPClarificationRequiredToBeSpecifiedBeforePromotion: false
   dgFa006PositiveBranchResolved: true
   fullSuccessorSemanticRegressionPassed: true
-  explicitGovernancePromotionCompleted: false
+  explicitGovernancePromotionCompleted: true

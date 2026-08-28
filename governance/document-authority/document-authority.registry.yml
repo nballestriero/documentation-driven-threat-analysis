@@ -1,6 +1,6 @@
 schemaVersion: 1
 registryKey: ddta-document-authority
-basedOnRepositoryCommit: fa8f5affe29143764230e43ec52514bf7f3ee8df
+basedOnRepositoryCommit: 4d6aa85385b79be926125d4e61390ac185f63cfd
 
 rules:
   chronologicalRecencyImpliesAuthority: false
@@ -97,15 +97,17 @@ entries:
 
   - familyKey: facial-access-r24-integrated-successor-candidate
     pathPrefix: governed-corpora/facial-access/candidate-r3/
-    authorityStatus: EXPERIMENTAL_NON_CANONICAL
+    authorityStatus: CURRENT_GOVERNED
     researchRole: CURRENT_THESIS_VALIDATION_CORPUS
-    authorityBaselineKey: FACIAL-ACCESS-R24-INTEGRATED-CANDIDATE-1
-    primaryBASourceAllowed: false
+    authorityBaselineKey: FACIAL-ACCESS-GOV-R2
+    promotedFromAuthorityBaselineKey: FACIAL-ACCESS-R24-INTEGRATED-CANDIDATE-1
+    promotionSourceRepositoryCommit: 4d6aa85385b79be926125d4e61390ac185f63cfd
+    primaryBASourceAllowed: true
     retainedFor:
-      - completed R24 bounded documentation-gap review evidence
-      - integrated cross-MR semantic pressure testing
-      - regression-closed successor candidate awaiting explicit governance promotion
-      - future minimum BA derivation only after explicit promotion
+      - current governed Facial Access R24 documentation baseline
+      - minimum justified Base Analysis derivation from pinned promoted sources
+      - integrated cross-MR semantic regression and future change-aware re-analysis
+      - provenance of the regression-closed R3 candidate promoted in place
     scope:
       - integrated MR-0001 access-decision responsibility
       - MR-0002 authorization-to-GovernedIdentity semantic binding
@@ -113,10 +115,10 @@ entries:
       - governed DG-FA-001 through DG-FA-006 dispositions plus preserved AUTH-C / AUTH-P clarifications
       - full successor semantic regression passed after propagation alignment
     exclusions:
-      - CURRENT_GOVERNED authority
-      - primary Base Analysis source use before explicit promotion
-      - accepted Base Analysis derivation before explicit promotion
-      - automatic promotion or reinterpretation of reviewed gap / clarification dispositions
+      - DOCUMENTATION_GAPS.md as a standalone project-commitment source
+      - automatic acceptance of the retained BA2 transfer.behavior working candidate
+      - provider-internal topology, hops, protocols or security mechanisms not governed by project documentation
+      - accepted BA derivation without pinning this authority baseline and the concrete promotion commit
 
   - familyKey: facial-access-current-governed-validation-corpus
     pathPrefix: governed-corpora/facial-access/current/

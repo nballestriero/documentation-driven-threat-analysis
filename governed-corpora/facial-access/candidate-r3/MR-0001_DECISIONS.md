@@ -1,7 +1,9 @@
 # Decisions — MR-0001 candidate R3
 
-**Lifecycle:** candidate
-**Authority:** `EXPERIMENTAL_NON_CANONICAL` — not a primary Base Analysis source.
+**Lifecycle:** current governed
+**Authority:** `CURRENT_GOVERNED` — primary Base Analysis source allowed.
+**Promotion baseline:** `FACIAL-ACCESS-GOV-R2`
+**Promotion provenance:** promoted in place from `R3-CANDIDATE-9`; candidate-era wording below is retained as review/provenance text and does not reduce current authority.
 
 ## D-1.1 — Determinazione riuscita dell'identità e autorizzazione corrispondente come condizioni congiunte per consentire l'accesso
 
