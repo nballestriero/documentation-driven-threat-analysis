@@ -1,0 +1,822 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[a4paper,margin=2.15cm,headheight=15pt]{geometry}
+\usepackage{booktabs,longtable,tabularx,array}
+\usepackage{ragged2e}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{listings}
+\usepackage{titlesec}
+\usepackage{amsmath,amssymb}
+
+\definecolor{ddtadark}{RGB}{28,38,52}
+\definecolor{ddtagray}{RGB}{244,246,248}
+\definecolor{ddtablue}{RGB}{42,88,135}
+\definecolor{ddtagreen}{RGB}{48,111,78}
+\definecolor{ddtaorange}{RGB}{148,91,25}
+\definecolor{ddtared}{RGB}{140,48,48}
+\definecolor{ddtapurple}{RGB}{92,63,122}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=ddtablue,
+  urlcolor=ddtablue,
+  citecolor=ddtablue,
+  pdftitle={Base Analysis Operational Guide},
+  pdfauthor={Documentation-Driven Threat Analysis research workspace}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{DDTA -- Base Analysis Operational Guide}
+\rhead{Revision 2 - BA0--BA6 integrated method}
+\cfoot{\thepage}
+
+\titleformat{\section}{\Large\bfseries\color{ddtadark}}{\thesection}{0.7em}{}
+\titleformat{\subsection}{\large\bfseries\color{ddtadark}}{\thesubsection}{0.7em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{ddtadark}}{\thesubsubsection}{0.7em}{}
+
+\setlist[itemize]{leftmargin=1.55em,itemsep=0.22em,topsep=0.35em}
+\setlist[enumerate]{leftmargin=1.75em,itemsep=0.22em,topsep=0.35em}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{0pt}
+\setlength{\emergencystretch}{3em}
+
+\lstset{
+  basicstyle=\ttfamily\small,
+  columns=fullflexible,
+  keepspaces=true,
+  frame=single,
+  framerule=0.3pt,
+  rulecolor=\color{ddtablue},
+  backgroundcolor=\color{ddtagray},
+  xleftmargin=0.6em,
+  xrightmargin=0.6em,
+  aboveskip=0.5em,
+  belowskip=0.5em,
+  breaklines=true,
+  showstringspaces=false
+}
+
+\newtcolorbox{closedbox}[1][REGOLA STABILE]{enhanced,breakable,colback=ddtagray,colframe=ddtagreen,title={#1},fonttitle=\bfseries}
+\newtcolorbox{workingbox}[1][REGOLA BASELINE-SCOPED]{enhanced,breakable,colback=white,colframe=ddtaorange,title={#1},fonttitle=\bfseries}
+\newtcolorbox{openbox}[1][NOT SPECIFIED / DIAGNOSTIC]{enhanced,breakable,colback=white,colframe=ddtapurple,title={#1},fonttitle=\bfseries}
+\newtcolorbox{goodbox}[1][PREFERIBILE]{enhanced,breakable,colback=white,colframe=ddtagreen,title={#1},fonttitle=\bfseries}
+\newtcolorbox{badbox}[1][DA EVITARE]{enhanced,breakable,colback=white,colframe=ddtared,title={#1},fonttitle=\bfseries}
+\newtcolorbox{examplebox}[1][ESEMPIO FACIAL ACCESS]{enhanced,breakable,colback=ddtagray,colframe=ddtablue,title={#1},fonttitle=\bfseries}
+\newtcolorbox{conceptbox}[1][CONCETTO]{enhanced,breakable,colback=white,colframe=ddtablue,title={#1},fonttitle=\bfseries}
+
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+
+\newcommand{\code}[1]{\nolinkurl{#1}}
+\newcommand{\BA}{\textit{Base Analysis}}
+\newcommand{\BAR}{\textit{BAReferent}}
+\newcommand{\BAP}{\textit{BAProposition}}
+
+\begin{document}
+
+\begin{titlepage}
+\centering
+\vspace*{1.5cm}
+{\Large Documentation-Driven Threat Analysis\par}
+\vspace{0.8cm}
+{\Huge\bfseries Base Analysis Operational Guide\par}
+\vspace{0.25cm}
+{\LARGE Revision 2 - BA0--BA6 integrated method\par}
+\vspace{0.9cm}
+{\large Procedura source-first dalla baseline governata alla accepted Base Analysis e alle projection downstream\par}
+\vfill
+\begin{minipage}{0.88\textwidth}
+\small
+\textbf{Stato.} Consolidamento human-readable successivo alla chiusura BA6 sul corpus governato Facial Access.
+
+\medskip
+\textbf{Project authority.} \code{FACIAL-ACCESS-GOV-R2}.
+
+\medskip
+\textbf{Accepted BA baseline.} \code{FACIAL-ACCESS-BA-R24-R1}.
+
+\medskip
+\textbf{Pinned source revision.} \code{8af2257a1df94fa5a83d4853ed0a1eb4d020c429}.
+
+\medskip
+Questa guida non sostituisce i contratti normativi BA0--BA6 né i documenti governati del progetto. Li organizza in una procedura leggibile e operativa.
+\end{minipage}
+\vfill
+{\large 29 agosto 2026\par}
+\end{titlepage}
+
+\pagenumbering{roman}
+\tableofcontents
+\newpage
+\pagenumbering{arabic}
+
+\section{Che cos'è la Base Analysis}
+
+Per una baseline documentale governata, la Base Analysis è la rappresentazione analitica condivisa, methodology-neutral, del significato di progetto necessario a DDTA.
+
+\begin{closedbox}[Authority boundary]
+\begin{lstlisting}
+governed project documentation
+    = project authority
+
+accepted Base Analysis
+    = shared analytical baseline
+
+projection / threat method / tests
+    = downstream consumers
+\end{lstlisting}
+\end{closedbox}
+
+La BA può normalizzare e rendere riusabile il significato, ma non può creare silenziosamente project commitment.
+
+\section{Il contratto BA0--BA6}
+
+La metodologia corrente separa sette responsabilità.
+
+\begin{longtable}{L{0.13\textwidth}L{0.75\textwidth}}
+\toprule
+\textbf{Layer} & \textbf{Responsabilità} \\
+\midrule\endhead
+BA0 & authority boundary, minimalità, unresolved state, feedback direction. \\
+BA1 & due sole famiglie first-class: \code{BAReferent} e \code{BAProposition}. \\
+BA2 & proposition semantics, operatori, ruoli, cardinalità e strutture locali. \\
+BA3 & provenance, derivazione, review/freshness, continuity e revalidation. \\
+BA4 & projection, traceability, interpretation e coverage downstream. \\
+BA5 & canonical semantic registries e controlled authoring. \\
+BA6 & accettazione integrata di una concreta BA baseline dopo coverage e regression. \\
+\bottomrule
+\end{longtable}
+
+BA6 non rende BA0--BA5 ``più veri'': verifica che una concreta materializzazione li soddisfi insieme.
+
+\section{BAReferent e BAProposition}
+
+\subsection{BAReferent}
+
+Un \BAR{} è un significato di progetto methodology-neutral con identità indipendente quando deve essere:
+
+\begin{itemize}
+\item riusato da più proposition;
+\item qualificato o vincolato;
+\item correlato con altri significati;
+\item confrontato tra baseline;
+\item target di più asserzioni;
+\item tracciato stabilmente attraverso change/revalidation.
+\end{itemize}
+
+Può denotare participant, capability, information, behavior, state, service, contract, boundary o altro significato. Queste categorie non sono automaticamente nuove famiglie BA.
+
+\subsection{BAProposition}
+
+Una \BAP{} è una asserzione analitica su uno o più BAReferent.
+
+\begin{closedbox}[No proposition proxy]
+La proposition non è il comportamento o l'oggetto di progetto che descrive. Se quel significato deve essere riusato indipendentemente, riceve BAReferent identity.
+\end{closedbox}
+
+Questa regola è ciò che giustifica \code{RecognitionCaptureDelivery} come BAReferent separato dalla proposition \code{transfer} che lo descrive.
+
+\section{Il criterio di dettaglio}
+
+La BA non replica l'intera documentazione e non ricostruisce automaticamente una architettura completa.
+
+\begin{lstlisting}
+more detail
+    only if needed to:
+      preserve a governed distinction
+      answer a material downstream question
+      or expose a missing governed fact
+\end{lstlisting}
+
+Stopping test:
+
+\begin{conceptbox}
+Abbiamo abbastanza semantica per formulare la domanda e distinguere evidenza supportata, contraddetta o \code{NOT SPECIFIED}?
+\end{conceptbox}
+
+Se sì, stop. Se no, si identifica la distinzione mancante o si produce una diagnosis. Non si inventa l'implementazione.
+
+\section{Procedura operativa}
+
+\begin{enumerate}
+\item Pin della source authority.
+\item Lettura source-first.
+\item Identificazione del minimum shared meaning.
+\item Creazione dei BAReferent necessari.
+\item Formulazione delle BAProposition con BA2.
+\item Collegamento BA3 alla source evidence.
+\item Registrazione di ambiguity / NOT SPECIFIED.
+\item Minimum-BA acceptance preliminare.
+\item Regression completa verso le fonti.
+\item Pressure review della metodologia solo su counterexample concreti.
+\item BA6 integrated completion.
+\item Projection/downstream consumption secondo BA4.
+\end{enumerate}
+
+\section{BA2 R3 - operatori}
+
+La revisione R3 mantiene quattordici operatori.
+
+\begin{longtable}{L{0.22\textwidth}L{0.66\textwidth}}
+\toprule
+\textbf{Operator} & \textbf{Significato} \\
+\midrule\endhead
+\code{transfer} & conveyance di content da source a destination; optional behavior identity quando il trasferimento deve essere riusato/qualificato. \\
+\code{produce} & actor/capability rende disponibile un risultato governato. \\
+\code{create} & stabilisce un nuovo item/event project-semantic. \\
+\code{observe} & legge/ispeziona significato esistente senza asserire creazione o state change. \\
+\code{transition} & cambia stato/lifecycle di un subject. \\
+\code{correlate} & preserva same-request/evaluation/identity/context binding. \\
+\code{reference} & riferimento esplicito senza implicare dependency/correlation/ownership. \\
+\code{dependOn} & prerequisite o dipendenza. \\
+\code{consumeService} & consumo effettivo di servizio senza ownership transfer. \\
+\code{realize} & significato concreto realizza/materializza significato astratto. \\
+\code{assignResponsibility} & placement o negazione di responsibility/authority kind. \\
+\code{constrain} & restriction riusabile/queryable. \\
+\code{classify} & semantic kind method-neutral. \\
+\code{decisionRule} & mapping operativo da condizioni/input a result. \\
+\bottomrule
+\end{longtable}
+
+\section{Ruoli e cardinalità principali}
+
+\begin{longtable}{L{0.19\textwidth}L{0.33\textwidth}L{0.34\textwidth}}
+\toprule
+\textbf{Operator} & \textbf{Required} & \textbf{Optional} \\
+\midrule\endhead
+transfer & source 1; destination 1..*; content 1..* & behavior 0..1 \\
+produce & actor 1; result 1..* & input 0..* \\
+create & actor 1; created 1..* & - \\
+observe & actor 1; observed 1..* & result 0..* \\
+transition & subject 1; toState 1 & actor 0..1; fromState 0..1 \\
+correlate & correlatedItem 1..*; correlationContext 1 & - \\
+reference & referencer 1; referenced 1..* & - \\
+dependOn & dependent 1; prerequisite 1..* & - \\
+consumeService & consumer 1..*; service 1 & provider 0..1 \\
+realize & abstract 1; realization 1..* & - \\
+assignResponsibility & responsibleParty 1..*; responsibilityScope 1; responsibilityKind 1 & - \\
+constrain & constraintTarget 1; constraintValue 1..* & - \\
+classify & classifiedReferent 1; semanticKind 1..* & - \\
+decisionRule & actor 1; input 1..*; result 1 & operator-local rule \\
+\bottomrule
+\end{longtable}
+
+\section{transfer.behavior}
+
+R3 introduce una sola estensione al transfer:
+
+\begin{lstlisting}
+transfer
+  behavior    -> BAReferent [0..1]
+  source      -> BAReferent [1]
+  destination -> BAReferent [1..*]
+  content     -> BAReferent [1..*]
+\end{lstlisting}
+
+Usare \code{behavior} solo quando il comportamento di trasferimento deve essere target di altre proposition.
+
+\begin{examplebox}
+\begin{lstlisting}
+transfer
+  behavior    -> RecognitionCaptureDelivery
+  source      -> CameraSubsystem
+  destination -> RecognitionProcessor
+  content     -> RecognitionCapture
+\end{lstlisting}
+
+\code{RecognitionCaptureDelivery} permette di mantenere sullo stesso segmento:
+\begin{itemize}
+\item ConnectivityService dependency;
+\item WIRED\_ETHERNET;
+\item Confidentiality;
+\item Integrity;
+\item AuthorizedProvenance.
+\end{itemize}
+\end{examplebox}
+
+Non si generalizza \code{behavior} a tutti gli operatori finché un secondo counterexample non lo richiede.
+
+\section{decisionRule}
+
+Forma minima:
+
+\begin{lstlisting}
+decisionRule
+  actor  -> BAReferent
+  input  -> BAReferent [1..*]
+  result -> BAReferent
+
+  rule
+    IF    decisionCondition
+    THEN  resultAssignment [1..*]
+    ELSE  resultAssignment [0..*]
+\end{lstlisting}
+
+Condition forms ammesse:
+
+\begin{lstlisting}
+comparison
+satisfies
+allOf
+anyOf
+not
+\end{lstlisting}
+
+\subsection{comparison}
+
+\begin{lstlisting}
+comparison
+  referent      -> BAReferent
+  property      -> controlled semantic key
+  comparisonKey -> equals | notEquals
+  value         -> typed local value | BAReferent
+\end{lstlisting}
+
+\code{property} resta obbligatoria.
+
+\subsection{satisfies}
+
+\begin{lstlisting}
+satisfies
+  subject   -> BAReferent
+  condition -> BAReferent
+\end{lstlisting}
+
+È una forma locale a \code{decisionRule}. Serve quando la source governa una condizione ma non ne governa il modello interno property/value.
+
+\begin{examplebox}[FR-1.1]
+\begin{lstlisting}
+allOf
+  comparison
+    IdentityDeterminationOutcome.outcomeKind == SUCCESS
+
+  satisfies
+    subject   -> AccessAuthorizationState
+    condition -> RequiredAccessAuthorizationCondition
+\end{lstlisting}
+
+Questo preserva ``authorization condition satisfied'' senza inventare:
+
+\begin{lstlisting}
+AccessAuthorizationState.authorized = TRUE
+\end{lstlisting}
+\end{examplebox}
+
+\section{constrain e property vocabulary}
+
+Quando la documentazione governa un dominio di valori ma non la regola di selezione:
+
+\begin{lstlisting}
+constrain
+  constraintTarget -> IdentityDeterminationOutcome
+  constraintValue
+    property   -> outcomeKind
+    vocabulary -> [SUCCESS, NEGATIVE, INCONCLUSIVE]
+\end{lstlisting}
+
+Non usare \code{constrain} come escape hatch per prose non strutturate.
+
+\section{correlate}
+
+\code{correlate} preserva binding di contesto.
+
+Esempi:
+
+\begin{lstlisting}
+RecognitionCapture
+    <-> IdentityDeterminationRequest
+
+IdentityDeterminationOutcome
+AccessAuthorizationState
+    <-> same GovernedIdentity
+
+IdentityDeterminationOutcome
+    <-> AccessAttempt
+\end{lstlisting}
+
+Non usare \code{reference} come sostituto quando il requisito richiede identità di contesto.
+
+\section{Acquisition: quando non scegliere un operatore}
+
+Il verbo documentale \code{acquire} non forza un nuovo operatore.
+
+\begin{lstlisting}
+create
+observe
+produce
+\end{lstlisting}
+
+sono interpretazioni materialmente diverse.
+
+La BA accettata mantiene:
+
+\begin{lstlisting}
+RecognitionCaptureAcquisition [BAReferent]
+diagnosis:
+    MULTIPLE MATERIAL BA CANDIDATES
+\end{lstlisting}
+
+e non materializza una proposition falsa solo per avere un arco nel grafo.
+
+\section{BA3 - provenance}
+
+Ogni BA element meaning-bearing deve risolvere almeno a:
+
+\begin{lstlisting}
+governedBaselineKey
+originState
+sourceLink
+\end{lstlisting}
+
+Origin states:
+
+\begin{lstlisting}
+GROUNDED
+DERIVED
+DIAGNOSTIC_UNRESOLVED
+\end{lstlisting}
+
+\subsection{sourceLink non è semantica BA2}
+
+Tre responsabilità restano distinte:
+
+\begin{lstlisting}
+sourceLink
+derivationBasisBinding
+revalidationContext
+\end{lstlisting}
+
+Non usare provenance per simulare una relazione che BA2 non sa rappresentare.
+
+\section{Derivazione}
+
+Un elemento \code{DERIVED} richiede:
+
+\begin{itemize}
+\item role-bound derivation basis;
+\item immutable derivation rule revision;
+\item applicability contract;
+\item output semantic contract;
+\item lineage fino a governed source.
+\end{itemize}
+
+Nel baseline Facial Access corrente le proposition accettate sono normalizzazioni GROUNDED; non è necessario inventare derived semantics per completare la BA.
+
+\section{Diagnostics}
+
+La BA può accettare una diagnosis come diagnosis.
+
+Vocabolario utile:
+
+\begin{lstlisting}
+MULTIPLE MATERIAL BA CANDIDATES
+BA REQUIRES UNSUPPORTED FACT
+BA LOSES GOVERNED MATERIAL DISTINCTION
+BA EXPOSES SOURCE CONFLICT
+NOT SPECIFIED
+\end{lstlisting}
+
+\begin{closedbox}
+Una diagnosis non è una project truth.
+\end{closedbox}
+
+\section{BA5 - authoring canonico}
+
+I semantic keys operativi devono essere canonici.
+
+Domini distinti:
+
+\begin{itemize}
+\item project referent names;
+\item BA2 operator keys;
+\item operator-scoped role keys;
+\item semantic kind keys;
+\item controlled value domains.
+\end{itemize}
+
+Un synonym o una traduzione non stabiliscono equivalenza normativa automaticamente.
+
+\section{BA4 - projection boundary}
+
+Una projection è downstream.
+
+Catena:
+
+\begin{lstlisting}
+governed documentation
+    -> accepted BA
+        -> projection
+            -> method-owned interpretation
+\end{lstlisting}
+
+Ogni meaning-bearing projection item deve tracciare alla BA.
+
+Coverage modes:
+
+\begin{lstlisting}
+EXHAUSTIVE_FOR_DECLARED_SCOPE
+SELECTIVE
+\end{lstlisting}
+
+Una selective projection può omettere elementi BA senza dichiararli falsi o assenti.
+
+\section{BA6 - integrated completion}
+
+BA6 accetta una concreta baseline analitica relativa a:
+
+\begin{lstlisting}
+governed project baseline
++ pinned source revision
++ BA contract revision set
++ declared shared scope
+\end{lstlisting}
+
+Envelope minimo:
+
+\begin{lstlisting}
+baBaselineKey
+governedBaselineKey
+sourceRepositoryRevision
+baContractRevisionSet
+acceptedBAArtifactRef
+declaredSharedScope
+regressionEvidenceRef
+unresolvedDiagnosticRef
+reopenRule
+\end{lstlisting}
+
+Gates:
+
+\begin{enumerate}
+\item authority;
+\item identity/proposition coherence;
+\item provenance/source drill-down;
+\item explicit uncertainty;
+\item declared-scope semantic coverage;
+\item post-BA regression;
+\item projection readiness;
+\item no unresolved contract pressure;
+\item immutable baseline/change path.
+\end{enumerate}
+
+\section{Accepted Facial Access BA}
+
+La baseline analitica corrente è:
+
+\begin{lstlisting}
+FACIAL-ACCESS-BA-R24-R1
+\end{lstlisting}
+
+derivata da:
+
+\begin{lstlisting}
+FACIAL-ACCESS-GOV-R2
+source revision:
+8af2257a1df94fa5a83d4853ed0a1eb4d020c429
+\end{lstlisting}
+
+\subsection{Referent principali}
+
+\begin{lstlisting}
+ControlledAreaAccess
+AccessAttempt
+AccessAuthorizationManagement
+IdentityDetermination
+PersonPresentAtAccessPoint
+IdentityDeterminationRequest
+RecognitionCapture
+RecognitionCaptureAcquisition
+RecognitionCaptureDelivery
+CameraSubsystem
+RecognitionProcessor
+IdentityDeterminationOutcome
+GovernedIdentity
+AccessAuthorizationState
+RequiredAccessAuthorizationCondition
+AccessDecision
+ConnectivityService
+Confidentiality
+Integrity
+AuthorizedProvenance
+\end{lstlisting}
+
+\subsection{Flow minimo}
+
+\begin{lstlisting}
+PersonPresentAtAccessPoint
+    -> IdentityDeterminationRequest
+
+CameraSubsystem
+    -> RecognitionCapture
+       bound to IdentityDeterminationRequest
+
+RecognitionCaptureDelivery
+    CameraSubsystem -> RecognitionProcessor
+
+RecognitionProcessor
+    -> IdentityDeterminationOutcome
+       SUCCESS | NEGATIVE | INCONCLUSIVE
+
+SUCCESS
+    -> GovernedIdentity X
+
+AccessAuthorizationManagement
+    -> AccessAuthorizationState concerning X
+
+ControlledAreaAccess
+    -> AccessDecision for AccessAttempt
+\end{lstlisting}
+
+\subsection{Security scope}
+
+\begin{lstlisting}
+RecognitionCaptureDelivery
+    -> Confidentiality
+    -> Integrity
+    -> AuthorizedProvenance
+\end{lstlisting}
+
+Non:
+
+\begin{lstlisting}
+whole system -> secure
+AccessDecision -> Confidentiality
+Outcome -> AuthorizedProvenance
+\end{lstlisting}
+
+\section{Worked proposition set}
+
+Un sottoinsieme rappresentativo:
+
+\begin{lstlisting}
+P-07
+correlate
+  correlatedItem     -> RecognitionCapture
+  correlationContext -> IdentityDeterminationRequest
+
+P-08
+transfer
+  behavior    -> RecognitionCaptureDelivery
+  source      -> CameraSubsystem
+  destination -> RecognitionProcessor
+  content     -> RecognitionCapture
+
+P-09
+consumeService
+  consumer -> IdentityDeterminationRealization
+  service  -> ConnectivityService
+
+P-12
+constrain
+  constraintTarget -> RecognitionCaptureDelivery
+  constraintValue
+    property   -> interconnectionMedium
+    vocabulary -> [WIRED_ETHERNET]
+
+P-13/P-14/P-15
+constrain
+  constraintTarget -> RecognitionCaptureDelivery
+  constraintValue  -> C / I / AuthorizedProvenance
+
+P-17
+reference
+  referencer -> AccessAuthorizationState
+  referenced -> GovernedIdentity
+
+P-23
+decisionRule
+  actor  -> ControlledAreaAccess
+  input  -> IdentityDeterminationOutcome
+  input  -> AccessAuthorizationState
+  result -> AccessDecision
+\end{lstlisting}
+
+La lista completa e la source/provenance matrix sono nell'artifact \code{R24_FACIAL_ACCESS_BASE_ANALYSIS_R1.md}.
+
+\section{Controlled usefulness test}
+
+La BA governa:
+
+\begin{lstlisting}
+RecognitionCaptureDelivery.interconnectionMedium
+    = WIRED_ETHERNET
+\end{lstlisting}
+
+Un consumer può escludere una minaccia la cui precondizione necessaria sia:
+
+\begin{lstlisting}
+this governed delivery uses RF/wireless medium
+\end{lstlisting}
+
+Non può inferire:
+
+\begin{lstlisting}
+the consumed provider infrastructure
+is wired end-to-end
+\end{lstlisting}
+
+Questa differenza mostra perché la BA deve essere abbastanza precisa da preservare una distinzione materiale, ma non deve inventare topologia.
+
+\section{Regression procedure}
+
+Dopo una material BA change:
+
+\begin{enumerate}
+\item ricostruire/aggiornare la BA contro la source pin;
+\item verificare ogni proposition materiale;
+\item verificare diagnostics e forbidden inferences;
+\item controllare property scope;
+\item controllare cross-MR identity/request binding;
+\item rieseguire usefulness/projection check;
+\item cercare un nuovo counterexample;
+\item riaprire solo il contratto minimo se necessario.
+\end{enumerate}
+
+\section{Change e revalidation}
+
+Quando la source cambia:
+
+\begin{lstlisting}
+source change
+    -> revalidationContext
+    -> impacted BA elements
+    -> RETAIN / REPLACE / RETIRE
+    -> new accepted BA baseline
+    -> rebuild projections
+\end{lstlisting}
+
+Una baseline BA accettata non viene silenziosamente mutata e riutilizzata come se le analisi storiche avessero usato la nuova semantica.
+
+\section{Cosa non è la Base Analysis}
+
+La BA non è:
+
+\begin{itemize}
+\item un DFD obbligatorio;
+\item un modello di deployment completo;
+\item una tassonomia STRIDE;
+\item una sostituzione di SysML/ArchiMate/AADL;
+\item una inference engine che completa il progetto;
+\item una raccolta di security mechanisms;
+\item la project authority;
+\item un database/grafo obbligatorio.
+\end{itemize}
+
+\section{Checklist operativa}
+
+Prima di accettare una BA baseline:
+
+\begin{enumerate}
+\item baseline authority e source revision sono pinned?
+\item ogni referent riusabile ha identity stabile?
+\item ogni proposition usa operator/role canonici?
+\item sto usando una proposition come proxy di un comportamento?
+\item ho introdotto un fatto che la source non governa?
+\item un \code{NOT SPECIFIED} è stato trasformato in default?
+\item ogni elemento ha provenance sufficiente?
+\item le proprietà locali restano scoped al target corretto?
+\item cross-request / cross-identity bindings sono preservati?
+\item la regression completa passa?
+\item una projection controllata consuma la BA senza reparsing del prose?
+\item esiste un counterexample corrente che richiede reopen?
+\end{enumerate}
+
+\section{Stato corrente}
+
+Per lo scope R24 esercitato dal corpus Facial Access:
+
+\begin{lstlisting}
+BA0 PASS
+BA1 PASS
+BA2 R3 PASS
+BA3 PASS
+BA4 PASS
+BA5 PASS
+BA6 PASS
+
+accepted BA baseline:
+    FACIAL-ACCESS-BA-R24-R1
+
+universal completeness:
+    NOT CLAIMED
+
+reopen:
+    concrete governed counterexample
+    or governed source change
+\end{lstlisting}
+
+Questa guida R2 è la guida operativa human-readable corrente per la Base Analysis.
+
+Il passo successivo è usare la documentazione e la BA stabilizzate per revisionare i capitoli di tesi completabili prima della valutazione STRIDE/STRIDE-AI.
+\end{document}

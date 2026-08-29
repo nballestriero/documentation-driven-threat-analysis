@@ -15,126 +15,163 @@ The repository is intentionally separate from the ThreatForge software repositor
 
 ## Current research checkpoint
 
-DDTA is currently in an **R24 working research pass after completed repository alignment**. Earlier BA0-BA5 closure results remain historical lower bounds, but they must not be read as proof that the complete Base Analysis is permanently closed.
-
-The active forward execution record is `methodology/DDTA_RESEARCH_WORK_PLAN_AFTER_DOCUMENTATION_CLOSURE_R24.md`, carried alongside `methodology/DDTA_R24_SEMANTIC_REVIEW_CHECKPOINT_R1.md`. The bounded Facial Access documentation-gap review, full successor semantic regression and explicit governance promotion are complete: `governed-corpora/facial-access/candidate-r3/` is now `CURRENT_GOVERNED` under `FACIAL-ACCESS-GOV-R2` and is eligible as the primary source for the minimum justified BA rebuild. The R23 literature pass and pressure tests remain historical evidence for the semantic ambiguity that triggered R24. Pattern/domain knowledge remains optional review knowledge, never project authority.
-
-The current R24 work has specifically reopened **BA2** only where concrete documentation-driven pressure tests require refinement. The active BA2 working revision is `methodology/BA2_RELATION_ACTION_VOCABULARY_R2.md`; BA1 identity remains `BAReferent + BAProposition`, and no other BA layer is reopened merely for editorial cleanup.
-
-The current R24 research flow is:
+R25 is active after the repository coherence audit.
 
 ```text
-governed project meaning
-  -> progressive authoring
-  -> semantic sufficiency review
-  -> minimum justified Base Analysis
-  -> semantic regression back-check
-       -> if discrepancy: governed correction candidate -> updated documentation -> rebuilt BA
-  -> downstream analysis / test usefulness
-  -> smallest justified methodology revision
+project authority
+    FACIAL-ACCESS-GOV-R2
+    CURRENT_GOVERNED
+
+Facial Access BA evidence
+    FACIAL-ACCESS-BA-R24-R1
+    complete case BA
+    Facial Access post-BA regression PASS
+
+BA2
+    R3 active pre-holdout revision
+
+BA6
+    OPEN
+    integrated acceptance not yet complete
+
+current forward plan
+    methodology/DDTA_RESEARCH_WORK_PLAN_PRE_HOLDOUT_R25.md
+
+current phase
+    R25 Phase 1 documentation-method freeze complete
+
+frozen documentation protocol
+    DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R4
+
+next
+    R25 Phase 2 BA pre-holdout contract freeze
 ```
 
-The active forward-facing R24 records are:
+The earlier BA6 completion package is retained as **provisional closure-attempt evidence**. It does not satisfy the inherited integrated BA6 gate because a structurally different holdout, multiple BA4 projections, governed change, BA3 revalidation and rebuild/re-analysis are still pending.
 
-- `methodology/DDTA_RESEARCH_WORK_PLAN_AFTER_DOCUMENTATION_CLOSURE_R24.md`
-- `methodology/DDTA_R24_SEMANTIC_REVIEW_CHECKPOINT_R1.md`
-- `methodology/DDTA_R24_FACIAL_ACCESS_CANDIDATE_R3_ACTIVATION_CHECKPOINT_R1.md`
-- `methodology/DDTA_R24_FACIAL_ACCESS_DG_FA_002_CHECKPOINT_R1.md`
-- `methodology/DDTA_R24_FACIAL_ACCESS_DG_FA_003_CHECKPOINT_R1.md`
-- `methodology/DDTA_R24_FACIAL_ACCESS_DG_FA_004_CHECKPOINT_R1.md`
-- `methodology/DDTA_R24_FACIAL_ACCESS_DG_FA_005_CHECKPOINT_R1.md`
-- `methodology/DDTA_R24_FACIAL_ACCESS_AUTH_C_CHECKPOINT_R1.md`
-- `methodology/DDTA_R24_FACIAL_ACCESS_AUTH_P_CHECKPOINT_R1.md`
-- `methodology/DDTA_R24_FACIAL_ACCESS_DG_FA_006_CHECKPOINT_R1.md`
-- `methodology/DDTA_R24_FACIAL_ACCESS_FULL_SEMANTIC_REGRESSION_CHECKPOINT_R1.md`
-- `methodology/DDTA_R24_FACIAL_ACCESS_GOVERNANCE_PROMOTION_CHECKPOINT_R1.md`
-- `literature/syntheses/R23_SEMANTIC_RECOGNITION_SYNTHESIS_R1.md`
-- `studies/semantic-review/R24_SEMANTIC_REVIEW_PRESSURE_TESTS_R1.md`
-- `studies/semantic-review/R24_MR0003_SEMANTIC_REVIEW_FINDING_R1.md`
-- `studies/semantic-review/R24_MR0003_DOWNSTREAM_COMPATIBILITY_REVIEW_R1.md`
-- `methodology/DDTA_R24_DECISION_RULE_CHECKPOINT.md` (carried-forward BA2 lower-bound evidence; superseded for forward execution)
-- `methodology/BA2_RELATION_ACTION_VOCABULARY_R2.md`
-- `methodology/DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R1.md`
-- `methodology/DDTA_FACIAL_ACCESS_PROJECT_DOCUMENTATION_WORKING_R24_PROJECT_ONLY.tex`
+The documentation authoring protocol is now frozen by `DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R4`. The Base Analysis Operational Guide R2 remains working content pending R25 Phase 2.
+
+## Current governed example
+
+The current governed Facial Access source is:
+
+- `governed-corpora/facial-access/candidate-r3/`
+- authority key: `FACIAL-ACCESS-GOV-R2`
+- `primaryBASourceAllowed: true`
+
+The path retains candidate-era provenance, but governance status is `CURRENT_GOVERNED`.
+
+The current Facial Access case Base Analysis is:
+
+- `studies/base-analysis/R24_FACIAL_ACCESS_BASE_ANALYSIS_R1.md`
+- BA baseline key: `FACIAL-ACCESS-BA-R24-R1`
+- status: complete Facial Access case BA / post-BA regression PASS
+- integrated BA6 acceptance: OPEN
+
+## Current methodology set
+
+Current pre-holdout BA contract set:
+
+- `methodology/BA0_BASE_ANALYSIS_RESPONSIBILITY_BOUNDARY_R1.md`
 - `methodology/BA1_MINIMAL_BAE_IDENTITY_ONTOLOGY_R1.md`
+- `methodology/BA2_RELATION_ACTION_VOCABULARY_R3.md`
 - `methodology/BA3_PROVENANCE_DERIVATION_LIFECYCLE_CHANGE_CONTRACT_R1.md`
 - `methodology/BA4_PROJECTION_BOUNDARY_TRACEABILITY_INTERPRETATION_COVERAGE_CONTRACT_R1.md`
 - `methodology/BA5_CANONICAL_SEMANTIC_REGISTRY_CONTROLLED_AUTHORING_CONTRACT_R1.md`
 
-Earlier state/work-plan records such as R19 and R22 remain research history and must not be used as the sole description of the current R24 state.
+Candidate/open integrated-completion contract:
 
-### Current authority boundary
+- `methodology/BA6_INTEGRATED_BASE_ANALYSIS_COMPLETION_REGRESSION_R1.md`
 
-The former facial-access validation baseline:
+Current human-readable guides:
 
-- `governed-corpora/facial-access/current/` (`FACIAL_ACCESS_CURRENT_R1` / `FACIAL-ACCESS-GOV-R1`)
+- `methodology/DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R4.tex`
+- `methodology/DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R4.pdf`
+- `methodology/DDTA_BASE_ANALYSIS_OPERATIONAL_GUIDE_R2.tex`
+- `methodology/DDTA_BASE_ANALYSIS_OPERATIONAL_GUIDE_R2.pdf`
 
-is **`SUPERSEDED`** and retained as regression evidence.
+Current forward plan:
 
-The current governed R24 Facial Access successor baseline is:
+- `methodology/DDTA_RESEARCH_WORK_PLAN_PRE_HOLDOUT_R25.md`
 
-- `governed-corpora/facial-access/candidate-r3/`
-- `FACIAL-ACCESS-GOV-R2`
+Current R25 state checkpoints:
 
-It was promoted in place from the regression-closed `R3-CANDIDATE-9` corpus. It is now `CURRENT_GOVERNED`, retains `researchRole: CURRENT_THESIS_VALIDATION_CORPUS`, and has `primaryBASourceAllowed: true`. The `candidate-r3/` path is preserved as provenance; directory naming does not override registry authority.
+- `methodology/DDTA_R25_STATE_RECONCILIATION_CHECKPOINT_R1.md`
+- `methodology/DDTA_R25_DOCUMENTATION_METHOD_FREEZE_CHECKPOINT_R1.md`
 
-The earlier `governed-corpora/facial-access/candidate-r2/` remains unchanged as the MR-0003-only semantic-successor checkpoint and regression/provenance evidence.
+The R24 human-readable consolidation checkpoint remains provisional/historical evidence for forward-status purposes until the guides are frozen in R25.
 
-The broader R24 project document remains a separate non-canonical authoring/pressure-test artifact.
+Historical guide/work-plan revisions remain research history and should not be used as the sole description of current state.
 
-### Current BA2 R24 lower bound
+## Current BA2 R3 delta
 
-R24 currently retains fourteen BA2 operator concepts, including `decisionRule`, and accepts structured property-vocabulary constraints where governed documentation requires them.
-
-The current comparison lower bound remains property-addressed:
+BA2 R3 retains the fourteen-operator vocabulary and adds only the two refinements forced by the governed Facial Access counterexamples:
 
 ```text
-comparison
-  referent      -> <BAReferent>
-  property      -> <controlled semantic key>
-  comparisonKey -> equals | notEquals
-  value         -> <controlled typed local value | BAReferent>
+transfer
+  behavior -> BAReferent [0..1]
+
+decisionRule decisionCondition
+  satisfies
+    subject   -> BAReferent
+    condition -> BAReferent
 ```
 
-A property-less comparison is not admitted without a concrete governed counterexample. `AccessAuthorizationState.authorized = TRUE` is **not** currently accepted as governed facial-access evidence because the current MR-0002 working documentation does not define that property/vocabulary.
+Not introduced:
 
-The full BA milestone remains subject to ongoing corpus, documentation-authoring, downstream-analysis and regression pressure tests.
-## Important scope boundary
+```text
+acquire operator
+behavior generalized to all operators
+property-less comparison
+AccessAuthorizationState.authorized
+TRUE/FALSE authorization vocabulary
+general-purpose predicate DSL
+```
 
-The current thesis does **not** require reliable automatic migration from arbitrary, legacy, or unstructured narrative documentation. DDTA is evaluated on governed documentation intentionally authored to satisfy an analysis-readiness contract. NLP/LLM-assisted migration, fuzzy search, translations or synonym suggestions may be future/optional assistance; any semantic candidate they produce remains subject to the governed canonical registry and review boundary.
+## Minimum-detail principle
 
-## Document authority gate
+DDTA does not fix a universal modeling granularity in advance.
 
-**Chronological recency is not document authority.** Before a repository artifact is used as a primary source for current Base Analysis, consult:
+The stopping criterion is:
+
+> decompose governed meaning only while more detail is needed to preserve a material distinction or to answer a relevant downstream question without invention.
+
+If current evidence cannot answer the question, preserve `NOT SPECIFIED` or a diagnostic rather than inventing implementation semantics.
+
+## Current authority boundary
+
+Chronological recency is not document authority.
+
+Before deriving Base Analysis or project facts consult:
 
 - `governance/document-authority/document-authority.registry.yml`
 - `governance/document-authority/README.md`
 
-Artifacts under `_working/`, historical study corpora, superseded checkpoints and non-canonical examples remain valuable research evidence but MUST NOT be treated as current governed project documentation unless the authority registry explicitly permits primary-BA use.
+The current project authority is `FACIAL-ACCESS-GOV-R2`. The accepted BA `FACIAL-ACCESS-BA-R24-R1` is analytical and never becomes project authority.
 
-The `CURRENT_GOVERNED` Facial Access baseline is:
+## Current next step
 
-- `governed-corpora/facial-access/candidate-r3/`
-- `FACIAL-ACCESS-GOV-R2`
+Proceed only with **R25 Phase 2 — BA Pre-Holdout Contract Freeze**.
 
-The superseded R1 remains at:
+Phase 2 freezes BA0–BA5 with BA2 R3 as the contract the future holdout is allowed to falsify.
 
-- `governed-corpora/facial-access/current/`
+Do not yet select or author the holdout. Do not modify thesis prose, reimplement ThreatForge, or start STRIDE / STRIDE-AI.
 
-The earlier `candidate-r2/` remains retained as non-canonical regression/provenance evidence. The authority registry remains the deciding source gate, and an accepted BA run must pin both `FACIAL-ACCESS-GOV-R2` and the concrete promotion commit used as its source baseline.
 
-## Historical studies
+## Important scope boundary
 
-Earlier studies, including `studies/requirement-primary-focus/`, remain preserved as research history. Their local results are not automatically current DDTA invariants or a pre-approved BAE taxonomy. In particular, the historical `actor/component/asset/boundary/data_flow` focus set must not be read as the accepted Base Analysis ontology.
+The thesis does not require reliable automatic migration from arbitrary legacy narrative documentation. DDTA is evaluated on governed documentation intentionally authored to satisfy the analysis-readiness contract.
+
+NLP/LLM assistance may propose candidates, but cannot silently establish project truth, canonical equivalence or accepted Base Analysis semantics.
 
 ## Repository orientation
 
-- `methodology/` - active and historical methodology checkpoints, Base Analysis trials, work plans and state records.
-- `literature/` - registered literature evidence, notes, excerpts and syntheses.
-- `00-foundations/` through `05-security-requirement/` - documentation/metamodel research artifacts.
-- `governance/document-authority/` - repository-wide source-authority classification used before current-project Base Analysis.
-- `governed-corpora/` - explicitly authority-classified governed validation corpora; historical research corpora remain in their original locations.
-- `research/` - research questions, candidate contributions, hypotheses and terminology.
-- `studies/` - bounded empirical or corpus studies; study-local results do not become methodology rules without explicit promotion.
+- `methodology/` - active and historical methodology contracts, guides, checkpoints and work plans.
+- `governance/document-authority/` - source-authority registry and policy.
+- `governed-corpora/` - authority-classified validation corpora.
+- `studies/base-analysis/` - materialized Base Analysis validation artifacts.
+- `studies/` - bounded research studies; study-local results are not automatically methodology rules.
+- `literature/` - literature evidence and syntheses.
+- `research/` - research questions and candidate contributions.
 - `_working/` - non-canonical historical/experimental workspace.
 - `thesis/` - thesis drafting and evidence-management material.

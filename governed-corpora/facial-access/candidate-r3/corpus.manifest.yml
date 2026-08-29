@@ -6,43 +6,72 @@ authorityStatus: CURRENT_GOVERNED
 researchRole: CURRENT_THESIS_VALIDATION_CORPUS
 primaryBASourceAllowed: true
 basedOnRepositoryCommit: 4d6aa85385b79be926125d4e61390ac185f63cfd
-
+analysisStateRevision: R25-DOCUMENTATION-METHOD-FREEZE-1
+postPromotionBARebuildRepositoryCommit: 8af2257a1df94fa5a83d4853ed0a1eb4d020c429
+activeBA2WorkingRevision: BA2_RELATION_ACTION_VOCABULARY_R3
+postBARegressionArtifact: studies/base-analysis/R24_FACIAL_ACCESS_BASE_ANALYSIS_R1.md
 scope:
   project: facial-access
-  integrationRoots: [MR-0001, MR-0002, MR-0003]
-  completenessClaim: promoted-current-governed-r3-candidate-9-successor-after-full-semantic-regression-with-retained-ba-segment-identity-pressure
-
+  integrationRoots:
+  - MR-0001
+  - MR-0002
+  - MR-0003
+  completenessClaim: current-governed-facial-access-documentation-complete-and-facial-access-ba-regression-passed; integrated-ba6-open
 documents:
-  - path: MR-0001_ACCESS_CONTROL.md
-    kind: MacroRequirement
-    ids: [MR-0001]
-  - path: MR-0002_ACCESS_AUTHORIZATION.md
-    kind: MacroRequirement
-    ids: [MR-0002]
-  - path: MR-0003_IDENTITY_DETERMINATION.md
-    kind: MacroRequirement
-    ids: [MR-0003]
-  - path: MR-0001_DECISIONS.md
-    kind: DecisionSet
-    ids: [D-1.1]
-  - path: MR-0003_DECISIONS.md
-    kind: DecisionSet
-    ids: [D-3.1, D-3.2, D-3.4, D-3.5, D-3.6]
-  - path: MR-0001_FUNCTIONAL_REQUIREMENTS.md
-    kind: FunctionalRequirementSet
-    ids: [FR-1.1]
-  - path: MR-0003_FUNCTIONAL_REQUIREMENTS.md
-    kind: FunctionalRequirementSet
-    ids: [FR-3.2.1, FR-3.2.2, FR-3.4.1, FR-3.4.2]
-  - path: MR-0003_SECURITY_REQUIREMENTS.md
-    kind: SecurityRequirementSet
-    ids: [SEC-3.4.2-C, SEC-3.4.2-I, SEC-3.4.2-P]
-  - path: DOCUMENTATION_GAPS.md
-    kind: GovernedDocumentationDiagnostic
-    ids: [DG-FA-001, DG-FA-002, DG-FA-003, DG-FA-004, DG-FA-005, DG-FA-006, AUTH-C, AUTH-P]
-    primaryBASourceAllowed: false
-    authorityNote: diagnostic dispositions and explicit NOT SPECIFIED meanings remain traceable but are not standalone project commitments
-
+- path: MR-0001_ACCESS_CONTROL.md
+  kind: MacroRequirement
+  ids:
+  - MR-0001
+- path: MR-0002_ACCESS_AUTHORIZATION.md
+  kind: MacroRequirement
+  ids:
+  - MR-0002
+- path: MR-0003_IDENTITY_DETERMINATION.md
+  kind: MacroRequirement
+  ids:
+  - MR-0003
+- path: MR-0001_DECISIONS.md
+  kind: DecisionSet
+  ids:
+  - D-1.1
+- path: MR-0003_DECISIONS.md
+  kind: DecisionSet
+  ids:
+  - D-3.1
+  - D-3.2
+  - D-3.4
+  - D-3.5
+  - D-3.6
+- path: MR-0001_FUNCTIONAL_REQUIREMENTS.md
+  kind: FunctionalRequirementSet
+  ids:
+  - FR-1.1
+- path: MR-0003_FUNCTIONAL_REQUIREMENTS.md
+  kind: FunctionalRequirementSet
+  ids:
+  - FR-3.2.1
+  - FR-3.2.2
+  - FR-3.4.1
+  - FR-3.4.2
+- path: MR-0003_SECURITY_REQUIREMENTS.md
+  kind: SecurityRequirementSet
+  ids:
+  - SEC-3.4.2-C
+  - SEC-3.4.2-I
+  - SEC-3.4.2-P
+- path: DOCUMENTATION_GAPS.md
+  kind: GovernedDocumentationDiagnostic
+  ids:
+  - DG-FA-001
+  - DG-FA-002
+  - DG-FA-003
+  - DG-FA-004
+  - DG-FA-005
+  - DG-FA-006
+  - AUTH-C
+  - AUTH-P
+  primaryBASourceAllowed: false
+  authorityNote: diagnostic dispositions and explicit NOT SPECIFIED meanings remain traceable but are not standalone project commitments
 provenance:
   inheritedCandidate:
     corpusKey: facial-access-candidate-r2
@@ -55,25 +84,31 @@ provenance:
   dgFa002Finding:
     gap: DG-FA-002
     disposition: RESOLVED_REFRAMED
-    semanticOwners: [D-3.2, FR-3.2.1]
-    retiredPlaceholder: "@IDENTITY_EVIDENCE_QUALITY_CRITERION"
+    semanticOwners:
+    - D-3.2
+    - FR-3.2.1
+    retiredPlaceholder: '@IDENTITY_EVIDENCE_QUALITY_CRITERION'
     captureQualitySpecializedRequirementJustified: false
   dgFa003Finding:
     gap: DG-FA-003
-    disposition: RESOLVED_AT_DOCUMENTATION_SEMANTIC_LEVEL_BA_REPRESENTATION_PRESSURE_RETAINED
+    disposition: RESOLVED_AT_DOCUMENTATION_SEMANTIC_LEVEL_BA_REPRESENTATION_PRESSURE_REPRODUCED
     documentationSemanticBindingSufficient: true
     newCrossReferenceRequired: false
     newChannelOrPathFieldJustified: false
-    ba2ModificationAuthorized: false
+    postPromotionMinimumBARebuildResult: CONCRETE_TRANSFER_SEGMENT_IDENTITY_FAILURE_REPRODUCED
+    transferBehaviorWorkingCandidateRetained: true
+    transferBehaviorWorkingCandidateAcceptedAsBA2: true
+    ba2ModificationAuthorized: true
   dgFa004Finding:
     gap: DG-FA-004
-    disposition: REFRAMED_NOT_DOCUMENTATION_GAP_CONCRETE_BA2_SEGMENT_IDENTITY_PRESSURE_RETAINED
+    disposition: REFRAMED_NOT_DOCUMENTATION_GAP_CONCRETE_BA2_SEGMENT_IDENTITY_PRESSURE_REPRODUCED
     providerInternalNodesGoverned: false
     documentationSemanticChangeRequired: false
     ba1ReopenJustified: false
     pipelineTypeJustified: false
     transferBehaviorWorkingCandidateRetained: true
-    ba2ModificationAuthorized: false
+    postPromotionMinimumBARebuildResult: CONCRETE_BA2_SEGMENT_IDENTITY_FAILURE_REPRODUCED
+    ba2ModificationAuthorized: true
   dgFa005Finding:
     gap: DG-FA-005
     disposition: DEFERRED_OUTSIDE_CURRENT_DOCUMENTATION_BA_CLOSURE_SCOPE
@@ -105,12 +140,19 @@ provenance:
   dgFa006Finding:
     gap: DG-FA-006
     disposition: RESOLVED_CORE_FUNCTIONAL_SEMANTIC_GAP_MINIMAL_POSITIVE_BRANCH_GOVERNED
-    semanticOwners: [D-1.1, FR-1.1]
+    semanticOwners:
+    - D-1.1
+    - FR-1.1
     positiveBranchGoverned: true
     newDecisionIntroduced: false
     newFunctionalRequirementIntroduced: false
     accessAuthorizationStateVocabularyIntroduced: false
-    baContractChangeAuthorized: false
+    postPromotionMinimumBARebuildResult: EXACT_DECISION_RULE_REQUIRES_UNSUPPORTED_NORMALIZED_AUTHORIZATION_FACT
+    representationPressureReviewResult: DECISION_RULE_SATISFIES_ACCEPTED
+    decisionRuleSatisfiesAcceptedAsBA2: true
+    normalizedAuthorizationVocabularyIntroduced: false
+    newDocumentationGapFoundByBARebuild: false
+    ba2ModificationAuthorized: true
   fullSuccessorSemanticRegressionFinding:
     disposition: PASS_AFTER_PROPAGATION_ALIGNMENT
     newProjectSemanticGapFound: false
@@ -127,43 +169,190 @@ provenance:
     semanticContentChangedByPromotion: false
     baContractChangeAuthorized: false
     primaryBASourceAllowed: true
-
+  postPromotionMinimumBARebuildFinding:
+    disposition: COMPLETED_SOURCE_FIRST_REPRESENTATION_REVIEW
+    repositoryBaseline: 8af2257a1df94fa5a83d4853ed0a1eb4d020c429
+    authorityBaselineKey: FACIAL-ACCESS-GOV-R2
+    projectDocumentationModified: false
+    newProjectSemanticGapFound: false
+    coreReferentsDerivable: true
+    mr0001MacroProductionRepresentable: true
+    mr0002GovernedIdentityBindingRepresentable: true
+    noPreselectedGovernedIdentityPreserved: true
+    recognitionOutcomeProductionRepresentable: true
+    captureRequestBindingRepresentable: true
+    fr342TransferRepresentable: true
+    fr341AcquireStatus: MULTIPLE_MATERIAL_BA_CANDIDATES
+    fr11ExactDecisionRuleStatus: REPRESENTABLE_WITH_DECISION_RULE_SATISFIES_UNDER_BA2_R3
+    transferSegmentIdentityStatus: CONCRETE_BA2_REPRESENTATION_FAILURE_REPRODUCED
+    transferBehaviorWorkingCandidateAcceptedAsBA2: true
+    ba2Modified: false
+    authCNotSpecifiedPreserved: true
+    authPNotSpecifiedPreserved: true
+  baRepresentationPressureReviewFinding:
+    disposition: COMPLETE_MINIMUM_BA2_R3_REOPEN_ACCEPTED
+    repositoryBaseline: 8af2257a1df94fa5a83d4853ed0a1eb4d020c429
+    inputBA2Revision: BA2_RELATION_ACTION_VOCABULARY_R2
+    outputBA2Revision: BA2_RELATION_ACTION_VOCABULARY_R3
+    projectDocumentationSemanticChangeRequired: false
+    acquireOperatorAdded: false
+    transferBehaviorAccepted: true
+    transferBehaviorCardinality: 0..1
+    transferBehaviorGeneralizedToOtherOperators: false
+    decisionRuleSatisfiesAccepted: true
+    propertyLessComparisonAccepted: false
+    normalizedAuthorizationVocabularyIntroduced: false
+    newTopLevelOperatorIntroduced: false
+    newBA1IdentityFamilyIntroduced: false
+    postBARegressionRequired: true
+  postBARegressionFinding:
+    disposition: PASS
+    repositoryBaseline: 8af2257a1df94fa5a83d4853ed0a1eb4d020c429
+    authorityBaselineKey: FACIAL-ACCESS-GOV-R2
+    baArtifact: studies/base-analysis/R24_FACIAL_ACCESS_BASE_ANALYSIS_R1.md
+    ba2Revision: BA2_RELATION_ACTION_VOCABULARY_R3
+    transferBehaviorRegressionPassed: true
+    decisionRuleSatisfiesRegressionPassed: true
+    acquisitionUnderSpecificationPreserved: true
+    captureRequestBindingPreserved: true
+    sameGovernedIdentityPreserved: true
+    securityRequirementsScopedToRecognitionCaptureDelivery: true
+    connectivityServiceAndMediumRemainDistinct: true
+    authCNotSpecifiedPreserved: true
+    authPNotSpecifiedPreserved: true
+    normalizedAuthorizationVocabularyIntroduced: false
+    propertyLessComparisonRequired: false
+    newBA1IdentityFamilyRequired: false
+    newBA2OperatorRequired: false
+    newBA2PressureFound: false
+    newProjectSemanticGapFound: false
+    projectDocumentationSemanticChangeRequired: false
+    nextStep: BA6-INTEGRATED-COMPLETION
+  ba6IntegratedCompletionFinding:
+    disposition: PASS_CURRENT_R24_DECLARED_SHARED_SCOPE
+    repositoryBaseline: 8af2257a1df94fa5a83d4853ed0a1eb4d020c429
+    authorityBaselineKey: FACIAL-ACCESS-GOV-R2
+    acceptedBABaselineKey: FACIAL-ACCESS-BA-R24-R1
+    acceptedBAArtifact: studies/base-analysis/R24_FACIAL_ACCESS_BASE_ANALYSIS_R1.md
+    ba6Contract: BA6_INTEGRATED_BASE_ANALYSIS_COMPLETION_REGRESSION_R1
+    authorityGatePassed: true
+    identityPropositionCoherencePassed: true
+    provenanceSourceDrilldownPassed: true
+    explicitUncertaintyPreserved: true
+    declaredScopeSemanticCoveragePassed: true
+    postBARegressionPassed: true
+    projectionReadinessPassed: true
+    newBAContractPressureFound: false
+    newProjectSemanticGapFound: false
+    projectDocumentationSemanticChangeRequired: false
+    universalCompletenessClaimed: false
+    reopenOnConcreteCounterexample: true
+    r25AuditClassification: PROVISIONAL_CLOSURE_ATTEMPT_EVIDENCE_NOT_INTEGRATED_ACCEPTANCE
+  humanReadableMethodConsolidationFinding:
+    disposition: COMPLETE
+    authoringGuideRevision: DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R3
+    baseAnalysisOperationalGuideRevision: DDTA_BASE_ANALYSIS_OPERATIONAL_GUIDE_R2
+    projectDocumentationSemanticChangeRequired: false
+    baContractChangeRequired: false
+    threatMethodEvaluationStarted: false
+    nextStep: THESIS-CHAPTER-INVENTORY-AND-REVIEW
+  r25StateReconciliationFinding:
+    disposition: PHASE_0_PASS
+    repositoryHead: 8af2257a1df94fa5a83d4853ed0a1eb4d020c429
+    projectAuthority: FACIAL-ACCESS-GOV-R2
+    facialAccessBABaselineKey: FACIAL-ACCESS-BA-R24-R1
+    facialAccessPostBARegressionPassed: true
+    ba2Revision: BA2_RELATION_ACTION_VOCABULARY_R3
+    ba6IntegratedAcceptance: OPEN
+    ba6ClosureAttemptRetainedAsProvisionalEvidence: true
+    structurallyDifferentHoldoutPending: true
+    multipleBA4ProjectionsPending: true
+    governedChangePending: true
+    ba3RevalidationPending: true
+    rebuildReanalysisPending: true
+    projectDocumentationSemanticChangeRequired: false
+    nextStep: R25-PHASE-1-DOCUMENTATION-METHOD-FREEZE
+  r25DocumentationMethodFreezeFinding:
+    disposition: PHASE_1_PASS
+    repositoryHead: 8af2257a1df94fa5a83d4853ed0a1eb4d020c429
+    frozenGuideRevision: DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R4
+    guideTexSha256: 038EF52AF34B71D349F13A7A66CCB5173243973C61672F2B145DC1D7DC13234B
+    guidePdfSha256: 0A0EF627A995484EFEAC258376C030C638F73BE9FAE1D8FD7DF773CAD6ED7617
+    projectAuthority: FACIAL-ACCESS-GOV-R2
+    holdoutSelected: false
+    holdoutAuthored: false
+    ba6IntegratedAcceptance: OPEN
+    projectDocumentationSemanticChangeRequired: false
+    nextStep: R25-PHASE-2-BA-PRE-HOLDOUT-CONTRACT-FREEZE
 reviewState:
   completed:
-    - MR-0003 branch Decisions, Functional Requirements and Security Requirements inherited from candidate R2
-    - MR-0001 macro responsibility reviewed and materially revised for IdentityDeterminationOutcome semantics
-    - MR-0002 reviewed for GovernedIdentity to AccessAuthorizationState semantic binding only
-    - D-1.1 reviewed as the conjunctive access-policy commitment including the governed positive branch
-    - FR-1.1 reviewed as the operational cross-MR consumer, same-identity authorization binding and normative positive AccessDecision branch
-    - DG-FA-001 resolved semantically by a unique governed downstream responsibility
-    - DG-FA-002 resolved and reframed as governed outcome-conclusiveness semantics under D-3.2 and FR-3.2.1
-    - DG-FA-003 resolved at documentation semantic level; BA representation pressure retained without adding cross-reference or channel/path metadata
-    - DG-FA-004 reframed: hidden provider hops are not a documentation gap; concrete BA2 segment-identity pressure retained for promoted BA rebuild
-    - DG-FA-005 deferred outside current documentation and BA closure scope; no test/code/lifecycle contract added
-    - AUTH-C preserved as explicit NOT SPECIFIED confidentiality-authorization clarification and treated as non-blocking for the process-demonstration corpus
-    - AUTH-P preserved as explicit NOT SPECIFIED authorized-provenance evidence clarification and treated as non-blocking for the process-demonstration corpus
-    - DG-FA-006 resolved at MR-0001 semantic owner: successful identity determination plus the required authorization condition for the same GovernedIdentity now requires an allowing AccessDecision
-    - full successor semantic regression passed after propagation alignment; no new project-semantics gap found and no BA contract change justified
-    - explicit human governance promotion completed in place; authority changed without changing governed project semantics or BA contracts
+  - MR-0003 branch Decisions, Functional Requirements and Security Requirements inherited from candidate R2
+  - MR-0001 macro responsibility reviewed and materially revised for IdentityDeterminationOutcome semantics
+  - MR-0002 reviewed for GovernedIdentity to AccessAuthorizationState semantic binding only
+  - D-1.1 reviewed as the conjunctive access-policy commitment including the governed positive branch
+  - FR-1.1 reviewed as the operational cross-MR consumer, same-identity authorization binding and normative positive AccessDecision branch
+  - DG-FA-001 resolved semantically by a unique governed downstream responsibility
+  - DG-FA-002 resolved and reframed as governed outcome-conclusiveness semantics under D-3.2 and FR-3.2.1
+  - DG-FA-003 resolved at documentation semantic level
+  - DG-FA-004 reframed so hidden provider hops are not a documentation gap
+  - DG-FA-005 deferred outside current documentation and BA closure scope
+  - AUTH-C preserved as explicit NOT SPECIFIED confidentiality-authorization clarification and treated as non-blocking
+  - AUTH-P preserved as explicit NOT SPECIFIED authorized-provenance evidence clarification and treated as non-blocking
+  - DG-FA-006 resolved at MR-0001 semantic owner with the minimal positive access-decision branch
+  - full successor semantic regression passed after propagation alignment
+  - explicit human governance promotion completed in place
+  - post-promotion minimum justified Base Analysis rebuilt source-first against the exact promoted baseline
+  - transfer-segment identity failure independently reproduced without accepting a BA2 change
+  - FR-3.4.1 acquire preserved as multiple material BA candidates rather than guessed
+  - FR-1.1 exact decision-rule pressure recorded without inventing an AccessAuthorizationState property or value vocabulary
+  - bounded BA representation-pressure review completed
+  - transfer.behavior accepted only for transfer as BAReferent [0..1]
+  - decisionRule.satisfies accepted as a local decisionCondition form
+  - acquire operator rejected as not justified
+  - BA2 R3 established as the active R24 working revision
+  - complete Facial Access BA materialized for regression
+  - full post-BA regression passed with no new BA2 pressure
+  - transfer.behavior and decisionRule.satisfies confirmed for the current governed corpus
+  - acquisition under-specification and AUTH-C / AUTH-P NOT SPECIFIED meanings preserved
+  - full source-to-BA consolidation completed for the declared R24 shared scope
+  - Facial Access case BA baseline established as FACIAL-ACCESS-BA-R24-R1
+  - Facial Access BA6-readiness subset passed; integrated BA6 gate remains open after R25 audit
+  - controlled BA4-compatible downstream usefulness check passed without authority strengthening
+  - human-readable Documentation/BA Authoring Guide R3 completed against current governed example
+  - human-readable Base Analysis Operational Guide R2 working content completed; R25 status freeze pending
+  - R24 post-BA6 work plan retained as transition evidence; R25 pre-holdout plan active
+  - R25 Phase 1 documentation-method freeze completed before holdout selection
   explicitlyNotSpecified:
-    - normalized AccessAuthorizationState property or value vocabulary
-    - authorization lookup, cache, freshness, retry, exception or technical retrieval semantics
-    - concrete RecognitionCapture quality criterion or quantitative sufficiency threshold
-    - internal score, confidence, threshold, ranking or model-output rule used by a realization to reach the governed outcome
-    - complete authorization basis determining which subjects may know RecognitionCapture content
-    - complete evidence or authorization basis establishing which origins may provide RecognitionCapture for a specific IdentityDeterminationRequest
+  - normalized AccessAuthorizationState property or value vocabulary
+  - authorization lookup, cache, freshness, retry, exception or technical retrieval semantics
+  - concrete RecognitionCapture quality criterion or quantitative sufficiency threshold
+  - internal score, confidence, threshold, ranking or model-output rule used by a realization to reach the governed outcome
+  - complete authorization basis determining which subjects may know RecognitionCapture content
+  - complete evidence or authorization basis establishing which origins may provide RecognitionCapture for a specific IdentityDeterminationRequest
   nextGapReview: NONE
-  nextStep: MINIMUM-JUSTIFIED-BA-REBUILD
+  nextStep: R25-PHASE-2-BA-PRE-HOLDOUT-CONTRACT-FREEZE
   remainingBeforePromotion: []
-
 analysisPrecondition:
   primaryBASourceAllowed: true
   doNotDeriveAcceptedBAUntilExplicitPromotion: false
   pinPromotedAuthorityBaseline: FACIAL-ACCESS-GOV-R2
   pinConcretePromotionCommitBeforeAcceptedBA: true
-  dgFa003RepresentationPressureRetainedForPromotedBARebuild: true
-  dgFa004SegmentIdentityPressureRetainedForPromotedBARebuild: true
-  transferBehaviorWorkingCandidateAcceptedAsBA2: false
+  postPromotionMinimumBARebuildCompleted: true
+  postPromotionMinimumBARebuildRepositoryCommit: 8af2257a1df94fa5a83d4853ed0a1eb4d020c429
+  dgFa003RepresentationPressureReproducedByPromotedBARebuild: true
+  dgFa004SegmentIdentityPressureReproducedByPromotedBARebuild: true
+  transferBehaviorWorkingCandidateAcceptedAsBA2: true
+  fr341AcquireOperatorSelection: MULTIPLE_MATERIAL_BA_CANDIDATES
+  fr11ExactDecisionRuleStatus: REPRESENTABLE_WITH_DECISION_RULE_SATISFIES_UNDER_BA2_R3
+  ba2ModificationAcceptedAfterMinimumRebuild: true
+  activeBA2WorkingRevision: BA2_RELATION_ACTION_VOCABULARY_R3
+  decisionRuleSatisfiesAcceptedAsBA2: true
+  propertyLessComparisonAcceptedAsBA2: false
+  postBARegressionRequired: false
+  postBARegressionPassed: true
+  facialAccessBAArtifact: studies/base-analysis/R24_FACIAL_ACCESS_BASE_ANALYSIS_R1.md
+  newBA2PressureFoundByRegression: false
+  newProjectSemanticGapFoundByRegression: false
   dgFa005DeferredOutsideCurrentDocumentationBAClosureScope: true
   lifecycleTestCodeTraceRequiredBeforePromotion: false
   authCClarificationRequiredToBeSpecifiedBeforePromotion: false
@@ -171,3 +360,44 @@ analysisPrecondition:
   dgFa006PositiveBranchResolved: true
   fullSuccessorSemanticRegressionPassed: true
   explicitGovernancePromotionCompleted: true
+  ba6IntegratedCompletionPassed: false
+  declaredScopeSemanticCoveragePassed: true
+  projectionReadinessPassed: true
+  newBAContractPressureFoundByBA6: false
+  newProjectSemanticGapFoundByBA6: false
+  humanReadableGuideRevisionRequiredNext: true
+  threatMethodEvaluationStarted: false
+  lifecycleTestCodeTraceabilityStarted: false
+  humanReadableMethodConsolidationCompleted: true
+  currentAuthoringGuideRevision: R3
+  currentBaseAnalysisOperationalGuideRevision: R2
+  thesisChapterReviewAuthorizedNext: false
+  ba6IntegratedAcceptance: OPEN
+  facialAccessPostBARegressionPassed: true
+  facialAccessBABaselineKey: FACIAL-ACCESS-BA-R24-R1
+  humanReadableMethodFreezePending: false
+  r25Phase0StateReconciliationPassed: true
+  r25Phase1DocumentationMethodFreezeRequiredNext: false
+  r25Phase1DocumentationMethodFreezePassed: true
+  frozenDocumentationGuideRevision: R4
+  frozenDocumentationGuideTexSha256: 038EF52AF34B71D349F13A7A66CCB5173243973C61672F2B145DC1D7DC13234B
+  frozenDocumentationGuidePdfSha256: 0A0EF627A995484EFEAC258376C030C638F73BE9FAE1D8FD7DF773CAD6ED7617
+  r25Phase2BAPreHoldoutContractFreezeRequiredNext: true
+ba6Contract: methodology/BA6_INTEGRATED_BASE_ANALYSIS_COMPLETION_REGRESSION_R1.md
+ba6Checkpoint: methodology/DDTA_R24_FACIAL_ACCESS_BA6_INTEGRATED_COMPLETION_CHECKPOINT_R1.md
+currentAuthoringGuide: methodology/DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R4.pdf
+currentBaseAnalysisOperationalGuide: methodology/DDTA_BASE_ANALYSIS_OPERATIONAL_GUIDE_R2.pdf
+currentForwardWorkPlan: methodology/DDTA_RESEARCH_WORK_PLAN_PRE_HOLDOUT_R25.md
+humanReadableMethodCheckpoint: methodology/DDTA_R24_HUMAN_READABLE_METHOD_CONSOLIDATION_CHECKPOINT_R1.md
+facialAccessBABaselineKey: FACIAL-ACCESS-BA-R24-R1
+facialAccessBAArtifact: studies/base-analysis/R24_FACIAL_ACCESS_BASE_ANALYSIS_R1.md
+facialAccessBAStatus: COMPLETE_CASE_BA_POST_BA_REGRESSION_PASS
+ba6IntegratedAcceptance: OPEN
+ba6ClosureAttemptArtifact: methodology/BA6_INTEGRATED_BASE_ANALYSIS_COMPLETION_REGRESSION_R1.md
+ba6ClosureAttemptCheckpoint: methodology/DDTA_R24_FACIAL_ACCESS_BA6_INTEGRATED_COMPLETION_CHECKPOINT_R1.md
+currentStateReconciliationCheckpoint: methodology/DDTA_R25_STATE_RECONCILIATION_CHECKPOINT_R1.md
+currentAuthoringGuideStatus: FROZEN_PRE_HOLDOUT_R25
+currentBaseAnalysisOperationalGuideStatus: WORKING_CONTENT_PENDING_R25_PHASE_2_FREEZE
+humanReadableMethodCheckpointStatus: PROVISIONAL_R24_EVIDENCE_SUPERSEDED_FOR_FORWARD_STATUS_BY_R25_RECONCILIATION
+currentAuthoringGuideSource: methodology/DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R4.tex
+documentationMethodFreezeCheckpoint: methodology/DDTA_R25_DOCUMENTATION_METHOD_FREEZE_CHECKPOINT_R1.md

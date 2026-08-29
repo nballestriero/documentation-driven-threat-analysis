@@ -6,10 +6,16 @@
 **Authority baseline:** `FACIAL-ACCESS-GOV-R2`
 **Primary BA source allowed:** yes
 **Promotion provenance:** promoted in place from the regression-closed R3 candidate at `4d6aa85385b79be926125d4e61390ac185f63cfd`; the directory name is retained for provenance and does not reduce current authority.
+**Post-promotion BA rebuild baseline:** `8af2257a1df94fa5a83d4853ed0a1eb4d020c429`.
+**BA representation-pressure review:** complete; minimum `BA2_RELATION_ACTION_VOCABULARY_R3.md` reopen accepted.
+**Post-BA regression:** PASS.
+**Facial Access BA baseline:** `FACIAL-ACCESS-BA-R24-R1` at `studies/base-analysis/R24_FACIAL_ACCESS_BASE_ANALYSIS_R1.md`; complete case BA / post-BA regression PASS.
+**BA6 integrated acceptance:** OPEN; the earlier BA6 completion artifact is provisional closure-attempt evidence pending the inherited holdout/change/projection gate.
+**Documentation authoring guide:** R25 pre-holdout freeze complete at `DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R4`; Base Analysis operational freeze remains pending Phase 2.
 
 ## Purpose
 
-This directory is the **active R24 experimental Facial Access successor candidate** after the bounded reviews of `DG-FA-001 — cross-MR consumer binding`, `DG-FA-002 — quality/sufficiency criterion`, `DG-FA-003 — transfer-to-channel/path binding`, `DG-FA-004 — intermediate transport nodes / governed multi-stage flow pressure`, and the bounded deferral of `DG-FA-005 — test/code evidence linkage`.
+This directory is the **current governed R24 Facial Access validation corpus** after the bounded reviews of `DG-FA-001 — cross-MR consumer binding`, `DG-FA-002 — quality/sufficiency criterion`, `DG-FA-003 — transfer-to-channel/path binding`, `DG-FA-004 — intermediate transport nodes / governed multi-stage flow pressure`, the bounded deferral of `DG-FA-005 — test/code evidence linkage`, the resolution of `DG-FA-006 — positive access-decision branch`, full semantic regression, explicit governance promotion, and the first post-promotion minimum justified Base Analysis rebuild.
 
 It integrates the reviewed `MR-0003` identity-determination branch from `candidate-r2` with the minimum downstream project documentation required to represent a real governed access-decision consumer:
 
@@ -22,11 +28,25 @@ It integrates the reviewed `MR-0003` identity-determination branch from `candida
 
 `candidate-r2/` remains unchanged as the MR-0003-only semantic-successor checkpoint and provenance evidence for this integration sequence.
 
+The post-promotion BA rebuild is **analysis evidence only**. It does not become project authority and does not retroactively rewrite the governed project documents.
+
 ## Authority boundary
 
 This corpus is the **current governed R24 Facial Access baseline** under `FACIAL-ACCESS-GOV-R2`.
 
-The promotion is authority-only: the regression-closed `R3-CANDIDATE-9` semantic content is promoted in place, while the path `candidate-r3/` is retained as provenance. `primaryBASourceAllowed: true` now permits the minimum BA rebuild, provided that the promoted authority baseline and the concrete Git commit containing the promotion are pinned.
+The promotion is authority-only: the regression-closed `R3-CANDIDATE-9` semantic content was promoted in place, while the path `candidate-r3/` is retained as provenance. `primaryBASourceAllowed: true` permitted the minimum BA rebuild after pinning the promoted authority baseline and the concrete Git commit containing the promotion.
+
+The first post-promotion rebuild has now been completed against:
+
+```text
+authorityBaselineKey
+    FACIAL-ACCESS-GOV-R2
+
+repository baseline
+    8af2257a1df94fa5a83d4853ed0a1eb4d020c429
+```
+
+No project document was changed by that rebuild.
 
 ## DG-FA-001 result carried into R3
 
@@ -93,7 +113,37 @@ D-3.6
 
 No new hard-coded reference from `D-3.5` or `D-3.6` to `FR-3.4.2` is added merely to make Base Analysis extraction easier, and no `channel`/`path` field is introduced. The historical placeholder `@FR-3.4.2-TRANSPORT-BINDING` is retired as a documentation gap.
 
-The future promoted BA rebuild must still prove that it can preserve this binding reproducibly. Failure to do so remains a BA2 representation pressure, not permission to rewrite project truth for tooling convenience.
+### Post-promotion BA rebuild result
+
+The minimum justified BA rebuild reproduced the representation failure that the documentation review had retained as pressure:
+
+```text
+transfer
+  source      -> CameraSubsystem
+  destination -> RecognitionProcessor
+  content     -> RecognitionCapture
+```
+
+is sufficient to represent the delivery itself, but the current `transfer` role contract does not provide a semantic identity for **this governed delivery behavior** to which the consumed connectivity service, current wired-Ethernet realization and segment-specific security obligations can all refer without incorrectly targeting the content, an endpoint or the whole pipeline.
+
+The rebuild reproduced the pressure. The subsequent bounded representation-pressure review falsified broader alternatives and accepted the smallest local BA2 repair:
+
+```text
+documentation semantic gap
+    -> NONE
+
+BA2 representation pressure
+    -> CONFIRMED
+
+transfer.behavior
+    -> ACCEPTED IN BA2 R3
+    -> BAReferent [0..1]
+
+behavior generalized to other operators
+    -> NOT JUSTIFIED
+```
+
+This result is not permission to rewrite project truth for tooling convenience.
 
 ## DG-FA-004 result carried into R3
 
@@ -113,19 +163,43 @@ CameraSubsystem
     -> AccessDecision
 ```
 
-The test found that current BA1 identity semantics are sufficient and current BA2 can represent the stages, branching/convergence, same-identity correlation and opaque ungoverned provider regions.
+The review found that current BA1 identity semantics are sufficient and current BA2 can represent the stages, branching/convergence, same-identity correlation and opaque ungoverned provider regions.
 
 A concrete BA2 representation pressure remains when several independently governed facts must address the same transfer segment. For `FR-3.4.2`, the consumed connectivity service, current wired-Ethernet realization and `Confidentiality` / `Integrity` / `AuthorizedProvenance` obligations all concern the governed `RecognitionCapture` delivery and must not be generalized to the whole pipeline.
 
-The smallest working candidate that survived the bounded falsification test is optional reusable behavior identity on `transfer`:
+The smallest working candidate retained from the bounded falsification test is optional reusable behavior identity on `transfer`:
 
 ```text
 transfer.behavior -> <BAReferent> [0..1]
 ```
 
-This is **not** an accepted BA2 change. It must be reproduced during the minimum BA rebuild against this promoted baseline before the BA2 contract may be reopened.
+The post-promotion minimum BA rebuild independently reproduced the need for segment identity. The subsequent bounded pressure review accepted exactly one optional `transfer.behavior -> BAReferent [0..1]` role in BA2 R3. The role is not generalized to other operators.
 
-No first-class `Pipeline` type, `contains` / `partOf` relation, generalized behavior role, channel/path document field or provider-internal node is justified by this review.
+No first-class `Pipeline` type, `contains` / `partOf` relation, generalized behavior role, channel/path document field or provider-internal node is justified.
+
+## FR-3.4.1 acquisition representation note
+
+The post-promotion BA rebuild also confirmed that the governed verb **acquire** in `FR-3.4.1` does not currently force one unique BA2 operator.
+
+`create`, `observe`, `produce` or a combination would each add a more specific interpretation than the project source currently governs.
+
+Therefore:
+
+```text
+FR-3.4.1 acquire
+    -> MULTIPLE MATERIAL BA CANDIDATES
+
+operator selected
+    -> NONE
+
+documentation rewrite
+    -> NONE
+
+BA2 extension
+    -> NONE
+```
+
+The ambiguity is preserved diagnostically rather than guessed away.
 
 ## AUTH-C disposition carried into R3
 
@@ -149,7 +223,7 @@ AUTH-P was non-blocking for promotion and remains preserved in the governed base
 
 The bounded semantic-owner review confirmed that the positive access-decision branch is part of the core functional meaning owned by `MR-0001`.
 
-`D-1.1` and `FR-1.1` now govern:
+`D-1.1` and `FR-1.1` govern:
 
 ```text
 successful identity determination
@@ -162,17 +236,53 @@ The existing negative constraints remain unchanged: `NEGATIVE` and `INCONCLUSIVE
 
 This resolution does not introduce an internal vocabulary such as `AUTHORIZED / NOT_AUTHORIZED`, `TRUE / FALSE / UNKNOWN`, or `AccessAuthorizationState.authorized = TRUE`. It also does not introduce retry, exception, contextual-policy or physical gate-opening semantics.
 
-No BA contract is changed by this disposition.
+### Post-promotion BA rebuild result
+
+The exact conjunctive `FR-1.1` decision meaning is governed by project documentation, but the current BA2 `decisionRule` lower bound requires a property-addressed comparison. The current `MR-0002` source intentionally does not govern an `authorized` property or normalized authorization-value vocabulary.
+
+Therefore any BA such as:
+
+```text
+AccessAuthorizationState.authorized = TRUE
+```
+
+would invent project semantics.
+
+The rebuild recorded a BA representation pressure. The subsequent bounded pressure review accepted one local `decisionRule` condition form:
+
+```text
+satisfies
+  subject   -> BAReferent
+  condition -> BAReferent
+```
+
+The result is:
+
+```text
+FR-1.1 exact decision rule
+    -> REPRESENTABLE UNDER BA2 R3
+
+new documentation gap
+    -> NO
+
+normalized authorization property/value
+    -> NOT INVENTED
+
+decisionRule.satisfies
+    -> ACCEPTED LOCALLY IN BA2 R3
+```
+
+This is a BA representation refinement, not a reason to alter the governed project documentation.
 
 ## Full successor semantic regression result
 
-The full regression passes after correction of propagation-only defects:
+The full documentation regression passes after correction of propagation-only defects:
 
 - the DG-FA-006 positive branch is propagated consistently into the MR-0003 cross-branch integration text;
 - the MR-0003 Security Requirement set reflects the completed `AUTH-C` / `AUTH-P` dispositions and candidate R3 state;
-- forward-facing candidate, repository, work-plan and authority metadata are aligned to completed gap review and regression closure.
+- forward-facing candidate, repository, work-plan and authority metadata were aligned to completed gap review and regression closure.
 
-No new project-semantics gap was found and no BA contract change is justified by the regression.
+No new project-semantics gap was found by the post-promotion BA rebuild.
 
 ## Governance promotion result
 
@@ -189,10 +299,176 @@ primaryBASourceAllowed
     true
 ```
 
-No project semantic content and no BA contract is changed by the promotion.
+No project semantic content was changed by the promotion.
+
+## Post-promotion minimum BA rebuild result
+
+The first source-first rebuild against the promoted baseline is complete.
+
+```text
+core referents
+    -> derivable
+
+MR-0001 macro production
+    -> representable
+
+MR-0002 GovernedIdentity binding
+    -> representable
+
+no preselected GovernedIdentity
+    -> preserved
+
+RecognitionProcessor -> IdentityDeterminationOutcome
+    -> representable
+
+RecognitionCapture <-> IdentityDeterminationRequest
+    -> representable
+
+FR-3.4.2 transfer
+    -> representable
+
+FR-3.4.1 acquire semantics
+    -> MULTIPLE MATERIAL BA CANDIDATES
+
+FR-1.1 exact conjunctive decision rule
+    -> BA REQUIRES UNSUPPORTED FACT
+
+FR-3.4.2 segment identity
+    -> CONCRETE BA2 REPRESENTATION FAILURE REPRODUCED
+
+transfer.behavior
+    -> working candidate retained
+    -> NOT accepted
+
+AUTH-C / AUTH-P
+    -> NOT SPECIFIED preserved
+
+project documentation
+    -> unchanged
+
+BA2
+    -> unchanged
+```
+
+## BA representation-pressure review result
+
+The bounded review of the reproduced failures is complete.
+
+```text
+FR-3.4.1 acquire
+    -> no BA2 change
+
+FR-3.4.2 reusable transfer-segment identity
+    -> transfer.behavior -> BAReferent [0..1]
+    -> accepted in BA2 R3
+
+FR-1.1 opaque governed authorization condition
+    -> decisionRule.satisfies(subject, condition)
+    -> accepted in BA2 R3
+
+new top-level operator
+    -> NONE
+
+new BA1 family
+    -> NONE
+
+project documentation semantic change
+    -> NONE
+```
+
+The accepted BA2 changes are working methodology refinements and must now survive full post-BA regression.
+
+## Post-BA regression result
+
+The full promoted corpus has been rebuilt using BA2 R3 and materialized as:
+
+```text
+studies/base-analysis/R24_FACIAL_ACCESS_BASE_ANALYSIS_R1.md
+```
+
+Regression result:
+
+```text
+acquisition under-specification
+    PASS
+
+capture/request binding
+    PASS
+
+transfer.behavior segment identity
+    PASS
+
+service / medium distinction
+    PASS
+
+delivery-scoped Confidentiality / Integrity / AuthorizedProvenance
+    PASS
+
+FR-1.1 with decisionRule.satisfies
+    PASS
+
+same GovernedIdentity
+    PASS
+
+AUTH-C / AUTH-P
+    NOT SPECIFIED PRESERVED
+
+new BA pressure
+    NONE FOUND
+
+new project semantic gap
+    NONE FOUND
+
+project documentation change
+    NONE
+```
+
+BA2 R3 therefore survives the current Facial Access corpus regression.
+
+## R25 state-reconciliation disposition
+
+The Facial Access source-to-BA work remains valid case evidence:
+
+```text
+FACIAL-ACCESS-GOV-R2
+    CURRENT_GOVERNED
+
+FACIAL-ACCESS-BA-R24-R1
+    complete Facial Access BA
+    post-BA regression PASS
+
+BA2 R3
+    current pre-holdout revision
+
+new project semantic gap
+    NONE FOUND
+```
+
+The repository coherence audit found that the integrated BA6 acceptance gate was not fully executed.
+
+Still pending outside this corpus-specific regression:
+
+```text
+structurally different holdout
+multiple BA4 projections
+governed change
+BA3 impact/revalidation
+rebuild/re-analysis
+```
+
+Therefore:
+
+```text
+BA6 integrated acceptance
+    OPEN
+```
+
+No governed Facial Access project document is reopened by this status correction.
 
 ## Next bounded step
 
-The next authorized step is **MINIMUM JUSTIFIED BASE ANALYSIS REBUILD ONLY**.
+R25 Phase 1 is complete. The documentation method is frozen pre-holdout.
 
-The BA must be derived again from this promoted documentation baseline; the earlier working BA pressure test is evidence, not an accepted BA to reuse mechanically.
+The next authorized step is **R25 PHASE 2 — BA PRE-HOLDOUT CONTRACT FREEZE ONLY**.
+
+Do not select or author the new holdout yet.

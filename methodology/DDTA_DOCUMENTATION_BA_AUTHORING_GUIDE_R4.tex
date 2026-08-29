@@ -1,0 +1,656 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[a4paper,margin=2.15cm,headheight=15pt]{geometry}
+\usepackage{booktabs,longtable,tabularx,array}
+\usepackage{ragged2e}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{listings}
+\usepackage{titlesec}
+\usepackage{amsmath,amssymb}
+
+\definecolor{ddtadark}{RGB}{28,38,52}
+\definecolor{ddtagray}{RGB}{244,246,248}
+\definecolor{ddtablue}{RGB}{42,88,135}
+\definecolor{ddtagreen}{RGB}{48,111,78}
+\definecolor{ddtaorange}{RGB}{148,91,25}
+\definecolor{ddtared}{RGB}{140,48,48}
+\definecolor{ddtapurple}{RGB}{92,63,122}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=ddtablue,
+  urlcolor=ddtablue,
+  citecolor=ddtablue,
+  pdftitle={Documentation and Base Analysis Authoring Guide},
+  pdfauthor={Documentation-Driven Threat Analysis research workspace}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{DDTA -- Authoring Guide}
+\rhead{R4}
+\cfoot{\thepage}
+
+\titleformat{\section}{\Large\bfseries\color{ddtadark}}{\thesection}{0.7em}{}
+\titleformat{\subsection}{\large\bfseries\color{ddtadark}}{\thesubsection}{0.7em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{ddtadark}}{\thesubsubsection}{0.7em}{}
+
+\setlist[itemize]{leftmargin=1.55em,itemsep=0.22em,topsep=0.35em}
+\setlist[enumerate]{leftmargin=1.75em,itemsep=0.22em,topsep=0.35em}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{0pt}
+\setlength{\emergencystretch}{3em}
+
+\lstset{
+  basicstyle=\ttfamily\small,
+  columns=fullflexible,
+  keepspaces=true,
+  frame=single,
+  framerule=0.3pt,
+  rulecolor=\color{ddtablue},
+  backgroundcolor=\color{ddtagray},
+  xleftmargin=0.6em,
+  xrightmargin=0.6em,
+  aboveskip=0.5em,
+  belowskip=0.5em,
+  breaklines=true,
+  showstringspaces=false
+}
+
+\newtcolorbox{closedbox}[1][REGOLA STABILE]{enhanced,breakable,colback=ddtagray,colframe=ddtagreen,title={#1},fonttitle=\bfseries}
+\newtcolorbox{workingbox}[1][REGOLA BASELINE-SCOPED]{enhanced,breakable,colback=white,colframe=ddtaorange,title={#1},fonttitle=\bfseries}
+\newtcolorbox{openbox}[1][NOT SPECIFIED / DIAGNOSTIC]{enhanced,breakable,colback=white,colframe=ddtapurple,title={#1},fonttitle=\bfseries}
+\newtcolorbox{goodbox}[1][PREFERIBILE]{enhanced,breakable,colback=white,colframe=ddtagreen,title={#1},fonttitle=\bfseries}
+\newtcolorbox{badbox}[1][DA EVITARE]{enhanced,breakable,colback=white,colframe=ddtared,title={#1},fonttitle=\bfseries}
+\newtcolorbox{examplebox}[1][ESEMPIO FACIAL ACCESS]{enhanced,breakable,colback=ddtagray,colframe=ddtablue,title={#1},fonttitle=\bfseries}
+\newtcolorbox{conceptbox}[1][CONCETTO]{enhanced,breakable,colback=white,colframe=ddtablue,title={#1},fonttitle=\bfseries}
+
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+
+\newcommand{\code}[1]{\nolinkurl{#1}}
+\newcommand{\BA}{\textit{Base Analysis}}
+\newcommand{\BAR}{\textit{BAReferent}}
+\newcommand{\BAP}{\textit{BAProposition}}
+
+\begin{document}
+
+\begin{titlepage}
+\centering
+\vspace*{1.5cm}
+{\Large Documentation-Driven Threat Analysis\par}
+\vspace{0.8cm}
+{\Huge\bfseries Documentation and Base Analysis Authoring Guide\par}
+\vspace{0.25cm}
+{\LARGE Revision 4 - pre-holdout frozen documentation protocol\par}
+\vspace{0.9cm}
+{\large Metodo operativo per documentare il minimum sufficient governed meaning e consegnarlo alla Base Analysis\par}
+\vfill
+\begin{minipage}{0.88\textwidth}
+\small
+\textbf{Stato.} R25 DOCUMENTATION-METHOD FREEZE / PRE-HOLDOUT AUTHORING PROTOCOL.
+
+\medskip
+\textbf{Project authority.} \code{FACIAL-ACCESS-GOV-R2}.
+
+\medskip
+\textbf{Facial Access BA evidence.} \code{FACIAL-ACCESS-BA-R24-R1}: complete case BA / post-BA regression PASS; integrated BA6 acceptance OPEN.
+
+\medskip
+\textbf{Pinned source revision.} \code{8af2257a1df94fa5a83d4853ed0a1eb4d020c429}.
+
+\medskip
+Questa guida congela il protocollo documentale pre-holdout. Non sostituisce i documenti governati del progetto e non usa BA6 come risultato già chiuso. La Base Analysis resta una fase downstream separata.
+\end{minipage}
+\vfill
+{\large 29 agosto 2026\par}
+\end{titlepage}
+
+\pagenumbering{roman}
+\tableofcontents
+\newpage
+\pagenumbering{arabic}
+
+\section{Scopo della guida}
+
+Questa guida spiega come produrre documentazione governata che rimanga leggibile per le persone, stabile nel tempo e sufficientemente precisa per una successiva Base Analysis senza anticipare dettagli di implementazione non ancora decisi.
+
+\begin{closedbox}[Principio centrale]
+La documentazione deve governare il \textbf{minimum sufficient governed meaning}: abbastanza semantica per distinguere responsabilità, decisioni, comportamenti, condizioni e proprietà materialmente rilevanti, ma non più dettaglio di quello giustificato dal progetto.
+\end{closedbox}
+
+La completezza documentale non coincide con la descrizione esaustiva del sistema. Una baseline può essere adeguata anche quando alcuni aspetti restano \code{NOT SPECIFIED}, purché l'assenza non venga mascherata e non impedisca il significato necessario allo scope corrente.
+
+\subsection{Il livello di dettaglio non è fissato globalmente}
+
+DDTA non impone un livello uniforme come ``architettura'', ``componente'', ``interfaccia'' o ``protocollo''. Il criterio è adattivo:
+
+\begin{lstlisting}
+documentazione governata
+    -> domanda semantica o di sicurezza
+    -> l'evidenza e' sufficiente?
+         YES -> stop
+         NO  -> gap / NOT SPECIFIED / ulteriore review
+\end{lstlisting}
+
+La domanda di arresto è:
+
+\begin{conceptbox}[Stopping criterion]
+Abbiamo abbastanza semantica per formulare la proprietà o la domanda rilevante e dire, con evidenza documentale, se è soddisfatta, violata oppure non specificata?
+\end{conceptbox}
+
+
+\section{R25 pre-holdout freeze}
+
+Questa revisione R4 è il protocollo documentale congelato che verrà usato per il nuovo caso di validazione strutturalmente diverso.
+
+\begin{closedbox}[Freeze rule]
+Il nuovo holdout non è ancora selezionato né scritto. Di conseguenza, nessuna regola di questa guida è stata adattata al dominio futuro.
+
+Dopo il freeze, il nuovo caso può:
+\begin{itemize}
+\item essere rappresentato correttamente dal metodo corrente;
+\item esporre una insufficienza del contratto documentale;
+\item esporre una distinzione non governata e quindi produrre \code{NOT SPECIFIED};
+\item richiedere una riapertura solo attraverso un counterexample concreto.
+\end{itemize}
+\end{closedbox}
+
+\subsection{Anti-contamination rule}
+
+Durante l'authoring del holdout non si consulta BA2 per decidere quali significati di progetto introdurre.
+
+Sono vietate motivazioni come:
+
+\begin{lstlisting}
+aggiungiamo un transfer per testare transfer
+aggiungiamo uno state change per testare transition
+creiamo una proprieta' per facilitare decisionRule
+scegliamo una struttura perche' la BA la rappresenta bene
+\end{lstlisting}
+
+La documentazione deve essere guidata dal problema e dalle decisioni del progetto.
+
+\subsection{Status delle regole}
+
+La guida distingue:
+
+\begin{lstlisting}
+FROZEN PRE-HOLDOUT RULE
+    regola usata per il nuovo caso
+
+CASE EVIDENCE
+    esempio Facial Access che illustra la regola
+
+NOT SPECIFIED / OPEN
+    significato non governato o domanda non ancora chiusa
+\end{lstlisting}
+
+Il freeze non implica completezza universale del metodo. Un nuovo counterexample puo' riaprire il minimo owning layer.
+
+\section{Authority prima della scrittura}
+
+La cronologia non determina authority.
+
+Prima di creare, revisionare o usare un documento:
+
+\begin{enumerate}
+\item identificare la baseline governata corrente;
+\item distinguere artifact correnti, candidate, working e superseded;
+\item preservare la provenance delle revisioni storiche;
+\item evitare che BA, tool o analisi downstream diventino project authority.
+\end{enumerate}
+
+\begin{lstlisting}
+project documentation
+    = project authority
+
+Base Analysis
+    = analytical representation
+
+threat method / test / projection
+    = downstream consumer
+\end{lstlisting}
+
+Un finding downstream può proporre una clarification o una correzione, ma la project truth cambia soltanto attraverso review e aggiornamento della documentazione governata.
+
+\section{Problem framing}
+
+La documentazione inizia dalla responsabilità del progetto, non dalla tecnologia disponibile.
+
+\begin{badbox}
+\begin{lstlisting}
+Il sistema usa una telecamera IP Ethernet,
+un PC locale e un modello facciale per aprire il varco.
+\end{lstlisting}
+Questa frase incorpora già soluzione, placement, mezzo e attuazione fisica.
+\end{badbox}
+
+\begin{goodbox}
+\begin{lstlisting}
+Il progetto controlla un tentativo di accesso,
+distingue la persona presente,
+lo stato di autorizzazione rilevante
+e la decisione sul singolo tentativo.
+\end{lstlisting}
+\end{goodbox}
+
+Il framing è una disciplina di metodo. Non richiede necessariamente un nuovo tipo di documento.
+
+\section{MacroRequirement}
+
+Un MacroRequirement governa una responsabilità stabile del problema.
+
+Deve rispondere almeno a:
+
+\begin{itemize}
+\item che cosa è responsabilità del branch;
+\item quale significato o risultato macro produce/contribuisce;
+\item quali responsabilità importanti sono fuori scope;
+\item quali stakeholder sono materialmente interessati;
+\item quali dipendenze macro esistono senza confondere dependency e containment.
+\end{itemize}
+
+Corpo consigliato:
+
+\begin{lstlisting}
+Title
+Intent
+Context
+Stakeholders
+Scope
+Assumptions / Constraints   [solo se branch-wide]
+dependsOn                   [solo quando genuino]
+\end{lstlisting}
+
+\subsection{Semantic-sufficiency gate}
+
+Prima di scendere a Decision o Functional Requirement, verificare che l'MR abbia un solo significato stabile.
+
+\begin{examplebox}[MR-0003]
+La formulazione corrente chiarisce che, quando la responsabilità inizia, la persona è presente ma la specifica \code{GovernedIdentity} corrispondente non è ancora determinata.
+
+Questa frase elimina la lettura alternativa in cui una identità specifica sarebbe già preselezionata e il sistema dovrebbe soltanto verificarla.
+\end{examplebox}
+
+\section{Decision}
+
+Una Decision governa una scelta progettuale materialmente rilevante che specializza una responsabilità più stabile.
+
+Una Decision dovrebbe esplicitare:
+
+\begin{lstlisting}
+Context
+Decision
+Consequences
+\end{lstlisting}
+
+Una scelta merita una Decision autonoma quando:
+
+\begin{itemize}
+\item può cambiare senza cambiare la responsabilità macro;
+\item modifica placement, boundary, strategia o altro significato riusabile;
+\item è necessario distinguerla da alternative progettuali reali;
+\item il cambiamento può richiedere revalidazione downstream.
+\end{itemize}
+
+\begin{examplebox}[D-3.1, D-3.4, D-3.5, D-3.6]
+Nel caso Facial Access sono Decision distinte:
+\begin{itemize}
+\item riconoscimento facciale come strategia;
+\item separazione CameraSubsystem / RecognitionProcessor;
+\item consumo di un servizio di connettività non posseduto dal progetto;
+\item Ethernet cablata come mezzo corrente dell'interazione.
+\end{itemize}
+Separarle evita che ``facial recognition'', ``camera'', ``servizio'' ed ``Ethernet'' diventino un unico commitment indivisibile.
+\end{examplebox}
+
+\section{Functional Requirement}
+
+Un Functional Requirement governa un comportamento operativo verificabile derivato da una responsabilità/Decision.
+
+Una buona formulazione identifica:
+
+\begin{itemize}
+\item quando il comportamento è richiesto;
+\item chi ne possiede la responsabilità funzionale;
+\item il significato di input/output o stato coinvolto;
+\item il binding contestuale necessario;
+\item ciò che il FR deliberatamente non governa.
+\end{itemize}
+
+\subsection{Non anticipare la BA}
+
+La documentazione deve governare il significato del progetto, non scegliere un operatore BA per comodità.
+
+\begin{examplebox}[FR-3.4.1 - acquire]
+La fonte governa che \code{CameraSubsystem} acquisisca una nuova \code{RecognitionCapture} quando la \code{IdentityDeterminationRequest} la richiede.
+
+La fonte non decide se ``acquire'' debba essere modellato come:
+\begin{lstlisting}
+create
+observe
+produce
+combination
+\end{lstlisting}
+Questa under-specification è intenzionale e corretta.
+\end{examplebox}
+
+\subsection{Binding contestuale}
+
+Quando due significati devono rimanere associati alla stessa richiesta, identità, tentativo o valutazione, il binding appartiene alla semantica del FR se è necessario per evitare un risultato materialmente diverso.
+
+Nel caso Facial Access:
+
+\begin{lstlisting}
+RecognitionCapture
+    <-> IdentityDeterminationRequest
+\end{lstlisting}
+
+è parte dell'obbligo di acquisizione e deve essere preservato nel delivery.
+
+\section{Requirement split e unità coerente}
+
+Non dividere automaticamente un requisito in una riga per verbo. Dividere quando esistono obblighi con:
+
+\begin{itemize}
+\item semantic owner diverso;
+\item failure mode materialmente distinto;
+\item lifecycle/review indipendente;
+\item diversa specializzazione di sicurezza;
+\item diversa possibilità di change/revalidation.
+\end{itemize}
+
+Evitare anche l'estremo opposto: un FR che contiene strategia, algoritmo, trasporto, security mechanism e policy organizzativa in un unico testo.
+
+\section{Specialized Requirement}
+
+Uno Specialized Requirement è giustificato quando una proprietà più specifica deve essere governata autonomamente rispetto al FR parent.
+
+Non deve essere creato solo per riempire una gerarchia.
+
+\begin{examplebox}[DG-FA-002]
+La review Facial Access non ha trovato evidenza sufficiente per introdurre un requisito quantitativo di ``capture quality''.
+
+Il significato necessario è stato governato nell'esito:
+\begin{lstlisting}
+SUCCESS
+NEGATIVE
+INCONCLUSIVE
+\end{lstlisting}
+
+Non sono stati inventati score, confidence, threshold o ranking.
+\end{examplebox}
+
+\section{Security Requirement}
+
+Un Security Requirement deve specializzare un comportamento o significato governato e mantenere esplicito lo scope della proprietà.
+
+Nel corpus Facial Access:
+
+\begin{lstlisting}
+FR-3.4.2 RecognitionCaptureDelivery
+    -> Confidentiality
+    -> Integrity
+    -> AuthorizedProvenance
+\end{lstlisting}
+
+Queste proprietà non vengono propagate automaticamente a tutto il sistema.
+
+\subsection{Proprietà non significa meccanismo}
+
+\begin{badbox}
+\begin{lstlisting}
+Confidentiality -> TLS
+Integrity       -> signature
+Provenance      -> certificate
+\end{lstlisting}
+Nessuna di queste equivalenze è autorizzata se il progetto non governa il meccanismo.
+\end{badbox}
+
+\subsection{NOT SPECIFIED può essere corretto}
+
+Il corpus governa le proprietà C/I/AuthorizedProvenance ma non la base completa di autorizzazione per:
+
+\begin{itemize}
+\item chi possa conoscere il contenuto della capture (\code{AUTH-C});
+\item quale evidenza renda una origine autorizzata per una specifica request (\code{AUTH-P}).
+\end{itemize}
+
+Questi significati restano \code{NOT SPECIFIED} e non bloccano la baseline dimostrativa corrente.
+
+\section{Cross-MR semantics}
+
+Quando un risultato attraversa responsabilità diverse, il downstream consumer deve essere governato per responsabilità, non inventato come componente tecnico.
+
+Nel caso corrente:
+
+\begin{lstlisting}
+MR-0003
+    -> IdentityDeterminationOutcome
+       -> SUCCESS makes GovernedIdentity X available
+
+MR-0002
+    -> AccessAuthorizationState concerning GovernedIdentity X
+
+MR-0001
+    -> uses both meanings
+       -> AccessDecision
+\end{lstlisting}
+
+L'identità usata per l'autorizzazione deve essere la stessa resa disponibile dalla determinazione riuscita.
+
+\section{Consumed service boundary}
+
+Un servizio consumato non diventa automaticamente responsabilità del progetto.
+
+\begin{examplebox}[D-3.5]
+La realizzazione corrente consuma \code{ConnectivityService}. Il progetto non possiede né gestisce l'infrastruttura sottostante.
+
+Quindi:
+\begin{lstlisting}
+consumption != ownership
+requirement  != provider guarantee
+wired medium != hidden end-to-end topology
+\end{lstlisting}
+\end{examplebox}
+
+Se una proprietà richiesta al servizio non è garantita da evidenza governata, il risultato è una assurance/coverage question, non una nuova project truth inventata.
+
+\section{Decisioni con condizioni congiunte}
+
+Una policy decisionale deve governare abbastanza semantica da distinguere condizioni necessarie, ramo positivo e rami non consentiti.
+
+\begin{examplebox}[D-1.1 / FR-1.1]
+\begin{lstlisting}
+SUCCESS
+AND required authorization condition satisfied
+    for the same GovernedIdentity
+    -> AccessDecision MUST ALLOW
+
+NEGATIVE
+    -> MUST NOT ALLOW
+
+INCONCLUSIVE
+    -> MUST NOT ALLOW
+
+SUCCESS
+AND required authorization condition not satisfied
+    -> MUST NOT ALLOW
+\end{lstlisting}
+\end{examplebox}
+
+La documentazione non è obbligata a introdurre un campo \code{authorized = TRUE}. Se quel vocabolario non esiste, non deve essere creato per facilitare la BA.
+
+\section{Documentation gaps e clarification}
+
+Un gap è una diagnosi, non un requisito automatico.
+
+Classificazioni utili:
+
+\begin{lstlisting}
+missing governed meaning
+conflicting governed meaning
+ambiguous semantic owner
+consumer evidence insufficient
+analysis-relevant NOT SPECIFIED
+deferred outside current scope
+\end{lstlisting}
+
+Il ciclo corretto è:
+
+\begin{lstlisting}
+analysis / BA question
+    -> diagnostic
+    -> semantic-owner review
+    -> project-document change only if justified
+    -> rebuild BA
+\end{lstlisting}
+
+\section{Canonical terminology}
+
+I riferimenti semanticamente operativi devono avere identità/nome canonico controllato.
+
+Una frase umana può dire ``la camera invia la capture'', ma questo non crea automaticamente alias normativi come:
+
+\begin{lstlisting}
+send
+deliver
+push
+tx
+\end{lstlisting}
+
+per un eventuale operatore BA.
+
+Lo stesso vale per nomi di referent e valori controllati.
+
+\section{Promotion gate}
+
+Una baseline documentale è pronta per promotion quando:
+
+\begin{itemize}
+\item il semantic owner dei significati materiali è stabilito;
+\item le cross-responsibility dependencies necessarie sono governate;
+\item i gap bloccanti sono risolti o esplicitamente esclusi;
+\item i \code{NOT SPECIFIED} non bloccanti sono preservati;
+\item una regression semantica completa non rileva contraddizioni non gestite;
+\item la governance autorizza esplicitamente l'uso come source per BA.
+\end{itemize}
+
+\section{Handoff alla Base Analysis}
+
+Il passaggio alla BA non significa ``tradurre ogni frase''.
+
+L'handoff fornisce:
+
+\begin{itemize}
+\item baseline authority key;
+\item pinned source revision;
+\item source set;
+\item termini/referent governati;
+\item relazioni/condizioni materialmente necessarie;
+\item diagnostics e \code{NOT SPECIFIED};
+\item change/revalidation context quando rilevante.
+\end{itemize}
+
+La BA applica poi il proprio criterio minimo e il contratto pre-holdout corrente (BA0--BA5 con BA2 R3). BA6 resta il successivo gate di validazione integrata.
+
+\section{Facial Access - esempio end-to-end}
+
+La documentazione corrente dell'esempio è:
+
+\begin{lstlisting}
+FACIAL-ACCESS-GOV-R2
+CURRENT_GOVERNED
+
+MR-0001 Access Control
+MR-0002 Access Authorization
+MR-0003 Identity Determination
+\end{lstlisting}
+
+I passaggi principali sono:
+
+\begin{enumerate}
+\item MR-0003 chiarisce che l'identità specifica non è preselezionata.
+\item D-3.1 sceglie riconoscimento facciale.
+\item D-3.2 governa SUCCESS/NEGATIVE/INCONCLUSIVE.
+\item D-3.4 separa acquisizione e riconoscimento.
+\item FR-3.4.1 governa acquire senza specificare snapshot/streaming.
+\item FR-3.4.2 governa delivery e request binding.
+\item D-3.5 governa servizio consumato.
+\item D-3.6 governa Ethernet cablata sul delivery corrente.
+\item SEC-3.4.2-C/I/P specializzano quel delivery.
+\item MR-0002 governa stato di autorizzazione riferito a GovernedIdentity senza enum interno.
+\item D-1.1/FR-1.1 governano la policy congiuntiva e il ramo positivo.
+\item la semantic regression chiude il corpus.
+\item la governance promuove \code{FACIAL-ACCESS-GOV-R2}.
+\item la BA viene costruita e regressata separatamente.
+\end{enumerate}
+
+\section{Checklist pratica di authoring}
+
+Prima di chiudere una revisione chiedere:
+
+\begin{enumerate}
+\item Sto governando un problema/responsabilità o una soluzione prematura?
+\item Il semantic owner è unico e chiaro?
+\item Ho separato Decision e comportamento funzionale?
+\item Ho introdotto dettagli che il progetto non ha deciso?
+\item Un binding di request/identity/context è materialmente necessario?
+\item Una proprietà è scoped al comportamento corretto?
+\item Sto confondendo proprietà di sicurezza e meccanismo?
+\item Sto trasformando un gap in requisito senza review?
+\item Un \code{NOT SPECIFIED} può rimanere esplicito?
+\item Un downstream consumer potrebbe ottenere due letture materialmente diverse?
+\item Il cambiamento di una Decision può essere revalidato senza riscrivere l'MR?
+\item La baseline è davvero autorizzata per handoff BA?
+\end{enumerate}
+
+\section{Cosa non deve fare la documentazione}
+
+La documentazione DDTA non deve:
+
+\begin{itemize}
+\item anticipare STRIDE/STRIDE-AI;
+\item creare un DFD solo perché un threat tool lo richiede;
+\item descrivere provider hop non governati;
+\item introdurre protocolli e security mechanisms per default;
+\item scegliere operatori BA;
+\item creare sinonimi normativi non registrati;
+\item nascondere ambiguità con wording generico;
+\item trasformare automaticamente findings in project truth.
+\end{itemize}
+
+\section{Stato corrente e prossimo uso}
+
+La baseline governata dell'esempio è \code{FACIAL-ACCESS-GOV-R2}.
+
+La Base Analysis \code{FACIAL-ACCESS-BA-R24-R1} è conservata come complete case BA con post-BA regression PASS. L'accettazione integrata BA6 resta \textbf{OPEN}.
+
+Questa guida R4 è la \textbf{documentation-method baseline congelata pre-holdout}.
+
+Il suo prossimo uso non è la scrittura della tesi né la selezione di una soluzione tecnica: è l'authoring del nuovo caso di validazione, ma soltanto dopo il completamento delle restanti fasi R25 pre-holdout.
+
+Prima del nuovo caso devono ancora essere congelati:
+
+\begin{itemize}
+\item il contratto Base Analysis pre-holdout;
+\item l'evidenza thesis-ready;
+\item i pointer repository/tesi;
+\item il checkpoint immutabile PRE-HOLDOUT.
+\end{itemize}
+
+ThreatForge resta differito alla fase post-stabilizzazione come reference implementation / experimental harness.
+
+La valutazione STRIDE/STRIDE-AI resta successiva alla stabilizzazione metodologica e alla reimplementazione di ThreatForge.
+\end{document}
