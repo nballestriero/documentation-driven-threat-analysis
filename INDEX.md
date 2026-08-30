@@ -11,7 +11,7 @@ For project source authority, use:
 
 ## Current R25 forward state
 
-R25 pre-holdout stabilization has completed Phases 0-4.
+R25 pre-holdout stabilization has completed Phases 0-5.
 
 ```text
 Phase 0
@@ -35,8 +35,8 @@ Phase 4
     repository / thesis orientation synchronized
 
 Phase 5
-    NEXT
-    immutable PRE-HOLDOUT FREEZE
+    COMPLETE
+    immutable PRE-HOLDOUT FREEZE recorded
 
 holdout
     NOT SELECTED
@@ -52,7 +52,7 @@ R25 sequence authority:
 
 Current execution-state authority:
 
-- `methodology/DDTA_R25_REPOSITORY_THESIS_ORIENTATION_SYNCHRONIZATION_CHECKPOINT_R1.md`
+- `methodology/DDTA_R25_PRE_HOLDOUT_FREEZE_CHECKPOINT_R1.md`
 
 The work plan retains the Phase 0-5 sequence. Its embedded progress snapshot is historical; later R25 checkpoints supply current execution state.
 
@@ -303,7 +303,7 @@ Chronological recency does not make historical material current authority.
 
 ## Current reading order
 
-For a reviewer entering the repository after R25 Phase 4:
+For a reviewer entering the repository after R25 Phase 5:
 
 1. `README.md`
 2. `INDEX.md`
@@ -316,27 +316,28 @@ For a reviewer entering the repository after R25 Phase 4:
 9. `methodology/DDTA_R25_BA_PRE_HOLDOUT_CONTRACT_FREEZE_CHECKPOINT_R1.md`
 10. `methodology/DDTA_R25_THESIS_READY_EVIDENCE_CONSOLIDATION_CHECKPOINT_R1.md`
 11. `methodology/DDTA_R25_REPOSITORY_THESIS_ORIENTATION_SYNCHRONIZATION_CHECKPOINT_R1.md`
-12. `methodology/DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R4.tex`
-13. `methodology/DDTA_BASE_ANALYSIS_OPERATIONAL_GUIDE_R3.tex`
-14. `studies/base-analysis/R24_FACIAL_ACCESS_BASE_ANALYSIS_R1.md`
-15. `thesis/README.md`
-16. `thesis/outline.md`
-17. `thesis/evidence/evidence.registry.yml`
-18. `thesis/claims/claims.registry.yml`
+12. `methodology/DDTA_R25_PRE_HOLDOUT_FREEZE_CHECKPOINT_R1.md`
+13. `methodology/DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R4.tex`
+14. `methodology/DDTA_BASE_ANALYSIS_OPERATIONAL_GUIDE_R3.tex`
+15. `studies/base-analysis/R24_FACIAL_ACCESS_BASE_ANALYSIS_R1.md`
+16. `thesis/README.md`
+17. `thesis/outline.md`
+18. `thesis/evidence/evidence.registry.yml`
+19. `thesis/claims/claims.registry.yml`
 
 Historical R24 records should then be read according to the authority/status distinctions established by the R25 checkpoints.
 
 ## Current next step
 
-Proceed only with:
+R25 Phase 5 is complete. The pre-holdout methodology/evidence state is frozen.
 
-**R25 Phase 5 — immutable PRE-HOLDOUT FREEZE.**
+Next authorized action:
 
-Phase 5 records the experimental baseline immediately before holdout selection.
+**select one structurally different validation project.**
 
-No holdout domain is selected in Phase 5.
+The Git commit containing `methodology/DDTA_R25_PRE_HOLDOUT_FREEZE_CHECKPOINT_R1.md` is the operational pre-holdout comparison baseline and must be captured before the project is selected.
 
-After Phase 5 closes, the project may select a structurally different domain and begin documentation authoring without using BA2 to decide project meaning.
+After selection, author documentation B0 from that project's own governed sources using the frozen R4 documentation protocol. Do not use BA2 to decide which project semantics to introduce.
 
 ## Historical preservation rule
 

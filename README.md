@@ -15,7 +15,7 @@ The repository is intentionally separate from the ThreatForge software repositor
 
 ## Current R25 research state
 
-Current execution state after the Phase 4 synchronization package:
+Current execution state after the Phase 5 pre-holdout freeze package:
 
 ```text
 R25 Phase 0
@@ -38,8 +38,8 @@ R25 Phase 4
     repository / thesis orientation synchronized
 
 R25 Phase 5
-    NEXT
-    immutable PRE-HOLDOUT FREEZE
+    COMPLETE
+    immutable PRE-HOLDOUT FREEZE recorded
 
 holdout
     NOT SELECTED
@@ -85,6 +85,7 @@ Current execution-state chain:
 - `methodology/DDTA_R25_BA_PRE_HOLDOUT_CONTRACT_FREEZE_CHECKPOINT_R1.md`
 - `methodology/DDTA_R25_THESIS_READY_EVIDENCE_CONSOLIDATION_CHECKPOINT_R1.md`
 - `methodology/DDTA_R25_REPOSITORY_THESIS_ORIENTATION_SYNCHRONIZATION_CHECKPOINT_R1.md`
+- `methodology/DDTA_R25_PRE_HOLDOUT_FREEZE_CHECKPOINT_R1.md`
 
 The latest applicable checkpoint supplies the current execution state while the work plan continues to supply the planned sequence.
 
@@ -220,17 +221,17 @@ The current project authority is `FACIAL-ACCESS-GOV-R2`.
 
 ## Current next step
 
-Proceed only with:
+R25 pre-holdout stabilization is complete.
 
-**R25 Phase 5 — immutable PRE-HOLDOUT FREEZE.**
+The next authorized action is to **select one structurally different validation project**.
 
-Phase 5 must pin the documentation protocol, BA0-BA5 + BA2 R3 contract, research questions, evaluation boundaries, reopen rules, thesis evidence state, and repository revision while explicitly recording that the new holdout project has not yet been selected or authored.
+Before project selection, capture the Git commit that contains `DDTA_R25_PRE_HOLDOUT_FREEZE_CHECKPOINT_R1.md`; that commit is the operational `PRE-HOLDOUT FREEZE RECORD` baseline for later comparison.
 
-Do not select or author the holdout during Phase 5.
+After selection, author the new project's documentation from its own governed sources using `DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R4`. During documentation authoring, BA2 must not be consulted to decide what project meaning should exist.
 
-Only after Phase 5 closes may a structurally different validation project be selected and documented.
+Only after the new documentation baseline is complete, semantically reviewed and governance-promoted may the source-first Base Analysis begin.
 
-Do not start STRIDE / STRIDE-AI or reimplement ThreatForge before the later gates authorize them.
+ThreatForge and STRIDE / STRIDE-AI remain downstream and deferred until their later gates authorize them.
 
 ## Important scope boundary
 
