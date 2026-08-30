@@ -4,16 +4,16 @@ title: "DDTA R25 thesis-ready evidence consolidation checkpoint - R1"
 
 # DDTA R25 thesis-ready evidence consolidation checkpoint
 
-**Status:** R25 PHASE 3 COMPLETE / THESIS-READY EVIDENCE CONSOLIDATED  
-**Application baseline:** `6e7ca6f6173601ccfdf68b4a5854f2951d134f7c`  
-**Required branch:** `master`  
-**Prior gate:** `DDTA_R25_BA_PRE_HOLDOUT_CONTRACT_FREEZE_CHECKPOINT_R1.md` — R25 PHASE 2 COMPLETE / PRE-HOLDOUT BA CONTRACT FROZEN  
-**Project authority:** `FACIAL-ACCESS-GOV-R2`  
-**Facial Access BA evidence:** `FACIAL-ACCESS-BA-R24-R1` — complete case BA / post-BA regression PASS  
-**BA6 integrated acceptance:** OPEN  
-**Holdout:** NOT SELECTED / NOT AUTHORED  
-**ThreatForge:** DEFERRED  
-**STRIDE / STRIDE-AI:** NOT STARTED  
+**Status:** R25 PHASE 3 COMPLETE / THESIS-READY EVIDENCE CONSOLIDATED
+**Application baseline:** `6e7ca6f6173601ccfdf68b4a5854f2951d134f7c`
+**Required branch:** `master`
+**Prior gate:** `DDTA_R25_BA_PRE_HOLDOUT_CONTRACT_FREEZE_CHECKPOINT_R1.md` — R25 PHASE 2 COMPLETE / PRE-HOLDOUT BA CONTRACT FROZEN
+**Project authority:** `FACIAL-ACCESS-GOV-R2`
+**Facial Access BA evidence:** `FACIAL-ACCESS-BA-R24-R1` — complete case BA / post-BA regression PASS
+**BA6 integrated acceptance:** OPEN
+**Holdout:** NOT SELECTED / NOT AUTHORED
+**ThreatForge:** DEFERRED
+**STRIDE / STRIDE-AI:** NOT STARTED
 **Next phase:** R25 PHASE 4 — REPOSITORY AND THESIS ORIENTATION SYNCHRONIZATION
 
 ## 1. Purpose
