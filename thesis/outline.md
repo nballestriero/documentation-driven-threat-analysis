@@ -1,124 +1,258 @@
 # Thesis outline
 
+## Status and authority
+
+This is the current forward thesis-structure map after R25 Phase 4 orientation synchronization.
+
+Reviewed standalone chapter authority currently exists for Chapters 2-4.
+
+```text
+Chapter 2
+    Background
+    CLOSED / FINAL for current scope
+
+Chapter 3
+    State of the Art / Research Gap
+    CLOSED / FINAL for current scope
+
+Chapter 4
+    Documentation metamodel and authoring rules
+    CLOSED / FINAL for current scope
+```
+
+Chapters 1 and 5 onward remain forward structure / authoring orientation until separately reviewed.
+
+The outline does not make deferred empirical results writable merely by naming their future chapter.
+
 ## 1. Introduction
 
-Problem, motivation, focused research questions, candidate contributions, scope and thesis
-structure. The central contribution is not a new threat-analysis method: it is a
-documentation-primary, methodology-neutral core operating on portable-by-construction governed
-documentation that satisfies an explicit DDTA input contract, supports multiple method overlays,
-and returns accepted results to governed documentation as Security Requirements.
+Problem, motivation, focused research questions, candidate contributions, scope and thesis structure.
 
-Primary evaluation scope: RQ1-RQ4. Economic cost, ROI, broad adoption studies and migration from
-arbitrary/legacy documentation into DDTA-portable form are excluded.
+The contribution must be stated with evidence-qualified wording.
 
-## 2. Background
+Primary evaluation scope remains RQ1-RQ4.
 
-### 2.1 Threat modeling and early analysis
-System understanding before code, scope, threat/finding/mitigation/security-requirement
-distinctions, and repeated analysis across system evolution.
+Economic cost, ROI, broad adoption studies and reliable migration from arbitrary legacy documentation into DDTA-portable form remain outside the primary thesis claim.
 
-### 2.2 Representations used by threat-analysis methods
-Components and data flows, assets, attacker/scenario views, goals and anti-goals, requirements,
-architectural views and other method-dependent representations. Do not assume one universal
-representation.
+## 2. Background — CLOSED / FINAL
 
-### 2.3 Security Requirements Engineering
-From security problems and accepted analytical results to testable product obligations;
-distinction between product Security Requirements and analysis-method vocabulary.
+Current reviewed source:
 
-### 2.4 Traceability and provenance
-Source identity, rationale, relations, verification evidence, baseline identity and evolution.
+- `thesis/latex/chapters/02-background.tex`
 
-### 2.5 Model-driven and documentation-driven analysis
-Explicit models, derived representations, candidate artifacts, deterministic transformations
-and human review boundaries. Generic document-to-model transformation remains background; the
-thesis evaluation starts from portable-by-construction documentation.
+The chapter provides the conceptual background required for later DDTA work, including:
 
-### 2.6 Automation and LLM-assisted transformations
-Candidate generation versus acceptance; syntax, semantic fidelity, source coverage,
-grounding, execution provenance and staleness.
+- early threat analysis and system understanding;
+- distinctions among documentation, analyzable representations, findings, mitigations and Security Requirements;
+- method-dependent analysis viewpoints;
+- traceability, provenance and change awareness;
+- automation / LLM candidate generation versus governed acceptance.
 
-### 2.7 Methodological viewpoints over system knowledge
-Software/component-centered, attack/scenario-centered, goal-oriented,
-requirements-oriented and asset-centered viewpoints. STRIDE-AI is used as a targeted
-asset-centered AI/ML methodology reference; STRIDE is discussed only where needed.
+Semantic reopening follows only the criteria recorded in `CHAPTERS_2_4_CLOSURE_R1.md`.
 
-### 2.8 Background synthesis
-Conceptual requirements that motivate a methodology-neutral, documentation-derived core.
+## 3. State of the Art / Research Gap — CLOSED / FINAL
 
-## 3. State of the art and research gap
+Current reviewed source:
 
-### 3.1 Comparison dimensions
-Starting artifact, canonical representation, analytical focus, method-specific semantics,
-output, automation, human review, traceability and change handling.
+- `thesis/latex/chapters/03-state-of-the-art-and-research-gap.tex`
 
-### 3.2 Requirements-first and security-requirements approaches
-### 3.3 Scenario, misuse and anti-goal approaches
-### 3.4 Model-driven security
-### 3.5 Automated threat modeling
-### 3.6 Threat-model-as-code and tool-supported approaches
-### 3.7 Automated requirements engineering and LLM-derived candidate models
-### 3.8 Maintenance, provenance and reproducibility
-### 3.9 Cross-source comparison
-Replace generalized families with source-specific evidence and explicit unknowns.
-### 3.10 Research gap
-Derive, rather than assert, the gap:
-portable-by-construction governed documentation -> reviewed neutral analyzable model ->
-multiple methodology overlays -> common reviewed findings -> governed Security Requirements ->
-change-aware re-analysis. Migration from generic/legacy documentation is future work.
+The current research gap remains organized around:
 
-## 4. Research method
+```text
+G1
+    governed portable-by-construction documentation
+    -> reviewed analyzable representation
 
-Research design, DDTA portability / analysis-readiness contract definition and freeze,
-case selection, baselines, corpus protocol, reference models, expected-result oracles, data
-collection, metrics, validity threats and reproducibility.
+G2
+    methodology-neutral common core
+    -> multiple analysis viewpoints
 
-The DDTA input contract is frozen before evaluation cases are assessed and must not encode
-case-specific Base Analysis elements or methodology-specific expected results.
+G3
+    method-specific results
+    -> reviewed findings
+    -> governed Security Requirements
 
-Primary evaluation is case-based and functional. Use published reference cases or independently
-prepared expected results where an explicit oracle can be justified. Precision, recall and F1 are
-used only where TP/FP/FN classification is genuinely defined. Cost and ROI are not primary metrics.
+G4
+    change-aware traceability
+    -> re-analysis
+```
 
-## 5. Documentation-Driven Threat Analysis
+The chapter does not assign the Research Method role to Chapter 4.
 
-Definitions, portable-by-construction documentation contract and writing method, Base Analysis
-metamodel, documentary candidate lifecycle, provenance, review states, methodology plugin/overlay
-contract, Common Finding boundary, Security Requirement feedback path and change-impact semantics.
+Semantic reopening follows only the criteria recorded in `CHAPTERS_2_4_CLOSURE_R1.md`.
 
-The common core must not contain STRIDE, STRIDE-AI or other methodology-specific classifications.
+## 4. Documentation metamodel and authoring rules — CLOSED / FINAL
 
-## 6. ThreatForge reference implementation
+Current reviewed source:
 
-Architecture and implemented mechanisms, described only as evidence that the method can be
-operationalized. Demonstrate the plugin boundary with two real methodology implementations:
-STRIDE and STRIDE-AI, both consuming the same Base Analysis and returning candidates through the
-same Common Finding contract.
+- `thesis/latex/chapters/04-documentation-authoring-metamodel.tex`
 
-Do not generalize from two plugins to universal methodology support.
+This chapter owns the governed documentation layer and its reviewed authoring semantics.
 
-## 7. Evaluation
+Current closed structural baseline:
 
-Evaluate:
+```text
+GovernedDocument
+    |
+    +-- MacroRequirement
+    +-- Decision
+    `-- Requirement [abstract]
+            normativeClause : NormativeClause [1..*]
+            |
+            +-- FunctionalRequirement
+            `-- SpecializedRequirement [abstract]
+                    `-- SecurityRequirement
+```
 
-- portable-documentation-to-Base-Analysis derivability against explicit reference models;
-- invariance of the canonical Base Analysis across STRIDE and STRIDE-AI runs;
-- preservation of method-specific semantics inside each plugin boundary;
-- expected, missing and unexpected finding candidates when a defensible oracle exists;
-- common Finding normalization and review outcomes;
-- Finding-to-Security-Requirement provenance completeness;
-- stale propagation after controlled documentation and methodology changes.
+The chapter covers the reviewed documentation hierarchy and authoring rules through SecurityRequirement.
 
-No primary economic-cost comparison is required.
+Later Base Analysis, projections, threat methods, Findings, implementation controls, and BA-specific vocabulary are downstream and do not become Chapter 4 semantics merely because they consume the documentation.
 
-## 8. Discussion
+Semantic reopening requires the explicit counterexample/reopen criteria recorded in `CHAPTERS_2_4_CLOSURE_R1.md`.
 
-Interpretation against the literature, limits of the two-plugin demonstration, transferability,
-human-review dependence, limits of the portability contract, incomplete contract-conformant
-documentation, automation risks, validity of reference cases, future extension to additional
-methodologies, and future migration studies for generic/legacy documentation.
+## 5. Documentation-Driven Threat Analysis and Base Analysis methodology
 
-## 9. Conclusions
+Working forward chapter.
 
-Answer RQ1-RQ4, state demonstrated contributions and explicit non-claims, and identify future
-research without presenting untested generality as established.
+This chapter should explain the stable DDTA method downstream of the governed documentation contract.
+
+Expected evidence-qualified content:
+
+### 5.1 Documentation-to-BA boundary
+
+- frozen documentation authoring/review protocol R4;
+- documentation authority over Base Analysis;
+- `NOT SPECIFIED` as valid traceable meaning;
+- handoff from governed project documentation to source-first Base Analysis.
+
+### 5.2 BA0 — responsibility boundary
+
+What Base Analysis is and is not.
+
+### 5.3 BA1 — identity ontology
+
+`BAReferent` and `BAProposition`.
+
+### 5.4 BA2 — relation/action vocabulary
+
+Current pre-holdout BA2 R3 semantics, including only the validated local refinements:
+
+```text
+transfer.behavior
+decisionRule.satisfies
+```
+
+### 5.5 BA3 — provenance, derivation, lifecycle and change
+
+Source provenance and later impact/revalidation semantics.
+
+### 5.6 BA4 — projection boundary
+
+Methodology-specific projections consume the shared BA without redefining canonical BA semantics.
+
+### 5.7 BA5 — canonical semantic registry and controlled authoring
+
+Canonical token / registry discipline and controlled extension.
+
+### 5.8 Facial Access worked example
+
+Writable through:
+
+```text
+FACIAL-ACCESS-GOV-R2
+source-first BA
+representation-pressure review
+BA2 R3
+complete Facial Access BA
+post-BA regression PASS
+```
+
+The worked example must retain its single-case evidence boundary.
+
+### 5.9 BA6 integrated validation boundary
+
+BA6 remains OPEN.
+
+Do not write BA6 as closed before the holdout, multiple projections, governed change, BA3 revalidation and rebuild/re-analysis complete the inherited gate.
+
+## 6. Research method and evaluation protocol
+
+Working forward chapter.
+
+This chapter owns the experimental and validation design, not Chapter 4.
+
+Expected content includes:
+
+- research questions and hypotheses;
+- R25 pre-holdout freeze rationale;
+- anti-contamination protocol;
+- selection criteria for a structurally different holdout after Phase 5;
+- project source / authority baseline pinning;
+- documentation B0 construction and semantic regression;
+- governance promotion;
+- source-first BA B0;
+- representation-pressure review;
+- multiple BA4 projections;
+- governed B0 -> B1 change;
+- BA3 impact / revalidation;
+- BA and projection rebuild / re-analysis;
+- comparison/evaluation criteria;
+- validity threats and reproducibility.
+
+The protocol may be written before empirical results exist.
+
+The holdout must not be selected or authored before the immutable PRE-HOLDOUT FREEZE closes.
+
+## 7. ThreatForge reference implementation
+
+Deferred until methodology stabilization and the later authorization point.
+
+ThreatForge is a downstream reference implementation / experimental harness.
+
+It must consume DDTA semantics rather than define them.
+
+Future material may cover architecture, implementation mechanisms and methodology-plugin execution only when the stable contracts and evaluation sequence authorize that work.
+
+Historical ThreatForge evidence remains research history and is not the new holdout.
+
+## 8. Evaluation
+
+Empirical results remain deferred until the required executions exist.
+
+Expected later evaluation areas include:
+
+- holdout documentation-method replication;
+- holdout BA construction and representation pressure;
+- multiple projections from the same canonical BA;
+- STRIDE / STRIDE-AI or other authorized threat-method evaluation;
+- Common Finding boundary behavior;
+- provenance and Security Requirement feedback;
+- governed change and stale/re-analysis behavior;
+- BA6 integrated verdict.
+
+No result should be prewritten as successful.
+
+## 9. Discussion
+
+Interpret results against literature and the declared evidence boundaries.
+
+Expected themes include:
+
+- transferability beyond Facial Access;
+- limits of the portability contract;
+- human-review dependence;
+- method-neutral versus method-specific semantics;
+- under-specification and `NOT SPECIFIED`;
+- counterexample-driven refinement;
+- limits of the evaluated methodology set;
+- automation risks;
+- validity threats;
+- future legacy-document migration research.
+
+## 10. Conclusions
+
+Answer RQ1-RQ4 only from evidence actually available at thesis completion.
+
+State demonstrated contributions and explicit non-claims.
+
+Do not present untested generality, open BA6 requirements, or deferred evaluation as established results.

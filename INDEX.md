@@ -1,171 +1,347 @@
 # DDTA repository index
 
-This file is the repository-level orientation map for Documentation-Driven Threat Analysis (DDTA).
+This file is the current repository-level orientation map for Documentation-Driven Threat Analysis (DDTA).
 
-It is not a semantic authority registry and it does not determine which project document is current merely by chronology. For source authority, use:
+It is not a semantic authority registry and does not determine project-document authority by chronology.
+
+For project source authority, use:
 
 - `governance/document-authority/document-authority.registry.yml`
 - `governance/document-authority/README.md`
 
-For the current R24 research state, use:
+## Current R25 forward state
 
-- `methodology/DDTA_R24_SEMANTIC_REVIEW_CHECKPOINT_R1.md`
-- `methodology/DDTA_RESEARCH_WORK_PLAN_AFTER_DOCUMENTATION_CLOSURE_R24.md`
-- `README.md`
+R25 pre-holdout stabilization has completed Phases 0-4.
+
+```text
+Phase 0
+    COMPLETE
+    state reconciled
+
+Phase 1
+    COMPLETE
+    documentation method frozen
+
+Phase 2
+    COMPLETE
+    pre-holdout BA contract frozen
+
+Phase 3
+    COMPLETE
+    thesis-ready evidence consolidated
+
+Phase 4
+    COMPLETE
+    repository / thesis orientation synchronized
+
+Phase 5
+    NEXT
+    immutable PRE-HOLDOUT FREEZE
+
+holdout
+    NOT SELECTED
+    NOT AUTHORED
+
+BA6
+    OPEN
+```
+
+R25 sequence authority:
+
+- `methodology/DDTA_RESEARCH_WORK_PLAN_PRE_HOLDOUT_R25.md`
+
+Current execution-state authority:
+
+- `methodology/DDTA_R25_REPOSITORY_THESIS_ORIENTATION_SYNCHRONIZATION_CHECKPOINT_R1.md`
+
+The work plan retains the Phase 0-5 sequence. Its embedded progress snapshot is historical; later R25 checkpoints supply current execution state.
 
 ## Current authority boundary
 
-The former facial-access validation baseline:
+Current governed Facial Access project authority:
 
-- `governed-corpora/facial-access/current/` â€” `FACIAL_ACCESS_CURRENT_R1` / `FACIAL-ACCESS-GOV-R1`
+```text
+path
+    governed-corpora/facial-access/candidate-r3/
 
-is `SUPERSEDED` and retained as regression evidence.
+authority key
+    FACIAL-ACCESS-GOV-R2
 
-The current governed R24 Facial Access successor baseline is:
+authority status
+    CURRENT_GOVERNED
 
-- `governed-corpora/facial-access/candidate-r3/`
-- `FACIAL-ACCESS-GOV-R2`
+primaryBASourceAllowed
+    true
+```
 
-It was explicitly promoted in place from `R3-CANDIDATE-9`; it is `CURRENT_GOVERNED` with `primaryBASourceAllowed: true`. The path name is retained as provenance and does not reduce effective authority. The earlier `candidate-r2/` remains unchanged as MR-0003-only regression/provenance evidence.
+The retained path name reflects candidate-era provenance and does not reduce effective authority.
 
-The activation record is `methodology/DDTA_R24_FACIAL_ACCESS_CANDIDATE_R3_ACTIVATION_CHECKPOINT_R1.md`. The bounded `DG-FA-002` disposition is recorded in `methodology/DDTA_R24_FACIAL_ACCESS_DG_FA_002_CHECKPOINT_R1.md`; the bounded `DG-FA-003` disposition is recorded in `methodology/DDTA_R24_FACIAL_ACCESS_DG_FA_003_CHECKPOINT_R1.md`; the bounded `DG-FA-004` disposition is recorded in `methodology/DDTA_R24_FACIAL_ACCESS_DG_FA_004_CHECKPOINT_R1.md`; the bounded `DG-FA-005` deferral is recorded in `methodology/DDTA_R24_FACIAL_ACCESS_DG_FA_005_CHECKPOINT_R1.md`; the bounded `AUTH-C` disposition is recorded in `methodology/DDTA_R24_FACIAL_ACCESS_AUTH_C_CHECKPOINT_R1.md`; the bounded `AUTH-P` disposition is recorded in `methodology/DDTA_R24_FACIAL_ACCESS_AUTH_P_CHECKPOINT_R1.md`; the bounded `DG-FA-006` resolution is recorded in `methodology/DDTA_R24_FACIAL_ACCESS_DG_FA_006_CHECKPOINT_R1.md`; the full successor semantic regression closure is recorded in `methodology/DDTA_R24_FACIAL_ACCESS_FULL_SEMANTIC_REGRESSION_CHECKPOINT_R1.md`; the explicit governance promotion is recorded in `methodology/DDTA_R24_FACIAL_ACCESS_GOVERNANCE_PROMOTION_CHECKPOINT_R1.md`. The broader R24 project document remains a separate non-canonical authoring/pressure-test artifact.
+Earlier Facial Access states remain historical/regression evidence:
+
+```text
+governed-corpora/facial-access/current/
+    FACIAL-ACCESS-GOV-R1
+    SUPERSEDED
+
+governed-corpora/facial-access/candidate-r2/
+    EXPERIMENTAL_NON_CANONICAL
+    retained MR-0003 regression/provenance evidence
+```
+
+Important current authority records:
+
+- `methodology/DDTA_R24_FACIAL_ACCESS_FULL_SEMANTIC_REGRESSION_CHECKPOINT_R1.md`
+- `methodology/DDTA_R24_FACIAL_ACCESS_GOVERNANCE_PROMOTION_CHECKPOINT_R1.md`
+- `governance/document-authority/document-authority.registry.yml`
+
+## Current documentation method
+
+Frozen pre-holdout documentation protocol:
+
+- `methodology/DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R4.tex`
+- `methodology/DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R4.pdf`
+- `methodology/DDTA_R25_DOCUMENTATION_METHOD_FREEZE_CHECKPOINT_R1.md`
+
+Forward authoring/review sequence:
+
+```text
+authority gate
+project problem framing
+MacroRequirement
+semantic-sufficiency gate
+Decision
+FunctionalRequirement
+Requirement coherent-unit / split
+SpecializedRequirement
+SecurityRequirement
+cross-MR / consumed-service boundary
+canonical terminology
+downstream semantic propagation
+documentation completeness / promotion gate
+handoff to Base Analysis
+BA/analysis feedback without authority inversion
+```
+
+The documentation method was frozen before holdout selection.
+
+## Current Base Analysis method
+
+Frozen pre-holdout contract:
+
+```text
+BA0 R1
+    BA0_BASE_ANALYSIS_RESPONSIBILITY_BOUNDARY_R1.md
+
+BA1 R1
+    BA1_MINIMAL_BAE_IDENTITY_ONTOLOGY_R1.md
+
+BA2 R3
+    BA2_RELATION_ACTION_VOCABULARY_R3.md
+
+BA3 R1
+    BA3_PROVENANCE_DERIVATION_LIFECYCLE_CHANGE_CONTRACT_R1.md
+
+BA4 R1
+    BA4_PROJECTION_BOUNDARY_TRACEABILITY_INTERPRETATION_COVERAGE_CONTRACT_R1.md
+
+BA5 R1
+    BA5_CANONICAL_SEMANTIC_REGISTRY_CONTROLLED_AUTHORING_CONTRACT_R1.md
+```
+
+Forward alignment for stale closure-time BA2 pointers and snapshots:
+
+- `methodology/DDTA_R25_BA_PRE_HOLDOUT_CONTRACT_ALIGNMENT_R1.md`
+
+Freeze checkpoint:
+
+- `methodology/DDTA_R25_BA_PRE_HOLDOUT_CONTRACT_FREEZE_CHECKPOINT_R1.md`
+
+Current human-readable operational guide:
+
+- `methodology/DDTA_BASE_ANALYSIS_OPERATIONAL_GUIDE_R3.tex`
+- `methodology/DDTA_BASE_ANALYSIS_OPERATIONAL_GUIDE_R3.pdf`
+
+BA6 remains an open later integrated-validation gate.
+
+## Current Facial Access BA evidence
+
+Complete case BA:
+
+- `studies/base-analysis/R24_FACIAL_ACCESS_BASE_ANALYSIS_R1.md`
+- key: `FACIAL-ACCESS-BA-R24-R1`
+
+Supporting case-validation records:
+
+- `methodology/DDTA_R24_FACIAL_ACCESS_BA_REPRESENTATION_PRESSURE_REVIEW_CHECKPOINT_R1.md`
+- `methodology/BA2_RELATION_ACTION_VOCABULARY_R3.md`
+- `methodology/DDTA_R24_FACIAL_ACCESS_POST_BA_REGRESSION_CHECKPOINT_R1.md`
+
+Current interpretation:
+
+```text
+Facial Access BA
+    COMPLETE FOR DECLARED CASE SCOPE
+
+post-BA regression
+    PASS
+
+BA2 R3
+    PASS FOR FACIAL ACCESS COUNTEREXAMPLES
+
+new BA2 pressure
+    NONE FOUND
+
+new project-semantics gap
+    NONE FOUND
+
+AUTH-C / AUTH-P
+    NOT SPECIFIED PRESERVED
+
+BA6 integrated acceptance
+    OPEN
+```
+
+The case evidence does not establish cross-domain or general empirical validation.
+
+## Current evidence management
+
+Canonical claims:
+
+- `thesis/claims/claims.registry.yml`
+
+Current evidence registry:
+
+- `thesis/evidence/evidence.registry.yml`
+
+Phase 3 consolidation checkpoint:
+
+- `methodology/DDTA_R25_THESIS_READY_EVIDENCE_CONSOLIDATION_CHECKPOINT_R1.md`
+
+The six canonical claims remain unchanged.
+
+Phase 3 preserves `EVD-0001` and indexes reviewed method/case evidence through `EVD-0017`.
+
+Evidence classes must remain distinguishable:
+
+```text
+literature/background evidence
+methodology-development evidence
+documentation-validation evidence
+BA case-validation evidence
+future empirical threat-method evidence
+```
+
+Single-case evidence is not a substitute for later holdout and comparative evaluation evidence.
+
+## Current thesis structure
+
+Reviewed standalone chapter authority:
+
+```text
+Chapter 2
+    Background
+    thesis/latex/chapters/02-background.tex
+
+Chapter 3
+    State of the Art / Research Gap
+    thesis/latex/chapters/03-state-of-the-art-and-research-gap.tex
+
+Chapter 4
+    Documentation metamodel and authoring rules
+    thesis/latex/chapters/04-documentation-authoring-metamodel.tex
+```
+
+Reviewed closure:
+
+- `thesis/latex/chapters/CHAPTERS_2_4_CLOSURE_R1.md`
+
+Current thesis orientation:
+
+- `thesis/README.md`
+- `thesis/outline.md`
+
+`thesis/latex/DDTA_tesi.tex` remains historical/non-authoritative until later assembly from reviewed standalone sources.
+
+Do not restore `Chapter 4 = Research Method` as the current structure.
 
 ## Repository map
 
 ### Documentation and metamodel research
 
 - `00-foundations/` — cross-cutting model-layering and foundational DDTA semantics.
-- `02-decision/` — Decision metamodel research, examples, regressions and historical construction work.
-- `03-functional-requirement/` — Functional Requirement metamodel and authoring guidance.
-- `04-specialized-requirement/` — Specialized Requirement research and examples.
+- `02-decision/` — Decision metamodel research and historical construction evidence.
+- `03-functional-requirement/` — Functional Requirement metamodel and authoring research.
+- `04-specialized-requirement/` — Specialized Requirement research.
 - `05-security-requirement/` — Security Requirement research.
 
-These directories contain both active methodological evidence and historical research material. Their local chronology does not override the repository authority gate.
+### Methodology and Base Analysis
 
-### Base Analysis and current methodology work
-
-- `methodology/` — current and historical methodology checkpoints, BA contracts, authoring guidance, R24 project documentation and regression work.
-
-Current R24 forward-facing records include:
-
-- `methodology/DDTA_R24_SEMANTIC_REVIEW_CHECKPOINT_R1.md`
-- `methodology/DDTA_RESEARCH_WORK_PLAN_AFTER_DOCUMENTATION_CLOSURE_R24.md`
-- `methodology/DDTA_R24_FACIAL_ACCESS_FULL_SEMANTIC_REGRESSION_CHECKPOINT_R1.md`
-- `methodology/DDTA_R24_FACIAL_ACCESS_GOVERNANCE_PROMOTION_CHECKPOINT_R1.md`
-- `literature/syntheses/R23_SEMANTIC_RECOGNITION_SYNTHESIS_R1.md`
-- `studies/semantic-review/R24_SEMANTIC_REVIEW_PRESSURE_TESTS_R1.md`
-- `studies/semantic-review/R24_MR0003_SEMANTIC_REVIEW_FINDING_R1.md`
-- `studies/semantic-review/R24_MR0003_DOWNSTREAM_COMPATIBILITY_REVIEW_R1.md`
-- `methodology/DDTA_R24_DECISION_RULE_CHECKPOINT.md` (carried-forward BA2 lower-bound evidence)
-- `methodology/BA2_RELATION_ACTION_VOCABULARY_R2.md`
-- `methodology/DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R1.md`
-- `methodology/DDTA_FACIAL_ACCESS_PROJECT_DOCUMENTATION_WORKING_R24_PROJECT_ONLY.tex`
-- `methodology/BA1_MINIMAL_BAE_IDENTITY_ONTOLOGY_R1.md`
-- `methodology/BA3_PROVENANCE_DERIVATION_LIFECYCLE_CHANGE_CONTRACT_R1.md`
-- `methodology/BA4_PROJECTION_BOUNDARY_TRACEABILITY_INTERPRETATION_COVERAGE_CONTRACT_R1.md`
-- `methodology/BA5_CANONICAL_SEMANTIC_REGISTRY_CONTROLLED_AUTHORING_CONTRACT_R1.md`
-
-Earlier Rxx state records and work plans remain research history unless a current checkpoint explicitly carries them forward.
+- `methodology/` — current and historical method contracts, guides, checkpoints, audits and work plans.
 
 ### Source authority and governed corpora
 
-- `governance/` — repository governance and authority decisions.
-- `governance/document-authority/` — repository-wide classification of document authority for current Base Analysis.
-- `governed-corpora/` — explicitly authority-classified governed validation corpora.
+- `governance/` — repository governance.
+- `governance/document-authority/` — project source-authority policy and registry.
+- `governed-corpora/` — authority-classified validation corpora.
 
-Chronological recency is not authority.
+### Research evidence
 
-### Literature and research evidence
-
-- `literature/` — literature records, notes, excerpts, syntheses and research evidence.
+- `literature/` — literature records and syntheses.
 - `research/` — research questions, hypotheses, candidate contributions and terminology.
-- `studies/` — bounded empirical/corpus studies whose local results require explicit promotion before becoming DDTA methodology rules.
+- `studies/` — bounded studies and validation artifacts.
 
-### Thesis material
+### Thesis
 
-- `thesis/` — thesis drafting, evidence management and thesis-specific material.
+- `thesis/` — thesis orientation, reviewed standalone sources, claims and evidence management.
 
-### Non-canonical / historical workspace
+### Historical / non-canonical material
 
-- `_working/` — non-canonical historical or experimental workspace.
+- `_working/` — historical or experimental non-canonical workspace.
+- root drop-in README/checksum artifacts — retained for reproducibility and research history.
 
-Material under `_working/` remains useful research evidence but is not current governed project documentation merely because it exists in the repository.
+Chronological recency does not make historical material current authority.
 
-In particular:
+## Current reading order
 
-- `_working/ddta-metamodel-working-package/INDEX.md`
-
-is the local index of that historical/non-canonical working package. It is not the repository-level index.
-
-### Root historical artifacts
-
-The repository root also retains historical drop-in README files, checksums and other handoff artifacts created during controlled research iterations.
-
-These are preserved for reproducibility and history. They must not be interpreted as the current research state unless the current checkpoint explicitly identifies them as active.
-
-## Current R24 working flow
-
-```text
-governed project meaning
-  -> progressive authoring
-  -> semantic sufficiency review
-  -> minimum justified Base Analysis
-  -> semantic regression back-check
-       -> discrepancy: governed correction candidate -> updated documentation -> rebuilt BA
-  -> downstream analysis / test usefulness
-  -> smallest justified methodology revision
-```
-
-For facial-access work, the authority flow is currently:
-
-```text
-FACIAL_ACCESS_CURRENT_R1
-  -> SUPERSEDED / regression evidence
-  -> R24 MR-0003 candidate-r2
-       EXPERIMENTAL_NON_CANONICAL / retained checkpoint
-  -> R24 integrated candidate-r3
-       R3-CANDIDATE-9 / regression-closed source revision
-       DG-FA-001 resolved at semantic level
-       DG-FA-002 resolved / reframed under D-3.2 + FR-3.2.1
-       DG-FA-003 resolved at documentation semantic level / BA pressure retained
-       DG-FA-004 reframed: not a documentation gap / BA2 segment-identity pressure retained
-       DG-FA-005 deferred outside current documentation+BA closure scope
-       AUTH-C preserved as explicit NOT SPECIFIED analysis-relevant clarification / non-blocking
-       AUTH-P preserved as explicit NOT SPECIFIED analysis-relevant clarification / non-blocking
-       DG-FA-006 resolved: conjunctive positive access-decision branch governed
-  -> full successor semantic regression PASSED / propagation aligned
-  -> explicit governance promotion COMPLETED
-       CURRENT_GOVERNED / FACIAL-ACCESS-GOV-R2
-       primaryBASourceAllowed: true
-  -> minimum justified BA rebuild NEXT
-  -> post-BA semantic regression / BA6
-```
-
-No working artifact becomes governed by recency alone. The promoted `candidate-r3/` baseline is now eligible for BA derivation only because the registry explicitly classifies `FACIAL-ACCESS-GOV-R2` as `CURRENT_GOVERNED`; an accepted BA run must also pin the concrete promotion commit.
-
-## Reading order for current work
-
-For a reviewer entering the repository during R24:
+For a reviewer entering the repository after R25 Phase 4:
 
 1. `README.md`
-2. `governance/document-authority/README.md`
-3. `governance/document-authority/document-authority.registry.yml`
-4. `methodology/DDTA_R24_SEMANTIC_REVIEW_CHECKPOINT_R1.md`
-5. `studies/semantic-review/R24_MR0003_SEMANTIC_REVIEW_FINDING_R1.md`
-6. `methodology/DDTA_R24_FACIAL_ACCESS_FULL_SEMANTIC_REGRESSION_CHECKPOINT_R1.md`
-7. `methodology/DDTA_R24_FACIAL_ACCESS_GOVERNANCE_PROMOTION_CHECKPOINT_R1.md`
-8. `methodology/DDTA_RESEARCH_WORK_PLAN_AFTER_DOCUMENTATION_CLOSURE_R24.md`
-9. `methodology/DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R1.md`
-10. `methodology/BA1_MINIMAL_BAE_IDENTITY_ONTOLOGY_R1.md`
-11. `methodology/BA2_RELATION_ACTION_VOCABULARY_R2.md`
-12. `methodology/BA3_PROVENANCE_DERIVATION_LIFECYCLE_CHANGE_CONTRACT_R1.md`
-13. `methodology/BA4_PROJECTION_BOUNDARY_TRACEABILITY_INTERPRETATION_COVERAGE_CONTRACT_R1.md`
-14. `methodology/BA5_CANONICAL_SEMANTIC_REGISTRY_CONTROLLED_AUTHORING_CONTRACT_R1.md`
+2. `INDEX.md`
+3. `governance/document-authority/README.md`
+4. `governance/document-authority/document-authority.registry.yml`
+5. `methodology/DDTA_RESEARCH_WORK_PLAN_PRE_HOLDOUT_R25.md`
+6. `methodology/DDTA_R25_STATE_RECONCILIATION_CHECKPOINT_R1.md`
+7. `methodology/DDTA_R25_DOCUMENTATION_METHOD_FREEZE_CHECKPOINT_R1.md`
+8. `methodology/DDTA_R25_BA_PRE_HOLDOUT_CONTRACT_ALIGNMENT_R1.md`
+9. `methodology/DDTA_R25_BA_PRE_HOLDOUT_CONTRACT_FREEZE_CHECKPOINT_R1.md`
+10. `methodology/DDTA_R25_THESIS_READY_EVIDENCE_CONSOLIDATION_CHECKPOINT_R1.md`
+11. `methodology/DDTA_R25_REPOSITORY_THESIS_ORIENTATION_SYNCHRONIZATION_CHECKPOINT_R1.md`
+12. `methodology/DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R4.tex`
+13. `methodology/DDTA_BASE_ANALYSIS_OPERATIONAL_GUIDE_R3.tex`
+14. `studies/base-analysis/R24_FACIAL_ACCESS_BASE_ANALYSIS_R1.md`
+15. `thesis/README.md`
+16. `thesis/outline.md`
+17. `thesis/evidence/evidence.registry.yml`
+18. `thesis/claims/claims.registry.yml`
 
-The superseded R1 facial-access corpus, the MR-0003 candidate-r2 and the broader R24 working project document should then be read according to the authority distinction above.
+Historical R24 records should then be read according to the authority/status distinctions established by the R25 checkpoints.
+
+## Current next step
+
+Proceed only with:
+
+**R25 Phase 5 — immutable PRE-HOLDOUT FREEZE.**
+
+Phase 5 records the experimental baseline immediately before holdout selection.
+
+No holdout domain is selected in Phase 5.
+
+After Phase 5 closes, the project may select a structurally different domain and begin documentation authoring without using BA2 to decide project meaning.
 
 ## Historical preservation rule
 
-Do not rewrite historical snapshots, frozen examples, old drop-ins or non-canonical working packages merely to make them look current.
+Do not rewrite closed historical contracts, checkpoints, chapter closure records, old drop-ins, or non-canonical working packages merely to make them look current.
 
-Correct forward-facing files when they misrepresent the current state; preserve historical evidence when its historical role is clear.
+Correct forward-facing navigation when it misrepresents current state.
+
+Use explicit current checkpoints and alignment artifacts to preserve both history and forward clarity.
