@@ -7,3 +7,131 @@ evidence:
     status: in_review
     supports: []
     note: "Must not support accepted thesis claims until the study is reviewed."
+
+  - id: EVD-0002
+    kind: methodology_artifact
+    source: 03-functional-requirement/04-closure/DDTA_DOCUMENT_METAMODEL_THROUGH_FR_CLOSURE_R2.md
+    baseline: 6e7ca6f6173601ccfdf68b4a5854f2951d134f7c
+    status: reviewed
+    supports: []
+    note: "Closed documentation-metamodel evidence through FunctionalRequirement; indexed as method-construction evidence, not as general empirical validation."
+
+  - id: EVD-0003
+    kind: methodology_artifact
+    source: 04-specialized-requirement/01-metamodel/DDTA_SPECIALIZED_REQUIREMENT_S1_R2.tex
+    baseline: 6e7ca6f6173601ccfdf68b4a5854f2951d134f7c
+    status: reviewed
+    supports: []
+    note: "Closed SpecializedRequirement S1 evidence; bounded to the reviewed specialized-requirement semantics."
+
+  - id: EVD-0004
+    kind: methodology_artifact
+    source: 04-specialized-requirement/04-s1-5-working/DDTA_S1_5_REQUIREMENT_ABSTRACTION_PROVENANCE_WORKING.md
+    baseline: 6e7ca6f6173601ccfdf68b4a5854f2951d134f7c
+    status: reviewed
+    supports: []
+    note: "S1.5-A Requirement abstraction is closed; the provenance structure in this source remains open and is not promoted by this evidence record."
+
+  - id: EVD-0005
+    kind: methodology_artifact
+    source: 05-security-requirement/01-metamodel/DDTA_SECURITY_REQUIREMENT_S2_R1.tex
+    baseline: 6e7ca6f6173601ccfdf68b4a5854f2951d134f7c
+    status: reviewed
+    supports: []
+    note: "Closed SecurityRequirement S2 evidence; bounded to the reviewed SecurityRequirement semantics."
+
+  - id: EVD-0006
+    kind: thesis_closure_record
+    source: thesis/latex/chapters/CHAPTERS_2_4_CLOSURE_R1.md
+    baseline: 6e7ca6f6173601ccfdf68b4a5854f2951d134f7c
+    status: reviewed
+    supports: []
+    note: "Reviewed finalization record for thesis Chapters 2-4; closure is scope-relative and remains subject to the explicit reopen criteria in that record."
+
+  - id: EVD-0007
+    kind: methodology_checkpoint
+    source: methodology/DDTA_DOCUMENTATION_METHOD_BASELINE_R24_CHECKPOINT_R1.md
+    baseline: 6e7ca6f6173601ccfdf68b4a5854f2951d134f7c
+    status: reviewed
+    supports: []
+    note: "R24 forward semantic checkpoint consolidating documentation-method evidence and the source-first authoring/review question set."
+
+  - id: EVD-0008
+    kind: methodology_checkpoint
+    source: methodology/DDTA_R24_SEMANTIC_REVIEW_CHECKPOINT_R1.md
+    baseline: 6e7ca6f6173601ccfdf68b4a5854f2951d134f7c
+    status: reviewed
+    supports: []
+    note: "R24 semantic-sufficiency and BA-regression candidate refinement; method-development evidence explicitly not constituting general empirical validation."
+
+  - id: EVD-0009
+    kind: documentation_validation
+    source: methodology/DDTA_R24_FACIAL_ACCESS_FULL_SEMANTIC_REGRESSION_CHECKPOINT_R1.md
+    baseline: 6e7ca6f6173601ccfdf68b4a5854f2951d134f7c
+    status: reviewed
+    supports: []
+    note: "Facial Access full successor semantic regression passed after propagation alignment; no new project-semantics gap was found."
+
+  - id: EVD-0010
+    kind: governance_checkpoint
+    source: methodology/DDTA_R24_FACIAL_ACCESS_GOVERNANCE_PROMOTION_CHECKPOINT_R1.md
+    baseline: 6e7ca6f6173601ccfdf68b4a5854f2951d134f7c
+    status: reviewed
+    supports: []
+    note: "Explicit governance promotion to FACIAL-ACCESS-GOV-R2 / CURRENT_GOVERNED; authority decision only, with no project-semantic or BA-contract change."
+
+  - id: EVD-0011
+    kind: case_validation
+    source: studies/base-analysis/R24_FACIAL_ACCESS_BASE_ANALYSIS_R1.md
+    baseline: 6e7ca6f6173601ccfdf68b4a5854f2951d134f7c
+    status: reviewed
+    supports: []
+    note: "Complete Facial Access case Base Analysis with post-BA regression pass; single-case feasibility/case-validation evidence only; integrated BA6 acceptance remains OPEN."
+
+  - id: EVD-0012
+    kind: methodology_checkpoint
+    source: methodology/DDTA_R24_FACIAL_ACCESS_BA_REPRESENTATION_PRESSURE_REVIEW_CHECKPOINT_R1.md
+    baseline: 6e7ca6f6173601ccfdf68b4a5854f2951d134f7c
+    status: reviewed
+    supports: []
+    note: "Bounded representation-pressure review accepting only transfer.behavior and decisionRule.satisfies; no governed project-document semantic change."
+
+  - id: EVD-0013
+    kind: methodology_artifact
+    source: methodology/BA2_RELATION_ACTION_VOCABULARY_R3.md
+    baseline: 6e7ca6f6173601ccfdf68b4a5854f2951d134f7c
+    status: reviewed
+    supports: []
+    note: "Active pre-holdout BA2 R3 contract containing the two minimum Facial Access-driven refinements; broader generalization remains unsupported."
+
+  - id: EVD-0014
+    kind: case_validation
+    source: methodology/DDTA_R24_FACIAL_ACCESS_POST_BA_REGRESSION_CHECKPOINT_R1.md
+    baseline: 6e7ca6f6173601ccfdf68b4a5854f2951d134f7c
+    status: reviewed
+    supports: []
+    note: "Full promoted-corpus post-BA regression pass; no additional BA2 pressure or project-document correction required; this evidence does not close BA6."
+
+  - id: EVD-0015
+    kind: audit_record
+    source: methodology/DDTA_R24_REPOSITORY_COHERENCE_AUDIT_R1.md
+    baseline: 6e7ca6f6173601ccfdf68b4a5854f2951d134f7c
+    status: reviewed
+    supports: []
+    note: "Repository coherence audit that invalidated premature BA6 closure and requires claim/evidence consolidation without promoting single-case evidence into general empirical conclusions."
+
+  - id: EVD-0016
+    kind: methodology_checkpoint
+    source: methodology/DDTA_R25_DOCUMENTATION_METHOD_FREEZE_CHECKPOINT_R1.md
+    baseline: 6e7ca6f6173601ccfdf68b4a5854f2951d134f7c
+    status: reviewed
+    supports: []
+    note: "R25 Phase 1 documentation-method freeze recorded before holdout selection; BA6 OPEN and holdout NOT SELECTED / NOT AUTHORED."
+
+  - id: EVD-0017
+    kind: methodology_checkpoint
+    source: methodology/DDTA_R25_BA_PRE_HOLDOUT_CONTRACT_FREEZE_CHECKPOINT_R1.md
+    baseline: 6e7ca6f6173601ccfdf68b4a5854f2951d134f7c
+    status: reviewed
+    supports: []
+    note: "R25 Phase 2 pre-holdout BA0-BA5 contract freeze; BA6 OPEN and holdout NOT SELECTED / NOT AUTHORED."
