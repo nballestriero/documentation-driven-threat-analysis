@@ -1,0 +1,867 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{DDTA_DERMATRIAGE_GUIDED_REVIEW_STYLE_R1}
+
+\hypersetup{
+  pdftitle={DDTA R25 DermaTriage - Guided Documentation Review R2},
+  pdfauthor={Documentation-Driven Threat Analysis research project}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\sffamily\small\color{DDTAGray}DDTA DermaTriage Guided Review}
+\fancyhead[R]{\sffamily\small\color{DDTAGray}R25 - WORKING RECORD R2}
+\fancyfoot[L]{\sffamily\scriptsize\color{DDTAGray}Documentation reconstruction before Base Analysis}
+\fancyfoot[R]{\sffamily\small\color{DDTAGray}\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\begin{document}
+\selectlanguage{italian}
+
+% -----------------------------------------------------------------------------
+% TITLE
+% -----------------------------------------------------------------------------
+\begin{titlepage}
+\thispagestyle{empty}
+\vspace*{8mm}
+
+{\sffamily\bfseries\color{DDTANavy}\fontsize{15}{18}\selectfont Documentation-Driven Threat Analysis}\par
+\vspace{5mm}
+{\sffamily\bfseries\color{DDTANavy}\fontsize{29}{33}\selectfont DermaTriage Guided Documentation Review}\par
+\vspace{2mm}
+{\sffamily\color{DDTABlue}\fontsize{18}{22}\selectfont Working Record R2 - chiusura della Decision family di MR-01}\par
+
+\vspace{10mm}
+\begin{tcolorbox}[enhanced,arc=3pt,boxrule=0pt,colback=DDTANavy,left=12pt,right=12pt,top=11pt,bottom=11pt]
+{\color{white}\sffamily\bfseries\large Registro cumulativo della validazione holdout DermaTriage}\par
+\vspace{2mm}
+{\color{white!88}\small Conserva integralmente il checkpoint R1 e aggiunge la review esplicita della Decision family di MR-01, inclusi rework, candidate meaning non promossi, source gap, semantic-owner routing e gate cumulativo D2. Solo dopo il documentation gate potra' essere derivata la Base Analysis.}
+\end{tcolorbox}
+
+\vspace{8mm}
+\begin{tabularx}{\textwidth}{L{42mm}Y}
+\toprule
+\textbf{Stato} & R25 WORKING REVIEW RECORD - DOCUMENTATION PHASE \\
+\textbf{Repository} & \texttt{nballestriero/documentation-driven-threat-analysis} \\
+\textbf{Baseline R1 originario} & \texttt{21575a18ccf2feab62b27e3b046fadcd01c90135} \\
+\textbf{Baseline repository corrente} & \texttt{127c8a1532a193184ce86dd4c95f7547ce3606b9} \\
+\textbf{Metodo} & \texttt{DDTA\_DOCUMENTATION\_BA\_AUTHORING\_GUIDE\_R4} \\
+\textbf{Caso holdout} & DermaTriage - ricostruzione da documentazione esistente \\
+\textbf{Base Analysis} & BLOCCATA fino al superamento del documentation gate \\
+\textbf{Data} & 3 settembre 2026 \\
+\bottomrule
+\end{tabularx}
+
+\vfill
+\begin{ddtaprinciple}[title={Ruolo di questo artifact}]
+Questo documento non e' la documentazione finale DermaTriage e non e' una Base Analysis. E' il registro guidato della ricostruzione: conserva source evidence, candidate meaning, gate applicati, esiti, gap e osservazioni metodologiche. Al termine della review dovra' rendere trasparente non soltanto \emph{cosa} e' stato scritto, ma \emph{perche'} ogni elemento DDTA e' stato accettato, modificato, fermato o lasciato non specificato.
+\end{ddtaprinciple}
+\end{titlepage}
+
+\tableofcontents
+\clearpage
+
+% -----------------------------------------------------------------------------
+\section{Obiettivo della sessione e disciplina di lavoro}
+
+L'obiettivo concordato e' arrivare alla scrittura della documentazione DermaTriage in modo guidato, usando un progetto reale per rendere osservabile la metodologia DDTA. La review deve inoltre produrre evidence sufficiente per concludere, a valle del lavoro, quali siano i pregi e i difetti di DDTA e in che modo il metodo contribuisca a migliorare la documentazione di progetto.
+
+\begin{ddtacore}[title={Sequenza autorizzata}]
+\begin{lstlisting}
+repository baseline
+    -> methodology reading
+    -> original DermaTriage package + SHA-256
+    -> authority gate
+    -> project problem framing
+    -> MacroRequirement
+    -> semantic sufficiency
+    -> Decision
+    -> FunctionalRequirement
+    -> Requirement split
+    -> Specialized / Security requirements
+    -> cross-MR and terminology review
+    -> documentation completeness / promotion gate
+    -> ONLY THEN Base Analysis
+\end{lstlisting}
+\end{ddtacore}
+
+La regola collaborativa della sessione e' una sola: nessuna classificazione dell'intero progetto viene eseguita silenziosamente. Ogni elemento viene discusso e chiuso prima di avanzare.
+
+\begin{lstlisting}
+source evidence
+    -> candidate project meaning
+    -> relevant R4 gates
+    -> PASS / REWORK / NOT SPECIFIED / CONFLICTING / METHOD PRESSURE
+    -> next element only after disposition
+\end{lstlisting}
+
+\begin{ddtaanti}[title={Anti-contamination rule}]
+Durante questa fase non si usa Base Analysis per decidere project meaning, struttura dei documenti o livello di decomposizione. I vecchi candidate DDTA di DermaTriage possono essere usati in futuro come evidence comparativa, ma non come autorita' sul progetto.
+\end{ddtaanti}
+
+% -----------------------------------------------------------------------------
+\section{Authority metodologica e repository baseline}
+
+Prima della source review sono stati letti, nell'ordine concordato:
+\begin{enumerate}
+  \item \texttt{DDTA\_R25\_DOCUMENTATION\_METHOD\_STABILIZATION\_CHECKPOINT\_R1.md};
+  \item \texttt{DDTA\_R25\_HOLDOUT\_VALIDATION\_WORK\_PLAN\_R1.md};
+  \item \texttt{DDTA\_DOCUMENTATION\_BA\_AUTHORING\_GUIDE\_R4.tex};
+  \item \texttt{DDTA\_R25\_DERMATRIAGE\_DOCUMENTATION\_REVIEW\_CONTINUATION\_HANDOFF\_R1.md}.
+\end{enumerate}
+
+Il branch \texttt{master} e' stato verificato sul commit:
+\begin{lstlisting}
+21575a18ccf2feab62b27e3b046fadcd01c90135
+\end{lstlisting}
+
+Questo commit e' il continuation baseline originario della sessione R1. Dopo i checkpoint di preservazione degli artifact di review, il baseline repository corrente per R2 e' \texttt{127c8a1532a193184ce86dd4c95f7547ce3606b9}. Il metodo R4 stabilizzato e' il forward authoring protocol; gli esperimenti R5 storici non sono forward authority.
+
+\begin{ddtacheck}[title={Repository authority gate}]
+\textbf{PASS.} La sessione parte dal baseline esplicitamente richiesto e non da una ricostruzione cronologica o da un artifact piu' recente scelto per recency.
+\end{ddtacheck}
+
+% -----------------------------------------------------------------------------
+\section{A0 - Original source package e authority gate}
+
+\subsection{Package pinned}
+
+Il work plan e l'handoff identificano come unica source authority primaria per il significato DermaTriage il package:
+
+\begin{lstlisting}
+DermaTriage-Docs-20260830T152637Z-1-001.zip
+Expected SHA-256:
+E9ED2C507BEFB95F54A52084687CD1E8798863AE81CF69D09568864D8CBF280E
+\end{lstlisting}
+
+Il package originale e' stato riaperto e l'hash e' stato ricalcolato sui byte materializzati:
+
+\begin{lstlisting}
+Computed SHA-256:
+E9ED2C507BEFB95F54A52084687CD1E8798863AE81CF69D09568864D8CBF280E
+\end{lstlisting}
+
+\begin{ddtacore}[title={A0 disposition}]
+\textbf{PASS.} Nome e SHA-256 coincidono esattamente con il package pinned. Non viene sostituito con archivi simili o con working package prodotti durante precedenti passaggi DDTA.
+\end{ddtacore}
+
+\subsection{Source inventory}
+
+L'archivio contiene sette file:
+
+\begin{tabularx}{\textwidth}{L{59mm}Y}
+\toprule
+\textbf{Source artifact} & \textbf{Ruolo iniziale nella review} \\
+\midrule
+\nolinkurl{OR2_Architecture_Document.pdf} & Descrizione di purpose, pipeline, integrazioni, API e lifecycle operativo. \\
+\nolinkurl{OR2_Model_Test_Report.pdf} & Evidence di modello, metriche, threshold e risultati di test. \\
+\nolinkurl{OR3_Dataset_Metadata_Catalog.pdf} & Evidence su dataset, schema e uso dichiarato. \\
+\nolinkurl{OR4_Training_Environment_Config.pdf} & Realization/configuration evidence per training e runtime. \\
+\nolinkurl{OR4_Training_Cycles_Report.pdf} & Evidence di training e valutazione. \\
+\nolinkurl{OR5_Test_Environment_Setup.pdf} & Test/integration evidence, endpoint e pass condition. \\
+\nolinkurl{efficientnet_b4.pth} & Binary model evidence; non normative project meaning per default. \\
+\bottomrule
+\end{tabularx}
+
+\begin{ddtaprinciple}[title={Authority non significa promozione automatica}]
+Essere parte del package autoritativo significa che il fatto source-supported deve essere considerato; non significa che ogni fatto tecnico diventi automaticamente \MR, \DEC{} o \REQ. Test, configuration, runtime state e current realization devono essere classificati prima di ricevere status normativo.
+\end{ddtaprinciple}
+
+\subsection{A0 gate summary}
+
+\begin{tabularx}{\textwidth}{L{55mm}L{27mm}Y}
+\toprule
+\textbf{Check} & \textbf{Disposition} & \textbf{Nota} \\
+\midrule
+Repository baseline & PASS & Commit esatto verificato. \\
+Package name & PASS & Nome esatto pinned. \\
+Package SHA-256 & PASS & Hash calcolato = hash atteso. \\
+Original source as project authority & PASS & Fonte primaria stabilita. \\
+Previous DDTA candidates as authority & EXCLUDED & Solo future comparison evidence. \\
+Base Analysis as authority & EXCLUDED & Documentation phase ancora aperta. \\
+\bottomrule
+\end{tabularx}
+
+% -----------------------------------------------------------------------------
+\section{A1 - Project problem framing}
+
+\subsection{Source evidence osservata}
+
+La fonte architetturale dichiara esplicitamente:
+
+\begin{ddtaexample}[title={OR2 Architecture Document - purpose}]
+\textbf{Purpose:} ``AI-assisted dermatology triage for early skin cancer detection.''
+\end{ddtaexample}
+
+La stessa fonte descrive una pipeline che arricchisce il contesto clinico prima della ``final triage decision'', una adaptation layer che assegna una priorita' P1--P4, specialista e SLA, e una successiva doctor validation/correction.
+
+Per il framing, i nomi delle tecnologie e le scelte correnti di soluzione vengono temporaneamente rimossi: EfficientNet, Qwen2-VL, ChromaDB, BioMistral, B4, endpoint, threshold e storage non sono necessari per esprimere il problema generale.
+
+\subsection{Candidate project problem framing}
+
+\begin{ddtacore}[title={Candidate framing accettato nella sessione}]
+DermaTriage affronta il problema di supportare il triage precoce di casi dermatologici relativi a lesioni cutanee potenzialmente oncologiche, utilizzando le informazioni disponibili sul caso per determinare una priorita' di presa in carico e supportare l'instradamento verso l'assistenza specialistica appropriata.
+\end{ddtacore}
+
+\subsection{Gate D0}
+
+\begin{tabularx}{\textwidth}{L{54mm}L{23mm}Y}
+\toprule
+\textbf{Domanda} & \textbf{Esito} & \textbf{Motivazione} \\
+\midrule
+Usa vocabolario di problema/dominio? & PASS & Triage dermatologico, caso, priorita', presa in carico. \\
+Resta valido senza la soluzione corrente? & PASS & Nessun modello, provider, API o database e' necessario. \\
+Boundary significativo comprensibile? & PASS con gap esplicito & Il triage e' chiaro; l'autorita' diagnostica definitiva non e' stabilita. \\
+E' leggibile da un domain reader? & PASS & Non richiede conoscenza dell'architettura corrente. \\
+\bottomrule
+\end{tabularx}
+
+% -----------------------------------------------------------------------------
+\section{Prima semantic-sufficiency question: triage vs diagnosi}
+
+Durante il framing emerge la prima distinzione materiale che il metodo impedisce di nascondere dietro la terminologia della soluzione.
+
+La source documentation usa contemporaneamente:
+\begin{itemize}
+  \item il purpose di \emph{dermatology triage};
+  \item un output Stage 4 chiamato \texttt{pathology};
+  \item endpoint e storage denominati \texttt{diagnose}/\texttt{diagnoses};
+  \item una successiva doctor validation/correction.
+\end{itemize}
+
+\begin{ddtacheck}[title={Smallest critical proposition}]
+DermaTriage ha la responsabilita' e l'autorita' di determinare una diagnosi clinica definitiva, oppure la \texttt{predicted\_pathology} e' informazione analitica di supporto al triage e alla successiva review medica?
+\end{ddtacheck}
+
+\begin{ddtaopen}[title={Disposition corrente: NOT SPECIFIED}]
+La source documentation esaminata non stabilisce in modo sufficiente che DermaTriage abbia autorita' per una diagnosi clinica definitiva. La distinzione non viene completata per inferenza. La \texttt{predicted\_pathology} resta tuttavia un fatto source-supported materiale che dovra' essere conservato e classificato al semantic owner appropriato.
+\end{ddtaopen}
+
+\subsection{Diagnosi del problema}
+
+\begin{tabularx}{\textwidth}{L{49mm}L{28mm}Y}
+\toprule
+\textbf{Candidate diagnosis} & \textbf{Esito} & \textbf{Motivo} \\
+\midrule
+Source/documentation gap & YES & La fonte usa termini che permettono letture materialmente diverse. \\
+Authoring-guide problem & NON DIMOSTRATO & La guida ha fatto emergere la distinzione. \\
+Metamodel pressure & NON DIMOSTRATO & Non esiste ancora un significato governato che il metamodel non riesca a rappresentare. \\
+BA issue & NON APPLICABILE & BA non e' iniziata. \\
+\bottomrule
+\end{tabularx}
+
+\begin{ddtaprinciple}[title={Osservazione metodologica 01}]
+In questo caso DDTA migliora la documentazione non aggiungendo dettaglio, ma obbligando a separare un termine tecnico presente nell'implementazione da una responsabilita' clinica che la fonte non governa chiaramente. Il valore osservato e' la visibilita' del gap, non la sua chiusura artificiale.
+\end{ddtaprinciple}
+
+% -----------------------------------------------------------------------------
+\section{A2 - Primo MacroRequirement}
+
+\subsection{Candidate MR-01}
+
+\begin{ddtacore}[title={MR-01 - Valutazione di triage del caso dermatologico}]
+\textbf{Intent.} Determinare, dalle informazioni disponibili sul caso dermatologico, una valutazione di urgenza utile a stabilire la priorita' di presa in carico specialistica.
+
+\textbf{Context.} DermaTriage supporta il triage precoce di lesioni cutanee potenzialmente oncologiche.
+
+\textbf{Stakeholders.} Paziente; professionista sanitario coinvolto nella presa in carico e nella review.
+
+\textbf{Scope.} Valutazione del caso fino alla determinazione dell'urgenza/priorita' di triage.
+
+\textbf{Assumptions / Constraints.} Nessuna necessaria al livello MR in questa fase.
+
+\textbf{dependsOn.} Nessuna relazione macro introdotta in questa fase.
+\end{ddtacore}
+
+Il candidate MR non incorpora EfficientNet, quattro stage, B4, P1--P4, threshold, pathology prediction o SLA. L'assenza e' intenzionale: questi significati devono essere classificati nei livelli appropriati invece di essere caricati nella macro-responsabilita'.
+
+\subsection{Gate D1 - MR}
+
+\begin{longtable}{L{49mm}L{21mm}L{76mm}}
+\toprule
+\textbf{Test R4} & \textbf{Esito} & \textbf{Lettura della sessione} \\
+\midrule
+\endhead
+Una sola macro-responsabilita' & PASS & Governa la valutazione di triage del caso. \\
+Problem anchoring & PASS & Deriva direttamente dal framing. \\
+Architecture / technology resilience & PASS & Sopravvive alla sostituzione completa della soluzione. \\
+Temporal stability & PASS & Non dipende dalla configurazione corrente. \\
+No comportamento atomico da FR & PASS & Non prescrive stage, chiamate o operazioni. \\
+No solution commitment leakage & PASS & Nessun modello, API o provider. \\
+Dependency distinta da containment & PASS & Nessuna dependency inventata. \\
+Broad domain readability & PASS & Comprensibile senza conoscere DermaTriage internamente. \\
+Split image vs symptom-only a livello MR & NO SPLIT & Al momento sono due path della stessa responsabilita' di triage, non due macro-responsabilita' governate. \\
+Macro project map globale & PENDING & Potra' essere chiusa solo dopo l'identificazione dell'insieme MR. \\
+\bottomrule
+\end{longtable}
+
+\subsection{Semantic sufficiency del MR}
+
+La lettura materialmente critica e' ancora la distinzione:
+
+\begin{lstlisting}
+triage responsibility
+        !=
+definitive diagnostic responsibility
+\end{lstlisting}
+
+La prima e' \texttt{AFFIRMED}; la seconda resta \NS. Il MR e' scritto in modo da non assorbire la seconda.
+
+Un'ulteriore distinzione source-supported -- urgenza analitica HIGH/MEDIUM/LOW contro priorita' operativa P1--P4 con SLA -- e' materiale, ma non richiede uno split dell'MR. Deve essere conservata nella review downstream.
+
+\begin{ddtacore}[title={MR-01 disposition}]
+\textbf{PASS.} Il MR e' semanticamente sufficiente per il proprio livello, con il gap sull'autorita' diagnostica preservato esplicitamente.
+\end{ddtacore}
+
+\subsection{STOP test}
+
+\begin{ddtacheck}[title={Serve ulteriore significato governato nello scope corrente?}]
+\textbf{YES.} La fonte governa ulteriori distinzioni materiali: path con immagine, fallback symptom-only, pipeline analitica, trasformazione dell'urgenza in priorita' operativa, B4 boundary, clinician review/correction e lifecycle di apprendimento. Questi significati devono essere esaminati uno per volta senza forzare in anticipo il loro owning layer.
+\end{ddtacheck}
+
+Pertanto il branch non si ferma a MR-01 e la prossima azione autorizzata e' la review della prima candidate \DEC{} sotto MR-01.
+
+% -----------------------------------------------------------------------------
+\section{Checkpoint storico R1 - stato dopo il primo MR}
+\begin{ddtaopen}[title={Snapshot storico preservato}]
+La figura e la tabella di questa sezione fotografano intenzionalmente lo stato di R1, nel quale la first Decision era ancora NEXT. Sono preservate per mostrare l'evoluzione e sono \textbf{superseded} dallo stato R2 riportato nelle sezioni A3/A4 e nel Session snapshot finale.
+\end{ddtaopen}
+
+\begin{center}
+\begin{tikzpicture}[
+  node distance=7mm and 12mm,
+  every node/.style={font=\sffamily\small,align=center},
+  done/.style={draw=DDTAGreen,rounded corners=2pt,very thick,fill=DDTALightGreen,minimum width=50mm,minimum height=9mm},
+  now/.style={draw=DDTAAmber,rounded corners=2pt,very thick,fill=DDTALightAmber,minimum width=50mm,minimum height=9mm},
+  later/.style={draw=DDTAGray,rounded corners=2pt,thick,fill=DDTALightGray,minimum width=50mm,minimum height=9mm},
+  blocked/.style={draw=DDTARed,rounded corners=2pt,very thick,fill=DDTALightRed,minimum width=50mm,minimum height=9mm},
+  arr/.style={-{Latex[length=2.2mm]},thick,draw=DDTANavy}
+]
+\node[done] (a0) {A0 Authority / source gate\\PASS};
+\node[done,below=of a0] (a1) {A1 Problem framing\\PASS + explicit NOT SPECIFIED};
+\node[done,below=of a1] (a2) {A2 MR-01 + semantic sufficiency\\PASS};
+\node[now,below=of a2] (a4) {NEXT: first Decision candidate\\gate-by-gate review};
+\node[later,below=of a4] (rest) {FR / split / SR / SecR / boundaries\\terminology / propagation / completeness};
+\node[blocked,below=of rest] (ba) {Base Analysis\\BLOCKED until documentation gate};
+\draw[arr] (a0)--(a1);
+\draw[arr] (a1)--(a2);
+\draw[arr] (a2)--(a4);
+\draw[arr] (a4)--(rest);
+\draw[arr] (rest)--(ba);
+\end{tikzpicture}
+\end{center}
+
+\begin{tabularx}{\textwidth}{L{42mm}L{28mm}Y}
+\toprule
+\textbf{Review object} & \textbf{Status} & \textbf{Disposition} \\
+\midrule
+Repository baseline & CLOSED & Exact commit verified. \\
+Original package & CLOSED & Exact SHA-256 verified. \\
+Authority gate & CLOSED & Original source is project authority. \\
+Problem framing & CLOSED for current scope & Triage framing accepted; diagnostic authority remains \NS. \\
+MR-01 & CLOSED for current scope & PASS; branch continues. \\
+First Decision & NEXT & Not yet authored. \\
+Documentation gate & OPEN & Most conditions not yet evaluated. \\
+Base Analysis & BLOCKED & Explicitly not started. \\
+\bottomrule
+\end{tabularx}
+
+% -----------------------------------------------------------------------------
+
+% -----------------------------------------------------------------------------
+\section{A3/A4 - Decision family review di MR-01}
+
+Questa sezione costituisce l'avanzamento principale di R2. La validation mode rende espliciti, per ogni candidato, \textbf{domanda -> evidence -> risposta -> esito -> gap -> STOP}. Le risposte sono persistite per studiare la metodologia; questo non implica che un futuro editor operativo debba conservarle tutte nel documento governato.
+
+\subsection{Decision family result in sintesi}
+
+\begin{longtable}{L{48mm}L{31mm}L{78mm}}
+\toprule
+\textbf{Candidate / element} & \textbf{Disposition} & \textbf{Routing stabilizzato} \\
+\midrule
+\endhead
+Continuita' del triage senza immagine & DEC-01 PASS & Decision SELECTABLE sotto MR-01. \\
+P-scale come priorita' operativa & DEC-02 REWORK -> PASS & Decision SELECTABLE sotto MR-01; exact mapping separato come future FR candidate. \\
+SLA 24h / 48h / 72h / 7d & NOT SPECIFIED & Non promosso a Decision: manca semantic binding temporale e responsibility owner. \\
+Specialist output / routing & OUTSIDE MR-01 & Non e' una Decision di MR-01; riapre la macro project map come concern candidato separato. \\
+HIGH/MEDIUM/LOW + confidence & EVIDENCE / future FR semantics & Non promosso a Decision indipendente: rappresentazione analitica corrente da riesaminare con il mapping FR. \\
+Four-stage AI pipeline e named models & REALIZATION EVIDENCE & Nessuna promozione automatica a Decision; la fonte descrive architettura corrente ma non dimostra un commitment normativo separato necessario a MR-01. \\
+B4 persistence / external APIs & CONSUMED SERVICE EVIDENCE & Boundary evidence; non ownership della responsabilita' di triage. \\
+Pathology prediction & OUTSIDE / GAP & Material evidence, ma autorita' diagnostica definitiva resta NOT SPECIFIED. \\
+Doctor correction / prompt evolution / retraining & OUTSIDE MR-01 & Candidati per macro-responsibility/lifecycle review successiva. \\
+\bottomrule
+\end{longtable}
+
+% -----------------------------------------------------------------------------
+\section{DEC-01 - Continuita' del triage in assenza di immagine}
+\closedtag
+
+\subsection{Source evidence}
+\textbf{Source:} \texttt{OR2\_Architecture\_Document.pdf}, pipeline/fallback. La fonte descrive un percorso image-based e afferma che, quando l'immagine non e' disponibile, uno scoring symptom-only deriva l'urgenza dai dati sintomatologici disponibili nell'interazione B4.
+
+\subsection{Candidate Decision stabilizzata}
+\textbf{Context.} Il caso dermatologico puo' essere disponibile con un'immagine della lesione oppure senza immagine. La documentazione descrive un percorso principale image-based e un fallback symptom-only.
+
+\textbf{Decision.} DermaTriage deve consentire la valutazione di triage anche quando non e' disponibile un'immagine della lesione. In tale condizione, la determinazione dell'urgenza deve basarsi sulle informazioni sintomatologiche disponibili sul caso.
+
+\textbf{Consequences.} Il triage deve supportare almeno le condizioni ``con immagine'' e ``senza immagine''. Non e' autorizzato assumere che il percorso symptom-only produca l'intero insieme di risultati del percorso image-based.
+
+\subsection{Gate review esplicita}
+\begin{longtable}{L{50mm}L{24mm}L{83mm}}
+\toprule
+\textbf{Domanda} & \textbf{Esito} & \textbf{Risposta / evidence} \\
+\midrule
+\endhead
+Esiste un material project commitment? & PASS & L'immagine non e' una precondizione assoluta per poter effettuare il triage. \\
+Restringe esattamente MR-01? & PASS & Governa le condizioni di applicabilita' della medesima responsabilita' di triage. \\
+E' tautologica rispetto all'MR? & PASS & MR-01 non stabilisce da solo cosa accade in assenza di immagine. \\
+Split necessario? & PASS / NO SPLIT & Con immagine e senza immagine sono condizioni della stessa scelta di continuita', non responsabilita' indipendenti. \\
+Responsibility boundary? & PASS & DermaTriage possiede il comportamento di triage; B4 fornisce/intermedia dati ed e' capability consumata. \\
+Decision vs realization? & PASS & Eliminando chatbot, B4 e scoring corrente rimane la scelta di consentire il triage senza immagine. \\
+Decision kind? & SELECTABLE & Una alternativa materialmente distinta sarebbe richiedere l'immagine come precondizione. \\
+Semantic sufficiency? & PASS & Il commitment e' stabile; l'equivalenza completa degli output tra i due percorsi non e' specificata. \\
+D2 / STOP? & PASS / NO STOP & Restavano altri commitment materiali da classificare sotto MR-01. \\
+\bottomrule
+\end{longtable}
+
+\begin{ddtaopen}[title={DEC-01 - gap preservati}]
+\textbf{NS-01.} Alternative effettivamente considerate e rationale storico non documentati.\par
+\textbf{NS-02.} Non e' specificato se il fallback symptom-only produca, oltre all'urgenza, gli stessi outcome del percorso image-based.
+\end{ddtaopen}
+
+% -----------------------------------------------------------------------------
+\section{DEC-02 - Adozione della P-scale per la priorita' operativa}
+\closedtag
+
+\subsection{Source evidence}
+\textbf{Source principale:} \texttt{OR2\_Architecture\_Document.pdf}. La fonte distingue una valutazione analitica \texttt{HIGH/MEDIUM/LOW + confidence} da una priorita' operativa \texttt{P1/P2/P3/P4}; la adaptation layer documentata associa inoltre SLA e specialist.
+
+\begin{lstlisting}
+HIGH + confidence > 0.85 -> P1 -> 24 hours
+HIGH                     -> P2 -> 48 hours
+MEDIUM                   -> P3 -> 72 hours
+LOW                      -> P4 -> 7 days
+\end{lstlisting}
+
+\subsection{Candidate meaning iniziale}
+Il candidato spontaneo ``P-scale + exact mapping + SLA + specialist'' viene sottoposto a split gate senza essere assunto come valido.
+
+\subsection{Decision gate}
+\begin{ddtacheck}
+\textbf{Domanda.} Eliminando i dettagli esecutivi, resta una posizione progettuale che restringe materialmente MR-01?
+\end{ddtacheck}
+\textbf{Risposta.} SI. Adottare P1-P4 come rappresentazione della priorita' operativa e' una convenzione/strategia sostituibile da convenzioni materialmente diverse.\par
+\textbf{Esito: PASS.}
+
+\begin{ddtacheck}
+\textbf{Domanda.} MR-01 implica gia' necessariamente P1-P4?
+\end{ddtacheck}
+\textbf{Risposta.} NO. MR-01 richiede una priorita' di triage ma non prescrive una scala specifica.\par
+\textbf{Esito: PASS - non tautologica.}
+
+\subsection{Split gate}
+\begin{ddtacheck}
+\textbf{Domanda.} P-scale, mapping condizionale, SLA e specialist routing possono cambiare indipendentemente con conseguenze materiali autonome?
+\end{ddtacheck}
+\textbf{Risposta.} SI. Si puo' mantenere P1-P4 cambiando threshold, SLA o routing specialistico.\par
+\textbf{Esito sul candidato iniziale: REWORK.}
+
+\begin{ddtacore}[title={DEC-02 dopo REWORK}]
+\textbf{Title:} Adozione della P-scale per la priorita' operativa.\par
+\textbf{Context:} la valutazione analitica dell'urgenza deve essere trasformata in una rappresentazione utilizzabile per esprimere la priorita' operativa del triage.\par
+\textbf{Decision:} DermaTriage rappresenta la priorita' operativa del triage mediante la scala P1-P4, derivandola dalla valutazione di urgenza del caso.\par
+\textbf{Consequences:} il comportamento downstream deve produrre una priorita' appartenente al dominio P1-P4; la regola che seleziona il livello specifico viene governata separatamente.
+\end{ddtacore}
+
+\subsection{Responsibility-boundary gate}
+\begin{ddtacheck}
+\textbf{Domanda.} La determinazione della P-scale appartiene a DermaTriage o a B4/servizio esterno?
+\end{ddtacheck}
+\textbf{Risposta.} La trasformazione e' descritta nel flusso DermaTriage; B4 riceve/persistisce dati e risultati. DermaTriage possiede la determinazione della priorita' P.\par
+\textbf{Esito: PASS.}
+
+\subsection{Decision-vs-realization gate}
+\begin{ddtacheck}
+\textbf{Domanda.} Rimuovendo \texttt{Adaptation Layer} e il nome della funzione, resta una scelta governata?
+\end{ddtacheck}
+\textbf{Risposta.} SI. Sostituire il componente non cambia la P-scale; sostituire P1-P4 con una convenzione diversa cambia il significato governato.\par
+\textbf{Esito: PASS.}
+
+\subsection{Decision kind}
+\textbf{Kind: SELECTABLE.} Alternative materialmente differenti sono possibili, ma la fonte non documenta quali siano state considerate ne' il rationale storico.
+
+\begin{lstlisting}
+commitment              = AFFIRMED
+alternatives considered = NOT SPECIFIED
+historical rationale    = NOT SPECIFIED
+\end{lstlisting}
+
+\subsection{Cross-layer gate: Decision o FR?}
+\begin{ddtacheck}
+\textbf{Domanda.} La truth table \texttt{urgency/confidence -> specific P} appartiene alla Decision?
+\end{ddtacheck}
+\textbf{Risposta.} NO. La P-scale e' il dominio/convenzione; il mapping e' un obbligo operativo separabile e resta future FR candidate.\par
+\textbf{Esito: PASS dopo REWORK.}
+
+\subsection{Semantic sufficiency}
+\begin{itemize}
+  \item la P-scale derivata dall'urgenza e' \texttt{AFFIRMED};
+  \item la confidence e' materialmente rilevante per la regola documentata: \texttt{AFFIRMED};
+  \item la semantica temporale dello SLA e' insufficiente: \texttt{NOT SPECIFIED};
+  \item l'applicazione della stessa trasformazione P-scale al fallback symptom-only non e' esplicitamente governata: \texttt{NOT SPECIFIED};
+  \item la regola che determina lo specialist non e' documentata: \texttt{NOT SPECIFIED}.
+\end{itemize}
+
+\textbf{D2 individuale: REWORK -> PASS. STOP individuale al momento della review: NO.}
+
+% -----------------------------------------------------------------------------
+\section{Candidate SLA - rifiuto controllato della promozione a Decision}
+\holdouttag
+
+\subsection{Source proposition minima}
+La fonte associa a \texttt{P1/P2/P3/P4} valori rispettivamente pari a 24h, 48h, 72h e 7 giorni sotto la label \texttt{SLA}. Questa proposizione e' \texttt{AFFIRMED}.
+
+\subsection{Decision gate e split}
+Un candidato del tipo ``ogni P-scale possiede un tempo massimo di presa in carico'' sarebbe materialmente significativo, ma introduce gia' una semantica non affermata dalla fonte. Inoltre il principio ``esiste una dimensione temporale'' e i valori numerici specifici possono cambiare indipendentemente.\par
+\textbf{Esito: PENDING -> REWORK.}
+
+\subsection{Responsibility-boundary e semantic-sufficiency gate}
+\begin{ddtacheck}
+\textbf{Domanda.} Che cosa deve accadere entro 24/48/72 ore o 7 giorni, da quale evento decorre il tempo e chi e' responsabile del rispetto?
+\end{ddtacheck}
+
+Sono materialmente possibili almeno letture diverse: contatto, appuntamento, presa in carico, handoff, semplice target informativo o altro evento. La fonte non stabilisce trigger temporale, outcome finale, responsibility owner, failure behavior o se il valore sia limite, target o raccomandazione.
+
+\begin{ddtaopen}[title={GAP-DERMA-SLA-01}]
+\textbf{Disposition: NOT SPECIFIED - non promuovere a Decision.}\par
+La precisione numerica non implica semantic sufficiency. I valori restano source evidence da preservare finche' non sia definito il semantic binding temporale.
+\end{ddtaopen}
+
+\textbf{Decision kind: NOT ASSIGNED. STOP candidate: YES.}
+
+% -----------------------------------------------------------------------------
+\section{Candidate specialist routing - semantic-owner gate}
+\holdouttag
+
+\subsection{Source evidence}
+\textbf{OR2 Architecture Document:} la adaptation layer ``assigns P1-P4, specialist and SLA''.\par
+\textbf{OR5 Test Environment Setup:} la risposta attesa di \texttt{/analyze} contiene \texttt{P1-P4, specialist, SLA, confidence}; il test full-pipeline attende ``P1-P4 + Italian specialist + SLA time''.
+
+La proposizione minima supportata e': \textbf{la risposta DermaTriage contiene una indicazione specialistica}.\par
+\textbf{Evidence classification: AFFIRMED.}
+
+\subsection{Candidate meaning iniziale}
+\begin{quote}
+DermaTriage determina lo specialista appropriato come parte del triage del caso.
+\end{quote}
+
+\subsection{Material commitment gate}
+\begin{ddtacheck}
+\textbf{Domanda.} Eliminando il nome dell'Adaptation Layer, resta un significato progettuale materiale?
+\end{ddtacheck}
+\textbf{Risposta.} SI. La presenza di una indicazione specialistica e' osservabile anche nei test e sopravvive ai nomi dei componenti.\par
+\textbf{Esito: PASS come candidate project meaning.}
+
+\subsection{Exact-parent / semantic-owner gate}
+\begin{ddtacheck}
+\textbf{Domanda.} Questo commitment restringe esattamente MR-01 oppure introduce una responsabilita' diversa?
+\end{ddtacheck}
+
+\textbf{Evidence.} MR-01 ha scope ``valutazione del caso fino alla determinazione dell'urgenza/priorita' di triage''. Il project framing, separatamente, include il supporto all'instradamento verso assistenza specialistica appropriata.
+
+\textbf{Risposta.} L'indicazione specialistica sopravvive come concern anche cambiando la scala di priorita' e apre una possibile famiglia autonoma di Decision (tipo di routing, criterio di selezione, confine con servizi sanitari esterni). Forzarla sotto MR-01 allargherebbe retroattivamente lo scope dell'MR.
+
+\textbf{Esito: FAIL come Decision child di MR-01.}
+
+\subsection{Responsibility-boundary / semantic sufficiency}
+\begin{ddtacheck}
+\textbf{Domanda.} DermaTriage raccomanda una categoria specialistica oppure possiede l'effettiva assegnazione/presa in carico nel sistema sanitario?
+\end{ddtacheck}
+
+La fonte mostra un campo/output \texttt{specialist}, ma non documenta la regola di selezione ne' una responsabilita' di scheduling/assignment clinico effettivo.\par
+\textbf{Smallest critical proposition:} recommendation/indication vs actual routing/assignment.\par
+\textbf{Disposition: NOT SPECIFIED per l'autorita' di routing effettivo.}
+
+\begin{ddtacore}[title={Specialist candidate disposition}]
+\textbf{OUTSIDE CURRENT MR-01 DECISION FAMILY.}\par
+Non assegnare un identificatore DEC sotto MR-01. Riaprire la \textbf{Macro Project Map} e sottoporre a D1 un candidato MR separato, senza assumere ancora che debba necessariamente sopravvivere come MR autonomo.
+\end{ddtacore}
+
+% -----------------------------------------------------------------------------
+\section{D2 cumulativo - chiusura della Decision family di MR-01}
+\closedtag
+
+Il gate cumulativo non chiede se ogni source fact e' diventato Decision. Chiede se i \textbf{commitment rilevanti che restringono MR-01} sono stati identificati e separati, se i boundary necessari sono espliciti e se gli altri significati sono stati instradati senza invenzione.
+
+\begin{longtable}{L{58mm}L{24mm}L{75mm}}
+\toprule
+\textbf{Domanda cumulativa} & \textbf{Esito} & \textbf{Motivazione} \\
+\midrule
+\endhead
+Le Decision accettate restringono chiaramente MR-01? & PASS & DEC-01 governa la continuita' del triage senza immagine; DEC-02 governa la convenzione P1-P4 per la priorita' operativa. \\
+I commitment indipendenti sono separati? & PASS & P-scale, mapping, SLA e specialist sono stati separati; nessuna Decision monolitica conserva la tabella sorgente intera. \\
+Ogni Decision ha esattamente MR-01 come semantic owner? & PASS & DEC-01 e DEC-02 appartengono allo scope di valutazione/priorita'; specialist e' stato espulso dal branch. \\
+I responsibility boundary necessari sono espliciti? & PASS & DermaTriage possiede il triage e la P-scale; B4 e' consumed service. L'effettivo routing specialistico resta fuori dal branch e non viene attribuito per inferenza. \\
+Sono rimaste Decision nascoste nei dettagli tecnici? & PASS con routing & Four-stage pipeline, named models e threshold restano realization/config evidence; HIGH/MEDIUM/LOW non viene promosso a Decision autonoma senza evidence di commitment indipendente. \\
+I source gap sono preservati? & PASS & SLA semantics, equivalenza symptom-only/full-pipeline e autorita' diagnostica restano NOT SPECIFIED. \\
+Esistono obblighi operativi gia' visibili ma non ancora scritti? & YES, non bloccante D2 & Exact urgency/confidence -> P mapping e' future FR candidate sotto DEC-02. D3 non viene anticipato. \\
+Esistono meaning fuori MR-01 che richiedono macro review? & YES & Specialist routing, doctor validation/learning lifecycle e diagnostic-support meaning richiedono Macro Project Map review. \\
+La Decision family di MR-01 puo' chiudersi senza inventare significato? & PASS & Gli elementi appartenenti al branch sono stabilizzati o correttamente instradati. \\
+\bottomrule
+\end{longtable}
+
+\begin{ddtacore}[title={D2 cumulative disposition - MR-01}]
+\textbf{PASS - DECISION FAMILY MR-01 CLOSED.}\par
+DEC-01 e DEC-02 costituiscono la famiglia Decision stabilizzata nello scope corrente di MR-01. SLA non viene promosso; specialist viene rinviato alla Macro Project Map; realization evidence resta non normativa.\par
+\textbf{Decision-layer STOP per MR-01: YES.}
+\end{ddtacore}
+
+\subsection{Importante: D2 PASS non significa ancora ``iniziare subito gli FR''}
+La chiusura D2 autorizza strutturalmente la successiva decomposizione FR sotto DEC-01/DEC-02. Tuttavia il holdout mantiene aperta una condizione upstream gia' nota da R1: la \textbf{Macro Project Map globale era PENDING}. Il candidate specialist ha ora fornito evidence concreta che esistono altri concern macro potenziali.
+
+Per ridurre il rischio di ownership error e cross-MR contamination, la prosecuzione di ricerca torna quindi temporaneamente ad A2 globale prima di A5:
+
+\begin{lstlisting}
+MR-01 D2 family closure   PASS
+          |
+          v
+re-open Macro Project Map / D1 breadth review
+          |
+          +--> specialist-routing concern
+          +--> doctor validation / correction concern
+          +--> learning / retraining lifecycle concern
+          `--> diagnostic-support boundary concern
+          |
+          v
+only after macro ownership is stable
+          -> FR authoring under accepted Decisions
+\end{lstlisting}
+
+Questa non e' una regressione del metodo: e' l'applicazione del principio di ownership prima della decomposizione downstream.
+
+% -----------------------------------------------------------------------------
+\section{Valutazione metodologica dopo la Decision family di MR-01}
+
+\subsection{Pregi confermati}
+\begin{enumerate}
+  \item \textbf{Gate visibility in validation mode.} Rendere esplicite le domande ha permesso di osservare dove avviene realmente il judgement e di distinguere la validazione sperimentale dall'authoring operativo futuro.
+  \item \textbf{Split gate.} Ha trasformato il candidato monolitico P-scale + mapping + SLA + specialist in significati con owner diversi.
+  \item \textbf{Decision-vs-realization.} Ha impedito la promozione automatica di adaptation layer, named models, threshold e pipeline tecnica.
+  \item \textbf{Semantic sufficiency.} Ha mostrato che valori numerici precisi possono essere semanticamente incompleti, come per gli SLA.
+  \item \textbf{Semantic-owner discipline.} Il candidate specialist ha riaperto il layer MR invece di essere forzato sotto MR-01 per comodita' gerarchica.
+  \item \textbf{No layer filling.} Un candidate Decision puo' terminare in NOT SPECIFIED o OUTSIDE senza che il metamodel venga riempito artificialmente.
+\end{enumerate}
+
+\subsection{Costi / pressure da distinguere}
+\begin{itemize}
+  \item \textbf{Methodological cognitive load: reale.} Split, semantic owner e Decision-vs-FR/realization richiedono judgement disciplinato.
+  \item \textbf{Validation-record verbosity: intenzionale.} In questa fase scriviamo domanda e risposta per studiare il metodo; non va confusa con un requisito del documento finale.
+  \item \textbf{Operational authoring overhead: ancora da misurare.} Un editor puo' rendere transienti molte domande e persistere solo il significato governato e le eccezioni materialmente rilevanti.
+  \item \textbf{Breadth/depth sequencing pressure.} Il candidate specialist dimostra che una review troppo depth-first puo' scoprire tardi un owner macro diverso. La guida raccomanda breadth-first; il holdout dovra' verificare se serve rendere piu' forte questa raccomandazione.
+\end{itemize}
+
+\subsection{Observation register aggiornato}
+\begin{longtable}{L{45mm}L{112mm}}
+\toprule
+\textbf{Observation} & \textbf{Interpretazione corrente} \\
+\midrule
+\endhead
+OBS-DDTA-DERMA-01 - Gate visibility & In validation mode question + evidence + answer + disposition devono essere visibili; non ancora requisito di persistenza nell'authoring operativo. \\
+OBS-DDTA-DERMA-02 - Validation vs assisted authoring & Le domande possono diventare checklist/prompt transienti in un editor maturo; la ricerca conserva invece le risposte per audit metodologico. \\
+OBS-DDTA-DERMA-03 - Cross-layer classification assistance & Tooling futuro dovrebbe enfatizzare split, Decision-vs-FR e Decision-vs-realization, senza automatizzare il semantic owner. \\
+OBS-DDTA-DERMA-04 - Numeric precision != semantic sufficiency & Threshold, durata, percentuale o SLA devono avere semantic binding esplicito prima di diventare obblighi governati. \\
+OBS-DDTA-DERMA-05 - Ownership can force upstream reopen & Un candidate downstream puo' dimostrare che il macro owner non e' ancora stabile; il processo deve permettere un reopen controllato senza retrofitting gerarchico. \\
+\bottomrule
+\end{longtable}
+
+\begin{ddtacore}[title={Valutazione provvisoria della metodologia dopo D2 MR-01}]
+Non emerge un difetto strutturale che richieda una modifica immediata di R4. I gate disponibili hanno prodotto rework e routing coerenti. Il principale punto da verificare e' ora il sequencing breadth-first: la guida lo raccomanda gia', ma il holdout mostrera' se l'operational authoring necessita di una guardrail piu' esplicita prima degli FR.
+\end{ddtacore}
+
+
+\section{Protocollo guidato riutilizzabile per i prossimi elementi}
+
+Questa sezione definisce il formato con cui il documento dovra' essere esteso durante la continuazione. L'obiettivo e' che ogni decisione documentale resti auditabile.
+
+\subsection{Worksheet per ogni candidate DDTA element}
+
+\begin{ddtacheck}[title={1. Source evidence}]
+Quali frasi, tabelle, diagrammi o altri artifact del package sostengono il significato? L'evidence descrive project responsibility/commitment oppure soltanto current realization, configuration, runtime o test state?
+\end{ddtacheck}
+
+\begin{ddtacheck}[title={2. Candidate project meaning}]
+Qual e' la minima proposizione governata che vogliamo preservare? E' scritta con vocabolario di progetto e al livello di astrazione pertinente?
+\end{ddtacheck}
+
+\begin{ddtacheck}[title={3. Semantic owner}]
+Il significato appartiene a framing, \MR, \DEC, \FR, \SR, \SECR, boundary cross-MR, oppure e' supporting realization/evidence senza collocazione normativa automatica?
+\end{ddtacheck}
+
+\begin{ddtacheck}[title={4. Relevant gates}]
+Applicare tutti i gate pertinenti, non soltanto quello del tipo candidato. Per una Decision, ad esempio, includere responsibility-boundary e Decision-vs-implementation evidence. Per un FR includere parentage, coherent-unit/split, binding e failure semantics quando materiali.
+\end{ddtacheck}
+
+\begin{ddtacheck}[title={5. Explicit disposition}]
+Registrare una delle disposition operative: \texttt{PASS}, \texttt{REWORK}, \texttt{NOT SPECIFIED}, \texttt{CONFLICTING}, \texttt{OUTSIDE CURRENT DDTA DOCUMENTATION}, \texttt{METHOD PRESSURE}.
+\end{ddtacheck}
+
+\begin{ddtacheck}[title={6. Stopping decision}]
+Se il significato corrente e' sufficiente, fermare il branch. Non creare elementi inferiori per completare visivamente una gerarchia.
+\end{ddtacheck}
+
+\subsection{Ordine rimanente della review}
+
+\begin{longtable}{L{17mm}L{39mm}L{90mm}}
+\toprule
+\textbf{Step} & \textbf{Review} & \textbf{Domanda guida} \\
+\midrule
+\endhead
+A3 & Semantic sufficiency & Sopravvivono letture materialmente diverse? Qual e' la smallest critical proposition? \\
+A4 & Decision & Quale commitment materiale restringe l'MR? E' governato o solo implementation evidence? \\
+A5 & FunctionalRequirement & Quale obbligo operativo independently assessable discende dalla Decision? \\
+A6 & Requirement split & Una clausola puo' cambiare o essere assessed indipendentemente dalle altre? \\
+A7 & SpecializedRequirement & Esiste una proprieta' concern-specific aggiuntiva che strengthening il parent FR? \\
+A8 & SecurityRequirement & Esiste una singola security property governata con failure mode identificabile? \\
+A9 & Cross-MR / consumed service & Il branch possiede o consuma la capability? Quale garanzia del servizio e' davvero governata? \\
+A10 & Terminology / bindings & Le stesse identita' usano termini e riferimenti stabili? \\
+A11 & Propagation & Le correzioni upstream sono preservate nei discendenti senza narrowing/widening silenzioso? \\
+A12 & Completeness / promotion & La candidate baseline e' completa, coerente e accettabile come source baseline per BA? \\
+\bottomrule
+\end{longtable}
+
+% -----------------------------------------------------------------------------
+\section{Registro delle osservazioni metodologiche}
+
+Le osservazioni in questa sezione sono volutamente separate dalla documentazione di progetto. Non devono contaminare MR/Decision/Requirement finali. Verranno consolidate solo al termine della documentazione e, successivamente, confrontate con la regressione Documentation $\leftrightarrow$ BA.
+
+\subsection{Pregi osservati finora - provvisori}
+
+\begin{enumerate}
+  \item \textbf{Authority discipline.} La metodologia impedisce di prendere come verita' il candidate DDTA precedente, il modello corrente o la BA futura. Questo rende piu' chiaro da dove proviene ogni significato.
+  \item \textbf{Problem/solution separation.} Il framing costringe a rimuovere tecnologia e architettura quando non sono intrinseche al problema. Il risultato e' una responsabilita' piu' stabile nel tempo.
+  \item \textbf{Ambiguity surfacing.} La distinzione triage vs diagnosi definitiva, facilmente nascosta da endpoint e campi chiamati \texttt{diagnose}/\texttt{pathology}, viene resa esplicita come \NS{} invece di essere risolta per supposizione.
+  \item \textbf{Controlled decomposition.} Il gate di STOP impedisce di produrre documenti inferiori soltanto per riempire la gerarchia, mentre il parentage mantiene la tracciabilita' quando la decomposizione e' necessaria.
+  \item \textbf{Classification before method change.} Un problema incontrato viene prima classificato come source gap, guide problem, metamodel pressure, L2 issue o downstream issue. Questo riduce il rischio di cambiare il metodo per ogni anomalia documentale.
+\end{enumerate}
+
+\subsection{Costi, limiti e pressure da verificare - non conclusivi}
+
+\begin{enumerate}
+  \item \textbf{Review effort.} L'applicazione esplicita dei gate richiede piu' lavoro di una riscrittura informale della documentazione. Dovremo valutare se il maggior costo produce un beneficio proporzionato in chiarezza e regressione.
+  \item \textbf{Judgement burden.} La distinzione fra project commitment e current realization non e' completamente automatizzabile; il metodo richiede judgement governato e quindi disciplina del reviewer.
+  \item \textbf{Technical-realization preservation.} Dataset, modelli, threshold, training configuration e test evidence possono essere materialmente utili senza essere Requirements o Decisions. La loro rappresentazione non normativa resta una pressure area aperta nella R4.
+  \item \textbf{Validation-record verbosity.} La verbosita' osservata e' in parte intenzionale nella Research / Validation mode: domanda, evidence e risposta vengono persistite per studiare il metodo. Non va trattata automaticamente come overhead dell'authoring operativo, dove un editor puo' presentare molte domande come checklist transienti.
+  \item \textbf{Tooling opportunity with authority boundary.} Molti check strutturali possono essere assistiti da tool, ma semantic owner, equivalenza e meaning non devono essere decisi automaticamente senza governed review.
+\end{enumerate}
+
+\subsection{Come DDTA sta gia' migliorando la documentazione DermaTriage}
+
+\begin{tabularx}{\textwidth}{L{52mm}Y}
+\toprule
+\textbf{Problema tipico nella fonte classica} & \textbf{Miglioramento prodotto dalla review DDTA} \\
+\midrule
+Purpose, architecture e implementation facts sono mescolati. & Il framing separa il problema stabile dalle scelte correnti di soluzione. \\
+Terminologia come \texttt{diagnose}, \texttt{pathology} e ``triage'' puo' suggerire authority diverse. & La semantic sufficiency isola la proposizione critica e conserva \NS{} invece di scegliere una lettura. \\
+Una pipeline tecnica suggerisce naturalmente una decomposizione per componenti. & L'MR viene definito per responsibility, non per stage architetturale. \\
+Metriche, threshold e configuration sembrano ``importanti'' e quindi rischiano di diventare requisiti per default. & La parameter/evidence classification richiede prima di stabilirne il semantic owner. \\
+La mancanza di informazione puo' essere nascosta da wording generico. & \NS{} e \texttt{CONFLICTING} diventano esiti espliciti e tracciabili. \\
+\bottomrule
+\end{tabularx}
+
+\begin{ddtaworking}[title={Criterio per la valutazione finale della metodologia}]
+Alla fine del caso DermaTriage non giudicheremo DDTA in base a quanto ``bella'' appare la gerarchia. Valuteremo invece se il metodo ha: preservato il significato source-supported; reso visibili gap e conflitti; ridotto ambiguity e implementation leakage; prodotto una baseline comprensibile da un reviewer di progetto; consentito una BA fedele senza invenzione; richiesto un costo di authoring/review ragionevole rispetto ai benefici.
+\end{ddtaworking}
+
+% -----------------------------------------------------------------------------
+\section{Forma prevista della documentazione finale DermaTriage}
+
+Questo working record non impone in anticipo quali documenti debbano esistere. La forma finale sara' determinata dai gate. Tuttavia, se i branch richiederanno l'intera decomposizione corrente, la relazione di ownership restera':
+
+\begin{lstlisting}
+Project problem framing
+    -> MacroRequirement
+        -> Decision
+            -> FunctionalRequirement
+                -> SpecializedRequirement
+                    -> SecurityRequirement
+\end{lstlisting}
+
+Ogni branch potra' fermarsi prima quando semanticamente sufficiente. La documentazione finale dovra' essere piu' corta e piu' leggibile di questo registro: conterra' project meaning governato, non il processo di ricerca che lo ha prodotto.
+
+\begin{ddtaprinciple}[title={Working record vs project baseline}]
+\textbf{Working record:} evidence, dubbi, gate, alternative, diagnostics, method observations.\par
+\textbf{Project baseline finale:} solo significato governato, gap espliciti necessari, termini stabili, responsabilita', commitment e obblighi accettati.
+\end{ddtaprinciple}
+
+% -----------------------------------------------------------------------------
+\section{Prossimo passo autorizzato}
+
+La Decision family di MR-01 e' chiusa a D2, ma la Macro Project Map globale non e' ancora stabilizzata. Il prossimo passo non e' quindi scrivere immediatamente gli FR: e' riaprire A2 a livello globale e classificare i concern macro emersi dalla source review.
+
+\begin{ddtaworking}[title={NEXT - Macro Project Map breadth review}]
+Applicare D1/split-merge review ai candidati macro, uno alla volta, iniziando dall'instradamento specialistico emerso durante il candidate specialist review. Verificare poi doctor validation/correction, learning/retraining lifecycle e il confine diagnostic-support/diagnostic-authority.\par
+Soltanto quando l'ownership macro sara' sufficientemente stabile si procedera' ad A4 sulle Decision degli eventuali nuovi MR e quindi ad A5 sugli FR.
+\end{ddtaworking}
+
+\begin{ddtaprinciple}[title={FR authorization status}]
+\textbf{MR-01 localmente:} D2 PASS, quindi gli FR sono strutturalmente ammessi sotto DEC-01/DEC-02.\par
+\textbf{Holdout globalmente:} FR authoring temporaneamente differito per completare il macro ownership gate ed evitare cross-MR contamination.
+\end{ddtaprinciple}
+
+% -----------------------------------------------------------------------------
+\appendix
+\section{Compact review worksheet}
+
+\begin{longtable}{L{45mm}L{105mm}}
+\toprule
+\textbf{Field} & \textbf{Da compilare per ogni elemento} \\
+\midrule
+\endhead
+Source artifact / location & Documento, sezione/pagina, tabella o artifact che sostiene il significato. \\
+Source proposition & Fatto minimo effettivamente supportato. \\
+Candidate DDTA type & MR / Decision / FR / SR / SecR / boundary / evidence-only / unresolved. \\
+Candidate wording & Testo minimo nel vocabolario del progetto. \\
+Semantic owner & Perche' questo livello e non un altro. \\
+Relevant gates & Tutti i gate applicati, non solo quello nominale del tipo. \\
+Smallest critical proposition & Distinzione minima quando esistono letture materialmente diverse. \\
+Evidence status & AFFIRMED / DENIED / NOT SPECIFIED / CONFLICTING. \\
+Disposition & PASS / REWORK / NOT SPECIFIED / CONFLICTING / OUTSIDE / METHOD PRESSURE. \\
+STOP decision & Fermare il branch o continuare, con motivo. \\
+Method observation & Eventuale OBS-DDTA / HYP-METHOD / MIP / DT-METHOD candidate, separata dal project meaning. \\
+\bottomrule
+\end{longtable}
+
+\section*{Session snapshot}
+
+\begin{lstlisting}
+R1 ORIGIN BASELINE
+21575a18ccf2feab62b27e3b046fadcd01c90135
+
+R2 REPOSITORY BASELINE
+127c8a1532a193184ce86dd4c95f7547ce3606b9
+
+SOURCE PACKAGE
+DermaTriage-Docs-20260830T152637Z-1-001.zip
+SHA-256
+E9ED2C507BEFB95F54A52084687CD1E8798863AE81CF69D09568864D8CBF280E
+
+A0 AUTHORITY GATE                  PASS
+A1 PROJECT PROBLEM FRAMING         PASS
+DIAGNOSTIC AUTHORITY               NOT SPECIFIED
+A2 MR-01                           PASS
+DEC-01                             PASS
+DEC-02                             REWORK -> PASS
+SLA DECISION CANDIDATE             NOT SPECIFIED / NOT PROMOTED
+SPECIALIST DECISION CANDIDATE      OUTSIDE MR-01 -> MACRO MAP REVIEW
+D2 FAMILY MR-01                    PASS / CLOSED
+GLOBAL MACRO PROJECT MAP           RE-OPEN / PENDING
+FR AUTHORING                       LOCALLY ALLOWED, GLOBALLY DEFERRED
+DOCUMENTATION GATE                 OPEN
+BASE ANALYSIS                      NOT STARTED / BLOCKED
+\end{lstlisting}
+
+\begin{ddtacore}[title={Continuation invariant}]
+Le revisioni successive devono preservare gli esiti gia' accettati e aggiungere evidence/gate in modo cumulativo. Un reopen e' ammesso soltanto se motivato da nuova source evidence, semantic-owner conflict o contraddizione rilevata durante la regression.
+\end{ddtacore}
+
+\end{document}
