@@ -1,0 +1,400 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{DDTA_DERMATRIAGE_GUIDED_REVIEW_STYLE_R1}
+
+\hypersetup{
+  pdftitle={DDTA R25 DermaTriage - Decision Review Reading Note 02},
+  pdfauthor={Documentation-Driven Threat Analysis research project}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\sffamily\small\color{DDTAGray}DDTA DermaTriage Decision Review}
+\fancyhead[R]{\sffamily\small\color{DDTAGray}READING NOTE 02 - NOT REPOSITORY STATE}
+\fancyfoot[L]{\sffamily\scriptsize\color{DDTAGray}Temporary reading artifact - Decision phase}
+\fancyfoot[R]{\sffamily\small\color{DDTAGray}\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\begin{document}
+\selectlanguage{italian}
+
+\begin{titlepage}
+\thispagestyle{empty}
+\vspace*{9mm}
+{\sffamily\bfseries\color{DDTANavy}\fontsize{15}{18}\selectfont Documentation-Driven Threat Analysis}\par
+\vspace{5mm}
+{\sffamily\bfseries\color{DDTANavy}\fontsize{28}{32}\selectfont DermaTriage Decision Review}\par
+\vspace{2mm}
+{\sffamily\color{DDTABlue}\fontsize{18}{22}\selectfont Reading Note 02 - validation mode e assisted authoring}\par
+
+\vspace{10mm}
+\begin{tcolorbox}[enhanced,arc=3pt,boxrule=0pt,colback=DDTANavy,left=12pt,right=12pt,top=11pt,bottom=11pt]
+{\color{white}\sffamily\bfseries\large Artifact temporaneo di lettura}\par
+\vspace{2mm}
+{\color{white!88}\small Questo documento non modifica R1, non costituisce R2 e non deve essere salvato nel repository. Riesamina DEC-01 in modalita' di validazione metodologica e distingue questa forma esplicita dalla futura authoring experience assistita. Non modifica R1 e non costituisce R2.}
+\end{tcolorbox}
+
+\vspace{8mm}
+\begin{tabularx}{\textwidth}{L{45mm}Y}
+\toprule
+\textbf{Repository baseline} & \texttt{bb9eb66aeb611c3f1630e39f5511690b7eb6287f} \\
+\textbf{Working record} & R1 congelata e immutabile \\
+\textbf{Metodo} & \texttt{DDTA\_DOCUMENTATION\_BA\_AUTHORING\_GUIDE\_R4} \\
+\textbf{Parent element} & \texttt{MR-01 - Valutazione di triage del caso dermatologico} \\
+\textbf{Elemento riesaminato} & \texttt{DEC-01 - Continuita' del triage in assenza di immagine} \\
+\textbf{Base Analysis} & BLOCCATA fino al documentation gate \\
+\textbf{Data} & 3 settembre 2026 \\
+\bottomrule
+\end{tabularx}
+
+\vfill
+\begin{ddtaprinciple}[title={Regola per questa fase}]
+Durante il \textbf{holdout di validazione} rendiamo espliciti domanda, evidence, risposta, gap, disposition e STOP per poter studiare e verificare il metodo. Questa forma non viene assunta come requisito dell'authoring operativo finale: in una futura esperienza assistita le domande possono essere prompt transitori dell'editor e non testo persistente.
+\end{ddtaprinciple}
+\end{titlepage}
+
+\section{Perche' questa nota e' necessaria}
+
+La R1 aveva gia' autorizzato una procedura esplicita per la prima Decision sotto MR-01:
+\begin{enumerate}
+  \item source evidence;
+  \item candidate commitment;
+  \item Decision gate;
+  \item responsibility-boundary gate;
+  \item Decision-vs-current-realization test;
+  \item SELECTABLE / NECESSITY-CONSTRAINED / DEFAULT review;
+  \item semantic-sufficiency check;
+  \item explicit disposition e STOP decision.
+\end{enumerate}
+
+Nella prima esposizione di DEC-01 i criteri sono stati applicati, ma sono stati compressi in una tabella di esiti. Per il nostro holdout questo rendeva meno auditabile il percorso \emph{domanda -> evidence -> risposta -> disposition}.
+
+La correzione introdotta con questa nota riguarda pero' \textbf{la modalita' di studio}, non una prescrizione universale per ogni futuro autore DDTA. Durante la ricerca esplicitiamo il ragionamento per poter valutare la metodologia. Dopo la stabilizzazione, un editor potra' suggerire le stesse domande come checklist cognitiva senza richiedere che tutte le risposte vengano conservate per iscritto.
+
+\begin{ddtacore}[title={Classificazione della discrepanza}]
+\textbf{Nessuna modifica metodologica proposta in questo momento.}
+La R4 contiene gia' i gate rilevanti. La discrepanza iniziale viene classificata come \textbf{execution/presentation issue nella validation mode}, non come method defect o metamodel pressure. Resta invece da verificare quale sia il contratto minimo che un futuro tool deve rendere visibile durante l'authoring.
+\end{ddtacore}
+
+\subsection{Due modalita' da non confondere}
+\begin{tabularx}{\textwidth}{L{43mm}Y}
+\toprule
+\textbf{Modalita'} & \textbf{Scopo e persistenza} \\
+\midrule
+Research / Validation mode & Studiare DDTA e verificarne la ripetibilita'. Domande, evidence, risposte, disposition, \texttt{NOT SPECIFIED}, \texttt{REWORK} e STOP vengono resi espliciti e conservati nel record di ricerca. \\
+Operational / Assisted authoring mode & Aiutare l'autore a produrre documentazione governata. L'editor puo' mostrare domande e controlli contestuali come prompt transitori; persistono soprattutto gli elementi stabilizzati e le eccezioni che hanno valore di governance. \\
+\bottomrule
+\end{tabularx}
+
+La differenza e' metodologicamente importante: \textbf{validation-record verbosity} non deve essere confusa automaticamente con \textbf{operational authoring overhead}.
+
+\section{Source evidence minima per DEC-01}
+
+\subsection{Evidence E1 - percorso principale con immagine}
+\textbf{Source:} \texttt{OR2\_Architecture\_Document.pdf}, sezione 2, pagina 1.
+
+La fonte descrive un percorso principale nel quale il paziente fornisce un'immagine della lesione insieme a informazioni del caso; il sistema elabora l'immagine in una pipeline a piu' stadi e arriva a una decisione di triage.
+
+\subsection{Evidence E2 - fallback senza immagine}
+\textbf{Source:} \texttt{OR2\_Architecture\_Document.pdf}, sezione 2, pagina 2.
+
+\begin{quote}
+\small ``Fallback: When no image is available, symptom-only scoring derives urgency from B4 chatbot interaction fields [...]''
+\end{quote}
+
+\textbf{Source proposition minima:} se l'immagine non e' disponibile, DermaTriage continua a derivare l'urgenza usando informazioni sintomatologiche del caso.
+
+\begin{ddtaworking}[title={Cosa NON viene promosso da questa evidence}]
+Il nome B4, i singoli campi sintomatologici e il dettaglio dello scoring non vengono automaticamente promossi a Decision. Devono essere classificati separatamente come boundary, FR semantics o realization evidence quando arriveremo al livello appropriato.
+\end{ddtaworking}
+
+\section{Candidate commitment e semantic owner}
+
+\subsection{Candidate Decision}
+\textbf{DEC-01 - Continuita' del triage in assenza di immagine}
+
+\textbf{Context.} Il caso dermatologico puo' essere disponibile con un'immagine della lesione oppure senza immagine. La documentazione descrive un percorso principale image-based e un fallback symptom-only.
+
+\textbf{Decision.} DermaTriage deve consentire la valutazione di triage anche quando non e' disponibile un'immagine della lesione. In tale condizione, la determinazione dell'urgenza deve basarsi sulle informazioni sintomatologiche disponibili sul caso.
+
+\textbf{Consequences.} La valutazione di triage deve supportare almeno le due condizioni ``con immagine'' e ``senza immagine''. La documentazione non autorizza a considerare automaticamente equivalenti gli output dei due percorsi oltre alla derivazione dell'urgenza.
+
+\subsection{Perche' il semantic owner candidato e' Decision}
+Il significato non e' soltanto ``eseguire uno scoring symptom-only'': quello sarebbe gia' vicino a un obbligo funzionale. Il commitment piu' stabile e' che \textbf{l'immagine non costituisce una precondizione assoluta per poter effettuare il triage}. Questa scelta restringe MR-01 senza descrivere ancora il comportamento operativo completo.
+
+\section{Decision gate - domande esplicite}
+
+\subsection{Q-D2.1 - Esiste un material project commitment?}
+\begin{ddtacheck}
+\textbf{Domanda.} La fonte governa una posizione progettuale materialmente significativa, oppure descrive soltanto un dettaglio esecutivo?
+\end{ddtacheck}
+
+\textbf{Risposta.} SI. La possibilita' di effettuare il triage in assenza di immagine modifica le condizioni di applicabilita' della capability. Una soluzione alternativa avrebbe potuto richiedere l'immagine e rifiutare o rinviare il caso in sua assenza.
+
+\textbf{Esito: PASS.}
+
+\subsection{Q-D2.2 - La Decision restringe esattamente un MR?}
+\begin{ddtacheck}
+\textbf{Domanda.} DEC-01 restringe un solo MacroRequirement, oppure introduce responsabilita' autonome appartenenti ad altri branch?
+\end{ddtacheck}
+
+\textbf{Risposta.} Restringe \texttt{MR-01}. Stabilisce come la responsabilita' di valutazione di triage si comporta rispetto alla disponibilita' dell'immagine; non introduce una macro-responsabilita' separata.
+
+\textbf{Esito: PASS.}
+
+\subsection{Q-D2.3 - E' una tautologia dell'MR?}
+\begin{ddtacheck}
+\textbf{Domanda.} Se rimuoviamo DEC-01, MR-01 implica gia' necessariamente che il triage debba funzionare senza immagine?
+\end{ddtacheck}
+
+\textbf{Risposta.} NO. MR-01 governa la valutazione di triage dalle informazioni disponibili, ma non stabilisce da solo se l'assenza dell'immagine renda il caso non processabile.
+
+\textbf{Esito: PASS - non tautologica.}
+
+\subsection{Q-D2.4 - Context, Decision e Consequences sono materiali?}
+\begin{ddtacheck}
+\textbf{Domanda.} Il Context espone una tensione reale, la Decision dichiara una posizione e le Consequences producono effetti downstream materiali?
+\end{ddtacheck}
+
+\textbf{Risposta.} SI. La tensione e' la disponibilita' o meno dell'immagine; la posizione e' continuare il triage; le conseguenze riguardano input ammessi, branch funzionali e output che potranno essere richiesti downstream.
+
+\textbf{Esito: PASS.}
+
+\section{Split e non-ridondanza}
+
+\subsection{Q-SPLIT.1 - Con immagine e senza immagine sono Decision indipendenti?}
+\begin{ddtacheck}
+\textbf{Domanda.} Le due condizioni possono cambiare indipendentemente al punto da richiedere due commitment autonomi con trade-off separati?
+\end{ddtacheck}
+
+\textbf{Risposta.} Non emerge evidence sufficiente per due Decision. Il significato governato qui e' uno: la continuita' del triage quando l'immagine manca. Il percorso image-based resta la condizione principale documentata e verra' ulteriormente analizzato attraverso altri commitment/FR.
+
+\textbf{Esito: PASS - NO SPLIT per DEC-01.}
+
+\section{Responsibility-boundary gate}
+
+\subsection{Q-RB.1 - DermaTriage possiede la capability o consuma un servizio esterno?}
+\begin{ddtacheck}
+\textbf{Domanda.} La responsabilita' di produrre la valutazione di triage e' del progetto DermaTriage oppure appartiene a B4/chatbot come servizio esterno?
+\end{ddtacheck}
+
+\textbf{Evidence.} La sezione API distingue gli endpoint DermaTriage dalle ``B4 External API Calls''. B4 fornisce consulti, documenti e campi di interazione e riceve risultati/validazioni; la pipeline di triage e' descritta come responsabilita' DermaTriage.
+
+\textbf{Risposta.} DermaTriage possiede la responsabilita' di triage; B4 e' una capability/integrazione consumata per ottenere o persistere informazioni del caso.
+
+\textbf{Esito: PASS.}
+
+\begin{ddtaworking}[title={Boundary preserved}]
+Non trasformare ``B4 chatbot'' nel subject normativo di DEC-01. Il progetto puo' cambiare il mezzo di acquisizione delle informazioni sintomatologiche senza cambiare il commitment fondamentale della Decision.
+\end{ddtaworking}
+
+\section{Decision-vs-current-realization test}
+
+\subsection{Q-REAL.1 - Neutralizzando i nomi tecnici resta una scelta?}
+\begin{ddtacheck}
+\textbf{Domanda.} Rimuovendo B4, chatbot e dettagli dello scoring, resta un commitment governato leggibile?
+\end{ddtacheck}
+
+\textbf{Risposta.} SI: ``il triage deve poter continuare anche senza immagine, usando le informazioni sintomatologiche disponibili''.
+
+\textbf{Esito: PASS.}
+
+\subsection{Q-REAL.2 - Cambiare la realizzazione preservando MR-01 cambierebbe la strategia?}
+\begin{ddtacheck}
+\textbf{Domanda.} Possiamo sostituire B4 o il meccanismo di scoring mantenendo invariata DEC-01?
+\end{ddtacheck}
+
+\textbf{Risposta.} SI. Questo dimostra che B4 e lo scoring corrente non sono l'identita' della Decision. Al contrario, passare a una policy ``no image -> no triage'' cambierebbe il commitment pur lasciando invariato l'obiettivo macro di MR-01.
+
+\textbf{Esito: PASS - Decision separata dalla realization.}
+
+\section{Decision kind review}
+
+\subsection{Q-KIND.1 - SELECTABLE, NECESSITY-CONSTRAINED o DEFAULT?}
+\begin{ddtacheck}
+\textbf{Domanda.} Esiste almeno un'alternativa materialmente distinta concepibile oppure la posizione e' una necessita' inevitabile del dominio?
+\end{ddtacheck}
+
+\textbf{Risposta.} Esiste una alternativa materialmente distinta: richiedere obbligatoriamente l'immagine e non effettuare il triage quando manca. La fonte documenta la posizione scelta, ma non documenta il processo con cui l'alternativa e' stata valutata.
+
+\textbf{Kind candidate: SELECTABLE.}
+
+\begin{tabularx}{\textwidth}{L{55mm}Y}
+\toprule
+\textbf{Proposition} & \textbf{Evidence status} \\
+\midrule
+Il sistema continua il triage senza immagine & AFFIRMED \\
+Esiste una alternativa materialmente distinta concepibile & AFFIRMED per review strutturale; non equivale a storia decisionale documentata \\
+Il team ha formalmente valutato quella alternativa & NOT SPECIFIED \\
+Rationale storico della scelta & NOT SPECIFIED \\
+\bottomrule
+\end{tabularx}
+
+\section{Semantic-sufficiency check}
+
+\subsection{Q-SEM.1 - Esistono letture materialmente diverse?}
+\begin{ddtacheck}
+\textbf{Domanda.} Due reviewer potrebbero leggere ``fallback symptom-only'' in modi che producono downstream structure diversa?
+\end{ddtacheck}
+
+\textbf{Risposta.} SI. Una lettura potrebbe assumere che il fallback produca l'intero outcome del percorso image-based; un'altra che produca soltanto l'urgenza.
+
+\subsection{Q-SEM.2 - Smallest critical proposition}
+\begin{ddtacheck}
+\textbf{Domanda.} Qual e' la proposizione minima che separa le due letture?
+\end{ddtacheck}
+
+\textbf{Smallest critical proposition:} ``Il percorso symptom-only deve produrre l'intero insieme di output del percorso image-based, oppure soltanto l'urgenza?''
+
+\subsection{Q-SEM.3 - La fonte governa la proposizione?}
+La fonte afferma esplicitamente soltanto che il fallback symptom-only \emph{derives urgency}. Non afferma equivalenza di pathology prediction, reasoning, clinical description, similar cases o altri output.
+
+\textbf{Evidence status: NOT SPECIFIED oltre all'urgenza.}
+
+\subsection{Q-SEM.4 - Semantic owner corretto}
+Il gap non richiede di ampliare DEC-01. La Decision deve governare la continuita' del triage; la forma e cardinalita' degli output appartiene alla successiva review funzionale, se e quando la fonte la governa.
+
+\textbf{Semantic sufficiency disposition: PASS con gap preservato.}
+
+\section{Disposition e STOP}
+
+\begin{ddtacore}[title={DEC-01 disposition}]
+\textbf{DEC-01: PASS}\par
+\textbf{Kind: SELECTABLE}\par
+\textbf{Parent: MR-01}\par
+\textbf{NS-01:} rationale storico e alternative formalmente considerate - NOT SPECIFIED.\par
+\textbf{NS-02:} equivalenza dell'output completo symptom-only rispetto al percorso image-based - NOT SPECIFIED; e' affermata soltanto la derivazione dell'urgenza.
+\end{ddtacore}
+
+\subsection{STOP question}
+\begin{ddtacheck}
+\textbf{Domanda.} Dopo DEC-01, esiste ancora significato governato che restringe materialmente MR-01 e che non puo' essere ridotto a FR/realization di DEC-01?
+\end{ddtacheck}
+
+\textbf{Risposta.} SI. La documentazione distingue almeno un risultato analitico di urgenza \texttt{HIGH/MEDIUM/LOW} e una successiva assegnazione operativa \texttt{P1-P4} con SLA. Questa relazione deve essere riesaminata come possibile commitment autonomo senza inglobarla in DEC-01.
+
+\textbf{STOP: NO - continuare la Decision review di MR-01.}
+
+\section{Osservazioni metodologiche aperte}
+
+\begin{ddtaworking}[title={OBS-DDTA-DERMA-01 - Gate visibility in validation mode}]
+\textbf{Osservazione:} una tabella che riporta soltanto ``Gate / PASS / motivazione'' puo' essere troppo compressa per un artifact didattico o di ricerca, anche se il reviewer ha effettivamente applicato i test.
+
+\textbf{Ipotesi da verificare:} nella \emph{validation mode} il working review record dovrebbe mostrare almeno \emph{question + source evidence + answer + disposition} per i gate materialmente applicabili.
+
+\textbf{Stato: OPEN OBSERVATION - nessuna modifica alla metodologia R4 in questa fase.}
+\end{ddtaworking}
+
+\begin{ddtaworking}[title={OBS-DDTA-DERMA-02 - Validation mode vs assisted authoring mode}]
+\textbf{Osservazione:} la forma esplicita usata nel holdout serve a verificare la metodologia, ma non deve essere assunta come interfaccia finale di authoring.
+
+\textbf{Ipotesi da verificare:} un editor DDTA maturo puo' suggerire dinamicamente le domande pertinenti a MR, Decision, FR, SR o SecR; l'autore le usa per analizzare il proprio lavoro, mentre la risposta puo' restare transitoria salvo quando rappresenta un gap, una eccezione o una decisione di governance da preservare.
+
+\textbf{Implicazione di valutazione:} distinguere sempre almeno \emph{methodological cognitive load}, \emph{validation-record verbosity} e \emph{operational authoring overhead}.
+
+\textbf{Stato: OPEN OBSERVATION - candidato di tooling/authoring, non ancora change request della R4.}
+\end{ddtaworking}
+
+\section{Formato di validazione per la prossima Decision}
+
+Per DEC-02, \textbf{poiche' siamo ancora nel holdout di studio}, la review verra' esposta nella stessa sequenza, senza saltare le domande. Questo e' il protocollo della validation mode e non una prescrizione sulla futura forma del documento governato:
+
+\begin{lstlisting}
+1. Source evidence
+2. Candidate commitment
+3. Semantic owner
+4. Decision gate questions + answers
+5. Split / non-redundancy questions
+6. Responsibility-boundary question
+7. Decision-vs-realization questions
+8. Decision kind question
+9. Semantic-sufficiency questions
+10. Explicit disposition
+11. STOP question
+\end{lstlisting}
+
+Nessun FunctionalRequirement viene creato fino alla chiusura della Decision review pertinente.
+
+\section{Valutazione metodologica della sessione}
+
+Questa sezione chiude la nota di lettura con una valutazione della metodologia \emph{limitata a quanto osservato fino a DEC-01}. Non e' ancora la valutazione conclusiva del holdout DermaTriage. In particolare, separiamo i costi intrinseci del ragionamento DDTA dai costi che derivano dal fatto che stiamo documentando il ragionamento in modo esteso per fini di ricerca.
+
+\subsection{Pregi osservati}
+
+\begin{tabularx}{\textwidth}{L{42mm}Y L{25mm}}
+\toprule
+\textbf{Pregio} & \textbf{Evidenza emersa in DEC-01} & \textbf{Stato} \\
+\midrule
+Separazione tra significato governato e realizzazione & Dal termine sorgente ``fallback'' e' stato estratto il commitment stabile ``il triage puo' continuare senza immagine'', senza trasformare automaticamente B4, chatbot o scoring in Decision. & CONFERMATO \\
+Preservazione esplicita dell'incertezza & Il metodo ha impedito di assumere che il percorso symptom-only produca pathology, reasoning o tutti gli output del percorso image-based: tali aspetti restano \texttt{NOT SPECIFIED}. & CONFERMATO \\
+Controllo del semantic owner & La continuita' del triage resta nella Decision; input sintomatologici, output e comportamento operativo vengono rinviati al livello funzionale appropriato invece di essere accumulati nella stessa entita'. & CONFERMATO \\
+Responsibility-boundary discipline & La review distingue la responsabilita' di DermaTriage dalla capability esterna B4, evitando di attribuire al progetto ownership di servizi consumati. & CONFERMATO \\
+Stopping discipline & Il PASS di DEC-01 non chiude artificialmente MR-01: la STOP question rende esplicito che esistono ancora commitment materiali da riesaminare. & CONFERMATO \\
+Potenziale di authoring assistito & I gate sono formulabili come domande contestuali e quindi si prestano a essere suggeriti da un editor senza trasformare necessariamente ogni risposta in testo persistente. & PLAUSIBILE, DA VALIDARE \\
+\bottomrule
+\end{tabularx}
+
+\subsection{Difetti, costi e rischi osservati}
+
+\begin{tabularx}{\textwidth}{L{42mm}Y L{25mm}}
+\toprule
+\textbf{Costo / rischio} & \textbf{Manifestazione nella sessione} & \textbf{Classificazione} \\
+\midrule
+Carico cognitivo del reviewer & Distinguere Decision da FR e da realization non deriva meccanicamente dalla parola ``fallback''; richiede neutralizzazione dei nomi tecnici, alternative e ownership review. & COSTO METODOLOGICO REALE \\
+Rischio di compressione dei gate & La prima esposizione riportava gli esiti ma non rendeva visibili tutte le domande; in validation mode questo riduce auditabilita' e valore sperimentale. & RISCHIO DI ESECUZIONE \\
+Verbosity del record di validazione & Scrivere domanda, evidence, risposta ed esito per ogni gate rende lunga la nota. & COSTO DELLA VALIDATION MODE, NON ANCORA DIFETTO OPERATIVO \\
+Ambiguita' tra alternativa concepibile e alternativa storicamente valutata & \texttt{SELECTABLE} richiede riconoscere una posizione materialmente diversa senza inventare che il team l'abbia valutata storicamente. & COSTO METODOLOGICO REALE \\
+Possibile layer forcing & La gerarchia puo' spingere a cercare una Decision anche quando la fonte contiene soltanto un obbligo funzionale. Il counterexample gate mitiga il rischio, ma deve essere provato su altri casi. & RISCHIO DA VERIFICARE \\
+Overhead dell'authoring operativo & Non e' ancora misurabile da questa sessione, perche' stiamo intenzionalmente usando una modalita' molto piu' esplicita di quella prevista per un tool maturo. & NON DETERMINATO \\
+\bottomrule
+\end{tabularx}
+
+\subsection{Miglioramenti metodologici e di tooling candidati}
+
+\begin{ddtaworking}[title={Candidati da verificare, non ancora promossi}]
+\begin{enumerate}
+  \item \textbf{Validation-mode trace contract.} Nel record di ricerca, per ogni gate materialmente applicabile, usare \texttt{question -> source evidence -> answer -> disposition}. Questo rende l'esperimento auditabile.
+  \item \textbf{Assisted-authoring prompt contract.} In uso operativo, l'editor mostra le domande pertinenti e segnala i gate applicabili, ma non richiede automaticamente una risposta narrativa persistente.
+  \item \textbf{Selective persistence.} Rendere persistenti soprattutto elementi governati, \texttt{NOT SPECIFIED}, \texttt{CONFLICTING}, \texttt{REWORK}, eccezioni e rationale quando realmente documentato o necessario alla governance.
+  \item \textbf{Evidence pointer.} Collegare le risposte critiche alla source evidence, distinguendo evidence diretta da inferenza di review.
+  \item \textbf{Selectable-kind clarification.} Specificare che ``esiste una alternativa materialmente distinta'' non significa ``la fonte documenta che il team l'ha valutata''.
+  \item \textbf{Context-aware editor.} Il tool puo' conoscere il tipo di elemento in authoring e suggerire soltanto i gate pertinenti: per esempio responsibility boundary e Decision-vs-realization durante una Decision, binding e allowed-result-domain durante un FR.
+\end{enumerate}
+\end{ddtaworking}
+
+\subsection{Tre metriche da tenere separate}
+
+\begin{tabularx}{\textwidth}{L{55mm}Y}
+\toprule
+\textbf{Dimensione} & \textbf{Cosa misura} \\
+\midrule
+Methodological cognitive load & Quanto ragionamento effettivo e' necessario per applicare correttamente DDTA e distinguere semantic owner, boundary, commitment, obligation e realization. \\
+Validation-record verbosity & Quanto testo aggiuntivo produciamo per rendere verificabile il metodo durante il holdout. \\
+Operational authoring overhead & Quanto lavoro aggiuntivo dovra' realmente sostenere un programmatore/autore usando una versione stabile e assistita da tooling. \\
+\bottomrule
+\end{tabularx}
+
+Confondere queste dimensioni porterebbe a una conclusione prematura: la lunghezza di questa nota non dimostra, da sola, che DDTA sia troppo verboso nell'uso quotidiano.
+
+\subsection{Valutazione complessiva dopo DEC-01}
+
+\begin{ddtacore}[title={Valutazione provvisoria}]
+Su DEC-01 la metodologia sta migliorando la documentazione DermaTriage in modo osservabile: trasforma una descrizione architetturale centrata sulla soluzione in un commitment progettuale piu' stabile, conserva i gap invece di completarli per inferenza e separa ownership, comportamento e realization.
+
+Il costo piu' chiaramente dimostrato finora e' il \textbf{carico cognitivo della review}. La forte verbosita' di questo artifact, invece, e' in larga parte intenzionale: serve a studiare DDTA e non deve essere attribuita automaticamente all'esperienza operativa futura.
+
+\textbf{Conclusione della sessione:} nessuna modifica a R4 e' ancora giustificata. \texttt{OBS-DDTA-DERMA-01} e \texttt{OBS-DDTA-DERMA-02} restano aperte. Le prossime Decision dovranno verificare sia la necessita' delle domande esplicite nella validation mode sia la possibilita' di trasformarle, in futuro, in assistenza editoriale transitoria invece che in prosa obbligatoria.
+\end{ddtacore}
+
+\section{Evoluzione rispetto alla Reading Note 01}
+
+La sostanza governata di DEC-01 \textbf{non cambia}. Cambia la valutazione della forma di lavoro:
+\begin{itemize}
+  \item resta valida l'esigenza di mostrare domande e risposte durante questo holdout;
+  \item non consideriamo piu' tale forma un requisito implicito dell'authoring operativo;
+  \item la ``verbosity procedurale'' viene riclassificata come \emph{validation-record verbosity} finche' non sara' misurato l'overhead con tooling stabile;
+  \item viene introdotta \texttt{OBS-DDTA-DERMA-02} sulla distinzione tra validation mode e assisted authoring mode;
+  \item nessuna modifica della R4 viene proposta prima di osservare lo stesso fenomeno su ulteriori Decision e FR.
+\end{itemize}
+
+\end{document}
