@@ -1,0 +1,148 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{DDTA_DERMATRIAGE_GUIDED_REVIEW_STYLE_R1}
+\hypersetup{pdftitle={DDTA R25 DermaTriage A5 Method Bridge Checkpoint 01},pdfauthor={Documentation-Driven Threat Analysis research project}}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\sffamily\small\color{DDTAGray}DDTA DermaTriage A5 Method Bridge}
+\fancyhead[R]{\sffamily\small\color{DDTAGray}CHECKPOINT 01}
+\fancyfoot[L]{\sffamily\scriptsize\color{DDTAGray}FR to information/data contract to realization}
+\fancyfoot[R]{\sffamily\small\color{DDTAGray}\thepage}
+\begin{document}\selectlanguage{italian}
+\begin{titlepage}\thispagestyle{empty}\vspace*{8mm}
+{\sffamily\bfseries\color{DDTANavy}\fontsize{15}{18}\selectfont Documentation-Driven Threat Analysis}\par\vspace{5mm}
+{\sffamily\bfseries\color{DDTANavy}\fontsize{27}{31}\selectfont DermaTriage A5 Method Bridge Checkpoint}\par\vspace{2mm}
+{\sffamily\color{DDTABlue}\fontsize{17}{21}\selectfont FR $\rightarrow$ information/data contract $\rightarrow$ realization}\par
+\vspace{10mm}
+\begin{tcolorbox}[enhanced,arc=3pt,boxrule=0pt,colback=DDTANavy,left=12pt,right=12pt,top=11pt,bottom=11pt]
+{\color{white}\sffamily\bfseries\large GI-21 preserved immediately as recurring high-priority evidence}\par\vspace{2mm}
+{\color{white!88}\small This checkpoint does not promote GI-21 into methodology authority. It prevents an implementation-critical recurring finding from being lost before the next methodology revision.}
+\end{tcolorbox}
+\vspace{8mm}
+\begin{tabularx}{\textwidth}{L{43mm}Y}\toprule
+\textbf{Status} & A5 METHOD-BRIDGE CHECKPOINT - TEMPORARY / NON-AUTHORITATIVE \\
+\textbf{Repository baseline} & \texttt{7311f10d76bc7cce7f2ecf324e7da4a0fbe12dd4} \\
+\textbf{Methodology authority} & \texttt{DDTA\_DOCUMENTATION\_BA\_AUTHORING\_GUIDE\_R4} \\
+\textbf{A5 frontier} & MR-01 D3 PASS; MR-02 STOP AT MR; MR-03 D3 PASS; MR-04 NEXT \\
+\textbf{BA} & NOT STARTED / BLOCKED \\
+\textbf{Date} & 4 settembre 2026 \\
+\bottomrule\end{tabularx}
+\vfill
+\begin{ddtaprinciple}[title={Why checkpoint now}]
+The same implementation bridge problem appeared independently in the no-image symptom FR and in the clinical-review FR. Recurrence across unrelated branches means the finding is no longer a local authoring curiosity; it is candidate methodology/tooling guidance with direct impact on implementability and traceability.
+\end{ddtaprinciple}
+\end{titlepage}
+\tableofcontents\clearpage
+
+\section{Checkpoint trigger}
+During A5, a practical implementation question exposed a gap between the documentation hierarchy and the future engineering path. A FunctionalRequirement can be semantically correct while still leaving implementation-critical data vocabulary, cardinality, field semantics or interface bindings unresolved.
+
+\begin{ddtacore}[title={Core finding}]
+The DDTA requirement hierarchy is not the complete engineering-artifact hierarchy. Do not collapse the path to \texttt{FR -> code}. Preserve a traceable bridge from governed functional meaning to the information contract and then to realization.
+\end{ddtacore}
+
+\begin{lstlisting}
+governed FR semantics
+        |
+        v
+governed / source-observed information contract
+        |
+        v
+interface / data binding
+        |
+        v
+realization
+        |
+        v
+code / test
+\end{lstlisting}
+
+\section{Recurring evidence}
+\subsection{FR-01 - no-image symptom-based urgency}
+The governed behavior is: when no image is available, derive urgency from available symptom information. Source-observed vocabulary includes \texttt{itching}, \texttt{bleeding}, \texttt{growing}, \texttt{changing}, \texttt{pain}, etc. However, the source does not establish a complete schema, required/optional status, minimum evidence set or missing-value semantics.
+
+\begin{ddtaopen}[title={FR-01 information-contract gap}]
+The fields must not disappear because they are needed by implementation, but they also must not be promoted into five artificial FRs or into a falsely complete DTO contract.
+\end{ddtaopen}
+
+\subsection{FR-03 - correlated clinical-review registration}
+The governed behavior is: record a clinician review, correlate it to the reviewed original outcome, and distinguish confirmation from correction. Yet the source does not establish the full correction payload, which result components are correctable, whether one or multiple reviews are allowed, or supersession/finality semantics.
+
+\begin{ddtaopen}[title={FR-03 information-contract gap}]
+A future implementation must choose concrete fields and cardinalities, but those choices must be traceable to governed meaning and unresolved source gaps rather than silently becoming project truth.
+\end{ddtaopen}
+
+\section{GI-21 - candidate methodology revision}
+\begin{ddtacore}[title={GI-21 status}]
+\textbf{CANDIDATE GUIDE IMPROVEMENT / HIGH PRIORITY / RECURRING EVIDENCE / CANDIDATE L2-L3 TOOL REQUIREMENT / PRIORITY FOR NEXT METHODOLOGY REVISION.}
+\end{ddtacore}
+
+Candidate rule: a FunctionalRequirement must not absorb every implementation datum as a separate Requirement, but implementation-critical governed or source-observed information must remain traceable between FR semantics and code.
+
+For each implementation-critical datum classify at least:
+\begin{enumerate}
+\item governed normative meaning;
+\item source-observed vocabulary;
+\item unresolved binding / \NS;
+\item realization/configuration binding.
+\end{enumerate}
+
+\begin{ddtaanti}[title={Premature L1 change}]
+This checkpoint does not introduce \texttt{DataModel}, \texttt{Field}, \texttt{InputContract} or similar L1 classes. The evidence currently demonstrates a documentation/tooling bridge requirement; whether an L1 concept is necessary remains open and must be tested across A5 and A10.
+\end{ddtaanti}
+
+\section{Companion A5 findings}
+\subsection{GI-22 - FR identity vs rule cardinality}
+One coherent FR may contain multiple normative clauses or decision-table rows. Independent test cases do not imply independent FRs. The P-scale mapping under FR-02 is the current concrete evidence.
+
+\subsection{GI-23 - shared vocabulary is not a binding}
+Lexical equality between an FR output and another FR input does not prove producer-consumer identity. Semantic identity, context, required attributes and applicability must be verified. The unresolved symptom-derived urgency to P-scale relationship is the current concrete evidence.
+
+\section{A5 state preserved}
+\begin{lstlisting}
+MR-01
+  DEC-01 -> FR-01 PASS
+  DEC-02 -> FR-02 PASS
+  D3 CUMULATIVE PASS
+
+MR-02
+  STOP AT MR
+
+MR-03
+  DEC-03 -> FR-03 PASS
+  D3 CUMULATIVE PASS
+
+MR-04
+  NEXT
+\end{lstlisting}
+
+DEC-01 underwent a minimal controlled wording repair during cumulative FR review: the Decision now owns only the choice to continue triage without an image, while symptom-based urgency determination is owned operationally by FR-01. A4 was re-closed without changing Decision identity.
+
+\section{Mandatory work-plan consequence}
+From this checkpoint onward, every A5 FR pass must include an information-contract ledger before STOP:
+
+\begin{longtable}{L{45mm}L{105mm}}\toprule
+\textbf{Ledger class} & \textbf{Question} \\
+\midrule\endhead
+Governed semantics & Which information concepts/values are normatively required by the FR? \\
+Source-observed vocabulary & Which fields/enumerations are present in authoritative evidence but not proven complete/normative? \\
+Unresolved bindings & Which requiredness/cardinality/type/missing-value/cross-FR/lifecycle details remain NOT SPECIFIED? \\
+Realization bindings & Which API/DTO/schema/code/test names implement the meaning without redefining it? \\
+\bottomrule\end{longtable}
+
+\section{Promotion gate}
+GI-21 must be explicitly reviewed in the next methodology revision. At minimum ask:
+\begin{enumerate}
+\item Does recurrence continue across MR-04 FRs?
+\item Can L2/L3 guidance solve the problem without L1 expansion?
+\item What minimum information-contract representation is needed for human authors, editor/tool support and code traceability?
+\item Can unresolved bindings be represented without forcing false completeness?
+\item How should A10 terminology/binding closure consume the ledger produced during A5?
+\end{enumerate}
+
+Possible final dispositions remain: \texttt{PROMOTE TO GUIDE}, \texttt{EDITOR/TOOL ONLY}, \texttt{METHOD PRESSURE}, or \texttt{REJECT}. The finding may not be silently dropped.
+
+\section{STOP and routing}
+\begin{ddtacore}[title={Checkpoint disposition}]
+GI-21 is preserved now. The authoritative R4 guide remains unchanged. Continue A5 with MR-04 only after committing this checkpoint. Re-evaluate GI-21 at A5 cumulative closure and A10 terminology/bindings. BA remains blocked.
+\end{ddtacore}
+
+\end{document}
