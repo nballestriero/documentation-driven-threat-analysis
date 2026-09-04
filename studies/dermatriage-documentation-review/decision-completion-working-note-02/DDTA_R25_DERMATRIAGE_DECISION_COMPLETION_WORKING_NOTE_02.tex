@@ -1,0 +1,226 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{DDTA_DERMATRIAGE_GUIDED_REVIEW_STYLE_R1}
+\hypersetup{pdftitle={DDTA R25 DermaTriage - Decision Completion Working Note 02},pdfauthor={Documentation-Driven Threat Analysis research project}}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\sffamily\small\color{DDTAGray}DDTA DermaTriage Guided Review}
+\fancyhead[R]{\sffamily\small\color{DDTAGray}R25 - DECISION COMPLETION NOTE 02}
+\fancyfoot[L]{\sffamily\scriptsize\color{DDTAGray}Working checkpoint after DEC-11}
+\fancyfoot[R]{\sffamily\small\color{DDTAGray}\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\begin{document}
+\selectlanguage{italian}
+
+\begin{titlepage}
+\thispagestyle{empty}
+\vspace*{8mm}
+{\sffamily\bfseries\color{DDTANavy}\fontsize{15}{18}\selectfont Documentation-Driven Threat Analysis}\par
+\vspace{5mm}
+{\sffamily\bfseries\color{DDTANavy}\fontsize{28}{32}\selectfont DermaTriage Decision Completion}\par
+\vspace{2mm}
+{\sffamily\color{DDTABlue}\fontsize{18}{22}\selectfont Working Note 02 - consolidamento dopo DEC-11}\par
+\vspace{10mm}
+\begin{tcolorbox}[enhanced,arc=3pt,boxrule=0pt,colback=DDTANavy,left=12pt,right=12pt,top=11pt,bottom=11pt]
+{\color{white}\sffamily\bfseries\large Checkpoint intermedio prima della chiusura D2 di MR-04}\par
+\vspace{2mm}
+{\color{white!88}\small Questa nota consolida il delta successivo al Working Note 01: DEC-07--DEC-11, routing dei residui numerici e di mapping, e feedback metodologico candidato GI-13--GI-16. Non e' ancora R4 finale: il residual evidence sweep di MR-04 e i gate cumulativi D2 restano aperti.}
+\end{tcolorbox}
+\vspace{8mm}
+\begin{tabularx}{\textwidth}{L{48mm}Y}
+\toprule
+\textbf{Stato artifact} & WORKING CHECKPOINT - non authoritative methodology revision \\
+\textbf{Repository} & \texttt{nballestriero/documentation-driven-threat-analysis} \\
+\textbf{Baseline congelata} & \texttt{4cdb6634d89ed50439ead5942638067f85bf50cb} \\
+\textbf{Metodo} & \texttt{DDTA\_DOCUMENTATION\_BA\_AUTHORING\_GUIDE\_R4} \\
+\textbf{Fase} & Decision completion breadth-first / MR-04 residual sweep \\
+\textbf{Documentation gate} & OPEN \\
+\textbf{Base Analysis} & NOT STARTED / BLOCKED \\
+\textbf{Data} & 4 settembre 2026 \\
+\bottomrule
+\end{tabularx}
+\vfill
+\begin{ddtaprinciple}[title={Checkpoint rule}]
+R3 resta immutabile. Questo artifact preserva lo stato analitico corrente prima degli ultimi residui Decision. Le candidate improvement metodologiche restano non-authoritative e saranno promosse solo dopo revisione finale del holdout.
+\end{ddtaprinciple}
+\end{titlepage}
+
+\tableofcontents
+\clearpage
+
+\section{Stato corrente e distanza dalla chiusura Decision}
+\begin{ddtacore}[title={Decision completion snapshot}]
+\begin{lstlisting}
+A0 Authority                         PASS
+A1 Project framing                   PASS
+A2 Macro Project Map                 D1 CUMULATIVE PASS
+
+MR-01 Decision family                D2 PASS / RECLOSED
+MR-02                                STOP AT MR
+MR-03 Decision family                D2 CUMULATIVE PASS
+MR-04 Decision family                OPEN
+  DEC-04 accumulation-gated          PASS
+  DEC-05 separate paths              PASS
+  DEC-06 comparative acceptance      PASS
+  DEC-07 asymmetric quality policy   PASS
+  DEC-08 reversibility               PASS
+  DEC-09 bounded recent evidence     PASS
+  DEC-10 disagreement qualification  PASS
+  DEC-11 corrected P-scale source    PASS
+\end{lstlisting}
+\end{ddtacore}
+
+\subsection{Passaggi ancora stimati}
+Salvo emergano nuovi commitment durante lo sweep, restano circa \textbf{quattro passaggi di evidence residua} e \textbf{due gate di chiusura}:
+\begin{enumerate}
+  \item \texttt{last 2 blocks + classifier head}: strategy vs training configuration;
+  \item dettagli residui del prompt-evolution path non ancora semanticamente classificati;
+  \item deployment authorization: automaticita', ownership e boundary;
+  \item binding finale di threshold/rollback e semantica quantitativa residua;
+  \item MR-04 D2 cumulative review;
+  \item project-wide Decision completion review.
+\end{enumerate}
+Questa stima e' intenzionalmente non rigida: il metodo deve poter aggiungere una Decision se un residuo contiene un vero commitment governato.
+
+\section{DEC-07 - Prioritizzazione asimmetrica delle metriche di qualita'}
+\textbf{Source evidence.} La candidate classification viene accettata solo se sensitivity non peggiora, false-low non peggiora e accuracy resta entro la tolleranza documentata.
+
+\textbf{Decision.} DermaTriage adotta una politica di accettazione nella quale sensitivity e false-low non possono peggiorare rispetto alla reference, mentre per l'accuracy complessiva e' ammessa una degradazione limitata.
+
+\begin{ddtacore}[title={Disposition}]
+\textbf{SELECTABLE / PASS.} DEC-06 governa l'esistenza del comparative gate; DEC-07 governa il trade-off interno tra dimensioni di qualita'. Il valore numerico della tolleranza non viene usato per definire l'identita' della Decision.
+\end{ddtacore}
+
+\section{DEC-08 - Reversibilita' degli adattamenti degradanti}
+\textbf{Decision.} DermaTriage adotta una politica di adattamento reversibile: una modifica gia' adottata che manifesti degrado materiale secondo criteri governati deve poter essere revocata ripristinando una versione o stato precedente accettabile.
+
+\begin{ddtacheck}[title={Lifecycle split}]
+DEC-06 = pre-adoption qualification.\quad DEC-08 = post-adoption reversibility. La ricorrenza dello stesso valore numerico non stabilisce identita' semantica dei due gate.
+\end{ddtacheck}
+
+\begin{ddtacore}[title={Disposition}]
+\textbf{SELECTABLE / PASS.} Automaticita' del rollback, target esatto della versione e finestra temporale restano non specificati.
+\end{ddtacore}
+
+\section{Residual sweep pass 1 - 10 corrections e sliding window 20}
+\subsection{Trigger 10}
+Sostituendo \texttt{10} con \texttt{N}, sopravvive soltanto la strategia gia' governata da DEC-04. Il valore concreto non costituisce una nuova Decision.
+
+\begin{ddtacore}[title={Routing}]
+\texttt{10 corrections -> future FR / governed parameter review under DEC-04}. La semantica esatta dell'evento qualificante deve essere verificata prima dell'FR.
+\end{ddtacore}
+
+\subsection{DEC-09 - Finestra recente e limitata di evidence clinica}
+Sostituendo \texttt{20} con \texttt{N}, sopravvive una scelta autonoma: usare una finestra scorrevole e limitata di evidence recente invece di tutta la storia disponibile.
+
+\textbf{Decision.} Per il percorso di adattamento applicabile, DermaTriage utilizza una finestra scorrevole e limitata delle correzioni cliniche piu' recenti come evidence per l'evoluzione del comportamento.
+
+\begin{ddtacore}[title={Disposition}]
+\textbf{SELECTABLE / PASS.} La strategy bounded/recent/sliding e' Decision-level; la dimensione \texttt{20} resta downstream parameter/FR review.
+\end{ddtacore}
+
+\section{Residual sweep pass 2 - 50 disagreement corrections}
+\subsection{Threshold 50}
+Neutralizzando \texttt{50 -> N}, resta DEC-04. La soglia e' quindi operativa, non una nuova Decision.
+
+\subsection{DEC-10 - Disaccordo clinico come evidence qualificante}
+Neutralizzando il booleano \texttt{agrees == False}, sopravvive la policy di usare review che esprimono disaccordo rispetto all'esito AI pertinente per il percorso classificatorio.
+
+\textbf{Decision.} Per il percorso di adattamento della classificazione, DermaTriage utilizza come evidence qualificante le revisioni cliniche che esprimono disaccordo rispetto all'esito AI pertinente, distinguendole dalle review che confermano l'esito originario.
+
+\begin{ddtacore}[title={Disposition}]
+\textbf{SELECTABLE / PASS.} \texttt{50} viene routed a future trigger FR/parameter review; \texttt{agrees == False} resta representation evidence; disagreement-only selection e' la Decision.
+\end{ddtacore}
+
+\section{Residual sweep pass 3 - P-scale to classifier supervision}
+\subsection{Source rule}
+\begin{lstlisting}
+P1 / P2 -> HIGH
+P3      -> MEDIUM
+P4      -> LOW
+\end{lstlisting}
+
+La regola contiene due livelli: la scelta di usare la priorita' clinicamente corretta come sorgente di supervision e la concrete transformation table.
+
+\subsection{DEC-11 - Derivazione della supervision classificatoria dalla priorita' clinicamente corretta}
+\textbf{Decision.} Per il percorso di adattamento della classificazione di urgenza, DermaTriage utilizza la priorita' P-scale risultante dalla correzione clinica come sorgente governata da cui derivare il target di supervisione della classificazione.
+
+\begin{ddtacore}[title={Disposition}]
+\textbf{SELECTABLE / PASS.} MR-01 mantiene ownership della P-scale; MR-04 governa il consumo del concetto per adaptation. Il mapping concreto \texttt{P1/P2->HIGH, P3->MEDIUM, P4->LOW} viene routed a future FR under DEC-11.
+\end{ddtacore}
+
+\section{Decision map consolidata di MR-04}
+\begin{lstlisting}
+MR-04 Adattamento controllato sulla base della revisione clinica
+|
++-- DEC-04 Accumulation-gated adaptation                 PASS
++-- DEC-05 Separate adaptation paths                     PASS
++-- DEC-06 Comparative acceptance                        PASS
++-- DEC-07 Asymmetric quality prioritization             PASS
++-- DEC-08 Reversibility of degrading adaptations        PASS
++-- DEC-09 Bounded recent evidence window                PASS
++-- DEC-10 Disagreement as qualifying evidence           PASS
+`-- DEC-11 Corrected P-scale as supervision source       PASS
+\end{lstlisting}
+
+La family non viene ancora dichiarata D2 PASS: il residual evidence sweep deve dimostrare che i dettagli restanti non nascondano altri commitment di livello Decision.
+
+\section{Routing register dei residui gia' classificati}
+\begin{tabularx}{\textwidth}{L{47mm}L{42mm}Y}
+\toprule
+\textbf{Evidence} & \textbf{Semantic classification} & \textbf{Routing} \\
+\midrule
+10 corrections & trigger value & future FR/parameter under DEC-04 \\
+sliding window & evidence-selection strategy & DEC-09 \\
+window size 20 & concrete parameter & future FR/SR/parameter review \\
+50 disagreements & trigger value & future FR/parameter under DEC-04 \\
+\texttt{agrees == False} & data representation & realization evidence \\
+disagreement-only evidence & qualifying-evidence policy & DEC-10 \\
+corrected P-scale as label source & supervision-source policy & DEC-11 \\
+P1/P2->HIGH; P3->MEDIUM; P4->LOW & transformation rule & future FR under DEC-11 \\
+last 2 blocks + head & unresolved & next residual review \\
+\bottomrule
+\end{tabularx}
+
+\section{Methodology feedback consolidato}
+\subsection{What worked}
+Gli ultimi passaggi confermano che DDTA evita sia l'over-promotion sia l'under-classification. Una singola riga tecnica puo' contenere strategy, operational trigger, data representation e transformation rule con semantic owner differenti.
+
+\subsection{Observed friction}
+Le difficolta' ricorrenti sono applicative piu' che strutturali:
+\begin{itemize}
+  \item numero vs policy;
+  \item single-parent FR vs uso di concetti governati altrove;
+  \item mapping strategy vs mapping rule;
+  \item cross-MR consumption vs ownership/dependency.
+\end{itemize}
+
+\subsection{Candidate guide improvements aggiunte}
+\begin{description}
+  \item[GI-13] Numeric neutralization before parameter classification.
+  \item[GI-14] Single-parent FR does not mean single-Decision vocabulary.
+  \item[GI-15] Separate mapping strategy from mapping rule.
+  \item[GI-16] Cross-MR consumption does not automatically imply \texttt{dependsOn}.
+\end{description}
+
+\begin{ddtaprinciple}[title={Methodology disposition}]
+Nessun nuovo metamodel defect e' dimostrato. Le nuove voci restano \textbf{candidate guide/editor improvements}; saranno validate nuovamente durante A5 FR authoring prima di eventuale promozione alla guida.
+\end{ddtaprinciple}
+
+\section{Prossimi passi}
+\begin{enumerate}
+  \item review \texttt{last 2 blocks + classifier head};
+  \item sweep dei dettagli residui del prompt evolution path;
+  \item deployment authorization / automaticity boundary;
+  \item threshold and rollback binding semantics;
+  \item MR-04 D2 cumulative review;
+  \item project-wide Decision completion review;
+  \item creare R4 cumulative checkpoint;
+  \item iniziare A5 FunctionalRequirement authoring solo dopo il checkpoint.
+\end{enumerate}
+
+\begin{ddtaopen}[title={STOP condition corrente}]
+\textbf{Decision level: NON STOP.} Il prossimo elemento da analizzare e' \texttt{last 2 blocks + classifier head}. La Base Analysis resta bloccata fino alla chiusura del documentation gate.
+\end{ddtaopen}
+
+\end{document}
