@@ -1,0 +1,160 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{DDTA_DERMATRIAGE_GUIDED_REVIEW_STYLE_R1}
+\hypersetup{pdftitle={DDTA R25 DermaTriage A5 FR Bridge Checkpoint 02},pdfauthor={Documentation-Driven Threat Analysis research project}}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\sffamily\small\color{DDTAGray}DDTA DermaTriage A5 FR Bridge}
+\fancyhead[R]{\sffamily\small\color{DDTAGray}CHECKPOINT 02}
+\fancyfoot[L]{\sffamily\scriptsize\color{DDTAGray}FR semantics - bindings - realization boundaries}
+\fancyfoot[R]{\sffamily\small\color{DDTAGray}\thepage}
+\begin{document}\selectlanguage{italian}
+\begin{titlepage}\thispagestyle{empty}\vspace*{8mm}
+{\sffamily\bfseries\color{DDTANavy}\fontsize{15}{18}\selectfont Documentation-Driven Threat Analysis}\par\vspace{5mm}
+{\sffamily\bfseries\color{DDTANavy}\fontsize{27}{31}\selectfont DermaTriage A5 FR Bridge Checkpoint 02}\par\vspace{2mm}
+{\sffamily\color{DDTABlue}\fontsize{16}{20}\selectfont FR-04--FR-08 + Parameter Governance Boundary + GI-21 bridge taxonomy}\par
+\vspace{9mm}
+\begin{tcolorbox}[enhanced,arc=3pt,boxrule=0pt,colback=DDTANavy,left=12pt,right=12pt,top=11pt,bottom=11pt]
+{\color{white}\sffamily\bfseries\large Meaningful A5 consolidation before comparative quality and rollback}\par\vspace{2mm}
+{\color{white!88}\small This checkpoint preserves stabilized A5 findings without promoting candidate method changes into methodology authority.}
+\end{tcolorbox}
+\vspace{8mm}
+\begin{tabularx}{\textwidth}{L{43mm}Y}\toprule
+\textbf{Status} & A5 FR-BRIDGE CHECKPOINT - TEMPORARY / NON-AUTHORITATIVE \\
+\textbf{Repository baseline} & \texttt{8233469414b3647b09b7d8eb409db95ddfae49bf} \\
+\textbf{Methodology authority} & \texttt{DDTA\_DOCUMENTATION\_BA\_AUTHORING\_GUIDE\_R4} \\
+\textbf{A5 frontier} & FR-01--FR-08 preserved; DEC-06/07/08 NEXT \\
+\textbf{BA} & NOT STARTED / BLOCKED \\
+\textbf{Date} & 4 settembre 2026 \\
+\bottomrule\end{tabularx}
+\vfill
+\begin{ddtaprinciple}[title={Why checkpoint now}]
+The evidence-selection and supervision half of MR-04 has reached a coherent semantic milestone. At the same time, the authoring protocol has gained two high-value recurring findings: GI-21 now has a bridge taxonomy and GI-25 introduces a scalable Parameter Governance Boundary. Continuing without repository preservation would leave method-affecting evidence only in conversational state.
+\end{ddtaprinciple}
+\end{titlepage}
+\tableofcontents\clearpage
+
+\section{A5 state preserved}
+\begin{tabularx}{\textwidth}{L{18mm}L{43mm}Y}\toprule
+\textbf{FR} & \textbf{Parent} & \textbf{Stabilized meaning}\\\midrule
+FR-01 & DEC-01 & No-image urgency from available symptom information.\\
+FR-02 & DEC-02 & Urgency/confidence to P-scale mapping with multiple normative clauses.\\
+FR-03 & DEC-03 & Record clinical review, bind it to reviewed outcome, distinguish confirmation/correction.\\
+FR-04 & DEC-04 & Activate prompt evolution when its accumulation threshold is reached.\\
+FR-05 & DEC-04 & Activate classifier adaptation when qualifying disagreement evidence reaches its threshold.\\
+FR-06 & DEC-09 & Build prompt-evolution evidence from a bounded sliding window of recent corrections.\\
+FR-07 & DEC-10 & Qualify clinical disagreement as classifier-adaptation evidence.\\
+FR-08 & DEC-11 & Map clinically corrected P-scale to classifier supervision target.\\
+\bottomrule\end{tabularx}
+
+\begin{ddtacore}[title={Current A5 frontier}]
+MR-01 and MR-03 have cumulative D3 PASS; MR-02 remains STOP AT MR. Under MR-04, DEC-09, DEC-10 and DEC-11 now have downstream FR PASS/STOP results. DEC-06, DEC-07 and DEC-08 remain next before MR-04 cumulative D3 closure.
+\end{ddtacore}
+
+\section{Reworked parameter semantics}
+The earlier A5 wording that placed exact values \texttt{10} and \texttt{50} directly inside FR identity was too strong. The stabilized distinction is between governed threshold/window semantics and concrete current bindings whose immutable normative status is not established.
+
+\begin{ddtaexample}[title={Semantic parameters and current bindings}]
+\textbf{Prompt evolution threshold.} \texttt{PromptEvolutionThreshold=N}; current documented binding \texttt{N=10}; exact-value governance and change authority \NS.\par
+\textbf{Classifier adaptation threshold.} \texttt{ClassifierAdaptationThreshold=N}; current documented binding \texttt{N=50}; current realization may bind \texttt{RETRAINING\_THRESHOLD=50}; exact-value governance and change authority \NS.\par
+\textbf{Prompt evidence window size.} \texttt{PromptEvidenceWindowSize=N}; current documented binding \texttt{N=20}; exact-value governance and change authority \NS.
+\end{ddtaexample}
+
+\begin{ddtaanti}[title={Do not parameterize away governed transformations}]
+The mapping \texttt{P1/P2->HIGH, P3->MEDIUM, P4->LOW} is not analogous to \texttt{10/20/50}. Replacing its outputs with arbitrary variables destroys the governed functional meaning. The transformation remains inside FR-08.
+\end{ddtaanti}
+
+\section{Parameter Governance Boundary - GI-25}
+\begin{ddtacore}[title={High-confidence candidate}]
+DDTA should expose a parameter only when its semantic role materially affects governed behavior, constraints, lifecycle, acceptance or another analysis-relevant property. Crossing the boundary does not turn the parameter into a Requirement and does not require one document per parameter.
+\end{ddtacore}
+
+\begin{lstlisting}
+concrete configuration value
+        |
+        v
+neutralize value -> N
+        |
+        v
+semantic role survives and is material?
+   | NO                     | YES
+   v                        v
+realization/config STOP     exact value itself governed?
+                            | YES       | NO / NOT SPECIFIED
+                            v           v
+                       preserve exact   DDTA semantic N
+                       value            ---------------- boundary
+                                        current concrete binding
+\end{lstlisting}
+
+Large configuration spaces remain in technical inventories. Tools may discover thousands of values automatically; DDTA should retain only the small subset that crosses the semantic boundary.
+
+\section{GI-21 - bridge taxonomy}
+The implementation bridge is now demonstrably broader than a generic data contract.
+
+\begin{tabularx}{\textwidth}{L{45mm}Y}\toprule
+\textbf{Bridge type} & \textbf{Holdout example}\\\midrule
+Semantic concept -> data/state encoding & \texttt{ClinicianDisagreement -> agrees == False}; semantic concept is governed, current boolean representation is not.\\
+Semantic parameter -> configuration value & \texttt{ClassifierAdaptationThreshold=N -> current 50 -> RETRAINING\_THRESHOLD}.\\
+Semantic reference -> interface identifier & Future A10 binding from governed concepts to API/DTO/schema names without making identifiers semantic authority.\\
+Governed transformation -> realization encoding & Corrected P-scale -> P1/P2/HIGH etc. -> classifier target -> enum/string/class-index realization.\\
+\bottomrule\end{tabularx}
+
+\begin{ddtaprinciple}[title={Candidate general rule}]
+DDTA preserves what must remain true for governed meaning to remain the same. Details that can change without altering that meaning may remain below the relevant realization boundary, but the traceable binding must not disappear.
+\end{ddtaprinciple}
+
+\section{MR-04 semantic projection through FR-08}
+\begin{lstlisting}
+MR-04 Controlled adaptation
+|
++-- DEC-04 General accumulation-gated activation
+|   +-- FR-04 prompt threshold N      [current 10]
+|   `-- FR-05 classifier threshold N  [current 50]
+|
++-- DEC-09 Prompt evidence selection
+|   `-- FR-06 bounded recent window N [current 20]
+|
+`-- Classifier-adaptation evidence / supervision
+    +-- DEC-10
+    |   `-- FR-07 disagreement qualification
+    |        `---- confirmed consumption ---> FR-05
+    |
+    `-- DEC-11
+        `-- FR-08 corrected P-scale -> classifier target
+            P1 -> HIGH
+            P2 -> HIGH
+            P3 -> MEDIUM
+            P4 -> LOW
+\end{lstlisting}
+
+No direct FR-07 -> FR-08 producer-consumer edge is asserted. Shared adaptation context is not enough. This preserves GI-23 discipline.
+
+\section{New gaps preserved}
+\begin{itemize}
+\item \texttt{GAP-DERMA-ADAPT-COUNTING-01}: reset, deduplication, reuse, persistence and concurrency semantics for accumulation triggers.
+\item \texttt{GAP-DERMA-ADAPT-THRESHOLD-AUTH-01}: change authority and lifecycle for concrete trigger values.
+\item \texttt{GAP-DERMA-PROMPT-WINDOW-01}: membership, ordering, underfilled behavior, deduplication, reuse and scope of the prompt evidence window.
+\item \texttt{GAP-DERMA-REVIEW-DISAGREEMENT-BINDING-01}: relationship among correction, disagreement and current \texttt{agrees} representation.
+\item \texttt{GAP-DERMA-SUPERVISION-INPUT-01}: absent, invalid, out-of-domain or conflicting corrected P-scale semantics.
+\end{itemize}
+
+\section{Methodology feedback}
+\subsection{What worked}
+Single-parent FR ownership, numeric neutralization, coherent-unit split testing and explicit cross-FR binding checks continue to prevent hierarchy filling and accidental code-level authority. FR-07 -> FR-05 is a confirmed consumption relation; FR-01 -> FR-02 remains unresolved; FR-07 and FR-08 remain parallel consumers/producers in the same adaptation context without a fabricated edge.
+
+\subsection{Pressure classification}
+\begin{tabularx}{\textwidth}{L{53mm}L{34mm}Y}\toprule
+\textbf{Area} & \textbf{State} & \textbf{Interpretation}\\\midrule
+GI-21 & STRONGLY VALIDATED & high-priority guide + L2/L3 tooling candidate\\
+GI-25 & HIGH CONFIDENCE & parameter inclusion boundary scales without one-document-per-value explosion\\
+L1 metamodel pressure & NO & no new Parameter/DataModel/Field class justified yet\\
+A10 pressure & STRONG & terminology, parameter, data/state and interface bindings must be consolidated later\\
+A4 reopen & NO & current FR evidence fits honest existing Decisions\\
+\bottomrule\end{tabularx}
+
+\section{Next gate}
+Proceed to DEC-06 comparative pre-adoption acceptance, then DEC-07 asymmetric quality policy and DEC-08 post-adoption reversibility. The \texttt{5\%} tolerance is an intentional next test of the Parameter Governance Boundary because it appears in a quality constraint rather than a lifecycle trigger.
+
+\begin{ddtacore}[title={Checkpoint disposition}]
+\textbf{PRESERVE NOW.} FR-01--FR-08, the parameter-boundary rework and GI-21 bridge taxonomy constitute a meaningful semantic milestone. Commit this snapshot before continuing to DEC-06/07/08. Methodology R4 remains authoritative and BA remains blocked.
+\end{ddtacore}
+\end{document}
