@@ -1,0 +1,1191 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{DDTA_DERMATRIAGE_GUIDED_REVIEW_STYLE_R1}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\begin{document}
+\selectlanguage{italian}
+\begin{titlepage}
+\thispagestyle{empty}
+\vspace*{10mm}
+{\sffamily\bfseries\color{DDTANavy}\fontsize{15}{18}\selectfont Documentation-Driven Threat Analysis}\par
+\vspace{5mm}
+{\sffamily\bfseries\color{DDTANavy}\fontsize{27}{31}\selectfont DDTA Documentation Authoring Guide}\par
+\vspace{2mm}
+{\sffamily\color{DDTABlue}\fontsize{17}{21}\selectfont R5 Working Candidate - A5 Holdout Synthesis}\par
+\vspace{10mm}
+\begin{tcolorbox}[enhanced,arc=3pt,boxrule=0pt,colback=DDTANavy,left=12pt,right=12pt,top=10pt,bottom=10pt]
+{\color{white}\sffamily\bfseries Current research artifact}\par
+{\color{white!88}\small Repository baseline: \texttt{0e60754d21aa24ea487f3f60803b6b0cce8d2e2b}. Methodology authority remains R4 unless this document explicitly states otherwise.}
+\end{tcolorbox}
+\vfill
+{\sffamily\small\color{DDTAGray} 5 settembre 2026}
+\end{titlepage}
+\tableofcontents
+\clearpage
+\section{DDTA Documentation Authoring Guide - R5 Working
+Candidate}\label{ddta-documentation-authoring-guide---r5-working-candidate}
+
+\textbf{Status:} WORKING CANDIDATE / A5-HOLDOUT SYNTHESIS /
+NON-AUTHORITATIVE\\
+\textbf{Methodology authority retained:}
+\texttt{methodology/DDTA\_DOCUMENTATION\_BA\_AUTHORING\_GUIDE\_R4.tex}\\
+\textbf{Repository baseline used for this synthesis:}
+\texttt{0e60754d21aa24ea487f3f60803b6b0cce8d2e2b}\\
+\textbf{Holdout evidence:} DermaTriage documentation review through A5
+cumulative closure\\
+\textbf{Date:} 5 September 2026
+
+\begin{quote}
+This revision is a complete forward rewrite of the
+documentation-authoring guidance after the DermaTriage A5 holdout work.
+It is deliberately \textbf{not promoted} to methodology authority by
+this artifact. R4 remains authoritative until this candidate is
+reviewed, regression-tested and explicitly promoted.
+\end{quote}
+
+\subsection{1. Purpose and thesis
+boundary}\label{1-purpose-and-thesis-boundary}
+
+DDTA documents the \textbf{minimum sufficient governed meaning} of a
+project so that people can understand what the project is responsible
+for, what material commitments it makes, what operational obligations
+follow from those commitments, and what properties must hold, while
+preserving explicit gaps instead of inventing missing detail.
+
+The thesis scope is intentionally narrower than the full universe of
+requirements engineering. The documentation metamodel keeps
+\texttt{SpecializedRequirement} abstract because governed
+specializations may exist for quality, performance, safety, reliability
+and other concerns. The concrete specialization developed and evaluated
+in depth by the thesis is \texttt{SecurityRequirement}, because the
+research objective is security analysis over governed documentation.
+
+Accordingly:
+
+\begin{verbatim}
+Requirement [abstract]
+|-- FunctionalRequirement
+`-- SpecializedRequirement [abstract]
+    `-- SecurityRequirement       <- concrete specialization in thesis scope
+\end{verbatim}
+
+A non-security specialization discovered in a real project is
+\textbf{not discarded}. Its governed meaning is preserved and its
+existence is evidence that the abstract \texttt{SpecializedRequirement}
+layer is useful. Designing a complete concrete subtype family for that
+concern is outside the thesis scope unless a later explicit research
+decision reopens it.
+
+\subsection{2. Epistemic discipline: what is allowed to become project
+truth}\label{2-epistemic-discipline-what-is-allowed-to-become-project-truth}
+
+\subsubsection{2.1 Authority}\label{21-authority}
+
+\textbf{Authority} answers: \emph{which artifact is allowed to define
+project meaning at this moment?}
+
+Before authoring or changing any DDTA element:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  identify the current governed baseline;
+\item
+  identify the authorized source set;
+\item
+  distinguish current, candidate, working, historical and superseded
+  artifacts;
+\item
+  preserve source/revision provenance;
+\item
+  do not use recency as a substitute for authority;
+\item
+  do not allow Base Analysis, tests, code, tooling or threat-analysis
+  output to become project authority automatically.
+\end{enumerate}
+
+Normal direction:
+
+\begin{verbatim}
+governed project documentation
+        -> Base Analysis
+        -> security/threat analysis
+        -> finding / clarification / change candidate
+        -> governed review
+        -> updated project documentation
+        -> rebuilt Base Analysis
+\end{verbatim}
+
+\subsubsection{2.2 Governed meaning}\label{22-governed-meaning}
+
+A proposition is \textbf{governed} when the project has enough authority
+and semantic commitment for that proposition to be treated as part of
+the project contract.
+
+A source may accurately describe a current implementation without
+governing that implementation choice for the future. Therefore:
+
+\begin{verbatim}
+source-observed fact != automatically governed requirement
+\end{verbatim}
+
+Example from DermaTriage:
+
+\begin{verbatim}
+RETRAINING_THRESHOLD=50
+\end{verbatim}
+
+is useful realization/configuration evidence. The governed meaning
+identified during the holdout is that classifier adaptation is
+accumulation-gated by a threshold. The exact value \texttt{50} is a
+current documented binding whose fixed normative status and change
+authority are not specified.
+
+\subsubsection{2.3 Semantic owner}\label{23-semantic-owner}
+
+The \textbf{semantic owner} is the project
+responsibility/decision/requisite to which a meaning belongs.
+
+Before creating a new element ask:
+
+\begin{verbatim}
+Who owns this meaning?
+\end{verbatim}
+
+Do not infer ownership merely because two facts appear in the same
+component, API response, table or sentence.
+
+\subsubsection{2.4 NOT SPECIFIED}\label{24-not-specified}
+
+\texttt{NOT\ SPECIFIED} is a valid documented result when the source
+does not establish a material distinction sufficiently.
+
+It is preferable to:
+
+\begin{verbatim}
+NOT SPECIFIED
+\end{verbatim}
+
+than to create a precise but invented rule.
+
+\subsubsection{2.5 STOP}\label{25-stop}
+
+\texttt{STOP} means that no additional independently governed meaning
+has been justified at the current layer and scope. It does \textbf{not}
+mean the project has no more implementation detail.
+
+Examples:
+
+\begin{itemize}
+\tightlist
+\item
+  DermaTriage MR-02 stops at MR because specialist destination semantics
+  are not sufficiently governed downstream.
+\item
+  A FunctionalRequirement may stop at FR when no independently governed
+  specialized property is established.
+\end{itemize}
+
+\subsection{3. L1-L4 separation}\label{3-l1-l4-separation}
+
+DDTA separates four layers:
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Layer & Meaning & Typical contents \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+L1 & conceptual metamodel & MR, Decision, Requirement, FR, SR,
+SecurityRequirement, cardinalities and semantic invariants \\
+L2 & authoring/representation contract & headings, fields, controlled
+terminology, normative-clause representation, registries \\
+L3 & realization/model principles & schemas, validators, model loaders,
+derived indexes \\
+L4 & tool support/conformance & editor assistance, checks, projections,
+reports \\
+\end{longtable}
+
+A convenient YAML key or Markdown heading is not automatically a new L1
+concept.
+
+\subsection{4. Normal DDTA authoring versus holdout
+reconstruction}\label{4-normal-ddta-authoring-versus-holdout-reconstruction}
+
+\subsubsection{4.1 Normal authoring}\label{41-normal-authoring}
+
+The normal process starts from project responsibility and governance:
+
+\begin{verbatim}
+problem / responsibility
+        -> authority
+        -> MacroRequirement
+        -> Decision
+        -> FunctionalRequirement
+        -> specialization review
+        -> SecurityRequirement where governed
+\end{verbatim}
+
+\subsubsection{4.2 Existing-documentation
+validation}\label{42-existing-documentation-validation}
+
+Reconstruction from traditional documentation is a \textbf{validation
+protocol}, not the normal production method:
+
+\begin{verbatim}
+existing project documentation
+        -> recover only supported project meaning
+        -> apply normal DDTA authoring gates
+        -> candidate governed documentation
+        -> compare preserved / clarified / unresolved / lost
+\end{verbatim}
+
+During a holdout, Base Analysis must not be consulted to decide what
+project meaning to introduce. A holdout is valuable precisely because it
+may expose a representability limitation.
+
+\subsection{5. End-to-end authoring
+sequence}\label{5-end-to-end-authoring-sequence}
+
+The current working sequence is:
+
+\begin{verbatim}
+A0 Authority/source gate
+A1 Project problem framing
+A2 MacroRequirement / D1
+A3 Semantic sufficiency
+A4 Decision / D2
+A5 FunctionalRequirement / D3
+A6 Requirement split
+PRE-A7 scope + documentation<->BA consistency check
+A7 SpecializedRequirement review
+A8 SecurityRequirement review
+A9 Cross-MR / consumed-service review
+A10 Terminology / information / parameter bindings
+A11 Downstream propagation / semantic regression
+A12 Completeness / promotion readiness
+ONLY THEN accepted Base Analysis
+THEN security/threat analysis such as STRIDE / STRIDE-AI
+THEN governed feedback into documentation
+\end{verbatim}
+
+Local coherent-unit/split checks may occur before A6, but A6 is the
+project-wide regression of those local decisions.
+
+\subsection{6. A0 - Authority and source
+gate}\label{6-a0---authority-and-source-gate}
+
+Before deriving meaning record:
+
+\begin{itemize}
+\tightlist
+\item
+  source package identity and hash where available;
+\item
+  principal semantic source;
+\item
+  evidence/realization sources;
+\item
+  excluded or non-authoritative reconstructions;
+\item
+  current repository/methodology baseline.
+\end{itemize}
+
+For a holdout, distinguish at least:
+
+\begin{verbatim}
+project authority
+principal semantic source
+evidence / realization source
+historical reconstruction
+analysis artifact
+\end{verbatim}
+
+DermaTriage example:
+
+\begin{itemize}
+\tightlist
+\item
+  authoritative package:
+  \texttt{DermaTriage-Docs-20260830T152637Z-1-001.zip};
+\item
+  package SHA-256:
+  \texttt{E9ED2C507BEFB95F54A52084687CD1E8798863AE81CF69D09568864D8CBF280E};
+\item
+  OR2 Architecture Document: principal semantic source;
+\item
+  test/training/dataset/configuration documents: supporting evidence
+  unless they clearly govern project meaning;
+\item
+  previous DDTA/BA reconstructions: not project authority.
+\end{itemize}
+
+\subsection{7. A1 - Project problem
+framing}\label{7-a1---project-problem-framing}
+
+Start from the problem responsibility, not the implementation stack.
+
+Bad framing:
+
+\begin{verbatim}
+DermaTriage uses EfficientNet, Qwen, ChromaDB and BioMistral.
+\end{verbatim}
+
+Better framing:
+
+\begin{verbatim}
+DermaTriage supports early triage of dermatological cases concerning potentially oncological skin lesions,
+using available case information to determine a priority of care and support routing toward appropriate specialist assistance.
+\end{verbatim}
+
+The framing may expose unresolved boundaries. In DermaTriage, authority
+for definitive clinical diagnosis remains outside the established
+governed meaning.
+
+\subsection{8. A2 - MacroRequirement}\label{8-a2---macrorequirement}
+
+A \texttt{MacroRequirement} governs one stable macro responsibility.
+
+Recommended fields:
+
+\begin{verbatim}
+Title
+Intent
+Context
+Stakeholders
+Scope
+Assumptions / Constraints   [only when branch-wide]
+dependsOn                  [only when genuinely governed]
+\end{verbatim}
+
+\subsubsection{8.1 MR split test}\label{81-mr-split-test}
+
+Split when two responsibilities can exist, evolve or be governed
+independently.
+
+DermaTriage produced four macro responsibilities:
+
+\begin{itemize}
+\tightlist
+\item
+  MR-01 triage evaluation;
+\item
+  MR-02 specialist routing support;
+\item
+  MR-03 clinical review management;
+\item
+  MR-04 controlled adaptation from accumulated clinical review evidence.
+\end{itemize}
+
+Clinical review and future adaptation were split because review can
+exist without retraining, and adaptation policy can change while review
+capture remains stable.
+
+\subsubsection{8.2 MR STOP}\label{82-mr-stop}
+
+If the macro responsibility is governed but no material downstream
+choice/obligation is sufficiently specified, STOP at MR.
+
+DermaTriage MR-02 is the canonical example: an indication of specialist
+destination is present, but complete selection/routing semantics are not
+sufficiently defined.
+
+\subsection{9. A3 - Semantic
+sufficiency}\label{9-a3---semantic-sufficiency}
+
+Ask for the \textbf{smallest critical proposition} whose ambiguity would
+create materially different project meanings.
+
+Possible dispositions:
+
+\begin{verbatim}
+AFFIRMED
+DENIED
+NOT SPECIFIED
+CONFLICTING
+REWORK
+\end{verbatim}
+
+Numerical precision does not imply semantic sufficiency. A table may say
+\texttt{24h}, \texttt{48h}, \texttt{72h}, \texttt{7\ days}; if the
+documentation does not say what event must occur within those times,
+from which trigger the interval runs, and who owns compliance, the
+timing semantics remain \texttt{NOT\ SPECIFIED}.
+
+\subsection{10. A4 - Decision}\label{10-a4---decision}
+
+A \texttt{Decision} governs one material commitment that narrows exactly
+one MR.
+
+Recommended structure:
+
+\begin{verbatim}
+Context
+Decision
+Consequences
+\end{verbatim}
+
+A Decision should survive reasonable implementation substitution.
+
+\subsubsection{10.1 Decision kinds}\label{101-decision-kinds}
+
+Use the existing kinds:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{SELECTABLE} - materially different alternatives exist;
+\item
+  \texttt{NECESSITY-CONSTRAINED} - project constraints force the
+  commitment;
+\item
+  \texttt{DEFAULT} - a default position is governed while change remains
+  possible.
+\end{itemize}
+
+Do not create fake Decision wrappers merely because the hierarchy
+expects a Decision before FR.
+
+\subsubsection{10.2 Decision versus operational
+rule}\label{102-decision-versus-operational-rule}
+
+A Decision answers \emph{which material project position is adopted}. A
+FunctionalRequirement answers \emph{what operational behavior is
+required because of that position}.
+
+DermaTriage example:
+
+\begin{verbatim}
+DEC-02: adopt P1-P4 as operational priority scale
+FR-02: derive the concrete P-scale level from urgency/confidence
+\end{verbatim}
+
+\subsubsection{10.3 Numeric neutralization at Decision
+level}\label{103-numeric-neutralization-at-decision-level}
+
+When a candidate Decision is dominated by a concrete number, replace the
+number with a symbolic value and ask whether the policy still exists.
+
+Example:
+
+\begin{verbatim}
+Every 10 corrections -> evolve prompt
+\end{verbatim}
+
+Neutralize:
+
+\begin{verbatim}
+When accumulated relevant evidence reaches threshold N -> evolve prompt
+\end{verbatim}
+
+The surviving Decision is the accumulation-gated adaptation strategy.
+\texttt{10} is not what makes the Decision exist.
+
+\subsection{11. A5 -
+FunctionalRequirement}\label{11-a5---functionalrequirement}
+
+A \texttt{FunctionalRequirement} is one independently assessable
+operational obligation under exactly one Decision.
+
+A strong FR states enough to determine:
+
+\begin{itemize}
+\tightlist
+\item
+  triggering/applicability condition;
+\item
+  responsible project behavior;
+\item
+  input/output/state meaning needed to assess it;
+\item
+  material context binding;
+\item
+  failure or non-satisfaction semantics where governed;
+\item
+  deliberate exclusions.
+\end{itemize}
+
+\subsubsection{11.1 One FR does not equal one
+sentence}\label{111-one-fr-does-not-equal-one-sentence}
+
+\begin{verbatim}
+1 Requirement != 1 textual sentence
+1 Requirement  = 1 coherent normative obligation
+\end{verbatim}
+
+A mapping table may contain several normative clauses and still be one
+FR if all rows jointly express one coherent transformation.
+
+DermaTriage FR-08:
+
+\begin{verbatim}
+P1 -> HIGH
+P2 -> HIGH
+P3 -> MEDIUM
+P4 -> LOW
+\end{verbatim}
+
+is one FR, not four requirements.
+
+\subsubsection{11.2 Do not merely restate the
+Decision}\label{112-do-not-merely-restate-the-decision}
+
+A Decision such as ``use clinical disagreement as qualifying evidence''
+may still need an FR that makes the operational qualification rule
+assessable.
+
+\subsubsection{11.3 Responsibility boundary before
+FR}\label{113-responsibility-boundary-before-fr}
+
+Do not assign to the project a behavior owned by a consumed service, a
+clinician or another responsibility.
+
+DermaTriage FR-03 records/correlates a clinical review; it does not
+claim that DermaTriage performs the clinical judgment.
+
+\subsubsection{11.4 Contextual binding}\label{114-contextual-binding}
+
+When a relation must remain tied to the same case/request/outcome to
+avoid a materially different result, preserve that binding in FR
+semantics.
+
+\subsection{12. Decision-to-Requirement completeness
+counterexample}\label{12-decision-to-requirement-completeness-counterexample}
+
+Before declaring STOP below a Decision, ask:
+
+\begin{verbatim}
+Can all current downstream Requirements be satisfied while this Decision is still violated?
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  If \textbf{NO}, STOP may be justified.
+\item
+  If \textbf{YES}, downstream coverage is incomplete; search for the
+  missing FR/SR rather than reopening the Decision automatically.
+\end{itemize}
+
+DermaTriage DEC-05 exposed this rule. FR-04 and FR-05 could both be
+satisfied while one adaptation path incorrectly triggered the other.
+FR-11 was therefore required to govern lifecycle independence.
+
+\subsection{13. Parameter Governance
+Boundary}\label{13-parameter-governance-boundary}
+
+Do not create a requirement or document for every number.
+
+The correct sequence is:
+
+\begin{verbatim}
+source value
+    -> semantic owner
+    -> lifecycle / purpose
+    -> requirement/property classification
+    -> neutralize concrete value to symbolic parameter
+    -> semantic materiality test
+    -> exact-value governance test
+    -> governed semantic parameter OR realization/configuration STOP
+\end{verbatim}
+
+\subsubsection{13.1 Gate Q1 - does meaning survive replacement by
+N?}\label{131-gate-q1---does-meaning-survive-replacement-by-n}
+
+If replacing the number by \texttt{N} destroys the governed proposition,
+the number may be part of the semantic rule itself rather than a
+replaceable parameter.
+
+Example: the transformation \texttt{P2\ -\textgreater{}\ HIGH} cannot be
+neutralized to \texttt{P2\ -\textgreater{}\ X} without losing the
+governed meaning.
+
+\subsubsection{13.2 Gate Q2 - can parameter variation materially change
+governed
+behavior?}\label{132-gate-q2---can-parameter-variation-materially-change-governed-behavior}
+
+If no, the value is ordinary technical configuration and should normally
+stop below the semantic model.
+
+If yes, preserve a semantic parameter.
+
+\subsubsection{13.3 Gate Q3 - is the concrete value itself
+governed?}\label{133-gate-q3---is-the-concrete-value-itself-governed}
+
+\begin{itemize}
+\tightlist
+\item
+  YES: preserve the exact value normatively.
+\item
+  NO / NOT SPECIFIED: preserve the symbolic parameter and record the
+  concrete value as a current binding.
+\end{itemize}
+
+DermaTriage examples:
+
+\begin{longtable}[]{@{}lrl@{}}
+\toprule\noalign{}
+Semantic parameter & Current documented binding & Exact value
+governance \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{PromptEvolutionThreshold=N} & 10 & NOT SPECIFIED \\
+\texttt{ClassifierAdaptationThreshold=N} & 50 & NOT SPECIFIED \\
+\texttt{PromptEvidenceWindowSize=N} & 20 & NOT SPECIFIED \\
+\texttt{AccuracyDegradationTolerance=T} & 5\% & quantitative binding
+incomplete \\
+\texttt{RollbackAccuracyDegradationThreshold=R} & 5\% & quantitative
+binding incomplete \\
+\end{longtable}
+
+The two \texttt{5\%} values are \textbf{not} one parameter merely
+because the literal is equal. Semantic owner, lifecycle and purpose
+differ.
+
+\subsection{14. Information and realization bridge
+taxonomy}\label{14-information-and-realization-bridge-taxonomy}
+
+DDTA must preserve enough traceability to connect governed semantics to
+implementation without making implementation identifiers normative by
+default.
+
+Observed bridge shapes:
+
+\begin{verbatim}
+1. semantic concept
+   -> data/state encoding
+
+2. semantic parameter
+   -> configuration value
+
+3. semantic reference
+   -> interface identifier
+
+4. semantic reference
+   -> governed transformation
+   -> semantic output
+   -> realization encoding
+\end{verbatim}
+
+DermaTriage examples:
+
+\begin{verbatim}
+ClinicianDisagreement
+    -> source-observed encoding: agrees == False
+
+ClassifierAdaptationThreshold=N
+    -> current binding: 50
+
+ClinicallyCorrectedPriority
+    -> P1/P2/P3/P4 mapping
+    -> ClassifierUrgencyTarget
+    -> enum/string/class-index realization
+\end{verbatim}
+
+The semantic concept remains stable even if a field name or enum
+representation changes.
+
+\subsection{15. A6 - Requirement split}\label{15-a6---requirement-split}
+
+A6 is the project-wide coherent-unit regression.
+
+Split a Requirement when a part can be introduced, revised, retired,
+assessed, fail or be revalidated independently without changing the
+normative identity of the remaining parts.
+
+Strong split indicators:
+
+\begin{itemize}
+\tightlist
+\item
+  different semantic owner;
+\item
+  materially distinct failure mode;
+\item
+  independent lifecycle/review;
+\item
+  different specialization/security scope;
+\item
+  independent change/revalidation.
+\end{itemize}
+
+Do not split merely because there are multiple verbs, multiple mapping
+rows or multiple test cases.
+
+\subsection{16. Pre-A7 scope and Documentation\textless-\textgreater BA
+consistency
+check}\label{16-pre-a7-scope-and-documentation-ba-consistency-check}
+
+Before A7 in the current thesis workflow perform a controlled
+consistency check:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  verify that the documentation metamodel can preserve each discovered
+  specialization meaning;
+\item
+  verify that the BA handoff can consume required project meaning
+  without dictating document types;
+\item
+  preserve the thesis boundary: security specialization is the concrete
+  research scope;
+\item
+  if a non-security specialization is discovered, preserve it without
+  opening a full new subtype research program;
+\item
+  a pre-A7 BA probe, if used, is non-authoritative and exists only to
+  test representability, not to decide project meaning.
+\end{enumerate}
+
+\subsection{17. A7 -
+SpecializedRequirement}\label{17-a7---specializedrequirement}
+
+A \texttt{SpecializedRequirement} is justified when an additional
+concern-specific property strengthens exactly one parent FR and can be
+governed independently from the ordinary functional behavior.
+
+Semantic invariants:
+
+\begin{itemize}
+\tightlist
+\item
+  exactly one parent FR;
+\item
+  conjunctive strengthening of the parent;
+\item
+  removing the specialization leaves the ordinary function meaningful;
+\item
+  no duplication of ordinary functional correctness;
+\item
+  subordinate positive work may be required;
+\item
+  an autonomous new capability belongs in a separate FR;
+\item
+  realization mechanism is not the property;
+\item
+  the specialization depends on the parent behavior.
+\end{itemize}
+
+\subsubsection{17.1 Scope-limited specialization
+rule}\label{171-scope-limited-specialization-rule}
+
+In this thesis:
+
+\begin{verbatim}
+specialization candidate
+    -> security property? YES -> A8 SecurityRequirement
+    -> security property? NO
+         -> preserve governed property
+         -> record extensibility evidence
+         -> mark concrete non-security subtype OUTSIDE THESIS SCOPE
+\end{verbatim}
+
+DermaTriage DEC-07 is the main holdout evidence: sensitivity
+non-degradation, false-low non-degradation and bounded accuracy
+degradation are plausible quality specializations of FR-09, but they are
+not security requirements and therefore do not justify expanding the
+thesis into a general quality-requirements taxonomy.
+
+\subsection{18. A8 -
+SecurityRequirement}\label{18-a8---securityrequirement}
+
+A \texttt{SecurityRequirement} is a concrete specialized requirement in
+thesis scope.
+
+Ask:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  is the security property governed by project authority?
+\item
+  is its scope tied to a precise governed behavior/meaning?
+\item
+  can it evolve/fail independently from other properties?
+\item
+  are we stating a property rather than merely a mechanism?
+\item
+  is the security failure mode identifiable in the normative clauses?
+\end{enumerate}
+
+Never infer:
+
+\begin{verbatim}
+Confidentiality -> TLS
+Integrity -> digital signature
+Authorized provenance -> certificate
+Authentication -> X-API-Key
+\end{verbatim}
+
+unless the mechanism itself is a governed commitment.
+
+Existing project documentation may already govern SecurityRequirements
+before threat analysis. Threat analysis may later produce
+\textbf{candidate} security obligations, but findings do not become
+SecurityRequirements automatically.
+
+\subsection{19. A9 - Cross-MR and consumed-service
+semantics}\label{19-a9---cross-mr-and-consumed-service-semantics}
+
+Distinguish:
+
+\begin{verbatim}
+ownership
+consumption
+reference
+dependency
+second parent
+\end{verbatim}
+
+They are not synonyms.
+
+A FunctionalRequirement may reference a concept governed by another
+Decision/MR without acquiring a second parent.
+
+DermaTriage DEC-11 consumes the P-scale domain governed under MR-01
+while remaining owned by MR-04.
+
+Consumed services do not become project-owned merely because their
+outputs are used.
+
+\subsection{20. A10 - Terminology, information, parameter and interface
+bindings}\label{20-a10---terminology-information-parameter-and-interface-bindings}
+
+A10 consolidates the bridge ledger accumulated during authoring.
+
+For each important datum classify it as one of:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  governed normative meaning;
+\item
+  source-observed vocabulary/representation;
+\item
+  unresolved binding / NOT SPECIFIED;
+\item
+  current realization/configuration binding.
+\end{enumerate}
+
+A10 should maintain structured registries rather than one document per
+value or field.
+
+Do not invent requiredness, cardinality, type, missing-value policy,
+reset policy or change authority merely to make a data model look
+complete.
+
+\subsection{21. A11 - Downstream propagation and semantic
+regression}\label{21-a11---downstream-propagation-and-semantic-regression}
+
+Recheck that upstream corrections are preserved through every descendant
+and reference.
+
+Questions:
+
+\begin{itemize}
+\tightlist
+\item
+  did any downstream artifact silently narrow or widen an upstream
+  meaning?
+\item
+  did a current implementation value become a fixed normative
+  requirement accidentally?
+\item
+  did a cross-MR reference become ownership?
+\item
+  did a gap disappear because of wording rather than evidence?
+\item
+  can a Decision still be violated while all descendants pass?
+\item
+  do canonical terms still denote the same semantic referent?
+\end{itemize}
+
+\subsection{22. A12 - Completeness and promotion
+readiness}\label{22-a12---completeness-and-promotion-readiness}
+
+A documentation baseline can be promoted for BA use when:
+
+\begin{itemize}
+\tightlist
+\item
+  material semantic owners are established;
+\item
+  required dependencies/cross-references are governed;
+\item
+  blocking gaps are resolved or explicitly excluded from the declared
+  scope;
+\item
+  non-blocking NOT SPECIFIED meanings are preserved;
+\item
+  specialization/security review is complete for thesis scope;
+\item
+  A10 bindings are coherent;
+\item
+  A11 semantic regression passes;
+\item
+  governance explicitly authorizes the baseline as BA source.
+\end{itemize}
+
+Promotion is not ``everything is fully specified''. Promotion means the
+baseline is \textbf{sufficiently governed for the declared scope}.
+
+\subsection{23. Handoff to Base
+Analysis}\label{23-handoff-to-base-analysis}
+
+The handoff should include:
+
+\begin{itemize}
+\tightlist
+\item
+  authority/baseline identity;
+\item
+  pinned source revision/source set;
+\item
+  canonical governed subjects/referents;
+\item
+  material behaviors, relations, conditions and states;
+\item
+  specialized/security properties in scope;
+\item
+  parameter semantics and current bindings where relevant;
+\item
+  diagnostics, NOT SPECIFIED meanings and unresolved bindings;
+\item
+  change/revalidation context when material.
+\end{itemize}
+
+The BA then applies its own minimum representation criterion. It must
+not retroactively dictate how the documentation should have been
+written.
+
+\subsection{24. STRIDE / STRIDE-AI and governed
+feedback}\label{24-stride--stride-ai-and-governed-feedback}
+
+The intended thesis lifecycle is:
+
+\begin{verbatim}
+GOVERNED DOCUMENTATION
+        -> ACCEPTED BASE ANALYSIS
+        -> STRIDE / STRIDE-AI
+        -> FINDINGS
+        -> candidate clarification / architecture change / accepted risk / SecurityRequirement
+        -> GOVERNANCE REVIEW
+        -> updated governed documentation if accepted
+        -> rebuilt BA
+\end{verbatim}
+
+A threat finding is analytical evidence, not project truth.
+
+\subsection{25. Extended worked example - DermaTriage adaptation
+branch}\label{25-extended-worked-example---dermatriage-adaptation-branch}
+
+\subsubsection{25.1 Source text}\label{251-source-text}
+
+OR2 Architecture describes:
+
+\begin{verbatim}
+Prompt evolution trigger: every 10 doctor corrections
+Prompt evidence method: sliding window of 20 most recent examples
+Classifier retraining trigger: 50 doctor corrections where agrees == False
+Label mapping: P1/P2 -> HIGH, P3 -> MEDIUM, P4 -> LOW
+Deploy condition: sensitivity/false-low non-degradation and bounded accuracy degradation
+Rollback: current implementation reports automatic rollback beyond 5% accuracy degradation
+\end{verbatim}
+
+\subsubsection{25.2 Recover MR meaning}\label{252-recover-mr-meaning}
+
+The stable responsibility is not ``run PromptManager and EfficientNet''.
+It is:
+
+\begin{verbatim}
+MR-04 - Controlled adaptation based on accumulated clinical review evidence
+\end{verbatim}
+
+\subsubsection{25.3 Recover Decisions}\label{253-recover-decisions}
+
+The source supports distinct commitments:
+
+\begin{itemize}
+\tightlist
+\item
+  DEC-04 accumulation-gated adaptation;
+\item
+  DEC-05 separate adaptation paths by behavioral capability;
+\item
+  DEC-06 comparative pre-adoption qualification;
+\item
+  DEC-07 asymmetric quality prioritization;
+\item
+  DEC-08 classification adaptation reversibility;
+\item
+  DEC-09 bounded recent evidence for prompt evolution;
+\item
+  DEC-10 clinical disagreement as qualifying classifier-adaptation
+  evidence;
+\item
+  DEC-11 corrected P-scale as classifier-supervision source.
+\end{itemize}
+
+\subsubsection{25.4 Recover FRs without hardcoding
+implementation}\label{254-recover-frs-without-hardcoding-implementation}
+
+\begin{verbatim}
+FR-04 prompt adaptation activation at semantic threshold N
+FR-05 classifier adaptation activation at semantic threshold N
+FR-06 bounded recent prompt-evidence window
+FR-07 clinical disagreement qualification
+FR-08 corrected P-scale -> classifier target mapping
+FR-09 comparative qualification
+FR-10 rollback capability for materially degrading adopted adaptation
+FR-11 path lifecycle independence
+\end{verbatim}
+
+\subsubsection{25.5 Preserve bindings rather than freezing
+them}\label{255-preserve-bindings-rather-than-freezing-them}
+
+\begin{verbatim}
+PromptEvolutionThreshold=N           current N=10
+ClassifierAdaptationThreshold=N      current N=50
+PromptEvidenceWindowSize=N           current N=20
+\end{verbatim}
+
+The current literals are traceability evidence, not automatically
+immutable normative constants.
+
+\subsubsection{25.6 Preserve data/state encoding
+separately}\label{256-preserve-datastate-encoding-separately}
+
+\begin{verbatim}
+ClinicianDisagreement
+    governed semantic concept
+
+agrees == False
+    source-observed current encoding
+\end{verbatim}
+
+Changing the field name does not change the requirement if the same
+semantic state remains represented.
+
+\subsubsection{25.7 Preserve non-security specialization without
+expanding thesis
+scope}\label{257-preserve-non-security-specialization-without-expanding-thesis-scope}
+
+DEC-07 points to quality properties that specialize FR-09. They are
+preserved for A7 review. They are not reclassified as
+SecurityRequirements and they do not force a new
+\texttt{QualityRequirement} subtype in the current thesis.
+
+\subsection{26. Practical authoring
+worksheet}\label{26-practical-authoring-worksheet}
+
+For every candidate element record:
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Question & Result \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+source evidence & exact source/section or governed predecessor \\
+candidate meaning & concise project-semantic statement \\
+semantic owner & MR / Decision / FR / specialization \\
+material alternatives & what materially different reading/change is
+excluded? \\
+responsibility boundary & who actually owns the
+behavior/judgment/property? \\
+implementation-neutrality test & does the meaning survive technology
+substitution? \\
+split/coherent-unit test & can parts change or fail independently? \\
+parameter/binding test & semantic parameter or current realization
+value? \\
+gap status & AFFIRMED / DENIED / NOT SPECIFIED / CONFLICTING \\
+disposition & PASS / REWORK / STOP / ROUTE \\
+methodology feedback & guide, metamodel, BA, tooling or project-source
+pressure? \\
+\end{longtable}
+
+\subsection{27. Final authoring
+checklist}\label{27-final-authoring-checklist}
+
+Before promoting a documentation baseline ask:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Is the source/authority boundary explicit?
+\item
+  Is every MR a stable responsibility rather than a technology bundle?
+\item
+  Does every Decision contain one material commitment?
+\item
+  Does every FR have exactly one honest parent Decision?
+\item
+  Can every FR be independently assessed without reconstructing hidden
+  obligations from its parent?
+\item
+  Have mapping rows and normative clauses been kept in one Requirement
+  when they form one coherent obligation?
+\item
+  Have independent obligations been split?
+\item
+  Have concrete numeric values passed semantic-owner and
+  parameter-governance gates?
+\item
+  Are semantic concepts separated from current field/config/interface
+  encodings?
+\item
+  Could all current descendants pass while a Decision is still violated?
+\item
+  Are cross-MR references distinguished from ownership and dependency?
+\item
+  Are non-security specialization candidates preserved without expanding
+  the thesis scope unnecessarily?
+\item
+  Are SecurityRequirements properties rather than mechanisms?
+\item
+  Are unresolved meanings explicitly NOT SPECIFIED rather than silently
+  invented?
+\item
+  Has project-wide propagation/regression been run?
+\item
+  Is the baseline explicitly authorized before Base Analysis begins?
+\end{enumerate}
+
+\subsection{28. Status of this R5 working
+candidate}\label{28-status-of-this-r5-working-candidate}
+
+This document incorporates holdout-supported refinements through
+DermaTriage A5 closure, especially:
+
+\begin{itemize}
+\tightlist
+\item
+  semantic-owner-first numeric classification;
+\item
+  Parameter Governance Boundary;
+\item
+  information/parameter/reference/transformation bridge taxonomy;
+\item
+  Decision-to-Requirement counterexample test;
+\item
+  scope-limited handling of non-security specializations;
+\item
+  explicit documentation -\textgreater{} BA -\textgreater{} STRIDE
+  -\textgreater{} governed feedback lifecycle.
+\end{itemize}
+
+It \textbf{does not} by itself promote these refinements into
+methodology authority. Promotion requires review against R4, A6-A12
+evidence, the pre-A7 documentation/BA consistency check, and regression
+against the Facial Access corpus.
+
+\end{document}

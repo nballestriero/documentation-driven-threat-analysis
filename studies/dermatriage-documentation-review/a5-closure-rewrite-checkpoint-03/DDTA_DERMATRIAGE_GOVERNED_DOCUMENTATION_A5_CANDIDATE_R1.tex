@@ -1,0 +1,857 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{DDTA_DERMATRIAGE_GUIDED_REVIEW_STYLE_R1}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\begin{document}
+\selectlanguage{italian}
+\begin{titlepage}
+\thispagestyle{empty}
+\vspace*{10mm}
+{\sffamily\bfseries\color{DDTANavy}\fontsize{15}{18}\selectfont Documentation-Driven Threat Analysis}\par
+\vspace{5mm}
+{\sffamily\bfseries\color{DDTANavy}\fontsize{27}{31}\selectfont DermaTriage Governed DDTA Documentation}\par
+\vspace{2mm}
+{\sffamily\color{DDTABlue}\fontsize{17}{21}\selectfont A5 Candidate R1 - Pending A6-A12}\par
+\vspace{10mm}
+\begin{tcolorbox}[enhanced,arc=3pt,boxrule=0pt,colback=DDTANavy,left=12pt,right=12pt,top=10pt,bottom=10pt]
+{\color{white}\sffamily\bfseries Current research artifact}\par
+{\color{white!88}\small Repository baseline: \texttt{0e60754d21aa24ea487f3f60803b6b0cce8d2e2b}. Methodology authority remains R4 unless this document explicitly states otherwise.}
+\end{tcolorbox}
+\vfill
+{\sffamily\small\color{DDTAGray} 5 settembre 2026}
+\end{titlepage}
+\tableofcontents
+\clearpage
+\section{DermaTriage - Governed DDTA Documentation
+Candidate}\label{dermatriage---governed-ddta-documentation-candidate}
+
+\textbf{Status:} A5 CLOSED CANDIDATE / NOT YET PROMOTED\\
+\textbf{Coverage:} project framing through FunctionalRequirement
+cumulative D3 closure\\
+\textbf{Pending before final documentation promotion:} A6-A12\\
+\textbf{Methodology authority:}
+\texttt{DDTA\_DOCUMENTATION\_BA\_AUTHORING\_GUIDE\_R4}\\
+\textbf{Repository baseline:}
+\texttt{0e60754d21aa24ea487f3f60803b6b0cce8d2e2b}\\
+\textbf{Authoritative source package:}
+\texttt{DermaTriage-Docs-20260830T152637Z-1-001.zip}\\
+\textbf{Source package SHA-256:}
+\texttt{E9ED2C507BEFB95F54A52084687CD1E8798863AE81CF69D09568864D8CBF280E}
+
+\begin{quote}
+This file is the \textbf{clean project-document candidate}. Research
+commentary and methodological reasoning are intentionally excluded.
+Source-supported implementation/configuration evidence is retained only
+in clearly marked binding/evidence sections. A6-A12 may still refine
+split, specialization, security, terminology, bindings and promotion
+readiness.
+\end{quote}
+
+\subsection{1. Project problem framing}\label{1-project-problem-framing}
+
+DermaTriage addresses the problem of supporting early triage of
+dermatological cases concerning potentially oncological skin lesions,
+using the information available for the case to determine a priority of
+care and support routing toward appropriate specialist assistance.
+
+\subsubsection{Scope boundary}\label{scope-boundary}
+
+Governed in the current candidate:
+
+\begin{itemize}
+\tightlist
+\item
+  urgency/priority-oriented triage behavior;
+\item
+  specialist-routing responsibility at macro level;
+\item
+  management of clinical review results;
+\item
+  controlled adaptation using accumulated clinical review evidence.
+\end{itemize}
+
+Not established as governed project authority:
+
+\begin{itemize}
+\tightlist
+\item
+  authority for definitive clinical diagnosis;
+\item
+  complete specialist-selection/booking responsibility;
+\item
+  automatic production-deployment authority after adaptation
+  qualification;
+\item
+  complete semantics of every source-level configuration value.
+\end{itemize}
+
+\subsection{2. Canonical macro view}\label{2-canonical-macro-view}
+
+\begin{verbatim}
+DERMATRiAGE
+|
+|-- MR-01  Valutazione di triage del caso dermatologico
+|
+|-- MR-02  Indirizzamento specialistico
+|
+|-- MR-03  Gestione della validazione clinica degli esiti
+|
+`-- MR-04  Adattamento controllato sulla base della revisione clinica
+           dependsOn MR-03
+\end{verbatim}
+
+Stable IDs are identities, not reading order. The narrative projection
+above is for human readability.
+
+\section{3. MR-01 - Valutazione di triage del caso
+dermatologico}\label{3-mr-01---valutazione-di-triage-del-caso-dermatologico}
+
+\subsection{Intent}\label{intent}
+
+Determinare, dalle informazioni disponibili sul caso dermatologico, una
+valutazione di urgenza utile a stabilire la priorita\textquotesingle{}
+di presa in carico specialistica.
+
+\subsection{Context and scope}\label{context-and-scope}
+
+The responsibility concerns urgency/priority evaluation for a
+dermatological case. It does not establish authority for definitive
+clinical diagnosis and does not own the complete specialist-routing
+responsibility.
+
+\subsection{DEC-01 - Continuita\textquotesingle{} del triage in assenza
+di
+immagine}\label{dec-01---continuita-del-triage-in-assenza-di-immagine}
+
+\textbf{Decision kind:} SELECTABLE\\
+\textbf{Status:} PASS
+
+DermaTriage permits urgency evaluation to continue when no image is
+available, using available symptom information rather than treating
+image availability as an absolute precondition for triage.
+
+\subsubsection{FR-01 - Determinazione dell\textquotesingle urgenza su
+base sintomatologica in assenza di
+immagine}\label{fr-01---determinazione-dellurgenza-su-base-sintomatologica-in-assenza-di-immagine}
+
+\textbf{Parent:} DEC-01\\
+\textbf{Status:} PASS
+
+\textbf{Normative clause}
+
+\begin{quote}
+Quando per il caso dermatologico non e\textquotesingle{} disponibile
+un\textquotesingle immagine, DermaTriage MUST determinare
+l\textquotesingle urgenza sulla base delle informazioni sintomatologiche
+disponibili per il caso.
+\end{quote}
+
+Source examples such as itching, bleeding, growing, changing and pain
+illustrate current symptom evidence and are not treated here as a closed
+normative vocabulary.
+
+\subsubsection{Preserved gap}\label{preserved-gap}
+
+\texttt{GAP-DERMA-NOIMAGE-INPUT-01} - the complete required/optional
+symptom input contract and missing-value semantics are not specified.
+
+\subsection{DEC-02 - Adozione della P-scale per la
+priorita\textquotesingle{}
+operativa}\label{dec-02---adozione-della-p-scale-per-la-priorita-operativa}
+
+\textbf{Decision kind:} SELECTABLE\\
+\textbf{Status:} PASS
+
+DermaTriage represents operational triage priority using P1-P4, derived
+from the urgency evaluation of the case.
+
+\subsubsection{FR-02 - Derivazione della priorita\textquotesingle{}
+P-scale dalla valutazione di
+urgenza}\label{fr-02---derivazione-della-priorita-p-scale-dalla-valutazione-di-urgenza}
+
+\textbf{Parent:} DEC-02\\
+\textbf{Status:} PASS
+
+\textbf{Normative clauses}
+
+\begin{verbatim}
+HIGH + confidence > 0.85 -> P1
+HIGH                     -> P2
+MEDIUM                   -> P3
+LOW                      -> P4
+\end{verbatim}
+
+The strict comparator \texttt{\textgreater{}} is preserved.
+
+\subsubsection{Preserved gaps}\label{preserved-gaps}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{GAP-DERMA-PMAP-INPUT-01} - complete semantics of the
+  urgency/confidence inputs, including missing/invalid values, are not
+  specified.
+\item
+  \texttt{GAP-DERMA-NOIMAGE-PMAP-BINDING-01} - the documentation does
+  not establish that the urgency produced by FR-01 necessarily provides
+  every input required by FR-02.
+\item
+  \texttt{GAP-DERMA-SLA-01} - source values 24h/48h/72h/7 days are
+  preserved as evidence, but trigger event, owned outcome,
+  responsibility and whether the values are
+  limits/targets/recommendations are not sufficiently governed.
+\item
+  \texttt{GAP-DERMA-PATH-01} - \texttt{predicted\_pathology} is
+  source-observed but its governed obligation status and
+  diagnostic-authority boundary remain not established.
+\end{itemize}
+
+\subsection{MR-01 cumulative D3
+disposition}\label{mr-01-cumulative-d3-disposition}
+
+\textbf{PASS.} FR-01 and FR-02 provide the independently assessable
+operational obligations currently justified under DEC-01 and DEC-02.
+Remaining source meanings are preserved as gaps or routed evidence
+rather than invented requirements.
+
+\section{4. MR-02 - Indirizzamento
+specialistico}\label{4-mr-02---indirizzamento-specialistico}
+
+\subsection{Intent}\label{intent-1}
+
+Determinare un\textquotesingle indicazione di destinazione specialistica
+per il caso dermatologico, al fine di supportarne il successivo
+instradamento verso l\textquotesingle assistenza appropriata.
+
+\subsection{Status}\label{status}
+
+\textbf{STOP AT MR.}
+
+The source supports that DermaTriage includes specialist-oriented
+output/indication, but does not sufficiently govern:
+
+\begin{itemize}
+\tightlist
+\item
+  specialist-domain vocabulary;
+\item
+  selection rule;
+\item
+  required inputs;
+\item
+  fallback behavior;
+\item
+  actual assignment/booking responsibility;
+\item
+  complete relationship with P-scale priority.
+\end{itemize}
+
+No Decision or FR is created merely to fill the hierarchy.
+
+\section{5. MR-03 - Gestione della validazione clinica degli
+esiti}\label{5-mr-03---gestione-della-validazione-clinica-degli-esiti}
+
+\subsection{Intent}\label{intent-2}
+
+Supportare la registrazione e l\textquotesingle utilizzo della
+validazione o correzione effettuata da un professionista sanitario sugli
+esiti prodotti da DermaTriage, mantenendo distinguibile il risultato
+della revisione dall\textquotesingle esito originario.
+
+\subsection{Responsibility boundary}\label{responsibility-boundary}
+
+The healthcare professional owns the clinical judgment. DermaTriage owns
+management, recording and correlation of the review result.
+
+\subsection{DEC-03 - Separazione tra esito originario e revisione
+clinica}\label{dec-03---separazione-tra-esito-originario-e-revisione-clinica}
+
+\textbf{Decision kind:} SELECTABLE\\
+\textbf{Status:} PASS
+
+DermaTriage keeps the original system outcome distinguishable from the
+subsequent clinical review result.
+
+\subsubsection{FR-03 - Registrazione correlata della revisione
+clinica}\label{fr-03---registrazione-correlata-della-revisione-clinica}
+
+\textbf{Parent:} DEC-03\\
+\textbf{Status:} PASS
+
+\textbf{NC-03.1}\\
+When a clinical validation/correction is supplied for a DermaTriage
+outcome, DermaTriage MUST record the review result associated with the
+original outcome.
+
+\textbf{NC-03.2}\\
+The recorded review result MUST distinguish confirmation from
+correction.
+
+\subsubsection{Preserved gaps}\label{preserved-gaps-1}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{GAP-DERMA-REVIEW-CONTENT-01} - the complete correction/review
+  content model is not specified.
+\item
+  \texttt{GAP-DERMA-REVIEW-LIFECYCLE-01} -
+  overwrite/history/retention/finality semantics are not specified.
+\item
+  \texttt{GAP-DERMA-REVIEW-DISAGREEMENT-BINDING-01} - the normative
+  relationship among correction, disagreement and the source-observed
+  \texttt{agrees} state is not fully specified.
+\end{itemize}
+
+\subsection{MR-03 cumulative D3
+disposition}\label{mr-03-cumulative-d3-disposition}
+
+\textbf{PASS.}
+
+\section{6. MR-04 - Adattamento controllato sulla base della revisione
+clinica}\label{6-mr-04---adattamento-controllato-sulla-base-della-revisione-clinica}
+
+\subsection{Intent}\label{intent-3}
+
+Consentire l\textquotesingle evoluzione controllata del comportamento di
+DermaTriage utilizzando evidenza derivata dalle validazioni e correzioni
+cliniche accumulate, evitando che modifiche degradanti vengano accettate
+senza controllo.
+
+\subsection{Dependency}\label{dependency}
+
+\texttt{MR-04\ dependsOn\ MR-03\ =\ PASS} because adaptation consumes
+clinical-review meaning owned by MR-03.
+
+\subsection{Decision family}\label{decision-family}
+
+\begin{verbatim}
+DEC-04  Accumulation-gated adaptation
+DEC-05  Separate adaptation paths
+DEC-06  Comparative acceptance
+DEC-07  Asymmetric quality prioritization
+DEC-08  Classification adaptation reversibility
+DEC-09  Bounded recent evidence - prompt path
+DEC-10  Disagreement as qualifying classifier evidence
+DEC-11  Corrected P-scale as supervision source
+\end{verbatim}
+
+\subsection{DEC-04 - Attivazione dell\textquotesingle adattamento su
+accumulo di evidence
+clinica}\label{dec-04---attivazione-delladattamento-su-accumulo-di-evidence-clinica}
+
+DermaTriage uses a non-immediate adaptation strategy: each adaptation
+process is activated only when relevant accumulated clinical evidence
+satisfies a governed accumulation condition for that process.
+
+\subsubsection{FR-04 - Attivazione del percorso di evoluzione del
+prompt}\label{fr-04---attivazione-del-percorso-di-evoluzione-del-prompt}
+
+\textbf{Parent:} DEC-04\\
+\textbf{Status:} PASS
+
+\begin{quote}
+Quando l\textquotesingle evidence di correzione clinica pertinente
+accumulata raggiunge la soglia prevista per il percorso di evoluzione
+del prompt, DermaTriage MUST attivare un ciclo di evoluzione del prompt.
+\end{quote}
+
+Semantic parameter: \texttt{PromptEvolutionThreshold=N}\\
+Current documented binding: \texttt{N=10}\\
+Exact fixed normative status: \texttt{NOT\ SPECIFIED}\\
+Change authority: \texttt{NOT\ SPECIFIED}
+
+\subsubsection{FR-05 - Attivazione del percorso di adattamento
+classificatorio su accumulo di evidence di
+disaccordo}\label{fr-05---attivazione-del-percorso-di-adattamento-classificatorio-su-accumulo-di-evidence-di-disaccordo}
+
+\textbf{Parent:} DEC-04\\
+\textbf{Status:} PASS
+
+\begin{quote}
+Quando l\textquotesingle evidence qualificante accumulata raggiunge la
+soglia prevista per il percorso di adattamento classificatorio,
+DermaTriage MUST attivare il relativo ciclo di adattamento.
+\end{quote}
+
+Semantic parameter: \texttt{ClassifierAdaptationThreshold=N}\\
+Current documented binding: \texttt{N=50}\\
+Exact fixed normative status: \texttt{NOT\ SPECIFIED}\\
+Change authority: \texttt{NOT\ SPECIFIED}
+
+\subsubsection{Preserved gaps under
+DEC-04}\label{preserved-gaps-under-dec-04}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{GAP-DERMA-ADAPT-COUNTING-01} - reset, deduplication, reuse,
+  persistence, multiple-review and concurrency counting semantics are
+  not specified.
+\item
+  \texttt{GAP-DERMA-ADAPT-THRESHOLD-AUTH-01} - governance/change
+  authority of concrete threshold values is not specified.
+\end{itemize}
+
+\subsection{DEC-05 - Separazione dei percorsi di adattamento per
+capability}\label{dec-05---separazione-dei-percorsi-di-adattamento-per-capability}
+
+DermaTriage governs adaptation through distinct lifecycle paths for
+different behavioral capabilities. Conditions or outcomes belonging to
+one path do not automatically satisfy those of another path.
+
+\subsubsection{FR-11 - Indipendenza dei lifecycle di
+adattamento}\label{fr-11---indipendenza-dei-lifecycle-di-adattamento}
+
+\textbf{Parent:} DEC-05\\
+\textbf{Status:} PASS / STOP
+
+\textbf{NC-11.1}\\
+The satisfaction of an activation condition for one adaptation path MUST
+NOT, by itself, be treated as satisfaction of the activation condition
+of another path.
+
+\textbf{NC-11.2}\\
+Evidence qualifying for one adaptation path MUST NOT, by itself, be
+treated as qualifying for another path.
+
+\textbf{NC-11.3}\\
+A qualification/progression result reached by one adaptation path MUST
+NOT, by itself, be treated as an equivalent lifecycle result for another
+path.
+
+Shared data may be reused if it independently satisfies the governed
+rules of each path; shared data does not imply shared lifecycle
+semantics.
+
+\subsection{DEC-09 - Uso di evidence recente e limitata nel percorso di
+evoluzione del
+prompt}\label{dec-09---uso-di-evidence-recente-e-limitata-nel-percorso-di-evoluzione-del-prompt}
+
+DermaTriage uses bounded recent clinical-correction evidence rather than
+unrestricted history for prompt evolution.
+
+\subsubsection{FR-06 - Selezione dell\textquotesingle evidence recente
+per l\textquotesingle evoluzione del
+prompt}\label{fr-06---selezione-dellevidence-recente-per-levoluzione-del-prompt}
+
+\textbf{Parent:} DEC-09\\
+\textbf{Status:} PASS / STOP
+
+\begin{quote}
+Per ciascun ciclo di evoluzione del prompt, DermaTriage MUST costruire
+l\textquotesingle evidence set utilizzando una finestra scorrevole e
+limitata delle correzioni cliniche piu\textquotesingle{} recenti
+pertinenti al percorso di evoluzione del prompt.
+\end{quote}
+
+Semantic parameter: \texttt{PromptEvidenceWindowSize=N}\\
+Current documented binding: \texttt{N=20}\\
+Exact fixed normative status: \texttt{NOT\ SPECIFIED}\\
+Change authority: \texttt{NOT\ SPECIFIED}
+
+Preserved gap: \texttt{GAP-DERMA-PROMPT-WINDOW-01} - ordering,
+membership, underfill, deduplication, reuse/overlap and exact scope
+semantics are not specified.
+
+\subsection{DEC-10 - Qualificazione del disaccordo clinico come evidence
+per l\textquotesingle adattamento
+classificatorio}\label{dec-10---qualificazione-del-disaccordo-clinico-come-evidence-per-ladattamento-classificatorio}
+
+For urgency-classification adaptation, DermaTriage treats clinical
+reviews expressing disagreement with the relevant AI outcome as
+qualifying evidence on the disagreement dimension.
+
+\subsubsection{FR-07 - Qualificazione del disaccordo clinico come
+evidence per l\textquotesingle adattamento
+classificatorio}\label{fr-07---qualificazione-del-disaccordo-clinico-come-evidence-per-ladattamento-classificatorio}
+
+\textbf{Parent:} DEC-10\\
+\textbf{Status:} PASS / STOP
+
+\begin{quote}
+Nel determinare l\textquotesingle evidence clinica qualificante per il
+percorso di adattamento della classificazione di urgenza, DermaTriage
+MUST considerare qualificanti soltanto le revisioni cliniche che
+esprimono disaccordo rispetto all\textquotesingle esito AI pertinente.
+\end{quote}
+
+Governed concept: \texttt{ClinicianDisagreement}\\
+Source-observed current encoding: \texttt{agrees\ ==\ False}\\
+The encoding is realization/data-state evidence, not the normative
+semantic concept.
+
+Confirmed consumption: \texttt{FR-07\ -\textgreater{}\ FR-05}.
+
+\subsection{DEC-11 - Derivazione della supervision classificatoria dalla
+priorita\textquotesingle{} clinicamente
+corretta}\label{dec-11---derivazione-della-supervision-classificatoria-dalla-priorita-clinicamente-corretta}
+
+For urgency-classification adaptation, DermaTriage uses the clinically
+corrected P-scale priority as the governed source from which to derive
+the classifier-supervision target.
+
+\subsubsection{FR-08 - Derivazione del target di supervisione dalla
+priorita\textquotesingle{} P-scale
+corretta}\label{fr-08---derivazione-del-target-di-supervisione-dalla-priorita-p-scale-corretta}
+
+\textbf{Parent:} DEC-11\\
+\textbf{Status:} PASS / STOP
+
+For classifier-adaptation cases with a clinically corrected P-scale
+priority, DermaTriage MUST derive the supervision target according to:
+
+\begin{verbatim}
+P1 -> HIGH
+P2 -> HIGH
+P3 -> MEDIUM
+P4 -> LOW
+\end{verbatim}
+
+The transformation is governed semantic meaning, not a replaceable
+\texttt{N} parameter.
+
+Preserved gap: \texttt{GAP-DERMA-SUPERVISION-INPUT-01} - missing,
+invalid, out-of-domain or conflicting corrected-priority behavior is not
+specified.
+
+\subsection{DEC-06 - Accettazione comparativa
+dell\textquotesingle adattamento della classificazione di
+urgenza}\label{dec-06---accettazione-comparativa-delladattamento-della-classificazione-di-urgenza}
+
+A candidate urgency-classification adaptation is not adopted merely
+because it has been produced; it must first pass comparative evaluation
+against the applicable reference under governed acceptance criteria.
+
+\subsubsection{FR-09 - Qualificazione comparativa del candidato di
+adattamento
+classificatorio}\label{fr-09---qualificazione-comparativa-del-candidato-di-adattamento-classificatorio}
+
+\textbf{Parent:} DEC-06\\
+\textbf{Status:} PASS / STOP
+
+\textbf{NC-09.1}\\
+When a candidate urgency-classification adaptation is considered for
+adoption, DermaTriage MUST evaluate it comparatively against the
+applicable reference version using governed acceptance criteria.
+
+\textbf{NC-09.2}\\
+The candidate MUST be considered qualified for adoption only if all
+applicable governed comparative acceptance criteria are satisfied.
+
+\texttt{qualified\ for\ adoption} does not mean
+\texttt{automatically\ deployed}.
+
+Preserved gap: \texttt{GAP-DERMA-DEPLOY-01} - final promotion authority
+and automaticity after qualification are not specified.
+
+\subsection{DEC-07 - Prioritizzazione asimmetrica delle metriche di
+qualita\textquotesingle{}}\label{dec-07---prioritizzazione-asimmetrica-delle-metriche-di-qualita}
+
+DermaTriage governs an asymmetric acceptance policy in which sensitivity
+and false-low performance may not worsen relative to the reference,
+while overall accuracy may degrade only within a bounded tolerance.
+
+\subsubsection{A5 disposition}\label{a5-disposition}
+
+\textbf{NO NEW FR / ROUTE TO A7.}
+
+This Decision governs additional quality properties of FR-09 rather than
+a new autonomous operational capability.
+
+Current specialization candidates to preserve for A7:
+
+\begin{verbatim}
+SensitivityNonDegradation
+FalseLowNonDegradation
+LimitedAccuracyDegradation
+\end{verbatim}
+
+Semantic parameter for the third property:
+\texttt{AccuracyDegradationTolerance=T}\\
+Current textual binding: \texttt{T=5\%}\\
+Absolute-versus-relative interpretation: \texttt{NOT\ SPECIFIED}\\
+Exact reference/evaluation population/change authority:
+\texttt{NOT\ SPECIFIED}
+
+Concrete non-security subtype design is outside the current thesis
+specialization scope unless later explicitly reopened.
+
+Preserved gap: \texttt{GAP-DERMA-ACCEPT-BINDING-01}.
+
+\subsection{DEC-08 - Reversibilita\textquotesingle{}
+dell\textquotesingle adattamento della classificazione in caso di
+degrado}\label{dec-08---reversibilita-delladattamento-della-classificazione-in-caso-di-degrado}
+
+An already adopted urgency-classification adaptation that manifests
+material degradation according to governed post-adoption criteria must
+be reversible by restoring a previous acceptable version or state.
+
+\subsubsection{FR-10 - Revoca di un adattamento classificatorio
+degradante}\label{fr-10---revoca-di-un-adattamento-classificatorio-degradante}
+
+\textbf{Parent:} DEC-08\\
+\textbf{Status:} PASS / STOP
+
+\begin{quote}
+Per un adattamento della classificazione di urgenza
+gia\textquotesingle{} adottato che manifesti degrado materiale secondo i
+criteri post-adoption governati, DermaTriage MUST supportarne la revoca
+mediante il ripristino di una versione o stato precedente accettabile.
+\end{quote}
+
+The requirement does not establish that rollback must be automatic.
+
+Semantic parameter: \texttt{RollbackAccuracyDegradationThreshold=R}\\
+Current textual binding: \texttt{R=5\%}\\
+\texttt{R} is not assumed identical to pre-adoption \texttt{T} merely
+because the current literals are equal.
+
+Preserved gap: \texttt{GAP-DERMA-ROLLBACK-BINDING-01} - unit, reference,
+population, observation window, timing, automaticity, authorization and
+exact rollback target remain insufficiently governed.
+
+\subsection{MR-04 cumulative D3
+disposition}\label{mr-04-cumulative-d3-disposition}
+
+\textbf{PASS / CLOSED at A5.}
+
+No MR-04 Decision remains without an A5 disposition:
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Decision & A5 result \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+DEC-04 & FR-04 + FR-05 PASS \\
+DEC-05 & FR-11 PASS / STOP \\
+DEC-06 & FR-09 PASS / STOP \\
+DEC-07 & no FR; route to A7 \\
+DEC-08 & FR-10 PASS / STOP \\
+DEC-09 & FR-06 PASS / STOP \\
+DEC-10 & FR-07 PASS / STOP \\
+DEC-11 & FR-08 PASS / STOP \\
+\end{longtable}
+
+\section{7. Cross-requirement and cross-MR
+relations}\label{7-cross-requirement-and-cross-mr-relations}
+
+Confirmed:
+
+\begin{verbatim}
+MR-04 dependsOn MR-03
+FR-07 -> FR-05   [qualifying disagreement evidence is accumulated by FR-05]
+\end{verbatim}
+
+Not asserted without additional evidence:
+
+\begin{verbatim}
+FR-01 -> FR-02
+FR-07 -> FR-08
+FR-08 -> FR-09
+FR-09 -> FR-10
+MR-04 dependsOn MR-01
+\end{verbatim}
+
+MR-04 may reference/consume the P-scale domain governed by MR-01 without
+acquiring a second parent or automatically creating a macro dependency.
+
+\section{8. Parameter and binding registry - current
+candidate}\label{8-parameter-and-binding-registry---current-candidate}
+
+\begin{longtable}[]{@{}llrl@{}}
+\toprule\noalign{}
+Semantic role & DDTA semantic form & Current source binding & Governance
+status \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+prompt adaptation accumulation threshold &
+\texttt{PromptEvolutionThreshold=N} & 10 & exact value fixed status NOT
+SPECIFIED \\
+classifier adaptation accumulation threshold &
+\texttt{ClassifierAdaptationThreshold=N} & 50 & exact value fixed status
+NOT SPECIFIED \\
+prompt recent-evidence window size & \texttt{PromptEvidenceWindowSize=N}
+& 20 & exact value fixed status NOT SPECIFIED \\
+pre-adoption accuracy degradation tolerance &
+\texttt{AccuracyDegradationTolerance=T} & 5\% & quantitative binding
+incomplete \\
+post-adoption rollback accuracy degradation threshold &
+\texttt{RollbackAccuracyDegradationThreshold=R} & 5\% & quantitative
+binding incomplete \\
+\end{longtable}
+
+\texttt{T\ ==\ R} is not established.
+
+\section{9. Information/data-state bridge ledger - current
+candidate}\label{9-informationdata-state-bridge-ledger---current-candidate}
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Governed semantic concept/reference & Source-observed/current binding &
+Status \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{ClinicianDisagreement} & \texttt{agrees\ ==\ False} & data/state
+encoding evidence; not normative field identity \\
+\texttt{ClinicallyCorrectedOperationalTriagePriority} & source
+review/correction data carrying P1-P4 & exact interface field binding
+pending A10 \\
+\texttt{ClassifierUrgencyTarget} & HIGH/MEDIUM/LOW; possible
+enum/string/index realizations & semantic domain governed; concrete
+encoding pending A10 \\
+\texttt{PromptEvolutionThreshold} & current 10 & parameter binding \\
+\texttt{ClassifierAdaptationThreshold} & current 50 & parameter
+binding \\
+\texttt{PromptEvidenceWindowSize} & current 20 & parameter binding \\
+\end{longtable}
+
+\section{10. Preserved project gap
+register}\label{10-preserved-project-gap-register}
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Gap & Area & Preserved meaning \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Diagnostic authority boundary & framing / MR-01 & definitive clinical
+diagnosis authority not established \\
+\texttt{GAP-DERMA-NOIMAGE-INPUT-01} & FR-01 & complete symptom input
+contract not specified \\
+\texttt{GAP-DERMA-PMAP-INPUT-01} & FR-02 & complete urgency/confidence
+input semantics not specified \\
+\texttt{GAP-DERMA-NOIMAGE-PMAP-BINDING-01} & MR-01 & no-image urgency
+-\textgreater{} P-scale input binding not established \\
+\texttt{GAP-DERMA-SLA-01} & MR-01 downstream & SLA trigger/outcome/owner
+semantics not established \\
+\texttt{GAP-DERMA-PATH-01} & MR-01 downstream & pathology output
+obligation/authority not established \\
+specialist selection semantics & MR-02 &
+domain/rules/input/fallback/booking not specified \\
+\texttt{GAP-DERMA-REVIEW-CONTENT-01} & FR-03 & complete review payload
+not specified \\
+\texttt{GAP-DERMA-REVIEW-LIFECYCLE-01} & FR-03 &
+overwrite/history/retention/finality not specified \\
+\texttt{GAP-DERMA-REVIEW-DISAGREEMENT-BINDING-01} & MR-03/MR-04 &
+correction/disagreement/\texttt{agrees} relation incomplete \\
+\texttt{GAP-DERMA-ADAPT-COUNTING-01} & FR-04/05 &
+counting/reset/dedup/reuse semantics not specified \\
+\texttt{GAP-DERMA-ADAPT-THRESHOLD-AUTH-01} & FR-04/05 & threshold change
+authority not specified \\
+\texttt{GAP-DERMA-PROMPT-WINDOW-01} & FR-06 & exact window
+membership/lifecycle semantics incomplete \\
+\texttt{GAP-DERMA-SUPERVISION-INPUT-01} & FR-08 & invalid/missing
+corrected-priority behavior not specified \\
+\texttt{GAP-DERMA-DEPLOY-01} & FR-09 lifecycle & final deployment
+authority/automaticity not specified \\
+\texttt{GAP-DERMA-ACCEPT-BINDING-01} & DEC-06/07 & complete quantitative
+acceptance binding not specified \\
+\texttt{GAP-DERMA-ROLLBACK-BINDING-01} & DEC-08 & complete rollback
+trigger binding not specified \\
+\end{longtable}
+
+\section{11. Source-observed evidence pending A7/A8/A10
+review}\label{11-source-observed-evidence-pending-a7a8a10-review}
+
+The following source facts are preserved but \textbf{not yet promoted}
+to governed Specialized/Security requirements or stable realization
+bindings by this candidate:
+
+\subsection{11.1 Non-security quality specialization evidence - pending
+A7}\label{111-non-security-quality-specialization-evidence---pending-a7}
+
+\begin{itemize}
+\tightlist
+\item
+  sensitivity non-degradation relative to the applicable reference;
+\item
+  false-low non-degradation relative to the applicable reference;
+\item
+  bounded accuracy degradation;
+\item
+  source documents report a current \texttt{5\%} literal for accuracy
+  tolerance.
+\end{itemize}
+
+\subsection{11.2 Security/privacy evidence - pending
+A8}\label{112-securityprivacy-evidence---pending-a8}
+
+Source documents currently describe:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{X-API-Key} on protected DermaTriage
+  administrative/B4-integrated operations;
+\item
+  B4 JWT authentication;
+\item
+  anonymized research patient identifiers using a \texttt{PAT\_XXXX}
+  style;
+\item
+  no raw patient images stored in the RAG CSV;
+\item
+  B4 patient uploads processed in memory and not stored permanently in
+  the research dataset.
+\end{itemize}
+
+These observations are \textbf{A8 candidate evidence}, not yet final
+SecurityRequirements. Mechanisms such as X-API-Key/JWT are not
+automatically the security property.
+
+\subsection{11.3 Realization/configuration evidence - pending
+A10}\label{113-realizationconfiguration-evidence---pending-a10}
+
+Examples include:
+
+\begin{itemize}
+\tightlist
+\item
+  current named models and four-stage pipeline;
+\item
+  endpoint paths;
+\item
+  environment variables;
+\item
+  prompt storage path;
+\item
+  database filenames;
+\item
+  fine-tuning layers, learning rates, epochs and class weights;
+\item
+  model version/file identifiers;
+\item
+  current threshold tuning values not already promoted to governed
+  semantics.
+\end{itemize}
+
+\section{12. Current gate state}\label{12-current-gate-state}
+
+\begin{verbatim}
+A0  Authority/source gate                  PASS
+A1  Project framing                        PASS
+A2  MacroRequirement / D1                  CUMULATIVE PASS
+A3  Semantic sufficiency                   PASS for decomposed scope
+A4  Decision / D2                          CUMULATIVE PASS / CLOSED
+A5  FunctionalRequirement / D3             CUMULATIVE PASS / CLOSED
+A6  Requirement split                      NEXT
+A7  SpecializedRequirement                 NOT STARTED
+A8  SecurityRequirement                    NOT STARTED
+A9  Cross-MR downstream review             NOT STARTED
+A10 Terminology/information/bindings        NOT STARTED
+A11 Propagation/regression                  NOT STARTED
+A12 Completeness/promotion readiness        NOT STARTED
+BA   Accepted Base Analysis                 BLOCKED
+\end{verbatim}
+
+This candidate must not be promoted as the final DermaTriage governed
+baseline before A6-A12 complete.
+
+\end{document}
