@@ -1,0 +1,1077 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{DDTA_DERMATRIAGE_DOCUMENTATION_STYLE_R2}
+\begin{document}
+\selectlanguage{italian}
+
+\begin{titlepage}
+\thispagestyle{empty}
+\vspace*{9mm}
+{\sffamily\bfseries\color{DDTANavy}\fontsize{15}{18}\selectfont Documentation-Driven Threat Analysis}\par
+\vspace{5mm}
+{\sffamily\bfseries\color{DDTANavy}\fontsize{28}{32}\selectfont DermaTriage Governed DDTA Documentation}\par
+\vspace{2mm}
+{\sffamily\color{DDTABlue}\fontsize{18}{22}\selectfont A6 Candidate R2 - Depth-first Project Projection}\par
+
+\vspace{10mm}
+\begin{tcolorbox}[enhanced,arc=3pt,boxrule=0pt,colback=DDTANavy,left=12pt,right=12pt,top=10pt,bottom=10pt]
+{\color{white}\sffamily\bfseries Clean project-document candidate}\par
+\vspace{2mm}
+{\color{white!88}\small Gerarchia leggibile in profondità: MacroRequirement $\rightarrow$ Decision $\rightarrow$ FunctionalRequirement $\rightarrow$ eventuale specializzazione. I gap documentali sono raccolti unicamente nel registro finale.}
+\end{tcolorbox}
+
+\vspace{8mm}
+\begin{tabularx}{\textwidth}{L{46mm}Y}
+\toprule
+\textbf{Status} & A6 CLOSED CANDIDATE / NOT YET PROMOTED \\
+\textbf{Coverage} & Project framing, MacroRequirement, Decision, FunctionalRequirement e Requirement split review A6 \\
+\textbf{Next method step} & PRE-A7 / SpecializedRequirement review; A7 e A8 non ancora eseguiti \\
+\textbf{Methodology authority} & \texttt{DDTA\_DOCUMENTATION\_BA\_AUTHORING\_GUIDE\_R4} \\
+\textbf{Repository research baseline} & \texttt{4a0ee8501069c3bfba645b42cf4661b9c4c245b9} \\
+\textbf{Authoritative source package} & \texttt{DermaTriage-Docs-20260830T152637Z-1-001.zip} \\
+\textbf{Source package SHA-256} & {\scriptsize\nolinkurl{E9ED2C507BEFB95F54A52084687CD1E8798863AE81CF69D09568864D8CBF280E}} \\
+\bottomrule
+\end{tabularx}
+
+\vfill
+{\sffamily\small\color{DDTAGray}5 settembre 2026}
+\end{titlepage}
+
+\section*{Indice gerarchico del progetto}
+\addcontentsline{toc}{section}{Indice gerarchico del progetto}
+
+\begin{hierarchybox}[title={DermaTriage - active A6 hierarchy}]
+{\small\textbf{Legenda:} MR = MacroRequirement; DEC = Decision; FR = FunctionalRequirement; STOP = decomposizione intenzionalmente arrestata; SUPERSEDED = identità storica non attiva.}
+\begin{lstlisting}[basicstyle=\ttfamily\scriptsize]
+DERMATRiAGE
+|
+|-- MR-01  Valutazione di triage del caso dermatologico
+|   |
+|   |-- DEC-01  Continuita del triage in assenza di immagine
+|   |   `-- FR-01  Determinazione urgenza su base sintomatologica
+|   |
+|   `-- DEC-02  Adozione della P-scale per la priorita operativa
+|       `-- FR-02  Derivazione della priorita P-scale
+|
+|-- MR-02  Indirizzamento specialistico
+|   `-- STOP AT MR
+|
+|-- MR-03  Gestione della validazione clinica degli esiti
+|   `-- DEC-03  Separazione tra esito originario e revisione clinica
+|       |-- FR-03  Registrazione correlata della revisione clinica
+|       `-- FR-12  Distinzione tra conferma e correzione
+|
+`-- MR-04  Adattamento controllato sulla base della revisione clinica
+    |     dependsOn MR-03
+    |
+    |-- DEC-04  Attivazione su accumulo di evidence clinica
+    |   |-- FR-04  Attivazione evoluzione prompt
+    |   `-- FR-05  Attivazione adattamento classificatorio
+    |
+    |-- DEC-05  Separazione dei percorsi di adattamento
+    |   |-- FR-13  Indipendenza condizioni di attivazione
+    |   |-- FR-14  Indipendenza qualificazione evidence
+    |   `-- FR-15  Indipendenza risultati di lifecycle
+    |       [FR-11 historical composite: SUPERSEDED]
+    |
+    |-- DEC-06  Accettazione comparativa
+    |   `-- FR-09  Qualificazione comparativa del candidato
+    |
+    |-- DEC-07  Prioritizzazione asimmetrica metriche di qualita
+    |   `-- no active FR/SR at A6; A7 specialization review pending
+    |
+    |-- DEC-08  Reversibilita in caso di degrado
+    |   `-- FR-10  Revoca/ripristino
+    |
+    |-- DEC-09  Evidence recente e limitata - prompt
+    |   `-- FR-06  Selezione finestra evidence recente
+    |
+    |-- DEC-10  Disaccordo clinico come evidence
+    |   `-- FR-07  Qualificazione del disaccordo
+    |
+    `-- DEC-11  Supervision da priorita P-scale corretta
+        `-- FR-08  Derivazione target di supervisione
+\end{lstlisting}
+\end{hierarchybox}
+
+\begin{statusbox}[title={Reading convention}]
+Gli ID sono identità stabili e non impongono un ordine di lettura. Il corpo del documento segue intenzionalmente una proiezione \textbf{depth-first}: per ogni MR vengono presentate una Decision e tutti i suoi FR prima di passare alla Decision successiva; completato il branch si passa al successivo MR.
+\end{statusbox}
+
+\tableofcontents
+\clearpage
+
+\section{Status, authority e convenzione documentale}
+
+\begin{projectbox}[title={Authority statement}]
+Ogni elemento attivo di questa candidate espone \textbf{Lifecycle}, \textbf{Authority}, \textbf{Type} e \textbf{Title}. Il valore \candidateauthority{} indica che il significato è stato ricostruito dal source package autorizzato e ha superato la review fino ad A6, ma questa candidate non è ancora stata promossa a current project authority.
+\end{projectbox}
+
+La documentazione è deliberatamente priva di commentary di ricerca, gate step-by-step, alternative scartate e registri intermedi. I binding materialmente utili restano vicini al loro semantic owner. Le incompletezze documentali note sono raccolte una sola volta nel registro finale dei gap.
+
+\section{Project problem framing}
+
+\begin{projectbox}
+DermaTriage affronta il problema di supportare il triage precoce di casi dermatologici relativi a lesioni cutanee potenzialmente oncologiche, utilizzando le informazioni disponibili sul caso per determinare una priorità di presa in carico e supportare l'instradamento verso l'assistenza specialistica appropriata.
+\end{projectbox}
+
+\subsection{Scope boundary}
+
+\textbf{Governed in the current candidate:}
+\begin{itemize}
+\item valutazione di urgenza e priorità orientata al triage;
+\item responsabilità macro di indirizzamento specialistico;
+\item gestione degli esiti di revisione clinica;
+\item adattamento controllato utilizzando evidence derivata dalla revisione clinica.
+\end{itemize}
+
+\textbf{Not established as governed project authority:}
+\begin{itemize}
+\item autorità per diagnosi clinica definitiva;
+\item responsabilità completa di specialist selection/booking;
+\item deployment automatico o autorità finale di promotion dopo qualification;
+\item semantica normativa completa di ogni valore di configurazione o dettaglio di realization.
+\end{itemize}
+
+\section{MR-01 - Valutazione di triage del caso dermatologico}\label{mr-01}
+
+\begin{mrmeta}
+\begin{tabularx}{\linewidth}{L{43mm}Y}
+\toprule
+\textbf{ID} & \texttt{MR-01} \\
+\textbf{Lifecycle} & \texttt{candidate} \\
+\textbf{Authority} & \candidateauthority \\
+\textbf{Type} & \MR \\
+\textbf{Title} & Valutazione di triage del caso dermatologico \\
+\bottomrule
+\end{tabularx}
+\end{mrmeta}
+
+\subsection{Intent}
+Determinare, dalle informazioni disponibili sul caso dermatologico, una valutazione di urgenza utile a stabilire la priorità di presa in carico specialistica.
+
+\subsection{Context}
+La responsabilità riguarda la valutazione di urgenza e priorità di un caso dermatologico relativo a una lesione cutanea potenzialmente oncologica. La disponibilità dell'immagine può variare; la responsabilità di triage non coincide con l'autorità per una diagnosi clinica definitiva e non possiede l'intero processo di instradamento specialistico.
+
+\subsection{Stakeholders}
+Ruoli materialmente coinvolti nel significato governato corrente:
+\begin{itemize}
+\item professionisti sanitari che utilizzano o revisionano gli esiti di triage;
+\item responsabili della successiva presa in carico specialistica;
+\item soggetti cui il caso dermatologico si riferisce;
+\item responsabili del servizio DermaTriage.
+\end{itemize}
+
+\subsection{Scope}
+\textbf{In scope:} valutazione dell'urgenza del caso; rappresentazione della priorità operativa P1-P4; uso delle informazioni disponibili quando l'immagine non è presente.
+
+\textbf{Out of scope:} diagnosi clinica definitiva; scelta completa dello specialista o prenotazione; gestione della presa in carico specialistica; semantica completa degli SLA osservati nella fonte; realizzazione tecnica del classificatore.
+
+\subsection{Assumptions / Constraints}
+La documentazione corrente non assume che un'immagine sia sempre disponibile. Non introduce un vocabolario chiuso universale dei sintomi né attribuisce a DermaTriage autorità diagnostica definitiva.
+
+\subsection{dependsOn}
+Nessuna dipendenza macro canonica è stabilita per \texttt{MR-01} nel baseline corrente.
+
+\subsection{DEC-01 - Continuità del triage in assenza di immagine}\label{dec-01}
+
+\begin{decmeta}
+\begin{tabularx}{\linewidth}{L{43mm}Y}
+\toprule
+\textbf{ID} & \texttt{DEC-01} \\
+\textbf{Lifecycle} & \texttt{candidate} \\
+\textbf{Authority} & \candidateauthority \\
+\textbf{Type} & \DEC \\
+\textbf{Title} & Continuità del triage in assenza di immagine \\
+\textbf{Parent MacroRequirement} & \texttt{MR-01} \\
+\textbf{Decision kind} & \texttt{SELECTABLE} \\
+\bottomrule
+\end{tabularx}
+\end{decmeta}
+
+\subsubsection{Context}
+Un caso dermatologico può essere sottoposto a triage anche quando non è disponibile un'immagine. Trattare l'immagine come precondizione assoluta renderebbe impossibile la valutazione in tali casi, pur essendo presenti informazioni sintomatologiche utili.
+
+\subsubsection{Decision}
+DermaTriage consente alla valutazione di urgenza di proseguire in assenza di immagine, utilizzando le informazioni sintomatologiche disponibili per il caso.
+
+\subsubsection{Consequences}
+L'immagine non è una precondizione assoluta per il triage. Il comportamento operativo richiesto è espresso da \texttt{FR-01}. La completezza del contratto di input sintomatologico rimane distinta dalla decisione di consentire il triage senza immagine.
+
+\subsubsection{FR-01 - Determinazione dell'urgenza su base sintomatologica in assenza di immagine}\label{fr-01}
+
+\begin{frmeta}
+\begin{tabularx}{\linewidth}{L{43mm}Y}
+\toprule
+\textbf{ID} & \texttt{FR-01} \\
+\textbf{Lifecycle} & \texttt{candidate} \\
+\textbf{Authority} & \candidateauthority \\
+\textbf{Type} & \FR \\
+\textbf{Title} & Determinazione dell'urgenza su base sintomatologica in assenza di immagine \\
+\textbf{Parent Decision} & \texttt{DEC-01} \\
+\textbf{Owning MR (derived)} & \texttt{MR-01} \\
+\textbf{SpecializedRequirement relation} & 0 active instances at A6 \\
+\bottomrule
+\end{tabularx}
+\end{frmeta}
+
+\paragraph{Functional obligation.}
+Determinare l'urgenza del caso quando l'immagine non è disponibile, usando le informazioni sintomatologiche disponibili.
+
+\begin{normbox}[title={Functional clauses / inherited \texttt{normativeClause [1..*]}}]
+Quando per il caso dermatologico non è disponibile un'immagine, DermaTriage MUST determinare l'urgenza sulla base delle informazioni sintomatologiche disponibili per il caso.
+\end{normbox}
+
+\paragraph{SPO references (L2 support).}
+\begin{lstlisting}
+DermaTriage -- determine urgency from --> AvailableSymptomInformation
+AvailableSymptomInformation -- concerns --> DermatologicalCase
+\end{lstlisting}
+
+\subsection{DEC-02 - Adozione della P-scale per la priorità operativa}\label{dec-02}
+
+\begin{decmeta}
+\begin{tabularx}{\linewidth}{L{43mm}Y}
+\toprule
+\textbf{ID} & \texttt{DEC-02} \\
+\textbf{Lifecycle} & \texttt{candidate} \\
+\textbf{Authority} & \candidateauthority \\
+\textbf{Type} & \DEC \\
+\textbf{Title} & Adozione della P-scale per la priorità operativa \\
+\textbf{Parent MacroRequirement} & \texttt{MR-01} \\
+\textbf{Decision kind} & \texttt{SELECTABLE} \\
+\bottomrule
+\end{tabularx}
+\end{decmeta}
+
+\subsubsection{Context}
+La valutazione di urgenza deve essere trasformata in una priorità operativa leggibile dal processo di presa in carico. La fonte usa la scala P1-P4 e distingue il caso HIGH ad alta confidence dagli altri casi HIGH.
+
+\subsubsection{Decision}
+DermaTriage rappresenta la priorità operativa di triage mediante la P-scale P1-P4, derivandola dalla valutazione di urgenza e, per il caso HIGH, dalla confidence applicabile.
+
+\subsubsection{Consequences}
+Il mapping P1-P4 diventa significato governato del progetto. Il comparatore per P1 resta strettamente \texttt{> 0.85}. I valori SLA osservati nella fonte e l'eventuale \texttt{predicted\_pathology} non sono promossi automaticamente a obblighi di questo branch.
+
+\subsubsection{FR-02 - Derivazione della priorità P-scale dalla valutazione di urgenza}\label{fr-02}
+
+\begin{frmeta}
+\begin{tabularx}{\linewidth}{L{43mm}Y}
+\toprule
+\textbf{ID} & \texttt{FR-02} \\
+\textbf{Lifecycle} & \texttt{candidate} \\
+\textbf{Authority} & \candidateauthority \\
+\textbf{Type} & \FR \\
+\textbf{Title} & Derivazione della priorità P-scale dalla valutazione di urgenza \\
+\textbf{Parent Decision} & \texttt{DEC-02} \\
+\textbf{Owning MR (derived)} & \texttt{MR-01} \\
+\textbf{SpecializedRequirement relation} & 0 active instances at A6 \\
+\bottomrule
+\end{tabularx}
+\end{frmeta}
+
+\paragraph{Functional obligation.}
+Derivare una priorità operativa P1-P4 dalla valutazione di urgenza applicabile al caso.
+
+\begin{normbox}[title={Functional clauses / inherited \texttt{normativeClause [1..*]}}]
+\begin{tabularx}{\linewidth}{L{55mm}Y}
+\toprule
+\textbf{Condizione governata} & \textbf{Priorità richiesta} \\
+\midrule
+\texttt{urgency = HIGH} e \texttt{confidence > 0.85} & DermaTriage MUST produrre \texttt{P1}. \\
+\texttt{urgency = HIGH} negli altri casi applicabili & DermaTriage MUST produrre \texttt{P2}. \\
+\texttt{urgency = MEDIUM} & DermaTriage MUST produrre \texttt{P3}. \\
+\texttt{urgency = LOW} & DermaTriage MUST produrre \texttt{P4}. \\
+\bottomrule
+\end{tabularx}
+\end{normbox}
+
+\paragraph{SPO references (L2 support).}
+\begin{lstlisting}
+DermaTriage -- derive --> OperationalTriagePriorityPScale
+UrgencyEvaluation -- contributes to --> OperationalTriagePriorityPScale
+ApplicableConfidence -- refines HIGH mapping to --> P1
+\end{lstlisting}
+
+\paragraph{Current governed/binding information.}
+Il literal corrente della soglia di confidence per P1 è \texttt{0.85}; il comparatore governato è strettamente \texttt{>}. La semantica completa di input mancanti o invalidi è raccolta nel registro finale dei gap.
+
+
+\section{MR-02 - Indirizzamento specialistico}\label{mr-02}
+
+\begin{mrmeta}
+\begin{tabularx}{\linewidth}{L{43mm}Y}
+\toprule
+\textbf{ID} & \texttt{MR-02} \\
+\textbf{Lifecycle} & \texttt{candidate} \\
+\textbf{Authority} & \candidateauthority \\
+\textbf{Type} & \MR \\
+\textbf{Title} & Indirizzamento specialistico \\
+\bottomrule
+\end{tabularx}
+\end{mrmeta}
+
+\subsection{Intent}
+Determinare un'indicazione di destinazione specialistica per il caso dermatologico, al fine di supportarne il successivo instradamento verso l'assistenza appropriata.
+
+\subsection{Context}
+La documentazione sorgente indica che DermaTriage produce o supporta un'informazione orientata alla destinazione specialistica. Il significato disponibile non stabilisce però in modo sufficiente la regola di selezione, il vocabolario completo delle destinazioni né la responsabilità di assegnazione o prenotazione.
+
+\subsection{Stakeholders}
+Ruoli materialmente coinvolti:
+\begin{itemize}
+\item professionisti sanitari che utilizzano l'indicazione di destinazione;
+\item servizi o unità specialistiche destinatarie del successivo instradamento;
+\item soggetti cui il caso dermatologico si riferisce.
+\end{itemize}
+
+\subsection{Scope}
+\textbf{In scope:} responsabilità macro di produrre/supportare un'indicazione di destinazione specialistica.
+
+\textbf{Out of scope:} prenotazione, assegnazione effettiva dello specialista, completa tassonomia delle specialità, regola di fallback e relazione completa con la P-scale finché tali significati non sono governati.
+
+\subsection{Assumptions / Constraints}
+Nessuna regola di selezione specialistica completa viene assunta o ricostruita per inferenza. L'assenza di ulteriore decomposizione è intenzionale nel baseline corrente.
+
+\subsection{dependsOn}
+Nessuna dipendenza macro canonica è stabilita per \texttt{MR-02} nel baseline corrente.
+
+\begin{statusbox}[title={STOP AT MR}]
+Nel baseline A6 non vengono create Decision o FunctionalRequirement sotto \texttt{MR-02}. L'arresto preserva il significato disponibile senza riempire artificialmente la gerarchia.
+\end{statusbox}
+
+
+\section{MR-03 - Gestione della validazione clinica degli esiti}\label{mr-03}
+
+\begin{mrmeta}
+\begin{tabularx}{\linewidth}{L{43mm}Y}
+\toprule
+\textbf{ID} & \texttt{MR-03} \\
+\textbf{Lifecycle} & \texttt{candidate} \\
+\textbf{Authority} & \candidateauthority \\
+\textbf{Type} & \MR \\
+\textbf{Title} & Gestione della validazione clinica degli esiti \\
+\bottomrule
+\end{tabularx}
+\end{mrmeta}
+
+\subsection{Intent}
+Supportare la registrazione e l'utilizzo della validazione o correzione effettuata da un professionista sanitario sugli esiti prodotti da DermaTriage, mantenendo distinguibile il risultato della revisione dall'esito originario.
+
+\subsection{Context}
+Il giudizio clinico appartiene al professionista sanitario. DermaTriage possiede la responsabilità di gestire, registrare e correlare l'esito della revisione al risultato originario del sistema, senza sostituirsi all'autorità clinica.
+
+\subsection{Stakeholders}
+Ruoli materialmente coinvolti:
+\begin{itemize}
+\item professionisti sanitari che effettuano la revisione;
+\item responsabili del servizio DermaTriage che utilizzano il risultato della revisione;
+\item processi downstream di adattamento che consumano evidence derivata dalla revisione.
+\end{itemize}
+
+\subsection{Scope}
+\textbf{In scope:} registrazione correlata del risultato della revisione; distinzione tra conferma e correzione; mantenimento della distinguibilità tra esito originario e revisione.
+
+\textbf{Out of scope:} decisione clinica stessa; contenuto completo del payload di correzione; policy completa di history/retention/finality; semantica completa del disaccordo usato downstream.
+
+\subsection{Assumptions / Constraints}
+La revisione clinica è trattata come input governato proveniente da un professionista sanitario; il progetto non assume che conferma, correzione e disaccordo siano sinonimi.
+
+\subsection{dependsOn}
+Nessuna dipendenza macro canonica è stabilita per \texttt{MR-03} nel baseline corrente.
+
+\subsection{DEC-03 - Separazione tra esito originario e revisione clinica}\label{dec-03}
+
+\begin{decmeta}
+\begin{tabularx}{\linewidth}{L{43mm}Y}
+\toprule
+\textbf{ID} & \texttt{DEC-03} \\
+\textbf{Lifecycle} & \texttt{candidate} \\
+\textbf{Authority} & \candidateauthority \\
+\textbf{Type} & \DEC \\
+\textbf{Title} & Separazione tra esito originario e revisione clinica \\
+\textbf{Parent MacroRequirement} & \texttt{MR-03} \\
+\textbf{Decision kind} & \texttt{SELECTABLE} \\
+\bottomrule
+\end{tabularx}
+\end{decmeta}
+
+\subsubsection{Context}
+Una revisione clinica può confermare o correggere un esito prodotto da DermaTriage. Sovrascrivere semanticamente l'esito originario renderebbe indistinguibili il comportamento del sistema e il successivo giudizio clinico.
+
+\subsubsection{Decision}
+DermaTriage mantiene l'esito originario distinguibile dal successivo risultato della revisione clinica.
+
+\subsubsection{Consequences}
+La registrazione e la correlazione con l'esito originario sono governate da \texttt{FR-03}. La distinzione tra conferma e correzione è governata separatamente da \texttt{FR-12}. Il lifecycle storico di \texttt{FR-03} viene preservato: lo split A6 non riusa il suo ID per una nuova obbligazione.
+
+\subsubsection{FR-03 - Registrazione correlata della revisione clinica}\label{fr-03}
+
+\begin{frmeta}
+\begin{tabularx}{\linewidth}{L{43mm}Y}
+\toprule
+\textbf{ID} & \texttt{FR-03} \\
+\textbf{Lifecycle} & \texttt{candidate} \\
+\textbf{Authority} & \candidateauthority \\
+\textbf{Type} & \FR \\
+\textbf{Title} & Registrazione correlata della revisione clinica \\
+\textbf{Parent Decision} & \texttt{DEC-03} \\
+\textbf{Owning MR (derived)} & \texttt{MR-03} \\
+\textbf{SpecializedRequirement relation} & 0 active instances at A6 \\
+\bottomrule
+\end{tabularx}
+\end{frmeta}
+
+\paragraph{Functional obligation.}
+Registrare il risultato della revisione clinica mantenendone la correlazione con l'esito DermaTriage originario.
+
+\begin{normbox}[title={Functional clauses / inherited \texttt{normativeClause [1..*]}}]
+Quando viene fornita una validazione o correzione clinica relativa a un esito DermaTriage, DermaTriage MUST registrare il risultato della revisione associandolo all'esito originario cui la revisione si riferisce.
+\end{normbox}
+
+\paragraph{SPO references (L2 support).}
+\begin{lstlisting}
+DermaTriage -- record --> ClinicalReviewResult
+ClinicalReviewResult -- associated with --> OriginalDermaTriageOutcome
+\end{lstlisting}
+
+\subsubsection{FR-12 - Distinzione tra conferma e correzione della revisione clinica}\label{fr-12}
+
+\begin{frmeta}
+\begin{tabularx}{\linewidth}{L{43mm}Y}
+\toprule
+\textbf{ID} & \texttt{FR-12} \\
+\textbf{Lifecycle} & \texttt{candidate} \\
+\textbf{Authority} & \candidateauthority \\
+\textbf{Type} & \FR \\
+\textbf{Title} & Distinzione tra conferma e correzione della revisione clinica \\
+\textbf{Parent Decision} & \texttt{DEC-03} \\
+\textbf{Owning MR (derived)} & \texttt{MR-03} \\
+\textbf{SpecializedRequirement relation} & 0 active instances at A6 \\
+\bottomrule
+\end{tabularx}
+\end{frmeta}
+
+\paragraph{Functional obligation.}
+Rendere distinguibile se il risultato della revisione clinica conferma oppure corregge l'esito originario.
+
+\begin{normbox}[title={Functional clauses / inherited \texttt{normativeClause [1..*]}}]
+Per ogni risultato di revisione clinica registrato, DermaTriage MUST mantenere distinguibile una conferma dell'esito originario da una correzione dell'esito originario.
+\end{normbox}
+
+\paragraph{SPO references (L2 support).}
+\begin{lstlisting}
+ClinicalReviewResult -- classify disposition as --> ConfirmationOrCorrection
+DermaTriage -- preserve distinction of --> ClinicalReviewDisposition
+\end{lstlisting}
+
+
+\section{MR-04 - Adattamento controllato sulla base della revisione clinica}\label{mr-04}
+
+\begin{mrmeta}
+\begin{tabularx}{\linewidth}{L{43mm}Y}
+\toprule
+\textbf{ID} & \texttt{MR-04} \\
+\textbf{Lifecycle} & \texttt{candidate} \\
+\textbf{Authority} & \candidateauthority \\
+\textbf{Type} & \MR \\
+\textbf{Title} & Adattamento controllato sulla base della revisione clinica \\
+\bottomrule
+\end{tabularx}
+\end{mrmeta}
+
+\subsection{Intent}
+Consentire l'evoluzione controllata del comportamento di DermaTriage utilizzando evidence derivata dalle validazioni e correzioni cliniche accumulate, evitando che modifiche degradanti vengano accettate senza controllo.
+
+\subsection{Context}
+DermaTriage utilizza risultati di revisione clinica per supportare l'evoluzione di capability differenti, in particolare il percorso di evoluzione del prompt e il percorso di adattamento della classificazione di urgenza. Questi percorsi hanno condizioni di attivazione, evidence qualificante e risultati di lifecycle distinti.
+
+\subsection{Stakeholders}
+Ruoli materialmente coinvolti:
+\begin{itemize}
+\item responsabili dell'evoluzione e manutenzione di DermaTriage;
+\item professionisti sanitari le cui revisioni forniscono evidence clinica;
+\item utilizzatori e soggetti influenzati dalla qualità del triage dopo l'adattamento.
+\end{itemize}
+
+\subsection{Scope}
+\textbf{In scope:} attivazione su accumulo di evidence; separazione dei percorsi di adattamento; selezione dell'evidence recente; qualificazione del disaccordo clinico; derivazione del target di supervisione; valutazione comparativa; proprietà qualitative di accettazione; reversibilità post-adoption.
+
+\textbf{Out of scope:} giudizio clinico posseduto da \texttt{MR-03}; autorità finale di deployment non governata; dettagli di training, layer, learning rate, epoch, class weights, file di modello e altri fatti di realization non promossi.
+
+\subsection{Assumptions / Constraints}
+Le revisioni cliniche consumate da questo branch sono governate da \texttt{MR-03}. I percorsi di adattamento possono riusare dati solo quando tali dati soddisfano indipendentemente le regole di ciascun percorso. Un valore di configurazione corrente non è trattato automaticamente come invariante normativa.
+
+\subsection{dependsOn}
+\texttt{MR-04 dependsOn MR-03}. La dipendenza esprime consumo del significato di revisione clinica posseduto da \texttt{MR-03}; non crea co-ownership dei Requirement.
+
+\subsection{DEC-04 - Attivazione dell'adattamento su accumulo di evidence clinica}\label{dec-04}
+
+\begin{decmeta}
+\begin{tabularx}{\linewidth}{L{43mm}Y}
+\toprule
+\textbf{ID} & \texttt{DEC-04} \\
+\textbf{Lifecycle} & \texttt{candidate} \\
+\textbf{Authority} & \candidateauthority \\
+\textbf{Type} & \DEC \\
+\textbf{Title} & Attivazione dell'adattamento su accumulo di evidence clinica \\
+\textbf{Parent MacroRequirement} & \texttt{MR-04} \\
+\textbf{Decision kind} & \texttt{SELECTABLE} \\
+\bottomrule
+\end{tabularx}
+\end{decmeta}
+
+\subsubsection{Context}
+L'adattamento non viene attivato per ogni singola revisione clinica. I diversi percorsi devono accumulare evidence pertinente prima di avviare il proprio ciclo di evoluzione.
+
+\subsubsection{Decision}
+Ogni processo di adattamento viene attivato soltanto quando l'evidence clinica pertinente accumulata soddisfa la condizione di accumulo governata per quel processo.
+
+\subsubsection{Consequences}
+Il percorso prompt e il percorso classificatorio hanno soglie semanticamente distinte. \texttt{FR-04} governa l'attivazione del prompt; \texttt{FR-05} governa l'attivazione classificatoria. I valori correnti 10 e 50 restano binding distinti.
+
+\subsubsection{FR-04 - Attivazione del percorso di evoluzione del prompt}\label{fr-04}
+
+\begin{frmeta}
+\begin{tabularx}{\linewidth}{L{43mm}Y}
+\toprule
+\textbf{ID} & \texttt{FR-04} \\
+\textbf{Lifecycle} & \texttt{candidate} \\
+\textbf{Authority} & \candidateauthority \\
+\textbf{Type} & \FR \\
+\textbf{Title} & Attivazione del percorso di evoluzione del prompt \\
+\textbf{Parent Decision} & \texttt{DEC-04} \\
+\textbf{Owning MR (derived)} & \texttt{MR-04} \\
+\textbf{SpecializedRequirement relation} & 0 active instances at A6 \\
+\bottomrule
+\end{tabularx}
+\end{frmeta}
+
+\paragraph{Functional obligation.}
+Attivare un ciclo di evoluzione del prompt quando l'evidence di correzione clinica pertinente raggiunge la soglia applicabile al percorso prompt.
+
+\begin{normbox}[title={Functional clauses / inherited \texttt{normativeClause [1..*]}}]
+Quando l'evidence di correzione clinica pertinente accumulata raggiunge la soglia prevista per il percorso di evoluzione del prompt, DermaTriage MUST attivare un ciclo di evoluzione del prompt.
+\end{normbox}
+
+\paragraph{SPO references (L2 support).}
+\begin{lstlisting}
+AccumulatedPromptCorrectionEvidence -- reaches --> PromptEvolutionThreshold
+DermaTriage -- activate --> PromptEvolutionCycle
+\end{lstlisting}
+
+\paragraph{Current governed/binding information.}
+Semantic parameter: \texttt{PromptEvolutionThreshold=N}. Binding documentato corrente: \texttt{N=10}. Il literal corrente non viene dichiarato invariante normativa fissa oltre quanto governato dalla fonte.
+
+\subsubsection{FR-05 - Attivazione del percorso di adattamento classificatorio}\label{fr-05}
+
+\begin{frmeta}
+\begin{tabularx}{\linewidth}{L{43mm}Y}
+\toprule
+\textbf{ID} & \texttt{FR-05} \\
+\textbf{Lifecycle} & \texttt{candidate} \\
+\textbf{Authority} & \candidateauthority \\
+\textbf{Type} & \FR \\
+\textbf{Title} & Attivazione del percorso di adattamento classificatorio \\
+\textbf{Parent Decision} & \texttt{DEC-04} \\
+\textbf{Owning MR (derived)} & \texttt{MR-04} \\
+\textbf{SpecializedRequirement relation} & 0 active instances at A6 \\
+\bottomrule
+\end{tabularx}
+\end{frmeta}
+
+\paragraph{Functional obligation.}
+Attivare il ciclo di adattamento della classificazione quando l'evidence qualificante accumulata raggiunge la soglia applicabile al percorso classificatorio.
+
+\begin{normbox}[title={Functional clauses / inherited \texttt{normativeClause [1..*]}}]
+Quando l'evidence qualificante accumulata raggiunge la soglia prevista per il percorso di adattamento classificatorio, DermaTriage MUST attivare il relativo ciclo di adattamento.
+\end{normbox}
+
+\paragraph{SPO references (L2 support).}
+\begin{lstlisting}
+AccumulatedClassifierEvidence -- reaches --> ClassifierAdaptationThreshold
+DermaTriage -- activate --> ClassifierAdaptationCycle
+\end{lstlisting}
+
+\paragraph{Current governed/binding information.}
+Semantic parameter: \nolinkurl{ClassifierAdaptationThreshold=N}. Binding documentato corrente: \texttt{N=50}. Il literal corrente non viene dichiarato invariante normativa fissa oltre quanto governato dalla fonte.
+
+\paragraph{Cross-branch / consumption note.}
+\texttt{FR-05} consuma evidence di disaccordo qualificata secondo \texttt{FR-07}. Questo consumo non modifica la parent Decision di nessuno dei due Requirement.
+
+\subsection{DEC-05 - Separazione dei percorsi di adattamento per capability}\label{dec-05}
+
+\begin{decmeta}
+\begin{tabularx}{\linewidth}{L{43mm}Y}
+\toprule
+\textbf{ID} & \texttt{DEC-05} \\
+\textbf{Lifecycle} & \texttt{candidate} \\
+\textbf{Authority} & \candidateauthority \\
+\textbf{Type} & \DEC \\
+\textbf{Title} & Separazione dei percorsi di adattamento per capability \\
+\textbf{Parent MacroRequirement} & \texttt{MR-04} \\
+\textbf{Decision kind} & \texttt{SELECTABLE} \\
+\bottomrule
+\end{tabularx}
+\end{decmeta}
+
+\subsubsection{Context}
+L'evoluzione del prompt e l'adattamento della classificazione sono capability distinte. Condividere dati o trovarsi nello stesso progetto non rende equivalenti le loro condizioni di attivazione, le loro regole di qualificazione dell'evidence o i loro risultati di lifecycle.
+
+\subsubsection{Decision}
+DermaTriage governa i percorsi di adattamento come lifecycle distinti: condizioni di attivazione, evidence qualificante e risultati di qualificazione/accettazione non si trasferiscono automaticamente da un percorso all'altro.
+
+\subsubsection{Consequences}
+L'indipendenza viene espressa da tre Requirement autonomi dopo lo split A6: \texttt{FR-13}, \texttt{FR-14} e \texttt{FR-15}. La precedente identità composita \texttt{FR-11} non resta attiva.
+
+\begin{statusbox}
+\texttt{FR-11 - Indipendenza dei lifecycle di adattamento} è \textbf{superseded}. A6 ha preservato il suo ID come identità storica e ha introdotto \texttt{FR-13}, \texttt{FR-14} e \texttt{FR-15} per obbligazioni indipendentemente revisionabili e assessable.
+\end{statusbox}
+
+\subsubsection{FR-13 - Indipendenza delle condizioni di attivazione tra percorsi di adattamento}\label{fr-13}
+
+\begin{frmeta}
+\begin{tabularx}{\linewidth}{L{43mm}Y}
+\toprule
+\textbf{ID} & \texttt{FR-13} \\
+\textbf{Lifecycle} & \texttt{candidate} \\
+\textbf{Authority} & \candidateauthority \\
+\textbf{Type} & \FR \\
+\textbf{Title} & Indipendenza delle condizioni di attivazione tra percorsi di adattamento \\
+\textbf{Parent Decision} & \texttt{DEC-05} \\
+\textbf{Owning MR (derived)} & \texttt{MR-04} \\
+\textbf{SpecializedRequirement relation} & 0 active instances at A6 \\
+\bottomrule
+\end{tabularx}
+\end{frmeta}
+
+\paragraph{Functional obligation.}
+Impedire che la condizione di attivazione soddisfatta da un percorso sia considerata, da sola, sufficiente ad attivare un altro percorso.
+
+\begin{normbox}[title={Functional clauses / inherited \texttt{normativeClause [1..*]}}]
+Il soddisfacimento della condizione di attivazione di un percorso di adattamento MUST NOT, di per sé, essere trattato come soddisfacimento della condizione di attivazione di un altro percorso di adattamento.
+\end{normbox}
+
+\paragraph{SPO references (L2 support).}
+\begin{lstlisting}
+ActivationConditionOfPathA -- MUST NOT imply --> ActivationConditionOfPathB
+\end{lstlisting}
+
+\subsubsection{FR-14 - Indipendenza della qualificazione dell'evidence tra percorsi di adattamento}\label{fr-14}
+
+\begin{frmeta}
+\begin{tabularx}{\linewidth}{L{43mm}Y}
+\toprule
+\textbf{ID} & \texttt{FR-14} \\
+\textbf{Lifecycle} & \texttt{candidate} \\
+\textbf{Authority} & \candidateauthority \\
+\textbf{Type} & \FR \\
+\textbf{Title} & Indipendenza della qualificazione dell'evidence tra percorsi di adattamento \\
+\textbf{Parent Decision} & \texttt{DEC-05} \\
+\textbf{Owning MR (derived)} & \texttt{MR-04} \\
+\textbf{SpecializedRequirement relation} & 0 active instances at A6 \\
+\bottomrule
+\end{tabularx}
+\end{frmeta}
+
+\paragraph{Functional obligation.}
+Impedire che evidence qualificante per un percorso sia considerata automaticamente qualificante per un altro percorso.
+
+\begin{normbox}[title={Functional clauses / inherited \texttt{normativeClause [1..*]}}]
+Evidence che qualifica per un percorso di adattamento MUST NOT, di per sé, essere trattata come evidence qualificante per un altro percorso di adattamento.
+\end{normbox}
+
+\paragraph{SPO references (L2 support).}
+\begin{lstlisting}
+EvidenceQualifiedForPathA -- MUST NOT imply --> EvidenceQualifiedForPathB
+\end{lstlisting}
+
+\subsubsection{FR-15 - Indipendenza dei risultati di qualificazione e accettazione tra percorsi di adattamento}\label{fr-15}
+
+\begin{frmeta}
+\begin{tabularx}{\linewidth}{L{43mm}Y}
+\toprule
+\textbf{ID} & \texttt{FR-15} \\
+\textbf{Lifecycle} & \texttt{candidate} \\
+\textbf{Authority} & \candidateauthority \\
+\textbf{Type} & \FR \\
+\textbf{Title} & Indipendenza dei risultati di qualificazione e accettazione tra percorsi di adattamento \\
+\textbf{Parent Decision} & \texttt{DEC-05} \\
+\textbf{Owning MR (derived)} & \texttt{MR-04} \\
+\textbf{SpecializedRequirement relation} & 0 active instances at A6 \\
+\bottomrule
+\end{tabularx}
+\end{frmeta}
+
+\paragraph{Functional obligation.}
+Impedire che un risultato di qualificazione, accettazione o progressione raggiunto da un percorso venga trattato automaticamente come risultato equivalente per un altro percorso.
+
+\begin{normbox}[title={Functional clauses / inherited \texttt{normativeClause [1..*]}}]
+Un risultato di qualificazione, accettazione o progressione raggiunto da un percorso di adattamento MUST NOT, di per sé, essere trattato come risultato di lifecycle equivalente per un altro percorso di adattamento.
+\end{normbox}
+
+\paragraph{SPO references (L2 support).}
+\begin{lstlisting}
+LifecycleResultOfPathA -- MUST NOT imply --> EquivalentLifecycleResultOfPathB
+\end{lstlisting}
+
+\subsection{DEC-06 - Accettazione comparativa dell'adattamento della classificazione di urgenza}\label{dec-06}
+
+\begin{decmeta}
+\begin{tabularx}{\linewidth}{L{43mm}Y}
+\toprule
+\textbf{ID} & \texttt{DEC-06} \\
+\textbf{Lifecycle} & \texttt{candidate} \\
+\textbf{Authority} & \candidateauthority \\
+\textbf{Type} & \DEC \\
+\textbf{Title} & Accettazione comparativa dell'adattamento della classificazione di urgenza \\
+\textbf{Parent MacroRequirement} & \texttt{MR-04} \\
+\textbf{Decision kind} & \texttt{SELECTABLE} \\
+\bottomrule
+\end{tabularx}
+\end{decmeta}
+
+\subsubsection{Context}
+Un candidato di adattamento classificatorio non deve essere adottato soltanto perché è stato prodotto. Serve una valutazione comparativa rispetto alla versione di riferimento applicabile.
+
+\subsubsection{Decision}
+Un candidato di adattamento della classificazione di urgenza deve essere valutato comparativamente rispetto alla reference applicabile e può essere considerato qualificato per l'adozione soltanto quando soddisfa tutti i criteri comparativi governati applicabili.
+
+\subsubsection{Consequences}
+\texttt{FR-09} governa valutazione e qualificazione comparativa. La qualificazione non equivale a deployment automatico. \texttt{DEC-07} governa proprietà qualitative aggiuntive dei criteri di accettazione.
+
+\subsubsection{FR-09 - Qualificazione comparativa del candidato di adattamento classificatorio}\label{fr-09}
+
+\begin{frmeta}
+\begin{tabularx}{\linewidth}{L{43mm}Y}
+\toprule
+\textbf{ID} & \texttt{FR-09} \\
+\textbf{Lifecycle} & \texttt{candidate} \\
+\textbf{Authority} & \candidateauthority \\
+\textbf{Type} & \FR \\
+\textbf{Title} & Qualificazione comparativa del candidato di adattamento classificatorio \\
+\textbf{Parent Decision} & \texttt{DEC-06} \\
+\textbf{Owning MR (derived)} & \texttt{MR-04} \\
+\textbf{SpecializedRequirement relation} & 0 active instances at A6. \texttt{DEC-07} provides A7 non-security specialization input for this FR. \\
+\bottomrule
+\end{tabularx}
+\end{frmeta}
+
+\paragraph{Functional obligation.}
+Valutare comparativamente un candidato classificatorio e considerarlo qualificato per l'adozione solo se soddisfa tutti i criteri applicabili.
+
+\begin{normbox}[title={Functional clauses / inherited \texttt{normativeClause [1..*]}}]
+\textbf{NC-09.1.} Quando un candidato di adattamento della classificazione di urgenza viene considerato per l'adozione, DermaTriage MUST valutarlo comparativamente rispetto alla versione di riferimento applicabile usando i criteri di accettazione governati.
+
+\medskip
+\textbf{NC-09.2.} DermaTriage MUST considerare il candidato qualificato per l'adozione soltanto se tutti i criteri comparativi governati applicabili risultano soddisfatti.
+\end{normbox}
+
+\paragraph{SPO references (L2 support).}
+\begin{lstlisting}
+DermaTriage -- comparatively evaluate --> CandidateUrgencyClassificationAdaptation
+CandidateUrgencyClassificationAdaptation -- compared against --> ApplicableReferenceVersion
+SatisfiedAcceptanceCriteria -- qualify --> CandidateUrgencyClassificationAdaptation
+\end{lstlisting}
+
+\subsection{DEC-07 - Prioritizzazione asimmetrica delle metriche di qualità}\label{dec-07}
+
+\begin{decmeta}
+\begin{tabularx}{\linewidth}{L{43mm}Y}
+\toprule
+\textbf{ID} & \texttt{DEC-07} \\
+\textbf{Lifecycle} & \texttt{candidate} \\
+\textbf{Authority} & \candidateauthority \\
+\textbf{Type} & \DEC \\
+\textbf{Title} & Prioritizzazione asimmetrica delle metriche di qualità \\
+\textbf{Parent MacroRequirement} & \texttt{MR-04} \\
+\textbf{Decision kind} & \texttt{SELECTABLE} \\
+\bottomrule
+\end{tabularx}
+\end{decmeta}
+
+\subsubsection{Context}
+La policy di accettazione non tratta tutte le metriche come intercambiabili. La documentazione attribuisce priorità alla non-degradazione di sensitivity e false-low, consentendo per l'accuracy soltanto una degradazione limitata.
+
+\subsubsection{Decision}
+Nel confronto con la reference applicabile, sensitivity e false-low performance non devono peggiorare, mentre l'overall accuracy può degradare soltanto entro una tolleranza limitata.
+
+\subsubsection{Consequences}
+Queste proprietà rafforzano il significato di \texttt{FR-09} ma non introducono una nuova capability funzionale autonoma. A6 non istanzia alcun \SR{} concreto non-security. L'input preservato per A7 è: \nolinkurl{SensitivityNonDegradation}, \nolinkurl{FalseLowNonDegradation}, \nolinkurl{LimitedAccuracyDegradation}.
+
+\paragraph{Current quantitative binding.} Semantic parameter: \nolinkurl{AccuracyDegradationTolerance=T}. Il testo sorgente riporta attualmente \texttt{T=5\%}. L'interpretazione assoluta/relativa, la popolazione di valutazione e l'autorità di modifica non sono rese più forti di quanto supportato dalla fonte.
+
+\subsection{DEC-08 - Reversibilità dell'adattamento della classificazione in caso di degrado}\label{dec-08}
+
+\begin{decmeta}
+\begin{tabularx}{\linewidth}{L{43mm}Y}
+\toprule
+\textbf{ID} & \texttt{DEC-08} \\
+\textbf{Lifecycle} & \texttt{candidate} \\
+\textbf{Authority} & \candidateauthority \\
+\textbf{Type} & \DEC \\
+\textbf{Title} & Reversibilità dell'adattamento della classificazione in caso di degrado \\
+\textbf{Parent MacroRequirement} & \texttt{MR-04} \\
+\textbf{Decision kind} & \texttt{SELECTABLE} \\
+\bottomrule
+\end{tabularx}
+\end{decmeta}
+
+\subsubsection{Context}
+Un adattamento già adottato può manifestare degrado materiale dopo l'adozione. La capacità di recuperare una versione o stato precedente deve restare distinta dalla qualificazione pre-adoption.
+
+\subsubsection{Decision}
+Un adattamento della classificazione di urgenza già adottato che manifesta degrado materiale secondo i criteri post-adoption governati deve poter essere revocato ripristinando una versione o stato precedente accettabile.
+
+\subsubsection{Consequences}
+\texttt{FR-10} governa la revoca/ripristino. Il requisito non stabilisce che il rollback sia automatico. Il threshold post-adoption \texttt{R} resta semanticamente distinto dalla tolleranza pre-adoption \texttt{T} anche quando i literal correnti coincidono.
+
+\subsubsection{FR-10 - Revoca di un adattamento classificatorio degradante}\label{fr-10}
+
+\begin{frmeta}
+\begin{tabularx}{\linewidth}{L{43mm}Y}
+\toprule
+\textbf{ID} & \texttt{FR-10} \\
+\textbf{Lifecycle} & \texttt{candidate} \\
+\textbf{Authority} & \candidateauthority \\
+\textbf{Type} & \FR \\
+\textbf{Title} & Revoca di un adattamento classificatorio degradante \\
+\textbf{Parent Decision} & \texttt{DEC-08} \\
+\textbf{Owning MR (derived)} & \texttt{MR-04} \\
+\textbf{SpecializedRequirement relation} & 0 active instances at A6 \\
+\bottomrule
+\end{tabularx}
+\end{frmeta}
+
+\paragraph{Functional obligation.}
+Supportare la revoca di un adattamento classificatorio già adottato quando manifesta degrado materiale, ripristinando una versione o stato precedente accettabile.
+
+\begin{normbox}[title={Functional clauses / inherited \texttt{normativeClause [1..*]}}]
+Per un adattamento della classificazione di urgenza già adottato che manifesti degrado materiale secondo i criteri post-adoption governati, DermaTriage MUST supportarne la revoca mediante il ripristino di una versione o stato precedente accettabile.
+\end{normbox}
+
+\paragraph{SPO references (L2 support).}
+\begin{lstlisting}
+MateriallyDegradingAdoptedAdaptation -- triggers support for --> Revocation
+DermaTriage -- restore --> PreviousAcceptableVersionOrState
+\end{lstlisting}
+
+\paragraph{Current governed/binding information.}
+Semantic parameter: \nolinkurl{RollbackAccuracyDegradationThreshold=R}. Binding testuale corrente: \texttt{R=5\%}. \texttt{R == T} non è stabilito dal solo fatto che i literal correnti siano entrambi 5\%.
+
+\subsection{DEC-09 - Uso di evidence recente e limitata nel percorso di evoluzione del prompt}\label{dec-09}
+
+\begin{decmeta}
+\begin{tabularx}{\linewidth}{L{43mm}Y}
+\toprule
+\textbf{ID} & \texttt{DEC-09} \\
+\textbf{Lifecycle} & \texttt{candidate} \\
+\textbf{Authority} & \candidateauthority \\
+\textbf{Type} & \DEC \\
+\textbf{Title} & Uso di evidence recente e limitata nel percorso di evoluzione del prompt \\
+\textbf{Parent MacroRequirement} & \texttt{MR-04} \\
+\textbf{Decision kind} & \texttt{SELECTABLE} \\
+\bottomrule
+\end{tabularx}
+\end{decmeta}
+
+\subsubsection{Context}
+L'evoluzione del prompt non utilizza una storia illimitata delle correzioni cliniche. La fonte governa l'uso di evidence recente e limitata per costruire il set del ciclo corrente.
+
+\subsubsection{Decision}
+Per l'evoluzione del prompt, DermaTriage usa una finestra scorrevole e limitata delle correzioni cliniche pertinenti più recenti.
+
+\subsubsection{Consequences}
+\texttt{FR-06} governa la selezione dell'evidence set. Il binding corrente della dimensione finestra è 20, senza promuovere a significato non supportato ordering, deduplication, underfill o riuso tra cicli.
+
+\subsubsection{FR-06 - Selezione dell'evidence recente per l'evoluzione del prompt}\label{fr-06}
+
+\begin{frmeta}
+\begin{tabularx}{\linewidth}{L{43mm}Y}
+\toprule
+\textbf{ID} & \texttt{FR-06} \\
+\textbf{Lifecycle} & \texttt{candidate} \\
+\textbf{Authority} & \candidateauthority \\
+\textbf{Type} & \FR \\
+\textbf{Title} & Selezione dell'evidence recente per l'evoluzione del prompt \\
+\textbf{Parent Decision} & \texttt{DEC-09} \\
+\textbf{Owning MR (derived)} & \texttt{MR-04} \\
+\textbf{SpecializedRequirement relation} & 0 active instances at A6 \\
+\bottomrule
+\end{tabularx}
+\end{frmeta}
+
+\paragraph{Functional obligation.}
+Costruire l'evidence set del ciclo prompt usando una finestra scorrevole limitata delle correzioni cliniche pertinenti più recenti.
+
+\begin{normbox}[title={Functional clauses / inherited \texttt{normativeClause [1..*]}}]
+Per ciascun ciclo di evoluzione del prompt, DermaTriage MUST costruire l'evidence set utilizzando una finestra scorrevole e limitata delle correzioni cliniche più recenti pertinenti al percorso di evoluzione del prompt.
+\end{normbox}
+
+\paragraph{SPO references (L2 support).}
+\begin{lstlisting}
+DermaTriage -- select recent bounded --> PromptEvolutionEvidenceSet
+RecentPertinentClinicalCorrections -- populate --> PromptEvolutionEvidenceSet
+\end{lstlisting}
+
+\paragraph{Current governed/binding information.}
+Semantic parameter: \texttt{PromptEvidenceWindowSize=N}. Binding documentato corrente: \texttt{N=20}.
+
+\subsection{DEC-10 - Qualificazione del disaccordo clinico come evidence per l'adattamento classificatorio}\label{dec-10}
+
+\begin{decmeta}
+\begin{tabularx}{\linewidth}{L{43mm}Y}
+\toprule
+\textbf{ID} & \texttt{DEC-10} \\
+\textbf{Lifecycle} & \texttt{candidate} \\
+\textbf{Authority} & \candidateauthority \\
+\textbf{Type} & \DEC \\
+\textbf{Title} & Qualificazione del disaccordo clinico come evidence per l'adattamento classificatorio \\
+\textbf{Parent MacroRequirement} & \texttt{MR-04} \\
+\textbf{Decision kind} & \texttt{SELECTABLE} \\
+\bottomrule
+\end{tabularx}
+\end{decmeta}
+
+\subsubsection{Context}
+Non ogni revisione clinica è trattata come evidence equivalente per l'adattamento della classificazione di urgenza. La fonte distingue le revisioni che esprimono disaccordo rispetto all'esito AI pertinente.
+
+\subsubsection{Decision}
+Per il percorso di adattamento della classificazione di urgenza, DermaTriage tratta come evidence qualificante sulla dimensione di disaccordo soltanto le revisioni cliniche che esprimono disaccordo rispetto all'esito AI pertinente.
+
+\subsubsection{Consequences}
+\texttt{FR-07} governa la qualificazione. Il concetto governato è \texttt{ClinicianDisagreement}; l'encoding sorgente corrente \texttt{agrees == False} resta una rappresentazione di stato/dato e non l'identità normativa del concetto.
+
+\subsubsection{FR-07 - Qualificazione del disaccordo clinico come evidence per l'adattamento classificatorio}\label{fr-07}
+
+\begin{frmeta}
+\begin{tabularx}{\linewidth}{L{43mm}Y}
+\toprule
+\textbf{ID} & \texttt{FR-07} \\
+\textbf{Lifecycle} & \texttt{candidate} \\
+\textbf{Authority} & \candidateauthority \\
+\textbf{Type} & \FR \\
+\textbf{Title} & Qualificazione del disaccordo clinico come evidence per l'adattamento classificatorio \\
+\textbf{Parent Decision} & \texttt{DEC-10} \\
+\textbf{Owning MR (derived)} & \texttt{MR-04} \\
+\textbf{SpecializedRequirement relation} & 0 active instances at A6 \\
+\bottomrule
+\end{tabularx}
+\end{frmeta}
+
+\paragraph{Functional obligation.}
+Qualificare come evidence per il percorso classificatorio soltanto le revisioni cliniche che esprimono disaccordo rispetto all'esito AI pertinente.
+
+\begin{normbox}[title={Functional clauses / inherited \texttt{normativeClause [1..*]}}]
+Nel determinare l'evidence clinica qualificante per il percorso di adattamento della classificazione di urgenza, DermaTriage MUST considerare qualificanti soltanto le revisioni cliniche che esprimono disaccordo rispetto all'esito AI pertinente.
+\end{normbox}
+
+\paragraph{SPO references (L2 support).}
+\begin{lstlisting}
+ClinicalReview -- expresses --> ClinicianDisagreement
+ClinicianDisagreement -- qualifies as --> ClassifierAdaptationEvidence
+\end{lstlisting}
+
+\paragraph{Current governed/binding information.}
+Governed concept: \texttt{ClinicianDisagreement}. Source-observed encoding corrente: \texttt{agrees == False}. L'encoding non sostituisce il concetto governato.
+
+\paragraph{Cross-branch / consumption note.}
+L'evidence qualificata da \texttt{FR-07} viene consumata da \texttt{FR-05} per l'accumulo che conduce all'attivazione del percorso classificatorio.
+
+\subsection{DEC-11 - Derivazione della supervision classificatoria dalla priorità clinicamente corretta}\label{dec-11}
+
+\begin{decmeta}
+\begin{tabularx}{\linewidth}{L{43mm}Y}
+\toprule
+\textbf{ID} & \texttt{DEC-11} \\
+\textbf{Lifecycle} & \texttt{candidate} \\
+\textbf{Authority} & \candidateauthority \\
+\textbf{Type} & \DEC \\
+\textbf{Title} & Derivazione della supervision classificatoria dalla priorità clinicamente corretta \\
+\textbf{Parent MacroRequirement} & \texttt{MR-04} \\
+\textbf{Decision kind} & \texttt{SELECTABLE} \\
+\bottomrule
+\end{tabularx}
+\end{decmeta}
+
+\subsubsection{Context}
+L'adattamento della classificazione di urgenza necessita di un target di supervisione. La fonte usa la priorità P-scale clinicamente corretta come sorgente semantica per derivare il target HIGH/MEDIUM/LOW.
+
+\subsubsection{Decision}
+Per i casi di adattamento classificatorio con priorità P-scale clinicamente corretta, DermaTriage deriva il target di supervisione dalla priorità corretta secondo il mapping governato P1/P2-HIGH, P3-MEDIUM, P4-LOW.
+
+\subsubsection{Consequences}
+\texttt{FR-08} governa la trasformazione. Il mapping è significato semantico governato e non un semplice parametro numerico sostituibile. MR-04 consuma il dominio P-scale governato da MR-01 senza acquisire una seconda parent relation.
+
+\subsubsection{FR-08 - Derivazione del target di supervisione dalla priorità P-scale corretta}\label{fr-08}
+
+\begin{frmeta}
+\begin{tabularx}{\linewidth}{L{43mm}Y}
+\toprule
+\textbf{ID} & \texttt{FR-08} \\
+\textbf{Lifecycle} & \texttt{candidate} \\
+\textbf{Authority} & \candidateauthority \\
+\textbf{Type} & \FR \\
+\textbf{Title} & Derivazione del target di supervisione dalla priorità P-scale corretta \\
+\textbf{Parent Decision} & \texttt{DEC-11} \\
+\textbf{Owning MR (derived)} & \texttt{MR-04} \\
+\textbf{SpecializedRequirement relation} & 0 active instances at A6 \\
+\bottomrule
+\end{tabularx}
+\end{frmeta}
+
+\paragraph{Functional obligation.}
+Derivare il target di supervisione classificatoria dalla priorità P-scale corretta dal professionista sanitario.
+
+\begin{normbox}[title={Functional clauses / inherited \texttt{normativeClause [1..*]}}]
+\begin{tabularx}{\linewidth}{L{45mm}Y}
+\toprule
+\textbf{Priorità clinicamente corretta} & \textbf{Target di supervisione richiesto} \\
+\midrule
+\texttt{P1} & DermaTriage MUST derivare \texttt{HIGH}. \\
+\texttt{P2} & DermaTriage MUST derivare \texttt{HIGH}. \\
+\texttt{P3} & DermaTriage MUST derivare \texttt{MEDIUM}. \\
+\texttt{P4} & DermaTriage MUST derivare \texttt{LOW}. \\
+\bottomrule
+\end{tabularx}
+\end{normbox}
+
+\paragraph{SPO references (L2 support).}
+\begin{lstlisting}
+ClinicallyCorrectedOperationalTriagePriority -- maps to --> ClassifierUrgencyTarget
+DermaTriage -- derive --> ClassifierUrgencyTarget
+\end{lstlisting}
+
+
+\clearpage
+\section{Registro finale dei gap documentali aperti}
+
+Questa sezione è l'unico registro dei gap della candidate. Un gap indica significato non sufficientemente governato o binding incompleto; non equivale automaticamente a un nuovo Requirement.
+
+\small
+\begin{longtable}{L{50mm}L{29mm}L{64mm}}
+\toprule
+\textbf{Gap} & \textbf{Area} & \textbf{Significato preservato} \\
+\midrule
+\endhead
+\texttt{Diagnostic authority boundary} & Project framing / MR-01 & L'autorità per una diagnosi clinica definitiva non è stabilita. \\
+\nolinkurl{GAP-DERMA-NOIMAGE-INPUT-01} & FR-01 & Contratto completo required/optional degli input sintomatologici e semantica dei valori mancanti non specificati. \\
+\nolinkurl{GAP-DERMA-PMAP-INPUT-01} & FR-02 & Semantica completa degli input urgency/confidence, inclusi valori mancanti o invalidi, non specificata. \\
+\nolinkurl{GAP-DERMA-NOIMAGE-PMAP-BINDING-01} & MR-01 & Non è stabilito che l'urgenza prodotta in assenza di immagine fornisca sempre tutti gli input richiesti dal mapping P-scale. \\
+\nolinkurl{GAP-DERMA-SLA-01} & MR-01 downstream & I valori 24h/48h/72h/7 giorni sono source-observed, ma trigger, outcome, owner e natura limite/target/raccomandazione non sono sufficientemente governati. \\
+\nolinkurl{GAP-DERMA-PATH-01} & MR-01 downstream & Lo stato di obbligazione e il confine di autorità diagnostica di predicted\_pathology non sono stabiliti. \\
+\texttt{Specialist selection semantics} & MR-02 & Vocabolario, regola di selezione, input, fallback, assignment/booking e relazione completa con P-scale non specificati. \\
+\nolinkurl{GAP-DERMA-REVIEW-CONTENT-01} & FR-03 / FR-12 & Modello completo del contenuto di revisione/correzione non specificato. \\
+\nolinkurl{GAP-DERMA-REVIEW-LIFECYCLE-01} & FR-03 / FR-12 & Semantica overwrite/history/retention/finality della revisione non specificata. \\
+\nolinkurl{GAP-DERMA-REVIEW-DISAGREEMENT-BINDING-01} & MR-03 / MR-04 & Relazione normativa tra correzione, disaccordo e stato source-observed agrees non completamente specificata. \\
+\nolinkurl{GAP-DERMA-ADAPT-COUNTING-01} & FR-04 / FR-05 & Semantica di reset, deduplication, reuse, persistence, review multiple e concurrency dei conteggi non specificata. \\
+\nolinkurl{GAP-DERMA-ADAPT-THRESHOLD-AUTH-01} & FR-04 / FR-05 & Autorità di modifica e status normativo esatto dei threshold concreti non specificati. \\
+\nolinkurl{GAP-DERMA-PROMPT-WINDOW-01} & FR-06 & Ordering, membership, underfill, deduplication, reuse/overlap e scope esatto della finestra non specificati. \\
+\nolinkurl{GAP-DERMA-SUPERVISION-INPUT-01} & FR-08 & Comportamento per priorità corretta mancante, invalida, fuori dominio o conflittuale non specificato. \\
+\nolinkurl{GAP-DERMA-DEPLOY-01} & FR-09 lifecycle & Autorità finale e automaticità del deployment dopo qualification non specificate. \\
+\nolinkurl{GAP-DERMA-ACCEPT-BINDING-01} & DEC-06 / DEC-07 & Binding quantitativo completo dei criteri di accettazione, inclusi reference/evaluation population e interpretazione del 5\%, non specificato. \\
+\nolinkurl{GAP-DERMA-ROLLBACK-BINDING-01} & DEC-08 / FR-10 & Unità, reference, popolazione, observation window, timing, automaticità, authorization e target esatto del rollback non sufficientemente governati. \\
+\bottomrule
+\end{longtable}
+\normalsize
+
+\end{document}

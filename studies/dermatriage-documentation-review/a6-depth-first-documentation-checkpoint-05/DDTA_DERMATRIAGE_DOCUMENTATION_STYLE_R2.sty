@@ -1,0 +1,156 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{DDTA_DERMATRIAGE_DOCUMENTATION_STYLE_R2}[2026/09/05 DermaTriage documentation style R2]
+\RequirePackage[T1]{fontenc}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[italian,english]{babel}
+\RequirePackage{libertinus}
+\RequirePackage{microtype}
+\RequirePackage[a4paper,top=23mm,bottom=23mm,left=24mm,right=24mm,headheight=16pt]{geometry}
+\RequirePackage{xcolor}
+\RequirePackage{graphicx}
+\RequirePackage{booktabs}
+\RequirePackage{tabularx}
+\RequirePackage{longtable}
+\RequirePackage{array}
+\RequirePackage{enumitem}
+\RequirePackage{titlesec}
+\RequirePackage{fancyhdr}
+\RequirePackage{hyperref}
+\RequirePackage{xurl}
+\RequirePackage{bookmark}
+\RequirePackage{tcolorbox}
+\tcbuselibrary{breakable,skins,listings}
+\RequirePackage{listings}
+\RequirePackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric,fit,calc}
+\RequirePackage{caption}
+\RequirePackage{ragged2e}
+\RequirePackage{needspace}
+
+\definecolor{DDTANavy}{HTML}{17324D}
+\definecolor{DDTABlue}{HTML}{275D86}
+\definecolor{DDTATeal}{HTML}{2A7F78}
+\definecolor{DDTALightTeal}{HTML}{EAF5F3}
+\definecolor{DDTALightBlue}{HTML}{EEF4F9}
+\definecolor{DDTAAmber}{HTML}{A96A16}
+\definecolor{DDTALightAmber}{HTML}{FFF4E3}
+\definecolor{DDTARed}{HTML}{A33A3A}
+\definecolor{DDTALightRed}{HTML}{FBECEC}
+\definecolor{DDTAGray}{HTML}{5B6770}
+\definecolor{DDTALightGray}{HTML}{F4F6F8}
+\definecolor{DDTAGreen}{HTML}{2E6B45}
+\definecolor{DDTALightGreen}{HTML}{EDF6F0}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=DDTABlue,
+  urlcolor=DDTABlue,
+  citecolor=DDTABlue,
+  pdftitle={DermaTriage Governed DDTA Documentation - A6 Candidate R2},
+  pdfauthor={Documentation-Driven Threat Analysis research project}
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.52em}
+\setlist[itemize]{leftmargin=1.45em,itemsep=0.2em,topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.7em,itemsep=0.2em,topsep=0.25em}
+
+\titleformat{\section}
+  {\sffamily\Large\bfseries\color{DDTANavy}}
+  {\thesection}{0.65em}{}
+  [\vspace{0.12em}\color{DDTABlue}\titlerule]
+\titleformat{\subsection}
+  {\sffamily\large\bfseries\color{DDTABlue}}
+  {\thesubsection}{0.55em}{}
+\titleformat{\subsubsection}
+  {\sffamily\normalsize\bfseries\color{DDTATeal}}
+  {\thesubsubsection}{0.5em}{}
+\titlespacing*{\section}{0pt}{1.9em}{0.75em}
+\titlespacing*{\subsection}{0pt}{1.25em}{0.4em}
+\titlespacing*{\subsubsection}{0pt}{0.9em}{0.3em}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\sffamily\small\color{DDTAGray}DermaTriage - Governed DDTA Documentation}
+\fancyhead[R]{\sffamily\small\color{DDTAGray}A6 Candidate R2}
+\fancyfoot[L]{\sffamily\scriptsize\color{DDTAGray}Depth-first project documentation projection}
+\fancyfoot[R]{\sffamily\small\color{DDTAGray}\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\newtcolorbox{projectbox}[1][]{
+  breakable,enhanced,arc=2pt,boxrule=0.8pt,
+  colframe=DDTANavy,colback=DDTALightBlue,
+  left=9pt,right=9pt,top=8pt,bottom=8pt,
+  fonttitle=\sffamily\bfseries,title={Project statement},#1}
+
+\newtcolorbox{mrmeta}[1][]{
+  breakable,enhanced,arc=2pt,boxrule=0.7pt,
+  colframe=DDTABlue,colback=DDTALightBlue,
+  left=8pt,right=8pt,top=7pt,bottom=7pt,
+  fonttitle=\sffamily\bfseries,title={MacroRequirement metadata},#1}
+
+\newtcolorbox{decmeta}[1][]{
+  breakable,enhanced,arc=2pt,boxrule=0.7pt,
+  colframe=DDTATeal,colback=DDTALightTeal,
+  left=8pt,right=8pt,top=7pt,bottom=7pt,
+  fonttitle=\sffamily\bfseries,title={Decision metadata},#1}
+
+\newtcolorbox{frmeta}[1][]{
+  breakable,enhanced,arc=2pt,boxrule=0.7pt,
+  colframe=DDTAGreen,colback=DDTALightGreen,
+  left=8pt,right=8pt,top=7pt,bottom=7pt,
+  fonttitle=\sffamily\bfseries,title={FunctionalRequirement metadata},#1}
+
+\newtcolorbox{normbox}[1][]{
+  breakable,enhanced,arc=2pt,boxrule=0.65pt,
+  colframe=DDTAGreen,colback=white,
+  left=9pt,right=9pt,top=7pt,bottom=7pt,
+  fonttitle=\sffamily\bfseries,title={Normative clause},#1}
+
+\newtcolorbox{statusbox}[1][]{
+  breakable,enhanced,arc=2pt,boxrule=0.65pt,
+  colframe=DDTAAmber,colback=DDTALightAmber,
+  left=8pt,right=8pt,top=7pt,bottom=7pt,
+  fonttitle=\sffamily\bfseries,title={Lifecycle / scope note},#1}
+
+\newtcolorbox{gapbox}[1][]{
+  breakable,enhanced,arc=2pt,boxrule=0.75pt,
+  colframe=DDTARed,colback=DDTALightRed,
+  left=8pt,right=8pt,top=7pt,bottom=7pt,
+  fonttitle=\sffamily\bfseries,title={Open documentation gap},#1}
+
+\newtcolorbox{hierarchybox}[1][]{
+  breakable,enhanced,arc=2pt,boxrule=0.7pt,
+  colframe=DDTANavy,colback=DDTALightGray,
+  left=8pt,right=8pt,top=7pt,bottom=7pt,
+  fonttitle=\sffamily\bfseries,title={Project hierarchy},#1}
+
+\lstdefinestyle{ddta}{
+  basicstyle=\ttfamily\small,
+  backgroundcolor=\color{DDTALightGray},
+  frame=single,
+  rulecolor=\color{DDTAGray!40},
+  framesep=6pt,
+  xleftmargin=0pt,
+  aboveskip=0.7em,
+  belowskip=0.7em,
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+  breaklines=true,
+  postbreak=\mbox{\textcolor{DDTAGray}{$\hookrightarrow$}\space}
+}
+\lstset{style=ddta}
+
+\newcommand{\candidateauthority}{\texttt{CANDIDATE\_NON\_CURRENT}}
+\newcommand{\DDTA}{\textsc{ddta}}
+\newcommand{\MR}{\texttt{MacroRequirement}}
+\newcommand{\DEC}{\texttt{Decision}}
+\newcommand{\FR}{\texttt{FunctionalRequirement}}
+\newcommand{\SR}{\texttt{SpecializedRequirement}}
+\newcommand{\SECR}{\texttt{SecurityRequirement}}
+\newcommand{\NS}{\texttt{NOT SPECIFIED}}
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+\captionsetup{font=small,labelfont={bf,sf},textfont=it}
