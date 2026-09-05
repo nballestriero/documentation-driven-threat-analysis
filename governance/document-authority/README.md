@@ -79,3 +79,17 @@ The superseded facial-access R1 corpus retains logical baseline key `FACIAL-ACCE
 Every accepted BA run must pin both the explicitly promoted authority baseline `FACIAL-ACCESS-GOV-R2` and the concrete Git commit containing the promotion state used as its source baseline. The promotion decision was prepared against `4d6aa85385b79be926125d4e61390ac185f63cfd`; that source commit records the regression-closed candidate immediately before the authority change.
 
 The registry may record later repository commits when authority classifications are reviewed or extended; chronology alone never promotes a working artifact.
+
+<!-- DDTA_R25_DERMATRIAGE_PROMOTION_BEGIN -->
+## Current governed DermaTriage baseline
+
+The current governed DermaTriage project baseline is:
+
+- path: `governed-corpora/dermatriage/current-r1/`
+- authority key: `DERMATRIAGE-GOV-R1`
+- authority status: `CURRENT_GOVERNED`
+- primary Base Analysis source allowed: `true`
+- documentation methodology authority: `DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R5`
+
+Every accepted DermaTriage BA run must pin both the authority key and the exact Git commit containing the promotion state used as its source.
+<!-- DDTA_R25_DERMATRIAGE_PROMOTION_END -->

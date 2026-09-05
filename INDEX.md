@@ -1,5 +1,19 @@
 # DDTA repository index
 
+<!-- DDTA_R25_DERMATRIAGE_CURRENT_STATE_BEGIN -->
+## Current R25 forward state - DermaTriage BA handoff
+
+1. `methodology/DDTA_R25_DERMATRIAGE_DOCUMENTATION_AND_GUIDE_PROMOTION_CHECKPOINT_R1.md`
+2. `methodology/DDTA_R25_BASE_ANALYSIS_WORK_PLAN_AFTER_DERMATRIAGE_PROMOTION_R1.md`
+3. `methodology/DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R5.pdf`
+4. `governed-corpora/dermatriage/current-r1/corpus.manifest.yml`
+5. `governed-corpora/dermatriage/current-r1/DDTA_DERMATRIAGE_GOVERNED_DOCUMENTATION_R1.pdf`
+6. `methodology/DDTA_BASE_ANALYSIS_OPERATIONAL_GUIDE_R3.pdf`
+
+Project authority: `DERMATRIAGE-GOV-R1` / `CURRENT_GOVERNED` / primary BA source allowed. The exact post-promotion Git commit must be pinned by accepted BA.
+<!-- DDTA_R25_DERMATRIAGE_CURRENT_STATE_END -->
+
+
 This file is the current repository-level orientation map for Documentation-Driven Threat Analysis (DDTA).
 
 It is not a semantic authority registry and does not determine project-document authority by chronology.

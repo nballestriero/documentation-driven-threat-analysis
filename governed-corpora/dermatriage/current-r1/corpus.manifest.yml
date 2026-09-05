@@ -1,0 +1,39 @@
+schemaVersion: 1
+corpusKey: dermatriage-current-r1
+corpusRevision: R1
+authorityBaselineKey: DERMATRIAGE-GOV-R1
+authorityStatus: CURRENT_GOVERNED
+primaryBASourceAllowed: true
+promotionPreparedAgainstCommit: bf2236cf921b73309b162c74af11e4edb6e95db9
+methodologyAuthority: DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R5
+sourcePackage:
+  name: DermaTriage-Docs-20260830T152637Z-1-001.zip
+  sha256: E9ED2C507BEFB95F54A52084687CD1E8798863AE81CF69D09568864D8CBF280E
+
+scope:
+  project: dermatriage
+  completenessClaim: native-ddta-governed-baseline-for-ba-r1
+  macroRequirements: [MR-01, MR-02, MR-03, MR-04]
+  decisions: [DEC-01, DEC-02, DEC-03, DEC-04, DEC-05, DEC-06, DEC-07, DEC-08, DEC-09, DEC-10, DEC-11, DEC-12, DEC-13, DEC-14, DEC-15, DEC-16, DEC-17, DEC-18]
+  activeFunctionalRequirements: [FR-01, FR-02, FR-03, FR-04, FR-05, FR-06, FR-07, FR-08, FR-09, FR-10, FR-12, FR-13, FR-14, FR-15, FR-16, FR-17, FR-18, FR-19, FR-20, FR-21, FR-22, FR-23, FR-24, FR-25, FR-26, FR-27]
+  supersededRequirements: [FR-11]
+  activeConcreteSpecializedRequirements: []
+  activeSecurityRequirements: []
+
+artifacts:
+  semanticPrimary:
+    path: DDTA_DERMATRIAGE_GOVERNED_DOCUMENTATION_R1.tex
+    kind: GovernedProjectDocumentation
+  renderedView:
+    path: DDTA_DERMATRIAGE_GOVERNED_DOCUMENTATION_R1.pdf
+    kind: GovernedHumanReadableRendering
+  presentationSupport:
+    path: DDTA_DERMATRIAGE_DOCUMENTATION_STYLE_R6.sty
+    kind: PresentationOnly
+
+analysisPrecondition:
+  primaryBASourceAllowed: true
+  acceptedBARunMustPinAuthorityBaselineKey: true
+  acceptedBARunMustPinConcretePromotionCommit: true
+  projectMeaningMustComeFromGovernedBaseline: true
+  unresolvedGapsMustNotBeCompletedByBA: true

@@ -1,4 +1,11 @@
 ---
+
+<!-- DDTA_R25_DERMATRIAGE_PLAN_SUPERSEDED_BEGIN -->
+**Status:** CLOSED / SUPERSEDED BY `DDTA_R25_BASE_ANALYSIS_WORK_PLAN_AFTER_DERMATRIAGE_PROMOTION_R1.md`
+
+This historical plan is preserved for research provenance. Its former `BA BLOCKED` state no longer describes the forward R25 state after promotion of `DERMATRIAGE-GOV-R1` and `DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R5`.
+<!-- DDTA_R25_DERMATRIAGE_PLAN_SUPERSEDED_END -->
+
 title: "DDTA R25 holdout validation work plan - DermaTriage documentation review to Base Analysis"
 ---
 

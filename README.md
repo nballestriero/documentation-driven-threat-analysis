@@ -1,5 +1,16 @@
 # Documentation-Driven Threat Analysis
 
+<!-- DDTA_R25_DERMATRIAGE_CURRENT_STATE_BEGIN -->
+## Current R25 DermaTriage -> Base Analysis state
+
+The current DDTA documentation-authoring methodology authority is `methodology/DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R5`.
+
+The current governed DermaTriage project authority is `DERMATRIAGE-GOV-R1`, rooted at `governed-corpora/dermatriage/current-r1/`, and it is authorized as a primary Base Analysis source.
+
+The active work plan is `methodology/DDTA_R25_BASE_ANALYSIS_WORK_PLAN_AFTER_DERMATRIAGE_PROMOTION_R1.md`. Base Analysis may start after this promotion state is committed; accepted BA must pin the resulting Git commit. Threat analysis remains downstream of accepted BA.
+<!-- DDTA_R25_DERMATRIAGE_CURRENT_STATE_END -->
+
+
 Research repository for the Documentation-Driven Threat Analysis (DDTA) thesis work and its controlled validation evidence.
 
 ## Purpose

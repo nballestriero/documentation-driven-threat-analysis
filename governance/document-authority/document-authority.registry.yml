@@ -1,7 +1,6 @@
 schemaVersion: 1
 registryKey: ddta-document-authority
-basedOnRepositoryCommit: 4d6aa85385b79be926125d4e61390ac185f63cfd
-
+basedOnRepositoryCommit: bf2236cf921b73309b162c74af11e4edb6e95db9
 rules:
   chronologicalRecencyImpliesAuthority: false
   unclassifiedArtifactPrimaryBASourceAllowed: false
@@ -144,3 +143,23 @@ entries:
       - complete facial-access project migration
       - Base Analysis materialization
       - methodology-specific threat semantics
+
+  - familyKey: dermatriage-r25-current-governed
+    pathPrefix: governed-corpora/dermatriage/current-r1/
+    authorityStatus: CURRENT_GOVERNED
+    researchRole: CURRENT_THESIS_VALIDATION_CORPUS
+    authorityBaselineKey: DERMATRIAGE-GOV-R1
+    promotionSourceRepositoryCommit: bf2236cf921b73309b162c74af11e4edb6e95db9
+    primaryBASourceAllowed: true
+    methodologyAuthority: DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R5
+    retainedFor:
+      - current DermaTriage governed project documentation
+      - primary Base Analysis source
+      - R25 thesis validation and regression
+    scope:
+      - MR-01 through MR-04 current governed baseline
+      - explicit documentation gaps preserved in governed documentation
+    exclusions:
+      - Base Analysis materialization
+      - threat-method-specific semantics
+      - automatic completion of NOT SPECIFIED project meaning

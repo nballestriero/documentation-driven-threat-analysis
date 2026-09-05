@@ -1,5 +1,12 @@
 # DDTA R25 DermaTriage Documentation Review Continuation Handoff R1
 
+<!-- DDTA_R25_DERMATRIAGE_HANDOFF_SUPERSEDED_BEGIN -->
+**Status:** SUPERSEDED FOR FORWARD WORK by `DDTA_R25_DERMATRIAGE_TO_BASE_ANALYSIS_CONTINUATION_HANDOFF_R1.md`.
+
+The body below is retained as the historical documentation-review handoff.
+<!-- DDTA_R25_DERMATRIAGE_HANDOFF_SUPERSEDED_END -->
+
+
 **Status:** CONTINUATION HANDOFF - START NEXT SESSION HERE
 
 **Repository:** `nballestriero/documentation-driven-threat-analysis`
