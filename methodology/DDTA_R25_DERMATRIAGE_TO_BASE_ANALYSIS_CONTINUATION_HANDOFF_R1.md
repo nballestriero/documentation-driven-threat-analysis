@@ -1,8 +1,8 @@
 # DDTA R25 - DermaTriage to Base Analysis Continuation Handoff R1
 
-**Status:** START NEXT BA SESSION HERE  
-**Promotion predecessor:** `bf2236cf921b73309b162c74af11e4edb6e95db9`  
-**Project authority:** `DERMATRIAGE-GOV-R1`  
+**Status:** START NEXT BA SESSION HERE
+**Promotion predecessor:** `bf2236cf921b73309b162c74af11e4edb6e95db9`
+**Project authority:** `DERMATRIAGE-GOV-R1`
 **Methodology authority:** `DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R5`
 
 ## Reading order

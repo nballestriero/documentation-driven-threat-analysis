@@ -1,8 +1,8 @@
 # DermaTriage current governed DDTA baseline R1
 
-**Authority baseline key:** `DERMATRIAGE-GOV-R1`  
-**Authority status:** `CURRENT_GOVERNED`  
-**Primary Base Analysis source:** YES  
+**Authority baseline key:** `DERMATRIAGE-GOV-R1`
+**Authority status:** `CURRENT_GOVERNED`
+**Primary Base Analysis source:** YES
 **Methodology authority:** `DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R5`
 
 This directory is the current governed DermaTriage project-documentation baseline.

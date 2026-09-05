@@ -1,10 +1,10 @@
 # DDTA R25 - Base Analysis Work Plan after DermaTriage Promotion R1
 
-**Status:** ACTIVE / BASE ANALYSIS AUTHORIZED TO START AFTER PROMOTION COMMIT  
-**Promotion predecessor:** `bf2236cf921b73309b162c74af11e4edb6e95db9`  
-**Project authority:** `DERMATRIAGE-GOV-R1`  
-**Documentation-authoring methodology authority:** `DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R5`  
-**Base Analysis operational guide:** `DDTA_BASE_ANALYSIS_OPERATIONAL_GUIDE_R3`  
+**Status:** ACTIVE / BASE ANALYSIS AUTHORIZED TO START AFTER PROMOTION COMMIT
+**Promotion predecessor:** `bf2236cf921b73309b162c74af11e4edb6e95db9`
+**Project authority:** `DERMATRIAGE-GOV-R1`
+**Documentation-authoring methodology authority:** `DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R5`
+**Base Analysis operational guide:** `DDTA_BASE_ANALYSIS_OPERATIONAL_GUIDE_R3`
 **Threat analysis:** BLOCKED UNTIL ACCEPTED BA
 
 ## 1. Current state

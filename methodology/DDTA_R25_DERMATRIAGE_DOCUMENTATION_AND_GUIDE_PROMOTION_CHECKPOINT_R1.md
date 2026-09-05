@@ -1,9 +1,9 @@
 # DDTA R25 - DermaTriage Documentation and Authoring Guide Promotion Checkpoint R1
 
-**Status:** CURRENT PROMOTION CHECKPOINT / BA HANDOFF ENABLED  
-**Promotion prepared against repository commit:** `bf2236cf921b73309b162c74af11e4edb6e95db9`  
-**Methodology authority after this promotion:** `DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R5`  
-**DermaTriage project authority after this promotion:** `DERMATRIAGE-GOV-R1`  
+**Status:** CURRENT PROMOTION CHECKPOINT / BA HANDOFF ENABLED
+**Promotion prepared against repository commit:** `bf2236cf921b73309b162c74af11e4edb6e95db9`
+**Methodology authority after this promotion:** `DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R5`
+**DermaTriage project authority after this promotion:** `DERMATRIAGE-GOV-R1`
 **Primary BA source allowed:** YES
 
 ## 1. Purpose
