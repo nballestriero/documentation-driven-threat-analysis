@@ -1,0 +1,1232 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{DDTA_METHODOLOGY_GUIDE_STYLE_R1}
+
+\begin{document}
+\selectlanguage{italian}
+
+% -----------------------------------------------------------------------------
+% TITLE
+% -----------------------------------------------------------------------------
+\begin{titlepage}
+\thispagestyle{empty}
+\vspace*{8mm}
+
+{\sffamily\bfseries\color{DDTANavy}\fontsize{15}{18}\selectfont Documentation-Driven Threat Analysis}\par
+\vspace{5mm}
+{\sffamily\bfseries\color{DDTANavy}\fontsize{30}{34}\selectfont Documentation Authoring Guide}\par
+\vspace{2mm}
+{\sffamily\color{DDTABlue}\fontsize{19}{23}\selectfont Revision 5 Candidate - R4-preserving explanatory extension}\par
+
+\vspace{10mm}
+\begin{tcolorbox}[enhanced,arc=3pt,boxrule=0pt,colback=DDTANavy,left=12pt,right=12pt,top=11pt,bottom=11pt]
+{\color{white}\sffamily\bfseries\large Guida operativa per comprendere il contratto L1 e produrre documentazione L2 DDTA}\par
+\vspace{2mm}
+{\color{white!88}\small Estensione della Revision 4 con spiegazione di GovernedDocument, campi modello-per-modello, domande guida, gate ed esempi contestualizzati tratti dai progetti Facial Access e DermaTriage.}
+\end{tcolorbox}
+
+\vspace{8mm}
+\begin{tabularx}{\textwidth}{L{42mm}Y}
+\toprule
+\textbf{Stato} & WORKING CANDIDATE FOR HUMAN REVIEW - NOT YET METHODOLOGY AUTHORITY \\
+\textbf{Baseline} & Revision 4 - Corrected Cumulative Documentation Protocol \\
+\textbf{Principio di modifica} & Preservare le regole valide della R4; aggiungere spiegazioni, gate, domande guida ed esempi senza introdurre silenziosamente nuovi elementi L1. \\
+\textbf{Scopo didattico} & Spiegare il significato L1 in modo che un autore possa produrre una rappresentazione L2 fedele, leggibile e governabile. \\
+\textbf{L3/L4} & Esplicitati come confine di realizzazione e tooling: consumano L1/L2, non ne diventano authority. \\
+\textbf{Data} & 5 settembre 2026 \\
+\bottomrule
+\end{tabularx}
+
+\vfill
+\begin{ddtacore}[title={Regola di costruzione della R5 candidate}]
+La R5 candidate e' una estensione esplicativa della R4. Nessuna regola chiusa o qualificata della R4 viene rimossa per rendere la guida piu' breve. Nuovi esempi o gate non diventano automaticamente nuove classi, campi o cardinalita' L1.
+\end{ddtacore}
+
+\begin{flushright}
+\sffamily\small\color{DDTAGray}Preview per review umana. R4 resta authority metodologica fino a promozione esplicita.
+\end{flushright}
+\end{titlepage}
+
+\tableofcontents
+\clearpage
+
+% -----------------------------------------------------------------------------
+\section{Scopo, lineage e come usare questa guida}
+
+Questa guida parte dal contratto cumulativo preservato nella Revision 4 e lo rende piu' applicabile da un autore che non conosce la storia della ricerca. Il lettore non deve aver seguito gli esperimenti Facial Access o DermaTriage per capire gli esempi: ogni esempio introduce prima il problema, poi mostra un pezzo completo di documentazione e solo dopo usa quel documento per spiegare campi, gate e decisioni di authoring.
+
+\begin{ddtaprinciple}[title={Scopo primario: L1 -> L2}]
+La guida spiega il \textbf{significato concettuale L1} dei modelli DDTA e delle loro relazioni affinche' un autore possa produrre correttamente la \textbf{rappresentazione documentale L2}. L3 e L4 vengono descritti per fissare il confine: schema, validator, editor, proiezioni e tool non devono ridefinire il significato governato per convenienza tecnica.
+\end{ddtaprinciple}
+
+\subsection{Lineage preservata}
+
+La R5 candidate conserva come base almeno:
+\begin{itemize}
+  \item authoring closure fino a FunctionalRequirement;
+  \item closure di MacroRequirement, Decision e FunctionalRequirement;
+  \item closure S1 di SpecializedRequirement;
+  \item closure S1.5-A di Requirement e normativeClause;
+  \item closure S2 di SecurityRequirement;
+  \item baseline documentale R24;
+  \item Revision 4 come forward authoring guide corrente;
+  \item Facial Access e DermaTriage come corpus di esempio e regression evidence, non come sorgenti che definiscono da sole il metamodel.
+\end{itemize}
+
+\subsection{Etichette epistemiche della guida}
+
+\begin{tabularx}{\textwidth}{L{52mm}Y}
+\toprule
+\textbf{Etichetta} & \textbf{Significato} \\
+\midrule
+{\sffamily\bfseries\color{DDTAGreen}CLOSED / CARRY-FORWARD} & Regola chiusa nel proprio scope o preservata dal baseline cumulativo. \\
+{\sffamily\bfseries\color{DDTAAmber}QUALIFIED / WORKING} & Heuristic o regola supportata ma non universalizzata. \\
+{\sffamily\bfseries\color{DDTATeal}HOLDOUT-SUPPORTED REFINEMENT} & Miglioramento emerso dal caso reale DermaTriage e utile all'authoring/review. \\
+{\sffamily\bfseries\color{DDTARed}OPEN / COUNTEREXAMPLE-GATED} & Punto non chiuso; richiede evidence o counterexample concreto per modificare il contratto. \\
+{\sffamily\bfseries\color{DDTABlue}L2 AUTHORING CONVENTION} & Scelta di rappresentazione utile alla scrittura; non e' automaticamente un campo L1. \\
+\bottomrule
+\end{tabularx}
+
+% -----------------------------------------------------------------------------
+\section{Native DDTA authoring e validazione di documentazione esistente}
+
+\closedtag\quad Il processo normale parte dal problema e dal significato governato del progetto, non da una Base Analysis o da un threat model.
+
+\begin{lstlisting}
+NORMAL DDTA AUTHORING
+
+project problem / governed meaning
+        |
+        v
+authority and governance
+        |
+        v
+MacroRequirement -> Decision -> FunctionalRequirement
+                                   |
+                                   v
+                         SpecializedRequirement
+                                   |
+                                   v
+                          SecurityRequirement
+\end{lstlisting}
+
+\holdouttag\quad La ricostruzione da documentazione esistente e' invece un protocollo di validazione: si recupera soltanto il significato supportato dalle fonti, si applicano le normali domande DDTA, si costruisce una candidate representation e si osservano significati preservati, chiariti, mancanti o non rappresentabili.
+
+\begin{ddtaanti}[title={Authority inversion}]
+Non modificare la documentazione perche' una Base Analysis, STRIDE, un validator o un tool ``ha bisogno'' di un elemento. Un consumer downstream puo' esporre una domanda o un gap; non puo' inventare la risposta di progetto.
+\end{ddtaanti}
+
+% -----------------------------------------------------------------------------
+\section{Layering: L1, L2, L3 e L4}
+
+\closedtag
+
+\begin{tabularx}{\textwidth}{L{14mm}L{43mm}Y}
+\toprule
+\textbf{Layer} & \textbf{Responsabilita'} & \textbf{Esempio pratico} \\
+\midrule
+L1 & Concetti e semantica del metamodel & ``Ogni FR ha esattamente una parent Decision''; ``SecurityRequirement IS-A SpecializedRequirement''. \\
+L2 & Rappresentazione canonica leggibile & File Markdown/LaTeX/YAML, heading \texttt{Context}, clausole normative, riferimento \texttt{Parent Decision}. \\
+L3 & Realizzazione del modello & Schema, indici derivati, serializzazione strutturata, validator di cardinalita', proiezioni che realizzano L1/L2. \\
+L4 & Tool support e conformance & Editor che suggerisce riferimenti, segnala parentage vietato, dichiara quali contratti supporta. \\
+\bottomrule
+\end{tabularx}
+
+\begin{ddtaexample}[title={Stesso concetto visto ai quattro livelli}]
+\textbf{L1}: un FunctionalRequirement discende da una sola Decision.\par
+\textbf{L2}: nel file compare \texttt{Parent Decision: D-3.4}.\par
+\textbf{L3}: uno schema memorizza una reference con cardinalita' uno e un validator ne controlla la presenza.\par
+\textbf{L4}: l'editor impedisce di selezionare contemporaneamente due parent Decision.\par
+Il fatto che il tool usi un menu a tendina non crea una nuova semantica L1.
+\end{ddtaexample}
+
+\begin{ddtacore}[title={Regola di direzione}]
+L1 governa il significato; L2 lo rende leggibile e scambiabile; L3 lo realizza; L4 lo supporta. Una necessita' di L3/L4 non giustifica da sola una nuova proprieta' L1.
+\end{ddtacore}
+
+% -----------------------------------------------------------------------------
+\section{GovernedDocument: che cosa significa ``governed''}
+
+La struttura cumulativa DDTA usa \texttt{GovernedDocument} come fondazione comune. Non significa ``qualsiasi file nel repository'' e non significa ``qualsiasi informazione tecnicamente vera sul sistema''.
+
+\begin{ddtaprinciple}[title={Definizione operativa}]
+Un \texttt{GovernedDocument} e' un elemento documentale il cui significato e' riconosciuto dal processo di governance del progetto: possiede una identita' distinguibile nel tempo, uno stato/lifecycle interpretabile, una collocazione rispetto all'authority corrente e puo' essere revisionato, sostituito o ritirato senza perdere la tracciabilita' del significato che governava.
+\end{ddtaprinciple}
+
+\subsection{File, evidence e significato governato non sono sinonimi}
+
+\begin{lstlisting}
+source file / code / config / test / model / dataset
+                    !=
+              GovernedDocument
+\end{lstlisting}
+
+Un modello ML, una configurazione o un report di test possono essere evidence reale. Diventano una Decision o un Requirement soltanto se la governance del progetto attribuisce loro quel significato.
+
+\begin{ddtaexample}[title={DermaTriage - realization fact vs commitment}]
+Il package DermaTriage contiene un artefatto di modello e documentazione tecnica sulla realizzazione. La presenza di un modello corrente non autorizza a scrivere automaticamente una Decision ``DermaTriage MUST usare quel modello''. Prima occorre stabilire se la tecnologia e' un commitment governato sostituibile oppure soltanto la realizzazione corrente di una responsabilita' governata a un livello piu' astratto.
+\end{ddtaexample}
+
+\subsection{Identita' stabile}
+
+L'identita' consente di riferirsi allo stesso elemento nel tempo e non deve essere confusa con l'ordine di lettura.
+
+\begin{lstlisting}
+FR-12 does not mean "read after FR-11"
+ID != hierarchy
+ID != chronology
+ID = stable referent
+\end{lstlisting}
+
+La gerarchia e' determinata dalle relazioni semantiche di parentage (parent Decision o parent FunctionalRequirement), non dal numero dell'ID.
+
+\subsection{Lifecycle}
+
+Il lifecycle descrive lo stato del documento nella governance, non il risultato di un gate metodologico.
+
+\begin{lstlisting}
+Lifecycle = candidate / current / superseded / retired / ...
+Gate      = PASS / REWORK / STOP / REOPEN / ...
+\end{lstlisting}
+
+Un documento puo' essere \texttt{candidate} e avere superato il proprio gate semantico. Viceversa, un documento current puo' essere riaperto da evidence successiva secondo le regole di governance.
+
+\subsection{Authority}
+
+\textbf{Authority} risponde alla domanda: ``posso usare questo artifact per determinare il significato corrente del progetto nello scope considerato?''
+
+Nella documentazione Facial Access candidate R2 compare, ad esempio, una dichiarazione L2 esplicita:
+
+\begin{lstlisting}
+Lifecycle: candidate
+Authority: EXPERIMENTAL_NON_CANONICAL
+\end{lstlisting}
+
+Questo metadata rende visibile che il documento e' utile come candidate/evidence ma non deve essere trattato come primary current authority per una Base Analysis accettata.
+
+\begin{ddtaworking}[title={Authority come governance, non nuovo campo L1 introdotto dalla guida}]
+La guida distingue il concetto di authority dalla sua rappresentazione L2. Il fatto che un file mostri una riga \texttt{Authority: ...} non basta a dichiarare \texttt{Authority} come nuova proprieta' L1 di GovernedDocument se tale contratto non e' stato chiuso separatamente.
+\end{ddtaworking}
+
+\subsection{Provenance, revision e supersession}
+
+La provenance spiega \emph{perche'} un significato e' stato introdotto o modificato; non e' il significato normativo stesso.
+
+\begin{lstlisting}
+analysis finding -> motivates candidate change
+candidate change -> governed review
+accepted change  -> updated GovernedDocument
+\end{lstlisting}
+
+\begin{ddtaexample}[title={A6 - perche' non riciclare silenziosamente un ID}]
+Nel working state DermaTriage, FR-11 rappresentava una obbligazione composita di ``indipendenza dei lifecycle di adattamento''. Lo split review ha mostrato tre obbligazioni indipendenti. Riutilizzare FR-11 per una sola delle tre parti avrebbe cambiato retroattivamente la sua identita' normativa. La disposizione corretta e' preservare FR-11 come identita' storica superseded e creare nuove identita' per gli split product.
+\end{ddtaexample}
+
+\begin{ddtacore}[title={Recency != authority}]
+Il documento piu' recente non e' automaticamente il documento autoritativo. La promotion deve essere esplicita e governata.
+\end{ddtacore}
+
+% -----------------------------------------------------------------------------
+\section{Principi trasversali prima della decomposizione}
+
+\subsection{Authority prima dell'authoring}
+\closedtag
+
+Prima di creare o revisionare un elemento DDTA:
+\begin{enumerate}
+  \item identificare baseline e source set autorizzati;
+  \item distinguere current, candidate, working, historical e superseded;
+  \item preservare provenance e stato delle revisioni;
+  \item non usare recency come authority;
+  \item non permettere a BA, tool, test o threat analysis di diventare project authority.
+\end{enumerate}
+
+\subsection{Documentazione per lettori di progetto}
+\layertwotag
+
+La documentazione e' per autori e reviewer di progetto prima che per tool o modelli analitici. La prosa deve restare breve, leggibile nel dominio e priva di mechanics BA o threat-analysis non necessari.
+
+\subsection{Minimum sufficient governed meaning}
+\closedtag
+
+\begin{ddtaprinciple}
+Documentare la minima conoscenza governata sufficiente a rendere stabile il significato, verificabile la responsabilita' e possibile una successiva normalizzazione senza inventare dettagli.
+\end{ddtaprinciple}
+
+\begin{ddtacheck}[title={Stopping criterion generale}]
+Abbiamo abbastanza semantica per preservare la distinzione materiale o rispondere alla domanda dichiarata nello scope corrente?\par
+\textbf{YES}: fermarsi su quel branch.\par
+\textbf{NO}: cercare la smallest missing distinction; non aggiungere dettaglio per completezza narrativa.
+\end{ddtacheck}
+
+\begin{ddtacore}[title={Structural baseline da non confondere con lo stopping rule}]
+\begin{lstlisting}
+GovernedDocument
+    |
+    +-- MacroRequirement
+    +-- Decision
+    `-- Requirement [abstract]
+            normativeClause : NormativeClause [1..*]
+            |
+            +-- FunctionalRequirement
+            `-- SpecializedRequirement [abstract]
+                    `-- SecurityRequirement
+
+When decomposed to FR:
+MacroRequirement -> Decision -> FunctionalRequirement
+\end{lstlisting}
+Lo STOP decide quanto decomporre; non modifica le cardinalita' degli elementi che vengono effettivamente creati.
+\end{ddtacore}
+
+% -----------------------------------------------------------------------------
+\section{Unified DDTA Native Authoring Flow}
+
+\begin{center}
+\resizebox{0.97\textwidth}{!}{%
+\begin{tikzpicture}[
+  node distance=6.5mm and 13mm,
+  every node/.style={font=\sffamily\small,align=center},
+  box/.style={draw=DDTANavy,rounded corners=2pt,very thick,fill=white,minimum width=49mm,minimum height=9mm,inner sep=4pt},
+  gate/.style={diamond,draw=DDTABlue,very thick,fill=DDTALightBlue,aspect=2.5,inner sep=2.3pt,text width=36mm},
+  stop/.style={draw=DDTAGreen,rounded corners=2pt,very thick,fill=DDTALightGreen,minimum width=37mm,minimum height=8mm},
+  diag/.style={draw=DDTARed,rounded corners=2pt,dashed,thick,fill=DDTALightRed,text width=39mm,inner sep=4pt},
+  arr/.style={-{Latex[length=2.2mm]},thick,draw=DDTANavy},
+  darr/.style={-{Latex[length=2.2mm]},thick,dashed,draw=DDTARed}
+]
+\node[box] (auth) {AUTHORITY GATE};
+\node[box,below=of auth] (frame) {PROJECT PROBLEM FRAMING};
+\node[box,below=of frame] (mr) {MacroRequirement};
+\node[gate,below=8mm of mr] (mrgate) {Sufficient for current scope?};
+\node[stop,right=14mm of mrgate] (mrstop) {YES -> STOP BRANCH\\AT MR};
+\node[box,below=9mm of mrgate] (dec) {Decision};
+\node[gate,below=8mm of dec] (decgate) {Further operational obligation governed?};
+\node[stop,right=14mm of decgate] (decstop) {NO / NOT YET ->\\STOP + REVIEW};
+\node[box,below=9mm of decgate] (fr) {FunctionalRequirement};
+\node[gate,below=8mm of fr] (frgate) {Independent additional property required?};
+\node[stop,right=14mm of frgate] (frstop) {NO -> STOP BRANCH\\AT FR};
+\node[box,below=9mm of frgate] (sr) {SpecializedRequirement};
+\node[gate,below=8mm of sr] (secgate) {Security property?};
+\node[box,right=14mm of secgate] (sec) {YES -> SecurityRequirement};
+\node[diag,left=16mm of secgate] (other) {NO -> preserve specialization pressure; concrete subtype may remain outside thesis scope};
+\draw[arr] (auth)--(frame);\draw[arr] (frame)--(mr);\draw[arr] (mr)--(mrgate);
+\draw[arr] (mrgate)--node[above]{YES}(mrstop);\draw[arr] (mrgate)--node[right]{NO}(dec);
+\draw[arr] (dec)--(decgate);\draw[arr] (decgate)--node[above]{NO}(decstop);\draw[arr] (decgate)--node[right]{YES}(fr);
+\draw[arr] (fr)--(frgate);\draw[arr] (frgate)--node[above]{NO}(frstop);\draw[arr] (frgate)--node[right]{YES}(sr);
+\draw[arr] (sr)--(secgate);\draw[arr] (secgate)--node[above]{YES}(sec);\draw[darr] (secgate)--node[above]{NO}(other);
+\end{tikzpicture}%
+}
+\end{center}
+
+% -----------------------------------------------------------------------------
+\section{Step 0 - Project problem framing}
+\closedtag
+
+Il framing e' una precondizione di metodo, non un nuovo tipo L1.
+
+\begin{ddtacheck}[title={Domanda fondamentale}]
+Quale problema generale o classe di problemi deve affrontare il progetto, entro quale confine significativo, se rimuoviamo temporaneamente le scelte di soluzione correnti?
+\end{ddtacheck}
+
+\begin{ddtaexample}[title={DermaTriage - framing prima della soluzione}]
+\textbf{Problema}: supportare il triage precoce di casi dermatologici relativi a lesioni potenzialmente oncologiche, usando le informazioni disponibili per determinare priorita' di presa in carico e supportare l'instradamento specialistico.\par
+Questo framing non richiede di nominare EfficientNet, dataset, file di modello o ambiente di training. Tali elementi possono essere importanti evidence/realization, ma non definiscono il problema.
+\end{ddtaexample}
+
+\begin{ddtacheck}[title={Gate D0}]
+PASS se un lettore competente nel dominio comprende problema e boundary senza conoscere l'implementazione corrente.
+\end{ddtacheck}
+
+% -----------------------------------------------------------------------------
+\section{Step 1 - MacroRequirement}
+\closedtag
+
+Un \MR{} governa una sola responsabilita' macro durevole necessaria ad affrontare il problema.
+
+\begin{ddtacheck}[title={Domanda fondamentale}]
+Nel problema gia' inquadrato, quale responsabilita' macro stabile stiamo governando, quale risultato o valore di livello macro deve contribuire, perche' conta e chi coinvolge?
+\end{ddtacheck}
+
+\subsection{Documento completo usato per spiegare i campi}
+
+Il seguente esempio deriva dal candidate Facial Access. Il problema e' distinguere la responsabilita' di determinare l'identita' della persona presente al punto di accesso dalla successiva autorizzazione e decisione di accesso.
+
+\begin{ddtaexample}[title={Facial Access - MR-0003 completo, forma L2 abbreviata solo nelle note amministrative}]
+\begin{lstlisting}
+MR-0003 - Determinazione dell'identita' al punto di accesso
+Lifecycle: candidate
+Authority: EXPERIMENTAL_NON_CANONICAL
+
+Intent
+Consentire al processo di accesso di determinare quale identita'
+governata corrisponde alla persona presente al punto di accesso
+e di rendere disponibile l'esito alle responsabilita' successive.
+
+Context
+Quando questa responsabilita' inizia, la persona e' presente al
+punto di accesso ma la specifica identita' governata che le
+corrisponde non e' ancora determinata.
+Le identita' governate sono riferimenti gia' gestiti dal progetto;
+questa responsabilita' non le crea ne' le amministra.
+
+Stakeholders
+- persone che si presentano al punto di accesso
+- responsabili del servizio di accesso
+- addetti alla sicurezza fisica
+- responsabili interessati alla distinzione fra identita',
+  autorizzazione e decisione di accesso
+
+Scope
+IN: determinare quale identita' governata corrisponde alla persona
+e rendere disponibile il relativo esito.
+OUT: creazione/manutenzione identita'; autorizzazione; decisione di
+accesso; strategia tecnica; placement; trasporto; security mechanism.
+
+Assumptions / Constraints
+Nessuna ulteriore assunzione locale richiesta nel candidate.
+
+dependsOn
+Nessuna dipendenza MR aggiuntiva dichiarata in questo documento.
+\end{lstlisting}
+\end{ddtaexample}
+
+\subsection{Campi e significato}
+
+\begin{longtable}{L{34mm}L{50mm}L{58mm}}
+\toprule
+\textbf{Campo L2} & \textbf{Domanda guida} & \textbf{Cosa governa / cosa evitare} \\
+\midrule\endhead
+Title & Come chiamo la responsabilita' in linguaggio di dominio? & Deve nominare la responsabilita', non una tecnologia. ``Determinazione dell'identita''' sopravvive a un cambio di strategia; ``Riconoscimento facciale'' no. \\
+Intent & Quale scopo, valore o risultato macro deve contribuire? & Spiega perche' la responsabilita' esiste. Non descrive l'algoritmo o la sequenza operativa di un FR. \\
+Context & Quale background minimo e' necessario per interpretare univocamente la responsabilita'? & Stabilizza stato iniziale, relazioni o boundary materialmente rilevanti. Non e' una sezione narrativa per aggiungere dettagli indiscriminati. \\
+Stakeholders & Chi beneficia, governa, opera o e' materialmente impattato? & Ruoli di dominio, non una copia della lista di componenti software. \\
+Scope & Che cosa appartiene e che cosa non appartiene a questa responsabilita'? & Previene overlap e responsibility leakage. Specificare IN/OUT quando aiuta la leggibilita'. \\
+Assumptions / Constraints & Esistono condizioni valide per l'intero branch? & Usare solo se sono davvero macro e governate. Non spostare qui condizioni locali di una Decision o FR. \\
+\texttt{dependsOn} & Questa responsabilita' macro dipende semanticamente da un'altra senza esserne contenuta? & Relazione non gerarchica. Non usare per esprimere semplice ordine narrativo o per creare un secondo parent. \\
+\bottomrule
+\end{longtable}
+
+\subsubsection{Perche' il Context di MR-0003 e' materialmente necessario}
+
+Senza il Context, la frase ``verifica dell'identita''' potrebbe descrivere due sistemi differenti:
+
+\begin{lstlisting}
+A) nessuna identita' specifica e' selezionata
+   -> determinare QUALE GovernedIdentity corrisponde
+
+B) una GovernedIdentity e' gia' selezionata
+   -> verificare SE la persona corrisponde a quella identita'
+\end{lstlisting}
+
+Il candidate chiarisce che la specifica identita' non e' ancora determinata all'ingresso. Quindi il Context non aggiunge colore narrativo: elimina una ambiguita' che cambierebbe Decision, FR e downstream analysis.
+
+\subsection{Split / merge e STOP}
+
+Prima di dividere o fondere MR verificare valore indipendente, coerenza della futura famiglia di Decision, architecture resilience, dependency vs containment e stabilita' temporale.
+
+\begin{ddtaexample}[title={DermaTriage - STOP AT MR come risultato corretto}]
+\textbf{MR-02 - Indirizzamento specialistico}. Le fonti supportano una responsabilita' macro di specialist-oriented routing, ma non governano ancora vocabolario di destinazione, regola di selezione, input, fallback o booking/assignment responsibility. Il risultato corretto e' \textbf{STOP AT MR}: non si inventano Decision o FR per riempire la gerarchia.
+\end{ddtaexample}
+
+\begin{ddtacheck}[title={Gate D1 - MR + STOP}]
+PASS quando l'MR ha significato stabile e l'insieme MR racconta una macro story coerente. Dopo PASS chiedere: \textbf{serve davvero ulteriore significato governato nello scope corrente?}\par
+\textbf{NO -> STOP BRANCH AT MR.}\quad \textbf{YES -> esporre le Decision pertinenti.}
+\end{ddtacheck}
+
+% -----------------------------------------------------------------------------
+\section{Step 2 - Semantic-sufficiency review}
+\workingtag
+
+Il semantic-sufficiency gate non chiede se il testo potrebbe essere piu' dettagliato. Chiede se possono sopravvivere letture materialmente diverse del significato governato.
+
+\subsection{Proposition ed evidence classification}
+
+Una \textbf{proposition} e' una affermazione precisa la cui verita' o falsita' discrimina significati materialmente diversi.
+
+\begin{ddtaexample}[title={Facial Access - smallest critical proposition}]
+Le due letture A/B di MR-0003 sono separate dalla proposition:\par
+\texttt{P = ``Quando la responsabilita' inizia, una specifica GovernedIdentity e' gia' selezionata.''}\par
+Il Context del candidate dichiara che la specifica identita' non e' ancora determinata. Per P, l'evidence e' quindi \textbf{DENIED}. La lettura ``determinare quale identita' corrisponde'' e' invece supportata.
+\end{ddtaexample}
+
+\begin{tabularx}{\textwidth}{L{38mm}Y}
+\toprule
+\textbf{Classificazione} & \textbf{Significato} \\
+\midrule
+\texttt{AFFIRMED} & Evidence governata applicabile sostiene la proposition. \\
+\texttt{DENIED} & Evidence governata applicabile sostiene la negazione della proposition. \\
+\texttt{NOT SPECIFIED} & L'evidence non consente ne' di affermare ne' di negare la proposition. Non equivale a FALSE. \\
+\texttt{CONFLICTING} & Evidence governata nello stesso scope sostiene risposte incompatibili; non scegliere la lettura piu' comoda. \\
+\bottomrule
+\end{tabularx}
+
+\begin{ddtaexample}[title={DermaTriage - NOT SPECIFIED senza inventare authority}]
+FR-09 qualifica un candidate classifier adaptation rispetto a una reference e a criteri governati. La documentazione corrente non stabilisce automaticamente chi autorizzi il deployment finale ne' se la qualifica produca deployment automatico. La proposition ``la qualification autorizza automaticamente il deployment'' resta \texttt{NOT SPECIFIED}; non viene trasformata in FALSE o TRUE per comodita'.
+\end{ddtaexample}
+
+\subsection{Procedura minima}
+\begin{enumerate}
+  \item formare le piu' piccole letture materialmente differenti;
+  \item identificare la smallest critical proposition;
+  \item verificare se cambia responsibility, relation, state, outcome o downstream structure;
+  \item cercare evidence governata;
+  \item classificare \texttt{AFFIRMED / DENIED / NOT SPECIFIED / CONFLICTING};
+  \item correggere il semantic owner appropriato;
+  \item fermarsi appena la distinzione materiale e' stabilizzata.
+\end{enumerate}
+
+\begin{ddtaanti}[title={Evidence classification != gate result}]
+\texttt{AFFIRMED/DENIED/NOT SPECIFIED/CONFLICTING} classificano una proposition. \texttt{PASS/REWORK/STOP/REOPEN} descrivono invece una disposition di review. Un MR puo' essere PASS e contenere un gap materialmente registrato come NOT SPECIFIED.
+\end{ddtaanti}
+
+% -----------------------------------------------------------------------------
+\section{Step 3 - Decision}
+\closedtag
+
+Una \DEC{} e' un commitment progettuale significativo che restringe esattamente un MR fissando una posizione, responsibility boundary, policy, convention, strategy, technology/architecture choice o altro commitment con conseguenze downstream materiali.
+
+\begin{ddtacheck}[title={Domanda fondamentale}]
+Quale material project commitment restringe questo MR, perche' il progetto assume questa posizione e quali conseguenze materiali seguono?
+\end{ddtacheck}
+
+\subsection{Documento completo usato per spiegare i campi}
+
+\begin{ddtaexample}[title={Facial Access - D-3.4 separazione acquisizione/riconoscimento}]
+\begin{lstlisting}
+D-3.4 - Separazione delle responsabilita' di acquisizione
+        e riconoscimento
+Parent MacroRequirement: MR-0003
+
+Context
+La determinazione mediante riconoscimento facciale richiede input
+visivo. Acquisizione e riconoscimento possono avere lo stesso owner
+o capability distinte; la scelta cambia i comportamenti necessari.
+
+Decision
+CameraSubsystem acquisisce RecognitionCapture; una capability
+separata, RecognitionProcessor, esegue il riconoscimento.
+
+Consequences
+- acquisition e recognition hanno responsibility owner distinti
+- RecognitionCapture deve essere resa disponibile al processor
+- indisponibilita' dell'interazione puo' impedire il completamento
+- futura co-location puo' eliminare il delivery senza cambiare MR-0003
+- la Decision non sceglie transport service, protocollo o security
+\end{lstlisting}
+\end{ddtaexample}
+
+\subsection{Campi e significato}
+
+\begin{longtable}{L{35mm}L{48mm}L{60mm}}
+\toprule
+\textbf{Campo/relazione} & \textbf{Domanda guida} & \textbf{Uso corretto} \\
+\midrule\endhead
+Title & Quale commitment sto nominando? & Nome leggibile del commitment; non un requisito operativo. \\
+Parent MR & Quale unica responsabilita' macro viene ristretta? & Esattamente un semantic owner MR. \\
+Context & Quale tensione, alternativa, vincolo o necessita' locale rende necessaria una posizione? & Deve spiegare il problema decisionale, non riscrivere il Context dell'MR. \\
+Decision & Quale posizione governata viene assunta? & Una scelta o commitment coerente; non una tautologia dell'MR. \\
+Consequences & Quali effetti, trade-off, responsabilita' o obblighi downstream diventano veri? & Mostra perche' la Decision e' materialmente rilevante e quando potrebbe essere riaperta. \\
+Decision kind & Come e' emersa la posizione: SELECTABLE, NECESSITY-CONSTRAINED, DEFAULT? & Classificazione di authoring/review; la R4 non la richiede come nuovo campo L1. \\
+\bottomrule
+\end{longtable}
+
+\subsection{Decision kinds e necessity/default}
+
+\begin{lstlisting}
+SELECTABLE
+NECESSITY-CONSTRAINED
+DEFAULT
+\end{lstlisting}
+
+Una necessity/default Decision e' ammessa solo se Context spiega perche' alternative materiali sono assenti/escluse, il commitment non e' tautologico e le Consequences restano materiali.
+
+\subsection{Responsibility-boundary gate}
+
+\begin{ddtacheck}[title={Domanda prima degli FR}]
+Il progetto implementa/possiede questa capability oppure consuma un servizio/capability esterno o organizzativo?
+\end{ddtacheck}
+
+Facial Access D-3.5 mostra il caso di un servizio di connettivita' consumato: il progetto usa il servizio per il delivery ma non acquisisce automaticamente la responsabilita' di fornire o amministrare l'infrastruttura sottostante.
+
+\subsection{Decision vs implementation evidence}
+\holdouttag
+
+\begin{ddtacheck}[title={Test DermaTriage per un technical fact}]
+1. La fonte governa davvero questo fatto come commitment di progetto?\par
+2. Neutralizzando nome di tecnologia/componente, resta una scelta di strategy, boundary o placement?\par
+3. Cambiarlo mantenendo invariato l'MR produrrebbe una differenza governata o soltanto una realizzazione diversa?\par
+Se NO/UNCLEAR: non inventare una Decision; preservare come evidence/configuration o gap secondo materialita'.
+\end{ddtacheck}
+
+\begin{ddtacheck}[title={Gate D2 - Decision + STOP}]
+PASS quando le Decision rilevanti restringono chiaramente l'MR, i responsibility boundary necessari sono espliciti e i commitment indipendenti sono separati.
+\end{ddtacheck}
+
+% -----------------------------------------------------------------------------
+\section{Step 4 - FunctionalRequirement}
+\closedtag
+
+Un \FR{} e' un obbligo operativo governato e indipendentemente assessable che discende da esattamente una Decision.
+
+\begin{ddtacheck}[title={Domanda fondamentale}]
+Data la parent Decision e una condizione/input applicabile, quale subject/capability deve compiere quale azione funzionale su/con quale oggetto o informazione, e quale risultato osservabile o failure behavior deve seguire?
+\end{ddtacheck}
+
+\subsection{L1 e L2: non sono due modelli diversi}
+
+S1.5 ha normalizzato il contratto comune:
+
+\begin{lstlisting}
+Requirement [abstract]
+    normativeClause : NormativeClause [1..*]
+
+FunctionalRequirement
+    extends Requirement
+    parentDecision : Decision [1]
+\end{lstlisting}
+
+La guida L2 puo' comunque mostrare label leggibili per \texttt{Title}, obbligazione funzionale, clausole normative, riferimenti SPO e parent Decision. Queste label aiutano l'autore a scrivere e revisionare; non introducono una seconda fonte semantica parallela al Requirement.
+
+\subsection{Documento completo usato per spiegare i campi}
+
+\begin{ddtaexample}[title={Facial Access - FR-3.4.2 Deliver RecognitionCapture}]
+\begin{lstlisting}
+FR-3.4.2 - Deliver RecognitionCapture
+Parent Decision: D-3.4
+
+Functional obligation
+Rendere disponibile al RecognitionProcessor la RecognitionCapture
+necessaria alla determinazione dell'identita', preservando la
+correlazione con la richiesta che ne ha causato l'acquisizione.
+
+Normative clause
+Per ogni RecognitionCapture destinata al riconoscimento da parte di
+RecognitionProcessor, CameraSubsystem MUST consegnarla a
+RecognitionProcessor mantenendo il binding con la stessa
+IdentityDeterminationRequest per cui la capture e' stata acquisita.
+
+SPO support
+CameraSubsystem -- delivers --> RecognitionCapture
+RecognitionCapture -- correlatedWith --> IdentityDeterminationRequest
+\end{lstlisting}
+\end{ddtaexample}
+
+\subsection{Campi e significato}
+
+\begin{longtable}{L{38mm}L{47mm}L{58mm}}
+\toprule
+\textbf{Campo/relazione} & \textbf{Domanda guida} & \textbf{Uso corretto} \\
+\midrule\endhead
+Title & Quale comportamento/risultato operativo sto nominando? & Deve essere specifico ma implementation-independent. \\
+Parent Decision & Quale unico commitment rende necessaria questa obbligazione? & Esattamente una Decision parent; MR owner e' derivato. \\
+Functional obligation & Qual e' l'unita' funzionale coerente descritta dal Requirement? & Label/riassunto L2 utile; non deve contraddire o duplicare con semantica diversa le normative clauses. \\
+\NC{} & Che cosa MUST/MUST NOT accadere, in quali condizioni e con quale risultato/failure? & Fonte normativa primaria; una o piu' clausole possono esprimere una sola coherent obligation. \\
+SPO references & Quali referent governati partecipano alla clausola? & Supporto strutturato; non sostituisce condizioni, lifecycle, correlation, atomicity o failure semantics della prosa. \\
+Specialized Requirements & Esistono proprieta' aggiuntive autonome applicabili a questo FR? & 0..* specializzazioni; non sono seconde parent Decision. \\
+\bottomrule
+\end{longtable}
+
+\subsection{Allowed result domain vs conditional selection rule}
+
+\begin{ddtaexample}[title={DermaTriage - FR-02 come mapping governato}]
+\begin{lstlisting}
+HIGH + confidence > 0.85 -> P1
+HIGH                     -> P2
+MEDIUM                   -> P3
+LOW                      -> P4
+\end{lstlisting}
+Qui il progetto governa una vera regola condizionale di derivazione, quindi la tabella appartiene alla semantica dell'FR. Non va generalizzato: se una fonte governasse solo un insieme di outcome ammessi, non sarebbe lecito inventare il mapping che seleziona l'outcome.
+\end{ddtaexample}
+
+\subsection{Binding contestuale}
+
+Quando due significati devono restare associati alla stessa request, case, identity, attempt o evaluation, il binding appartiene alla semantica FR se la sua perdita produrrebbe un risultato materialmente differente. FR-3.4.2 e' un esempio: la capture deve restare correlata alla stessa IdentityDeterminationRequest.
+
+\begin{ddtacheck}[title={Gate D3 - FR + STOP}]
+PASS quando il comportamento essenziale puo' essere compreso e assessed senza ricostruire obblighi dal parent e senza inventare input, actor, output, binding o failure semantics. Se nessuna proprieta' aggiuntiva deve essere governata autonomamente, \textbf{STOP BRANCH AT FR}.
+\end{ddtacheck}
+
+% -----------------------------------------------------------------------------
+\section{Step 5 - Requirement, normativeClause e split}
+\closedtag
+
+\begin{ddtacore}
+\texttt{1 Requirement != 1 textual sentence}\par
+\texttt{1 Requirement  = 1 coherent normative obligation}
+\end{ddtacore}
+
+\subsection{Che cosa significa coherent obligation}
+
+Piu' clausole possono restare nello stesso Requirement quando sono parti inseparabili della stessa obbligazione. Il numero di righe o di test case non decide lo split.
+
+\begin{ddtaexample}[title={Negative control - DermaTriage FR-09 non si divide}]
+FR-09 richiede (1) valutazione comparativa del candidate rispetto alla reference usando criteri governati e (2) qualification solo se tutti i criteri applicabili sono soddisfatti. Separare la prima parte produrrebbe una generica capability di comparison che la source non governa come obbligazione autonoma: comparison e qualification sono una coherent operational unit.
+\end{ddtaexample}
+
+\subsection{Split test}
+
+\begin{ddtacheck}
+Una clausola puo' essere introdotta, revisionata, ritirata o assessed indipendentemente senza cambiare l'identita' normativa delle clausole rimanenti?\par
+\textbf{YES}: valutare un Requirement separato.\quad \textbf{NO}: mantenere le clausole nello stesso Requirement.
+\end{ddtacheck}
+
+Segnali aggiuntivi: failure mode distinto, lifecycle/review indipendente, semantic owner diverso, diversa specializzazione o diversa change/revalidation authority.
+
+\begin{ddtaexample}[title={DermaTriage A6 - FR-03 split}]
+Il composite FR-03 conteneva:\par
+\textbf{NC-03.1}: registrare la revisione clinica associata all'esito originario.\par
+\textbf{NC-03.2}: distinguere conferma da correzione.\par
+La correlazione puo' essere corretta mentre il result domain conferma/correzione resta ambiguo; le due proprieta' possono cambiare e fallire indipendentemente. A6 ha quindi indicato split: FR-03 mantiene la core identity di registrazione correlata; una nuova identita' rappresenta la distinzione del risultato di review.
+\end{ddtaexample}
+
+\begin{ddtaexample}[title={DermaTriage A6 - FR-11 e identity preservation}]
+FR-11 combinava indipendenza di activation, evidence qualification e qualification/progression fra adaptation path. I tre failure mode possono evolvere indipendentemente. Lo split non deve riciclare FR-11 per un frammento arbitrario: FR-11 conserva l'identita' storica composite e viene superseded; i prodotti dello split ricevono nuove identita'.
+\end{ddtaexample}
+
+% -----------------------------------------------------------------------------
+\section{Step 6 - SpecializedRequirement}
+\closedtag
+
+\SR{} e' una astrazione comune per una obbligazione concern-specific aggiuntiva che deve valere insieme al parent FR senza ridefinire la funzione ordinaria o scegliere la realization.
+
+\begin{ddtacheck}[title={Domanda fondamentale}]
+Quale obbligazione concern-specific aggiuntiva deve valere insieme al parent FR perche' la funzione sia considerata soddisfatta, senza sostituire la funzione ne' selezionare come realizzarla?
+\end{ddtacheck}
+
+\subsection{Contratto L1}
+
+\begin{lstlisting}
+SpecializedRequirement [abstract]
+    extends Requirement
+    parentFunctionalRequirement : FunctionalRequirement [1]
+\end{lstlisting}
+
+Le normative clauses sono ereditate da Requirement. Il tipo astratto non richiede una istanza intermedia tra FR e un concrete subtype.
+
+\subsection{Campi/relazioni da rendere leggibili in L2}
+
+\begin{tabularx}{\textwidth}{L{42mm}Y}
+\toprule
+\textbf{Elemento} & \textbf{Significato} \\
+\midrule
+Title / identity & Nome leggibile della proprieta' specializzata; identity comune governata. \\
+Parent FunctionalRequirement & Esattamente un FR che continua a definire la funzione ordinaria. \\
+Normative clauses & Strengthening concern-specific che vale insieme al parent FR. \\
+Concrete subtype & Determina semantica aggiuntiva solo quando un subtype e' realmente definito; non creare classi per classificare ogni caso osservato. \\
+\bottomrule
+\end{tabularx}
+
+\subsection{Removal e autonomy tests}
+
+\begin{ddtacheck}[title={Removal test}]
+Rimuovendo lo SR, la funzione ordinaria del parent FR resta riconoscibile?\par
+\textbf{NO}: probabilmente stai spostando functional correctness dentro uno SR.\par
+\textbf{YES}: la property puo' essere una vera specialization.
+\end{ddtacheck}
+
+\begin{ddtacheck}[title={Autonomous capability test}]
+Il comportamento rimane significativo come capability autonoma anche rimuovendo il concern?\par
+\textbf{YES}: rivalutare se appartenga a un FR.\par
+\textbf{NO}: puo' restare subordinate positive behavior nello SR.
+\end{ddtacheck}
+
+\begin{ddtaexample}[title={DermaTriage DEC-07 - specialization pressure non-security}]
+DEC-07 governa proprieta' comparative di qualita' applicate alla qualification di FR-09: sensitivity non deve peggiorare, false-low non deve peggiorare, accuracy puo' degradare solo entro tolleranza. Queste sono proprieta' aggiuntive rispetto alla funzione comparativa di FR-09, quindi producono specialization pressure. Non sono pero' SecurityRequirement. Nel perimetro della tesi il significato viene preservato e portato alla review A7 senza inventare automaticamente una classe \texttt{QualityRequirement}.
+\end{ddtaexample}
+
+% -----------------------------------------------------------------------------
+\section{Step 7 - SecurityRequirement}
+\closedtag
+
+\SECR{} e' uno \SR{} che preserva una singola proprieta' di sicurezza governata rilevante per il parent FR e rende identificabile nelle normative clauses il failure mode che ne costituisce perdita o violazione.
+
+\begin{lstlisting}
+SecurityRequirement
+    extends SpecializedRequirement
+    protectedSecurityProperty : SecurityProperty [1]
+\end{lstlisting}
+
+\subsection{Documento completo usato per spiegare i campi}
+
+\begin{ddtaexample}[title={Facial Access - SEC-3.4.2-C Confidentiality}]
+\begin{lstlisting}
+SEC-3.4.2-C - Confidentiality of RecognitionCapture
+Parent FunctionalRequirement: FR-3.4.2
+protectedSecurityProperty: Confidentiality
+
+Normative clause
+Durante l'esecuzione di FR-3.4.2, il contenuto della
+RecognitionCapture MUST NOT diventare intelligibile a soggetti non
+autorizzati alla sua conoscenza.
+
+Failure mode (review-readable extraction)
+Il contenuto della RecognitionCapture diventa intelligibile a un
+soggetto non autorizzato durante il delivery.
+\end{lstlisting}
+\end{ddtaexample}
+
+\subsection{Campo per campo}
+
+\begin{tabularx}{\textwidth}{L{45mm}Y}
+\toprule
+\textbf{Elemento} & \textbf{Significato} \\
+\midrule
+Parent FunctionalRequirement & Inherited specialized ownership: una sola funzione ordinaria viene rafforzata. \\
+Security property field & Una sola governing security property per Requirement coerente; rende interrogabile il concern senza reinterpretare ogni volta il testo. \\
+Normative clauses & Dichiarano l'obbligazione e rendono identificabile il security failure mode nel contesto del parent FR. \\
+Failure mode & Semantica obbligatoriamente esplicita nelle clauses; la R4/S2 non richiede per questo un nuovo campo L1 separato. Una label L2 di review puo' estrarlo senza diventare seconda source of truth. \\
+Cause / threat & Non definisce l'identita' del Requirement. Attacco, errore, fault o misconfiguration possono portare allo stesso failure mode. \\
+Mechanism / control & TLS, firma, certificato, VLAN, credenziale ecc. non sono implicati automaticamente dalla property. \\
+\bottomrule
+\end{tabularx}
+
+\begin{ddtaexample}[title={Perche' Confidentiality, Integrity e AuthorizedProvenance restano separate}]
+Facial Access mantiene tre SecurityRequirement separati sotto FR-3.4.2: Confidentiality, Integrity e AuthorizedProvenance. Possono essere soddisfatti, violati e modificati indipendentemente; aggregarli in un generico ``secure delivery'' violerebbe il coherent-unit invariant.
+\end{ddtaexample}
+
+\begin{ddtaanti}[title={Property != mechanism != attack cause}]
+\begin{lstlisting}
+Confidentiality -> TLS             [not automatic]
+Integrity       -> signature       [not automatic]
+Provenance      -> certificate     [not automatic]
+attack finding  -> accepted SecR   [not automatic]
+\end{lstlisting}
+\end{ddtaanti}
+
+% -----------------------------------------------------------------------------
+\section{Step 8 - Cross-MR e consumed-service boundary}
+\closedtag
+
+\begin{lstlisting}
+consumption != ownership
+consumption != second parent
+shared service != shared FR ownership
+\end{lstlisting}
+
+\begin{ddtaexample}[title={Facial Access - servizio di connettivita' consumato}]
+D-3.5 governa che il branch di identity determination consuma un servizio di connettivita' disponibile per il delivery, senza possedere l'infrastruttura sottostante. Una proprieta' richiesta dal consumer puo' essere assunta soltanto quando l'evidence governata del service la garantisce esplicitamente.
+\end{ddtaexample}
+
+\begin{ddtaexample}[title={DermaTriage - dependency non e' ownership}]
+MR-04, adattamento controllato, dipende dal significato di review clinica posseduto da MR-03. La dependency non rende MR-04 co-owner della registrazione della review. Analogamente FR-07 qualifica evidence consumata da FR-05 senza acquisirne una seconda parent Decision.
+\end{ddtaexample}
+
+\begin{ddtacheck}[title={Required property vs governed service guarantee}]
+Quale proprieta' P e' necessaria al consumer? L'evidence governata del service la garantisce esplicitamente?\par
+Classificare la proposition come AFFIRMED / DENIED / NOT SPECIFIED / CONFLICTING. L'assenza di garanzia non genera automaticamente un nuovo Requirement o mechanism.
+\end{ddtacheck}
+
+% -----------------------------------------------------------------------------
+\section{Step 9 - Canonical terminology, information binding e tool authority}
+\closedtag
+
+La prosa puo' restare naturale, ma le identita' e i binding semanticamente operativi devono restare stabili.
+
+\begin{ddtaexample}[title={Facial Access - terminologia che corregge una ambiguita'}]
+Il candidate usa \texttt{IdentityDeterminationRequest} invece del termine storico piu' generico \texttt{RecognitionRequest} per evitare che la request venga letta come contenente implicitamente una specifica GovernedIdentity gia' selezionata. La correzione lessicale e' motivata da una distinzione semantica, non da preferenza stilistica.
+\end{ddtaexample}
+
+\begin{ddtaexample}[title={DermaTriage - semantic concept vs current encoding}]
+FR-07 governa \texttt{ClinicianDisagreement}. La fonte osserva la codifica corrente \texttt{agrees == False}. Il primo e' il concetto normativo; il secondo e' un current binding/data-state. Il tool non deve canonizzare il boolean come se fosse l'unico significato possibile del disaccordo.
+\end{ddtaexample}
+
+\begin{ddtaprinciple}[title={Tool authority boundary}]
+Il tool puo' mostrare gerarchia, impedire parentage vietato, suggerire riferimenti e segnalare mismatch. Non deve decidere semantic equivalence, parentage o ownership tramite similarity/LLM senza governed review.
+\end{ddtaprinciple}
+
+% -----------------------------------------------------------------------------
+\section{Step 10 - Downstream semantic propagation}
+\workingtag
+
+Una correzione upstream richiede review dei discendenti non soltanto per contraddizione diretta, ma anche per perdita o deformazione di significato.
+
+\begin{lstlisting}
+direct contradiction
+silent precondition
+lost governed distinction
+semantic narrowing
+semantic widening
+misplaced ownership
+\end{lstlisting}
+
+\begin{ddtaexample}[title={Facial Access - propagation da MR a FR}]
+Quando MR-0003 viene chiarito come identity determination senza identita' pre-selezionata, gli FR di acquisition/delivery devono usare una request compatibile con quel significato. Mantenere una request che presuppone l'identita' target sarebbe semanticamente lossy anche se non contiene una contraddizione testuale esplicita.
+\end{ddtaexample}
+
+% -----------------------------------------------------------------------------
+\section{Step 11 - Diagnostics: source gap, guide problem o metamodel pressure}
+\holdouttag
+
+\begin{tabularx}{\textwidth}{L{45mm}Y}
+\toprule
+\textbf{Diagnosi} & \textbf{Interpretazione} \\
+\midrule
+Source / documentation gap & Il significato necessario non e' governato, e' ambiguo o conflittuale nella fonte. \\
+Authoring-guide problem & Il significato e' rappresentabile, ma le domande/gate non guidano l'autore in modo stabile. \\
+Metamodel pressure & Il significato e' chiaro e governato ma i costrutti correnti non riescono a rappresentarlo onestamente. \\
+Representation / L2 issue & L1 e' sufficiente, ma manca una forma canonica leggibile/pratica. \\
+Downstream / BA issue & La documentazione e' sufficiente, ma la rappresentazione analitica perde significato. \\
+No gap & Differenza presentazionale o dettaglio non richiesto dallo scope. \\
+\bottomrule
+\end{tabularx}
+
+\begin{ddtacore}[title={Minimum owning layer}]
+Prima si classifica il problema; poi, se necessario, si riapre il minimo layer che possiede semanticamente il significato. Una improvement utile non e' automaticamente un difetto del metamodel.
+\end{ddtacore}
+
+% -----------------------------------------------------------------------------
+\section{Step 12 - Technical, configuration e verification evidence}
+\holdouttag
+
+La documentazione DDTA non deve trasformare automaticamente ogni fatto tecnico in project commitment o Requirement, ma non deve nemmeno perdere fatti source-supported materialmente necessari.
+
+\begin{lstlisting}
+source-supported technical fact
+        |
+        v
+project responsibility / commitment / normative obligation?
+        |
+        +-- YES -> route to MR / Decision / Requirement
+        |
+        `-- NO / UNCLEAR
+               -> evidence/configuration or gap
+               -> preserve if materially relevant downstream
+\end{lstlisting}
+
+\subsection{Parameter Governance Boundary}
+\holdouttag
+
+DermaTriage ha mostrato che classificare un numero solo per la sua forma produce errori. La sequenza corretta e':
+
+\begin{lstlisting}
+source numeric/config value
+    -> semantic owner
+    -> lifecycle / purpose
+    -> requirement/property classification
+    -> parameter boundary
+    -> current concrete binding
+\end{lstlisting}
+
+\begin{ddtacheck}[title={Domanda fondamentale per un parametro}]
+La variazione di questo valore puo' modificare materialmente un comportamento, un vincolo, una scelta o un confine governato dal progetto? Se SI, chi possiede semanticamente quel significato e in quale lifecycle/purpose opera?
+\end{ddtacheck}
+
+\begin{ddtaexample}[title={DermaTriage - cinque ruoli diversi}]
+\begin{lstlisting}
+PromptEvolutionThreshold                 current 10
+ClassifierAdaptationThreshold            current 50
+PromptEvidenceWindowSize                 current 20
+AccuracyDegradationTolerance             current 5%
+RollbackAccuracyDegradationThreshold     current 5%
+\end{lstlisting}
+Lo stesso literal \texttt{5\%} appare in due lifecycle diversi: uno nel gate pre-adoption di qualita', l'altro nel rollback post-adoption. \textbf{Same literal != same semantic parameter}. L'identita' dipende almeno da owner, lifecycle e purpose.
+\end{ddtaexample}
+
+\begin{ddtaanti}[title={Non inventare una ConfigurationRequirement}]
+La presenza di parametri non giustifica una nuova classe generica. Alcuni valori appartengono a Decision, altri a specialization property, altri a interface/contract o realization/configuration.
+\end{ddtaanti}
+
+% -----------------------------------------------------------------------------
+\section{Nuovo gate di completezza: Decision -> Requirement counterexample}
+\holdouttag
+
+DermaTriage ha fornito un counterexample utile per controllare se una Decision e' stata davvero operationalizzata downstream.
+
+\begin{ddtacheck}[title={Decision-to-Requirement completeness test}]
+Assumiamo che tutti i Requirement downstream correnti siano soddisfatti. La parent Decision puo' comunque essere violata?\par
+\textbf{YES}: downstream coverage incompleta; cercare una obligation mancante o una specialization non rappresentata.\par
+\textbf{NO}: la copertura corrente e' plausibilmente sufficiente; STOP puo' essere giustificato se gli altri gate passano.
+\end{ddtacheck}
+
+\begin{ddtaexample}[title={DermaTriage DEC-05}]
+FR-04 e FR-05 potevano entrambi essere soddisfatti mentre il sistema faceva progredire automaticamente un adaptation path perche' l'altro aveva soddisfatto le proprie condizioni. Quindi DEC-05, separazione dei lifecycle, poteva ancora essere violata. Questo ha esposto una obligation mancante, poi rappresentata nel working state da FR-11 e successivamente raffinata dallo split review A6.
+\end{ddtaexample}
+
+\begin{ddtaworking}[title={Status del gate}]
+Questo test e' una domanda guida/review gate supportata dal holdout. Non introduce una nuova relazione L1 e non autorizza a creare Requirements artificiali: se il significato mancante non e' governato, la disposizione resta gap/clarification.
+\end{ddtaworking}
+
+% -----------------------------------------------------------------------------
+\section{Step 13 - Documentation completeness e promotion gate}
+\closedtag
+
+Prima della promotion di una candidate baseline verificare:
+\begin{itemize}
+  \item branch richiesti assemblati coerentemente;
+  \item correzioni upstream propagate/reviewed;
+  \item NOT SPECIFIED noti preservati intenzionalmente;
+  \item assenza di marker temporanei e research commentary nella baseline di progetto;
+  \item semantic owner dei significati materiali stabilito;
+  \item gap bloccanti risolti o esplicitamente esclusi;
+  \item governance autorizza l'uso della baseline;
+  \item authority registry/stato riflette il nuovo stato.
+\end{itemize}
+
+\begin{ddtacore}[title={Promotion non e' recency}]
+Una candidate non diventa current authority perche' e' piu' recente, piu' completa o piu' leggibile. Serve un atto di governance esplicito.
+\end{ddtacore}
+
+% -----------------------------------------------------------------------------
+\section{Step 14 - Handoff alla Base Analysis}
+\closedtag
+
+Documentation remains project authority. Il passaggio alla BA non significa tradurre ogni frase ne' usare la BA per decidere il significato mancante.
+
+\begin{ddtacheck}[title={Handoff question}]
+Esiste sufficiente significato governato per derivare la minima Base Analysis senza scegliere interpretazioni non supportate o importare dettagli lower-level?
+\end{ddtacheck}
+
+Se NO, tornare al semantic owner della documentazione. L'handoff dovrebbe rendere disponibili almeno authority/baseline, source set, termini/referent governati, relazioni/condizioni materialmente necessarie, diagnostics/NOT SPECIFIED e revalidation context rilevante.
+
+% -----------------------------------------------------------------------------
+\section{Step 15 - BA / security-analysis feedback senza authority inversion}
+\closedtag
+
+Un mismatch o finding downstream e' un review trigger, non nuova project truth.
+
+\begin{lstlisting}
+accepted documentation
+        -> Base Analysis
+        -> security analysis / Finding
+        -> candidate documentation change
+        -> governed review
+        -> if accepted: updated GovernedDocument
+        -> rebuilt/revalidated Base Analysis
+\end{lstlisting}
+
+\begin{ddtaexample}[title={Finding != SecurityRequirement}]
+Un finding STRIDE che osserva la possibile disclosure di RecognitionCapture puo' motivare review di confidentiality. Non canonizza automaticamente una nuova clausola, un TLS requirement o un SecurityRequirement. L'obbligazione diventa project authority soltanto dopo governed review e promotion.
+\end{ddtaexample}
+
+% -----------------------------------------------------------------------------
+\section{Breadth-first review come heuristic di authoring}
+\workingtag
+
+Quando utile, revisionare gli elementi allo stesso livello prima di scendere evita che un branch localmente dettagliato nasconda problemi nella macro story.
+
+\begin{lstlisting}
+LEVEL 0 authority + framing
+LEVEL 1 all MacroRequirements
+LEVEL 2 all Decisions
+LEVEL 3 all FunctionalRequirements
+LEVEL 4 all Specialized/SecurityRequirements
+\end{lstlisting}
+
+E' una disciplina di review, non una cardinalita' L1 e non impedisce iterazioni locali controllate.
+
+% -----------------------------------------------------------------------------
+\section{Workflow di review A0-A12}
+
+Il workflow A0-A12 organizza l'applicazione della metodologia; \textbf{non} definisce nuovi tipi L1.
+
+\begin{longtable}{L{18mm}L{52mm}L{76mm}}
+\toprule
+\textbf{Gate} & \textbf{Focus} & \textbf{Domanda essenziale} \\
+\midrule\endhead
+A0 & Authority/source & Quali fonti/baseline possono determinare project meaning? \\
+A1 & Problem framing & Il problema e' comprensibile senza conoscere la soluzione corrente? \\
+A2 & MR review & Le macro-responsabilita' sono stabili, distinte e sufficienti? \\
+A3 & Semantic sufficiency & Restano letture materialmente diverse? Quale proposition le separa? \\
+A4 & Decision review & I material commitment e responsibility boundary sono espliciti e non ridondanti? \\
+A5 & FR / D3 & Ogni Decision che richiede operazionalizzazione ha FR sufficienti e independently assessable? \\
+A6 & Requirement split & Ogni Requirement rappresenta una sola coherent obligation? \\
+A7 & SpecializedRequirement & Esistono property aggiuntive governate autonomamente rispetto al parent FR? \\
+A8 & SecurityRequirement & Quali specialization sono security property gia' governate? \\
+A9 & Cross-MR & Consumption, dependency e ownership sono distinti? \\
+A10 & Terminology / information / parameter bindings & Binding e current realization sono classificati senza diventare nuova authority? \\
+A11 & Propagation / regression & Correzioni upstream sono propagate senza loss/narrowing/widening? \\
+A12 & Completeness / promotion & La candidate e' pronta per promotion e handoff BA? \\
+\bottomrule
+\end{longtable}
+
+\begin{ddtaexample}[title={A7 nel perimetro della tesi}]
+Per una specialization candidate chiedere prima se e' security. Se SI, continuare con SecurityRequirement. Se NO, preservare il significato e l'evidence di extensibility; la tesi non deve definire ogni possibile concrete subtype non-security per dimostrare che SpecializedRequirement e' una astrazione valida.
+\end{ddtaexample}
+
+% -----------------------------------------------------------------------------
+\section{Checklist cumulativa di authoring}
+
+\begin{longtable}{L{36mm}L{110mm}}
+\toprule
+\textbf{Area} & \textbf{Domande da non saltare} \\
+\midrule\endhead
+GovernedDocument & Qual e' l'identita'? Lifecycle e authority sono distinguibili? Recency viene confusa con authority? Provenance e normative meaning sono separati? \\
+Layering & Sto descrivendo semantica L1 o una convenzione L2/L3/L4? Una necessita' del tool sta retroagendo sul metamodel? \\
+Authority & Quale baseline/source set e' autorizzato? Implementation, BA o analysis stanno diventando authority impropria? \\
+Framing & Il problema resta valido rimuovendo la soluzione corrente? Boundary e out-of-scope sono chiari? \\
+MR & Title, Intent, Context, Stakeholders, Scope, Assumptions/Constraints, dependsOn sono semanticamente coerenti? Posso fermarmi qui? \\
+Semantic sufficiency & Esistono letture materialmente diverse? Qual e' la proposition minima? Evidence AFFIRMED/DENIED/NOT SPECIFIED/CONFLICTING? \\
+Decision & Title/Context/Decision/Consequences descrivono un vero commitment? Parent MR unica? Responsibility boundary? Decision vs implementation fact? \\
+FR & Parent Decision unica? Coherent operational obligation? Normative prose primaria? Binding/failure/result sufficienti? SPO solo supporto? \\
+Requirement split & Le clausole possono cambiare/fallire/essere assessed indipendentemente? Se splitto, preservo correttamente le identita' storiche? \\
+SR & Parent FR unica? Strengthening? Removal test? Autonomous capability test? Non sto creando un subtype solo per classificare? \\
+SecR & Una property governante? Failure mode identificabile? Cause-neutral? Property != mechanism/control? \\
+Cross-MR & Consumption o ownership? Dependency o containment? Il service garantisce davvero la property richiesta? \\
+Parameters & Qual e' semantic owner, lifecycle e purpose? Same literal viene confuso con same parameter? \\
+Completeness & Tutti i Requirements possono passare mentre la Decision resta violata? \\
+Propagation & Il child preserva la correzione upstream? Silent precondition, narrowing/widening o ownership errata? \\
+Promotion & Successor completo? Gap espliciti? Governance autorizza la baseline? \\
+BA handoff & Posso derivare minimum BA senza inventare project meaning? \\
+\bottomrule
+\end{longtable}
+
+% -----------------------------------------------------------------------------
+\section{Cosa non deve fare la documentazione DDTA}
+
+La documentazione DDTA non deve:
+\begin{itemize}
+  \item anticipare STRIDE/STRIDE-AI o un altro threat method;
+  \item scegliere operatori BA o DFD topology soltanto perche' un consumer downstream li richiede;
+  \item trasformare automaticamente test, config, runtime state o modello ML in project truth;
+  \item creare Decision vuote per riempire la gerarchia;
+  \item inventare threshold, branch o algoritmi per rendere un FR piu' testabile;
+  \item trasformare un documentation gap in Requirement senza semantic-owner review;
+  \item creare sinonimi normativi non controllati;
+  \item usare un nuovo field L2 come prova che esista gia' una proprieta' L1;
+  \item far diventare tool, LLM, BA o threat analysis authority sul significato di progetto.
+\end{itemize}
+
+% -----------------------------------------------------------------------------
+\section{Open items e reopen discipline}
+\opentag
+
+Questa guida non chiude universalmente:
+\begin{itemize}
+  \item complete concrete non-security SpecializedRequirement taxonomy;
+  \item complete SecurityProperty taxonomy;
+  \item exact L1/L2 representation di consumed service/capability target;
+  \item complete provenance/change-event model;
+  \item eventuale rappresentazione non-normativa dei current technical-realization facts;
+  \item configuration semantics oltre il current parameter-classification boundary;
+  \item automatic residual-obligation generation.
+\end{itemize}
+
+\begin{ddtacore}[title={Reopen rule}]
+Non riaprire un contratto chiuso per preferenza estetica o comodita' di tooling. Una riapertura richiede un counterexample concreto, semanticamente material, attribuito al minimo owning layer e seguito da regression sugli esempi gia' accettati.
+\end{ddtacore}
+
+% -----------------------------------------------------------------------------
+\appendix
+\section{Worked example compatto - Facial Access}
+
+\subsection{Contesto del progetto}
+
+Una persona si presenta a un punto di accesso. Il progetto deve determinare quale identita' governata corrisponde alla persona, mantenendo distinta questa responsabilita' dalla gestione delle autorizzazioni e dalla decisione finale di accesso.
+
+\subsection{Decomposizione documentale illustrativa}
+
+\begin{lstlisting}
+MR-0003  Determinazione dell'identita' al punto di accesso
+  |
+  +-- D-3.1  riconoscimento facciale come strategia
+  |
+  +-- D-3.4  CameraSubsystem acquisisce; RecognitionProcessor riconosce
+  |     |
+  |     +-- FR-3.4.1 Acquire RecognitionCapture
+  |     `-- FR-3.4.2 Deliver RecognitionCapture
+  |             |
+  |             +-- SEC-3.4.2-C Confidentiality
+  |             +-- SEC-3.4.2-I Integrity
+  |             `-- SEC-3.4.2-P AuthorizedProvenance
+  |
+  `-- D-3.5  servizio di connettivita' consumato
+\end{lstlisting}
+
+Questo branch mostra in un solo esempio: semantic sufficiency del Context MR, strategy Decision, responsibility boundary, operational FR, contextual binding, service consumption e tre security specializations indipendenti.
+
+% -----------------------------------------------------------------------------
+\section{Worked example compatto - DermaTriage}
+
+\subsection{Contesto del progetto}
+
+DermaTriage supporta il triage di casi dermatologici potenzialmente oncologici, la gestione di review clinica e l'adattamento controllato del comportamento sulla base di evidence clinica accumulata.
+
+\subsection{Esempi metodologici riusabili}
+
+\begin{tabularx}{\textwidth}{L{48mm}Y}
+\toprule
+\textbf{Caso} & \textbf{Lezione} \\
+\midrule
+MR-02 STOP AT MR & La gerarchia non va riempita senza significato governato sufficiente. \\
+FR-02 mapping P-scale & Piu' righe di una truth table non implicano piu' Requirements. \\
+FR-03 A6 split & Correlation e review-result distinction possono fallire/evolvere indipendentemente. \\
+FR-09 no split & Comparison e qualification sono una coherent operational unit. \\
+FR-11 A6 split & Tre lifecycle properties indipendenti richiedono split e identity preservation. \\
+DEC-07 & Property specializzata non-security: preservare significato senza creare automaticamente un nuovo concrete subtype. \\
+10 / 50 / 20 / 5\% / 5\% & Numeric value richiede semantic owner, lifecycle e purpose prima della parameter classification. \\
+FR-07 -> FR-05 & Consumption/reference non crea una seconda parent. \\
+DEC-05 counterexample & Tutti i Requirements possono passare mentre la Decision resta violata: coverage downstream incompleta. \\
+\bottomrule
+\end{tabularx}
+
+% -----------------------------------------------------------------------------
+\section{Template L2 di riferimento}
+
+I template seguenti sono convenzioni di authoring coerenti con il contratto L1; le label comuni di governance devono essere applicate secondo il baseline/authority model adottato dal corpus.
+
+\subsection{MacroRequirement}
+\begin{lstlisting}
+# <MR-ID> - <Title>
+Lifecycle: <...>
+Authority: <...>   [if used by the corpus governance convention]
+
+## Intent
+...
+## Context
+...
+## Stakeholders
+...
+## Scope
+IN: ...
+OUT: ...
+## Assumptions / Constraints
+...
+## dependsOn
+<MR-ID or None>
+\end{lstlisting}
+
+\subsection{Decision}
+\begin{lstlisting}
+# <Decision-ID> - <Title>
+Parent MacroRequirement: <MR-ID>
+Decision kind: <SELECTABLE / NECESSITY-CONSTRAINED / DEFAULT>
+              [authoring/review classification]
+
+## Context
+...
+## Decision
+...
+## Consequences
+...
+\end{lstlisting}
+
+\subsection{FunctionalRequirement}
+\begin{lstlisting}
+# <FR-ID> - <Title>
+Parent Decision: <Decision-ID>
+
+## Functional obligation
+...
+## Normative clauses
+NC-1: <Subject> MUST ...
+...
+## SPO references
+<Subject> -- <Predicate> --> <Object>
+\end{lstlisting}
+
+\subsection{SpecializedRequirement / SecurityRequirement}
+\begin{lstlisting}
+# <SR-or-SEC-ID> - <Title>
+Parent FunctionalRequirement: <FR-ID>
+protectedSecurityProperty: <Property>   [SecurityRequirement only]
+
+## Normative clauses
+...
+
+# Optional L2 review aid, not a second normative source:
+Failure mode: ...                    [SecurityRequirement]
+\end{lstlisting}
+
+\begin{ddtacore}[title={Final acceptance rule}]
+Una documentazione DDTA e' accettabile quando e' leggibile da autori/reviewer di progetto, fedele al significato governato L1, rappresentata coerentemente in L2, semanticamente sufficiente senza diventare esaustiva, esplicitamente incompleta dove il progetto non ha deciso, e pronta per una Base Analysis minima che normalizza invece di creare significato.
+\end{ddtacore}
+
+\end{document}
