@@ -1,0 +1,50 @@
+schemaVersion: 1
+checkpointKey: DDTA-R25-DERMATRIAGE-BA-CONSOLIDATION-R7
+baselineCommit: 2e907e9c4e5b40300ea7ff5118e6c23dc2fcbe80
+predecessor: DDTA_R25_DERMATRIAGE_BA_CONSOLIDATION_R6
+methodologyFrozen: true
+methodChangeAuthorized: false
+
+newlyAnalyzedInR7: [FR-23, DEC-16, FR-24, FR-25]
+mr03BranchClosure: true
+nextBoundedSourceElement: MR-04
+
+referents:
+  - {id: BAREF-DERMA-056, canonicalName: B4TriageOutcome, status: PROVISIONAL_RECONCILIATION}
+  - {id: BAREF-DERMA-057, canonicalName: ClinicianValidation, status: PROVISIONAL_RECONCILIATION}
+  - {id: BAREF-DERMA-058, canonicalName: XApiKeyAuthenticationMechanism, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-059, canonicalName: BearerJwtAuthenticationMechanism, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-060, canonicalName: ProtectedDermaTriageOperation, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-061, canonicalName: DermaTriageB4Client, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-062, canonicalName: B4BearerJwtTokenLifecycleManagement, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-063, canonicalName: DermaTriageAdministrativeOperationsBoundary, status: PROVISIONAL_IDENTITY}
+  - {id: BAREF-DERMA-064, canonicalName: AdministrativeClient, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-065, canonicalName: B4BearerJWT, status: WORKING_ACCEPTED}
+
+blockedMeanings:
+  - id: BAREQ-DERMA-FR24-PRESENT-001
+    meaning: AdministrativeClient presents X-API-Key to protected DermaTriage interaction/interface
+    status: PARTIALLY_REPRESENTABLE
+    pressureRefs: [P-03]
+  - id: BAREQ-DERMA-FR25-TOKEN-LIFECYCLE-001
+    meaning: DermaTriageB4Client obtains and refreshes B4BearerJWT
+    status: GOVERNED_BUT_NOT_FULLY_REPRESENTABLE
+    pressureDisposition: UNNUMBERED_HOLDOUT_PRESSURE_EVIDENCE
+    candidateTopic: ACQUISITION_REFRESH_ACTION_SEMANTICS
+
+pressureChanges:
+  strengthened: [P-03, P-04]
+  carried: [P-01, P-02, P-05, P-06, P-07, P-08]
+  unnumberedEvidence: [ACQUISITION_REFRESH_ACTION_SEMANTICS]
+
+documentationGapsAdded: []
+reconciliation:
+  strengthened: [R-09, R-10]
+  resolvedForCurrentEvidence: [R-11]
+  added: [R-12]
+observationsAdded: [O-10, O-11]
+constructStatusChanges:
+  observe: TESTED_POSITIVE_STRONG
+  transferBehavior: TESTED_POSITIVE_CROSS_CORPUS_STRONG
+ba6:
+  dermaTriageHoldoutIntegratedValidation: NOT_YET_EXECUTED
