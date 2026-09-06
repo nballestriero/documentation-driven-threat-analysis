@@ -1,0 +1,64 @@
+schemaVersion: 1
+checkpointKey: DDTA-R25-DERMATRIAGE-BA-CONSOLIDATION-R1
+checkpointStatus: ACCEPTED_FOR_CONTINUATION
+formalBA3ReviewState: PENDING_REVIEW
+freshness: CURRENT
+
+repository:
+  fullName: nballestriero/documentation-driven-threat-analysis
+  pinnedCommit: 163ee6ed5b56e10002474eeac35ea4e159fb5a9e
+
+projectAuthority:
+  key: DERMATRIAGE-GOV-R1
+  status: CURRENT_GOVERNED
+  primaryBASourceAllowed: true
+
+governedSource:
+  path: governed-corpora/dermatriage/current-r1/DDTA_DERMATRIAGE_GOVERNED_DOCUMENTATION_R1.tex
+
+methodologyAuthorities:
+  documentationAuthoring: DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R5
+  baseAnalysisOperational: DDTA_BASE_ANALYSIS_OPERATIONAL_GUIDE_R3
+  ba0: BA0_BASE_ANALYSIS_RESPONSIBILITY_BOUNDARY_R1
+  ba1: BA1_MINIMAL_BAE_IDENTITY_ONTOLOGY_R1
+  ba2: BA2_RELATION_ACTION_VOCABULARY_R3
+  ba3: BA3_PROVENANCE_DERIVATION_LIFECYCLE_CHANGE_CONTRACT_R1
+  ba4: BA4_PROJECTION_BOUNDARY_TRACEABILITY_INTERPRETATION_COVERAGE_CONTRACT_R1
+  ba5: BA5_CANONICAL_SEMANTIC_REGISTRY_CONTROLLED_AUTHORING_CONTRACT_R1
+  ba6: BA6_INTEGRATED_BASE_ANALYSIS_COMPLETION_REGRESSION_R1
+
+analyzedSourceElements:
+  - MR-01
+  - DEC-12
+  - DEC-13
+  - DEC-14
+
+nextBoundedSourceElement: DEC-01
+
+notYetAnalyzedAsIndependentBASteps:
+  - DEC-01
+  - DEC-02
+  - FR-01
+  - FR-02
+  - FR-16
+  - FR-17
+  - FR-18
+  - FR-19
+  - FR-20
+  - FR-21
+  - FR-22
+  - MR-02
+  - MR-03
+  - MR-04
+
+holdoutRules:
+  methodologyFrozenDuringEvidenceCollection: true
+  unusedConstructMeansNotTested: true
+  noStrideBeforeAcceptedBA: true
+  noDiagramBeforeRelevantAcceptedBA: true
+  noProjectMeaningFromProjection: true
+  noMethodChangeAuthorizedByThisCheckpoint: true
+
+ba6:
+  facialAccessPriorScopeEvidence: CLOSED_FOR_PRIOR_R24_SCOPE
+  dermaTriageHoldoutIntegratedValidation: NOT_YET_EXECUTED

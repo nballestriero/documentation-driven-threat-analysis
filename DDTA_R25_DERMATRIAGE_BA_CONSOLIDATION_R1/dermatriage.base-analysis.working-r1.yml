@@ -1,0 +1,214 @@
+schemaVersion: 1
+baKey: DERMATRIAGE-BA-R25-WORKING-R1
+status: ACCEPTED_FOR_CONTINUATION
+formalReviewState: PENDING_REVIEW
+freshness: CURRENT
+governedBaselineKey: DERMATRIAGE-GOV-R1
+repositoryCommit: 163ee6ed5b56e10002474eeac35ea4e159fb5a9e
+sourceDocument: governed-corpora/dermatriage/current-r1/DDTA_DERMATRIAGE_GOVERNED_DOCUMENTATION_R1.tex
+
+statusVocabulary:
+  WORKING_ACCEPTED: discussed and retained for continuation; not final BA6 acceptance
+  PROVISIONAL_RECONCILIATION: retained pending later source identity reconciliation
+  PROVISIONAL_PRESSURE_TARGET: retained because it exposes an open representation pressure
+
+referents:
+  - {id: BAREF-DERMA-001, canonicalName: DermaTriage, identityStatus: WORKING_ACCEPTED, source: MR-01}
+  - {id: BAREF-DERMA-002, canonicalName: DermatologicalCase, identityStatus: WORKING_ACCEPTED, source: MR-01}
+  - {id: BAREF-DERMA-003, canonicalName: AvailableDermatologicalCaseInformation, identityStatus: WORKING_ACCEPTED, source: MR-01}
+  - {id: BAREF-DERMA-004, canonicalName: TriageUrgencyAssessment, identityStatus: WORKING_ACCEPTED, source: MR-01}
+  - {id: BAREF-DERMA-005, canonicalName: OperationalPriority, identityStatus: WORKING_ACCEPTED, source: MR-01}
+  - {id: BAREF-DERMA-006, canonicalName: DefinitiveClinicalDiagnosis, identityStatus: WORKING_ACCEPTED, source: MR-01}
+  - {id: BAREF-DERMA-007, canonicalName: CompleteSpecialistRoutingProcess, identityStatus: PROVISIONAL_RECONCILIATION, source: MR-01}
+  - {id: BAREF-DERMA-008, canonicalName: SkinLesionImage, identityStatus: WORKING_ACCEPTED, source: DEC-12}
+  - {id: BAREF-DERMA-009, canonicalName: EfficientNet-B4, identityStatus: WORKING_ACCEPTED, source: DEC-12}
+  - {id: BAREF-DERMA-010, canonicalName: ImageUrgencyClassification, identityStatus: WORKING_ACCEPTED, source: DEC-12}
+  - {id: BAREF-DERMA-011, canonicalName: Qwen2-VL-7B-Instruct, identityStatus: WORKING_ACCEPTED, source: DEC-12}
+  - {id: BAREF-DERMA-012, canonicalName: ClinicalDescription, identityStatus: WORKING_ACCEPTED, source: DEC-12}
+  - {id: BAREF-DERMA-013, canonicalName: ChromaDB, identityStatus: WORKING_ACCEPTED, source: DEC-12}
+  - {id: BAREF-DERMA-014, canonicalName: sentence-transformers/all-MiniLM-L6-v2, identityStatus: WORKING_ACCEPTED, source: DEC-12}
+  - {id: BAREF-DERMA-015, canonicalName: HistoricalCaseContext, identityStatus: WORKING_ACCEPTED, source: DEC-12}
+  - {id: BAREF-DERMA-016, canonicalName: BioMistral-7B, identityStatus: WORKING_ACCEPTED, source: DEC-12}
+  - {id: BAREF-DERMA-017, canonicalName: AvailableSymptomInformation, identityStatus: WORKING_ACCEPTED, source: DEC-12}
+  - {id: BAREF-DERMA-018, canonicalName: AITriageSynthesis, identityStatus: WORKING_ACCEPTED, source: DEC-12}
+  - {id: BAREF-DERMA-019, canonicalName: ImageBasedTriagePipeline, identityStatus: PROVISIONAL_PRESSURE_TARGET, source: DEC-12}
+  - {id: BAREF-DERMA-020, canonicalName: BaselineTrainingProcess, identityStatus: PROVISIONAL_PRESSURE_TARGET, source: DEC-13}
+  - {id: BAREF-DERMA-021, canonicalName: EfficientNetBaseline, identityStatus: WORKING_ACCEPTED, source: DEC-13}
+  - {id: BAREF-DERMA-022, canonicalName: TrainingDataset, identityStatus: WORKING_ACCEPTED, source: DEC-13}
+  - {id: BAREF-DERMA-023, canonicalName: ImageBasedUrgencyClassificationCapability, identityStatus: PROVISIONAL_RECONCILIATION, source: DEC-13}
+  - {id: BAREF-DERMA-024, canonicalName: B4, identityStatus: WORKING_ACCEPTED, source: DEC-14}
+  - {id: BAREF-DERMA-025, canonicalName: B4Consultation, identityStatus: WORKING_ACCEPTED, source: DEC-14}
+  - {id: BAREF-DERMA-026, canonicalName: B4Documents, identityStatus: PROVISIONAL_RECONCILIATION, source: DEC-14}
+  - {id: BAREF-DERMA-027, canonicalName: B4Images, identityStatus: PROVISIONAL_RECONCILIATION, source: DEC-14}
+  - {id: BAREF-DERMA-028, canonicalName: TriageOutcome, identityStatus: PROVISIONAL_RECONCILIATION, source: DEC-14}
+  - {id: BAREF-DERMA-029, canonicalName: DirectTriagePath, identityStatus: PROVISIONAL_PRESSURE_TARGET, source: DEC-14}
+  - {id: BAREF-DERMA-030, canonicalName: B4IntegratedTriagePath, identityStatus: PROVISIONAL_PRESSURE_TARGET, source: DEC-14}
+  - {id: BAREF-DERMA-031, canonicalName: "POST /analyze", identityStatus: PROVISIONAL_RECONCILIATION, source: DEC-14}
+  - {id: BAREF-DERMA-032, canonicalName: "POST /diagnose", identityStatus: PROVISIONAL_RECONCILIATION, source: DEC-14}
+  - {id: BAREF-DERMA-033, canonicalName: B4DermaTriageBoundary, identityStatus: PROVISIONAL_PRESSURE_TARGET, source: DEC-14}
+
+propositions:
+  - id: BAPROP-DERMA-MR01-001
+    operator: produce
+    polarity: POSITIVE
+    participation:
+      actor: [BAREF-DERMA-001]
+      input: [BAREF-DERMA-002, BAREF-DERMA-003]
+      result: [BAREF-DERMA-004, BAREF-DERMA-005]
+    sourceLinks: [MR-01]
+
+  - id: BAPROP-DERMA-MR01-002
+    operator: constrain
+    polarity: POSITIVE
+    participation:
+      constraintTarget: [BAREF-DERMA-005]
+      constraintValue:
+        - property: operationalPriorityLevel
+          vocabulary: [P1, P2, P3, P4]
+    sourceLinks: [MR-01]
+    canonicalizationStatus: OPEN
+
+  - id: BAPROP-DERMA-MR01-003
+    operator: assignResponsibility
+    polarity: POSITIVE
+    participation:
+      responsibleParty: [BAREF-DERMA-001]
+      responsibilityScope: [BAREF-DERMA-004]
+      responsibilityKind: [triageResponsibility]
+    sourceLinks: [MR-01, DEC-14]
+    canonicalizationStatus: OPEN
+
+  - id: BAPROP-DERMA-MR01-004
+    operator: assignResponsibility
+    polarity: NEGATIVE
+    participation:
+      responsibleParty: [BAREF-DERMA-001]
+      responsibilityScope: [BAREF-DERMA-006]
+      responsibilityKind: [diagnosticAuthority]
+    sourceLinks: [MR-01]
+    canonicalizationStatus: OPEN
+
+  - id: BAPROP-DERMA-MR01-005
+    operator: assignResponsibility
+    polarity: NEGATIVE
+    participation:
+      responsibleParty: [BAREF-DERMA-001]
+      responsibilityScope: [BAREF-DERMA-007]
+      responsibilityKind: [ownership]
+    sourceLinks: [MR-01]
+    canonicalizationStatus: OPEN
+
+  - id: BAPROP-DERMA-DEC12-001
+    operator: produce
+    polarity: POSITIVE
+    participation:
+      actor: [BAREF-DERMA-009]
+      input: [BAREF-DERMA-008]
+      result: [BAREF-DERMA-010]
+    scopedModifier:
+      condition: image-based path applicable
+    sourceLinks: [DEC-12]
+
+  - id: BAPROP-DERMA-DEC12-002
+    operator: produce
+    polarity: POSITIVE
+    participation:
+      actor: [BAREF-DERMA-011]
+      input: [BAREF-DERMA-008]
+      result: [BAREF-DERMA-012]
+    scopedModifier:
+      condition: image-based path applicable
+    sourceLinks: [DEC-12]
+
+  - id: BAPROP-DERMA-DEC12-003
+    operator: observe
+    polarity: POSITIVE
+    participation:
+      actor: [BAREF-DERMA-013]
+      observed: [historical-case-information]
+      result: [BAREF-DERMA-015]
+    sourceLinks: [DEC-12]
+    reconciliationStatus: RECHECK_AT_FR-18
+
+  - id: BAPROP-DERMA-DEC12-004
+    operator: produce
+    polarity: POSITIVE
+    participation:
+      actor: [BAREF-DERMA-016]
+      input: [BAREF-DERMA-010, BAREF-DERMA-012, BAREF-DERMA-015, BAREF-DERMA-017]
+      result: [BAREF-DERMA-018]
+    sourceLinks: [DEC-12]
+
+  - id: BAPROP-DERMA-DEC12-005
+    operator: correlate
+    polarity: POSITIVE
+    participation:
+      correlatedItem: [BAREF-DERMA-010, BAREF-DERMA-012, BAREF-DERMA-015, BAREF-DERMA-018]
+      correlationContext: [BAREF-DERMA-002]
+    sourceLinks: [DEC-12]
+
+  - id: BAPROP-DERMA-DEC13-001
+    operator: dependOn
+    polarity: POSITIVE
+    participation:
+      dependent: [BAREF-DERMA-023]
+      prerequisite: [BAREF-DERMA-021]
+    sourceLinks: [DEC-13]
+
+  - id: BAPROP-DERMA-DEC13-002
+    operator: produce
+    polarity: POSITIVE
+    participation:
+      actor: [BAREF-DERMA-020]
+      input: [BAREF-DERMA-022, BAREF-DERMA-009]
+      result: [BAREF-DERMA-021]
+    sourceLinks: [DEC-13]
+    pressureRefs: [P-01]
+
+  - id: BAPROP-DERMA-DEC14-001
+    operator: transfer
+    polarity: POSITIVE
+    participation:
+      source: [BAREF-DERMA-024]
+      destination: [BAREF-DERMA-001]
+      content: [BAREF-DERMA-025, BAREF-DERMA-026, BAREF-DERMA-027]
+    sourceLinks: [DEC-14]
+
+  - id: BAPROP-DERMA-DEC14-002
+    operator: transfer
+    polarity: POSITIVE
+    participation:
+      source: [BAREF-DERMA-001]
+      destination: [BAREF-DERMA-024]
+      content: [BAREF-DERMA-028]
+    sourceLinks: [DEC-14]
+
+  - id: BAPROP-DERMA-DEC14-003
+    operator: produce
+    polarity: POSITIVE
+    participation:
+      actor: [BAREF-DERMA-001]
+      input: [BAREF-DERMA-025, BAREF-DERMA-026, BAREF-DERMA-027]
+      result: [BAREF-DERMA-028]
+    scopedModifier:
+      condition: B4IntegratedTriagePath applicable
+    sourceLinks: [DEC-14]
+
+  - id: BAPROP-DERMA-DEC14-004
+    operator: assignResponsibility
+    polarity: NEGATIVE
+    participation:
+      responsibleParty: [BAREF-DERMA-024]
+      responsibilityScope: [BAREF-DERMA-004]
+      responsibilityKind: [triageResponsibility]
+    sourceLinks: [DEC-14]
+    canonicalizationStatus: OPEN
+
+defaultMetadata:
+  originState: GROUNDED
+  discussionDisposition: ACCEPTED_FOR_CONTINUATION
+  reviewState: PENDING_REVIEW
+  freshness: CURRENT
+
+openPressureRefs: [P-01, P-02, P-03, P-04]
+openReconciliationRefs: [R-01, R-02, R-03, R-04]
