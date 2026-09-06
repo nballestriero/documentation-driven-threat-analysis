@@ -1,0 +1,90 @@
+schemaVersion: 1
+baDeltaKey: DERMATRIAGE-BA-R25-DELTA-R2
+predecessorBAKey: DERMATRIAGE-BA-R25-WORKING-R1
+repositoryCommit: 9fd218803abdd812245b8ac27116a9fa2fa08ecb
+status: ACCEPTED_FOR_CONTINUATION
+formalReviewState: PENDING_REVIEW
+freshness: CURRENT
+
+newReferents:
+  - id: BAREF-DERMA-034
+    canonicalName: SymptomOnlyTriageProcess
+    identityStatus: PROVISIONAL_PRESSURE_TARGET
+    sourceLinks: [DEC-01, FR-01]
+    pressureRefs: [P-01]
+  - id: BAREF-DERMA-035
+    canonicalName: SymptomBasedUrgency
+    identityStatus: PROVISIONAL_RECONCILIATION
+    sourceLinks: [FR-01]
+    reconciliationRefs: [R-04]
+  - id: BAREF-DERMA-036
+    canonicalName: B4ChatbotInteractionFields
+    identityStatus: PROVISIONAL_RECONCILIATION
+    sourceLinks: [DEC-01, FR-01]
+    documentationGapRefs: [D-01]
+  - id: BAREF-DERMA-037
+    canonicalName: Confidence
+    identityStatus: PROVISIONAL_RECONCILIATION
+    sourceLinks: [DEC-02, FR-02]
+    recheckAt: FR-16
+    pressureRefs: [P-06]
+
+newPropositions:
+  - id: BAPROP-DERMA-FR01-001
+    operator: produce
+    polarity: POSITIVE
+    participation:
+      actor: [BAREF-DERMA-001]
+      input: [BAREF-DERMA-017]
+      result: [BAREF-DERMA-035]
+    scopedModifier:
+      condition: SkinLesionImage unavailable for DermatologicalCase
+    sourceLinks: [DEC-01, FR-01]
+
+  - id: BAPROP-DERMA-FR01-002
+    operator: correlate
+    polarity: POSITIVE
+    participation:
+      correlatedItem: [BAREF-DERMA-036, BAREF-DERMA-017]
+      correlationContext: [BAREF-DERMA-025]
+    scopedModifier:
+      condition: B4IntegratedTriagePath applicable
+    sourceLinks: [FR-01]
+
+  - id: BAPROP-DERMA-FR01-003
+    operator: produce
+    polarity: POSITIVE
+    participation:
+      actor: [BAREF-DERMA-001]
+      input: [BAREF-DERMA-036]
+      result: [BAREF-DERMA-017]
+    scopedModifier:
+      condition: B4IntegratedTriagePath applicable
+    sourceLinks: [FR-01]
+    pressureRefs: [P-01]
+    recheckAt: FR-22
+
+blockedSemanticRequirements:
+  - id: BAREQ-DERMA-FR02-001
+    requiredOperator: decisionRule
+    semanticNeed: CONFIRMED
+    materializationStatus: BLOCKED_BY_FROZEN_BA2_PRESSURE
+    actor: BAREF-DERMA-001
+    inputs: [BAREF-DERMA-004, BAREF-DERMA-037]
+    result: BAREF-DERMA-005
+    governedBranches:
+      - "urgency = HIGH AND confidence > 0.85 -> P1"
+      - "urgency = HIGH in other applicable cases -> P2"
+      - "urgency = MEDIUM -> P3"
+      - "urgency = LOW -> P4"
+    pressureRefs: [P-05, P-06]
+    documentationGapRefs: [D-02, D-03]
+
+pressureDelta:
+  strengthened: [P-01]
+  added: [P-05, P-06]
+  carried: [P-02, P-03, P-04]
+
+reconciliationDelta:
+  resolvedForCurrentEvidence: [R-03]
+  carriedOpen: [R-01, R-02, R-04]
