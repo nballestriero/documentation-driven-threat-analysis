@@ -1,0 +1,130 @@
+schemaVersion: 1
+baDeltaKey: DERMATRIAGE-BA-R25-DELTA-R5
+checkpointKey: DDTA-R25-DERMATRIAGE-BA-CONSOLIDATION-R5
+predecessorCheckpoint: DDTA-R25-DERMATRIAGE-BA-CONSOLIDATION-R4
+repositoryCommit: 7284c8ea7f9f5c4ef5e40527779fcc2fb81eaa9b
+status: ACCEPTED_FOR_CONTINUATION
+formalReviewState: PENDING_REVIEW
+freshness: CURRENT
+
+newlyAnalyzed:
+  - FR-22
+
+mr01Branch:
+  evidenceCollectionStatus: CLOSED_FOR_SELECTED_CHILDREN
+  finalBAAcceptance: false
+  ba6Executed: false
+
+newReferents:
+  - id: BAREF-DERMA-046
+    canonicalName: ConsultationData
+    status: PROVISIONAL_RECONCILIATION
+    evidence: [FR-22]
+    reconciliationRefs: [R-07]
+
+  - id: BAREF-DERMA-047
+    canonicalName: CaseDocuments
+    status: PROVISIONAL_RECONCILIATION
+    evidence: [FR-22]
+    reconciliationRefs: [R-07]
+
+identityRefinements:
+  - id: BAREF-DERMA-030
+    canonicalName: B4IntegratedTriagePath
+    effectiveStatus: WORKING_ACCEPTED
+    evidence: [DEC-14, FR-22]
+
+  - id: BAREF-DERMA-032
+    canonicalName: POST /diagnose
+    effectiveStatus: WORKING_ACCEPTED
+    evidence: [DEC-14, FR-22]
+
+  - id: BAREF-DERMA-033
+    canonicalName: B4DermaTriageBoundary
+    effectiveStatus: WORKING_ACCEPTED_IDENTITY
+    evidence: [DEC-14, FR-22]
+    pressureRefs: [P-04]
+
+newPropositions:
+  - id: BAPROP-DERMA-FR22-001
+    operator: realize
+    polarity: POSITIVE
+    participation:
+      abstract: [BAREF-DERMA-030]
+      realization: [BAREF-DERMA-032]
+    sourceLinks: [DEC-14, FR-22]
+
+  - id: BAPROP-DERMA-FR22-002
+    operator: consumeService
+    polarity: POSITIVE
+    participation:
+      consumer: [BAREF-DERMA-001]
+      service: [BAREF-DERMA-024]
+    sourceLinks: [FR-22]
+
+  - id: BAPROP-DERMA-FR22-003
+    operator: transfer
+    polarity: POSITIVE
+    participation:
+      source: [BAREF-DERMA-024]
+      destination: [BAREF-DERMA-001]
+      content: [BAREF-DERMA-046, BAREF-DERMA-047]
+    scopedModifier:
+      condition: B4IntegratedTriagePath applicable
+    sourceLinks: [FR-22]
+    pressureRefs: [P-04]
+
+  - id: BAPROP-DERMA-FR22-004
+    operator: produce
+    polarity: POSITIVE
+    participation:
+      actor: [BAREF-DERMA-001]
+      input: [BAREF-DERMA-046, BAREF-DERMA-047]
+      result: [BAREF-DERMA-028]
+    scopedModifier:
+      condition: B4IntegratedTriagePath applicable
+    sourceLinks: [FR-22]
+
+  - id: BAPROP-DERMA-FR22-005
+    operator: correlate
+    polarity: POSITIVE
+    participation:
+      correlatedItem: [BAREF-DERMA-028]
+      correlationContext: [BAREF-DERMA-025]
+    sourceLinks: [FR-22]
+
+sourceSupportAdditions:
+  - proposition: BAPROP-DERMA-DEC14-004
+    addSourceLinks: [FR-22]
+
+blockedSemanticRequirements:
+  - id: BAREQ-DERMA-FR22-INVOKE-001
+    meaning: POST /diagnose invokes DermaTriageTriageProcess
+    status: BLOCKED_BY_CURRENT_RELATION_PRESSURE
+    pressureRefs: [P-01, P-03]
+
+  - id: BAREQ-DERMA-FR22-BOUNDARY-001
+    meaning: B4 to DermaTriage data transfer crosses B4DermaTriageBoundary
+    status: BLOCKED_BY_CURRENT_RELATION_PRESSURE
+    pressureRefs: [P-04]
+
+constructStatusChanges:
+  consumeService:
+    from: NOT_TESTED
+    to: TESTED_POSITIVE
+
+pressureDelta:
+  strengthened: [P-03, P-04]
+  carried: [P-01, P-02, P-05, P-06, P-07, P-08]
+
+documentationGapsAdded:
+  - D-12
+
+reconciliationsAdded:
+  - R-07
+
+guideObservationsStrengthened:
+  - O-03_DATA_INTERACTION_COMPLETENESS
+  - O-05_SERVICE_CONSUMPTION_NOT_TRANSFER_NOT_RESPONSIBILITY
+
+nextBoundedSourceElement: MR-02

@@ -1,0 +1,96 @@
+schemaVersion: 1
+checkpointKey: DDTA-R25-DERMATRIAGE-BA-CONSOLIDATION-R5
+checkpointStatus: ACCEPTED_FOR_CONTINUATION
+checkpointPurpose: MR01_BRANCH_EVIDENCE_COLLECTION_CLOSURE
+formalBA3ReviewState: PENDING_REVIEW
+freshness: CURRENT
+
+repository:
+  fullName: nballestriero/documentation-driven-threat-analysis
+  pinnedCommit: 7284c8ea7f9f5c4ef5e40527779fcc2fb81eaa9b
+
+predecessor:
+  path: DDTA_R25_DERMATRIAGE_BA_CONSOLIDATION_R4
+  disposition: IMMUTABLE_PREDECESSOR
+
+projectAuthority:
+  key: DERMATRIAGE-GOV-R1
+  status: CURRENT_GOVERNED
+  primaryBASourceAllowed: true
+
+governedSource:
+  path: governed-corpora/dermatriage/current-r1/DDTA_DERMATRIAGE_GOVERNED_DOCUMENTATION_R1.tex
+
+newlyAnalyzedInR5:
+  - FR-22
+
+analyzedMR01Branch:
+  macroRequirement: MR-01
+  decisions:
+    - DEC-12
+    - DEC-13
+    - DEC-14
+    - DEC-01
+    - DEC-02
+  functionalRequirements:
+    - FR-16
+    - FR-17
+    - FR-18
+    - FR-19
+    - FR-20
+    - FR-21
+    - FR-22
+    - FR-01
+    - FR-02
+  selectedChildrenEvidenceCollectionComplete: true
+
+openPressureRefs:
+  - P-01
+  - P-02
+  - P-03
+  - P-04
+  - P-05
+  - P-06
+  - P-07
+  - P-08
+
+r5PressureChanges:
+  strengthened:
+    - P-03
+    - P-04
+  carried:
+    - P-01
+    - P-02
+    - P-05
+    - P-06
+    - P-07
+    - P-08
+
+constructStatusChanges:
+  consumeService: TESTED_POSITIVE
+
+documentationGapsAdded:
+  - D-12
+
+reconciliationsAdded:
+  - R-07
+
+nextBoundedSourceElement: MR-02
+
+holdoutRules:
+  methodologyFrozenDuringEvidenceCollection: true
+  noMethodChangeAuthorizedByCheckpoint: true
+  unusedConstructMeansNotTested: true
+  doNotCompleteDocumentationGapsInBA: true
+  doNotMergeByLexicalSimilarity: true
+  doNotUseReferenceAsInvocationShortcut: true
+  doNotUseDependOnAsInvocationOrOrderShortcut: true
+  doNotConflateServiceConsumptionAndDataTransfer: true
+  doNotInferOwnershipFromServiceConsumption: true
+  doNotInferBoundaryCrossingUnlessRepresentableFromGovernedMeaning: true
+  doNotInferSecurityOrAuthenticationFromPOSTEndpoint: true
+  projectionCannotIntroduceProjectMeaning: true
+  noStrideBeforeAcceptedBA: true
+
+ba6:
+  dermaTriageHoldoutIntegratedValidation: NOT_YET_EXECUTED
