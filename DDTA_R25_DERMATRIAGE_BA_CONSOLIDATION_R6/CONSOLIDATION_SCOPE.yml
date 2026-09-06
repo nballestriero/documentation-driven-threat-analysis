@@ -1,0 +1,52 @@
+schemaVersion: 1
+checkpointKey: DDTA-R25-DERMATRIAGE-BA-CONSOLIDATION-R6
+checkpointStatus: ACCEPTED_FOR_CONTINUATION
+checkpointPurpose: MR02_AND_MR03_PRE_FR23_EVIDENCE_CHECKPOINT
+formalBA3ReviewState: PENDING_REVIEW
+freshness: CURRENT
+repository:
+  fullName: nballestriero/documentation-driven-threat-analysis
+  pinnedCommit: 2c152dbc19e9e4d988e421256266968839fde755
+predecessor:
+  path: DDTA_R25_DERMATRIAGE_BA_CONSOLIDATION_R5
+  disposition: IMMUTABLE_PREDECESSOR
+projectAuthority:
+  key: DERMATRIAGE-GOV-R1
+  status: CURRENT_GOVERNED
+  primaryBASourceAllowed: true
+governedSource:
+  path: governed-corpora/dermatriage/current-r1/DDTA_DERMATRIAGE_GOVERNED_DOCUMENTATION_R1.tex
+newlyAnalyzedInR6: [MR-02, MR-03, DEC-03, FR-03, FR-12, DEC-15]
+mr02:
+  firstPassAnalyzed: true
+  decomposition: STOP_AT_MR
+mr03:
+  firstPassAnalyzed: [MR-03, DEC-03, FR-03, FR-12, DEC-15]
+  remaining: [FR-23, DEC-16, FR-24, FR-25]
+  branchClosure: false
+openPressureRefs: [P-01, P-02, P-03, P-04, P-05, P-06, P-07, P-08]
+r6PressureChanges:
+  strengthened: [P-03, P-04, P-07, P-08]
+  carried: [P-01, P-02, P-05, P-06]
+documentationGapsAdded: [D-13, D-14]
+reconciliationsAdded: [R-08, R-09, R-10]
+reconciliationsResolvedForCurrentEvidence: [R-02]
+observationsAdded: [O-06, O-07, O-08, O-09]
+nextBoundedSourceElement: FR-23
+holdoutRules:
+  methodologyFrozenDuringEvidenceCollection: true
+  noMethodChangeAuthorizedByCheckpoint: true
+  unusedConstructMeansNotTested: true
+  doNotCompleteDocumentationGapsInBA: true
+  doNotMergeByLexicalSimilarity: true
+  doNotMapSourceVerbToBAOperatorByLexicalMatch: true
+  doNotConflateRecordingAndAuthorship: true
+  doNotConflateServiceConsumptionAndDataTransfer: true
+  doNotConflateInterfaceConnectionTransportMediumBoundary: true
+  doNotInferBoundaryCrossingUnlessRepresentableFromGovernedMeaning: true
+  documentationDetailMustBeIntentional: true
+  intentionalNonCompletenessIsNotAutomaticGap: true
+  projectionCannotIntroduceProjectMeaning: true
+  noStrideBeforeAcceptedBA: true
+ba6:
+  dermaTriageHoldoutIntegratedValidation: NOT_YET_EXECUTED
