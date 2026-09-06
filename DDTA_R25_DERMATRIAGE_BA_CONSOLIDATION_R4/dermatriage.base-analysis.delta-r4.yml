@@ -1,0 +1,97 @@
+schemaVersion: 1
+baDeltaKey: DERMATRIAGE-BA-R25-DELTA-R4
+predecessorCheckpoint: DDTA-R25-DERMATRIAGE-BA-CONSOLIDATION-R3
+repositoryCommit: caf02332900997f7081d8426b3999a50e2d80638
+status: ACCEPTED_FOR_CONTINUATION
+formalReviewState: PENDING_REVIEW
+freshness: CURRENT
+
+newReferents:
+  - id: BAREF-DERMA-038
+    canonicalName: HistoricalCaseRetrievalCapability
+    status: WORKING_ACCEPTED
+  - id: BAREF-DERMA-039
+    canonicalName: HistoricalCaseDescriptions
+    status: PROVISIONAL_WORKING
+  - id: BAREF-DERMA-040
+    canonicalName: HistoricalCaseIndex
+    status: PROVISIONAL_RECONCILIATION
+  - id: BAREF-DERMA-041
+    canonicalName: BestBaselineCheckpoint
+    status: WORKING_ACCEPTED
+  - id: BAREF-DERMA-042
+    canonicalName: ValidationDataset
+    status: PROVISIONAL_WORKING
+  - id: BAREF-DERMA-043
+    canonicalName: TestDataset
+    status: PROVISIONAL_WORKING
+  - id: BAREF-DERMA-044
+    canonicalName: DirectClient
+    status: WORKING_ACCEPTED
+  - id: BAREF-DERMA-045
+    canonicalName: DermaTriageTriageProcess
+    status: PROVISIONAL_RECONCILIATION
+
+identityRefinements:
+  - id: BAREF-DERMA-029
+    canonicalName: DirectTriagePath
+    effectiveStatus: WORKING_ACCEPTED
+  - id: BAREF-DERMA-031
+    canonicalName: POST /analyze
+    effectiveStatus: WORKING_ACCEPTED
+
+newPropositions:
+  - id: BAPROP-DERMA-FR18-001
+    operator: realize
+  - id: BAPROP-DERMA-FR18-002
+    operator: produce
+  - id: BAPROP-DERMA-FR18-003
+    operator: produce
+  - id: BAPROP-DERMA-FR18-004
+    operator: observe
+  - id: BAPROP-DERMA-FR18-005
+    operator: constrain
+  - id: BAPROP-DERMA-FR18-006
+    operator: constrain
+  - id: BAPROP-DERMA-FR20-001
+    operator: realize
+  - id: BAPROP-DERMA-FR20-002
+    operator: produce
+  - id: BAPROP-DERMA-FR20-003
+    operator: constrain
+  - id: BAPROP-DERMA-FR20-004
+    operator: constrain
+  - id: BAPROP-DERMA-FR21-001
+    operator: realize
+  - id: BAPROP-DERMA-FR21-002
+    operator: transfer
+
+sourceSupportAdditions:
+  - proposition: BAPROP-DERMA-DEC12-004
+    source: FR-19
+  - proposition: BAPROP-DERMA-DEC12-005
+    source: FR-19
+  - proposition: BAPROP-DERMA-MR01-004
+    source: FR-19
+
+blockedSemanticRequirements:
+  - id: BAREQ-DERMA-FR21-INVOKE-001
+    meaning: POST /analyze invokes DermaTriageTriageProcess
+    pressureRefs: [P-01, P-03]
+
+pressureDelta:
+  strengthenedOrDecomposed: [P-01, P-07]
+  partiallyNarrowed: [P-02, P-03]
+  added: [P-08]
+  carried: [P-04, P-05, P-06]
+
+documentationGapsAdded: [D-07, D-08, D-09, D-10, D-11]
+reconciliationsAdded: [R-05, R-06]
+guideObservationsAdded:
+  - O-03_DATA_INTERACTION_COMPLETENESS
+  - O-04_LOGICAL_FLOW_NOT_PHYSICAL_EXCHANGE
+
+projectionCandidates:
+  - LOGICAL_DATA_FLOW_VIEW
+  - DATA_CONTRACT_FLOW_VIEW
+  - DATA_LOCATION_STORE_VIEW

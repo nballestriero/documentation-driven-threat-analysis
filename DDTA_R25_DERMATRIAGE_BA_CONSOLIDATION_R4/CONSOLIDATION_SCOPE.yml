@@ -1,0 +1,59 @@
+schemaVersion: 1
+checkpointKey: DDTA-R25-DERMATRIAGE-BA-CONSOLIDATION-R4
+checkpointStatus: ACCEPTED_FOR_CONTINUATION
+formalBA3ReviewState: PENDING_REVIEW
+freshness: CURRENT
+
+repository:
+  fullName: nballestriero/documentation-driven-threat-analysis
+  pinnedCommit: caf02332900997f7081d8426b3999a50e2d80638
+
+predecessor:
+  path: DDTA_R25_DERMATRIAGE_BA_CONSOLIDATION_R3
+  disposition: IMMUTABLE_PREDECESSOR
+
+projectAuthority:
+  key: DERMATRIAGE-GOV-R1
+  status: CURRENT_GOVERNED
+  primaryBASourceAllowed: true
+
+governedSource:
+  path: governed-corpora/dermatriage/current-r1/DDTA_DERMATRIAGE_GOVERNED_DOCUMENTATION_R1.tex
+
+analyzedSourceElements:
+  - MR-01
+  - DEC-12
+  - DEC-13
+  - DEC-14
+  - DEC-01
+  - FR-01
+  - DEC-02
+  - FR-02
+  - FR-16
+  - FR-17
+  - FR-18
+  - FR-19
+  - FR-20
+  - FR-21
+
+newlyAnalyzedInR4: [FR-18, FR-19, FR-20, FR-21]
+nextBoundedSourceElement: FR-22
+remainingMR01Children: [FR-22]
+
+openPressureRefs: [P-01, P-02, P-03, P-04, P-05, P-06, P-07, P-08]
+
+holdoutRules:
+  methodologyFrozenDuringEvidenceCollection: true
+  noMethodChangeAuthorizedByCheckpoint: true
+  unusedConstructMeansNotTested: true
+  doNotCompleteDocumentationGapsInBA: true
+  doNotUseReferenceAsInvocationShortcut: true
+  doNotUseDependOnAsInvocationOrOrderShortcut: true
+  doNotNormalizeEndpointIntoServiceWithoutEvidence: true
+  doNotInferPhysicalTransferFromLogicalDataDependency: true
+  doNotInferTransportSecurityFromPOSTPath: true
+  projectionCannotIntroduceProjectMeaning: true
+  noStrideBeforeAcceptedBA: true
+
+ba6:
+  dermaTriageHoldoutIntegratedValidation: NOT_YET_EXECUTED
