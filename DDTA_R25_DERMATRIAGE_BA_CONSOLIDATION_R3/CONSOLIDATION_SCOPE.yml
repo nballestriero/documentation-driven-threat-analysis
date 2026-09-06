@@ -1,0 +1,77 @@
+schemaVersion: 1
+checkpointKey: DDTA-R25-DERMATRIAGE-BA-CONSOLIDATION-R3
+checkpointStatus: ACCEPTED_FOR_CONTINUATION
+formalBA3ReviewState: PENDING_REVIEW
+freshness: CURRENT
+
+repository:
+  fullName: nballestriero/documentation-driven-threat-analysis
+  pinnedCommit: 43af852f5faa4e4585a39b14ee5be46dcd09ca9d
+
+predecessor:
+  path: DDTA_R25_DERMATRIAGE_BA_CONSOLIDATION_R2
+  disposition: IMMUTABLE_PREDECESSOR
+
+projectAuthority:
+  key: DERMATRIAGE-GOV-R1
+  status: CURRENT_GOVERNED
+  primaryBASourceAllowed: true
+
+governedSource:
+  path: governed-corpora/dermatriage/current-r1/DDTA_DERMATRIAGE_GOVERNED_DOCUMENTATION_R1.tex
+
+analyzedSourceElements:
+  - MR-01
+  - DEC-12
+  - DEC-13
+  - DEC-14
+  - DEC-01
+  - FR-01
+  - DEC-02
+  - FR-02
+  - FR-16
+  - FR-17
+
+newlyAnalyzedInR3:
+  - FR-16
+  - FR-17
+
+nextBoundedSourceElement: FR-18
+
+remainingMR01Children:
+  - FR-18
+  - FR-19
+  - FR-20
+  - FR-21
+  - FR-22
+
+openPressureRefs:
+  - P-01
+  - P-02
+  - P-03
+  - P-04
+  - P-05
+  - P-06
+  - P-07
+
+r3PressureChanges:
+  narrowed: [P-01]
+  strengthened: [P-02, P-06]
+  added: [P-07]
+
+projectionCandidates:
+  - DATA_CONTRACT_FLOW_VIEW
+
+holdoutRules:
+  methodologyFrozenDuringEvidenceCollection: true
+  noMethodChangeAuthorizedByCheckpoint: true
+  unusedConstructMeansNotTested: true
+  doNotCompleteDocumentationGapsInBA: true
+  doNotUseCorrelateAsContainmentShortcut: true
+  doNotInventClosedSchemaFromMinimumFields: true
+  doNotClassifyPrivacySensitivityInBAUnlessGoverned: true
+  projectionCannotIntroduceProjectMeaning: true
+  noStrideBeforeAcceptedBA: true
+
+ba6:
+  dermaTriageHoldoutIntegratedValidation: NOT_YET_EXECUTED

@@ -1,0 +1,84 @@
+schemaVersion: 1
+baDeltaKey: DERMATRIAGE-BA-R25-DELTA-R3
+predecessorCheckpoint: DDTA-R25-DERMATRIAGE-BA-CONSOLIDATION-R2
+repositoryCommit: 43af852f5faa4e4585a39b14ee5be46dcd09ca9d
+status: ACCEPTED_FOR_CONTINUATION
+formalReviewState: PENDING_REVIEW
+freshness: CURRENT
+
+identityRefinements:
+  - id: BAREF-DERMA-023
+    canonicalName: ImageBasedUrgencyClassificationCapability
+    previousStatus: PROVISIONAL_RECONCILIATION
+    effectiveStatus: WORKING_ACCEPTED
+    evidence: [DEC-13, FR-16]
+
+  - id: BAREF-DERMA-037
+    canonicalName: Confidence
+    previousStatus: PROVISIONAL_RECONCILIATION
+    effectiveStatus: WORKING_ACCEPTED
+    evidence: [FR-02, FR-16]
+    pressureRefs: [P-06, P-07]
+
+newPropositions:
+  - id: BAPROP-DERMA-FR16-001
+    operator: realize
+    polarity: POSITIVE
+    participation:
+      abstract: [BAREF-DERMA-023]
+      realization: [BAREF-DERMA-009]
+    sourceLinks: [FR-16]
+
+  - id: BAPROP-DERMA-FR16-002
+    operator: produce
+    polarity: POSITIVE
+    participation:
+      actor: [BAREF-DERMA-023]
+      input: [BAREF-DERMA-008]
+      result: [BAREF-DERMA-010, BAREF-DERMA-037]
+    scopedModifier:
+      condition: SkinLesionImage available for DermatologicalCase
+    sourceLinks: [DEC-12, FR-16]
+    refinesHistoricalProposition: BAPROP-DERMA-DEC12-001
+
+  - id: BAPROP-DERMA-FR16-003
+    operator: constrain
+    polarity: POSITIVE
+    participation:
+      constraintTarget: [BAREF-DERMA-010]
+      constraintValue:
+        - property: urgencyLevel
+          vocabulary: [HIGH, MEDIUM, LOW]
+    sourceLinks: [FR-16]
+    canonicalizationStatus: OPEN
+
+sourceSupportAdditions:
+  - proposition: BAPROP-DERMA-DEC12-002
+    addSourceLinks: [FR-17]
+
+blockedSemanticRequirements:
+  - id: BAREQ-DERMA-FR16-STRUCTURE-001
+    meaning: "ImageUrgencyClassification includes Confidence"
+    status: BLOCKED_PENDING_P07_REVIEW
+    pressureRefs: [P-07]
+
+  - id: BAREQ-DERMA-FR17-CONTRACT-001
+    meaning: "ClinicalDescription must represent at least shape, borders, color, texture, suspiciousCharacteristics"
+    status: BLOCKED_PENDING_P07_REVIEW
+    pressureRefs: [P-07]
+
+  - id: BAREQ-DERMA-FR16-THRESHOLD-001
+    meaning: "documented HIGH threshold = 0.25"
+    status: NOT_ENOUGH_GOVERNED_SEMANTICS_FOR_DECISION_RULE
+    documentationGapRefs: [D-05]
+
+pressureDelta:
+  narrowed: [P-01]
+  strengthened: [P-02, P-06]
+  added: [P-07]
+  carried: [P-03, P-04, P-05]
+
+projectionCandidates:
+  - key: DATA_CONTRACT_FLOW_VIEW
+    authorityStatus: CANDIDATE_ONLY
+    ba4MaterializationStatus: NOT_EXECUTED
