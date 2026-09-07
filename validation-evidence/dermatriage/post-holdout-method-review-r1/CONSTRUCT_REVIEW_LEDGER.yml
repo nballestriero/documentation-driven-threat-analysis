@@ -1,6 +1,7 @@
 schema: DDTA_CONSTRUCT_REVIEW_LEDGER_R1
-checkpoint: DDTA-R25-DERMATRIAGE-CONSTRUCT-METHOD-REVIEW-PLAN-R13
-repository_baseline: facd456ee256746a61a7f94c72a04b20886ca59e
+checkpoint: DDTA-R25-DERMATRIAGE-CR01-CLASSIFY-CONSOLIDATION-R14
+predecessor_checkpoint: DDTA-R25-DERMATRIAGE-CONSTRUCT-METHOD-REVIEW-PLAN-R13
+repository_baseline: 81b94f5dd0fba9eaf6ba22f9b8c263158d62e55d
 phase: POST_HOLDOUT_CONSTRUCT_BY_CONSTRUCT_METHOD_REVIEW
 method_reference:
   BA0: R1
@@ -20,70 +21,105 @@ chat_evidence_rule:
   show_current_construct: true
   show_source_to_construct_link: true
   verdict_before_chat_evidence: FORBIDDEN
+classify_operational_macro_kind_working_set:
+  status: CR01_ACCEPTED_GUIDE_CLARIFICATION_CANDIDATE
+  closed_universal_vocabulary: false
+  kinds:
+  - Actor
+  - Component
+  - Behavior
+  - Interface
+  - Boundary
+  - Store
+  - Information
+  - State
+  admission_rule: REUSABLE_METHOD_NEUTRAL_TREATMENT_REQUIRED
+  question_result_states:
+  - ANSWERED
+  - CLARITY_OPPORTUNITY
+  - GOVERNED_GAP
+  - NOT_APPLICABLE
+  source_specific_semantic_kinds_remain_allowed_when_governed: true
 reviews:
 - id: CR-01
   topic: classify
-  status: READY
+  status: COMPLETE
   pressure_basis: CLASSIFICATION_COVERAGE_REVIEW_EVIDENCE
-  next: true
+  primary_verdict: GUIDE_CLARIFICATION
+  artifact: validation-evidence/dermatriage/post-holdout-method-review-r1/construct-reviews/CR-01_CLASSIFY.md
+  next: false
 - id: CR-02
   topic: decisionRule + comparison condition language
-  status: NOT_STARTED
+  status: READY
   pressure_basis:
   - P-05
   - P-06
+  next: true
 - id: CR-03
   topic: constrain
   status: NOT_STARTED
   pressure_basis: BOUNDARY_CALIBRATION
+  next: false
 - id: CR-04
   topic: persistence / store association
   status: NOT_STARTED
   pressure_basis: P-08
+  next: false
 - id: CR-05
   topic: interface / path / invocation association
   status: NOT_STARTED
   pressure_basis: P-03
+  next: false
 - id: CR-06
   topic: boundary / interaction association
   status: NOT_STARTED
   pressure_basis: P-04
+  next: false
 - id: CR-07
   topic: structured data / information contract
   status: NOT_STARTED
   pressure_basis: P-07
+  next: false
 - id: CR-08
   topic: conditional action trigger semantics
   status: NOT_STARTED
   pressure_basis: CONDITIONAL_ACTION_TRIGGER_SEMANTICS
+  next: false
 - id: CR-09
   topic: data / evidence consumption semantics
   status: NOT_STARTED
   pressure_basis: DATA_EVIDENCE_CONSUMPTION_SEMANTICS
+  next: false
 - id: CR-10
   topic: bounded recency / collection selection semantics
   status: NOT_STARTED
   pressure_basis: BOUNDED_RECENCY_SELECTION_SEMANTICS
+  next: false
 - id: CR-11
   topic: acquisition / refresh action semantics
   status: NOT_STARTED
   pressure_basis: ACQUISITION_REFRESH_ACTION_SEMANTICS
+  next: false
 - id: CR-12
   topic: negative implication / non-sufficiency semantics
   status: NOT_STARTED
   pressure_basis: NEGATIVE_IMPLICATION_NON_SUFFICIENCY_SEMANTICS
+  next: false
 - id: CR-13
   topic: function / process / behavior identity binding
   status: NOT_STARTED
   pressure_basis: P-01
+  next: false
 - id: CR-14
   topic: pipeline composition / order
   status: NOT_STARTED
   pressure_basis: P-02
+  next: false
 - id: CR-15
   topic: configuration applicability binding evidence
   status: NOT_STARTED
   pressure_basis: CONFIGURATION_APPLICABILITY_BINDING_EVIDENCE
+  next: false
 allowed_primary_verdicts:
 - NO_CHANGE
 - APPLICATION_CORRECTION
