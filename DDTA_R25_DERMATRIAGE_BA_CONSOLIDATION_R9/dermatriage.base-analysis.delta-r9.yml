@@ -1,0 +1,129 @@
+schemaVersion: 1
+checkpointKey: DDTA-R25-DERMATRIAGE-BA-CONSOLIDATION-R9
+baselineCommit: bc1804e275e4f9ab419e1651b88f2857f300f274
+governedSourceBlob: f29d7ed8d7f40b388ef135182a2d18968f4daa32
+predecessor: DDTA_R25_DERMATRIAGE_BA_CONSOLIDATION_R8
+methodologyFrozen: true
+methodChangeAuthorized: false
+newNumberedPressureAuthorized: false
+
+newlyAnalyzedInR9:
+  - DEC-05
+  - FR-13
+  - FR-14
+  - FR-15
+  - DEC-06
+  - FR-09
+
+coverage:
+  mr04BranchClosure: false
+  dec05BranchClosure: true
+  dec06BranchClosure: true
+  nextBoundedSourceElement: DEC-07
+  remainingActiveBoundedSourceElements: 13
+
+referents:
+  - {id: BAREF-DERMA-079, canonicalName: Capability, status: WORKING_ACCEPTED, semanticKind: true}
+  - {id: BAREF-DERMA-080, canonicalName: ActivationCondition, status: WORKING_ACCEPTED, semanticKind: true}
+  - {id: BAREF-DERMA-081, canonicalName: ClassifierAdaptationCandidate, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-082, canonicalName: AdaptationCandidate, status: WORKING_ACCEPTED, semanticKind: true}
+  - {id: BAREF-DERMA-083, canonicalName: EfficientNetB4ReferenceModelVersion1_0_0, status: PROVISIONAL_RECONCILIATION, reconciliationRef: R-14}
+  - {id: BAREF-DERMA-084, canonicalName: ClassifierAdaptationQualificationResult, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-085, canonicalName: LifecycleResult, status: WORKING_ACCEPTED, semanticKind: true}
+  - {id: BAREF-DERMA-086, canonicalName: ClassifierAdaptationQualificationCondition, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-087, canonicalName: ModelVersion, status: WORKING_ACCEPTED, semanticKind: true}
+  - {id: BAREF-DERMA-088, canonicalName: ClassifierAcceptanceCriteria, status: WORKING_ACCEPTED}
+
+propositions:
+  - {id: BAPROP-DERMA-DEC05-001, operator: classify, classifiedReferent: PromptEvolutionPath, semanticKind: [Capability]}
+  - {id: BAPROP-DERMA-DEC05-002, operator: classify, classifiedReferent: EfficientNetB4AdaptationPath, semanticKind: [Capability]}
+
+  - {id: BAPROP-DERMA-FR13-001, operator: classify, classifiedReferent: PromptEvolutionEvidenceAccumulationCondition, semanticKind: [ActivationCondition]}
+  - {id: BAPROP-DERMA-FR13-002, operator: classify, classifiedReferent: ClassifierAdaptationEvidenceAccumulationCondition, semanticKind: [ActivationCondition]}
+
+  - {id: BAPROP-DERMA-DEC06-001, operator: classify, classifiedReferent: ClassifierAdaptationCandidate, semanticKind: [AdaptationCandidate]}
+  - {id: BAPROP-DERMA-DEC06-002, operator: classify, classifiedReferent: ClassifierAdaptationQualificationResult, semanticKind: [LifecycleResult]}
+  - {id: BAPROP-DERMA-DEC06-003, operator: dependOn, dependent: ClassifierAdaptationQualificationResult, prerequisite: [ClassifierAdaptationQualificationCondition]}
+  - {id: BAPROP-DERMA-DEC06-004, operator: dependOn, dependent: ClassifierAdaptationQualificationCondition, prerequisite: [EfficientNetB4ReferenceModelVersion1_0_0]}
+
+  - {id: BAPROP-DERMA-FR09-001, operator: classify, classifiedReferent: EfficientNetB4ReferenceModelVersion1_0_0, semanticKind: [ModelVersion]}
+  - {id: BAPROP-DERMA-FR09-002, operator: dependOn, dependent: ClassifierAdaptationQualificationCondition, prerequisite: [ClassifierAcceptanceCriteria]}
+  - id: BAPROP-DERMA-FR09-003
+    operator: decisionRule
+    actor: DermaTriage
+    input:
+      - ClassifierAdaptationCandidate
+      - EfficientNetB4ReferenceModelVersion1_0_0
+      - ClassifierAcceptanceCriteria
+    result: ClassifierAdaptationQualificationResult
+    rule:
+      if:
+        satisfies:
+          subject: ClassifierAdaptationCandidate
+          condition: ClassifierAdaptationQualificationCondition
+      then:
+        - target: ClassifierAdaptationQualificationResult
+          value: QUALIFIED_FOR_ADOPTION
+      else: OMITTED_NO_IMPLIED_MEANING
+
+blockedMeanings:
+  - id: BAREQ-DERMA-FR13-NONIMPLICATION-001
+    status: GOVERNED_BUT_NOT_FULLY_REPRESENTABLE
+    candidateTopic: NEGATIVE_IMPLICATION_NON_SUFFICIENCY_SEMANTICS
+  - id: BAREQ-DERMA-FR14-NONIMPLICATION-001
+    status: GOVERNED_BUT_NOT_FULLY_REPRESENTABLE
+    candidateTopic: NEGATIVE_IMPLICATION_NON_SUFFICIENCY_SEMANTICS
+  - id: BAREQ-DERMA-FR15-NONIMPLICATION-001
+    status: GOVERNED_BUT_NOT_FULLY_REPRESENTABLE
+    candidateTopic: NEGATIVE_IMPLICATION_NON_SUFFICIENCY_SEMANTICS
+
+applicationReviewEvidence:
+  - key: CLASSIFICATION_COVERAGE_REVIEW_EVIDENCE
+    status: OPEN_CARRY_FORWARD
+    disposition: NOT_A_METHOD_PRESSURE
+    reviewTiming: POST_HOLDOUT_BEFORE_INTEGRATED_BA6
+
+pressureChanges:
+  strengthenedUnnumbered:
+    - NEGATIVE_IMPLICATION_NON_SUFFICIENCY_SEMANTICS
+  carriedNumbered:
+    - P-01
+    - P-02
+    - P-03
+    - P-04
+    - P-05
+    - P-06
+    - P-07
+    - P-08
+  carriedUnnumbered:
+    - ACQUISITION_REFRESH_ACTION_SEMANTICS
+    - CONDITIONAL_ACTION_TRIGGER_SEMANTICS
+    - DATA_EVIDENCE_CONSUMPTION_SEMANTICS
+
+sourceGovernedDocumentationGapsConfirmed:
+  - GAP-DERMA-DEPLOY-01
+  - GAP-DERMA-ACCEPT-BINDING-01
+  - GAP-DERMA-EVAL-CONSISTENCY-01
+
+reconciliation:
+  strengthened:
+    - R-13
+  added:
+    - R-14
+
+observations:
+  stronglyReinforced:
+    - O-15
+    - O-16
+    - O-18
+    - O-19
+  candidates:
+    - O-17
+
+constructStatusChanges:
+  classify: TESTED_POSITIVE_IN_DERMATRIAGE
+  decisionRule: TESTED_POSITIVE_IN_DERMATRIAGE
+  transition: NOT_TESTED_POSITIVE
+
+ba6:
+  dermaTriageHoldoutIntegratedValidation: NOT_YET_EXECUTED

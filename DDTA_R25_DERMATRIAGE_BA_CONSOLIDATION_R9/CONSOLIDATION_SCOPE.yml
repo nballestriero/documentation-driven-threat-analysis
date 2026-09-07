@@ -1,0 +1,100 @@
+schemaVersion: 1
+checkpointKey: DDTA-R25-DERMATRIAGE-BA-CONSOLIDATION-R9
+checkpointStatus: ACCEPTED_FOR_CONTINUATION
+checkpointPurpose: MR04_DEC05_DEC06_BRANCH_EVIDENCE_CHECKPOINT
+formalBA3ReviewState: PENDING_REVIEW
+freshness: CURRENT
+
+repository:
+  fullName: nballestriero/documentation-driven-threat-analysis
+  pinnedCommit: bc1804e275e4f9ab419e1651b88f2857f300f274
+
+predecessor:
+  path: DDTA_R25_DERMATRIAGE_BA_CONSOLIDATION_R8
+  disposition: IMMUTABLE_PREDECESSOR
+
+projectAuthority:
+  key: DERMATRIAGE-GOV-R1
+  status: CURRENT_GOVERNED
+  primaryBASourceAllowed: true
+
+governedSource:
+  path: governed-corpora/dermatriage/current-r1/DDTA_DERMATRIAGE_GOVERNED_DOCUMENTATION_R1.tex
+  blobSha: f29d7ed8d7f40b388ef135182a2d18968f4daa32
+
+newlyAnalyzedInR9:
+  - DEC-05
+  - FR-13
+  - FR-14
+  - FR-15
+  - DEC-06
+  - FR-09
+
+mr04:
+  branchClosure: false
+
+dec05:
+  firstPassAnalyzed: [DEC-05, FR-13, FR-14, FR-15]
+  branchClosure: true
+
+dec06:
+  firstPassAnalyzed: [DEC-06, FR-09]
+  branchClosure: true
+
+nextBoundedSourceElement: DEC-07
+remainingActiveBoundedSourceElements: 13
+
+openPressureRefs: [P-01, P-02, P-03, P-04, P-05, P-06, P-07, P-08]
+
+r9PressureChanges:
+  numberedStrengthened: []
+  numberedCarried: [P-01, P-02, P-03, P-04, P-05, P-06, P-07, P-08]
+  unnumberedStrengthened:
+    - NEGATIVE_IMPLICATION_NON_SUFFICIENCY_SEMANTICS
+  unnumberedCarried:
+    - ACQUISITION_REFRESH_ACTION_SEMANTICS
+    - CONDITIONAL_ACTION_TRIGGER_SEMANTICS
+    - DATA_EVIDENCE_CONSUMPTION_SEMANTICS
+
+sourceGovernedDocumentationGapsConfirmed:
+  - GAP-DERMA-DEPLOY-01
+  - GAP-DERMA-ACCEPT-BINDING-01
+  - GAP-DERMA-EVAL-CONSISTENCY-01
+
+applicationReviewEvidence:
+  - CLASSIFICATION_COVERAGE_REVIEW_EVIDENCE
+
+reconciliationsStrengthened:
+  - R-13
+
+reconciliationsAdded:
+  - R-14
+
+observationsStronglyReinforced:
+  - O-15
+  - O-16
+  - O-18
+  - O-19
+
+observationCandidates:
+  - O-17
+
+holdoutRules:
+  methodologyFrozenDuringEvidenceCollection: true
+  noMethodChangeAuthorizedByCheckpoint: true
+  noNewPressureIdAuthorizedByCheckpoint: true
+  unusedConstructMeansNotTested: true
+  doNotRetroAuditClassificationDuringCurrentEvidenceCycle: true
+  doNotTreatClassificationCoverageEvidenceAsMethodPressure: true
+  doNotFlattenContextRelativeQualificationIntoClassify: true
+  doNotInferLifecycleStateFromLifecycleResult: true
+  doNotInferDeploymentFromQualification: true
+  doNotInferElseBranchInDecisionRule: true
+  doNotConflateConditionalActionWithConditionalResultSelection: true
+  doNotNormalizeNonSufficiencyToNegativeDependency: true
+  doNotCompleteDocumentationGapsInBA: true
+  projectionCannotIntroduceProjectMeaning: true
+  noStrideBeforeAcceptedBA: true
+
+ba6:
+  dermaTriageHoldoutIntegratedValidation: NOT_YET_EXECUTED
