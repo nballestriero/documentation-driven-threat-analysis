@@ -1,0 +1,46 @@
+schema: DDTA_VALIDATION_INPUT_MANIFEST_R1
+checkpoint: DDTA-R25-DERMATRIAGE-INDEPENDENT-REVIEW-GOVERNANCE-R12
+purpose: EXPERT_EVIDENCE_GOVERNANCE_AND_PROTOCOL_DEVIATION_CHECKPOINT
+repository_predecessor_baseline: 36a1e1897302a77d3ecef5866e011f7082d0b597
+evidence_set: DERMATRIAGE_INDEPENDENT_REVIEW_R1
+protocol_status: PROTOCOL_DEVIATION
+protocol_deviation_id: DDTA-VAL-DERMA-R1-GUIDE-SELECTION-01
+actual_recorded_inputs:
+- filename: DDTA_DERMATRIAGE_GOVERNED_DOCUMENTATION_R1.pdf
+  authority_role: GOVERNED_PROJECT_DOCUMENTATION
+  evidence_copy_sha256: 4a16eef39e95d141010e0ba5e6ca02122e3d14ddf7ab3f7e92e62234523191ea
+  evidence_copy_bytes: 623170
+  delivery_byte_identity: NOT_VERIFIED
+  bundled_in_this_dropin: false
+- filename: DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R5.pdf
+  authority_role: DOCUMENTATION_BA_AUTHORING_GUIDE
+  evidence_copy_sha256: f37d3eef2f0f5ee0aa3c6b10b5476612206dea4b820f97fdbbe531a142628107
+  evidence_copy_bytes: 680496
+  delivery_byte_identity: NOT_VERIFIED
+  bundled_in_this_dropin: false
+intended_but_not_supplied_for_strict_replication:
+- filename: DDTA_BASE_ANALYSIS_OPERATIONAL_GUIDE_R3.pdf
+  authority_role: BASE_ANALYSIS_EXECUTION_GUIDE
+  evidence_copy_sha256: c1f9ef2dd509065ffc00a6b48c9e67fb0624a75a9476352cd1f2051ca1889653
+  evidence_copy_bytes: 388492
+  delivery_status: NOT_SUPPLIED_IN_RECORDED_EXPERT_PACKAGE
+  bundled_in_this_dropin: false
+reports:
+- expert_id: EXPERT-01
+  path: expert-01/ORIGINAL_REPORT.md
+  sha256: 9316de4c1a0f49d59b053fecc3ee1f1853709840f516426bee5dfffb2b3c748a
+  bytes: 54535
+  preservation: BYTE_FOR_BYTE_COPY_OF_RECOVERED_ORIGINAL
+- expert_id: EXPERT-02
+  path: expert-02/ORIGINAL_REPORT.md
+  sha256: 63021e205bd82461f4c3b102d5ee8277513def0827e132793cb9a172e3e654eb
+  bytes: 25097
+  preservation: BYTE_FOR_BYTE_COPY_OF_RECOVERED_ORIGINAL
+provenance_limit: Evidence-copy PDF hashes identify the currently recovered copies
+  used to document the review package. They do not establish byte-for-byte identity
+  with the exact files delivered to each expert unless separately proven.
+dropin_scope:
+- governance_only
+- no_BA0_BA6_change
+- no_governed_corpus_change
+- no_prior_checkpoint_rewrite

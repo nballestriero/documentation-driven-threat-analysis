@@ -1,0 +1,27 @@
+checkpoint: DDTA-R25-DERMATRIAGE-INDEPENDENT-REVIEW-GOVERNANCE-R12
+repository_predecessor_baseline: 36a1e1897302a77d3ecef5866e011f7082d0b597
+status: COMPLETED
+independence: INDEPENDENT_FROM_DDTA_DERMATRIAGE_BA_RESULTS
+protocol_status: DEVIATED_WRONG_EXECUTION_GUIDE
+recorded_input_names:
+- DDTA_DERMATRIAGE_GOVERNED_DOCUMENTATION_R1.pdf
+- DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R5.pdf
+intended_execution_guide: DDTA_BASE_ANALYSIS_OPERATIONAL_GUIDE_R3.pdf
+delivery_byte_identity: NOT_VERIFIED
+valid_evidence_for:
+- independent_semantic_recovery
+- documentation_gap_discovery
+- analyst_decision_variance
+- guide_and_package_usability_as_supplied
+- non_inference_convergence
+not_strict_evidence_for:
+- frozen_BA2_R3_operator_coverage
+- frozen_BA_construct_sufficiency
+- strict_BA2_R3_reproducibility_percentage
+- integrated_DermaTriage_BA6_verdict
+expert_id: EXPERT-01
+report_file: ORIGINAL_REPORT.md
+report_sha256: 9316de4c1a0f49d59b053fecc3ee1f1853709840f516426bee5dfffb2b3c748a
+report_bytes: 54535
+guide_usage_evidence_note: Report wording repeatedly identifies/cites the documentation
+  BA guide; exact delivered PDF bytes are not independently proven.
