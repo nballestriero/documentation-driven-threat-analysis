@@ -1,0 +1,68 @@
+schemaVersion: 1
+checkpointKey: DDTA-R25-DERMATRIAGE-BA-CONSOLIDATION-R8
+baselineCommit: 020a718dbf03d61cf72c8967c2a301506650dfc6
+governedSourceBlob: f29d7ed8d7f40b388ef135182a2d18968f4daa32
+predecessor: DDTA_R25_DERMATRIAGE_BA_CONSOLIDATION_R7
+methodologyFrozen: true
+methodChangeAuthorized: false
+newNumberedPressureAuthorized: false
+newlyAnalyzedInR8: [MR-04, DEC-04, FR-04, FR-05]
+coverage:
+  mr04BranchClosure: false
+  dec04BranchClosure: true
+  nextBoundedSourceElement: DEC-05
+referents:
+  - {id: BAREF-DERMA-066, canonicalName: ControlledDermaTriageAdaptation, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-067, canonicalName: ClinicalReviewDerivedEvidence, status: PROVISIONAL_RECONCILIATION}
+  - {id: BAREF-DERMA-068, canonicalName: PromptEvolutionPath, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-069, canonicalName: EfficientNetB4AdaptationPath, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-070, canonicalName: PromptEvolutionEvidenceAccumulationCondition, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-071, canonicalName: ClassifierAdaptationEvidenceAccumulationCondition, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-072, canonicalName: AccumulatedPromptCorrectionEvidence, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-073, canonicalName: PromptEvolutionThreshold, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-074, canonicalName: PromptEvolutionCycle, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-075, canonicalName: AccumulatedClassifierEvidence, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-076, canonicalName: ClassifierAdaptationThreshold, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-077, canonicalName: ClassifierAdaptationCycle, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-078, canonicalName: QualifiedClassifierDisagreementEvidence, status: PROVISIONAL_RECONCILIATION, recheckAt: FR-07}
+propositions:
+  - {id: BAPROP-DERMA-MR04-001, operator: dependOn, dependent: ControlledDermaTriageAdaptation, prerequisite: [ClinicalReviewDerivedEvidence]}
+  - {id: BAPROP-DERMA-MR04-002, operator: realize, abstract: ControlledDermaTriageAdaptation, realization: [PromptEvolutionPath, EfficientNetB4AdaptationPath]}
+  - {id: BAPROP-DERMA-DEC04-001, operator: dependOn, dependent: PromptEvolutionPath, prerequisite: [PromptEvolutionEvidenceAccumulationCondition]}
+  - {id: BAPROP-DERMA-DEC04-002, operator: dependOn, dependent: EfficientNetB4AdaptationPath, prerequisite: [ClassifierAdaptationEvidenceAccumulationCondition]}
+  - {id: BAPROP-DERMA-FR04-001, operator: constrain, constraintTarget: PromptEvolutionThreshold, constraintValue: 10, sourceValueMeaning: accumulatedPromptCorrectionEvidenceElements}
+  - {id: BAPROP-DERMA-FR04-002, operator: dependOn, dependent: PromptEvolutionCycle, prerequisite: [PromptEvolutionEvidenceAccumulationCondition]}
+  - id: BAPROP-DERMA-FR04-003
+    operator: assignResponsibility
+    responsibleParty: [DermaTriage]
+    responsibilityScope: PromptEvolutionCycle
+    responsibilityKind: promptEvolutionCycleActivationResponsibility
+    condition: PromptEvolutionEvidenceAccumulationCondition
+  - {id: BAPROP-DERMA-FR05-001, operator: constrain, constraintTarget: ClassifierAdaptationThreshold, constraintValue: 50, sourceValueMeaning: qualifyingCorrections}
+  - {id: BAPROP-DERMA-FR05-002, operator: dependOn, dependent: ClassifierAdaptationCycle, prerequisite: [ClassifierAdaptationEvidenceAccumulationCondition]}
+  - id: BAPROP-DERMA-FR05-003
+    operator: assignResponsibility
+    responsibleParty: [DermaTriage]
+    responsibilityScope: ClassifierAdaptationCycle
+    responsibilityKind: classifierAdaptationCycleActivationResponsibility
+    condition: ClassifierAdaptationEvidenceAccumulationCondition
+  - {id: BAPROP-DERMA-FR05-004, operator: dependOn, dependent: ClassifierAdaptationEvidenceAccumulationCondition, prerequisite: [QualifiedClassifierDisagreementEvidence]}
+blockedMeanings:
+  - {id: BAREQ-DERMA-FR04-THRESHOLD-001, status: PARTIALLY_REPRESENTABLE, pressureRefs: [P-05]}
+  - {id: BAREQ-DERMA-FR04-TRIGGER-001, status: PARTIALLY_REPRESENTABLE, candidateTopic: CONDITIONAL_ACTION_TRIGGER_SEMANTICS}
+  - {id: BAREQ-DERMA-FR05-THRESHOLD-001, status: PARTIALLY_REPRESENTABLE, pressureRefs: [P-05]}
+  - {id: BAREQ-DERMA-FR05-TRIGGER-001, status: PARTIALLY_REPRESENTABLE, candidateTopic: CONDITIONAL_ACTION_TRIGGER_SEMANTICS}
+  - {id: BAREQ-DERMA-FR05-EVIDENCE-CONSUMPTION-001, status: PARTIALLY_REPRESENTABLE, candidateTopic: DATA_EVIDENCE_CONSUMPTION_SEMANTICS}
+pressureChanges:
+  strengthened: [P-05]
+  carried: [P-01, P-02, P-03, P-04, P-06, P-07, P-08]
+  unnumberedCarried: [ACQUISITION_REFRESH_ACTION_SEMANTICS]
+  unnumberedAdded: [CONDITIONAL_ACTION_TRIGGER_SEMANTICS, DATA_EVIDENCE_CONSUMPTION_SEMANTICS]
+documentationGapsAdded: []
+reconciliation:
+  addedAndStrengthened: [R-13]
+observations:
+  added: [O-12, O-13]
+  candidates: [O-14]
+ba6:
+  dermaTriageHoldoutIntegratedValidation: NOT_YET_EXECUTED

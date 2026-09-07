@@ -1,0 +1,47 @@
+schemaVersion: 1
+checkpointKey: DDTA-R25-DERMATRIAGE-BA-CONSOLIDATION-R8
+checkpointStatus: ACCEPTED_FOR_CONTINUATION
+checkpointPurpose: MR04_DEC04_BRANCH_EVIDENCE_CHECKPOINT
+formalBA3ReviewState: PENDING_REVIEW
+repository:
+  fullName: nballestriero/documentation-driven-threat-analysis
+  pinnedCommit: 020a718dbf03d61cf72c8967c2a301506650dfc6
+predecessor:
+  path: DDTA_R25_DERMATRIAGE_BA_CONSOLIDATION_R7
+  disposition: IMMUTABLE_PREDECESSOR
+governedSource:
+  path: governed-corpora/dermatriage/current-r1/DDTA_DERMATRIAGE_GOVERNED_DOCUMENTATION_R1.tex
+  blobSha: f29d7ed8d7f40b388ef135182a2d18968f4daa32
+newlyAnalyzedInR8: [MR-04, DEC-04, FR-04, FR-05]
+mr04:
+  firstPassAnalyzed: [MR-04, DEC-04, FR-04, FR-05]
+  branchClosure: false
+dec04:
+  firstPassAnalyzed: [DEC-04, FR-04, FR-05]
+  branchClosure: true
+openPressureRefs: [P-01, P-02, P-03, P-04, P-05, P-06, P-07, P-08]
+r8PressureChanges:
+  strengthened: [P-05]
+  carried: [P-01, P-02, P-03, P-04, P-06, P-07, P-08]
+  unnumberedCarried: [ACQUISITION_REFRESH_ACTION_SEMANTICS]
+  unnumberedAdded: [CONDITIONAL_ACTION_TRIGGER_SEMANTICS, DATA_EVIDENCE_CONSUMPTION_SEMANTICS]
+documentationGapsAdded: []
+reconciliationsAddedAndStrengthened: [R-13]
+observationsAdded: [O-12, O-13]
+observationCandidates: [O-14]
+nextBoundedSourceElement: DEC-05
+holdoutRules:
+  methodologyFrozenDuringEvidenceCollection: true
+  noMethodChangeAuthorizedByCheckpoint: true
+  noNewPressureIdAuthorizedByCheckpoint: true
+  doNotNormalizeThresholdReachToComparatorWithoutGovernedMeaning: true
+  doNotInferLifecycleStatesFromActivation: true
+  doNotConflateActivationAndCreation: true
+  doNotConflateEvidenceConsumptionAndServiceConsumption: true
+  doNotConflateCrossBranchConsumptionAndHierarchyOwnership: true
+  doNotTreatOutOfScopeAuthorityAsNegativeResponsibility: true
+  documentationDetailMustBeIntentional: true
+  projectionCannotIntroduceProjectMeaning: true
+  noStrideBeforeAcceptedBA: true
+ba6:
+  dermaTriageHoldoutIntegratedValidation: NOT_YET_EXECUTED
