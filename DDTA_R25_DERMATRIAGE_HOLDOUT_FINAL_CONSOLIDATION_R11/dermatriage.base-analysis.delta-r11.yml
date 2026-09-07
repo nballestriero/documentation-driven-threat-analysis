@@ -1,0 +1,113 @@
+schemaVersion: 1
+checkpointKey: DDTA-R25-DERMATRIAGE-HOLDOUT-FINAL-CONSOLIDATION-R11
+baselineCommit: e05083b94e1725fd605d360b338c0390bbad9a13
+governedSourceBlob: f29d7ed8d7f40b388ef135182a2d18968f4daa32
+predecessor: DDTA_R25_DERMATRIAGE_BA_CONSOLIDATION_R10
+methodologyFrozenThroughHoldout: true
+methodChangeDuringHoldout: false
+newNumberedPressureDuringHoldout: false
+
+newlyAnalyzedInR11:
+  - DEC-10
+  - FR-07
+  - DEC-11
+  - FR-08
+  - DEC-17
+  - FR-26
+  - DEC-18
+  - FR-27
+
+coverage:
+  mr01Complete: true
+  mr02CompleteStopAtMr: true
+  mr03Complete: true
+  mr04Complete: true
+  remainingActiveBoundedSourceElements: 0
+  firstPassEvidenceCollection: COMPLETE
+
+referents:
+  - {id: BAREF-DERMA-114, canonicalName: ClinicianDisagreement, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-115, canonicalName: EvidenceQualificationCondition, status: WORKING_ACCEPTED, semanticKind: true}
+  - {id: BAREF-DERMA-116, canonicalName: ClinicallyCorrectedPScalePriority, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-117, canonicalName: ClassifierSupervisionTarget, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-118, canonicalName: SupervisionTarget, status: WORKING_ACCEPTED, semanticKind: true}
+  - {id: BAREF-DERMA-119, canonicalName: PromptManager, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-120, canonicalName: Component, status: WORKING_ACCEPTED, semanticKind: true}
+  - {id: BAREF-DERMA-121, canonicalName: PromptVersion, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-122, canonicalName: PromptPersistenceArtifact, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-123, canonicalName: PromptVersionManagementResponsibility, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-124, canonicalName: PromptUpdateOperation, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-125, canonicalName: PromptResetOperation, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-126, canonicalName: PromptHistoryOperation, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-127, canonicalName: PromptVersionSelectionOperation, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-128, canonicalName: EfficientNetB4Retraining, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-129, canonicalName: EfficientNetB4RetrainingResponsibility, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-130, canonicalName: CNNTrainingInput, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-131, canonicalName: B4CaseImages, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-132, canonicalName: LastTwoFeatureBlocks, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-133, canonicalName: ClassifierHead, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-134, canonicalName: EarlierFeatureLayers, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-135, canonicalName: BackboneLearningRate, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-136, canonicalName: ClassifierLearningRate, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-137, canonicalName: RetrainingEpochCount, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-138, canonicalName: RetrainingClassWeights, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-139, canonicalName: ApplicableJpegPngInclusionConstraint, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-140, canonicalName: PdfExclusionConstraint, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-141, canonicalName: QualifiedClinicalCorrections, status: PROVISIONAL_RECONCILIATION, reconciliationRef: R-16}
+
+statusChanges:
+  - id: BAREF-DERMA-078
+    from: PROVISIONAL_RECONCILIATION
+    to: WORKING_ACCEPTED
+    evidence: FR-07
+
+pressureFinal:
+  numbered:
+    P-01: MATERIAL_CARRIED
+    P-02: MATERIAL_CARRIED
+    P-03: STRONG
+    P-04: STRONG
+    P-05: STRONG_REPEATED
+    P-06: STRONG_REPEATED
+    P-07: STRONG
+    P-08: STRONG_REPEATED
+  unnumbered:
+    ACQUISITION_REFRESH_ACTION_SEMANTICS: REPEATED_STRENGTHENED
+    CONDITIONAL_ACTION_TRIGGER_SEMANTICS: REPEATED
+    DATA_EVIDENCE_CONSUMPTION_SEMANTICS: REPEATED_STRENGTHENED
+    NEGATIVE_IMPLICATION_NON_SUFFICIENCY_SEMANTICS: STRONG_REPEATED
+    BOUNDED_RECENCY_SELECTION_SEMANTICS: HOLDOUT_PRESSURE_EVIDENCE
+  singleEvidence:
+    CONFIGURATION_APPLICABILITY_BINDING_EVIDENCE: REVIEW_POST_HOLDOUT
+
+classificationCoverageReview:
+  evidenceCollection: COMPLETE
+  auditExecuted: false
+  disposition: NOT_A_METHOD_PRESSURE
+  timing: AFTER_POST_HOLDOUT_PRESSURE_REVIEW_BEFORE_BA6
+
+reconciliation:
+  resolved:
+    - R-02
+    - R-11
+    - BAREF-DERMA-078_FR07_RECHECK
+  open:
+    - R-08
+    - R-09
+    - R-10
+    - R-12
+    - R-13
+    - R-14
+    - R-15
+    - R-16
+
+constructStatus:
+  create: NOT_TESTED_POSITIVE_IN_DERMATRIAGE
+  transition: NOT_TESTED_POSITIVE_IN_DERMATRIAGE
+  reference: NOT_TESTED_POSITIVE_IN_DERMATRIAGE
+  classify: TESTED_POSITIVE_STRONG_IN_DERMATRIAGE
+  decisionRule: TESTED_POSITIVE_STRONG_IN_DERMATRIAGE
+  projectionMaterialization: NOT_TESTED
+  integratedBA6: NOT_EXECUTED
+
+nextPhase: POST_HOLDOUT_METHOD_REVIEW

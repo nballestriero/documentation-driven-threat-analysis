@@ -1,0 +1,66 @@
+schemaVersion: 1
+checkpointKey: DDTA-R25-DERMATRIAGE-HOLDOUT-FINAL-CONSOLIDATION-R11
+checkpointStatus: FIRST_PASS_EVIDENCE_COLLECTION_COMPLETE
+checkpointPurpose: DERMATRIAGE_HOLDOUT_FINAL_FIRST_PASS
+formalBA3ReviewState: PENDING_POST_HOLDOUT_REVIEW
+freshness: CURRENT
+
+repository:
+  fullName: nballestriero/documentation-driven-threat-analysis
+  pinnedCommit: e05083b94e1725fd605d360b338c0390bbad9a13
+
+predecessor:
+  path: DDTA_R25_DERMATRIAGE_BA_CONSOLIDATION_R10
+  disposition: IMMUTABLE_PREDECESSOR
+
+projectAuthority:
+  key: DERMATRIAGE-GOV-R1
+  status: CURRENT_GOVERNED
+  primaryBASourceAllowed: true
+
+governedSource:
+  path: governed-corpora/dermatriage/current-r1/DDTA_DERMATRIAGE_GOVERNED_DOCUMENTATION_R1.tex
+  blobSha: f29d7ed8d7f40b388ef135182a2d18968f4daa32
+
+newlyAnalyzedInR11:
+  - DEC-10
+  - FR-07
+  - DEC-11
+  - FR-08
+  - DEC-17
+  - FR-26
+  - DEC-18
+  - FR-27
+
+coverage:
+  mr01FirstPassComplete: true
+  mr02FirstPassCompleteStopAtMr: true
+  mr03FirstPassComplete: true
+  mr04FirstPassComplete: true
+  remainingActiveBoundedSourceElements: 0
+  holdoutFirstPassEvidenceCollection: COMPLETE
+
+holdoutRules:
+  methodologyFrozenThroughEvidenceCollection: true
+  noMethodChangeDuringHoldout: true
+  noNewNumberedPressureDuringHoldout: true
+  unusedConstructMeansNotTested: true
+  projectionCannotIntroduceProjectMeaning: true
+  noStrideBeforeAcceptedBA: true
+
+postHoldoutRequired:
+  - PRESSURE_REVIEW
+  - CLASSIFICATION_COVERAGE_AUDIT
+  - RECONCILIATION_PASS
+  - EFFECTIVE_BA_REBUILD
+  - INTEGRATED_BA6
+  - DETERMINISTIC_PROJECTION_TEST
+
+classificationCoverageReview:
+  evidenceCollectionComplete: true
+  auditExecuted: false
+
+ba6:
+  dermaTriageIntegratedValidation: NOT_YET_EXECUTED
+
+nextPhase: POST_HOLDOUT_METHOD_REVIEW
