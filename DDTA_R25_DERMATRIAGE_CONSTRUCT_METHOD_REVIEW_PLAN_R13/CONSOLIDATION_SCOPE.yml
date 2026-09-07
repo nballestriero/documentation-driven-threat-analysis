@@ -1,0 +1,19 @@
+schema: DDTA_R25_CONSOLIDATION_SCOPE_R1
+checkpoint: DDTA-R25-DERMATRIAGE-CONSTRUCT-METHOD-REVIEW-PLAN-R13
+baseline_required: facd456ee256746a61a7f94c72a04b20886ca59e
+purpose: POST_HOLDOUT_CONSTRUCT_BY_CONSTRUCT_METHOD_REVIEW_PLAN
+allowed_additions:
+- methodology/DDTA_R25_POST_HOLDOUT_CONSTRUCT_BY_CONSTRUCT_METHOD_REVIEW_WORK_PLAN_R1.md
+- validation-evidence/dermatriage/post-holdout-method-review-r1/
+- DDTA_R25_DERMATRIAGE_CONSTRUCT_METHOD_REVIEW_PLAN_R13/
+forbidden_mutations:
+- governed-corpora/
+- BA0 normative artifacts
+- BA1 normative artifacts
+- BA2 normative artifacts
+- BA3 normative artifacts
+- BA4 normative artifacts
+- BA5 normative artifacts
+- DDTA_R25_DERMATRIAGE_HOLDOUT_FINAL_CONSOLIDATION_R11/
+- validation-evidence/dermatriage/independent-review-r1/
+next_operational_review: CR-01_CLASSIFY

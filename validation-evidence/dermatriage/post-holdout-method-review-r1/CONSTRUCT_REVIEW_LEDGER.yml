@@ -1,0 +1,94 @@
+schema: DDTA_CONSTRUCT_REVIEW_LEDGER_R1
+checkpoint: DDTA-R25-DERMATRIAGE-CONSTRUCT-METHOD-REVIEW-PLAN-R13
+repository_baseline: facd456ee256746a61a7f94c72a04b20886ca59e
+phase: POST_HOLDOUT_CONSTRUCT_BY_CONSTRUCT_METHOD_REVIEW
+method_reference:
+  BA0: R1
+  BA1: R1
+  BA2: R3
+  BA3: R1
+  BA4: R1
+  BA5: R1
+  mutation_during_individual_reviews: FORBIDDEN
+corrected_r3_replication:
+  decision: DEFERRED
+  strict_independent_r3_reproducibility_claim: NOT_MADE
+chat_evidence_rule:
+  required: true
+  show_governed_source_excerpt: true
+  highlight_evidence_bearing_wording: true
+  show_current_construct: true
+  show_source_to_construct_link: true
+  verdict_before_chat_evidence: FORBIDDEN
+reviews:
+- id: CR-01
+  topic: classify
+  status: READY
+  pressure_basis: CLASSIFICATION_COVERAGE_REVIEW_EVIDENCE
+  next: true
+- id: CR-02
+  topic: decisionRule + comparison condition language
+  status: NOT_STARTED
+  pressure_basis:
+  - P-05
+  - P-06
+- id: CR-03
+  topic: constrain
+  status: NOT_STARTED
+  pressure_basis: BOUNDARY_CALIBRATION
+- id: CR-04
+  topic: persistence / store association
+  status: NOT_STARTED
+  pressure_basis: P-08
+- id: CR-05
+  topic: interface / path / invocation association
+  status: NOT_STARTED
+  pressure_basis: P-03
+- id: CR-06
+  topic: boundary / interaction association
+  status: NOT_STARTED
+  pressure_basis: P-04
+- id: CR-07
+  topic: structured data / information contract
+  status: NOT_STARTED
+  pressure_basis: P-07
+- id: CR-08
+  topic: conditional action trigger semantics
+  status: NOT_STARTED
+  pressure_basis: CONDITIONAL_ACTION_TRIGGER_SEMANTICS
+- id: CR-09
+  topic: data / evidence consumption semantics
+  status: NOT_STARTED
+  pressure_basis: DATA_EVIDENCE_CONSUMPTION_SEMANTICS
+- id: CR-10
+  topic: bounded recency / collection selection semantics
+  status: NOT_STARTED
+  pressure_basis: BOUNDED_RECENCY_SELECTION_SEMANTICS
+- id: CR-11
+  topic: acquisition / refresh action semantics
+  status: NOT_STARTED
+  pressure_basis: ACQUISITION_REFRESH_ACTION_SEMANTICS
+- id: CR-12
+  topic: negative implication / non-sufficiency semantics
+  status: NOT_STARTED
+  pressure_basis: NEGATIVE_IMPLICATION_NON_SUFFICIENCY_SEMANTICS
+- id: CR-13
+  topic: function / process / behavior identity binding
+  status: NOT_STARTED
+  pressure_basis: P-01
+- id: CR-14
+  topic: pipeline composition / order
+  status: NOT_STARTED
+  pressure_basis: P-02
+- id: CR-15
+  topic: configuration applicability binding evidence
+  status: NOT_STARTED
+  pressure_basis: CONFIGURATION_APPLICABILITY_BINDING_EVIDENCE
+allowed_primary_verdicts:
+- NO_CHANGE
+- APPLICATION_CORRECTION
+- GUIDE_CLARIFICATION
+- EXISTING_CONSTRUCT_EXTENSION_CANDIDATE
+- NEW_CONSTRUCT_CANDIDATE
+- PRESSURE_RETAINED
+- REJECTED
