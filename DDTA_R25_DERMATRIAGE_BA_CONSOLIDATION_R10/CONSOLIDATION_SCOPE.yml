@@ -1,0 +1,121 @@
+schemaVersion: 1
+checkpointKey: DDTA-R25-DERMATRIAGE-BA-CONSOLIDATION-R10
+checkpointStatus: ACCEPTED_FOR_CONTINUATION
+checkpointPurpose: MR04_DEC07_DEC08_DEC09_BRANCH_EVIDENCE_CHECKPOINT
+formalBA3ReviewState: PENDING_REVIEW
+freshness: CURRENT
+
+repository:
+  fullName: nballestriero/documentation-driven-threat-analysis
+  pinnedCommit: 1c60ad2301c9c35891accb7f1509f1298c3be006
+
+predecessor:
+  path: DDTA_R25_DERMATRIAGE_BA_CONSOLIDATION_R9
+  disposition: IMMUTABLE_PREDECESSOR
+
+projectAuthority:
+  key: DERMATRIAGE-GOV-R1
+  status: CURRENT_GOVERNED
+  primaryBASourceAllowed: true
+
+governedSource:
+  path: governed-corpora/dermatriage/current-r1/DDTA_DERMATRIAGE_GOVERNED_DOCUMENTATION_R1.tex
+  blobSha: f29d7ed8d7f40b388ef135182a2d18968f4daa32
+
+newlyAnalyzedInR10:
+  - DEC-07
+  - DEC-08
+  - FR-10
+  - DEC-09
+  - FR-06
+
+mr04:
+  branchClosure: false
+
+dec07:
+  firstPassAnalyzed: [DEC-07]
+  branchClosure: true
+
+dec08:
+  firstPassAnalyzed: [DEC-08, FR-10]
+  branchClosure: true
+
+dec09:
+  firstPassAnalyzed: [DEC-09, FR-06]
+  branchClosure: true
+
+nextBoundedSourceElement: DEC-10
+remainingActiveBoundedSourceElements: 8
+
+openPressureRefs: [P-01, P-02, P-03, P-04, P-05, P-06, P-07, P-08]
+
+r10PressureChanges:
+  numberedStrengthened: [P-05, P-06, P-08]
+  numberedCarried: [P-01, P-02, P-03, P-04, P-07]
+  unnumberedAdded:
+    - BOUNDED_RECENCY_SELECTION_SEMANTICS
+  unnumberedCarried:
+    - ACQUISITION_REFRESH_ACTION_SEMANTICS
+    - CONDITIONAL_ACTION_TRIGGER_SEMANTICS
+    - DATA_EVIDENCE_CONSUMPTION_SEMANTICS
+    - NEGATIVE_IMPLICATION_NON_SUFFICIENCY_SEMANTICS
+
+sourceGovernedDocumentationGapsStrengthened:
+  - GAP-DERMA-ACCEPT-BINDING-01
+  - GAP-DERMA-EVAL-CONSISTENCY-01
+  - GAP-DERMA-ROLLBACK-BINDING-01
+  - GAP-DERMA-PROMPT-WINDOW-01
+
+sourceGovernedDocumentationGapsCarried:
+  - GAP-DERMA-DEPLOY-01
+
+applicationReviewEvidence:
+  - CLASSIFICATION_COVERAGE_REVIEW_EVIDENCE
+
+reconciliationsStrengthened:
+  - R-13
+
+reconciliationsCarried:
+  - R-14
+
+reconciliationsAdded:
+  - R-15
+
+observationsStronglyReinforced:
+  - O-21
+  - O-23
+
+observationsStronglySupported:
+  - O-20
+
+observationCandidates:
+  - O-22
+  - O-24
+
+consistencyReview:
+  dec07RealizeProposal:
+    disposition: REJECTED_BEFORE_CONSOLIDATION
+    replacement: QUALIFICATION_CONDITION_DEPENDSON_CONCRETE_CRITERIA
+
+holdoutRules:
+  methodologyFrozenDuringEvidenceCollection: true
+  noMethodChangeAuthorizedByCheckpoint: true
+  noNewPressureIdAuthorizedByCheckpoint: true
+  unusedConstructMeansNotTested: true
+  doNotRetroAuditClassificationDuringCurrentEvidenceCycle: true
+  doNotTreatClassificationCoverageEvidenceAsMethodPressure: true
+  doNotInferLifecycleStateFromLifecycleResult: true
+  doNotInferTransitionFromRevocationLanguageWithoutStates: true
+  doNotInferRollbackAutomaticityOrAuthorization: true
+  doNotMergeSemanticsBecauseLiteralsMatch: true
+  doNotNormalizeNonDegradationToEquality: true
+  doNotNormalizeFivePercentWithoutSourceBinding: true
+  doNotUseConstrainAsProseEscapeHatch: true
+  doNotUseDecisionRuleForTopNSelection: true
+  distinguishSelectionPressureFromPromptWindowDocumentationGap: true
+  doNotCompleteDocumentationGapsInBA: true
+  projectionCannotIntroduceProjectMeaning: true
+  noStrideBeforeAcceptedBA: true
+
+ba6:
+  dermaTriageHoldoutIntegratedValidation: NOT_YET_EXECUTED

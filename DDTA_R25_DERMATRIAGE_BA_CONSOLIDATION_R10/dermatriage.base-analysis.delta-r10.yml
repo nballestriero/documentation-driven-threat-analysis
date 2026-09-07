@@ -1,0 +1,175 @@
+schemaVersion: 1
+checkpointKey: DDTA-R25-DERMATRIAGE-BA-CONSOLIDATION-R10
+baselineCommit: 1c60ad2301c9c35891accb7f1509f1298c3be006
+governedSourceBlob: f29d7ed8d7f40b388ef135182a2d18968f4daa32
+predecessor: DDTA_R25_DERMATRIAGE_BA_CONSOLIDATION_R9
+methodologyFrozen: true
+methodChangeAuthorized: false
+newNumberedPressureAuthorized: false
+
+newlyAnalyzedInR10:
+  - DEC-07
+  - DEC-08
+  - FR-10
+  - DEC-09
+  - FR-06
+
+coverage:
+  mr04BranchClosure: false
+  dec07BranchClosure: true
+  dec08BranchClosure: true
+  dec09BranchClosure: true
+  nextBoundedSourceElement: DEC-10
+  remainingActiveBoundedSourceElements: 8
+
+consistencyReview:
+  - id: DEC07_REALIZE_PROPOSAL
+    disposition: REJECTED_BEFORE_CONSOLIDATION
+    replacement: DIRECT_DEPENDON_FROM_QUALIFICATION_CONDITION_TO_CONCRETE_CRITERIA
+
+referents:
+  - {id: BAREF-DERMA-089, canonicalName: SensitivityNonDegradationCriterion, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-090, canonicalName: FalseLowPerformanceNonDegradationCriterion, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-091, canonicalName: OverallAccuracyDegradationToleranceCriterion, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-092, canonicalName: AcceptanceCriterion, status: WORKING_ACCEPTED, semanticKind: true}
+  - {id: BAREF-DERMA-093, canonicalName: AdoptedClassifierAdaptation, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-094, canonicalName: PostAdoptionAccuracyDegradationThreshold, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-095, canonicalName: Threshold, status: WORKING_ACCEPTED, semanticKind: true}
+  - {id: BAREF-DERMA-096, canonicalName: ApplicablePostAdoptionReference, status: PROVISIONAL_RECONCILIATION, reconciliationRef: R-15}
+  - {id: BAREF-DERMA-097, canonicalName: PreviousAcceptableVersionOrState, status: PROVISIONAL_RECONCILIATION}
+  - {id: BAREF-DERMA-098, canonicalName: ClassifierAdaptationRevocationCondition, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-099, canonicalName: ClassifierAdaptationRevocation, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-100, canonicalName: ClassifierAdaptationRestoration, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-101, canonicalName: Behavior, status: WORKING_ACCEPTED, semanticKind: true}
+  - {id: BAREF-DERMA-102, canonicalName: ClassifierAdaptationRevocationSupportResponsibility, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-103, canonicalName: ModelVersionsStore, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-104, canonicalName: ModelVersionTrackingArtifact, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-105, canonicalName: ActiveClassifierModelArtifact, status: PROVISIONAL_RECONCILIATION}
+  - {id: BAREF-DERMA-106, canonicalName: Store, status: WORKING_ACCEPTED, semanticKind: true}
+  - {id: BAREF-DERMA-107, canonicalName: Artifact, status: WORKING_ACCEPTED, semanticKind: true}
+  - {id: BAREF-DERMA-108, canonicalName: PromptEvolutionEvidenceWindow, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-109, canonicalName: PromptEvolutionEvidenceSet, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-110, canonicalName: EvidenceWindow, status: WORKING_ACCEPTED, semanticKind: true}
+  - {id: BAREF-DERMA-111, canonicalName: EvidenceSet, status: WORKING_ACCEPTED, semanticKind: true}
+  - {id: BAREF-DERMA-112, canonicalName: PromptEvolutionEvidenceWindowSize, status: WORKING_ACCEPTED}
+  - {id: BAREF-DERMA-113, canonicalName: RecentPertinentClinicalCorrections, status: WORKING_ACCEPTED}
+
+propositions:
+  - {id: BAPROP-DERMA-DEC07-001, operator: classify, classifiedReferent: SensitivityNonDegradationCriterion, semanticKind: [AcceptanceCriterion]}
+  - {id: BAPROP-DERMA-DEC07-002, operator: classify, classifiedReferent: FalseLowPerformanceNonDegradationCriterion, semanticKind: [AcceptanceCriterion]}
+  - {id: BAPROP-DERMA-DEC07-003, operator: classify, classifiedReferent: OverallAccuracyDegradationToleranceCriterion, semanticKind: [AcceptanceCriterion]}
+  - id: BAPROP-DERMA-DEC07-004
+    operator: dependOn
+    dependent: ClassifierAdaptationQualificationCondition
+    prerequisite:
+      - SensitivityNonDegradationCriterion
+      - FalseLowPerformanceNonDegradationCriterion
+      - OverallAccuracyDegradationToleranceCriterion
+  - {id: BAPROP-DERMA-DEC07-005, operator: constrain, constraintTarget: OverallAccuracyDegradationToleranceCriterion, constraintValue: "5%"}
+
+  - {id: BAPROP-DERMA-DEC08-001, operator: classify, classifiedReferent: PostAdoptionAccuracyDegradationThreshold, semanticKind: [Threshold]}
+  - {id: BAPROP-DERMA-DEC08-002, operator: constrain, constraintTarget: PostAdoptionAccuracyDegradationThreshold, constraintValue: "5%"}
+  - id: BAPROP-DERMA-DEC08-003
+    operator: dependOn
+    dependent: ClassifierAdaptationRevocationCondition
+    prerequisite:
+      - AdoptedClassifierAdaptation
+      - PostAdoptionAccuracyDegradationThreshold
+      - ApplicablePostAdoptionReference
+
+  - {id: BAPROP-DERMA-FR10-001, operator: classify, classifiedReferent: ClassifierAdaptationRevocation, semanticKind: [Behavior]}
+  - {id: BAPROP-DERMA-FR10-002, operator: classify, classifiedReferent: ClassifierAdaptationRestoration, semanticKind: [Behavior]}
+  - {id: BAPROP-DERMA-FR10-003, operator: realize, abstract: ClassifierAdaptationRevocation, realization: [ClassifierAdaptationRestoration]}
+  - {id: BAPROP-DERMA-FR10-004, operator: assignResponsibility, responsibleParty: [DermaTriage], responsibilityScope: ClassifierAdaptationRevocation, responsibilityKind: ClassifierAdaptationRevocationSupportResponsibility}
+  - {id: BAPROP-DERMA-FR10-005, operator: dependOn, dependent: ClassifierAdaptationRestoration, prerequisite: [PreviousAcceptableVersionOrState]}
+  - {id: BAPROP-DERMA-FR10-006, operator: classify, classifiedReferent: ModelVersionsStore, semanticKind: [Store]}
+  - {id: BAPROP-DERMA-FR10-007, operator: classify, classifiedReferent: ModelVersionTrackingArtifact, semanticKind: [Artifact]}
+  - {id: BAPROP-DERMA-FR10-008, operator: classify, classifiedReferent: ActiveClassifierModelArtifact, semanticKind: [Artifact]}
+
+  - {id: BAPROP-DERMA-DEC09-001, operator: classify, classifiedReferent: PromptEvolutionEvidenceWindow, semanticKind: [EvidenceWindow]}
+  - {id: BAPROP-DERMA-DEC09-002, operator: classify, classifiedReferent: PromptEvolutionEvidenceSet, semanticKind: [EvidenceSet]}
+  - {id: BAPROP-DERMA-DEC09-003, operator: constrain, constraintTarget: PromptEvolutionEvidenceWindowSize, constraintValue: 20}
+  - {id: BAPROP-DERMA-DEC09-004, operator: dependOn, dependent: PromptEvolutionEvidenceWindow, prerequisite: [PromptEvolutionEvidenceWindowSize]}
+  - {id: BAPROP-DERMA-DEC09-005, operator: dependOn, dependent: PromptEvolutionEvidenceSet, prerequisite: [PromptEvolutionEvidenceWindow]}
+
+  - {id: BAPROP-DERMA-FR06-001, operator: produce, actor: DermaTriage, input: [RecentPertinentClinicalCorrections], result: [PromptEvolutionEvidenceSet]}
+
+blockedMeanings:
+  - id: BAREQ-DERMA-DEC07-SENSITIVITY-001
+    status: PARTIALLY_REPRESENTABLE
+    pressureRefs: [P-05, P-06]
+  - id: BAREQ-DERMA-DEC07-FALSELOW-001
+    status: PARTIALLY_REPRESENTABLE
+    pressureRefs: [P-05, P-06]
+  - id: BAREQ-DERMA-DEC07-ACCURACY-001
+    status: PARTIALLY_REPRESENTABLE
+    pressureRefs: [P-05, P-06]
+    gapRef: GAP-DERMA-ACCEPT-BINDING-01
+  - id: BAREQ-DERMA-DEC08-DEGRADATION-001
+    status: PARTIALLY_REPRESENTABLE
+    pressureRefs: [P-05, P-06]
+    gapRef: GAP-DERMA-ROLLBACK-BINDING-01
+  - id: BAREQ-DERMA-FR10-PERSISTENCE-001
+    status: PARTIALLY_REPRESENTABLE
+    pressureRefs: [P-08]
+  - id: BAREQ-DERMA-DEC09-RECENCY-SELECTION-001
+    status: GOVERNED_BUT_NOT_FULLY_REPRESENTABLE
+    pressureTopic: BOUNDED_RECENCY_SELECTION_SEMANTICS
+    gapRef: GAP-DERMA-PROMPT-WINDOW-01
+
+applicationReviewEvidence:
+  - key: CLASSIFICATION_COVERAGE_REVIEW_EVIDENCE
+    status: OPEN_CARRY_FORWARD
+    disposition: NOT_A_METHOD_PRESSURE
+    reviewTiming: POST_HOLDOUT_BEFORE_INTEGRATED_BA6
+
+pressureChanges:
+  strengthenedNumbered:
+    - P-05
+    - P-06
+    - P-08
+  addedUnnumbered:
+    - BOUNDED_RECENCY_SELECTION_SEMANTICS
+  carriedUnnumbered:
+    - ACQUISITION_REFRESH_ACTION_SEMANTICS
+    - CONDITIONAL_ACTION_TRIGGER_SEMANTICS
+    - DATA_EVIDENCE_CONSUMPTION_SEMANTICS
+    - NEGATIVE_IMPLICATION_NON_SUFFICIENCY_SEMANTICS
+
+sourceGovernedDocumentationGaps:
+  strengthened:
+    - GAP-DERMA-ACCEPT-BINDING-01
+    - GAP-DERMA-EVAL-CONSISTENCY-01
+    - GAP-DERMA-ROLLBACK-BINDING-01
+    - GAP-DERMA-PROMPT-WINDOW-01
+  carried:
+    - GAP-DERMA-DEPLOY-01
+
+reconciliation:
+  strengthened:
+    - R-13
+  carried:
+    - R-14
+  added:
+    - R-15
+
+observations:
+  stronglyReinforced:
+    - O-21
+    - O-23
+  stronglySupported:
+    - O-20
+  candidates:
+    - O-22
+    - O-24
+
+constructStatus:
+  classify: TESTED_POSITIVE_IN_DERMATRIAGE
+  decisionRule: TESTED_POSITIVE_IN_DERMATRIAGE
+  transition: NOT_TESTED_POSITIVE
+  produce: TESTED_POSITIVE_STRONG
+  realize: TESTED_POSITIVE_STRONG
+  persistenceAssociation: STRONG_REPEATED_PRESSURE
+
+ba6:
+  dermaTriageHoldoutIntegratedValidation: NOT_YET_EXECUTED
