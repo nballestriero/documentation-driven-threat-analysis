@@ -1,0 +1,36 @@
+schema: DDTA_R25_TECHNICAL_CHECKPOINT_SCOPE_R1
+checkpoint: DDTA-R25-DERMATRIAGE-R14-PORTABILITY-CHECKPOINT-R15
+predecessor_checkpoint: DDTA-R25-DERMATRIAGE-CR01-CLASSIFY-CONSOLIDATION-R14
+baseline_required: 4f2e87d7d9a0c940672e95ec2bbe27c8f2b273b5
+purpose: R14_CROSS_PLATFORM_VERIFICATION_PORTABILITY
+change_class: TECHNICAL_VERIFICATION_ONLY
+semantic_method_change: NONE
+governed_project_change: NONE
+review_state_change: NONE
+r14_mutation: FORBIDDEN
+verification:
+  r14_worktree_equivalence: GIT_DIFF_BASED
+  r15_manifest_mode: CANONICAL_TEXT_LF_SHA256
+  canonicalization:
+    crlf_to_lf: true
+    standalone_cr_to_lf: true
+  read_only: true
+protected_r14_paths:
+- validation-evidence/dermatriage/post-holdout-method-review-r1/construct-reviews/CR-01_CLASSIFY.md
+- validation-evidence/dermatriage/post-holdout-method-review-r1/CONSTRUCT_REVIEW_LEDGER.yml
+- validation-evidence/dermatriage/post-holdout-method-review-r1/NEXT_STEP.md
+- DDTA_R25_DERMATRIAGE_CR01_CLASSIFY_CONSOLIDATION_R14/
+forbidden_mutations:
+- governed-corpora/
+- methodology/
+- validation-evidence/dermatriage/post-holdout-method-review-r1/
+- DDTA_R25_DERMATRIAGE_CR01_CLASSIFY_CONSOLIDATION_R14/
+- BA0 normative artifacts
+- BA1 normative artifacts
+- BA2 normative artifacts
+- BA3 normative artifacts
+- BA4 normative artifacts
+- BA5 normative artifacts
+allowed_additions:
+- DDTA_R25_DERMATRIAGE_R14_PORTABILITY_CHECKPOINT_R15/
+next_operational_review: CR-02_DECISIONRULE_COMPARISON_CONDITION_LANGUAGE
