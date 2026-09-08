@@ -1,0 +1,27 @@
+checkpointId: DDTA-R25-DERMATRIAGE-OP01-TRANSFER-CONSOLIDATION-R17
+status: CONSOLIDATED_FOR_CONTINUATION
+predecessorBaseline: c8902f6e2f4280dfe7543767c20910a79174b0e6
+reviewId: OP-01
+construct: transfer
+frozenMethod: BA0-R1_BA1-R1_BA2-R3_BA3-R1_BA4-R1_BA5-R1
+localVerdict: COMPLETE_GUIDE_CLARIFICATION
+normativeBAMutation: NONE
+documentationAuthoringMethodMutation: NONE
+operatorDisposition:
+  transferCore: KEEP_NO_CHANGE
+  transferBehavior: KEEP_OPTIONAL_REIFICATION_ROLE
+candidateGuideFindings:
+  - SIMPLE_TRANSFER_IS_DEFAULT_HUMAN_FORM
+  - EXPLAIN_TRANSFER_BEHAVIOR_ADMISSION_RULE
+  - ADD_CONSTRUCT_SPECIFIC_QUESTION_PACK
+reviewProcessFinding:
+  perConstructConsolidationRequired: true
+  questionPackAllowed: true
+  questionPackCreatesProjectTruth: false
+adjacentPressureRouting:
+  interactionInitiation: PR-03
+  invocationPath: PR-03
+  boundaryCrossing: PR-04
+  persistence: PR-08
+  dataConsumption: PR-11
+nextReview: OP-02_PRODUCE
