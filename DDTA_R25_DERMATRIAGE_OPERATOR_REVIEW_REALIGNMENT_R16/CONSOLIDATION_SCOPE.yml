@@ -1,0 +1,52 @@
+checkpointId: DDTA-R25-DERMATRIAGE-OPERATOR-REVIEW-REALIGNMENT-R16
+checkpointRevision: R16
+status: READY_FOR_LOCAL_APPLY
+changeClass: REVIEW_GOVERNANCE_AND_WORKPLAN_ONLY
+semanticMethodChange: NONE
+normativeBAMethodChange: NONE
+documentationAuthoringMethodChange: NONE
+governedProjectChange: NONE
+
+repository: nballestriero/documentation-driven-threat-analysis
+branch: master
+expectedPredecessorHead: c5845183dcc256140b9823a39a582a8830855911
+predecessorCheckpoint: DDTA-R25-DERMATRIAGE-R14-PORTABILITY-CHECKPOINT-R15
+historicalReviewPlan: methodology/DDTA_R25_POST_HOLDOUT_CONSTRUCT_BY_CONSTRUCT_METHOD_REVIEW_WORK_PLAN_R1.md
+replacementOperationalPlan: methodology/DDTA_R25_POST_HOLDOUT_OPERATOR_COMPLETE_REVIEW_WORK_PLAN_R2.md
+
+frozenMethod:
+  BA0: R1
+  BA1: R1
+  BA2: R3
+  BA3: R1
+  BA4: R1
+  BA5: R1
+
+protectedScopes:
+  - governed-corpora/
+  - normative BA0-BA5 contracts
+  - DDTA_R25_DERMATRIAGE_HOLDOUT_FINAL_CONSOLIDATION_R11/
+  - DDTA_R25_DERMATRIAGE_CONSTRUCT_METHOD_REVIEW_PLAN_R13/
+  - DDTA_R25_DERMATRIAGE_CR01_CLASSIFY_CONSOLIDATION_R14/
+  - DDTA_R25_DERMATRIAGE_R14_PORTABILITY_CHECKPOINT_R15/
+  - documentation-authoring methodology
+
+currentReviewState:
+  classify:
+    status: COMPLETE
+    evidence: CR-01 / R14
+    verdict: GUIDE_CLARIFICATION
+  decisionRuleComparison:
+    status: CANDIDATE_SOLUTION_IDENTIFIED_NOT_NORMATIVE
+    evidence: CR-02 working finding
+
+nextExecutionPhase: PHASE_1_COMPLETE_BA2_OPERATOR_AUDIT
+finalObjectives:
+  - complete review of every BA2 R3 top-level operator
+  - complete review of decision-condition language
+  - re-evaluate all carried holdout pressures after construct exhaustion
+  - integrate accepted deltas into a new Base Analysis methodology revision
+  - publish an updated Base Analysis operational/authoring guide
+  - rerun and reconcile the complete DermaTriage Base Analysis
+  - produce human-readable case-study artifacts
+  - produce thesis-update-ready evidence and narrative material
