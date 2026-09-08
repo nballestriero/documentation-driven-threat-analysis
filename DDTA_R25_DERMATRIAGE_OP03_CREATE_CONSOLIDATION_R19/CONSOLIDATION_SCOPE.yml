@@ -1,0 +1,31 @@
+checkpointId: DDTA-R25-DERMATRIAGE-OP03-CREATE-CONSOLIDATION-R19
+status: CONSOLIDATED_FOR_CONTINUATION
+predecessorBaseline: 38b54caf61652c1ca00e5b62719761dcc329db4f
+reviewId: OP-03
+construct: create
+frozenMethod: BA0-R1_BA1-R1_BA2-R3_BA3-R1_BA4-R1_BA5-R1
+reviewStatus: COMPLETE_DEFERRED_WITH_REASON
+empiricalStatus: NOT_TESTED
+positiveGovernedDermaTriageEvidence: NONE_FOUND
+normativeBAMutation: NONE
+documentationAuthoringMethodMutation: NONE
+operatorDisposition:
+  createCore: DEFER_RETAIN_FROZEN_PENDING_POSITIVE_COUNTEREXAMPLE
+  redundancyHypothesis: STRENGTHENED_NOT_PROVEN
+  factoryPatternTest: SYNTHETIC_ONLY_NOT_GOVERNED_EVIDENCE
+crossValidation:
+  produceReview: POST_VALIDATED_WITH_QUESTION_PACKS
+  effectiveProduceCasesReviewed: 14
+  historicalProducePropositionsRecovered: 17
+  applicationRechecks:
+    - BAPROP-DERMA-FR01-003
+    - BAPROP-DERMA-FR18-002
+questionPackFinding:
+  status: EMPIRICALLY_USEFUL_CANDIDATE_GUIDE_MECHANISM
+  dimensions:
+    - REVIEW_COMPLETENESS
+    - APPLICATION_QA
+    - DOCUMENTATION_QA
+    - SEMANTIC_ROUTING
+  normativePromotion: DEFER_TO_INTEGRATED_METHOD_REVISION
+nextReview: OP-04_OBSERVE
