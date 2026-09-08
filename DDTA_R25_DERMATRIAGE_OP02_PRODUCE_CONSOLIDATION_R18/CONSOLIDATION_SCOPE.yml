@@ -1,0 +1,31 @@
+checkpointId: DDTA-R25-DERMATRIAGE-OP02-PRODUCE-CONSOLIDATION-R18
+status: CONSOLIDATED_FOR_CONTINUATION
+predecessorBaseline: c426b74fab1a5ac690508a29e5815c04fc8cd898
+reviewId: OP-02
+construct: produce
+frozenMethod: BA0-R1_BA1-R1_BA2-R3_BA3-R1_BA4-R1_BA5-R1
+localVerdict: COMPLETE_GUIDE_CLARIFICATION
+normativeBAMutation: NONE
+documentationAuthoringMethodMutation: NONE
+operatorDisposition:
+  produceCore: KEEP_NO_CHANGE
+  actorRole: KEEP_PROJECT_SEMANTIC_PRODUCER
+candidateGuideFindings:
+  - PRODUCE_ACTOR_IS_PROJECT_SEMANTIC_PRODUCER
+  - SEPARATE_STABLE_CAPABILITY_FROM_REPLACEABLE_REALIZATION_WHEN_SOURCE_SUPPORTS_IT
+  - USE_DOCUMENTATION_QA_WHEN_SOURCE_OVERCOUPLES_CAPABILITY_AND_REALIZATION
+  - PRODUCE_DOES_NOT_ABSORB_SELECTION_CONSUMPTION_PERSISTENCE_OR_QUALIFICATION
+  - ADD_CONSTRUCT_SPECIFIC_QUESTION_PACK
+createPreReview:
+  status: NOT_TESTED
+  readiness: READY
+  positiveGovernedDermaTriageEvidence: NONE
+  redundancyHypothesis: PRODUCE_MAY_SUBSUME_CREATE_UNLESS_NEW_IDENTITY_OR_OCCURRENCE_ESTABLISHMENT_IS_MATERIAL
+  factoryPatternTest: SYNTHETIC_ONLY_NOT_PROJECT_EVIDENCE
+adjacentPressureRouting:
+  processBehaviorBinding: PR-01
+  pipelineCompositionOrder: PR-02
+  structuredInformationContract: PR-07
+  dataEvidenceConsumption: PR-11
+  boundedRecencySelection: PR-13
+nextReview: OP-03_CREATE
