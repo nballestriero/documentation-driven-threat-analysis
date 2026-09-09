@@ -1,0 +1,40 @@
+checkpointId: DDTA-R25-DERMATRIAGE-OP06-CORRELATE-CONSOLIDATION-R23
+status: COMPLETE
+predecessorBaseline: 9e5176e49845c9184814a17aee550c0afb02fce8
+reviewId: OP-06
+construct: correlate
+frozenMethod: BA0-R1_BA1-R1_BA2-R3_BA3-R1_BA4-R1_BA5-R1
+reviewStatus: COMPLETE_GUIDE_CLARIFICATION
+reviewClosure: COMPLETE
+empiricalStatus: TESTED_POSITIVE_STRONG
+operatorCoreDisposition: KEEP_NO_CHANGE
+wholeOperatorRedundancy: FALSIFIED
+signatureDisposition: KEEP_NO_CHANGE
+correlatedItemCardinalityDisposition: KEEP_1_TO_MANY
+correlationContextDisposition: KEEP_REQUIRED_SINGLE_BAREFERENT
+candidateMethodDelta: NONE
+normativeBAMutation: NONE
+documentationAuthoringMethodMutation: NONE
+positiveEvidence:
+  - DEC-12_PIPELINE_OUTPUTS_SAME_CASE
+  - FR-19_MULTISOURCE_INPUTS_SAME_CASE
+  - FR-22_TRIAGE_OUTCOME_SAME_B4_CONSULTATION
+  - DEC-15_REVIEW_SAME_CONSULTATION_CASE
+  - FR-23_VALIDATION_SAME_CONSULTATION_CASE_IDENTITY
+supportingEvidence:
+  - FR-01_SYMPTOM_INFORMATION_SAME_B4_CONSULTATION
+negativeControls:
+  - FR-21_API_INVOCATION_WITHOUT_SAME_CONTEXT_BINDING
+  - FR-18_SIMILARITY_RETRIEVAL
+  - FR-06_BOUNDED_COLLECTION_SELECTION
+  - FR-09_COMPARISON_AND_APPLICABILITY
+  - DEC-05_SHARED_PROJECT_NOT_SUFFICIENT
+  - FR-27_INSUFFICIENT_PER_CASE_PAIRING_EVIDENCE
+applicationRechecks:
+  - BAPROP-DERMA-FR03-REFERENCE-VS-CORRELATE
+  - BAPROP-DERMA-FR01-CORRELATE-REPRESENTATION
+  - BAPROP-DERMA-FR27-CORRELATION-BINDING
+questionPack: validation-evidence/dermatriage/post-holdout-method-review-r1/question-packs/CORRELATE_QUESTION_PACK_R1.md
+boundaryFinding: validation-evidence/dermatriage/post-holdout-method-review-r1/working-findings/OP06_CORRELATE_CONTEXT_AND_REFERENCE_BOUNDARY_R1.md
+generalDiscoveryPackExecution: DEFERRED_TO_THIRD_COMPLETE_ANALYSIS_CYCLE
+nextReview: OP-07_REFERENCE
