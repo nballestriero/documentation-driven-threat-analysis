@@ -1,0 +1,25 @@
+checkpointId: DDTA-R25-DERMATRIAGE-OP04-OBSERVE-CONSOLIDATION-R20
+status: CONSOLIDATED_FOR_CONTINUATION
+predecessorBaseline: e4ac73f334eeb257baa09b5b8b7820636d066be7
+reviewId: OP-04
+construct: observe
+frozenMethod: BA0-R1_BA1-R1_BA2-R3_BA3-R1_BA4-R1_BA5-R1
+reviewStatus: COMPLETE_APPLICATION_CORRECTION
+empiricalStatus: TESTED_POSITIVE_STRONG
+operatorDisposition:
+  observeCore: KEEP_NO_CHANGE
+  totalRedundancyHypothesis: FALSIFIED_BY_FR18_EXPLICIT_QUERY
+  resultRole: REDUNDANCY_CANDIDATE_DEFER_TO_INTEGRATED_REVIEW
+normativeBAMutation: NONE
+documentationAuthoringMethodMutation: NONE
+applicationReconciliation:
+  - BAPROP-DERMA-FR18-OBSERVE-SHAPE
+  - BAPROP-DERMA-FR23-OBSERVE
+candidateMethodDelta:
+  id: CMD-OP04-OBSERVE-RESULT-REMOVAL
+  target: observe.result
+  kind: SIGNATURE_REDUCTION
+  status: DEFERRED_PENDING_INTEGRATED_REVIEW
+questionPack: validation-evidence/dermatriage/post-holdout-method-review-r1/question-packs/OBSERVE_QUESTION_PACK_R1.md
+methodPressureMap: validation-evidence/dermatriage/post-holdout-method-review-r1/working-findings/POST_OP04_BA_METHOD_PRESSURE_CANDIDATE_MAP_R1.md
+nextReview: OP-05_TRANSITION
