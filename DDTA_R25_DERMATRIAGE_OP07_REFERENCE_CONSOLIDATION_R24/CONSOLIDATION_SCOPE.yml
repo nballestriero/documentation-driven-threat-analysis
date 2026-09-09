@@ -1,0 +1,41 @@
+checkpointId: DDTA-R25-DERMATRIAGE-OP07-REFERENCE-CONSOLIDATION-R24
+status: COMPLETE
+predecessorBaseline: 508c02c2da8ae97771cad46a0abc896f00b9be39
+reviewId: OP-07
+construct: reference
+frozenMethod: BA0-R1_BA1-R1_BA2-R3_BA3-R1_BA4-R1_BA5-R1
+reviewStatus: COMPLETE_GUIDE_CLARIFICATION
+reviewClosure: COMPLETE
+empiricalStatus: TESTED_POSITIVE
+operatorCoreDisposition: KEEP_NO_CHANGE
+wholeOperatorRedundancy: FALSIFIED_BY_FR03_TARGET_IDENTITY
+signatureDisposition: KEEP_NO_CHANGE
+referencerCardinalityDisposition: KEEP_EXACTLY_ONE
+referencedLowerBoundDisposition: KEEP_ONE_OR_MORE
+referencedPluralCardinalityEvidence: NOT_TESTED_BY_DERMATRIAGE
+candidateMethodDelta: NONE
+normativeBAMutation: NONE
+documentationAuthoringMethodMutation: NONE
+strongPositiveEvidence:
+  - FR-03_CLINICAL_REVIEW_TARGETS_SPECIFIC_ORIGINAL_OUTCOME
+withdrawnPositiveCandidates:
+  - FR-01_CONTEXT_BINDING_SUFFICIENTLY_HANDLED_BY_CORRELATE
+  - MR-01_GENERIC_CASE_ABOUTNESS_NOT_NEEDED_TO_JUSTIFY_REFERENCE
+negativeControls:
+  - FR-21_INVOCATION_ROUTES_TO_PR03
+  - FR-06_SELECTION_MEMBERSHIP_ROUTES_TO_PR13
+  - FR-09_COMPARISON_APPLICABILITY_NOT_REFERENCE
+  - FR-26_PERSISTENCE_AND_APPLICABILITY_NOT_REFERENCE
+  - FR-27_INSUFFICIENT_PAIRING_EVIDENCE
+reviewFindings:
+  - SPECIFIC_OPERATOR_FIRST
+  - TARGET_IDENTITY_NECESSITY_TEST
+  - DERIVABILITY_BEFORE_REFERENCE
+  - GENERIC_REFERENCE_FALLBACK_REJECTED
+  - PROVISIONAL_REFERENCE_AS_UNRESOLVED_RELATION_REJECTED
+  - RELATION_UNRESOLVED_IS_ANALYSIS_STATE_NOT_BA_PROJECT_TRUTH
+questionPack: validation-evidence/dermatriage/post-holdout-method-review-r1/question-packs/REFERENCE_QUESTION_PACK_R1.md
+boundaryFinding: validation-evidence/dermatriage/post-holdout-method-review-r1/working-findings/OP07_REFERENCE_TARGET_IDENTITY_BOUNDARY_R1.md
+candidateAdditionsCarryForward: validation-evidence/dermatriage/post-holdout-method-review-r1/working-findings/CANDIDATE_ADDITIONS_PRESSURE_CARRY_FORWARD_R1.md
+generalDiscoveryPackExecution: DEFERRED_TO_THIRD_COMPLETE_ANALYSIS_CYCLE
+nextReview: OP-08_DEPEND_ON

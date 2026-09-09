@@ -1,0 +1,207 @@
+ledgerId: DDTA-R25-DERMATRIAGE-OPERATOR-AND-PRESSURE-REVIEW-LEDGER-R10
+status: ACTIVE
+baselineAtCreation: 508c02c2da8ae97771cad46a0abc896f00b9be39
+predecessorLedger: validation-evidence/dermatriage/post-holdout-method-review-r1/OPERATOR_AND_PRESSURE_REVIEW_LEDGER_R9.yml
+frozenMethod: BA0-R1_BA1-R1_BA2-R3_BA3-R1_BA4-R1_BA5-R1
+operationalPlan: methodology/DDTA_R25_POST_HOLDOUT_OPERATOR_COMPLETE_REVIEW_WORK_PLAN_R2.md
+perConstructConsolidationRule: methodology/DDTA_R25_PER_CONSTRUCT_REVIEW_CONSOLIDATION_RULE_R1.md
+
+rules:
+  documentationAuthoringMethodMutation: FORBIDDEN_IN_THIS_CYCLE
+  normativeBA0ToBA5MutationDuringIndividualReview: FORBIDDEN
+  newConstructBeforeExistingConstructExhaustion: FORBIDDEN
+  chatHistoryAsSoleEvidence: FORBIDDEN
+  questionPackMayCreateProjectTruth: false
+  generalDiscoveryRoutingIsNotBAAdmission: true
+
+phases:
+  phase1_operator_audit: IN_PROGRESS
+  phase2_condition_language_audit: PENDING
+  phase3_pressure_audit: PENDING
+  phase4_integrated_method_revision: BLOCKED
+  phase5_final_dermatriage_ba: BLOCKED
+  phase6_publication_thesis_pack: BLOCKED
+
+operators:
+  - {id: OP-01, name: transfer, status: COMPLETE_GUIDE_CLARIFICATION, operatorCoreDisposition: KEEP_NO_CHANGE, checkpoint: DDTA_R25_DERMATRIAGE_OP01_TRANSFER_CONSOLIDATION_R17}
+  - id: OP-02
+    name: produce
+    status: COMPLETE_GUIDE_CLARIFICATION
+    operatorCoreDisposition: KEEP_NO_CHANGE
+    checkpoint: DDTA_R25_DERMATRIAGE_OP02_PRODUCE_CONSOLIDATION_R18
+    applicationRechecks: [BAPROP-DERMA-FR01-003, BAPROP-DERMA-FR18-002]
+  - id: OP-03
+    name: create
+    status: COMPLETE_DEFERRED_WITH_REASON
+    empiricalStatus: NOT_TESTED
+    redundancyHypothesis: STRENGTHENED_NOT_PROVEN
+    checkpoint: DDTA_R25_DERMATRIAGE_OP03_CREATE_CONSOLIDATION_R19
+  - id: OP-04
+    name: observe
+    status: COMPLETE_APPLICATION_CORRECTION
+    empiricalStatus: TESTED_POSITIVE_STRONG
+    operatorCoreDisposition: KEEP_NO_CHANGE
+    totalRedundancyHypothesis: FALSIFIED_BY_FR18_EXPLICIT_QUERY
+    resultRoleDisposition: REDUNDANCY_CANDIDATE_DEFER_TO_INTEGRATED_REVIEW
+    checkpoint: DDTA_R25_DERMATRIAGE_OP04_OBSERVE_CONSOLIDATION_R20
+    applicationRechecks: [BAPROP-DERMA-FR18-OBSERVE-SHAPE, BAPROP-DERMA-FR23-OBSERVE]
+  - id: OP-05
+    name: transition
+    status: EXTENSION_CANDIDATE
+    reviewClosure: COMPLETE
+    empiricalStatus: TESTED_POSITIVE_STRONG
+    operatorCoreDisposition: KEEP_NO_CHANGE
+    wholeOperatorRedundancy: FALSIFIED_BY_FR10_ADOPTED_TO_REVOKED_LIFECYCLE
+    actorRoleDisposition: KEEP_NO_CHANGE
+    stateCardinalityDisposition: KEEP_NO_CHANGE
+    checkpoint: DDTA_R25_DERMATRIAGE_OP05_TRANSITION_CONSOLIDATION_R22
+    evidence: validation-evidence/dermatriage/post-holdout-method-review-r1/operator-reviews/OP-05_TRANSITION.md
+    questionPack: validation-evidence/dermatriage/post-holdout-method-review-r1/question-packs/TRANSITION_QUESTION_PACK_R1.md
+    candidateMethodDelta: CMD-OP05-TRANSITION-STATE-VALUE-ADMISSION
+    applicationRechecks: [BAPROP-DERMA-FR09-TRANSITION, BAPROP-DERMA-FR10-TRANSITION-STATE-REPRESENTATION]
+  - id: OP-06
+    name: correlate
+    status: COMPLETE_GUIDE_CLARIFICATION
+    reviewClosure: COMPLETE
+    empiricalStatus: TESTED_POSITIVE_STRONG
+    operatorCoreDisposition: KEEP_NO_CHANGE
+    wholeOperatorRedundancy: FALSIFIED
+    signatureDisposition: KEEP_NO_CHANGE
+    correlatedItemCardinalityDisposition: KEEP_1_TO_MANY
+    correlationContextDisposition: KEEP_REQUIRED_SINGLE_BAREFERENT
+    checkpoint: DDTA_R25_DERMATRIAGE_OP06_CORRELATE_CONSOLIDATION_R23
+    evidence: validation-evidence/dermatriage/post-holdout-method-review-r1/operator-reviews/OP-06_CORRELATE.md
+    questionPack: validation-evidence/dermatriage/post-holdout-method-review-r1/question-packs/CORRELATE_QUESTION_PACK_R1.md
+    boundaryFinding: validation-evidence/dermatriage/post-holdout-method-review-r1/working-findings/OP06_CORRELATE_CONTEXT_AND_REFERENCE_BOUNDARY_R1.md
+    candidateMethodDelta: NONE
+    applicationRechecks: [BAPROP-DERMA-FR03-REFERENCE-VS-CORRELATE, BAPROP-DERMA-FR01-CORRELATE-REPRESENTATION, BAPROP-DERMA-FR27-CORRELATION-BINDING]
+  - id: OP-07
+    name: reference
+    status: COMPLETE_GUIDE_CLARIFICATION
+    reviewClosure: COMPLETE
+    empiricalStatus: TESTED_POSITIVE
+    operatorCoreDisposition: KEEP_NO_CHANGE
+    wholeOperatorRedundancy: FALSIFIED_BY_FR03_TARGET_IDENTITY
+    signatureDisposition: KEEP_NO_CHANGE
+    referencerCardinalityDisposition: KEEP_EXACTLY_ONE
+    referencedLowerBoundDisposition: KEEP_ONE_OR_MORE
+    referencedPluralCardinalityEvidence: NOT_TESTED_BY_DERMATRIAGE
+    checkpoint: DDTA_R25_DERMATRIAGE_OP07_REFERENCE_CONSOLIDATION_R24
+    evidence: validation-evidence/dermatriage/post-holdout-method-review-r1/operator-reviews/OP-07_REFERENCE.md
+    questionPack: validation-evidence/dermatriage/post-holdout-method-review-r1/question-packs/REFERENCE_QUESTION_PACK_R1.md
+    boundaryFinding: validation-evidence/dermatriage/post-holdout-method-review-r1/working-findings/OP07_REFERENCE_TARGET_IDENTITY_BOUNDARY_R1.md
+    candidateMethodDelta: NONE
+    strongPositiveEvidence: [FR-03]
+    withdrawnPositiveCandidates: [FR-01, MR-01-GENERIC-ABOUTNESS]
+  - {id: OP-08, name: dependOn, status: READY, inheritedHoldoutSignal: TESTED_POSITIVE_STRONG}
+  - {id: OP-09, name: consumeService, status: PENDING, inheritedHoldoutSignal: TESTED_POSITIVE_STRONG}
+  - {id: OP-10, name: realize, status: PENDING, inheritedHoldoutSignal: TESTED_POSITIVE_STRONG}
+  - {id: OP-11, name: assignResponsibility, status: PENDING, inheritedHoldoutSignal: TESTED_POSITIVE_STRONG}
+  - {id: OP-12, name: constrain, status: PENDING, inheritedHoldoutSignal: TESTED_POSITIVE_STRONG}
+  - {id: OP-13, name: classify, status: COMPLETE_GUIDE_CLARIFICATION, operatorCoreDisposition: KEEP_NO_CHANGE, checkpoint: DDTA_R25_DERMATRIAGE_CR01_CLASSIFY_CONSOLIDATION_R14}
+  - {id: OP-14, name: decisionRule, status: IN_PROGRESS_CANDIDATE_SOLUTION_IDENTIFIED}
+
+conditionLanguage:
+  - {id: CL-01, name: comparison, status: PENDING_WITH_CANDIDATE}
+  - {id: CL-02, name: satisfies, status: PENDING}
+  - {id: CL-03, name: allOf, status: PENDING}
+  - {id: CL-04, name: anyOf, status: PENDING}
+  - {id: CL-05, name: not, status: PENDING}
+
+applicationReconciliation:
+  - {id: AR-OP02-01, proposition: BAPROP-DERMA-FR01-003, status: OPEN}
+  - {id: AR-OP02-02, proposition: BAPROP-DERMA-FR18-002, status: OPEN}
+  - {id: AR-OP04-01, proposition: BAPROP-DERMA-FR18-OBSERVE-SHAPE, status: OPEN}
+  - {id: AR-OP04-02, proposition: BAPROP-DERMA-FR23-OBSERVE, status: OPEN}
+  - id: AR-OP05-01
+    proposition: BAPROP-DERMA-FR09-TRANSITION
+    status: OPEN
+    reason: QUALIFICATION_RESULT_VS_LIFECYCLE_COMPOSITION_REQUIRES_FINAL_RECONCILIATION
+  - id: AR-OP05-02
+    proposition: BAPROP-DERMA-FR10-TRANSITION-STATE-REPRESENTATION
+    status: OPEN
+    reason: TRANSITION_CORE_ACCEPTED_STATE_TERM_MATERIALIZATION_DEPENDS_ON_INTEGRATED_DELTA
+  - id: AR-OP06-01
+    proposition: BAPROP-DERMA-FR03-REFERENCE-VS-CORRELATE
+    status: RESOLVED_CONCEPTUALLY_PENDING_FINAL_BA
+    reason: FR03_HAS_DISTINCT_CONTEXT_BINDING_AND_TARGET_IDENTITY_SEMANTICS
+  - id: AR-OP06-02
+    proposition: BAPROP-DERMA-FR01-CORRELATE-REPRESENTATION
+    status: OPEN
+    reason: CORRELATION_SEMANTICS_POSITIVE_FINAL_MATERIALIZATION_INTERACTS_WITH_PR07
+  - id: AR-OP06-03
+    proposition: BAPROP-DERMA-FR27-CORRELATION-BINDING
+    status: OPEN
+    reason: PER_CASE_CORRECTION_IMAGE_BINDING_NOT_SUFFICIENTLY_GOVERNED
+  - id: AR-OP07-01
+    proposition: BAPROP-DERMA-FR03-TARGET-IDENTITY
+    status: OPEN_FOR_FINAL_BA_RECONSTRUCTION
+    reason: OP07_ACCEPTS_REFERENCE_SEMANTICS_FINAL_PROPOSITION_ID_SHAPE_DEFERRED_TO_FINAL_RECONCILIATION
+
+candidateMethodDeltas:
+  - id: CMD-OP04-OBSERVE-RESULT-REMOVAL
+    target: observe.result
+    kind: SIGNATURE_REDUCTION
+    status: DEFERRED_PENDING_INTEGRATED_REVIEW
+  - id: CMD-OP05-TRANSITION-STATE-VALUE-ADMISSION
+    target: [transition.fromState, transition.toState]
+    kind: SIGNATURE_VALUE_DOMAIN_RELAXATION
+    status: DEFERRED_PENDING_INTEGRATED_REVIEW
+    candidateDomain: BAReferent_OR_CONTROLLED_TYPED_LOCAL_STATE_VALUE
+    g1: PASS
+    g2: PASS
+    g3: PASS
+    g4: PASS
+    g5: PASS
+    g6: PASS
+    g7: PASS_WITH_SCHEMA_UPDATE
+    g8: PASS
+
+questionPackEvidence:
+  generalDiscoveryPack: validation-evidence/dermatriage/post-holdout-method-review-r1/question-packs/GENERAL_BA_SEMANTIC_DISCOVERY_PACK_R1.md
+  generalDiscoveryExecution: DEFERRED_TO_THIRD_COMPLETE_ANALYSIS_CYCLE
+  deferralArtifact: validation-evidence/dermatriage/post-holdout-method-review-r1/working-findings/GENERAL_DISCOVERY_PACK_EXECUTION_DEFERRAL_R1.md
+  transitionPack: validation-evidence/dermatriage/post-holdout-method-review-r1/question-packs/TRANSITION_QUESTION_PACK_R1.md
+  transitionPackStatus: TESTED_USEFUL_POSITIVE_AND_NEGATIVE_CONTROLS
+  correlatePack: validation-evidence/dermatriage/post-holdout-method-review-r1/question-packs/CORRELATE_QUESTION_PACK_R1.md
+  correlatePackStatus: TESTED_USEFUL_REFINED_CONTEXT_AND_REFERENCE_BOUNDARIES
+  referencePack: validation-evidence/dermatriage/post-holdout-method-review-r1/question-packs/REFERENCE_QUESTION_PACK_R1.md
+  referencePackStatus: TESTED_USEFUL_TARGET_IDENTITY_AND_DERIVABILITY
+
+candidateAdditionsCarryForward:
+  artifact: validation-evidence/dermatriage/post-holdout-method-review-r1/working-findings/CANDIDATE_ADDITIONS_PRESSURE_CARRY_FORWARD_R1.md
+  status: NON_NORMATIVE_RETAINED_FOR_PR_REVIEW
+  admissionBeforePressureReview: FORBIDDEN
+  topics:
+    - PR-01_FUNCTION_PROCESS_BEHAVIOR_IDENTITY_BINDING
+    - PR-02_PIPELINE_COMPOSITION_ORDER
+    - PR-03_INTERFACE_PATH_INVOCATION_ASSOCIATION
+    - PR-04_BOUNDARY_INTERACTION_ASSOCIATION
+    - PR-05_ORDERED_COMPARISON_VOCABULARY
+    - PR-06_SCALAR_PROPERTY_ADDRESSING_COMPARISON
+    - PR-07_STRUCTURED_DATA_INFORMATION_CONTRACT
+    - PR-08_DATA_ARTIFACT_STORE_PERSISTENCE_ASSOCIATION
+    - PR-09_ACQUISITION_REFRESH_ACTION_SEMANTICS
+    - PR-10_CONDITIONAL_ACTION_TRIGGER_SEMANTICS
+    - PR-11_DATA_EVIDENCE_CONSUMPTION_SEMANTICS
+    - PR-12_NEGATIVE_IMPLICATION_NON_SUFFICIENCY
+    - PR-13_BOUNDED_RECENCY_COLLECTION_SELECTION
+    - PR-14_CONFIGURATION_APPLICABILITY_BINDING
+
+pressures:
+  - {id: PR-01, topic: FUNCTION_PROCESS_BEHAVIOR_IDENTITY_BINDING, status: BLOCKED_UNTIL_OPERATOR_AUDIT}
+  - {id: PR-02, topic: PIPELINE_COMPOSITION_ORDER, status: BLOCKED_UNTIL_OPERATOR_AUDIT}
+  - {id: PR-03, topic: INTERFACE_PATH_INVOCATION_ASSOCIATION, status: BLOCKED_UNTIL_OPERATOR_AUDIT}
+  - {id: PR-04, topic: BOUNDARY_INTERACTION_ASSOCIATION, status: BLOCKED_UNTIL_OPERATOR_AUDIT}
+  - {id: PR-05, topic: ORDERED_COMPARISON_VOCABULARY, status: WAITING_FOR_CL01_CLOSURE}
+  - {id: PR-06, topic: SCALAR_PROPERTY_ADDRESSING_COMPARISON, status: WAITING_FOR_CL01_CLOSURE}
+  - {id: PR-07, topic: STRUCTURED_DATA_INFORMATION_CONTRACT, status: BLOCKED_UNTIL_OPERATOR_AUDIT}
+  - {id: PR-08, topic: DATA_ARTIFACT_STORE_PERSISTENCE_ASSOCIATION, status: BLOCKED_UNTIL_OPERATOR_AUDIT}
+  - {id: PR-09, topic: ACQUISITION_REFRESH_ACTION_SEMANTICS, status: BLOCKED_UNTIL_OPERATOR_AUDIT}
+  - {id: PR-10, topic: CONDITIONAL_ACTION_TRIGGER_SEMANTICS, status: BLOCKED_UNTIL_OPERATOR_AND_CONDITION_AUDIT}
+  - {id: PR-11, topic: DATA_EVIDENCE_CONSUMPTION_SEMANTICS, status: BLOCKED_UNTIL_OPERATOR_AUDIT}
+  - {id: PR-12, topic: NEGATIVE_IMPLICATION_NON_SUFFICIENCY_SEMANTICS, status: BLOCKED_UNTIL_OPERATOR_AND_CONDITION_AUDIT}
+  - {id: PR-13, topic: BOUNDED_RECENCY_COLLECTION_SELECTION_SEMANTICS, status: BLOCKED_UNTIL_OPERATOR_AUDIT}
+  - {id: PR-14, topic: CONFIGURATION_APPLICABILITY_BINDING_EVIDENCE, status: BLOCKED_UNTIL_OPERATOR_AND_CONDITION_AUDIT}
+
+nextReview: OP-08_DEPEND_ON
