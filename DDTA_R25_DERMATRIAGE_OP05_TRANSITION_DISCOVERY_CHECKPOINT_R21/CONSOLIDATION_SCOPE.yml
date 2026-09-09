@@ -1,0 +1,31 @@
+checkpointId: DDTA-R25-DERMATRIAGE-OP05-TRANSITION-DISCOVERY-CHECKPOINT-R21
+status: INTERMEDIATE_CHECKPOINT
+predecessorBaseline: ed403c248e0f7f61a49f16b74d2a40847acef41a
+reviewId: OP-05
+construct: transition
+frozenMethod: BA0-R1_BA1-R1_BA2-R3_BA3-R1_BA4-R1_BA5-R1
+reviewStatus: IN_PROGRESS
+empiricalStatus: STRONG_POSITIVE_CANDIDATE_IDENTIFIED
+operatorCoreDisposition: UNDECIDED
+normativeBAMutation: NONE
+documentationAuthoringMethodMutation: NONE
+discoveryMethod:
+  generalPack: validation-evidence/dermatriage/post-holdout-method-review-r1/question-packs/GENERAL_BA_SEMANTIC_DISCOVERY_PACK_R1.md
+  specificPack: validation-evidence/dermatriage/post-holdout-method-review-r1/question-packs/TRANSITION_QUESTION_PACK_R1.md
+  protocol: validation-evidence/dermatriage/post-holdout-method-review-r1/working-findings/GENERAL_DISCOVERY_AND_SPECIFIC_PACK_VALIDATION_PROTOCOL_R1.md
+strongCandidates:
+  - FR-10_ADOPTED_TO_REVOKED
+  - FR-09_CANDIDATE_TO_QUALIFIED_FOR_ADOPTION
+negativeControls:
+  - FR-04_PROMPT_CYCLE_ACTIVATION
+  - FR-05_CLASSIFIER_CYCLE_ACTIVATION
+  - FR-27_MODEL_PARAMETER_UPDATE
+  - DOCUMENT_GOVERNANCE_CURRENT_SUPERSEDED
+documentationQA:
+  - FR-03_FR-12_REVIEW_LIFECYCLE
+  - FR-26_PROMPT_VERSION_LIFECYCLE
+openHypotheses:
+  - H-OP05-01_TRANSITION_NECESSITY
+  - H-OP05-02_STATE_REPRESENTATION
+nextAction: APPLY_GENERAL_DISCOVERY_PACK_TO_ENTIRE_DERMATRIAGE_GOV_R1_THEN_TRANSITION_PACK
+nextReview: OP-05_TRANSITION
