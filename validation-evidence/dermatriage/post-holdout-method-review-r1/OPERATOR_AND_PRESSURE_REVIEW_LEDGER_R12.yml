@@ -1,0 +1,156 @@
+ledgerId: DDTA-R25-DERMATRIAGE-OPERATOR-AND-PRESSURE-REVIEW-LEDGER-R12
+status: ACTIVE
+baselineAtCreation: f40741a64e0a9494702572b50c8ce1fe6a583e0c
+predecessorLedger: validation-evidence/dermatriage/post-holdout-method-review-r1/OPERATOR_AND_PRESSURE_REVIEW_LEDGER_R11.yml
+operationalPlan: methodology/DDTA_R25_POST_HOLDOUT_OPERATOR_COMPLETE_REVIEW_WORK_PLAN_R3.md
+frozenMethod: BA0-R1_BA1-R1_BA2-R3_BA3-R1_BA4-R1_BA5-R1
+perConstructConsolidationRule: methodology/DDTA_R25_PER_CONSTRUCT_REVIEW_CONSOLIDATION_RULE_R1.md
+candidateQuestionPackTemplate: methodology/DDTA_R25_CANDIDATE_CONSTRUCT_QUESTION_PACK_TEMPLATE_R1.md
+
+rules:
+  documentationAuthoringMethodMutation: FORBIDDEN_IN_THIS_CYCLE
+  normativeBA0ToBA5MutationDuringIndividualReview: FORBIDDEN
+  newConstructBeforeExistingConstructExhaustion: FORBIDDEN
+  candidateCharacterizationDuringFamilyReview: ALLOWED_NON_NORMATIVE
+  syntheticExampleCreatesProjectTruth: false
+  syntheticExampleSatisfiesG1: false
+  chatHistoryAsSoleEvidence: FORBIDDEN
+  questionPackMayCreateProjectTruth: false
+  generalDiscoveryRoutingIsNotBAAdmission: true
+
+phases:
+  phase1_existing_operator_audit: IN_PROGRESS_SEMANTIC_FAMILY_EXECUTION
+  phase2_condition_language_audit: PENDING_WITHIN_SF04
+  phase3_pressure_and_candidate_disposition: PENDING_BUT_CHARACTERIZATION_ALLOWED
+  phase4_integrated_method_revision: BLOCKED
+  phase5_final_dermatriage_ba: BLOCKED
+  phase6_publication_thesis_pack: BLOCKED
+  phase7_third_cycle_general_discovery: DEFERRED
+
+semanticFamilies:
+  - id: SF-01
+    name: FLOW_CONSUMPTION_SERVICE
+    status: ACTIVE
+    existingConstructs: [OP-01, OP-02, OP-04, OP-08, OP-09, OP-10]
+    pressures: [PR-02, PR-03, PR-07, PR-08, PR-11]
+    candidates: [CC-01_CONSUME_DATA, CC-02_PROVIDE_SERVICE]
+    nextExistingConstruct: OP-09_CONSUME_SERVICE
+    questionPack: validation-evidence/dermatriage/post-holdout-method-review-r1/question-packs/FLOW_CONSUMPTION_SEMANTIC_FAMILY_QUESTION_PACK_R1.md
+  - id: SF-02
+    name: CAPABILITY_REALIZATION_EXECUTION
+    status: PENDING
+    existingConstructs: [OP-02, OP-09, OP-10, OP-08]
+    pressures: [PR-01, PR-03]
+    candidates: [CC-02_PROVIDE_SERVICE]
+  - id: SF-03
+    name: RESPONSIBILITY_SERVICE_PROVISION_OWNERSHIP
+    status: PENDING
+    existingConstructs: [OP-09, OP-10, OP-11]
+    pressures: [PR-01]
+    candidates: [CC-02_PROVIDE_SERVICE]
+  - id: SF-04
+    name: RESTRICTION_DECISION_CONDITION
+    status: PENDING
+    existingConstructs: [OP-12, OP-14]
+    conditions: [CL-01, CL-02, CL-03, CL-04, CL-05]
+    pressures: [PR-05, PR-06, PR-10, PR-12, PR-14]
+  - id: SF-05
+    name: STATE_PERSISTENCE_ACQUISITION_APPLICABILITY
+    status: PENDING
+    anchorConstructs: [OP-05, OP-04, OP-01, OP-02]
+    pressures: [PR-08, PR-09, PR-14]
+  - id: SF-06
+    name: PIPELINE_ORDERING_BOUNDARY
+    status: PENDING
+    anchorConstructs: [OP-08, OP-01]
+    pressures: [PR-02, PR-03, PR-04]
+
+operators:
+  - {id: OP-01, name: transfer, status: COMPLETE_GUIDE_CLARIFICATION}
+  - {id: OP-02, name: produce, status: COMPLETE_GUIDE_CLARIFICATION}
+  - {id: OP-03, name: create, status: COMPLETE_DEFERRED_WITH_REASON, empiricalStatus: NOT_TESTED}
+  - {id: OP-04, name: observe, status: COMPLETE_APPLICATION_CORRECTION, empiricalStatus: TESTED_POSITIVE_STRONG}
+  - {id: OP-05, name: transition, status: EXTENSION_CANDIDATE, reviewClosure: COMPLETE, candidateMethodDelta: CMD-OP05-TRANSITION-STATE-VALUE-ADMISSION}
+  - {id: OP-06, name: correlate, status: COMPLETE_GUIDE_CLARIFICATION, reviewClosure: COMPLETE}
+  - {id: OP-07, name: reference, status: COMPLETE_GUIDE_CLARIFICATION, reviewClosure: COMPLETE}
+  - {id: OP-08, name: dependOn, status: COMPLETE_GUIDE_CLARIFICATION, reviewClosure: COMPLETE, empiricalStatus: TESTED_POSITIVE_STRONG}
+  - {id: OP-09, name: consumeService, status: READY_IN_SF01, inheritedHoldoutSignal: TESTED_POSITIVE_STRONG}
+  - {id: OP-10, name: realize, status: PENDING_IN_SF02, inheritedHoldoutSignal: TESTED_POSITIVE_STRONG}
+  - {id: OP-11, name: assignResponsibility, status: PENDING_IN_SF03, inheritedHoldoutSignal: TESTED_POSITIVE_STRONG}
+  - {id: OP-12, name: constrain, status: PENDING_IN_SF04, inheritedHoldoutSignal: TESTED_POSITIVE_STRONG}
+  - {id: OP-13, name: classify, status: COMPLETE_GUIDE_CLARIFICATION}
+  - {id: OP-14, name: decisionRule, status: IN_PROGRESS_CANDIDATE_SOLUTION_IDENTIFIED, semanticFamily: SF-04}
+
+conditionLanguage:
+  - {id: CL-01, name: comparison, status: PENDING_WITH_CANDIDATE, semanticFamily: SF-04}
+  - {id: CL-02, name: satisfies, status: PENDING, semanticFamily: SF-04}
+  - {id: CL-03, name: allOf, status: PENDING, semanticFamily: SF-04}
+  - {id: CL-04, name: anyOf, status: PENDING, semanticFamily: SF-04}
+  - {id: CL-05, name: not, status: PENDING, semanticFamily: SF-04}
+
+candidateConstructs:
+  - id: CC-01
+    name: consumeData
+    owner: PR-11
+    semanticFamily: SF-01
+    status: CANDIDATE_CHARACTERIZED
+    admissionStatus: NOT_ADMITTED
+    keyBoundary: DATA_OR_EVIDENCE_USE_IS_NOT_AUTOMATICALLY_SERVICE_CONSUMPTION
+  - id: CC-02
+    name: provideService
+    owner: UNRESOLVED_BETWEEN_SF01_SF02_SF03
+    semanticFamily: [SF-01, SF-02, SF-03]
+    status: CANDIDATE_CHARACTERIZED
+    admissionStatus: NOT_ADMITTED
+    requiredExhaustion: [OP-09, OP-10, OP-11, PR-01, PR-03]
+
+candidateMethodDeltas:
+  - id: CMD-OP04-OBSERVE-RESULT-REMOVAL
+    status: DEFERRED_PENDING_INTEGRATED_REVIEW
+  - id: CMD-OP05-TRANSITION-STATE-VALUE-ADMISSION
+    status: DEFERRED_PENDING_INTEGRATED_REVIEW
+    g1: PASS
+    g2: PASS
+    g3: PASS
+    g4: PASS
+    g5: PASS
+    g6: PASS
+    g7: PASS_WITH_SCHEMA_UPDATE
+    g8: PASS
+
+applicationReconciliationCarryForward:
+  sourceLedger: validation-evidence/dermatriage/post-holdout-method-review-r1/OPERATOR_AND_PRESSURE_REVIEW_LEDGER_R11.yml
+  preserveAllOpenEntries: true
+  sf01PriorityEntries:
+    - AR-OP08-04_FR05_FR07_EVIDENCE_DEPENDENCY_TO_PR11
+    - AR-OP08-05_FR22_FR23_B4_SERVICE_DEPENDENCY_TO_OP09
+  sf02PriorityEntries:
+    - AR-OP08-06_TECHNICAL_LIBRARY_DEPENDENCY_TO_OP10
+  note: R12 does not close or rewrite any R11 application-reconciliation conclusion.
+
+pressures:
+  - {id: PR-01, topic: FUNCTION_PROCESS_BEHAVIOR_IDENTITY_BINDING, status: CHARACTERIZE_IN_SF02_SF03_ADMISSION_BLOCKED}
+  - {id: PR-02, topic: PIPELINE_COMPOSITION_ORDER, status: CHARACTERIZE_IN_SF01_SF06_ADMISSION_BLOCKED}
+  - {id: PR-03, topic: INTERFACE_PATH_INVOCATION_ASSOCIATION, status: CHARACTERIZE_IN_SF01_SF02_SF06_ADMISSION_BLOCKED}
+  - {id: PR-04, topic: BOUNDARY_INTERACTION_ASSOCIATION, status: PENDING_SF06}
+  - {id: PR-05, topic: ORDERED_COMPARISON_VOCABULARY, status: WAITING_SF04_CL01}
+  - {id: PR-06, topic: SCALAR_PROPERTY_ADDRESSING_COMPARISON, status: WAITING_SF04_CL01}
+  - {id: PR-07, topic: STRUCTURED_DATA_INFORMATION_CONTRACT, status: CHARACTERIZE_IN_SF01}
+  - {id: PR-08, topic: DATA_ARTIFACT_STORE_PERSISTENCE_ASSOCIATION, status: CHARACTERIZE_IN_SF01_THEN_SF05}
+  - {id: PR-09, topic: ACQUISITION_REFRESH_ACTION_SEMANTICS, status: PENDING_SF05}
+  - {id: PR-10, topic: CONDITIONAL_ACTION_TRIGGER_SEMANTICS, status: PENDING_SF04}
+  - {id: PR-11, topic: DATA_EVIDENCE_CONSUMPTION_SEMANTICS, status: ACTIVE_CHARACTERIZATION_SF01}
+  - {id: PR-12, topic: NEGATIVE_IMPLICATION_NON_SUFFICIENCY_SEMANTICS, status: PENDING_SF04}
+  - {id: PR-13, topic: BOUNDED_RECENCY_COLLECTION_SELECTION_SEMANTICS, status: CROSS_CUTTING_PENDING}
+  - {id: PR-14, topic: CONFIGURATION_APPLICABILITY_BINDING_EVIDENCE, status: PENDING_SF04_SF05}
+
+questionPackEvidence:
+  candidateConstructTemplate: methodology/DDTA_R25_CANDIDATE_CONSTRUCT_QUESTION_PACK_TEMPLATE_R1.md
+  flowConsumptionFamilyPack: validation-evidence/dermatriage/post-holdout-method-review-r1/question-packs/FLOW_CONSUMPTION_SEMANTIC_FAMILY_QUESTION_PACK_R1.md
+  generalDiscoveryExecution: DEFERRED_TO_THIRD_COMPLETE_ANALYSIS_CYCLE
+
+candidateAdditionsCarryForward:
+  artifact: validation-evidence/dermatriage/post-holdout-method-review-r1/working-findings/CANDIDATE_ADDITIONS_PRESSURE_CARRY_FORWARD_R2.md
+  status: NON_NORMATIVE_RETAINED
+
+nextReview: OP-09_CONSUME_SERVICE_WITHIN_SF01

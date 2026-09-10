@@ -1,0 +1,36 @@
+checkpointId: DDTA-R25-SEMANTIC-FAMILY-REVIEW-WORKPLAN-R26
+status: COMPLETE
+predecessorBaseline: f40741a64e0a9494702572b50c8ce1fe6a583e0c
+changeKind: REVIEW_EXECUTION_STRATEGY_REFINEMENT
+supersedesForExecutionOrder: methodology/DDTA_R25_POST_HOLDOUT_OPERATOR_COMPLETE_REVIEW_WORK_PLAN_R2.md
+newOperationalPlan: methodology/DDTA_R25_POST_HOLDOUT_OPERATOR_COMPLETE_REVIEW_WORK_PLAN_R3.md
+frozenMethod: BA0-R1_BA1-R1_BA2-R3_BA3-R1_BA4-R1_BA5-R1
+normativeBAMutation: NONE
+documentationAuthoringMethodMutation: NONE
+reviewPrinciple: EXISTING_CONSTRUCT_EXHAUSTION_BEFORE_METHOD_DELTA
+newExecutionPrinciple: SEMANTIC_FAMILY_REVIEW_WITH_ADJACENT_CANDIDATE_CHARACTERIZATION
+candidateSyntheticExamplesCreateProjectTruth: false
+untestedCandidateMayBeAdmitted: false
+generalDiscoveryPackExecution: DEFERRED_TO_THIRD_COMPLETE_ANALYSIS_CYCLE
+activeSemanticFamily: SF-01_FLOW_CONSUMPTION_SERVICE
+nextExistingConstruct: OP-09_CONSUME_SERVICE
+newCandidatePressure:
+  - provideService
+retainedCandidatePressure:
+  - consumeData
+  - performs_or_executes
+  - precedes_or_pipeline_membership
+  - invokes_or_interface_exposure
+  - boundary_interaction
+  - structured_information_contract
+  - persistence_store
+  - acquisition_refresh
+  - conditional_trigger
+  - negative_non_sufficiency
+  - bounded_selection
+  - configuration_applicability
+ledger: validation-evidence/dermatriage/post-holdout-method-review-r1/OPERATOR_AND_PRESSURE_REVIEW_LEDGER_R12.yml
+semanticFamilyMap: validation-evidence/dermatriage/post-holdout-method-review-r1/working-findings/SEMANTIC_FAMILY_REVIEW_MAP_R1.md
+candidateCarryForward: validation-evidence/dermatriage/post-holdout-method-review-r1/working-findings/CANDIDATE_ADDITIONS_PRESSURE_CARRY_FORWARD_R2.md
+flowClusterPack: validation-evidence/dermatriage/post-holdout-method-review-r1/question-packs/FLOW_CONSUMPTION_SEMANTIC_FAMILY_QUESTION_PACK_R1.md
+candidatePackTemplate: methodology/DDTA_R25_CANDIDATE_CONSTRUCT_QUESTION_PACK_TEMPLATE_R1.md
