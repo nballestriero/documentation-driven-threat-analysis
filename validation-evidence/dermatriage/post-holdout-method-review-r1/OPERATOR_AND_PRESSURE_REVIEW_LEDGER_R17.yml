@@ -1,0 +1,202 @@
+ledgerId: DDTA-R25-DERMATRIAGE-OPERATOR-AND-PRESSURE-REVIEW-LEDGER-R17
+status: ACTIVE
+baselineAtCreation: 6b9c2981107544db71544014ff3d9dcc3ff1acef
+predecessorLedger: validation-evidence/dermatriage/post-holdout-method-review-r1/OPERATOR_AND_PRESSURE_REVIEW_LEDGER_R16.yml
+operationalPlan: methodology/DDTA_R25_POST_HOLDOUT_OPERATOR_COMPLETE_REVIEW_WORK_PLAN_R3.md
+frozenMethod: BA0-R1_BA1-R1_BA2-R3_BA3-R1_BA4-R1_BA5-R1
+
+rules:
+  normativeBA0ToBA5MutationDuringIndividualReview: FORBIDDEN
+  documentationAuthoringMethodMutation: FORBIDDEN_IN_THIS_CYCLE
+  newConstructBeforeExistingConstructExhaustion: FORBIDDEN
+  candidateCharacterizationDuringFamilyReview: ALLOWED_NON_NORMATIVE
+  syntheticExampleCreatesProjectTruth: false
+  questionPackMayCreateProjectTruth: false
+  conditionalityAutomaticallyImpliesDecisionRule: false
+  conditionalActionAutomaticallyImpliesDecisionRule: false
+  rollbackCapabilityAutomaticallyImpliesRollbackExecution: false
+  negativeNonSufficiencyAutomaticallyImpliesRuleNegation: false
+  rankedSelectionAutomaticallyImpliesSimpleDecisionRule: false
+  existingOperatorAuditCompleteAutomaticallyImpliesMethodComplete: false
+  guideRewriteBeforeCompletenessRecheck: FORBIDDEN
+  finalBARewriteBeforeCompletenessRecheck: FORBIDDEN
+  generalDiscoveryExecution: DEFERRED_TO_THIRD_COMPLETE_ANALYSIS_CYCLE
+
+phases:
+  phase1_existing_operator_audit: COMPLETE_14_OF_14
+  phase2_condition_language_audit: READY_NEXT_CL01
+  phase3_pressure_and_candidate_disposition: PENDING_WITH_FULL_REGISTER_RETAINED
+  phase3b_pre_guide_final_ba_completeness_recheck: REQUIRED_AFTER_PHASE2_PHASE3
+  phase4_integrated_method_revision: BLOCKED
+  phase5_final_dermatriage_ba: BLOCKED
+  phase6_publication_thesis_pack: BLOCKED
+  phase7_third_cycle_general_discovery: DEFERRED
+
+semanticFamilies:
+  SF01: {name: FLOW_CONSUMPTION_SERVICE, status: OP09_CLOSED_ADJACENT_PRESSURES_RETAINED}
+  SF02:
+    name: CAPABILITY_REALIZATION_EXECUTION
+    status: OP10_CLOSED_PR01_STRENGTHENED
+    pressures: [PR-01, PR-03]
+    candidates: [CC-02_PROVIDE_SERVICE]
+  SF03:
+    name: RESPONSIBILITY_SERVICE_PROVISION_OWNERSHIP
+    status: OP11_CLOSED_CC02_SURVIVES_RESPONSIBILITY_EXHAUSTION
+    pressures: [PR-01, PR-03]
+    candidates: [CC-02_PROVIDE_SERVICE]
+  SF04:
+    name: RESTRICTION_DECISION_CONDITION
+    status: EXISTING_OPERATORS_CLOSED_CONDITION_LANGUAGE_NEXT
+    completedExistingConstructs: [OP-12_CONSTRAIN, OP-14_DECISION_RULE]
+    pressures: [PR-05, PR-06, PR-10, PR-12, PR-14]
+  SF05: {name: STATE_PERSISTENCE_ACQUISITION_APPLICABILITY, status: PENDING}
+  SF06: {name: PIPELINE_ORDERING_BOUNDARY, status: PENDING}
+
+operators:
+  OP-01: {name: transfer, status: COMPLETE_GUIDE_CLARIFICATION}
+  OP-02: {name: produce, status: COMPLETE_GUIDE_CLARIFICATION}
+  OP-03: {name: create, status: COMPLETE_DEFERRED_WITH_REASON, empiricalStatus: NOT_TESTED}
+  OP-04: {name: observe, status: COMPLETE_APPLICATION_CORRECTION}
+  OP-05: {name: transition, status: EXTENSION_CANDIDATE, reviewClosure: COMPLETE}
+  OP-06: {name: correlate, status: COMPLETE_GUIDE_CLARIFICATION, reviewClosure: COMPLETE}
+  OP-07: {name: reference, status: COMPLETE_GUIDE_CLARIFICATION, reviewClosure: COMPLETE}
+  OP-08: {name: dependOn, status: COMPLETE_GUIDE_CLARIFICATION, reviewClosure: COMPLETE}
+  OP-09: {name: consumeService, status: COMPLETE_GUIDE_CLARIFICATION, reviewClosure: COMPLETE}
+  OP-10: {name: realize, status: COMPLETE_GUIDE_CLARIFICATION, reviewClosure: COMPLETE, operatorCoreDisposition: KEEP_NO_CHANGE, signatureDisposition: KEEP_NO_CHANGE}
+  OP-11: {name: assignResponsibility, status: COMPLETE_GUIDE_CLARIFICATION, reviewClosure: COMPLETE, operatorCoreDisposition: KEEP_NO_CHANGE, signatureDisposition: KEEP_NO_CHANGE}
+  OP-12: {name: constrain, status: COMPLETE_GUIDE_CLARIFICATION, reviewClosure: COMPLETE, operatorCoreDisposition: KEEP_NO_CHANGE, signatureDisposition: KEEP_NO_CHANGE}
+  OP-13: {name: classify, status: COMPLETE_GUIDE_CLARIFICATION}
+  OP-14:
+    name: decisionRule
+    semanticFamily: SF-04
+    status: COMPLETE_GUIDE_CLARIFICATION
+    reviewClosure: COMPLETE
+    empiricalStatus: TESTED_POSITIVE
+    testCoverage: [TESTED_POSITIVE, TESTED_NEGATIVE, TESTED_BOUNDARY]
+    operatorCoreDisposition: KEEP_NO_CHANGE
+    wholeOperatorRedundancy: FALSIFIED
+    signatureDisposition: KEEP_NO_CHANGE
+    operationalConditionToResultMapping: STRONG_POSITIVE
+    conditionAutomaticallyDecisionRule: false
+    conditionalBehaviorAutomaticallyDecisionRule: false
+    triggerAutomaticallyDecisionRule: false
+    rollbackCapabilityEquivalentToAutomaticRollbackRule: false
+    negativeNonSufficiencyEquivalentToDecisionRule: false
+    orderedComparisonSupport: CURRENT_CL01_INSUFFICIENT_PRESSURE_CONFIRMED
+    candidateMethodDelta: NONE
+    checkpoint: DDTA_R25_DERMATRIAGE_OP14_DECISIONRULE_CONSOLIDATION_R31
+    evidence: validation-evidence/dermatriage/post-holdout-method-review-r1/operator-reviews/OP-14_DECISIONRULE.md
+    questionPack: validation-evidence/dermatriage/post-holdout-method-review-r1/question-packs/DECISIONRULE_QUESTION_PACK_R1.md
+    boundaryFinding: validation-evidence/dermatriage/post-holdout-method-review-r1/working-findings/OP14_DECISIONRULE_CONDITION_RESULT_BOUNDARIES_R1.md
+
+remainingExistingOperatorReviews:
+  count: 0
+  operators: []
+  status: COMPLETE_14_OF_14
+
+conditionLanguage:
+  CL-01:
+    name: comparison
+    status: READY_WITH_STRONG_ORDERED_SCALAR_PRESSURE
+    evidence: [DEC02_CONFIDENCE_GT_085, DEC07_ACCURACY_AT_MOST_5_PERCENT, DEC08_POST_ADOPTION_GT_5_PERCENT]
+  CL-02: {name: satisfies, status: PENDING_SOURCE_RELEVANCE_POSITIVE}
+  CL-03: {name: allOf, status: PENDING_STRONG_CONJUNCTION_EVIDENCE}
+  CL-04: {name: anyOf, status: PENDING_NOT_SUFFICIENTLY_TESTED}
+  CL-05: {name: not, status: PENDING_NO_CLEAN_POSITIVE_CONTROL_BOUNDARY_EVIDENCE_PRESENT}
+
+candidateConstructs:
+  CC-01:
+    name: consumeData
+    owner: PR-11
+    status: CANDIDATE_CHARACTERIZED
+    sourceEvidence: STRONG
+    admissionStatus: NOT_ADMITTED
+  CC-02:
+    name: provideService
+    status: CANDIDATE_CHARACTERIZED
+    sourceEvidence: INSUFFICIENT_FOR_INDEPENDENT_CONSTRUCT
+    admissionStatus: NOT_ADMITTED
+    op10ExhaustionStatus: COMPLETE_NO_ADMISSION
+    op11ExhaustionStatus: COMPLETE_AUTONOMOUS_MEANING_SURVIVES
+    responsibilityEquivalence: FALSIFIED
+    remainingExhaustion: [PR-01, PR-03]
+
+pressures:
+  PR-01: {topic: FUNCTION_PROCESS_BEHAVIOR_IDENTITY_BINDING, status: SOURCE_EVIDENCE_STRONG_PENDING_PRESSURE_REVIEW}
+  PR-02: {topic: PIPELINE_COMPOSITION_ORDER, status: PENDING_SF06}
+  PR-03: {topic: INTERFACE_PATH_INVOCATION_ASSOCIATION, status: STRENGTHENED_PENDING_SF02_SF06}
+  PR-04: {topic: BOUNDARY_INTERACTION_ASSOCIATION, status: PENDING_SF06}
+  PR-05:
+    topic: ORDERED_COMPARISON_VOCABULARY
+    status: SOURCE_EVIDENCE_STRONG_OP12_OP14_CONFIRMED_ROUTE_CL01
+  PR-06:
+    topic: SCALAR_PROPERTY_ADDRESSING_COMPARISON
+    status: SOURCE_EVIDENCE_STRONG_OP14_CONFIRMED_ROUTE_CL01
+  PR-07: {topic: STRUCTURED_DATA_INFORMATION_CONTRACT, status: PENDING}
+  PR-08: {topic: DATA_ARTIFACT_STORE_PERSISTENCE_ASSOCIATION, status: PENDING_SF05}
+  PR-09: {topic: ACQUISITION_REFRESH_ACTION_SEMANTICS, status: PENDING_SF05}
+  PR-10:
+    topic: CONDITIONAL_ACTION_TRIGGER_SEMANTICS
+    status: SOURCE_EVIDENCE_STRONG_SURVIVES_OP12_OP14
+  PR-11: {topic: DATA_EVIDENCE_CONSUMPTION_SEMANTICS, status: SOURCE_EVIDENCE_STRENGTHENED_PENDING}
+  PR-12:
+    topic: NEGATIVE_IMPLICATION_NON_SUFFICIENCY_SEMANTICS
+    status: SOURCE_EVIDENCE_STRONG_SURVIVES_OP12_OP14
+  PR-13:
+    topic: BOUNDED_RECENCY_COLLECTION_SELECTION_SEMANTICS
+    status: SOURCE_EVIDENCE_STRONG_SURVIVES_OP12_OP14
+  PR-14:
+    topic: CONFIGURATION_APPLICABILITY_BINDING_EVIDENCE
+    status: SOURCE_EVIDENCE_STRONG_SURVIVES_OP12_OP14_WAITING_CL_SF05
+
+candidateMethodDeltas:
+  CMD-OP04-OBSERVE-RESULT-REMOVAL: {status: DEFERRED_PENDING_INTEGRATED_REVIEW}
+  CMD-OP05-TRANSITION-STATE-VALUE-ADMISSION: {status: DEFERRED_PENDING_INTEGRATED_REVIEW}
+
+applicationReconciliationCarryForward:
+  preserveAllOpenEntries: true
+  sourceLedger: validation-evidence/dermatriage/post-holdout-method-review-r1/OPERATOR_AND_PRESSURE_REVIEW_LEDGER_R16.yml
+  additionalR31Observations:
+    - id: OP14_ORDERED_COMPARISON_BOUNDARY
+      status: ROUTED_TO_PR05_PR06_CL01
+    - id: OP14_CONDITIONAL_ACTION_TRIGGER_BOUNDARY
+      status: ROUTED_TO_PR10
+    - id: OP14_NEGATIVE_NON_SUFFICIENCY_BOUNDARY
+      status: ROUTED_TO_PR12_CL_AUDIT
+    - id: OP14_BOUNDED_RANKED_SELECTION_BOUNDARY
+      status: ROUTED_TO_PR13_AND_COMPLETENESS_RECHECK
+    - id: OP14_APPLICABILITY_BOUNDARY
+      status: ROUTED_TO_PR14
+    - id: OP14_RANKED_SELECTION_LOCAL_RULE_EXPRESSIVENESS
+      status: RETAIN_FOR_CL_PR_INTEGRATED_REVIEW
+
+candidateAdditionsCarryForward:
+  artifact: validation-evidence/dermatriage/post-holdout-method-review-r1/working-findings/CANDIDATE_ADDITIONS_PRESSURE_CARRY_FORWARD_R7.md
+  status: NON_NORMATIVE_RETAINED
+
+preIntegratedCompletenessGate:
+  required: true
+  executionPoint: AFTER_CONDITION_LANGUAGE_AND_PR_CC_DISPOSITION_BEFORE_GUIDE_OR_FINAL_BA_REWRITE
+  corpusScope: FULL_GOVERNED_DERMATRIAGE_BASELINE
+  mustReconcile:
+    - ALL_14_OPERATOR_REVIEWS
+    - CL01_TO_CL05
+    - PR01_TO_PR14
+    - CC01_TO_CC02
+    - DEFERRED_CANDIDATE_METHOD_DELTAS
+    - APPLICATION_RECONCILIATION_FINDINGS
+    - INDEPENDENT_REVIEW_PROVENANCE_LIMITS
+  allowedDispositions:
+    - ABSORBED_BY_EXISTING_OPERATOR
+    - CONTROLLED_KIND_OR_VALUE
+    - LOCAL_CONDITION_LANGUAGE_EXTENSION
+    - COMPOSITION_OR_PROJECTION
+    - APPLICATION_CORRECTION
+    - METHOD_DELTA_TO_EXISTING_OPERATOR
+    - NEW_TOP_LEVEL_OPERATOR_CANDIDATE
+    - NOT_GOVERNED_OR_INSUFFICIENT_EVIDENCE
+  unresolvedFindingBlocksGuideRewrite: true
+  unresolvedFindingBlocksFinalBARewrite: true
+  distinctFromGeneralDiscoveryPack: true
+
+nextReview: CL-01_COMPARISON_WITHIN_SF04
