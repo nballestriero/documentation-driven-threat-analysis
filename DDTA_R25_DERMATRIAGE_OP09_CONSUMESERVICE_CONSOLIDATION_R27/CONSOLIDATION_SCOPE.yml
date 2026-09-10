@@ -1,0 +1,52 @@
+checkpointId: DDTA-R25-DERMATRIAGE-OP09-CONSUMESERVICE-CONSOLIDATION-R27
+status: COMPLETE
+predecessorBaseline: 89da80e0459ba2a3578c961fb8f6e71b213bb99c
+operationalPlan: methodology/DDTA_R25_POST_HOLDOUT_OPERATOR_COMPLETE_REVIEW_WORK_PLAN_R3.md
+semanticFamily: SF-01_FLOW_CONSUMPTION_SERVICE
+reviewId: OP-09
+construct: consumeService
+frozenMethod: BA0-R1_BA1-R1_BA2-R3_BA3-R1_BA4-R1_BA5-R1
+reviewStatus: COMPLETE_GUIDE_CLARIFICATION
+reviewClosure: COMPLETE
+empiricalStatus: TESTED_POSITIVE_STRONG
+operatorCoreDisposition: KEEP_NO_CHANGE
+wholeOperatorRedundancy: FALSIFIED
+signatureDisposition: KEEP_NO_CHANGE
+consumerLowerBoundDisposition: KEEP_ONE_OR_MORE
+consumerPluralCardinalityEvidence: NOT_SUFFICIENTLY_TESTED_BY_DERMATRIAGE
+serviceCardinalityDisposition: KEEP_EXACTLY_ONE
+providerRoleDisposition: KEEP_OPTIONAL
+providerRoleEmpiricalEvidence: NOT_SUFFICIENTLY_TESTED_BY_DERMATRIAGE
+candidateMethodDelta: NONE
+normativeBAMutation: NONE
+documentationAuthoringMethodMutation: NONE
+strongPositiveEvidence:
+  - FR-22_B4_EXTERNAL_SERVICE_SYSTEM_CONSUMED_BY_DERMATRIAGE
+supportingBoundaryEvidence:
+  - FR-21_DIRECTCLIENT_ENDPOINT_INVOCATION_VS_SERVICE_USE
+  - FR-18_CHROMADB_TECHNOLOGY_QUERY_USE_VS_SERVICE_CONSUMPTION
+negativeControls:
+  - FR-18_HISTORICAL_CASE_CONTEXT_IS_DATA_NOT_SERVICE
+  - FR-24_FR-25_AUTH_CREDENTIALS_ARE_GUARDS_NOT_SERVICES
+  - INTERNAL_MODEL_PARTICIPATION_IS_NOT_AUTOMATIC_SERVICE_CONSUMPTION
+  - ENDPOINT_PATH_IS_NOT_AUTOMATICALLY_SERVICE
+  - TECHNOLOGY_COMPONENT_USE_IS_NOT_AUTOMATICALLY_SERVICE_CONSUMPTION
+adjacentCandidateStatus:
+  consumeData:
+    candidateId: CC-01
+    status: CANDIDATE_CHARACTERIZED
+    sourceEvidence: STRONG
+    admissionStatus: NOT_ADMITTED
+    owner: PR-11
+  provideService:
+    candidateId: CC-02
+    status: CANDIDATE_CHARACTERIZED
+    sourceEvidence: INSUFFICIENT_FOR_INDEPENDENT_CONSTRUCT
+    admissionStatus: NOT_ADMITTED
+    requiredExhaustion: [OP-10, OP-11, PR-01, PR-03]
+questionPack: validation-evidence/dermatriage/post-holdout-method-review-r1/question-packs/CONSUME_SERVICE_QUESTION_PACK_R1.md
+boundaryFinding: validation-evidence/dermatriage/post-holdout-method-review-r1/working-findings/OP09_SERVICE_DATA_INVOCATION_BOUNDARIES_R1.md
+candidateCarryForward: validation-evidence/dermatriage/post-holdout-method-review-r1/working-findings/CANDIDATE_ADDITIONS_PRESSURE_CARRY_FORWARD_R3.md
+ledger: validation-evidence/dermatriage/post-holdout-method-review-r1/OPERATOR_AND_PRESSURE_REVIEW_LEDGER_R13.yml
+generalDiscoveryPackExecution: DEFERRED_TO_THIRD_COMPLETE_ANALYSIS_CYCLE
+nextReview: OP-10_REALIZE_WITHIN_SF02
