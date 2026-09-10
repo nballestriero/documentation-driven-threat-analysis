@@ -1,0 +1,29 @@
+checkpointId: DDTA-R25-DERMATRIAGE-CC03-STOREDIN-CONSOLIDATION-R34
+status: COMPLETE_NON_NORMATIVE_CANDIDATE_CONSOLIDATION
+exactPredecessorBaseline: d5b39ee072e9cd489937bb171919de549e15a489
+predecessorCheckpoint: DDTA_R25_DERMATRIAGE_R32_LINEAGE_RECONCILIATION_R33
+predecessorPlan: methodology/DDTA_R25_POST_OPERATOR_AUDIT_DISPOSITION_AND_COMPLETENESS_WORK_PLAN_R5.md
+successorPlan: methodology/DDTA_R25_POST_OPERATOR_AUDIT_DISPOSITION_AND_COMPLETENESS_WORK_PLAN_R6.md
+predecessorLedger: validation-evidence/dermatriage/post-holdout-method-review-r1/OPERATOR_AND_PRESSURE_REVIEW_LEDGER_R19.yml
+successorLedger: validation-evidence/dermatriage/post-holdout-method-review-r1/OPERATOR_AND_PRESSURE_REVIEW_LEDGER_R20.yml
+predecessorMatrix: validation-evidence/dermatriage/post-holdout-method-review-r1/working-findings/CANDIDATE_CONSTRUCT_DISPOSITION_MATRIX_R2.md
+successorMatrix: validation-evidence/dermatriage/post-holdout-method-review-r1/working-findings/CANDIDATE_CONSTRUCT_DISPOSITION_MATRIX_R3.md
+normativeMethodMutation: NONE
+documentationAuthoringMethodMutation: NONE
+governedDermaTriageMutation: NONE
+topLevelOperatorCountBefore: 14
+topLevelOperatorCountAfter: 14
+candidateConstruct:
+  id: CC-03
+  name: storedIn
+  owner: PR-08
+  status: CANDIDATE_TESTED_POSITIVE
+  admissionStatus: NOT_ADMITTED
+  formalGate: G1_G8_PENDING
+  workingSignature:
+    storedItem: BAReferent
+    store: BAReferent
+rejectedWorkingHypothesis:
+  persist:
+    disposition: NOT_JUSTIFIED_AS_GENERIC_OPERATOR
+nextReview: PR-03_INVOKE_EXPOSE
