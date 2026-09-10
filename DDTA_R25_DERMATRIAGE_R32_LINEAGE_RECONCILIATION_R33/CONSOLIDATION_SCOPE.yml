@@ -1,0 +1,27 @@
+checkpointId: DDTA-R25-DERMATRIAGE-R32-LINEAGE-RECONCILIATION-R33
+status: COMPLETE_GOVERNANCE_RECONCILIATION
+exactPredecessorBaseline: 3cdd912e76ceeb19d2224efa6a506a793d35f26c
+actualHistory:
+  r31Baseline: ca99122b2f628f169bed85e04e731c8f3f89ca3c
+  r32PostOperatorAuditCommit: 666c192581dc58c0c464703807d36328bdbf4f7e
+  r32FirstCandidateGroupCommit: 3cdd912e76ceeb19d2224efa6a506a793d35f26c
+issue:
+  type: LINEAGE_AND_REVISION_COLLISION
+  semanticCorruptionDetected: false
+resolution:
+  rewritePublishedHistory: false
+  amendOrForcePush: false
+  preserveBothR32Commits: true
+  successorPlan: methodology/DDTA_R25_POST_OPERATOR_AUDIT_DISPOSITION_AND_COMPLETENESS_WORK_PLAN_R5.md
+  successorLedger: validation-evidence/dermatriage/post-holdout-method-review-r1/OPERATOR_AND_PRESSURE_REVIEW_LEDGER_R19.yml
+  successorMatrix: validation-evidence/dermatriage/post-holdout-method-review-r1/working-findings/CANDIDATE_CONSTRUCT_DISPOSITION_MATRIX_R2.md
+normativeMethodMutation: NONE
+documentationAuthoringMethodMutation: NONE
+governedDermaTriageMutation: NONE
+topLevelOperatorCount: 14
+firstCandidateGroupSemanticOutcomePreserved: true
+nextDiscussionGroup:
+  - PR-08_PERSISTENCE_STORED_IN
+  - PR-03_INVOKE_EXPOSE
+  - PR-10_CONDITIONAL_ACTION_TRIGGER
+  - PR-13_SELECTION_RANKING_BOUNDED_SELECTION

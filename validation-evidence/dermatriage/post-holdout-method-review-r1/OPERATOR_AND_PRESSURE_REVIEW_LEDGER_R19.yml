@@ -1,0 +1,91 @@
+ledgerId: DDTA-R25-DERMATRIAGE-OPERATOR-AND-PRESSURE-REVIEW-LEDGER-R19
+status: ACTIVE
+baselineAtCreation: 3cdd912e76ceeb19d2224efa6a506a793d35f26c
+predecessorLedger: validation-evidence/dermatriage/post-holdout-method-review-r1/OPERATOR_AND_PRESSURE_REVIEW_LEDGER_R18.yml
+lineageReconciliation:
+  required: true
+  r32aCommit: 666c192581dc58c0c464703807d36328bdbf4f7e
+  r32bCommit: 3cdd912e76ceeb19d2224efa6a506a793d35f26c
+  r32bStalePredecessorMetadata: true
+  publishedHistoryRewritten: false
+  semanticFindingCorruptionDetected: false
+operationalPlan: methodology/DDTA_R25_POST_OPERATOR_AUDIT_DISPOSITION_AND_COMPLETENESS_WORK_PLAN_R5.md
+dispositionMatrix: validation-evidence/dermatriage/post-holdout-method-review-r1/working-findings/CANDIDATE_CONSTRUCT_DISPOSITION_MATRIX_R2.md
+frozenMethod: BA0-R1_BA1-R1_BA2-R3_BA3-R1_BA4-R1_BA5-R1
+rules:
+  normativeBA0ToBA5MutationDuringConceptualReview: FORBIDDEN
+  sourceVerbAutomaticallyCreatesOperator: false
+  functionExecutionAutomaticallyImpliesValueChange: false
+  operationAutomaticallyImpliesMutation: false
+  operationAutomaticallyImpliesNewIdentity: false
+  operationAutomaticallyImpliesLifecycleTransition: false
+  nonDestructiveDataUseAutomaticallyImpliesConsumeData: false
+  endpointExposureAutomaticallyImpliesServiceProvision: false
+  newConstructBeforeExistingConstructExhaustion: FORBIDDEN
+  publishedCheckpointHistoryRewrite: FORBIDDEN
+phases:
+  phase1_existing_operator_audit: COMPLETE_14_OF_14
+  phase2a_conceptual_candidate_review_group1: COMPLETE_RECONCILED
+  phase2b_conceptual_candidate_review_group2: READY
+  phase2c_remaining_pressure_conceptual_review: PENDING
+  phase3_condition_language_audit: PENDING
+  phase4_formal_pressure_candidate_disposition_g1_g8: BLOCKED_PENDING_CONCEPTUAL_REVIEW
+  phase5_pre_guide_final_ba_completeness_recheck: REQUIRED
+  phase6_integrated_method_revision: BLOCKED
+existingOperatorBasis:
+  count: 14
+  newTopLevelOperatorsAdmittedByR32R33: 0
+candidateConstructs:
+  CC-01:
+    name: consumeData
+    owner: PR-11
+    status: CANDIDATE_REJECTED_REDUNDANT
+    nonDestructiveMeaning: ABSORBABLE_BY_EXISTING_CONSTRUCTS_OR_COMPOSITION
+    destructiveMeaning: NOT_GOVERNED_BY_CURRENT_CORPUS
+    genericConsumeAlternative: NOT_JUSTIFIED
+    admissionStatus: REJECTED
+  CC-02:
+    name: provideService
+    status: CANDIDATE_INSUFFICIENT_EVIDENCE
+    semanticDistinction: RETAINED
+    cleanAutonomousPositiveControl: INSUFFICIENT
+    admissionStatus: NOT_ADMITTED
+pressures:
+  PR-01: {topic: FUNCTION_PROCESS_BEHAVIOR_IDENTITY_BINDING, status: PRESSURE_RETAINED_IRREDUCIBILITY_NOT_DEMONSTRATED, performWorkingHypothesis: NOT_ADMITTED}
+  PR-02: {topic: PIPELINE_COMPOSITION_ORDER, status: PENDING_LATER_STRUCTURAL_GROUP}
+  PR-03: {topic: INTERFACE_PATH_INVOCATION_ASSOCIATION, status: NEXT_CONCEPTUAL_GROUP}
+  PR-04: {topic: BOUNDARY_INTERACTION_ASSOCIATION, status: PENDING_LATER_STRUCTURAL_GROUP}
+  PR-05: {topic: ORDERED_COMPARISON_VOCABULARY, status: SOURCE_EVIDENCE_STRONG_ROUTE_CL01}
+  PR-06: {topic: SCALAR_PROPERTY_ADDRESSING_COMPARISON, status: SOURCE_EVIDENCE_STRONG_ROUTE_CL01}
+  PR-07: {topic: STRUCTURED_DATA_INFORMATION_CONTRACT, status: PENDING_LATER_STRUCTURAL_GROUP}
+  PR-08: {topic: DATA_ARTIFACT_STORE_PERSISTENCE_ASSOCIATION, status: NEXT_CONCEPTUAL_GROUP}
+  PR-09: {topic: ACQUISITION_REFRESH_ACTION_SEMANTICS, status: PENDING_LATER_STATE_ACQUISITION_GROUP}
+  PR-10: {topic: CONDITIONAL_ACTION_TRIGGER_SEMANTICS, status: NEXT_CONCEPTUAL_GROUP_SOURCE_EVIDENCE_STRONG}
+  PR-11: {topic: DATA_EVIDENCE_CONSUMPTION_SEMANTICS, status: RECONCILED_VIA_CC01_REJECTION}
+  PR-12: {topic: NEGATIVE_IMPLICATION_NON_SUFFICIENCY_SEMANTICS, status: PENDING_LATER_LOGICAL_GROUP}
+  PR-13: {topic: BOUNDED_RECENCY_COLLECTION_SELECTION_SEMANTICS, status: NEXT_CONCEPTUAL_GROUP_SOURCE_EVIDENCE_STRONG}
+  PR-14: {topic: CONFIGURATION_APPLICABILITY_BINDING_EVIDENCE, status: PENDING_LATER_QUALIFIER_GROUP}
+nonNormativeObservations:
+  OBS-OT-01:
+    topic: OPERATION_TARGET_EFFECT_SCOPE
+    status: RETAINED_LEVEL_UNRESOLVED
+    sourceAnchor: FR-27
+    newOperatorAdmitted: false
+rejectedWorkingHypotheses:
+  genericConsume: NOT_JUSTIFIED
+  genericModify: REJECTED_FALSE_SEMANTICS_AS_GENERIC_OPERATOR
+candidateMethodDeltas:
+  CMD-OP04-OBSERVE-RESULT-REMOVAL: {status: DEFERRED_PENDING_INTEGRATED_REVIEW}
+  CMD-OP05-TRANSITION-STATE-VALUE-ADMISSION: {status: DEFERRED_PENDING_INTEGRATED_REVIEW}
+conditionLanguage:
+  CL-01: {name: comparison, status: READY_WITH_STRONG_ORDERED_SCALAR_PRESSURE}
+  CL-02: {name: satisfies, status: PENDING_SOURCE_RELEVANCE_POSITIVE}
+  CL-03: {name: allOf, status: PENDING_STRONG_CONJUNCTION_EVIDENCE}
+  CL-04: {name: anyOf, status: PENDING_NOT_SUFFICIENTLY_TESTED}
+  CL-05: {name: not, status: PENDING_NO_CLEAN_POSITIVE_CONTROL_BOUNDARY_EVIDENCE_PRESENT}
+nextDiscussionGroup:
+  - PR-08_PERSISTENCE_STORED_IN
+  - PR-03_INVOKE_EXPOSE
+  - PR-10_CONDITIONAL_ACTION_TRIGGER
+  - PR-13_SELECTION_RANKING_BOUNDED_SELECTION
+nextReview: DISCUSS_PR08_PR03_PR10_PR13_GROUP2
