@@ -2,247 +2,148 @@ ledgerId: DDTA-R25-DERMATRIAGE-OPERATOR-AND-PRESSURE-REVIEW-LEDGER-R18
 status: ACTIVE
 baselineAtCreation: ca99122b2f628f169bed85e04e731c8f3f89ca3c
 predecessorLedger: validation-evidence/dermatriage/post-holdout-method-review-r1/OPERATOR_AND_PRESSURE_REVIEW_LEDGER_R17.yml
-operationalPlan: methodology/DDTA_R25_POST_OPERATOR_AUDIT_DISPOSITION_AND_COMPLETENESS_WORK_PLAN_R4.md
+operationalPlan: methodology/DDTA_R25_POST_OPERATOR_AUDIT_CANDIDATE_DISPOSITION_WORK_PLAN_R4.md
 frozenMethod: BA0-R1_BA1-R1_BA2-R3_BA3-R1_BA4-R1_BA5-R1
 
 rules:
-  normativeBA0ToBA5MutationDuringDispositionReview: FORBIDDEN
-  documentationAuthoringMethodMutationDuringDispositionReview: FORBIDDEN
-  governedDermaTriageMutationDuringMethodReview: FORBIDDEN
+  normativeBA0ToBA5MutationDuringConceptualReview: FORBIDDEN
+  documentationAuthoringMethodMutation: FORBIDDEN_IN_THIS_CYCLE
   sourceVerbAutomaticallyCreatesOperator: false
-  existingOperatorAuditCompleteAutomaticallyImpliesMethodComplete: false
-  semanticLossRequiredBeforeNewConstruct: true
-  existingOperatorExhaustionRequiredBeforeNewOperator: true
-  kindOrLocalConstructMustBeTestedBeforeLexicalSpecialization: true
-  compositionAndProjectionMustBeTestedBeforeNewPrimitive: true
-  syntheticExampleCreatesProjectTruth: false
-  syntheticExampleSatisfiesG1: false
-  notTestedAutomaticallyMeansRejected: false
+  functionExecutionAutomaticallyImpliesValueChange: false
+  operationAutomaticallyImpliesMutation: false
+  operationAutomaticallyImpliesNewIdentity: false
+  operationAutomaticallyImpliesLifecycleTransition: false
+  nonDestructiveDataUseAutomaticallyImpliesConsumeData: false
+  endpointExposureAutomaticallyImpliesServiceProvision: false
+  dataProvisionAutomaticallyImpliesServiceProvision: false
+  newConstructBeforeExistingConstructExhaustion: FORBIDDEN
   guideRewriteBeforeCompletenessRecheck: FORBIDDEN
   finalBARewriteBeforeCompletenessRecheck: FORBIDDEN
   generalDiscoveryExecution: DEFERRED_TO_THIRD_COMPLETE_ANALYSIS_CYCLE
 
-planningTransition:
-  predecessorPlan: methodology/DDTA_R25_POST_HOLDOUT_OPERATOR_COMPLETE_REVIEW_WORK_PLAN_R3.md
-  successorPlan: methodology/DDTA_R25_POST_OPERATOR_AUDIT_DISPOSITION_AND_COMPLETENESS_WORK_PLAN_R4.md
-  reason: EXISTING_OPERATOR_AUDIT_COMPLETE_MOVE_TO_CL_PR_CC_CMD_DISPOSITION_AND_COMPLETENESS
-  predecessorPlanPreserved: true
-  normativeMethodMutation: NONE
-
 phases:
   phase1_existing_operator_audit: COMPLETE_14_OF_14
-  phase2_condition_language_audit: READY_NEXT_CL01
-  phase3_pressure_candidate_and_method_delta_disposition: READY_AFTER_OR_ALONGSIDE_CL_AS_ROUTED
-  phase3a_cross_candidate_reconciliation: PENDING
-  phase3b_pre_guide_final_ba_completeness_recheck: REQUIRED
-  phase4_integrated_method_revision: BLOCKED
-  phase5_guidance_revision: BLOCKED
-  phase6_final_dermatriage_ba: BLOCKED
-  phase7_publication_thesis_pack: BLOCKED
-  phase8_third_cycle_general_discovery: DEFERRED
+  phase2a_conceptual_candidate_review_group1: COMPLETE
+  phase2b_conceptual_candidate_review_group2: READY
+  phase2c_remaining_pressure_conceptual_review: PENDING
+  phase3_condition_language_audit: PENDING
+  phase4_formal_pressure_candidate_disposition_g1_g8: BLOCKED_PENDING_CONCEPTUAL_REVIEW
+  phase5_pre_guide_final_ba_completeness_recheck: REQUIRED
+  phase6_integrated_method_revision: BLOCKED
+  phase7_final_dermatriage_ba: BLOCKED
+  phase8_publication_thesis_pack: BLOCKED
+  phase9_third_cycle_general_discovery: DEFERRED
 
-researchSufficiency:
-  sufficientForCurrentDispositionCycle: true
-  sufficientToDriveIntegratedMethodRevisionAfterCompletenessGate: true
-  universalMethodCompletenessProven: false
-  newExploratoryCorpusRequiredBeforeDisposition: false
-  unresolvedNotTestedMayRemainExplicitlyDeferred: true
+existingOperatorBasis:
+  count: 14
+  newTopLevelOperatorsAdmittedByR32: 0
+  removedTopLevelOperatorsByR32: 0
 
 operators:
-  OP-01: {name: transfer, reviewClosure: COMPLETE}
-  OP-02: {name: produce, reviewClosure: COMPLETE}
-  OP-03: {name: create, reviewClosure: COMPLETE, empiricalStatus: NOT_TESTED}
-  OP-04: {name: observe, reviewClosure: COMPLETE, candidateMethodDelta: CMD-OP04-OBSERVE-RESULT-REMOVAL}
-  OP-05: {name: transition, reviewClosure: COMPLETE, candidateMethodDelta: CMD-OP05-TRANSITION-STATE-VALUE-ADMISSION}
-  OP-06: {name: correlate, reviewClosure: COMPLETE}
-  OP-07: {name: reference, reviewClosure: COMPLETE}
-  OP-08: {name: dependOn, reviewClosure: COMPLETE}
-  OP-09: {name: consumeService, reviewClosure: COMPLETE}
-  OP-10: {name: realize, reviewClosure: COMPLETE, operatorCoreDisposition: KEEP_NO_CHANGE, signatureDisposition: KEEP_NO_CHANGE}
-  OP-11: {name: assignResponsibility, reviewClosure: COMPLETE, operatorCoreDisposition: KEEP_NO_CHANGE, signatureDisposition: KEEP_NO_CHANGE}
-  OP-12: {name: constrain, reviewClosure: COMPLETE, operatorCoreDisposition: KEEP_NO_CHANGE, signatureDisposition: KEEP_NO_CHANGE}
-  OP-13: {name: classify, reviewClosure: COMPLETE}
-  OP-14: {name: decisionRule, reviewClosure: COMPLETE, operatorCoreDisposition: KEEP_NO_CHANGE, signatureDisposition: KEEP_NO_CHANGE}
-
-remainingExistingOperatorReviews:
-  count: 0
-  status: COMPLETE_14_OF_14
+  OP-01: {name: transfer, status: COMPLETE_GUIDE_CLARIFICATION}
+  OP-02: {name: produce, status: COMPLETE_GUIDE_CLARIFICATION}
+  OP-03: {name: create, status: COMPLETE_DEFERRED_WITH_REASON, empiricalStatus: NOT_TESTED}
+  OP-04: {name: observe, status: COMPLETE_APPLICATION_CORRECTION, openMethodDelta: CMD-OP04-OBSERVE-RESULT-REMOVAL}
+  OP-05: {name: transition, status: EXTENSION_CANDIDATE, reviewClosure: COMPLETE, openMethodDelta: CMD-OP05-TRANSITION-STATE-VALUE-ADMISSION}
+  OP-06: {name: correlate, status: COMPLETE_GUIDE_CLARIFICATION}
+  OP-07: {name: reference, status: COMPLETE_GUIDE_CLARIFICATION}
+  OP-08: {name: dependOn, status: COMPLETE_GUIDE_CLARIFICATION}
+  OP-09: {name: consumeService, status: COMPLETE_GUIDE_CLARIFICATION}
+  OP-10: {name: realize, status: COMPLETE_GUIDE_CLARIFICATION, operatorCoreDisposition: KEEP_NO_CHANGE}
+  OP-11: {name: assignResponsibility, status: COMPLETE_GUIDE_CLARIFICATION, operatorCoreDisposition: KEEP_NO_CHANGE}
+  OP-12: {name: constrain, status: COMPLETE_GUIDE_CLARIFICATION, operatorCoreDisposition: KEEP_NO_CHANGE}
+  OP-13: {name: classify, status: COMPLETE_GUIDE_CLARIFICATION}
+  OP-14: {name: decisionRule, status: COMPLETE_GUIDE_CLARIFICATION, operatorCoreDisposition: KEEP_NO_CHANGE}
 
 conditionLanguage:
-  CL-01:
-    name: comparison
-    status: READY_WITH_STRONG_ORDERED_SCALAR_PRESSURE
-    routedPressures: [PR-05, PR-06]
-    mandatoryCases:
-      - DEC02_CONFIDENCE_GT_085
-      - DEC07_ACCURACY_AT_MOST_5_PERCENT
-      - DEC08_POST_ADOPTION_GT_5_PERCENT
-      - NO_WORSE_THAN_REFERENCE
-  CL-02:
-    name: satisfies
-    status: PENDING_SOURCE_RELEVANCE_POSITIVE
-  CL-03:
-    name: allOf
-    status: PENDING_STRONG_CONJUNCTION_EVIDENCE
-  CL-04:
-    name: anyOf
-    status: PENDING_NOT_SUFFICIENTLY_TESTED
-  CL-05:
-    name: not
-    status: PENDING_NO_CLEAN_POSITIVE_CONTROL_BOUNDARY_EVIDENCE_PRESENT
-
-pressures:
-  PR-01:
-    topic: FUNCTION_PROCESS_BEHAVIOR_IDENTITY_BINDING
-    status: SOURCE_EVIDENCE_STRONG_PENDING_DISPOSITION
-    provisionalHypothesis: PERFORM_EXECUTE_RELATION
-  PR-02:
-    topic: PIPELINE_COMPOSITION_ORDER
-    status: PENDING_SF06_DISPOSITION
-    provisionalHypothesis: SMALL_COMPOSITION_AND_ORDER_RELATIONS
-  PR-03:
-    topic: INTERFACE_PATH_INVOCATION_ASSOCIATION
-    status: STRENGTHENED_PENDING_DISPOSITION
-    provisionalHypothesis: INVOKE_INTERFACE_OPERATION_RELATION
-  PR-04:
-    topic: BOUNDARY_INTERACTION_ASSOCIATION
-    status: PENDING_SF06_DISPOSITION
-    provisionalHypothesis: BOUNDARY_INTERACTION_RELATION_OR_QUALIFIER
-  PR-05:
-    topic: ORDERED_COMPARISON_VOCABULARY
-    status: SOURCE_EVIDENCE_STRONG_ROUTE_CL01
-    provisionalHypothesis: LOCAL_CONDITION_LANGUAGE_EXTENSION
-  PR-06:
-    topic: SCALAR_PROPERTY_ADDRESSING_COMPARISON
-    status: SOURCE_EVIDENCE_STRONG_ROUTE_CL01
-    provisionalHypothesis: LOCAL_CONDITION_LANGUAGE_EXTENSION
-  PR-07:
-    topic: STRUCTURED_DATA_INFORMATION_CONTRACT
-    status: PENDING_DISPOSITION
-    provisionalHypothesis: REUSABLE_STRUCTURED_INFORMATION_MODEL
-  PR-08:
-    topic: DATA_ARTIFACT_STORE_PERSISTENCE_ASSOCIATION
-    status: PENDING_SF05_DISPOSITION
-    provisionalHypothesis: PERSIST_STOREDIN_RELATION
-  PR-09:
-    topic: ACQUISITION_REFRESH_ACTION_SEMANTICS
-    status: PENDING_SF05_DISPOSITION
-    provisionalHypothesis: BEHAVIOR_RELATION_OR_EXISTING_OPERATOR_COMPOSITION
-  PR-10:
-    topic: CONDITIONAL_ACTION_TRIGGER_SEMANTICS
-    status: SOURCE_EVIDENCE_STRONG_SURVIVES_OP12_OP14_PENDING_DISPOSITION
-    provisionalHypothesis: LOCAL_ACTION_CONSEQUENCE_OR_TRIGGER_STRUCTURE_OR_OPERATOR
-  PR-11:
-    topic: DATA_EVIDENCE_CONSUMPTION_SEMANTICS
-    status: SOURCE_EVIDENCE_STRONG_PENDING_CC01_DISPOSITION
-    provisionalHypothesis: CC01_CONSUMEDATA
-  PR-12:
-    topic: NEGATIVE_IMPLICATION_NON_SUFFICIENCY_SEMANTICS
-    status: SOURCE_EVIDENCE_STRONG_PENDING_CL_AND_INTEGRATED_DISPOSITION
-    provisionalHypothesis: LOGICAL_GOVERNANCE_STRUCTURE
-  PR-13:
-    topic: BOUNDED_RECENCY_COLLECTION_SELECTION_SEMANTICS
-    status: SOURCE_EVIDENCE_STRONG_PENDING_DISPOSITION
-    provisionalHypothesis: SELECTION_RANKING_STRUCTURE_OR_OPERATOR
-  PR-14:
-    topic: CONFIGURATION_APPLICABILITY_BINDING_EVIDENCE
-    status: SOURCE_EVIDENCE_STRONG_PENDING_CL_SF05_DISPOSITION
-    provisionalHypothesis: REUSABLE_CROSS_CUTTING_APPLICABILITY_STRUCTURE
+  CL-01: {name: comparison, status: READY_WITH_STRONG_ORDERED_SCALAR_PRESSURE}
+  CL-02: {name: satisfies, status: PENDING_SOURCE_RELEVANCE_POSITIVE}
+  CL-03: {name: allOf, status: PENDING_STRONG_CONJUNCTION_EVIDENCE}
+  CL-04: {name: anyOf, status: PENDING_NOT_SUFFICIENTLY_TESTED}
+  CL-05: {name: not, status: PENDING_NO_CLEAN_POSITIVE_CONTROL_BOUNDARY_EVIDENCE_PRESENT}
 
 candidateConstructs:
   CC-01:
     name: consumeData
     owner: PR-11
-    status: CANDIDATE_CHARACTERIZED
-    sourceEvidence: STRONG
-    admissionStatus: NOT_ADMITTED
+    status: CANDIDATE_REJECTED_REDUNDANT
+    nonDestructiveMeaning: ABSORBABLE_BY_EXISTING_CONSTRUCTS_OR_COMPOSITION
+    destructiveMeaning: NOT_GOVERNED_BY_CURRENT_CORPUS
+    genericConsumeAlternative: NOT_JUSTIFIED
+    admissionStatus: REJECTED
+    questionPack: validation-evidence/dermatriage/post-holdout-method-review-r1/question-packs/CC01_CONSUMEDATA_QUESTION_PACK_R1.md
   CC-02:
     name: provideService
-    status: CANDIDATE_CHARACTERIZED
-    sourceEvidence: INSUFFICIENT_FOR_INDEPENDENT_CONSTRUCT
+    status: CANDIDATE_INSUFFICIENT_EVIDENCE
+    semanticDistinction: RETAINED
+    cleanAutonomousPositiveControl: INSUFFICIENT
     admissionStatus: NOT_ADMITTED
-    realizeExhaustion: COMPLETE_NO_ADMISSION
-    responsibilityExhaustion: COMPLETE_AUTONOMOUS_MEANING_SURVIVES
-    remainingExhaustion: [PR-01, PR-03]
+    questionPack: validation-evidence/dermatriage/post-holdout-method-review-r1/question-packs/CC02_PROVIDESERVICE_QUESTION_PACK_R1.md
+
+pressures:
+  PR-01:
+    topic: FUNCTION_PROCESS_BEHAVIOR_IDENTITY_BINDING
+    status: PRESSURE_RETAINED_IRREDUCIBILITY_NOT_DEMONSTRATED
+    performWorkingHypothesis: NOT_ADMITTED
+    fr16Classification: ABSORBABLE_BY_PRODUCE
+    fr27Retraining: NOT_CLEAN_PERFORM_POSITIVE
+    questionPack: validation-evidence/dermatriage/post-holdout-method-review-r1/question-packs/PR01_PERFORM_QUESTION_PACK_R1.md
+  PR-02: {topic: PIPELINE_COMPOSITION_ORDER, status: PENDING_LATER_STRUCTURAL_GROUP}
+  PR-03: {topic: INTERFACE_PATH_INVOCATION_ASSOCIATION, status: NEXT_CONCEPTUAL_GROUP}
+  PR-04: {topic: BOUNDARY_INTERACTION_ASSOCIATION, status: PENDING_LATER_STRUCTURAL_GROUP}
+  PR-05: {topic: ORDERED_COMPARISON_VOCABULARY, status: SOURCE_EVIDENCE_STRONG_ROUTE_CL01}
+  PR-06: {topic: SCALAR_PROPERTY_ADDRESSING_COMPARISON, status: SOURCE_EVIDENCE_STRONG_ROUTE_CL01}
+  PR-07: {topic: STRUCTURED_DATA_INFORMATION_CONTRACT, status: PENDING_LATER_STRUCTURAL_GROUP}
+  PR-08: {topic: DATA_ARTIFACT_STORE_PERSISTENCE_ASSOCIATION, status: NEXT_CONCEPTUAL_GROUP}
+  PR-09: {topic: ACQUISITION_REFRESH_ACTION_SEMANTICS, status: PENDING_LATER_STATE_ACQUISITION_GROUP}
+  PR-10: {topic: CONDITIONAL_ACTION_TRIGGER_SEMANTICS, status: NEXT_CONCEPTUAL_GROUP_SOURCE_EVIDENCE_STRONG}
+  PR-11: {topic: DATA_EVIDENCE_CONSUMPTION_SEMANTICS, status: RECONCILED_VIA_CC01_REJECTION}
+  PR-12: {topic: NEGATIVE_IMPLICATION_NON_SUFFICIENCY_SEMANTICS, status: PENDING_LATER_LOGICAL_GROUP}
+  PR-13: {topic: BOUNDED_RECENCY_COLLECTION_SELECTION_SEMANTICS, status: NEXT_CONCEPTUAL_GROUP_SOURCE_EVIDENCE_STRONG}
+  PR-14: {topic: CONFIGURATION_APPLICABILITY_BINDING_EVIDENCE, status: PENDING_LATER_QUALIFIER_GROUP}
+
+nonNormativeObservations:
+  OBS-OT-01:
+    topic: OPERATION_TARGET_EFFECT_SCOPE
+    status: RETAINED_LEVEL_UNRESOLVED
+    sourceAnchor: FR-27
+    newPRAllocated: false
+    newCCAllocated: false
+    newOperatorAdmitted: false
+
+modelEvolution:
+  logicalModelIdentity: SOURCE_SUPPORTED
+  modelVersionConcept: SOURCE_SUPPORTED
+  referenceVersion_1_0_0: SOURCE_SUPPORTED
+  recoverableVersionPlurality: SOURCE_SUPPORTED
+  activeModelDistinction: SOURCE_SUPPORTED
+  newVersionPerRetraining: NOT_GOVERNED
+  exactRollbackTarget: NOT_SUFFICIENTLY_GOVERNED
 
 candidateMethodDeltas:
-  CMD-OP04-OBSERVE-RESULT-REMOVAL:
-    status: DEFERRED_PENDING_INTEGRATED_REVIEW
-  CMD-OP05-TRANSITION-STATE-VALUE-ADMISSION:
-    status: DEFERRED_PENDING_INTEGRATED_REVIEW
+  CMD-OP04-OBSERVE-RESULT-REMOVAL: {status: DEFERRED_PENDING_INTEGRATED_REVIEW}
+  CMD-OP05-TRANSITION-STATE-VALUE-ADMISSION: {status: DEFERRED_PENDING_INTEGRATED_REVIEW}
 
-candidateHypotheses:
-  note: DIAGNOSTIC_NAMES_ONLY_NOT_CC_IDENTITIES_NOT_ADMITTED
-  perform: {owner: PR-01, candidateLevel: TOP_LEVEL_OR_RELATION_TO_TEST}
-  invoke: {owner: PR-03, candidateLevel: TOP_LEVEL_OR_RELATION_TO_TEST}
-  persist: {owner: PR-08, candidateLevel: TOP_LEVEL_OR_RELATION_TO_TEST}
-  trigger: {owner: PR-10, candidateLevel: LOCAL_STRUCTURE_OR_TOP_LEVEL_TO_TEST}
-  select: {owner: PR-13, candidateLevel: REUSABLE_STRUCTURE_OR_TOP_LEVEL_TO_TEST}
-  precedes: {owner: PR-02, candidateLevel: SMALL_RELATION_TO_TEST}
-  containsMemberOf: {owner: PR-02, candidateLevel: SMALL_RELATION_TO_TEST}
-  interactsThrough: {owner: PR-04, candidateLevel: RELATION_OR_QUALIFIER_TO_TEST}
+firstCandidateGroupFinding:
+  artifact: validation-evidence/dermatriage/post-holdout-method-review-r1/working-findings/FIRST_CANDIDATE_GROUP_RECONCILIATION_R1.md
+  status: COMPLETE_NON_NORMATIVE_RECONCILIATION
 
-dispositionMatrix:
-  artifact: validation-evidence/dermatriage/post-holdout-method-review-r1/working-findings/CANDIDATE_CONSTRUCT_DISPOSITION_MATRIX_R1.md
-  status: ACTIVE_CONTROLLING_WORKING_ARTIFACT
-  allPRRequired: true
-  allCCRequired: true
-  allCMDRequired: true
-  omissionDoesNotCloseItem: true
+candidateAdditionsCarryForward:
+  artifact: validation-evidence/dermatriage/post-holdout-method-review-r1/working-findings/CANDIDATE_ADDITIONS_PRESSURE_CARRY_FORWARD_R8.md
+  status: NON_NORMATIVE_ACTIVE_REGISTER
 
-methodDeltaGate:
-  G1: SOURCE_EVIDENCE
-  G2: GENERAL_FORMULATION
-  G3: CONSTRUCT_EXHAUSTION
-  G4: NO_FALSE_SEMANTICS
-  G5: MINIMALITY
-  G6: NON_REDUNDANCY
-  G7: BACKWARD_COMPATIBILITY
-  G8: PROJECTION_FEEDBACK_VALUE
-  allRequiredForNewTopLevelOperator: true
-
-allowedFinalDispositions:
-  - ABSORBED_BY_EXISTING_OPERATOR
-  - CONTROLLED_KIND_OR_VALUE
-  - LOCAL_CONDITION_LANGUAGE_EXTENSION
-  - REUSABLE_CROSS_CUTTING_STRUCTURE
-  - COMPOSITION_OR_PROJECTION
-  - APPLICATION_CORRECTION
-  - METHOD_DELTA_TO_EXISTING_OPERATOR
-  - NEW_TOP_LEVEL_OPERATOR
-  - DEFER_NOT_TESTED
-  - REJECT_REDUNDANT
-  - REJECT_FALSE_SEMANTICS
-  - NOT_GOVERNED
+nextDiscussionGroup:
+  - PR-08_PERSISTENCE_STORED_IN
+  - PR-03_INVOKE_EXPOSE
+  - PR-10_CONDITIONAL_ACTION_TRIGGER
+  - PR-13_SELECTION_RANKING_BOUNDED_SELECTION
 
 preIntegratedCompletenessGate:
   required: true
-  executionPoint: AFTER_CL_PR_CC_CMD_AND_CROSS_CANDIDATE_DISPOSITION_BEFORE_METHOD_OR_GUIDE_REWRITE
+  executionPoint: AFTER_CONCEPTUAL_REVIEWS_CONDITION_LANGUAGE_AND_FORMAL_DISPOSITION
   corpusScope: FULL_GOVERNED_DERMATRIAGE_BASELINE
-  mustReconcile:
-    - ALL_14_OPERATOR_REVIEWS
-    - CL01_TO_CL05
-    - PR01_TO_PR14
-    - ALL_CC
-    - DEFERRED_CANDIDATE_METHOD_DELTAS
-    - APPLICATION_RECONCILIATION_FINDINGS
-    - INDEPENDENT_REVIEW_PROVENANCE_LIMITS
-  unresolvedFindingBlocksIntegratedRevision: true
   unresolvedFindingBlocksGuideRewrite: true
   unresolvedFindingBlocksFinalBARewrite: true
   distinctFromGeneralDiscoveryPack: true
 
-integratedRevision:
-  status: BLOCKED_PENDING_COMPLETENESS_GATE
-  possibleOutputs:
-    - BA2_R4_IF_WARRANTED
-    - OTHER_BA_CONTRACT_DELTA_IF_WARRANTED
-    - BASE_ANALYSIS_OPERATIONAL_GUIDE_NEW_REVISION
-    - DOCUMENTATION_BA_AUTHORING_GUIDE_NEW_REVISION
-    - COMPATIBILITY_AND_MIGRATION_NOTES
-
-generalDiscovery:
-  status: DEFERRED_TO_THIRD_COMPLETE_ANALYSIS_CYCLE
-  replacedByCompletenessRecheck: false
-
-nextReview: CL-01_COMPARISON
+nextReview: DISCUSS_PR08_PR03_PR10_PR13_GROUP2

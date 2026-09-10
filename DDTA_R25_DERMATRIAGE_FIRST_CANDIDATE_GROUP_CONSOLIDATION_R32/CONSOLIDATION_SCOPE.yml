@@ -1,0 +1,35 @@
+checkpointId: DDTA-R25-DERMATRIAGE-FIRST-CANDIDATE-GROUP-CONSOLIDATION-R32
+status: COMPLETE_NON_NORMATIVE_CONCEPTUAL_CONSOLIDATION
+predecessorBaseline: ca99122b2f628f169bed85e04e731c8f3f89ca3c
+predecessorLedger: validation-evidence/dermatriage/post-holdout-method-review-r1/OPERATOR_AND_PRESSURE_REVIEW_LEDGER_R17.yml
+predecessorWorkPlan: methodology/DDTA_R25_POST_HOLDOUT_OPERATOR_COMPLETE_REVIEW_WORK_PLAN_R3.md
+newWorkPlan: methodology/DDTA_R25_POST_OPERATOR_AUDIT_CANDIDATE_DISPOSITION_WORK_PLAN_R4.md
+frozenMethod: BA0-R1_BA1-R1_BA2-R3_BA3-R1_BA4-R1_BA5-R1
+normativeMethodMutation: NONE
+documentationAuthoringMethodMutation: NONE
+topLevelOperatorCountBefore: 14
+topLevelOperatorCountAfter: 14
+firstCandidateGroup:
+  PR-01_perform:
+    disposition: PRESSURE_RETAINED_IRREDUCIBILITY_NOT_DEMONSTRATED
+    newTopLevelOperator: false
+  CC-01_consumeData:
+    disposition: CANDIDATE_REJECTED_REDUNDANT
+    newTopLevelOperator: false
+  CC-02_provideService:
+    disposition: CANDIDATE_INSUFFICIENT_EVIDENCE
+    newTopLevelOperator: false
+rejectedWorkingHypotheses:
+  modify:
+    disposition: REJECTED_FALSE_SEMANTICS_AS_GENERIC_OPERATOR
+  genericConsume:
+    disposition: NOT_JUSTIFIED
+newNonNormativeObservation:
+  id: OBS-OT-01
+  topic: OPERATION_TARGET_EFFECT_SCOPE
+  status: RETAINED_LEVEL_UNRESOLVED
+nextDiscussionGroup:
+  - PR-08_PERSISTENCE_STORED_IN
+  - PR-03_INVOKE_EXPOSE
+  - PR-10_CONDITIONAL_ACTION_TRIGGER
+  - PR-13_SELECTION_RANKING
