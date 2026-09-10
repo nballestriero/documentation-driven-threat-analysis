@@ -1,6 +1,6 @@
 # DDTA R25 — `assignResponsibility` Question Pack R1
 
-**Status:** TESTED / CONSTRUCT-SPECIFIC / NON-NORMATIVE  
+**Status:** TESTED / CONSTRUCT-SPECIFIC / NON-NORMATIVE
 **Operator:** OP-11 `assignResponsibility`
 
 Frozen contract:
