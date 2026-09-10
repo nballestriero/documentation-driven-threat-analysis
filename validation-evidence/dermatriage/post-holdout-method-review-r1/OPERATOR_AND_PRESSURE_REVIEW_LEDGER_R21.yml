@@ -1,0 +1,96 @@
+ledgerId: DDTA-R25-DERMATRIAGE-OPERATOR-AND-PRESSURE-REVIEW-LEDGER-R21
+status: ACTIVE
+baselineAtCreation: 68c8a387790c92c7f7e3859bfebd400fa29e242a
+predecessorLedger: validation-evidence/dermatriage/post-holdout-method-review-r1/OPERATOR_AND_PRESSURE_REVIEW_LEDGER_R20.yml
+operationalPlan: methodology/DDTA_R25_POST_OPERATOR_AUDIT_DISPOSITION_AND_COMPLETENESS_WORK_PLAN_R7.md
+dispositionMatrix: validation-evidence/dermatriage/post-holdout-method-review-r1/working-findings/CANDIDATE_CONSTRUCT_DISPOSITION_MATRIX_R4.md
+frozenMethod: BA0-R1_BA1-R1_BA2-R3_BA3-R1_BA4-R1_BA5-R1
+
+existingOperatorBasis:
+  count: 14
+  newTopLevelOperatorsAdmittedByR35: 0
+
+candidateConstructs:
+  CC-01:
+    name: consumeData
+    status: CANDIDATE_REJECTED_REDUNDANT
+    admissionStatus: REJECTED
+  CC-02:
+    name: provideService
+    previousStatus: CANDIDATE_INSUFFICIENT_EVIDENCE
+    status: CANDIDATE_TESTED_POSITIVE
+    admissionStatus: NOT_ADMITTED
+    formalGate: G1_G8_PENDING
+    workingMinimumSignature:
+      provider: BAReferent
+      service: BAReferent
+    questionPack: validation-evidence/dermatriage/post-holdout-method-review-r1/question-packs/CC02_PROVIDESERVICE_QUESTION_PACK_R2.md
+    finding: validation-evidence/dermatriage/post-holdout-method-review-r1/working-findings/CC02_PROVIDESERVICE_STRENGTHENING_R1.md
+  CC-03:
+    name: storedIn
+    owner: PR-08
+    status: CANDIDATE_TESTED_POSITIVE
+    admissionStatus: NOT_ADMITTED
+    formalGate: G1_G8_PENDING
+
+pressures:
+  PR-01: {topic: FUNCTION_PROCESS_BEHAVIOR_IDENTITY_BINDING, status: PRESSURE_RETAINED_IRREDUCIBILITY_NOT_DEMONSTRATED}
+  PR-02: {topic: PIPELINE_COMPOSITION_ORDER, status: PENDING_LATER_STRUCTURAL_GROUP}
+  PR-03:
+    topic: INTERFACE_PATH_INVOCATION_ASSOCIATION
+    status: PARTIALLY_RECONCILED_EXPOSURE_DECOMPOSED_INVOCATION_OPEN
+    exposureFacet:
+      sourceWordingPresent: true
+      autonomousExposeConstruct: NOT_JUSTIFIED
+      representation: COMPOSITION
+      candidateIdAllocated: false
+    invocationFacet:
+      status: SURVIVES_CURRENT_EXISTING_CONSTRUCT_EXHAUSTION
+      nextTest: CROSS_TEST_PR10_TRIGGER
+  PR-04: {topic: BOUNDARY_INTERACTION_ASSOCIATION, status: PENDING_LATER_STRUCTURAL_GROUP}
+  PR-05: {topic: ORDERED_COMPARISON_VOCABULARY, status: SOURCE_EVIDENCE_STRONG_ROUTE_CL01}
+  PR-06: {topic: SCALAR_PROPERTY_ADDRESSING_COMPARISON, status: SOURCE_EVIDENCE_STRONG_ROUTE_CL01}
+  PR-07: {topic: STRUCTURED_DATA_INFORMATION_CONTRACT, status: PENDING_LATER_STRUCTURAL_GROUP}
+  PR-08:
+    topic: AT_REST_STORAGE_ASSOCIATION
+    status: RECONCILED_CC03_STOREDIN_SURVIVES
+    candidate: CC-03
+  PR-09: {topic: ACQUISITION_REFRESH_ACTION_SEMANTICS, status: PENDING_LATER_STATE_ACQUISITION_GROUP}
+  PR-10:
+    topic: CONDITIONAL_ACTION_TRIGGER_SEMANTICS
+    status: NEXT_REVIEW_CROSS_TEST_PR03_INVOKE
+  PR-11: {topic: DATA_EVIDENCE_CONSUMPTION_SEMANTICS, status: RECONCILED_VIA_CC01_REJECTION}
+  PR-12: {topic: NEGATIVE_IMPLICATION_NON_SUFFICIENCY_SEMANTICS, status: PENDING_LATER_LOGICAL_GROUP}
+  PR-13: {topic: BOUNDED_RECENCY_COLLECTION_SELECTION_SEMANTICS, status: GROUP2_PENDING_AFTER_PR03_PR10}
+  PR-14: {topic: CONFIGURATION_APPLICABILITY_BINDING_EVIDENCE, status: PENDING_LATER_QUALIFIER_GROUP}
+
+interfaceRepresentation:
+  provideServiceStrengthened: true
+  endpointBAReferentRule: ONLY_WHEN_INDEPENDENTLY_REUSABLE_OR_QUALIFIED
+  endpointConstraintRule: ONLY_WHEN_REUSABLE_QUERYABLE_RESTRICTION_IS_GOVERNED
+  noInventedEndpointPaths: true
+  noImplicitClosedEndpointVocabulary: true
+
+rejectedWorkingHypotheses:
+  genericConsume: NOT_JUSTIFIED
+  genericModify: REJECTED_FALSE_SEMANTICS_AS_GENERIC_OPERATOR
+  genericPersist: NOT_JUSTIFIED_AS_GENERIC_OPERATOR
+  genericExpose: NOT_JUSTIFIED_CURRENT_CORPUS_DECOMPOSABLE
+
+nonNormativeObservations:
+  OBS-OT-01:
+    topic: OPERATION_TARGET_EFFECT_SCOPE
+    status: RETAINED_LEVEL_UNRESOLVED
+
+candidateMethodDeltas:
+  CMD-OP04-OBSERVE-RESULT-REMOVAL: {status: DEFERRED_PENDING_INTEGRATED_REVIEW}
+  CMD-OP05-TRANSITION-STATE-VALUE-ADMISSION: {status: DEFERRED_PENDING_INTEGRATED_REVIEW}
+
+conditionLanguage:
+  CL-01: {name: comparison, status: READY_WITH_STRONG_ORDERED_SCALAR_PRESSURE}
+  CL-02: {name: satisfies, status: PENDING_SOURCE_RELEVANCE_POSITIVE}
+  CL-03: {name: allOf, status: PENDING_STRONG_CONJUNCTION_EVIDENCE}
+  CL-04: {name: anyOf, status: PENDING_NOT_SUFFICIENTLY_TESTED}
+  CL-05: {name: not, status: PENDING_NO_CLEAN_POSITIVE_CONTROL_BOUNDARY_EVIDENCE_PRESENT}
+
+nextReview: PR03_INVOKE_VS_PR10_TRIGGER

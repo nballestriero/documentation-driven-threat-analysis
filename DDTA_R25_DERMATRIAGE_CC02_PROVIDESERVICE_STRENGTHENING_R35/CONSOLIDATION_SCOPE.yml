@@ -1,0 +1,53 @@
+checkpointId: DDTA-R25-DERMATRIAGE-CC02-PROVIDESERVICE-STRENGTHENING-R35
+status: COMPLETE_NON_NORMATIVE_CANDIDATE_STRENGTHENING
+exactPredecessorBaseline: 68c8a387790c92c7f7e3859bfebd400fa29e242a
+predecessorCheckpoint: DDTA_R25_DERMATRIAGE_CC03_STOREDIN_CONSOLIDATION_R34
+predecessorPlan: methodology/DDTA_R25_POST_OPERATOR_AUDIT_DISPOSITION_AND_COMPLETENESS_WORK_PLAN_R6.md
+successorPlan: methodology/DDTA_R25_POST_OPERATOR_AUDIT_DISPOSITION_AND_COMPLETENESS_WORK_PLAN_R7.md
+predecessorLedger: validation-evidence/dermatriage/post-holdout-method-review-r1/OPERATOR_AND_PRESSURE_REVIEW_LEDGER_R20.yml
+successorLedger: validation-evidence/dermatriage/post-holdout-method-review-r1/OPERATOR_AND_PRESSURE_REVIEW_LEDGER_R21.yml
+predecessorMatrix: validation-evidence/dermatriage/post-holdout-method-review-r1/working-findings/CANDIDATE_CONSTRUCT_DISPOSITION_MATRIX_R3.md
+successorMatrix: validation-evidence/dermatriage/post-holdout-method-review-r1/working-findings/CANDIDATE_CONSTRUCT_DISPOSITION_MATRIX_R4.md
+
+normativeMethodMutation: NONE
+documentationAuthoringMethodMutation: NONE
+governedDermaTriageMutation: NONE
+topLevelOperatorCountBefore: 14
+topLevelOperatorCountAfter: 14
+
+candidateConstruct:
+  id: CC-02
+  name: provideService
+  previousStatus: CANDIDATE_INSUFFICIENT_EVIDENCE
+  status: CANDIDATE_TESTED_POSITIVE
+  admissionStatus: NOT_ADMITTED
+  formalGate: G1_G8_PENDING
+  workingMinimumSignature:
+    provider: BAReferent
+    service: BAReferent
+
+supportingSourceCompleteReview:
+  primaryPositiveControl:
+    - DEC-14
+    - FR-21
+  supportingBoundary:
+    - FR-22
+    - DEC-15
+    - FR-23
+    - DEC-16
+    - FR-24
+    - FR-25
+
+pr03ExposureFacet:
+  sourceWordingPresent: true
+  autonomousExposeConstruct: NOT_JUSTIFIED
+  disposition: REPRESENTABLE_BY_COMPOSITION_IN_CURRENT_CORPUS
+  noCandidateIdAllocated: true
+
+endpointRepresentation:
+  reusableEndpointMayBeBAReferent: true
+  governedEndpointPropertiesMayUseConstrain: true
+  exactEndpointMustNotBeInventedWhenSourceIsSilent: true
+  closedEndpointVocabularyMustNotBeInferred: true
+
+nextReview: PR03_INVOKE_VS_PR10_TRIGGER
