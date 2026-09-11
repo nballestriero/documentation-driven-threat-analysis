@@ -1,0 +1,70 @@
+checkpointId: DDTA-R25-DERMATRIAGE-SOURCE-COMPLETE-REALIGNMENT-R37
+status: REALIGNMENT_CHECKPOINT_NON_NORMATIVE
+repositoryPackagingBaseline: 6e6ec547d2def68833547cc7a5848835d6948b43
+predecessorCheckpoint: DDTA_R25_DERMATRIAGE_CC04_INITIATE_CONSOLIDATION_R36
+supersedes: NONE
+normativeMethodMutation: NONE
+documentationAuthoringMethodMutation: NONE
+governedDermaTriageMutation: NONE
+topLevelOperatorCountBefore: 14
+topLevelOperatorCountAfter: 14
+stableAuthorities:
+  documentationAuthoringGuide: methodology/DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R5.tex
+  baseAnalysisOperationalGuide: methodology/DDTA_BASE_ANALYSIS_OPERATIONAL_GUIDE_R3.tex
+  methodologyStyle: methodology/DDTA_METHODOLOGY_GUIDE_STYLE_R1.sty
+  governedDermaTriage: governed-corpora/dermatriage/current-r1/DDTA_DERMATRIAGE_GOVERNED_DOCUMENTATION_R1.tex
+r25Interpretation:
+  cycleKind: SECOND_CONTROL_CYCLE
+  originalOperatorDiscoveryClaim: FORBIDDEN
+  purposes:
+    - REDUNDANCY_CHECK
+    - SEMANTIC_BOUNDARY_CHECK
+    - GAP_AND_PRESSURE_DISCOVERY
+    - CORNER_CASE_TESTING
+    - COMPLETENESS_RECONCILIATION
+preservedCandidateState:
+  CC-01:
+    name: consumeData
+    disposition: REJECT_REDUNDANT
+  CC-02:
+    name: provideService
+    disposition: CANDIDATE_TESTED_POSITIVE
+    admissionStatus: NOT_ADMITTED
+  CC-03:
+    name: storedIn
+    disposition: CANDIDATE_TESTED_POSITIVE
+    admissionStatus: NOT_ADMITTED
+  CC-04:
+    name: initiate
+    disposition: CANDIDATE_TESTED_POSITIVE
+    admissionStatus: NOT_ADMITTED
+postR36Reconstruction:
+  PR-13:
+    topic: BOUNDED_RANKED_RECENCY_SELECTION
+    disposition: REUSABLE_SELECTION_STRUCTURE
+    normativeStatus: NON_NORMATIVE
+    newTopLevelOperator: NONE
+    ba2Mutation: NONE
+    sourceControls: [FR-18, FR-06, FR-20]
+sourceCoverageTarget:
+  macroRequirements: 4
+  activeFunctionalRequirements: 26
+  supersededFunctionalRequirementIdentities: [FR-11]
+  explicitDocumentationGapRegister: REQUIRED
+nextGate: methodology/DDTA_R25_SOURCE_COMPLETE_RECONSTRUCTION_AND_CONSOLIDATION_GATE_R1.md
+gateOutputs:
+  - GUIDE_DELTA_REQUIRED
+  - COMPANION_ONLY
+  - EVIDENCE_ONLY
+  - DOCUMENTATION_REMEDIATION
+  - TARGETED_REOPEN_REQUIRED
+  - NO_CHANGE
+excludedArtifacts:
+  condensedOffRepositoryGuideDrafts:
+    status: INVALID_AS_CUMULATIVE_SUCCESSORS
+    packageInclusion: false
+  guideSuccessorRevision:
+    status: DEFERRED_UNTIL_GATE
+  completeDermaTriageBA:
+    status: DEFERRED_UNTIL_GATE
+commitPushRequested: false
