@@ -1,0 +1,38 @@
+checkpointId: DDTA-R25-DERMATRIAGE-CC04-INITIATE-CONSOLIDATION-R36
+status: COMPLETE_NON_NORMATIVE_CANDIDATE_CONSOLIDATION
+exactPredecessorBaseline: 6c0c16d493e292c947b1a06359faf628f613f1dc
+predecessorCheckpoint: DDTA_R25_DERMATRIAGE_CC02_PROVIDESERVICE_STRENGTHENING_R35
+predecessorPlan: methodology/DDTA_R25_POST_OPERATOR_AUDIT_DISPOSITION_AND_COMPLETENESS_WORK_PLAN_R7.md
+successorPlan: methodology/DDTA_R25_POST_OPERATOR_AUDIT_DISPOSITION_AND_COMPLETENESS_WORK_PLAN_R8.md
+predecessorLedger: validation-evidence/dermatriage/post-holdout-method-review-r1/OPERATOR_AND_PRESSURE_REVIEW_LEDGER_R21.yml
+successorLedger: validation-evidence/dermatriage/post-holdout-method-review-r1/OPERATOR_AND_PRESSURE_REVIEW_LEDGER_R22.yml
+predecessorMatrix: validation-evidence/dermatriage/post-holdout-method-review-r1/working-findings/CANDIDATE_CONSTRUCT_DISPOSITION_MATRIX_R4.md
+successorMatrix: validation-evidence/dermatriage/post-holdout-method-review-r1/working-findings/CANDIDATE_CONSTRUCT_DISPOSITION_MATRIX_R5.md
+normativeMethodMutation: NONE
+documentationAuthoringMethodMutation: NONE
+governedDermaTriageMutation: NONE
+topLevelOperatorCountBefore: 14
+topLevelOperatorCountAfter: 14
+candidateConstruct:
+  id: CC-04
+  name: initiate
+  owningPressures: [PR-03, PR-10]
+  status: CANDIDATE_TESTED_POSITIVE
+  admissionStatus: NOT_ADMITTED
+  formalGate: G1_G8_PENDING
+  workingMinimumSignature:
+    initiator: BAReferent
+    initiated: BAReferent
+reconciledSourceWordings:
+  invoke:
+    disposition: ABSORBED_AS_INITIATE_SOURCE_WORDING
+    autonomousOperator: NOT_JUSTIFIED
+  trigger:
+    disposition: NOT_JUSTIFIED_AS_SEPARATE_PRIMITIVE
+    representation: CONDITION_PLUS_ACTUAL_GOVERNED_ACTION
+  initiationKind:
+    testedValues: [REQUEST, START]
+    disposition: REJECT_REDUNDANT_OVER_SPECIFIC
+positiveControls: [FR-21, FR-04, FR-05]
+negativeBoundaryControls: [FR-10, FR-25, FR-16, FR-01, FR-03, FR-27]
+nextReview: PR13_BOUNDED_RANKED_SELECTION

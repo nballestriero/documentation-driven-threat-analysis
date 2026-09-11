@@ -1,0 +1,78 @@
+ledgerId: DDTA-R25-DERMATRIAGE-OPERATOR-AND-PRESSURE-REVIEW-LEDGER-R22
+status: ACTIVE
+baselineAtCreation: 6c0c16d493e292c947b1a06359faf628f613f1dc
+predecessorLedger: validation-evidence/dermatriage/post-holdout-method-review-r1/OPERATOR_AND_PRESSURE_REVIEW_LEDGER_R21.yml
+operationalPlan: methodology/DDTA_R25_POST_OPERATOR_AUDIT_DISPOSITION_AND_COMPLETENESS_WORK_PLAN_R8.md
+dispositionMatrix: validation-evidence/dermatriage/post-holdout-method-review-r1/working-findings/CANDIDATE_CONSTRUCT_DISPOSITION_MATRIX_R5.md
+frozenMethod: BA0-R1_BA1-R1_BA2-R3_BA3-R1_BA4-R1_BA5-R1
+existingOperatorBasis:
+  count: 14
+  newTopLevelOperatorsAdmittedByR36: 0
+candidateConstructs:
+  CC-01:
+    name: consumeData
+    status: CANDIDATE_REJECTED_REDUNDANT
+    admissionStatus: REJECTED
+  CC-02:
+    name: provideService
+    status: CANDIDATE_TESTED_POSITIVE
+    admissionStatus: NOT_ADMITTED
+    formalGate: G1_G8_PENDING
+  CC-03:
+    name: storedIn
+    status: CANDIDATE_TESTED_POSITIVE
+    admissionStatus: NOT_ADMITTED
+    formalGate: G1_G8_PENDING
+  CC-04:
+    name: initiate
+    owners: [PR-03, PR-10]
+    status: CANDIDATE_TESTED_POSITIVE
+    admissionStatus: NOT_ADMITTED
+    formalGate: G1_G8_PENDING
+    workingMinimumSignature:
+      initiator: BAReferent
+      initiated: BAReferent
+    questionPack: validation-evidence/dermatriage/post-holdout-method-review-r1/question-packs/CC04_INITIATE_QUESTION_PACK_R1.md
+    finding: validation-evidence/dermatriage/post-holdout-method-review-r1/working-findings/PR03_PR10_INITIATION_RECONCILIATION_R1.md
+pressures:
+  PR-01: {topic: FUNCTION_PROCESS_BEHAVIOR_IDENTITY_BINDING, status: PRESSURE_RETAINED_IRREDUCIBILITY_NOT_DEMONSTRATED}
+  PR-02: {topic: PIPELINE_COMPOSITION_ORDER, status: PENDING_LATER_STRUCTURAL_GROUP}
+  PR-03:
+    topic: INTERFACE_PATH_INVOCATION_ASSOCIATION
+    status: RECONCILED_CC04_INITIATE
+  PR-04: {topic: BOUNDARY_INTERACTION_ASSOCIATION, status: PENDING_LATER_STRUCTURAL_GROUP}
+  PR-05: {topic: ORDERED_COMPARISON_VOCABULARY, status: SOURCE_EVIDENCE_STRONG_ROUTE_CL01}
+  PR-06: {topic: SCALAR_PROPERTY_ADDRESSING_COMPARISON, status: SOURCE_EVIDENCE_STRONG_ROUTE_CL01}
+  PR-07: {topic: STRUCTURED_DATA_INFORMATION_CONTRACT, status: PENDING_LATER_STRUCTURAL_GROUP}
+  PR-08: {topic: AT_REST_STORAGE_ASSOCIATION, status: RECONCILED_CC03_STOREDIN_SURVIVES}
+  PR-09: {topic: ACQUISITION_REFRESH_ACTION_SEMANTICS, status: PENDING_LATER_STATE_ACQUISITION_GROUP}
+  PR-10:
+    topic: CONDITIONAL_ACTION_TRIGGER_SEMANTICS
+    status: RECONCILED_CC04_PLUS_CONDITION
+    genericTriggerPrimitive: NOT_JUSTIFIED
+  PR-11: {topic: DATA_EVIDENCE_CONSUMPTION_SEMANTICS, status: RECONCILED_VIA_CC01_REJECTION}
+  PR-12: {topic: NEGATIVE_IMPLICATION_NON_SUFFICIENCY_SEMANTICS, status: PENDING_LATER_LOGICAL_GROUP}
+  PR-13: {topic: BOUNDED_RECENCY_COLLECTION_SELECTION_SEMANTICS, status: NEXT_REVIEW}
+  PR-14: {topic: CONFIGURATION_APPLICABILITY_BINDING_EVIDENCE, status: PENDING_LATER_QUALIFIER_GROUP}
+rejectedWorkingHypotheses:
+  genericConsume: NOT_JUSTIFIED
+  genericModify: REJECTED_FALSE_SEMANTICS_AS_GENERIC_OPERATOR
+  genericPersist: NOT_JUSTIFIED_AS_GENERIC_OPERATOR
+  genericExpose: NOT_JUSTIFIED_CURRENT_CORPUS_DECOMPOSABLE
+  genericTrigger: NOT_JUSTIFIED_SEPARATE_PRIMITIVE
+  verbSpecificInvokeOperator: ABSORBED_BY_CC04_INITIATE
+  initiationKindRequestStart: REJECT_REDUNDANT_OVER_SPECIFIC
+nonNormativeObservations:
+  OBS-OT-01:
+    topic: OPERATION_TARGET_EFFECT_SCOPE
+    status: RETAINED_LEVEL_UNRESOLVED
+candidateMethodDeltas:
+  CMD-OP04-OBSERVE-RESULT-REMOVAL: {status: DEFERRED_PENDING_INTEGRATED_REVIEW}
+  CMD-OP05-TRANSITION-STATE-VALUE-ADMISSION: {status: DEFERRED_PENDING_INTEGRATED_REVIEW}
+conditionLanguage:
+  CL-01: {name: comparison, status: READY_WITH_STRONG_ORDERED_SCALAR_PRESSURE}
+  CL-02: {name: satisfies, status: PENDING_SOURCE_RELEVANCE_POSITIVE}
+  CL-03: {name: allOf, status: PENDING_STRONG_CONJUNCTION_EVIDENCE}
+  CL-04: {name: anyOf, status: PENDING_NOT_SUFFICIENTLY_TESTED}
+  CL-05: {name: not, status: PENDING_NO_CLEAN_POSITIVE_CONTROL_BOUNDARY_EVIDENCE_PRESENT}
+nextReview: PR13_BOUNDED_RANKED_SELECTION
