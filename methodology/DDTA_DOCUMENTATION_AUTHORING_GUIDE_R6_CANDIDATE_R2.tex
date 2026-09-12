@@ -1,0 +1,696 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{DDTA_METHODOLOGY_GUIDE_STYLE_R1}
+
+\providecommand{\candidatetag}{\ddtatag{DDTAAmber}{CANDIDATE / NOT ADMITTED}}
+\providecommand{\rejectedtag}{\ddtatag{DDTARed}{R25 REJECTED}}
+
+\begin{document}
+\selectlanguage{italian}
+\hypersetup{pdftitle={DDTA Documentation Authoring Guide - Revision 6 Candidate R2}}
+\fancyhead[L]{\sffamily\small\color{DDTAGray}DDTA Documentation Authoring Guide}
+\fancyhead[R]{\sffamily\small\color{DDTAAmber}R6 CANDIDATE R2 - R43}
+\fancyfoot[L]{\sffamily\scriptsize\color{DDTAGray}R5 remains current authority; this document is non-normative}
+
+\begin{titlepage}
+\thispagestyle{empty}
+\vspace*{8mm}
+{\sffamily\bfseries\color{DDTANavy}\fontsize{15}{18}\selectfont Documentation-Driven Threat Analysis}\par
+\vspace{5mm}
+{\sffamily\bfseries\color{DDTANavy}\fontsize{29}{33}\selectfont Documentation Authoring Guide}\par
+\vspace{2mm}
+{\sffamily\color{DDTABlue}\fontsize{18}{22}\selectfont Revision 6 - Candidate documentation-only consolidation R2}\par
+\vspace{9mm}
+\begin{tcolorbox}[enhanced,arc=3pt,boxrule=0pt,colback=DDTANavy,left=12pt,right=12pt,top=11pt,bottom=11pt]
+{\color{white}\sffamily\bfseries\large Authoring DDTA nativo: project documentation prima dei consumer downstream}\par
+\vspace{2mm}
+{\color{white!88}\small Consolidamento documentation-only della R5: preservazione informativa, source gaps, condizioni, selection semantics, pipeline/order e separazione rigorosa tra project documentation e consumer downstream. La Base Analysis compare soltanto come handoff/feedback boundary.}
+\end{tcolorbox}
+\vspace{8mm}
+\begin{tabularx}{\textwidth}{L{45mm}Y}
+\toprule
+\textbf{Stato} & \texttt{CANDIDATE CUMULATIVE / NON-NORMATIVE / REVIEW ONLY} \\
+\textbf{Authority corrente preservata} & \nolinkurl{DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R5.tex} \\
+\textbf{Scopo} & L1 conceptual meaning -> L2 readable governed documentation; L3/L4 come consumer, non authority. \\
+\textbf{Repository baseline R43} & \texttt{bea1e6567d3f861294378b201648b0853b3c8a43} \\
+\textbf{Data} & 12 settembre 2026 \\
+\bottomrule
+\end{tabularx}
+\vfill
+\begin{ddtaopen}[title={Authority stop}]
+La R5 resta current methodology authority. Questa R6 candidate riguarda esclusivamente la metodologia di documentazione: non definisce operatori, signature o cardinalita' della Base Analysis e non introduce automaticamente nuovi tipi L1, campi o project requirement. La promotion richiede review separata.
+\end{ddtaopen}
+\end{titlepage}
+
+\tableofcontents
+\clearpage
+
+\section{Scopo, lineage e come usare questa guida}
+
+La predecessor authority conserva il filename storico \nolinkurl{DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R5.tex}. In R6 la denominazione viene corretta in \textbf{Documentation Authoring Guide}: il cambio di nome chiarisce il confine metodologico e non modifica retroattivamente R5.
+
+L'obiettivo resta quello della R5: spiegare il \textbf{significato concettuale L1} dei modelli DDTA e delle loro relazioni affinche' un autore possa produrre una \textbf{rappresentazione L2} fedele, leggibile e governabile.
+
+\begin{ddtacore}[title={Cumulative preservation}]
+Le regole chiuse e qualificate della R5 restano preservate. R43 preserva i learning documentali emersi dal ciclo R25 e li separa formalmente dal metodo BA. Nessuna lesson learned viene promossa a contratto solo perche' e' utile o ricorrente.
+\end{ddtacore}
+
+\begin{tabularx}{\textwidth}{L{60mm}Y}
+\toprule
+\textbf{Etichetta} & \textbf{Significato} \\
+\midrule
+\closedtag & R5/precedessor rule mantenuta. \\
+\holdouttag & Evidence R25 che rafforza una pratica senza cambiare da sola L1. \\
+\candidatetag & Candidate downstream construct non ammesso; puo' essere citato solo come boundary di non-authority e non deve contaminare la project documentation. \\
+\rejectedtag & Working hypothesis gia' respinta; non va mantenuta come requisito futuro. \\
+\opentag & Pressure reale ancora da chiudere; deve restare visibile ma non essere inventata nella documentazione. \\
+\layertwotag & Convenzione di rappresentazione leggibile, non nuova semantica L1. \\
+\bottomrule
+\end{tabularx}
+
+\section{Perimetro metodologico: Documentation Authoring only}
+
+\begin{ddtacore}[title={Separation contract}]
+Questa guida governa esclusivamente come riconoscere, strutturare, revisionare e promuovere la \textbf{project documentation DDTA}. Non e' una guida alla Base Analysis e non duplica il relativo operator vocabulary. La Base Analysis entra qui soltanto in due punti: \textbf{handoff} della documentazione accettata verso un consumer downstream e \textbf{feedback} downstream che puo' proporre una candidate documentation change, soggetta a nuova governance.
+\end{ddtacore}
+
+\begin{tabularx}{\textwidth}{L{47mm}Y}
+\toprule
+\textbf{Dentro questa guida} & \textbf{Fuori da questa guida} \\
+\midrule
+MacroRequirement, Decision, Requirement/FR, SpecializedRequirement, SecurityRequirement & BA operator definitions/signatures/roleKey/cardinalities \\
+GovernedDocument, authority, lifecycle, provenance & BAReferent / BAProposition operational construction \\
+L1/L2 authoring, L3/L4 boundary, STOP rules & operator selection algorithms and BA projection mechanics \\
+source gaps, ambiguity preservation, semantic-owner review & threat-analysis method, DFD topology and STRIDE mapping \\
+conditions/selection/pipeline meaning when project-governed & candidate BA constructs as documentation vocabulary \\
+\bottomrule
+\end{tabularx}
+
+\begin{ddtaanti}[title={No duplicated BA method}]
+Se una domanda riguarda ``quale operatore usare'', ``quale roleKey assegnare'', ``quale signature applicare'' o ``come costruire una BAProposition'', il lettore deve passare alle guide BA Core/Complete. Questa guida deve solo assicurare che il significato documentale necessario sia governato, leggibile e non inventato.
+\end{ddtaanti}
+
+\section{Native DDTA authoring e validazione di documentazione esistente}
+\closedtag
+
+Il processo normale parte dal problema e dal significato governato del progetto.
+
+\begin{lstlisting}
+NORMAL DDTA AUTHORING
+
+project problem / governed meaning
+        |
+        v
+authority and governance
+        |
+        v
+MacroRequirement -> Decision -> FunctionalRequirement
+                                   |
+                                   v
+                         SpecializedRequirement
+                                   |
+                                   v
+                          SecurityRequirement
+\end{lstlisting}
+
+La ricostruzione da documentazione preesistente e' invece un protocollo di validazione: recupera solo significato supportato, applica le normali domande DDTA e misura preservazione, chiarezza, gap e representability.
+
+\begin{ddtaanti}[title={Authority inversion}]
+Non modificare la documentazione perche' BA, STRIDE, validator, LLM o tool ``hanno bisogno'' di un elemento. Un consumer downstream puo' esporre una domanda o un gap; non puo' inventare la risposta di progetto.
+\end{ddtaanti}
+
+\section{Layering: L1, L2, L3 e L4}
+\closedtag
+
+\begin{tabularx}{\textwidth}{L{14mm}L{42mm}Y}
+\toprule
+\textbf{Layer} & \textbf{Responsabilita'} & \textbf{Esempio} \\
+\midrule
+L1 & concetti e semantica del metamodel & un FR ha una parent Decision; SecurityRequirement IS-A SpecializedRequirement. \\
+L2 & rappresentazione canonica leggibile & file Markdown/LaTeX/YAML, Context, normative clauses, parent references. \\
+L3 & realizzazione del modello & schema, indici, validator, serializzazione e projection. \\
+L4 & tool support e conformance & editor, suggestion, validation UX, conformance declaration. \\
+\bottomrule
+\end{tabularx}
+
+\begin{ddtacore}[title={Direzione}]
+L1 governa il significato; L2 lo rende leggibile; L3 lo realizza; L4 lo supporta. Un bisogno di L3/L4 non dimostra una nuova proprieta' L1.
+\end{ddtacore}
+
+\section{GovernedDocument e authority}
+\closedtag
+
+Un \texttt{GovernedDocument} e' un elemento documentale il cui significato e' riconosciuto dal processo di governance: ha identita' distinguibile nel tempo, lifecycle interpretabile e una collocazione rispetto all'authority corrente.
+
+\begin{lstlisting}
+source file / code / config / test / model / dataset
+                    !=
+              GovernedDocument
+\end{lstlisting}
+
+Un artefatto tecnico puo' essere evidence reale senza diventare Decision o Requirement. Diventa project commitment solo quando la governance gli attribuisce quel significato.
+
+\subsection{Identity, lifecycle, authority e provenance}
+
+\begin{lstlisting}
+ID != hierarchy
+ID != chronology
+ID = stable referent
+
+Lifecycle = candidate / current / superseded / retired / ...
+Gate      = PASS / REWORK / STOP / REOPEN / ...
+\end{lstlisting}
+
+Recency non e' authority. Provenance spiega perche' un significato e' stato introdotto o modificato; non sostituisce il contenuto normativo.
+
+\begin{ddtaexample}[title={DermaTriage FR-11}]
+FR-11 e' una identita' storica superseded. Lo split in piu' obbligazioni indipendenti non autorizza a riciclare silenziosamente FR-11 per una sola parte: l'identita' storica resta preservata e i prodotti dello split ricevono identita' proprie.
+\end{ddtaexample}
+
+\section{Principi trasversali}
+
+\subsection{Authority prima dell'authoring}
+\closedtag
+Prima di creare o revisionare un elemento DDTA: identificare source set e baseline autorizzati; distinguere current/candidate/working/historical/superseded; preservare provenance; non usare recency come authority; non permettere a BA o analysis di diventare source of project truth.
+
+\subsection{Documentazione per lettori di progetto}
+\layertwotag
+La documentazione serve prima a autori e reviewer del progetto. Evitare mechanics BA o threat-analysis nel corpo se non sono significato del progetto.
+
+\subsection{Minimum sufficient governed meaning}
+\closedtag
+Documentare la minima conoscenza governata sufficiente a stabilizzare il significato, rendere verificabile la responsabilita' e permettere una successiva normalizzazione senza inventare dettagli.
+
+\begin{ddtacheck}[title={Stopping criterion}]
+Abbiamo abbastanza semantica per preservare la distinzione materiale o rispondere alla domanda dichiarata nello scope corrente? YES: stop sul branch. NO: cercare la smallest missing distinction; non aggiungere dettaglio per completezza narrativa.
+\end{ddtacheck}
+
+\section{Unified DDTA native authoring flow}
+
+\begin{lstlisting}
+AUTHORITY GATE
+    |
+PROJECT PROBLEM FRAMING
+    |
+MacroRequirement
+    |-- sufficient? YES -> STOP AT MR
+    |
+Decision
+    |-- no further operational obligation? -> STOP + REVIEW
+    |
+FunctionalRequirement
+    |-- no independent additional property? -> STOP AT FR
+    |
+SpecializedRequirement
+    |-- security property? YES -> SecurityRequirement
+    `-- NO -> preserve specialization pressure; do not invent subtype
+\end{lstlisting}
+
+\section{Step 0 - Project problem framing}
+\closedtag
+
+Il framing e' una precondizione di metodo, non un nuovo tipo L1.
+
+\begin{ddtacheck}[title={Domanda fondamentale}]
+Quale problema o classe di problemi deve affrontare il progetto, entro quale boundary significativo, rimuovendo temporaneamente le scelte di soluzione correnti?
+\end{ddtacheck}
+
+\begin{ddtaexample}[title={DermaTriage}]
+Supportare il triage precoce di casi dermatologici relativi a lesioni potenzialmente oncologiche, usando le informazioni disponibili per determinare priorita' e supportare l'instradamento specialistico. Il framing non richiede di nominare EfficientNet, Qwen, ChromaDB o BioMistral.
+\end{ddtaexample}
+
+\section{Step 1 - MacroRequirement}
+\closedtag
+
+Un \MR{} governa una sola responsabilita' macro durevole necessaria ad affrontare il problema.
+
+Campi L2 da interpretare semanticamente: Title, Intent, Context, Stakeholders, Scope, Assumptions/Constraints e \texttt{dependsOn}. \texttt{dependsOn} e' non-gerarchico e non deve esprimere semplice ordine narrativo.
+
+\begin{ddtaexample}[title={DermaTriage MR-02 - STOP AT MR}]
+La source governa la responsabilita' macro di specialist-oriented routing ma non stabilisce ancora vocabolario destinazione, selection rule, input, fallback o booking responsibility. Il risultato corretto e' STOP AT MR: non si inventano Decision o FR per riempire la gerarchia.
+\end{ddtaexample}
+
+\section{Step 2 - Semantic-sufficiency review}
+\closedtag
+
+Il gate non chiede se il testo potrebbe essere piu' dettagliato; chiede se possono sopravvivere letture materialmente diverse.
+
+Evidence classification:
+\begin{lstlisting}
+AFFIRMED
+DENIED
+NOT SPECIFIED
+CONFLICTING
+\end{lstlisting}
+
+\NS{} non equivale a FALSE. \texttt{CONFLICTING} non autorizza a scegliere la lettura piu' comoda.
+
+\begin{ddtaexample}[title={DermaTriage deployment authority}]
+FR-09 qualifica un candidate adaptation rispetto a criteri governati, ma non stabilisce automaticamente chi autorizzi il deployment finale. ``Qualification autorizza deployment automatico'' resta \texttt{NOT SPECIFIED}, non viene impostato a TRUE o FALSE per comodita'.
+\end{ddtaexample}
+
+\section{Step 3 - Decision}
+\closedtag
+
+Una \DEC{} e' un commitment progettuale significativo che restringe esattamente un MR fissando posizione, boundary, policy, convention, strategy, technology/architecture choice o altro commitment materialmente rilevante.
+
+\begin{ddtacore}[title={Consequences descrive il sistema}]
+\texttt{Consequences} documenta effetti, trade-off, responsabilita' o obblighi downstream. Non deve contenere istruzioni metodologiche come ``rieseguire il gate'', ``revalidare'' o ``la BA dovra'...''.
+\end{ddtacore}
+
+\subsection{Technical choice routing}
+\holdouttag
+Se il progetto governa materialmente una scelta concreta, il nome di componente, sistema, software, modello, algoritmo o protocollo deve restare presso il semantic owner corretto. La neutralizzazione temporanea serve a classificare, non a genericizzare la documentazione finale.
+
+\begin{ddtaexample}[title={DermaTriage DEC-12}]
+L'MR resta generale, mentre DEC-12 governa la pipeline AI image-based a quattro stadi. Gli FR sotto la Decision conservano i referent concreti EfficientNet-B4, Qwen2-VL-7B-Instruct, ChromaDB/all-MiniLM-L6-v2 e BioMistral-7B quando partecipano materialmente al comportamento governato.
+\end{ddtaexample}
+
+\section{Step 4 - FunctionalRequirement}
+\closedtag
+
+Un \FR{} e' un obbligo operativo governato e independently assessable che discende da esattamente una Decision.
+
+\begin{lstlisting}
+Requirement [abstract]
+    normativeClause : NormativeClause [1..*]
+
+FunctionalRequirement
+    extends Requirement
+    parentDecision : Decision [1]
+\end{lstlisting}
+
+La normative prose resta primary source. SPO reference e label L2 aiutano lettura e tooling ma non possono perdere condition, lifecycle, correlation, failure o result semantics.
+
+\begin{ddtacore}[title={Specifico non significa non-funzionale}]
+Un FR resta funzionale anche se nomina un componente, modello, algoritmo, sistema o interfaccia concreto. Se il referent e' governato e materialmente parte del comportamento, genericizzarlo puo' perdere informazione.
+\end{ddtacore}
+
+\subsection{Allowed result domain vs conditional selection rule}
+\closedtag
+Se la source governa solo outcome ammessi, non inventare il mapping che seleziona l'outcome. Se governa un vero mapping condizionale, quel mapping appartiene alla semantica dell'FR.
+
+\begin{ddtaexample}[title={DermaTriage FR-02}]
+\begin{lstlisting}
+HIGH + confidence > 0.85 -> P1
+HIGH                     -> P2
+MEDIUM                   -> P3
+LOW                      -> P4
+\end{lstlisting}
+Questa e' una vera regola condizionale governata, non una lista di outcome.
+\end{ddtaexample}
+
+\section{Step 5 - Requirement, normativeClause e split}
+\closedtag
+
+\begin{lstlisting}
+1 Requirement != 1 textual sentence
+1 Requirement  = 1 coherent normative obligation
+\end{lstlisting}
+
+Split quando clausole possono essere introdotte, revisionate, ritirate o assessed indipendentemente senza cambiare l'identita' normativa delle rimanenti. Il numero di righe o test case non decide lo split.
+
+\section{Step 6 - SpecializedRequirement}
+\closedtag
+
+\SR{} e' una obbligazione concern-specific aggiuntiva che vale insieme al parent FR senza ridefinire la funzione ordinaria o scegliere la realization.
+
+\begin{lstlisting}
+SpecializedRequirement [abstract]
+    extends Requirement
+    parentFunctionalRequirement : FunctionalRequirement [1]
+\end{lstlisting}
+
+Applicare removal test e autonomous capability test. Non inventare concrete subtype solo per classificare un caso osservato.
+
+\section{Step 7 - SecurityRequirement}
+\closedtag
+
+\SECR{} e' uno \SR{} con una singola security property governante e failure mode identificabile nelle clauses.
+
+\begin{lstlisting}
+SecurityRequirement
+    extends SpecializedRequirement
+    protectedSecurityProperty : SecurityProperty [1]
+\end{lstlisting}
+
+Property, mechanism e attack cause restano distinti. TLS, signature o certificate non sono implicati automaticamente da Confidentiality, Integrity o provenance.
+
+\section{Step 8 - Cross-MR e consumed-service boundary}
+\closedtag
+
+\begin{lstlisting}
+consumption != ownership
+consumption != second parent
+shared service != shared FR ownership
+\end{lstlisting}
+
+Dependency non significa containment o co-ownership. Una property richiesta dal consumer puo' essere assunta dal service solo se evidence governata la garantisce.
+
+\section{Step 9 - Terminologia, information binding e tool authority}
+\closedtag
+
+Prosa naturale e canonical referent possono convivere. Nomi propri, processi, algoritmi, sistemi, protocolli, dati e binding materialmente governati non devono essere cancellati durante l'astrazione.
+
+\begin{ddtacheck}[title={Information-preservation check}]
+Un elemento materialmente governato e' stato genericizzato o eliminato per far apparire la documentazione piu' astratta? Se SI, riportarlo presso il semantic owner corretto. La normalizzazione dei sinonimi e' compito della BA, non dell'authoring mediante perdita di informazione.
+\end{ddtacheck}
+
+\section{Step 10 - Downstream semantic propagation}
+\closedtag
+
+Una correzione upstream richiede review non solo per contraddizione diretta ma anche per silent precondition, lost governed distinction, semantic narrowing/widening e misplaced ownership.
+
+\section{Step 11 - Diagnostics: source gap, guide problem o metamodel pressure}
+\holdouttag
+
+\begin{longtable}{L{47mm}L{93mm}}
+\toprule
+\textbf{Diagnosi} & \textbf{Interpretazione} \\
+\midrule\endhead
+Source/documentation gap & significato necessario non governato, ambiguo o conflittuale nella source. \\
+Authoring-guide problem & significato rappresentabile ma domande/gate non guidano stabilmente l'autore. \\
+Metamodel pressure & significato chiaro e governato ma costrutti correnti non lo rappresentano onestamente. \\
+Representation/L2 issue & L1 sufficiente ma forma canonica leggibile/pratica incompleta. \\
+Downstream/BA issue & documentazione sufficiente ma rappresentazione analitica perde significato. \\
+No gap & differenza presentazionale o dettaglio fuori scope. \\
+\bottomrule
+\end{longtable}
+
+\begin{ddtacore}[title={Minimum owning layer}]
+Prima classificare il problema, poi riaprire solo il minimo layer che semanticamente possiede il significato. Una improvement utile non e' automaticamente difetto del metamodel.
+\end{ddtacore}
+
+\section{Step 12 - Technical, configuration e verification evidence}
+\holdouttag
+
+La preservazione dell'informazione tecnica non introduce un technical-document model parallelo. Il fatto materialmente governato va nei normali MR/Decision/Requirement; il fatto non governato resta evidence/configuration/gap.
+
+\subsection{Parameter governance boundary}
+\holdouttag
+\begin{lstlisting}
+source numeric/config value
+    -> semantic owner
+    -> lifecycle / purpose
+    -> requirement/property classification
+    -> parameter boundary
+    -> current concrete binding
+\end{lstlisting}
+
+Same literal non significa same parameter: owner, lifecycle e purpose partecipano all'identita' semantica.
+
+\section{Decision-to-Requirement completeness test}
+\holdouttag
+
+\begin{ddtacheck}[title={Counterexample gate}]
+Assumiamo che tutti i Requirement downstream correnti siano soddisfatti. La parent Decision puo' comunque essere violata? YES: downstream coverage incompleta; cercare obligation mancante o specialization non rappresentata. NO: coverage plausibilmente sufficiente, subject to altri gate.
+\end{ddtacheck}
+
+Il test non autorizza a creare Requirement artificiali quando la source non governa il significato mancante.
+
+\section{Step 13 - Documentation completeness e promotion gate}
+\closedtag
+
+Prima della promotion verificare branch coerenti, propagation, \NS{} preservati, assenza di research commentary nella baseline, semantic owner stabiliti, nomi/distinzioni governate non persi, gap bloccanti risolti o esclusi esplicitamente, governance di promotion e authority registry aggiornato.
+
+\section{Step 14 - Handoff ai consumer downstream}
+\closedtag
+
+La project documentation resta authority. L'handoff verso Base Analysis, security analysis, test design o altri consumer deve offrire authority/baseline, source set, termini/referent governati, relazioni/condizioni materialmente necessarie, diagnostics/\NS{} e revalidation context. Il consumer sceglie poi la propria rappresentazione senza riscrivere la source.
+
+\begin{ddtacheck}[title={R43 handoff target}]
+Per la Base Analysis, il consumer metodologico e' ora rappresentato dal candidate guide set separato: \texttt{DDTA\_BASE\_ANALYSIS\_CORE\_GUIDE} per semantica/sintassi e \texttt{DDTA\_BASE\_ANALYSIS\_COMPLETE\_GUIDE} per domande ed esempi. Questa reference stabilisce un confine; non promuove quelle candidate a current authority.
+\end{ddtacheck}
+
+\begin{ddtaprinciple}[title={View generation}]
+DFD, diagrammi architetturali e altre viste non diventano automaticamente documentation authority. Quando servono, e' preferibile materializzarli deterministicamente dalla BA o da projection trace-bound, evitando una seconda source manuale di significato.
+\end{ddtaprinciple}
+
+\section{Step 15 - Downstream feedback senza authority inversion}
+\closedtag
+
+\begin{lstlisting}
+accepted documentation
+    -> Base Analysis
+    -> security analysis / Finding
+    -> candidate documentation change
+    -> governed review
+    -> if accepted: updated GovernedDocument
+    -> rebuilt/revalidated Base Analysis
+\end{lstlisting}
+
+Finding non equivale a Requirement. Threat analysis non canonizza automaticamente mechanism o obligation.
+
+\section{R25 downstream findings: implicazioni per la qualita' documentale}
+
+Questa sezione non cambia il metamodel: rende visibile cio' che il control cycle ha insegnato all'authoring/review.
+
+\subsection{1. Un operator audit downstream non e' un authoring target}
+\holdouttag
+L'autore non deve scrivere documentazione per ``coprire'' i 14 operatori. Il risultato R25 e' che l'intera base a 14 operatori e' stata auditata sul corpus; nessun 15esimo operatore e' stato ammesso. Questo e' evidence della BA, non un requisito sulla prosa del progetto.
+
+\subsection{2. Condition semantics devono essere governate}
+\holdouttag
+Conjunction, comparison e condition satisfaction possono diventare project meaning quando la source le governa. Non introdurre OR, NOT, comparator, threshold o property model soltanto perche' il downstream li sa rappresentare.
+
+\begin{ddtaopen}[title={Negative non-sufficiency}]
+``A da solo non e' sufficiente per B'' non equivale a ``NOT B''. Se la source usa linguaggio di non-sufficiency, preservare la frase governata e non trasformarla in una negazione logica piu' forte.
+\end{ddtaopen}
+
+\subsection{3. Selection semantics richiedono precisione documentale}
+\holdouttag
+Quando il progetto governa una scelta tra candidati, distinguere cio' che e' realmente deciso:
+\begin{lstlisting}
+candidate population
+criterion / selection basis
+ordering or ranking        [only if governed]
+bound                      [only if governed]
+selected membership/result
+later use/retrieval
+\end{lstlisting}
+
+\begin{ddtaexample}[title={DermaTriage FR-18 / FR-06 / FR-20}]
+FR-18 governa similarity ordering, bound 5 e selected historical cases; FR-06 governa pertinence, recency, bound 20 e selected evidence set ma lascia dedup/underfill/reuse/overlap non specificati; FR-20 governa il best checkpoint per validation Macro F1 senza richiedere un full reusable ranking.
+\end{ddtaexample}
+
+\begin{ddtaanti}[title={Top-K shorthand}]
+Non usare \texttt{topK} come se fosse una primitive unica che nasconde candidate population, criterion, ordering, bound e selected result. La documentazione deve dire solo le componenti che il progetto governa.
+\end{ddtaanti}
+
+\subsection{4. Pipeline membership/order non e' dependency}
+\opentag
+Quando il progetto governa una pipeline, documentare esplicitamente cio' che e' vero senza forzare una relation downstream prematura.
+
+\begin{lstlisting}
+pipeline membership
+    != ordering
+    != precedes
+    != dependOn
+    != transfer
+\end{lstlisting}
+
+\begin{ddtaexample}[title={DermaTriage DEC-12}]
+La Decision governa una pipeline sequenziale a quattro stadi. E' legittimo documentare membership e sequenza a livello di Decision/FR perche' sono project meaning. Non e' legittimo trasformare automaticamente ogni coppia di stadi in \texttt{dependOn} se la source non governa prerequisite semantics.
+\end{ddtaexample}
+
+\subsection{5. Candidate construct downstream non diventano termini della documentazione}
+\candidatetag
+R25 ha testato positivamente \texttt{provideService}, \texttt{storedIn} e \texttt{initiate}, ma restano non ammessi. L'autore documenta provider/service, at-rest association o initiation quando il progetto li governa, usando linguaggio di dominio. Non deve modellare la prosa per anticipare il nome del candidate operator.
+
+\section{DermaTriage explicit documentation gaps: come preservarli}
+\holdouttag
+
+Il corpus corrente espone gap che devono restare project-documentation issue finche' nuova authority non li risolve. Tra questi:
+\begin{itemize}
+\item diagnostic authority boundary;
+\item no-image required/optional symptom inputs e missing-value semantics;
+\item P-scale complete input semantics e no-image binding;
+\item SLA trigger/outcome/owner/normative binding;
+\item predicted pathology obligation/authority;
+\item specialist selection vocabulary/rule/input/fallback/booking;
+\item review content, lifecycle e disagreement binding;
+\item adaptation counting e threshold authority;
+\item prompt evidence window ordering/membership/underfill/dedup/reuse/overlap;
+\item supervision input invalid/missing/conflicting semantics;
+\item deployment authority/automaticity;
+\item acceptance e rollback binding;
+\item evaluation consistency tra sensitivity/recall/correct-count.
+\end{itemize}
+
+\begin{ddtaanti}[title={Gap-to-BA shortcut vietata}]
+Non scegliere una rappresentazione downstream e poi riscrivere la documentation per farla combaciare. Il gap deve essere risolto dal semantic owner del progetto o restare esplicitamente gap.
+\end{ddtaanti}
+
+\section{Workflow di review A0-A12 preservato}
+\closedtag
+
+\begin{longtable}{L{17mm}L{43mm}L{80mm}}
+\toprule
+\textbf{Gate} & \textbf{Focus} & \textbf{Domanda essenziale} \\
+\midrule\endhead
+A0 & Authority/source & quali fonti/baseline possono determinare project meaning? \\
+A1 & Problem framing & problema comprensibile senza conoscere la soluzione corrente? \\
+A2 & MR review & macro-responsabilita' stabili, distinte e sufficienti? \\
+A3 & Semantic sufficiency & letture materialmente diverse? proposition minima? evidence state? \\
+A4 & Decision review & commitment e responsibility boundary espliciti e non ridondanti? \\
+A5 & FR / D3 & ogni Decision operazionalizzata con FR sufficienti e assessable? \\
+A6 & Requirement split & ogni Requirement e' una coherent obligation? \\
+A7 & SpecializedRequirement & property aggiuntive autonome rispetto al parent FR? \\
+A8 & SecurityRequirement & quali specialization sono security property governate? \\
+A9 & Cross-MR & consumption, dependency e ownership distinti? \\
+A10 & Terminology / bindings & informazioni e current realization preservati senza diventare nuova authority? \\
+A11 & Propagation / regression & correzioni upstream propagate senza loss/narrowing/widening? \\
+A12 & Completeness / promotion & candidate pronta per promotion e downstream handoff? \\
+\bottomrule
+\end{longtable}
+
+\section{Checklist cumulativa di authoring}
+
+\begin{longtable}{L{39mm}L{101mm}}
+\toprule
+\textbf{Area} & \textbf{Domande da non saltare} \\
+\midrule\endhead
+Governance & identity, lifecycle, authority e provenance sono distinti? Recency viene confusa con authority? \\
+Layering & sto descrivendo L1 o una convenzione L2/L3/L4? \\
+Framing & problema e boundary restano comprensibili rimuovendo la soluzione corrente? \\
+MR & responsabilita' macro stabile? Context elimina ambiguita' materiale? STOP possibile? \\
+Decision & vero commitment? parent MR unica? Consequences di sistema, non di metodo? \\
+FR & parent Decision unica? coherent operational obligation? normative prose primaria? \\
+Split & failure/change/review indipendenti giustificano separate identity? \\
+SR/SecR & strengthening autonomo? property governante singola? mechanism separato? \\
+Cross-MR & dependency/consumption/ownership corretti? \\
+Technical facts & referent concreto e' project commitment o solo realization/evidence? \\
+Parameters & semantic owner, lifecycle e purpose chiari? \\
+Conditions & comparator/conjunction/negation realmente governati? \\
+Selection & candidate population, basis, bound/order/result distinti e source-supported? \\
+Pipeline & membership/order/precedes/dependency non collassati? \\
+Gaps & source gap registrato invece di completato dal downstream? \\
+Completeness & Requirement possono passare mentre parent Decision resta violata? \\
+Promotion & governance autorizza davvero la baseline? \\
+Downstream handoff & il consumer puo' derivare la propria rappresentazione senza inventare project meaning? \\
+\bottomrule
+\end{longtable}
+
+\section{Cosa non deve fare la documentazione DDTA}
+
+La documentation non deve:
+\begin{itemize}
+\item anticipare STRIDE/STRIDE-AI o un altro threat method;
+\item scegliere operatori BA o DFD topology per soddisfare un consumer;
+\item trasformare test, config, runtime state o model artifact in project truth automaticamente;
+\item creare Decision vuote per riempire la gerarchia;
+\item inventare threshold, branch, fallback o algoritmo per rendere un FR piu' testabile;
+\item trasformare documentation gap in Requirement senza semantic-owner review;
+\item usare un field L2 come prova di una proprieta' L1;
+\item aggiungere pseudo-campi tecnici paralleli quando il significato e' esprimibile dai normali elementi DDTA;
+\item inserire nel documento di progetto istruzioni su review/revalidation/gate/BA;
+\item far diventare BA, LLM, tool o threat analysis authority;
+\item scrivere in funzione dei candidate operator CC-02/03/04;
+\item trasformare pipeline order in dependency senza source support;
+\item completare selection semantics mancanti perche' una struttura R25 le prevede.
+\end{itemize}
+
+\section{Downstream pressure watchlist: non-authoring contract}
+\opentag
+
+Le pressure seguenti provengono dalla review BA R25. Sono riportate solo per evitare che un autore le ``risolva'' inventando project meaning. \textbf{Non fanno parte del contratto di authoring}, non sono campi L1/L2 e la loro soluzione appartiene al metodo BA o al semantic owner del progetto, a seconda del caso:
+\begin{itemize}
+\item PR-01 function/process/behavior identity / \texttt{perform?};
+\item PR-02 pipeline composition/order;
+\item PR-04 boundary/interaction association;
+\item PR-05/06 ordered/scalar comparison;
+\item PR-07 structured information contract;
+\item PR-09 acquisition/refresh;
+\item PR-12 negative implication/non-sufficiency;
+\item PR-14 applicability/configuration binding;
+\item CMD-OP04 observe.result removal;
+\item CMD-OP05 transition state/value refinement;
+\item OBS-OT-01 operation-target/effect-scope.
+\end{itemize}
+
+\begin{ddtacore}[title={Authoring response alle open pressure}]
+L'autore continua a documentare il significato del progetto in linguaggio DDTA normale. Se una pressure rende impossibile preservare onestamente un significato governato, si registra il counterexample e si riapre il minimo owning layer metodologico; non si distorce il progetto per evitare la pressure.
+\end{ddtacore}
+
+\appendix
+\section{Template L2 di riferimento}
+
+\subsection{MacroRequirement}
+\begin{lstlisting}
+# <MR-ID> - <Title>
+Lifecycle: <...>
+Authority: <...>   [if used by corpus governance]
+
+## Intent
+...
+## Context
+...
+## Stakeholders
+...
+## Scope
+IN: ...
+OUT: ...
+## Assumptions / Constraints
+...
+## dependsOn
+<MR-ID or None>
+\end{lstlisting}
+
+\subsection{Decision}
+\begin{lstlisting}
+# <Decision-ID> - <Title>
+Parent MacroRequirement: <MR-ID>
+Decision kind: <SELECTABLE / NECESSITY-CONSTRAINED / DEFAULT>
+              [authoring/review classification]
+
+## Context
+...
+## Decision
+...
+## Consequences
+...
+\end{lstlisting}
+
+\subsection{FunctionalRequirement}
+\begin{lstlisting}
+# <FR-ID> - <Title>
+Parent Decision: <Decision-ID>
+
+## Functional obligation
+...
+## Normative clauses
+NC-1: <Subject> MUST ...
+...
+## SPO references
+<Subject> -- <Predicate> --> <Object>
+\end{lstlisting}
+
+\subsection{SpecializedRequirement / SecurityRequirement}
+\begin{lstlisting}
+# <SR-or-SEC-ID> - <Title>
+Parent FunctionalRequirement: <FR-ID>
+protectedSecurityProperty: <Property>   [SecurityRequirement only]
+
+## Normative clauses
+...
+
+# Optional L2 review aid, not second source of truth:
+Failure mode: ...
+\end{lstlisting}
+
+\section{R43 non-normative conclusion}
+
+\begin{ddtacore}[title={Cosa consolida questa candidate}]
+\begin{lstlisting}
+R5 authoring principles = preserved
+native DDTA authoring = preserved
+L1/L2/L3/L4 boundary = preserved
+source-first / authority-first discipline = preserved
+technical information preservation = strengthened by R25 evidence
+condition / selection / pipeline lessons = explicit
+DermaTriage source gaps = preserved as source gaps
+downstream BA candidates/open pressures = boundary-only, not authoring constructs
+R5 = current authority until governed promotion
+\end{lstlisting}
+\end{ddtacore}
+
+\end{document}

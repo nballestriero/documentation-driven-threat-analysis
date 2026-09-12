@@ -1,0 +1,18 @@
+checkpoint: DDTA_R25_DOCUMENTATION_GUIDE_CONSOLIDATION_R43
+status: CANDIDATE_NON_NORMATIVE
+repository_baseline: bea1e6567d3f861294378b201648b0853b3c8a43
+current_documentation_authority: methodology/DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R5.tex
+candidate_documentation_guide: methodology/DDTA_DOCUMENTATION_AUTHORING_GUIDE_R6_CANDIDATE_R2.tex
+method_authority_change: false
+base_analysis_method_change: false
+governed_dermatriage_change: false
+intent:
+  - separate documentation authoring from Base Analysis method
+  - preserve R5 authoring semantics
+  - retain R25 findings only as documentation-quality lessons or downstream boundaries
+  - replace obsolete untracked R6 Candidate R1 review surface
+explicit_non_goals:
+  - promote R6 R2
+  - redefine BA operators
+  - admit candidate BA constructs
+  - resolve DermaTriage project-source gaps

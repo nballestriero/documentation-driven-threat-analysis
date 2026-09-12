@@ -1,0 +1,2208 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{DDTA_METHODOLOGY_GUIDE_STYLE_R1}
+\usepackage{amsmath,amssymb}
+
+\providecommand{\BA}{\textit{Base Analysis}}
+\providecommand{\BAR}{\textit{BAReferent}}
+\providecommand{\BAP}{\textit{BAProposition}}
+\providecommand{\stabletag}{\ddtatag{DDTAGreen}{CURRENT / PRESERVED}}
+\providecommand{\Rtwentyfivetag}{\ddtatag{DDTATeal}{R25 EVIDENCE}}
+\providecommand{\candidatetag}{\ddtatag{DDTAAmber}{CANDIDATE / NOT ADMITTED}}
+\providecommand{\rejectedtag}{\ddtatag{DDTARed}{REJECTED}}
+\providecommand{\pendingexampletag}{\ddtatag{DDTABlue}{EXAMPLE LAYER PENDING}}
+\providecommand{\exampletag}{\ddtatag{DDTABlue}{EXAMPLE-ENRICHED}}
+\setlength{\emergencystretch}{3em}
+
+\begin{document}
+\selectlanguage{italian}
+\hypersetup{pdftitle={DDTA Base Analysis Complete Guide - Candidate R1}}
+\fancyhead[L]{\sffamily\small\color{DDTAGray}DDTA - Base Analysis Complete Guide}
+\fancyhead[R]{\sffamily\small\color{DDTAAmber}COMPLETE GUIDE - CANDIDATE R1 - R42}
+\fancyfoot[L]{\sffamily\scriptsize\color{DDTAGray}Complete BA guide - core semantics/syntax + examples + question-driven discrimination}
+
+\begin{titlepage}
+\thispagestyle{empty}
+\vspace*{8mm}
+{\sffamily\bfseries\color{DDTANavy}\fontsize{15}{18}\selectfont Documentation-Driven Threat Analysis}\par
+\vspace{5mm}
+{\sffamily\bfseries\color{DDTANavy}\fontsize{29}{33}\selectfont Base Analysis Complete Guide}\par
+\vspace{2mm}
+{\sffamily\color{DDTABlue}\fontsize{18}{22}\selectfont Candidate R1 - Complete Question-Driven and Example-Enriched Guide}\par
+
+\vspace{9mm}
+\begin{tcolorbox}[enhanced,arc=3pt,boxrule=0pt,colback=DDTANavy,left=12pt,right=12pt,top=11pt,bottom=11pt]
+{\color{white}\sffamily\bfseries\large Guida completa del contratto operativo BA con question-driven discrimination e worked examples source-grounded}\par
+\vspace{2mm}
+{\color{white!88}\small Questa guida consolida direttamente il core semantico/sintattico della Core Guide companion e integra worked examples source-grounded, full question-driven discrimination, pairwise boundaries e matrici finali. I checkpoint intermedi usati durante la costruzione non sono richiesti come artifact di repository in R42.}
+\end{tcolorbox}
+
+\vspace{8mm}
+\begin{tabularx}{\textwidth}{L{47mm}Y}
+\toprule
+\textbf{Stato} & \texttt{CANDIDATE / NON-NORMATIVE / QUESTION-COMPLETE / EXAMPLE-ENRICHED / REVIEW REQUIRED} \\
+\textbf{Scopo di questa revisione} & Completezza semantica, sintattica, question-driven e pedagogica; promotion ancora subordinata a review cumulativa rispetto alla R3 current. \\
+\textbf{Authority BA corrente} & \texttt{DDTA\_BASE\_ANALYSIS\_OPERATIONAL\_GUIDE\_R3.tex} + BA0 R1 / BA1 R1 / BA2 R3 / BA3 R1 / BA4 R1 / BA5 R1. \\
+\textbf{Operator basis corrente} & 14 top-level operators. Nessun quindicesimo operatore e' ammesso. \\
+\textbf{Repository baseline di partenza} & \texttt{bea1e6567d3f861294378b201648b0853b3c8a43} \\
+\textbf{Core companion} & {\scriptsize\nolinkurl{DDTA_BASE_ANALYSIS_CORE_GUIDE_R1_CANDIDATE_R1}}: core semantico/sintattico preservato; questa guida aggiunge esempi e question-driven discrimination. \\
+\textbf{Layer esempi} & Preservato: Facial Access, DermaTriage, boundary examples e controesempi. \\
+\textbf{Question layer} & Aggiunto: question set Q00--Q52, pairwise discriminators, stopping questions e quick decision matrix. \\
+\textbf{Data} & 12 settembre 2026 \\
+\bottomrule
+\end{tabularx}
+
+\vfill
+\begin{ddtaopen}[title={Promotion stop esplicito}]
+Questa Complete Guide candidate non viene promossa automaticamente. Gli esempi aumentano la completezza pedagogica ma non trasformano evidence in authority. La promotion richiede ancora la verifica cumulativa sezione-per-sezione rispetto a R3 e la chiusura esplicita delle questioni che restano OPEN.
+\end{ddtaopen}
+\end{titlepage}
+
+\tableofcontents
+\clearpage
+
+\section{Scopo, lineage e regola di costruzione}
+
+Questa guida separa deliberatamente due obiettivi che nelle revisioni precedenti erano intrecciati:
+\begin{enumerate}
+  \item \textbf{completezza semantica e sintattica}: ogni costrutto deve avere significato, firma, ruoli, cardinalita', confini e stato;
+  \item \textbf{completezza pedagogica}: ogni costrutto deve essere accompagnato da esempi source-grounded e controesempi.
+\end{enumerate}
+
+La Complete Guide affronta tre obiettivi: preserva il contratto semantico/sintattico della Core Guide companion, integra gli esempi source-grounded Facial Access e DermaTriage e applica un question set esplicito per discriminare i costrutti senza modificarne silenziosamente lo status.
+
+\begin{ddtacore}[title={Regola cumulativa}]
+Una candidate successore non puo' perdere una distinzione stabile della R3 per essere piu' breve. Ogni contenuto R3 viene quindi classificato come preservato, espanso, qualificato oppure accompagnato da evidence esplicitamente non normativa. Nessuna evidence R25 diventa authority soltanto perche' e' inclusa in questa guida.
+\end{ddtacore}
+
+\subsection{Legenda epistemica}
+\begin{tabularx}{\textwidth}{L{58mm}Y}
+\toprule
+\textbf{Etichetta} & \textbf{Significato} \\
+\midrule
+\stabletag & Regola gia' authority corrente in R3/BA0--BA5. \\
+\Rtwentyfivetag & Evidenza positiva o pressure confermata dal secondo ciclo DermaTriage. \\
+\candidatetag & Costrutto sopravvissuto a test parziali ma non formalmente ammesso. \\
+\rejectedtag & Working hypothesis respinta nello scope corrente. \\
+\opentag & Questione semanticamente reale ancora non chiusa. \\
+\exampletag & La semantica e' accompagnata da esempi source-grounded, boundary examples e negative control quando necessario. \\
+\bottomrule
+\end{tabularx}
+
+\section{Che cos'e' la Base Analysis}
+\stabletag
+
+Per una baseline documentale governata, la \BA{} e' la rappresentazione analitica condivisa e methodology-neutral del significato di progetto necessario ai consumer downstream DDTA.
+
+\begin{lstlisting}
+governed project documentation
+    = project authority
+
+accepted Base Analysis
+    = shared analytical baseline
+
+projection / threat analysis / tests
+    = downstream consumers
+\end{lstlisting}
+
+La BA puo' normalizzare, rendere riusabile e rendere interrogabile un significato gia' governato. Non puo' completare silenziosamente la documentazione, inventare un commitment, scegliere una interpretazione non supportata o trasformare una domanda downstream in project truth.
+
+\begin{ddtacore}[title={Authority direction}]
+Documentazione governata $\rightarrow$ BA $\rightarrow$ projection/analysis. Il feedback puo' risalire come richiesta di review, ma una modifica di project truth avviene soltanto tramite una nuova decisione documentale governata e successiva revalidation della BA.
+\end{ddtacore}
+
+\section{Contratto BA0--BA5 e gate BA6}
+\stabletag
+
+\begin{longtable}{L{18mm}L{123mm}}
+\toprule
+\textbf{Layer} & \textbf{Responsabilita'} \\
+\midrule\endhead
+BA0 & authority boundary, minimum sufficient analysis, unresolved state, feedback direction e anti-inference. \\
+BA1 & due sole famiglie first-class: \BAR{} e \BAP{}. \\
+BA2 R3 & proposition semantics, top-level operators, operator-scoped roleKey, cardinalita' e strutture locali. \\
+BA3 & provenance, origin state, derivation, review/freshness, continuity e revalidation. \\
+BA4 & projection, traceability, interpretation e coverage downstream. \\
+BA5 & canonical semantic registries, domain-scoped resolution e controlled authoring. \\
+BA6 & integrated validation gate. Non viene dichiarato chiuso da questa guida. \\
+\bottomrule
+\end{longtable}
+
+\begin{ddtacore}[title={BA2 authority corrente}]
+Le firme di operatori, roleKey e cardinalita' normative derivano da \texttt{BA2\_RELATION\_ACTION\_VOCABULARY\_R3}. Snapshot storici incorporati in altri contratti non sostituiscono BA2 R3.
+\end{ddtacore}
+
+\section{Procedura operativa end-to-end}
+\stabletag
+
+\begin{enumerate}
+  \item Pin di baseline, authority e source revision.
+  \item Lettura source-first del governed source set.
+  \item Identificazione del minimum shared meaning necessario.
+  \item Identificazione dei significati che richiedono identita' riusabile.
+  \item Creazione dei BAReferent necessari.
+  \item Formulazione delle BAProposition minime usando BA2 R3.
+  \item Verifica di firma, roleKey, cardinalita' e scope delle proposition.
+  \item Collegamento BA3 a source evidence, origin state e revalidation context.
+  \item Registrazione esplicita di ambiguity, conflict, diagnosis e \texttt{NOT SPECIFIED}.
+  \item Minimum-BA acceptance per lo scope dichiarato.
+  \item Regression completa verso le fonti e forbidden-inference review.
+  \item Method-pressure review soltanto su counterexample concreti.
+  \item Materializzazione della accepted case BA.
+  \item Projection/downstream consumption secondo BA4.
+  \item Governed change e BA3 revalidation quando necessario.
+  \item Integrated BA6 verdict soltanto dopo l'intero protocollo previsto.
+\end{enumerate}
+
+\section{BAReferent}
+\stabletag
+
+Un \BAR{} e' un significato di progetto methodology-neutral che riceve identita' analitica indipendente quando tale identita' e' materialmente necessaria.
+
+\subsection{Quando creare un BAReferent}
+Creare un BAReferent quando il significato deve almeno una volta essere:
+\begin{itemize}
+  \item riusato da piu' proposition;
+  \item qualificato o vincolato;
+  \item correlato con un altro significato;
+  \item referenziato come target distinto;
+  \item confrontato tra baseline;
+  \item target di provenance/revalidation indipendente;
+  \item oggetto di una domanda downstream materialmente distinta.
+\end{itemize}
+
+\subsection{Quando NON creare un BAReferent}
+Non creare un referent soltanto perche' compare un sostantivo nel testo, perche' un tool desidera un nodo, perche' ogni verbo dovrebbe avere un oggetto o perche' una projection grafica risulterebbe piu' comoda.
+
+\begin{ddtacore}[title={Identity test}]
+Se il significato scompare come identita' autonoma senza perdere alcuna distinzione governata, alcuna possibilita' di qualificazione o alcuna tracciabilita' necessaria, probabilmente non richiede un BAReferent separato.
+\end{ddtacore}
+
+\section{BAProposition}
+\stabletag
+
+Una \BAP{} e' una asserzione analitica formalizzata su uno o piu' BAReferent. La proposition applica un operatore e assegna BAReferent ai roleKey ammessi da quell'operatore.
+
+\begin{lstlisting}
+BAProposition
+    operator -> canonical BA2 operator key
+    roles    -> operator-scoped role assignments
+    local    -> only operator-local structures when admitted
+\end{lstlisting}
+
+\subsection{Invarianti}
+\begin{itemize}
+  \item una proposition non e' il referent che descrive;
+  \item roleKey sono scoped all'operatore, non proprieta' universali del referent;
+  \item un ruolo obbligatorio mancante non viene riempito per default;
+  \item un ruolo opzionale si usa soltanto se il significato e' governato;
+  \item una proposition non deve contenere semantica non ammessa dalla propria firma;
+  \item piu' proposition possono essere necessarie per preservare distinzioni diverse contenute nella stessa clausola sorgente.
+\end{itemize}
+
+\section{Criterio di dettaglio, minimalita' e stopping rule}
+\stabletag
+
+\begin{lstlisting}
+more detail
+    only if needed to:
+      preserve a governed distinction
+      answer a material downstream question
+      expose a missing governed fact
+\end{lstlisting}
+
+\begin{ddtacheck}[title={Stopping test}]
+Abbiamo abbastanza semantica per formulare la domanda rilevante e distinguere evidence supportata, contraddetta o \texttt{NOT SPECIFIED}? Se SI, fermarsi. Se NO, identificare la smallest missing distinction o produrre una diagnosis. Non inventare il dettaglio mancante.
+\end{ddtacheck}
+
+\section{Operator selection procedure}
+\stabletag
+
+La scelta dell'operatore avviene dopo la ricostruzione del significato, non prima.
+
+\begin{enumerate}
+  \item isolare la smallest governed semantic fact;
+  \item identificare i BAReferent necessari;
+  \item formulare le candidate interpretations materialmente differenti;
+  \item provare prima gli operatori esistenti;
+  \item verificare firma e roleKey senza adattamenti opportunistici;
+  \item applicare delete test e merge-first test;
+  \item verificare i confini con gli operatori semanticamente vicini;
+  \item se nessun costrutto preserva il significato, registrare pressure/diagnosis invece di inventare un nuovo operatore locale;
+  \item un nuovo operatore richiede formal admission separata.
+\end{enumerate}
+
+\begin{ddtaanti}[title={Verb-to-operator mapping}]
+Il verbo naturale nella documentazione non determina automaticamente l'operatore BA. Parole come ``acquire'', ``invoke'', ``store'', ``select'', ``execute'', ``trigger'' e ``expose'' possono descrivere semantiche differenti a seconda del significato governato.
+\end{ddtaanti}
+
+
+% -----------------------------------------------------------------------------
+\section{Question-driven discrimination: full question set}
+\stabletag\quad\Rtwentyfivetag
+
+Questa sezione rende esplicita la parte interrogativa della procedura. Le domande non sono un questionario documentale e non creano project truth: servono a discriminare rappresentazioni BA candidate dopo che la source authority e' stata fissata. Una risposta ``non so'' o ``la source non lo dice'' e' un risultato valido e puo' portare a \texttt{NOT SPECIFIED}, diagnosis o pressure invece che a una proposition artificiale.
+
+\begin{ddtacore}[title={Regola di uso del question set}]
+Non iniziare da ``quale operatore assomiglia al verbo?''. Iniziare da: \textbf{quale distinzione semantica e' governata?} Applicare le domande nell'ordine minimo necessario e fermarsi appena una rappresentazione preserva il significato senza aggiungere fatti.
+\end{ddtacore}
+
+\subsection{Q00--Q06 - authority, scope e semantic atom}
+
+\begin{longtable}{L{17mm}L{122mm}}
+\toprule
+\textbf{ID} & \textbf{Domanda guida} \\
+\midrule\endhead
+Q00 & Quale documento/baseline ha authority per il significato che sto analizzando? \\
+Q01 & La frase e' project meaning governato, evidence tecnica, commento di review, esempio o inference downstream? \\
+Q02 & Qual e' la smallest governed semantic fact che resterebbe vera anche cambiando forma del testo? \\
+Q03 & Quali parti della frase sono esplicitamente governate e quali sono soltanto implicite o plausibili? \\
+Q04 & Esistono due letture materialmente differenti compatibili con la source? Se SI, qual e' la smallest proposition che le separa? \\
+Q05 & La distinzione richiesta e' nello scope della BA corrente o posso fermarmi senza perderla? \\
+Q06 & Se elimino il dettaglio candidato, perdo una distinzione governata o una domanda downstream materialmente necessaria? Se NO, STOP. \\
+\bottomrule
+\end{longtable}
+
+\subsection{Q07--Q12 - BAReferent o BAProposition?}
+
+\begin{longtable}{L{17mm}L{122mm}}
+\toprule
+\textbf{ID} & \textbf{Domanda guida} \\
+\midrule\endhead
+Q07 & Questo significato deve essere riusato, qualificato, correlato, vincolato o tracciato indipendentemente? Se SI, e' candidato BAReferent. \\
+Q08 & La source governa una identita' distinguibile oppure soltanto una proprieta'/ruolo locale dentro una proposition? \\
+Q09 & Sto creando un BAReferent solo per trasformare ogni verbo o frase in un nodo? Se SI, fermarsi. \\
+Q10 & La proposition candidata sta facendo da proxy per un comportamento/oggetto che deve avere identity indipendente? Se SI, creare il BAReferent necessario e mantenere separata la proposition. \\
+Q11 & La stessa identity compare in proposition diverse con roleKey differenti? Se SI, non trasformare il roleKey in una classificazione universale del referent. \\
+Q12 & La source governa davvero una asserzione tra referent oppure sto soltanto elencando entita' presenti nel testo? \\
+\bottomrule
+\end{longtable}
+
+\subsection{Q13--Q24 - azione, comportamento e risultato}
+
+\begin{longtable}{L{17mm}L{122mm}}
+\toprule
+\textbf{ID} & \textbf{Domanda guida e instradamento} \\
+\midrule\endhead
+Q13 & Un actor/capability rende disponibile un risultato governato? Provare \texttt{produce}. \\
+Q14 & L'azione stabilisce un nuovo item/event con nuova identity/occurrence project-semantic? Provare \texttt{create}; non basta la parola ``create''. \\
+Q15 & Un actor legge/ispeziona un significato gia' esistente senza asserire creazione o state change? Provare \texttt{observe}. \\
+Q16 & La stessa identity cambia stato/lifecycle e la source governa almeno il nuovo stato? Provare \texttt{transition}. \\
+Q17 & Un content viene realmente conveyed da una source a una destination? Provare \texttt{transfer}. \\
+Q18 & La source governa soltanto che una informazione e' usata come input da un'altra operazione? Rappresentarla come \texttt{input} nella proposition pertinente; non introdurre automaticamente \texttt{consumeData}. \\
+Q19 & L'elemento chiamato ``output'' e' un nuovo item, un result reso disponibile, un content trasferito o solo uno state/value? Distinguere prima di scegliere \texttt{create}/\texttt{produce}/\texttt{transfer}/\texttt{transition}. \\
+Q20 & ``Acquire'' governa creazione, osservazione, ricezione/transfer o una combinazione? Se piu' letture restano materialmente possibili, mantenere diagnosis invece di scegliere. \\
+Q21 & ``Store/persist'' governa una nuova identity, uno state/lifecycle, un placement/association o soltanto implementation evidence? Non introdurre un generico \texttt{persist}. \\
+Q22 & ``Execute/perform'' aggiunge una distinzione irriducibile rispetto a produce/create/observe/transition/decisionRule/realize? Se non dimostrato, mantenere PR-01 pressure invece di creare \texttt{perform}. \\
+Q23 & La source governa che A avvia B ma non ne governa esito/completamento? Questo e' evidence per \texttt{initiate} candidate, non per un current operator. \\
+Q24 & La frase implica successo/completamento solo linguisticamente? Non aggiungerlo se la source non lo governa. \\
+\bottomrule
+\end{longtable}
+
+\subsection{Q25--Q35 - relazioni tra significati}
+
+\begin{longtable}{L{17mm}L{122mm}}
+\toprule
+\textbf{ID} & \textbf{Domanda guida e instradamento} \\
+\midrule\endhead
+Q25 & Due o piu' elementi devono appartenere allo \emph{stesso} request/case/evaluation/identity context? Provare \texttt{correlate}. \\
+Q26 & A deve soltanto identificare/richiamare B senza same-context, prerequisite o ownership semantics? Provare \texttt{reference}. \\
+Q27 & A richiede B come prerequisite reale per esistere, funzionare o completarsi? Provare \texttt{dependOn}. \\
+Q28 & La source governa solo ordine temporale ``A prima di B''? Questo NON basta per \texttt{dependOn}. \\
+Q29 & Un consumer usa effettivamente un service/capability separato? Provare \texttt{consumeService}. \\
+Q30 & Il fatto che esista un endpoint, API, componente o tecnologia dimostra consumo di servizio? NO: serve semantica di uso della capability/service. \\
+Q31 & La source identifica chi fornisce il service consumato? Solo allora valorizzare il roleKey opzionale \texttt{provider}. \\
+Q32 & Un elemento concreto materializza un significato astratto gia' governato indipendentemente? Provare \texttt{realize}. \\
+Q33 & Sto usando \texttt{realize} solo per dire ``X esegue Y''? Se SI, fermarsi: realization richiede la distinzione abstract/concrete. \\
+Q34 & La source assegna esplicitamente responsibility/authority a una party rispetto a scope e kind? Provare \texttt{assignResponsibility}. \\
+Q35 & Sto confondendo provider/performer/producer/consumer con responsible party? Questi ruoli non implicano automaticamente responsibility/authority. \\
+\bottomrule
+\end{longtable}
+
+\subsection{Q36--Q43 - constraint, classification e decision semantics}
+
+\begin{longtable}{L{17mm}L{122mm}}
+\toprule
+\textbf{ID} & \textbf{Domanda guida e instradamento} \\
+\midrule\endhead
+Q36 & La source limita un target con un valore, dominio o restriction riusabile/queryable? Provare \texttt{constrain}. \\
+Q37 & Il valore e' invece parte locale della condition di una decisione? Preferire la condition language di \texttt{decisionRule}; non duplicare con \texttt{constrain} senza bisogno. \\
+Q38 & La source assegna un semantic kind methodology-neutral a un referent? Provare \texttt{classify}. \\
+Q39 & Sto usando \texttt{classify} come fallback per descrivere qualsiasi proprieta' o stato? Se SI, fermarsi. \\
+Q40 & La source governa un mapping operativo condizioni/input $\rightarrow$ risultato? Provare \texttt{decisionRule}. \\
+Q41 & Esiste soltanto una azione condizionata senza mapping governato del risultato? Non promuoverla automaticamente a \texttt{decisionRule}; verificare PR-10/\texttt{initiate}+condition boundary. \\
+Q42 & La source governa una condition astratta ``X soddisfa Y'' senza property/value model interno? Usare \texttt{satisfies}, non inventare un boolean. \\
+Q43 & La source governa property e value confrontabili? Usare \texttt{comparison}; se il confronto e' ordinato, preservare la pressure su $<$, $>$, $\leq$, $\geq$ senza inventare vocabulary normativa. \\
+\bottomrule
+\end{longtable}
+
+\subsection{Q44--Q52 - strutture locali, pipeline, candidate e stopping}
+
+\begin{longtable}{L{17mm}L{122mm}}
+\toprule
+\textbf{ID} & \textbf{Domanda guida e instradamento} \\
+\midrule\endhead
+Q44 & Sto scegliendo uno o piu' risultati da una candidate population secondo un criterio/basis? Provare la local \texttt{selection} structure. \\
+Q45 & Sto soltanto ordinando tutti gli elementi? Ranking non e' automaticamente selection. \\
+Q46 & Sto soltanto imponendo un massimo numerico? Bound non e' automaticamente selection. \\
+Q47 & La source governa top-K, recent-N o best-by-score? Identificare separatamente candidatePopulation, selectionBasis, selectedResult, eventuale bound e orderingBasis. \\
+Q48 & La source governa membership in una pipeline, ordering, prerequisite, transfer o initiation? Separare queste domande; ``pipeline'' non e' un operatore corrente. \\
+Q49 & Un candidate construct R25 (\texttt{provideService}, \texttt{storedIn}, \texttt{initiate}) sembra adattarsi? Marcarlo candidate e verificare prima se una composizione degli operatori correnti preserva il significato. \\
+Q50 & Un'ipotesi gia' respinta (generic \texttt{consume}, \texttt{modify}, \texttt{persist}, \texttt{expose}, \texttt{trigger}) sta riapparendo sotto altro nome? Richiedere nuovo counterexample, non riaprirla per preferenza. \\
+Q51 & Nessun operatore/struttura preserva la distinzione senza inventare ruoli o fatti? Registrare pressure/diagnosis; non estendere localmente BA2. \\
+Q52 & Una volta rappresentata la distinction minima, ulteriori dettagli cambiano una domanda materiale? Se NO, STOP. \\
+\bottomrule
+\end{longtable}
+
+\subsection{Pairwise discriminators: le coppie che piu' facilmente si confondono}
+
+\begin{longtable}{L{44mm}L{95mm}}
+\toprule
+\textbf{Coppia / famiglia} & \textbf{Domanda discriminante} \\
+\midrule\endhead
+\texttt{produce} vs \texttt{create} & Dopo l'azione esiste una nuova identity/occurrence che prima non esisteva? $\rightarrow$ \texttt{create}. Oppure l'actor rende disponibile un result governato? $\rightarrow$ \texttt{produce}. \\
+\texttt{produce} vs \texttt{transfer} & Il significato centrale e' generare/rendere disponibile il result o spostare content da source a destination? Le due proposition possono coesistere ma non sono equivalenti. \\
+\texttt{create} vs \texttt{transition} & Nasce una nuova identity oppure la stessa identity cambia stato? \\
+\texttt{observe} vs \texttt{transfer} & La source governa una lettura/ispezione oppure una conveyance? Ricevere content non prova automaticamente \texttt{observe}. \\
+\texttt{observe} vs \texttt{selection} & L'operazione legge item gia' determinati oppure decide quali item appartengono al result set? Retrieval e selection possono comporsi. \\
+\texttt{transition} vs property update & La source governa un vero lifecycle/state della stessa identity o solo un valore/proprieta' modificato? \\
+\texttt{correlate} vs \texttt{reference} & Serve same-context identity oppure basta un riferimento direzionale? \\
+\texttt{reference} vs \texttt{dependOn} & A deve soltanto richiamare B oppure B e' un prerequisite di A? \\
+\texttt{dependOn} vs ordering & B e' necessario oppure viene soltanto prima? Temporal order da solo non e' dependency. \\
+\texttt{consumeService} vs \texttt{transfer} & A usa la capability/service B oppure content X passa tra endpoint? Possono coesistere sullo stesso boundary. \\
+\texttt{consumeService} vs provider relation & Il current operator descrive il consumo. Il fatto che qualcuno fornisca il servizio non crea automaticamente una proposition \texttt{provideService}; CC-02 resta candidate. \\
+\texttt{realize} vs execution & Esistono davvero abstract meaning e concrete realization distinti e governati, oppure si sta solo dicendo chi esegue qualcosa? \\
+\texttt{assignResponsibility} vs actor/provider & La source assegna responsibility/authority o identifica solo chi agisce/fornisce/consuma? \\
+\texttt{constrain} vs \texttt{classify} & Si limita un target a un valore/dominio oppure si assegna un semantic kind? \\
+\texttt{constrain} vs \texttt{decisionRule} & E' una restriction riusabile sul target o una condition che partecipa a un mapping verso result? \\
+\texttt{classify} vs \texttt{transition} & Si assegna una categoria semanticamente stabile o si descrive un cambiamento di stato della stessa identity? \\
+\texttt{decisionRule} vs conditional action & La source governa il result mapping oppure soltanto quando un'azione puo'/deve essere avviata? \\
+\texttt{allOf} vs multiple propositions & La conjunction appartiene alla stessa decisionCondition oppure sono asserzioni indipendenti che devono restare proposition separate? \\
+\texttt{not} vs non-sufficiency & ``A non e' sufficiente per B'' NON significa \texttt{not(B)}. La prima e' una boundary/implication statement. \\
+selection vs ranking & Si sceglie un subset/result oppure si definisce solo un ordine? \\
+selection vs bound & Il numero massimo e' solo un vincolo oppure parte di un meccanismo di selezione governato? \\
+pipeline order vs \texttt{dependOn} & Lo stadio precedente e' un prerequisite semantico o e' soltanto precedente nella sequenza? \\
+pipeline order vs \texttt{transfer} & L'ordine degli stadi non prova che un content venga trasferito; verificare source, destination e content. \\
+API/client family & Chiedere separatamente: usa un service? avvia un'operazione? trasferisce content? mantiene correlation? e' soggetto a constraint? Non esiste mapping ``API = operatore X''. \\
+producer/consumer family & Modellare \texttt{produce} sul producer; il result diventa \texttt{input} nella proposition che descrive l'azione del consumer quando la source governa quell'uso. Non introdurre generic \texttt{consumeData}. \\
+\bottomrule
+\end{longtable}
+
+\subsection{Decision path compatto}
+
+\begin{lstlisting}
+SOURCE AUTHORITY
+    |
+    v
+smallest governed semantic fact
+    |
+    +-- reusable independent identity? ------> BAReferent
+    |
+    `-- assertion between meanings? --------> BAProposition
+                                               |
+        +--------------------------------------+
+        |
+        +-- result made available? ----------> produce
+        +-- new identity/occurrence? --------> create
+        +-- read/inspect existing meaning? --> observe
+        +-- same identity changes state? ----> transition
+        +-- convey content A -> B? ----------> transfer
+        |
+        +-- same-context binding? -----------> correlate
+        +-- directional reference? ----------> reference
+        +-- prerequisite? -------------------> dependOn
+        +-- use of service/capability? ------> consumeService
+        +-- abstract -> concrete? -----------> realize
+        +-- explicit responsibility? --------> assignResponsibility
+        |
+        +-- reusable restriction? -----------> constrain
+        +-- semantic kind? ------------------> classify
+        +-- conditions/input -> result? -----> decisionRule
+        |
+        +-- top-K/recent-N/best? ------------> local selection
+        +-- pipeline/order? -----------------> OPEN local structure review
+        +-- invoke/start? -------------------> initiate CANDIDATE
+        |
+        `-- none fit honestly? --------------> diagnosis / pressure / STOP
+\end{lstlisting}
+
+\begin{ddtaanti}[title={Question pack != automatic classifier}]
+Le domande restringono le interpretazioni ma non sostituiscono la lettura della source. Piu' risposte ``YES'' possono indicare proposition distinte che coesistono; non e' necessario comprimere tutto in un solo operatore. Al contrario, una domanda senza evidence governata non deve essere forzata a YES o NO.
+\end{ddtaanti}
+
+
+\section{RoleKey: significato e disciplina}
+\stabletag
+
+I roleKey definiscono la funzione svolta da un BAReferent \emph{all'interno di una specifica proposition}. Non classificano universalmente il referent.
+
+\begin{longtable}{L{45mm}L{97mm}}
+\toprule
+\textbf{roleKey} & \textbf{Significato operativo} \\
+\midrule\endhead
+\texttt{behavior} & identita' riusabile dello specifico transfer quando il comportamento di conveyance deve essere qualificato o target di altre proposition. \\
+\texttt{source} & origine del content trasferito. \\
+\texttt{destination} & destinatario del content trasferito. \\
+\texttt{content} & significato oggetto della conveyance. \\
+\texttt{actor} & soggetto/capability che compie l'azione quando la firma lo richiede o lo ammette. \\
+\texttt{result} & risultato reso disponibile o risultato governato dell'operazione. \\
+\texttt{input} & significato effettivamente usato dall'operazione; non ogni dato disponibile e' automaticamente input. \\
+\texttt{created} & nuovo item/event project-semantic stabilito da \texttt{create}. \\
+\texttt{observed} & significato esistente letto o ispezionato da \texttt{observe}. \\
+\texttt{subject} & identita' la cui state/lifecycle identity e' interessata da \texttt{transition}, oppure subject locale di \texttt{satisfies}. \\
+\texttt{fromState} & stato precedente governato, se espresso dalla fonte. \\
+\texttt{toState} & stato risultante governato richiesto da \texttt{transition}. \\
+\texttt{correlatedItem} & elemento che deve mantenere same-context binding. \\
+\texttt{correlationContext} & identita' che definisce il contesto condiviso della correlation. \\
+\texttt{referencer} & elemento che mantiene un riferimento direzionale verso altro significato. \\
+\texttt{referenced} & target del riferimento. \\
+\texttt{dependent} & significato che richiede uno o piu' prerequisiti. \\
+\texttt{prerequisite} & significato necessario al dependent. \\
+\texttt{consumer} & utilizzatore effettivo di un service/capability. \\
+\texttt{service} & service/capability effettivamente consumato. \\
+\texttt{provider} & provider del service, soltanto se governato; non e' implicito nel servizio. \\
+\texttt{abstract} & significato astratto indipendentemente governato da materializzare. \\
+\texttt{realization} & significato concreto che materializza l'abstract. \\
+\texttt{responsibleParty} & parte cui viene assegnata responsibility/authority. \\
+\texttt{responsibilityScope} & ambito/oggetto della responsibility assegnata. \\
+\texttt{responsibilityKind} & tipo governato di responsibility/authority. \\
+\texttt{constraintTarget} & significato cui si applica una restriction governata. \\
+\texttt{constraintValue} & valore, dominio o struttura di restriction governata. \\
+\texttt{classifiedReferent} & elemento cui viene assegnato un semantic kind. \\
+\texttt{semanticKind} & categoria methodology-neutral governata. \\
+\bottomrule
+\end{longtable}
+
+\section{Matrice normativa delle cardinalita'}
+\stabletag
+
+\begin{longtable}{L{42mm}L{65mm}L{33mm}}
+\toprule
+\textbf{Operator} & \textbf{Required} & \textbf{Optional / local} \\
+\midrule\endhead
+transfer & source 1; destination 1..*; content 1..* & behavior 0..1 \\
+produce & actor 1; result 1..* & input 0..* \\
+create & actor 1; created 1..* & none \\
+observe & actor 1; observed 1..* & result 0..* \\
+transition & subject 1; toState 1 & actor 0..1; fromState 0..1 \\
+correlate & correlatedItem 1..*; correlationContext 1 & none \\
+reference & referencer 1; referenced 1..* & none \\
+dependOn & dependent 1; prerequisite 1..* & none \\
+consumeService & consumer 1..*; service 1 & provider 0..1 \\
+realize & abstract 1; realization 1..* & none \\
+assignResponsibility & responsibleParty 1..*; responsibilityScope 1; responsibilityKind 1 & none \\
+constrain & constraintTarget 1; constraintValue 1..* & none \\
+classify & classifiedReferent 1; semanticKind 1..* & none \\
+decisionRule & actor 1; input 1..*; result 1 & operator-local \texttt{rule} \\
+\bottomrule
+\end{longtable}
+
+% -----------------------------------------------------------------------------
+\section{Operator: transfer}
+\stabletag\quad\Rtwentyfivetag
+
+\subsection{Definizione}
+\texttt{transfer} rappresenta la conveyance governata di uno o piu' content da una source a una o piu' destination. Non implica di per se' protocollo, successo, ownership, storage, processing o service consumption.
+
+\subsection{Domanda diagnostica}
+La source governa che un contenuto venga reso disponibile/spostato/consegnato da una origine identificabile a una destinazione identificabile?
+
+\subsection{Firma canonica}
+\begin{lstlisting}
+transfer
+    behavior    -> BAReferent [0..1]
+    source      -> BAReferent [1]
+    destination -> BAReferent [1..*]
+    content     -> BAReferent [1..*]
+\end{lstlisting}
+
+\subsection{Campi}
+\begin{tabularx}{\textwidth}{L{36mm}L{24mm}Y}
+\toprule
+\textbf{Role} & \textbf{Card.} & \textbf{Semantica} \\
+\midrule
+behavior & 0..1 & identita' del comportamento di transfer, solo se deve essere riusato/qualificato. \\
+source & 1 & origine governata della conveyance. \\
+destination & 1..* & uno o piu' destinatari governati. \\
+content & 1..* & contenuto il cui trasferimento e' governato. \\
+\bottomrule
+\end{tabularx}
+
+\subsection{Invarianti e confini}
+\begin{itemize}
+  \item \texttt{transfer != produce}: produrre un risultato non prova che esso venga trasferito a un destinatario.
+  \item \texttt{transfer != observe}: leggere qualcosa non prova una conveyance source-to-destination.
+  \item \texttt{transfer != consumeService}: utilizzare un service non coincide con trasferire content.
+  \item \texttt{transfer != initiate}: avviare/invocare qualcosa non implica conveyance.
+  \item interaction mode, channel, retries, timeout, queueing, acknowledgement e failure semantics si aggiungono solo se governati e rappresentabili nel livello corretto.
+\end{itemize}
+
+\subsection{Forbidden inference}
+Non inferire protocollo, sincronicita', cifratura, affidabilita', successo, persistenza, ownership della source/destination o topologia intermedia.
+
+
+\subsection{Worked examples}
+\begin{ddtaexample}[title={Facial Access - FR-3.4.2: delivery della RecognitionCapture}]
+\textbf{Source meaning.} CameraSubsystem deve consegnare la \texttt{RecognitionCapture} a \texttt{RecognitionProcessor} preservando il binding con la stessa \texttt{IdentityDeterminationRequest}. La conveyance e il same-request binding sono due significati distinti.\par
+\medskip
+\textbf{Extraction.}
+\begin{lstlisting}
+BAReferent
+    CameraSubsystem
+    RecognitionProcessor
+    RecognitionCapture
+    RecognitionCaptureDelivery
+    IdentityDeterminationRequest
+
+BAProposition P1
+transfer
+    behavior    -> RecognitionCaptureDelivery
+    source      -> CameraSubsystem
+    destination -> RecognitionProcessor
+    content     -> RecognitionCapture
+
+BAProposition P2
+correlate
+    correlatedItem     -> RecognitionCapture
+    correlationContext -> IdentityDeterminationRequest
+\end{lstlisting}
+\textbf{Boundary lesson.} Il binding non viene schiacciato dentro \texttt{transfer}; resta una proposition \texttt{correlate} separata.
+\end{ddtaexample}
+
+\begin{ddtaexample}[title={DermaTriage - FR-23: scambio B4 con case identity preservata}]
+\textbf{Source meaning.} Nel workflow B4-integrated, DermaTriage effettua write-back/retrieval mantenendo la stessa consultation/case identity.\par
+\begin{lstlisting}
+transfer
+    source      -> DermaTriage
+    destination -> B4
+    content     -> B4TriageOutcome
+
+transfer
+    source      -> B4
+    destination -> DermaTriage
+    content     -> ValidatedOutcome
+
+correlate
+    correlatedItem     -> ValidatedOutcome
+    correlationContext -> OriginalDermaTriageOutcome
+\end{lstlisting}
+\textbf{Non inferire:} protocollo ulteriore, queue, retry, success outcome o storage semantics se non governati.
+\end{ddtaexample}
+
+
+% -----------------------------------------------------------------------------
+\section{Operator: produce}
+\stabletag\quad\Rtwentyfivetag
+
+\subsection{Definizione}
+\texttt{produce} rappresenta un actor/capability che rende disponibile un risultato governato. Il risultato puo' gia' avere identita' semantica senza essere ``creato'' nel senso di nuova occurrence/item project-semantic.
+
+\subsection{Domanda diagnostica}
+La fonte governa che un actor/capability renda disponibile un output/result, indipendentemente dal fatto che tale output costituisca una nuova identita' di progetto?
+
+\subsection{Firma canonica}
+\begin{lstlisting}
+produce
+    actor  -> BAReferent [1]
+    result -> BAReferent [1..*]
+    input  -> BAReferent [0..*]
+\end{lstlisting}
+
+\subsection{Campi}
+\begin{tabularx}{\textwidth}{L{36mm}L{24mm}Y}
+\toprule
+actor & 1 & soggetto/capability che produce il risultato. \\
+result & 1..* & output/result reso disponibile. \\
+input & 0..* & input governati effettivamente usati, non semplicemente disponibili. \\
+\bottomrule
+\end{tabularx}
+
+\subsection{Invarianti e confini}
+\begin{itemize}
+  \item \texttt{produce != create}: output availability non prova nuova identity/occurrence.
+  \item \texttt{produce != transfer}: la disponibilita' di un result non identifica source/destination di conveyance.
+  \item \texttt{produce != decisionRule}: un risultato prodotto non implica un mapping condizionale governato.
+  \item \texttt{produce != observe}: un result di una query puo' essere prodotto, ma la lettura dell'esistente e il result prodotto sono semantiche separabili.
+\end{itemize}
+
+\subsection{Forbidden inference}
+Non inferire algoritmo, score, ranking, persistenza, destinazione, nuova identity o condition logic non esplicitamente governati.
+
+
+\subsection{Worked examples}
+\begin{ddtaexample}[title={Facial Access - FR-3.2.1: governed identity-determination outcome}]
+La capability di riconoscimento deve produrre un esito governato distinguendo riuscita, negativa e non conclusiva.\par
+\begin{lstlisting}
+produce
+    actor  -> RecognitionProcessor
+    input  -> RecognitionCapture
+    result -> IdentityDeterminationOutcome
+\end{lstlisting}
+\textbf{Perche' produce.} La clausola governa la disponibilita' del risultato. Non stabilisce che l'outcome sia una nuova identity project-semantic creata da \texttt{create}.
+\end{ddtaexample}
+
+\begin{ddtaexample}[title={DermaTriage - FR-16 e FR-19: due produzioni con input diversi}]
+\begin{lstlisting}
+produce
+    actor  -> EfficientNet-B4
+    input  -> SkinLesionImage
+    result -> ImageUrgencyClassification
+
+produce
+    actor  -> BioMistral-7B
+    input  -> ImageUrgencyClassification
+    input  -> ClinicalDescription
+    input  -> HistoricalCaseContext
+    input  -> AvailableSymptomInformation
+    result -> AITriageSynthesis
+\end{lstlisting}
+Il secondo caso mostra che \texttt{input [0..*]} identifica solo gli input effettivamente governati, non ogni informazione disponibile nel sistema.
+\end{ddtaexample}
+
+
+% -----------------------------------------------------------------------------
+\section{Operator: create}
+\stabletag\quad\Rtwentyfivetag
+
+\subsection{Definizione}
+\texttt{create} rappresenta l'istituzione di una nuova identita'/occurrence/item project-semantic che prima dell'azione non esisteva nel significato governato.
+
+\subsection{Domanda diagnostica}
+La source governa esplicitamente che l'azione stabilisca una nuova occurrence o identita' rilevante per il progetto?
+
+\subsection{Firma canonica}
+\begin{lstlisting}
+create
+    actor   -> BAReferent [1]
+    created -> BAReferent [1..*]
+\end{lstlisting}
+
+\subsection{Campi}
+\begin{tabularx}{\textwidth}{L{36mm}L{24mm}Y}
+\toprule
+actor & 1 & soggetto/capability che stabilisce la nuova identity/occurrence. \\
+created & 1..* & item/event project-semantic creato. \\
+\bottomrule
+\end{tabularx}
+
+\subsection{Invarianti e confini}
+\begin{itemize}
+  \item \texttt{create != produce}: generare un output non dimostra nuova identity.
+  \item \texttt{create != transition}: cambiare stato dello stesso subject non crea un nuovo subject.
+  \item \texttt{create != storedIn}: persistenza/at-rest association non prova creazione.
+  \item nomi tecnici come factory, generator, constructor o insert non sono sufficienti.
+\end{itemize}
+
+\subsection{Forbidden inference}
+Non inferire ID generation, storage technology, lifecycle successivo, ownership o correlation con altri elementi se non governati.
+
+
+\subsection{Worked examples e negative control}
+\begin{ddtaopen}[title={Nessun positive control pulito nei due corpus principali}]
+Facial Access e DermaTriage esercitano molto bene produzione, transfer, correlation, selection e decision semantics, ma non offrono nel current source set un caso incontestabile in cui una nuova identity project-semantic debba essere modellata con \texttt{create}. La guida non forza quindi un esempio artificiale dal corpus.
+\end{ddtaopen}
+
+\begin{ddtaexample}[title={DIDATTICO NON NORMATIVO - creazione di un account}]
+\begin{lstlisting}
+Source:
+    dopo approvazione, AccountProvisioning crea un nuovo UserAccount
+
+create
+    actor   -> AccountProvisioning
+    created -> UserAccount
+\end{lstlisting}
+\textbf{Delete test.} Se si sostituisse \texttt{create} con \texttt{produce}, si perderebbe il fatto materiale che dopo l'azione esiste una nuova identity/occurrence di progetto.
+\end{ddtaexample}
+
+\begin{ddtaexample}[title={DermaTriage - perche' FR-20 NON prova create}]
+FR-20 governa un training process che produce/seleziona un best checkpoint. Il fatto che emerga un checkpoint non autorizza automaticamente a modellarlo come nuova identity project-semantic con \texttt{create}; prima deve essere governata proprio quella distinzione di identity/occurrence.
+\end{ddtaexample}
+
+
+% -----------------------------------------------------------------------------
+\section{Operator: observe}
+\stabletag\quad\Rtwentyfivetag
+
+\subsection{Definizione}
+\texttt{observe} rappresenta read/query/inspection esplicita di significato esistente senza asserire che l'osservazione crei o modifichi l'oggetto osservato.
+
+\subsection{Domanda diagnostica}
+La fonte governa un atto di lettura, query o ispezione di qualcosa che esiste gia' come significato rilevante?
+
+\subsection{Firma canonica}
+\begin{lstlisting}
+observe
+    actor    -> BAReferent [1]
+    observed -> BAReferent [1..*]
+    result   -> BAReferent [0..*]
+\end{lstlisting}
+
+\subsection{Campi}
+\begin{tabularx}{\textwidth}{L{36mm}L{24mm}Y}
+\toprule
+actor & 1 & soggetto/capability che legge o ispeziona. \\
+observed & 1..* & significato esistente oggetto dell'osservazione. \\
+result & 0..* & eventuale result distinto prodotto dall'osservazione; CMD-OP04 ne mantiene aperta la revisione. \\
+\bottomrule
+\end{tabularx}
+
+\subsection{Invarianti e confini}
+\begin{itemize}
+  \item \texttt{observe != input}: il fatto che un dato sia input non prova un'operazione di lettura semanticamente governata.
+  \item \texttt{observe != transfer}: ricevere content non equivale automaticamente a osservarlo.
+  \item \texttt{observe != selection}: query/retrieval puo' avvenire dopo una selection; non stabilisce la membership selezionata.
+  \item \texttt{observe != transition}: inspection non implica state change.
+\end{itemize}
+
+\subsection{Open delta}
+\opentag\quad \texttt{CMD-OP04}: la rimozione di \texttt{observe.result} resta deferita a integrated review; questa candidate preserva quindi la firma R3.
+
+
+\subsection{Worked examples e confine con selection}
+\begin{ddtaexample}[title={DermaTriage - FR-18: query/retrieval dopo la selection}]
+FR-18 governa embedding, cosine similarity, top-5 e recupero dei casi storici. La selection stabilisce quali membri appartengono al selected set; l'eventuale query/read degli item gia' selezionati e' una semantica distinta.\par
+\begin{lstlisting}
+selection                     # local candidate structure
+    candidatePopulation -> HistoricalCases
+    selectionBasis      -> CosineSimilarity
+    selectedResult      -> HistoricalCaseContext
+    bound               -> 5
+    orderingBasis       -> CosineSimilarityDescending
+
+observe                       # only for the read/query meaning
+    actor    -> DermaTriageRetrievalCapability
+    observed -> HistoricalCaseContext
+\end{lstlisting}
+\textbf{Boundary.} \texttt{observe} non sostituisce la selected-membership semantics.
+\end{ddtaexample}
+
+\begin{ddtaexample}[title={DIDATTICO NON NORMATIVO - lettura di stato esistente}]
+\begin{lstlisting}
+observe
+    actor    -> MonitoringAgent
+    observed -> CurrentDoorState
+\end{lstlisting}
+Non inferire transition o creazione dello stato osservato.
+\end{ddtaexample}
+
+
+% -----------------------------------------------------------------------------
+\section{Operator: transition}
+\stabletag\quad\Rtwentyfivetag
+
+\subsection{Definizione}
+\texttt{transition} rappresenta un cambiamento governato di stato/lifecycle dello \emph{stesso} subject project-semantic.
+
+\subsection{Domanda diagnostica}
+La fonte governa che la stessa identita' passi a uno stato/lifecycle differente?
+
+\subsection{Firma canonica}
+\begin{lstlisting}
+transition
+    subject   -> BAReferent [1]
+    toState   -> BAReferent [1]
+    actor     -> BAReferent [0..1]
+    fromState -> BAReferent [0..1]
+\end{lstlisting}
+
+\subsection{Campi}
+\begin{tabularx}{\textwidth}{L{36mm}L{24mm}Y}
+\toprule
+subject & 1 & identita' che persiste attraverso il cambiamento. \\
+toState & 1 & stato risultante governato. \\
+actor & 0..1 & soggetto che causa/realizza il cambiamento, solo se governato. \\
+fromState & 0..1 & stato precedente governato, se noto. \\
+\bottomrule
+\end{tabularx}
+
+\subsection{Invarianti e confini}
+\begin{itemize}
+  \item stessa identity prima/dopo e' requisito centrale;
+  \item selection di una versione non e' automaticamente transition;
+  \item qualification result non e' automaticamente state transition;
+  \item modifica di una property non prova lifecycle/state identity;
+  \item supporto al rollback non prova che una transition specifica sia governata o automatica.
+\end{itemize}
+
+\subsection{Open delta}
+\opentag\quad \texttt{CMD-OP05}: la distinzione state identity vs typed value resta deferita; nessuna estensione della firma R3 viene ammessa qui.
+
+
+\subsection{Worked examples e boundary control}
+\begin{ddtaexample}[title={DermaTriage - FR-10: rollback support non basta da solo}]
+FR-10 richiede di supportare la revoca di un adattamento degradante mediante il ripristino di una versione o stato precedente accettabile. Questa source pressure e' utile ma non autorizza automaticamente una proposition \texttt{transition}: resta necessario stabilire quale \emph{stessa identity} attraversi quali stati governati.\par
+\begin{lstlisting}
+NOT AUTOMATICALLY VALID
+transition
+    subject   -> CandidateModelVersion     # identity not yet established here
+    fromState -> Adopted
+    toState   -> Revoked
+\end{lstlisting}
+La guida mantiene quindi il boundary: rollback support, version selection e state transition non sono sinonimi.
+\end{ddtaexample}
+
+\begin{ddtaexample}[title={DIDATTICO NON NORMATIVO - transition pulita}]
+\begin{lstlisting}
+transition
+    actor     -> AccountAdministration
+    subject   -> AccessCredential
+    fromState -> ActiveCredentialState
+    toState   -> RevokedCredentialState
+\end{lstlisting}
+Qui la stessa \texttt{AccessCredential} persiste attraverso il cambiamento.
+\end{ddtaexample}
+
+
+% -----------------------------------------------------------------------------
+\section{Operator: correlate}
+\stabletag\quad\Rtwentyfivetag
+
+\subsection{Definizione}
+\texttt{correlate} preserva un binding di same-context tra uno o piu' elementi e una identita' di contesto condivisa.
+
+\subsection{Domanda diagnostica}
+La source richiede che piu' significati appartengano alla stessa request, identity, case, evaluation, attempt, operation o altro contesto governato?
+
+\subsection{Firma canonica}
+\begin{lstlisting}
+correlate
+    correlatedItem     -> BAReferent [1..*]
+    correlationContext -> BAReferent [1]
+\end{lstlisting}
+
+\subsection{Campi}
+\begin{tabularx}{\textwidth}{L{43mm}L{24mm}Y}
+\toprule
+correlatedItem & 1..* & elemento/i che devono restare nello stesso contesto. \\
+correlationContext & 1 & identita' che definisce il contesto condiviso. \\
+\bottomrule
+\end{tabularx}
+
+\subsection{Invarianti e confini}
+\begin{itemize}
+  \item \texttt{correlate != reference}: il reference puo' essere direzionale senza same-context invariant.
+  \item \texttt{correlate != dependOn}: same-context binding non implica prerequisite.
+  \item \texttt{correlate != transfer}: binding non implica conveyance.
+  \item non usare correlate come generic association fallback.
+\end{itemize}
+
+
+\subsection{Worked examples}
+\begin{ddtaexample}[title={Facial Access - stessa request durante il delivery}]
+\begin{lstlisting}
+correlate
+    correlatedItem     -> RecognitionCapture
+    correlationContext -> IdentityDeterminationRequest
+\end{lstlisting}
+La parola semantica decisiva e' \emph{stessa}: il requisito richiede same-request binding, non un generico riferimento.
+\end{ddtaexample}
+
+\begin{ddtaexample}[title={DermaTriage - FR-03 e FR-23: stessa review/case identity}]
+\begin{lstlisting}
+correlate
+    correlatedItem     -> ClinicalReviewResult
+    correlationContext -> OriginalDermaTriageOutcome
+
+correlate
+    correlatedItem     -> ValidatedOutcome
+    correlationContext -> OriginalDermaTriageOutcome
+\end{lstlisting}
+\textbf{Confine.} Se basta sapere che A ``riguarda'' B si valuta \texttt{reference}; quando la stessa case identity deve essere preservata si usa \texttt{correlate}.
+\end{ddtaexample}
+
+
+% -----------------------------------------------------------------------------
+\section{Operator: reference}
+\stabletag\quad\Rtwentyfivetag
+
+\subsection{Definizione}
+\texttt{reference} rappresenta un riferimento direzionale esplicito da un referencer a uno o piu' target identificati, quando non e' governata una semantica piu' forte.
+
+\subsection{Domanda diagnostica}
+La fonte governa che A riguardi/richiami/punti a B, senza richiedere same-context binding, prerequisite, ownership, creation o transfer?
+
+\subsection{Firma canonica}
+\begin{lstlisting}
+reference
+    referencer -> BAReferent [1]
+    referenced -> BAReferent [1..*]
+\end{lstlisting}
+
+\subsection{Campi}
+\begin{tabularx}{\textwidth}{L{36mm}L{24mm}Y}
+\toprule
+referencer & 1 & elemento che mantiene il riferimento. \\
+referenced & 1..* & target del riferimento. \\
+\bottomrule
+\end{tabularx}
+
+\subsection{Invarianti e confini}
+\begin{itemize}
+  \item \texttt{reference != correlate}: non garantisce same-context binding.
+  \item \texttt{reference != dependOn}: non garantisce prerequisite.
+  \item \texttt{reference != assignResponsibility}: non assegna authority/responsibility.
+  \item non usare reference come fallback per relazioni semanticamente non comprese.
+\end{itemize}
+
+
+\subsection{Worked examples}
+\begin{ddtaexample}[title={Facial Access - authorization state concerning GovernedIdentity}]
+\begin{lstlisting}
+reference
+    referencer -> AccessAuthorizationState
+    referenced -> GovernedIdentity
+\end{lstlisting}
+La proposition dice che lo stato riguarda quella identity; non implica same-request binding, ownership o un boolean \texttt{authorized = TRUE}.
+\end{ddtaexample}
+
+\begin{ddtaexample}[title={DermaTriage - FR-09: candidate valutato rispetto a una reference applicabile}]
+\begin{lstlisting}
+reference
+    referencer -> CandidateUrgencyClassificationAdaptation
+    referenced -> ApplicableReferenceVersion
+\end{lstlisting}
+Questa relation puo' coesistere con una \texttt{decisionRule} che usa i criteri comparativi. La reference identifica il target del confronto; non rappresenta da sola il mapping di qualificazione.
+\end{ddtaexample}
+
+
+% -----------------------------------------------------------------------------
+\section{Operator: dependOn}
+\stabletag\quad\Rtwentyfivetag
+
+\subsection{Definizione}
+\texttt{dependOn} rappresenta una relazione di prerequisite: il dependent richiede il prerequisite per il significato governato in scope.
+
+\subsection{Domanda diagnostica}
+La fonte governa che A non possa soddisfare/completare il proprio significato senza B, oppure che B sia una precondizione esplicita per A?
+
+\subsection{Firma canonica}
+\begin{lstlisting}
+dependOn
+    dependent    -> BAReferent [1]
+    prerequisite -> BAReferent [1..*]
+\end{lstlisting}
+
+\subsection{Campi}
+\begin{tabularx}{\textwidth}{L{36mm}L{24mm}Y}
+\toprule
+dependent & 1 & significato che necessita del prerequisite. \\
+prerequisite & 1..* & prerequisite governati richiesti. \\
+\bottomrule
+\end{tabularx}
+
+\subsection{Invarianti e confini}
+\begin{itemize}
+  \item temporal order alone non e' dependency;
+  \item \texttt{precedes != dependOn};
+  \item pipeline membership non e' dependency;
+  \item \texttt{dependOn != consumeService}: un prerequisite puo' non essere un service consumato;
+  \item la transitive closure puo' essere projection-derived e non deve essere materializzata come truth senza necessita'.
+\end{itemize}
+
+
+\subsection{Worked examples}
+\begin{ddtaexample}[title={Facial Access - delivery come prerequisite della determinazione}]
+D-3.4 governa che l'indisponibilita' dell'interazione possa impedire il completamento della determinazione dell'identita'.\par
+\begin{lstlisting}
+dependOn
+    dependent    -> IdentityDeterminationOutcome
+    prerequisite -> RecognitionCaptureDelivery
+\end{lstlisting}
+\end{ddtaexample}
+
+\begin{ddtaexample}[title={DermaTriage - MR-04 dependsOn MR-03}]
+\begin{lstlisting}
+dependOn
+    dependent    -> ControlledAdaptation
+    prerequisite -> ClinicalReviewMeaning
+\end{lstlisting}
+La dependency esprime che l'adaptation branch consuma significato governato dal review branch. Non crea parentage o co-ownership dei Requirement.
+\end{ddtaexample}
+
+\begin{ddtaanti}[title={Ordine non sufficiente}]
+Che uno stadio B venga dopo A nella pipeline non basta per creare \texttt{dependOn(A,B)}. Serve prerequisite semantics governata.
+\end{ddtaanti}
+
+
+% -----------------------------------------------------------------------------
+\section{Operator: consumeService}
+\stabletag\quad\Rtwentyfivetag
+
+\subsection{Definizione}
+\texttt{consumeService} rappresenta l'uso effettivo di un service/capability da parte di uno o piu' consumer, senza trasferire automaticamente ownership o provider responsibility.
+
+\subsection{Domanda diagnostica}
+La fonte governa che un consumer utilizzi effettivamente una capability/service fornita come tale?
+
+\subsection{Firma canonica}
+\begin{lstlisting}
+consumeService
+    consumer -> BAReferent [1..*]
+    service  -> BAReferent [1]
+    provider -> BAReferent [0..1]
+\end{lstlisting}
+
+\subsection{Campi}
+\begin{tabularx}{\textwidth}{L{36mm}L{24mm}Y}
+\toprule
+consumer & 1..* & utilizzatore/i effettivi del service. \\
+service & 1 & service/capability consumato. \\
+provider & 0..1 & provider esplicitamente governato; non implicito. \\
+\bottomrule
+\end{tabularx}
+
+\subsection{Invarianti e confini}
+\begin{itemize}
+  \item endpoint, componente, tecnologia, dataset o information item non sono automaticamente service;
+  \item \texttt{consumeService != transfer};
+  \item \texttt{consumeService != provideService candidate};
+  \item consumption non implica ownership, administration o infrastructure responsibility;
+  \item un consumer requirement non prova che il service garantisca la property richiesta.
+\end{itemize}
+
+
+\subsection{Worked examples}
+\begin{ddtaexample}[title={Facial Access - consumo del servizio di connettivita'}]
+\begin{lstlisting}
+consumeService
+    consumer -> IdentityDeterminationRealization
+    service  -> ConnectivityService
+\end{lstlisting}
+Il provider resta assente se non e' governato. Il consumo non trasferisce ownership dell'infrastruttura al consumer.
+\end{ddtaexample}
+
+\begin{ddtaexample}[title={DermaTriage - B4 come sistema/servizio esterno consumato}]
+Nel workflow integrato, DermaTriage acquisisce consultation, documenti e validated outcomes da B4, che resta sistema esterno. Quando la source governa effettivamente l'uso della capability B4, la lettura puo' essere:
+\begin{lstlisting}
+consumeService
+    consumer -> DermaTriageB4Integration
+    service  -> B4ExternalService
+\end{lstlisting}
+Le singole informazioni scambiate restano invece content di \texttt{transfer} o input di altre proposition; non diventano service.
+\end{ddtaexample}
+
+
+% -----------------------------------------------------------------------------
+\section{Operator: realize}
+\stabletag\quad\Rtwentyfivetag
+
+\subsection{Definizione}
+\texttt{realize} rappresenta la materializzazione concreta di un significato astratto che esiste indipendentemente come commitment/capability/contract governato.
+
+\subsection{Domanda diagnostica}
+Esiste un significato astratto governato indipendentemente e la source governa che uno o piu' elementi concreti lo materializzino?
+
+\subsection{Firma canonica}
+\begin{lstlisting}
+realize
+    abstract    -> BAReferent [1]
+    realization -> BAReferent [1..*]
+\end{lstlisting}
+
+\subsection{Campi}
+\begin{tabularx}{\textwidth}{L{36mm}L{24mm}Y}
+\toprule
+abstract & 1 & significato astratto indipendentemente governato. \\
+realization & 1..* & elemento/i concreti che lo materializzano. \\
+\bottomrule
+\end{tabularx}
+
+\subsection{Invarianti e confini}
+\begin{itemize}
+  \item \texttt{realize != perform/execute}: realizzare una capability non equivale a rappresentare l'atto di eseguirla;
+  \item \texttt{realize != classify}: non assegna semplicemente un kind;
+  \item \texttt{realize != assignResponsibility}: materialization non equivale a responsibility placement;
+  \item deve esistere un abstract meaning indipendentemente governato.
+\end{itemize}
+
+
+\subsection{Worked examples}
+\begin{ddtaexample}[title={Facial Access - facial recognition realizes identity determination}]
+\begin{lstlisting}
+realize
+    abstract    -> IdentityDetermination
+    realization -> FacialRecognitionStrategy
+\end{lstlisting}
+La responsabilita' astratta resta valida anche se in futuro la strategy concreta cambia.
+\end{ddtaexample}
+
+\begin{ddtaexample}[title={DermaTriage - concrete pipeline vs abstract triage responsibility}]
+MR-01 governa la responsabilita' di valutazione di triage; DEC-12 governa una pipeline AI image-based concreta. Quando la relazione abstract-to-concrete e' materialmente necessaria alla BA, e' possibile preservarla come:
+\begin{lstlisting}
+realize
+    abstract    -> DermatologicalTriageEvaluation
+    realization -> ImageBasedFourStagePipeline
+\end{lstlisting}
+\textbf{Non usare} \texttt{realize} per rappresentare semplicemente che EfficientNet-B4 ``esegue'' una classificazione: execution semantics non sono assorbite da questo operatore.
+\end{ddtaexample}
+
+
+% -----------------------------------------------------------------------------
+\section{Operator: assignResponsibility}
+\stabletag\quad\Rtwentyfivetag
+
+\subsection{Definizione}
+\texttt{assignResponsibility} colloca una responsibility o authority governata su una o piu' responsible party per uno scope e un responsibility kind espliciti.
+
+\subsection{Domanda diagnostica}
+La fonte assegna esplicitamente responsabilita'/authority a una parte, distinguendo tale assegnazione dal semplice fatto che la parte produca, fornisca, consumi o esegua qualcosa?
+
+\subsection{Firma canonica}
+\begin{lstlisting}
+assignResponsibility
+    responsibleParty    -> BAReferent [1..*]
+    responsibilityScope -> BAReferent [1]
+    responsibilityKind  -> BAReferent [1]
+\end{lstlisting}
+
+\subsection{Campi}
+\begin{tabularx}{\textwidth}{L{45mm}L{24mm}Y}
+\toprule
+responsibleParty & 1..* & parte/i cui e' attribuita la responsibility. \\
+responsibilityScope & 1 & ambito governato della responsibility. \\
+responsibilityKind & 1 & tipo di responsibility/authority governato. \\
+\bottomrule
+\end{tabularx}
+
+\subsection{Invarianti e confini}
+\begin{itemize}
+  \item provider != responsible party per default;
+  \item performer/actor != responsible party per default;
+  \item producer/consumer != responsible party per default;
+  \item realization != responsibility;
+  \item mera partecipazione non assegna authority.
+\end{itemize}
+
+
+\subsection{Worked examples e responsibility boundary}
+\begin{ddtaexample}[title={Facial Access - D-3.4: acquisition e recognition hanno owner distinti}]
+La Decision separa CameraSubsystem e RecognitionProcessor come responsibility owner distinti. Quando il tipo di responsabilita' e lo scope sono governati in modo sufficiente, la BA puo' esplicitare:
+\begin{lstlisting}
+assignResponsibility
+    responsibleParty    -> CameraSubsystem
+    responsibilityScope -> RecognitionCaptureAcquisition
+    responsibilityKind  -> OperationalResponsibility
+
+assignResponsibility
+    responsibleParty    -> RecognitionProcessor
+    responsibilityScope -> FacialRecognitionProcessing
+    responsibilityKind  -> OperationalResponsibility
+\end{lstlisting}
+\end{ddtaexample}
+
+\begin{ddtaexample}[title={DermaTriage - B4 non acquisisce la responsibility del triage}]
+DEC-14 stabilisce che B4 partecipa allo scambio dati ma non acquisisce la responsibility del triage posseduta da DermaTriage. Questo e' soprattutto un \emph{negative responsibility boundary}: non deve essere invertito inventando una responsibility positiva per B4.
+\end{ddtaexample}
+
+\begin{ddtaanti}[title={Actor != responsible party}]
+Che un component produca un risultato o invochi un endpoint non basta a dichiararlo responsible party. \texttt{assignResponsibility} richiede responsibility/authority semantics esplicita.
+\end{ddtaanti}
+
+
+% -----------------------------------------------------------------------------
+\section{Operator: constrain}
+\stabletag\quad\Rtwentyfivetag
+
+\subsection{Definizione}
+\texttt{constrain} rappresenta una restriction governata, riusabile e interrogabile applicata a un target identificato.
+
+\subsection{Domanda diagnostica}
+La fonte governa una restriction stabile su un target, distinta da una semplice condition locale, da un mapping decisionale o da un bound interno a una selection?
+
+\subsection{Firma canonica}
+\begin{lstlisting}
+constrain
+    constraintTarget -> BAReferent [1]
+    constraintValue  -> controlled value/structure [1..*]
+\end{lstlisting}
+
+\subsection{Campi}
+\begin{tabularx}{\textwidth}{L{42mm}L{24mm}Y}
+\toprule
+constraintTarget & 1 & significato esatto su cui insiste la restriction. \\
+constraintValue & 1..* & valore, dominio o struttura di constraint governata. \\
+\bottomrule
+\end{tabularx}
+
+\subsection{Invarianti e confini}
+\begin{itemize}
+  \item \texttt{constrain != decisionCondition}: una condition locale non e' automaticamente reusable constraint;
+  \item \texttt{constrain != decisionRule}: un dominio ammesso non definisce necessariamente come scegliere un risultato;
+  \item selection bound puo' coesistere con constrain ma non assorbe selected membership;
+  \item \texttt{NOT\_GOVERNED} non viene trasformato in constraint negativo.
+\end{itemize}
+
+
+\subsection{Worked examples}
+\begin{ddtaexample}[title={Facial Access - D-3.6: wired Ethernet sul delivery specifico}]
+\begin{lstlisting}
+constrain
+    constraintTarget -> RecognitionCaptureDelivery
+    constraintValue
+        property   -> interconnectionMedium
+        vocabulary -> [WIRED_ETHERNET]
+\end{lstlisting}
+Il constraint e' scoped al delivery governato; non si propaga all'intero provider infrastructure.
+\end{ddtaexample}
+
+\begin{ddtaexample}[title={DermaTriage - FR-24: meccanismo richiesto per operazioni amministrative protette}]
+\begin{lstlisting}
+constrain
+    constraintTarget -> ProtectedDermaTriageOperation
+    constraintValue
+        property -> authenticationMechanism
+        value    -> X-API-Key
+\end{lstlisting}
+La stessa sintassi concettuale puo' descrivere un dominio o un valore governato. Il constraint non equivale all'atto di autenticare una request e non crea da solo un service relation.
+\end{ddtaexample}
+
+
+% -----------------------------------------------------------------------------
+\section{Operator: classify}
+\stabletag\quad\Rtwentyfivetag
+
+\subsection{Definizione}
+\texttt{classify} assegna a un referent uno o piu' semantic kind/category methodology-neutral governati.
+
+\subsection{Domanda diagnostica}
+La fonte governa che un elemento appartenga a una categoria/kind semanticamente rilevante, indipendentemente da una selection tra candidati o da un lifecycle change?
+
+\subsection{Firma canonica}
+\begin{lstlisting}
+classify
+    classifiedReferent -> BAReferent [1]
+    semanticKind       -> BAReferent [1..*]
+\end{lstlisting}
+
+\subsection{Campi}
+\begin{tabularx}{\textwidth}{L{42mm}L{24mm}Y}
+\toprule
+classifiedReferent & 1 & elemento cui viene assegnato il kind. \\
+semanticKind & 1..* & categoria/kind governati. \\
+\bottomrule
+\end{tabularx}
+
+\subsection{Invarianti e confini}
+\begin{itemize}
+  \item \texttt{classify != selection}: assegnare un kind non sceglie un membro tra candidati;
+  \item \texttt{classify != transition}: cambiare category non prova lifecycle state change;
+  \item \texttt{classify != generic property assignment};
+  \item il kind deve essere methodology-neutral e materialmente utile, non introdotto solo per il tool.
+\end{itemize}
+
+
+\subsection{Worked examples}
+\begin{ddtaexample}[title={DermaTriage - FR-12: confirmation vs correction}]
+\begin{lstlisting}
+classify
+    classifiedReferent -> ClinicalReviewResult
+    semanticKind       -> ConfirmationOrCorrection
+\end{lstlisting}
+L'operatore conserva il kind/disposition semantico. Non rappresenta una selection tra candidate review e non implica lifecycle transition.
+\end{ddtaexample}
+
+\begin{ddtaexample}[title={DermaTriage - FR-16: urgency class e produce devono restare distinti}]
+FR-16 governa sia la produzione di \texttt{ImageUrgencyClassification} sia il dominio HIGH/MEDIUM/LOW. Una BA puo' aver bisogno di:
+\begin{lstlisting}
+produce
+    actor  -> EfficientNet-B4
+    input  -> SkinLesionImage
+    result -> ImageUrgencyClassification
+
+constrain / classify
+    # scelta dipende da cosa e' governato come kind vs allowed domain
+\end{lstlisting}
+La guida non trasforma automaticamente ogni output label in \texttt{classify}: prima va stabilito se la semantica e' category identity o semplice value domain.
+\end{ddtaexample}
+
+
+% -----------------------------------------------------------------------------
+\section{Operator: decisionRule}
+\stabletag\quad\Rtwentyfivetag
+
+\subsection{Definizione}
+\texttt{decisionRule} rappresenta un mapping governato da input/conditions a un risultato governato. E' appropriato quando il progetto governa non soltanto il dominio dei risultati, ma la regola che determina il risultato.
+
+\subsection{Domanda diagnostica}
+La fonte governa una regola esplicita che, dati input/conditions, determina uno specifico result o result assignment?
+
+\subsection{Firma canonica}
+\begin{lstlisting}
+decisionRule
+    actor  -> BAReferent [1]
+    input  -> BAReferent [1..*]
+    result -> BAReferent [1]
+
+    rule
+        IF    decisionCondition
+        THEN  resultAssignment [1..*]
+        ELSE  resultAssignment [0..*]
+\end{lstlisting}
+
+\subsection{Campi top-level}
+\begin{tabularx}{\textwidth}{L{36mm}L{24mm}Y}
+\toprule
+actor & 1 & soggetto/capability che applica la regola. \\
+input & 1..* & input governati effettivamente usati dal mapping. \\
+result & 1 & risultato governato dal rule mapping. \\
+rule & 1 local structure & struttura operator-local di condition e assignment. \\
+\bottomrule
+\end{tabularx}
+
+\subsection{Invarianti e confini}
+\begin{itemize}
+  \item conditional action non e' automaticamente decisionRule;
+  \item non-sufficiency statement non e' automaticamente decisionRule;
+  \item ranking/selection non e' automaticamente decisionRule;
+  \item capability/support statement non e' automaticamente decisionRule;
+  \item un allowed result domain da solo non definisce il mapping;
+  \item property/value interni non vengono inventati per soddisfare la sintassi.
+\end{itemize}
+
+
+\subsection{Worked examples}
+\begin{ddtaexample}[title={Facial Access - AccessDecision condizionata a identity outcome e authorization condition}]
+\begin{lstlisting}
+decisionRule
+    actor  -> ControlledAreaAccess
+    input  -> IdentityDeterminationOutcome
+    input  -> AccessAuthorizationState
+    result -> AccessDecision
+
+    rule
+        IF allOf(
+            comparison(outcomeKind equals SUCCESS),
+            satisfies(AccessAuthorizationState,
+                      RequiredAccessAuthorizationCondition))
+        THEN AccessDecision = ALLOWING_ACCESS_DECISION
+        ELSE AccessDecision = NON_ALLOWING_ACCESS_DECISION
+\end{lstlisting}
+L'uso di \texttt{satisfies} evita di inventare un boolean interno \texttt{authorized = TRUE} non governato.
+\end{ddtaexample}
+
+\begin{ddtaexample}[title={DermaTriage - FR-02: mapping P-scale}]
+La documentazione governa un mapping esplicito:
+\begin{lstlisting}
+HIGH + confidence > 0.85 -> P1
+HIGH                     -> P2
+MEDIUM                   -> P3
+LOW                      -> P4
+\end{lstlisting}
+Una representation candidate usa \texttt{decisionRule} per preservare il mapping, con ordered comparison demand su \texttt{confidence > 0.85}. Il fatto che la pressione \texttt{>} sia reale non autorizza a congelare qui un nuovo comparisonKey: CL-01 resta OPEN sul controlled vocabulary ordinato.
+\end{ddtaexample}
+
+\begin{ddtaexample}[title={DermaTriage - FR-09: tutti i criteri applicabili devono essere soddisfatti}]
+\begin{lstlisting}
+decisionRule
+    actor  -> DermaTriage
+    input  -> CandidateUrgencyClassificationAdaptation
+    input  -> ApplicableReferenceVersion
+    result -> CandidateQualificationResult
+
+    rule
+        IF allOf(applicableAcceptanceCriteria)
+        THEN CandidateQualificationResult = QUALIFIED
+\end{lstlisting}
+\textbf{Boundary.} La qualification non implica deployment automatico.
+\end{ddtaexample}
+
+
+% -----------------------------------------------------------------------------
+\section{Condition language di decisionRule}
+\stabletag\quad\Rtwentyfivetag
+
+Le condition form sono strutture locali. Non aumentano il conteggio dei top-level operator.
+
+\subsection{comparison}
+\begin{lstlisting}
+comparison
+    referent      -> BAReferent [1]
+    property      -> controlled semantic key [1]
+    comparisonKey -> equals | notEquals
+    value         -> typed local value | BAReferent [1]
+\end{lstlisting}
+
+\begin{tabularx}{\textwidth}{L{38mm}Y}
+\toprule
+referent & elemento la cui property viene confrontata. \\
+property & semantic key controllata; resta obbligatoria nel contratto corrente. \\
+comparisonKey & operazione di confronto ammessa. Current: \texttt{equals}, \texttt{notEquals}. \\
+value & valore tipizzato o BAReferent contro cui avviene il confronto. \\
+\bottomrule
+\end{tabularx}
+
+\begin{ddtaopen}[title={CL-01 - ordered/scalar comparison vocabulary}]
+Il ciclo R25 ha prodotto forte evidence per confronti ordinati/scalari che superano \texttt{equals/notEquals}. Le relazioni concettuali \texttt{<}, \texttt{>}, \texttt{<=}, \texttt{>=} sono pressure reale, ma il controlled vocabulary normativo e la relativa typing discipline non sono ancora chiusi. Non usarli come vocabulary BA2 current senza formal delta.
+\end{ddtaopen}
+
+\subsection{satisfies}
+\stabletag
+\begin{lstlisting}
+satisfies
+    subject   -> BAReferent [1]
+    condition -> BAReferent [1]
+\end{lstlisting}
+Serve quando la fonte governa che un subject soddisfi una condition identificata, ma non governa un modello property/value interno che autorizzi una \texttt{comparison}.
+
+\subsection{allOf}
+\stabletag\quad\Rtwentyfivetag
+\begin{lstlisting}
+allOf
+    childCondition -> decisionCondition [2..*]
+\end{lstlisting}
+Tutte le condizioni figlie devono valere. R25 fornisce forte evidence di conjunction semantics, senza trasformare \texttt{allOf} in top-level operator.
+
+\subsection{anyOf}
+\stabletag
+\begin{lstlisting}
+anyOf
+    childCondition -> decisionCondition [2..*]
+\end{lstlisting}
+Almeno una condizione figlia deve valere. Il costrutto e' gia' corrente, ma R25 lo mantiene in stato \texttt{PENDING}: il positive control e' ancora insufficiente. Questo non equivale a rimozione dal contratto corrente.
+
+\subsection{not}
+\stabletag
+\begin{lstlisting}
+not
+    childCondition -> decisionCondition [1]
+\end{lstlisting}
+Negazione locale di una condition. La frase ``A non e' sufficiente per B'' non equivale a \texttt{not(B)} e non deve essere compressa in una negazione logica falsa.
+
+\subsection{resultAssignment}
+\stabletag
+\begin{lstlisting}
+resultAssignment
+    target -> BAReferent [1]
+    value  -> typed local value | BAReferent [1]
+\end{lstlisting}
+Rappresenta l'assegnazione del risultato governato nel ramo THEN/ELSE. Non autorizza property assignment generico fuori da \texttt{decisionRule}.
+
+
+\subsection{Worked examples della condition language}
+\begin{ddtaexample}[title={comparison - DermaTriage FR-02 e DEC-07}]
+\begin{lstlisting}
+comparison
+    referent      -> ImageUrgencyClassification
+    property      -> confidence
+    comparisonKey -> GREATER_THAN     # evidence need; key not yet frozen
+    value         -> 0.85
+\end{lstlisting}
+L'evidence dimostra la necessita' di ordered comparison, non il nome definitivo del controlled key. Per equality/inequality restano current \texttt{equals} e \texttt{notEquals}.
+\end{ddtaexample}
+
+\begin{ddtaexample}[title={satisfies - Facial Access}]
+\begin{lstlisting}
+satisfies
+    subject   -> AccessAuthorizationState
+    condition -> RequiredAccessAuthorizationCondition
+\end{lstlisting}
+La forma preserva ``soddisfa la condizione'' senza inventare una property interna.
+\end{ddtaexample}
+
+\begin{ddtaexample}[title={allOf - DermaTriage FR-09}]
+FR-09 richiede qualification soltanto se \emph{tutti} i criteri comparativi governati applicabili risultano soddisfatti. Questo e' un positive control forte per \texttt{allOf}.
+\end{ddtaexample}
+
+\begin{ddtaopen}[title={anyOf - R25 insufficiently tested}]
+\texttt{anyOf} resta parte della condition language current, ma il secondo ciclo non ha fornito un controllo altrettanto forte. La guida preserva la sintassi senza attribuirle una nuova claim R25.
+\end{ddtaopen}
+
+\begin{ddtaexample}[title={not - negative boundary da DermaTriage}]
+La frase ``un risultato del path A non e' sufficiente, da solo, a determinare il risultato del path B'' \textbf{non} equivale a \texttt{not(resultB)}. Non-sufficiency e negazione logica sono semantiche diverse.
+\end{ddtaexample}
+
+
+% -----------------------------------------------------------------------------
+\section{Struttura locale candidate: selection}
+\candidatetag\quad\Rtwentyfivetag
+
+R25 ha dimostrato che bounded/ranked/recency selection contiene semantica non eliminabile in diversi controlli, senza giustificare un nuovo top-level operator.
+
+\subsection{Working structure}
+\begin{lstlisting}
+selection
+    candidatePopulation -> OPEN TYPE [required]
+    selectionBasis      -> OPEN TYPE [required]
+    selectedResult      -> OPEN TYPE [required]
+    bound               -> OPEN TYPE [optional, only if governed]
+    orderingBasis       -> OPEN TYPE [optional, only if governed]
+\end{lstlisting}
+
+\begin{ddtaopen}[title={Typing non ancora congelato}]
+Questa struttura e' \texttt{REUSABLE\_SELECTION\_STRUCTURE / NON-NORMATIVE}. R25 non decide ancora se i campi siano BAReferent, local structured values, condition-language structures o altro tipo gia' governato. \texttt{criterion} e \texttt{selectionBasis} restano una naming decision da chiudere nell'integrazione metodologica.
+\end{ddtaopen}
+
+\subsection{Distinzioni obbligatorie}
+\begin{lstlisting}
+ranking        != selection
+bound          != selection
+retrieval      != selection
+filtering      != selection
+best selection != full ranking
+\end{lstlisting}
+
+La membership selezionata deve restare distinguibile dal criterio, dall'eventuale ordinamento e dall'eventuale bound.
+
+
+\subsection{Worked comparison: tre forme diverse di selection in DermaTriage}
+\begin{ddtaexample}[title={FR-18 - ranked top-5 historical cases}]
+\begin{lstlisting}
+selection
+    candidatePopulation -> HistoricalCases
+    selectionBasis      -> CosineSimilarity
+    selectedResult      -> HistoricalCaseContext
+    bound               -> 5
+    orderingBasis       -> CosineSimilarityDescending
+\end{lstlisting}
+Qui ranking, bound e selected membership sono tutti materialmente rilevanti.
+\end{ddtaexample}
+
+\begin{ddtaexample}[title={FR-06 - recent-N pertinent corrections}]
+\begin{lstlisting}
+selection
+    candidatePopulation -> ClinicalCorrections
+    selectionBasis      -> PertinenceAndRecency
+    selectedResult      -> PromptEvolutionEvidenceSet
+    bound               -> 20
+    orderingBasis       -> Recency   # only to the extent actually governed
+\end{lstlisting}
+Deduplication, underfill, reuse e overlap restano source gaps e non vengono inventati.
+\end{ddtaexample}
+
+\begin{ddtaexample}[title={FR-20 - best checkpoint by validation Macro F1}]
+\begin{lstlisting}
+selection
+    candidatePopulation -> TrainingCheckpoints
+    selectionBasis      -> ValidationMacroF1
+    selectedResult      -> BestBaselineCheckpoint
+\end{lstlisting}
+\textbf{Key lesson:} best/argmax-like selection non implica una full ranking riusabile di tutti i candidate.
+\end{ddtaexample}
+
+
+% -----------------------------------------------------------------------------
+\section{Pressure aperta: pipeline composition e order}
+\opentag\quad\Rtwentyfivetag
+
+\texttt{PR-02 PIPELINE\_COMPOSITION\_ORDER} resta aperta. La guida deve quindi preservare le distinzioni senza introdurre prematuramente \texttt{pipeline} o \texttt{precedes} come top-level operator.
+
+\begin{lstlisting}
+pipeline membership
+    != pipeline ordering
+    != precedes
+    != dependOn
+    != transfer
+    != initiate
+\end{lstlisting}
+
+\subsection{Domande da porre}
+\begin{itemize}
+  \item La fonte governa soltanto appartenenza a una stessa composizione?
+  \item Governa un ordine totale o parziale?
+  \item L'ordine e' semantico o soltanto descrittivo/implementativo?
+  \item B richiede A come prerequisite, oppure A e' soltanto precedente?
+  \item Esiste conveyance tra stadi oppure solo successione logica?
+  \item La composizione richiede una reusable local structure oppure e' proiettabile da proposition gia' accettate?
+\end{itemize}
+
+\begin{ddtaopen}[title={Current disposition}]
+Nuovo top-level operator: \texttt{NOT JUSTIFIED}. Reusable local composition structure: possibile, ma non ancora chiusa. Test successivo: membership vs ordering; \texttt{precedes} vs \texttt{dependOn}.
+\end{ddtaopen}
+
+
+\subsection{Worked boundary: DermaTriage DEC-12}
+DEC-12 governa una pipeline sequenziale a quattro stadi: EfficientNet-B4, Qwen2-VL, historical retrieval e BioMistral-7B. Questa evidence richiede di preservare almeno membership e ordine governato, ma non autorizza a trasformare automaticamente ogni adiacenza in \texttt{dependOn} o \texttt{transfer}.\par
+\begin{lstlisting}
+PIPELINE MEMBERSHIP
+    EfficientNet-B4
+    Qwen2-VL-7B-Instruct
+    HistoricalRetrieval
+    BioMistral-7B
+
+ORDERING PRESSURE
+    stage 1 before stage 2 before stage 3 before stage 4
+
+NOT AUTOMATICALLY
+    dependOn(stage2, stage1)
+    transfer(stage1, stage2)
+    initiate(stage1, stage2)
+\end{lstlisting}
+Quando una downstream stage usa esplicitamente un output precedente, quella semantica viene rappresentata separatamente tramite i propri operatori/ruoli. La structure di pipeline rimane OPEN come representation question, non come nuovo top-level operator gia' ammesso.
+
+
+% -----------------------------------------------------------------------------
+\section{Pressure e strutture trasversali ancora aperte}
+
+\begin{longtable}{L{25mm}L{52mm}L{62mm}}
+\toprule
+\textbf{ID} & \textbf{Topic} & \textbf{Stato / disciplina} \\
+\midrule\endhead
+PR-01 & function/process/behavior identity / \texttt{perform?} & PRESSURE RETAINED; execution evidence esiste ma irreducibility non dimostrata. \\
+PR-04 & boundary/interaction association & OPEN; distinguere crossing, transfer, interface e initiation. \\
+PR-07 & structured information contract & OPEN; puo' appartenere a structure/schema/composition anziche' dynamic relation. \\
+PR-09 & acquisition/refresh semantics & OPEN; esaurire operatori correnti prima di introdurre primitive. \\
+PR-12 & negative implication/non-sufficiency & OPEN; non comprimere in \texttt{not}. \\
+PR-14 & applicability/configuration binding & OPEN; provare qualifier/reusable structure prima di nuovo operatore. \\
+OBS-OT-01 & operation target / effect scope & LEVEL UNRESOLVED; verificare local structure/composition. \\
+\bottomrule
+\end{longtable}
+
+% -----------------------------------------------------------------------------
+\section{Candidate construct R25 non ammessi}
+
+\subsection{CC-01 consumeData}
+\rejectedtag
+
+Disposition: \texttt{REJECT\_REDUNDANT}. Nei casi correnti il non-destructive data/evidence use e' rappresentabile senza una nuova primitive top-level; destructive-consume semantics non risultano governate.
+
+\subsection{CC-02 provideService}
+\candidatetag
+
+Positive provider/service evidence sopravvive l'exhaustion corrente, ma formal gate G1--G8, compatibility e final signature sono pendenti.
+
+\begin{ddtaopen}[title={Signature non congelata}]
+Questa guida non inventa roleKey o cardinalita' di \texttt{provideService}. Fino alla formal admission, il candidate resta evidence e non vocabulary BA2 corrente.
+\end{ddtaopen}
+
+\subsection{CC-03 storedIn}
+\candidatetag
+
+L'associazione at-rest sopravvive l'exhaustion corrente, ma formal admission, compatibility e final signature restano pendenti.
+
+\begin{ddtaopen}[title={Signature non congelata}]
+Questa guida non inventa un modello container/item, storage owner, persistence semantics o lifecycle. \texttt{storedIn} resta \texttt{TESTED\_POSITIVE / NOT\_ADMITTED}.
+\end{ddtaopen}
+
+\subsection{CC-04 initiate}
+\candidatetag
+
+\subsubsection{Working minimum signature}
+\begin{lstlisting}
+initiate
+    initiator -> BAReferent [1]
+    initiated -> BAReferent [1]
+\end{lstlisting}
+
+\subsubsection{Semantica minima}
+Rappresenta una relazione diretta in cui un referent avvia/richiede l'avvio di un altro significato governato. La signature non distingue ancora request vs start come kind separati.
+
+\subsubsection{Non implica}
+\begin{lstlisting}
+success
+completion
+transfer
+service consumption
+create
+transition
+automatic trigger
+synchronous execution
+\end{lstlisting}
+
+Disposition: \texttt{TESTED\_POSITIVE / NOT\_ADMITTED}; formal G1--G8 e cross-corpus compatibility sono ancora richiesti.
+
+
+\subsection{Worked candidate examples R25}
+\begin{ddtaexample}[title={CC-04 initiate - DermaTriage FR-21}]
+FR-21 governa che un \texttt{DirectClient} usi \texttt{POST /analyze} per avviare il processo di triage. La working minimum signature e':
+\begin{lstlisting}
+initiate
+    initiator -> DirectClient
+    initiated -> DermaTriageTriageProcess
+\end{lstlisting}
+Questa evidence non implica success, completion, transfer o service consumption. \textbf{Status: TESTED POSITIVE / NOT ADMITTED.}
+\end{ddtaexample}
+
+\begin{ddtaexample}[title={CC-02 provideService - provider/service relation}]
+Quando una source governa il fatto che una parte \emph{fornisce} una capability come service, la relation provider-service puo' essere semanticamente indipendente dal fatto che un consumer specifico la usi. R25 ha trovato positive evidence per \texttt{provideService}, ma l'operatore non e' ammesso e non deve essere usato nella BA current senza formal gate.
+\end{ddtaexample}
+
+\begin{ddtaexample}[title={CC-03 storedIn - at-rest association}]
+DermaTriage contiene evidence di version/prompt persistence che ha mantenuto viva una relation at-rest distinta da create/transfer/observe. R25 la conserva come \texttt{storedIn} candidate, \textbf{TESTED POSITIVE / NOT ADMITTED}; la firma definitiva resta fuori da questa guida current.
+\end{ddtaexample}
+
+
+% -----------------------------------------------------------------------------
+\section{Working hypothesis respinte}
+\rejectedtag
+
+\begin{longtable}{L{45mm}L{95mm}}
+\toprule
+\textbf{Hypothesis} & \textbf{Disposition corrente} \\
+\midrule\endhead
+generic \texttt{consume} & NOT JUSTIFIED. \\
+generic \texttt{modify} & REJECTED - false semantics come generic operator. \\
+generic \texttt{persist} & NOT JUSTIFIED AS GENERIC OPERATOR. \\
+generic \texttt{expose} & NOT JUSTIFIED - current corpus decomposable. \\
+generic \texttt{trigger} & NOT JUSTIFIED AS SEPARATE PRIMITIVE; directed activation pressure routed to candidate \texttt{initiate} + condition. \\
+verb-specific \texttt{invoke} & ABSORBED BY CC-04 \texttt{initiate}. \\
+\texttt{initiationKind REQUEST|START} & REJECT REDUNDANT / OVER-SPECIFIC nel current evidence set. \\
+\bottomrule
+\end{longtable}
+
+% -----------------------------------------------------------------------------
+\section{BA3 - provenance, origin state e revalidation}
+\stabletag
+
+Ogni BA element meaning-bearing deve risolvere a una baseline governata e alla provenance richiesta dal contratto BA3.
+
+\subsection{Origin states}
+\begin{lstlisting}
+GROUNDED
+DERIVED
+DIAGNOSTIC_UNRESOLVED
+\end{lstlisting}
+
+\subsection{Tre responsabilita' distinte}
+\begin{lstlisting}
+sourceLink
+    dove e' supportato il significato
+
+derivationBasisBinding
+    quali elementi governati e quali ruoli fondano una derivazione
+
+revalidationContext
+    quale change/review context determina freshness e revalidation
+\end{lstlisting}
+
+Provenance non deve simulare una relazione BA2 mancante.
+
+\subsection{Derived semantics}
+Un elemento \texttt{DERIVED} richiede almeno:
+\begin{itemize}
+  \item derivation rule identificabile e versionata;
+  \item basis role-bound;
+  \item applicability contract;
+  \item output semantic contract;
+  \item lineage fino a governed source.
+\end{itemize}
+
+\subsection{Change e revalidation}
+\begin{lstlisting}
+source change
+    -> explicit impact / revalidation context
+    -> impacted BA elements
+    -> PENDING_REVIEW / STALE where applicable
+    -> RETAIN / REPLACE / RETIRE
+    -> accepted BA for new baseline
+    -> rebuild projections
+\end{lstlisting}
+
+Una accepted BA storica non viene mutata silenziosamente come se le analisi precedenti avessero usato la nuova semantica.
+
+% -----------------------------------------------------------------------------
+\section{Diagnostics e unresolved semantics}
+\stabletag
+
+Vocabolario operativo:
+\begin{lstlisting}
+MULTIPLE MATERIAL BA CANDIDATES
+BA REQUIRES UNSUPPORTED FACT
+BA LOSES GOVERNED MATERIAL DISTINCTION
+BA EXPOSES SOURCE CONFLICT
+NOT SPECIFIED
+\end{lstlisting}
+
+\begin{ddtacore}[title={NOT SPECIFIED}]
+\texttt{NOT SPECIFIED} non significa false, absent o denied. Significa che il significato necessario non e' determinato dalla baseline governata corrente.
+\end{ddtacore}
+
+\subsection{Quando preferire una diagnosis a una proposition}
+Usare una diagnosis quando la source non supporta una scelta univoca tra interpretazioni materialmente differenti, quando la firma corrente richiederebbe un fatto non governato o quando il metodo perderebbe una distinzione reale.
+
+% -----------------------------------------------------------------------------
+\section{BA5 - authoring canonico}
+\stabletag
+
+I semantic key devono essere canonici nel proprio semantic domain.
+
+\begin{itemize}
+  \item project referent names;
+  \item BA2 operator keys;
+  \item operator-scoped role keys;
+  \item semantic kind keys;
+  \item controlled property keys;
+  \item controlled value domains;
+  \item local-structure keys quando formalmente ammessi.
+\end{itemize}
+
+Sinonimia, traduzione, naming similarity o LLM similarity non stabiliscono equivalenza normativa automaticamente.
+
+\begin{ddtacore}[title={Registry boundary}]
+BA5 governa canonicalita' e resolution; non puo' ridefinire semantica, roleKey o cardinalita' di un operatore BA2. Per questi aspetti l'authority corrente resta BA2 R3.
+\end{ddtacore}
+
+% -----------------------------------------------------------------------------
+\section{BA4 - projection boundary}
+\stabletag
+
+\begin{lstlisting}
+governed documentation
+    -> accepted BA
+        -> projection
+            -> method-owned interpretation
+\end{lstlisting}
+
+Ogni meaning-bearing projection item deve tracciare alla BA.
+
+\subsection{Coverage modes}
+\begin{lstlisting}
+EXHAUSTIVE_FOR_DECLARED_SCOPE
+SELECTIVE
+\end{lstlisting}
+
+Una selective projection puo' omettere elementi senza dichiararli falsi o assenti. Una method-owned interpretation puo' aggiungere semantica del metodo downstream, ma deve restare trace-bound e non diventare BA/project authority.
+
+\subsection{Projection non autorizza inference upstream}
+Un DFD, un graph, una threat taxonomy o una vista architetturale non possono costringere la BA ad aggiungere endpoint, trust boundary, actor, data flow o service relationship non governati.
+
+% -----------------------------------------------------------------------------
+\section{Regression e acceptance della Base Analysis}
+\stabletag
+
+Dopo una material BA change o contract refinement:
+\begin{enumerate}
+  \item ricostruire o aggiornare la BA contro la source pin;
+  \item verificare ogni proposition materiale;
+  \item verificare diagnostics e forbidden inference;
+  \item controllare property/constraint scope;
+  \item controllare request/case/identity/evaluation bindings;
+  \item verificare signatures e cardinalita';
+  \item rieseguire usefulness/projection checks appropriati;
+  \item cercare counterexample e semantic loss;
+  \item riaprire soltanto il minimo owning layer se necessario.
+\end{enumerate}
+
+\subsection{Checklist pre-acceptance}
+\begin{enumerate}
+  \item authority e source revision sono pinned?
+  \item ogni referent ha identity solo quando necessaria?
+  \item ogni proposition usa operator/role canonici?
+  \item tutte le cardinalita' required sono source-grounded?
+  \item ruoli optional sono presenti solo se governati?
+  \item e' stato introdotto un fatto non governato?
+  \item un \texttt{NOT SPECIFIED} e' diventato default?
+  \item provenance e revalidation sono sufficienti?
+  \item local structure candidate e' stata scambiata per normative vocabulary?
+  \item una candidate R25 e' stata presentata come admitted?
+  \item una projection puo' consumare la BA senza reinterpretare prose per shared meaning gia' rappresentato?
+  \item esiste un counterexample che richiede targeted reopen?
+\end{enumerate}
+
+% -----------------------------------------------------------------------------
+\section{Open register R25 da preservare nella prossima revisione}
+\opentag
+
+\begin{longtable}{L{25mm}L{55mm}L{58mm}}
+\toprule
+\textbf{ID} & \textbf{Tema} & \textbf{Stato corrente} \\
+\midrule\endhead
+PR-01 & perform / execution identity & PRESSURE RETAINED; irreducibility not demonstrated. \\
+PR-02 & pipeline composition/order & OPEN. \\
+PR-03 & interface/path/invocation & RECONCILED / CC-04. \\
+PR-04 & boundary/interaction & OPEN. \\
+PR-05 & ordered comparison & ROUTE CL-01. \\
+PR-06 & scalar/property comparison & ROUTE CL-01. \\
+PR-07 & structured information contract & OPEN. \\
+PR-08 & at-rest storage & RECONCILED / CC-03. \\
+PR-09 & acquisition/refresh & OPEN. \\
+PR-10 & conditional action trigger & RECONCILED / CC-04 + CONDITION. \\
+PR-11 & data/evidence consumption & RECONCILED. \\
+PR-12 & negative implication/non-sufficiency & OPEN. \\
+PR-13 & bounded/ranked/recency selection & REUSABLE SELECTION STRUCTURE / NON-NORMATIVE. \\
+PR-14 & applicability/configuration binding & OPEN. \\
+CMD-OP04 & remove observe.result & DEFERRED. \\
+CMD-OP05 & transition state/value refinement & DEFERRED. \\
+OBS-OT-01 & operation-target/effect-scope & LEVEL UNRESOLVED. \\
+\bottomrule
+\end{longtable}
+
+% -----------------------------------------------------------------------------
+\section{Cosa questa revisione non chiude}
+
+Questa candidate non chiude:
+\begin{itemize}
+  \item BA6 integrated acceptance;
+  \item formal admission di \texttt{provideService}, \texttt{storedIn}, \texttt{initiate};
+  \item ordered/scalar comparator vocabulary oltre \texttt{equals/notEquals};
+  \item typing finale della selection structure;
+  \item pipeline membership/order representation;
+  \item function/process/behavior identity pressure;
+  \item boundary/interactions, structured information, acquisition/refresh, negative non-sufficiency, applicability binding;
+  \item CMD-OP04, CMD-OP05 e OBS-OT-01.
+\end{itemize}
+
+\section{Gate di review della candidate example-enriched}
+\Rtwentyfivetag
+
+La review di questa candidate deve verificare, senza assumere che la presenza di un esempio chiuda automaticamente la semantica:
+\begin{enumerate}
+  \item ogni top-level operator conserva definizione, firma, roleKey e cardinalita' della R2/R3 current authority;
+  \item ogni esempio e' source-grounded oppure marcato esplicitamente come didattico non normativo;
+  \item Facial Access e DermaTriage vengono usati come evidence, non come fonte automatica di nuove regole;
+  \item il percorso source meaning $\rightarrow$ semantic facts $\rightarrow$ BAReferent $\rightarrow$ BAProposition e' ricostruibile;
+  \item rejected alternative routing e forbidden inference restano visibili;
+  \item condition language, selection, pipeline/order e candidate construct mantengono lo status epistemico corretto;
+  \item i casi senza clean positive control non vengono artificialmente forzati.
+\end{enumerate}
+
+\begin{ddtacore}[title={Acceptance criterion della candidate example-enriched}]
+La guida potra' essere considerata promotion-eligible soltanto dopo una review cumulativa R3 $\rightarrow$ R4 che dimostri che nessuna distinzione stabile e' andata persa e che nessun esempio ha promosso implicitamente un costrutto OPEN o CANDIDATE.
+\end{ddtacore}
+
+\appendix
+\section{Quick syntax sheet - top-level operators}
+
+\begin{lstlisting}
+transfer
+    behavior    -> BAReferent [0..1]
+    source      -> BAReferent [1]
+    destination -> BAReferent [1..*]
+    content     -> BAReferent [1..*]
+
+produce
+    actor  -> BAReferent [1]
+    result -> BAReferent [1..*]
+    input  -> BAReferent [0..*]
+
+create
+    actor   -> BAReferent [1]
+    created -> BAReferent [1..*]
+
+observe
+    actor    -> BAReferent [1]
+    observed -> BAReferent [1..*]
+    result   -> BAReferent [0..*]
+
+transition
+    subject   -> BAReferent [1]
+    toState   -> BAReferent [1]
+    actor     -> BAReferent [0..1]
+    fromState -> BAReferent [0..1]
+
+correlate
+    correlatedItem     -> BAReferent [1..*]
+    correlationContext -> BAReferent [1]
+
+reference
+    referencer -> BAReferent [1]
+    referenced -> BAReferent [1..*]
+
+dependOn
+    dependent    -> BAReferent [1]
+    prerequisite -> BAReferent [1..*]
+
+consumeService
+    consumer -> BAReferent [1..*]
+    service  -> BAReferent [1]
+    provider -> BAReferent [0..1]
+
+realize
+    abstract    -> BAReferent [1]
+    realization -> BAReferent [1..*]
+
+assignResponsibility
+    responsibleParty    -> BAReferent [1..*]
+    responsibilityScope -> BAReferent [1]
+    responsibilityKind  -> BAReferent [1]
+
+constrain
+    constraintTarget -> BAReferent [1]
+    constraintValue  -> controlled value/structure [1..*]
+
+classify
+    classifiedReferent -> BAReferent [1]
+    semanticKind       -> BAReferent [1..*]
+
+decisionRule
+    actor  -> BAReferent [1]
+    input  -> BAReferent [1..*]
+    result -> BAReferent [1]
+    rule   -> operator-local structure
+\end{lstlisting}
+
+\section{Quick syntax sheet - condition language}
+\begin{lstlisting}
+comparison
+    referent      -> BAReferent [1]
+    property      -> controlled semantic key [1]
+    comparisonKey -> equals | notEquals
+    value         -> typed local value | BAReferent [1]
+
+satisfies
+    subject   -> BAReferent [1]
+    condition -> BAReferent [1]
+
+allOf
+    childCondition -> decisionCondition [2..*]
+
+anyOf
+    childCondition -> decisionCondition [2..*]
+
+not
+    childCondition -> decisionCondition [1]
+
+resultAssignment
+    target -> BAReferent [1]
+    value  -> typed local value | BAReferent [1]
+\end{lstlisting}
+
+\section{Quick status sheet - non-current constructs}
+\begin{lstlisting}
+selection
+    REUSABLE_SELECTION_STRUCTURE / NON-NORMATIVE
+
+provideService
+    TESTED_POSITIVE / NOT_ADMITTED
+    signature = NOT FROZEN
+
+storedIn
+    TESTED_POSITIVE / NOT_ADMITTED
+    signature = NOT FROZEN
+
+initiate
+    TESTED_POSITIVE / NOT_ADMITTED
+    working minimum:
+        initiator -> BAReferent [1]
+        initiated -> BAReferent [1]
+
+pipeline/order
+    OPEN
+    no new top-level operator admitted
+\end{lstlisting}
+
+
+\clearpage
+\section{Matrice degli accoppiamenti semantici ricorrenti}
+
+Questa matrice risponde a una domanda pratica frequente: \emph{quando due ruoli o componenti ``si accoppiano'', quale operatore descrive davvero la relazione?} La risposta non dipende dal nome tecnico degli endpoint ma dal significato governato.
+
+\begin{ddtacore}[title={Regola fondamentale}]
+Un pattern architetturale o una coppia di ruoli non crea automaticamente un operatore. La stessa coppia \texttt{client/API}, \texttt{producer/consumer} o \texttt{provider/consumer} puo' richiedere proposition diverse a seconda che la source governi initiation, service consumption, transfer, production, constraint, responsibility o correlation.
+\end{ddtacore}
+
+\begin{landscape}
+\small
+\begin{longtable}{L{38mm}L{44mm}L{55mm}L{92mm}}
+\toprule
+\textbf{Pattern intuitivo} & \textbf{Significato governato} & \textbf{Operator / composition} & \textbf{Come leggerlo e cosa non inferire} \\
+\midrule\endhead
+Provider -- Service -- Consumer & il consumer usa effettivamente una capability/service & \texttt{consumeService}; \texttt{provider} opzionale se governato & Il provider puo' essere incluso nel ruolo opzionale current. \texttt{provideService} e' candidate separato solo se la provider-service relation deve vivere indipendentemente dal consumer. \\
+
+Service Provider -- Service & una parte fornisce un service indipendentemente da uno specifico consumer & \texttt{provideService} \textbf{CANDIDATE / NOT ADMITTED} & Positive R25 evidence, ma non usare come operator current finche' G1--G8 non chiude l'admission. \\
+
+Producer -- Result & un actor rende disponibile un result & \texttt{produce} & Non implica destination, consumer, transfer o nuova identity. \\
+
+Producer -- Result -- Consumer & A produce X; B usa X in una propria operazione & \texttt{produce(A,X)} + X come \texttt{input} nella proposition di B & Non esiste un generic \texttt{consumeData} current: CC-01 e' stato respinto come ridondante nello scope testato. \\
+
+Sender -- Content -- Receiver & conveyance esplicita source-to-destination & \texttt{transfer} & Payload, source e destination sono governati. Non implica service consumption, success o protocollo. \\
+
+API / Endpoint -- Client & il client avvia/invoca una capability & \texttt{initiate} \textbf{CANDIDATE}; eventualmente \texttt{consumeService} se la source governa service use & ``Client usa API'' non basta: separare initiation, service consumption, request/response transfer e constraints di autenticazione. \\
+
+API -- Request/Response -- Client & request/response content attraversa un boundary & \texttt{transfer} per i payload; \texttt{correlate} per same-request binding & Non modellare automaticamente l'endpoint come service provider o l'invocazione come transfer se la source non governa il payload. \\
+
+Client -- Protected API & l'uso e' consentito solo con un meccanismo/credential governato & \texttt{constrain} sul target o sul contract; altri operatori descrivono l'azione & Esempio DermaTriage: X-API-Key e bearer JWT. Constraint != authentication execution. \\
+
+Initiator -- Process/Operation & una parte avvia un processo/operazione & \texttt{initiate} \textbf{CANDIDATE / NOT ADMITTED} & Non implica che il processo completi con successo, produca risultato o consumi un service. \\
+
+Observer -- Existing State/Data & lettura/query/ispezione di significato esistente & \texttt{observe} & Se la query seleziona membri secondo criteri, la selected-membership semantics resta separata. \\
+
+Selector -- Candidate Population -- Selected Result & scelta governata fra candidati & local \texttt{selection} structure \textbf{NON-NORMATIVE} & Ranking, bound, recency e selection sono distinzioni separabili. Nessun top-level operator nuovo ammesso. \\
+
+Classifier -- Referent -- Kind & assegnazione di category/kind & \texttt{classify} & Non confondere con selection tra candidati, transition di lifecycle o generic property assignment. \\
+
+Decision Actor -- Inputs -- Result & mapping governato da conditions/input a result & \texttt{decisionRule} + condition language & Un allowed result domain o una conditional action non bastano da soli. \\
+
+Responsible Party -- Scope -- Responsibility Kind & authority/responsibility esplicita & \texttt{assignResponsibility} & Provider, actor, producer e owner tecnico non diventano responsible party per default. \\
+
+Abstract Capability -- Concrete Realization & un elemento concreto materializza un significato astratto & \texttt{realize} & Non equivale a perform/execute e non assegna responsibility. \\
+
+Dependent -- Prerequisite & prerequisite semantico & \texttt{dependOn} & Temporal order, pipeline adjacency e ``usa prima'' non bastano. \\
+
+Referencer -- Referenced Target & A riguarda/punta a B senza binding piu' forte & \texttt{reference} & Se serve same-case/same-request identity, usare \texttt{correlate}. \\
+
+Item(s) -- Same Context & same-request/case/evaluation binding & \texttt{correlate} & Non e' generic association: il shared context deve essere materialmente governato. \\
+
+Subject -- From/To State & stessa identity attraversa state/lifecycle change & \texttt{transition} & Version selection, property update e rollback support non bastano senza same-identity state semantics. \\
+
+Actor -- New Item/Occurrence & nasce una nuova identity project-semantic & \texttt{create} & Non confondere con output production o persistence. \\
+
+Target -- Restriction/Domain & restriction governata riusabile/queryable & \texttt{constrain} & Local condition, selection bound e decision mapping restano concetti diversi. \\
+
+Stored Item -- Store & at-rest association materialmente indipendente & \texttt{storedIn} \textbf{CANDIDATE / NOT ADMITTED} & Non assorbire in create, transfer o observe; non usare come current operator finche' non ammesso. \\
+
+Pipeline Stage A -- Stage B & membership/order fra stadi & \textbf{OPEN local composition question} & \texttt{precedes != dependOn != transfer != initiate}. La pipeline non e' un top-level operator current. \\
+\bottomrule
+\end{longtable}
+\end{landscape}
+
+\section{Matrice rapida: quale operatore provo per primo?}
+\begin{longtable}{L{47mm}L{48mm}L{48mm}}
+\toprule
+\textbf{Domanda semantica} & \textbf{Primo costrutto da valutare} & \textbf{Boundary da controllare subito} \\
+\midrule\endhead
+Chi rende disponibile un risultato? & \texttt{produce} & \texttt{create}, \texttt{transfer}, \texttt{decisionRule} \\
+Nasce una nuova identity/occurrence? & \texttt{create} & \texttt{produce}, \texttt{transition} \\
+Qualcosa passa da source a destination? & \texttt{transfer} & \texttt{produce}, \texttt{consumeService}, \texttt{initiate} candidate \\
+Qualcuno legge/ispeziona qualcosa di esistente? & \texttt{observe} & selection, transfer, transition \\
+La stessa identity cambia stato? & \texttt{transition} & version selection, qualification, property update \\
+Due elementi devono restare nello stesso case/request? & \texttt{correlate} & \texttt{reference} \\
+A riguarda B senza same-context requirement? & \texttt{reference} & \texttt{correlate}, \texttt{dependOn} \\
+A richiede B come prerequisite? & \texttt{dependOn} & temporal order, pipeline order \\
+A usa una capability/service? & \texttt{consumeService} & endpoint presence, transfer, provider relation \\
+Un concreto materializza un abstract meaning? & \texttt{realize} & execution, classify, responsibility \\
+La source assegna responsibility/authority? & \texttt{assignResponsibility} & actor/provider/producer roles \\
+Esiste una restriction riusabile sul target? & \texttt{constrain} & local condition, decision mapping, selection bound \\
+A appartiene a un semantic kind? & \texttt{classify} & selection, transition, property assignment \\
+Conditions/input determinano un result? & \texttt{decisionRule} & conditional action, allowed domain, selection \\
+La source governa ``best/top-N/recent-N''? & local \texttt{selection} candidate structure & ranking, bound, observe/retrieval \\
+La source governa ``invoca/avvia''? & \texttt{initiate} candidate & transfer, consumeService, success/completion \\
+La source governa provider-service indipendente? & \texttt{provideService} candidate & consumeService.provider optional role \\
+La source governa at-rest association? & \texttt{storedIn} candidate & create, observe, transfer \\
+\bottomrule
+\end{longtable}
+
+
+\section{Quick question matrix - dalla domanda al costrutto}
+
+\begin{longtable}{L{52mm}L{45mm}L{43mm}}
+\toprule
+\textbf{Domanda rapida} & \textbf{Se SI, provare} & \textbf{Non confondere con} \\
+\midrule\endhead
+Viene reso disponibile un risultato? & \texttt{produce} & \texttt{create}, \texttt{transfer} \\
+Nasce una nuova identity/occurrence? & \texttt{create} & \texttt{produce}, \texttt{transition} \\
+Si legge/ispeziona qualcosa di esistente? & \texttt{observe} & \texttt{transfer}, selection \\
+La stessa identity cambia stato? & \texttt{transition} & property update, classification \\
+Content passa da source a destination? & \texttt{transfer} & \texttt{consumeService} \\
+Serve same-context binding? & \texttt{correlate} & \texttt{reference} \\
+A richiama semplicemente B? & \texttt{reference} & \texttt{correlate}, \texttt{dependOn} \\
+B e' prerequisite reale di A? & \texttt{dependOn} & ordering \\
+A usa un service/capability B? & \texttt{consumeService} & \texttt{transfer}, provider relation \\
+Concrete X materializza abstract Y? & \texttt{realize} & execution/perform \\
+Responsibility/authority e' assegnata? & \texttt{assignResponsibility} & actor/provider/producer \\
+Un target e' limitato da valore/dominio? & \texttt{constrain} & condition locale, \texttt{classify} \\
+Viene assegnato un semantic kind? & \texttt{classify} & state/value assignment \\
+Conditions/input determinano result? & \texttt{decisionRule} & conditional action \\
+X soddisfa condition Y senza property model? & \texttt{satisfies} & invented boolean comparison \\
+Si sceglie subset/top-K/recent-N/best? & local \texttt{selection} & ranking, bound, observe \\
+Si descrive membership/order di pipeline? & OPEN local structure review & \texttt{dependOn}, \texttt{transfer} \\
+A avvia B senza implicare esito? & \texttt{initiate} CANDIDATE & \texttt{transfer}, \texttt{create}, \texttt{transition} \\
+Nessuna forma preserva il significato? & diagnosis / pressure & local vocabulary invention \\
+\bottomrule
+\end{longtable}
+
+\begin{ddtacore}[title={Ultima domanda prima di accettare una proposition}]
+Se rileggo soltanto la source governata, posso giustificare ogni referent, roleKey, cardinalita' effettivamente popolata e condition della proposition senza usare conoscenza dell'implementazione, convenzioni del tool o inferenze downstream? Se NO, la proposition non e' ancora accettabile.
+\end{ddtacore}
+
+\section{Provenance degli esempi principali}
+\begin{tabularx}{\textwidth}{L{48mm}Y}
+\toprule
+\textbf{Corpus / source} & \textbf{Uso nella guida} \\
+\midrule
+Facial Access candidate R2 - D-3.1, D-3.4, D-3.5, D-3.6, FR-3.2.1, FR-3.4.2 & realize, assignResponsibility boundary, dependOn, consumeService, constrain, produce, transfer, correlate. Candidate documentation usata come evidence didattica; non viene promossa a project authority da questa guida. \\
+Facial Access accepted BA evidence richiamata dalla R3 & reference, decisionRule, role/signature regression e operator boundaries. \\
+DermaTriage governed R1 - DEC-12..18 e FR-01..27 & produce, transfer, correlate, reference, dependOn, consumeService, constrain, classify, decisionRule, selection, pipeline/order, candidate construct pressure e negative controls. \\
+R25 working findings / pressure ledger & status di CC-01..CC-04, PR-01..PR-14, CL-01..CL-05, CMD-OP04/05 e OBS-OT-01. \\
+\bottomrule
+\end{tabularx}
+
+\end{document}

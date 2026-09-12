@@ -1,0 +1,31 @@
+package: DDTA_R25_BASE_ANALYSIS_GUIDES_CONSOLIDATION_R42
+status: CANDIDATE_GUIDE_CONSOLIDATION
+normative: false
+authority_change: false
+repository_baseline: bea1e6567d3f861294378b201648b0853b3c8a43
+replaces_need_to_apply:
+  - R39 semantic-guide working drop-in
+  - R40 example-guide working drop-in
+  - R41 question-complete working drop-in
+does_not_replace:
+  - methodology/DDTA_BASE_ANALYSIS_OPERATIONAL_GUIDE_R3.tex
+  - current BA0-BA5 authority artifacts
+artifacts:
+  core:
+    tex: methodology/DDTA_BASE_ANALYSIS_CORE_GUIDE_R1_CANDIDATE_R1.tex
+    pdf: methodology/DDTA_BASE_ANALYSIS_CORE_GUIDE_R1_CANDIDATE_R1.pdf
+    examples: false
+    question_pack: false
+  complete:
+    tex: methodology/DDTA_BASE_ANALYSIS_COMPLETE_GUIDE_R1_CANDIDATE_R1.tex
+    pdf: methodology/DDTA_BASE_ANALYSIS_COMPLETE_GUIDE_R1_CANDIDATE_R1.pdf
+    examples: true
+    question_pack: Q00-Q52
+  companions:
+    - methodology/DDTA_BASE_ANALYSIS_SEMANTIC_COUPLING_MATRIX_R1.md
+    - methodology/DDTA_BASE_ANALYSIS_QUESTION_DRIVEN_DISCRIMINATION_MATRIX_R1.md
+    - methodology/DDTA_R25_BASE_ANALYSIS_GUIDE_SET_INDEX_R1.md
+application_policy:
+  additive_only: true
+  clean_tree_required: false
+  destination_collision_must_abort: true
