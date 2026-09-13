@@ -1,0 +1,7 @@
+DDTA_DERMATRIAGE_PARALLEL_CASE_STUDY_R1 - Page MD5 Index
+Canonical payload: LaTeX content between PAGE-CONTENT markers; own printed MD5 excluded.
+Integrity-index page resolves all other page hashes and canonicalizes its own hash as <SELF>.
+
+Page 1  ccabe4bed7cca4d2f68a2005e42f36e3  Frontespizio e struttura del case study
+Page 2  0fb76dc0491da2793823b20571e5268b  Contesto generale del progetto - Project Problem Framing
+Page 3  54275f1583e53f3d9e98664420b2b6c6  Indice di integrita' delle pagine [INTEGRITY INDEX]

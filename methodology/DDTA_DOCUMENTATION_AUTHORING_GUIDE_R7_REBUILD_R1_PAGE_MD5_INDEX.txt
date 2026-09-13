@@ -1,0 +1,12 @@
+DDTA_DOCUMENTATION_AUTHORING_GUIDE_R7_REBUILD_R1 - Page MD5 Index
+Canonical payload: LaTeX content between PAGE-CONTENT markers; own printed MD5 excluded.
+Integrity-index page resolves all other page hashes and canonicalizes its own hash as <SELF>.
+
+Page 1  ab8157b85a52435776d7eb2304bfd739  Frontespizio della nuova guida di authoring
+Page 2  ff9a9668a60997749cf42fa72738d4d5  Project Problem Framing - definizione e regole di authoring
+Page 3  d731e5773810161fc1612856202f0cf9  Project Problem Framing - procedura umana, gate ed esempio DermaTriage
+Page 4  3bdac4b5fec97501c23d7968bf1619d5  Project Problem Framing - LLM Execution Profile e prompt canonico
+Page 5  492447128b2b1b19312002ee80666351  Project Problem Framing - regola LLM e classificazione dei campi
+Page 6  dd6326ef067e8650d8c2fb33662caf1b  Project Problem Framing - formato esatto dell'output LLM
+Page 7  8828e008581efc3d40954e198bdb8c0c  Project Problem Framing - gate LLM e nota sui controlli quantitativi
+Page 8  690aafdc5bb97b563786dbd7f7e31a59  Indice di integrita' delle pagine [INTEGRITY INDEX]

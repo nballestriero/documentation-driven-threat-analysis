@@ -1,0 +1,125 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{DDTA_METHODOLOGY_GUIDE_STYLE_R1}
+\usepackage{paracol}
+
+\hypersetup{
+  pdftitle={DDTA DermaTriage - Documentation and Base Analysis Case Study},
+  pdfauthor={Documentation-Driven Threat Analysis research project}
+}
+
+% -----------------------------------------------------------------------------
+% PAGE-INTEGRITY HASHES
+% Generated over the canonical LaTeX payload between PAGE-CONTENT markers.
+% Hash lines themselves are excluded. On the integrity-index page, hashes of
+% preceding pages are resolved before hashing, while the page's own hash is
+% represented by the canonical token <SELF> to avoid self-reference.
+% -----------------------------------------------------------------------------
+\newcommand{\PageMDfive}[1]{\csname PageMDfive#1\endcsname}
+%<PAGE-HASH-DEFS>
+\expandafter\def\csname PageMDfive1\endcsname{ccabe4bed7cca4d2f68a2005e42f36e3}
+\expandafter\def\csname PageMDfive2\endcsname{0fb76dc0491da2793823b20571e5268b}
+\expandafter\def\csname PageMDfive3\endcsname{54275f1583e53f3d9e98664420b2b6c6}
+%</PAGE-HASH-DEFS>
+
+\newcommand{\PageHashFooter}[1]{%
+  \fancyfoot[R]{\sffamily\scriptsize\color{DDTAGray}MD5 contenuto: \texttt{#1}}%
+}
+
+\newcommand{\IntegrityRow}[3]{#1 & #2 & {\footnotesize\ttfamily #3} \\
+}
+
+\begin{document}
+\selectlanguage{italian}
+\fancyhead[L]{\sffamily\small\color{DDTAGray}DDTA - DermaTriage Case Study}
+\fancyhead[R]{\sffamily\small\color{DDTABlue}Documentation + Base Analysis}
+\fancyfoot[L]{\sffamily\scriptsize\color{DDTAGray}Documentation 2/3 - Base Analysis 1/3}
+
+%<PAGE-DESC:1>Frontespizio e struttura del case study
+%<PAGE-CONTENT:1>
+\begin{titlepage}
+\thispagestyle{empty}
+\vspace*{10mm}
+{\sffamily\bfseries\color{DDTANavy}\fontsize{15}{18}\selectfont Documentation-Driven Threat Analysis}\par
+\vspace{5mm}
+{\sffamily\bfseries\color{DDTANavy}\fontsize{29}{33}\selectfont DermaTriage Case Study}\par
+\vspace{2mm}
+{\sffamily\color{DDTABlue}\fontsize{18}{22}\selectfont Documentation + Base Analysis}\par
+
+\vspace{12mm}
+\begin{tcolorbox}[enhanced,arc=3pt,boxrule=0pt,colback=DDTANavy,left=13pt,right=13pt,top=12pt,bottom=12pt]
+{\color{white}\sffamily\bfseries\large Ricostruzione DDTA del progetto DermaTriage}\par
+\vspace{2mm}
+{\color{white!88}\small La documentazione di progetto occupa la parte principale della pagina. La Base Analysis viene riportata in parallelo nella colonna laterale soltanto quando esiste un significato documentale da analizzare.}
+\end{tcolorbox}
+
+\vfill
+\begin{ddtacore}[title={Struttura del case study}]
+Il documento segue la progressione DDTA dal contesto generale del progetto agli elementi documentali successivi. Ogni elemento viene presentato nella colonna documentale; la colonna Base Analysis mostra esclusivamente l'analisi derivabile da quel significato, senza introdurre fatti di progetto aggiuntivi.
+\end{ddtacore}
+
+\vspace{5mm}
+{\sffamily\scriptsize\color{DDTAGray}MD5 contenuto pagina 1: \texttt{\PageMDfive{1}}}\par
+\end{titlepage}
+%</PAGE-CONTENT:1>
+
+%<PAGE-DESC:2>Contesto generale del progetto - Project Problem Framing
+%<PAGE-CONTENT:2>
+\PageHashFooter{\PageMDfive{2}}
+\section{Contesto generale del progetto}
+
+\setlength{\columnsep}{7mm}
+\setlength{\columnseprule}{0.35pt}
+\columnratio{0.67}
+\begin{paracol}{2}
+
+% LEFT 2/3 - DOCUMENTATION
+{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
+\vspace{0.5em}
+
+\begin{ddtacore}[title={Project Problem Framing}]
+Il problema che DermaTriage deve affrontare e' il supporto al triage precoce di casi dermatologici relativi a lesioni potenzialmente oncologiche. Il progetto parte dalle informazioni gia' disponibili sul caso per determinarne l'urgenza e una priorita' operativa di presa in carico, con l'obiettivo di favorire un instradamento specialistico tempestivo.
+\end{ddtacore}
+
+\switchcolumn
+
+% RIGHT 1/3 - BASE ANALYSIS ONLY
+{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
+\vspace{0.5em}
+
+\begin{ddtaworking}[title={Base Analysis}]
+\small
+Il contesto generale definisce il problema affrontato dal progetto, ma non introduce ancora un elemento documentale strutturato da decomporre in referenti e proposizioni. La Base Analysis viene quindi applicata a partire dagli elementi DDTA successivi, quando il significato governato rende identificabili responsabilita', relazioni, condizioni o risultati analizzabili.
+\end{ddtaworking}
+
+\end{paracol}
+%</PAGE-CONTENT:2>
+
+\clearpage
+%<PAGE-DESC:3>Indice di integrita' delle pagine
+%<PAGE-CONTENT:3>
+\PageHashFooter{\PageMDfive{3}}
+\section{Indice di integrita' delle pagine}
+
+\begin{ddtacore}[title={Regola di verifica}]
+Ogni pagina possiede un MD5 del proprio contenuto canonico. Il calcolo esclude il valore MD5 stampato sulla pagina, gli header/footer e i metadati di impaginazione esterni al relativo blocco di contenuto. Per la pagina dell'indice, gli hash delle pagine precedenti fanno parte del contenuto controllato; il solo hash della pagina indice viene sostituito dal token canonico \texttt{<SELF>} durante il calcolo, evitando una dipendenza circolare.
+\end{ddtacore}
+
+\vspace{3mm}
+\begin{tabularx}{\textwidth}{L{12mm}L{72mm}Y}
+\toprule
+\textbf{Pag.} & \textbf{Contenuto} & \textbf{MD5 contenuto} \\
+\midrule
+%<PAGE-INTEGRITY-ROWS>
+\IntegrityRow{1}{Frontespizio e struttura del case study}{\PageMDfive{1}}
+\IntegrityRow{2}{Contesto generale del progetto - Project Problem Framing}{\PageMDfive{2}}
+\IntegrityRow{3}{Indice di integrita' delle pagine}{\PageMDfive{3}}
+%</PAGE-INTEGRITY-ROWS>
+\bottomrule
+\end{tabularx}
+
+\vspace{4mm}
+{\small\color{DDTAGray}
+Quando una pagina viene modificata intenzionalmente, cambia il suo MD5. Le pagine non interessate dal passaggio devono mantenere lo stesso valore; una variazione inattesa segnala una modifica da riesaminare prima di proseguire.}
+%</PAGE-CONTENT:3>
+
+\end{document}

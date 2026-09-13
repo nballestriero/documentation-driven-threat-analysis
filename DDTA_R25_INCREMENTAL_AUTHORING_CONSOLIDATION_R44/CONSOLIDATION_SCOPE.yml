@@ -1,0 +1,38 @@
+package: DDTA_R25_INCREMENTAL_AUTHORING_CONSOLIDATION_R44
+repository: nballestriero/documentation-driven-threat-analysis
+baseline_branch: master
+baseline_commit: 0b8249e11bcd2c93f12866b1f43e0b2d5508fbc3
+baseline_commit_message: "R25: consolidate BA and documentation guide candidates R42-R43"
+status: incremental-consolidation-only
+promotes_methodology: false
+commits_or_pushes: false
+
+artifacts:
+  documentation_guide:
+    path: methodology/DDTA_DOCUMENTATION_AUTHORING_GUIDE_R7_REBUILD_R1.tex
+    pdf: methodology/DDTA_DOCUMENTATION_AUTHORING_GUIDE_R7_REBUILD_R1.pdf
+    role: incremental rebuild of documentation authoring guide
+    authority_effect: none until separately reviewed and promoted
+    current_content_scope:
+      - Project Problem Framing
+      - human authoring guidance
+      - LLM execution profile
+      - exact LLM output schema
+      - per-page MD5 integrity mechanism
+  dermatriage_case_study:
+    path: validation-evidence/dermatriage/post-holdout-method-review-r1/incremental-authoring-case-study-r1/DDTA_DERMATRIAGE_PARALLEL_CASE_STUDY_R1.tex
+    pdf: validation-evidence/dermatriage/post-holdout-method-review-r1/incremental-authoring-case-study-r1/DDTA_DERMATRIAGE_PARALLEL_CASE_STUDY_R1.pdf
+    role: step-by-step documentation + BA validation artifact
+    current_content_scope:
+      - approved Project Problem Framing
+      - BA not yet applicable at framing level
+      - per-page MD5 integrity mechanism
+  reusable_utility:
+    path: tools/update_page_md5.py
+    role: canonical reusable PAGE-CONTENT per-page MD5 updater
+
+next_methodological_step:
+  - derive DermaTriage MR-01 from OR2 source evidence
+  - use that exercise to write and validate the MacroRequirement section of the rebuilt guide
+  - add LLM prompt, exact output schema, field classification, and anti-rewording checks for MacroRequirement
+  - later add corpus similarity diagnostics using established metrics only
