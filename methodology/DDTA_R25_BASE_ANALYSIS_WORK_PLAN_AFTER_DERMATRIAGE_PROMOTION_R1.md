@@ -1,6 +1,16 @@
 # DDTA R25 - Base Analysis Work Plan after DermaTriage Promotion R1
 
-**Status:** ACTIVE / BASE ANALYSIS AUTHORIZED TO START AFTER PROMOTION COMMIT
+**Status:** CLOSED / SUPERSEDED BY `DDTA_R25_DOCUMENTATION_AND_BA_GUIDE_REWRITE_WORK_PLAN_R1.md`
+
+This historical plan is preserved in full for research provenance. Its BA-first execution sequence no longer describes the current R25 research workflow after the documentation-authoring guide and source-first DermaTriage reconstruction were deliberately reopened for controlled method validation.
+
+The active successor is:
+
+`methodology/DDTA_R25_DOCUMENTATION_AND_BA_GUIDE_REWRITE_WORK_PLAN_R1.md`
+
+---
+
+**Historical status:** ACTIVE / BASE ANALYSIS AUTHORIZED TO START AFTER PROMOTION COMMIT
 **Promotion predecessor:** `bf2236cf921b73309b162c74af11e4edb6e95db9`
 **Project authority:** `DERMATRIAGE-GOV-R1`
 **Documentation-authoring methodology authority:** `DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R5`
