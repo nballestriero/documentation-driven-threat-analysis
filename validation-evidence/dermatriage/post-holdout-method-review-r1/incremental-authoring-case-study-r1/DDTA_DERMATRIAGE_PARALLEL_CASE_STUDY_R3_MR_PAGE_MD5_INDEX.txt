@@ -1,0 +1,11 @@
+DDTA_DERMATRIAGE_PARALLEL_CASE_STUDY_R3_MR - Page MD5 Index
+Canonical payload: LaTeX content between PAGE-CONTENT markers; own printed MD5 excluded.
+Integrity-index page resolves all other page hashes and canonicalizes its own hash as <SELF>.
+
+Page 1  ccabe4bed7cca4d2f68a2005e42f36e3  Frontespizio e struttura del case study
+Page 2  0fb76dc0491da2793823b20571e5268b  Contesto generale del progetto - Project Problem Framing
+Page 3  6d31dd026458ea1ce9ff658056f4005d  MR-01 - Valutazione di triage del caso dermatologico
+Page 4  875bd4afdf8e6be8b1995cc234253f2e  MR-02 - Indicazione della destinazione specialistica
+Page 5  cb96dc22bf50d9f157f55b0374c9ca91  MR-03 - Validazione e correzione medica degli esiti
+Page 6  eec204cc9e490ffbdb154dd3ad79505c  MR-04 - Adattamento controllato sulla base della revisione clinica
+Page 7  26ab3bc6525c4c4c7ac958045a2487d9  Indice di integrita' delle pagine [INTEGRITY INDEX]

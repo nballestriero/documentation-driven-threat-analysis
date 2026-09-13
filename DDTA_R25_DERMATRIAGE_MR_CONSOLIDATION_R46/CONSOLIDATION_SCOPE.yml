@@ -1,0 +1,34 @@
+package: DDTA_R25_DERMATRIAGE_MR_CONSOLIDATION_R46
+repository: nballestriero/documentation-driven-threat-analysis
+branch: master
+apply_on_exact_baseline: ed2e9dc89515e9f578af1776cafdb7b42c49636c
+commit_or_push: false
+current_authorities:
+  documentation: methodology/DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R5.tex
+  base_analysis: methodology/DDTA_BASE_ANALYSIS_OPERATIONAL_GUIDE_R3.tex
+frozen_guide_experiment_baseline:
+  path: methodology/DDTA_DOCUMENTATION_AUTHORING_GUIDE_R7_REBUILD_R3.tex
+  sha256_pdf: a6aeeaf7f103748128e77eb0d50445c822ffe852e0b173584955b5eb0488f373
+frozen_dermatriage_mr_case_study:
+  tex: validation-evidence/dermatriage/post-holdout-method-review-r1/incremental-authoring-case-study-r1/DDTA_DERMATRIAGE_PARALLEL_CASE_STUDY_R3_MR.tex
+  pdf: validation-evidence/dermatriage/post-holdout-method-review-r1/incremental-authoring-case-study-r1/DDTA_DERMATRIAGE_PARALLEL_CASE_STUDY_R3_MR.pdf
+  page_md5: validation-evidence/dermatriage/post-holdout-method-review-r1/incremental-authoring-case-study-r1/DDTA_DERMATRIAGE_PARALLEL_CASE_STUDY_R3_MR_PAGE_MD5_INDEX.txt
+  sha256_tex: c027d02fc6cb32cb7bdfd4f0456d471eb44d2fa6812ebf611a0335be2f781930
+  sha256_pdf: abef9254fa210a971fe7c190557ff703eb5daba7d71c4e6f803d1d84ebbd6ac4
+  sha256_page_index: b9d5ad8f4803df9630deecbc2592cad919861c15ce71e510973a777eba0c5a9c
+checkpoint: methodology/DDTA_R25_DERMATRIAGE_MR_RECONSTRUCTION_CHECKPOINT_R1.md
+active_work_plan: methodology/DDTA_R25_DOCUMENTATION_AND_BA_GUIDE_REWRITE_WORK_PLAN_R2.md
+predecessor_work_plan: methodology/DDTA_R25_DOCUMENTATION_AND_BA_GUIDE_REWRITE_WORK_PLAN_R1.md
+canonical_style:
+  path: methodology/DDTA_METHODOLOGY_GUIDE_STYLE_R1.sty
+  expected_git_blob_sha: f9a4726b7d6d743b938e39afc7908ef0ec3d6703
+original_dermatriage_source:
+  package_sha256: e9ed2c507befb95f54a52084687cd1e8798863ae81cf69d09568864d8cbf280e
+  or2_sha256: c77238271d05a8ac4b4227143afb1ece783416a8091b31f9d2161e4f85f831de
+mr_result:
+  count: 4
+  mr01: PROCEED_TO_DECISIONS
+  mr02: STOP_AT_MR
+  mr03: PROCEED_TO_DECISIONS
+  mr04: PROCEED_TO_DECISIONS_dependsOn_MR03
+next_bounded_action: review guide pressures G1-G6 and draft minimal successor to R7 R3 without modifying R7 R3
