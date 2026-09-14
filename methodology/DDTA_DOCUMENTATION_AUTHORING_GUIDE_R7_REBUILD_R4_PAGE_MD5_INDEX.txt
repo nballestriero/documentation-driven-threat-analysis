@@ -1,0 +1,23 @@
+DDTA_DOCUMENTATION_AUTHORING_GUIDE_R7_REBUILD_R4 - Page MD5 Index
+Canonical payload: LaTeX content between PAGE-CONTENT markers; own printed MD5 excluded.
+Integrity-index page resolves all other page hashes and canonicalizes its own hash as <SELF>.
+
+Page 1  21a890bd38c7d939aec1bf672e055498  Frontespizio della nuova guida di authoring
+Page 2  015c757c3dc4118c78c6d2960996936e  Project Problem Framing - definizione e regole di authoring
+Page 3  22e57dfc4b4f586235f8aed3c522a7e2  Project Problem Framing - procedura umana, gate ed esempio DermaTriage
+Page 4  3bdac4b5fec97501c23d7968bf1619d5  Project Problem Framing - LLM Execution Profile e prompt canonico
+Page 5  b69ae801bbd9fab0dd9722c5416054c4  Project Problem Framing - regola LLM e classificazione dei campi
+Page 6  dd6326ef067e8650d8c2fb33662caf1b  Project Problem Framing - formato esatto dell'output LLM
+Page 7  8828e008581efc3d40954e198bdb8c0c  Project Problem Framing - gate LLM e nota sui controlli quantitativi
+Page 8  39dd4da3676b9d5a04cebdd9a196c627  Uso della metodologia - authoring nativo e reconstruction
+Page 9  ddcc227fc8f2ef02b4235ea1a2979c66  MacroRequirement - definizione e rapporto con framing e Decision
+Page 10  fee9637e13dfb1e7c117390773a8e3ae  MacroRequirement - procedura umana per individuare i candidati
+Page 11  97e6e0faea39d999309beffb6aca06bd  MacroRequirement - test di separazione, split e merge
+Page 12  70297884e3aacfc8f40b330ff7183ca4  MacroRequirement - campi documentali e regole di compilazione
+Page 13  9a97d1490def76a4e8d0cd67a8307a34  MacroRequirement - template, split merge e STOP AT MR
+Page 14  b008d2293cbe637ae1268cc43c3b2351  MacroRequirement - sufficienza semantica e diagnosi dei problemi
+Page 15  af9687992a8bac51cb56ea985aeb2ebc  MacroRequirement - profilo LLM e prompt canonico parte 1
+Page 16  fab634987bb3e565df9c1d1f7ad066d0  MacroRequirement - prompt canonico LLM parte 2
+Page 17  bcb1bb076c245425bda75ebd8a2cb5c6  MacroRequirement - prompt LLM campi e schema di analisi
+Page 18  a70c8156b1d0d0ddd6c5640bdb2a8564  MacroRequirement - formato esatto output LLM e gate finale
+Page 19  dc806b53878103b8a7a5edc56cca56b4  Indice di integrita' delle pagine [INTEGRITY INDEX]
