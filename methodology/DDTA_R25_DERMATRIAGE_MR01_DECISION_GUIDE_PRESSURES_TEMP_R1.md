@@ -311,6 +311,357 @@ During one MR Decision-family review:
 
 This is a research-process discipline and does not automatically require a new L1 construct.
 
+## 8. CDEC-01-02 â€” Adozione della P-scale P1-P4 come prioritÃ  operativa
+
+### 8.1 Original project-documentation evidence
+
+Primary source:
+
+`OR2_Architecture_Document.pdf`
+
+OR2 documents an Adaptation Layer in which `map_urgency_to_p_scale()` assigns P1-P4 together with specialist and SLA information. The documented mapping is:
+
+```text
+HIGH + confidence > 0.85 -> P1 -> 24 hours
+HIGH                     -> P2 -> 48 hours
+MEDIUM                   -> P3 -> 72 hours
+LOW                      -> P4 -> 7 giorni
+```
+
+Minimum source-supported meanings must be kept distinct:
+
+```text
+A. MR-01 requires an operational priority.
+B. The project represents that priority in the P1-P4 domain.
+C. A conditional operational rule selects P1/P2/P3/P4.
+D. Source evidence also associates SLA values with those levels.
+```
+
+### 8.2 Candidate Decision formulation
+
+**Working title**
+
+Adozione della P-scale per la prioritÃ  operativa
+
+**Context**
+
+La valutazione di urgenza deve essere resa utilizzabile come prioritÃ  operativa di triage. La documentazione DermaTriage rappresenta tale prioritÃ  mediante quattro livelli P1-P4.
+
+**Decision**
+
+DermaTriage rappresenta la prioritÃ  operativa di triage mediante la scala P1-P4.
+
+**Consequences**
+
+Gli obblighi downstream che producono una prioritÃ  operativa devono produrre un valore appartenente al dominio P1-P4. Le condizioni che determinano quale livello P1-P4 debba essere prodotto non fanno parte dell'identitÃ  di questa Decision e devono essere governate al livello operativo appropriato.
+
+### 8.3 Why this is a Decision
+
+MR-01 requires an operational priority but does not prescribe the vocabulary used to represent it.
+
+The project could retain the same macro responsibility while selecting a materially different priority convention.
+
+Therefore:
+
+```text
+MR-01:
+an operational triage priority must exist
+
+CDEC-01-02:
+the project represents it as P1-P4
+```
+
+The P1-P4 convention can change without eliminating or replacing the macro responsibility.
+
+### 8.4 Mapping boundary
+
+Joint conclusion:
+
+```text
+KEEP IN DECISION
+P1-P4 is the selected operational-priority domain.
+
+ROUTE DOWNSTREAM
+urgency/confidence -> P1/P2/P3/P4 mapping.
+
+PRESERVE AS SEPARATE OPEN MEANING
+24h / 48h / 72h / 7 giorni SLA semantics.
+```
+
+The exact mapping can change while the Decision to use P1-P4 remains stable. It is therefore not part of the identity of CDEC-01-02.
+
+### 8.5 Open analytical questions
+
+```text
+QUESTIONI APERTE EMERSE DALLA RICOSTRUZIONE
+NON NORMATIVE
+
+- L'urgenza prodotta dal percorso symptom-only entra nella stessa
+  regola P1-P4 usata dal percorso image-based?
+
+- Qual Ã¨ il significato normativo dei valori
+  24h / 48h / 72h / 7 giorni associati alla P-scale?
+
+- Da quale evento decorre l'eventuale tempo SLA e quale attore
+  possiede la responsabilitÃ  del suo rispetto?
+```
+
+These questions are analysis output, not Decision semantics.
+
+### 8.6 Joint disposition
+
+```text
+CDEC-01-02
+JOINT REVIEW:
+ACCEPT AS DECISION CANDIDATE
+```
+
+No MR cleanup is currently required specifically for this Decision: MR-01 owns the existence of an operational priority without pre-encoding the P1-P4 vocabulary.
+
+## 9. CDEC-01-03 â€” Pipeline image-based sequenziale a quattro stadi
+
+### 9.1 Original project-documentation evidence
+
+Primary source:
+
+`OR2_Architecture_Document.pdf`
+
+OR2 documents the image-based flow as four sequential analytical stages:
+
+```text
+Stage 1 -> image urgency classification
+Stage 2 -> image-derived clinical description
+Stage 3 -> retrieval of similar historical cases
+Stage 4 -> multi-source synthesis using prior stage outputs + symptoms
+```
+
+The four-stage flow is followed by the Adaptation Layer that assigns operational P-scale information.
+
+### 9.2 Candidate Decision formulation
+
+**Working title**
+
+Composizione sequenziale della valutazione image-based a quattro stadi
+
+**Context**
+
+Quando Ã¨ disponibile un'immagine della lesione, la documentazione non descrive la valutazione di triage come il risultato diretto di un singolo passaggio analitico. Il percorso image-based costruisce contributi analitici distinti che vengono progressivamente combinati.
+
+**Decision**
+
+DermaTriage costruisce la valutazione image-based mediante una pipeline sequenziale a quattro stadi analitici, nella quale i risultati intermedi contribuiscono alla successiva sintesi di triage.
+
+**Consequences**
+
+Il percorso image-based deve preservare quattro ruoli analitici distinguibili e la loro composizione sequenziale. Le tecnologie correnti usate per realizzare tali ruoli non definiscono automaticamente l'identitÃ  della Decision.
+
+### 9.3 Why "four stages" remains in the Decision
+
+Joint conclusion:
+
+The number and semantic decomposition of the stages are part of the current governed architectural strategy.
+
+A future redesign that merges, removes or adds stages may materially change this Decision and should reopen it explicitly rather than abstracting the current commitment away.
+
+The Decision is therefore intentionally more concrete than a generic statement such as "use multiple analytical contributions".
+
+### 9.4 Current FR hypothesis
+
+The current hypothesis for later FR analysis is:
+
+```text
+CDEC-01-03
+Pipeline image-based sequenziale a quattro stadi
+
+    -> candidate FR: produrre la classificazione di urgenza dall'immagine
+    -> candidate FR: produrre la descrizione clinica image-derived
+    -> candidate FR: recuperare casi storici simili
+    -> candidate FR: produrre la sintesi di triage multi-source
+```
+
+This is not an FR promotion yet.
+
+It records the expected ownership pressure to be tested when the FunctionalRequirement phase begins.
+
+### 9.5 Relationship with the no-image branch
+
+Joint interpretation:
+
+```text
+CDEC-01-01
+owns the no-image fallback commitment
+
+CDEC-01-03
+owns the image-present four-stage analytical path
+
+CDEC-01-02
+owns the P1-P4 representation of operational priority
+```
+
+This resolves the earlier hypothesis that CDEC-01-01 might need to own the complete triage path. It does not.
+
+What remains open is the explicit semantic binding from symptom-only urgency to the P-scale mapping.
+
+### 9.6 Open analytical questions
+
+```text
+QUESTIONI APERTE EMERSE DALLA RICOSTRUZIONE
+NON NORMATIVE
+
+- Ogni stadio giustifica effettivamente un FunctionalRequirement
+  autonomo quando verranno eseguiti i gate FR?
+
+- Quale comportamento Ã¨ governato quando uno stadio intermedio
+  non produce il proprio risultato?
+
+- EfficientNet-B4, Qwen2-VL, ChromaDB e BioMistral rappresentano
+  scelte progettuali autonome o soltanto realization bindings
+  dei quattro ruoli funzionali?
+```
+
+The previously open question "four stages or generic multi-stage?" is considered resolved for the current candidate: **four stages belongs to the Decision**.
+
+### 9.7 Joint disposition
+
+```text
+CDEC-01-03
+JOINT REVIEW:
+ACCEPT AS DECISION CANDIDATE
+```
+
+## 10. Additional MR-01 pressures exposed by CDEC-01-02 / CDEC-01-03
+
+### GP-MR01-PMAP-01 â€” symptom-only urgency to P-scale binding
+
+**Status:** OPEN / NOT YET ESTABLISHED.
+
+OR2 documents both the P-scale mapping and a symptom-only urgency fallback, but the current review must not infer without evidence that symptom-only urgency necessarily traverses the exact same P-scale transformation.
+
+Question for later source/FR review:
+
+> Is the symptom-only urgency result explicitly governed as input to the same P1-P4 mapping used by the image-based path?
+
+### GP-MR01-FR-02 â€” image-present vs image-absent descendant ownership
+
+Current working structure:
+
+```text
+MR-01
+ |
+ +-- CDEC-01-01 no-image fallback
+ |      -> future no-image FR family
+ |
+ +-- CDEC-01-03 image-based four-stage pipeline
+ |      -> future image-based FR family
+ |
+ +-- CDEC-01-02 P1-P4 representation
+        -> future mapping FR candidate
+```
+
+This is a semantic-ownership hypothesis, not yet a promoted FR tree.
+
+### GP-MR01-OWN-01 â€” single-parent pressure
+
+A future FR MUST NOT be made child of more than one Decision merely because multiple Decisions are relevant to the same runtime path.
+
+If the same candidate FR appears to require two Decision parents, review:
+
+1. which Decision semantically owns the obligation;
+2. whether one Decision is too broad or too narrow;
+3. whether one candidate meaning is only a realization binding;
+4. whether the FR itself contains more than one coherent obligation and needs split.
+
+### GP-MR01-REAL-01 â€” named technologies require classification, not automatic promotion
+
+Current realization bindings observed in OR2:
+
+```text
+Stage 1 -> EfficientNet-B4
+Stage 2 -> Qwen2-VL
+Stage 3 -> ChromaDB
+Stage 4 -> BioMistral
+```
+
+Their presence in authoritative source evidence is sufficient for preservation, not for Decision status.
+
+The next bounded review starts with Stage 1 / EfficientNet-B4 and applies the Decision-vs-realization gate before deciding whether CDEC-01-04 survives at all.
+
+## 11. Guide-change candidates added by the new review
+
+### GDEC-04 â€” Open analytical questions as a non-normative presentation view
+
+**Status:** supported L2 presentation candidate; do not promote to L1.
+
+The DermaTriage analytical documentation should be able to show unresolved questions immediately below the DDTA element that exposed them, using a visually subordinate grey box such as:
+
+```text
+QUESTIONI APERTE EMERSE DALLA RICOSTRUZIONE
+NON NORMATIVE
+```
+
+The box is not part of the normative semantics of the Decision, does not create a new metamodel field and MUST distinguish at least:
+
+- governed meaning;
+- checked but `NOT SPECIFIED` / open question;
+- not yet analyzed.
+
+Research purpose:
+
+The analytical documentation should make visible not only what DDTA can govern, but also which material questions become observable because the documentation has been decomposed semantically.
+
+### GDEC-05 â€” Architecture Decision versus stage FunctionalRequirement
+
+**Status:** supported candidate refinement; validate again during FR analysis.
+
+Working distinction:
+
+- the Decision governs the structural/project commitment that the image-based path is composed of four sequential analytical stages;
+- each stage's observable required behavior is a candidate FunctionalRequirement;
+- changing the number or semantic role of the stages can reopen the Decision;
+- changing the required behavior of one stage can reopen the corresponding FR.
+
+### GDEC-06 â€” Single semantic parent / no Decision-FR multi-parent shortcut
+
+**Status:** strong hierarchy pressure.
+
+If two candidate Decisions appear to own the same future FunctionalRequirement, do not solve the conflict by assigning two Decision parents and do not place a Decision below an FR.
+
+Required review:
+
+```text
+same FR appears owned by Decision A and Decision B
+        ->
+review semantic owner
+        ->
+review Decision granularity
+        ->
+review whether one candidate is only realization/configuration
+        ->
+KEEP one semantic parent or explicitly restructure the Decision family
+```
+
+This preserves the regular DDTA hierarchy:
+
+```text
+MR
+  -> Decision
+      -> FR
+```
+
+### GDEC-07 â€” Technology names are realization by default, not automatic Decisions
+
+**Status:** working classification rule for CDEC-01-04 review.
+
+For `EfficientNet-B4`, `Qwen2-VL`, `ChromaDB` and `BioMistral`, the default hypothesis is current realization evidence.
+
+A technology binding may be promoted to Decision only if source evidence supports an independently governed architectural/project commitment that remains meaningful after neutralizing the product/model name.
+
+The review question is:
+
+> If this technology is replaced while the four-stage Decision and the stage's required behavior remain unchanged, has a governed project commitment changed or only its realization?
+
+A technology is not promoted merely because it is concrete, named, technically important or source-supported.
+
 ## 8. MR-01 provisional Decision inventory
 
 The following list is preserved so subsequent chats do not lose the breadth-first discovery state.
@@ -318,34 +669,48 @@ The following list is preserved so subsequent chats do not lose the breadth-firs
 | Working ID | Candidate meaning | State |
 |---|---|---|
 | `CDEC-01-01` | Continuità del triage in assenza di immagine mediante informazioni sintomatologiche | ACCEPT AS DECISION CANDIDATE |
-| `CDEC-01-02` | Adozione della P-scale P1-P4 come priorità operativa | PENDING |
-| `CDEC-01-03` | Pipeline AI image-based sequenziale a quattro stadi | PENDING |
-| `CDEC-01-04` | Allocazione tecnologica ai singoli stadi | PENDING / split-lower-level review |
+| `CDEC-01-02` | Adozione della P-scale P1-P4 come prioritÃ  operativa | ACCEPT AS DECISION CANDIDATE |
+| `CDEC-01-03` | Pipeline AI image-based sequenziale a quattro stadi | ACCEPT AS DECISION CANDIDATE |
+| `CDEC-01-04` | Classificazione dei binding tecnologici dei quattro stadi: Decision autonoma vs realization | PENDING / DECISION-vs-REALIZATION GATE |
 | `CDEC-01-05` | Workflow diretto vs B4-integrated | PENDING |
 | `CDEC-01-06` | Strategia baseline classifier training | PENDING |
 | `CDEC-01-07` | Strategia dataset condiviso retrieval/training | HOLD |
 
 No historical `DEC-*` correspondence is asserted here.
 
-## 9. Next joint review
+## 12. Next joint review
 
-Next candidate:
+The next bounded review does not assume that `CDEC-01-04` exists as a valid Decision.
+
+Start with the first technology binding:
 
 ```text
-CDEC-01-02
-Adozione della P-scale P1-P4 come rappresentazione della priorità operativa
+Stage 1
+functional role:
+produce image urgency classification
+
+current realization:
+EfficientNet-B4
 ```
+
+Decision-vs-realization question:
+
+> If EfficientNet-B4 is replaced while CDEC-01-03 and the Stage-1 required behavior remain unchanged, has a governed project commitment changed or only the current realization?
 
 Required discussion package:
 
-1. exact frozen MR-01 text;
-2. original source table and surrounding meaning;
-3. candidate Decision wording;
-4. distinction between adopting P1-P4 and the conditional mapping that computes P1/P2/P3/P4;
-5. possible FR pressure;
-6. joint disposition.
+1. exact CDEC-01-03 meaning;
+2. exact OR2 Stage-1 source text;
+3. any additional source evidence governing EfficientNet-B4 as a project commitment;
+4. neutralization test: remove the product/model name and identify any remaining architectural commitment;
+5. single-parent check against the future Stage-1 FR;
+6. disposition: `DECISION CANDIDATE`, `REALIZATION`, `LOWER_LEVEL`, `HOLD`.
 
-## 10. Retirement condition for this file
+Repeat the same classification for Qwen2-VL, ChromaDB and BioMistral only after the Stage-1 test is understood.
+
+`CDEC-01-04` survives only if one or more independently governed technology/architecture commitments remain after this review.
+
+## 13. Retirement condition for this file
 
 Do not keep this file as permanent normative documentation.
 
