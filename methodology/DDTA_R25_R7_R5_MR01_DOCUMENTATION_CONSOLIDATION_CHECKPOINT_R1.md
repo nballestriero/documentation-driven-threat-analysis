@@ -1,7 +1,7 @@
 # DDTA R25 - R7 R5 / DermaTriage MR-01 Documentation Consolidation Checkpoint R1
 
-**Status:** REVIEW CHECKPOINT / NON-NORMATIVE / NOT PROMOTED  
-**Repository baseline:** `6e8cb8a6ca90bcd09123718f76339dffffe8500c`  
+**Status:** REVIEW CHECKPOINT / NON-NORMATIVE / NOT PROMOTED
+**Repository baseline:** `6e8cb8a6ca90bcd09123718f76339dffffe8500c`
 **Purpose:** preserve the current reviewable guide/documentation state before slow rereading and possible revision.
 
 ## 1. Guide successor
