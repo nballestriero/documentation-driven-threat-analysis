@@ -845,9 +845,9 @@ The following list is preserved so subsequent chats do not lose the breadth-firs
 | `CDEC-01-03` | Pipeline AI image-based sequenziale a quattro stadi | ACCEPT AS DECISION CANDIDATE |
 | `CDEC-01-04` | Allocazione tecnologica ai singoli stadi | REWORK — uniform technology-allocation Decision did not survive neutralization |
 | `CDEC-01-04A` | Recupero dei casi storici mediante similarità vettoriale | ACCEPT AS DECISION CANDIDATE — derived from CDEC-01-04 review |
-| `CDEC-01-05` | Workflow diretto vs B4-integrated | PENDING |
-| `CDEC-01-06` | Strategia baseline classifier training | PENDING |
-| `CDEC-01-07` | Strategia dataset condiviso retrieval/training | HOLD |
+| `CDEC-01-05` | Coesistenza di un percorso diretto e di un percorso di triage integrato con B4 | ACCEPT AS DECISION CANDIDATE |
+| `CDEC-01-06` | Costruzione separata della baseline classificatoria mediante training e validazione | ACCEPT AS DECISION CANDIDATE — reworked to technology-neutral meaning after direct source pass |
+| `CDEC-01-07` | Uso di una base dati dermatologica condivisa per retrieval storico e training della baseline | ACCEPT AS DECISION CANDIDATE — previous HOLD resolved by direct OR3 evidence |
 
 No historical `DEC-*` correspondence is asserted here.
 
@@ -995,27 +995,515 @@ Meaning:
 - concrete technology bindings remain preserved as realization evidence;
 - lower-level binding questions remain open for FR/configuration review.
 
-## 13. Next joint review
+## 13. CDEC-01-05 — Coesistenza di un percorso diretto e di un percorso di triage integrato con B4
 
-Next candidate:
+### 13.1 Original project-documentation evidence
+
+Primary source:
+
+`OR2_Architecture_Document.pdf`
+
+OR2 documents two distinct DermaTriage entry paths:
+
+```text
+POST /analyze
+-> full four-step pipeline
+-> direct upload
+
+POST /diagnose
+-> B4-integrated pipeline
+```
+
+For the integrated path, the source also documents B4 interactions for consultation/case acquisition, document listing and image download, together with write-back of the AI result.
+
+The same source separately documents medical-validation and validated-outcome interactions. Those later interactions are not absorbed into MR-01 merely because they use the same external system: their semantic ownership remains for MR-03 / MR-04 review as appropriate.
+
+Minimum source-supported proposition:
+
+```text
+MR-01 triage
+    can be entered directly
+    OR
+    through a B4-integrated workflow
+```
+
+Important non-inferences:
+
+- B4 is not a universal precondition for MR-01;
+- MR-01 does not gain `dependsOn B4`;
+- endpoint names do not define the Decision identity;
+- X-API-Key and bearer JWT do not define this Decision;
+- medical validation is not owned by MR-01.
+
+### 13.2 Candidate Decision formulation
+
+**Working title**
+
+Coesistenza di un percorso diretto e di un percorso di triage integrato con B4
+
+**Context**
+
+La valutazione di triage può essere avviata direttamente a partire dalle informazioni fornite al servizio oppure nel contesto di un consulto gestito dal sistema esterno B4. La documentazione DermaTriage espone entrambi i percorsi e, nel percorso integrato, prevede lo scambio delle informazioni di caso e dell'esito di triage con B4.
+
+**Decision**
+
+DermaTriage mantiene disponibile la valutazione di triage sia attraverso un percorso diretto sia attraverso un percorso integrato con B4; nel percorso integrato acquisisce da B4 le informazioni di caso necessarie alla valutazione e rende disponibile a B4 l'esito di triage associato al consulto.
+
+**Consequences**
+
+B4 non costituisce una precondizione universale per l'esecuzione di MR-01. Il percorso integrato deve preservare la correlazione tra il caso/consulto B4 e l'esito di triage prodotto. Endpoint, protocolli e meccanismi di autenticazione non appartengono automaticamente all'identità della Decision.
+
+### 13.3 Decision-vs-realization gate
+
+Neutralizing the concrete endpoint names leaves a stable project strategy:
+
+```text
+direct triage path
++
+B4-integrated triage path
+```
+
+The following are therefore preserved separately:
+
+```text
+/analyze
+/diagnose
+specific B4 paths
+    -> REALIZATION / INTERFACE BINDING
+
+direct + B4-integrated access strategy
+    -> DECISION MEANING
+```
+
+The same MR-01 responsibility could exist with direct-only, integrated-only or dual access. The dual-path commitment therefore narrows the MR without defining the MR itself.
+
+### 13.4 Open analytical questions
+
+```text
+QUESTIONI APERTE EMERSE DALLA RICOSTRUZIONE
+NON NORMATIVE
+
+- I percorsi direct e B4-integrated devono offrire esattamente
+  le stesse capacità di triage?
+
+- Il write-back verso B4 è obbligatorio per ogni esecuzione
+  del percorso integrato?
+
+- Quali informazioni del consulto B4 costituiscono il minimo
+  necessario per il triage?
+
+- La persistenza locale dell'esito è un obbligo di progetto
+  o current realization?
+
+- Qual è il comportamento governato se B4 non è raggiungibile
+  durante acquisition o write-back?
+
+- La correlazione tra consultation identity e risultato è
+  un contratto esplicito dell'integrazione?
+```
+
+### 13.5 Joint disposition
 
 ```text
 CDEC-01-05
-Workflow diretto vs B4-integrated
+JOINT REVIEW:
+ACCEPT AS DECISION CANDIDATE
 ```
 
-The review must not infer that B4 is a macro dependency merely because one runtime path uses it.
+No MR-01 cleanup is currently required by this Decision. The current `dependsOn None` remains consistent with the existence of a direct path.
 
-Required discussion package:
+## 14. Direct-source completeness pass for the remaining MR-01 Decision candidates
 
-1. exact MR-01 boundary;
-2. original evidence for direct `/analyze` and B4-integrated `/diagnose` paths;
-3. what project commitment remains after neutralizing endpoint names;
-4. Decision vs FR vs integration-realization test;
-5. ownership pressure relative to MR-01 and the external B4 boundary;
-6. joint disposition.
+Before closing CDEC-01-06 and CDEC-01-07, the original source subset was reopened directly.
 
-## 14. Retirement condition for this file
+Human-provided source subset:
+
+```text
+OR2_Architecture_Document.pdf
+OR2_Model_Test_Report.pdf
+OR3_Dataset_Metadata_Catalog.pdf
+OR4_Training_Environment_Config.pdf
+OR4_Training_Cycles_Report.pdf
+OR5_Test_Environment_Setup.pdf
+```
+
+The human explicitly confirmed that these are the same original documents from the pinned DermaTriage source package, with non-needed artifacts removed from the transfer subset.
+
+Independent byte-level continuity check available in-session:
+
+```text
+OR2_Architecture_Document.pdf
+SHA-256
+c77238271d05a8ac4b4227143afb1ece783416a8091b31f9d2161e4f85f831de
+```
+
+This matches the previously pinned OR2 hash.
+
+Scope rule:
+
+- the subset is used as direct original-document evidence;
+- the transfer ZIP itself is not treated as a replacement authority package;
+- removal of the binary `.pth` does not change the semantic Decision review because that artifact is realization evidence;
+- old DDTA reconstructions remain comparison material, not project authority.
+
+The pass covered all pages of the six retained PDFs and removed the earlier source-completeness hold on the baseline-training and shared-dataset candidates.
+
+## 15. CDEC-01-06 — Costruzione separata della baseline classificatoria mediante training e validazione
+
+### 15.1 Direct original-source evidence
+
+Direct sources:
+
+- `OR2_Model_Test_Report.pdf`;
+- `OR4_Training_Cycles_Report.pdf`;
+- `OR4_Training_Environment_Config.pdf`;
+- corroborating architecture evidence from `OR2_Architecture_Document.pdf`.
+
+The training-cycle source explicitly distinguishes:
+
+```text
+Cycle 0 — Initial Training
+```
+
+from the later:
+
+```text
+Continuous Retraining Protocol
+```
+
+The initial baseline evidence includes a training split, validation split and test split, balancing of the training data, early stopping and checkpoint selection using validation evidence. The documented baseline identifies the best checkpoint by validation Macro F1.
+
+The later retraining protocol is driven by accumulated clinician disagreement/correction evidence and belongs to the subsequent adaptation lifecycle rather than to the identity of initial baseline establishment.
+
+Minimum surviving meaning after technology/configuration neutralization:
+
+```text
+initial classifier baseline
+    is established through a distinct
+    training + validation process
+
+selected baseline/checkpoint
+    is chosen using validation evidence
+
+later feedback-driven retraining
+    is a separate lifecycle process
+```
+
+### 15.2 Reworked Decision formulation
+
+The earlier working wording was too closely tied to the current model technology.
+
+**Working title**
+
+Costruzione separata della baseline classificatoria mediante training e validazione
+
+**Context**
+
+Il percorso image-based richiede un classificatore iniziale dell'urgenza prima che possano operare i successivi meccanismi di adattamento basati sulla revisione clinica. La documentazione distingue la costruzione della baseline iniziale dal successivo retraining feedback-driven.
+
+**Decision**
+
+DermaTriage stabilisce la baseline iniziale del classificatore di urgenza mediante un processo di training e validazione distinto dal successivo adattamento basato sulla revisione clinica, utilizzando evidence di validation per selezionare il modello/checkpoint da assumere come baseline operativa.
+
+**Consequences**
+
+La baseline iniziale e il successivo retraining sono lifecycle process distinti. La selezione della baseline usa evidence di validation e non coincide con la valutazione finale sul test set. Modello concreto, algoritmo di balancing, optimizer, scheduler, hyperparameter e valori numerici non fanno automaticamente parte dell'identità della Decision.
+
+### 15.3 Classification of preserved source detail
+
+```text
+EfficientNet-B4
+ImageNet-pretrained initialization
+    -> REALIZATION / CURRENT BINDING
+
+SMOTE
+Adam
+LinearWarmup
+CosineAnnealing
+CrossEntropyLoss
+AMP
+    -> SOURCE-SUPPORTED TRAINING BINDINGS
+       stable normative status NOT YET ESTABLISHED
+
+learning rates
+batch size
+epoch bounds
+patience
+label smoothing
+split sizes
+    -> SOURCE-SUPPORTED CONFIGURATION / BINDINGS
+
+observed stop epoch
+observed best epoch
+    -> OBSERVED TRAINING RESULT
+       NOT DECISION IDENTITY
+
+validation-based checkpoint selection
+    -> DECISION MEANING
+
+Macro F1
+    -> SOURCE-SUPPORTED SELECTION BINDING
+       stable normative status NOT YET ESTABLISHED
+```
+
+### 15.4 Ownership boundary
+
+```text
+MR-01
+  -> initial classifier baseline establishment
+
+MR-04
+  -> later controlled adaptation/retraining
+     from clinician-review evidence
+```
+
+The initial-state Decision must not absorb the later feedback-driven adaptation family.
+
+### 15.5 Open analytical questions
+
+```text
+QUESTIONI APERTE EMERSE DALLA RICOSTRUZIONE
+NON NORMATIVE
+
+- Il balancing del training set è un commitment stabile
+  oppure una tecnica corrente?
+
+- Validation Macro F1 è un criterio normativo stabile
+  oppure il criterio della baseline corrente?
+
+- Quali condizioni rendono una baseline sufficientemente
+  qualificata per l'uso operativo?
+
+- Qual è la relazione tra quality target assoluti della
+  baseline e relative replacement gate del retraining?
+
+- Gli split train/validation/test sono governati oppure
+  current realization/configuration?
+
+- Una futura ricostruzione completa della baseline resta
+  sotto MR-01 oppure entra nel lifecycle di MR-04?
+```
+
+### 15.6 Joint disposition
+
+```text
+CDEC-01-06
+INITIAL WORKING FORM:
+REWORK
+
+TECHNOLOGY-NEUTRAL REFORMULATION:
+ACCEPT AS DECISION CANDIDATE
+```
+
+The same working ID is retained because the original candidate already concerned baseline-training strategy; the review refines its identity rather than discovering an unrelated sibling Decision.
+
+## 16. CDEC-01-07 — Uso di una base dati dermatologica condivisa per retrieval storico e training della baseline
+
+### 16.1 Direct original-source evidence
+
+Primary source:
+
+`OR3_Dataset_Metadata_Catalog.pdf`
+
+The dataset catalog explicitly identifies the DermaTriage RAG Dataset and states its purpose as:
+
+```text
+RAG retrieval + CNN training base
+```
+
+The same source documents both:
+
+- use in Stage 3 historical-case retrieval;
+- processed data used to prepare the classifier training base.
+
+`OR4_Training_Environment_Config.pdf` corroborates the coexistence of the RAG dataset and processed train/validation/test material in the documented training environment.
+
+This direct source pass resolves the previous `HOLD`: the shared-data relationship is not merely inferred by correlating two old DDTA reconstructions.
+
+### 16.2 Neutralization test
+
+Neutralize concrete names and file bindings:
+
+```text
+ISIC
+RAG_dataset.csv
+ChromaDB
+all-MiniLM-L6-v2
+SMOTE
+```
+
+A meaningful project choice remains:
+
+```text
+one governed dermatology data lineage
+    supports
+        Stage-3 historical retrieval
+    AND
+        Stage-1 baseline training preparation
+```
+
+An alternative project could use independent datasets for the two purposes while preserving MR-01 and the stage functional roles. Therefore the shared-data strategy can vary independently from the MR identity.
+
+### 16.3 Candidate Decision formulation
+
+**Working title**
+
+Uso di una base dati dermatologica condivisa per retrieval storico e training della baseline
+
+**Context**
+
+Il retrieval dei casi storici dello Stage 3 e la costruzione iniziale del classificatore dello Stage 1 richiedono evidence dermatologica. La documentazione identifica una stessa base dati di progetto come origine per entrambe le finalità.
+
+**Decision**
+
+DermaTriage utilizza una base dati dermatologica condivisa come origine sia del contesto indicizzato per il retrieval dei casi storici sia dei dati preparati per il training della baseline classificatoria.
+
+**Consequences**
+
+Le due capability condividono una lineage informativa comune, pur utilizzando rappresentazioni e trasformazioni differenti. La specifica sorgente del dataset, i file, il vector store, il modello di embedding e la tecnica concreta di balancing non fanno automaticamente parte dell'identità di questa Decision.
+
+### 16.4 Classification of preserved source detail
+
+```text
+shared dataset lineage
+    -> DECISION MEANING
+
+ISIC-derived provenance
+    -> SOURCE-SUPPORTED DATASET PROVENANCE
+       independent Decision status NOT ESTABLISHED
+
+RAG_dataset.csv
+processed split filenames
+    -> FILE / REALIZATION BINDINGS
+
+image_description indexed field
+    -> STAGE-3 DATA BINDING TO CLASSIFY
+
+SMOTE
+    -> BASELINE-TRAINING BINDING TO CLASSIFY
+```
+
+### 16.5 Joint disposition
+
+```text
+CDEC-01-07
+PREVIOUS STATE:
+HOLD
+
+DIRECT OR3 SOURCE PASS:
+HOLD RESOLVED
+
+JOINT REVIEW:
+ACCEPT AS DECISION CANDIDATE
+```
+
+## 17. Guide-change candidates added by CDEC-01-05 / 01-06 / 01-07
+
+### GDEC-10 — External integration strategy does not automatically create a macro dependency
+
+**Status:** supported candidate refinement.
+
+A consumed external service may participate in one selected workflow without becoming a universal MR dependency.
+
+Required test:
+
+```text
+external system appears in one runtime/integration path
+        !=
+MR dependsOn external system
+
+check whether the MR can still be satisfied
+through another documented path
+```
+
+If yes, preserve the external integration as downstream Decision/FR meaning and do not promote it to macro `dependsOn` merely from runtime dataflow.
+
+### GDEC-11 — Separate initial-state establishment from later adaptive lifecycle
+
+**Status:** supported candidate refinement.
+
+When source documentation distinguishes an initial baseline-construction process from later feedback-driven adaptation, do not collapse both into one Decision merely because they act on the same model/capability.
+
+Review:
+
+```text
+initial establishment evidence
+        vs
+later adaptation evidence
+        ->
+test separate lifecycle ownership
+```
+
+The two meanings may belong to different Decision families or even different MRs.
+
+### GDEC-12 — Shared data lineage may be a Decision after concrete data technology is neutralized
+
+**Status:** supported candidate refinement.
+
+A dataset name, file path or storage technology is not automatically a Decision. However, after neutralizing those concrete bindings, a project strategy may remain if the same governed data lineage is intentionally reused across materially distinct capabilities.
+
+Required test:
+
+```text
+remove dataset/file/product names
+        ->
+ask whether one shared data lineage still links
+multiple capabilities
+        ->
+if that shared-lineage commitment can vary
+while the MR and individual functional outcomes remain stable,
+route it to Decision review
+```
+
+### GDEC-13 — Direct-source completeness gate before closing source-sensitive Decision candidates
+
+**Status:** research-process candidate.
+
+When a candidate Decision depends materially on evidence from dataset, training, test or configuration documents, old DDTA reconstructions must not substitute for unavailable original source.
+
+Use explicit states:
+
+```text
+DIRECT SOURCE CHECKED
+DIRECT SOURCE NOT YET AVAILABLE
+DERIVED ARTIFACT ONLY
+```
+
+Do not convert `DERIVED ARTIFACT ONLY` into project authority.
+
+## 18. MR-01 Decision-family closure is next
+
+The breadth-first discovery pass for the currently identified MR-01 Decision candidates is now complete.
+
+Current working family:
+
+```text
+MR-01
+ |
+ +-- CDEC-01-01  ACCEPT
+ +-- CDEC-01-02  ACCEPT
+ +-- CDEC-01-03  ACCEPT
+ +-- CDEC-01-04  REWORK / genealogy retained
+ +-- CDEC-01-04A ACCEPT
+ +-- CDEC-01-05  ACCEPT
+ +-- CDEC-01-06  REWORK -> ACCEPT
+ `-- CDEC-01-07  HOLD -> ACCEPT
+```
+
+No FR authoring starts yet.
+
+Next controlled step:
+
+1. review all candidate Decisions together;
+2. test overlap, duplication and granularity;
+3. test single semantic ownership;
+4. re-run neutralization/change tests where useful;
+5. execute Decision ↔ MR-01 cross-check;
+6. resolve MR cleanup pressure;
+7. stabilize the candidate Decision family;
+8. only then create the successor DermaTriage documentation view and evaluate cumulative guide consolidation.
+
+## 19. Retirement condition for this file
 
 Do not keep this file as permanent normative documentation.
 
