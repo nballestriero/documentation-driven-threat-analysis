@@ -844,11 +844,11 @@ The following list is preserved so subsequent chats do not lose the breadth-firs
 | `CDEC-01-02` | Adozione della P-scale P1-P4 come priorità operativa | ACCEPT AS DECISION CANDIDATE |
 | `CDEC-01-03` | Pipeline AI image-based sequenziale a quattro stadi | ACCEPT AS DECISION CANDIDATE |
 | `CDEC-01-04` | Allocazione tecnologica ai singoli stadi | REWORK — uniform technology-allocation Decision did not survive neutralization |
-| `CDEC-01-04A` | Recupero dei casi storici mediante similarità vettoriale | ACCEPT AS DECISION CANDIDATE — derived from CDEC-01-04 review |
-| `CDEC-01-05` | Coesistenza di un percorso diretto e di un percorso di triage integrato con B4 | ACCEPT AS DECISION CANDIDATE |
-| `CDEC-01-06` | Costruzione separata della baseline classificatoria mediante training e validazione | ACCEPT AS DECISION CANDIDATE — reworked to technology-neutral meaning after direct source pass |
-| `CDEC-01-07` | Uso di una base dati dermatologica condivisa per retrieval storico e training della baseline | ACCEPT AS DECISION CANDIDATE — previous HOLD resolved by direct OR3 evidence |
-| `CDEC-01-08` | Separazione tra urgenza analitica e derivazione della priorità operativa | ACCEPT AS DECISION CANDIDATE — discovered and accepted during full family regression |
+| `CDEC-01-04A` | Recupero dei casi storici mediante similarità vettoriale | LOWER_LEVEL — post-external reconciliation: meaningful abstraction, independent Decision governance not established |
+| `CDEC-01-05` | Coesistenza di un percorso diretto e di un percorso di triage integrato con B4 | HOLD / BOUNDARY_REVIEW — dual path is source-supported; independent policy/architecture authority not yet established |
+| `CDEC-01-06` | Costruzione separata della baseline classificatoria mediante training e validazione | LOWER_LEVEL — post-external reconciliation: development/training lifecycle evidence, independent MR-01 Decision governance not established |
+| `CDEC-01-07` | Uso di una base dati dermatologica condivisa per retrieval storico e training della baseline | LOWER_LEVEL — post-external reconciliation: shared lineage is source-supported, independent Decision governance not established |
+| `CDEC-01-08` | Separazione tra urgenza analitica e derivazione della priorità operativa | ACCEPT AS DECISION CANDIDATE — reaffirmed by post-external three-way reconciliation |
 
 No historical `DEC-*` correspondence is asserted here.
 
@@ -1642,7 +1642,7 @@ ACCEPT AS DECISION CANDIDATE
 
 This disposition remains candidate-level until the clean successor documentation is produced; no historical `DEC-*` correspondence is asserted.
 
-## 20. Full MR-01 Decision-family regression
+## 20. Pre-external MR-01 Decision-family regression — historical closure state
 
 ### 20.1 Regression gates
 
@@ -1870,27 +1870,41 @@ The cleanup changes little about which macro responsibility exists. It removes a
 
 ## 22. MR-01 Decision-family closure state and next controlled step
 
-### 22.1 Active candidate family after closure
+### 22.1 Current candidate family after external validation / reconciliation
 
 ```text
 MR-01
  |
  +-- CDEC-01-01  KEEP / ACCEPT
- +-- CDEC-01-02  KEEP / ACCEPT
- +-- CDEC-01-03  KEEP / ACCEPT
+ +-- CDEC-01-02  KEEP / ACCEPT — narrow P1-P4 domain identity
+ +-- CDEC-01-03  KEEP / ACCEPT — technology-neutral four-stage identity
  +-- CDEC-01-04  REWORK / genealogy only
- +-- CDEC-01-04A KEEP / ACCEPT
- +-- CDEC-01-05  KEEP / ACCEPT, wording refined
- +-- CDEC-01-06  KEEP / ACCEPT
- +-- CDEC-01-07  KEEP / ACCEPT
+ +-- CDEC-01-04A LOWER_LEVEL — post-external reconciliation
+ +-- CDEC-01-05  HOLD / BOUNDARY_REVIEW
+ +-- CDEC-01-06  LOWER_LEVEL — development/training lifecycle evidence
+ +-- CDEC-01-07  LOWER_LEVEL — shared data-lineage evidence
  `-- CDEC-01-08  KEEP / ACCEPT
 ```
 
-### 22.2 Closure gate
+### 22.2 Current closure gate after external validation
 
 ```text
 MR-01 DECISION DISCOVERY / REVIEW:
-CLOSED FOR CURRENT SOURCE SET
+REOPENED BY EXTERNAL VALIDATION / RECONCILIATION
+
+STABLE ACCEPTED CORE:
+CDEC-01-01
+CDEC-01-02
+CDEC-01-03
+CDEC-01-08
+
+HOLD / BOUNDARY_REVIEW:
+CDEC-01-05
+
+LOWER_LEVEL AFTER RECONCILIATION:
+CDEC-01-04A
+CDEC-01-06
+CDEC-01-07
 
 FR AUTHORING:
 NOT STARTED
@@ -1902,24 +1916,245 @@ FROZEN MR ARTIFACT:
 UNCHANGED
 
 SUCCESSOR MR CLEANUP:
-DISPOSITION ACCEPTED
+DISPOSITION RETAINED
 ```
 
-`CLOSED FOR CURRENT SOURCE SET` does not prohibit future controlled reopen. New original evidence, a contradiction, or a concrete downstream hierarchy failure may reopen the family explicitly.
+The former `CLOSED FOR CURRENT SOURCE SET` state is preserved above as historical pre-external closure. External counterevidence triggered an explicit controlled reopen rather than silent rewriting.
 
 ### 22.3 Next controlled methodology step
 
 Do not begin FR authoring yet.
 
+External blind review has now been completed and preserved in a permanent checkpoint.
+
 Next:
 
-1. consolidate the accepted `GDEC-*` findings into the minimum cumulative documentation-authoring guide successor;
-2. regression-check that successor against the preserved guide baseline and this DermaTriage Decision-family evidence;
-3. create a clean project-review artifact containing the stabilized MR set and Decision candidates for external validation;
-4. prepare the external blind-review package so the reviewer first receives the updated guide plus original project documents, without the DDTA-derived MR/Decision answer set;
-5. compare the independent reviewer result with the internal reconstruction only in a second phase.
+1. resolve `CDEC-01-05` with an explicit integration-boundary authority gate;
+2. freeze the reconciled MR-01 Decision family;
+3. derive R7 only from the reconciled findings, not mechanically from the pre-external `GDEC-*` list;
+4. regression-check R7 against the preserved internal and external evidence;
+5. validate R7 on an example-blind holdout project;
+6. only then apply the updated guide to the remaining DermaTriage MR Decision families.
 
-## 23. Retirement condition for this file
+## 23. Post-external validation / three-way reconciliation
+
+Permanent evidence checkpoint:
+
+`validation-evidence/dermatriage/post-holdout-method-review-r1/mr01-external-decision-validation-r1/DDTA_R25_MR01_EXTERNAL_VALIDATION_RECONCILIATION_CHECKPOINT_R1.md`
+
+External Review 1 SHA-256:
+
+`d1559043d9611a0fbbb7753c7f2a0cc7ed99d517815ec31e59fd0cfc5908faf3`
+
+External Review 2 SHA-256:
+
+`5a11bfcf24f5b11e91a8f75a1e4f4c8a75f56130f2c72515c8fcfca01405bb92`
+
+### 23.1 Reconciliation rule
+
+The pre-external family closure is preserved as history.
+
+The current state follows:
+
+```text
+previous evidence
++
+external counterevidence
++
+explicit resolution
+=
+refined state
+```
+
+External disagreement is not automatically accepted and internal candidates are not automatically defended.
+
+### 23.2 Current disposition override
+
+```text
+CDEC-01-01
+KEEP / ACCEPT
+
+CDEC-01-02
+KEEP / ACCEPT
+Decision identity remains the P1-P4 operational-priority domain.
+Exact mapping and unresolved SLA semantics remain downstream/open.
+
+CDEC-01-03
+KEEP / ACCEPT
+Decision identity remains the technology-neutral four-stage
+image-based analytical architecture.
+
+CDEC-01-04
+REWORK / GENEALOGY ONLY
+
+CDEC-01-04A
+LOWER_LEVEL
+Vector-similarity retrieval remains source-supported meaning,
+but independent Decision governance is not established.
+
+CDEC-01-05
+HOLD / BOUNDARY_REVIEW
+Direct and B4-integrated paths are source-supported,
+but independent dual-access policy/architecture authority
+must be resolved explicitly.
+
+CDEC-01-06
+LOWER_LEVEL
+Initial training/validation lifecycle remains source-supported
+development/training evidence; independent MR-01 Decision
+governance is not established.
+
+CDEC-01-07
+LOWER_LEVEL
+Shared retrieval/training data lineage remains source-supported
+evidence; independent Decision governance is not established.
+
+CDEC-01-08
+KEEP / ACCEPT
+Separate analytical-to-operational adaptation remains an
+explicit architectural phase-boundary Decision candidate.
+```
+
+### 23.3 External-only urgency-vocabulary candidate
+
+External Review 1 proposed HIGH/MEDIUM/LOW as an autonomous Decision.
+External Review 2 did not.
+
+Current disposition:
+
+```text
+DO NOT PROMOTE TO DECISION
+PRESERVE AS LOWER-LEVEL SOURCE-SUPPORTED DOMAIN
+```
+
+Reason:
+
+Independent variability is necessary but not sufficient. The source does not currently establish the three-level vocabulary as an independently governed project convention.
+
+### 23.4 Refinement of earlier guide pressures
+
+The following earlier pressure must be **refined**:
+
+```text
+GDEC-08
+OLD EMPHASIS:
+neutralization may expose a Decision behind a technology bundle
+
+POST-EXTERNAL REFINEMENT:
+neutralization may expose a Decision CANDIDATE,
+but surviving abstraction is not proof of Decision authority.
+```
+
+`GDEC-11` and `GDEC-12` are retained only as **discovery prompts**:
+
+- lifecycle separation must be inspected;
+- shared data lineage must be inspected;
+
+but neither is promoted without independent governance evidence and semantic-level fit.
+
+### 23.5 New reconciled guide findings for R7
+
+#### GDEC-16 — MR-stability/change test is necessary but not sufficient
+
+Decision promotion requires:
+
+```text
+MR remains stable under alternative
++
+candidate fits Decision semantic level
++
+original source supports independent project governance
+```
+
+#### GDEC-17 — Concrete referent preservation does not define parent Decision identity
+
+A concrete product/model may need to remain visible downstream without becoming part of the parent Decision's semantic identity.
+
+#### GDEC-18 — Separate output domain, conditional rule, parameter and service semantics
+
+For P-scale review, test separately:
+
+```text
+P1-P4 domain
+exact urgency/confidence selection rule
+numeric bindings
+SLA trigger / owner / normative meaning
+```
+
+Do not bundle unresolved service semantics into Decision identity.
+
+#### GDEC-19 — Integration-boundary discovery requires an authority gate
+
+Multiple first-class interface paths may expose an architectural Decision candidate after endpoint/protocol neutralization.
+
+Promotion still requires evidence that the alternate access/integration strategy is independently governed rather than merely current interface realization.
+
+#### GDEC-20 — Explicit phase-boundary family-regression test
+
+When source architecture explicitly separates an analytical result from a later operational derivation phase, test the boundary itself for Decision status.
+
+#### GDEC-21 — Lifecycle and data-lineage discovery do not imply promotion
+
+Inspect lifecycle separation and cross-capability data relationships, but require:
+
+```text
+independent governance evidence
++
+correct semantic level
+```
+
+before Decision promotion.
+
+#### GDEC-22 — Closure must be layer-specific
+
+Distinguish explicitly:
+
+```text
+Decision discovery closed for current source set
+FR not analyzed
+parameter/configuration semantics open
+source gap preserved
+```
+
+Unresolved issues that affect Decision identity remain HOLD or trigger controlled reopen.
+
+#### GDEC-23 — Example-blind holdout required for R7 transfer validation
+
+Because R5/R6 contain historical DermaTriage examples, the current experiment is answer-blind but not example-blind.
+
+R7 should later be tested on a project not embedded in the guide examples.
+
+### 23.6 MR cleanup finding after external review
+
+`GP-MR01-DEC-01` remains supported.
+
+The external reviews also treat the no-image path as material project meaning, but do not consistently require removing that selected response from MR Context.
+
+This divergence is evidence that the future guide must make the MR-prose Decision-leakage gate explicit rather than optional.
+
+### 23.7 Current experiment status
+
+```text
+EXTERNAL REVIEW 1:
+PRESERVED
+
+EXTERNAL REVIEW 2:
+PRESERVED
+
+THREE-WAY RECONCILIATION:
+PRESERVED IN PERMANENT VALIDATION-EVIDENCE CHECKPOINT
+
+R7 AUTHORING:
+NOT STARTED
+
+CDEC-01-05:
+HOLD / BOUNDARY_REVIEW — NEXT FOCUSED REVIEW
+
+FR AUTHORING:
+NOT STARTED
+```
+
+## 24. Retirement condition for this file
 
 Do not keep this file as permanent normative documentation.
 
