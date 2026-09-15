@@ -848,6 +848,7 @@ The following list is preserved so subsequent chats do not lose the breadth-firs
 | `CDEC-01-05` | Coesistenza di un percorso diretto e di un percorso di triage integrato con B4 | ACCEPT AS DECISION CANDIDATE |
 | `CDEC-01-06` | Costruzione separata della baseline classificatoria mediante training e validazione | ACCEPT AS DECISION CANDIDATE — reworked to technology-neutral meaning after direct source pass |
 | `CDEC-01-07` | Uso di una base dati dermatologica condivisa per retrieval storico e training della baseline | ACCEPT AS DECISION CANDIDATE — previous HOLD resolved by direct OR3 evidence |
+| `CDEC-01-08` | Separazione tra urgenza analitica e derivazione della priorità operativa | ACCEPT AS DECISION CANDIDATE — discovered and accepted during full family regression |
 
 No historical `DEC-*` correspondence is asserted here.
 
@@ -1047,11 +1048,11 @@ La valutazione di triage può essere avviata direttamente a partire dalle inform
 
 **Decision**
 
-DermaTriage mantiene disponibile la valutazione di triage sia attraverso un percorso diretto sia attraverso un percorso integrato con B4; nel percorso integrato acquisisce da B4 le informazioni di caso necessarie alla valutazione e rende disponibile a B4 l'esito di triage associato al consulto.
+DermaTriage rende disponibile la valutazione di triage attraverso due modalità di accesso: un percorso diretto e un percorso integrato con B4.
 
 **Consequences**
 
-B4 non costituisce una precondizione universale per l'esecuzione di MR-01. Il percorso integrato deve preservare la correlazione tra il caso/consulto B4 e l'esito di triage prodotto. Endpoint, protocolli e meccanismi di autenticazione non appartengono automaticamente all'identità della Decision.
+B4 non costituisce una precondizione universale per l'esecuzione di MR-01. Nel percorso integrato, l'acquisizione delle informazioni di caso, la correlazione con il consulto e la restituzione o write-back dell'esito costituiscono obblighi downstream da specificare come comportamento e non parte dell'identità della Decision. Endpoint, protocolli e meccanismi di autenticazione non appartengono automaticamente all'identità della Decision.
 
 ### 13.3 Decision-vs-realization gate
 
@@ -1471,39 +1472,454 @@ DERIVED ARTIFACT ONLY
 
 Do not convert `DERIVED ARTIFACT ONLY` into project authority.
 
-## 18. MR-01 Decision-family closure is next
+## 18. Guide-change candidates added by CDEC-01-08 and the family regression
 
-The breadth-first discovery pass for the currently identified MR-01 Decision candidates is now complete.
+### GDEC-14 — Explicit analytical-to-operational phase boundaries may be Decision-level architecture
 
-Current working family:
+**Status:** supported candidate refinement.
+
+When source documentation explicitly separates an analytical result from a later operational derivation/adaptation phase, do not collapse the two merely because both contribute to the same MR outcome.
+
+Required test:
+
+```text
+analytical result
+    ->
+explicit later adaptation / operational derivation
+```
+
+Ask whether the phase boundary can change while the MR and the output domain remain stable.
+
+DermaTriage example:
+
+```text
+four-stage analytical synthesis
+    ->
+separate Adaptation Layer
+    ->
+operational priority
+```
+
+The separate phase boundary survives independently from both the four-stage Decision and the P1-P4 domain Decision.
+
+### GDEC-15 — A Decision-family closure regression may discover a missing sibling Decision
+
+**Status:** supported research-process refinement.
+
+Breadth-first Decision discovery is not sufficient by itself to declare a family complete.
+
+Before closure, review all accepted candidates together and run at least:
+
+```text
+source grounding
+MR-stability / change test
+pairwise non-overlap
+neutralization
+semantic ownership
+Decision -> future FR single-parent readiness
+Decision <-> MR coverage
+```
+
+If the cross-family review exposes a source-supported commitment not owned by any accepted Decision, add it through an explicit candidate review rather than silently stretching an existing Decision.
+
+DermaTriage `CDEC-01-08` is the current example.
+
+## 19. CDEC-01-08 — Separazione tra urgenza analitica e derivazione della priorità operativa
+
+### 19.1 Original project-documentation evidence
+
+Primary source:
+
+`OR2_Architecture_Document.pdf`
+
+OR2 describes the image-based flow as a four-stage analytical pipeline. Stage 4 synthesizes a final analytical JSON containing, among other fields, urgency and confidence.
+
+After those four stages, OR2 separately documents:
+
+```text
+Adaptation Layer
+map_urgency_to_p_scale()
+    ->
+P1-P4 + specialist + SLA
+```
+
+Minimum source-supported phase structure:
+
+```text
+four-stage analytical pipeline
+        ->
+analytical urgency / confidence
+        ->
+separate Adaptation Layer
+        ->
+operational triage priority
+```
+
+The source therefore supports a phase boundary between analytical synthesis and the later operational derivation.
+
+Important non-inferences:
+
+- this evidence does not establish that the symptom-only path necessarily traverses the same Adaptation Layer;
+- the exact urgency/confidence -> P1/P2/P3/P4 mapping remains downstream behavior;
+- specialist-routing meaning remains outside MR-01 and belongs to MR-02 review;
+- SLA values remain source-supported but their complete normative semantics are not established by this Decision.
+
+### 19.2 Candidate Decision formulation
+
+**Working title**
+
+Separazione tra urgenza analitica e derivazione della priorità operativa
+
+**Context**
+
+Nel percorso image-based, la pipeline analitica produce una sintesi di urgenza prima dell'assegnazione della priorità operativa. La documentazione colloca dopo i quattro stadi una Adaptation Layer distinta.
+
+**Decision**
+
+Nel percorso image-based, DermaTriage mantiene distinta la sintesi analitica di urgenza dalla derivazione della priorità operativa di triage, applicando una fase di adattamento successiva alla pipeline analitica.
+
+**Consequences**
+
+La pipeline a quattro stadi non produce direttamente la priorità operativa come parte indistinta della propria sintesi. La successiva derivazione operativa utilizza l'output analitico per determinare la priorità. La scelta del dominio P1-P4 resta governata separatamente da CDEC-01-02. La regola concreta che seleziona P1/P2/P3/P4 è comportamento downstream e non identità di questa Decision.
+
+### 19.3 Independence from CDEC-01-03 and CDEC-01-02
+
+The following alternatives preserve MR-01 while varying these commitments independently:
+
+```text
+CDEC-01-03 dimension
+four stages
+vs
+different analytical decomposition
+
+CDEC-01-08 dimension
+separate analytical -> operational adaptation
+vs
+operational priority produced directly by analytical synthesis
+
+CDEC-01-02 dimension
+P1-P4
+vs
+different operational-priority vocabulary
+```
+
+Therefore:
+
+```text
+four-stage architecture
+!=
+separate analytical-to-operational adaptation
+!=
+P1-P4 operational domain
+```
+
+### 19.4 Future FR ownership pressure
+
+No FR is authored here.
+
+Current semantic-ownership hypothesis:
+
+```text
+CDEC-01-08
+    ->
+future analytical-to-operational mapping behavior
+
+CDEC-01-02
+    ->
+future obligation that operational priority belongs
+to the governed P1-P4 domain
+```
+
+A future mapping FR must receive one semantic parent. CDEC-01-02 must not become a second containment parent merely because its P-scale domain participates in the same runtime path.
+
+### 19.5 Joint disposition
+
+```text
+CDEC-01-08
+JOINT REVIEW:
+ACCEPT AS DECISION CANDIDATE
+```
+
+This disposition remains candidate-level until the clean successor documentation is produced; no historical `DEC-*` correspondence is asserted.
+
+## 20. Full MR-01 Decision-family regression
+
+### 20.1 Regression gates
+
+Every active candidate was reviewed using the same closure questions:
+
+```text
+SOURCE GROUNDING
+Does original project documentation support the commitment?
+
+MR STABILITY
+Can this commitment change while MR-01 remains the same macro responsibility?
+
+PAIRWISE NON-OVERLAP
+Does another accepted Decision already own the same commitment?
+
+NEUTRALIZATION
+If concrete product, endpoint, file or parameter names are removed,
+does meaningful governed strategy/boundary/architecture remain?
+
+DOWNSTREAM OWNERSHIP
+Can later FR authoring preserve one semantic Decision parent?
+
+DECISION <-> MR COVERAGE
+Does the family cover the material Decision-level project commitments
+without redefining MR-01 itself?
+```
+
+### 20.2 Regression result by candidate
+
+| Candidate | Closure result | Main boundary |
+|---|---|---|
+| `CDEC-01-01` | KEEP / PASS | no-image conditional path; does not own image-based path |
+| `CDEC-01-02` | KEEP / PASS | P1-P4 operational-priority domain; not the concrete mapping |
+| `CDEC-01-03` | KEEP / PASS | four-stage image-based analytical architecture |
+| `CDEC-01-04` | REWORK / GENEALOGY ONLY | uniform named-technology Decision did not survive neutralization |
+| `CDEC-01-04A` | KEEP / PASS | vector-similarity retrieval strategy; concrete products remain realization |
+| `CDEC-01-05` | KEEP / PASS WITH WORDING REFINEMENT | direct + B4-integrated access strategy; acquisition/write-back routed downstream |
+| `CDEC-01-06` | KEEP / PASS | initial baseline lifecycle; later feedback-driven retraining remains MR-04 |
+| `CDEC-01-07` | KEEP / PASS | shared dermatology data lineage across retrieval and baseline preparation |
+| `CDEC-01-08` | KEEP / PASS | explicit analytical-to-operational adaptation phase boundary |
+
+### 20.3 Pairwise overlap conclusions
+
+No active candidates require merge at this stage.
+
+Key distinctions:
+
+```text
+CDEC-01-01
+no-image fallback
+!=
+CDEC-01-03
+image-based analytical architecture
+```
+
+```text
+CDEC-01-03
+Stage-3 existence inside four-stage architecture
+!=
+CDEC-01-04A
+Stage-3 vector retrieval strategy
+```
+
+```text
+CDEC-01-06
+initial baseline establishment lifecycle
+!=
+CDEC-01-07
+shared data lineage feeding baseline preparation
+```
+
+```text
+CDEC-01-03
+four-stage analytical synthesis
+!=
+CDEC-01-08
+later analytical-to-operational adaptation
+!=
+CDEC-01-02
+P1-P4 operational domain
+```
+
+### 20.4 Single-parent readiness
+
+The family is compatible with the DDTA invariant:
+
+```text
+MR
+  -> Decision
+      -> FR
+```
+
+provided later FR authoring does not encode traceability relevance as multiple containment parents.
+
+Current ownership pressures to preserve:
+
+- the Stage-3 retrieval FR is likely owned by `CDEC-01-04A`, while `CDEC-01-03` remains broader architecture traceability;
+- the analytical-to-operational mapping FR is likely owned by `CDEC-01-08`, while `CDEC-01-02` governs the output domain rather than becoming a second parent;
+- `CDEC-01-07` requires a descendant-completeness test during FR authoring so shared-lineage meaning is actually operationalized.
+
+These are hypotheses for FR review, not authored FRs.
+
+### 20.5 Source-coverage completeness result
+
+Material source meanings currently route as follows:
+
+| Source-supported meaning | Closure routing |
+|---|---|
+| no-image symptom-based continuation | `CDEC-01-01` |
+| operational priority represented as P1-P4 | `CDEC-01-02` |
+| four-stage image-based pipeline | `CDEC-01-03` |
+| named Stage 1-4 technologies | realization / bindings, not standalone Decisions |
+| vector-similarity historical retrieval | `CDEC-01-04A` |
+| cosine similarity / top-5 | lower-level bindings |
+| direct + B4-integrated triage access | `CDEC-01-05` |
+| concrete endpoint names | realization / interface bindings |
+| initial baseline training + validation lifecycle | `CDEC-01-06` |
+| optimizer / balancing / hyperparameters / observed epochs | lower-level bindings/configuration/observed evidence |
+| shared retrieval/training data lineage | `CDEC-01-07` |
+| separate post-analysis Adaptation Layer | `CDEC-01-08` |
+| exact urgency/confidence -> P-scale mapping | future FR-level behavior |
+| specialist-routing meaning | MR-02 |
+| medical validation / correction | MR-03 |
+| feedback-driven prompt/model adaptation | MR-04 |
+
+No additional MR-01 Decision is currently supported strongly enough to add.
+
+### 20.6 Preserved open questions
+
+Decision discovery closure does not convert unresolved source meaning into fact.
+
+The following remain open for downstream review:
+
+- whether symptom-only urgency is governed as input to the same P-scale mapping used by the image-based path;
+- complete normative meaning, start event and owner for SLA values 24h / 48h / 72h / 7 days;
+- Stage-2 five-bullet format status;
+- Stage-3 cosine and top-5 status;
+- Stage-4 JSON / mandatory output-field status;
+- governed meaning of pathology without implying definitive diagnostic authority;
+- B4 failure/retry behavior and minimum required case information;
+- stable normative status of Macro F1, balancing and training split rules;
+- descendant completeness for the shared-data-lineage Decision.
+
+### 20.7 Regression disposition
+
+```text
+MR-01 DECISION FAMILY REGRESSION
+
+SOURCE GROUNDING             PASS
+DECISION vs MR               PASS
+DECISION vs REALIZATION      PASS
+PAIRWISE NON-OVERLAP         PASS
+NEUTRALIZATION               PASS
+DECISION <-> MR COVERAGE     PASS
+DISCOVERY COMPLETENESS       PASS
+SINGLE-PARENT READINESS      PASS WITH DOWNSTREAM PRESSURES
+MR WORDING                   REQUIRES EXPLICIT CLEANUP
+```
+
+## 21. MR-01 cleanup disposition after Decision-family closure
+
+The frozen MR artifact is **not** modified by this ledger.
+
+The family regression confirms that current MR Context and Scope IN pre-encode CDEC-01-01.
+
+### 21.1 Frozen wording that creates the pressure
+
+Current Context includes:
+
+> Quando non è presente un'immagine della lesione, il progetto prevede un percorso basato sui sintomi disponibili.
+
+Current Scope IN includes:
+
+> ... anche quando l'immagine non è presente.
+
+Those phrases encode the selected no-image response rather than only the macro responsibility boundary.
+
+### 21.2 Successor MR wording accepted for later application
+
+**Title**
+
+MR-01 — Valutazione di triage del caso dermatologico
+
+**Intent**
+
+Determinare, a partire dalle informazioni disponibili sul caso dermatologico, l'urgenza del caso e la relativa priorità operativa di triage.
+
+**Context**
+
+La valutazione di triage utilizza le informazioni disponibili sul caso dermatologico. La disponibilità e la tipologia delle evidenze possono variare tra i casi.
+
+**Stakeholders**
+
+Paziente.
+
+**Scope**
+
+**IN:** determinazione dell'urgenza del caso e della relativa priorità operativa di triage a partire dalle informazioni di caso governate dal progetto.
+
+**OUT:** indicazione della destinazione specialistica; validazione o correzione medica dell'esito; adattamento successivo del comportamento del sistema sulla base della revisione clinica.
+
+**Assumptions / Constraints**
+
+--
+
+**dependsOn**
+
+`None`
+
+### 21.3 Cleanup disposition
+
+```text
+GP-MR01-DEC-01
+RESOLVED AT DECISION-FAMILY LEVEL
+
+ACTION:
+apply the accepted cleanup only in an explicit successor
+DermaTriage documentation revision.
+
+DO NOT:
+rewrite the frozen R3 MR artifact in place.
+```
+
+The cleanup changes little about which macro responsibility exists. It removes a downstream policy from MR prose so the MR and Decision family have cleaner boundaries.
+
+## 22. MR-01 Decision-family closure state and next controlled step
+
+### 22.1 Active candidate family after closure
 
 ```text
 MR-01
  |
- +-- CDEC-01-01  ACCEPT
- +-- CDEC-01-02  ACCEPT
- +-- CDEC-01-03  ACCEPT
- +-- CDEC-01-04  REWORK / genealogy retained
- +-- CDEC-01-04A ACCEPT
- +-- CDEC-01-05  ACCEPT
- +-- CDEC-01-06  REWORK -> ACCEPT
- `-- CDEC-01-07  HOLD -> ACCEPT
+ +-- CDEC-01-01  KEEP / ACCEPT
+ +-- CDEC-01-02  KEEP / ACCEPT
+ +-- CDEC-01-03  KEEP / ACCEPT
+ +-- CDEC-01-04  REWORK / genealogy only
+ +-- CDEC-01-04A KEEP / ACCEPT
+ +-- CDEC-01-05  KEEP / ACCEPT, wording refined
+ +-- CDEC-01-06  KEEP / ACCEPT
+ +-- CDEC-01-07  KEEP / ACCEPT
+ `-- CDEC-01-08  KEEP / ACCEPT
 ```
 
-No FR authoring starts yet.
+### 22.2 Closure gate
 
-Next controlled step:
+```text
+MR-01 DECISION DISCOVERY / REVIEW:
+CLOSED FOR CURRENT SOURCE SET
 
-1. review all candidate Decisions together;
-2. test overlap, duplication and granularity;
-3. test single semantic ownership;
-4. re-run neutralization/change tests where useful;
-5. execute Decision ↔ MR-01 cross-check;
-6. resolve MR cleanup pressure;
-7. stabilize the candidate Decision family;
-8. only then create the successor DermaTriage documentation view and evaluate cumulative guide consolidation.
+FR AUTHORING:
+NOT STARTED
 
-## 19. Retirement condition for this file
+OPEN DOWNSTREAM PRESSURES:
+PRESERVED
+
+FROZEN MR ARTIFACT:
+UNCHANGED
+
+SUCCESSOR MR CLEANUP:
+DISPOSITION ACCEPTED
+```
+
+`CLOSED FOR CURRENT SOURCE SET` does not prohibit future controlled reopen. New original evidence, a contradiction, or a concrete downstream hierarchy failure may reopen the family explicitly.
+
+### 22.3 Next controlled methodology step
+
+Do not begin FR authoring yet.
+
+Next:
+
+1. consolidate the accepted `GDEC-*` findings into the minimum cumulative documentation-authoring guide successor;
+2. regression-check that successor against the preserved guide baseline and this DermaTriage Decision-family evidence;
+3. create a clean project-review artifact containing the stabilized MR set and Decision candidates for external validation;
+4. prepare the external blind-review package so the reviewer first receives the updated guide plus original project documents, without the DDTA-derived MR/Decision answer set;
+5. compare the independent reviewer result with the internal reconstruction only in a second phase.
+
+## 23. Retirement condition for this file
 
 Do not keep this file as permanent normative documentation.
 
