@@ -1,0 +1,15 @@
+DDTA_DERMATRIAGE_PARALLEL_CASE_STUDY_R5_MR01_DECISIONS - Page MD5 Index
+Canonical payload: LaTeX content between PAGE-CONTENT markers; own printed MD5 excluded.
+Integrity-index page resolves all other page hashes and canonicalizes its own hash as <SELF>.
+
+Page 1  ccabe4bed7cca4d2f68a2005e42f36e3  Frontespizio e struttura del case study
+Page 2  0fb76dc0491da2793823b20571e5268b  Contesto generale del progetto - Project Problem Framing
+Page 3  3c912396a2040761bc527a68c3bf6205  MR-01 - Valutazione di triage del caso dermatologico
+Page 4  b50a158164de4435f5d4734d81a16d0e  DEC-MR01-01 - Triage in assenza di immagine
+Page 5  68f6d5a7d59e200fa4d8c5dab56b502a  DEC-MR01-02 - Scala di priorita P1-P4
+Page 6  9a5e19b0746c48dbed7e76087825df98  DEC-MR01-03 - Pipeline analitica a quattro stadi
+Page 7  b3a101c7fe384e6a930410d43b6b1944  DEC-MR01-04 - Separazione tra valutazione dell'urgenza e priorita operativa
+Page 8  abf9008d770509039fc7ffbd1cf1f655  MR-02 - Indicazione della destinazione specialistica
+Page 9  589ab9dd2fc47da8ed0c64692eb2a76d  MR-03 - Validazione e correzione medica degli esiti
+Page 10  58aca712eadb3222507468f39fae50fe  MR-04 - Adattamento controllato sulla base della revisione clinica
+Page 11  b537c52d580fb67dfad87d78393790bb  Indice di integrita delle pagine [INTEGRITY INDEX]
