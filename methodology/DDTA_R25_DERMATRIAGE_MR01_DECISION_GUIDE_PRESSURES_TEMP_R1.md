@@ -2170,3 +2170,158 @@ It is retired when:
 At that point remove this file in an explicit repository commit.
 
 Git history is sufficient to preserve the temporary research trail.
+
+## 25. FR-phase clarification — hierarchy, downstream children and implementation trace boundary
+
+**Status:** CURRENT FR-PHASE CLARIFICATION / TEMPORARY RESEARCH NOTE
+
+**Repository baseline for this clarification:** `e042be7692a17aa2245795fc26de952f09d77831`
+
+The focused R5/R6 reread and the subsequent human clarification confirm that the regular DDTA hierarchy remains:
+
+```text
+MR
+  -> Decision
+      -> FunctionalRequirement
+          -> SpecializedRequirement [0..*]
+
+SecurityRequirement
+    IS-A SpecializedRequirement
+    when the specialization is security-specific
+```
+
+The following invariant is retained without modification:
+
+```text
+FunctionalRequirement.parentDecision = exactly one Decision
+```
+
+A FunctionalRequirement is therefore never detached from the Decision layer and is not authored as a sibling directly owned by the MacroRequirement.
+
+### 25.1 Clarification of the current FR question
+
+The open FR-phase question is **not** whether Decision parentage should be removed.
+
+The current question is how to distinguish, reproducibly and source-first, four different meanings that may appear close together in ordinary project documentation:
+
+```text
+Decision
+    = project choice / commitment / boundary / architecture
+
+FunctionalRequirement
+    = governed operational obligation required under one Decision
+
+binding / parameter / realization
+    = concrete value, technology, representation or implementation detail
+      whose stable normative status must be established rather than assumed
+
+SpecializedRequirement
+    = autonomous strengthening / additional governed property of an FR
+```
+
+The FR review must preserve those distinctions rather than changing the hierarchy to resolve difficult cases.
+
+### 25.2 Decision-to-FR completeness remains a valid review gate
+
+For each Decision under review, after candidate FRs have been derived from source evidence, ask:
+
+```text
+Assume every current child FR is satisfied.
+Can the parent Decision still be violated?
+```
+
+Interpretation:
+
+```text
+YES
+-> downstream coverage may be incomplete, mis-owned or too weak;
+   search for a missing source-supported operational obligation or
+   a lower-level property that belongs elsewhere.
+
+NO
+-> Decision-local FR coverage is plausibly sufficient,
+   subject to split/non-overlap/source-governance regression.
+```
+
+This gate does **not** authorize creation of an FR merely to make every Decision have a symmetrical child structure. Every FR still requires a source-supported coherent operational obligation.
+
+### 25.3 What may sit downstream of an FR
+
+During the current thesis/methodology scope, an FR may be refined by zero or more SpecializedRequirements according to the existing DDTA requirement hierarchy.
+
+Future implementation or verification artifacts may also need traceability to FR identities, for example:
+
+```text
+code / test / implementation artifact
+        -- references / implements / verifies -->
+FunctionalRequirement
+```
+
+However, the mechanism for this relation is **not opened in the current MR-01 FR phase**.
+
+In particular, this phase does not choose whether future traceability uses:
+
+- source-code comments;
+- annotations;
+- test metadata;
+- registries;
+- generated links;
+- repository tooling.
+
+Those mechanisms may remain outside the thesis and current DDTA methodology scope unless explicitly opened later.
+
+### 25.4 Reading contract for the current documentation experiment
+
+The intended reading order remains structurally predictable:
+
+```text
+MacroRequirement
+    -> which macro responsibility belongs to the project?
+
+Decision
+    -> which project choice narrows that responsibility?
+
+FunctionalRequirement
+    -> which operational behavior is required under that Decision?
+
+SpecializedRequirement
+    -> which additional autonomous property strengthens/refines that FR?
+```
+
+Implementation traceability, if later introduced, must point back to governed FR identities; it does not replace the Decision -> FR relation.
+
+### 25.5 Consequence for the MR-01 fresh extraction
+
+The current source-first FR pass therefore proceeds Decision by Decision under the four stabilized MR-01 Decisions:
+
+```text
+DEC-MR01-01
+DEC-MR01-02
+DEC-MR01-03
+DEC-MR01-04
+```
+
+For each candidate, review at least:
+
+1. source-supported operational proposition;
+2. unique parent Decision;
+3. coherent obligation / split boundary;
+4. independent assessability;
+5. subject, applicable input/condition, action and observable result;
+6. realization / configuration / parameter / representation separation;
+7. source gaps and missing failure semantics without invention;
+8. Decision-to-FR completeness after the candidate family is assembled.
+
+Historical FR wording remains excluded until the fresh internal result is frozen.
+
+### 25.6 Conversation-level false branch explicitly discarded
+
+A temporary discussion hypothesis considered placing Decision and FunctionalRequirement as sibling children of the MacroRequirement. That hypothesis is rejected and creates no methodology or project-documentation change.
+
+The retained invariant is:
+
+```text
+MR -> Decision -> FunctionalRequirement
+```
+
+with exactly one Decision parent for every FunctionalRequirement.
