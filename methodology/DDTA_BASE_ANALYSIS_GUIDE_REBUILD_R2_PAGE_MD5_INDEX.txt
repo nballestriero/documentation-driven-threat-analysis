@@ -1,0 +1,16 @@
+DDTA_BASE_ANALYSIS_GUIDE_REBUILD_R2 - Page MD5 Index
+Canonical payload: LaTeX content between PAGE-CONTENT markers; own printed MD5 excluded.
+Integrity-index page resolves all other page hashes and canonicalizes its own hash as <SELF>.
+
+Page 1  faecd325b2d490ba462dd08544bb0d4d  Frontespizio della Base Analysis Guide Rebuild R2
+Page 2  fed7c77e3be15bdb5a40d106a739ecb5  1 - Che cos'e' la Base Analysis
+Page 3  62c3c9605b99d603971032c83a204cfa  1 - Authority, minimalita' e feedback
+Page 4  e9cd76279231315ee100d068d4c606d3  2 - BA View / Projection Contract e Mermaid
+Page 5  beea177bea1a8633fe80091e3d89fd87  2 - Famiglie di viste e mapping discipline
+Page 6  3915eaee02f714ac47e0dfa764b2836f  Appendice temporanea - scopo, lineage e confine del rebuild
+Page 7  874cb2fecad5af841c596c8cf5fecbdc  Appendice temporanea - corpus e stati epistemici
+Page 8  4f015160f0fe3f52f058b77261987bde  Appendice temporanea - Construct Description Contract
+Page 9  9d02d27cc2ad8bb4e1b30d441667e854  Appendice temporanea - CDC campi 1-10
+Page 10  90b6659e5a0105e0cd7268d3f76137f6  Appendice temporanea - CDC campi 11-20
+Page 11  e610ecaf85c1f9515ec3ff3c9c72d886  Appendice temporanea - roadmap corrente del rebuild
+Page 12  0e2e793e86a46f51294035b94afc6eb7  Indice di integrita' delle pagine [INTEGRITY INDEX]

@@ -1,0 +1,466 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{DDTA_METHODOLOGY_GUIDE_STYLE_R1}
+\usepackage{amsmath,amssymb}
+
+\hypersetup{
+  pdftitle={DDTA Base Analysis Guide - Rebuild R2},
+  pdfauthor={Documentation-Driven Threat Analysis research project}
+}
+
+\newcommand{\BA}{\textit{Base Analysis}}
+\newcommand{\BAR}{\texttt{BAReferent}}
+\newcommand{\BAP}{\texttt{BAProposition}}
+\newcommand{\CurrentTag}{\ddtatag{DDTAGreen}{CURRENT / PRESERVED}}
+\newcommand{\CandidateTag}{\ddtatag{DDTAAmber}{CANDIDATE / NOT ADMITTED}}
+\newcommand{\OpenTag}{\ddtatag{DDTARed}{OPEN}}
+\newcommand{\RejectedTag}{\ddtatag{DDTARed}{REJECTED}}
+\newcommand{\RebuildTag}{\ddtatag{DDTABlue}{REBUILD CONTRACT}}
+
+\newcommand{\TemporaryRebuildBanner}{%
+\begin{ddtaanti}[title={APPENDICE TEMPORANEA DI REBUILD - DA ELIMINARE PRIMA DELLA GUIDA DEFINITIVA}]
+Il contenuto di questa appendice governa \emph{come stiamo ricostruendo la guida}, non il funzionamento della Base Analysis. Deve restare disponibile durante il rebuild per garantire coerenza, genealogia e regression, ma va rimosso dalla guida definitiva dopo il consolidamento. Se una sua regola deve sopravvivere come metodologia BA, deve essere trasferita esplicitamente nella parte normativa appropriata prima della rimozione.
+\end{ddtaanti}
+}
+
+% -----------------------------------------------------------------------------
+% PAGE-INTEGRITY HASHES
+% -----------------------------------------------------------------------------
+\newcommand{\PageMDfive}[1]{\csname PageMDfive#1\endcsname}
+%<PAGE-HASH-DEFS>
+\expandafter\def\csname PageMDfive1\endcsname{faecd325b2d490ba462dd08544bb0d4d}
+\expandafter\def\csname PageMDfive2\endcsname{fed7c77e3be15bdb5a40d106a739ecb5}
+\expandafter\def\csname PageMDfive3\endcsname{62c3c9605b99d603971032c83a204cfa}
+\expandafter\def\csname PageMDfive4\endcsname{e9cd76279231315ee100d068d4c606d3}
+\expandafter\def\csname PageMDfive5\endcsname{beea177bea1a8633fe80091e3d89fd87}
+\expandafter\def\csname PageMDfive6\endcsname{3915eaee02f714ac47e0dfa764b2836f}
+\expandafter\def\csname PageMDfive7\endcsname{874cb2fecad5af841c596c8cf5fecbdc}
+\expandafter\def\csname PageMDfive8\endcsname{4f015160f0fe3f52f058b77261987bde}
+\expandafter\def\csname PageMDfive9\endcsname{9d02d27cc2ad8bb4e1b30d441667e854}
+\expandafter\def\csname PageMDfive10\endcsname{90b6659e5a0105e0cd7268d3f76137f6}
+\expandafter\def\csname PageMDfive11\endcsname{e610ecaf85c1f9515ec3ff3c9c72d886}
+\expandafter\def\csname PageMDfive12\endcsname{0e2e793e86a46f51294035b94afc6eb7}
+%</PAGE-HASH-DEFS>
+
+\newcommand{\PageHashFooter}[1]{%
+  \fancyfoot[C]{}%
+  \fancyfoot[R]{\sffamily\scriptsize\color{DDTAGray}Pag. \thepage\quad MD5 contenuto: \texttt{#1}}%
+}
+\newcommand{\IntegrityRow}[3]{#1 & #2 & {\footnotesize\ttfamily #3} \\
+}
+
+\begin{document}
+\selectlanguage{italian}
+\fancyhead[L]{\sffamily\small\color{DDTAGray}DDTA Base Analysis Guide}
+\fancyhead[R]{\sffamily\small\color{DDTABlue}Rebuild R2 - CANDIDATE}
+\fancyfoot[L]{\sffamily\scriptsize\color{DDTAGray}Cumulative rebuild - definitive-guide boundary explicit}
+
+%<PAGE-DESC:1>Frontespizio della Base Analysis Guide Rebuild R2
+%<PAGE-CONTENT:1>
+\begin{titlepage}
+\thispagestyle{empty}
+\vspace*{12mm}
+{\sffamily\bfseries\color{DDTANavy}\fontsize{15}{18}\selectfont Documentation-Driven Threat Analysis}\par
+\vspace{5mm}
+{\sffamily\bfseries\color{DDTANavy}\fontsize{28}{32}\selectfont Base Analysis Guide}\par
+\vspace{2mm}
+{\sffamily\color{DDTABlue}\fontsize{18}{22}\selectfont Rebuild R2 - Candidate cumulative reconstruction}\par
+
+\vspace{14mm}
+\begin{tcolorbox}[enhanced,arc=3pt,boxrule=0pt,colback=DDTANavy,left=13pt,right=13pt,top=12pt,bottom=12pt]
+{\color{white}\sffamily\bfseries\large Ricostruzione progressiva della guida Base Analysis}\par
+\vspace{2mm}
+{\color{white!88}\small La guida viene riscritta da una nuova struttura editoriale senza perdere authority, evidence, candidate construct, pressure, rejected hypothesis e deferred delta accumulati nelle revisioni precedenti. Ogni costrutto verra' descritto con un contratto fisso e applicato subito a DermaTriage prima di procedere al successivo.}
+\end{tcolorbox}
+
+\vfill
+\begin{tabularx}{0.93\textwidth}{L{46mm}Y}
+\toprule
+\textbf{Stato} & \texttt{CANDIDATE / NON-NORMATIVE / CUMULATIVE REBUILD} \\
+\textbf{Repository baseline} & \texttt{e88ebee4be20246e1af6f2b37dd402c848ed22f3} \\
+\textbf{Authority BA corrente} & R3 Operational Guide + BA0 R1 / BA1 R1 / BA2 R3 / BA3 R1 / BA4 R1 / BA5 R1 \\
+\textbf{Scopo di R2} & Fissare il confine della guida definitiva: la parte normativa parte da ``Che cos'e' la Base Analysis''; le regole di rebuild restano in appendice temporanea. \\
+\textbf{Authority change} & Nessuno. Una futura promotion richiede checkpoint esplicito. \\
+\bottomrule
+\end{tabularx}
+
+\vfill
+{\sffamily\scriptsize\color{DDTAGray}MD5 contenuto pagina 1: \texttt{\PageMDfive{1}}}\par
+\end{titlepage}
+%</PAGE-CONTENT:1>
+
+\clearpage
+\setcounter{page}{2}
+%<PAGE-DESC:2>1 - Che cos'e' la Base Analysis
+%<PAGE-CONTENT:2>
+\PageHashFooter{\PageMDfive{2}}
+\section{Che cos'e' la Base Analysis}
+
+La \BA{} e' una rappresentazione analitica condivisa del significato di progetto che serve a rendere quel significato riusabile, interrogabile, confrontabile e proiettabile verso analisi downstream senza obbligare ogni consumer a reinterpretare direttamente la prosa documentale.
+
+\begin{ddtaprinciple}[title={Idea fondamentale}]
+La documentazione dice che cosa il progetto governa. La Base Analysis rende quel significato esplicito in una forma analitica comune. La BA non sostituisce la documentazione e non puo' creare project truth che la documentazione non stabilisce.
+\end{ddtaprinciple}
+
+\subsection{La BA non e'}
+
+\begin{itemize}
+  \item una riscrittura completa della documentazione;
+  \item un diagramma architetturale manuale;
+  \item un DFD o un modello STRIDE;
+  \item un catalogo di tutti i sostantivi e verbi presenti nel testo;
+  \item un modo per completare dettagli mancanti perche' utili all'analisi;
+  \item una fotografia dell'implementazione piu' dettagliata di quanto il progetto governi.
+\end{itemize}
+
+\subsection{Perche' esiste}
+Una stessa informazione di progetto puo' essere necessaria a piu' consumer: viste di progetto, traceability, change impact, threat analysis, test reasoning o altre projection. La BA evita che ognuno di questi consumer inventi una propria interpretazione incompatibile dello stesso significato.
+
+\begin{lstlisting}
+Governed Documentation
+        -> Base Analysis
+        -> multiple controlled consumers / views
+\end{lstlisting}
+%</PAGE-CONTENT:2>
+
+\clearpage
+%<PAGE-DESC:3>1 - Authority, minimalita' e feedback
+%<PAGE-CONTENT:3>
+\PageHashFooter{\PageMDfive{3}}
+\subsection{Authority, minimalita' e feedback}
+
+\subsection{Direzione dell'authority}
+
+\begin{lstlisting}
+governed project documentation
+    = project authority
+
+accepted Base Analysis
+    = shared analytical baseline
+
+view / projection / threat method / test model
+    = downstream consumer
+\end{lstlisting}
+
+Un consumer downstream puo' scoprire una difficolta'. Questa difficolta' puo' risalire come richiesta di review, ma non modifica automaticamente ne' la BA ne' la documentazione.
+
+\begin{ddtacore}[title={Feedback governato}]
+\begin{lstlisting}
+downstream difficulty
+    -> BA review question
+    -> documentation question, if project meaning is missing
+    -> governed documentation change, only if justified
+    -> BA revalidation
+    -> projection rebuild
+\end{lstlisting}
+\end{ddtacore}
+
+\subsection{Minimum sufficient BA}
+Piu' dettaglio non significa automaticamente BA migliore. Aggiungiamo un significato solo quando almeno una distinzione governata, una domanda downstream materiale o una necessita' di trace/change richiede che quel significato sia esplicito.
+
+\begin{ddtacheck}[title={Stopping rule iniziale}]
+Se eliminando un dettaglio dalla BA non perdiamo una distinzione governata, una identita' che deve essere riusata, una relazione necessaria o una domanda downstream materiale nello scope dichiarato, il dettaglio non va aggiunto solo per completezza grafica.
+\end{ddtacheck}
+
+\begin{ddtaopen}[title={NOT SPECIFIED e documentation gap}]
+Se la BA richiederebbe un fatto che la documentazione non governa, il risultato corretto puo' essere \texttt{NOT SPECIFIED} o una diagnosis. La BA non completa il vuoto con dominio, plausibilita', implementazione o necessita' del tool.
+\end{ddtaopen}
+%</PAGE-CONTENT:3>
+
+\clearpage
+%<PAGE-DESC:4>2 - BA View / Projection Contract e Mermaid
+%<PAGE-CONTENT:4>
+\PageHashFooter{\PageMDfive{4}}
+\section{BA View / Projection Contract}
+
+La BA deve poter generare piu' viste del progetto o della documentazione senza trasformare ogni vista in una nuova fonte di significato. Introduciamo quindi un livello esplicito di \textbf{View Contract} tra BA e renderer.
+
+\begin{lstlisting}
+Governed Documentation
+        -> accepted Base Analysis
+        -> BA View Contract
+        -> textual renderer / notation
+        -> rendered view
+\end{lstlisting}
+
+\subsection{Mermaid come primo target}
+Mermaid viene adottato come primo target di rendering testuale da investigare perche' consente artifact versionabili nel repository e puo' rappresentare diverse famiglie di diagrammi. In questa guida Mermaid non e' authority metodologica: e' un renderer/notation target della projection.
+
+\begin{ddtacore}[title={No reverse inference}]
+Una relazione, un nodo, un participant, un subgraph o qualunque altra forma richiesta o resa comoda dalla notazione non autorizza a inventare BA semantics. La direzione ammessa e' \texttt{BA -> View Contract -> Mermaid}. La direzione inversa e' vietata.
+\end{ddtacore}
+
+\subsection{Campi minimi di una view}
+
+\begin{lstlisting}
+viewId
+viewType
+sourceBABaseline
+scope
+includedReferents
+includedPropositionsOrLocalStructures
+projectionRules
+coverageMode
+omittedSemantics
+renderer
+renderedArtifact
+\end{lstlisting}
+
+I coverage mode iniziali preservano la distinzione BA4 tra \texttt{EXHAUSTIVE\_FOR\_DECLARED\_SCOPE} e \texttt{SELECTIVE}.
+%</PAGE-CONTENT:4>
+
+\clearpage
+%<PAGE-DESC:5>2 - Famiglie di viste e mapping discipline
+%<PAGE-CONTENT:5>
+\PageHashFooter{\PageMDfive{5}}
+\subsection{Famiglie di viste da testare}
+
+Senza congelare ancora i mapping, la guida dovra' verificare almeno:
+
+\begin{itemize}
+  \item project structure / capability view;
+  \item information-flow / interaction view;
+  \item responsibility view;
+  \item dependency view;
+  \item service-interaction view;
+  \item state / lifecycle view;
+  \item pipeline / process view, soltanto se la BA possiede semantica sufficiente;
+  \item documentation hierarchy view;
+  \item documentation-to-BA traceability view;
+  \item BA coverage / gap view.
+\end{itemize}
+
+\begin{ddtacheck}[title={Mapping rule obbligatoria}]
+Ogni edge o relazione visuale deve derivare da una regola di projection dichiarata. Non si assume, per esempio, che un legame DDTA o BA corrisponda automaticamente a una relazione con lo stesso nome disponibile in Mermaid o in un'altra notazione.
+\end{ddtacheck}
+%</PAGE-CONTENT:5>
+
+\clearpage
+%<PAGE-DESC:6>Appendice temporanea - scopo, lineage e confine del rebuild
+%<PAGE-CONTENT:6>
+\PageHashFooter{\PageMDfive{6}}
+\appendix
+\section{Materiale temporaneo di rebuild}
+\TemporaryRebuildBanner
+\subsection{Scopo, lineage e confine della ricostruzione}
+
+Questa guida non nasce per dichiarare che la revisione piu' recente sia automaticamente la migliore. Nasce per rendere leggibile e applicabile il patrimonio BA gia' costruito, riesaminandolo in modo uniforme mentre viene applicato alla documentazione DermaTriage corrente.
+
+\begin{ddtacore}[title={Regola di costruzione cumulativa}]
+La nuova struttura editoriale puo' essere diversa da R3, Core R42 o Complete R42. Il significato precedente, pero', non puo' scomparire per effetto della riscrittura. Ogni distinzione precedente deve essere preservata, raffinata, rilocalizzata, ritestata, respinta con motivazione oppure lasciata esplicitamente aperta.
+\end{ddtacore}
+
+\subsection{Tre livelli da non confondere}
+
+\begin{tabularx}{\textwidth}{L{38mm}L{39mm}Y}
+\toprule
+\textbf{Livello} & \textbf{Esempio} & \textbf{Effetto} \\
+\midrule
+Authority corrente & BA0--BA5 + Operational Guide R3 & Governa il metodo corrente finche' non esiste promotion esplicita. \\
+Research evidence & R42, operator review, ledger, pressure, candidate, vecchi appunti & Puo' motivare chiarimenti o cambi, ma non modifica da solo il metodo. \\
+Rebuild candidate & questa guida & Superficie cumulativa di review; diventa authority solo con checkpoint successivo. \\
+\bottomrule
+\end{tabularx}
+
+\begin{ddtaopen}[title={Nessun target di cardinalita'}]
+Il fatto che la BA corrente abbia quattordici operatori top-level non crea un obiettivo di quattordici operatori. Anche il precedente snapshot a tredici elementi resta genealogia utile, non un target da ripristinare. Il numero finale deve essere un risultato della necessita' semantica e della regression, non una quota.
+\end{ddtaopen}
+%</PAGE-CONTENT:6>
+
+\clearpage
+%<PAGE-DESC:7>Appendice temporanea - corpus e stati epistemici
+%<PAGE-CONTENT:7>
+\PageHashFooter{\PageMDfive{7}}
+\TemporaryRebuildBanner
+\subsection{Corpus di ricostruzione e stati epistemici}
+
+Il rebuild usa come input controllato il registro {\scriptsize\nolinkurl{DDTA_R25_BASE_ANALYSIS_REBUILD_SOURCE_REGISTER_R1.md}}. Prima di chiudere un costrutto vanno ricercati non solo il suo nome corrente, ma anche alias storici, pressure collegate, candidate construct, alternative rifiutate e counterexample.
+
+\begin{ddtaprinciple}[title={Recency non equivale ad authority}]
+R42 Core/Complete e' una superficie di lettura aggiornata e molto utile per il rebuild. R3 e BA0--BA5 restano tuttavia authority corrente. La guida nuova puo' usare R42 come base esplicativa senza promuovere automaticamente le sue candidate o chiudere le sue open pressure.
+\end{ddtaprinciple}
+
+\subsection{Etichette epistemiche minime}
+
+\begin{tabularx}{\textwidth}{L{39mm}L{40mm}Y}
+\toprule
+\textbf{Etichetta} & \textbf{Uso} & \textbf{Disciplina} \\
+\midrule
+\CurrentTag & Semantica corrente preservata & Deve restare compatibile con l'authority o dichiararne esplicitamente il delta. \\
+\CandidateTag & Costrutto/evoluzione con evidence positiva ma non ammessa & Non usare come vocabulary corrente senza admission esplicita. \\
+\OpenTag & Problema reale non chiuso & Mantenere il gap visibile; non completare per convenienza. \\
+\RejectedTag & Ipotesi testata e respinta nello scope disponibile & Conservare ragione, test e condizioni di eventuale reopen. \\
+\RebuildTag & Regola editoriale del rebuild & Governa come descriviamo e confrontiamo i costrutti durante questa ricostruzione. \\
+\bottomrule
+\end{tabularx}
+
+\begin{ddtacheck}[title={Regola anti-perdita}]
+Una guida piu' corta non e' una guida migliore se per ottenere la sintesi elimina una distinzione ancora utile. Il rebuild puo' comprimere la prosa soltanto dopo aver dimostrato che la distinzione resta ricostruibile e tracciabile.
+\end{ddtacheck}
+%</PAGE-CONTENT:7>
+
+\clearpage
+%<PAGE-DESC:8>Appendice temporanea - Construct Description Contract
+%<PAGE-CONTENT:8>
+\PageHashFooter{\PageMDfive{8}}
+\TemporaryRebuildBanner
+\subsection{Construct Description Contract}
+
+\RebuildTag
+
+Prima di riscrivere il primo costrutto BA, fissiamo il modo in cui \emph{tutti} i costrutti verranno descritti. Questo contratto serve a impedire che la guida cambi struttura in funzione del caso del momento e rende confrontabili operatori current, condition form, strutture candidate, pressure e ipotesi rifiutate.
+
+\begin{ddtacore}[title={Invariante editoriale}]
+Ogni costrutto usa la stessa sequenza descrittiva. Un campo puo' essere \texttt{NOT APPLICABLE}, \texttt{NOT FROZEN} o \texttt{OPEN}; non puo' essere omesso silenziosamente. Se un costrutto futuro dimostra che il contratto non basta, si modifica prima il contratto e poi si riallineano i costrutti gia' trattati.
+\end{ddtacore}
+
+\subsection{Direzione obbligatoria della spiegazione}
+
+\begin{lstlisting}
+human semantic idea
+    -> BA term / construct class
+    -> formal shape
+    -> boundaries and discriminators
+    -> examples
+    -> evidence and genealogy
+    -> open questions
+    -> current rebuild disposition
+\end{lstlisting}
+
+\begin{ddtaanti}[title={Da evitare}]
+\begin{itemize}
+  \item iniziare dalla firma e lasciare al lettore il compito di indovinarne il significato;
+  \item usare l'esempio DermaTriage come definizione implicita del costrutto;
+  \item aggiungere campi solo a un costrutto perche' il suo caso concreto ne ha bisogno;
+  \item completare la firma di una candidate non ammessa per rendere il template piu' ordinato;
+  \item nascondere rejected hypothesis o pressure per ottenere una sezione apparentemente ``chiusa''.
+\end{itemize}
+\end{ddtaanti}
+
+\subsection{Revisione del contratto}
+Il contratto parte come \texttt{CDC-R1}. Ogni sua modifica futura deve avere un counterexample, una motivazione generalizzabile e una regression sui costrutti gia' descritti.
+%</PAGE-CONTENT:8>
+
+\clearpage
+%<PAGE-DESC:9>Appendice temporanea - CDC campi 1-10
+%<PAGE-CONTENT:9>
+\PageHashFooter{\PageMDfive{9}}
+\TemporaryRebuildBanner
+\subsection{Construct Description Contract - template, parte 1}
+
+\begin{longtable}{L{10mm}L{47mm}L{84mm}}
+\toprule
+\textbf{N.} & \textbf{Campo} & \textbf{Contenuto richiesto} \\
+\midrule\endhead
+1 & Canonical name & Nome usato dal rebuild. Alias storici vanno nel campo genealogy, non come nomi paralleli current. \\
+2 & Construct class & Top-level operator, condition form, local reusable structure, candidate, open pressure, rejected hypothesis o altro meccanismo BA dichiarato. \\
+3 & Epistemic status & Stato esplicito: current/preserved, candidate/not admitted, open, rejected oppure altro stato definito. \\
+4 & Owning BA layer / contract & Dove il significato appartiene: BA0, BA1, BA2, BA3, BA4, BA5 oppure confine cross-layer esplicito. \\
+5 & Human definition & Spiegazione in linguaggio naturale di che cosa rappresenta il costrutto. \\
+6 & Smallest semantic fact & Il nucleo minimo che si perde eliminando il costrutto. \\
+7 & When to use & Condizioni positive che giustificano l'uso. Devono riferirsi a significato governato, non a parole chiave. \\
+8 & When not to use & Casi in cui il costrutto sembra plausibile ma imporrebbe semantica sbagliata o eccessiva. \\
+9 & Canonical syntax / shape & Forma corrente se ammessa. Per candidate non chiuse: \texttt{NOT FROZEN} salvo working shape esplicitamente marcata. \\
+10 & Roles, types, cardinalities & Ruoli e vincoli formali ammessi. Nessun role viene inventato per l'esempio corrente. \\
+\bottomrule
+\end{longtable}
+
+\begin{ddtaprinciple}[title={Semantica prima della sintassi}]
+I campi 5--8 devono poter essere compresi anche da chi non conosce ancora la sintassi BA. I campi 9--10 formalizzano il significato; non lo sostituiscono.
+\end{ddtaprinciple}
+%</PAGE-CONTENT:9>
+
+\clearpage
+%<PAGE-DESC:10>Appendice temporanea - CDC campi 11-20
+%<PAGE-CONTENT:10>
+\PageHashFooter{\PageMDfive{10}}
+\TemporaryRebuildBanner
+\subsection{Construct Description Contract - template, parte 2}
+
+\begin{longtable}{L{10mm}L{47mm}L{84mm}}
+\toprule
+\textbf{N.} & \textbf{Campo} & \textbf{Contenuto richiesto} \\
+\midrule\endhead
+11 & Semantic invariants & Cio' che deve restare vero in ogni uso valido del costrutto. \\
+12 & Forbidden inferences & Fatti che la presenza del costrutto non autorizza a dedurre. \\
+13 & Closest constructs / discriminators & Confini pairwise con i costrutti piu' facili da confondere. \\
+14 & Minimal generic positive example & Esempio didattico minimo, separato dall'evidence di progetto. \\
+15 & DermaTriage application example & Uso reale sulla documentazione corrente, quando disponibile e supportato. \\
+16 & Negative / boundary example & Caso in cui il costrutto va rifiutato o usato con limite preciso. \\
+17 & Genealogy and research evidence & Authority, candidate guide, operator review, PR/CC/CL/CMD/OBS e precedenti rilevanti. \\
+18 & Open pressures / candidate deltas & Questioni ancora vive che non devono essere nascoste dalla descrizione principale. \\
+19 & Review / acceptance questions & Domande ripetibili che permettono a un autore di verificare l'uso. \\
+20 & Current rebuild disposition & Cosa decide questa revisione: preserve, refine, retest, reject, hold, candidate admission later, ecc. \\
+\bottomrule
+\end{longtable}
+
+\begin{ddtacheck}[title={Change protocol del CDC}]
+Se un costrutto non entra nel template, non si crea una eccezione locale. Si registra il counterexample, si verifica se il problema e' generale, si produce una revisione \texttt{CDC-R2} e si riesaminano retroattivamente i costrutti gia' descritti. Nessuna modifica implicita del formato e' ammessa.
+\end{ddtacheck}
+
+\begin{ddtaexample}[title={Candidate con firma non chiusa}]
+Per \texttt{provideService} il template resta completo, ma i campi ``Canonical syntax'' e ``Roles, types, cardinalities'' possono dichiarare \texttt{NOT FROZEN}. E' preferibile una lacuna esplicita a una firma inventata solo per uniformare l'impaginazione.
+\end{ddtaexample}
+%</PAGE-CONTENT:10>
+
+\clearpage
+%<PAGE-DESC:11>Appendice temporanea - roadmap corrente del rebuild
+%<PAGE-CONTENT:11>
+\PageHashFooter{\PageMDfive{11}}
+\TemporaryRebuildBanner
+\subsection{Roadmap temporanea del rebuild}
+\begin{enumerate}
+  \item rivedere e congelare provvisoriamente \texttt{CDC-R1};
+  \item completare la fondazione ``governed semantic fact'';
+  \item descrivere \BAR{} con il CDC e applicarlo alla documentazione DermaTriage corrente;
+  \item descrivere \BAP{} con il CDC e applicarlo allo stesso scope;
+  \item consolidare identity criterion e stopping rule;
+  \item procedere ai costrutti uno alla volta, aggiornando sempre la guida cumulativa;
+  \item solo dopo BA accettata per uno scope, produrre e verificare le prime view Mermaid;
+  \item dopo il ciclo retrospettivo, iniziare documentazione mancante e BA in parallelo.
+\end{enumerate}
+
+\begin{ddtaopen}[title={Stop point di questa R2}]
+Questa revisione non decide ancora il primo operatore, non ammette candidate construct e non modifica BA0--BA5. Il prossimo passo e' la review umana di queste regole di costruzione; soltanto dopo si entra nel primo elemento fondazionale.
+\end{ddtaopen}
+%</PAGE-CONTENT:11>
+
+\clearpage
+%<PAGE-DESC:12>Indice di integrita' delle pagine
+%<PAGE-CONTENT:12>
+\PageHashFooter{\PageMDfive{12}}
+\section*{Indice di integrita' delle pagine}
+\begin{ddtacore}[title={Regola di verifica}]
+Ogni pagina possiede un MD5 del proprio contenuto canonico. Il valore stampato nella pagina e' escluso dal payload; nella pagina indice il proprio hash viene canonicalizzato come \texttt{<SELF>} per evitare dipendenza circolare.
+\end{ddtacore}
+\vspace{2mm}
+\begingroup
+\scriptsize
+\renewcommand{\arraystretch}{0.88}
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\IntegrityRow}[3]{#1 & #2 & {\scriptsize\ttfamily #3} \\}
+\begin{longtable}{L{9mm}L{86mm}L{49mm}}
+\toprule
+\textbf{Pag.} & \textbf{Contenuto} & \textbf{MD5 contenuto} \\
+\midrule
+%<PAGE-INTEGRITY-ROWS>
+\IntegrityRow{1}{Frontespizio della Base Analysis Guide Rebuild R2}{\PageMDfive{1}}
+\IntegrityRow{2}{1 - Che cos'e' la Base Analysis}{\PageMDfive{2}}
+\IntegrityRow{3}{1 - Authority, minimalita' e feedback}{\PageMDfive{3}}
+\IntegrityRow{4}{2 - BA View / Projection Contract e Mermaid}{\PageMDfive{4}}
+\IntegrityRow{5}{2 - Famiglie di viste e mapping discipline}{\PageMDfive{5}}
+\IntegrityRow{6}{Appendice temporanea - scopo, lineage e confine del rebuild}{\PageMDfive{6}}
+\IntegrityRow{7}{Appendice temporanea - corpus e stati epistemici}{\PageMDfive{7}}
+\IntegrityRow{8}{Appendice temporanea - Construct Description Contract}{\PageMDfive{8}}
+\IntegrityRow{9}{Appendice temporanea - CDC campi 1-10}{\PageMDfive{9}}
+\IntegrityRow{10}{Appendice temporanea - CDC campi 11-20}{\PageMDfive{10}}
+\IntegrityRow{11}{Appendice temporanea - roadmap corrente del rebuild}{\PageMDfive{11}}
+\IntegrityRow{12}{Indice di integrita' delle pagine}{\PageMDfive{12}}
+%</PAGE-INTEGRITY-ROWS>
+\bottomrule
+\end{longtable}
+\endgroup
+\vspace{3mm}
+{\small\color{DDTAGray}Una variazione inattesa dell'MD5 di una pagina gia' approvata impone review prima di procedere. Il rebuild e' cumulativo: le revisioni future devono rendere esplicito quali pagine cambiano e perche'.}
+%</PAGE-CONTENT:12>
+
+\end{document}
