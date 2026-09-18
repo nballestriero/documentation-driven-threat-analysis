@@ -1,0 +1,22 @@
+DDTA_DERMATRIAGE_PARALLEL_CASE_STUDY_R7_BA_FOUNDATIONS_R1 - Page MD5 Index
+Canonical payload: LaTeX content between PAGE-CONTENT markers; own printed MD5 excluded.
+Integrity-index page resolves all other page hashes and canonicalizes its own hash as <SELF>.
+
+Page 1  bf48d621440a4d091c451bdf6b537950  Frontespizio e struttura del case study
+Page 2  52b65a2c17ce9fa3dcb4c5d21b1a1f90  Contesto generale del progetto - Project Problem Framing
+Page 3  b5954ef4571d42f818a58a7ea6b94c8e  MR-01 - Valutazione di triage del caso dermatologico
+Page 4  c19a20cb3e6a2573e12b1400241f5e6a  MR-01 > DEC-MR01-01 - Triage in assenza di immagine
+Page 5  b338dc964000e7231c5b9c3b1c806439  MR-01 > DEC-MR01-01 > FR-MR01-01-01 - Continuita' del triage symptom-only
+Page 6  af4083d56c36fecdc8b8df494b1a71fc  MR-01 > DEC-MR01-02 - Scala di priorita P1-P4
+Page 7  208463111b8baa856170e9a5f08384e4  MR-01 > DEC-MR01-02 > FR-MR01-02-01 - Dominio della priorita P1-P4
+Page 8  8a0d041b398e77b0a1cc0678820f8b72  MR-01 > DEC-MR01-03 - Pipeline analitica a quattro stadi
+Page 9  12dbced7963bd0a707b641e0b82762d8  MR-01 > DEC-MR01-03 > FR-MR01-03-01 - Stage 1: urgenza e confidence da immagine
+Page 10  7a8a4243407a417e6559f03ffce9e270  MR-01 > DEC-MR01-03 > FR-MR01-03-02 - Stage 2: descrizione clinica strutturata
+Page 11  484ce2595a540d51e02906cfb105e8ef  MR-01 > DEC-MR01-03 > FR-MR01-03-03 - Stage 3: recupero di casi storici simili
+Page 12  9dc575a1a6f95e33f7cef3a8b1a36ffb  MR-01 > DEC-MR01-03 > FR-MR01-03-04 - Stage 4: sintesi multi-source
+Page 13  b10d2b4e7ef52bd108049be5d03d46aa  MR-01 > DEC-MR01-04 - Separazione tra valutazione dell'urgenza e priorita operativa
+Page 14  3d936b8acb91bd512b0557a4dcf2ca8d  MR-01 > DEC-MR01-04 > FR-MR01-04-01 - Mapping urgenza/confidence verso P1-P4
+Page 15  bafdb7a8e694cbb9d75b2b2a9400ec27  MR-02 - Indicazione della destinazione specialistica
+Page 16  dfecc41bea68ecf237a07a22b1adda77  MR-03 - Validazione e correzione medica degli esiti
+Page 17  092db6dbf353e4c7e323215976d2e214  MR-04 - Adattamento controllato sulla base della revisione clinica
+Page 18  8493cb00ad46ac076530d43ec878b19e  Indice di integrita delle pagine [INTEGRITY INDEX]
