@@ -1,0 +1,22 @@
+DDTA_DERMATRIAGE_PARALLEL_CASE_STUDY_R6_MR01_FUNCTIONAL_REQUIREMENTS - Page MD5 Index
+Canonical payload: LaTeX content between PAGE-CONTENT markers; own printed MD5 excluded.
+Integrity-index page resolves all other page hashes and canonicalizes its own hash as <SELF>.
+
+Page 1  3c557ea0ac4559bca76554d8baef4056  Frontespizio e struttura del case study
+Page 2  0fb76dc0491da2793823b20571e5268b  Contesto generale del progetto - Project Problem Framing
+Page 3  3c912396a2040761bc527a68c3bf6205  MR-01 - Valutazione di triage del caso dermatologico
+Page 4  322fc7183facdfd6dc0b1a176048ca3c  MR-01 > DEC-MR01-01 - Triage in assenza di immagine
+Page 5  8fff9e762cfea77328cfc9c0667922ac  MR-01 > DEC-MR01-01 > FR-MR01-01-01 - Continuita' del triage symptom-only
+Page 6  af068bcc05ea1d059fd699cf3ecefca8  MR-01 > DEC-MR01-02 - Scala di priorita P1-P4
+Page 7  899bd25addbd3fd941a546ecda7a7015  MR-01 > DEC-MR01-02 > FR-MR01-02-01 - Dominio della priorita P1-P4
+Page 8  ec095abaa9d3bcb448a77abb2e7f2b90  MR-01 > DEC-MR01-03 - Pipeline analitica a quattro stadi
+Page 9  79e89af41d997b57102fa8ef406cd738  MR-01 > DEC-MR01-03 > FR-MR01-03-01 - Stage 1: urgenza e confidence da immagine
+Page 10  d39b21f3ca35011e5eb548ee8ae962ca  MR-01 > DEC-MR01-03 > FR-MR01-03-02 - Stage 2: descrizione clinica strutturata
+Page 11  05eec8ddc883d12b3b18409a95da7d42  MR-01 > DEC-MR01-03 > FR-MR01-03-03 - Stage 3: recupero di casi storici simili
+Page 12  1ad1a4986dc1e8525c40b52ab2e73a72  MR-01 > DEC-MR01-03 > FR-MR01-03-04 - Stage 4: sintesi multi-source
+Page 13  6a8766cfd935d80023ec6afa818c94c5  MR-01 > DEC-MR01-04 - Separazione tra valutazione dell'urgenza e priorita operativa
+Page 14  6caf75ae6def5f1137daf4c40d52cffb  MR-01 > DEC-MR01-04 > FR-MR01-04-01 - Mapping urgenza/confidence verso P1-P4
+Page 15  abf9008d770509039fc7ffbd1cf1f655  MR-02 - Indicazione della destinazione specialistica
+Page 16  589ab9dd2fc47da8ed0c64692eb2a76d  MR-03 - Validazione e correzione medica degli esiti
+Page 17  58aca712eadb3222507468f39fae50fe  MR-04 - Adattamento controllato sulla base della revisione clinica
+Page 18  9839ce3d8b2acdf063a49341888b68d7  Indice di integrita delle pagine [INTEGRITY INDEX]
