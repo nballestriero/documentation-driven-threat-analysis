@@ -1,0 +1,21 @@
+DDTA_DERMATRIAGE_PARALLEL_CASE_STUDY_R15_PRIORITY_CONSOLIDATION_R1 - Page MD5 Index
+Canonical payload: LaTeX content between PAGE-CONTENT markers; own printed MD5 excluded.
+Integrity-index page resolves all other page hashes and canonicalizes its own hash as <SELF>.
+
+Page 1  8369b57a647f19f84163cd6e1a954b95  Frontespizio e struttura del case study
+Page 2  a3275772d6cd2ce37195f7d8163144e8  Contesto generale del progetto - Project Problem Framing
+Page 3  7b5a92aa54e9a7bca2b16aa9a0a58575  MR-01 - Valutazione di triage del caso dermatologico
+Page 4  5d3cf435244fe401aa3b50e609dc65d3  MR-01 > DEC-MR01-01 - Valutazione di urgenza in assenza di immagine
+Page 5  f5832faca2f179e3423a50e97b752b9e  MR-01 > DEC-MR01-01 > FR-MR01-01-01 - Determinazione dell'urgenza su base sintomatologica
+Page 6  3d76a1929fac810b2afb02d879bb76f0  MR-01 > DEC-MR01-03 - Pipeline analitica a quattro stadi
+Page 7  83a23037a3d9318c63619aea56d668ce  MR-01 > DEC-MR01-03 > FR-MR01-03-01 - Stage 1: urgenza e confidence da immagine
+Page 8  6479fbafe535a8491f74b76f9d23a86a  MR-01 > DEC-MR01-03 > FR-MR01-03-02 - Stage 2: descrizione clinica strutturata
+Page 9  48236ad51500a771954ad71e82651bce  MR-01 > DEC-MR01-03 > FR-MR01-03-03 - Stage 3: recupero di casi storici simili
+Page 10  487d453a1ebb4ddfbc4f6c858684dc88  MR-01 > DEC-MR01-03 > FR-MR01-03-04 - Stage 4: sintesi multi-source
+Page 11  9c0f0b72d554342616fc1ed6584f684c  MR-01 > DEC-MR01-04 - Separazione tra valutazione dell'urgenza e priorita operativa
+Page 12  1e71fcff28be4a0011b5d344b5775256  MR-01 > DEC-MR01-04 > FR-MR01-04-01 - Mapping urgenza/confidence verso P1-P4
+Page 13  22b589e352a735848af68026ba7ccd6e  MR-02 - Indicazione della destinazione specialistica
+Page 14  88277fb1892436757c84526e8a5be8b0  MR-03 - Validazione e correzione medica degli esiti
+Page 15  e5085117316308ad10f9d8324bedf7eb  MR-04 - Adattamento controllato sulla base della revisione clinica
+Page 16  7bf7380961550d122c9a7e252fff86e6  Registro Base Analysis - BAReferent e BAProposition
+Page 17  1747d8845d413c83c4df569d025ff9c8  Indice di integrita delle pagine [INTEGRITY INDEX]
