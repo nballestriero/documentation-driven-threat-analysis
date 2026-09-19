@@ -1,0 +1,34 @@
+DDTA_BASE_ANALYSIS_GUIDE_REBUILD_R6 - Page MD5 Index
+Canonical payload: LaTeX content between PAGE-CONTENT markers; own printed MD5 excluded.
+Integrity-index page resolves all other page hashes and canonicalizes its own hash as <SELF>.
+
+Page 1  e63af1cc667f4b7c715205d4e06762a3  Frontespizio della Base Analysis Guide Rebuild R6
+Page 2  fa01b7db301f77cd9988907daf2b3397  1 - Che cos'e' la Base Analysis
+Page 3  3b620cf21e74f64e397656ec9f3038da  1 - Perche' esiste e principi di base
+Page 4  b12d8f94dc04c833c0d916453255f9be  1 - Direzione dell'authority e feedback
+Page 5  44c236d6809ab29df535fe29ff00352d  1 - Minimum sufficient BA, NOT SPECIFIED e gap
+Page 6  b9514c3f03bdb13c46c35ba6ae647130  2 - BA View / Projection Contract e source types
+Page 7  d79dd6edf4908532519689896b045323  2 - Mermaid e campi minimi della view
+Page 8  b4b3bc661001ccb16d9acdef681806bd  2 - Coverage mode e famiglie di viste
+Page 9  dcd3d2d1eb4eb28971b488dcd1c7cf01  2 - View gap e mapping discipline
+Page 10  9fdf9a0139ea36eaa577008c81fb109f  3 - Dal testo documentale al significato governato
+Page 11  f0c4184f4f1ebcb7ce1ab9394c5c5209  3 - Governed semantic fact
+Page 12  e3200807fcbf2aa290f0748b9c099b69  3 - Segmentazione, ambiguita e livello documentale
+Page 13  b9028ef062953f4b7ab73bfb7ac7975c  4 - Elementi fondamentali della Base Analysis
+Page 14  849a9ae9b63b6f5b84acbf3c1015a920  4 - BAReferent: identita analitica riusabile
+Page 15  c6fca40abd8cf6a72634f4b1d07fa450  4 - BAReferent: esempi DermaTriage e confini
+Page 16  83b4a5ba93a8eb218e7a0816bb7e023a  4 - BAProposition: asserzione analitica identificabile
+Page 17  8063825cd44fdd393ef91bf9a5957e86  4 - BAReferent e BAProposition insieme
+Page 18  f23c4cd3c7776e49c0d794a9ecfef9a9  5 - Granularita, minimalita e costruzione della BA
+Page 19  bc3e4197b5ba6fc299035dd3ee55f0fa  6 - Indipendenza tra struttura documentale e struttura BA
+Page 20  90bad45a1ddf4546a84ffcaafe19514f  6 - Structural feedback e no authority inversion
+Page 21  a4a5a63a56b233dc9685ef8ade259ac3  6 - DermaTriage DEC02 DEC04 come pressure case
+Page 22  230ef1c2f1fa7c46ae233ee130c00449  6 - Downstream Utility Test e riallineamento BA
+Page 23  3915eaee02f714ac47e0dfa764b2836f  Appendice temporanea - scopo, lineage e confine del rebuild
+Page 24  5475a02c3223c3fac62a7eebe62f6be2  Appendice temporanea - corpus e stati epistemici
+Page 25  e1b1becfc138e20474529fae47de6a05  Appendice temporanea - Construct Description Contract e principio espositivo
+Page 26  435e9ecddb23d230df9cc32766e10610  Appendice temporanea - CDC direzione della spiegazione e revisione
+Page 27  9d02d27cc2ad8bb4e1b30d441667e854  Appendice temporanea - CDC campi 1-10
+Page 28  90b6659e5a0105e0cd7268d3f76137f6  Appendice temporanea - CDC campi 11-20
+Page 29  bbee85ba9de0e66ed44643aa1a1aa67f  Appendice temporanea - roadmap corrente del rebuild
+Page 30  8591805381a0a7625717bdfe5202dbbb  Indice di integrita' delle pagine [INTEGRITY INDEX]
