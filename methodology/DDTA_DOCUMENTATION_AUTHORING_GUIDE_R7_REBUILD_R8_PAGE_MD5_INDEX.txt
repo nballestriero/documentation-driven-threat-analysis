@@ -3,7 +3,7 @@ Canonical payload: LaTeX content between PAGE-CONTENT markers; own printed MD5 e
 Integrity-index page resolves all other page hashes and canonicalizes its own hash as <SELF>.
 
 Page 1  7289db2d0692a47b1d1013b12077997f  Frontespizio della nuova guida di authoring
-Page 2  015c757c3dc4118c78c6d2960996936e  Project Problem Framing - definizione e regole di authoring
+Page 2  db406584bc56d82d3a276e3234514842  Project Problem Framing - definizione e regole di authoring
 Page 3  22e57dfc4b4f586235f8aed3c522a7e2  Project Problem Framing - procedura umana, gate ed esempio DermaTriage
 Page 4  3bdac4b5fec97501c23d7968bf1619d5  Project Problem Framing - LLM Execution Profile e prompt canonico
 Page 5  b69ae801bbd9fab0dd9722c5416054c4  Project Problem Framing - regola LLM e classificazione dei campi
@@ -47,4 +47,4 @@ Page 42  1ec1340fe855bc79e279a0e1a22c31f5  FunctionalRequirement - controllo fin
 Page 43  9c03ac3e778c27333ef2d51de02f6eb2  FunctionalRequirement - controllo famiglia, downstream utility e analisi indipendente
 Page 44  fbc67bc514bb10a6d2c69b4728ffd1ba  FunctionalRequirement - classificazione delle differenze tra analisi
 Page 45  e7298e5d8dcc77d5ea99741209730c0c  FunctionalRequirement - replica indipendente e supporto LLM
-Page 46  3082c6f19e515b89a5d8f4d25dac3f9b  Indice di integrita' delle pagine [INTEGRITY INDEX]
+Page 46  72ee74ff6deac07cddb21411c7832a8f  Indice di integrita' delle pagine [INTEGRITY INDEX]

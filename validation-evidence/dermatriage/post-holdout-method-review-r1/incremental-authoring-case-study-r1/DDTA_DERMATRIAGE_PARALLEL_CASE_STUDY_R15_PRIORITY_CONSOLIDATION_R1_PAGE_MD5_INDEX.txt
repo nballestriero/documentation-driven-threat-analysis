@@ -2,7 +2,7 @@ DDTA_DERMATRIAGE_PARALLEL_CASE_STUDY_R15_PRIORITY_CONSOLIDATION_R1 - Page MD5 In
 Canonical payload: LaTeX content between PAGE-CONTENT markers; own printed MD5 excluded.
 Integrity-index page resolves all other page hashes and canonicalizes its own hash as <SELF>.
 
-Page 1  8369b57a647f19f84163cd6e1a954b95  Frontespizio e struttura del case study
+Page 1  bc75b279d7cd974f3ac508717f3e0d91  Frontespizio e struttura del case study
 Page 2  a3275772d6cd2ce37195f7d8163144e8  Contesto generale del progetto - Project Problem Framing
 Page 3  7b5a92aa54e9a7bca2b16aa9a0a58575  MR-01 - Valutazione di triage del caso dermatologico
 Page 4  5d3cf435244fe401aa3b50e609dc65d3  MR-01 > DEC-MR01-01 - Valutazione di urgenza in assenza di immagine
@@ -18,4 +18,4 @@ Page 13  22b589e352a735848af68026ba7ccd6e  MR-02 - Indicazione della destinazion
 Page 14  88277fb1892436757c84526e8a5be8b0  MR-03 - Validazione e correzione medica degli esiti
 Page 15  e5085117316308ad10f9d8324bedf7eb  MR-04 - Adattamento controllato sulla base della revisione clinica
 Page 16  7bf7380961550d122c9a7e252fff86e6  Registro Base Analysis - BAReferent e BAProposition
-Page 17  1747d8845d413c83c4df569d025ff9c8  Indice di integrita delle pagine [INTEGRITY INDEX]
+Page 17  e790787e31441ea03d87a0abd74ea765  Indice di integrita delle pagine [INTEGRITY INDEX]

@@ -2,7 +2,7 @@ DDTA_BASE_ANALYSIS_GUIDE_REBUILD_R6 - Page MD5 Index
 Canonical payload: LaTeX content between PAGE-CONTENT markers; own printed MD5 excluded.
 Integrity-index page resolves all other page hashes and canonicalizes its own hash as <SELF>.
 
-Page 1  e63af1cc667f4b7c715205d4e06762a3  Frontespizio della Base Analysis Guide Rebuild R6
+Page 1  ae7b6caa51d6adf9e61b021350da02ed  Frontespizio della Base Analysis Guide Rebuild R6
 Page 2  fa01b7db301f77cd9988907daf2b3397  1 - Che cos'e' la Base Analysis
 Page 3  3b620cf21e74f64e397656ec9f3038da  1 - Perche' esiste e principi di base
 Page 4  b12d8f94dc04c833c0d916453255f9be  1 - Direzione dell'authority e feedback
@@ -30,5 +30,5 @@ Page 25  e1b1becfc138e20474529fae47de6a05  Appendice temporanea - Construct Desc
 Page 26  435e9ecddb23d230df9cc32766e10610  Appendice temporanea - CDC direzione della spiegazione e revisione
 Page 27  9d02d27cc2ad8bb4e1b30d441667e854  Appendice temporanea - CDC campi 1-10
 Page 28  90b6659e5a0105e0cd7268d3f76137f6  Appendice temporanea - CDC campi 11-20
-Page 29  bbee85ba9de0e66ed44643aa1a1aa67f  Appendice temporanea - roadmap corrente del rebuild
-Page 30  8591805381a0a7625717bdfe5202dbbb  Indice di integrita' delle pagine [INTEGRITY INDEX]
+Page 29  9d695761081a38d07b9fa704d9a4020e  Appendice temporanea - roadmap corrente del rebuild
+Page 30  f1638875df434f4265584c30552e5b11  Indice di integrita' delle pagine [INTEGRITY INDEX]

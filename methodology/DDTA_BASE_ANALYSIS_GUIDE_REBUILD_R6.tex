@@ -28,7 +28,7 @@ Il contenuto di questa appendice governa \emph{come stiamo ricostruendo la guida
 % -----------------------------------------------------------------------------
 \newcommand{\PageMDfive}[1]{\csname PageMDfive#1\endcsname}
 %<PAGE-HASH-DEFS>
-\expandafter\def\csname PageMDfive1\endcsname{e63af1cc667f4b7c715205d4e06762a3}
+\expandafter\def\csname PageMDfive1\endcsname{ae7b6caa51d6adf9e61b021350da02ed}
 \expandafter\def\csname PageMDfive2\endcsname{fa01b7db301f77cd9988907daf2b3397}
 \expandafter\def\csname PageMDfive3\endcsname{3b620cf21e74f64e397656ec9f3038da}
 \expandafter\def\csname PageMDfive4\endcsname{b12d8f94dc04c833c0d916453255f9be}
@@ -56,8 +56,8 @@ Il contenuto di questa appendice governa \emph{come stiamo ricostruendo la guida
 \expandafter\def\csname PageMDfive26\endcsname{435e9ecddb23d230df9cc32766e10610}
 \expandafter\def\csname PageMDfive27\endcsname{9d02d27cc2ad8bb4e1b30d441667e854}
 \expandafter\def\csname PageMDfive28\endcsname{90b6659e5a0105e0cd7268d3f76137f6}
-\expandafter\def\csname PageMDfive29\endcsname{bbee85ba9de0e66ed44643aa1a1aa67f}
-\expandafter\def\csname PageMDfive30\endcsname{8591805381a0a7625717bdfe5202dbbb}
+\expandafter\def\csname PageMDfive29\endcsname{9d695761081a38d07b9fa704d9a4020e}
+\expandafter\def\csname PageMDfive30\endcsname{f1638875df434f4265584c30552e5b11}
 %</PAGE-HASH-DEFS>
 
 \newcommand{\PageHashFooter}[1]{%
@@ -90,11 +90,21 @@ Il contenuto di questa appendice governa \emph{come stiamo ricostruendo la guida
 {\color{white!88}\small Questa guida viene ricostruita con una nuova struttura editoriale senza perdere authority, evidence, candidate construct, pressure, rejected hypothesis e deferred delta accumulati nelle revisioni precedenti. Ogni costrutto verra' descritto con un contratto fisso e applicato subito a DermaTriage prima di passare al successivo.}
 \end{tcolorbox}
 
+\vspace{5mm}
+\begin{ddtaopen}[title={RIQUADRO TEMPORANEO - WORKING SET E RIFERIMENTI - DA CANCELLARE PRIMA DELLA GUIDA DEFINITIVA}]
+{\scriptsize
+\textbf{Attivi:} \nolinkurl{DDTA_DOCUMENTATION_AUTHORING_GUIDE_R7_REBUILD_R8.tex}; \nolinkurl{DDTA_BASE_ANALYSIS_GUIDE_REBUILD_R6.tex}; \nolinkurl{DDTA_DERMATRIAGE_PARALLEL_CASE_STUDY_R15_PRIORITY_CONSOLIDATION_R1.tex}.\par
+\textbf{Piano corrente:} \nolinkurl{DDTA_R25_BASE_ANALYSIS_GUIDE_REBUILD_WORK_PLAN_R4.md}; working analysis: \nolinkurl{DDTA_R25_DERMATRIAGE_CASE_STUDY_WORKING_ANALYSIS_R1.md}.\par
+\textbf{Riferimenti:} Documentation Guide R6 Candidate R2; Operational Guide R3 + BA0--BA5; BA rebuild source register; Core/Complete BA Candidate R1.\par
+\textbf{Fase corrente:} usare la BA precedente per completare l'analisi della documentazione DermaTriage riscritta fino alla chiusura bounded di \texttt{MR-01}; solo dopo consolidare nella nuova guida i primi costrutti che abbiano gia' ricevuto sufficiente applicazione e review.
+}
+\end{ddtaopen}
+
 \vfill
 \begin{tabularx}{0.93\textwidth}{L{46mm}Y}
 \toprule
 \textbf{Stato} & \texttt{CANDIDATE / NON-NORMATIVE / CUMULATIVE REBUILD} \\
-\textbf{Repository baseline} & \texttt{5f18cd8bfcf8175a22e08a02ce3763b83eb95e08} \\
+\textbf{Repository baseline} & \texttt{9a9ae720ceca6396faede419dca6a879d5aba842} \\
 \textbf{Predecessore cumulativo} & \nolinkurl{DDTA_BASE_ANALYSIS_GUIDE_REBUILD_R5} \\
 \textbf{Authority BA corrente} & R3 Operational Guide + BA0 R1 / BA1 R1 / BA2 R3 / BA3 R1 / BA4 R1 / BA5 R1 \\
 \textbf{Scopo di R6} & Integrare nella guida cumulativa le regole emerse dalla review strutturale DermaTriage: indipendenza tra cardinalita' documentale e BA, feedback BA verso la documentazione senza inversione di authority e test di utilita' downstream. Nessun operatore BA viene ancora aggiunto al catalogo della nuova guida. \\
@@ -769,16 +779,17 @@ Per \texttt{provideService} il template resta completo, ma i campi ``Canonical s
   \item usare \texttt{CDC-R1} come controllo di copertura, senza trasformarlo in una scheda editoriale rigida;
   \item assumere le Sezioni 1--6 come base espositiva corrente della Rebuild R6;
   \item preservare governed semantic fact, \BAR{}, \BAP{}, identity criterion, stopping rule e structural-feedback boundary come fondazioni gia' riesaminate;
-  \item continuare la BA DermaTriage dalla documentazione corrente senza copiare la cardinalita' dell'albero documentale;
-  \item prendere dal patrimonio BA precedente il prossimo operatore effettivamente necessario nel flusso di analisi;
-  \item descriverlo con il CDC, applicarlo al caso, aggiungere esempi/boundary e modificarlo soltanto se il caso espone una pressione reale;
-  \item procedere agli operatori successivi uno alla volta, aggiornando sempre la guida cumulativa e regression-checkando quelli gia' trattati;
+  \item completare la Base Analysis di \texttt{MR-01} sulla documentazione DermaTriage riscritta, seguendo l'ordine documentale e senza copiare la cardinalita' dell'albero;
+  \item usare gli elementi e gli operatori della BA precedente come baseline operativa durante questo passaggio, mantenendo candidate, ambiguita', gap e pressure espliciti nel case study e nel working analysis;
+  \item non trasferire automaticamente un operatore nella nuova guida al primo utilizzo: accumulare prima un minimo sufficiente di applicazione all'interno di \texttt{MR-01};
+  \item raggiunto il checkpoint bounded di \texttt{MR-01}, riesaminare con \texttt{CDC-R1} i costrutti effettivamente usati e consolidare nella guida cumulativa soltanto quelli sufficientemente stabili, con esempi, boundary, signature e cardinalita' supportati;
+  \item se la BA espone un problema della documentazione, riaprire il layer documentale competente e poi revalidare la BA; non colmare il gap leggendo direttamente le fonti originali nel layer BA;
   \item solo dopo BA accettata per uno scope, produrre e verificare le prime view Mermaid;
   \item dopo il ciclo retrospettivo, continuare documentazione e BA in parallelo secondo i rispettivi boundary di authority.
 \end{enumerate}
 
 \begin{ddtaopen}[title={Stop point di questa R6}]
-La grammatica generale include ora anche l'indipendenza tra cardinalita' documentale e BA e il feedback strutturale verso la documentazione. Nessun operatore del catalogo BA e' ancora stato inserito nella parte cumulativa della nuova guida. Il prossimo gate e' la ripresa dell'analisi DermaTriage e la review, con \texttt{CDC-R1}, del primo operatore effettivamente usato.
+La grammatica generale include ora anche l'indipendenza tra cardinalita' documentale e BA e il feedback strutturale verso la documentazione. Nessun operatore del catalogo BA e' ancora stato inserito nella parte cumulativa della nuova guida. Il prossimo gate non e' l'ammissione immediata di un singolo operatore: e' il completamento bounded della BA di \texttt{MR-01} usando la BA precedente come riferimento operativo. Solo dopo questo passaggio verranno consolidati nella revisione successiva i primi costrutti supportati da sufficiente evidence applicativa.
 \end{ddtaopen}
 %</PAGE-CONTENT:29>
 
