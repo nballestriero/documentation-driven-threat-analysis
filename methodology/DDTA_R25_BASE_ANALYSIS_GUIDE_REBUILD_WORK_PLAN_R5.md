@@ -1,8 +1,8 @@
-# DDTA R25 - Base Analysis Guide Rebuild and DermaTriage Parallel Application Work Plan R4
+# DDTA R25 - Base Analysis Guide Rebuild and DermaTriage Parallel Application Work Plan R5
 
-**Status:** ACTIVE / CURRENT FORWARD WORK PLAN - COMPLETE DERMATRIAGE MR-01 BA BEFORE FIRST CONSTRUCT CONSOLIDATION
+**Status:** ACTIVE / CURRENT FORWARD WORK PLAN - COMPLETE DERMATRIAGE MR-01 DATA-PATH / INFORMATION-CONTRACT REVIEW BEFORE BA CLOSURE
 
-**Repository baseline for this plan:** `9a9ae720ceca6396faede419dca6a879d5aba842`
+**Repository baseline for this plan:** `d7aa03dc2a869bdbb1ed39ba43b7b02453f3e9db`
 
 **Method authority change:** NONE.
 
@@ -14,7 +14,9 @@
 
 This plan is the single current forward-work plan for the Documentation + Base Analysis rebuild cycle.
 
-The immediate objective is not to add the next historical BA operator to the new guide as soon as it is encountered. The immediate objective is to complete a bounded Base Analysis pass over the rewritten DermaTriage `MR-01` documentation using the previous BA methodology as the operational reference. Only after that pass provides enough concrete evidence are the first reviewed constructs consolidated into the cumulative new BA guide.
+The immediate objective is not to add the next historical BA operator to the new guide as soon as it is encountered. The current DermaTriage MR-01 pass has exposed a documentation-completeness pressure: functional production/consumption can be present while the semantic transfer path and the information/data contract remain insufficiently explicit. Before MR-01 BA is treated as closed, the rewritten documentation must therefore undergo a bounded data-path and information-contract review.
+
+The Documentation Authoring Guide R8 now contains an explicit review control: after the FunctionalRequirements of a Decision are identified, enumerate information that is produced, consumed, made available or persisted; inspect producer/consumer pairs as transfer candidates; require identifiable source, destination and content where the transfer is semantically relevant; and test whether the information/data contract is sufficiently documented. Missing meaning remains `NOT SPECIFIED` / diagnostic gap and is not reconstructed by plausibility. This review control does not create new L1 fields and does not require one FR per byte movement.
 
 The working loop is therefore:
 
@@ -23,6 +25,16 @@ rewritten DermaTriage documentation
         ->
 Base Analysis using previous BA vocabulary/contract as working reference
         ->
+BA exposes transfer / contract incompleteness
+        ->
+return to Documentation Authoring
+        ->
+review original source evidence for each candidate transfer/contract
+        ->
+update documentation, retain explicit gap, or classify as realization-only
+        ->
+re-run BA on the corrected documentation
+        ->
 complete bounded MR-01 analysis
         ->
 collect construct-use evidence, ambiguities and pressures
@@ -30,11 +42,9 @@ collect construct-use evidence, ambiguities and pressures
 review actually used constructs under CDC-R1
         ->
 consolidate only sufficiently stable constructs into the cumulative BA Guide Rebuild
-        ->
-continue analysis
 ```
 
-This order is intentional. It avoids rewriting the new guide from isolated first-use examples and provides several nearby applications before a construct is treated as sufficiently understood.
+This order is intentional. It keeps project-source authority upstream of BA, prevents BA from silently completing missing documentation, and avoids rewriting the new BA guide from isolated first-use examples.
 
 ---
 
@@ -52,10 +62,12 @@ These are the three primary artifacts being edited during the current cycle:
    - contains the reviewed foundations and structural-feedback rules;
    - contains no reviewed operator catalog yet.
 
-3. `validation-evidence/dermatriage/post-holdout-method-review-r1/incremental-authoring-case-study-r1/DDTA_DERMATRIAGE_PARALLEL_CASE_STUDY_R15_PRIORITY_CONSOLIDATION_R1.tex`
+3. `validation-evidence/dermatriage/post-holdout-method-review-r1/incremental-authoring-case-study-r1/DDTA_DERMATRIAGE_PARALLEL_CASE_STUDY_R19_TRANSFER_CONTRACT_WORKING_PAGE_R1.tex`
    - current DermaTriage Documentation + Base Analysis case study;
+   - successor of the R18 working state used for the transfer/data-contract audit;
+   - page 17 is a temporary red-box worklist containing all current MR-01 transfer / information-contract candidates and must be deleted after findings are reallocated;
    - documentation and BA remain working research artifacts;
-   - this is the primary application surface for the next BA pass.
+   - this is the primary application surface for the next documentation/BA feedback pass.
 
 Supporting working record:
 
@@ -63,7 +75,7 @@ Supporting working record:
 
 Current forward-work controller:
 
-- `methodology/DDTA_R25_BASE_ANALYSIS_GUIDE_REBUILD_WORK_PLAN_R4.md`
+- `methodology/DDTA_R25_BASE_ANALYSIS_GUIDE_REBUILD_WORK_PLAN_R5.md`
 
 No other work plan is current for this cycle.
 
@@ -71,8 +83,9 @@ No other work plan is current for this cycle.
 
 ## 3. Superseded working plans removed from the current tree
 
-R4 supersedes the following plans. They are removed from the current working tree to prevent multiple files from simultaneously claiming `ACTIVE / CURRENT` status. Their content remains available in Git history for audit and research provenance.
+R5 supersedes the following plans. They are removed from the current working tree to prevent multiple files from simultaneously claiming `ACTIVE / CURRENT` status. Their content remains available in Git history for audit and research provenance.
 
+- `methodology/DDTA_R25_BASE_ANALYSIS_GUIDE_REBUILD_WORK_PLAN_R4.md`
 - `methodology/DDTA_R25_BASE_ANALYSIS_GUIDE_REBUILD_WORK_PLAN_R2.md`
 - `methodology/DDTA_R25_BASE_ANALYSIS_GUIDE_REBUILD_WORK_PLAN_R3.md`
 - `methodology/DDTA_R25_DOCUMENTATION_AND_BA_GUIDE_REWRITE_WORK_PLAN_R1.md`
@@ -135,6 +148,8 @@ original DermaTriage evidence
 
 If BA work reveals that a needed project fact is missing or ambiguous, the analyst records a documentation question or structural finding and returns upstream to the documentation layer. The BA must not silently bypass the rewritten documentation and import a missing fact directly from the original project sources.
 
+During that upstream Documentation Authoring review, the authorized original DermaTriage sources may be re-opened to determine what is actually established about the transfer, information contract, interface binding or current realization. The result must then be written back into the DDTA documentation (or preserved as an explicit source gap) before BA is re-run. BA itself still does not use the original source package as a shortcut around the rewritten documentation.
+
 The same rule applies to structural feedback:
 
 ```text
@@ -172,34 +187,35 @@ These occurrences are application evidence. They do not mean that the correspond
 
 ---
 
-## 7. Immediate execution phase - finish Base Analysis of MR-01
+## 7. Immediate execution phase - MR-01 transfer / information-contract review and BA revalidation
 
-Continue through the current `MR-01` documentation in document order.
+The current case study contains one temporary red-box page listing the transfer candidates `T01` through `T15` (with `T03-A` / `T03-B` split where the B4 document discovery and image download are semantically distinguishable). The page is a working inventory only. It is not a new documentation type, not a BA schema extension and not an accepted operator ledger.
 
-The purpose of this phase is to obtain a coherent bounded BA over the whole MR-01 branch before consolidating the first operator definitions into the new guide.
+Review the candidates one by one. `T01` through `T05` already have an exploratory first pass; the next detailed target is `T06`. For every candidate:
 
-For every MR-01 documentation element:
+1. identify the exact producer/source, consumer/destination and content that the rewritten documentation currently supports;
+2. inspect the authorized original DermaTriage source evidence at the Documentation Authoring layer;
+3. separate semantic transfer meaning from current transport/realization details;
+4. determine whether the transfer is itself an operational obligation that deserves a new FR candidate, belongs as a normative clause of an existing FR, is supporting information/data-contract content, or is realization-only;
+5. test the information/data contract for fields, value domains, cardinality, required/optional meaning, correlation and failure/missing-value semantics only where the source actually supports them;
+6. leave unsupported necessary details explicitly `NOT SPECIFIED` / documentation gap;
+7. do not create a new FR merely because a transfer exists; apply the normal FR ownership, behavioral-distinction and Downstream Utility tests;
+8. do not invent new BA states, operators or role keys; use the previous BA guide/contracts as the operational reference;
+9. once documentation for that candidate is corrected or the gap is explicitly preserved, re-run the relevant BA extraction;
+10. remove the candidate from the temporary page only after its result is stably represented elsewhere.
 
-1. read only the current rewritten DDTA documentation as BA project meaning;
-2. reconstruct the governed semantic fact in ordinary language;
-3. re-test existing `BAReferent` candidates and accepted identities;
-4. identify the minimum proposition meaning required;
-5. use the applicable element/operator from the previous BA methodology as the working representation when it fits;
-6. keep the representation candidate where signature, role, cardinality or semantic fit remains uncertain;
-7. record missing meaning as a documentation question, not as an invented BA completion;
-8. record construct pressure in the working analysis file;
-9. do not add the construct to the cumulative BA guide merely because it has now appeared once;
-10. continue until the full bounded MR-01 branch has been reviewed.
-
-The case-study order remains the documentation order. In particular, current candidate uses at `MR-01`, `DEC-MR01-01` and `DEC-MR01-04` are not treated as independent mini-projects; they are evidence accumulated across the same bounded MR-01 analysis.
-
----
+The temporary page must eventually disappear. Its closure criterion is not that every question has an answer; it is that every candidate has been routed to one of the durable locations already admitted by the workflow: governed/candidate DDTA documentation, explicit documentation gap, current realization/supporting evidence, or BA extracted from the corrected documentation.
 
 ## 8. MR-01 completion gate
 
 MR-01 is ready for the first construct-consolidation review only when all of the following are true:
 
 - every current MR-01 documentation page has had its BA proposition phase executed or explicitly deferred for a recorded reason;
+- every information item produced, consumed, made available or persisted by the MR-01 branch has been considered by the data-path completeness control;
+- every current transfer candidate on the temporary page has been reviewed and routed;
+- source, destination and content are explicit where the project documentation supports a semantic transfer, while unsupported bindings remain explicit gaps;
+- relevant information/data contracts are documented to the level supported by source evidence, without fabricated completeness;
+- the temporary transfer/contract worklist page is ready to be deleted because no unique finding exists only on that page;
 - candidate `BAReferent` identities have a reviewed disposition appropriate to the current evidence;
 - candidate `BAProposition` meanings have been identified wherever the documentation supports them;
 - every operator/construct actually used in MR-01 is recorded in the construct-use / pressure ledger;
@@ -260,7 +276,9 @@ Use `DDTA_R25_DERMATRIAGE_CASE_STUDY_WORKING_ANALYSIS_R1.md` for research reason
 - negative examples;
 - reasons for candidate/accepted disposition;
 - documentation questions discovered by BA;
-- construct-use evidence needed for the later CDC review.
+- construct-use evidence needed for the later CDC review;
+- alternative transfer decompositions and source/destination candidates while they are still under review;
+- information/data-contract gaps that require source re-inspection before they are suitable for the readable case study.
 
 The live case study should remain readable as Documentation + BA rather than becoming a transcript of the research process.
 
@@ -271,7 +289,7 @@ The live case study should remain readable as Documentation + BA rather than bec
 Current baseline:
 
 ```text
-9a9ae720ceca6396faede419dca6a879d5aba842
+d7aa03dc2a869bdbb1ed39ba43b7b02453f3e9db
 ```
 
 Current active methodological surfaces:
@@ -279,16 +297,20 @@ Current active methodological surfaces:
 ```text
 Documentation Authoring Guide: R7 Rebuild R8
 Base Analysis Guide:          Rebuild R6
-DermaTriage case study:       R15 Priority Consolidation R1
+DermaTriage case study:       R19 Transfer Contract Working Page R1
 ```
 
 Immediate next action after this housekeeping update:
 
 ```text
-continue Base Analysis of rewritten DermaTriage MR-01
-using the previous BA guide/contracts as the operational reference
+continue the MR-01 transfer / information-contract review from T06
+using original sources only through the Documentation Authoring feedback step
         ->
-finish the bounded MR-01 BA pass
+update the rewritten DermaTriage documentation or preserve explicit gaps
+        ->
+re-run BA on each corrected portion
+        ->
+finish the bounded MR-01 BA pass and delete the temporary worklist page
         ->
 review the construct-use evidence
         ->

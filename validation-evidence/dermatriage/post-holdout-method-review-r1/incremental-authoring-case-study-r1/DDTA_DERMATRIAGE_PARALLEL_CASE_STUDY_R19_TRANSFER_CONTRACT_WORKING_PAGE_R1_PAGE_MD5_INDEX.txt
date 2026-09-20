@@ -1,0 +1,22 @@
+DDTA_DERMATRIAGE_PARALLEL_CASE_STUDY_R19_TRANSFER_CONTRACT_WORKING_PAGE_R1 - Page MD5 Index
+Canonical payload: LaTeX content between PAGE-CONTENT markers; own printed MD5 excluded.
+Integrity-index page resolves all other page hashes and canonicalizes its own hash as <SELF>.
+
+Page 1  2909547baaade7f8dfff2eb961e39d9f  Frontespizio e struttura del case study
+Page 2  a3275772d6cd2ce37195f7d8163144e8  Contesto generale del progetto - Project Problem Framing
+Page 3  cafd337601cda7ed999794f25f95998a  MR-01 - Valutazione di triage del caso dermatologico
+Page 4  a894b0c1116299d0d2fd7254ce5b6127  MR-01 > DEC-MR01-01 - Valutazione di urgenza in assenza di immagine
+Page 5  f5832faca2f179e3423a50e97b752b9e  MR-01 > DEC-MR01-01 > FR-MR01-01-01 - Determinazione dell'urgenza su base sintomatologica
+Page 6  d0dcb49f3ed5b107e5a4f60db5eefd9a  MR-01 > DEC-MR01-03 - Percorso image-based a quattro stadi coordinati
+Page 7  dd5eeb559c1d009b4e99196d5bebf41c  MR-01 > DEC-MR01-03 > FR-MR01-03-01 - Stage 1: urgenza e confidence da immagine
+Page 8  5ace08ab23188c06fb3590819a3008e4  MR-01 > DEC-MR01-03 > FR-MR01-03-02 - Stage 2: descrizione clinica strutturata
+Page 9  b7d01b59ee61789fd467e9789076f7e7  MR-01 > DEC-MR01-03 > FR-MR01-03-03 - Stage 3: recupero di casi storici simili
+Page 10  cce00f2ab3fd9190867ea0b495835495  MR-01 > DEC-MR01-03 > FR-MR01-03-04 - Stage 4: sintesi multi-source
+Page 11  de49645acb22e76bb345d691937b0109  MR-01 > DEC-MR01-04 - Separazione tra valutazione dell'urgenza e priorita operativa
+Page 12  d718ab9cf72c7cd323e0e0997dde32e3  MR-01 > DEC-MR01-04 > FR-MR01-04-01 - Mapping urgenza/confidence verso P1-P4
+Page 13  22b589e352a735848af68026ba7ccd6e  MR-02 - Indicazione della destinazione specialistica
+Page 14  88277fb1892436757c84526e8a5be8b0  MR-03 - Validazione e correzione medica degli esiti
+Page 15  e5085117316308ad10f9d8324bedf7eb  MR-04 - Adattamento controllato sulla base della revisione clinica
+Page 16  016f6228438f19472ff380d75626ac05  Registro Base Analysis - BAReferent e BAProposition
+Page 17  6f384da594b81a18e6376196f175d9ca  MR-01 - Inventario temporaneo transfer e information/data contract candidate [DA CANCELLARE]
+Page 18  da12e21beedcd7d49886827f0d1ac7c3  Indice di integrita delle pagine [INTEGRITY INDEX]

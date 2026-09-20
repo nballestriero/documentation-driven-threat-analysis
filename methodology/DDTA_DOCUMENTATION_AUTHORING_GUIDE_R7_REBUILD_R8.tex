@@ -18,7 +18,7 @@
 \providecommand{\passthrough}[1]{#1}
 %<PAGE-HASH-DEFS>
 \expandafter\def\csname PageMDfive1\endcsname{7289db2d0692a47b1d1013b12077997f}
-\expandafter\def\csname PageMDfive2\endcsname{db406584bc56d82d3a276e3234514842}
+\expandafter\def\csname PageMDfive2\endcsname{85496ac42cee2b594fe8e03c45697447}
 \expandafter\def\csname PageMDfive3\endcsname{22e57dfc4b4f586235f8aed3c522a7e2}
 \expandafter\def\csname PageMDfive4\endcsname{3bdac4b5fec97501c23d7968bf1619d5}
 \expandafter\def\csname PageMDfive5\endcsname{b69ae801bbd9fab0dd9722c5416054c4}
@@ -58,11 +58,11 @@
 \expandafter\def\csname PageMDfive39\endcsname{76fa920eae92f2bb829a2743a84b30a8}
 \expandafter\def\csname PageMDfive40\endcsname{e7136268d32bf6086596d5f030a947ad}
 \expandafter\def\csname PageMDfive41\endcsname{9bc0e63e85d2d026b925a81ded38de52}
-\expandafter\def\csname PageMDfive42\endcsname{1ec1340fe855bc79e279a0e1a22c31f5}
+\expandafter\def\csname PageMDfive42\endcsname{cc250cd2a2deb3069dd6892e943bd284}
 \expandafter\def\csname PageMDfive43\endcsname{9c03ac3e778c27333ef2d51de02f6eb2}
 \expandafter\def\csname PageMDfive44\endcsname{fbc67bc514bb10a6d2c69b4728ffd1ba}
 \expandafter\def\csname PageMDfive45\endcsname{e7298e5d8dcc77d5ea99741209730c0c}
-\expandafter\def\csname PageMDfive46\endcsname{72ee74ff6deac07cddb21411c7832a8f}
+\expandafter\def\csname PageMDfive46\endcsname{e6c6cf47a56baccf0df23fd897da85d4}
 %</PAGE-HASH-DEFS>
 
 \newcommand{\PageHashFooter}[1]{%
@@ -111,10 +111,10 @@
 
 \begin{ddtaopen}[title={RIQUADRO TEMPORANEO - WORKING SET E RIFERIMENTI - DA CANCELLARE PRIMA DELLA VERSIONE FINALE}]
 {\scriptsize
-\textbf{Artefatti attivi:} \nolinkurl{DDTA_DOCUMENTATION_AUTHORING_GUIDE_R7_REBUILD_R8.tex}; \nolinkurl{DDTA_BASE_ANALYSIS_GUIDE_REBUILD_R6.tex}; \nolinkurl{DDTA_DERMATRIAGE_PARALLEL_CASE_STUDY_R15_PRIORITY_CONSOLIDATION_R1.tex}.\par
-\textbf{Controllo di lavoro:} \nolinkurl{DDTA_R25_BASE_ANALYSIS_GUIDE_REBUILD_WORK_PLAN_R4.md}; supporto di analisi: \nolinkurl{DDTA_R25_DERMATRIAGE_CASE_STUDY_WORKING_ANALYSIS_R1.md}.\par
+\textbf{Artefatti attivi:} \nolinkurl{DDTA_DOCUMENTATION_AUTHORING_GUIDE_R7_REBUILD_R8.tex}; \nolinkurl{DDTA_BASE_ANALYSIS_GUIDE_REBUILD_R6.tex}; \nolinkurl{DDTA_DERMATRIAGE_PARALLEL_CASE_STUDY_R19_TRANSFER_CONTRACT_WORKING_PAGE_R1.tex}.\par
+\textbf{Controllo di lavoro:} \nolinkurl{DDTA_R25_BASE_ANALYSIS_GUIDE_REBUILD_WORK_PLAN_R5.md}; supporto di analisi: \nolinkurl{DDTA_R25_DERMATRIAGE_CASE_STUDY_WORKING_ANALYSIS_R1.md}.\par
 \textbf{Riferimenti:} \nolinkurl{DDTA_DOCUMENTATION_AUTHORING_GUIDE_R6_CANDIDATE_R2.tex}; \nolinkurl{DDTA_BASE_ANALYSIS_OPERATIONAL_GUIDE_R3.tex} + BA0--BA5; \nolinkurl{DDTA_R25_BASE_ANALYSIS_REBUILD_SOURCE_REGISTER_R1.md}; Core/Complete BA candidate R1 come research evidence.\par
-\textbf{Disciplina corrente:} la BA analizza la documentazione DermaTriage riscritta. Gli elementi della BA precedente sono usati come baseline operativa durante l'analisi, ma vengono inseriti nella nuova guida cumulativa soltanto dopo un minimo sufficiente di applicazione e review. La prossima milestone e' completare la BA di \texttt{MR-01}; solo dopo si consolidano i primi costrutti sufficientemente stabili. Le fonti originali DermaTriage possono riaprire la review documentale, non colmare direttamente un gap BA bypassando la documentazione corrente.
+\textbf{Disciplina corrente:} la fase attiva e' la review \texttt{MR-01} del percorso dati e dei contratti informativi. Quando la BA espone una incompletezza, si ritorna alla Documentation Authoring, si riesaminano le fonti originali autorizzate, si corregge la documentazione oppure si conserva un gap esplicito, quindi si riesegue la BA. Solo dopo la chiusura di \texttt{MR-01} si consolidano i primi costrutti BA sufficientemente stabili. Le fonti originali non colmano direttamente un gap BA bypassando la documentazione corrente.
 }
 \end{ddtaopen}
 
@@ -1913,6 +1913,12 @@ corretto.
 
 Nessuna decisione deve dipendere dal raggiungimento di un numero atteso
 di FR.
+
+\begin{ddtacheck}[title={Controllo obbligatorio - percorso dati e contratti informativi}]
+Dopo aver identificato i FunctionalRequirement di una Decision, enumerare ogni informazione prodotta, consumata, resa disponibile o persistita. Per ogni coppia producer/consumer verificare se esiste un transfer semanticamente rilevante. Ogni transfer candidato deve poter rendere identificabili source, destination e content; quando il segmento deve essere analizzato, qualificato, realizzato o protetto autonomamente, deve poter ricevere identita'. Per ogni contenuto trasferito deve essere verificata la sufficienza del relativo information/data contract. Informazioni necessarie ma non stabilite dalla fonte devono restare esplicitamente \texttt{NOT SPECIFIED} / diagnostic gap e non essere ricostruite per plausibilita'.
+
+Questo controllo non introduce nuovi campi L1 e non impone un FunctionalRequirement per ogni scambio: transfer, contratto informativo, binding e realization devono ancora essere classificati secondo source support, semantic owner e livello corretto.
+\end{ddtacheck}
 %</PAGE-CONTENT:42>
 
 \clearpage

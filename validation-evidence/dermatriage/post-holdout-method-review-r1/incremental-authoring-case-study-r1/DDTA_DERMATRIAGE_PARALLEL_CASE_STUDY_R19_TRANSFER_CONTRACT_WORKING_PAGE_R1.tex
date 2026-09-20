@@ -1,0 +1,1429 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage{DDTA_METHODOLOGY_GUIDE_STYLE_R1}
+\usepackage{paracol}
+\geometry{a4paper,landscape,top=15mm,bottom=15mm,left=17mm,right=17mm,headheight=15pt}
+\setlength{\parskip}{0.38em}
+\titlespacing*{\section}{0pt}{1.2em}{0.45em}
+\titlespacing*{\subsection}{0pt}{0.9em}{0.35em}
+\titlespacing*{\subsubsection}{0pt}{0.7em}{0.25em}
+
+\hypersetup{
+  pdftitle={DDTA DermaTriage - Parallel Case Study R19 - Transfer / Data Contract Working Page},
+  pdfauthor={Documentation-Driven Threat Analysis research project}
+}
+
+% -----------------------------------------------------------------------------
+% PAGE-INTEGRITY HASHES
+% Generated over the canonical LaTeX payload between PAGE-CONTENT markers.
+% Hash lines themselves are excluded. On the integrity-index page, hashes of
+% preceding pages are resolved before hashing, while the page's own hash is
+% represented by the canonical token <SELF> to avoid self-reference.
+% -----------------------------------------------------------------------------
+\newcommand{\PageMDfive}[1]{\csname PageMDfive#1\endcsname}
+%<PAGE-HASH-DEFS>
+\expandafter\def\csname PageMDfive1\endcsname{2909547baaade7f8dfff2eb961e39d9f}
+\expandafter\def\csname PageMDfive2\endcsname{a3275772d6cd2ce37195f7d8163144e8}
+\expandafter\def\csname PageMDfive3\endcsname{cafd337601cda7ed999794f25f95998a}
+\expandafter\def\csname PageMDfive4\endcsname{a894b0c1116299d0d2fd7254ce5b6127}
+\expandafter\def\csname PageMDfive5\endcsname{f5832faca2f179e3423a50e97b752b9e}
+\expandafter\def\csname PageMDfive6\endcsname{d0dcb49f3ed5b107e5a4f60db5eefd9a}
+\expandafter\def\csname PageMDfive7\endcsname{dd5eeb559c1d009b4e99196d5bebf41c}
+\expandafter\def\csname PageMDfive8\endcsname{5ace08ab23188c06fb3590819a3008e4}
+\expandafter\def\csname PageMDfive9\endcsname{b7d01b59ee61789fd467e9789076f7e7}
+\expandafter\def\csname PageMDfive10\endcsname{cce00f2ab3fd9190867ea0b495835495}
+\expandafter\def\csname PageMDfive11\endcsname{de49645acb22e76bb345d691937b0109}
+\expandafter\def\csname PageMDfive12\endcsname{d718ab9cf72c7cd323e0e0997dde32e3}
+\expandafter\def\csname PageMDfive13\endcsname{22b589e352a735848af68026ba7ccd6e}
+\expandafter\def\csname PageMDfive14\endcsname{88277fb1892436757c84526e8a5be8b0}
+\expandafter\def\csname PageMDfive15\endcsname{e5085117316308ad10f9d8324bedf7eb}
+\expandafter\def\csname PageMDfive16\endcsname{016f6228438f19472ff380d75626ac05}
+\expandafter\def\csname PageMDfive17\endcsname{6f384da594b81a18e6376196f175d9ca}
+\expandafter\def\csname PageMDfive18\endcsname{da12e21beedcd7d49886827f0d1ac7c3}
+%</PAGE-HASH-DEFS>
+
+\newcommand{\PageHashFooter}[1]{%
+  \fancyfoot[R]{\sffamily\scriptsize\color{DDTAGray}MD5 contenuto: \texttt{#1}}%
+}
+
+\newcommand{\IntegrityRow}[3]{#1 & #2 & {\footnotesize\ttfamily #3} \\
+}
+
+\newtcolorbox{ddtaquestions}[1][]{%
+  breakable,enhanced,arc=2pt,boxrule=0.65pt,
+  colframe=DDTAGray!65,colback=DDTALightGray,
+  left=8pt,right=8pt,top=7pt,bottom=7pt,
+  fonttitle=\sffamily\bfseries,title={Domande / chiarimenti richiesti},#1}
+
+% BA authoring-state convention used during the progressive analysis.
+% Typography is a state marker, not a semantic type.
+\newtcolorbox{ddtareferentidentified}[1][]{%
+  breakable,enhanced,arc=2pt,boxrule=0.75pt,
+  colframe=DDTAAmber,colback=DDTALightAmber,
+  left=7pt,right=7pt,top=5pt,bottom=5pt,
+  fonttitle=\sffamily\bfseries,title={BAReferent identificati},#1}
+\newtcolorbox{ddtareferentaccepted}[1][]{%
+  breakable,enhanced,arc=2pt,boxrule=0.75pt,
+  colframe=DDTAGreen,colback=DDTALightGreen,
+  left=7pt,right=7pt,top=5pt,bottom=5pt,
+  fonttitle=\sffamily\bfseries,title={BAReferent accettati},#1}
+\newtcolorbox{ddtapropositionidentified}[1][]{%
+  breakable,enhanced,arc=2pt,boxrule=0.75pt,
+  colframe=DDTAAmber,colback=DDTALightAmber,
+  left=7pt,right=7pt,top=5pt,bottom=5pt,
+  fonttitle=\sffamily\bfseries,title={BAProposition identificate},#1}
+\newtcolorbox{ddtapropositionaccepted}[1][]{%
+  breakable,enhanced,arc=2pt,boxrule=0.75pt,
+  colframe=DDTAGreen,colback=DDTALightGreen,
+  left=7pt,right=7pt,top=5pt,bottom=5pt,
+  fonttitle=\sffamily\bfseries,title={BAProposition accettate},#1}
+\newtcolorbox{ddtaopenrelations}[1][]{%
+  breakable,enhanced,arc=2pt,boxrule=0.65pt,
+  colframe=DDTAGray!70,colback=DDTALightGray,
+  left=7pt,right=7pt,top=5pt,bottom=5pt,
+  fonttitle=\sffamily\bfseries,title={Relazioni BA aperte},#1}
+\newcommand{\BACandidate}[1]{\emph{#1}}
+\newcommand{\BAAccepted}[1]{\textbf{#1}}
+\newcommand{\BANew}{\texttt{(+)}}
+\newcommand{\BAFirstAccepted}{\texttt{(b)}}
+
+
+\begin{document}
+\selectlanguage{italian}
+\fancyhead[L]{\sffamily\small\color{DDTAGray}DDTA - DermaTriage Case Study}
+\fancyhead[R]{\sffamily\small\color{DDTABlue}Documentation + Base Analysis}
+\fancyfoot[L]{\sffamily\scriptsize\color{DDTAGray}Documentation 2/3 - Base Analysis 1/3}
+
+%<PAGE-DESC:1>Frontespizio e struttura del case study
+%<PAGE-CONTENT:1>
+\begin{titlepage}
+\thispagestyle{empty}
+\vspace*{10mm}
+{\sffamily\bfseries\color{DDTANavy}\fontsize{15}{18}\selectfont Documentation-Driven Threat Analysis}\par
+\vspace{5mm}
+{\sffamily\bfseries\color{DDTANavy}\fontsize{29}{33}\selectfont DermaTriage Case Study}\par
+\vspace{2mm}
+{\sffamily\color{DDTABlue}\fontsize{18}{22}\selectfont Documentation + Base Analysis}\par
+
+\vspace{12mm}
+\begin{tcolorbox}[enhanced,arc=3pt,boxrule=0pt,colback=DDTANavy,left=13pt,right=13pt,top=12pt,bottom=12pt]
+{\color{white}\sffamily\bfseries\large Documentazione gerarchica DDTA del progetto DermaTriage}\par
+\vspace{2mm}
+{\color{white!88}\small La documentazione di progetto occupa circa due terzi della pagina; la Base Analysis occupa il terzo laterale e viene avviata progressivamente distinguendo elementi candidati da elementi stabili / accettati. La documentazione e' ordinata gerarchicamente: MacroRequirement, quindi le sue Decision e, immediatamente sotto ogni Decision, i relativi FunctionalRequirement.}
+\end{tcolorbox}
+
+\vspace{5mm}
+\begin{ddtaopen}[title={RIQUADRO TEMPORANEO - WORKING SET E RIFERIMENTI - DA CANCELLARE A CHIUSURA DEL CASE STUDY}]
+{\scriptsize
+\textbf{Attivi:} \nolinkurl{DDTA_DOCUMENTATION_AUTHORING_GUIDE_R7_REBUILD_R8.tex}; \nolinkurl{DDTA_BASE_ANALYSIS_GUIDE_REBUILD_R6.tex}; questo \nolinkurl{DDTA_DERMATRIAGE_PARALLEL_CASE_STUDY_R19_TRANSFER_CONTRACT_WORKING_PAGE_R1.tex}. Working plan: \nolinkurl{DDTA_R25_BASE_ANALYSIS_GUIDE_REBUILD_WORK_PLAN_R5.md}.\par
+\textbf{Riferimenti BA:} \nolinkurl{DDTA_BASE_ANALYSIS_OPERATIONAL_GUIDE_R3.tex} + BA0--BA5, source register e Core/Complete BA Candidate R1. \textbf{Fase corrente:} usare tale patrimonio BA per completare l'analisi della documentazione DermaTriage riscritta fino alla chiusura di \texttt{MR-01}; solo dopo consolidare nella nuova guida i primi costrutti sufficientemente riesaminati. Le fonti originali non colmano direttamente gap BA: un gap di significato torna prima alla documentazione.\par
+{\tiny\textbf{Vincolo anti-regressione:} usare solo i campi documentali previsti dalla guida corrente e, per la BA, solo campi, metadata, operatori e ruoli gia' ammessi da R3 + BA0--BA5. Non aggiungere campi, stati o riquadri semantici non concordati: se un campo sembra necessario, fermarsi e discuterlo prima di inserirlo; le note di review restano nelle strutture gia' previste o nella working analysis. Preservare invariati i blocchi \texttt{PAGE-CONTENT} non interessati e rigenerare gli MD5 con lo script repository.}
+}
+\end{ddtaopen}
+
+\vfill
+\begin{ddtacore}[title={Struttura del case study}]
+La lettura segue sempre il containment documentale: MR $\rightarrow$ Decision $\rightarrow$ FR. Non vengono raccolte prima tutte le Decision e poi tutti gli FR. Ogni FR descrive direttamente il funzionamento e l'implementazione corrente di DermaTriage; i riquadri grigi della documentazione sono riservati a domande e richieste di chiarimento. La colonna Base Analysis usa sempre quattro riquadri: BAReferent identificati, BAReferent accettati, BAProposition identificate e BAProposition accettate. Un eventuale riquadro grigio aggiuntivo, Relazioni BA aperte, conserva soltanto relazioni gia' riconosciute ma non ancora sufficientemente strutturate come BAProposition. Corsivo = candidato, grassetto = stabile / accettato, \texttt{(+)} = prima introduzione dell'identita' BA, \texttt{(b)} = prima promozione in grassetto. \texttt{??} identifica esclusivamente uno slot interno ancora irrisolto di una proposition gia' strutturata. \texttt{NON ANALIZZATO} indica una fase non ancora eseguita; -- indica analisi eseguita senza elementi di quel tipo. Il ragionamento di studio resta esterno al case study; il registro BA finale raccoglie la tracciabilita' complessiva.
+\end{ddtacore}
+
+\vspace{5mm}
+{\sffamily\scriptsize\color{DDTAGray}MD5 contenuto pagina 1: \texttt{\PageMDfive{1}}}\par
+\end{titlepage}
+%</PAGE-CONTENT:1>
+\clearpage
+%<PAGE-DESC:2>Contesto generale del progetto - Project Problem Framing
+%<PAGE-CONTENT:2>
+\PageHashFooter{\PageMDfive{2}}
+\section{Contesto generale del progetto}
+
+\setlength{\columnsep}{7mm}
+\setlength{\columnseprule}{0.35pt}
+\columnratio{0.67}
+\begin{paracol}{2}
+
+% LEFT 2/3 - DOCUMENTATION
+{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
+\vspace{0.5em}
+
+\begin{ddtacore}[title={Project Problem Framing}]
+Il problema che DermaTriage deve affrontare e' il supporto al triage precoce di casi dermatologici relativi a lesioni potenzialmente oncologiche. Il progetto parte dalle informazioni gia' disponibili sul caso per determinarne l'urgenza e una priorita' operativa di presa in carico, con l'obiettivo di favorire un instradamento specialistico tempestivo.
+\end{ddtacore}
+
+\switchcolumn
+
+{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
+\vspace{0.5em}
+
+\begin{ddtareferentidentified}
+\scriptsize
+\BACandidate{DermaTriage} \BANew{}; \BACandidate{DermatologicalCase} \BANew{}; \BACandidate{CaseUrgency} \BANew{}; \BACandidate{OperationalTriagePriority} \BANew{}; \BACandidate{DermatologicalTriageEvaluation} \BANew{}; \BACandidate{CaseInformation} \BANew{}.\par
+\end{ddtareferentidentified}
+
+\begin{ddtareferentaccepted}
+\scriptsize
+--
+\end{ddtareferentaccepted}
+
+\begin{ddtapropositionidentified}
+\scriptsize
+\texttt{NON ANALIZZATO}
+\end{ddtapropositionidentified}
+
+\begin{ddtapropositionaccepted}
+\scriptsize
+\texttt{NON ANALIZZATO}
+\end{ddtapropositionaccepted}
+
+\end{paracol}
+%</PAGE-CONTENT:2>
+\clearpage
+%<PAGE-DESC:3>MR-01 - Valutazione di triage del caso dermatologico
+%<PAGE-CONTENT:3>
+\PageHashFooter{\PageMDfive{3}}
+\section{MR-01 - Valutazione di triage del caso dermatologico}
+
+\setlength{\columnsep}{7mm}
+\setlength{\columnseprule}{0.35pt}
+\columnratio{0.67}
+\begin{paracol}{2}
+
+{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
+\vspace{0.5em}
+
+\begin{ddtacore}[title={MacroRequirement}]
+\textbf{Intent}\par
+Determinare, a partire dalle informazioni disponibili sul caso dermatologico, l'urgenza del caso e la relativa priorita' operativa di triage.
+
+\textbf{Context}\par
+La valutazione di triage utilizza le informazioni disponibili sul caso dermatologico. La disponibilita' e la tipologia delle evidenze possono variare tra i casi.
+
+\textbf{Stakeholders}\par
+Paziente.
+
+\textbf{Scope}\par
+\textbf{IN:} determinazione dell'urgenza del caso e della relativa priorita' operativa di triage a partire dalle informazioni di caso governate dal progetto.\par
+\textbf{OUT:} indicazione della destinazione specialistica; validazione o correzione medica dell'esito; adattamento successivo del comportamento del sistema sulla base della revisione clinica.
+
+\textbf{Assumptions / Constraints}\par
+--
+
+\textbf{dependsOn}\par
+\texttt{None}
+\end{ddtacore}
+
+\begin{ddtaquestions}
+\small
+\begin{itemize}
+  \item HIGH / MEDIUM / LOW e' una convenzione governata autonomamente o un vocabolario downstream usato coerentemente?
+  \item Quando il triage viene eseguito senza immagine, quali risultati deve produrre il percorso \emph{symptom-only}? Deve limitarsi alla determinazione dell'urgenza oppure deve produrre anche altri risultati previsti dal percorso image-based? In caso affermativo, quali?
+  \item I percorsi diretto e B4-integrato sono due strategie che il progetto intende preservare oppure due interfacce della realizzazione corrente?
+  \item Il recupero di casi storici ha governance autonoma oppure e' comportamento interno della pipeline image-based?
+\end{itemize}
+\end{ddtaquestions}
+
+\switchcolumn
+
+{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
+\vspace{0.5em}
+
+\begin{ddtareferentidentified}
+\scriptsize
+\BACandidate{Patient} \BANew{}; \BACandidate{CaseInformation} \BANew{}.\par
+\end{ddtareferentidentified}
+
+\begin{ddtareferentaccepted}
+\scriptsize
+\BAAccepted{DermatologicalCase} \BAFirstAccepted{}; \BAAccepted{DermatologicalTriageEvaluation} \BAFirstAccepted{}; \BAAccepted{CaseUrgency} \BAFirstAccepted{}; \BAAccepted{OperationalTriagePriority} \BAFirstAccepted{}.\par
+\end{ddtareferentaccepted}
+
+\begin{ddtapropositionidentified}
+\scriptsize
+{\itshape
+\texttt{BAP-MR01-01}\par
+\texttt{semanticOperatorKey = produce}\par
+\hspace*{1em}\texttt{actor -> ??}\par
+\hspace*{1em}\texttt{input -> CaseInformation}\par
+\hspace*{1em}\texttt{result -> CaseUrgency}\par
+\hspace*{1em}\texttt{result -> OperationalTriagePriority}\par
+\texttt{polarity = affirmative}\par
+\medskip
+\texttt{BAP-MR01-02}\par
+\texttt{semanticOperatorKey = correlate}\par
+\hspace*{1em}\texttt{correlatedItem -> CaseInformation}\par
+\hspace*{1em}\texttt{correlationContext -> DermatologicalCase}\par
+\texttt{polarity = affirmative}\par
+}
+\end{ddtapropositionidentified}
+
+\begin{ddtapropositionaccepted}
+\scriptsize
+--
+\end{ddtapropositionaccepted}
+
+\begin{ddtaopenrelations}
+\scriptsize
+\texttt{CaseUrgency <relazione da determinare> DermatologicalCase}\par
+\texttt{OperationalTriagePriority <relazione da determinare> DermatologicalCase}\par
+\end{ddtaopenrelations}
+
+\end{paracol}
+%</PAGE-CONTENT:3>
+\clearpage
+%<PAGE-DESC:4>MR-01 > DEC-MR01-01 - Valutazione di urgenza in assenza di immagine
+%<PAGE-CONTENT:4>
+\PageHashFooter{\PageMDfive{4}}
+\subsection{DEC-MR01-01 - Valutazione di urgenza in assenza di immagine}
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-01} $\rightarrow$ \texttt{DEC-MR01-01}}\par
+
+\setlength{\columnsep}{7mm}
+\setlength{\columnseprule}{0.35pt}
+\columnratio{0.67}
+\begin{paracol}{2}
+
+{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
+\vspace{0.5em}
+
+\begin{ddtacore}[title={Decision}]
+\textbf{Parent MR}\par
+\texttt{MR-01}
+
+\textbf{Context}\par
+Un caso dermatologico puo' avere un'immagine della lesione, oppure no.
+
+\textbf{Decision}\par
+DermaTriage supporta la valutazione di urgenza anche per i casi privi di immagine della lesione, adottando in tale situazione una strategia basata sulle informazioni sintomatologiche disponibili sul caso.
+
+\textbf{Consequences}\par
+L'immagine non costituisce una precondizione assoluta per la determinazione dell'urgenza. In sua assenza, l'urgenza puo' comunque essere determinata utilizzando le informazioni sintomatologiche disponibili sul caso.
+\end{ddtacore}
+
+\begin{ddtaquestions}
+\small
+\begin{itemize}
+  \item Che cosa costituisce esattamente un'immagine assente o non disponibile?
+  \item Quali informazioni sintomatologiche minime devono essere disponibili?
+  \item Quando l'immagine della lesione non e' disponibile, il progetto governa un comportamento / percorso \emph{symptom-only} distinto oppure un unico comportamento di valutazione nel quale l'immagine costituisce un input opzionale?
+\end{itemize}
+\end{ddtaquestions}
+
+\switchcolumn
+
+{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
+\vspace{0.5em}
+
+\begin{ddtareferentidentified}
+\scriptsize
+\BACandidate{LesionImage} \BANew{}; \BACandidate{SymptomInformation} \BANew{}.\par
+\end{ddtareferentidentified}
+
+\begin{ddtareferentaccepted}
+\scriptsize
+\BAAccepted{DermaTriage} \BAFirstAccepted{}.\par
+\end{ddtareferentaccepted}
+
+\begin{ddtapropositionidentified}
+\scriptsize
+{\itshape
+\texttt{BAP-DEC01-01}\par
+\texttt{semanticOperatorKey = produce}\par
+\hspace*{1em}\texttt{actor -> ??}\par
+\hspace*{1em}\texttt{input -> SymptomInformation}\par
+\hspace*{1em}\texttt{result -> CaseUrgency}\par
+\texttt{polarity = affirmative}\par
+\medskip
+\texttt{BAP-DEC01-02}\par
+\texttt{semanticOperatorKey = correlate}\par
+\hspace*{1em}\texttt{correlatedItem -> SymptomInformation}\par
+\hspace*{1em}\texttt{correlationContext -> DermatologicalCase}\par
+\texttt{polarity = affirmative}\par
+}
+\end{ddtapropositionidentified}
+
+\begin{ddtapropositionaccepted}
+\scriptsize
+--
+\end{ddtapropositionaccepted}
+
+\begin{ddtaopenrelations}
+\scriptsize
+\texttt{SymptomInformation <relazione da determinare> CaseInformation}\par
+\texttt{LesionImage <relazione da determinare> CaseInformation}\par
+\end{ddtaopenrelations}
+
+\end{paracol}
+%</PAGE-CONTENT:4>
+\clearpage
+%<PAGE-DESC:5>MR-01 > DEC-MR01-01 > FR-MR01-01-01 - Determinazione dell'urgenza su base sintomatologica
+%<PAGE-CONTENT:5>
+\PageHashFooter{\PageMDfive{5}}
+\subsubsection{FR-MR01-01-01 - Determinazione dell'urgenza su base sintomatologica in assenza di immagine}
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-01} $\rightarrow$ \texttt{DEC-MR01-01} $\rightarrow$ \texttt{FR-MR01-01-01}}\par
+
+\setlength{\columnsep}{7mm}
+\setlength{\columnseprule}{0.35pt}
+\columnratio{0.67}
+\begin{paracol}{2}
+
+{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
+\vspace{0.5em}
+
+\begin{ddtacore}[title={FunctionalRequirement}]
+\begin{tabularx}{\linewidth}{L{38mm}Y}
+\toprule
+\textbf{ID} & \texttt{FR-MR01-01-01} \\
+\textbf{Lifecycle} & \texttt{candidate} \\
+\textbf{Authority} & \texttt{CANDIDATE\_NON\_CURRENT} \\
+\textbf{Type} & \texttt{FunctionalRequirement} \\
+\textbf{Title} & Determinazione dell'urgenza su base sintomatologica in assenza di immagine \\
+\textbf{Parent Decision} & \texttt{DEC-MR01-01} \\
+\textbf{Owning MR (derived)} & \texttt{MR-01} \\
+\bottomrule
+\end{tabularx}
+
+\textbf{Functional obligation}\par
+Quando l'immagine della lesione non e' disponibile, DermaTriage determina l'urgenza del caso utilizzando le informazioni sintomatologiche disponibili sullo stesso caso. Nel workflow B4-integrated la documentazione identifica tra tali informazioni campi quali \texttt{itching}, \texttt{bleeding}, \texttt{growth/change} e \texttt{pain}.
+
+\textbf{Functional clauses / inherited \texttt{normativeClause [1..*]}}\par
+Quando l'immagine della lesione non e' disponibile, DermaTriage MUST determinare l'urgenza del caso utilizzando le informazioni sintomatologiche disponibili associate allo stesso caso.
+
+\textbf{Riferimenti strutturati / evidenze governate}\par
+--
+
+\textbf{SpecializedRequirement relation}\par
+Nessuna relazione stabilita.
+\end{ddtacore}
+
+\begin{ddtaquestions}
+\small
+\begin{itemize}
+  \item Quali informazioni sintomatologiche sono supportate e quali, se presenti, sono obbligatorie per poter determinare l'urgenza?
+  \item Come vengono gestiti campi sintomatologici mancanti, non validi o parziali?
+  \item Qual e' la regola completa di symptom scoring che produce l'urgenza?
+\end{itemize}
+\end{ddtaquestions}
+
+\switchcolumn
+
+{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
+\vspace{0.5em}
+
+\begin{ddtareferentidentified}
+\scriptsize
+--
+\end{ddtareferentidentified}
+
+\begin{ddtareferentaccepted}
+\scriptsize
+\BAAccepted{DermaTriage}; \BAAccepted{DermatologicalCase}; \BAAccepted{DermatologicalTriageEvaluation}; \BAAccepted{CaseUrgency}; \BAAccepted{LesionImage} \BAFirstAccepted{}; \BAAccepted{SymptomInformation} \BAFirstAccepted{}.\par
+\end{ddtareferentaccepted}
+
+\begin{ddtapropositionidentified}
+\scriptsize
+\texttt{NON ANALIZZATO}
+\end{ddtapropositionidentified}
+
+\begin{ddtapropositionaccepted}
+\scriptsize
+\texttt{NON ANALIZZATO}
+\end{ddtapropositionaccepted}
+
+\end{paracol}
+%</PAGE-CONTENT:5>
+\clearpage
+%<PAGE-DESC:6>MR-01 > DEC-MR01-03 - Percorso image-based a quattro stadi coordinati
+%<PAGE-CONTENT:6>
+\PageHashFooter{\PageMDfive{6}}
+\subsection{DEC-MR01-03 - Percorso image-based a quattro stadi coordinati}
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-01} $\rightarrow$ \texttt{DEC-MR01-03}}\par
+
+
+\setlength{\columnsep}{7mm}
+\setlength{\columnseprule}{0.35pt}
+\columnratio{0.67}
+\begin{paracol}{2}
+
+{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
+\vspace{0.5em}
+
+\begin{ddtacore}[title={Decision}]
+\textbf{Parent MR}\par
+\texttt{MR-01}
+
+\textbf{Context}\par
+Quando e' disponibile un'immagine della lesione, DermaTriage usa un percorso analitico image-based articolato in quattro stadi che producono e combinano risultati diversi prima della sintesi finale di triage.
+
+\textbf{Decision}\par
+DermaTriage realizza il percorso image-based mediante quattro stadi analitici coordinati. Stage 1 e Stage 2 elaborano entrambi l'immagine della lesione e producono rispettivamente una classificazione di urgenza con confidence e una descrizione clinica. La descrizione clinica alimenta Stage 3, che recupera casi storici simili. Stage 4 combina gli output degli Stage 1, 2 e 3 con le informazioni sintomatologiche disponibili per produrre la sintesi finale di triage.
+
+\textbf{Consequences}\par
+Il percorso image-based richiede la disponibilita' dell'immagine della lesione e resta distinto dal comportamento symptom-only applicabile quando l'immagine non e' disponibile. I quattro stadi mantengono responsabilita' analitiche distinte che convergono nella sintesi finale: Stage 3 usa la descrizione clinica prodotta da Stage 2, mentre Stage 1 e Stage 2 non dipendono reciprocamente dai rispettivi output. La documentazione corrente non stabilisce che tali elaborazioni debbano essere eseguite in parallelo. Le tecnologie e i modelli dei singoli stadi possono cambiare o evolvere senza per forza modificare questa struttura.
+\end{ddtacore}
+
+\begin{ddtaquestions}
+\small
+\begin{itemize}
+  \item Il numero esatto di quattro stadi e la loro composizione sono un commitment stabile oppure una struttura della realizzazione corrente?
+  \item L'ordine Stage 1--4 governa anche l'ordine temporale di esecuzione oppure soltanto l'organizzazione logica del percorso, fermo il dataflow esplicitamente documentato?
+  \item Stage 1 e Stage 2 possono essere eseguiti indipendentemente o in concorrenza quando la stessa immagine e' disponibile, oppure esiste un sequencing runtime non esplicitato?
+\end{itemize}
+\end{ddtaquestions}
+
+
+\switchcolumn
+
+{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
+\vspace{0.5em}
+
+\begin{ddtareferentidentified}
+\scriptsize
+\BACandidate{ImageUrgencyAnalysis} \BANew{}; \BACandidate{ClinicalDescriptionGeneration} \BANew{}; \BACandidate{HistoricalCaseRetrieval} \BANew{}; \BACandidate{MultiSourceTriageSynthesis} \BANew{}.\par
+\end{ddtareferentidentified}
+
+\begin{ddtareferentaccepted}
+\scriptsize
+\BAAccepted{DermaTriage}; \BAAccepted{LesionImage}.\par
+\end{ddtareferentaccepted}
+
+\begin{ddtapropositionidentified}
+\scriptsize
+--
+\end{ddtapropositionidentified}
+
+\begin{ddtapropositionaccepted}
+\scriptsize
+--
+\end{ddtapropositionaccepted}
+
+
+\end{paracol}
+%</PAGE-CONTENT:6>
+\clearpage
+%<PAGE-DESC:7>MR-01 > DEC-MR01-03 > FR-MR01-03-01 - Stage 1: urgenza e confidence da immagine
+%<PAGE-CONTENT:7>
+\PageHashFooter{\PageMDfive{7}}
+\subsubsection{FR-MR01-03-01 - Stage 1: urgenza e confidence da immagine}
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-01} $\rightarrow$ \texttt{DEC-MR01-03} $\rightarrow$ \texttt{FR-MR01-03-01}}\par
+
+
+\setlength{\columnsep}{7mm}
+\setlength{\columnseprule}{0.35pt}
+\columnratio{0.67}
+\begin{paracol}{2}
+
+{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
+\vspace{0.5em}
+
+\begin{ddtacore}[title={FunctionalRequirement}]
+\begin{tabularx}{\linewidth}{L{38mm}Y}
+\toprule
+\textbf{ID} & \texttt{FR-MR01-03-01} \\
+\textbf{Lifecycle} & \texttt{candidate} \\
+\textbf{Authority} & \texttt{CANDIDATE\_NON\_CURRENT} \\
+\textbf{Type} & \texttt{FunctionalRequirement} \\
+\textbf{Title} & Stage 1: urgenza e confidence da immagine \\
+\textbf{Parent Decision} & \texttt{DEC-MR01-03} \\
+\textbf{Owning MR (derived)} & \texttt{MR-01} \\
+\bottomrule
+\end{tabularx}
+
+\textbf{Functional obligation}\par
+Nel percorso image-based, lo Stage 1 usa un modello \texttt{EfficientNet-B4} fine-tuned per elaborare immagini RGB a \texttt{380x380} e produrre un valore di urgenza \texttt{HIGH / MEDIUM / LOW} con confidence associata. La classificazione \texttt{HIGH} usa una soglia pari a \texttt{0.25}. Il risultato resta distinto dalla successiva priorita' operativa P1--P4.
+
+\textbf{Functional clauses / inherited \texttt{normativeClause [1..*]}}\par
+\begin{enumerate}
+  \item Lo Stage 1 MUST elaborare l'immagine della lesione mediante il modello \texttt{EfficientNet-B4} fine-tuned su input RGB \texttt{380x380}.
+  \item Lo Stage 1 MUST produrre un valore di urgenza appartenente a \texttt{HIGH / MEDIUM / LOW} e una confidence associata.
+  \item La classificazione \texttt{HIGH} MUST applicare la soglia \texttt{0.25} nella configurazione documentata.
+\end{enumerate}
+
+\textbf{Riferimenti strutturati / evidenze governate}\par
+--
+
+\textbf{SpecializedRequirement relation}\par
+Nessuna relazione stabilita.
+\end{ddtacore}
+
+\begin{ddtaquestions}
+\small
+\begin{itemize}
+  \item La soglia 0.25 e' configurabile a runtime, un default oppure un valore governato e stabile?
+  \item Qual e' la regola completa che distingue MEDIUM da LOW?
+  \item Come vengono gestite immagini assenti, non valide o non processabili nel percorso image-based?
+\end{itemize}
+\end{ddtaquestions}
+
+
+
+
+\switchcolumn
+
+{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
+\vspace{0.5em}
+
+\begin{ddtareferentidentified}
+\scriptsize
+\BACandidate{EfficientNet-B4} \BANew{}; \BACandidate{ImageUrgencyClassification} \BANew{}.\par
+\end{ddtareferentidentified}
+
+\begin{ddtareferentaccepted}
+\scriptsize
+\BAAccepted{DermaTriage}; \BAAccepted{LesionImage}; \BAAccepted{ImageUrgencyAnalysis} \BAFirstAccepted{}; \BAAccepted{EfficientNet-B4} \BAFirstAccepted{}; \BAAccepted{ImageUrgencyClassification} \BAFirstAccepted{}.\par
+\end{ddtareferentaccepted}
+
+\begin{ddtapropositionidentified}
+\tiny
+\texttt{BAP-FR03-01-01}\par
+\texttt{semanticOperatorKey = produce}\par
+\hspace*{1em}\texttt{actor -> ImageUrgencyAnalysis}\par
+\hspace*{1em}\texttt{input -> LesionImage}\par
+\hspace*{1em}\texttt{result -> ImageUrgencyClassification}\par
+\texttt{polarity = affirmative}\par
+\medskip
+\texttt{BAP-FR03-01-02}\par
+\texttt{semanticOperatorKey = realize}\par
+\hspace*{1em}\texttt{abstract -> ImageUrgencyAnalysis}\par
+\hspace*{1em}\texttt{realization -> EfficientNet-B4}\par
+\texttt{polarity = affirmative}
+\end{ddtapropositionidentified}
+
+\begin{ddtapropositionaccepted}
+\tiny
+\textbf{BAP-FR03-01-01}; \textbf{BAP-FR03-01-02}.
+\end{ddtapropositionaccepted}
+
+
+\end{paracol}
+%</PAGE-CONTENT:7>
+\clearpage
+%<PAGE-DESC:8>MR-01 > DEC-MR01-03 > FR-MR01-03-02 - Stage 2: descrizione clinica strutturata
+%<PAGE-CONTENT:8>
+\PageHashFooter{\PageMDfive{8}}
+\subsubsection{FR-MR01-03-02 - Stage 2: descrizione clinica strutturata}
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-01} $\rightarrow$ \texttt{DEC-MR01-03} $\rightarrow$ \texttt{FR-MR01-03-02}}\par
+
+
+\setlength{\columnsep}{7mm}
+\setlength{\columnseprule}{0.35pt}
+\columnratio{0.67}
+\begin{paracol}{2}
+
+{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
+\vspace{0.5em}
+
+\begin{ddtacore}[title={FunctionalRequirement}]
+\begin{tabularx}{\linewidth}{L{38mm}Y}
+\toprule
+\textbf{ID} & \texttt{FR-MR01-03-02} \\
+\textbf{Lifecycle} & \texttt{candidate} \\
+\textbf{Authority} & \texttt{CANDIDATE\_NON\_CURRENT} \\
+\textbf{Type} & \texttt{FunctionalRequirement} \\
+\textbf{Title} & Stage 2: descrizione clinica strutturata \\
+\textbf{Parent Decision} & \texttt{DEC-MR01-03} \\
+\textbf{Owning MR (derived)} & \texttt{MR-01} \\
+\bottomrule
+\end{tabularx}
+
+\textbf{Functional obligation}\par
+Nel percorso image-based, lo Stage 2 usa \texttt{Qwen2-VL-7B-Instruct} come vision-language model per derivare dall'immagine della lesione una descrizione clinica testuale strutturata in cinque parti. La descrizione prodotta e' resa disponibile allo Stage 3 per il retrieval dei casi storici e resta disponibile allo Stage 4 come output dello Stage 2.
+
+\textbf{Functional clauses / inherited \texttt{normativeClause [1..*]}}\par
+\begin{enumerate}
+  \item Lo Stage 2 MUST usare \texttt{Qwen2-VL-7B-Instruct} per elaborare l'immagine della lesione.
+  \item Lo Stage 2 MUST produrre una descrizione clinica testuale strutturata in cinque parti.
+  \item Lo Stage 2 MUST rendere la descrizione prodotta disponibile allo Stage 3 per il retrieval e allo Stage 4 come proprio output analitico.
+\end{enumerate}
+
+\textbf{Riferimenti strutturati / evidenze governate}\par
+--
+
+\textbf{SpecializedRequirement relation}\par
+Nessuna relazione stabilita.
+\end{ddtacore}
+
+\begin{ddtaquestions}
+\small
+\begin{itemize}
+  \item Quali sono esattamente le cinque parti richieste della descrizione clinica?
+  \item Ordine, lingua e formato delle cinque parti sono obbligatori o modificabili?
+  \item Qual e' il comportamento richiesto se la descrizione non puo' essere prodotta completamente?
+\end{itemize}
+\end{ddtaquestions}
+
+
+
+
+\switchcolumn
+
+{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
+\vspace{0.5em}
+
+\begin{ddtareferentidentified}
+\scriptsize
+\BACandidate{Qwen2-VL-7B-Instruct} \BANew{}; \BACandidate{ClinicalDescription} \BANew{}.\par
+\end{ddtareferentidentified}
+
+\begin{ddtareferentaccepted}
+\scriptsize
+\BAAccepted{DermaTriage}; \BAAccepted{LesionImage}; \BAAccepted{ClinicalDescriptionGeneration} \BAFirstAccepted{}; \BAAccepted{Qwen2-VL-7B-Instruct} \BAFirstAccepted{}; \BAAccepted{ClinicalDescription} \BAFirstAccepted{}.\par
+\end{ddtareferentaccepted}
+
+\begin{ddtapropositionidentified}
+\tiny
+\texttt{BAP-FR03-02-01}\par
+\texttt{semanticOperatorKey = produce}\par
+\hspace*{1em}\texttt{actor -> ClinicalDescriptionGeneration}\par
+\hspace*{1em}\texttt{input -> LesionImage}\par
+\hspace*{1em}\texttt{result -> ClinicalDescription}\par
+\texttt{polarity = affirmative}\par
+\medskip
+\texttt{BAP-FR03-02-02}\par
+\texttt{semanticOperatorKey = realize}\par
+\hspace*{1em}\texttt{abstract -> ClinicalDescriptionGeneration}\par
+\hspace*{1em}\texttt{realization -> Qwen2-VL-7B-Instruct}\par
+\texttt{polarity = affirmative}
+\end{ddtapropositionidentified}
+
+\begin{ddtapropositionaccepted}
+\tiny
+\textbf{BAP-FR03-02-01}; \textbf{BAP-FR03-02-02}.
+\end{ddtapropositionaccepted}
+
+\end{paracol}
+%</PAGE-CONTENT:8>
+\clearpage
+%<PAGE-DESC:9>MR-01 > DEC-MR01-03 > FR-MR01-03-03 - Stage 3: recupero di casi storici simili
+%<PAGE-CONTENT:9>
+\PageHashFooter{\PageMDfive{9}}
+\subsubsection{FR-MR01-03-03 - Stage 3: recupero di casi storici simili}
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-01} $\rightarrow$ \texttt{DEC-MR01-03} $\rightarrow$ \texttt{FR-MR01-03-03}}\par
+
+
+\setlength{\columnsep}{7mm}
+\setlength{\columnseprule}{0.35pt}
+\columnratio{0.67}
+\begin{paracol}{2}
+
+{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
+\vspace{0.5em}
+
+\begin{ddtacore}[title={FunctionalRequirement}]
+\begin{tabularx}{\linewidth}{L{38mm}Y}
+\toprule
+\textbf{ID} & \texttt{FR-MR01-03-03} \\
+\textbf{Lifecycle} & \texttt{candidate} \\
+\textbf{Authority} & \texttt{CANDIDATE\_NON\_CURRENT} \\
+\textbf{Type} & \texttt{FunctionalRequirement} \\
+\textbf{Title} & Stage 3: recupero di casi storici simili \\
+\textbf{Parent Decision} & \texttt{DEC-MR01-03} \\
+\textbf{Owning MR (derived)} & \texttt{MR-01} \\
+\bottomrule
+\end{tabularx}
+
+\textbf{Functional obligation}\par
+Lo Stage 3 usa \texttt{ChromaDB} e gli embedding \texttt{sentence-transformers/all-MiniLM-L6-v2} per confrontare la descrizione clinica prodotta dallo Stage 2 con le rappresentazioni dei casi dermatologici storici tramite cosine similarity. Il retrieval restituisce i \texttt{top-5} casi piu' simili e rende il relativo contesto disponibile allo Stage 4.
+
+\textbf{Functional clauses / inherited \texttt{normativeClause [1..*]}}\par
+\begin{enumerate}
+  \item Lo Stage 3 MUST usare la descrizione clinica prodotta dallo Stage 2 come input del retrieval e MUST usare \texttt{ChromaDB} con embedding \texttt{sentence-transformers/all-MiniLM-L6-v2} per confrontarla con i casi storici.
+  \item Il confronto MUST usare la cosine similarity e MUST selezionare i \texttt{top-5} casi dermatologici storici piu' simili.
+  \item Lo Stage 3 MUST rendere il contesto dei casi recuperati disponibile allo Stage 4 per la sintesi multi-source.
+\end{enumerate}
+
+\textbf{Riferimenti strutturati / evidenze governate}\par
+--
+
+\textbf{SpecializedRequirement relation}\par
+Nessuna relazione stabilita.
+\end{ddtacore}
+
+\begin{ddtaquestions}
+\small
+\begin{itemize}
+  \item Il valore top-5 e' un requisito stabile oppure una configurazione modificabile?
+  \item Che cosa deve accadere quando sono disponibili meno di cinque casi utilizzabili?
+  \item Quali campi dei casi recuperati devono essere resi disponibili allo Stage 4?
+\end{itemize}
+\end{ddtaquestions}
+
+
+
+\switchcolumn
+
+{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
+\vspace{0.5em}
+
+\begin{ddtareferentidentified}
+\scriptsize
+\BACandidate{ChromaDB} \BANew{}; \BACandidate{all-MiniLM-L6-v2} \BANew{}; \BACandidate{RetrievedHistoricalCaseContext} \BANew{}.\par
+\end{ddtareferentidentified}
+
+\begin{ddtareferentaccepted}
+\scriptsize
+\BAAccepted{DermaTriage}; \BAAccepted{DermatologicalCase}; \BAAccepted{ClinicalDescription}; \BAAccepted{HistoricalCaseRetrieval} \BAFirstAccepted{}; \BAAccepted{ChromaDB} \BAFirstAccepted{}; \BAAccepted{all-MiniLM-L6-v2} \BAFirstAccepted{}; \BAAccepted{RetrievedHistoricalCaseContext} \BAFirstAccepted{}.\par
+\end{ddtareferentaccepted}
+
+\begin{ddtapropositionidentified}
+\tiny
+\texttt{BAP-FR03-03-01}\par
+\texttt{semanticOperatorKey = produce}\par
+\hspace*{1em}\texttt{actor -> HistoricalCaseRetrieval}\par
+\hspace*{1em}\texttt{input -> ClinicalDescription}\par
+\hspace*{1em}\texttt{result -> RetrievedHistoricalCaseContext}\par
+\texttt{polarity = affirmative}\par
+\medskip
+\texttt{BAP-FR03-03-02}\par
+\texttt{semanticOperatorKey = realize}\par
+\hspace*{1em}\texttt{abstract -> HistoricalCaseRetrieval}\par
+\hspace*{1em}\texttt{realization -> ChromaDB}\par
+\hspace*{1em}\texttt{realization -> all-MiniLM-L6-v2}\par
+\texttt{polarity = affirmative}
+\end{ddtapropositionidentified}
+
+\begin{ddtapropositionaccepted}
+\tiny
+\textbf{BAP-FR03-03-01}; \textbf{BAP-FR03-03-02}.
+\end{ddtapropositionaccepted}
+
+
+\end{paracol}
+%</PAGE-CONTENT:9>
+\clearpage
+%<PAGE-DESC:10>MR-01 > DEC-MR01-03 > FR-MR01-03-04 - Stage 4: sintesi multi-source
+%<PAGE-CONTENT:10>
+\PageHashFooter{\PageMDfive{10}}
+\subsubsection{FR-MR01-03-04 - Stage 4: sintesi multi-source}
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-01} $\rightarrow$ \texttt{DEC-MR01-03} $\rightarrow$ \texttt{FR-MR01-03-04}}\par
+
+
+\setlength{\columnsep}{7mm}
+\setlength{\columnseprule}{0.35pt}
+\columnratio{0.67}
+\begin{paracol}{2}
+
+{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
+\vspace{0.5em}
+
+\begin{ddtacore}[title={FunctionalRequirement}]
+\begin{tabularx}{\linewidth}{L{38mm}Y}
+\toprule
+\textbf{ID} & \texttt{FR-MR01-03-04} \\
+\textbf{Lifecycle} & \texttt{candidate} \\
+\textbf{Authority} & \texttt{CANDIDATE\_NON\_CURRENT} \\
+\textbf{Type} & \texttt{FunctionalRequirement} \\
+\textbf{Title} & Stage 4: sintesi multi-source \\
+\textbf{Parent Decision} & \texttt{DEC-MR01-03} \\
+\textbf{Owning MR (derived)} & \texttt{MR-01} \\
+\bottomrule
+\end{tabularx}
+
+\textbf{Functional obligation}\par
+Lo Stage 4 usa \texttt{BioMistral-7B} per combinare gli output degli Stage 1, 2 e 3 con le informazioni sintomatologiche disponibili. La sintesi produce una rappresentazione JSON che contiene \texttt{urgency}, \texttt{confidence}, \texttt{reasoning} e \texttt{pathology}. I valori \texttt{urgency} e \texttt{confidence} sono usati dal successivo passaggio di derivazione della priorita' operativa, realizzato nell'architettura corrente dall'\emph{Adaptation Layer}, per determinare la priorita' P1--P4; la documentazione corrente non stabilisce che \texttt{reasoning} e \texttt{pathology} partecipino a tale mapping.
+
+\textbf{Functional clauses / inherited \texttt{normativeClause [1..*]}}\par
+\begin{enumerate}
+  \item Lo Stage 4 MUST usare \texttt{BioMistral-7B} per eseguire la sintesi multi-source.
+  \item La sintesi MUST combinare gli output disponibili degli Stage 1, 2 e 3 con le informazioni sintomatologiche del caso.
+  \item Lo Stage 4 MUST produrre una rappresentazione JSON contenente \texttt{urgency}, \texttt{confidence}, \texttt{reasoning} e \texttt{pathology}; i valori \texttt{urgency} e \texttt{confidence} MUST essere resi disponibili al successivo passaggio di derivazione della priorita' operativa.
+\end{enumerate}
+
+\textbf{Riferimenti strutturati / evidenze governate}\par
+\texttt{DEC-MR01-04}; \texttt{FR-MR01-04-01}
+
+\textbf{SpecializedRequirement relation}\par
+Nessuna relazione stabilita.
+\end{ddtacore}
+
+\begin{ddtaquestions}
+\small
+\begin{itemize}
+  \item Qual e' il contratto completo del JSON prodotto dallo Stage 4 e quali campi sono obbligatori?
+  \item Qual e' il significato governato del campo pathology e quali usi sono autorizzati?
+  \item Come deve comportarsi la sintesi se uno degli input degli stadi precedenti e' assente o incompleto?
+\end{itemize}
+\end{ddtaquestions}
+
+
+
+\switchcolumn
+
+{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
+\vspace{0.5em}
+
+\begin{ddtareferentidentified}
+\scriptsize
+\BACandidate{BioMistral-7B} \BANew{}; \BACandidate{TriageConfidence} \BANew{}.\par
+\end{ddtareferentidentified}
+
+\begin{ddtareferentaccepted}
+\scriptsize
+\BAAccepted{DermaTriage}; \BAAccepted{DermatologicalCase}; \BAAccepted{ImageUrgencyClassification}; \BAAccepted{ClinicalDescription}; \BAAccepted{RetrievedHistoricalCaseContext}; \BAAccepted{SymptomInformation}; \BAAccepted{CaseUrgency}; \BAAccepted{MultiSourceTriageSynthesis} \BAFirstAccepted{}; \BAAccepted{BioMistral-7B} \BAFirstAccepted{}; \BAAccepted{TriageConfidence} \BAFirstAccepted{}.\par
+\end{ddtareferentaccepted}
+
+\begin{ddtapropositionidentified}
+\tiny
+\texttt{BAP-FR03-04-01}\par
+\texttt{semanticOperatorKey = produce}\par
+\hspace*{1em}\texttt{actor -> MultiSourceTriageSynthesis}\par
+\hspace*{1em}\texttt{input -> ImageUrgencyClassification}\par
+\hspace*{1em}\texttt{input -> ClinicalDescription}\par
+\hspace*{1em}\texttt{input -> RetrievedHistoricalCaseContext}\par
+\hspace*{1em}\texttt{input -> SymptomInformation}\par
+\hspace*{1em}\texttt{result -> CaseUrgency}\par
+\hspace*{1em}\texttt{result -> TriageConfidence}\par
+\texttt{polarity = affirmative}\par
+\medskip
+\texttt{BAP-FR03-04-02}\par
+\texttt{semanticOperatorKey = realize}\par
+\hspace*{1em}\texttt{abstract -> MultiSourceTriageSynthesis}\par
+\hspace*{1em}\texttt{realization -> BioMistral-7B}\par
+\texttt{polarity = affirmative}
+\end{ddtapropositionidentified}
+
+\begin{ddtapropositionaccepted}
+\tiny
+\textbf{BAP-FR03-04-01}; \textbf{BAP-FR03-04-02}.
+\end{ddtapropositionaccepted}
+
+
+\end{paracol}
+%</PAGE-CONTENT:10>
+\clearpage
+%<PAGE-DESC:11>MR-01 > DEC-MR01-04 - Separazione tra valutazione dell'urgenza e priorita operativa
+%<PAGE-CONTENT:11>
+\PageHashFooter{\PageMDfive{11}}
+\subsection{DEC-MR01-04 - Separazione tra valutazione dell'urgenza e priorita' operativa}
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-01} $\rightarrow$ \texttt{DEC-MR01-04}}\par
+
+
+\setlength{\columnsep}{7mm}
+\setlength{\columnseprule}{0.35pt}
+\columnratio{0.67}
+\begin{paracol}{2}
+
+{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
+\vspace{0.5em}
+
+\begin{ddtacore}[title={Decision}]
+\textbf{Parent MR}\par
+\texttt{MR-01}
+
+\textbf{Context}\par
+La valutazione del caso produce prima un risultato sull'urgenza, poi una priorità operativa per la presa in carico. La priorità operativa richiede inoltre un dominio di valori governato.
+
+\textbf{Decision}\par
+Nel percorso basato sull'immagine, DermaTriage tiene separata la valutazione analitica dell'urgenza dalla determinazione successiva della priorità operativa di triage e rappresenta quest'ultima mediante la scala P1-P4.
+
+\textbf{Consequences}\par
+La priorità operativa si determina dopo la valutazione dell'urgenza, non dentro la pipeline analitica, e assume uno dei valori P1, P2, P3 o P4. La regola operativa che seleziona il livello e' governata dal relativo FunctionalRequirement.
+\end{ddtacore}
+
+\begin{ddtaquestions}
+\small
+\begin{itemize}
+  \item La separazione e' un boundary architetturale intenzionale o soltanto la forma corrente della pipeline?
+  \item La priorita' operativa potrebbe essere prodotta direttamente dall'ultimo stadio senza violare un commitment documentato?
+  \item Quali semantiche appartengono al boundary e quali alla futura regola operativa di mapping?
+\end{itemize}
+\end{ddtaquestions}
+
+
+\switchcolumn
+
+{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
+\vspace{0.5em}
+
+\begin{ddtareferentidentified}
+\scriptsize
+\BACandidate{OperationalPriorityDerivation} \BANew{}.\par
+\end{ddtareferentidentified}
+
+\begin{ddtareferentaccepted}
+\scriptsize
+\BAAccepted{DermaTriage}; \BAAccepted{CaseUrgency}; \BAAccepted{OperationalTriagePriority}.\par
+\end{ddtareferentaccepted}
+
+\begin{ddtapropositionidentified}
+\scriptsize
+\emph{\texttt{BAP-DEC04-01}}\par
+\emph{\texttt{semanticOperatorKey = constrain}}\par
+\emph{\hspace*{1em}\texttt{constraintTarget -> OperationalTriagePriority}}\par
+\emph{\hspace*{1em}\texttt{constraintValue -> \{P1, P2, P3, P4\}}}\par
+\emph{\texttt{polarity = affirmative}}
+\end{ddtapropositionidentified}
+
+\begin{ddtapropositionaccepted}
+\scriptsize
+--
+\end{ddtapropositionaccepted}
+
+\end{paracol}
+%</PAGE-CONTENT:11>
+\clearpage
+%<PAGE-DESC:12>MR-01 > DEC-MR01-04 > FR-MR01-04-01 - Mapping urgenza/confidence verso P1-P4
+%<PAGE-CONTENT:12>
+\PageHashFooter{\PageMDfive{12}}
+\subsubsection{FR-MR01-04-01 - Mapping urgenza/confidence verso P1-P4}
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-01} $\rightarrow$ \texttt{DEC-MR01-04} $\rightarrow$ \texttt{FR-MR01-04-01}}\par
+
+
+\setlength{\columnsep}{7mm}
+\setlength{\columnseprule}{0.35pt}
+\columnratio{0.67}
+\begin{paracol}{2}
+
+{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
+\vspace{0.35em}
+\small
+
+\begin{ddtacore}[title={FunctionalRequirement}]
+\begin{tabularx}{\linewidth}{L{38mm}Y}
+\toprule
+\textbf{ID} & \texttt{FR-MR01-04-01} \\
+\textbf{Lifecycle} & \texttt{candidate} \\
+\textbf{Authority} & \texttt{CANDIDATE\_NON\_CURRENT} \\
+\textbf{Type} & \texttt{FunctionalRequirement} \\
+\textbf{Title} & Mapping urgenza/confidence verso P1--P4 \\
+\textbf{Parent Decision} & \texttt{DEC-MR01-04} \\
+\textbf{Owning MR (derived)} & \texttt{MR-01} \\
+\bottomrule
+\end{tabularx}
+
+\textbf{Functional obligation}\par
+L'\emph{Adaptation Layer} deriva la priorita' operativa P1--P4 dalla valutazione analitica di urgenza e dalla confidence applicabile. Per i casi \texttt{HIGH}, la soglia stretta \texttt{confidence > 0.85} seleziona \texttt{P1}; gli altri casi \texttt{HIGH} selezionano \texttt{P2}; \texttt{MEDIUM} seleziona \texttt{P3}; \texttt{LOW} seleziona \texttt{P4}.
+
+\textbf{Functional clauses / inherited \texttt{normativeClause [1..*]}}\par
+\begin{tabularx}{\linewidth}{L{52mm}Y}
+\toprule
+\textbf{Condizione} & \textbf{Priorita' richiesta} \\
+\midrule
+\texttt{HIGH} + \texttt{confidence > 0.85} & L'\emph{Adaptation Layer} MUST produrre \texttt{P1}. \\
+\texttt{HIGH}, negli altri casi applicabili & L'\emph{Adaptation Layer} MUST produrre \texttt{P2}. \\
+\texttt{MEDIUM} & L'\emph{Adaptation Layer} MUST produrre \texttt{P3}. \\
+\texttt{LOW} & L'\emph{Adaptation Layer} MUST produrre \texttt{P4}. \\
+\bottomrule
+\end{tabularx}
+
+\textbf{Riferimenti strutturati / evidenze governate}\par
+--
+
+\textbf{SpecializedRequirement relation}\par
+Nessuna relazione stabilita.
+\end{ddtacore}
+
+\begin{ddtaquestions}
+\small
+\begin{itemize}
+  \item Quando l'urgenza proviene dal percorso symptom-only, si applica lo stesso mapping verso P1-P4 oppure una regola diversa?
+  \item La soglia \texttt{confidence > 0.85} e' una regola governata del comportamento oppure un parametro configurabile?
+  \item I valori temporali associati a P1-P4 hanno natura normativa di SLA? Quale trigger e quale owner li governano?
+  \item Come viene trattata una confidence assente, non valida o fuori dal dominio atteso?
+\end{itemize}
+\end{ddtaquestions}
+
+
+
+
+\switchcolumn
+
+{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
+\vspace{0.5em}
+
+\begin{ddtareferentidentified}
+\scriptsize
+\BACandidate{OperationalPriorityDerivation}; \BACandidate{AdaptationLayer} \BANew{}.\par
+\end{ddtareferentidentified}
+
+\begin{ddtareferentaccepted}
+\scriptsize
+\BAAccepted{DermaTriage}; \BAAccepted{CaseUrgency}; \BAAccepted{OperationalTriagePriority}; \BAAccepted{TriageConfidence}.\par
+\end{ddtareferentaccepted}
+
+\begin{ddtapropositionidentified}
+\scriptsize
+\texttt{NON ANALIZZATO}
+\end{ddtapropositionidentified}
+
+\begin{ddtapropositionaccepted}
+\scriptsize
+\texttt{NON ANALIZZATO}
+\end{ddtapropositionaccepted}
+
+\end{paracol}
+%</PAGE-CONTENT:12>
+\clearpage
+%<PAGE-DESC:13>MR-02 - Indicazione della destinazione specialistica
+%<PAGE-CONTENT:13>
+\PageHashFooter{\PageMDfive{13}}
+\section{MR-02 - Indicazione della destinazione specialistica}
+
+\setlength{\columnsep}{7mm}
+\setlength{\columnseprule}{0.35pt}
+\columnratio{0.67}
+\begin{paracol}{2}
+
+{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
+\vspace{0.5em}
+
+\begin{ddtacore}[title={MacroRequirement}]
+\textbf{Intent}\par
+Determinare un'indicazione di destinazione specialistica per il caso dermatologico, a supporto del successivo instradamento verso l'assistenza appropriata.
+
+\textbf{Context}\par
+DermaTriage associa al risultato del processo di triage un'informazione orientata alla destinazione specialistica. La documentazione disponibile non stabilisce il vocabolario delle destinazioni, la regola di selezione ne' la responsabilita' di assegnazione o prenotazione.
+
+\textbf{Stakeholders}\par
+--
+
+\textbf{Scope}\par
+\textbf{IN:} produzione di un'indicazione di destinazione specialistica per il caso.\par
+\textbf{OUT:} prenotazione; assegnazione effettiva; tassonomia completa delle destinazioni; regola completa di selezione e fallback.
+
+\textbf{Assumptions / Constraints}\par
+--
+
+\textbf{dependsOn}\par
+\texttt{None}
+\end{ddtacore}
+
+\begin{ddtacheck}[title={STOP AT MR}]
+Il significato macro e' sufficientemente distinguibile, ma la documentazione disponibile non governa commitment ulteriori sufficienti per una decomposizione fedele. Il branch si arresta intenzionalmente a MacroRequirement.
+\end{ddtacheck}
+
+\begin{ddtaquestions}
+\small
+\begin{itemize}
+  \item Qual e' il vocabolario governato delle destinazioni specialistiche?
+  \item E' documentata una regola di selezione della destinazione?
+  \item Chi possiede l'assegnazione o la prenotazione effettiva?
+\end{itemize}
+\end{ddtaquestions}
+
+
+\switchcolumn
+
+{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
+\vspace{0.5em}
+
+\begin{ddtareferentidentified}
+\scriptsize
+\texttt{NON ANALIZZATO}
+\end{ddtareferentidentified}
+
+\begin{ddtareferentaccepted}
+\scriptsize
+\texttt{NON ANALIZZATO}
+\end{ddtareferentaccepted}
+
+\begin{ddtapropositionidentified}
+\scriptsize
+\texttt{NON ANALIZZATO}
+\end{ddtapropositionidentified}
+
+\begin{ddtapropositionaccepted}
+\scriptsize
+\texttt{NON ANALIZZATO}
+\end{ddtapropositionaccepted}
+
+\end{paracol}
+%</PAGE-CONTENT:13>
+\clearpage
+%<PAGE-DESC:14>MR-03 - Validazione e correzione medica degli esiti
+%<PAGE-CONTENT:14>
+\PageHashFooter{\PageMDfive{14}}
+\section{MR-03 - Validazione e correzione medica degli esiti}
+
+\setlength{\columnsep}{7mm}
+\setlength{\columnseprule}{0.35pt}
+\columnratio{0.67}
+\begin{paracol}{2}
+
+{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
+\vspace{0.5em}
+
+\begin{ddtacore}[title={MacroRequirement}]
+\textbf{Intent}\par
+Consentire al medico di validare o correggere gli esiti prodotti da DermaTriage e rendere disponibile il risultato della revisione nel contesto del caso cui si riferisce.
+
+\textbf{Context}\par
+Gli esiti prodotti da DermaTriage possono essere sottoposti a revisione medica. Il medico puo' validarli o correggerli; il progetto gestisce il risultato della revisione senza includere in questa responsabilita' il successivo adattamento del sistema.
+
+\textbf{Stakeholders}\par
+Medico.
+
+\textbf{Scope}\par
+\textbf{IN:} gestione del risultato della validazione o correzione medica e sua associazione al caso o all'esito cui si riferisce.\par
+\textbf{OUT:} meccanismi tecnici di scambio e autenticazione; adattamento successivo del comportamento del sistema sulla base delle correzioni raccolte.
+
+\textbf{Assumptions / Constraints}\par
+--
+
+\textbf{dependsOn}\par
+\texttt{None}
+\end{ddtacore}
+
+\begin{ddtaquestions}
+\small
+\begin{itemize}
+  \item La revisione medica affianca o sostituisce l'esito originario?
+  \item Quali parti dell'esito possono essere validate o corrette?
+  \item Quali requisiti di correlazione tra revisione e caso sono realmente governati?
+\end{itemize}
+\end{ddtaquestions}
+
+
+\switchcolumn
+
+{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
+\vspace{0.5em}
+
+\begin{ddtareferentidentified}
+\scriptsize
+\texttt{NON ANALIZZATO}
+\end{ddtareferentidentified}
+
+\begin{ddtareferentaccepted}
+\scriptsize
+\texttt{NON ANALIZZATO}
+\end{ddtareferentaccepted}
+
+\begin{ddtapropositionidentified}
+\scriptsize
+\texttt{NON ANALIZZATO}
+\end{ddtapropositionidentified}
+
+\begin{ddtapropositionaccepted}
+\scriptsize
+\texttt{NON ANALIZZATO}
+\end{ddtapropositionaccepted}
+
+\end{paracol}
+%</PAGE-CONTENT:14>
+\clearpage
+%<PAGE-DESC:15>MR-04 - Adattamento controllato sulla base della revisione clinica
+%<PAGE-CONTENT:15>
+\PageHashFooter{\PageMDfive{15}}
+\section{MR-04 - Adattamento controllato sulla base della revisione clinica}
+
+\setlength{\columnsep}{7mm}
+\setlength{\columnseprule}{0.35pt}
+\columnratio{0.67}
+\begin{paracol}{2}
+
+{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
+\vspace{0.5em}
+
+\begin{ddtacore}[title={MacroRequirement}]
+\textbf{Intent}\par
+Consentire l'adattamento controllato del comportamento di DermaTriage utilizzando i risultati delle validazioni e correzioni mediche raccolte.
+
+\textbf{Context}\par
+Le correzioni mediche vengono utilizzate per modificare nel tempo il comportamento del sistema. L'evoluzione dei prompt e il riaddestramento del classificatore sono modalita' correnti di realizzazione di questa responsabilita' e non ne definiscono l'identita' macro.
+
+\textbf{Stakeholders}\par
+Medico.
+
+\textbf{Scope}\par
+\textbf{IN:} adattamento del comportamento del sistema sulla base dei risultati della revisione medica disponibili.\par
+\textbf{OUT:} produzione del giudizio di validazione o correzione medica; dettagli dei singoli meccanismi di adattamento.
+
+\textbf{Assumptions / Constraints}\par
+--
+
+\textbf{dependsOn}\par
+\texttt{MR-03}
+\end{ddtacore}
+
+\begin{ddtaquestions}
+\small
+\begin{itemize}
+  \item Quale evidenza clinica e' sufficiente per attivare l'adattamento?
+  \item Chi autorizza l'adozione del comportamento adattato?
+  \item Quali criteri di accettazione, rollback e reversibilita' sono governati?
+\end{itemize}
+\end{ddtaquestions}
+
+
+\switchcolumn
+
+{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
+\vspace{0.5em}
+
+\begin{ddtareferentidentified}
+\scriptsize
+\texttt{NON ANALIZZATO}
+\end{ddtareferentidentified}
+
+\begin{ddtareferentaccepted}
+\scriptsize
+\texttt{NON ANALIZZATO}
+\end{ddtareferentaccepted}
+
+\begin{ddtapropositionidentified}
+\scriptsize
+\texttt{NON ANALIZZATO}
+\end{ddtapropositionidentified}
+
+\begin{ddtapropositionaccepted}
+\scriptsize
+\texttt{NON ANALIZZATO}
+\end{ddtapropositionaccepted}
+
+\end{paracol}
+%</PAGE-CONTENT:15>
+\clearpage
+%<PAGE-DESC:16>Registro Base Analysis - BAReferent e BAProposition
+%<PAGE-CONTENT:16>
+\PageHashFooter{\PageMDfive{16}}
+\section{Registro Base Analysis}
+
+\begin{ddtacore}[title={Sintesi BA corrente}]
+\scriptsize
+Il registro raccoglie la tracciabilita' BA corrente senza introdurre campi o stati ulteriori rispetto al modello BA usato nel case study. Il riferimento in \textbf{grassetto} identifica il primo elemento documentale nel quale il BAReferent o la BAProposition viene accettato; i riferimenti non in grassetto indicano occorrenze o candidature gia' visibili nella documentazione corrente. Le proposition sono registrate con gli operatori e i ruoli canonici definiti dalla guida BA di riferimento.
+\end{ddtacore}
+
+\vspace{0.5mm}
+{\sffamily\bfseries\color{DDTABlue}BAReferent}\par
+\vspace{0.2mm}
+\fontsize{6.2}{6.9}\selectfont
+\renewcommand{\arraystretch}{0.95}
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\textwidth}{L{55mm}Y}
+\toprule
+\textbf{BAReferent} & \textbf{Riferimenti documentali} \\
+\midrule
+DermaTriage & \texttt{MR-01}; \textbf{\texttt{DEC-MR01-01}}; \texttt{FR-MR01-01-01}; \texttt{DEC-MR01-03}; \texttt{FR-MR01-03-01}; \texttt{FR-MR01-03-02}; \texttt{FR-MR01-03-03}; \texttt{FR-MR01-03-04}; \texttt{DEC-MR01-04}; \texttt{FR-MR01-04-01} \\
+DermatologicalCase & \textbf{\texttt{MR-01}}; \texttt{FR-MR01-01-01}; \texttt{FR-MR01-03-03}; \texttt{FR-MR01-03-04} \\
+DermatologicalTriageEvaluation & \textbf{\texttt{MR-01}}; \texttt{FR-MR01-01-01} \\
+CaseUrgency & \textbf{\texttt{MR-01}}; \texttt{FR-MR01-01-01}; \texttt{FR-MR01-03-04}; \texttt{DEC-MR01-04}; \texttt{FR-MR01-04-01} \\
+OperationalTriagePriority & \textbf{\texttt{MR-01}}; \texttt{DEC-MR01-04}; \texttt{FR-MR01-04-01} \\
+CaseInformation & \texttt{MR-01} \\
+Patient & \texttt{MR-01} \\
+LesionImage & \texttt{DEC-MR01-01}; \textbf{\texttt{FR-MR01-01-01}}; \texttt{DEC-MR01-03}; \texttt{FR-MR01-03-01}; \texttt{FR-MR01-03-02} \\
+SymptomInformation & \texttt{DEC-MR01-01}; \textbf{\texttt{FR-MR01-01-01}}; \texttt{FR-MR01-03-04} \\
+ImageUrgencyAnalysis & \texttt{DEC-MR01-03}; \textbf{\texttt{FR-MR01-03-01}} \\
+EfficientNet-B4 & \textbf{\texttt{FR-MR01-03-01}} \\
+ImageUrgencyClassification & \textbf{\texttt{FR-MR01-03-01}}; \texttt{FR-MR01-03-04} \\
+ClinicalDescriptionGeneration & \texttt{DEC-MR01-03}; \textbf{\texttt{FR-MR01-03-02}} \\
+Qwen2-VL-7B-Instruct & \textbf{\texttt{FR-MR01-03-02}} \\
+ClinicalDescription & \textbf{\texttt{FR-MR01-03-02}}; \texttt{FR-MR01-03-03}; \texttt{FR-MR01-03-04} \\
+HistoricalCaseRetrieval & \texttt{DEC-MR01-03}; \textbf{\texttt{FR-MR01-03-03}} \\
+ChromaDB & \textbf{\texttt{FR-MR01-03-03}} \\
+all-MiniLM-L6-v2 & \textbf{\texttt{FR-MR01-03-03}} \\
+RetrievedHistoricalCaseContext & \textbf{\texttt{FR-MR01-03-03}}; \texttt{FR-MR01-03-04} \\
+MultiSourceTriageSynthesis & \texttt{DEC-MR01-03}; \textbf{\texttt{FR-MR01-03-04}} \\
+BioMistral-7B & \textbf{\texttt{FR-MR01-03-04}} \\
+TriageConfidence & \textbf{\texttt{FR-MR01-03-04}}; \texttt{FR-MR01-04-01} \\
+OperationalPriorityDerivation & \texttt{DEC-MR01-04}; \texttt{FR-MR01-04-01} \\
+AdaptationLayer & \texttt{FR-MR01-04-01} \\
+\bottomrule
+\end{tabularx}
+
+\vspace{0.8mm}
+{\sffamily\bfseries\color{DDTABlue}BAProposition}\par
+\vspace{0.2mm}
+\fontsize{6.1}{6.8}\selectfont
+\begin{tabularx}{\textwidth}{L{58mm}Y}
+\toprule
+\textbf{BAProposition} & \textbf{Riferimenti documentali} \\
+\midrule
+\emph{\texttt{BAP-MR01-01}} & \texttt{MR-01} \\
+\emph{\texttt{BAP-MR01-02}} & \texttt{MR-01} \\
+\emph{\texttt{BAP-DEC01-01}} & \texttt{DEC-MR01-01} \\
+\emph{\texttt{BAP-DEC01-02}} & \texttt{DEC-MR01-01} \\
+\textbf{\texttt{BAP-FR03-01-01}} & \texttt{FR-MR01-03-01} -- \texttt{produce} \\
+\textbf{\texttt{BAP-FR03-01-02}} & \texttt{FR-MR01-03-01} -- \texttt{realize} \\
+\textbf{\texttt{BAP-FR03-02-01}} & \texttt{FR-MR01-03-02} -- \texttt{produce} \\
+\textbf{\texttt{BAP-FR03-02-02}} & \texttt{FR-MR01-03-02} -- \texttt{realize} \\
+\textbf{\texttt{BAP-FR03-03-01}} & \texttt{FR-MR01-03-03} -- \texttt{produce} \\
+\textbf{\texttt{BAP-FR03-03-02}} & \texttt{FR-MR01-03-03} -- \texttt{realize} \\
+\textbf{\texttt{BAP-FR03-04-01}} & \texttt{FR-MR01-03-04} -- \texttt{produce} \\
+\textbf{\texttt{BAP-FR03-04-02}} & \texttt{FR-MR01-03-04} -- \texttt{realize} \\
+\emph{\texttt{BAP-DEC04-01}} & \texttt{DEC-MR01-04} \\
+\bottomrule
+\end{tabularx}
+%</PAGE-CONTENT:16>
+\clearpage
+%<PAGE-DESC:17>MR-01 - Inventario temporaneo transfer e information/data contract candidate [DA CANCELLARE]
+%<PAGE-CONTENT:17>
+\PageHashFooter{\PageMDfive{17}}
+\section{MR-01 - Inventario temporaneo transfer e information/data contract candidate}
+
+\begin{ddtaopen}[title={PAGINA TEMPORANEA - AUDIT DATA-PATH MR-01 - DA CANCELLARE DOPO LA RIALLOCAZIONE DEI RISULTATI}]
+\scriptsize
+Questa pagina e' un \textbf{worklist di ricerca}, non introduce nuovi campi L1, nuovi stati BA o nuovi operatori. I nomi dei contract sono etichette di lavoro. Ogni riga deve essere riesaminata contro la documentazione originale: il significato supportato viene riallocato nella documentazione DDTA al livello corretto; cio' che non e' stabilito resta \texttt{NOT SPECIFIED}/gap; solo dopo si riesegue la BA. Un transfer non genera automaticamente un FunctionalRequirement: l'eventuale FR deve superare i normali gate di comportamento, ownership e utilita' downstream.
+
+\vspace{1mm}
+\fontsize{5.6}{6.4}\selectfont
+\renewcommand{\arraystretch}{1.06}
+\setlength{\tabcolsep}{2.4pt}
+\begin{tabularx}{\textwidth}{L{12mm}L{82mm}L{150mm}}
+\toprule
+\textbf{ID} & \textbf{Transfer candidato} & \textbf{Information/data contract e punti da verificare} \\
+\midrule
+\texttt{T01} & \texttt{? -> DermaTriage : LesionImage} (direct upload) & Direct triage input contract: caller/source ?, payload completo ?, formato/encoding/dimensioni ?, case correlation ?. Endpoint corrente \texttt{POST /analyze}. \\
+\texttt{T02} & \texttt{B4Platform -> DermaTriage : CaseInformation} & B4 case-information contract: schema completo ?, required/optional ?, tipi/nullability ?, consultation identity e correlation ?. Verificare se \texttt{CaseInformation} richiede split semantico. \\
+\texttt{T03-A} & \texttt{B4Platform -> DermaTriage : ? document reference/list} & Consultation-document discovery contract: campi della lista ?, selection rule del documento-lesione ?, binding alla consultation ?. \\
+\texttt{T03-B} & \texttt{B4Platform -> DermaTriage : LesionImage} & B4 lesion-image contract: formato/media type/dimensioni ?, lifecycle temporaneo/persistenza ?, exact consultation correlation ?. Download image source-supported. \\
+\texttt{T04} & \texttt{? -> ImageUrgencyAnalysis : LesionImage} & Stage-1 image-input contract: \textbf{RGB 380x380} noto; source ?, preprocessing owner ?, normalization/crop/invalid handling ?, runtime boundary ?. \\
+\texttt{T05} & \texttt{? -> ClinicalDescriptionGeneration : LesionImage} & Stage-2 image-input contract: rappresentazione/format/dimensioni/preprocessing ?, source ?, relazione con la rappresentazione T04 ?, runtime boundary ?. \\
+\texttt{T06} & \texttt{ClinicalDescriptionGeneration -> HistoricalCaseRetrieval : ClinicalDescription} & Clinical-description contract: testo strutturato in cinque parti/bullet; parti esatte, ordine, lingua, serialization, mandatory/optional e incomplete behavior da verificare. \\
+\texttt{T07} & \texttt{ImageUrgencyAnalysis -> MultiSourceTriageSynthesis : ImageUrgencyClassification} & Stage-1 result contract: \texttt{HIGH|MEDIUM|LOW} + confidence associata; tipo/range confidence, invalid/missing semantics e concrete handoff realization da verificare. \\
+\texttt{T08} & \texttt{ClinicalDescriptionGeneration -> MultiSourceTriageSynthesis : ClinicalDescription} & Verificare se Stage4 consuma lo stesso contract T06 o una rappresentazione distinta; correlation al caso e realization del passaggio ?. \\
+\texttt{T09} & \texttt{HistoricalCaseRetrieval -> MultiSourceTriageSynthesis : RetrievedHistoricalCaseContext} & Historical-context contract: top-5 noto; campi dei casi, score/ordering esposto, identity/correlation, dati clinici inclusi e underfill behavior ?. \\
+\texttt{T10} & \texttt{? -> MultiSourceTriageSynthesis : SymptomInformation} & Symptom-input contract: source ?, schema completo, required/optional, tipi/missing/invalid semantics, same-case correlation ?. \\
+\texttt{T11} & \texttt{MultiSourceTriageSynthesis -> OperationalPriorityDerivation : CaseUrgency + TriageConfidence} & Priority-input contract: urgency + confidence noti; confidence domain/nullability/invalid handling e exact realization del handoff ?. Reasoning/pathology non risultano input del mapping corrente. \\
+\texttt{T12} & \texttt{? -> SymptomOnlyUrgencyAnalysis : SymptomInformation} & Symptom-only input contract: esempi itching/bleeding/growth-change/pain; source, schema completo, minimum evidence set e missing-field behavior ?. \\
+\texttt{T13} & \texttt{SymptomOnlyUrgencyAnalysis -> ? : CaseUrgency (+ confidence ?)} & Symptom-only output contract: CaseUrgency supportata; confidence ?, destination ?, applicabilita' dello stesso mapping P1-P4 ?. \\
+\texttt{T14} & \texttt{DermaTriage / OperationalPriorityDerivation -> B4Platform : triage result} & B4 result-write contract: source semantica esatta ?, payload (urgency/confidence/P-scale/reasoning/pathology/specialist/SLA) ?, correlation alla consultation ?. \\
+\texttt{T15} & \texttt{DermaTriage -> LocalDiagnosisStore : persisted result} & Local persistence contract: contenuto/schema, owner/necessita' governata, case correlation, retention, update/finality semantics ?. \texttt{save\_diagnosis()} e' source-supported come realization. \\
+\bottomrule
+\end{tabularx}
+
+\vspace{1mm}
+\fontsize{6.0}{6.8}\selectfont
+\textbf{Ordine di review:} T01--T05 hanno gia' una prima ispezione esplorativa; proseguire da T06, ma ogni riga resta riapribile finche' l'intero MR-01 non supera il gate data-path / information-contract. Eventuali transfer di pura realization (es. query ChromaDB, process/GPU handoff) restano fuori da questo primo inventario e vengono aggiunti solo se emergono come significato materialmente analizzabile.
+\end{ddtaopen}
+%</PAGE-CONTENT:17>
+\clearpage
+%<PAGE-DESC:18>Indice di integrita delle pagine
+%<PAGE-CONTENT:18>
+\PageHashFooter{\PageMDfive{18}}
+\section{Indice di integrita' delle pagine}
+
+\begin{ddtacore}[title={Regola di verifica}]
+Ogni pagina possiede un MD5 del proprio contenuto canonico. Il calcolo esclude il valore MD5 stampato sulla pagina, gli header/footer e i metadati di impaginazione esterni al relativo blocco di contenuto. Per la pagina dell'indice, gli hash delle pagine precedenti fanno parte del contenuto controllato; il solo hash della pagina indice viene sostituito dal token canonico \texttt{<SELF>} durante il calcolo, evitando una dipendenza circolare.
+\end{ddtacore}
+
+\vspace{2mm}
+\footnotesize
+\begin{tabularx}{\textwidth}{L{10mm}L{76mm}Y}
+\toprule
+\textbf{Pag.} & \textbf{Contenuto} & \textbf{MD5 contenuto} \\
+\midrule
+%<PAGE-INTEGRITY-ROWS>
+\IntegrityRow{1}{Frontespizio e struttura del case study}{\PageMDfive{1}}
+\IntegrityRow{2}{Contesto generale del progetto - Project Problem Framing}{\PageMDfive{2}}
+\IntegrityRow{3}{MR-01 - Valutazione di triage del caso dermatologico}{\PageMDfive{3}}
+\IntegrityRow{4}{MR-01 > DEC-MR01-01 - Valutazione di urgenza in assenza di immagine}{\PageMDfive{4}}
+\IntegrityRow{5}{MR-01 > DEC-MR01-01 > FR-MR01-01-01 - Determinazione dell'urgenza su base sintomatologica}{\PageMDfive{5}}
+\IntegrityRow{6}{MR-01 > DEC-MR01-03 - Percorso image-based a quattro stadi coordinati}{\PageMDfive{6}}
+\IntegrityRow{7}{MR-01 > DEC-MR01-03 > FR-MR01-03-01 - Stage 1: urgenza e confidence da immagine}{\PageMDfive{7}}
+\IntegrityRow{8}{MR-01 > DEC-MR01-03 > FR-MR01-03-02 - Stage 2: descrizione clinica strutturata}{\PageMDfive{8}}
+\IntegrityRow{9}{MR-01 > DEC-MR01-03 > FR-MR01-03-03 - Stage 3: recupero di casi storici simili}{\PageMDfive{9}}
+\IntegrityRow{10}{MR-01 > DEC-MR01-03 > FR-MR01-03-04 - Stage 4: sintesi multi-source}{\PageMDfive{10}}
+\IntegrityRow{11}{MR-01 > DEC-MR01-04 - Separazione tra valutazione dell'urgenza e priorita operativa}{\PageMDfive{11}}
+\IntegrityRow{12}{MR-01 > DEC-MR01-04 > FR-MR01-04-01 - Mapping urgenza/confidence verso P1-P4}{\PageMDfive{12}}
+\IntegrityRow{13}{MR-02 - Indicazione della destinazione specialistica}{\PageMDfive{13}}
+\IntegrityRow{14}{MR-03 - Validazione e correzione medica degli esiti}{\PageMDfive{14}}
+\IntegrityRow{15}{MR-04 - Adattamento controllato sulla base della revisione clinica}{\PageMDfive{15}}
+\IntegrityRow{16}{Registro Base Analysis - BAReferent e BAProposition}{\PageMDfive{16}}
+\IntegrityRow{17}{MR-01 - Inventario temporaneo transfer e information/data contract candidate [DA CANCELLARE]}{\PageMDfive{17}}
+\IntegrityRow{18}{Indice di integrita delle pagine}{\PageMDfive{18}}
+%</PAGE-INTEGRITY-ROWS>
+\bottomrule
+\end{tabularx}
+
+\vspace{2mm}
+{\scriptsize\color{DDTAGray}Quando una pagina viene modificata intenzionalmente, cambia il suo MD5. Una variazione inattesa segnala una modifica da riesaminare prima di proseguire.}
+%</PAGE-CONTENT:18>
+
+\end{document}
