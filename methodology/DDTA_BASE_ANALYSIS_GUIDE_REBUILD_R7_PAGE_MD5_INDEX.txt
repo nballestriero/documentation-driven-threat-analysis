@@ -2,7 +2,7 @@ DDTA_BASE_ANALYSIS_GUIDE_REBUILD_R7 - Page MD5 Index
 Canonical payload: LaTeX content between PAGE-CONTENT markers; own printed MD5 excluded.
 Integrity-index page resolves all other page hashes and canonicalizes its own hash as <SELF>.
 
-Page 1  8d5b8a545471fe8d2e4fd2a691c0bebb  Frontespizio della Base Analysis Guide Rebuild R7
+Page 1  10bc17600c101ae74d88dc7435e592ab  Frontespizio della Base Analysis Guide Rebuild R7
 Page 2  fa01b7db301f77cd9988907daf2b3397  1 - Che cos'e' la Base Analysis
 Page 3  3b620cf21e74f64e397656ec9f3038da  1 - Perche' esiste e principi di base
 Page 4  b12d8f94dc04c833c0d916453255f9be  1 - Direzione dell'authority e feedback
@@ -23,7 +23,7 @@ Page 18  f23c4cd3c7776e49c0d794a9ecfef9a9  5 - Granularita, minimalita e costruz
 Page 19  bc3e4197b5ba6fc299035dd3ee55f0fa  6 - Indipendenza tra struttura documentale e struttura BA
 Page 20  90bad45a1ddf4546a84ffcaafe19514f  6 - Structural feedback e no authority inversion
 Page 21  a4a5a63a56b233dc9685ef8ade259ac3  6 - DermaTriage DEC02 DEC04 come pressure case
-Page 22  357fb073e974197f1553135fc6c66770  6 - Downstream Utility Test e riallineamento BA
+Page 22  ec370772257111db29fb581af0e74919  6 - Downstream Utility Test e riallineamento BA
 Page 23  e33af8b0be91d76075d6f8d588152778  7 - transfer: definizione, smallest fact e criteri d'uso
 Page 24  e3dfd0ae1ea4b8fc206e94586671531d  7 - transfer: firma canonica, ruoli e cardinalita
 Page 25  7fe9e1357a2287afc0bcd8cdc5d05cad  7 - transfer: identity continuity, invarianti e forbidden inference
@@ -42,12 +42,21 @@ Page 37  929ad404323716bdb65630c172f8b864  8 - produce: prompt LLM per l'identif
 Page 38  29011b2ce81135be54d4b0002b9c69c8  8 - produce: output BA atteso e discriminazioni differite
 Page 39  7abd09f421a17323e61078e606c76cc5  8 - produce: rappresentazione Mermaid
 Page 40  b0e191c6045d2c9e9e1f7237f8a64722  8 - produce: esempio grafico Mermaid
-Page 41  3915eaee02f714ac47e0dfa764b2836f  Appendice temporanea - scopo, lineage e confine del rebuild
-Page 42  5475a02c3223c3fac62a7eebe62f6be2  Appendice temporanea - corpus e stati epistemici
-Page 43  e1b1becfc138e20474529fae47de6a05  Appendice temporanea - Construct Description Contract e principio espositivo
-Page 44  435e9ecddb23d230df9cc32766e10610  Appendice temporanea - CDC direzione della spiegazione e revisione
-Page 45  9d02d27cc2ad8bb4e1b30d441667e854  Appendice temporanea - CDC campi 1-10
-Page 46  90b6659e5a0105e0cd7268d3f76137f6  Appendice temporanea - CDC campi 11-20
-Page 47  7eec3bf55dcf808ee58c4f2bb9bf77b4  Appendice temporanea - roadmap corrente del rebuild R7
-Page 48  af0a9869e178ac6e6ba67d57b49746fd  Indice di integrita' delle pagine [INTEGRITY INDEX]
-Page 49  be6e7fb224e56a8fe16a6af04b701b25  Appendice temporanea - prova grafica Mermaid produce + transfer da cancellare
+Page 41  fd686d1106dfb09f995cbd206d72f204  9 - realize: definizione, smallest fact e criteri d'uso
+Page 42  7bf58985b2b7e03d4fa8cedf3a820e17  9 - realize: firma canonica, ruoli e cardinalita
+Page 43  376f50ac864805c54ebb05510ddd2437  9 - realize: identity continuity, invarianti e forbidden inference
+Page 44  787e4c5ce9931b03135f6fe32337ab0c  9 - realize: domande di identificazione e procedura di estrazione
+Page 45  878f6fa9ebb37d3e1c92b53232d28d37  9 - realize: esempio generico e worked example DermaTriage corrente
+Page 46  1d9565d3ea82d81047cb85703c2209f8  9 - realize: prompt LLM per l'identificazione controllata
+Page 47  541905031f0138d136150e7ae4a8c356  9 - realize: output BA atteso e discriminazioni differite
+Page 48  452922a9ba3eda4dd4fa6a64e3e8f262  9 - realize: rappresentazione Mermaid
+Page 49  ea668a6b4e75d6ae2af23bddd09f313e  9 - realize: esempio grafico Mermaid
+Page 50  3915eaee02f714ac47e0dfa764b2836f  Appendice temporanea - scopo, lineage e confine del rebuild
+Page 51  5475a02c3223c3fac62a7eebe62f6be2  Appendice temporanea - corpus e stati epistemici
+Page 52  e1b1becfc138e20474529fae47de6a05  Appendice temporanea - Construct Description Contract e principio espositivo
+Page 53  435e9ecddb23d230df9cc32766e10610  Appendice temporanea - CDC direzione della spiegazione e revisione
+Page 54  9d02d27cc2ad8bb4e1b30d441667e854  Appendice temporanea - CDC campi 1-10
+Page 55  90b6659e5a0105e0cd7268d3f76137f6  Appendice temporanea - CDC campi 11-20
+Page 56  e12ab1cb46da8ef78855f0d4ce6ca339  Appendice temporanea - roadmap corrente del rebuild R7
+Page 57  0a71790aa6697b4c7c276d187e5d1d0d  Indice di integrita' delle pagine [INTEGRITY INDEX]
+Page 58  13cdd31df41e1d75e405e6ba020261fa  Appendice temporanea - laboratorio prove grafiche Mermaid da cancellare
