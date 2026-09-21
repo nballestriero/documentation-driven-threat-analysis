@@ -1,0 +1,1227 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{DDTA_METHODOLOGY_GUIDE_STYLE_R1}
+\usepackage{amsmath,amssymb}
+
+\hypersetup{
+  pdftitle={DDTA Base Analysis Guide - Rebuild R7},
+  pdfauthor={Documentation-Driven Threat Analysis research project}
+}
+
+\newcommand{\BA}{\textit{Base Analysis}}
+\newcommand{\BAR}{\texttt{BAReferent}}
+\newcommand{\BAP}{\texttt{BAProposition}}
+\newcommand{\CurrentTag}{\ddtatag{DDTAGreen}{CURRENT / PRESERVED}}
+\newcommand{\CandidateTag}{\ddtatag{DDTAAmber}{CANDIDATE / NOT ADMITTED}}
+\newcommand{\OpenTag}{\ddtatag{DDTARed}{OPEN}}
+\newcommand{\RejectedTag}{\ddtatag{DDTARed}{REJECTED}}
+\newcommand{\RebuildTag}{\ddtatag{DDTABlue}{REBUILD CONTRACT}}
+\newcommand{\PossibleStructuralRedundancy}{\texttt{POSSIBLE\_UPSTREAM\_STRUCTURAL\_REDUNDANCY}}
+
+\newcommand{\TemporaryRebuildBanner}{%
+\begin{ddtaanti}[title={APPENDICE TEMPORANEA DI REBUILD - DA ELIMINARE PRIMA DELLA GUIDA DEFINITIVA}]
+Il contenuto di questa appendice governa \emph{come stiamo ricostruendo la guida}, non il funzionamento della Base Analysis. Deve restare disponibile durante il rebuild per garantire coerenza, genealogia e regression, ma va rimosso dalla guida definitiva dopo il consolidamento. Se una sua regola deve sopravvivere come metodologia BA, deve essere trasferita esplicitamente nella parte metodologica destinata alla guida definitiva prima della rimozione.
+\end{ddtaanti}
+}
+
+% -----------------------------------------------------------------------------
+% PAGE-INTEGRITY HASHES
+% -----------------------------------------------------------------------------
+\newcommand{\PageMDfive}[1]{\csname PageMDfive#1\endcsname}
+%<PAGE-HASH-DEFS>
+\expandafter\def\csname PageMDfive1\endcsname{963b8105bb738cb9b71745fb55b2c322}
+\expandafter\def\csname PageMDfive2\endcsname{fa01b7db301f77cd9988907daf2b3397}
+\expandafter\def\csname PageMDfive3\endcsname{3b620cf21e74f64e397656ec9f3038da}
+\expandafter\def\csname PageMDfive4\endcsname{b12d8f94dc04c833c0d916453255f9be}
+\expandafter\def\csname PageMDfive5\endcsname{44c236d6809ab29df535fe29ff00352d}
+\expandafter\def\csname PageMDfive6\endcsname{b9514c3f03bdb13c46c35ba6ae647130}
+\expandafter\def\csname PageMDfive7\endcsname{d79dd6edf4908532519689896b045323}
+\expandafter\def\csname PageMDfive8\endcsname{b4b3bc661001ccb16d9acdef681806bd}
+\expandafter\def\csname PageMDfive9\endcsname{dcd3d2d1eb4eb28971b488dcd1c7cf01}
+\expandafter\def\csname PageMDfive10\endcsname{9fdf9a0139ea36eaa577008c81fb109f}
+\expandafter\def\csname PageMDfive11\endcsname{f0c4184f4f1ebcb7ce1ab9394c5c5209}
+\expandafter\def\csname PageMDfive12\endcsname{e3200807fcbf2aa290f0748b9c099b69}
+\expandafter\def\csname PageMDfive13\endcsname{b9028ef062953f4b7ab73bfb7ac7975c}
+\expandafter\def\csname PageMDfive14\endcsname{849a9ae9b63b6f5b84acbf3c1015a920}
+\expandafter\def\csname PageMDfive15\endcsname{c6fca40abd8cf6a72634f4b1d07fa450}
+\expandafter\def\csname PageMDfive16\endcsname{83b4a5ba93a8eb218e7a0816bb7e023a}
+\expandafter\def\csname PageMDfive17\endcsname{8063825cd44fdd393ef91bf9a5957e86}
+\expandafter\def\csname PageMDfive18\endcsname{f23c4cd3c7776e49c0d794a9ecfef9a9}
+\expandafter\def\csname PageMDfive19\endcsname{bc3e4197b5ba6fc299035dd3ee55f0fa}
+\expandafter\def\csname PageMDfive20\endcsname{90bad45a1ddf4546a84ffcaafe19514f}
+\expandafter\def\csname PageMDfive21\endcsname{a4a5a63a56b233dc9685ef8ade259ac3}
+\expandafter\def\csname PageMDfive22\endcsname{d0e99aeacc13cf8937f831453e92c3ad}
+\expandafter\def\csname PageMDfive23\endcsname{e33af8b0be91d76075d6f8d588152778}
+\expandafter\def\csname PageMDfive24\endcsname{e3dfd0ae1ea4b8fc206e94586671531d}
+\expandafter\def\csname PageMDfive25\endcsname{7fe9e1357a2287afc0bcd8cdc5d05cad}
+\expandafter\def\csname PageMDfive26\endcsname{ca23e6876cbd5a9485a716d5b3e2a2a7}
+\expandafter\def\csname PageMDfive27\endcsname{5b77098bebe4aee19463db63e451b2de}
+\expandafter\def\csname PageMDfive28\endcsname{f59be85e2e26e94598d971d526ab5349}
+\expandafter\def\csname PageMDfive29\endcsname{daa47270d6924161b6041ddc1f28526b}
+\expandafter\def\csname PageMDfive30\endcsname{fbf9ff38b0f615ee2066e351a264262d}
+\expandafter\def\csname PageMDfive31\endcsname{124230f8d8f7900c16fc39a88a25fa5c}
+\expandafter\def\csname PageMDfive32\endcsname{3915eaee02f714ac47e0dfa764b2836f}
+\expandafter\def\csname PageMDfive33\endcsname{5475a02c3223c3fac62a7eebe62f6be2}
+\expandafter\def\csname PageMDfive34\endcsname{e1b1becfc138e20474529fae47de6a05}
+\expandafter\def\csname PageMDfive35\endcsname{435e9ecddb23d230df9cc32766e10610}
+\expandafter\def\csname PageMDfive36\endcsname{9d02d27cc2ad8bb4e1b30d441667e854}
+\expandafter\def\csname PageMDfive37\endcsname{90b6659e5a0105e0cd7268d3f76137f6}
+\expandafter\def\csname PageMDfive38\endcsname{3e93d5a6ba1b5b059bc2bf0f09aa34a9}
+\expandafter\def\csname PageMDfive39\endcsname{8b5136b47971b5ce22537a818bbf5bc0}
+%</PAGE-HASH-DEFS>
+
+\newcommand{\PageHashFooter}[1]{%
+  \fancyfoot[C]{}%
+  \fancyfoot[R]{\sffamily\scriptsize\color{DDTAGray}Pag. \thepage\quad MD5 contenuto: \texttt{#1}}%
+}
+\newcommand{\IntegrityRow}[3]{#1 & #2 & {\footnotesize\ttfamily #3} \\
+}
+
+\begin{document}
+\selectlanguage{italian}
+\fancyhead[L]{\sffamily\small\color{DDTAGray}DDTA Base Analysis Guide}
+\fancyhead[R]{\sffamily\small\color{DDTABlue}Rebuild R7 - CANDIDATE}
+\fancyfoot[L]{\sffamily\scriptsize\color{DDTAGray}Cumulative rebuild - human-readable method, controlled semantics}
+
+%<PAGE-DESC:1>Frontespizio della Base Analysis Guide Rebuild R7
+%<PAGE-CONTENT:1>
+\begin{titlepage}
+\thispagestyle{empty}
+\vspace*{12mm}
+{\sffamily\bfseries\color{DDTANavy}\fontsize{15}{18}\selectfont Documentation-Driven Threat Analysis}\par
+\vspace{5mm}
+{\sffamily\bfseries\color{DDTANavy}\fontsize{28}{32}\selectfont Base Analysis Guide}\par
+\vspace{2mm}
+{\sffamily\color{DDTABlue}\fontsize{18}{22}\selectfont Rebuild R7 - Candidate cumulative reconstruction}\par
+
+\vspace{14mm}
+\begin{tcolorbox}[enhanced,arc=3pt,boxrule=0pt,colback=DDTANavy,left=13pt,right=13pt,top=12pt,bottom=12pt]
+{\color{white}\sffamily\bfseries\large Ricostruzione progressiva della guida Base Analysis}\par
+\vspace{2mm}
+{\color{white!88}\small Ogni costrutto viene ricostruito a partire dall'authority BA corrente e dalle guide precedenti, spiegato in forma generale e soltanto dopo verificato contro esempi aggiornati. Il caso DermaTriage e' evidence applicativa e worked example: non e' la fonte da cui nasce la semantica dell'operatore.}
+\end{tcolorbox}
+
+\vspace{5mm}
+\begin{ddtaopen}[title={RIQUADRO TEMPORANEO - WORKING SET E RIFERIMENTI - DA CANCELLARE PRIMA DELLA GUIDA DEFINITIVA}]
+{\scriptsize
+\textbf{Attivi:} \nolinkurl{DDTA_DOCUMENTATION_AUTHORING_GUIDE_R7_REBUILD_R8.tex}; \nolinkurl{DDTA_BASE_ANALYSIS_GUIDE_REBUILD_R7.tex}; \nolinkurl{DDTA_DERMATRIAGE_PARALLEL_CASE_STUDY_R20_T06_TRANSFER_CONTRACT_ROUTED_R1.tex}.\par
+\textbf{Piano corrente:} \nolinkurl{DDTA_R25_BASE_ANALYSIS_GUIDE_REBUILD_WORK_PLAN_R5.md}; working analysis: \nolinkurl{DDTA_R25_DERMATRIAGE_CASE_STUDY_WORKING_ANALYSIS_R1.md}.\par
+\textbf{Riferimenti metodologici:} Operational Guide R3 + BA0--BA5 come authority corrente; Core/Complete BA Candidate R1 e precedenti guide operative come research evidence per la ricostruzione didattica.\par
+\textbf{Fase corrente:} ricostruire un operatore alla volta. Questa revisione completa \texttt{transfer}; le sezioni di discriminazione verso operatori vicini restano intenzionalmente placeholder finche' il catalogo non sara' sufficientemente stabile. DermaTriage R20 viene usato solo come esempio corrente e regression evidence.
+}
+\end{ddtaopen}
+
+\vfill
+\begin{tabularx}{0.93\textwidth}{L{46mm}Y}
+\toprule
+\textbf{Stato} & \texttt{CANDIDATE / NON-NORMATIVE / CUMULATIVE REBUILD} \\
+\textbf{Repository baseline} & \texttt{b6a647e4eb17b7e931838499003ed4f26e082b7f} \\
+\textbf{Predecessore cumulativo} & \nolinkurl{DDTA_BASE_ANALYSIS_GUIDE_REBUILD_R6} \\
+\textbf{Authority BA corrente} & R3 Operational Guide + BA0 R1 / BA1 R1 / BA2 R3 / BA3 R1 / BA4 R1 / BA5 R1 \\
+\textbf{Scopo di R7} & Ricostruire in modo completo e generale l'operatore \texttt{transfer}: significato, criteri d'uso, firma, ruoli, cardinalita', identity rule, domande di identificazione, esempi, prompt LLM e output BA atteso. Gli altri operatori non vengono ancora consolidati. \\
+\textbf{Authority change} & Nessuno. Una futura promotion richiede un checkpoint esplicito. \\
+\bottomrule
+\end{tabularx}
+
+\vfill
+{\sffamily\scriptsize\color{DDTAGray}MD5 contenuto pagina 1: \texttt{\PageMDfive{1}}}\par
+\end{titlepage}
+%</PAGE-CONTENT:1>
+
+\clearpage
+
+%<PAGE-DESC:2>1 - Che cos'e' la Base Analysis
+%<PAGE-CONTENT:2>
+\PageHashFooter{\PageMDfive{2}}
+\section{Che cos'e' la Base Analysis}
+
+La \BA{} e' una rappresentazione analitica condivisa del significato di progetto. Il suo compito e' rendere esplicite, in una forma comune, le informazioni che devono poter essere riutilizzate, interrogate, confrontate o proiettate verso analisi e viste successive.
+
+Il punto di partenza resta sempre la documentazione. E' la documentazione a stabilire che cosa il progetto governa; la Base Analysis organizza quel significato senza sostituirsi alla sua authority. In questo modo consumer diversi possono lavorare sulla stessa base semantica senza dover reinterpretare ogni volta la prosa sorgente.
+
+\begin{ddtaprinciple}[title={Idea fondamentale}]
+La BA rende analiticamente esplicito un significato gia' governato. Non crea project truth e non diventa una fonte alternativa alla documentazione.
+\end{ddtaprinciple}
+
+\subsection{Che cosa resta fuori dalla BA}
+
+Una Base Analysis completa non coincide con una copia strutturata di tutto cio' che compare nei documenti. Diagrammi architetturali, DFD, modelli STRIDE e viste di progetto possono essere prodotti a valle, ma non definiscono da soli che cosa debba entrare nella BA. Allo stesso modo, la semplice presenza di un sostantivo, di un verbo, di una tecnologia o di un valore nel testo non basta a giustificare un nuovo elemento analitico.
+
+Il criterio e' semantico: rappresentiamo cio' che deve restare distinguibile e riusabile per gli scopi dichiarati, mantenendo il livello di dettaglio effettivamente governato dal progetto.
+%</PAGE-CONTENT:2>
+
+\clearpage
+
+%<PAGE-DESC:3>1 - Perche' esiste e principi di base
+%<PAGE-CONTENT:3>
+\PageHashFooter{\PageMDfive{3}}
+\subsection{Perche' esiste}
+
+Uno stesso significato di progetto puo' servire a consumer molto diversi. Una vista del sistema puo' aver bisogno di mostrare responsabilita' e interazioni; la traceability deve poter risalire alle fonti; il change impact deve riconoscere che cosa viene toccato da una modifica; test reasoning e threat analysis possono porre domande ancora differenti.
+
+Se ciascun consumer ripartisse direttamente dalla prosa, aumenterebbe il rischio di interpretazioni incompatibili. La BA introduce quindi una base analitica comune: il significato viene ricostruito una volta in modo controllato e poi riutilizzato nelle diverse attivita' downstream.
+
+\subsection{Authority, minimalita' e feedback}
+
+Tre esigenze devono rimanere in equilibrio. La prima e' preservare l'authority documentale: cio' che compare nella BA deve poter essere ricondotto al significato governato. La seconda e' la minimalita': aggiungere struttura che non preserva alcuna distinzione utile rende la rappresentazione piu' pesante senza renderla piu' corretta. La terza e' il feedback: quando una vista o un'analisi incontra un problema, la difficolta' deve poter essere riportata al livello che puo' davvero risolverla.
+
+Questi tre principi spiegano perche' la BA e' contemporaneamente una rappresentazione condivisa e un confine: abbastanza ricca da essere riusata, ma non tanto libera da trasformarsi in una seconda documentazione di progetto.
+%</PAGE-CONTENT:3>
+
+\clearpage
+
+%<PAGE-DESC:4>1 - Direzione dell'authority e feedback
+%<PAGE-CONTENT:4>
+\PageHashFooter{\PageMDfive{4}}
+\subsection{Direzione dell'authority}
+
+La governed project documentation rimane la project authority. Una Base Analysis accettata costituisce invece la shared analytical baseline: una rappresentazione comune che puo' essere consumata da viste, projection, threat method, test model e altri strumenti analitici.
+
+La direzione dell'authority non cambia quando un consumer downstream scopre una difficolta'. Quel consumer puo' mostrare che una relazione e' ambigua, che manca un'informazione necessaria o che la BA non riesce a preservare una distinzione. Il problema torna allora alla BA come domanda di review. Se la BA dispone gia' del significato necessario, si corregge la rappresentazione; se il significato non e' governato, la domanda viene riportata alla documentazione.
+
+\begin{ddtacore}[title={Feedback governato}]
+Una difficolta' downstream puo' provocare una review della BA e, quando necessario, una domanda documentale. Solo una modifica governata della documentazione puo' cambiare il project meaning; dopo tale modifica la BA viene rivalidata e le projection interessate vengono ricostruite.
+\end{ddtacore}
+
+Il feedback migliora quindi la qualita' del modello e della documentazione senza invertire la sorgente dell'authority.
+%</PAGE-CONTENT:4>
+
+\clearpage
+
+%<PAGE-DESC:5>1 - Minimum sufficient BA, NOT SPECIFIED e gap
+%<PAGE-CONTENT:5>
+\PageHashFooter{\PageMDfive{5}}
+\subsection{Minimum sufficient BA}
+
+Una BA piu' dettagliata non e' automaticamente una BA migliore. Il livello giusto e' quello che rende esplicite le distinzioni che devono davvero sopravvivere all'analisi.
+
+Vale la pena introdurre un significato quando serve a mantenere un'identita' riutilizzabile, a distinguere una relazione o una condizione governata, a sostenere traceability e change/revalidation oppure a rispondere a una domanda downstream materiale usando informazioni gia' presenti nella documentazione. Se nessuna di queste esigenze esiste, il dettaglio puo' restare fuori dalla rappresentazione condivisa.
+
+Una domanda downstream puo' quindi motivare l'esplicitazione di un significato gia' governato; non puo' creare il significato che le serve.
+
+\begin{ddtacheck}[title={Stopping rule iniziale}]
+Se togliendo un dettaglio non perdiamo una distinzione governata, un'identita' da riusare, una relazione necessaria o la possibilita' di rispondere a una domanda materiale nello scope dichiarato, quel dettaglio non viene aggiunto soltanto per rendere il modello piu' completo graficamente.
+\end{ddtacheck}
+
+\begin{ddtaopen}[title={\texttt{NOT SPECIFIED} e documentation gap}]
+Quando la rappresentazione richiederebbe un fatto che la documentazione non governa, il risultato corretto puo' essere \texttt{NOT SPECIFIED} oppure una diagnosis. \texttt{NOT SPECIFIED} non segnala automaticamente un difetto: quel fatto potrebbe semplicemente non appartenere allo scope del progetto. Diventa una documentation question solo quando l'assenza impedisce di esprimere un significato che il progetto dovrebbe governare.
+\end{ddtaopen}
+%</PAGE-CONTENT:5>
+
+\clearpage
+
+%<PAGE-DESC:6>2 - BA View / Projection Contract e source types
+%<PAGE-CONTENT:6>
+\PageHashFooter{\PageMDfive{6}}
+\section{BA View / Projection Contract}
+
+Una stessa Base Analysis deve poter alimentare viste differenti senza trasformare ogni vista in una nuova fonte di significato. Per questo introduciamo un \textbf{View Contract}: uno strato esplicito che dichiara quale parte del significato disponibile viene selezionata, come viene proiettata e con quale notazione viene resa visibile.
+
+Quando la sorgente e' la BA, il percorso puo' essere riassunto con un piccolo schema:
+
+\begin{center}
+\begin{tcolorbox}[width=0.84\textwidth,colback=DDTALightGray,colframe=DDTAGray!55,boxrule=0.5pt,arc=2pt]
+\centering\sffamily
+Governed Documentation \(\longrightarrow\) Accepted Base Analysis \(\longrightarrow\) View Contract \(\longrightarrow\) Rendered View
+\end{tcolorbox}
+\end{center}
+
+Non tutte le viste, pero', partono esclusivamente dalla BA. Una vista della gerarchia documentale puo' leggere direttamente MR, Decision e FunctionalRequirement; una vista di traceability puo' invece combinare documentazione e rappresentazione analitica. Il contract deve rendere esplicita questa scelta.
+
+\subsection{Da quale sorgente parte la view}
+
+Una \texttt{BA\_ONLY} view usa soltanto semantica presente nella Base Analysis. Una \texttt{DOCUMENTATION\_ONLY} view rappresenta la struttura o il contenuto governato della documentazione senza duplicarlo artificialmente nella BA. Una \texttt{DOCUMENTATION\_PLUS\_BA\_TRACEABILITY} view mette infine in relazione gli elementi documentali con gli elementi analitici che ne rappresentano il significato.
+
+Questa distinzione evita di inserire nella BA informazioni che servono soltanto a rendere possibile una particolare visualizzazione.
+%</PAGE-CONTENT:6>
+
+\clearpage
+
+%<PAGE-DESC:7>2 - Mermaid e campi minimi della view
+%<PAGE-CONTENT:7>
+\PageHashFooter{\PageMDfive{7}}
+\subsection{Mermaid come primo target}
+
+Mermaid viene adottato come primo target di rendering testuale da investigare. E' utile perche' mantiene i diagrammi come artifact versionabili nel repository e offre piu' famiglie di rappresentazione senza imporre un editor grafico separato.
+
+Mermaid resta pero' una notazione di output. Se la sua sintassi rende comodo introdurre un nodo, una relazione, un participant o un subgraph, quella comodita' non basta a creare nuova semantica nella BA. Prima viene il significato; poi il View Contract decide come renderlo.
+
+\begin{ddtacore}[title={No reverse inference}]
+Una scelta del renderer non puo' diventare la ragione per modificare la Base Analysis. Se una view e' difficile da disegnare con il significato disponibile, si verifica prima se manca una regola di projection, poi se manca semantica nella BA e solo infine se il problema risale alla documentazione.
+\end{ddtacore}
+
+\subsection{Che cosa deve dichiarare una view}
+
+Il contract deve identificare la view tramite \texttt{viewId} e \texttt{viewType}; deve poi indicare la sorgente con \texttt{sourceType} e \texttt{sourceBaseline} e delimitare lo \texttt{scope}. Quando la sorgente comprende la BA, specifica quali \texttt{includedReferents} e \texttt{includedPropositionsOrLocalStructures} vengono usati. Le trasformazioni sono rese esplicite nelle \texttt{projectionRules}; \texttt{coverageMode} e \texttt{omittedSemantics} spiegano quanto della sorgente viene mostrato, mentre \texttt{renderer} e \texttt{renderedArtifact} identificano la forma di output.
+
+I campi che non hanno senso per uno specifico \texttt{sourceType} vengono marcati come non applicabili, invece di essere riempiti artificialmente.
+%</PAGE-CONTENT:7>
+
+\clearpage
+
+%<PAGE-DESC:8>2 - Coverage mode e famiglie di viste
+%<PAGE-CONTENT:8>
+\PageHashFooter{\PageMDfive{8}}
+\subsection{Coverage mode}
+
+BA4 distingue due modi di dichiarare la copertura. Una view \texttt{EXHAUSTIVE\_FOR\_DECLARED\_SCOPE} afferma di rappresentare tutto il significato che appartiene allo scope definito ed e' compatibile con quel tipo di vista. Una view \texttt{SELECTIVE} mostra deliberatamente soltanto una parte del significato disponibile.
+
+La seconda forma e' normale e spesso desiderabile: una vista di responsabilita', per esempio, non deve necessariamente mostrare tutte le informazioni, gli stati o i vincoli presenti nella stessa BA. Cio' che viene omesso da una view selettiva non diventa per questo falso, assente o non governato.
+
+\subsection{Famiglie di viste da testare}
+
+Le prime prove dovranno coprire piu' prospettive. Alcune riguardano la struttura del progetto, come capability, responsabilita' e dipendenze. Altre mostrano aspetti dinamici o relazionali, per esempio information flow, service interaction, state/lifecycle e, quando la semantica disponibile lo consente, pipeline o processi.
+
+Un secondo gruppo riguarda invece la documentazione: gerarchia documentale, traceability fra documentazione e BA, copertura e gap. Non fissiamo ancora il mapping di queste viste; la loro utilita' verra' verificata mentre costruiamo la BA di DermaTriage.
+
+Il fatto che una famiglia di viste sia utile non dimostra che la BA corrente contenga gia' tutto cio' che serve a produrla.
+%</PAGE-CONTENT:8>
+
+\clearpage
+
+%<PAGE-DESC:9>2 - View gap e mapping discipline
+%<PAGE-CONTENT:9>
+\PageHashFooter{\PageMDfive{9}}
+\subsection{Quando una view non e' producibile}
+
+Una view puo' mettere in evidenza un'assenza senza avere il diritto di colmarla. Se il significato richiesto non e' presente nella BA, il View Contract registra \texttt{VIEW REQUIRES MISSING BA SEMANTICS}. Se, a sua volta, la BA non puo' ricavare quel significato dalla documentazione governata, il problema diventa \texttt{BA REQUIRES MISSING GOVERNED MEANING}.
+
+Questa distinzione permette di riportare la difficolta' al livello corretto invece di risolverla con una convenzione grafica o una supposizione del renderer.
+
+\subsection{Come una relazione entra nella view}
+
+Ogni elemento visuale che porta significato deve poter essere giustificato da una regola di projection dichiarata. Un edge Mermaid, per esempio, non e' valido perche' esiste una freccia con un nome simile nella notazione: deve essere il risultato di una trasformazione esplicita di semantica documentale o BA.
+
+La notazione decide come mostrare il risultato della projection; non decide che cosa quel risultato significa. Per questo i mapping fra DDTA, BA e renderer verranno definiti e testati separatamente, invece di essere dedotti per somiglianza terminologica.
+%</PAGE-CONTENT:9>
+
+\clearpage
+
+%<PAGE-DESC:10>3 - Dal testo documentale al significato governato
+%<PAGE-CONTENT:10>
+\PageHashFooter{\PageMDfive{10}}
+\section{Dal testo documentale alla Base Analysis}
+
+La Base Analysis non nasce traducendo meccanicamente le frasi della documentazione in nodi e relazioni. Prima di scegliere un elemento BA dobbiamo capire quale significato il testo stabilisce realmente e quali parti di quel significato devono rimanere distinguibili nell'analisi.
+
+La forma linguistica e la struttura analitica non coincidono necessariamente. Una frase puo' contenere piu' fatti rilevanti; piu' frasi possono contribuire allo stesso significato; una parola tecnica puo' descrivere una realizzazione senza richiedere una nuova identita' analitica.
+
+\begin{ddtaprinciple}[title={Prima il significato, poi il costrutto}]
+La domanda iniziale non e' quale operatore somigli al verbo che stiamo leggendo. E' quale significato di progetto resti vero indipendentemente da come la frase e' stata scritta.
+\end{ddtaprinciple}
+
+Da qui si procede per gradi. Si parte dalla documentazione governata, si ricostruisce il significato che essa effettivamente stabilisce, si isolano i fatti semantici minimi che servono e si chiarisce quali identita' e quali asserzioni hanno bisogno di una forma analitica. Solo allora si materializzano BAReferent e BAProposition e, in un passaggio successivo, si sceglie il costrutto formale piu' adatto.
+
+\begin{ddtaanti}[title={Nessun word-to-model mapping}]
+La presenza di un sostantivo non crea automaticamente un BAReferent; un verbo non seleziona da solo un operatore; il confine di una frase non determina il confine di una BAProposition.
+\end{ddtaanti}
+%</PAGE-CONTENT:10>
+
+\clearpage
+
+%<PAGE-DESC:11>3 - Governed semantic fact
+%<PAGE-CONTENT:11>
+\PageHashFooter{\PageMDfive{11}}
+\subsection{Governed semantic fact}
+
+Chiamiamo \emph{governed semantic fact} il piu' piccolo significato governato che e' utile isolare per decidere come rappresentarlo nella BA. Non e' un nuovo tipo di elemento BA: e' un passaggio di analisi che ci permette di separare la comprensione del testo dalla scelta della sintassi analitica.
+
+Un fatto candidato deve sempre poter essere giustificato tornando alla documentazione. Se per formularlo dobbiamo aggiungere un attore, un valore, un ordine, una causalita', una responsabilita' o una condizione non stabilita dal progetto, non stiamo piu' isolando il significato: lo stiamo completando.
+
+\begin{ddtaexample}[title={DermaTriage - dominio della priorita'}]
+La documentazione stabilisce che, quando DermaTriage produce una priorita' operativa di triage, il valore appartiene all'insieme \texttt{P1, P2, P3, P4}. Possiamo quindi isolare il fatto che \textbf{OperationalPriority ha come dominio ammesso P1--P4}. In questo momento non serve ancora decidere se \texttt{OperationalPriority} debba essere un BAReferent o quale operatore rappresentera' il vincolo.
+\end{ddtaexample}
+
+\begin{ddtaexample}[title={DermaTriage - percorso senza immagine}]
+Nel percorso symptom-only emergono almeno due significati distinguibili: l'assenza dell'immagine non interrompe il triage e l'urgenza viene determinata usando le informazioni sintomatologiche disponibili sullo stesso caso. Tenerli separati evita di trasformare immediatamente l'intero paragrafo in una sola asserzione sovraccarica.
+\end{ddtaexample}
+%</PAGE-CONTENT:11>
+
+\clearpage
+
+%<PAGE-DESC:12>3 - Segmentazione, ambiguita e livello documentale
+%<PAGE-CONTENT:12>
+\PageHashFooter{\PageMDfive{12}}
+\subsection{Come isolare i fatti senza inventarli}
+
+La segmentazione serve a preservare differenze che potrebbero avere identita', relazioni, condizioni o provenance diverse; non serve a spezzare il testo fino a ottenere una proposition per ogni frase o per ogni verbo.
+
+Il lavoro parte dal commitment governato e separa soltanto le distinzioni che potrebbero cambiare o essere riutilizzate indipendentemente. Le parti che perderebbero significato se isolate restano unite. Se il testo ammette piu' letture materialmente diverse, l'ambiguita' rimane visibile: non viene risolta usando conoscenza di dominio, convenzioni tecniche o dettagli dell'implementazione.
+
+\begin{ddtacheck}[title={Delete test sul fatto candidato}]
+Se elimino questa distinzione prima di costruire la BA, perdo qualcosa che la documentazione governa e che potrebbe diventare rilevante per reuse, traceability, change o una domanda downstream? Se la risposta e' no, probabilmente non serve isolarla come fatto autonomo.
+\end{ddtacheck}
+
+\subsection{Il livello documentale resta visibile}
+
+MR, Decision e FunctionalRequirement possono governare la stessa area con livelli di precisione diversi. La BA non appiattisce questa progressione. Un MR puo' stabilire un risultato e i suoi input in termini generali; una Decision puo' restringere una strategia; un FR puo' precisare un dominio, una condizione o una regola operativa.
+
+Quando la documentazione introduce un dettaglio piu' specifico, la BA puo' aggiungere la relativa asserzione senza cancellare automaticamente il significato piu' generale che rimane valido.
+%</PAGE-CONTENT:12>
+
+\clearpage
+
+%<PAGE-DESC:13>4 - Elementi fondamentali della Base Analysis
+%<PAGE-CONTENT:13>
+\PageHashFooter{\PageMDfive{13}}
+\section{Gli elementi fondamentali della Base Analysis}
+
+La Base Analysis distingue due famiglie fondamentali di elementi: \BAR{} e \BAP{}. La prima serve a dare identita' analitica a un significato di progetto; la seconda a dare identita' a un'asserzione analitica su uno o piu' significati.
+
+\texttt{BAE} puo' essere usato come termine ombrello per riferirsi agli elementi della Base Analysis, ma non introduce una terza famiglia.
+
+\begin{ddtaprinciple}[title={Due domande diverse}]
+Quando incontriamo un significato chiediamo se deve poter essere riconosciuto e riutilizzato come identita' analitica. Quando incontriamo un'asserzione chiediamo invece se deve poter essere tracciata, revisionata o diagnosticata indipendentemente. La prima domanda porta a un BAReferent; la seconda a una BAProposition.
+\end{ddtaprinciple}
+
+Questa distinzione e' semantica, non implementativa. Un tool puo' memorizzare referent e proposition in classi, tabelle o grafi differenti; cio' che deve restare stabile e' la differenza tra la cosa cui attribuiamo identita' e l'asserzione che facciamo su di essa.
+%</PAGE-CONTENT:13>
+
+\clearpage
+
+%<PAGE-DESC:14>4 - BAReferent: identita analitica riusabile
+%<PAGE-CONTENT:14>
+\PageHashFooter{\PageMDfive{14}}
+\subsection{BAReferent: dare identita' a un significato}
+
+Un \BAR{} e' un'unita' di significato di progetto che deve poter essere riconosciuta e riutilizzata indipendentemente nell'analisi. Non e' limitato agli oggetti software o ai componenti runtime: puo' rappresentare una capability, un'informazione, un risultato, un comportamento, un evento, uno stato, un contratto, uno store, un boundary o un altro significato che abbia bisogno di identita' stabile.
+
+\begin{ddtacheck}[title={Identity test}]
+La domanda utile non e' ``questo nome compare nel testo?'', ma ``questo significato deve vivere oltre l'asserzione in cui l'ho incontrato?''. L'identita' separata diventa giustificata quando il significato deve essere riutilizzato in piu' proposition, qualificato o vincolato, correlato o referenziato, confrontato fra baseline, seguito attraverso change/revalidation oppure interrogato come oggetto distinto da un consumer downstream.
+\end{ddtacheck}
+
+Se nessuna di queste esigenze esiste e la rimozione dell'identita' non fa perdere significato governato, un BAReferent separato puo' essere superfluo.
+
+La presenza lessicale, da sola, non basta: tecnologie, valori, campi e sostantivi diventano referent solo quando serve davvero un'identita' analitica indipendente.
+%</PAGE-CONTENT:14>
+
+\clearpage
+
+%<PAGE-DESC:15>4 - BAReferent: esempi DermaTriage e confini
+%<PAGE-CONTENT:15>
+\PageHashFooter{\PageMDfive{15}}
+\subsection{BAReferent: prima applicazione a DermaTriage}
+
+La documentazione consolidata di MR-01 offre gia' alcuni buoni esempi per applicare l'identity test senza congelare prematuramente il registry finale.
+
+\textbf{DermaTriage.} Compare ripetutamente come soggetto di obblighi e relazioni; e' quindi un forte candidato a identita' BA riusabile.
+
+\textbf{Caso dermatologico.} Collega immagine, sintomi e risultati. La necessita' di una sua identita' autonoma dipendera' soprattutto da come dovremo preservare correlation e same-case semantics nelle proposition successive.
+
+\textbf{Urgenza e priorita' operativa.} Sono risultati governati distinti. L'urgenza viene prodotta e riutilizzata nei passaggi successivi; la priorita' e' ulteriormente vincolata alla P-scale. Entrambe sono candidate forti a identita' riusabile, mentre resta da decidere il livello corretto fra concetto e occurrence per singolo caso.
+
+\textbf{Il valore P1.} Il fatto che sia governato non lo trasforma automaticamente in un BAReferent. Se non deve essere riutilizzato come identita' indipendente, puo' rimanere un valore locale controllato.
+
+\begin{ddtaopen}[title={L'esempio non decide ancora il modello finale}]
+Questa prima applicazione mostra come usare l'identity test. Non congela il registry DermaTriage e non decide ancora la granularita' instance-vs-concept: saranno le proposition necessarie a mostrare quali identita' devono sopravvivere autonomamente.
+\end{ddtaopen}
+
+Differenze come actor, component, information, behavior o state non richiedono di per se' famiglie BA diverse. Finche' classificazioni, ruoli, valori e proposition riescono a preservarle onestamente, restano all'interno della stessa famiglia BAReferent.
+%</PAGE-CONTENT:15>
+
+\clearpage
+
+%<PAGE-DESC:16>4 - BAProposition: asserzione analitica identificabile
+%<PAGE-CONTENT:16>
+\PageHashFooter{\PageMDfive{16}}
+\subsection{BAProposition: dare identita' a una asserzione}
+
+Una \BAP{} e' un'asserzione analitica methodology-neutral su uno o piu' BAReferent. La sua identita' permette di collegare provenance, review, diagnosis e change disposition all'asserzione stessa, senza confonderla con i significati che mette in relazione.
+
+Questa distinzione diventa importante quando un referent rimane stabile ma cambia cio' che il progetto afferma su di esso. In quel caso non dobbiamo sostituire l'identita' del referent: possiamo introdurre, modificare, supersedere o diagnosticare le proposition interessate.
+
+A livello BA2 la forma generale corrente prevede un \texttt{semanticOperatorKey}, una o piu' participation con roleKey scoped all'operatore e, quando ammessi, polarity, modifier e strutture locali. Le firme specifiche verranno spiegate piu' avanti costrutto per costrutto.
+
+\begin{lstlisting}
+BAProposition
+    semanticOperatorKey
+    participation [1..*]
+        roleKey
+        term
+    polarity
+    scopedModifier [0..*]
+    operatorStructure [0..1, when admitted]
+\end{lstlisting}
+
+Il \texttt{term} di una participation e' normalmente un BAReferent. Un valore locale controllato e' sufficiente soltanto quando quel significato non richiede identita' indipendente.
+%</PAGE-CONTENT:16>
+
+\clearpage
+
+%<PAGE-DESC:17>4 - BAReferent e BAProposition insieme
+%<PAGE-CONTENT:17>
+\PageHashFooter{\PageMDfive{17}}
+\subsection{BAReferent e BAProposition lavorano insieme}
+
+Prendiamo il FunctionalRequirement che governa la priorita' operativa P1--P4. Prima di formalizzare, riconosciamo due cose diverse. Da un lato esistono significati che devono poter essere riutilizzati, come DermaTriage e OperationalPriority; dall'altro la documentazione afferma qualcosa su questi significati, per esempio che una priorita' operativa puo' essere prodotta e che il suo dominio e' limitato a P1--P4.
+
+L'identity test suggerisce quindi almeno i referent candidati \texttt{DermaTriage} e \texttt{OperationalPriority}. Le affermazioni sul risultato e sul dominio saranno invece materializzate come BAProposition quando avremo selezionato operatori, ruoli e valori compatibili con il significato governato.
+
+\begin{ddtaexample}[title={Perche' non formalizziamo troppo presto}]
+Possiamo gia' vedere che disponibilita' della priorita' e dominio ammesso sono due asserzioni distinguibili. Non serve pero' scegliere adesso \texttt{produce}, \texttt{constrain} o un altro costrutto: prima fissiamo la grammatica generale, poi riesaminiamo ogni operatore con lo stesso contratto descrittivo.
+\end{ddtaexample}
+
+Il punto da conservare e' semplice: il referent rappresenta il significato che deve continuare a esistere come identita' analitica; la proposition rappresenta cio' che affermiamo su quel significato. Un grafo o un renderer non devono confondere i due livelli soltanto per ottenere una forma visuale piu' comoda.
+%</PAGE-CONTENT:17>
+
+\clearpage
+
+%<PAGE-DESC:18>5 - Granularita, minimalita e costruzione della BA
+%<PAGE-CONTENT:18>
+\PageHashFooter{\PageMDfive{18}}
+\section{Granularita' e costruzione della Base Analysis}
+
+La granularita' corretta non dipende dalla lunghezza della frase ne' dal numero di elementi che un tool riesce a disegnare. Dipende da quali distinzioni devono poter essere identificate, verificate e cambiate indipendentemente.
+
+\subsection{Quando separare due proposition}
+
+Due significati meritano proposition separate quando possono divergere per provenance o stato di review, per condizione di applicabilita', per impatto di un cambiamento, perche' uno dei due diventa target di una relazione successiva oppure perche' consumer downstream diversi hanno bisogno di distinguerli. Se invece le parti hanno senso soltanto insieme, la rappresentazione deve conservarne l'unita'.
+
+Separare significa quindi preservare indipendenza semantica, non frammentare il testo.
+
+\subsection{Procedura iniziale di costruzione}
+
+Il lavoro puo' essere condotto in sette passaggi:
+\begin{enumerate}
+  \item fissare baseline, authority e scope documentale;
+  \item leggere il testo source-first e ricostruire il significato governato prima di pensare alla sintassi BA;
+  \item isolare soltanto i governed semantic fact che devono rimanere distinguibili;
+  \item applicare l'identity test e riconoscere le asserzioni che richiedono BAReferent e BAProposition;
+  \item verificare che la cardinalita' BA derivi dal significato analitico e non dalla forma dell'albero documentale; se emerge una possibile inefficienza strutturale, registrare un finding e rinviare la decisione al layer documentale;
+  \item selezionare operatori, ruoli, valori e strutture locali solo dopo che identita' e asserzioni sono chiare;
+  \item tornare alle fonti per verificare ogni elemento, preservare \texttt{NOT SPECIFIED} o diagnosis quando necessario e applicare infine stopping rule e forbidden-inference review.
+\end{enumerate}
+
+\begin{ddtacheck}[title={Stop prima degli operatori}]
+Prima di entrare nel catalogo dei costrutti, il lettore deve saper spiegare perche' un significato richiede un BAReferent, perche' un'asserzione richiede una BAProposition e quali parti della documentazione giustificano entrambi. Se questo non e' chiaro, scegliere un operatore e' prematuro.
+\end{ddtacheck}
+%</PAGE-CONTENT:18>
+
+\clearpage
+
+%<PAGE-DESC:19>6 - Indipendenza tra struttura documentale e struttura BA
+%<PAGE-CONTENT:19>
+\PageHashFooter{\PageMDfive{19}}
+\section{Struttura documentale, cardinalita' BA e feedback verso monte}
+
+La documentazione DDTA organizza responsabilita', decisioni e obblighi in una struttura utile per authoring, implementazione, verifica e change management. La Base Analysis ha uno scopo diverso: rendere espliciti i significati analitici che devono essere riusati e interrogati. Per questo le due strutture non hanno una cardinalita' obbligatoriamente coincidente.
+
+\begin{ddtaprinciple}[title={Regola di indipendenza strutturale}]
+Gli elementi documentali sono sorgenti di significato governato, non un template da tradurre uno-a-uno in elementi BA.
+\end{ddtaprinciple}
+
+\begin{lstlisting}
+numero di branch documentali
+        !=
+numero di BAReferent
+        !=
+numero di BAProposition
+\end{lstlisting}
+
+Piu' elementi documentali possono sostenere uno stesso significato analitico; un singolo elemento documentale puo' invece contenere piu' asserzioni che devono restare distinguibili in BA. La cardinalita' corretta emerge dai test di identita', asserzione, provenance, change e consumo downstream, non dal numero di nodi presenti nell'albero DDTA.
+
+\begin{ddtaanti}[title={Traduzione meccanica vietata}]
+Non creare un BAReferent, una BAProposition o un futuro ramo analitico soltanto perche' esiste un elemento documentale distinto. Allo stesso modo, non comprimere due significati BA distinti soltanto perche' sono scritti nello stesso requisito.
+\end{ddtaanti}
+%</PAGE-CONTENT:19>
+
+\clearpage
+
+%<PAGE-DESC:20>6 - Structural feedback e no authority inversion
+%<PAGE-CONTENT:20>
+\PageHashFooter{\PageMDfive{20}}
+\subsection{Quando la BA espone una pressione strutturale documentale}
+
+Durante la normalizzazione puo' emergere che un branch documentale contiene un significato reale e source-supported ma non possiede conseguenze downstream sufficientemente autonome da giustificare la propria esistenza come branch separato. Questo e' un risultato utile della BA, ma non autorizza la BA a riscrivere la documentazione.
+
+\begin{ddtaworking}[title={Finding di review strutturale}]
+Usare \PossibleStructuralRedundancy{} come segnale di review quando il significato di un branch puo' essere preservato senza perdita dentro il branch che possiede il comportamento correlato e la separazione autonoma non mostra una utilita' downstream distinguibile.
+\end{ddtaworking}
+
+Il finding deve registrare almeno:
+\begin{itemize}
+  \item gli elementi documentali coinvolti;
+  \item il significato governato che ciascuno porta;
+  \item le distinzioni analitiche che devono comunque essere preservate;
+  \item le conseguenze downstream autonome cercate;
+  \item perche' la separazione appare necessaria oppure potenzialmente superflua;
+  \item la review documentale da riaprire.
+\end{itemize}
+
+\begin{ddtacore}[title={No authority inversion}]
+La BA puo' diagnosticare la pressione e mantenere una cardinalita' analitica non artificiale. Non puo' dichiarare da sola \texttt{MERGE}, cancellare un elemento documentale o trasferirne l'ownership. La decisione strutturale torna alla Documentation Authoring review; se la documentazione cambia, la BA viene poi revalidata o ricostruita.
+\end{ddtacore}
+%</PAGE-CONTENT:20>
+
+\clearpage
+
+%<PAGE-DESC:21>6 - DermaTriage DEC02 DEC04 come pressure case
+%<PAGE-CONTENT:21>
+\PageHashFooter{\PageMDfive{21}}
+\subsection{Pressure case DermaTriage: dominio P1--P4 e derivazione della priorita'}
+
+La ricostruzione DermaTriage ha mostrato il caso in forma concreta. In una revisione precedente il significato relativo alla priorita' operativa era separato in due branch:
+
+\begin{lstlisting}
+DEC-MR01-02
+    adozione del dominio P1-P4
+    -> FR-MR01-02-01
+       la priorita' appartiene a {P1,P2,P3,P4}
+
+DEC-MR01-04
+    separazione urgenza analitica / priorita' operativa
+    -> FR-MR01-04-01
+       regola che deriva P1-P4 da urgenza e confidence
+\end{lstlisting}
+
+La review ha chiarito che il significato ``la priorita' operativa usa il dominio P1--P4'' e' reale e deve essere preservato. Non era quindi corretto descrivere \texttt{DEC-MR01-02} come priva di semantica. Il problema era diverso: come branch autonomo non produceva un comportamento, una verifica, una modifica indipendente o una analisi distinta rispetto al branch che governa la derivazione della priorita'.
+
+\begin{ddtaexample}[title={Esito documentale del pressure case}]
+Il dominio P1--P4 viene mantenuto dentro \texttt{DEC-MR01-04}; \texttt{FR-MR01-04-01} continua a governare il mapping operativo. Il branch \texttt{DEC-MR01-02 / FR-MR01-02-01} puo' quindi essere consolidato senza perdere il significato del dominio.
+\end{ddtaexample}
+
+Questo caso mostra due regole contemporaneamente:
+\begin{enumerate}
+  \item una distinzione semantica puo' restare necessaria nella BA anche dopo la riduzione del numero di branch documentali;
+  \item il numero di distinzioni BA non dimostra quanti branch debbano esistere nella documentazione.
+\end{enumerate}
+%</PAGE-CONTENT:21>
+
+\clearpage
+
+%<PAGE-DESC:22>6 - Downstream Utility Test e riallineamento BA
+%<PAGE-CONTENT:22>
+\PageHashFooter{\PageMDfive{22}}
+\subsection{Ritorno alla Documentation Authoring review}
+
+La decisione sulla struttura documentale usa il \textbf{Downstream Utility Test} definito nella Documentation Authoring Guide:
+
+\begin{ddtacheck}[title={Downstream Utility Test - eseguito upstream}]
+Se elimino questo branch come branch autonomo e trasferisco il suo significato nella Decision che possiede i comportamenti correlati, perdo una distinzione necessaria per implementazione, verifica, modifica indipendente o analisi?
+\end{ddtacheck}
+
+Se la risposta e' positiva, la separazione puo' essere giustificata. Se e' negativa, il layer documentale riesamina il branch per \texttt{MERGE} o \texttt{REWORK}. In entrambi i casi la BA non anticipa l'esito.
+
+\begin{lstlisting}
+governed / working documentation
+        -> source-first BA normalization
+        -> structural-feedback finding
+        -> Documentation Authoring review
+        -> Downstream Utility Test
+        -> KEEP / MERGE / REWORK documentale
+        -> BA revalidation if documentation changed
+\end{lstlisting}
+
+\begin{ddtaprinciple}[title={Distinzione da preservare}]
+``Due proposition analitiche'' e ``due branch documentali'' sono domande diverse. La BA separa i significati quando serve all'analisi; la documentazione separa i branch quando serve al lavoro sul progetto. Le due cardinalita' possono coincidere, ma non sono obbligate a farlo.
+\end{ddtaprinciple}
+
+\begin{ddtaopen}[title={Confine di questa revisione}]
+La R6 si fermava prima del catalogo operativo. La R7 apre il catalogo ricostruendo \textbf{un solo operatore}, \texttt{transfer}, a partire dalla semantica gia' ammessa dall'authority BA corrente e dalle guide precedenti. Gli esempi di progetto verificano e chiariscono il costrutto, ma non ne determinano la definizione. Il fatto che \texttt{transfer} entri nella guida rebuild non equivale a promotion normativa della rebuild.
+\end{ddtaopen}
+%</PAGE-CONTENT:22>
+
+\clearpage
+
+%<PAGE-DESC:23>7 - transfer: definizione, smallest fact e criteri d'uso
+%<PAGE-CONTENT:23>
+\PageHashFooter{\PageMDfive{23}}
+\section{Operatore \texttt{transfer}}
+\CurrentTag
+
+\subsection{Che cosa rappresenta}
+\texttt{transfer} rappresenta la \textbf{conveyance governata} di uno o piu' contenuti da una source identificabile verso una o piu' destination identificabili. Il costrutto non descrive genericamente un collegamento, un ordine di esecuzione o una vicinanza architetturale: il suo smallest semantic fact e' che \emph{un content viene trasferito da A a B}.
+
+\begin{ddtacore}[title={Smallest semantic fact}]
+Esiste un contenuto governato \texttt{X} la cui conveyance e' asserita da una source \texttt{A} verso almeno una destination \texttt{B}.
+\end{ddtacore}
+
+\subsection{Quando usarlo}
+Usare \texttt{transfer} quando la documentazione governa sufficientemente tutti e tre i ruoli obbligatori: origine, destinazione e contenuto trasferito. Il verbo concreto della documentazione puo' essere ``consegnare'', ``inviare'', ``rendere disponibile a'', ``passare'', ``trasmettere'' o un'espressione equivalente; la scelta non dipende dalla parola usata ma dal significato governato.
+
+\subsection{Quando non usarlo}
+Non accettare una proposition \texttt{transfer} se almeno uno fra source, destination e content deve essere inventato per completare la frase. La presenza di due componenti nello stesso diagramma, di una chiamata API, di una sequenza di stage o di un dato disponibile in memoria non basta da sola a dimostrare conveyance.
+
+\begin{ddtaopen}[title={Gate minimo}]
+Se la source non permette di identificare \texttt{source}, almeno una \texttt{destination} e almeno un \texttt{content}, il risultato corretto e' \texttt{INSUFFICIENT EVIDENCE} / \texttt{NOT SPECIFIED}, non un transfer completato per plausibilita'.
+\end{ddtaopen}
+%
+%</PAGE-CONTENT:23>
+
+\clearpage
+
+%<PAGE-DESC:24>7 - transfer: firma canonica, ruoli e cardinalita
+%<PAGE-CONTENT:24>
+\PageHashFooter{\PageMDfive{24}}
+\subsection{Firma canonica}
+La firma corrente preservata da BA2 R3 e':
+
+\begin{lstlisting}
+transfer
+  behavior    -> BAReferent [0..1]
+  source      -> BAReferent [1]
+  destination -> BAReferent [1..*]
+  content     -> BAReferent [1..*]
+\end{lstlisting}
+
+\texttt{polarity} appartiene alla \BAP{} e resta obbligatoria secondo il contratto generale. Gli scoped modifier \texttt{condition} e \texttt{temporalScope} compaiono soltanto quando la source limita realmente l'asserzione.
+
+\begin{tabularx}{\textwidth}{L{31mm}L{21mm}Y}
+\toprule
+\textbf{Role} & \textbf{Card.} & \textbf{Significato} \\
+\midrule
+\texttt{behavior} & 0..1 & Identita' riusabile dello specifico comportamento di transfer, solo quando il segmento deve essere target di altre proposition, vincoli, realization, confronto o analisi autonoma. \\
+\texttt{source} & 1 & Origine governata della conveyance. \\
+\texttt{destination} & 1..* & Uno o piu' destinatari governati del content. \\
+\texttt{content} & 1..* & Significato informativo/materiale la cui conveyance e' governata. \\
+\bottomrule
+\end{tabularx}
+
+\subsection{Identita' opzionale del segmento}
+\texttt{behavior} non viene creato per ogni scambio. Riceve identita' \BAR{} quando il trasferimento stesso deve poter essere riusato, vincolato, realizzato, protetto, confrontato fra baseline o preso come target da piu' asserzioni.
+
+\begin{ddtacheck}[title={Behavior identity test}]
+Se elimino l'identita' dello specifico segmento di transfer, perdo la possibilita' di esprimere un significato governato che riguarda proprio il passaggio e non soltanto source, destination o content? Se no, \texttt{behavior} resta assente.
+\end{ddtacheck}
+%
+%</PAGE-CONTENT:24>
+
+\clearpage
+
+%<PAGE-DESC:25>7 - transfer: identity continuity, invarianti e forbidden inference
+%<PAGE-CONTENT:25>
+\PageHashFooter{\PageMDfive{25}}
+\subsection{Continuita' di identita' del content}
+Quando un significato viene prodotto, trasferito e poi usato da un consumer senza cambiare identita' semantica, la BA riusa lo stesso \BAR{}. La posizione ``output'', ``content del transfer'' e ``input'' non crea tre identita' diverse.
+
+\begin{lstlisting}
+producer result   -> X
+transfer content  -> X
+consumer input    -> X
+\end{lstlisting}
+
+\begin{ddtaprinciple}[title={Identity continuity rule}]
+Un nuovo BAReferent e' giustificato solo quando tra i due punti compare una trasformazione che stabilisce un significato semanticamente distinto. Cambio di variabile, serializzazione, formato fisico o collocazione non bastano da soli.
+\end{ddtaprinciple}
+
+\subsection{Invarianti}
+\begin{itemize}
+  \item ogni transfer accettato possiede esattamente una source e almeno una destination e un content;
+  \item i roleKey sono operator-scoped: \texttt{source} significa origine della conveyance, non una classificazione universale del referent;
+  \item destination multiple e content multipli sono ammessi solo quando la stessa asserzione governata li comprende;
+  \item l'eventuale \texttt{behavior} identifica il segmento, non sostituisce source, destination o content;
+  \item polarity negativa nega l'asserzione di transfer soltanto quando questa negazione e' realmente governata; assenza di evidence non equivale a transfer negativo.
+\end{itemize}
+
+\subsection{Forbidden inference}
+Dal solo \texttt{transfer} non inferire protocollo, sincronicita', cifratura, affidabilita', successo della consegna, persistenza, ownership, storage, service consumption, transport medium, retries, acknowledgement, failure semantics o topologia intermedia. Questi significati richiedono evidence e costrutti appropriati separati.
+%
+%</PAGE-CONTENT:25>
+
+\clearpage
+
+%<PAGE-DESC:26>7 - transfer: domande di identificazione e procedura di estrazione
+%<PAGE-CONTENT:26>
+\PageHashFooter{\PageMDfive{26}}
+\subsection{Domande da porre alla documentazione}
+Le domande servono a restringere l'interpretazione; non sono un classificatore automatico.
+
+\begin{enumerate}
+  \item La source governa realmente che un contenuto passi da un'origine a un destinatario?
+  \item Qual e' la \texttt{source}? E' esplicitamente identificabile senza inferenza architetturale?
+  \item Qual e' o quali sono le \texttt{destination}?
+  \item Qual e' o quali sono i \texttt{content} trasferiti?
+  \item Source, destination e content hanno gia' un \BAR{} con la stessa identita' semantica? Se si', riusarlo.
+  \item Il content mantiene la stessa identita' fra producer, transfer e consumer oppure la source governa una trasformazione semanticamente distinta?
+  \item Il segmento di transfer deve essere target autonomo di property, constraint, realization, security scope, change impact o altre proposition? Se si', valutare \texttt{behavior}.
+  \item La proposition vale sempre oppure solo sotto una condition o un temporal scope governato?
+  \item La source afferma il transfer o lo nega esplicitamente? Non dedurre polarity negativa dall'assenza di trasferimento.
+  \item Rimane qualche ruolo obbligatorio non stabilito? Se si', fermarsi: il dato resta \texttt{NOT SPECIFIED} oppure diagnosis.
+\end{enumerate}
+
+\begin{ddtacheck}[title={Procedura minima}]
+Leggere il smallest governed semantic fact; identificare o riusare i BAReferent necessari; verificare source/destination/content; decidere se serve behavior; compilare una sola BAProposition minima; aggiungere scoped modifier solo se governati; infine controllare le forbidden inference.
+\end{ddtacheck}
+%
+%</PAGE-CONTENT:26>
+
+\clearpage
+
+%<PAGE-DESC:27>7 - transfer: esempio generico e worked example DermaTriage corrente
+%<PAGE-CONTENT:27>
+\PageHashFooter{\PageMDfive{27}}
+\subsection{Esempio generico minimo}
+\begin{ddtaexample}[title={Documentazione inventata ma coerente}]
+``Il sottosistema di acquisizione MUST consegnare il \texttt{MeasurementRecord} al motore di valutazione.''
+\end{ddtaexample}
+
+Assumendo che le tre identita' abbiano superato il normale gate BA1, la proposition minima e':
+
+\begin{lstlisting}
+transfer
+  source      -> MeasurementAcquisition
+  destination -> EvaluationEngine
+  content     -> MeasurementRecord
+  polarity    -> affirmative
+\end{lstlisting}
+
+Non serve un \texttt{behavior} referent se il segmento non deve essere riusato o target di altre proposition.
+
+\subsection{Esempio corrente - DermaTriage T06}
+Nella documentazione corrente, Stage 2 produce una \texttt{ClinicalDescription} e la rende disponibile allo Stage 3; Stage 3 usa quella stessa descrizione come input del retrieval. L'estrazione corrente e':
+
+\begin{lstlisting}
+transfer
+  behavior    -> ClinicalDescriptionTransfer
+  source      -> ClinicalDescriptionGeneration
+  destination -> HistoricalCaseRetrieval
+  content     -> ClinicalDescription
+  polarity    -> affirmative
+\end{lstlisting}
+
+\texttt{ClinicalDescription} e' lo stesso BAReferent gia' usato come result della generazione e come input del retrieval. \texttt{ClinicalDescriptionTransfer} riceve identita' perche' il segmento e' oggetto autonomo della review data-path / information-contract; questa scelta appartiene all'esempio, non alla definizione universale di \texttt{transfer}.
+
+\begin{ddtaopen}[title={Boundary example}]
+``Stage B usa \texttt{X}'' non basta, da solo, a costruire \texttt{transfer} se la documentazione non stabilisce da quale source \texttt{X} arrivi. L'input puo' essere noto mentre il transfer resta \texttt{INSUFFICIENT EVIDENCE}.
+\end{ddtaopen}
+%
+%</PAGE-CONTENT:27>
+
+\clearpage
+
+%<PAGE-DESC:28>7 - transfer: prompt LLM per l'identificazione controllata
+%<PAGE-CONTENT:28>
+\PageHashFooter{\PageMDfive{28}}
+\subsection{Prompt LLM di supporto all'authoring}
+Il prompt e' un ausilio operativo: non cambia la semantica BA e non rende autorevole una inferenza non supportata. Deve ricevere l'estratto documentale governato e, quando disponibile, il registro dei BAReferent gia' esistenti.
+
+\begin{lstlisting}
+TASK: identify governed BA transfer propositions.
+Use ONLY the supplied documentation and existing BA registry.
+
+A transfer exists only if the source supports:
+  source [1], destination [1..*], content [1..*].
+
+Rules:
+1. Identify the smallest governed conveyance fact.
+2. Reuse existing BAReferents when semantic identity is unchanged.
+3. Propose a new BAReferent only when BA1 independent identity is needed.
+4. Add behavior only if the transfer segment itself must be independently
+   targeted, constrained, realized, compared, traced or analyzed.
+5. Preserve the same content BAReferent across producer/transfer/consumer
+   when the governed meaning is unchanged.
+6. Use polarity=negative only for an explicitly negated transfer assertion.
+7. Add condition/temporalScope only when explicitly governed.
+8. If source, destination or content is missing, return INSUFFICIENT_EVIDENCE.
+9. Do not infer protocol, network topology, persistence, success, ownership,
+   encryption, service consumption, transport medium or failure semantics.
+10. Do not invent operators, roles, states or metadata.
+
+Return EXACTLY the authoring wrapper and BA output shape shown next.
+\end{lstlisting}
+
+\begin{ddtaprinciple}[title={Human review remains mandatory}]
+L'LLM puo' proporre referent e proposition; l'accettazione richiede comunque verifica contro source, identity criterion, canonical naming e provenance. Una risposta sintatticamente completa non sana un gap documentale.
+\end{ddtaprinciple}
+%
+%</PAGE-CONTENT:28>
+
+\clearpage
+
+%<PAGE-DESC:29>7 - transfer: output BA atteso e discriminazioni differite
+%<PAGE-CONTENT:29>
+\PageHashFooter{\PageMDfive{29}}
+\subsection{Output esatto atteso dall'estrazione assistita}
+Il wrapper seguente e' un formato di authoring/review, non un nuovo costrutto BA. La parte di output BA usa soltanto la shape ammessa.
+
+\begin{lstlisting}
+TRANSFER_ASSESSMENT
+  decision = ACCEPT_TRANSFER | NOT_A_TRANSFER | INSUFFICIENT_EVIDENCE
+  evidence = <source locator / concise supported wording>
+  notSpecified = [<only unresolved material items>]
+
+BA_OUTPUT
+  BAReferent reuse/candidates:
+    <canonical names only as needed>
+
+  BAProposition <candidate-id>
+    semanticOperatorKey = transfer
+    behavior    -> <BAReferent>      # omit line if not justified
+    source      -> <BAReferent>
+    destination -> <BAReferent>      # repeat for 1..*
+    content     -> <BAReferent>      # repeat for 1..*
+    polarity    = affirmative | negative
+    scopedModifier = <condition|temporalScope>  # omit if absent
+\end{lstlisting}
+
+Se \texttt{decision != ACCEPT\_TRANSFER}, \texttt{BA\_OUTPUT} non contiene una proposition transfer accettabile. I nomi proposti restano candidate finche' non superano canonical naming, provenance e review.
+
+\subsection{Discriminazioni con altri costrutti}
+-
+%
+%</PAGE-CONTENT:29>
+
+\clearpage
+
+%<PAGE-DESC:30>7 - transfer: rappresentazione Mermaid
+%<PAGE-CONTENT:30>
+\PageHashFooter{\PageMDfive{30}}
+\subsection{Rappresentazione Mermaid di transfer}
+
+Per \texttt{transfer}, la projection rende direttamente leggibili i role dell'operatore. \texttt{source} e \texttt{destination} sono gli endpoint; \texttt{content} occupa la posizione centrale ed e' mostrato con una forma documento. L'intero percorso direzionale \texttt{source -> content -> destination} rappresenta \textbf{una sola} \BAP{} \texttt{transfer}: le due frecce sono una decomposizione grafica del percorso, non due proposition.
+
+Quando il role opzionale \texttt{behavior} e' presente, viene visualizzato come annotazione distinta del transfer: nodo giallo collegato al content con una linea tratteggiata e non direzionale. Questa linea e' una convenzione di projection del role \texttt{behavior}; non rappresenta una seconda relazione BA.
+
+\begin{tabularx}{\textwidth}{L{42mm}Y}
+\toprule
+\textbf{Parte di transfer} & \textbf{Rappresentazione Mermaid} \\
+\midrule
+\texttt{source} & Nodo endpoint all'origine del percorso. \\
+\texttt{content} & Nodo centrale con forma documento e sfondo bianco. \\
+\texttt{destination} & Nodo endpoint raggiunto dal percorso direzionale. \\
+\texttt{behavior} & Nodo opzionale con sfondo giallo; linea tratteggiata non direzionale verso il content. \\
+Proposition id / polarity & Metadati della stessa \BAP{}; non diventano un nodo del data path. \\
+\bottomrule
+\end{tabularx}
+
+\begin{lstlisting}
+flowchart LR
+  S["ClinicalDescriptionGeneration<br/>source"]
+  C@{ shape: doc, label: "ClinicalDescription<br/>content" }
+  D["HistoricalCaseRetrieval<br/>destination"]
+  B["ClinicalDescriptionTransfer<br/>behavior"]
+
+  S --> C --> D
+  B --- C
+
+  classDef endpoint fill:#EEF4F9,stroke:#275D86,color:#17324D
+  classDef content fill:#FFFFFF,stroke:#275D86,color:#17324D
+  classDef behavior fill:#FFF4E3,stroke:#A96A16,color:#17324D
+  class S,D endpoint
+  class C content
+  class B behavior
+  linkStyle 2 stroke:#A96A16,stroke-width:1.5px,stroke-dasharray:5 5
+\end{lstlisting}
+
+Il codice usa il caso T06 come esempio concreto. Se \texttt{behavior} fosse assente, il nodo giallo e la linea tratteggiata verrebbero omessi; il percorso \texttt{source -> content -> destination} resterebbe invariato.
+%</PAGE-CONTENT:30>
+
+\clearpage
+
+%<PAGE-DESC:31>7 - transfer: esempio grafico Mermaid
+%<PAGE-CONTENT:31>
+\PageHashFooter{\PageMDfive{31}}
+\subsection{Esempio grafico corrispondente}
+
+Il diagramma seguente applica la stessa convenzione al caso T06: il documento bianco e' il \texttt{content}; il percorso con frecce rende la direzione del \texttt{transfer}; il nodo giallo identifica il \texttt{behavior} opzionale senza trasformarlo in uno stadio del flusso.
+
+\vspace{5mm}
+\begin{center}
+\begin{tikzpicture}[
+  endpoint/.style={draw=DDTABlue,fill=DDTALightBlue,rounded corners=3pt,thick,align=center,minimum height=18mm,text width=37mm,inner sep=6pt,font=\sffamily\fontsize{7}{8.2}\selectfont},
+  contentdoc/.style={draw=DDTABlue,fill=white,thick,align=center,minimum height=22mm,text width=32mm,inner sep=7pt,font=\sffamily\fontsize{7}{8.2}\selectfont,
+    path picture={\draw[DDTABlue,thick] ([xshift=-6mm]path picture bounding box.north east) -- ([xshift=-6mm,yshift=-6mm]path picture bounding box.north east) -- ([yshift=-6mm]path picture bounding box.north east); \draw[DDTABlue,thick] ([xshift=-6mm]path picture bounding box.north east) -- ([yshift=-6mm]path picture bounding box.north east);}},
+  behavior/.style={draw=DDTAAmber,fill=DDTALightAmber,rounded corners=3pt,thick,align=center,minimum height=15mm,text width=40mm,inner sep=6pt,font=\sffamily\fontsize{7}{8.2}\selectfont},
+  flow/.style={draw=DDTABlue,very thick,-{Stealth[length=3mm,width=2mm]}},
+  qualifier/.style={draw=DDTAAmber,thick,dashed}
+]
+\node[contentdoc] (c) {\textbf{ClinicalDescription}\\{\scriptsize\texttt{content}}};
+\node[endpoint,left=15mm of c] (s) {\textbf{ClinicalDescriptionGeneration}\\{\scriptsize\texttt{source}}};
+\node[endpoint,right=15mm of c] (d) {\textbf{HistoricalCaseRetrieval}\\{\scriptsize\texttt{destination}}};
+\node[behavior,above=17mm of c] (b) {\textbf{ClinicalDescriptionTransfer}\\{\scriptsize\texttt{behavior}}};
+
+\draw[flow] (s) -- (c);
+\draw[flow] (c) -- (d);
+\draw[qualifier] (b) -- (c);
+\end{tikzpicture}
+\end{center}
+
+\vspace{3mm}
+\begin{center}
+\sffamily\small\textbf{BAP-T06-01}\quad \texttt{transfer}\quad \texttt{polarity = affirmative}
+\end{center}
+\vspace{3mm}
+
+\begin{ddtacheck}[title={Lettura del grafico}]
+Il percorso completo da \texttt{source} a \texttt{destination}, passando per il documento \texttt{content}, e' la projection di una sola proposition \texttt{transfer}. La linea tratteggiata verso il nodo giallo esprime soltanto la presenza del role opzionale \texttt{behavior}; non e' una BAProposition aggiuntiva e non introduce una seconda direzione di flusso.
+\end{ddtacheck}
+%</PAGE-CONTENT:31>
+
+\clearpage
+
+%<PAGE-DESC:32>Appendice temporanea - scopo, lineage e confine del rebuild
+%<PAGE-CONTENT:32>
+\PageHashFooter{\PageMDfive{32}}
+\appendix
+\section{Materiale temporaneo di rebuild}
+\TemporaryRebuildBanner
+\subsection{Scopo, lineage e confine della ricostruzione}
+
+Questa guida non nasce per dichiarare che la revisione piu' recente sia automaticamente la migliore. Nasce per rendere leggibile e applicabile il patrimonio BA gia' costruito, riesaminandolo in modo uniforme mentre viene applicato alla documentazione DermaTriage corrente.
+
+\begin{ddtacore}[title={Regola di costruzione cumulativa}]
+La nuova struttura editoriale puo' essere diversa da R3, Core R42 o Complete R42. Il significato precedente, pero', non puo' scomparire per effetto della riscrittura. Ogni distinzione precedente deve essere preservata, raffinata, rilocalizzata, ritestata, respinta con motivazione oppure lasciata esplicitamente aperta.
+\end{ddtacore}
+
+\subsection{Tre livelli da non confondere}
+
+\begin{tabularx}{\textwidth}{L{38mm}L{39mm}Y}
+\toprule
+\textbf{Livello} & \textbf{Esempio} & \textbf{Effetto} \\
+\midrule
+Authority corrente & BA0--BA5 + Operational Guide R3 & Governa il metodo corrente finche' non esiste promotion esplicita. \\
+Research evidence & R42, operator review, ledger, pressure, candidate, vecchi appunti & Puo' motivare chiarimenti o cambi, ma non modifica da solo il metodo. \\
+Rebuild candidate & questa guida & Superficie cumulativa di review; diventa authority solo con checkpoint successivo. \\
+\bottomrule
+\end{tabularx}
+
+\begin{ddtaopen}[title={Nessun target di cardinalita'}]
+Il fatto che la BA corrente abbia quattordici operatori top-level non crea un obiettivo di quattordici operatori. Anche il precedente snapshot a tredici elementi resta genealogia utile, non un target da ripristinare. Il numero finale deve essere un risultato della necessita' semantica e della regression, non una quota.
+\end{ddtaopen}
+%</PAGE-CONTENT:32>
+
+\clearpage
+
+%<PAGE-DESC:33>Appendice temporanea - corpus e stati epistemici
+%<PAGE-CONTENT:33>
+\PageHashFooter{\PageMDfive{33}}
+\TemporaryRebuildBanner
+\subsection{Corpus di ricostruzione e stati epistemici}
+
+Il rebuild usa come input controllato il registro {\scriptsize\nolinkurl{DDTA_R25_BASE_ANALYSIS_REBUILD_SOURCE_REGISTER_R1.md}}. Prima di chiudere un costrutto vanno ricercati non solo il suo nome corrente, ma anche alias storici, pressure collegate, candidate construct, alternative rifiutate e counterexample.
+
+\begin{ddtaprinciple}[title={Recency non equivale ad authority}]
+R42 Core/Complete e' una superficie di lettura aggiornata e molto utile per il rebuild. R3 e BA0--BA5 restano tuttavia authority corrente. La guida nuova puo' usare R42 come base esplicativa senza promuovere automaticamente le sue candidate o chiudere le sue open pressure.
+\end{ddtaprinciple}
+
+\subsection{Etichette epistemiche minime}
+
+\begin{tabularx}{\textwidth}{L{49mm}L{34mm}Y}
+\toprule
+\textbf{Etichetta} & \textbf{Uso} & \textbf{Disciplina} \\
+\midrule
+\CurrentTag & Semantica corrente preservata & Deve restare compatibile con l'authority o dichiararne esplicitamente il delta. \\
+\CandidateTag & Costrutto/evoluzione con evidence positiva ma non ammessa & Non usare come vocabulary corrente senza admission esplicita. \\
+\OpenTag & Problema reale non chiuso & Mantenere il gap visibile; non completare per convenienza. \\
+\RejectedTag & Ipotesi testata e respinta nello scope disponibile & Conservare ragione, test e condizioni di eventuale reopen. \\
+\RebuildTag & Regola editoriale del rebuild & Governa come descriviamo e confrontiamo i costrutti durante questa ricostruzione. \\
+\bottomrule
+\end{tabularx}
+
+\begin{ddtacheck}[title={Regola anti-perdita}]
+Una guida piu' corta non e' una guida migliore se per ottenere la sintesi elimina una distinzione ancora utile. Il rebuild puo' comprimere la prosa soltanto dopo aver dimostrato che la distinzione resta ricostruibile e tracciabile.
+\end{ddtacheck}
+%</PAGE-CONTENT:33>
+
+\clearpage
+
+%<PAGE-DESC:34>Appendice temporanea - Construct Description Contract e principio espositivo
+%<PAGE-CONTENT:34>
+\PageHashFooter{\PageMDfive{34}}
+\TemporaryRebuildBanner
+\subsection{Construct Description Contract}
+
+\RebuildTag
+
+Prima di riscrivere il primo costrutto BA, fissiamo il modo in cui \emph{tutti} i costrutti verranno descritti. Questo contratto serve a impedire che la guida cambi struttura in funzione del caso del momento e rende confrontabili operatori current, condition form, strutture candidate, pressure e ipotesi rifiutate.
+
+\begin{ddtacore}[title={Invariante editoriale}]
+Ogni costrutto usa la stessa sequenza descrittiva. Un campo puo' essere \texttt{NOT APPLICABLE}, \texttt{NOT FROZEN} o \texttt{OPEN}; non puo' essere omesso silenziosamente. Se un costrutto futuro dimostra che il contratto non basta, si modifica prima il contratto e poi si riallineano i costrutti gia' trattati.
+\end{ddtacore}
+
+\begin{ddtaprinciple}[title={Controllo rigoroso, esposizione naturale}]
+Il CDC e' un contratto di \emph{copertura}, non un template rigido di impaginazione. I campi richiesti devono essere tutti trattati e ricostruibili durante la review, ma la guida definitiva puo' combinarli in paragrafi e sezioni piu' naturali quando questo non nasconde informazioni, stato epistemico o confini semantici. Struttura di controllo rigorosa non significa esposizione meccanica.
+\end{ddtaprinciple}
+%</PAGE-CONTENT:34>
+
+\clearpage
+
+%<PAGE-DESC:35>Appendice temporanea - CDC direzione della spiegazione e revisione
+%<PAGE-CONTENT:35>
+\PageHashFooter{\PageMDfive{35}}
+\TemporaryRebuildBanner
+\subsection{Direzione obbligatoria della spiegazione}
+
+\begin{lstlisting}
+human semantic idea
+    -> BA term / construct class
+    -> formal shape
+    -> boundaries and discriminators
+    -> examples
+    -> evidence and genealogy
+    -> open questions
+    -> current rebuild disposition
+\end{lstlisting}
+
+\begin{ddtaanti}[title={Da evitare}]
+\begin{itemize}
+  \item iniziare dalla firma e lasciare al lettore il compito di indovinarne il significato;
+  \item usare l'esempio DermaTriage come definizione implicita del costrutto;
+  \item aggiungere campi solo a un costrutto perche' il suo caso concreto ne ha bisogno;
+  \item completare la firma di una candidate non ammessa per rendere il template piu' ordinato;
+  \item nascondere rejected hypothesis o pressure per ottenere una sezione apparentemente ``chiusa''.
+\end{itemize}
+\end{ddtaanti}
+
+\subsection{Revisione del contratto}
+Il contratto parte come \texttt{CDC-R1}. Ogni sua modifica futura deve avere un counterexample, una motivazione generalizzabile e una regression sui costrutti gia' descritti.
+%</PAGE-CONTENT:35>
+
+\clearpage
+
+%<PAGE-DESC:36>Appendice temporanea - CDC campi 1-10
+%<PAGE-CONTENT:36>
+\PageHashFooter{\PageMDfive{36}}
+\TemporaryRebuildBanner
+\subsection{Construct Description Contract - template, parte 1}
+
+\begin{longtable}{L{10mm}L{47mm}L{84mm}}
+\toprule
+\textbf{N.} & \textbf{Campo} & \textbf{Contenuto richiesto} \\
+\midrule\endhead
+1 & Canonical name & Nome usato dal rebuild. Alias storici vanno nel campo genealogy, non come nomi paralleli current. \\
+2 & Construct class & Top-level operator, condition form, local reusable structure, candidate, open pressure, rejected hypothesis o altro meccanismo BA dichiarato. \\
+3 & Epistemic status & Stato esplicito: current/preserved, candidate/not admitted, open, rejected oppure altro stato definito. \\
+4 & Owning BA layer / contract & Dove il significato appartiene: BA0, BA1, BA2, BA3, BA4, BA5 oppure confine cross-layer esplicito. \\
+5 & Human definition & Spiegazione in linguaggio naturale di che cosa rappresenta il costrutto. \\
+6 & Smallest semantic fact & Il nucleo minimo che si perde eliminando il costrutto. \\
+7 & When to use & Condizioni positive che giustificano l'uso. Devono riferirsi a significato governato, non a parole chiave. \\
+8 & When not to use & Casi in cui il costrutto sembra plausibile ma imporrebbe semantica sbagliata o eccessiva. \\
+9 & Canonical syntax / shape & Forma corrente se ammessa. Per candidate non chiuse: \texttt{NOT FROZEN} salvo working shape esplicitamente marcata. \\
+10 & Roles, types, cardinalities & Ruoli e vincoli formali ammessi. Nessun role viene inventato per l'esempio corrente. \\
+\bottomrule
+\end{longtable}
+
+\begin{ddtaprinciple}[title={Semantica prima della sintassi}]
+I campi 5--8 devono poter essere compresi anche da chi non conosce ancora la sintassi BA. I campi 9--10 formalizzano il significato; non lo sostituiscono.
+\end{ddtaprinciple}
+%</PAGE-CONTENT:36>
+
+\clearpage
+
+%<PAGE-DESC:37>Appendice temporanea - CDC campi 11-20
+%<PAGE-CONTENT:37>
+\PageHashFooter{\PageMDfive{37}}
+\TemporaryRebuildBanner
+\subsection{Construct Description Contract - template, parte 2}
+
+\begin{longtable}{L{10mm}L{47mm}L{84mm}}
+\toprule
+\textbf{N.} & \textbf{Campo} & \textbf{Contenuto richiesto} \\
+\midrule\endhead
+11 & Semantic invariants & Cio' che deve restare vero in ogni uso valido del costrutto. \\
+12 & Forbidden inferences & Fatti che la presenza del costrutto non autorizza a dedurre. \\
+13 & Closest constructs / discriminators & Confini pairwise con i costrutti piu' facili da confondere. \\
+14 & Minimal generic positive example & Esempio didattico minimo, separato dall'evidence di progetto. \\
+15 & DermaTriage application example & Uso reale sulla documentazione corrente, quando disponibile e supportato. \\
+16 & Negative / boundary example & Caso in cui il costrutto va rifiutato o usato con limite preciso. \\
+17 & Genealogy and research evidence & Authority, candidate guide, operator review, PR/CC/CL/CMD/OBS e precedenti rilevanti. \\
+18 & Open pressures / candidate deltas & Questioni ancora vive che non devono essere nascoste dalla descrizione principale. \\
+19 & Review / acceptance questions & Domande ripetibili che permettono a un autore di verificare l'uso. \\
+20 & Current rebuild disposition & Cosa decide questa revisione: preserve, refine, retest, reject, hold, candidate admission later, ecc. \\
+\bottomrule
+\end{longtable}
+
+\begin{ddtacheck}[title={Change protocol del CDC}]
+Se un costrutto non entra nel template, non si crea una eccezione locale. Si registra il counterexample, si verifica se il problema e' generale, si produce una revisione \texttt{CDC-R2} e si riesaminano retroattivamente i costrutti gia' descritti. Nessuna modifica implicita del formato e' ammessa.
+\end{ddtacheck}
+
+\begin{ddtaexample}[title={Candidate con firma non chiusa}]
+Per \texttt{provideService} il template resta completo, ma i campi ``Canonical syntax'' e ``Roles, types, cardinalities'' possono dichiarare \texttt{NOT FROZEN}. E' preferibile una lacuna esplicita a una firma inventata solo per uniformare l'impaginazione.
+\end{ddtaexample}
+%</PAGE-CONTENT:37>
+
+\clearpage
+
+%<PAGE-DESC:38>Appendice temporanea - roadmap corrente del rebuild R7
+%<PAGE-CONTENT:38>
+\PageHashFooter{\PageMDfive{38}}
+\TemporaryRebuildBanner
+\subsection{Roadmap temporanea del rebuild}
+\begin{enumerate}
+  \item usare \texttt{CDC-R1} come controllo di copertura, senza trasformarlo in una scheda editoriale rigida;
+  \item assumere le Sezioni 1--7 come base espositiva corrente della Rebuild R7;
+  \item preservare governed semantic fact, \BAR{}, \BAP{}, identity criterion, stopping rule e structural-feedback boundary come fondazioni gia' riesaminate;
+  \item considerare \texttt{transfer} il primo operatore completamente ricostruito nella nuova struttura: definizione generale, firma, roleKey, cardinalita', identity rules, question pack, esempi, prompt LLM e output BA atteso;
+  \item mantenere per ora le discriminazioni pairwise come placeholder: saranno compilate quando il catalogo vicino sara' abbastanza stabile da evitare riscritture ripetute;
+  \item non considerare ancora \texttt{produce}, \texttt{constrain} o altri operatori consolidati nella rebuild soltanto perche' compaiono negli esempi DermaTriage;
+  \item continuare la review data-path / information-contract di \texttt{MR-01} da T07, usando l'authority BA corrente come riferimento operativo e riallocando ogni risultato prima di rimuoverlo dalla worklist;
+  \item per il prossimo operatore, partire dalle pagine e dagli esempi della vecchia guida, ricostruire prima il metodo generale e poi sostituire gli esempi di progetto con evidence corrente verificata;
+  \item mantenere prompt LLM e wrapper di authoring separati dalla semantica BA: possono evolvere senza creare nuovi campi o operatori;
+  \item solo dopo BA accettata per uno scope, produrre e verificare le projection downstream previste.
+\end{enumerate}
+
+\begin{ddtaopen}[title={Stop point di questa R7}]
+La Rebuild R7 consolida soltanto \texttt{transfer}. Gli altri operatori restano quelli dell'authority BA corrente e non sono ancora stati riscritti nella nuova guida. Il prossimo passo puo' essere la ricostruzione completa del successivo operatore quando avremo evidence sufficiente, mantenendo DermaTriage come worked example e non come sorgente della semantica.
+\end{ddtaopen}
+%</PAGE-CONTENT:38>
+
+\clearpage
+
+%<PAGE-DESC:39>Indice di integrita' delle pagine
+%<PAGE-CONTENT:39>
+\PageHashFooter{\PageMDfive{39}}
+\section*{Indice di integrita' delle pagine}
+\begin{ddtacore}[title={Regola di verifica}]
+Ogni pagina possiede un MD5 del proprio contenuto canonico. Il valore stampato nella pagina e' escluso dal payload; nella pagina indice il proprio hash viene canonicalizzato come \texttt{<SELF>} per evitare dipendenza circolare.
+\end{ddtacore}
+\vspace{2mm}
+\begingroup
+\scriptsize
+\renewcommand{\arraystretch}{0.88}
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\IntegrityRow}[3]{#1 & #2 & {\scriptsize\ttfamily #3} \\}
+\begin{longtable}{L{9mm}L{86mm}L{49mm}}
+\toprule
+\textbf{Pag.} & \textbf{Contenuto} & \textbf{MD5 contenuto} \\
+\midrule
+%<PAGE-INTEGRITY-ROWS>
+\IntegrityRow{1}{Frontespizio della Base Analysis Guide Rebuild R7}{\PageMDfive{1}}
+\IntegrityRow{2}{1 - Che cos'e' la Base Analysis}{\PageMDfive{2}}
+\IntegrityRow{3}{1 - Perche' esiste e principi di base}{\PageMDfive{3}}
+\IntegrityRow{4}{1 - Direzione dell'authority e feedback}{\PageMDfive{4}}
+\IntegrityRow{5}{1 - Minimum sufficient BA, NOT SPECIFIED e gap}{\PageMDfive{5}}
+\IntegrityRow{6}{2 - BA View / Projection Contract e source types}{\PageMDfive{6}}
+\IntegrityRow{7}{2 - Mermaid e campi minimi della view}{\PageMDfive{7}}
+\IntegrityRow{8}{2 - Coverage mode e famiglie di viste}{\PageMDfive{8}}
+\IntegrityRow{9}{2 - View gap e mapping discipline}{\PageMDfive{9}}
+\IntegrityRow{10}{3 - Dal testo documentale al significato governato}{\PageMDfive{10}}
+\IntegrityRow{11}{3 - Governed semantic fact}{\PageMDfive{11}}
+\IntegrityRow{12}{3 - Segmentazione, ambiguita e livello documentale}{\PageMDfive{12}}
+\IntegrityRow{13}{4 - Elementi fondamentali della Base Analysis}{\PageMDfive{13}}
+\IntegrityRow{14}{4 - BAReferent: identita analitica riusabile}{\PageMDfive{14}}
+\IntegrityRow{15}{4 - BAReferent: esempi DermaTriage e confini}{\PageMDfive{15}}
+\IntegrityRow{16}{4 - BAProposition: asserzione analitica identificabile}{\PageMDfive{16}}
+\IntegrityRow{17}{4 - BAReferent e BAProposition insieme}{\PageMDfive{17}}
+\IntegrityRow{18}{5 - Granularita, minimalita e costruzione della BA}{\PageMDfive{18}}
+\IntegrityRow{19}{6 - Indipendenza tra struttura documentale e struttura BA}{\PageMDfive{19}}
+\IntegrityRow{20}{6 - Structural feedback e no authority inversion}{\PageMDfive{20}}
+\IntegrityRow{21}{6 - DermaTriage DEC02 DEC04 come pressure case}{\PageMDfive{21}}
+\IntegrityRow{22}{6 - Downstream Utility Test e riallineamento BA}{\PageMDfive{22}}
+\IntegrityRow{23}{7 - transfer: definizione, smallest fact e criteri d'uso}{\PageMDfive{23}}
+\IntegrityRow{24}{7 - transfer: firma canonica, ruoli e cardinalita}{\PageMDfive{24}}
+\IntegrityRow{25}{7 - transfer: identity continuity, invarianti e forbidden inference}{\PageMDfive{25}}
+\IntegrityRow{26}{7 - transfer: domande di identificazione e procedura di estrazione}{\PageMDfive{26}}
+\IntegrityRow{27}{7 - transfer: esempio generico e worked example DermaTriage corrente}{\PageMDfive{27}}
+\IntegrityRow{28}{7 - transfer: prompt LLM per l'identificazione controllata}{\PageMDfive{28}}
+\IntegrityRow{29}{7 - transfer: output BA atteso e discriminazioni differite}{\PageMDfive{29}}
+\IntegrityRow{30}{7 - transfer: rappresentazione Mermaid}{\PageMDfive{30}}
+\IntegrityRow{31}{7 - transfer: esempio grafico Mermaid}{\PageMDfive{31}}
+\IntegrityRow{32}{Appendice temporanea - scopo, lineage e confine del rebuild}{\PageMDfive{32}}
+\IntegrityRow{33}{Appendice temporanea - corpus e stati epistemici}{\PageMDfive{33}}
+\IntegrityRow{34}{Appendice temporanea - Construct Description Contract e principio espositivo}{\PageMDfive{34}}
+\IntegrityRow{35}{Appendice temporanea - CDC direzione della spiegazione e revisione}{\PageMDfive{35}}
+\IntegrityRow{36}{Appendice temporanea - CDC campi 1-10}{\PageMDfive{36}}
+\IntegrityRow{37}{Appendice temporanea - CDC campi 11-20}{\PageMDfive{37}}
+\IntegrityRow{38}{Appendice temporanea - roadmap corrente del rebuild R7}{\PageMDfive{38}}
+\IntegrityRow{39}{Indice di integrita' delle pagine}{\PageMDfive{39}}
+%</PAGE-INTEGRITY-ROWS>
+\bottomrule
+\end{longtable}
+\endgroup
+\vspace{2mm}
+\begin{ddtaopen}[title={Stato della ricostruzione}]
+Questa pagina chiude la Rebuild R7 di review. Le pagine di appendice temporanea restano deliberatamente presenti finche' il rebuild non avra' trasferito nella guida definitiva tutte le regole metodologiche che devono sopravvivere.
+\end{ddtaopen}
+%</PAGE-CONTENT:39>
+
+\end{document}
