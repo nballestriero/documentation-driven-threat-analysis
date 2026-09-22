@@ -23,23 +23,23 @@
 %<PAGE-HASH-DEFS>
 \expandafter\def\csname PageMDfive1\endcsname{377b35624c4b40d544cde72bcf00740c}
 \expandafter\def\csname PageMDfive2\endcsname{a3275772d6cd2ce37195f7d8163144e8}
-\expandafter\def\csname PageMDfive3\endcsname{e0a2e06de7d5b7d2c17be5b4c2174123}
-\expandafter\def\csname PageMDfive4\endcsname{a85d18b44bd6e3d6cb99220e093e049c}
-\expandafter\def\csname PageMDfive5\endcsname{f5832faca2f179e3423a50e97b752b9e}
-\expandafter\def\csname PageMDfive6\endcsname{d0dcb49f3ed5b107e5a4f60db5eefd9a}
-\expandafter\def\csname PageMDfive7\endcsname{dd5eeb559c1d009b4e99196d5bebf41c}
-\expandafter\def\csname PageMDfive8\endcsname{60f9677d73ea1cf026ef92c267c4fcf0}
+\expandafter\def\csname PageMDfive3\endcsname{46cbd47a5fe8e2c86417634fdddea7c8}
+\expandafter\def\csname PageMDfive4\endcsname{d464848d4f632cc58be0991cacf1b647}
+\expandafter\def\csname PageMDfive5\endcsname{b20178fc4e6cdc140cf16360634f5344}
+\expandafter\def\csname PageMDfive6\endcsname{a3198ac668083dc67b750dff9bd44175}
+\expandafter\def\csname PageMDfive7\endcsname{e50995f0de66f6d8f847ce9ddfa6912f}
+\expandafter\def\csname PageMDfive8\endcsname{452c3e6e4e672ba2f0d437f6363ee29c}
 \expandafter\def\csname PageMDfive9\endcsname{bb03073eb7e38e5511cf24446218dd47}
-\expandafter\def\csname PageMDfive10\endcsname{4b655ebd15791ba935d4d7e668f22471}
-\expandafter\def\csname PageMDfive11\endcsname{a9569e8086367d55854bccd3cf09f99f}
+\expandafter\def\csname PageMDfive10\endcsname{cba1a94e83a61109b957b847a25c73cd}
+\expandafter\def\csname PageMDfive11\endcsname{5f72ac1bc71bb90de2c89aee9c1bf055}
 \expandafter\def\csname PageMDfive12\endcsname{de49645acb22e76bb345d691937b0109}
 \expandafter\def\csname PageMDfive13\endcsname{d718ab9cf72c7cd323e0e0997dde32e3}
 \expandafter\def\csname PageMDfive14\endcsname{22b589e352a735848af68026ba7ccd6e}
 \expandafter\def\csname PageMDfive15\endcsname{88277fb1892436757c84526e8a5be8b0}
 \expandafter\def\csname PageMDfive16\endcsname{e5085117316308ad10f9d8324bedf7eb}
-\expandafter\def\csname PageMDfive17\endcsname{9a6a624d9075825e45b95bf7ad1c1a2e}
-\expandafter\def\csname PageMDfive18\endcsname{751d0c7dc001b0757852d3a68215cd92}
-\expandafter\def\csname PageMDfive19\endcsname{cc98a497ca37d98976f57b785863c4ac}
+\expandafter\def\csname PageMDfive17\endcsname{1d2803e5bdbe10d218dd55d3dc97b912}
+\expandafter\def\csname PageMDfive18\endcsname{e55886ad7a39e0f26dc1da9edde09fc4}
+\expandafter\def\csname PageMDfive19\endcsname{bab8fa412e91ff44c0588e562b3ff078}
 %</PAGE-HASH-DEFS>
 
 \newcommand{\PageHashFooter}[1]{%
@@ -241,7 +241,7 @@ Paziente.
 {\itshape
 \texttt{BAP-MR01-01}\par
 \texttt{semanticOperatorKey = produce}\par
-\hspace*{1em}\texttt{actor -> ??}\par
+\hspace*{1em}\texttt{actor -> DermatologicalTriageEvaluation}\par
 \hspace*{1em}\texttt{input -> CaseInformation}\par
 \hspace*{1em}\texttt{result -> CaseUrgency}\par
 \hspace*{1em}\texttt{result -> OperationalTriagePriority}\par
@@ -312,7 +312,7 @@ L'immagine non costituisce una precondizione assoluta per la determinazione dell
 
 \begin{ddtareferentaccepted}
 \scriptsize
-\BAAccepted{DermaTriage} \BAFirstAccepted{}.\par
+\BAAccepted{DermaTriage} \BAFirstAccepted{}; \BAAccepted{DermatologicalTriageEvaluation}.\par
 \end{ddtareferentaccepted}
 
 \begin{ddtapropositionidentified}
@@ -320,9 +320,11 @@ L'immagine non costituisce una precondizione assoluta per la determinazione dell
 {\itshape
 \texttt{BAP-DEC01-01}\par
 \texttt{semanticOperatorKey = produce}\par
-\hspace*{1em}\texttt{actor -> ??}\par
+\hspace*{1em}\texttt{actor -> DermaTriage}\par
 \hspace*{1em}\texttt{input -> SymptomInformation}\par
 \hspace*{1em}\texttt{result -> CaseUrgency}\par
+\hspace*{1em}\texttt{scopedModifier}\par
+\hspace*{2em}\texttt{condition -> LesionImage unavailable}\par
 \texttt{polarity = affirmative}\par
 }
 \end{ddtapropositionidentified}
@@ -407,12 +409,19 @@ Nessuna relazione stabilita.
 
 \begin{ddtapropositionidentified}
 \scriptsize
-\texttt{NON ANALIZZATO}
+\texttt{BAP-FR01-01-01}\par
+\texttt{semanticOperatorKey = produce}\par
+\hspace*{1em}\texttt{actor -> DermaTriage}\par
+\hspace*{1em}\texttt{input -> SymptomInformation}\par
+\hspace*{1em}\texttt{result -> CaseUrgency}\par
+\hspace*{1em}\texttt{scopedModifier}\par
+\hspace*{2em}\texttt{condition -> LesionImage unavailable}\par
+\texttt{polarity = affirmative}
 \end{ddtapropositionidentified}
 
 \begin{ddtapropositionaccepted}
 \scriptsize
-\texttt{NON ANALIZZATO}
+\textbf{BAP-FR01-01-01}.
 \end{ddtapropositionaccepted}
 
 \end{paracol}
@@ -469,7 +478,7 @@ Il percorso image-based richiede la disponibilita' dell'immagine della lesione e
 
 \begin{ddtareferentaccepted}
 \scriptsize
-\BAAccepted{DermaTriage}; \BAAccepted{LesionImage}.\par
+\BAAccepted{DermaTriage}; \BAAccepted{DermatologicalTriageEvaluation}; \BAAccepted{LesionImage}.\par
 \end{ddtareferentaccepted}
 
 \begin{ddtapropositionidentified}
@@ -565,6 +574,8 @@ Nessuna relazione stabilita.
 \hspace*{1em}\texttt{actor -> ImageUrgencyAnalysis}\par
 \hspace*{1em}\texttt{input -> LesionImage}\par
 \hspace*{1em}\texttt{result -> ImageUrgencyClassification}\par
+\hspace*{1em}\texttt{scopedModifier}\par
+\hspace*{2em}\texttt{condition -> LesionImage available}\par
 \texttt{polarity = affirmative}\par
 \medskip
 \texttt{BAP-FR03-01-02}\par
@@ -662,6 +673,8 @@ Nessuna relazione stabilita.
 \hspace*{1em}\texttt{actor -> ClinicalDescriptionGeneration}\par
 \hspace*{1em}\texttt{input -> LesionImage}\par
 \hspace*{1em}\texttt{result -> ClinicalDescription}\par
+\hspace*{1em}\texttt{scopedModifier}\par
+\hspace*{2em}\texttt{condition -> LesionImage available}\par
 \texttt{polarity = affirmative}\par
 \smallskip
 \texttt{BAP-FR03-02-02}\par
@@ -879,6 +892,8 @@ Nessuna relazione stabilita.
 \hspace*{1em}\texttt{actor -> ClinicalDescriptionEmbeddingGeneration}\par
 \hspace*{1em}\texttt{input -> ClinicalDescription}\par
 \hspace*{1em}\texttt{result -> ClinicalDescriptionEmbedding}\par
+\hspace*{1em}\texttt{scopedModifier}\par
+\hspace*{2em}\texttt{condition -> LesionImage available}\par
 \texttt{polarity = affirmative}\par
 \smallskip
 \texttt{BAP-FR03-03-05}\par
@@ -893,6 +908,8 @@ Nessuna relazione stabilita.
 \hspace*{1em}\texttt{input -> ClinicalDescriptionEmbedding}\par
 \hspace*{1em}\texttt{input -> HistoricalCaseVectorIndex}\par
 \hspace*{1em}\texttt{result -> RetrievedHistoricalCases}\par
+\hspace*{1em}\texttt{scopedModifier}\par
+\hspace*{2em}\texttt{condition -> LesionImage available}\par
 \texttt{polarity = affirmative}\par
 \smallskip
 \texttt{BAP-FR03-03-11}\par
@@ -906,6 +923,8 @@ Nessuna relazione stabilita.
 \hspace*{1em}\texttt{source -> ClinicalDescriptionGeneration}\par
 \hspace*{1em}\texttt{destination -> ClinicalDescriptionEmbeddingGeneration}\par
 \hspace*{1em}\texttt{content -> ClinicalDescription}\par
+\hspace*{1em}\texttt{scopedModifier}\par
+\hspace*{2em}\texttt{condition -> LesionImage available}\par
 \texttt{polarity = affirmative}\par
 \smallskip
 \texttt{BAP-FR03-03-13}\par
@@ -913,6 +932,8 @@ Nessuna relazione stabilita.
 \hspace*{1em}\texttt{source -> HistoricalCaseSimilarityRetrieval}\par
 \hspace*{1em}\texttt{destination -> MultiSourceTriageSynthesis}\par
 \hspace*{1em}\texttt{content -> RetrievedHistoricalCases}\par
+\hspace*{1em}\texttt{scopedModifier}\par
+\hspace*{2em}\texttt{condition -> LesionImage available}\par
 \texttt{polarity = affirmative}
 \end{ddtapropositionidentified}
 
@@ -1006,6 +1027,8 @@ Nessuna relazione stabilita.
 \hspace*{1em}\texttt{input -> SymptomInformation}\par
 \hspace*{1em}\texttt{result -> CaseUrgency}\par
 \hspace*{1em}\texttt{result -> TriageConfidence}\par
+\hspace*{1em}\texttt{scopedModifier}\par
+\hspace*{2em}\texttt{condition -> LesionImage available}\par
 \texttt{polarity = affirmative}\par
 \medskip
 \texttt{BAP-FR03-04-02}\par
@@ -1414,7 +1437,7 @@ Medico.
 
 \begin{ddtacore}[title={Sintesi BA corrente}]
 \scriptsize
-Il registro raccoglie la tracciabilita' BA corrente senza introdurre campi o stati ulteriori rispetto al modello BA usato nel case study. In R25, \texttt{FR-MR01-03-03A/B} sono label di review provvisori: servono a mostrare la riallocazione prodotta dallo split senza anticipare la decisione sugli ID canonici. Gli ID delle BAProposition preesistenti restano invariati per preservare la tracciabilita'. Il riferimento in \textbf{grassetto} identifica il primo elemento documentale nel quale il BAReferent o la BAProposition viene accettato; i riferimenti non in grassetto indicano occorrenze o candidature gia' visibili nella documentazione corrente. Le proposition sono registrate con gli operatori e i ruoli canonici definiti dalla guida BA di riferimento.
+Il registro raccoglie la tracciabilita' BA corrente senza introdurre campi o stati ulteriori rispetto al modello BA usato nel case study. In R25, \texttt{FR-MR01-03-03A/B} sono label di review provvisori: servono a mostrare la riallocazione prodotta dallo split senza anticipare la decisione sugli ID canonici. Gli ID delle BAProposition preesistenti restano invariati per preservare la tracciabilita'. Il riferimento in \textbf{grassetto} identifica il primo elemento documentale nel quale il BAReferent o la BAProposition viene accettato; i riferimenti non in grassetto indicano occorrenze o candidature gia' visibili nella documentazione corrente. \textbf{Identity continuity:} lo stesso nome di BAReferent nel registro denota la stessa identita' semantica in ogni occorrenza; se due significati sono distinti devono essere rappresentati da BAReferent distinti, non disambiguati implicitamente dal contesto. Le proposition sono registrate con gli operatori, i ruoli e gli scoped modifier canonici definiti dalla guida BA di riferimento.
 \end{ddtacore}
 
 \vspace{0.5mm}
@@ -1429,7 +1452,7 @@ Il registro raccoglie la tracciabilita' BA corrente senza introdurre campi o sta
 \midrule
 DermaTriage & \texttt{MR-01}; \textbf{\texttt{DEC-MR01-01}}; \texttt{FR-MR01-01-01}; \texttt{DEC-MR01-03}; \texttt{FR-MR01-03-01}; \texttt{FR-MR01-03-02}; \texttt{FR-MR01-03-04}; \texttt{DEC-MR01-04}; \texttt{FR-MR01-04-01} \\
 DermatologicalCase & \textbf{\texttt{MR-01}}; \texttt{FR-MR01-01-01}; \texttt{FR-MR01-03-04} \\
-DermatologicalTriageEvaluation & \textbf{\texttt{MR-01}}; \texttt{FR-MR01-01-01} \\
+DermatologicalTriageEvaluation & \textbf{\texttt{MR-01}}; \texttt{DEC-MR01-01}; \texttt{FR-MR01-01-01}; \texttt{DEC-MR01-03} \\
 CaseUrgency & \textbf{\texttt{MR-01}}; \texttt{FR-MR01-01-01}; \texttt{FR-MR01-03-04}; \texttt{DEC-MR01-04}; \texttt{FR-MR01-04-01} \\
 OperationalTriagePriority & \textbf{\texttt{MR-01}}; \texttt{DEC-MR01-04}; \texttt{FR-MR01-04-01} \\
 CaseInformation & \texttt{MR-01} \\
@@ -1472,24 +1495,25 @@ AdaptationLayer & \texttt{FR-MR01-04-01} \\
 \textbf{BAProposition} & \textbf{Riferimenti documentali} \\
 \midrule
 \emph{\texttt{BAP-MR01-01}} & \texttt{MR-01} \\
-\emph{\texttt{BAP-DEC01-01}} & \texttt{DEC-MR01-01} \\
-\textbf{\texttt{BAP-FR03-01-01}} & \texttt{FR-MR01-03-01} -- \texttt{produce} \\
+\emph{\texttt{BAP-DEC01-01}} & \texttt{DEC-MR01-01} -- \texttt{produce}, \texttt{condition: LesionImage unavailable} \\
+\textbf{\texttt{BAP-FR01-01-01}} & \texttt{FR-MR01-01-01} -- \texttt{produce}, \texttt{condition: LesionImage unavailable} \\
+\textbf{\texttt{BAP-FR03-01-01}} & \texttt{FR-MR01-03-01} -- \texttt{produce}, \texttt{condition: LesionImage available} \\
 \textbf{\texttt{BAP-FR03-01-02}} & \texttt{FR-MR01-03-01} -- \texttt{realize} \\
-\textbf{\texttt{BAP-FR03-02-01}} & \texttt{FR-MR01-03-02} -- \texttt{produce} \\
+\textbf{\texttt{BAP-FR03-02-01}} & \texttt{FR-MR01-03-02} -- \texttt{produce}, \texttt{condition: LesionImage available} \\
 \textbf{\texttt{BAP-FR03-02-02}} & \texttt{FR-MR01-03-02} -- \texttt{realize} \\
 \textbf{\texttt{BAP-FR03-02-03}} & \texttt{FR-MR01-03-02} -- \texttt{constrain} \\
 \textbf{\texttt{BAP-FR03-02-04}} & \texttt{FR-MR01-03-02} -- \texttt{constrain} \\
-\textbf{\texttt{BAP-FR03-03-04}} & \texttt{FR-MR01-03-03B} -- \texttt{produce} (current-case embedding) \\
+\textbf{\texttt{BAP-FR03-03-04}} & \texttt{FR-MR01-03-03B} -- \texttt{produce} (current-case embedding), \texttt{condition: LesionImage available} \\
 \textbf{\texttt{BAP-FR03-03-05}} & \texttt{FR-MR01-03-03B} -- \texttt{realize} (current-case embedding generation) \\
 \textbf{\texttt{BAP-FR03-03-06}} & \texttt{FR-MR01-03-03A} -- \texttt{produce} (historical-case embedding) \\
 \textbf{\texttt{BAP-FR03-03-07}} & \texttt{FR-MR01-03-03A} -- \texttt{realize} (historical-case embedding generation) \\
 \textbf{\texttt{BAP-FR03-03-08}} & \texttt{FR-MR01-03-03A} -- \texttt{produce} (vector index) \\
 \textbf{\texttt{BAP-FR03-03-09}} & \texttt{FR-MR01-03-03A} -- \texttt{realize} (vector indexing) \\
-\textbf{\texttt{BAP-FR03-03-10}} & \texttt{FR-MR01-03-03B} -- \texttt{produce} (retrieved cases) \\
+\textbf{\texttt{BAP-FR03-03-10}} & \texttt{FR-MR01-03-03B} -- \texttt{produce} (retrieved cases), \texttt{condition: LesionImage available} \\
 \textbf{\texttt{BAP-FR03-03-11}} & \texttt{FR-MR01-03-03B} -- \texttt{realize} (similarity retrieval) \\
-\textbf{\texttt{BAP-FR03-03-12}} & \texttt{FR-MR01-03-03B} -- \texttt{transfer} (Stage 2 $\rightarrow$ Stage 3) \\
-\textbf{\texttt{BAP-FR03-03-13}} & \texttt{FR-MR01-03-03B} -- \texttt{transfer} (Stage 3 $\rightarrow$ Stage 4) \\
-\textbf{\texttt{BAP-FR03-04-01}} & \texttt{FR-MR01-03-04} -- \texttt{produce} \\
+\textbf{\texttt{BAP-FR03-03-12}} & \texttt{FR-MR01-03-03B} -- \texttt{transfer} (Stage 2 $\rightarrow$ Stage 3), \texttt{condition: LesionImage available} \\
+\textbf{\texttt{BAP-FR03-03-13}} & \texttt{FR-MR01-03-03B} -- \texttt{transfer} (Stage 3 $\rightarrow$ Stage 4), \texttt{condition: LesionImage available} \\
+\textbf{\texttt{BAP-FR03-04-01}} & \texttt{FR-MR01-03-04} -- \texttt{produce}, \texttt{condition: LesionImage available} \\
 \textbf{\texttt{BAP-FR03-04-02}} & \texttt{FR-MR01-03-04} -- \texttt{realize} \\
 \emph{\texttt{BAP-DEC04-01}} & \texttt{DEC-MR01-04} \\
 \bottomrule
@@ -1524,8 +1548,8 @@ Questa pagina e' un \textbf{worklist di ricerca}, non introduce nuovi campi L1, 
 \texttt{T09} & \texttt{HistoricalCaseSimilarityRetrieval -> MultiSourceTriageSynthesis : RetrievedHistoricalCases} & Historical-cases contract: top-5 noto; per ciascun caso sono documentati \texttt{patient\_id}, \texttt{diagnosis}, \texttt{urgency\_level} e \texttt{similarity\_score}. Restano da chiarire ordering esposto come contratto, identity/correlation e underfill behavior. \\
 \texttt{T10} & \texttt{? -> MultiSourceTriageSynthesis : SymptomInformation} & Symptom-input contract: source ?, schema completo, required/optional, tipi/missing/invalid semantics, same-case correlation ?. \\
 \texttt{T11} & \texttt{MultiSourceTriageSynthesis -> OperationalPriorityDerivation : CaseUrgency + TriageConfidence} & Priority-input contract: urgency + confidence noti; confidence domain/nullability/invalid handling e exact realization del handoff ?. Reasoning/pathology non risultano input del mapping corrente. \\
-\texttt{T12} & \texttt{? -> SymptomOnlyUrgencyAnalysis : SymptomInformation} & Symptom-only input contract: esempi itching/bleeding/growth-change/pain; source, schema completo, minimum evidence set e missing-field behavior ?. \\
-\texttt{T13} & \texttt{SymptomOnlyUrgencyAnalysis -> ? : CaseUrgency (+ confidence ?)} & Symptom-only output contract: CaseUrgency supportata; confidence ?, destination ?, applicabilita' dello stesso mapping P1-P4 ?. \\
+\texttt{T12} & \texttt{? -> DermaTriage : SymptomInformation} & Symptom-only input contract: esempi itching/bleeding/growth-change/pain; source, schema completo, minimum evidence set e missing-field behavior ?. Nessun BAReferent \texttt{SymptomOnlyUrgencyAnalysis} viene introdotto senza identity evidence autonoma. \\
+\texttt{T13} & \texttt{DermaTriage -> ? : CaseUrgency (+ confidence ?)} & Symptom-only output contract: CaseUrgency supportata; confidence ?, destination ?, applicabilita' dello stesso mapping P1-P4 ?. \\
 \texttt{T14} & \texttt{DermaTriage / OperationalPriorityDerivation -> B4Platform : triage result} & B4 result-write contract: source semantica esatta ?, payload (urgency/confidence/P-scale/reasoning/pathology/specialist/SLA) ?, correlation alla consultation ?. \\
 \texttt{T15} & \texttt{DermaTriage -> LocalDiagnosisStore : persisted result} & Local persistence contract: contenuto/schema, owner/necessita' governata, case correlation, retention, update/finality semantics ?. \texttt{save\_diagnosis()} e' source-supported come realization. \\
 \bottomrule
@@ -1538,6 +1562,10 @@ Questa pagina e' un \textbf{worklist di ricerca}, non introduce nuovi campi L1, 
 \vspace{1mm}
 \textbf{Decisione documentale temporanea - split di \texttt{FR-MR01-03-03}:}
 la pagina precedente mescolava due funzioni con lifecycle e change impact separabili: (A) preparazione della base storica usata dal retrieval e (B) retrieval runtime del caso corrente fra Stage 2 e Stage 4. R25 le espone come \texttt{FR-MR01-03-03A/B} soltanto per la review; i label non sono ancora identita' canoniche. Il parent candidato resta \texttt{DEC-MR01-03}: il runtime appartiene chiaramente allo Stage 3 della pipeline a quattro stadi, mentre per la preparazione della base resta aperto il parent test. Lo split non crea un quinto stage. Le BAProposition gia' accettate sono riallocate senza rinumerazione: \texttt{06--09} al candidato A; \texttt{04--05,10--13} al candidato B. Nessun nome nato dalla BA e' usato per costruire la prosa documentale.
+
+\vspace{0.8mm}
+\textbf{Decisione metodologica temporanea - identity continuity e scoped \texttt{condition}:}
+\texttt{DermatologicalTriageEvaluation} resta un unico BAReferent introdotto in \texttt{MR-01} e riusato nei contesti no-image e image-based: il riuso dello stesso BAReferent denota la stessa identita' semantica, non due significati omonimi dipendenti dal contesto. \texttt{FR-MR01-01-01} accetta una proposition \texttt{produce} con \texttt{condition -> LesionImage unavailable}. Nel percorso image-based, \texttt{condition -> LesionImage available} viene applicata soltanto alle proposition runtime il cui fatto e' governato dal percorso corrente: produzioni di Stage 1, Stage 2, Stage 3 runtime e Stage 4, piu' i transfer runtime gia' accettati. Non viene propagata meccanicamente alle proposition \texttt{realize}, ai \texttt{constrain} o alla preparazione offline della base storica: tali fatti restano veri come struttura/realization/contract indipendentemente dalla disponibilita' dell'immagine del singolo caso.\par
 
 \vspace{0.8mm}
 \textbf{Decisione metodologica temporanea - necessity test di \texttt{correlate}:}

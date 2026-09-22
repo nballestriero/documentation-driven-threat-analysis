@@ -3,7 +3,7 @@
 \usepackage{amsmath,amssymb}
 
 \hypersetup{
-  pdftitle={DDTA Base Analysis Guide - Rebuild R7 - constrain integration R2},
+  pdftitle={DDTA Base Analysis Guide - Rebuild R7 - condition integration},
   pdfauthor={Documentation-Driven Threat Analysis research project}
 }
 
@@ -28,13 +28,13 @@ Il contenuto di questa appendice governa \emph{come stiamo ricostruendo la guida
 % -----------------------------------------------------------------------------
 \newcommand{\PageMDfive}[1]{\csname PageMDfive#1\endcsname}
 %<PAGE-HASH-DEFS>
-\expandafter\def\csname PageMDfive1\endcsname{793f8f64517e213d84b1975c0ee0f67f}
+\expandafter\def\csname PageMDfive1\endcsname{adf5039c1f67c857f81845ff68c54222}
 \expandafter\def\csname PageMDfive2\endcsname{fa01b7db301f77cd9988907daf2b3397}
 \expandafter\def\csname PageMDfive3\endcsname{3b620cf21e74f64e397656ec9f3038da}
 \expandafter\def\csname PageMDfive4\endcsname{b12d8f94dc04c833c0d916453255f9be}
 \expandafter\def\csname PageMDfive5\endcsname{44c236d6809ab29df535fe29ff00352d}
 \expandafter\def\csname PageMDfive6\endcsname{b9514c3f03bdb13c46c35ba6ae647130}
-\expandafter\def\csname PageMDfive7\endcsname{d79dd6edf4908532519689896b045323}
+\expandafter\def\csname PageMDfive7\endcsname{11bb4772586d67d88ceab41d6d00fb5a}
 \expandafter\def\csname PageMDfive8\endcsname{b4b3bc661001ccb16d9acdef681806bd}
 \expandafter\def\csname PageMDfive9\endcsname{dcd3d2d1eb4eb28971b488dcd1c7cf01}
 \expandafter\def\csname PageMDfive10\endcsname{9fdf9a0139ea36eaa577008c81fb109f}
@@ -49,7 +49,7 @@ Il contenuto di questa appendice governa \emph{come stiamo ricostruendo la guida
 \expandafter\def\csname PageMDfive19\endcsname{bc3e4197b5ba6fc299035dd3ee55f0fa}
 \expandafter\def\csname PageMDfive20\endcsname{90bad45a1ddf4546a84ffcaafe19514f}
 \expandafter\def\csname PageMDfive21\endcsname{a4a5a63a56b233dc9685ef8ade259ac3}
-\expandafter\def\csname PageMDfive22\endcsname{ec370772257111db29fb581af0e74919}
+\expandafter\def\csname PageMDfive22\endcsname{3d5ac3a6c3306580a2a6f19489862d0a}
 \expandafter\def\csname PageMDfive23\endcsname{e33af8b0be91d76075d6f8d588152778}
 \expandafter\def\csname PageMDfive24\endcsname{e3dfd0ae1ea4b8fc206e94586671531d}
 \expandafter\def\csname PageMDfive25\endcsname{7fe9e1357a2287afc0bcd8cdc5d05cad}
@@ -86,15 +86,24 @@ Il contenuto di questa appendice governa \emph{come stiamo ricostruendo la guida
 \expandafter\def\csname PageMDfive56\endcsname{1e66cad562b25b4881d43e62c217878b}
 \expandafter\def\csname PageMDfive57\endcsname{b4c3dc1c60fb207da9be278f13f0263e}
 \expandafter\def\csname PageMDfive58\endcsname{9ac0774d88929da648825995c1076378}
-\expandafter\def\csname PageMDfive59\endcsname{3915eaee02f714ac47e0dfa764b2836f}
-\expandafter\def\csname PageMDfive60\endcsname{5475a02c3223c3fac62a7eebe62f6be2}
-\expandafter\def\csname PageMDfive61\endcsname{e1b1becfc138e20474529fae47de6a05}
-\expandafter\def\csname PageMDfive62\endcsname{435e9ecddb23d230df9cc32766e10610}
-\expandafter\def\csname PageMDfive63\endcsname{9d02d27cc2ad8bb4e1b30d441667e854}
-\expandafter\def\csname PageMDfive64\endcsname{90b6659e5a0105e0cd7268d3f76137f6}
-\expandafter\def\csname PageMDfive65\endcsname{055d9c5848fbdcce60b592d60a2d0c14}
-\expandafter\def\csname PageMDfive66\endcsname{aaac2dbdd840f8d2ca65aa887c40c15e}
-\expandafter\def\csname PageMDfive67\endcsname{13cdd31df41e1d75e405e6ba020261fa}
+\expandafter\def\csname PageMDfive59\endcsname{ff13530c402da52d442b404aa8b443d7}
+\expandafter\def\csname PageMDfive60\endcsname{d5d06eb1db7d0bce9416648ab93e2c02}
+\expandafter\def\csname PageMDfive61\endcsname{a6de99c516eda39f3ac29f1a6246bb90}
+\expandafter\def\csname PageMDfive62\endcsname{ec89bcdef246536ca693660807fae78d}
+\expandafter\def\csname PageMDfive63\endcsname{5693f684c29fcc1a655605d77b85877d}
+\expandafter\def\csname PageMDfive64\endcsname{3cef93fdcd6726629e1dd667c5c0f775}
+\expandafter\def\csname PageMDfive65\endcsname{7956aba2ac06ebcc3c7973d91b70469a}
+\expandafter\def\csname PageMDfive66\endcsname{4d65df60cd00baef5ce9044dbbc85f99}
+\expandafter\def\csname PageMDfive67\endcsname{ecda2667c8851cd4a8a88c0b5ab7a817}
+\expandafter\def\csname PageMDfive68\endcsname{3915eaee02f714ac47e0dfa764b2836f}
+\expandafter\def\csname PageMDfive69\endcsname{5475a02c3223c3fac62a7eebe62f6be2}
+\expandafter\def\csname PageMDfive70\endcsname{e1b1becfc138e20474529fae47de6a05}
+\expandafter\def\csname PageMDfive71\endcsname{435e9ecddb23d230df9cc32766e10610}
+\expandafter\def\csname PageMDfive72\endcsname{9d02d27cc2ad8bb4e1b30d441667e854}
+\expandafter\def\csname PageMDfive73\endcsname{90b6659e5a0105e0cd7268d3f76137f6}
+\expandafter\def\csname PageMDfive74\endcsname{e0610c39d1fcc11327089e6fb783cd26}
+\expandafter\def\csname PageMDfive75\endcsname{f698e5a52ce55de3c8dcedeb019c3f7a}
+\expandafter\def\csname PageMDfive76\endcsname{13cdd31df41e1d75e405e6ba020261fa}
 %</PAGE-HASH-DEFS>
 
 \newcommand{\PageHashFooter}[1]{%
@@ -125,16 +134,16 @@ Il contenuto di questa appendice governa \emph{come stiamo ricostruendo la guida
 \begin{tcolorbox}[enhanced,arc=3pt,boxrule=0pt,colback=DDTANavy,left=13pt,right=13pt,top=12pt,bottom=12pt]
 {\color{white}\sffamily\bfseries\large Ricostruzione progressiva della guida Base Analysis}\par
 \vspace{2mm}
-{\color{white!88}\small Ogni costrutto viene ricostruito a partire dall'authority BA corrente e dalle guide precedenti, spiegato in forma generale e soltanto dopo verificato contro esempi aggiornati. Il caso DermaTriage e' evidence applicativa e worked example: non e' la fonte da cui nasce la semantica dell'operatore.}
+{\color{white!88}\small Ogni costrutto viene ricostruito a partire dall'authority BA corrente e dalle guide precedenti, spiegato in forma generale e soltanto dopo verificato contro esempi aggiornati. Il caso DermaTriage e' evidence applicativa e worked example: non e' la fonte da cui nasce la semantica del costrutto.}
 \end{tcolorbox}
 
 \vspace{5mm}
 \begin{ddtaopen}[title={RIQUADRO TEMPORANEO - WORKING SET E RIFERIMENTI - DA CANCELLARE PRIMA DELLA GUIDA DEFINITIVA}]
 {\scriptsize
-\textbf{Attivi:} \nolinkurl{DDTA_DOCUMENTATION_AUTHORING_GUIDE_R7_REBUILD_R8.tex}; \nolinkurl{DDTA_BASE_ANALYSIS_GUIDE_REBUILD_R7.tex}; \nolinkurl{DDTA_DERMATRIAGE_PARALLEL_CASE_STUDY_R23_FR03_DOCUMENTATION_BA_SEPARATION_R1.tex}.\par
+\textbf{Attivi:} \nolinkurl{DDTA_DOCUMENTATION_AUTHORING_GUIDE_R7_REBUILD_R8.tex}; \nolinkurl{DDTA_BASE_ANALYSIS_GUIDE_REBUILD_R7.tex}; \nolinkurl{DDTA_DERMATRIAGE_PARALLEL_CASE_STUDY_R25_FR03_SPLIT_REVIEW_R1.tex}.\par
 \textbf{Piano corrente:} \nolinkurl{DDTA_R25_BASE_ANALYSIS_GUIDE_REBUILD_WORK_PLAN_R5.md}; working analysis: \nolinkurl{DDTA_R25_DERMATRIAGE_CASE_STUDY_WORKING_ANALYSIS_R1.md}.\par
 \textbf{Riferimenti metodologici:} Operational Guide R3 + BA0--BA5 come authority corrente; Core/Complete BA Candidate R1 e precedenti guide operative come research evidence per la ricostruzione didattica.\par
-\textbf{Fase corrente:} ricostruire un operatore alla volta mantenendo R7 cumulativa. \texttt{transfer}, \texttt{produce} e \texttt{realize} restano completi; questo incremento ricostruisce \texttt{constrain} usando DermaTriage R23 come evidence applicativa corrente. Le sezioni di discriminazione verso operatori vicini restano intenzionalmente placeholder finche' il catalogo non sara' sufficientemente stabile.
+\textbf{Fase corrente:} mantenere R7 cumulativa e ricostruire soltanto i costrutti richiesti dalla BA corrente. \texttt{transfer}, \texttt{produce}, \texttt{realize} e \texttt{constrain} restano completi; questo incremento ricostruisce lo scoped modifier \texttt{condition} usando DermaTriage R25 come pressure/applicazione corrente. Gli altri operatori restano disponibili tramite l'authority precedente finche' un caso reale non ne richieda il rebuild.
 }
 \end{ddtaopen}
 
@@ -142,10 +151,10 @@ Il contenuto di questa appendice governa \emph{come stiamo ricostruendo la guida
 \begin{tabularx}{0.93\textwidth}{L{46mm}Y}
 \toprule
 \textbf{Stato} & \texttt{CANDIDATE / NON-NORMATIVE / CUMULATIVE REBUILD} \\
-\textbf{Repository baseline} & \texttt{d3db904d3186fc1234d19f2608e71eaa6c2021c4} \\
+\textbf{Repository baseline} & \texttt{e65611f73c5f6fd0ee11ae1e0f9a2e9379717dfa} \\
 \textbf{Predecessore cumulativo} & \nolinkurl{DDTA_BASE_ANALYSIS_GUIDE_REBUILD_R6} \\
 \textbf{Authority BA corrente} & R3 Operational Guide + BA0 R1 / BA1 R1 / BA2 R3 / BA3 R1 / BA4 R1 / BA5 R1 \\
-\textbf{Scopo di R7} & Ricostruzione cumulativa degli operatori BA. \texttt{transfer}, \texttt{produce} e \texttt{realize} restano completi; questo incremento aggiunge \texttt{constrain} con significato, firma unica, forme ammesse di \texttt{constraintValue}, identity rules, domande di identificazione, esempi, prompt LLM, output BA atteso e projection grafica. Gli altri operatori non vengono ancora consolidati. \\
+\textbf{Scopo di R7} & Ricostruzione cumulativa dei costrutti BA richiesti dal caso. I quattro operatori \texttt{transfer}, \texttt{produce}, \texttt{realize} e \texttt{constrain} restano completi; questo incremento aggiunge lo scoped modifier BA2 \texttt{condition}, incluse locality/identity boundary, discriminazioni, prompt, output BA e projection Mermaid semanticamente deterministica. Gli altri costrutti non vengono consolidati finche\' non sono richiesti da evidence applicativa. \\
 \textbf{Authority change} & Nessuno. Una futura promotion richiede un checkpoint esplicito. \\
 \bottomrule
 \end{tabularx}
@@ -273,8 +282,8 @@ Mermaid viene adottato come primo target di rendering testuale da investigare. E
 
 Mermaid resta pero' una notazione di output. Se la sua sintassi rende comodo introdurre un nodo, una relazione, un participant o un subgraph, quella comodita' non basta a creare nuova semantica nella BA. Prima viene il significato; poi il View Contract decide come renderlo.
 
-\begin{ddtacore}[title={No reverse inference}]
-Una scelta del renderer non puo' diventare la ragione per modificare la Base Analysis. Se una view e' difficile da disegnare con il significato disponibile, si verifica prima se manca una regola di projection, poi se manca semantica nella BA e solo infine se il problema risale alla documentazione.
+\begin{ddtacore}[title={Semantic determinism e no reverse inference}]
+A parita' di Base Analysis accettata e di projection profile, una view canonica MUST esporre lo stesso inventario semantico: stessi referent inclusi, stesse proposition, stessi role/edge meaning, stessi modifier/guard e stessi grouping semanticamente richiesti. Il renderer puo' spostare geometricamente gli oggetti gia' collegati senza violare questo requisito. Una scelta grafica non puo' aggiungere semantica ne' diventare la ragione per modificare la BA.
 \end{ddtacore}
 
 \subsection{Che cosa deve dichiarare una view}
@@ -644,7 +653,7 @@ governed / working documentation
 \end{ddtaprinciple}
 
 \begin{ddtaopen}[title={Confine di questa revisione}]
-La R6 si fermava prima del catalogo operativo. La R7 mantiene ora il catalogo in forma cumulativa: \texttt{transfer} e \texttt{produce} restano completamente ricostruiti e questo incremento aggiunge \texttt{realize}, sempre a partire dalla semantica gia' ammessa dall'authority BA corrente e dalle guide precedenti. Gli esempi di progetto verificano e chiariscono i costrutti, ma non ne determinano la definizione. L'ingresso di un operatore nella guida rebuild non equivale a promotion normativa della rebuild.
+La R7 mantiene il catalogo in forma cumulativa: \texttt{transfer}, \texttt{produce}, \texttt{realize} e \texttt{constrain} sono gia' ricostruiti; questo incremento ricostruisce \texttt{condition} come scoped modifier BA2 preservato dall'authority precedente. Gli esempi di progetto verificano e chiariscono il costrutto, ma non ne determinano la definizione. Inserire \texttt{condition} nella guida rebuild non crea un nuovo top-level operator e non equivale a promotion normativa della rebuild.
 \end{ddtaopen}
 %</PAGE-CONTENT:22>
 
@@ -1936,9 +1945,326 @@ Chi produce e chi riceve condividono lo stesso \texttt{ClinicalDescription}; il 
 %</PAGE-CONTENT:58>
 
 \clearpage
-%<PAGE-DESC:59>Appendice temporanea - scopo, lineage e confine del rebuild
+
+\clearpage
+
+%<PAGE-DESC:59>11 - condition: definizione, smallest fact e criteri d'uso
 %<PAGE-CONTENT:59>
 \PageHashFooter{\PageMDfive{59}}
+\section{Scoped modifier \texttt{condition}}
+\CurrentTag
+
+\subsection{Che cosa rappresenta}
+\texttt{condition} e' uno \textbf{scoped modifier BA2} che limita localmente l'applicabilita' di una BAProposition. Il fatto espresso dall'operatore e dai suoi participant non cambia identita': la condition stabilisce soltanto \emph{quando quella specifica asserzione si applica}. Non e' un nuovo top-level operator e non e' una decision rule abbreviata.
+
+\begin{ddtacore}[title={Smallest semantic fact}]
+Esiste una BAProposition governata \texttt{P} e una condizione locale \texttt{C} tale che \texttt{P} e' asserita soltanto quando \texttt{C} vale nello scope documentato. Eliminando \texttt{condition} si perderebbe il confine di applicabilita' della proposition, non il significato del suo operatore.
+\end{ddtacore}
+
+\subsection{Quando usarlo}
+Usare \texttt{condition} quando la source governa un guard/applicability scope per una singola proposition e quel significato non richiede identita', provenance, participant o riuso autonomi. La condizione deve essere source-grounded; non puo' essere dedotta soltanto perche' un comportamento sembra plausibile in uno scenario.
+
+\subsection{Quando non usarlo}
+Non usare \texttt{condition} per codificare un mapping IF/THEN/ELSE che determina quale risultato viene prodotto, per una dependency/prerequisite, per un constraint riusabile o per nascondere un significato che deve diventare BAReferent/BAProposition autonomo.
+
+\begin{ddtaopen}[title={Gate minimo}]
+La domanda non e' ``c'e' un if nella frase?'', ma ``la documentazione limita quando questa stessa proposition vale?''. Se la condition seleziona risultati, introduce participant propri o deve essere riusata indipendentemente, fermarsi e riesaminare il costrutto.
+\end{ddtaopen}
+%</PAGE-CONTENT:59>
+
+\clearpage
+
+%<PAGE-DESC:60>11 - condition: forma canonica, scope locale e cardinalita
+%<PAGE-CONTENT:60>
+\PageHashFooter{\PageMDfive{60}}
+\subsection{Forma canonica nella BAProposition}
+La grammatica BA2 preservata ammette \texttt{scopedModifier [0..*]} e, nel lower bound corrente, soltanto i kind \texttt{condition} e \texttt{temporalScope}. R7 rende esplicita \texttt{condition} con la seguente forma di authoring:
+
+\begin{lstlisting}
+BAProposition
+  semanticOperatorKey = <operator>
+  participation ...
+  polarity = affirmative | negative
+
+  scopedModifier
+    condition -> <source-grounded local applicability statement>
+\end{lstlisting}
+
+La parte destra di \texttt{condition} e' contenuto locale controllato della proposition, non un BAReferent implicito. La serializzazione deve preservare la formulazione canonica scelta durante la review senza inventare property, boolean o stati non governati.
+
+\begin{tabularx}{\textwidth}{L{38mm}L{22mm}Y}
+\toprule
+\textbf{Elemento} & \textbf{Card.} & \textbf{Significato} \\
+\midrule
+\texttt{scopedModifier} & 0..* & Modifier locali ammessi dalla BAProposition; il lower bound corrente contiene \texttt{condition} e \texttt{temporalScope}. \\
+\texttt{condition} & per instance 1 & Guard/applicability statement governato per la proposition che lo contiene. \\
+\bottomrule
+\end{tabularx}
+
+\begin{ddtaprinciple}[title={Nessun DSL logico generale}]
+La forma locale non introduce automaticamente \texttt{AND}, \texttt{OR}, truth table, property model o evaluation order. Se la source governa una costruzione decisionale che seleziona un risultato, il candidato da riesaminare e' \texttt{decisionRule}, non una condition sempre piu' complessa.
+\end{ddtaprinciple}
+%</PAGE-CONTENT:60>
+
+\clearpage
+
+%<PAGE-DESC:61>11 - condition: identity boundary, invarianti e forbidden inference
+%<PAGE-CONTENT:61>
+\PageHashFooter{\PageMDfive{61}}
+\subsection{Locality / identity boundary}
+Una condition resta embedded soltanto finche' modifica localmente una proposition e non richiede identita' analitica indipendente. BA2 R2/R3 preserva il promotion test: se il significato viene riusato, separatamente revisionato, diventa participant-bearing o deve essere target di altre asserzioni, si applicano i normali criteri BA1 invece di nasconderlo nel modifier.
+
+\begin{lstlisting}
+LOCAL
+  produce(...)
+  condition -> LesionImage unavailable
+
+PROMOTION PRESSURE
+  NoImageCondition must be reused / constrained / traced independently
+  -> evaluate BAReferent / BAProposition identity under BA1
+\end{lstlisting}
+
+\subsection{Invarianti}
+\begin{itemize}
+  \item la condition qualifica l'intera BAProposition, non un singolo edge scelto dal renderer;
+  \item l'operatore, i roleKey e i BAReferent della proposition mantengono la stessa identita';
+  \item una condition locale non crea automaticamente un nuovo BAReferent;
+  \item l'assenza della condition opposta non autorizza a inventare un ramo \texttt{ELSE};
+  \item l'ordine testuale di piu' facts o view non implica evaluation order;
+  \item la condition deve essere governata dalla source allo stesso livello documentale che giustifica la proposition o da evidence tracciabile compatibile con tale scope.
+\end{itemize}
+
+\subsection{Forbidden inference}
+Da \texttt{condition} non inferire detection logic, boolean property, stato runtime persistente, branch complementare, fallback, precedence, sequencing, retry/failure semantics, dependency, constraint riusabile o mapping di risultato. ``Image unavailable'' non autorizza da solo a inventare \texttt{LesionImage.available = FALSE}.
+%</PAGE-CONTENT:61>
+
+\clearpage
+
+%<PAGE-DESC:62>11 - condition: domande di identificazione e procedura di estrazione
+%<PAGE-CONTENT:62>
+\PageHashFooter{\PageMDfive{62}}
+\subsection{Domande da porre alla documentazione}
+\begin{enumerate}
+  \item Quale BAProposition e' limitata dalla condizione? Il modifier deve avere un owner propositionale preciso.
+  \item La source sta dicendo \emph{quando la proposition vale} oppure \emph{come una condizione determina quale risultato viene scelto}?
+  \item La condition e' esplicita/governata oppure la stiamo deducendo da un percorso ritenuto probabile?
+  \item Il significato puo' restare locale senza BAReferent autonomo?
+  \item E' riusato, separatamente revisionato, participant-bearing o target di altre proposition? Se si', applicare l'identity test BA1.
+  \item La formulazione richiederebbe di inventare property, boolean, enum o stato? Se si', non completarli per plausibilita'.
+  \item Esiste davvero un ramo opposto governato? Una condition non implica automaticamente \texttt{ELSE} o il complemento logico.
+  \item La source governa una dependency/prerequisite? In tal caso verificare \texttt{dependOn}, non \texttt{condition}.
+  \item La source governa una restriction riusabile? In tal caso verificare \texttt{constrain}.
+  \item La condition e' temporale? Se descrive before/after/during/until, verificare \texttt{temporalScope} invece di condition.
+\end{enumerate}
+
+\begin{ddtacheck}[title={Procedura minima}]
+Estrarre prima la BAProposition senza modifier; verificare che il fatto sia semanticamente completo; isolare poi il guard governato; applicare locality/identity test; aggiungere \texttt{condition} soltanto se cambia l'applicabilita' della stessa proposition. Infine controllare che non stia simulando decisionRule, dependOn o constrain.
+\end{ddtacheck}
+%</PAGE-CONTENT:62>
+
+\clearpage
+
+%<PAGE-DESC:63>11 - condition: esempio generico e worked example DermaTriage corrente
+%<PAGE-CONTENT:63>
+\PageHashFooter{\PageMDfive{63}}
+\subsection{Esempio generico minimo}
+\begin{ddtaexample}[title={Documentazione inventata ma coerente}]
+``Quando la modalita' di manutenzione e' attiva, \texttt{SystemMonitor} produce un \texttt{MaintenanceAlert} a partire da \texttt{SensorStatus}.''
+\end{ddtaexample}
+
+Assumendo i BAReferent gia' giustificati:
+\begin{lstlisting}
+produce
+  actor  -> SystemMonitor
+  input  -> SensorStatus
+  result -> MaintenanceAlert
+  polarity = affirmative
+  scopedModifier
+    condition -> MaintenanceMode active
+\end{lstlisting}
+
+La condition dice quando questa produzione si applica. Non afferma che \texttt{MaintenanceMode} sia un boolean, non crea un ramo per la modalita' inattiva e non descrive come viene rilevato lo stato.
+
+\subsection{Esempio corrente - DermaTriage symptom-only}
+La documentazione R25 stabilisce: ``Quando l'immagine della lesione non e' disponibile, DermaTriage determina l'urgenza del caso utilizzando le informazioni sintomatologiche disponibili associate allo stesso caso.''
+
+\begin{lstlisting}
+produce
+  actor  -> DermaTriage
+  input  -> SymptomInformation
+  result -> CaseUrgency
+  polarity = affirmative
+  scopedModifier
+    condition -> LesionImage unavailable
+\end{lstlisting}
+
+Non serve materializzare \texttt{NoImageAvailableCondition} come BAReferent finche' il significato resta locale. Il percorso image-based con immagine disponibile deve essere supportato da proposition/documentazione proprie; non viene inventato come \texttt{ELSE} di questa proposition.
+%</PAGE-CONTENT:63>
+
+\clearpage
+
+%<PAGE-DESC:64>11 - condition: prompt LLM per l'identificazione controllata
+%<PAGE-CONTENT:64>
+\PageHashFooter{\PageMDfive{64}}
+\subsection{Prompt LLM di supporto all'authoring}
+\begin{lstlisting}
+TASK: identify governed proposition-local condition modifiers.
+Use ONLY the supplied documentation, accepted BA and current BA authority.
+
+A condition modifier exists only when the source limits when an otherwise
+complete BAProposition applies.
+
+Rules:
+1. Identify the complete BAProposition first: operator, roles and referents.
+2. Extract condition only if the source explicitly governs the applicability guard.
+3. The condition qualifies the whole proposition, not an arbitrary visual edge.
+4. Keep the condition local when it has no independent identity/reuse.
+5. Do not create a BAReferent only to name a one-use guard.
+6. If the condition is reused, separately reviewed, participant-bearing or targeted
+   by other propositions, stop and request BA1 identity review.
+7. Do not invent boolean properties, enums, states or opposite conditions.
+8. Do not infer ELSE, fallback or complementary behavior from one condition.
+9. Do not use condition for IF/THEN/ELSE result construction; review decisionRule.
+10. Do not use condition for prerequisite/dependency; review dependOn.
+11. Do not use condition for reusable restrictions; review constrain.
+12. Do not infer temporal order; temporal applicability belongs to temporalScope.
+13. If the guard is not source-grounded, return INSUFFICIENT_EVIDENCE.
+14. Do not invent operators, roles, BAReferents or metadata.
+
+Return EXACTLY the authoring wrapper and BA output shape shown next.
+\end{lstlisting}
+
+\begin{ddtaprinciple}[title={Human review remains mandatory}]
+La review umana deve verificare soprattutto il confine fra applicabilita' locale e semantica autonoma. La forma linguistica ``quando/se'' e' soltanto un indizio: non decide automaticamente condition, decisionRule o dependOn.
+\end{ddtaprinciple}
+%</PAGE-CONTENT:64>
+
+\clearpage
+
+%<PAGE-DESC:65>11 - condition: output BA atteso e discriminazioni
+%<PAGE-CONTENT:65>
+\PageHashFooter{\PageMDfive{65}}
+\subsection{Output esatto atteso dall'estrazione assistita}
+\begin{lstlisting}
+CONDITION_ASSESSMENT
+  decision = ACCEPT_CONDITION | NOT_A_CONDITION | INSUFFICIENT_EVIDENCE
+  evidence = <source locator / concise supported wording>
+  ownerProposition = <candidate-id / identified governed fact>
+  identityPressure = NONE | REVIEW_BA1
+  notSpecified = [<only unresolved material items>]
+
+BA_OUTPUT
+  BAReferent reuse/candidates:
+    <canonical names only as needed>
+
+  BAProposition <candidate-id>
+    semanticOperatorKey = <existing operator>
+    <operator-scoped roles and terms>
+    polarity = affirmative | negative
+    scopedModifier
+      condition -> <source-grounded local applicability statement>
+\end{lstlisting}
+
+\texttt{ownerProposition} e \texttt{identityPressure} appartengono al wrapper di review, non alla BA.
+
+\subsection{Discriminazioni con i costrutti vicini}
+\begin{tabularx}{\textwidth}{L{32mm}Y}
+\toprule
+\textbf{Confine} & \textbf{Discriminatore} \\
+\midrule
+condition / decisionRule & condition cambia quando la proposition si applica; decisionRule governa come condizioni/input determinano un risultato. \\
+condition / constrain & condition e' locale all'asserzione; constrain e' una restriction riusabile/interrogabile sul proprio target. \\
+condition / dependOn & condition e' guard di applicabilita'; dependOn afferma prerequisite/dependency e supporta impact propagation. \\
+condition / BAReferent & il modifier resta locale; se il significato richiede identita'/riuso autonomi, applicare BA1. \\
+condition / temporalScope & condition governa un guard non temporale; before/after/during/until appartengono al temporal scope. \\
+\bottomrule
+\end{tabularx}
+%</PAGE-CONTENT:65>
+
+\clearpage
+
+%<PAGE-DESC:66>11 - condition: rappresentazione Mermaid e semantic determinism
+%<PAGE-CONTENT:66>
+\PageHashFooter{\PageMDfive{66}}
+\subsection{Rappresentazione Mermaid di condition}
+La \texttt{condition} qualifica l'intera BAProposition. La projection canonica la rende come un \textbf{tag di condition} colorato, posto sopra il ramo governato. Il tag non e' un BAReferent, non e' un input dell'operatore e non e' un nodo decisionale: visualizza soltanto lo \texttt{scopedModifier.condition} della proposition owner o del blocco di vista selezionato per quel ramo.
+
+\begin{tabularx}{\textwidth}{L{44mm}Y}
+\toprule
+\textbf{Semantica BA} & \textbf{Regola di projection} \\
+\midrule
+\texttt{condition} modifier & Un tag ellittico colorato con label canonica \texttt{<condition>}. \\
+Applicabilita' & Il tag viene posto in testa al ramo governato; la sua posizione rende visibile l'applicabilita' locale senza introdurre dataflow o nuovi role BA. \\
+Owner block & Nelle viste composte il ramo puo' essere rappresentato con \emph{un solo blocco owner} per lato, quando l'obiettivo e' mostrare la separazione di condition e non l'espansione completa di tutte le proposition sottostanti. \\
+Due condition distinte & Producono due tag distinti; nessun ramo viene inventato come complemento dell'altro. \\
+Decision rule & Il rombo decisionale resta riservato alla projection di \texttt{decisionRule}; \texttt{condition} non usa il rombo e non introduce automaticamente una forma \texttt{IF/ELSE}. \\
+\bottomrule
+\end{tabularx}
+
+\begin{lstlisting}
+flowchart LR
+  C1([Condition A])
+  B1["Owner block A"]
+
+  C2([Condition B])
+  B2["Owner block B"]
+
+  C1 --> B1
+  C2 --> B2
+\end{lstlisting}
+
+\begin{ddtacore}[title={Semantic determinism della projection}]
+Con la stessa BA accettata e lo stesso projection profile devono restare invariati: numero dei tag di condition, shape ellittica, label canonica della condition e ramo owner. La posizione geometrica dei nodi puo' variare: in questa fase non richiediamo layout determinism. Se la vista usa un solo blocco owner per ramo, anche quella scelta deve essere esplicita e coerente con lo scope della view.
+\end{ddtacore}
+%</PAGE-CONTENT:66>
+
+\clearpage
+
+%<PAGE-DESC:67>11 - condition: esempio grafico Mermaid composto con produce
+%<PAGE-CONTENT:67>
+\PageHashFooter{\PageMDfive{67}}
+\subsection{Esempio grafico corrispondente}
+Il diagramma mostra sullo stesso foglio due rami con \texttt{condition} distinte. I tag colorati \texttt{LesionImage available} e \texttt{LesionImage unavailable} stanno sopra i rispettivi rami. Per mantenere la vista leggibile, ogni lato della condition e' rappresentato con \textbf{un solo blocco owner} invece di espandere tutto cio' che sarebbe ulteriormente derivabile dalla documentazione.
+
+\vspace{5mm}
+\begin{center}
+\begin{tikzpicture}[
+  owner/.style={draw=DDTABlue,fill=white,rounded corners=3pt,thick,align=center,minimum height=18mm,text width=38mm,inner sep=6pt,font=\sffamily\fontsize{7}{8.2}\selectfont},
+  actor/.style={draw=DDTABlue,fill=DDTALightBlue,rounded corners=3pt,thick,align=center,minimum height=16mm,text width=34mm,inner sep=5pt,font=\sffamily\fontsize{7}{8.2}\selectfont},
+  conditiontag/.style={ellipse,draw=DDTAAmber,fill=DDTALightAmber,thick,align=center,minimum width=34mm,minimum height=11mm,inner sep=3pt,font=\sffamily\fontsize{7}{8}\selectfont},
+  conn/.style={draw=DDTABlue,thick,-{Stealth[length=2.7mm,width=1.8mm]}}
+]
+\node[actor] (eval) at (0,4.6) {\textbf{Dermatological}\\\textbf{TriageEvaluation}};
+
+\node[conditiontag] (c1) at (-4.4,3.0) {\texttt{LesionImage available}};
+\node[conditiontag] (c2) at (4.4,3.0) {\texttt{LesionImage unavailable}};
+
+\draw[conn] (eval.south west) .. controls (-1.9,3.95) and (-3.2,3.45) .. (c1.north);
+\draw[conn] (eval.south east) .. controls (1.9,3.95) and (3.2,3.45) .. (c2.north);
+
+\node[owner] (b1) at (-4.4,0.8) {\textbf{Image-based}\\\textbf{triage path}\\{\scriptsize branch owner block}};
+\node[owner] (b2) at (4.4,0.8) {\textbf{Symptom-based}\\\textbf{urgency path}\\{\scriptsize branch owner block}};
+
+\draw[conn] (c1.south) -- (b1.north);
+\draw[conn] (c2.south) -- (b2.north);
+\end{tikzpicture}
+\end{center}
+
+\vspace{2mm}
+\begin{center}
+\sffamily\small
+\texttt{condition = LesionImage available}\qquad\texttt{condition = LesionImage unavailable}
+\end{center}
+
+\begin{ddtacheck}[title={Lettura del grafico}]
+Il tag colorato indica soltanto la condition del ramo. Non e' un nodo decisionale e non implica automaticamente un ramo complementare. In questa vista ciascun lato e' compresso in un solo blocco owner: la projection evidenzia il fatto che due condition diverse governano due rami diversi, ma non espande automaticamente l'intera struttura interna dei rami.
+\end{ddtacheck}
+%</PAGE-CONTENT:67>
+
+\clearpage
+%<PAGE-DESC:68>Appendice temporanea - scopo, lineage e confine del rebuild
+%<PAGE-CONTENT:68>
+\PageHashFooter{\PageMDfive{68}}
 \appendix
 \section{Materiale temporaneo di rebuild}
 \TemporaryRebuildBanner
@@ -1965,13 +2291,13 @@ Rebuild candidate & questa guida & Superficie cumulativa di review; diventa auth
 \begin{ddtaopen}[title={Nessun target di cardinalita'}]
 Il fatto che la BA corrente abbia quattordici operatori top-level non crea un obiettivo di quattordici operatori. Anche il precedente snapshot a tredici elementi resta genealogia utile, non un target da ripristinare. Il numero finale deve essere un risultato della necessita' semantica e della regression, non una quota.
 \end{ddtaopen}
-%</PAGE-CONTENT:59>
+%</PAGE-CONTENT:68>
 
 \clearpage
 
-%<PAGE-DESC:60>Appendice temporanea - corpus e stati epistemici
-%<PAGE-CONTENT:60>
-\PageHashFooter{\PageMDfive{60}}
+%<PAGE-DESC:69>Appendice temporanea - corpus e stati epistemici
+%<PAGE-CONTENT:69>
+\PageHashFooter{\PageMDfive{69}}
 \TemporaryRebuildBanner
 \subsection{Corpus di ricostruzione e stati epistemici}
 
@@ -1998,13 +2324,13 @@ R42 Core/Complete e' una superficie di lettura aggiornata e molto utile per il r
 \begin{ddtacheck}[title={Regola anti-perdita}]
 Una guida piu' corta non e' una guida migliore se per ottenere la sintesi elimina una distinzione ancora utile. Il rebuild puo' comprimere la prosa soltanto dopo aver dimostrato che la distinzione resta ricostruibile e tracciabile.
 \end{ddtacheck}
-%</PAGE-CONTENT:60>
+%</PAGE-CONTENT:69>
 
 \clearpage
 
-%<PAGE-DESC:61>Appendice temporanea - Construct Description Contract e principio espositivo
-%<PAGE-CONTENT:61>
-\PageHashFooter{\PageMDfive{61}}
+%<PAGE-DESC:70>Appendice temporanea - Construct Description Contract e principio espositivo
+%<PAGE-CONTENT:70>
+\PageHashFooter{\PageMDfive{70}}
 \TemporaryRebuildBanner
 \subsection{Construct Description Contract}
 
@@ -2019,13 +2345,13 @@ Ogni costrutto usa la stessa sequenza descrittiva. Un campo puo' essere \texttt{
 \begin{ddtaprinciple}[title={Controllo rigoroso, esposizione naturale}]
 Il CDC e' un contratto di \emph{copertura}, non un template rigido di impaginazione. I campi richiesti devono essere tutti trattati e ricostruibili durante la review, ma la guida definitiva puo' combinarli in paragrafi e sezioni piu' naturali quando questo non nasconde informazioni, stato epistemico o confini semantici. Struttura di controllo rigorosa non significa esposizione meccanica.
 \end{ddtaprinciple}
-%</PAGE-CONTENT:61>
+%</PAGE-CONTENT:70>
 
 \clearpage
 
-%<PAGE-DESC:62>Appendice temporanea - CDC direzione della spiegazione e revisione
-%<PAGE-CONTENT:62>
-\PageHashFooter{\PageMDfive{62}}
+%<PAGE-DESC:71>Appendice temporanea - CDC direzione della spiegazione e revisione
+%<PAGE-CONTENT:71>
+\PageHashFooter{\PageMDfive{71}}
 \TemporaryRebuildBanner
 \subsection{Direzione obbligatoria della spiegazione}
 
@@ -2052,13 +2378,13 @@ human semantic idea
 
 \subsection{Revisione del contratto}
 Il contratto parte come \texttt{CDC-R1}. Ogni sua modifica futura deve avere un counterexample, una motivazione generalizzabile e una regression sui costrutti gia' descritti.
-%</PAGE-CONTENT:62>
+%</PAGE-CONTENT:71>
 
 \clearpage
 
-%<PAGE-DESC:63>Appendice temporanea - CDC campi 1-10
-%<PAGE-CONTENT:63>
-\PageHashFooter{\PageMDfive{63}}
+%<PAGE-DESC:72>Appendice temporanea - CDC campi 1-10
+%<PAGE-CONTENT:72>
+\PageHashFooter{\PageMDfive{72}}
 \TemporaryRebuildBanner
 \subsection{Construct Description Contract - template, parte 1}
 
@@ -2082,13 +2408,13 @@ Il contratto parte come \texttt{CDC-R1}. Ogni sua modifica futura deve avere un 
 \begin{ddtaprinciple}[title={Semantica prima della sintassi}]
 I campi 5--8 devono poter essere compresi anche da chi non conosce ancora la sintassi BA. I campi 9--10 formalizzano il significato; non lo sostituiscono.
 \end{ddtaprinciple}
-%</PAGE-CONTENT:63>
+%</PAGE-CONTENT:72>
 
 \clearpage
 
-%<PAGE-DESC:64>Appendice temporanea - CDC campi 11-20
-%<PAGE-CONTENT:64>
-\PageHashFooter{\PageMDfive{64}}
+%<PAGE-DESC:73>Appendice temporanea - CDC campi 11-20
+%<PAGE-CONTENT:73>
+\PageHashFooter{\PageMDfive{73}}
 \TemporaryRebuildBanner
 \subsection{Construct Description Contract - template, parte 2}
 
@@ -2116,38 +2442,38 @@ Se un costrutto non entra nel template, non si crea una eccezione locale. Si reg
 \begin{ddtaexample}[title={Candidate con firma non chiusa}]
 Per \texttt{provideService} il template resta completo, ma i campi ``Canonical syntax'' e ``Roles, types, cardinalities'' possono dichiarare \texttt{NOT FROZEN}. E' preferibile una lacuna esplicita a una firma inventata solo per uniformare l'impaginazione.
 \end{ddtaexample}
-%</PAGE-CONTENT:64>
+%</PAGE-CONTENT:73>
 
 \clearpage
 
-%<PAGE-DESC:65>Appendice temporanea - roadmap corrente del rebuild R7
-%<PAGE-CONTENT:65>
-\PageHashFooter{\PageMDfive{65}}
+%<PAGE-DESC:74>Appendice temporanea - roadmap corrente del rebuild R7
+%<PAGE-CONTENT:74>
+\PageHashFooter{\PageMDfive{74}}
 \TemporaryRebuildBanner
 \subsection{Roadmap temporanea del rebuild}
 \begin{enumerate}
   \item usare \texttt{CDC-R1} come controllo di copertura, senza trasformarlo in una scheda editoriale rigida;
-  \item assumere le Sezioni 1--10 come base espositiva corrente della Rebuild R7;
+  \item assumere le Sezioni 1--11 come base espositiva corrente della Rebuild R7;
   \item preservare governed semantic fact, \BAR{}, \BAP{}, identity criterion, stopping rule e structural-feedback boundary come fondazioni gia' riesaminate;
-  \item considerare \texttt{transfer}, \texttt{produce}, \texttt{realize} e \texttt{constrain} i primi quattro operatori completamente ricostruiti nella nuova struttura: definizione generale, firma, roleKey, cardinalita', identity rules, question pack, esempi, prompt LLM, output BA atteso e projection grafica;
-  \item mantenere per ora le discriminazioni pairwise come placeholder: saranno compilate quando il catalogo vicino sara' abbastanza stabile da evitare riscritture ripetute;
+  \item considerare \texttt{transfer}, \texttt{produce}, \texttt{realize} e \texttt{constrain} i primi quattro operatori completamente ricostruiti e \texttt{condition} il primo scoped modifier completamente ricostruito sotto lo stesso \texttt{CDC-R1};
+  \item mantenere come placeholder le discriminazioni pairwise dei quattro operatori dove questa scelta resta deliberata; per \texttt{condition}, conservare invece i discriminatori gia' necessari contro \texttt{decisionRule}, \texttt{constrain}, \texttt{dependOn}, BAReferent e \texttt{temporalScope};
   \item preservare in \texttt{constrain} la distinzione fra constraint nominato/riusabile e restriction locale, e nella projection distinguere il vincolo sul content dal vincolo sul transfer behavior;
-  \item continuare la Base Analysis di \texttt{MR-01} dalla documentazione DermaTriage corrente consolidata in R23, usando l'authority BA corrente come riferimento operativo e senza anticipare costrutti non ancora riesaminati;
-  \item per il prossimo operatore effettivamente necessario, partire dalle pagine e dagli esempi delle guide precedenti, ricostruire prima il metodo generale e poi verificarlo con evidence corrente DermaTriage;
+  \item continuare la Base Analysis di \texttt{MR-01} dalla documentazione DermaTriage corrente consolidata in R25, usando l'authority BA corrente come riferimento operativo e senza anticipare costrutti non ancora riesaminati;
+  \item per il prossimo costrutto effettivamente necessario, partire dalle guide precedenti, ricostruire prima il metodo generale e poi verificarlo con evidence corrente DermaTriage;
   \item mantenere prompt LLM e wrapper di authoring separati dalla semantica BA: possono evolvere senza creare nuovi campi o operatori;
   \item solo dopo BA accettata per uno scope, produrre e verificare le projection downstream previste.
 \end{enumerate}
 
 \begin{ddtaopen}[title={Stop point di questa R7}]
-La Rebuild R7 contiene ora la ricostruzione completa di \texttt{transfer}, \texttt{produce}, \texttt{realize} e \texttt{constrain}. Gli altri operatori restano disponibili attraverso l'authority BA corrente e la genealogia precedente ma non sono ancora stati riscritti nella nuova guida. \texttt{constrain} viene consolidato con una firma top-level unica e con forme di \texttt{constraintValue} che preservano sia i contract nominati sia le restriction locali; la projection mantiene inoltre distinto il data contract dal transport contract. Il prossimo operatore verra' ricostruito soltanto quando il flusso DermaTriage lo richiedera' e fornira' evidence sufficiente.
+La Rebuild R7 contiene ora la ricostruzione completa dei quattro operatori \texttt{transfer}, \texttt{produce}, \texttt{realize}, \texttt{constrain} e dello scoped modifier \texttt{condition}. \texttt{condition} resta semantica locale della BAProposition: non crea un nuovo operator key, non introduce un general-purpose predicate DSL e viene promossa a identita' BA soltanto quando i normali criteri BA1 lo richiedono. I costrutti successivi verranno ricostruiti solo quando il flusso DermaTriage o un counterexample reale li rendera' necessari.
 \end{ddtaopen}
-%</PAGE-CONTENT:65>
+%</PAGE-CONTENT:74>
 
 \clearpage
 
-%<PAGE-DESC:66>Indice di integrita' delle pagine
-%<PAGE-CONTENT:66>
-\PageHashFooter{\PageMDfive{66}}
+%<PAGE-DESC:75>Indice di integrita' delle pagine
+%<PAGE-CONTENT:75>
+\PageHashFooter{\PageMDfive{75}}
 \section*{Indice di integrita' delle pagine}
 {\footnotesize Ogni pagina possiede un MD5 del proprio contenuto canonico; il valore stampato e' escluso dal payload e l'hash della pagina indice usa \texttt{<SELF>} per evitare dipendenza circolare.}\par
 \vspace{1mm}
@@ -2219,29 +2545,38 @@ La Rebuild R7 contiene ora la ricostruzione completa di \texttt{transfer}, \text
 \IntegrityRow{56}{10 - constrain: output BA atteso e discriminazioni differite}{\PageMDfive{56}}
 \IntegrityRow{57}{10 - constrain: rappresentazione Mermaid}{\PageMDfive{57}}
 \IntegrityRow{58}{10 - constrain: esempio grafico Mermaid composto con transfer}{\PageMDfive{58}}
-\IntegrityRow{59}{Appendice temporanea - scopo, lineage e confine del rebuild}{\PageMDfive{59}}
-\IntegrityRow{60}{Appendice temporanea - corpus e stati epistemici}{\PageMDfive{60}}
-\IntegrityRow{61}{Appendice temporanea - Construct Description Contract e principio espositivo}{\PageMDfive{61}}
-\IntegrityRow{62}{Appendice temporanea - CDC direzione della spiegazione e revisione}{\PageMDfive{62}}
-\IntegrityRow{63}{Appendice temporanea - CDC campi 1-10}{\PageMDfive{63}}
-\IntegrityRow{64}{Appendice temporanea - CDC campi 11-20}{\PageMDfive{64}}
-\IntegrityRow{65}{Appendice temporanea - roadmap corrente del rebuild R7}{\PageMDfive{65}}
-\IntegrityRow{66}{Indice di integrita' delle pagine}{\PageMDfive{66}}
-\IntegrityRow{67}{Appendice temporanea - laboratorio prove grafiche Mermaid da cancellare}{\PageMDfive{67}}
+\IntegrityRow{59}{11 - condition: definizione, smallest fact e criteri d'uso}{\PageMDfive{59}}
+\IntegrityRow{60}{11 - condition: forma canonica, scope locale e cardinalita}{\PageMDfive{60}}
+\IntegrityRow{61}{11 - condition: identity boundary, invarianti e forbidden inference}{\PageMDfive{61}}
+\IntegrityRow{62}{11 - condition: domande di identificazione e procedura di estrazione}{\PageMDfive{62}}
+\IntegrityRow{63}{11 - condition: esempio generico e worked example DermaTriage corrente}{\PageMDfive{63}}
+\IntegrityRow{64}{11 - condition: prompt LLM per l'identificazione controllata}{\PageMDfive{64}}
+\IntegrityRow{65}{11 - condition: output BA atteso e discriminazioni}{\PageMDfive{65}}
+\IntegrityRow{66}{11 - condition: rappresentazione Mermaid e semantic determinism}{\PageMDfive{66}}
+\IntegrityRow{67}{11 - condition: esempio grafico Mermaid composto con produce}{\PageMDfive{67}}
+\IntegrityRow{68}{Appendice temporanea - scopo, lineage e confine del rebuild}{\PageMDfive{68}}
+\IntegrityRow{69}{Appendice temporanea - corpus e stati epistemici}{\PageMDfive{69}}
+\IntegrityRow{70}{Appendice temporanea - Construct Description Contract e principio espositivo}{\PageMDfive{70}}
+\IntegrityRow{71}{Appendice temporanea - CDC direzione della spiegazione e revisione}{\PageMDfive{71}}
+\IntegrityRow{72}{Appendice temporanea - CDC campi 1-10}{\PageMDfive{72}}
+\IntegrityRow{73}{Appendice temporanea - CDC campi 11-20}{\PageMDfive{73}}
+\IntegrityRow{74}{Appendice temporanea - roadmap corrente del rebuild R7}{\PageMDfive{74}}
+\IntegrityRow{75}{Indice di integrita' delle pagine}{\PageMDfive{75}}
+\IntegrityRow{76}{Appendice temporanea - laboratorio prove grafiche Mermaid da cancellare}{\PageMDfive{76}}
 %</PAGE-INTEGRITY-ROWS>
 \bottomrule
 \end{longtable}
 \endgroup
 \vspace{1mm}
 {\footnotesize La pagina successiva resta il laboratorio grafico temporaneo da cancellare; le altre appendici di rebuild restano deliberate fino al consolidamento.}
-%</PAGE-CONTENT:66>
+%</PAGE-CONTENT:75>
 
 
 \clearpage
 
-%<PAGE-DESC:67>Appendice temporanea - laboratorio prove grafiche Mermaid da cancellare
-%<PAGE-CONTENT:67>
-\PageHashFooter{\PageMDfive{67}}
+%<PAGE-DESC:76>Appendice temporanea - laboratorio prove grafiche Mermaid da cancellare
+%<PAGE-CONTENT:76>
+\PageHashFooter{\PageMDfive{76}}
 \section*{PROVA GRAFICA TEMPORANEA - DA CANCELLARE}
 
 \begin{ddtaopen}[title={Scopo della pagina}]
@@ -2301,6 +2636,6 @@ flowchart LR
 \end{center}
 
 
-%</PAGE-CONTENT:67>
+%</PAGE-CONTENT:76>
 
 \end{document}

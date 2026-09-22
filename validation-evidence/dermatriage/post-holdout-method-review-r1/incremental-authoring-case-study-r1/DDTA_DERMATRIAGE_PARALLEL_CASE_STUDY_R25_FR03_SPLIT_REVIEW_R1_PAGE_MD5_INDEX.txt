@@ -1,23 +1,23 @@
-DDTA DermaTriage Parallel Case Study R25 - FR03 Split Review R1 - Page MD5 Index
+DDTA_DERMATRIAGE_PARALLEL_CASE_STUDY_R25_FR03_SPLIT_REVIEW_R1 - Page MD5 Index
 Canonical payload: LaTeX content between PAGE-CONTENT markers; own printed MD5 excluded.
 Integrity-index page resolves all other page hashes and canonicalizes its own hash as <SELF>.
 
 Page 1  377b35624c4b40d544cde72bcf00740c  Frontespizio e struttura del case study
 Page 2  a3275772d6cd2ce37195f7d8163144e8  Contesto generale del progetto - Project Problem Framing
-Page 3  e0a2e06de7d5b7d2c17be5b4c2174123  MR-01 - Valutazione di triage del caso dermatologico
-Page 4  a85d18b44bd6e3d6cb99220e093e049c  MR-01 > DEC-MR01-01 - Valutazione di urgenza in assenza di immagine
-Page 5  f5832faca2f179e3423a50e97b752b9e  MR-01 > DEC-MR01-01 > FR-MR01-01-01 - Determinazione dell'urgenza su base sintomatologica
-Page 6  d0dcb49f3ed5b107e5a4f60db5eefd9a  MR-01 > DEC-MR01-03 - Percorso image-based a quattro stadi coordinati
-Page 7  dd5eeb559c1d009b4e99196d5bebf41c  MR-01 > DEC-MR01-03 > FR-MR01-03-01 - Stage 1: urgenza e confidence da immagine
-Page 8  60f9677d73ea1cf026ef92c267c4fcf0  MR-01 > DEC-MR01-03 > FR-MR01-03-02 - Stage 2: descrizione clinica strutturata
+Page 3  46cbd47a5fe8e2c86417634fdddea7c8  MR-01 - Valutazione di triage del caso dermatologico
+Page 4  d464848d4f632cc58be0991cacf1b647  MR-01 > DEC-MR01-01 - Valutazione di urgenza in assenza di immagine
+Page 5  b20178fc4e6cdc140cf16360634f5344  MR-01 > DEC-MR01-01 > FR-MR01-01-01 - Determinazione dell'urgenza su base sintomatologica
+Page 6  a3198ac668083dc67b750dff9bd44175  MR-01 > DEC-MR01-03 - Percorso image-based a quattro stadi coordinati
+Page 7  e50995f0de66f6d8f847ce9ddfa6912f  MR-01 > DEC-MR01-03 > FR-MR01-03-01 - Stage 1: urgenza e confidence da immagine
+Page 8  452c3e6e4e672ba2f0d437f6363ee29c  MR-01 > DEC-MR01-03 > FR-MR01-03-02 - Stage 2: descrizione clinica strutturata
 Page 9  bb03073eb7e38e5511cf24446218dd47  MR-01 > DEC-MR01-03 > FR-MR01-03-03A [review label] - Preparazione della base storica per il retrieval
-Page 10  4b655ebd15791ba935d4d7e668f22471  MR-01 > DEC-MR01-03 > FR-MR01-03-03B [review label] - Stage 3: recupero di casi storici simili
-Page 11  a9569e8086367d55854bccd3cf09f99f  MR-01 > DEC-MR01-03 > FR-MR01-03-04 - Stage 4: sintesi multi-source
+Page 10  cba1a94e83a61109b957b847a25c73cd  MR-01 > DEC-MR01-03 > FR-MR01-03-03B [review label] - Stage 3: recupero di casi storici simili
+Page 11  5f72ac1bc71bb90de2c89aee9c1bf055  MR-01 > DEC-MR01-03 > FR-MR01-03-04 - Stage 4: sintesi multi-source
 Page 12  de49645acb22e76bb345d691937b0109  MR-01 > DEC-MR01-04 - Separazione tra valutazione dell'urgenza e priorita operativa
 Page 13  d718ab9cf72c7cd323e0e0997dde32e3  MR-01 > DEC-MR01-04 > FR-MR01-04-01 - Mapping urgenza/confidence verso P1-P4
 Page 14  22b589e352a735848af68026ba7ccd6e  MR-02 - Indicazione della destinazione specialistica
 Page 15  88277fb1892436757c84526e8a5be8b0  MR-03 - Validazione e correzione medica degli esiti
 Page 16  e5085117316308ad10f9d8324bedf7eb  MR-04 - Adattamento controllato sulla base della revisione clinica
-Page 17  9a6a624d9075825e45b95bf7ad1c1a2e  Registro Base Analysis - BAReferent e BAProposition
-Page 18  751d0c7dc001b0757852d3a68215cd92  MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
-Page 19  cc98a497ca37d98976f57b785863c4ac  Indice di integrita delle pagine [INTEGRITY INDEX]
+Page 17  1d2803e5bdbe10d218dd55d3dc97b912  Registro Base Analysis - BAReferent e BAProposition
+Page 18  e55886ad7a39e0f26dc1da9edde09fc4  MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
+Page 19  bab8fa412e91ff44c0588e562b3ff078  Indice di integrita delle pagine [INTEGRITY INDEX]
