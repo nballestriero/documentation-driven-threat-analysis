@@ -31,15 +31,15 @@
 \expandafter\def\csname PageMDfive8\endcsname{452c3e6e4e672ba2f0d437f6363ee29c}
 \expandafter\def\csname PageMDfive9\endcsname{bb03073eb7e38e5511cf24446218dd47}
 \expandafter\def\csname PageMDfive10\endcsname{cba1a94e83a61109b957b847a25c73cd}
-\expandafter\def\csname PageMDfive11\endcsname{5f72ac1bc71bb90de2c89aee9c1bf055}
-\expandafter\def\csname PageMDfive12\endcsname{de49645acb22e76bb345d691937b0109}
-\expandafter\def\csname PageMDfive13\endcsname{d718ab9cf72c7cd323e0e0997dde32e3}
+\expandafter\def\csname PageMDfive11\endcsname{9d2c86231c54c3d67fc1a9a7c8ccbad7}
+\expandafter\def\csname PageMDfive12\endcsname{986ebd679b75abfb4aba7daf6535585b}
+\expandafter\def\csname PageMDfive13\endcsname{c28d66ecaa2a53bd01a828ee48700a43}
 \expandafter\def\csname PageMDfive14\endcsname{22b589e352a735848af68026ba7ccd6e}
 \expandafter\def\csname PageMDfive15\endcsname{88277fb1892436757c84526e8a5be8b0}
 \expandafter\def\csname PageMDfive16\endcsname{e5085117316308ad10f9d8324bedf7eb}
-\expandafter\def\csname PageMDfive17\endcsname{1d2803e5bdbe10d218dd55d3dc97b912}
-\expandafter\def\csname PageMDfive18\endcsname{e55886ad7a39e0f26dc1da9edde09fc4}
-\expandafter\def\csname PageMDfive19\endcsname{bab8fa412e91ff44c0588e562b3ff078}
+\expandafter\def\csname PageMDfive17\endcsname{f05f30834c8389f3222dcb3b27dd8072}
+\expandafter\def\csname PageMDfive18\endcsname{58e8c3acb5d1779941538a64c6bb1dd2}
+\expandafter\def\csname PageMDfive19\endcsname{f9d720f74506eb995b0ba0cf09809a35}
 %</PAGE-HASH-DEFS>
 
 \newcommand{\PageHashFooter}[1]{%
@@ -974,13 +974,13 @@ Nessuna relazione stabilita.
 \end{tabularx}
 
 \textbf{Functional obligation}\par
-Lo Stage 4 usa \texttt{BioMistral-7B} per combinare gli output degli Stage 1, 2 e 3 con le informazioni sintomatologiche disponibili. La sintesi produce una rappresentazione JSON che contiene \texttt{urgency}, \texttt{confidence}, \texttt{reasoning} e \texttt{pathology}. I valori \texttt{urgency} e \texttt{confidence} sono usati dal successivo passaggio di derivazione della priorita' operativa, realizzato nell'architettura corrente dall'\emph{Adaptation Layer}, per determinare la priorita' P1--P4; la documentazione corrente non stabilisce che \texttt{reasoning} e \texttt{pathology} partecipino a tale mapping.
+Lo Stage 4 usa \texttt{BioMistral-7B} per combinare gli output degli Stage 1, 2 e 3 con le informazioni sintomatologiche disponibili. L'output e' una sintesi AI di triage in JSON che contiene almeno \texttt{urgency}, \texttt{confidence}, \texttt{reasoning} e \texttt{pathology}. I valori \texttt{urgency} e \texttt{confidence} sono resi disponibili al successivo passaggio di derivazione della priorita' operativa, realizzato nell'architettura corrente dall'\emph{Adaptation Layer}, per determinare la priorita' P1--P4; la documentazione corrente non stabilisce che \texttt{reasoning} e \texttt{pathology} partecipino a tale mapping.
 
 \textbf{Functional clauses / inherited \texttt{normativeClause [1..*]}}\par
 \begin{enumerate}
   \item Lo Stage 4 MUST usare \texttt{BioMistral-7B} per eseguire la sintesi multi-source.
   \item La sintesi MUST combinare gli output disponibili degli Stage 1, 2 e 3 con le informazioni sintomatologiche del caso.
-  \item Lo Stage 4 MUST produrre una rappresentazione JSON contenente \texttt{urgency}, \texttt{confidence}, \texttt{reasoning} e \texttt{pathology}; i valori \texttt{urgency} e \texttt{confidence} MUST essere resi disponibili al successivo passaggio di derivazione della priorita' operativa.
+  \item Lo Stage 4 MUST produrre una sintesi AI di triage in rappresentazione JSON contenente almeno \texttt{urgency}, \texttt{confidence}, \texttt{reasoning} e \texttt{pathology}; i valori \texttt{urgency} e \texttt{confidence} MUST essere resi disponibili al successivo passaggio di derivazione della priorita' operativa.
 \end{enumerate}
 
 \textbf{Riferimenti strutturati / evidenze governate}\par
@@ -991,10 +991,11 @@ Nessuna relazione stabilita.
 \end{ddtacore}
 
 \begin{ddtaquestions}
-\small
+\scriptsize
 \begin{itemize}
-  \item Qual e' il contratto completo del JSON prodotto dallo Stage 4 e quali campi sono obbligatori?
-  \item Qual e' il significato governato del campo pathology e quali usi sono autorizzati?
+  \setlength{\itemsep}{1pt}
+  \item Qual e' il contratto JSON governato della \texttt{AITriageSynthesis}: quali sono i nomi canonici dei campi relativi a urgency e pathology e deve essere presente anche \texttt{recommended\_action}?
+  \item Qual e' il significato governato del contenuto relativo alla pathology e quali usi sono autorizzati?
   \item Come deve comportarsi la sintesi se uno degli input degli stadi precedenti e' assente o incompleto?
 \end{itemize}
 \end{ddtaquestions}
@@ -1006,18 +1007,18 @@ Nessuna relazione stabilita.
 {\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
 \vspace{0.5em}
 
-\begin{ddtareferentidentified}
-\scriptsize
-\BACandidate{BioMistral-7B} \BANew{}; \BACandidate{TriageConfidence} \BANew{}.\par
+\begin{ddtareferentidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{5.6}{6.1}\selectfont
+\BACandidate{BioMistral-7B} \BANew{}; \BACandidate{TriageConfidence} \BANew{}; \BACandidate{AITriageSynthesis} \BANew{}; \BACandidate{AITriageSynthesisContentContract} \BANew{}.
 \end{ddtareferentidentified}
 
-\begin{ddtareferentaccepted}
-\scriptsize
-\BAAccepted{DermaTriage}; \BAAccepted{DermatologicalCase}; \BAAccepted{ImageUrgencyClassification}; \BAAccepted{ClinicalDescription}; \BAAccepted{RetrievedHistoricalCases}; \BAAccepted{SymptomInformation}; \BAAccepted{CaseUrgency}; \BAAccepted{MultiSourceTriageSynthesis}; \BAAccepted{BioMistral-7B} \BAFirstAccepted{}; \BAAccepted{TriageConfidence} \BAFirstAccepted{}.\par
+\begin{ddtareferentaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{5.3}{5.8}\selectfont
+\BAAccepted{DermaTriage}; \BAAccepted{DermatologicalCase}; \BAAccepted{ImageUrgencyClassification}; \BAAccepted{ClinicalDescription}; \BAAccepted{RetrievedHistoricalCases}; \BAAccepted{SymptomInformation}; \BAAccepted{CaseUrgency}; \BAAccepted{MultiSourceTriageSynthesis}; \BAAccepted{BioMistral-7B} \BAFirstAccepted{}; \BAAccepted{TriageConfidence} \BAFirstAccepted{}; \BAAccepted{AITriageSynthesis} \BAFirstAccepted{}; \BAAccepted{AITriageSynthesisContentContract} \BAFirstAccepted{}.
 \end{ddtareferentaccepted}
 
-\begin{ddtapropositionidentified}
-\tiny
+\begin{ddtapropositionidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.0}{4.35}\selectfont
 \texttt{BAP-FR03-04-01}\par
 \texttt{semanticOperatorKey = produce}\par
 \hspace*{1em}\texttt{actor -> MultiSourceTriageSynthesis}\par
@@ -1025,22 +1026,39 @@ Nessuna relazione stabilita.
 \hspace*{1em}\texttt{input -> ClinicalDescription}\par
 \hspace*{1em}\texttt{input -> RetrievedHistoricalCases}\par
 \hspace*{1em}\texttt{input -> SymptomInformation}\par
+\hspace*{1em}\texttt{result -> AITriageSynthesis}\par
 \hspace*{1em}\texttt{result -> CaseUrgency}\par
 \hspace*{1em}\texttt{result -> TriageConfidence}\par
 \hspace*{1em}\texttt{scopedModifier}\par
 \hspace*{2em}\texttt{condition -> LesionImage available}\par
 \texttt{polarity = affirmative}\par
-\medskip
+\smallskip
 \texttt{BAP-FR03-04-02}\par
 \texttt{semanticOperatorKey = realize}\par
 \hspace*{1em}\texttt{abstract -> MultiSourceTriageSynthesis}\par
 \hspace*{1em}\texttt{realization -> BioMistral-7B}\par
+\texttt{polarity = affirmative}\par
+\smallskip
+\texttt{BAP-FR03-04-03}\par
+\texttt{semanticOperatorKey = constrain}\par
+\hspace*{1em}\texttt{constraintTarget -> AITriageSynthesis}\par
+\hspace*{1em}\texttt{constraintValue -> AITriageSynthesisContentContract}\par
+\texttt{polarity = affirmative}\par
+\smallskip
+\texttt{BAP-FR03-04-04}\par
+\texttt{semanticOperatorKey = constrain}\par
+\hspace*{1em}\texttt{constraintTarget -> AITriageSynthesisContentContract}\par
+\hspace*{1em}\texttt{constraintValue -> representation required in [JSON]}\par
+\hspace*{1em}\texttt{constraintValue -> urgency required}\par
+\hspace*{1em}\texttt{constraintValue -> confidence required}\par
+\hspace*{1em}\texttt{constraintValue -> reasoning required}\par
+\hspace*{1em}\texttt{constraintValue -> pathology required}\par
 \texttt{polarity = affirmative}
 \end{ddtapropositionidentified}
 
-\begin{ddtapropositionaccepted}
-\tiny
-\textbf{BAP-FR03-04-01}; \textbf{BAP-FR03-04-02}.
+\begin{ddtapropositionaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{5.2}{5.7}\selectfont
+\textbf{BAP-FR03-04-01}; \textbf{BAP-FR03-04-02}; \textbf{BAP-FR03-04-03}; \textbf{BAP-FR03-04-04}.
 \end{ddtapropositionaccepted}
 
 
@@ -1067,21 +1085,21 @@ Nessuna relazione stabilita.
 \texttt{MR-01}
 
 \textbf{Context}\par
-La valutazione del caso produce prima un risultato sull'urgenza, poi una priorità operativa per la presa in carico. La priorità operativa richiede inoltre un dominio di valori governato.
+Nel percorso basato sull'immagine, la pipeline analitica produce una \texttt{AITriageSynthesis} che rende disponibili, tra gli altri contenuti governati, la valutazione analitica di urgenza e la confidence associata. La priorita' operativa per la presa in carico viene determinata in un passaggio successivo e richiede un dominio di valori governato.
 
 \textbf{Decision}\par
-Nel percorso basato sull'immagine, DermaTriage tiene separata la valutazione analitica dell'urgenza dalla determinazione successiva della priorità operativa di triage e rappresenta quest'ultima mediante la scala P1-P4.
+Nel percorso basato sull'immagine, DermaTriage mantiene separata la sintesi analitica di triage dalla successiva determinazione della priorita' operativa. La derivazione operativa utilizza la valutazione di urgenza e la confidence applicabile rese disponibili dalla \texttt{AITriageSynthesis}; la priorita' risultante e' rappresentata mediante la scala P1-P4.
 
 \textbf{Consequences}\par
-La priorità operativa si determina dopo la valutazione dell'urgenza, non dentro la pipeline analitica, e assume uno dei valori P1, P2, P3 o P4. La regola operativa che seleziona il livello e' governata dal relativo FunctionalRequirement.
+La \texttt{AITriageSynthesis} resta un risultato della pipeline analitica e la priorita' operativa viene determinata successivamente, assumendo uno dei valori P1, P2, P3 o P4. La regola che seleziona il livello e' governata dal relativo FunctionalRequirement. Questa Decision non stabilisce se il passaggio successivo riceva l'intera \texttt{AITriageSynthesis} oppure soltanto i valori di urgenza e confidence necessari al mapping.
 \end{ddtacore}
 
 \begin{ddtaquestions}
 \small
 \begin{itemize}
-  \item La separazione e' un boundary architetturale intenzionale o soltanto la forma corrente della pipeline?
-  \item La priorita' operativa potrebbe essere prodotta direttamente dall'ultimo stadio senza violare un commitment documentato?
-  \item Quali semantiche appartengono al boundary e quali alla futura regola operativa di mapping?
+  \item La separazione tra \texttt{AITriageSynthesis} e derivazione della priorita' e' un commitment architetturale stabile oppure una struttura della realizzazione corrente?
+  \item Il passaggio verso la derivazione operativa trasferisce l'intera \texttt{AITriageSynthesis} oppure soltanto \texttt{CaseUrgency} e \texttt{TriageConfidence}?
+  \item La stessa derivazione P1-P4 si applica anche alla \texttt{CaseUrgency} prodotta dal percorso symptom-only?
 \end{itemize}
 \end{ddtaquestions}
 
@@ -1093,12 +1111,12 @@ La priorità operativa si determina dopo la valutazione dell'urgenza, non dentro
 
 \begin{ddtareferentidentified}
 \scriptsize
-\BACandidate{OperationalPriorityDerivation} \BANew{}.\par
+--
 \end{ddtareferentidentified}
 
 \begin{ddtareferentaccepted}
 \scriptsize
-\BAAccepted{DermaTriage}; \BAAccepted{CaseUrgency}; \BAAccepted{OperationalTriagePriority}.\par
+\BAAccepted{DermaTriage}; \BAAccepted{AITriageSynthesis}; \BAAccepted{CaseUrgency}; \BAAccepted{TriageConfidence}; \BAAccepted{OperationalTriagePriority}.\par
 \end{ddtareferentaccepted}
 
 \begin{ddtapropositionidentified}
@@ -1124,14 +1142,13 @@ La priorità operativa si determina dopo la valutazione dell'urgenza, non dentro
 \subsubsection{FR-MR01-04-01 - Mapping urgenza/confidence verso P1-P4}
 {\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-01} $\rightarrow$ \texttt{DEC-MR01-04} $\rightarrow$ \texttt{FR-MR01-04-01}}\par
 
-
 \setlength{\columnsep}{7mm}
 \setlength{\columnseprule}{0.35pt}
 \columnratio{0.67}
 \begin{paracol}{2}
 
 {\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
-\vspace{0.35em}
+\vspace{0.3em}
 \small
 
 \begin{ddtacore}[title={FunctionalRequirement}]
@@ -1148,22 +1165,22 @@ La priorità operativa si determina dopo la valutazione dell'urgenza, non dentro
 \end{tabularx}
 
 \textbf{Functional obligation}\par
-L'\emph{Adaptation Layer} deriva la priorita' operativa P1--P4 dalla valutazione analitica di urgenza e dalla confidence applicabile. Per i casi \texttt{HIGH}, la soglia stretta \texttt{confidence > 0.85} seleziona \texttt{P1}; gli altri casi \texttt{HIGH} selezionano \texttt{P2}; \texttt{MEDIUM} seleziona \texttt{P3}; \texttt{LOW} seleziona \texttt{P4}.
+Nel percorso basato sull'immagine, DermaTriage deriva la priorita' operativa P1--P4 dalla valutazione analitica di urgenza e dalla confidence applicabile rese disponibili dalla sintesi finale di triage. Per i casi \texttt{HIGH}, la soglia stretta \texttt{confidence > 0.85} seleziona \texttt{P1}; gli altri casi \texttt{HIGH} selezionano \texttt{P2}; \texttt{MEDIUM} seleziona \texttt{P3}; \texttt{LOW} seleziona \texttt{P4}. Nella realizzazione corrente, tale derivazione e' svolta dall'\emph{Adaptation Layer}, implementato nel modulo \texttt{adaptation\_layer.py}; la funzione \texttt{map\_urgency\_to\_p\_scale()} applica il mapping.
 
 \textbf{Functional clauses / inherited \texttt{normativeClause [1..*]}}\par
 \begin{tabularx}{\linewidth}{L{52mm}Y}
 \toprule
 \textbf{Condizione} & \textbf{Priorita' richiesta} \\
 \midrule
-\texttt{HIGH} + \texttt{confidence > 0.85} & L'\emph{Adaptation Layer} MUST produrre \texttt{P1}. \\
-\texttt{HIGH}, negli altri casi applicabili & L'\emph{Adaptation Layer} MUST produrre \texttt{P2}. \\
-\texttt{MEDIUM} & L'\emph{Adaptation Layer} MUST produrre \texttt{P3}. \\
-\texttt{LOW} & L'\emph{Adaptation Layer} MUST produrre \texttt{P4}. \\
+\texttt{HIGH} + \texttt{confidence > 0.85} & DermaTriage MUST produrre \texttt{P1}. \\
+\texttt{HIGH}, negli altri casi applicabili & DermaTriage MUST produrre \texttt{P2}. \\
+\texttt{MEDIUM} & DermaTriage MUST produrre \texttt{P3}. \\
+\texttt{LOW} & DermaTriage MUST produrre \texttt{P4}. \\
 \bottomrule
 \end{tabularx}
 
 \textbf{Riferimenti strutturati / evidenze governate}\par
---
+\emph{Adaptation Layer}; \texttt{adaptation\_layer.py}; \texttt{map\_urgency\_to\_p\_scale()}.
 
 \textbf{SpecializedRequirement relation}\par
 Nessuna relazione stabilita.
@@ -1179,32 +1196,52 @@ Nessuna relazione stabilita.
 \end{itemize}
 \end{ddtaquestions}
 
-
-
-
 \switchcolumn
 
 {\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
-\vspace{0.5em}
+\vspace{0.4em}
 
 \begin{ddtareferentidentified}
 \scriptsize
-\BACandidate{OperationalPriorityDerivation}; \BACandidate{AdaptationLayer} \BANew{}.\par
+--
 \end{ddtareferentidentified}
 
 \begin{ddtareferentaccepted}
 \scriptsize
-\BAAccepted{DermaTriage}; \BAAccepted{CaseUrgency}; \BAAccepted{OperationalTriagePriority}; \BAAccepted{TriageConfidence}.\par
+\BAAccepted{DermaTriage}; \BAAccepted{CaseUrgency}; \BAAccepted{OperationalTriagePriority}; \BAAccepted{TriageConfidence}; \BAAccepted{OperationalPriorityDerivation} \BAFirstAccepted{}; \BAAccepted{AdaptationLayer} \BAFirstAccepted{}.\par
 \end{ddtareferentaccepted}
 
-\begin{ddtapropositionidentified}
-\scriptsize
-\texttt{NON ANALIZZATO}
+\begin{ddtapropositionidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.45}{4.9}\selectfont
+\emph{Candidate \texttt{operatorStructure} su \texttt{BAP-FR04-01-01} (rilocazione R7 ancora sotto review):}\par
+\texttt{operatorStructure}\par
+\hspace*{1em}\texttt{decisionRule}\par
+\hspace*{2em}\texttt{HIGH + confidence > 0.85 -> P1}\par
+\hspace*{2em}\texttt{HIGH, other applicable cases -> P2}\par
+\hspace*{2em}\texttt{MEDIUM -> P3}\par
+\hspace*{2em}\texttt{LOW -> P4}\par
+\emph{Pressure aperta: la comparison \texttt{> 0.85} richiede il candidate key \texttt{greaterThan}; nessun ELSE globale viene inferito.}
 \end{ddtapropositionidentified}
 
-\begin{ddtapropositionaccepted}
-\scriptsize
-\texttt{NON ANALIZZATO}
+\begin{ddtapropositionaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.65}{5.05}\selectfont
+\texttt{BAP-FR04-01-01}\par
+\texttt{semanticOperatorKey = produce}\par
+\hspace*{1em}\texttt{actor -> OperationalPriorityDerivation}\par
+\hspace*{1em}\texttt{input -> CaseUrgency}\par
+\hspace*{1em}\texttt{input -> TriageConfidence}\par
+\hspace*{1em}\texttt{result -> OperationalTriagePriority}\par
+\hspace*{1em}\texttt{scopedModifier}\par
+\hspace*{2em}\texttt{condition -> LesionImage available}\par
+\texttt{polarity = affirmative}\par
+\smallskip
+\texttt{BAP-FR04-01-02}\par
+\texttt{semanticOperatorKey = realize}\par
+\hspace*{1em}\texttt{abstract -> OperationalPriorityDerivation}\par
+\hspace*{1em}\texttt{realization -> AdaptationLayer}\par
+\texttt{polarity = affirmative}\par
+\smallskip
+\textbf{Accettate: BAP-FR04-01-01; BAP-FR04-01-02.} La \texttt{decisionRule} annidata resta candidate e non e' inclusa nell'accettazione.
 \end{ddtapropositionaccepted}
 
 \end{paracol}
@@ -1436,15 +1473,15 @@ Medico.
 \section{Registro Base Analysis}
 
 \begin{ddtacore}[title={Sintesi BA corrente}]
-\scriptsize
+\fontsize{6.2}{6.8}\selectfont
 Il registro raccoglie la tracciabilita' BA corrente senza introdurre campi o stati ulteriori rispetto al modello BA usato nel case study. In R25, \texttt{FR-MR01-03-03A/B} sono label di review provvisori: servono a mostrare la riallocazione prodotta dallo split senza anticipare la decisione sugli ID canonici. Gli ID delle BAProposition preesistenti restano invariati per preservare la tracciabilita'. Il riferimento in \textbf{grassetto} identifica il primo elemento documentale nel quale il BAReferent o la BAProposition viene accettato; i riferimenti non in grassetto indicano occorrenze o candidature gia' visibili nella documentazione corrente. \textbf{Identity continuity:} lo stesso nome di BAReferent nel registro denota la stessa identita' semantica in ogni occorrenza; se due significati sono distinti devono essere rappresentati da BAReferent distinti, non disambiguati implicitamente dal contesto. Le proposition sono registrate con gli operatori, i ruoli e gli scoped modifier canonici definiti dalla guida BA di riferimento.
 \end{ddtacore}
 
-\vspace{0.5mm}
-{\sffamily\bfseries\color{DDTABlue}BAReferent}\par
 \vspace{0.2mm}
-\fontsize{5.9}{6.5}\selectfont
-\renewcommand{\arraystretch}{0.95}
+{\sffamily\bfseries\color{DDTABlue}BAReferent}\par
+\vspace{0.1mm}
+\fontsize{5.45}{5.85}\selectfont
+\renewcommand{\arraystretch}{0.86}
 \setlength{\tabcolsep}{3pt}
 \begin{tabularx}{\textwidth}{L{55mm}Y}
 \toprule
@@ -1480,16 +1517,19 @@ all-MiniLM-L6-v2 & \textbf{\texttt{FR-MR01-03-03A}}; \texttt{FR-MR01-03-03B} \\
 RetrievedHistoricalCases & \textbf{\texttt{FR-MR01-03-03B}}; \texttt{FR-MR01-03-04} \\
 MultiSourceTriageSynthesis & \texttt{DEC-MR01-03}; \textbf{\texttt{FR-MR01-03-03B}}; \texttt{FR-MR01-03-04} \\
 BioMistral-7B & \textbf{\texttt{FR-MR01-03-04}} \\
-TriageConfidence & \textbf{\texttt{FR-MR01-03-04}}; \texttt{FR-MR01-04-01} \\
-OperationalPriorityDerivation & \texttt{DEC-MR01-04}; \texttt{FR-MR01-04-01} \\
-AdaptationLayer & \texttt{FR-MR01-04-01} \\
+TriageConfidence & \textbf{\texttt{FR-MR01-03-04}}; \texttt{DEC-MR01-04}; \texttt{FR-MR01-04-01} \\
+AITriageSynthesis & \textbf{\texttt{FR-MR01-03-04}}; \texttt{DEC-MR01-04} \\
+AITriageSynthesisContentContract & \textbf{\texttt{FR-MR01-03-04}} \\
+OperationalPriorityDerivation & \textbf{\texttt{FR-MR01-04-01}} \\
+AdaptationLayer & \textbf{\texttt{FR-MR01-04-01}} \\
 \bottomrule
 \end{tabularx}
 
-\vspace{0.8mm}
+\vspace{0.35mm}
 {\sffamily\bfseries\color{DDTABlue}BAProposition}\par
-\vspace{0.2mm}
-\fontsize{5.8}{6.4}\selectfont
+\vspace{0.1mm}
+\fontsize{5.25}{5.65}\selectfont
+\renewcommand{\arraystretch}{0.90}
 \begin{tabularx}{\textwidth}{L{58mm}Y}
 \toprule
 \textbf{BAProposition} & \textbf{Riferimenti documentali} \\
@@ -1515,7 +1555,11 @@ AdaptationLayer & \texttt{FR-MR01-04-01} \\
 \textbf{\texttt{BAP-FR03-03-13}} & \texttt{FR-MR01-03-03B} -- \texttt{transfer} (Stage 3 $\rightarrow$ Stage 4), \texttt{condition: LesionImage available} \\
 \textbf{\texttt{BAP-FR03-04-01}} & \texttt{FR-MR01-03-04} -- \texttt{produce}, \texttt{condition: LesionImage available} \\
 \textbf{\texttt{BAP-FR03-04-02}} & \texttt{FR-MR01-03-04} -- \texttt{realize} \\
+\textbf{\texttt{BAP-FR03-04-03}} & \texttt{FR-MR01-03-04} -- \texttt{constrain} (sintesi -> content contract) \\
+\textbf{\texttt{BAP-FR03-04-04}} & \texttt{FR-MR01-03-04} -- \texttt{constrain} (content contract strutturato) \\
 \emph{\texttt{BAP-DEC04-01}} & \texttt{DEC-MR01-04} \\
+\textbf{\texttt{BAP-FR04-01-01}} & \texttt{FR-MR01-04-01} -- \texttt{produce}, \texttt{condition: LesionImage available}; candidate \texttt{operatorStructure.decisionRule} non inclusa nell'accettazione \\
+\textbf{\texttt{BAP-FR04-01-02}} & \texttt{FR-MR01-04-01} -- \texttt{realize} (\texttt{OperationalPriorityDerivation -> AdaptationLayer}) \\
 \bottomrule
 \end{tabularx}
 %</PAGE-CONTENT:17>
@@ -1547,7 +1591,7 @@ Questa pagina e' un \textbf{worklist di ricerca}, non introduce nuovi campi L1, 
 \texttt{T08} & \texttt{ClinicalDescriptionGeneration -> MultiSourceTriageSynthesis : ClinicalDescription} & Verificare se Stage4 consuma lo stesso \texttt{ClinicalDescriptionContentContract} riallocato con T06 o una rappresentazione distinta; correlation al caso e realization del passaggio ?. \\
 \texttt{T09} & \texttt{HistoricalCaseSimilarityRetrieval -> MultiSourceTriageSynthesis : RetrievedHistoricalCases} & Historical-cases contract: top-5 noto; per ciascun caso sono documentati \texttt{patient\_id}, \texttt{diagnosis}, \texttt{urgency\_level} e \texttt{similarity\_score}. Restano da chiarire ordering esposto come contratto, identity/correlation e underfill behavior. \\
 \texttt{T10} & \texttt{? -> MultiSourceTriageSynthesis : SymptomInformation} & Symptom-input contract: source ?, schema completo, required/optional, tipi/missing/invalid semantics, same-case correlation ?. \\
-\texttt{T11} & \texttt{MultiSourceTriageSynthesis -> OperationalPriorityDerivation : CaseUrgency + TriageConfidence} & Priority-input contract: urgency + confidence noti; confidence domain/nullability/invalid handling e exact realization del handoff ?. Reasoning/pathology non risultano input del mapping corrente. \\
+\texttt{T11} & \texttt{MultiSourceTriageSynthesis -> OperationalPriorityDerivation : AITriageSynthesis / CaseUrgency + TriageConfidence} & Stage-4 output contract ora esplicito: la sintesi contiene urgency + confidence usati dal mapping. La funzione di derivazione e' realizzata correntemente dall'\emph{Adaptation Layer}; i riferimenti concreti \texttt{adaptation\_layer.py} e \texttt{map\_urgency\_to\_p\_scale()} sono preservati in \texttt{FR-MR01-04-01}. Resta da verificare se il handoff trasferisca l'intera sintesi o soltanto tali valori, oltre a confidence domain/nullability/invalid handling. Reasoning/pathology non risultano input del mapping corrente. \\
 \texttt{T12} & \texttt{? -> DermaTriage : SymptomInformation} & Symptom-only input contract: esempi itching/bleeding/growth-change/pain; source, schema completo, minimum evidence set e missing-field behavior ?. Nessun BAReferent \texttt{SymptomOnlyUrgencyAnalysis} viene introdotto senza identity evidence autonoma. \\
 \texttt{T13} & \texttt{DermaTriage -> ? : CaseUrgency (+ confidence ?)} & Symptom-only output contract: CaseUrgency supportata; confidence ?, destination ?, applicabilita' dello stesso mapping P1-P4 ?. \\
 \texttt{T14} & \texttt{DermaTriage / OperationalPriorityDerivation -> B4Platform : triage result} & B4 result-write contract: source semantica esatta ?, payload (urgency/confidence/P-scale/reasoning/pathology/specialist/SLA) ?, correlation alla consultation ?. \\
