@@ -2,7 +2,7 @@ DDTA_BASE_ANALYSIS_GUIDE_REBUILD_R7 - Page MD5 Index
 Canonical payload: LaTeX content between PAGE-CONTENT markers; own printed MD5 excluded.
 Integrity-index page resolves all other page hashes and canonicalizes its own hash as <SELF>.
 
-Page 1  0c456e68bcd056124768219bacdcab68  Frontespizio della Base Analysis Guide Rebuild R7
+Page 1  0632ba4ee70293386c08c6be0dd10d89  Frontespizio della Base Analysis Guide Rebuild R7
 Page 2  fa01b7db301f77cd9988907daf2b3397  1 - Che cos'e' la Base Analysis
 Page 3  3b620cf21e74f64e397656ec9f3038da  1 - Perche' esiste e principi di base
 Page 4  b12d8f94dc04c833c0d916453255f9be  1 - Direzione dell'authority e feedback
@@ -70,20 +70,20 @@ Page 65  7956aba2ac06ebcc3c7973d91b70469a  11 - condition: output BA atteso e di
 Page 66  4d65df60cd00baef5ce9044dbbc85f99  11 - condition: rappresentazione Mermaid e semantic determinism
 Page 67  ecda2667c8851cd4a8a88c0b5ab7a817  11 - condition: esempio grafico Mermaid composto con produce
 Page 68  838b86747edfaf9255eba656359ba686  12 - decisionRule: definizione, smallest fact e criteri d'uso
-Page 69  ae76776a0123bf292f75f6e6c8e85873  12 - decisionRule: forma canonica candidate e cardinalita
-Page 70  81fa8e48c04924374f844530857a7961  12 - decisionRule: identity boundary, invarianti e forbidden inference
-Page 71  a0be33fafc8818cbc8aa9a228800ac06  12 - decisionRule: domande di identificazione e procedura di estrazione
-Page 72  78df03da071146eaf0784e3cb663f8e1  12 - decisionRule: esempio generico e pressure case DermaTriage
-Page 73  e71b51c4b33009106e6b6a6244365314  12 - decisionRule: prompt LLM per l'identificazione controllata
-Page 74  31a35f3c5c6d7bc55d535686970e2869  12 - decisionRule: output candidate e discriminazioni
+Page 69  47e9a7ceb31efd253c34453155337e71  12 - decisionRule: forma canonica candidate e cardinalita
+Page 70  c490bc72c060d4482b6f5599cc8eb8e1  12 - decisionRule: identity boundary, invarianti e forbidden inference
+Page 71  eadac7583a078dbaec5090052eb85974  12 - decisionRule: domande di identificazione e procedura di estrazione
+Page 72  d6ee47ee9de0501f164fdb328fc69ddb  12 - decisionRule: esempio generico e pressure case DermaTriage
+Page 73  2205a8b6a451a27635473eac1f53b945  12 - decisionRule: prompt LLM per l'identificazione controllata
+Page 74  04d2d044867055a500a4f10de2caf3e4  12 - decisionRule: output candidate e discriminazioni
 Page 75  f248e4c48942111fde0c866c423d5e24  12 - decisionRule: rappresentazione Mermaid e visibility profile
-Page 76  ba2f8053b6612bc2a52396c2fd3ec949  12 - decisionRule: esempio grafico DermaTriage candidate
+Page 76  4f78ba264c6eb0c06268caa9286bcf93  12 - decisionRule: esempio grafico DermaTriage candidate
 Page 77  3915eaee02f714ac47e0dfa764b2836f  Appendice temporanea - scopo, lineage e confine del rebuild
 Page 78  5475a02c3223c3fac62a7eebe62f6be2  Appendice temporanea - corpus e stati epistemici
 Page 79  e1b1becfc138e20474529fae47de6a05  Appendice temporanea - Construct Description Contract e principio espositivo
 Page 80  435e9ecddb23d230df9cc32766e10610  Appendice temporanea - CDC direzione della spiegazione e revisione
 Page 81  9d02d27cc2ad8bb4e1b30d441667e854  Appendice temporanea - CDC campi 1-10
 Page 82  90b6659e5a0105e0cd7268d3f76137f6  Appendice temporanea - CDC campi 11-20
-Page 83  4076e2f7a00855a7ac650ff3ac7ab044  Appendice temporanea - roadmap corrente del rebuild R7
-Page 84  080f4ff9e7080b3504b21842c5a514db  Indice di integrita' delle pagine [INTEGRITY INDEX]
+Page 83  816d0bc660638027cd49ab41d5b87c2e  Appendice temporanea - roadmap corrente del rebuild R7
+Page 84  d8daf7031f5d8edb5455917e4fe6df90  Indice di integrita' delle pagine [INTEGRITY INDEX]
 Page 85  13cdd31df41e1d75e405e6ba020261fa  Appendice temporanea - laboratorio prove grafiche Mermaid da cancellare

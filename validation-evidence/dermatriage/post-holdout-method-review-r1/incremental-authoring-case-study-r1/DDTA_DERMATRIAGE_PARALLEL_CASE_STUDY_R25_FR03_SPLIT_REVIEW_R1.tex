@@ -33,13 +33,14 @@
 \expandafter\def\csname PageMDfive10\endcsname{cba1a94e83a61109b957b847a25c73cd}
 \expandafter\def\csname PageMDfive11\endcsname{9d2c86231c54c3d67fc1a9a7c8ccbad7}
 \expandafter\def\csname PageMDfive12\endcsname{986ebd679b75abfb4aba7daf6535585b}
-\expandafter\def\csname PageMDfive13\endcsname{c28d66ecaa2a53bd01a828ee48700a43}
+\expandafter\def\csname PageMDfive13\endcsname{8c9bec5d00a83f1943ff65f5809fa586}
 \expandafter\def\csname PageMDfive14\endcsname{22b589e352a735848af68026ba7ccd6e}
 \expandafter\def\csname PageMDfive15\endcsname{88277fb1892436757c84526e8a5be8b0}
 \expandafter\def\csname PageMDfive16\endcsname{e5085117316308ad10f9d8324bedf7eb}
-\expandafter\def\csname PageMDfive17\endcsname{f05f30834c8389f3222dcb3b27dd8072}
-\expandafter\def\csname PageMDfive18\endcsname{58e8c3acb5d1779941538a64c6bb1dd2}
-\expandafter\def\csname PageMDfive19\endcsname{f9d720f74506eb995b0ba0cf09809a35}
+\expandafter\def\csname PageMDfive17\endcsname{9faf8d41344390a05878e91d5d4ac7bd}
+\expandafter\def\csname PageMDfive18\endcsname{0c0c3e3b77f3e9515f4af70cd03dc514}
+\expandafter\def\csname PageMDfive19\endcsname{58e8c3acb5d1779941538a64c6bb1dd2}
+\expandafter\def\csname PageMDfive20\endcsname{4e824517fb480a527318d4b0c9055fa5}
 %</PAGE-HASH-DEFS>
 
 \newcommand{\PageHashFooter}[1]{%
@@ -1212,19 +1213,13 @@ Nessuna relazione stabilita.
 \end{ddtareferentaccepted}
 
 \begin{ddtapropositionidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
-\fontsize{4.45}{4.9}\selectfont
-\emph{Candidate \texttt{operatorStructure} su \texttt{BAP-FR04-01-01} (rilocazione R7 ancora sotto review):}\par
-\texttt{operatorStructure}\par
-\hspace*{1em}\texttt{decisionRule}\par
-\hspace*{2em}\texttt{HIGH + confidence > 0.85 -> P1}\par
-\hspace*{2em}\texttt{HIGH, other applicable cases -> P2}\par
-\hspace*{2em}\texttt{MEDIUM -> P3}\par
-\hspace*{2em}\texttt{LOW -> P4}\par
-\emph{Pressure aperta: la comparison \texttt{> 0.85} richiede il candidate key \texttt{greaterThan}; nessun ELSE globale viene inferito.}
+\fontsize{4.55}{4.95}\selectfont
+\texttt{--}\par
+\emph{Nessuna BAProposition aggiuntiva: la result-selection structure R7 qualifica localmente l'owner \texttt{produce} accettato sotto.}
 \end{ddtapropositionidentified}
 
 \begin{ddtapropositionaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
-\fontsize{4.65}{5.05}\selectfont
+\fontsize{4.12}{4.48}\selectfont
 \texttt{BAP-FR04-01-01}\par
 \texttt{semanticOperatorKey = produce}\par
 \hspace*{1em}\texttt{actor -> OperationalPriorityDerivation}\par
@@ -1233,15 +1228,24 @@ Nessuna relazione stabilita.
 \hspace*{1em}\texttt{result -> OperationalTriagePriority}\par
 \hspace*{1em}\texttt{scopedModifier}\par
 \hspace*{2em}\texttt{condition -> LesionImage available}\par
+\hspace*{1em}\texttt{operatorStructure [CANDIDATE R7 / NOT ADMITTED]}\par
+\hspace*{2em}\texttt{decisionRule}\par
+\hspace*{3em}\texttt{branch}\par
+\hspace*{4em}\texttt{when -> CaseUrgency eq HIGH AND TriageConfidence gt 0.85}\par
+\hspace*{4em}\texttt{resultAssignment -> OperationalTriagePriority = P1}\par
+\hspace*{3em}\texttt{branch}\par
+\hspace*{4em}\texttt{when -> other applicable cases within CaseUrgency eq HIGH}\par
+\hspace*{4em}\texttt{resultAssignment -> OperationalTriagePriority = P2}\par
+\hspace*{3em}\texttt{branch: CaseUrgency eq MEDIUM -> P3}\par
+\hspace*{3em}\texttt{branch: CaseUrgency eq LOW -> P4}\par
 \texttt{polarity = affirmative}\par
+\emph{Acceptance boundary: la proposition \texttt{produce} e' accettata; la struttura annidata e' mostrata dentro il suo owner ma resta candidate R7 e non e' ancora parte della semantica BA ammessa. \texttt{eq} e' normalizzazione nominale; \texttt{gt} e' la sola ordered comparison candidate. Il residuale HIGH non equivale a \texttt{confidence <= 0.85}, non e' un ELSE globale e non copre automaticamente confidence missing/invalid/out-of-domain.}\par
 \smallskip
 \texttt{BAP-FR04-01-02}\par
 \texttt{semanticOperatorKey = realize}\par
 \hspace*{1em}\texttt{abstract -> OperationalPriorityDerivation}\par
 \hspace*{1em}\texttt{realization -> AdaptationLayer}\par
-\texttt{polarity = affirmative}\par
-\smallskip
-\textbf{Accettate: BAP-FR04-01-01; BAP-FR04-01-02.} La \texttt{decisionRule} annidata resta candidate e non e' inclusa nell'accettazione.
+\texttt{polarity = affirmative}
 \end{ddtapropositionaccepted}
 
 \end{paracol}
@@ -1467,9 +1471,117 @@ Medico.
 \end{paracol}
 %</PAGE-CONTENT:16>
 \clearpage
-%<PAGE-DESC:17>Registro Base Analysis - BAReferent e BAProposition
+%<PAGE-DESC:17>MR-04 > DEC-11 > FR-08 - Derivazione del target di supervisione dalla priorita P-scale corretta
 %<PAGE-CONTENT:17>
 \PageHashFooter{\PageMDfive{17}}
+\subsubsection{FR-08 - Derivazione del target di supervisione dalla priorita P-scale corretta}
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-04} $\rightarrow$ \texttt{DEC-11} $\rightarrow$ \texttt{FR-08}}\par
+
+\setlength{\columnsep}{7mm}
+\setlength{\columnseprule}{0.35pt}
+\columnratio{0.67}
+\begin{paracol}{2}
+
+{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
+\vspace{0.3em}
+\small
+
+\begin{ddtacore}[title={Decision + FunctionalRequirement}]
+\textbf{DEC-11 - Derivazione della supervision classificatoria dalla priorita clinicamente corretta}\par
+\textbf{Context}\par
+L'adattamento della classificazione di urgenza necessita di un target di supervisione. La priorita P-scale clinicamente corretta e' la sorgente semantica del target \texttt{HIGH / MEDIUM / LOW}.\par
+
+\textbf{Decision}\par
+Per i casi di adattamento classificatorio con priorita P-scale clinicamente corretta, DermaTriage deriva il target secondo il mapping governato \texttt{P1/P2 -> HIGH}, \texttt{P3 -> MEDIUM}, \texttt{P4 -> LOW}.\par
+
+\medskip
+\begin{tabularx}{\linewidth}{L{38mm}Y}
+\toprule
+\textbf{ID} & \texttt{FR-08} \\
+\textbf{Lifecycle} & \texttt{current} \\
+\textbf{Authority} & \texttt{CURRENT\_GOVERNED} \\
+\textbf{Type} & \texttt{FunctionalRequirement} \\
+\textbf{Parent Decision} & \texttt{DEC-11} \\
+\textbf{Owning MR (derived)} & \texttt{MR-04} \\
+\bottomrule
+\end{tabularx}
+
+\textbf{Functional obligation}\par
+Derivare il target di supervisione classificatoria dalla priorita P-scale corretta dal professionista sanitario.\par
+
+\textbf{Functional clauses / inherited \texttt{normativeClause [1..*]}}\par
+\begin{tabularx}{\linewidth}{L{52mm}Y}
+\toprule
+\textbf{Priorita clinicamente corretta} & \textbf{Target richiesto} \\
+\midrule
+\texttt{P1} & DermaTriage MUST derivare \texttt{HIGH}. \\
+\texttt{P2} & DermaTriage MUST derivare \texttt{HIGH}. \\
+\texttt{P3} & DermaTriage MUST derivare \texttt{MEDIUM}. \\
+\texttt{P4} & DermaTriage MUST derivare \texttt{LOW}. \\
+\bottomrule
+\end{tabularx}
+
+\textbf{SPO references}\par
+\texttt{ClinicallyCorrectedOperationalTriagePriority -- maps to --> ClassifierUrgencyTarget}\par
+\texttt{DermaTriage -- derive --> ClassifierUrgencyTarget}
+\end{ddtacore}
+
+\begin{ddtaquestions}
+\small
+\begin{itemize}
+  \item Il comportamento per priorita corretta assente, invalida, fuori dominio o conflittuale non e' specificato da FR-08.
+  \item Nessuna relazione FR-07 $\rightarrow$ FR-08 viene inferita dal solo contesto condiviso di adattamento.
+\end{itemize}
+\end{ddtaquestions}
+
+\switchcolumn
+
+{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
+\vspace{0.4em}
+
+\begin{ddtareferentidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{5.0}{5.4}\selectfont
+\texttt{--}\par
+\end{ddtareferentidentified}
+
+\begin{ddtareferentaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{5.0}{5.4}\selectfont
+\BAAccepted{DermaTriage}; \BAAccepted{ClinicallyCorrectedOperationalTriagePriority} \BAFirstAccepted{}; \BAAccepted{ClassifierUrgencyTarget} \BAFirstAccepted{}.
+\end{ddtareferentaccepted}
+
+\begin{ddtapropositionidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.55}{4.95}\selectfont
+\texttt{--}\par
+\emph{Nessuna BAProposition separata per il mapping: la candidate \texttt{operatorStructure.decisionRule} e' locale alla proposition \texttt{produce} accettata sotto.}
+\end{ddtapropositionidentified}
+
+\begin{ddtapropositionaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.05}{4.42}\selectfont
+\texttt{BAP-FR08-01-01}\par
+\texttt{semanticOperatorKey = produce}\par
+\hspace*{1em}\texttt{actor -> DermaTriage}\par
+\hspace*{1em}\texttt{input -> ClinicallyCorrectedOperationalTriagePriority}\par
+\hspace*{1em}\texttt{result -> ClassifierUrgencyTarget}\par
+\hspace*{1em}\texttt{operatorStructure [CANDIDATE R7 / NOT ADMITTED]}\par
+\hspace*{2em}\texttt{decisionRule}\par
+\hspace*{3em}\texttt{branch: ClinicallyCorrectedOperationalTriagePriority eq P1}\par
+\hspace*{4em}\texttt{resultAssignment -> ClassifierUrgencyTarget = HIGH}\par
+\hspace*{3em}\texttt{branch: ClinicallyCorrectedOperationalTriagePriority eq P2}\par
+\hspace*{4em}\texttt{resultAssignment -> ClassifierUrgencyTarget = HIGH}\par
+\hspace*{3em}\texttt{branch: ClinicallyCorrectedOperationalTriagePriority eq P3}\par
+\hspace*{4em}\texttt{resultAssignment -> ClassifierUrgencyTarget = MEDIUM}\par
+\hspace*{3em}\texttt{branch: ClinicallyCorrectedOperationalTriagePriority eq P4}\par
+\hspace*{4em}\texttt{resultAssignment -> ClassifierUrgencyTarget = LOW}\par
+\texttt{polarity = affirmative}\par
+\emph{Acceptance boundary: \texttt{BAP-FR08-01-01} e' accettata come proposition \texttt{produce}. La struttura annidata e' mostrata dentro lo stesso owner come secondo positive control, ma resta candidate R7 fino alla regression Facial Access e al checkpoint metodologico. Nessun ELSE e nessun comportamento missing/invalid/out-of-domain viene inferito.}
+\end{ddtapropositionaccepted}
+
+\end{paracol}
+%</PAGE-CONTENT:17>
+\clearpage
+%<PAGE-DESC:18>Registro Base Analysis - BAReferent e BAProposition
+%<PAGE-CONTENT:18>
+\PageHashFooter{\PageMDfive{18}}
 \section{Registro Base Analysis}
 
 \begin{ddtacore}[title={Sintesi BA corrente}]
@@ -1522,6 +1634,8 @@ AITriageSynthesis & \textbf{\texttt{FR-MR01-03-04}}; \texttt{DEC-MR01-04} \\
 AITriageSynthesisContentContract & \textbf{\texttt{FR-MR01-03-04}} \\
 OperationalPriorityDerivation & \textbf{\texttt{FR-MR01-04-01}} \\
 AdaptationLayer & \textbf{\texttt{FR-MR01-04-01}} \\
+ClinicallyCorrectedOperationalTriagePriority & \textbf{\texttt{FR-08}} \\
+ClassifierUrgencyTarget & \textbf{\texttt{FR-08}} \\
 \bottomrule
 \end{tabularx}
 
@@ -1558,15 +1672,16 @@ AdaptationLayer & \textbf{\texttt{FR-MR01-04-01}} \\
 \textbf{\texttt{BAP-FR03-04-03}} & \texttt{FR-MR01-03-04} -- \texttt{constrain} (sintesi -> content contract) \\
 \textbf{\texttt{BAP-FR03-04-04}} & \texttt{FR-MR01-03-04} -- \texttt{constrain} (content contract strutturato) \\
 \emph{\texttt{BAP-DEC04-01}} & \texttt{DEC-MR01-04} \\
-\textbf{\texttt{BAP-FR04-01-01}} & \texttt{FR-MR01-04-01} -- \texttt{produce}, \texttt{condition: LesionImage available}; candidate \texttt{operatorStructure.decisionRule} non inclusa nell'accettazione \\
+\textbf{\texttt{BAP-FR04-01-01}} & \texttt{FR-MR01-04-01} -- accepted \texttt{produce}, \texttt{condition: LesionImage available}; candidate \texttt{operatorStructure.decisionRule} mostrata inline nell'owner ma non ancora ammessa \\
 \textbf{\texttt{BAP-FR04-01-02}} & \texttt{FR-MR01-04-01} -- \texttt{realize} (\texttt{OperationalPriorityDerivation -> AdaptationLayer}) \\
+\textbf{\texttt{BAP-FR08-01-01}} & \texttt{FR-08} -- accepted \texttt{produce} (\texttt{DermaTriage}: corrected P-scale $\rightarrow$ classifier target); candidate \texttt{operatorStructure.decisionRule} mostrata inline nell'owner ma non ancora ammessa \\
 \bottomrule
 \end{tabularx}
-%</PAGE-CONTENT:17>
+%</PAGE-CONTENT:18>
 \clearpage
-%<PAGE-DESC:18>MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
-%<PAGE-CONTENT:18>
-\PageHashFooter{\PageMDfive{18}}
+%<PAGE-DESC:19>MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
+%<PAGE-CONTENT:19>
+\PageHashFooter{\PageMDfive{19}}
 \section{MR-01 - Inventario temporaneo transfer, contract e decisioni BA}
 
 \begin{ddtaopen}[title={PAGINA TEMPORANEA - AUDIT DATA-PATH MR-01 - DA CANCELLARE DOPO LA RIALLOCAZIONE DEI RISULTATI}]
@@ -1615,11 +1730,11 @@ la pagina precedente mescolava due funzioni con lifecycle e change impact separa
 \textbf{Decisione metodologica temporanea - necessity test di \texttt{correlate}:}
 \texttt{BAP-MR01-02} e \texttt{BAP-DEC01-02} sono rimosse dall'insieme attivo delle BAProposition candidate. Nei due passaggi sorgente, ``informazioni disponibili sul caso dermatologico'' e ``informazioni sintomatologiche disponibili sul caso'' descrivono il contesto del caso in analisi e gli input del comportamento di triage; non e' emersa una relazione governata, autonoma e interrogabile che richieda una proposition \texttt{correlate}. La rimozione non elimina i BAReferent ne' le proposition \texttt{produce} gia' candidate. Le occorrenze lessicali di ``correlation'' nella worklist restano domande aperte di binding/identity nei data contract e \textbf{non} indicano l'operatore BA \texttt{correlate}. L'operatore verra' riesaminato soltanto se evidence successiva mostrera' una relazione indipendente non ricostruibile tramite comportamento, identity e contract gia' governati. Questa nota e' temporanea e verra' cancellata a chiusura del case study dopo il consolidamento del risultato.
 \end{ddtaopen}
-%</PAGE-CONTENT:18>
+%</PAGE-CONTENT:19>
 \clearpage
-%<PAGE-DESC:19>Indice di integrita delle pagine
-%<PAGE-CONTENT:19>
-\PageHashFooter{\PageMDfive{19}}
+%<PAGE-DESC:20>Indice di integrita delle pagine
+%<PAGE-CONTENT:20>
+\PageHashFooter{\PageMDfive{20}}
 \section{Indice di integrita' delle pagine}
 
 \begin{ddtacore}[title={Regola di verifica}]
@@ -1649,15 +1764,16 @@ Ogni pagina possiede un MD5 del proprio contenuto canonico. Il calcolo esclude i
 \IntegrityRow{14}{MR-02 - Indicazione della destinazione specialistica}{\PageMDfive{14}}
 \IntegrityRow{15}{MR-03 - Validazione e correzione medica degli esiti}{\PageMDfive{15}}
 \IntegrityRow{16}{MR-04 - Adattamento controllato sulla base della revisione clinica}{\PageMDfive{16}}
-\IntegrityRow{17}{Registro Base Analysis - BAReferent e BAProposition}{\PageMDfive{17}}
-\IntegrityRow{18}{MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]}{\PageMDfive{18}}
-\IntegrityRow{19}{Indice di integrita delle pagine}{\PageMDfive{19}}
+\IntegrityRow{17}{MR-04 > DEC-11 > FR-08 - Derivazione del target di supervisione dalla priorita P-scale corretta}{\PageMDfive{17}}
+\IntegrityRow{18}{Registro Base Analysis - BAReferent e BAProposition}{\PageMDfive{18}}
+\IntegrityRow{19}{MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]}{\PageMDfive{19}}
+\IntegrityRow{20}{Indice di integrita delle pagine}{\PageMDfive{20}}
 %</PAGE-INTEGRITY-ROWS>
 \bottomrule
 \end{tabularx}
 
 \vspace{2mm}
 {\scriptsize\color{DDTAGray}Quando una pagina viene modificata intenzionalmente, cambia il suo MD5. Una variazione inattesa segnala una modifica da riesaminare prima di proseguire.}
-%</PAGE-CONTENT:19>
+%</PAGE-CONTENT:20>
 
 \end{document}

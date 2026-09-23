@@ -12,12 +12,13 @@ Page 7  e50995f0de66f6d8f847ce9ddfa6912f  MR-01 > DEC-MR01-03 > FR-MR01-03-01 - 
 Page 8  452c3e6e4e672ba2f0d437f6363ee29c  MR-01 > DEC-MR01-03 > FR-MR01-03-02 - Stage 2: descrizione clinica strutturata
 Page 9  bb03073eb7e38e5511cf24446218dd47  MR-01 > DEC-MR01-03 > FR-MR01-03-03A [review label] - Preparazione della base storica per il retrieval
 Page 10  cba1a94e83a61109b957b847a25c73cd  MR-01 > DEC-MR01-03 > FR-MR01-03-03B [review label] - Stage 3: recupero di casi storici simili
-Page 11  5f72ac1bc71bb90de2c89aee9c1bf055  MR-01 > DEC-MR01-03 > FR-MR01-03-04 - Stage 4: sintesi multi-source
-Page 12  de49645acb22e76bb345d691937b0109  MR-01 > DEC-MR01-04 - Separazione tra valutazione dell'urgenza e priorita operativa
-Page 13  d718ab9cf72c7cd323e0e0997dde32e3  MR-01 > DEC-MR01-04 > FR-MR01-04-01 - Mapping urgenza/confidence verso P1-P4
+Page 11  9d2c86231c54c3d67fc1a9a7c8ccbad7  MR-01 > DEC-MR01-03 > FR-MR01-03-04 - Stage 4: sintesi multi-source
+Page 12  986ebd679b75abfb4aba7daf6535585b  MR-01 > DEC-MR01-04 - Separazione tra valutazione dell'urgenza e priorita operativa
+Page 13  8c9bec5d00a83f1943ff65f5809fa586  MR-01 > DEC-MR01-04 > FR-MR01-04-01 - Mapping urgenza/confidence verso P1-P4
 Page 14  22b589e352a735848af68026ba7ccd6e  MR-02 - Indicazione della destinazione specialistica
 Page 15  88277fb1892436757c84526e8a5be8b0  MR-03 - Validazione e correzione medica degli esiti
 Page 16  e5085117316308ad10f9d8324bedf7eb  MR-04 - Adattamento controllato sulla base della revisione clinica
-Page 17  1d2803e5bdbe10d218dd55d3dc97b912  Registro Base Analysis - BAReferent e BAProposition
-Page 18  e55886ad7a39e0f26dc1da9edde09fc4  MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
-Page 19  bab8fa412e91ff44c0588e562b3ff078  Indice di integrita delle pagine [INTEGRITY INDEX]
+Page 17  9faf8d41344390a05878e91d5d4ac7bd  MR-04 > DEC-11 > FR-08 - Derivazione del target di supervisione dalla priorita P-scale corretta
+Page 18  0c0c3e3b77f3e9515f4af70cd03dc514  Registro Base Analysis - BAReferent e BAProposition
+Page 19  58e8c3acb5d1779941538a64c6bb1dd2  MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
+Page 20  4e824517fb480a527318d4b0c9055fa5  Indice di integrita delle pagine [INTEGRITY INDEX]
