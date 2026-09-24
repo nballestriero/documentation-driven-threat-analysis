@@ -34,13 +34,13 @@
 \expandafter\def\csname PageMDfive11\endcsname{9d2c86231c54c3d67fc1a9a7c8ccbad7}
 \expandafter\def\csname PageMDfive12\endcsname{986ebd679b75abfb4aba7daf6535585b}
 \expandafter\def\csname PageMDfive13\endcsname{8c9bec5d00a83f1943ff65f5809fa586}
-\expandafter\def\csname PageMDfive14\endcsname{22b589e352a735848af68026ba7ccd6e}
+\expandafter\def\csname PageMDfive14\endcsname{9414cbe89b9c69e3d18aed9f06cfec3e}
 \expandafter\def\csname PageMDfive15\endcsname{88277fb1892436757c84526e8a5be8b0}
 \expandafter\def\csname PageMDfive16\endcsname{e5085117316308ad10f9d8324bedf7eb}
 \expandafter\def\csname PageMDfive17\endcsname{9faf8d41344390a05878e91d5d4ac7bd}
-\expandafter\def\csname PageMDfive18\endcsname{0c0c3e3b77f3e9515f4af70cd03dc514}
+\expandafter\def\csname PageMDfive18\endcsname{48429a56d3cd78a178f7266c86a2946e}
 \expandafter\def\csname PageMDfive19\endcsname{58e8c3acb5d1779941538a64c6bb1dd2}
-\expandafter\def\csname PageMDfive20\endcsname{4e824517fb480a527318d4b0c9055fa5}
+\expandafter\def\csname PageMDfive20\endcsname{acc0d5f3e1e633399d2b62dc9426766e}
 %</PAGE-HASH-DEFS>
 
 \newcommand{\PageHashFooter}[1]{%
@@ -1306,23 +1306,33 @@ Il significato macro e' sufficientemente distinguibile, ma la documentazione dis
 
 \begin{ddtareferentidentified}
 \scriptsize
-\texttt{NON ANALIZZATO}
+\BACandidate{SpecialistDestinationIndication} \BANew{}.
 \end{ddtareferentidentified}
 
 \begin{ddtareferentaccepted}
 \scriptsize
-\texttt{NON ANALIZZATO}
+\BAAccepted{DermaTriage}; \BAAccepted{SpecialistDestinationIndication} \BAFirstAccepted{}.
 \end{ddtareferentaccepted}
 
 \begin{ddtapropositionidentified}
 \scriptsize
-\texttt{NON ANALIZZATO}
+\texttt{BAP-MR02-01}\par
+\texttt{semanticOperatorKey = produce}\par
+\hspace*{1em}\texttt{actor -> DermaTriage}\par
+\hspace*{1em}\texttt{result -> SpecialistDestinationIndication}\par
+\texttt{polarity = affirmative}
 \end{ddtapropositionidentified}
 
 \begin{ddtapropositionaccepted}
 \scriptsize
-\texttt{NON ANALIZZATO}
+\textbf{BAP-MR02-01}.\par
+\emph{Acceptance boundary: \texttt{SpecialistDestinationIndication} rappresenta l'indicazione specialistica governata a livello macro. La proposition non introduce input non documentati e non implica selezione di uno specifico professionista, assegnazione, prenotazione, routing effettivo o presa in carico.}
 \end{ddtapropositionaccepted}
+
+\begin{ddtaopen}[title={Pressure di projection - composizione / system boundary [DEFERRED]}]
+\fontsize{5.45}{6.05}\selectfont
+\texttt{DermaTriage} denota il software/sistema complessivo, non un singolo componente interno. Per questo \texttt{BAP-MR02-01} conserva \texttt{actor -> DermaTriage}: non viene sostituito con un componente interno soltanto per semplificare la projection. La rappresentazione grafica dovra' distinguere il whole system dagli elementi interni. La convenzione di lavoro preferita e' un \textbf{rettangolo esterno tratteggiato} etichettato \texttt{DermaTriage}, con al suo interno gli elementi la cui appartenenza al sistema sia documentata. Il nesting grafico non costituisce ancora una proposition \texttt{contains}/\texttt{partOf} ne' ammette un nuovo operatore BA. Il caso resta come pressione per riesaminare una possibile struttura riusabile di composition/membership dopo il completamento dell'analisi della documentazione con i costrutti R7 gia' disponibili.
+\end{ddtaopen}
 
 \end{paracol}
 %</PAGE-CONTENT:14>
@@ -1599,7 +1609,7 @@ Il registro raccoglie la tracciabilita' BA corrente senza introdurre campi o sta
 \toprule
 \textbf{BAReferent} & \textbf{Riferimenti documentali} \\
 \midrule
-DermaTriage & \texttt{MR-01}; \textbf{\texttt{DEC-MR01-01}}; \texttt{FR-MR01-01-01}; \texttt{DEC-MR01-03}; \texttt{FR-MR01-03-01}; \texttt{FR-MR01-03-02}; \texttt{FR-MR01-03-04}; \texttt{DEC-MR01-04}; \texttt{FR-MR01-04-01} \\
+DermaTriage & \texttt{MR-01}; \textbf{\texttt{DEC-MR01-01}}; \texttt{FR-MR01-01-01}; \texttt{DEC-MR01-03}; \texttt{FR-MR01-03-01}; \texttt{FR-MR01-03-02}; \texttt{FR-MR01-03-04}; \texttt{DEC-MR01-04}; \texttt{FR-MR01-04-01}; \texttt{MR-02} \\
 DermatologicalCase & \textbf{\texttt{MR-01}}; \texttt{FR-MR01-01-01}; \texttt{FR-MR01-03-04} \\
 DermatologicalTriageEvaluation & \textbf{\texttt{MR-01}}; \texttt{DEC-MR01-01}; \texttt{FR-MR01-01-01}; \texttt{DEC-MR01-03} \\
 CaseUrgency & \textbf{\texttt{MR-01}}; \texttt{FR-MR01-01-01}; \texttt{FR-MR01-03-04}; \texttt{DEC-MR01-04}; \texttt{FR-MR01-04-01} \\
@@ -1636,6 +1646,7 @@ OperationalPriorityDerivation & \textbf{\texttt{FR-MR01-04-01}} \\
 AdaptationLayer & \textbf{\texttt{FR-MR01-04-01}} \\
 ClinicallyCorrectedOperationalTriagePriority & \textbf{\texttt{FR-08}} \\
 ClassifierUrgencyTarget & \textbf{\texttt{FR-08}} \\
+SpecialistDestinationIndication & \textbf{\texttt{MR-02}} \\
 \bottomrule
 \end{tabularx}
 
@@ -1649,6 +1660,7 @@ ClassifierUrgencyTarget & \textbf{\texttt{FR-08}} \\
 \textbf{BAProposition} & \textbf{Riferimenti documentali} \\
 \midrule
 \emph{\texttt{BAP-MR01-01}} & \texttt{MR-01} \\
+\textbf{\texttt{BAP-MR02-01}} & \texttt{MR-02} -- \texttt{produce} (\texttt{DermaTriage -> SpecialistDestinationIndication}); nessun input o routing interno inferito \\
 \emph{\texttt{BAP-DEC01-01}} & \texttt{DEC-MR01-01} -- \texttt{produce}, \texttt{condition: LesionImage unavailable} \\
 \textbf{\texttt{BAP-FR01-01-01}} & \texttt{FR-MR01-01-01} -- \texttt{produce}, \texttt{condition: LesionImage unavailable} \\
 \textbf{\texttt{BAP-FR03-01-01}} & \texttt{FR-MR01-03-01} -- \texttt{produce}, \texttt{condition: LesionImage available} \\
