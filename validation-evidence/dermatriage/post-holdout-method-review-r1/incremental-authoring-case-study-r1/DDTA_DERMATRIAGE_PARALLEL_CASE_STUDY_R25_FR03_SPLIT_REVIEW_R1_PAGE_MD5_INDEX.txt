@@ -16,13 +16,15 @@ Page 11  9d2c86231c54c3d67fc1a9a7c8ccbad7  MR-01 > DEC-MR01-03 > FR-MR01-03-04 -
 Page 12  986ebd679b75abfb4aba7daf6535585b  MR-01 > DEC-MR01-04 - Separazione tra valutazione dell'urgenza e priorita operativa
 Page 13  8c9bec5d00a83f1943ff65f5809fa586  MR-01 > DEC-MR01-04 > FR-MR01-04-01 - Mapping urgenza/confidence verso P1-P4
 Page 14  9414cbe89b9c69e3d18aed9f06cfec3e  MR-02 - Indicazione della destinazione specialistica
-Page 15  59401f96bd5ae4f938ea0b7d02d05878  MR-03 - Gestione della validazione clinica degli esiti
+Page 15  db9d71a6eeaa423ad8f10b085637530b  MR-03 - Gestione della validazione clinica degli esiti
 Page 16  b79abb8c1930e6e407ffcd6795722076  MR-03 > DEC-03 - Separazione tra esito originario e revisione clinica
-Page 17  820c1ed8c9bc6eae0fd15014cbf1f3df  MR-03 > DEC-03 > FR-03 - Registrazione correlata della revisione clinica
+Page 17  e9da460bcff5c8d61a5361f9897fcaae  MR-03 > DEC-03 > FR-03 - Registrazione correlata della revisione clinica
 Page 18  60b077964dc202b0e8ae17b0e9cce7d0  MR-03 > DEC-03 > FR-12 - Distinzione tra conferma e correzione della revisione clinica
-Page 19  e5085117316308ad10f9d8324bedf7eb  MR-04 - Adattamento controllato sulla base della revisione clinica
-Page 20  9faf8d41344390a05878e91d5d4ac7bd  MR-04 > DEC-11 > FR-08 - Derivazione del target di supervisione dalla priorita P-scale corretta
-Page 21  c2b83bbcc4a916a75496c1472a277199  Registro Base Analysis - BAReferent e BAProposition
-Page 22  ce0a25c6740299f349c3d90a24dce940  Registro Base Analysis - BAProposition
-Page 23  58e8c3acb5d1779941538a64c6bb1dd2  MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
-Page 24  a3756c5036f323dcbec0eee402bee478  Indice di integrita delle pagine [INTEGRITY INDEX]
+Page 19  a54afe35ed1503c6eda41c4482b13966  MR-03 > DEC-15 - Scambio della validazione clinica con B4
+Page 20  5ec2d19412461c60854ca7cef75c9f94  MR-03 > DEC-15 > FR-23 - Write-back e retrieval della validazione B4
+Page 21  e5085117316308ad10f9d8324bedf7eb  MR-04 - Adattamento controllato sulla base della revisione clinica
+Page 22  9faf8d41344390a05878e91d5d4ac7bd  MR-04 > DEC-11 > FR-08 - Derivazione del target di supervisione dalla priorita P-scale corretta
+Page 23  b5a45b6d0e21574c1c0c98c59fb6d199  Registro Base Analysis - BAReferent e BAProposition
+Page 24  5f1feb73878fb67ef3a9be07d881b9b9  Registro Base Analysis - BAProposition
+Page 25  58e8c3acb5d1779941538a64c6bb1dd2  MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
+Page 26  4fe43655b5eed4c8e7ff6f4ee542c778  Indice di integrita delle pagine [INTEGRITY INDEX]
