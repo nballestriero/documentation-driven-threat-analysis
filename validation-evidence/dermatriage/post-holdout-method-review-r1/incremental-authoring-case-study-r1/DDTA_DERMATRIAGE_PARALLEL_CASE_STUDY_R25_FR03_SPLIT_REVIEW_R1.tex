@@ -35,12 +35,16 @@
 \expandafter\def\csname PageMDfive12\endcsname{986ebd679b75abfb4aba7daf6535585b}
 \expandafter\def\csname PageMDfive13\endcsname{8c9bec5d00a83f1943ff65f5809fa586}
 \expandafter\def\csname PageMDfive14\endcsname{9414cbe89b9c69e3d18aed9f06cfec3e}
-\expandafter\def\csname PageMDfive15\endcsname{88277fb1892436757c84526e8a5be8b0}
-\expandafter\def\csname PageMDfive16\endcsname{e5085117316308ad10f9d8324bedf7eb}
-\expandafter\def\csname PageMDfive17\endcsname{9faf8d41344390a05878e91d5d4ac7bd}
-\expandafter\def\csname PageMDfive18\endcsname{48429a56d3cd78a178f7266c86a2946e}
-\expandafter\def\csname PageMDfive19\endcsname{58e8c3acb5d1779941538a64c6bb1dd2}
-\expandafter\def\csname PageMDfive20\endcsname{acc0d5f3e1e633399d2b62dc9426766e}
+\expandafter\def\csname PageMDfive15\endcsname{59401f96bd5ae4f938ea0b7d02d05878}
+\expandafter\def\csname PageMDfive16\endcsname{b79abb8c1930e6e407ffcd6795722076}
+\expandafter\def\csname PageMDfive17\endcsname{820c1ed8c9bc6eae0fd15014cbf1f3df}
+\expandafter\def\csname PageMDfive18\endcsname{60b077964dc202b0e8ae17b0e9cce7d0}
+\expandafter\def\csname PageMDfive19\endcsname{e5085117316308ad10f9d8324bedf7eb}
+\expandafter\def\csname PageMDfive20\endcsname{9faf8d41344390a05878e91d5d4ac7bd}
+\expandafter\def\csname PageMDfive21\endcsname{c2b83bbcc4a916a75496c1472a277199}
+\expandafter\def\csname PageMDfive22\endcsname{ce0a25c6740299f349c3d90a24dce940}
+\expandafter\def\csname PageMDfive23\endcsname{58e8c3acb5d1779941538a64c6bb1dd2}
+\expandafter\def\csname PageMDfive24\endcsname{a3756c5036f323dcbec0eee402bee478}
 %</PAGE-HASH-DEFS>
 
 \newcommand{\PageHashFooter}[1]{%
@@ -1337,10 +1341,10 @@ Il significato macro e' sufficientemente distinguibile, ma la documentazione dis
 \end{paracol}
 %</PAGE-CONTENT:14>
 \clearpage
-%<PAGE-DESC:15>MR-03 - Validazione e correzione medica degli esiti
+%<PAGE-DESC:15>MR-03 - Gestione della validazione clinica degli esiti
 %<PAGE-CONTENT:15>
 \PageHashFooter{\PageMDfive{15}}
-\section{MR-03 - Validazione e correzione medica degli esiti}
+\section{MR-03 - Gestione della validazione clinica degli esiti}
 
 \setlength{\columnsep}{7mm}
 \setlength{\columnseprule}{0.35pt}
@@ -1348,70 +1352,319 @@ Il significato macro e' sufficientemente distinguibile, ma la documentazione dis
 \begin{paracol}{2}
 
 {\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
-\vspace{0.5em}
+\vspace{0.35em}
 
 \begin{ddtacore}[title={MacroRequirement}]
+\fontsize{6.15}{6.75}\selectfont
+\begin{tabularx}{\linewidth}{L{38mm}Y}
+\toprule
+\textbf{ID} & \texttt{MR-03} \\
+\textbf{Lifecycle} & \texttt{current} \\
+\textbf{Authority} & \texttt{CURRENT\_GOVERNED} \\
+\textbf{Type} & \texttt{MacroRequirement} \\
+\textbf{Title} & Gestione della validazione clinica degli esiti \\
+\bottomrule
+\end{tabularx}
+
 \textbf{Intent}\par
-Consentire al medico di validare o correggere gli esiti prodotti da DermaTriage e rendere disponibile il risultato della revisione nel contesto del caso cui si riferisce.
+Supportare la registrazione e l'utilizzo della validazione o correzione effettuata da un professionista sanitario sugli esiti prodotti da DermaTriage, mantenendo distinguibile il risultato della revisione dall'esito originario.
 
 \textbf{Context}\par
-Gli esiti prodotti da DermaTriage possono essere sottoposti a revisione medica. Il medico puo' validarli o correggerli; il progetto gestisce il risultato della revisione senza includere in questa responsabilita' il successivo adattamento del sistema.
+Il giudizio clinico appartiene al professionista sanitario. DermaTriage possiede la responsabilita' di gestire, registrare e correlare l'esito della revisione al risultato originario del sistema, senza sostituirsi all'autorita' clinica. Il progetto supporta sia operazioni amministrative DermaTriage sia scambio di validazioni con il sistema esterno B4.
 
 \textbf{Stakeholders}\par
-Medico.
+Professionisti sanitari che effettuano la revisione; responsabili del servizio DermaTriage che utilizzano il risultato della revisione; processi downstream di adattamento che consumano evidence derivata dalla revisione.
 
 \textbf{Scope}\par
-\textbf{IN:} gestione del risultato della validazione o correzione medica e sua associazione al caso o all'esito cui si riferisce.\par
-\textbf{OUT:} meccanismi tecnici di scambio e autenticazione; adattamento successivo del comportamento del sistema sulla base delle correzioni raccolte.
+\textbf{IN:} registrazione correlata del risultato della revisione; distinzione tra conferma e correzione; mantenimento della distinguibilita' tra esito originario e revisione.\par
+\textbf{OUT:} decisione clinica stessa; contenuto completo del payload di correzione; policy completa di history/retention/finality; semantica completa del disaccordo usato downstream.
 
 \textbf{Assumptions / Constraints}\par
---
+La revisione clinica e' trattata come input proveniente da un professionista sanitario; il progetto non assume che conferma, correzione e disaccordo siano sinonimi.
 
 \textbf{dependsOn}\par
-\texttt{None}
+Nessuna dipendenza macro canonica e' stabilita per \texttt{MR-03} nel baseline corrente.
 \end{ddtacore}
-
-\begin{ddtaquestions}
-\small
-\begin{itemize}
-  \item La revisione medica affianca o sostituisce l'esito originario?
-  \item Quali parti dell'esito possono essere validate o corrette?
-  \item Quali requisiti di correlazione tra revisione e caso sono realmente governati?
-\end{itemize}
-\end{ddtaquestions}
-
 
 \switchcolumn
 
 {\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
-\vspace{0.5em}
+\vspace{0.35em}
 
-\begin{ddtareferentidentified}
-\scriptsize
-\texttt{NON ANALIZZATO}
+\begin{ddtareferentidentified}[top=4pt,bottom=4pt,left=5pt,right=5pt]
+\fontsize{5.25}{5.8}\selectfont
+\BACandidate{ClinicalReviewResult} \BANew{}; \BACandidate{OriginalDermaTriageOutcome} \BANew{}; \BACandidate{HealthcareProfessional} \BANew{}.
 \end{ddtareferentidentified}
 
-\begin{ddtareferentaccepted}
-\scriptsize
-\texttt{NON ANALIZZATO}
+\begin{ddtareferentaccepted}[top=4pt,bottom=4pt,left=5pt,right=5pt]
+\fontsize{5.15}{5.65}\selectfont
+\BAAccepted{DermaTriage}; \BAAccepted{ClinicalReviewResult} \BAFirstAccepted{}; \BAAccepted{OriginalDermaTriageOutcome} \BAFirstAccepted{}; \BAAccepted{HealthcareProfessional} \BAFirstAccepted{}.
 \end{ddtareferentaccepted}
 
-\begin{ddtapropositionidentified}
-\scriptsize
-\texttt{NON ANALIZZATO}
+\begin{ddtapropositionidentified}[top=4pt,bottom=4pt,left=5pt,right=5pt]
+\fontsize{4.95}{5.45}\selectfont
+{\itshape
+\texttt{BAP-MR03-01}\par
+\texttt{semanticOperatorKey = transfer}\par
+\hspace*{1em}\texttt{source -> HealthcareProfessional}\par
+\hspace*{1em}\texttt{destination -> DermaTriage}\par
+\hspace*{1em}\texttt{content -> ClinicalReviewResult}\par
+\texttt{polarity = affirmative}\par
+}
 \end{ddtapropositionidentified}
 
-\begin{ddtapropositionaccepted}
-\scriptsize
-\texttt{NON ANALIZZATO}
+\begin{ddtapropositionaccepted}[top=4pt,bottom=4pt,left=5pt,right=5pt]
+\fontsize{5.15}{5.65}\selectfont
+--\par
+\emph{Il transfer resta candidato: MR-03 stabilisce l'origine clinica della revisione, ma non ancora il delivery path tecnico concreto.}
 \end{ddtapropositionaccepted}
+
+\begin{ddtaopenrelations}[top=4pt,bottom=4pt,left=5pt,right=5pt]
+\fontsize{4.8}{5.3}\selectfont
+\texttt{DermaTriage <record / persistence da decomporre> ClinicalReviewResult}\par
+\texttt{ClinicalReviewResult <correlation / association> OriginalDermaTriageOutcome}\par
+\texttt{OriginalDermaTriageOutcome <distinguishable from> ClinicalReviewResult}\par
+Nessun nuovo operatore viene introdotto in questo checkpoint.
+\end{ddtaopenrelations}
 
 \end{paracol}
 %</PAGE-CONTENT:15>
 \clearpage
-%<PAGE-DESC:16>MR-04 - Adattamento controllato sulla base della revisione clinica
+%<PAGE-DESC:16>MR-03 > DEC-03 - Separazione tra esito originario e revisione clinica
 %<PAGE-CONTENT:16>
 \PageHashFooter{\PageMDfive{16}}
+\subsection{DEC-03 - Separazione tra esito originario e revisione clinica}
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-03} $\rightarrow$ \texttt{DEC-03}}\par
+
+\setlength{\columnsep}{7mm}
+\setlength{\columnseprule}{0.35pt}
+\columnratio{0.67}
+\begin{paracol}{2}
+
+{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
+\vspace{0.45em}
+
+\begin{ddtacore}[title={Decision}]
+\fontsize{6.3}{6.95}\selectfont
+\begin{tabularx}{\linewidth}{L{38mm}Y}
+\toprule
+\textbf{ID} & \texttt{DEC-03} \\
+\textbf{Lifecycle} & \texttt{current} \\
+\textbf{Authority} & \texttt{CURRENT\_GOVERNED} \\
+\textbf{Type} & \texttt{Decision} \\
+\textbf{Title} & Separazione tra esito originario e revisione clinica \\
+\textbf{Parent MacroRequirement} & \texttt{MR-03} \\
+\textbf{Decision kind} & \texttt{SELECTABLE} \\
+\bottomrule
+\end{tabularx}
+
+\textbf{Context}\par
+Una revisione clinica puo' confermare o correggere un esito prodotto da DermaTriage. Sovrascrivere semanticamente l'esito originario renderebbe indistinguibili il comportamento del sistema e il successivo giudizio clinico.
+
+\textbf{Decision}\par
+DermaTriage mantiene l'esito originario distinguibile dal successivo risultato della revisione clinica.
+
+\textbf{Consequences}\par
+L'esito originario e il risultato della revisione clinica restano distinguibili. Una conferma dell'esito originario resta distinguibile da una sua correzione.
+\end{ddtacore}
+
+\switchcolumn
+
+{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
+\vspace{0.45em}
+
+\begin{ddtareferentidentified}
+\scriptsize
+--
+\end{ddtareferentidentified}
+
+\begin{ddtareferentaccepted}
+\scriptsize
+\BAAccepted{DermaTriage}; \BAAccepted{OriginalDermaTriageOutcome}; \BAAccepted{ClinicalReviewResult}.
+\end{ddtareferentaccepted}
+
+\begin{ddtapropositionidentified}
+\scriptsize
+--
+\end{ddtapropositionidentified}
+
+\begin{ddtapropositionaccepted}
+\scriptsize
+--
+\end{ddtapropositionaccepted}
+
+\begin{ddtaopenrelations}
+\fontsize{5.15}{5.7}\selectfont
+\texttt{OriginalDermaTriageOutcome <distinguishableFrom> ClinicalReviewResult}\par
+La distinzione e' un fatto governato, ma non viene forzata in \texttt{constrain}: la semantica e' relazionale tra due identita' e R7 non dispone ancora di un operatore dedicato. \texttt{DermaTriage} preserva tale distinzione.
+\end{ddtaopenrelations}
+
+\end{paracol}
+%</PAGE-CONTENT:16>
+\clearpage
+%<PAGE-DESC:17>MR-03 > DEC-03 > FR-03 - Registrazione correlata della revisione clinica
+%<PAGE-CONTENT:17>
+\PageHashFooter{\PageMDfive{17}}
+\subsubsection{FR-03 - Registrazione correlata della revisione clinica}
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-03} $\rightarrow$ \texttt{DEC-03} $\rightarrow$ \texttt{FR-03}}\par
+
+\setlength{\columnsep}{7mm}
+\setlength{\columnseprule}{0.35pt}
+\columnratio{0.67}
+\begin{paracol}{2}
+
+{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
+\vspace{0.4em}
+
+\begin{ddtacore}[title={FunctionalRequirement}]
+\fontsize{6.15}{6.75}\selectfont
+\begin{tabularx}{\linewidth}{L{38mm}Y}
+\toprule
+\textbf{ID} & \texttt{FR-03} \\
+\textbf{Lifecycle} & \texttt{current} \\
+\textbf{Authority} & \texttt{CURRENT\_GOVERNED} \\
+\textbf{Type} & \texttt{FunctionalRequirement} \\
+\textbf{Title} & Registrazione correlata della revisione clinica \\
+\textbf{Parent Decision} & \texttt{DEC-03} \\
+\textbf{Owning MR (derived)} & \texttt{MR-03} \\
+\textbf{SpecializedRequirement relation} & 0 active instances \\
+\bottomrule
+\end{tabularx}
+
+\textbf{Functional obligation}\par
+Registrare il risultato della revisione clinica mantenendone la correlazione con l'esito DermaTriage originario.
+
+\textbf{Functional clauses / inherited \texttt{normativeClause [1..*]}}\par
+Quando viene fornita una validazione o correzione clinica relativa a un esito DermaTriage, DermaTriage MUST registrare il risultato della revisione associandolo all'esito originario cui la revisione si riferisce.
+
+\textbf{SPO references (L2 support)}\par
+\begin{lstlisting}
+DermaTriage -- record --> ClinicalReviewResult
+ClinicalReviewResult -- associated with --> OriginalDermaTriageOutcome
+\end{lstlisting}
+\end{ddtacore}
+
+\switchcolumn
+
+{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
+\vspace{0.4em}
+
+\begin{ddtareferentidentified}
+\scriptsize
+--
+\end{ddtareferentidentified}
+
+\begin{ddtareferentaccepted}
+\scriptsize
+\BAAccepted{DermaTriage}; \BAAccepted{ClinicalReviewResult}; \BAAccepted{OriginalDermaTriageOutcome}.
+\end{ddtareferentaccepted}
+
+\begin{ddtapropositionidentified}
+\scriptsize
+--
+\end{ddtapropositionidentified}
+
+\begin{ddtapropositionaccepted}
+\scriptsize
+--
+\end{ddtapropositionaccepted}
+
+\begin{ddtaopenrelations}
+\fontsize{5.0}{5.5}\selectfont
+\texttt{DermaTriage <record / persistence> ClinicalReviewResult}\par
+\texttt{ClinicalReviewResult <associatedWith> OriginalDermaTriageOutcome}\par
+\medskip
+\textbf{Registration pressure.} \texttt{record} non viene assimilato a \texttt{produce}. Un eventuale \texttt{transfer} verso storage verra' introdotto solo quando la destination di storage sara' governata; le operazioni interne dello storage non sono anticipate.\par
+\textbf{Correlation pressure.} Il binding tra la singola review e lo specifico esito originario resta autonomo e non viene forzato in \texttt{constrain}.
+\end{ddtaopenrelations}
+
+\end{paracol}
+%</PAGE-CONTENT:17>
+\clearpage
+%<PAGE-DESC:18>MR-03 > DEC-03 > FR-12 - Distinzione tra conferma e correzione della revisione clinica
+%<PAGE-CONTENT:18>
+\PageHashFooter{\PageMDfive{18}}
+\subsubsection{FR-12 - Distinzione tra conferma e correzione della revisione clinica}
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-03} $\rightarrow$ \texttt{DEC-03} $\rightarrow$ \texttt{FR-12}}\par
+
+\setlength{\columnsep}{7mm}
+\setlength{\columnseprule}{0.35pt}
+\columnratio{0.67}
+\begin{paracol}{2}
+
+{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
+\vspace{0.4em}
+
+\begin{ddtacore}[title={FunctionalRequirement}]
+\fontsize{6.15}{6.75}\selectfont
+\begin{tabularx}{\linewidth}{L{38mm}Y}
+\toprule
+\textbf{ID} & \texttt{FR-12} \\
+\textbf{Lifecycle} & \texttt{current} \\
+\textbf{Authority} & \texttt{CURRENT\_GOVERNED} \\
+\textbf{Type} & \texttt{FunctionalRequirement} \\
+\textbf{Title} & Distinzione tra conferma e correzione della revisione clinica \\
+\textbf{Parent Decision} & \texttt{DEC-03} \\
+\textbf{Owning MR (derived)} & \texttt{MR-03} \\
+\textbf{SpecializedRequirement relation} & 0 active instances \\
+\bottomrule
+\end{tabularx}
+
+\textbf{Functional obligation}\par
+Rendere distinguibile se il risultato della revisione clinica conferma oppure corregge l'esito originario.
+
+\textbf{Functional clauses / inherited \texttt{normativeClause [1..*]}}\par
+Per ogni risultato di revisione clinica registrato, DermaTriage MUST mantenere distinguibile una conferma dell'esito originario da una correzione dell'esito originario.
+
+\textbf{SPO references (L2 support)}\par
+\begin{lstlisting}
+ClinicalReviewResult -- classify disposition as --> ConfirmationOrCorrection
+DermaTriage -- preserve distinction of --> ClinicalReviewDisposition
+\end{lstlisting}
+\end{ddtacore}
+
+\switchcolumn
+
+{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
+\vspace{0.4em}
+
+\begin{ddtareferentidentified}
+\scriptsize
+\BACandidate{ClinicalReviewDisposition} \BANew{}.
+\end{ddtareferentidentified}
+
+\begin{ddtareferentaccepted}
+\fontsize{5.2}{5.7}\selectfont
+\BAAccepted{DermaTriage}; \BAAccepted{ClinicalReviewResult}; \BAAccepted{OriginalDermaTriageOutcome}; \BAAccepted{ClinicalReviewDisposition} \BAFirstAccepted{}.
+\end{ddtareferentaccepted}
+
+\begin{ddtapropositionidentified}
+\fontsize{5.0}{5.5}\selectfont
+\texttt{BAP-FR12-01}\par
+\texttt{semanticOperatorKey = constrain}\par
+\hspace*{1em}\texttt{constraintTarget -> ClinicalReviewResult}\par
+\hspace*{1em}\texttt{constraintValue}\par
+\hspace*{2em}\texttt{property -> clinicalReviewDisposition}\par
+\hspace*{2em}\texttt{vocabulary -> [confirmation, correction]}\par
+\texttt{polarity = affirmative}
+\end{ddtapropositionidentified}
+
+\begin{ddtapropositionaccepted}
+\scriptsize
+\textbf{BAP-FR12-01}.
+\end{ddtapropositionaccepted}
+
+\begin{ddtaopenrelations}
+\fontsize{5.05}{5.55}\selectfont
+La proposition governa il contratto di distinguibilita', non la regola che seleziona runtime un valore. \texttt{disagreement} non viene aggiunto al vocabulary: MR-03 vieta di assumerlo sinonimo di conferma/correzione, mentre FR-12 governa soltanto questi due valori.
+\end{ddtaopenrelations}
+
+\end{paracol}
+%</PAGE-CONTENT:18>
+\clearpage
+%<PAGE-DESC:19>MR-04 - Adattamento controllato sulla base della revisione clinica
+%<PAGE-CONTENT:19>
+\PageHashFooter{\PageMDfive{19}}
 \section{MR-04 - Adattamento controllato sulla base della revisione clinica}
 
 \setlength{\columnsep}{7mm}
@@ -1479,11 +1732,11 @@ Medico.
 \end{ddtapropositionaccepted}
 
 \end{paracol}
-%</PAGE-CONTENT:16>
+%</PAGE-CONTENT:19>
 \clearpage
-%<PAGE-DESC:17>MR-04 > DEC-11 > FR-08 - Derivazione del target di supervisione dalla priorita P-scale corretta
-%<PAGE-CONTENT:17>
-\PageHashFooter{\PageMDfive{17}}
+%<PAGE-DESC:20>MR-04 > DEC-11 > FR-08 - Derivazione del target di supervisione dalla priorita P-scale corretta
+%<PAGE-CONTENT:20>
+\PageHashFooter{\PageMDfive{20}}
 \subsubsection{FR-08 - Derivazione del target di supervisione dalla priorita P-scale corretta}
 {\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-04} $\rightarrow$ \texttt{DEC-11} $\rightarrow$ \texttt{FR-08}}\par
 
@@ -1587,11 +1840,11 @@ Derivare il target di supervisione classificatoria dalla priorita P-scale corret
 \end{ddtapropositionaccepted}
 
 \end{paracol}
-%</PAGE-CONTENT:17>
+%</PAGE-CONTENT:20>
 \clearpage
-%<PAGE-DESC:18>Registro Base Analysis - BAReferent e BAProposition
-%<PAGE-CONTENT:18>
-\PageHashFooter{\PageMDfive{18}}
+%<PAGE-DESC:21>Registro Base Analysis - BAReferent e BAProposition
+%<PAGE-CONTENT:21>
+\PageHashFooter{\PageMDfive{21}}
 \section{Registro Base Analysis}
 
 \begin{ddtacore}[title={Sintesi BA corrente}]
@@ -1609,7 +1862,7 @@ Il registro raccoglie la tracciabilita' BA corrente senza introdurre campi o sta
 \toprule
 \textbf{BAReferent} & \textbf{Riferimenti documentali} \\
 \midrule
-DermaTriage & \texttt{MR-01}; \textbf{\texttt{DEC-MR01-01}}; \texttt{FR-MR01-01-01}; \texttt{DEC-MR01-03}; \texttt{FR-MR01-03-01}; \texttt{FR-MR01-03-02}; \texttt{FR-MR01-03-04}; \texttt{DEC-MR01-04}; \texttt{FR-MR01-04-01}; \texttt{MR-02} \\
+DermaTriage & \texttt{MR-01}; \textbf{\texttt{DEC-MR01-01}}; \texttt{FR-MR01-01-01}; \texttt{DEC-MR01-03}; \texttt{FR-MR01-03-01}; \texttt{FR-MR01-03-02}; \texttt{FR-MR01-03-04}; \texttt{DEC-MR01-04}; \texttt{FR-MR01-04-01}; \texttt{MR-02}; \texttt{MR-03}; \texttt{DEC-03}; \texttt{FR-03}; \texttt{FR-12} \\
 DermatologicalCase & \textbf{\texttt{MR-01}}; \texttt{FR-MR01-01-01}; \texttt{FR-MR01-03-04} \\
 DermatologicalTriageEvaluation & \textbf{\texttt{MR-01}}; \texttt{DEC-MR01-01}; \texttt{FR-MR01-01-01}; \texttt{DEC-MR01-03} \\
 CaseUrgency & \textbf{\texttt{MR-01}}; \texttt{FR-MR01-01-01}; \texttt{FR-MR01-03-04}; \texttt{DEC-MR01-04}; \texttt{FR-MR01-04-01} \\
@@ -1647,8 +1900,23 @@ AdaptationLayer & \textbf{\texttt{FR-MR01-04-01}} \\
 ClinicallyCorrectedOperationalTriagePriority & \textbf{\texttt{FR-08}} \\
 ClassifierUrgencyTarget & \textbf{\texttt{FR-08}} \\
 SpecialistDestinationIndication & \textbf{\texttt{MR-02}} \\
+ClinicalReviewResult & \textbf{\texttt{MR-03}}; \texttt{DEC-03}; \texttt{FR-03}; \texttt{FR-12} \\
+OriginalDermaTriageOutcome & \textbf{\texttt{MR-03}}; \texttt{DEC-03}; \texttt{FR-03}; \texttt{FR-12} \\
+HealthcareProfessional & \textbf{\texttt{MR-03}} \\
+ClinicalReviewDisposition & \textbf{\texttt{FR-12}} \\
 \bottomrule
 \end{tabularx}
+
+%</PAGE-CONTENT:21>
+\clearpage
+%<PAGE-DESC:22>Registro Base Analysis - BAProposition
+%<PAGE-CONTENT:22>
+\PageHashFooter{\PageMDfive{22}}
+\section*{Registro Base Analysis - BAProposition}
+\begin{ddtacore}[title={Continuita' del registro}]
+\fontsize{6.0}{6.6}\selectfont
+Questa pagina continua il registro BA della pagina precedente. Il \textbf{grassetto} indica la prima accettazione; il \emph{corsivo} indica proposition candidate non ancora accettate. Nessun nuovo stato BA viene introdotto dalla separazione fisica del registro su due pagine.
+\end{ddtacore}
 
 \vspace{0.35mm}
 {\sffamily\bfseries\color{DDTABlue}BAProposition}\par
@@ -1661,6 +1929,8 @@ SpecialistDestinationIndication & \textbf{\texttt{MR-02}} \\
 \midrule
 \emph{\texttt{BAP-MR01-01}} & \texttt{MR-01} \\
 \textbf{\texttt{BAP-MR02-01}} & \texttt{MR-02} -- \texttt{produce} (\texttt{DermaTriage -> SpecialistDestinationIndication}); nessun input o routing interno inferito \\
+\emph{\texttt{BAP-MR03-01}} & \texttt{MR-03} -- candidate \texttt{transfer} (\texttt{HealthcareProfessional -> DermaTriage : ClinicalReviewResult}); delivery path tecnico non ancora accettato \\
+\textbf{\texttt{BAP-FR12-01}} & \texttt{FR-12} -- \texttt{constrain} (\texttt{ClinicalReviewResult}: \texttt{clinicalReviewDisposition} in \texttt{[confirmation, correction]}) \\
 \emph{\texttt{BAP-DEC01-01}} & \texttt{DEC-MR01-01} -- \texttt{produce}, \texttt{condition: LesionImage unavailable} \\
 \textbf{\texttt{BAP-FR01-01-01}} & \texttt{FR-MR01-01-01} -- \texttt{produce}, \texttt{condition: LesionImage unavailable} \\
 \textbf{\texttt{BAP-FR03-01-01}} & \texttt{FR-MR01-03-01} -- \texttt{produce}, \texttt{condition: LesionImage available} \\
@@ -1689,11 +1959,11 @@ SpecialistDestinationIndication & \textbf{\texttt{MR-02}} \\
 \textbf{\texttt{BAP-FR08-01-01}} & \texttt{FR-08} -- accepted \texttt{produce} (\texttt{DermaTriage}: corrected P-scale $\rightarrow$ classifier target); candidate \texttt{operatorStructure.decisionRule} mostrata inline nell'owner ma non ancora ammessa \\
 \bottomrule
 \end{tabularx}
-%</PAGE-CONTENT:18>
+%</PAGE-CONTENT:22>
 \clearpage
-%<PAGE-DESC:19>MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
-%<PAGE-CONTENT:19>
-\PageHashFooter{\PageMDfive{19}}
+%<PAGE-DESC:23>MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
+%<PAGE-CONTENT:23>
+\PageHashFooter{\PageMDfive{23}}
 \section{MR-01 - Inventario temporaneo transfer, contract e decisioni BA}
 
 \begin{ddtaopen}[title={PAGINA TEMPORANEA - AUDIT DATA-PATH MR-01 - DA CANCELLARE DOPO LA RIALLOCAZIONE DEI RISULTATI}]
@@ -1742,11 +2012,11 @@ la pagina precedente mescolava due funzioni con lifecycle e change impact separa
 \textbf{Decisione metodologica temporanea - necessity test di \texttt{correlate}:}
 \texttt{BAP-MR01-02} e \texttt{BAP-DEC01-02} sono rimosse dall'insieme attivo delle BAProposition candidate. Nei due passaggi sorgente, ``informazioni disponibili sul caso dermatologico'' e ``informazioni sintomatologiche disponibili sul caso'' descrivono il contesto del caso in analisi e gli input del comportamento di triage; non e' emersa una relazione governata, autonoma e interrogabile che richieda una proposition \texttt{correlate}. La rimozione non elimina i BAReferent ne' le proposition \texttt{produce} gia' candidate. Le occorrenze lessicali di ``correlation'' nella worklist restano domande aperte di binding/identity nei data contract e \textbf{non} indicano l'operatore BA \texttt{correlate}. L'operatore verra' riesaminato soltanto se evidence successiva mostrera' una relazione indipendente non ricostruibile tramite comportamento, identity e contract gia' governati. Questa nota e' temporanea e verra' cancellata a chiusura del case study dopo il consolidamento del risultato.
 \end{ddtaopen}
-%</PAGE-CONTENT:19>
+%</PAGE-CONTENT:23>
 \clearpage
-%<PAGE-DESC:20>Indice di integrita delle pagine
-%<PAGE-CONTENT:20>
-\PageHashFooter{\PageMDfive{20}}
+%<PAGE-DESC:24>Indice di integrita delle pagine
+%<PAGE-CONTENT:24>
+\PageHashFooter{\PageMDfive{24}}
 \section{Indice di integrita' delle pagine}
 
 \begin{ddtacore}[title={Regola di verifica}]
@@ -1774,18 +2044,22 @@ Ogni pagina possiede un MD5 del proprio contenuto canonico. Il calcolo esclude i
 \IntegrityRow{12}{MR-01 > DEC-MR01-04 - Separazione tra valutazione dell'urgenza e priorita operativa}{\PageMDfive{12}}
 \IntegrityRow{13}{MR-01 > DEC-MR01-04 > FR-MR01-04-01 - Mapping urgenza/confidence verso P1-P4}{\PageMDfive{13}}
 \IntegrityRow{14}{MR-02 - Indicazione della destinazione specialistica}{\PageMDfive{14}}
-\IntegrityRow{15}{MR-03 - Validazione e correzione medica degli esiti}{\PageMDfive{15}}
-\IntegrityRow{16}{MR-04 - Adattamento controllato sulla base della revisione clinica}{\PageMDfive{16}}
-\IntegrityRow{17}{MR-04 > DEC-11 > FR-08 - Derivazione del target di supervisione dalla priorita P-scale corretta}{\PageMDfive{17}}
-\IntegrityRow{18}{Registro Base Analysis - BAReferent e BAProposition}{\PageMDfive{18}}
-\IntegrityRow{19}{MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]}{\PageMDfive{19}}
-\IntegrityRow{20}{Indice di integrita delle pagine}{\PageMDfive{20}}
+\IntegrityRow{15}{MR-03 - Gestione della validazione clinica degli esiti}{\PageMDfive{15}}
+\IntegrityRow{16}{MR-03 > DEC-03 - Separazione tra esito originario e revisione clinica}{\PageMDfive{16}}
+\IntegrityRow{17}{MR-03 > DEC-03 > FR-03 - Registrazione correlata della revisione clinica}{\PageMDfive{17}}
+\IntegrityRow{18}{MR-03 > DEC-03 > FR-12 - Distinzione tra conferma e correzione della revisione clinica}{\PageMDfive{18}}
+\IntegrityRow{19}{MR-04 - Adattamento controllato sulla base della revisione clinica}{\PageMDfive{19}}
+\IntegrityRow{20}{MR-04 > DEC-11 > FR-08 - Derivazione del target di supervisione dalla priorita P-scale corretta}{\PageMDfive{20}}
+\IntegrityRow{21}{Registro Base Analysis - BAReferent e BAProposition}{\PageMDfive{21}}
+\IntegrityRow{22}{Registro Base Analysis - BAProposition}{\PageMDfive{22}}
+\IntegrityRow{23}{MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]}{\PageMDfive{23}}
+\IntegrityRow{24}{Indice di integrita delle pagine}{\PageMDfive{24}}
 %</PAGE-INTEGRITY-ROWS>
 \bottomrule
 \end{tabularx}
 
 \vspace{2mm}
 {\scriptsize\color{DDTAGray}Quando una pagina viene modificata intenzionalmente, cambia il suo MD5. Una variazione inattesa segnala una modifica da riesaminare prima di proseguire.}
-%</PAGE-CONTENT:20>
+%</PAGE-CONTENT:24>
 
 \end{document}
