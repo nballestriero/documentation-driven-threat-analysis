@@ -22,9 +22,12 @@ Page 17  e9da460bcff5c8d61a5361f9897fcaae  MR-03 > DEC-03 > FR-03 - Registrazion
 Page 18  60b077964dc202b0e8ae17b0e9cce7d0  MR-03 > DEC-03 > FR-12 - Distinzione tra conferma e correzione della revisione clinica
 Page 19  a54afe35ed1503c6eda41c4482b13966  MR-03 > DEC-15 - Scambio della validazione clinica con B4
 Page 20  5ec2d19412461c60854ca7cef75c9f94  MR-03 > DEC-15 > FR-23 - Write-back e retrieval della validazione B4
-Page 21  e5085117316308ad10f9d8324bedf7eb  MR-04 - Adattamento controllato sulla base della revisione clinica
-Page 22  9faf8d41344390a05878e91d5d4ac7bd  MR-04 > DEC-11 > FR-08 - Derivazione del target di supervisione dalla priorita P-scale corretta
-Page 23  b5a45b6d0e21574c1c0c98c59fb6d199  Registro Base Analysis - BAReferent e BAProposition
-Page 24  5f1feb73878fb67ef3a9be07d881b9b9  Registro Base Analysis - BAProposition
-Page 25  58e8c3acb5d1779941538a64c6bb1dd2  MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
-Page 26  4fe43655b5eed4c8e7ff6f4ee542c778  Indice di integrita delle pagine [INTEGRITY INDEX]
+Page 21  2a7e92a9a7609d1466e545ebf818e94a  MR-03 > DEC-16 - Autenticazione delle interfacce di review
+Page 22  9cc601ec85fa3f86c36ea04b5fa377fa  MR-03 > DEC-16 > FR-24 - X-API-Key per operazioni amministrative DermaTriage
+Page 23  0c4840b8de97233c6f01ca44a133875f  MR-03 > DEC-16 > FR-25 - Bearer JWT per interazione B4
+Page 24  e5085117316308ad10f9d8324bedf7eb  MR-04 - Adattamento controllato sulla base della revisione clinica
+Page 25  9faf8d41344390a05878e91d5d4ac7bd  MR-04 > DEC-11 > FR-08 - Derivazione del target di supervisione dalla priorita P-scale corretta
+Page 26  f432cf6bdbb1a2a8ddee63ff815f8ae9  Registro Base Analysis - BAReferent e BAProposition
+Page 27  0172ab39eab0f5138922026bc4d1125e  Registro Base Analysis - BAProposition
+Page 28  58e8c3acb5d1779941538a64c6bb1dd2  MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
+Page 29  954a804a9617dba4cbcc20de4f0b25b4  Indice di integrita delle pagine [INTEGRITY INDEX]
