@@ -33,8 +33,11 @@ Page 28  0bc6d19506b654c3e6ef3aebd3d68a34  MR-04 > DEC-05 - Separazione dei perc
 Page 29  e87f73ed8a77121cd40e5f04b3f87658  MR-04 > DEC-05 > FR-13 - Indipendenza delle condizioni di attivazione tra percorsi di adattamento
 Page 30  e4232081ef5e3573bf9355c5c2394851  MR-04 > DEC-05 > FR-14 - Indipendenza della qualificazione dell'evidence tra percorsi di adattamento
 Page 31  7ccf212862038cd02fccb29b590e7ce6  MR-04 > DEC-05 > FR-15 - Indipendenza dei risultati di qualificazione e accettazione tra percorsi di adattamento
-Page 32  9faf8d41344390a05878e91d5d4ac7bd  MR-04 > DEC-11 > FR-08 - Derivazione del target di supervisione dalla priorita P-scale corretta
-Page 33  a88683a25d7bb43dc90fe07ed38a1ebd  Registro Base Analysis - BAReferent e BAProposition
-Page 34  0172ab39eab0f5138922026bc4d1125e  Registro Base Analysis - BAProposition
-Page 35  58e8c3acb5d1779941538a64c6bb1dd2  MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
-Page 36  093d281c3a6ffd40a859982775608285  Indice di integrita delle pagine [INTEGRITY INDEX]
+Page 32  7a62b581d6ec0a4f598d0c0edbcf24fe  MR-04 > DEC-06 - Accettazione comparativa dell'adattamento della classificazione di urgenza
+Page 33  1226aa35875fdc1a1db3573018cb07ea  MR-04 > DEC-06 > FR-09 - Qualificazione comparativa del candidato di adattamento classificatorio
+Page 34  43f138821276abfcc9fc2aa76d4cc622  MR-04 > DEC-07 - Prioritizzazione asimmetrica delle metriche di qualita
+Page 35  9faf8d41344390a05878e91d5d4ac7bd  MR-04 > DEC-11 > FR-08 - Derivazione del target di supervisione dalla priorita P-scale corretta
+Page 36  d654543da005e69b10ce72d992f94cb7  Registro Base Analysis - BAReferent e BAProposition
+Page 37  0172ab39eab0f5138922026bc4d1125e  Registro Base Analysis - BAProposition
+Page 38  58e8c3acb5d1779941538a64c6bb1dd2  MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
+Page 39  a84025b9357944a6f11425d2f61bf348  Indice di integrita delle pagine [INTEGRITY INDEX]

@@ -52,11 +52,14 @@
 \expandafter\def\csname PageMDfive29\endcsname{e87f73ed8a77121cd40e5f04b3f87658}
 \expandafter\def\csname PageMDfive30\endcsname{e4232081ef5e3573bf9355c5c2394851}
 \expandafter\def\csname PageMDfive31\endcsname{7ccf212862038cd02fccb29b590e7ce6}
-\expandafter\def\csname PageMDfive32\endcsname{9faf8d41344390a05878e91d5d4ac7bd}
-\expandafter\def\csname PageMDfive33\endcsname{a88683a25d7bb43dc90fe07ed38a1ebd}
-\expandafter\def\csname PageMDfive34\endcsname{0172ab39eab0f5138922026bc4d1125e}
-\expandafter\def\csname PageMDfive35\endcsname{58e8c3acb5d1779941538a64c6bb1dd2}
-\expandafter\def\csname PageMDfive36\endcsname{093d281c3a6ffd40a859982775608285}
+\expandafter\def\csname PageMDfive32\endcsname{7a62b581d6ec0a4f598d0c0edbcf24fe}
+\expandafter\def\csname PageMDfive33\endcsname{1226aa35875fdc1a1db3573018cb07ea}
+\expandafter\def\csname PageMDfive34\endcsname{43f138821276abfcc9fc2aa76d4cc622}
+\expandafter\def\csname PageMDfive35\endcsname{9faf8d41344390a05878e91d5d4ac7bd}
+\expandafter\def\csname PageMDfive36\endcsname{d654543da005e69b10ce72d992f94cb7}
+\expandafter\def\csname PageMDfive37\endcsname{0172ab39eab0f5138922026bc4d1125e}
+\expandafter\def\csname PageMDfive38\endcsname{58e8c3acb5d1779941538a64c6bb1dd2}
+\expandafter\def\csname PageMDfive39\endcsname{a84025b9357944a6f11425d2f61bf348}
 %</PAGE-HASH-DEFS>
 
 \newcommand{\PageHashFooter}[1]{%
@@ -2723,12 +2726,267 @@ Governed semantic fact: un risultato di qualification, acceptance o progression 
 \end{paracol}
 %</PAGE-CONTENT:31>
 \clearpage
-% Preserve standalone FR-08 heading counter while DEC-04/DEC-05 branches are inserted ahead of it.
-\setcounter{subsection}{0}
-\setcounter{subsubsection}{0}
-%<PAGE-DESC:32>MR-04 > DEC-11 > FR-08 - Derivazione del target di supervisione dalla priorita P-scale corretta
+
+%<PAGE-DESC:32>MR-04 > DEC-06 - Accettazione comparativa dell'adattamento della classificazione di urgenza
 %<PAGE-CONTENT:32>
 \PageHashFooter{\PageMDfive{32}}
+\subsection{DEC-06 - Accettazione comparativa dell'adattamento della classificazione di urgenza}
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-04} $\rightarrow$ \texttt{DEC-06}}\par
+
+\setlength{\columnsep}{7mm}
+\setlength{\columnseprule}{0.35pt}
+\columnratio{0.67}
+\begin{paracol}{2}
+
+{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
+\vspace{0.3em}
+
+\begin{ddtacore}[title={Decision}]
+\fontsize{5.15}{5.65}\selectfont
+\begin{tabularx}{\linewidth}{L{40mm}Y}
+\toprule
+\textbf{ID} & \texttt{DEC-06} \\
+\textbf{Lifecycle} & \texttt{current} \\
+\textbf{Authority} & \texttt{CURRENT\_GOVERNED} \\
+\textbf{Type} & \texttt{Decision} \\
+\textbf{Title} & Accettazione comparativa dell'adattamento della classificazione di urgenza \\
+\textbf{Parent MacroRequirement} & \texttt{MR-04} \\
+\textbf{Decision kind} & \texttt{SELECTABLE} \\
+\bottomrule
+\end{tabularx}
+
+\textbf{Context}\par
+Un candidato di adattamento classificatorio non deve essere adottato soltanto perche' e' stato prodotto. La reference EfficientNet-B4 model version \texttt{1.0.0} riporta overall accuracy 81.74\%, Macro F1 0.8036, AUC-ROC 0.906, HIGH sensitivity 90.24\% e false LOW rate 7.93\%; la fonte riporta anche HIGH recall 81.71\% e 134/164 casi HIGH corretti, con relazione fra i due valori non chiarita. Serve una valutazione comparativa rispetto alla reference applicabile.
+
+\textbf{Decision}\par
+Un candidato di adattamento della classificazione di urgenza deve essere valutato comparativamente rispetto alla reference applicabile e puo' essere considerato qualificato per l'adozione soltanto quando soddisfa tutti i criteri comparativi governati applicabili.
+
+\textbf{Consequences}\par
+\texttt{FR-09} governa valutazione e qualificazione comparativa. La qualificazione non equivale a deployment automatico. \texttt{DEC-07} governa proprieta' qualitative aggiuntive dei criteri di accettazione.
+\end{ddtacore}
+
+\begin{ddtaquestions}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.65}{5.05}\selectfont
+\begin{itemize}
+  \item Review documentale: i risultati misurati della reference restano per ora nel perimetro FR della tesi; la collocazione naturale futura e' un artefatto dedicato di test/experiment result evidence collegato a requisito e codice di valutazione.
+  \item La formulazione ``la fonte riporta'' e' residuo del reverse-documentation test e dovra' essere eliminata nella documentazione primaria autosufficiente.
+  \item La relazione fra HIGH sensitivity 90.24\% e HIGH recall 81.71\% (134/164) resta \texttt{NOT SPECIFIED}; nessuna riconciliazione viene inferita.
+\end{itemize}
+\end{ddtaquestions}
+
+\switchcolumn
+
+{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
+\vspace{0.35em}
+
+\begin{ddtareferentidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.55}{4.95}\selectfont
+\texttt{--}
+\end{ddtareferentidentified}
+
+\begin{ddtareferentaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.35}{4.75}\selectfont
+\BAAccepted{EfficientNet-B4}; \BAAccepted{CandidateUrgencyClassificationAdaptation} \BAFirstAccepted{}; \BAAccepted{ApplicableReferenceVersion} \BAFirstAccepted{}.
+\end{ddtareferentaccepted}
+
+\begin{ddtapropositionidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.25}{4.65}\selectfont
+\texttt{--}\par
+\emph{La Decision governa il boundary di policy ``valutazione comparativa prima della qualificazione'', ma non stabilisce ancora una decomposizione BA completa fra experiment/evaluation result e qualification result. Nessun operatore viene forzato dalla sola Decision.}
+\end{ddtapropositionidentified}
+
+\begin{ddtapropositionaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.45}{4.85}\selectfont
+\texttt{--}
+\end{ddtapropositionaccepted}
+
+\begin{ddtaopenrelations}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.82}{4.2}\selectfont
+Governed facts: il candidato deve essere confrontato con una reference applicabile e la qualification richiede il soddisfacimento di tutti i criteri governati applicabili; qualification e deployment restano distinti. I valori di EfficientNet-B4 \texttt{1.0.0} sono measurement/reference evidence, non diventano automaticamente BAProposition ne' acceptance criteria. Macro F1 e AUC-ROC sono riportati come metriche della reference ma \texttt{DEC-06} non li rende, da sola, criteri di accettazione. Il binding verso esperimento, artefatto di output e codice che hanno prodotto tali valori resta aperto.
+\end{ddtaopenrelations}
+
+\end{paracol}
+%</PAGE-CONTENT:32>
+\clearpage
+%<PAGE-DESC:33>MR-04 > DEC-06 > FR-09 - Qualificazione comparativa del candidato di adattamento classificatorio
+%<PAGE-CONTENT:33>
+\PageHashFooter{\PageMDfive{33}}
+\subsubsection{FR-09 - Qualificazione comparativa del candidato di adattamento classificatorio}
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-04} $\rightarrow$ \texttt{DEC-06} $\rightarrow$ \texttt{FR-09}}\par
+
+\setlength{\columnsep}{7mm}
+\setlength{\columnseprule}{0.35pt}
+\columnratio{0.67}
+\begin{paracol}{2}
+
+{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
+\vspace{0.3em}
+
+\begin{ddtacore}[title={FunctionalRequirement}]
+\fontsize{5.0}{5.45}\selectfont
+\begin{tabularx}{\linewidth}{L{39mm}Y}
+\toprule
+\textbf{ID} & \texttt{FR-09} \\
+\textbf{Lifecycle} & \texttt{current} \\
+\textbf{Authority} & \texttt{CURRENT\_GOVERNED} \\
+\textbf{Type} & \texttt{FunctionalRequirement} \\
+\textbf{Title} & Qualificazione comparativa del candidato di adattamento classificatorio \\
+\textbf{Parent Decision} & \texttt{DEC-06} \\
+\textbf{Owning MR (derived)} & \texttt{MR-04} \\
+\textbf{SpecializedRequirement relation} & 0 active instances; \texttt{DEC-07} preserva il significato quality applicabile senza introdurre un subtype concreto \\
+\bottomrule
+\end{tabularx}
+
+\textbf{Functional obligation}\par
+Valutare comparativamente un candidato classificatorio e considerarlo qualificato per l'adozione solo se soddisfa tutti i criteri applicabili.
+
+\textbf{Functional clauses / inherited \texttt{normativeClause [1..*]}}\par
+\textbf{NC-09.1.} Quando un candidato di adattamento della classificazione di urgenza viene considerato per l'adozione, DermaTriage MUST valutarlo comparativamente rispetto alla versione di riferimento applicabile usando i criteri di accettazione governati.\par
+\medskip
+\textbf{NC-09.2.} DermaTriage MUST considerare il candidato qualificato per l'adozione soltanto se tutti i criteri comparativi governati applicabili risultano soddisfatti.
+
+\textbf{SPO references (L2 support)}\par
+\texttt{DermaTriage -- comparatively evaluate -->}\par
+\texttt{CandidateUrgencyClassificationAdaptation}\par
+\texttt{CandidateUrgencyClassificationAdaptation -- compared against -->}\par
+\texttt{ApplicableReferenceVersion}\par
+\texttt{SatisfiedAcceptanceCriteria -- qualify --> CandidateUrgencyClassificationAdaptation}
+\end{ddtacore}
+
+\begin{ddtaquestions}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.45}{4.85}\selectfont
+\begin{itemize}
+  \item Esperimento/test, artefatto di risultato e codice che producono le metriche candidate/reference non sono ancora governati come identita' concrete.
+  \item Resta da stabilire se evaluation e qualification siano un'unica production con piu' result oppure due production in catena. Un eventuale \texttt{transfer} intermedio richiede source/destination e conveyance governati, non la sola data dependency.
+\end{itemize}
+\end{ddtaquestions}
+
+\switchcolumn
+
+{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
+\vspace{0.3em}
+
+\begin{ddtareferentidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.05}{4.45}\selectfont
+\BACandidate{CandidateEvaluationResult} \BANew{}; \BACandidate{ReferenceEvaluationResult} \BANew{}; \BACandidate{CandidateQualificationResult} \BANew{}; \BACandidate{ApplicableComparativeAcceptanceCriteria} \BANew{}.\par
+\emph{Sono identita' analitiche candidate emerse dalla decomposizione; i relativi artefatti/result boundary non sono ancora documentati in modo sufficiente per l'accettazione.}
+\end{ddtareferentidentified}
+
+\begin{ddtareferentaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.35}{4.75}\selectfont
+\BAAccepted{DermaTriage}; \BAAccepted{CandidateUrgencyClassificationAdaptation}; \BAAccepted{ApplicableReferenceVersion}.
+\end{ddtareferentaccepted}
+
+\begin{ddtapropositionidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.72}{4.1}\selectfont
+\textbf{Comparative evaluation pressure.} Il comportamento e' governato, ma il semanticOperatorKey esatto resta aperto: non viene forzato in \texttt{produce}, \texttt{observe} o \texttt{constrain}.\par
+\medskip
+\textbf{Qualification-rule pressure.} L'authority BA corrente ammette \texttt{decisionRule}; una candidate minima avrebbe actor \texttt{DermaTriage}, input candidato/reference, result \texttt{CandidateQualificationResult} e branch \texttt{IF all applicable criteria satisfied THEN ... = QUALIFIED}. Non viene accettata ora perche' la documentazione non ha ancora chiuso il boundary fra evaluation result e qualification result, e R7 testa la relocation di \texttt{decisionRule} sotto un owner \texttt{produce} che qui non e' ancora stabilito.
+\end{ddtapropositionidentified}
+
+\begin{ddtapropositionaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.45}{4.85}\selectfont
+\texttt{--}
+\end{ddtapropositionaccepted}
+
+\begin{ddtaopenrelations}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.52}{3.9}\selectfont
+Due decomposizioni restano materialmente possibili. \textbf{A)} una sola \texttt{produce} rende disponibili \texttt{CandidateEvaluationResult} e \texttt{CandidateQualificationResult}; \textbf{B)} una prima \texttt{produce} rende disponibile \texttt{CandidateEvaluationResult} e una seconda production di qualification lo usa, con \texttt{ReferenceEvaluationResult} e i criteri applicabili, per rendere disponibile \texttt{CandidateQualificationResult}. \texttt{QUALIFIED} resta per ora un valore locale candidato del result, non un BAReferent. Nessun \texttt{ELSE} viene inferito. La sola catena result-as-input non autorizza un \texttt{transfer}; esso diventerebbe rappresentabile soltanto se documentazione/code evidence governassero endpoint distinti e una conveyance. La future review deve cercare separatamente codice che calcola metriche e codice che applica la policy di qualification.
+\end{ddtaopenrelations}
+
+\end{paracol}
+%</PAGE-CONTENT:33>
+\clearpage
+%<PAGE-DESC:34>MR-04 > DEC-07 - Prioritizzazione asimmetrica delle metriche di qualita
+%<PAGE-CONTENT:34>
+\PageHashFooter{\PageMDfive{34}}
+\subsection{DEC-07 - Prioritizzazione asimmetrica delle metriche di qualita'}
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-04} $\rightarrow$ \texttt{DEC-07}}\par
+
+\setlength{\columnsep}{7mm}
+\setlength{\columnseprule}{0.35pt}
+\columnratio{0.67}
+\begin{paracol}{2}
+
+{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
+\vspace{0.35em}
+
+\begin{ddtacore}[title={Decision}]
+\fontsize{5.45}{5.95}\selectfont
+\begin{tabularx}{\linewidth}{L{40mm}Y}
+\toprule
+\textbf{ID} & \texttt{DEC-07} \\
+\textbf{Lifecycle} & \texttt{current} \\
+\textbf{Authority} & \texttt{CURRENT\_GOVERNED} \\
+\textbf{Type} & \texttt{Decision} \\
+\textbf{Title} & Prioritizzazione asimmetrica delle metriche di qualita' \\
+\textbf{Parent MacroRequirement} & \texttt{MR-04} \\
+\textbf{Decision kind} & \texttt{SELECTABLE} \\
+\bottomrule
+\end{tabularx}
+
+\textbf{Context}\par
+La policy di accettazione non tratta tutte le metriche come intercambiabili. La documentazione attribuisce priorita' alla non-degradazione di sensitivity e false-low, consentendo per l'accuracy soltanto una degradazione limitata.
+
+\textbf{Decision}\par
+Nel confronto con la reference applicabile, sensitivity e false-low performance non devono peggiorare, mentre l'overall accuracy puo' degradare al massimo del 5\%.
+
+\textbf{Consequences}\par
+La qualificazione comparativa tratta in modo asimmetrico le metriche: sensitivity e false-low performance non devono peggiorare, mentre l'overall accuracy puo' degradare soltanto entro la tolleranza applicabile.
+\end{ddtacore}
+
+\begin{ddtaquestions}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.55}{4.95}\selectfont
+\begin{itemize}
+  \item Il literal 5\% non specifica se la degradazione sia percentuale relativa o differenza in punti percentuali: non viene normalizzato in una formula ulteriore.
+  \item \texttt{DEC-06} registra sia HIGH sensitivity 90.24\% sia HIGH recall 81.71\% (134/164), con relazione non chiarita; quale misura sia la sensitivity operativa del criterio resta da chiarire.
+  \item Macro F1 e AUC-ROC non vengono promossi a criteri di accettazione: \texttt{DEC-07} non lo stabilisce.
+\end{itemize}
+\end{ddtaquestions}
+
+\switchcolumn
+
+{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
+\vspace{0.35em}
+
+\begin{ddtareferentidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.5}{4.9}\selectfont
+\texttt{--}
+\end{ddtareferentidentified}
+
+\begin{ddtareferentaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.2}{4.6}\selectfont
+\BAAccepted{CandidateUrgencyClassificationAdaptation}; \BAAccepted{ApplicableReferenceVersion}; \BAAccepted{ApplicableComparativeAcceptanceCriteria} \BAFirstAccepted{}.
+\end{ddtareferentaccepted}
+
+\begin{ddtapropositionidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.9}{4.28}\selectfont
+\textbf{Candidate comparison structure, non accettata:}\par
+\texttt{sensitivity: candidate no worse than reference}\par
+\texttt{false-low: candidate no worse than reference}\par
+\texttt{overall accuracy: degradation <= 5\%}\par
+\emph{La struttura preserva il significato leggibile ma non viene elevata a syntax BA: il vocabulary ordinato/scalare necessario non e' chiuso e la semantica esatta del 5\% resta documentariamente ambigua.}
+\end{ddtapropositionidentified}
+
+\begin{ddtapropositionaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.45}{4.85}\selectfont
+\texttt{--}
+\end{ddtapropositionaccepted}
+
+\begin{ddtaopenrelations}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.82}{4.2}\selectfont
+\texttt{DEC-07} rende identificabile e riusabile il set \texttt{ApplicableComparativeAcceptanceCriteria} richiamato da \texttt{FR-09}, ma non introduce una nuova funzione. I tre criteri sono path-local alla qualification classificatoria e devono poter alimentare la futura decision structure senza inventare operatori di confronto. La documentazione corrente richiede almeno ordered/scalar comparison pressure (non-degradation e maximum degradation); finche' comparator semantics e measurement basis non sono governati in modo sufficiente, nessuna BAProposition \texttt{constrain} o \texttt{decisionRule} viene accettata da questa Decision isolatamente.
+\end{ddtaopenrelations}
+
+\end{paracol}
+%</PAGE-CONTENT:34>
+\clearpage
+% Preserve standalone FR-08 heading counter while DEC-04/DEC-05/DEC-06/DEC-07 branches are inserted ahead of it.
+\setcounter{subsection}{0}
+\setcounter{subsubsection}{0}
+%<PAGE-DESC:35>MR-04 > DEC-11 > FR-08 - Derivazione del target di supervisione dalla priorita P-scale corretta
+%<PAGE-CONTENT:35>
+\PageHashFooter{\PageMDfive{35}}
 \subsubsection{FR-08 - Derivazione del target di supervisione dalla priorita P-scale corretta}
 {\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-04} $\rightarrow$ \texttt{DEC-11} $\rightarrow$ \texttt{FR-08}}\par
 
@@ -2832,11 +3090,11 @@ Derivare il target di supervisione classificatoria dalla priorita P-scale corret
 \end{ddtapropositionaccepted}
 
 \end{paracol}
-%</PAGE-CONTENT:32>
+%</PAGE-CONTENT:35>
 \clearpage
-%<PAGE-DESC:33>Registro Base Analysis - BAReferent e BAProposition
-%<PAGE-CONTENT:33>
-\PageHashFooter{\PageMDfive{33}}
+%<PAGE-DESC:36>Registro Base Analysis - BAReferent e BAProposition
+%<PAGE-CONTENT:36>
+\PageHashFooter{\PageMDfive{36}}
 \section{Registro Base Analysis}
 
 \begin{ddtacore}[title={Sintesi BA corrente}]
@@ -2854,7 +3112,7 @@ Il registro raccoglie la tracciabilita' BA corrente senza introdurre campi o sta
 \toprule
 \textbf{BAReferent} & \textbf{Riferimenti documentali} \\
 \midrule
-DermaTriage & \texttt{MR-01}; \textbf{\texttt{DEC-MR01-01}}; \texttt{FR-MR01-01-01}; \texttt{DEC-MR01-03}; \texttt{FR-MR01-03-01}; \texttt{FR-MR01-03-02}; \texttt{FR-MR01-03-04}; \texttt{DEC-MR01-04}; \texttt{FR-MR01-04-01}; \texttt{MR-02}; \texttt{MR-03}; \texttt{DEC-03}; \texttt{FR-03}; \texttt{FR-12}; \texttt{DEC-15}; \texttt{FR-23}; \texttt{DEC-16}; \texttt{FR-24}; \texttt{FR-25}; \texttt{MR-04}; \texttt{DEC-04}; \texttt{FR-04}; \texttt{FR-05}; \texttt{DEC-05} \\
+DermaTriage & \texttt{MR-01}; \textbf{\texttt{DEC-MR01-01}}; \texttt{FR-MR01-01-01}; \texttt{DEC-MR01-03}; \texttt{FR-MR01-03-01}; \texttt{FR-MR01-03-02}; \texttt{FR-MR01-03-04}; \texttt{DEC-MR01-04}; \texttt{FR-MR01-04-01}; \texttt{MR-02}; \texttt{MR-03}; \texttt{DEC-03}; \texttt{FR-03}; \texttt{FR-12}; \texttt{DEC-15}; \texttt{FR-23}; \texttt{DEC-16}; \texttt{FR-24}; \texttt{FR-25}; \texttt{MR-04}; \texttt{DEC-04}; \texttt{FR-04}; \texttt{FR-05}; \texttt{DEC-05} ; \texttt{FR-09} \\
 DermatologicalCase & \textbf{\texttt{MR-01}}; \texttt{FR-MR01-01-01}; \texttt{FR-MR01-03-04} \\
 DermatologicalTriageEvaluation & \textbf{\texttt{MR-01}}; \texttt{DEC-MR01-01}; \texttt{FR-MR01-01-01}; \texttt{DEC-MR01-03} \\
 CaseUrgency & \textbf{\texttt{MR-01}}; \texttt{FR-MR01-01-01}; \texttt{FR-MR01-03-04}; \texttt{DEC-MR01-04}; \texttt{FR-MR01-04-01} \\
@@ -2864,7 +3122,7 @@ Patient & \texttt{MR-01} \\
 LesionImage & \texttt{DEC-MR01-01}; \textbf{\texttt{FR-MR01-01-01}}; \texttt{DEC-MR01-03}; \texttt{FR-MR01-03-01}; \texttt{FR-MR01-03-02} \\
 SymptomInformation & \texttt{DEC-MR01-01}; \textbf{\texttt{FR-MR01-01-01}}; \texttt{FR-MR01-03-04} \\
 ImageUrgencyAnalysis & \texttt{DEC-MR01-03}; \textbf{\texttt{FR-MR01-03-01}} \\
-EfficientNet-B4 & \textbf{\texttt{FR-MR01-03-01}}; \texttt{MR-04}; \texttt{FR-05} \\
+EfficientNet-B4 & \textbf{\texttt{FR-MR01-03-01}}; \texttt{MR-04}; \texttt{FR-05}; \texttt{DEC-06} \\
 ImageUrgencyClassification & \textbf{\texttt{FR-MR01-03-01}}; \texttt{FR-MR01-03-04} \\
 ClinicalDescriptionGeneration & \texttt{DEC-MR01-03}; \textbf{\texttt{FR-MR01-03-02}}; \texttt{FR-MR01-03-03B} \\
 Qwen2-VL-7B-Instruct & \textbf{\texttt{FR-MR01-03-02}} \\
@@ -2892,6 +3150,12 @@ AdaptationLayer & \textbf{\texttt{FR-MR01-04-01}} \\
 ControlledDermaTriageAdaptation & \textbf{\texttt{MR-04}} \\
 PromptEvolutionPath & \textbf{\texttt{MR-04}}; \texttt{DEC-04}; \texttt{FR-04}; \texttt{DEC-05}; \texttt{FR-13}; \texttt{FR-14}; \texttt{FR-15} \\
 ClassifierAdaptationPath & \textbf{\texttt{MR-04}}; \texttt{DEC-04}; \texttt{FR-05}; \texttt{DEC-05}; \texttt{FR-13}; \texttt{FR-14}; \texttt{FR-15} \\
+CandidateUrgencyClassificationAdaptation & \textbf{\texttt{DEC-06}}; \texttt{FR-09}; \texttt{DEC-07} \\
+ApplicableReferenceVersion & \textbf{\texttt{DEC-06}}; \texttt{FR-09}; \texttt{DEC-07} \\
+CandidateEvaluationResult & \texttt{FR-09} -- candidate decomposition; result artifact non ancora governato \\
+ReferenceEvaluationResult & \texttt{FR-09}; \texttt{DEC-07} -- candidate decomposition; producing experiment/result artifact non ancora governato \\
+CandidateQualificationResult & \texttt{FR-09} -- candidate decomposition; output boundary non ancora chiuso \\
+ApplicableComparativeAcceptanceCriteria & \texttt{FR-09}; \textbf{\texttt{DEC-07}} \\
 ClinicallyCorrectedOperationalTriagePriority & \textbf{\texttt{FR-08}} \\
 ClassifierUrgencyTarget & \textbf{\texttt{FR-08}} \\
 SpecialistDestinationIndication & \textbf{\texttt{MR-02}} \\
@@ -2910,11 +3174,11 @@ B4BearerJWT & \textbf{\texttt{FR-25}} \\
 \bottomrule
 \end{tabularx}
 
-%</PAGE-CONTENT:33>
+%</PAGE-CONTENT:36>
 \clearpage
-%<PAGE-DESC:34>Registro Base Analysis - BAProposition
-%<PAGE-CONTENT:34>
-\PageHashFooter{\PageMDfive{34}}
+%<PAGE-DESC:37>Registro Base Analysis - BAProposition
+%<PAGE-CONTENT:37>
+\PageHashFooter{\PageMDfive{37}}
 \section*{Registro Base Analysis - BAProposition}
 \begin{ddtacore}[title={Continuita' del registro}]
 \fontsize{6.0}{6.6}\selectfont
@@ -2974,11 +3238,11 @@ Questa pagina continua il registro BA della pagina precedente. Il \textbf{grasse
 \textbf{\texttt{BAP-FR08-01-01}} & \texttt{FR-08} -- accepted \texttt{produce} (\texttt{DermaTriage}: corrected P-scale $\rightarrow$ classifier target); candidate \texttt{operatorStructure.decisionRule} mostrata inline nell'owner ma non ancora ammessa \\
 \bottomrule
 \end{tabularx}
-%</PAGE-CONTENT:34>
+%</PAGE-CONTENT:37>
 \clearpage
-%<PAGE-DESC:35>MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
-%<PAGE-CONTENT:35>
-\PageHashFooter{\PageMDfive{35}}
+%<PAGE-DESC:38>MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
+%<PAGE-CONTENT:38>
+\PageHashFooter{\PageMDfive{38}}
 \section{MR-01 - Inventario temporaneo transfer, contract e decisioni BA}
 
 \begin{ddtaopen}[title={PAGINA TEMPORANEA - AUDIT DATA-PATH MR-01 - DA CANCELLARE DOPO LA RIALLOCAZIONE DEI RISULTATI}]
@@ -3027,11 +3291,11 @@ la pagina precedente mescolava due funzioni con lifecycle e change impact separa
 \textbf{Decisione metodologica temporanea - necessity test di \texttt{correlate}:}
 \texttt{BAP-MR01-02} e \texttt{BAP-DEC01-02} sono rimosse dall'insieme attivo delle BAProposition candidate. Nei due passaggi sorgente, ``informazioni disponibili sul caso dermatologico'' e ``informazioni sintomatologiche disponibili sul caso'' descrivono il contesto del caso in analisi e gli input del comportamento di triage; non e' emersa una relazione governata, autonoma e interrogabile che richieda una proposition \texttt{correlate}. La rimozione non elimina i BAReferent ne' le proposition \texttt{produce} gia' candidate. Le occorrenze lessicali di ``correlation'' nella worklist restano domande aperte di binding/identity nei data contract e \textbf{non} indicano l'operatore BA \texttt{correlate}. L'operatore verra' riesaminato soltanto se evidence successiva mostrera' una relazione indipendente non ricostruibile tramite comportamento, identity e contract gia' governati. Questa nota e' temporanea e verra' cancellata a chiusura del case study dopo il consolidamento del risultato.
 \end{ddtaopen}
-%</PAGE-CONTENT:35>
+%</PAGE-CONTENT:38>
 \clearpage
-%<PAGE-DESC:36>Indice di integrita delle pagine
-%<PAGE-CONTENT:36>
-\PageHashFooter{\PageMDfive{36}}
+%<PAGE-DESC:39>Indice di integrita delle pagine
+%<PAGE-CONTENT:39>
+\PageHashFooter{\PageMDfive{39}}
 \section{Indice di integrita' delle pagine}
 
 \begin{ddtacore}[title={Regola di verifica}]
@@ -3081,11 +3345,14 @@ Ogni pagina possiede un MD5 del proprio contenuto canonico. Il calcolo esclude i
 \IntegrityRow{29}{MR-04 > DEC-05 > FR-13 - Indipendenza delle condizioni di attivazione tra percorsi di adattamento}{\PageMDfive{29}}
 \IntegrityRow{30}{MR-04 > DEC-05 > FR-14 - Indipendenza della qualificazione dell'evidence tra percorsi di adattamento}{\PageMDfive{30}}
 \IntegrityRow{31}{MR-04 > DEC-05 > FR-15 - Indipendenza dei risultati di qualificazione e accettazione tra percorsi di adattamento}{\PageMDfive{31}}
-\IntegrityRow{32}{MR-04 > DEC-11 > FR-08 - Derivazione del target di supervisione dalla priorita P-scale corretta}{\PageMDfive{32}}
-\IntegrityRow{33}{Registro Base Analysis - BAReferent e BAProposition}{\PageMDfive{33}}
-\IntegrityRow{34}{Registro Base Analysis - BAProposition}{\PageMDfive{34}}
-\IntegrityRow{35}{MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]}{\PageMDfive{35}}
-\IntegrityRow{36}{Indice di integrita delle pagine}{\PageMDfive{36}}
+\IntegrityRow{32}{MR-04 > DEC-06 - Accettazione comparativa dell'adattamento della classificazione di urgenza}{\PageMDfive{32}}
+\IntegrityRow{33}{MR-04 > DEC-06 > FR-09 - Qualificazione comparativa del candidato di adattamento classificatorio}{\PageMDfive{33}}
+\IntegrityRow{34}{MR-04 > DEC-07 - Prioritizzazione asimmetrica delle metriche di qualita}{\PageMDfive{34}}
+\IntegrityRow{35}{MR-04 > DEC-11 > FR-08 - Derivazione del target di supervisione dalla priorita P-scale corretta}{\PageMDfive{35}}
+\IntegrityRow{36}{Registro Base Analysis - BAReferent e BAProposition}{\PageMDfive{36}}
+\IntegrityRow{37}{Registro Base Analysis - BAProposition}{\PageMDfive{37}}
+\IntegrityRow{38}{MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]}{\PageMDfive{38}}
+\IntegrityRow{39}{Indice di integrita delle pagine}{\PageMDfive{39}}
 %</PAGE-INTEGRITY-ROWS>
 \bottomrule
 \end{tabularx}
@@ -3093,6 +3360,6 @@ Ogni pagina possiede un MD5 del proprio contenuto canonico. Il calcolo esclude i
 
 \vspace{0.8mm}
 {\fontsize{4.8}{5.2}\selectfont\color{DDTAGray}Quando una pagina viene modificata intenzionalmente, cambia il suo MD5. Una variazione inattesa segnala una modifica da riesaminare prima di proseguire.}
-%</PAGE-CONTENT:36>
+%</PAGE-CONTENT:39>
 
 \end{document}
