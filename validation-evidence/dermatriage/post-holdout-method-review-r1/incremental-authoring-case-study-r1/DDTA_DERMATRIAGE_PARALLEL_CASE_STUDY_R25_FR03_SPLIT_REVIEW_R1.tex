@@ -55,11 +55,13 @@
 \expandafter\def\csname PageMDfive32\endcsname{7a62b581d6ec0a4f598d0c0edbcf24fe}
 \expandafter\def\csname PageMDfive33\endcsname{1226aa35875fdc1a1db3573018cb07ea}
 \expandafter\def\csname PageMDfive34\endcsname{43f138821276abfcc9fc2aa76d4cc622}
-\expandafter\def\csname PageMDfive35\endcsname{9faf8d41344390a05878e91d5d4ac7bd}
-\expandafter\def\csname PageMDfive36\endcsname{d654543da005e69b10ce72d992f94cb7}
-\expandafter\def\csname PageMDfive37\endcsname{0172ab39eab0f5138922026bc4d1125e}
-\expandafter\def\csname PageMDfive38\endcsname{58e8c3acb5d1779941538a64c6bb1dd2}
-\expandafter\def\csname PageMDfive39\endcsname{a84025b9357944a6f11425d2f61bf348}
+\expandafter\def\csname PageMDfive35\endcsname{2d870f81a5f24c387896ef85f94eacbd}
+\expandafter\def\csname PageMDfive36\endcsname{6a4807e4d18d4a97f3b02d62ad4f24e0}
+\expandafter\def\csname PageMDfive37\endcsname{9faf8d41344390a05878e91d5d4ac7bd}
+\expandafter\def\csname PageMDfive38\endcsname{8a435d38e0214f2e985937071ce0ddab}
+\expandafter\def\csname PageMDfive39\endcsname{0172ab39eab0f5138922026bc4d1125e}
+\expandafter\def\csname PageMDfive40\endcsname{df70ba8f961369f44bdd2b8e064a53bd}
+\expandafter\def\csname PageMDfive41\endcsname{e38dfff2c5883f7234cc87c4263d4a46}
 %</PAGE-HASH-DEFS>
 
 \newcommand{\PageHashFooter}[1]{%
@@ -2981,12 +2983,185 @@ La qualificazione comparativa tratta in modo asimmetrico le metriche: sensitivit
 \end{paracol}
 %</PAGE-CONTENT:34>
 \clearpage
+
+%<PAGE-DESC:35>MR-04 > DEC-08 - Reversibilita dell'adattamento della classificazione in caso di degrado
+%<PAGE-CONTENT:35>
+\PageHashFooter{\PageMDfive{35}}
+\subsection{DEC-08 - Reversibilita' dell'adattamento della classificazione in caso di degrado}
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-04} $\rightarrow$ \texttt{DEC-08}}\par
+
+\setlength{\columnsep}{7mm}
+\setlength{\columnseprule}{0.35pt}
+\columnratio{0.67}
+\begin{paracol}{2}
+
+{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
+\vspace{0.3em}
+
+\begin{ddtacore}[title={Decision}]
+\fontsize{5.2}{5.7}\selectfont
+\begin{tabularx}{\linewidth}{L{40mm}Y}
+\toprule
+\textbf{ID} & \texttt{DEC-08} \\
+\textbf{Lifecycle} & \texttt{current} \\
+\textbf{Authority} & \texttt{CURRENT\_GOVERNED} \\
+\textbf{Type} & \texttt{Decision} \\
+\textbf{Title} & Reversibilita' dell'adattamento della classificazione in caso di degrado \\
+\textbf{Parent MacroRequirement} & \texttt{MR-04} \\
+\textbf{Decision kind} & \texttt{SELECTABLE} \\
+\bottomrule
+\end{tabularx}
+
+\textbf{Context}\par
+Un adattamento gia' adottato puo' manifestare degrado materiale dopo l'adozione. La capacita' di recuperare una versione o stato precedente deve restare distinta dalla qualificazione pre-adoption.
+
+\textbf{Decision}\par
+Un adattamento della classificazione di urgenza gia' adottato che manifesta un degrado di accuracy superiore al 5\% rispetto alla reference post-adoption applicabile deve poter essere revocato ripristinando una versione o stato precedente accettabile.
+
+\textbf{Consequences}\par
+\texttt{FR-10} governa la revoca/ripristino. Il requisito non stabilisce che il rollback sia automatico. Il threshold post-adoption \texttt{R} resta semanticamente distinto dalla tolleranza pre-adoption \texttt{T} anche quando i literal correnti coincidono.
+\end{ddtacore}
+
+\begin{ddtaquestions}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.35}{4.75}\selectfont
+\begin{itemize}
+  \item La clausola governa un solo ramo applicabile quando \texttt{accuracy degradation > R}; nessun ramo \texttt{ELSE} e nessuna proposition ``do nothing'' vengono introdotti.
+  \item Il literal 5\% non chiarisce percentuale relativa vs punti percentuali; la measurement basis resta \texttt{NOT SPECIFIED}.
+  \item \texttt{R} post-adoption e \texttt{T} pre-adoption restano significati distinti anche se oggi condividono il literal 5\%.
+\end{itemize}
+\end{ddtaquestions}
+
+\switchcolumn
+
+{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
+\vspace{0.3em}
+
+\begin{ddtareferentidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.15}{4.55}\selectfont
+\BACandidate{PostAdoptionEvaluationResult} \BANew{}.\par
+\emph{Candidate decomposition: la source governa la condizione di degrado ma non identifica ancora l'esperimento, l'actor o un result artifact concreto che la renda disponibile.}
+\end{ddtareferentidentified}
+
+\begin{ddtareferentaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.15}{4.55}\selectfont
+\BAAccepted{ClassifierAdaptationPath}; \BAAccepted{ApplicablePostAdoptionReference} \BAFirstAccepted{}; \BAAccepted{PreviousAcceptableVersionOrState} \BAFirstAccepted{}.
+\end{ddtareferentaccepted}
+
+\begin{ddtapropositionidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.9}{4.3}\selectfont
+\textbf{Post-adoption result pressure.} Una futura \texttt{produce} puo' essere appropriata se documentazione/code evidence governeranno chi calcola la valutazione post-adoption e quale result rende disponibile; oggi actor e result boundary non sono sufficientemente specificati.\par
+\medskip
+\textbf{Restore applicability.} \texttt{degradation > R} limita l'applicabilita' del recovery path, ma non esiste ancora una proposition owner corrente alla quale applicare \texttt{condition} senza inventare la semantica del restore.
+\end{ddtapropositionidentified}
+
+\begin{ddtapropositionaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.35}{4.75}\selectfont
+\texttt{--}
+\end{ddtapropositionaccepted}
+
+\begin{ddtaopenrelations}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.72}{4.08}\selectfont
+Nessuna \texttt{transition} viene accettata: la source governa il ripristino di una versione/stato precedente ma non stabilisce una stessa identity che attraversi stati \texttt{Adopted -> Revoked}. Nessun rollback automatico viene inferito. La lettura operativa e': un modello correntemente attivo puo' risultare degradato; quando il degrado supera \texttt{R}, il recovery/restore deve essere supportato. I simboli di lavoro \texttt{ME} (modello corrente) e \texttt{MOK} (precedente accettabile) non diventano nomi BA canonici. La meccanica con cui \texttt{MOK} torna attivo resta demandata a \texttt{FR-10} e all'evidence implementativa.
+\end{ddtaopenrelations}
+
+\end{paracol}
+%</PAGE-CONTENT:35>
+\clearpage
+
+%<PAGE-DESC:36>MR-04 > DEC-08 > FR-10 - Revoca di un adattamento classificatorio degradante
+%<PAGE-CONTENT:36>
+\PageHashFooter{\PageMDfive{36}}
+\subsubsection{FR-10 - Revoca di un adattamento classificatorio degradante}
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-04} $\rightarrow$ \texttt{DEC-08} $\rightarrow$ \texttt{FR-10}}\par
+
+\setlength{\columnsep}{7mm}
+\setlength{\columnseprule}{0.35pt}
+\columnratio{0.67}
+\begin{paracol}{2}
+
+{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
+\vspace{0.3em}
+
+\begin{ddtacore}[title={FunctionalRequirement}]
+\fontsize{4.85}{5.3}\selectfont
+\begin{tabularx}{\linewidth}{L{39mm}Y}
+\toprule
+\textbf{ID} & \texttt{FR-10} \\
+\textbf{Lifecycle} & \texttt{current} \\
+\textbf{Authority} & \texttt{CURRENT\_GOVERNED} \\
+\textbf{Type} & \texttt{FunctionalRequirement} \\
+\textbf{Title} & Revoca di un adattamento classificatorio degradante \\
+\textbf{Parent Decision} & \texttt{DEC-08} \\
+\textbf{Owning MR (derived)} & \texttt{MR-04} \\
+\textbf{SpecializedRequirement relation} & 0 active instances \\
+\bottomrule
+\end{tabularx}
+
+\textbf{Functional obligation}\par
+Supportare la revoca di un adattamento classificatorio gia' adottato quando manifesta degrado materiale, ripristinando una versione o stato precedente accettabile.
+
+\textbf{Functional clauses / inherited \texttt{normativeClause [1..*]}}\par
+Per un adattamento della classificazione di urgenza gia' adottato che manifesti un degrado di accuracy superiore al 5\% rispetto alla reference post-adoption applicabile, DermaTriage MUST supportarne la revoca mediante il ripristino di una versione o stato precedente accettabile; le versioni ripristinabili sono mantenute in \nolinkurl{models/versions/} con tracking in \nolinkurl{db/model_versions.json} e modello attivo in \nolinkurl{models/efficientnet_b4.pth}.
+
+\textbf{SPO references (L2 support)}\par
+\texttt{MateriallyDegradingAdoptedAdaptation -- triggers support for --> Revocation}\par
+\texttt{DermaTriage -- restore --> PreviousAcceptableVersionOrState}
+\end{ddtacore}
+
+\begin{ddtaquestions}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.02}{4.42}\selectfont
+\begin{itemize}
+  \item \texttt{models/versions/}, \texttt{db/model\_versions.json} e \texttt{models/efficientnet\_b4.pth} sono binding tecnici governati da preservare; non vengono sostituiti da nomi BA generici.
+  \item Il restore puo' essere copy/move/overwrite/load/reference switch o altro: la meccanica di conveyance non e' specificata. Il destino del modello precedentemente attivo (conservato, archiviato, cancellato) e' \texttt{NOT SPECIFIED}.
+  \item TODO cumulativo persistence/storage: riesaminare insieme \texttt{FR-03} (record/persistence), worklist \texttt{T15} (LocalDiagnosisStore) e \texttt{FR-10}, distinguendo \texttt{transfer}, write/persist riuscito e associazione at-rest. Non si riapre ora \texttt{storedIn}.
+\end{itemize}
+\end{ddtaquestions}
+
+\switchcolumn
+
+{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
+\vspace{0.3em}
+
+\begin{ddtareferentidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.0}{4.38}\selectfont
+\BACandidate{PostAdoptionEvaluationResult};\par
+\emph{Resta candidate finche' non sono governati producer, result artifact e measurement boundary. I tre path tecnici sono preservati come implementation bindings e non vengono promossi automaticamente a BAReferent.}
+\end{ddtareferentidentified}
+
+\begin{ddtareferentaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.2}{4.6}\selectfont
+\BAAccepted{DermaTriage}; \BAAccepted{ApplicablePostAdoptionReference}; \BAAccepted{PreviousAcceptableVersionOrState}.
+\end{ddtareferentaccepted}
+
+\begin{ddtapropositionidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.65}{4.0}\selectfont
+\textbf{Restore/transfer pressure, non accettata.}\par
+Una candidate \texttt{transfer} \texttt{models/versions/ -> active model location : MOK} richiederebbe evidence che governi una vera conveyance; la sola presenza di uno store di versioni e di un path del modello attivo non basta.\par
+\medskip
+\textbf{Persistence pressure, deferita.}\par
+\texttt{maintained in} governa un fatto at-rest, ma il costrutto \texttt{storedIn} non e' corrente. Inoltre \texttt{transfer-to-store != successful write/persist != at-rest association}: il caso viene registrato nel TODO cumulativo con \texttt{FR-03}/\texttt{T15}.
+\end{ddtapropositionidentified}
+
+\begin{ddtapropositionaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.3}{4.7}\selectfont
+\texttt{--}
+\end{ddtapropositionaccepted}
+
+\begin{ddtaopenrelations}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.62}{3.96}\selectfont
+La BA puo' essere scritta gia' a questo checkpoint anche senza una nuova BAProposition: accetta le identita' semantiche governate, preserva i binding tecnici, registra candidate decomposition e delimita le inferenze vietate. Il solo ramo governato e' \texttt{degradation > R -> recovery/restore support applicable}; l'assenza della condizione non genera un ramo \texttt{ELSE}. Nessuna \texttt{transition} viene introdotta e nessuna fine di \texttt{ME} viene inventata. La futura evidence deve cercare separatamente: (1) producer/result della valutazione post-adoption, (2) decision/avvio effettivo del rollback se esiste, (3) meccanica di restore fra version store e modello attivo, (4) persistence/write semantics.
+\end{ddtaopenrelations}
+
+\end{paracol}
+%</PAGE-CONTENT:36>
+\clearpage
+
 % Preserve standalone FR-08 heading counter while DEC-04/DEC-05/DEC-06/DEC-07 branches are inserted ahead of it.
 \setcounter{subsection}{0}
 \setcounter{subsubsection}{0}
-%<PAGE-DESC:35>MR-04 > DEC-11 > FR-08 - Derivazione del target di supervisione dalla priorita P-scale corretta
-%<PAGE-CONTENT:35>
-\PageHashFooter{\PageMDfive{35}}
+%<PAGE-DESC:37>MR-04 > DEC-11 > FR-08 - Derivazione del target di supervisione dalla priorita P-scale corretta
+%<PAGE-CONTENT:37>
+\PageHashFooter{\PageMDfive{37}}
 \subsubsection{FR-08 - Derivazione del target di supervisione dalla priorita P-scale corretta}
 {\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-04} $\rightarrow$ \texttt{DEC-11} $\rightarrow$ \texttt{FR-08}}\par
 
@@ -3090,11 +3265,11 @@ Derivare il target di supervisione classificatoria dalla priorita P-scale corret
 \end{ddtapropositionaccepted}
 
 \end{paracol}
-%</PAGE-CONTENT:35>
+%</PAGE-CONTENT:37>
 \clearpage
-%<PAGE-DESC:36>Registro Base Analysis - BAReferent e BAProposition
-%<PAGE-CONTENT:36>
-\PageHashFooter{\PageMDfive{36}}
+%<PAGE-DESC:38>Registro Base Analysis - BAReferent e BAProposition
+%<PAGE-CONTENT:38>
+\PageHashFooter{\PageMDfive{38}}
 \section{Registro Base Analysis}
 
 \begin{ddtacore}[title={Sintesi BA corrente}]
@@ -3122,7 +3297,7 @@ Patient & \texttt{MR-01} \\
 LesionImage & \texttt{DEC-MR01-01}; \textbf{\texttt{FR-MR01-01-01}}; \texttt{DEC-MR01-03}; \texttt{FR-MR01-03-01}; \texttt{FR-MR01-03-02} \\
 SymptomInformation & \texttt{DEC-MR01-01}; \textbf{\texttt{FR-MR01-01-01}}; \texttt{FR-MR01-03-04} \\
 ImageUrgencyAnalysis & \texttt{DEC-MR01-03}; \textbf{\texttt{FR-MR01-03-01}} \\
-EfficientNet-B4 & \textbf{\texttt{FR-MR01-03-01}}; \texttt{MR-04}; \texttt{FR-05}; \texttt{DEC-06} \\
+EfficientNet-B4 & \textbf{\texttt{FR-MR01-03-01}}; \texttt{MR-04}; \texttt{FR-05}; \texttt{DEC-06}; \texttt{DEC-08}; \texttt{FR-10} \\
 ImageUrgencyClassification & \textbf{\texttt{FR-MR01-03-01}}; \texttt{FR-MR01-03-04} \\
 ClinicalDescriptionGeneration & \texttt{DEC-MR01-03}; \textbf{\texttt{FR-MR01-03-02}}; \texttt{FR-MR01-03-03B} \\
 Qwen2-VL-7B-Instruct & \textbf{\texttt{FR-MR01-03-02}} \\
@@ -3156,6 +3331,9 @@ CandidateEvaluationResult & \texttt{FR-09} -- candidate decomposition; result ar
 ReferenceEvaluationResult & \texttt{FR-09}; \texttt{DEC-07} -- candidate decomposition; producing experiment/result artifact non ancora governato \\
 CandidateQualificationResult & \texttt{FR-09} -- candidate decomposition; output boundary non ancora chiuso \\
 ApplicableComparativeAcceptanceCriteria & \texttt{FR-09}; \textbf{\texttt{DEC-07}} \\
+ApplicablePostAdoptionReference & \textbf{\texttt{DEC-08}}; \texttt{FR-10} \\
+PreviousAcceptableVersionOrState & \textbf{\texttt{DEC-08}}; \texttt{FR-10} \\
+PostAdoptionEvaluationResult & \texttt{DEC-08}; \texttt{FR-10} -- candidate decomposition; producer/result artifact e measurement boundary non ancora governati \\
 ClinicallyCorrectedOperationalTriagePriority & \textbf{\texttt{FR-08}} \\
 ClassifierUrgencyTarget & \textbf{\texttt{FR-08}} \\
 SpecialistDestinationIndication & \textbf{\texttt{MR-02}} \\
@@ -3174,11 +3352,11 @@ B4BearerJWT & \textbf{\texttt{FR-25}} \\
 \bottomrule
 \end{tabularx}
 
-%</PAGE-CONTENT:36>
+%</PAGE-CONTENT:38>
 \clearpage
-%<PAGE-DESC:37>Registro Base Analysis - BAProposition
-%<PAGE-CONTENT:37>
-\PageHashFooter{\PageMDfive{37}}
+%<PAGE-DESC:39>Registro Base Analysis - BAProposition
+%<PAGE-CONTENT:39>
+\PageHashFooter{\PageMDfive{39}}
 \section*{Registro Base Analysis - BAProposition}
 \begin{ddtacore}[title={Continuita' del registro}]
 \fontsize{6.0}{6.6}\selectfont
@@ -3238,11 +3416,11 @@ Questa pagina continua il registro BA della pagina precedente. Il \textbf{grasse
 \textbf{\texttt{BAP-FR08-01-01}} & \texttt{FR-08} -- accepted \texttt{produce} (\texttt{DermaTriage}: corrected P-scale $\rightarrow$ classifier target); candidate \texttt{operatorStructure.decisionRule} mostrata inline nell'owner ma non ancora ammessa \\
 \bottomrule
 \end{tabularx}
-%</PAGE-CONTENT:37>
+%</PAGE-CONTENT:39>
 \clearpage
-%<PAGE-DESC:38>MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
-%<PAGE-CONTENT:38>
-\PageHashFooter{\PageMDfive{38}}
+%<PAGE-DESC:40>MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
+%<PAGE-CONTENT:40>
+\PageHashFooter{\PageMDfive{40}}
 \section{MR-01 - Inventario temporaneo transfer, contract e decisioni BA}
 
 \begin{ddtaopen}[title={PAGINA TEMPORANEA - AUDIT DATA-PATH MR-01 - DA CANCELLARE DOPO LA RIALLOCAZIONE DEI RISULTATI}]
@@ -3271,7 +3449,7 @@ Questa pagina e' un \textbf{worklist di ricerca}, non introduce nuovi campi L1, 
 \texttt{T12} & \texttt{? -> DermaTriage : SymptomInformation} & Symptom-only input contract: esempi itching/bleeding/growth-change/pain; source, schema completo, minimum evidence set e missing-field behavior ?. Nessun BAReferent \texttt{SymptomOnlyUrgencyAnalysis} viene introdotto senza identity evidence autonoma. \\
 \texttt{T13} & \texttt{DermaTriage -> ? : CaseUrgency (+ confidence ?)} & Symptom-only output contract: CaseUrgency supportata; confidence ?, destination ?, applicabilita' dello stesso mapping P1-P4 ?. \\
 \texttt{T14} & \texttt{DermaTriage / OperationalPriorityDerivation -> B4Platform : triage result} & B4 result-write contract: source semantica esatta ?, payload (urgency/confidence/P-scale/reasoning/pathology/specialist/SLA) ?, correlation alla consultation ?. \\
-\texttt{T15} & \texttt{DermaTriage -> LocalDiagnosisStore : persisted result} & Local persistence contract: contenuto/schema, owner/necessita' governata, case correlation, retention, update/finality semantics ?. \texttt{save\_diagnosis()} e' source-supported come realization. \\
+\texttt{T15} & \texttt{DermaTriage -> LocalDiagnosisStore : persisted result} & Local persistence contract: contenuto/schema, owner/necessita' governata, case correlation, retention, update/finality semantics ?. \texttt{save\_diagnosis()} e' source-supported come realization. \textbf{TODO persistence/storage condiviso con \texttt{FR-03} e \texttt{FR-10}:} distinguere transfer verso store, write/persist riuscito e associazione at-rest; non riaprire \texttt{storedIn} finche' il blocco cumulativo non viene riesaminato. \\
 \bottomrule
 \end{tabularx}
 
@@ -3291,11 +3469,11 @@ la pagina precedente mescolava due funzioni con lifecycle e change impact separa
 \textbf{Decisione metodologica temporanea - necessity test di \texttt{correlate}:}
 \texttt{BAP-MR01-02} e \texttt{BAP-DEC01-02} sono rimosse dall'insieme attivo delle BAProposition candidate. Nei due passaggi sorgente, ``informazioni disponibili sul caso dermatologico'' e ``informazioni sintomatologiche disponibili sul caso'' descrivono il contesto del caso in analisi e gli input del comportamento di triage; non e' emersa una relazione governata, autonoma e interrogabile che richieda una proposition \texttt{correlate}. La rimozione non elimina i BAReferent ne' le proposition \texttt{produce} gia' candidate. Le occorrenze lessicali di ``correlation'' nella worklist restano domande aperte di binding/identity nei data contract e \textbf{non} indicano l'operatore BA \texttt{correlate}. L'operatore verra' riesaminato soltanto se evidence successiva mostrera' una relazione indipendente non ricostruibile tramite comportamento, identity e contract gia' governati. Questa nota e' temporanea e verra' cancellata a chiusura del case study dopo il consolidamento del risultato.
 \end{ddtaopen}
-%</PAGE-CONTENT:38>
+%</PAGE-CONTENT:40>
 \clearpage
-%<PAGE-DESC:39>Indice di integrita delle pagine
-%<PAGE-CONTENT:39>
-\PageHashFooter{\PageMDfive{39}}
+%<PAGE-DESC:41>Indice di integrita delle pagine
+%<PAGE-CONTENT:41>
+\PageHashFooter{\PageMDfive{41}}
 \section{Indice di integrita' delle pagine}
 
 \begin{ddtacore}[title={Regola di verifica}]
@@ -3348,11 +3526,13 @@ Ogni pagina possiede un MD5 del proprio contenuto canonico. Il calcolo esclude i
 \IntegrityRow{32}{MR-04 > DEC-06 - Accettazione comparativa dell'adattamento della classificazione di urgenza}{\PageMDfive{32}}
 \IntegrityRow{33}{MR-04 > DEC-06 > FR-09 - Qualificazione comparativa del candidato di adattamento classificatorio}{\PageMDfive{33}}
 \IntegrityRow{34}{MR-04 > DEC-07 - Prioritizzazione asimmetrica delle metriche di qualita}{\PageMDfive{34}}
-\IntegrityRow{35}{MR-04 > DEC-11 > FR-08 - Derivazione del target di supervisione dalla priorita P-scale corretta}{\PageMDfive{35}}
-\IntegrityRow{36}{Registro Base Analysis - BAReferent e BAProposition}{\PageMDfive{36}}
-\IntegrityRow{37}{Registro Base Analysis - BAProposition}{\PageMDfive{37}}
-\IntegrityRow{38}{MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]}{\PageMDfive{38}}
-\IntegrityRow{39}{Indice di integrita delle pagine}{\PageMDfive{39}}
+\IntegrityRow{35}{MR-04 > DEC-08 - Reversibilita dell'adattamento della classificazione in caso di degrado}{\PageMDfive{35}}
+\IntegrityRow{36}{MR-04 > DEC-08 > FR-10 - Revoca di un adattamento classificatorio degradante}{\PageMDfive{36}}
+\IntegrityRow{37}{MR-04 > DEC-11 > FR-08 - Derivazione del target di supervisione dalla priorita P-scale corretta}{\PageMDfive{37}}
+\IntegrityRow{38}{Registro Base Analysis - BAReferent e BAProposition}{\PageMDfive{38}}
+\IntegrityRow{39}{Registro Base Analysis - BAProposition}{\PageMDfive{39}}
+\IntegrityRow{40}{MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]}{\PageMDfive{40}}
+\IntegrityRow{41}{Indice di integrita delle pagine}{\PageMDfive{41}}
 %</PAGE-INTEGRITY-ROWS>
 \bottomrule
 \end{tabularx}
@@ -3360,6 +3540,6 @@ Ogni pagina possiede un MD5 del proprio contenuto canonico. Il calcolo esclude i
 
 \vspace{0.8mm}
 {\fontsize{4.8}{5.2}\selectfont\color{DDTAGray}Quando una pagina viene modificata intenzionalmente, cambia il suo MD5. Una variazione inattesa segnala una modifica da riesaminare prima di proseguire.}
-%</PAGE-CONTENT:39>
+%</PAGE-CONTENT:41>
 
 \end{document}
