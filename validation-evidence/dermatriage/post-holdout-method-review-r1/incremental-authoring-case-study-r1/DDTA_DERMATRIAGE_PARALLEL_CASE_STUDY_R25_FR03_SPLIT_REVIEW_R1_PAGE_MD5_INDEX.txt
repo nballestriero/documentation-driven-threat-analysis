@@ -25,9 +25,12 @@ Page 20  5ec2d19412461c60854ca7cef75c9f94  MR-03 > DEC-15 > FR-23 - Write-back e
 Page 21  2a7e92a9a7609d1466e545ebf818e94a  MR-03 > DEC-16 - Autenticazione delle interfacce di review
 Page 22  9cc601ec85fa3f86c36ea04b5fa377fa  MR-03 > DEC-16 > FR-24 - X-API-Key per operazioni amministrative DermaTriage
 Page 23  0c4840b8de97233c6f01ca44a133875f  MR-03 > DEC-16 > FR-25 - Bearer JWT per interazione B4
-Page 24  e5085117316308ad10f9d8324bedf7eb  MR-04 - Adattamento controllato sulla base della revisione clinica
-Page 25  9faf8d41344390a05878e91d5d4ac7bd  MR-04 > DEC-11 > FR-08 - Derivazione del target di supervisione dalla priorita P-scale corretta
-Page 26  f432cf6bdbb1a2a8ddee63ff815f8ae9  Registro Base Analysis - BAReferent e BAProposition
-Page 27  0172ab39eab0f5138922026bc4d1125e  Registro Base Analysis - BAProposition
-Page 28  58e8c3acb5d1779941538a64c6bb1dd2  MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
-Page 29  954a804a9617dba4cbcc20de4f0b25b4  Indice di integrita delle pagine [INTEGRITY INDEX]
+Page 24  690b289527212e55343c18f392c6fb41  MR-04 - Adattamento controllato sulla base della revisione clinica
+Page 25  dc1c9a8641558fca5003a43e5c5d78fc  MR-04 > DEC-04 - Attivazione dell'adattamento su accumulo di evidence clinica
+Page 26  b1d93470f3d0174451208c9bd19cea66  MR-04 > DEC-04 > FR-04 - Attivazione del percorso di evoluzione del prompt
+Page 27  4cc450cd755e4afafca7c0ba2a932a3a  MR-04 > DEC-04 > FR-05 - Attivazione del percorso di adattamento classificatorio
+Page 28  9faf8d41344390a05878e91d5d4ac7bd  MR-04 > DEC-11 > FR-08 - Derivazione del target di supervisione dalla priorita P-scale corretta
+Page 29  d9ec4630e904527ebcba1e2ff8d7dbba  Registro Base Analysis - BAReferent e BAProposition
+Page 30  0172ab39eab0f5138922026bc4d1125e  Registro Base Analysis - BAProposition
+Page 31  58e8c3acb5d1779941538a64c6bb1dd2  MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
+Page 32  a16f95dfc1caef469f326bef0ebfaf98  Indice di integrita delle pagine [INTEGRITY INDEX]
