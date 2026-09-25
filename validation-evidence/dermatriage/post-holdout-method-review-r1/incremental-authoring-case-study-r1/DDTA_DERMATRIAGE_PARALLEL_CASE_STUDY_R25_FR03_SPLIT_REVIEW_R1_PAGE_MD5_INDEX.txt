@@ -29,8 +29,12 @@ Page 24  690b289527212e55343c18f392c6fb41  MR-04 - Adattamento controllato sulla
 Page 25  dc1c9a8641558fca5003a43e5c5d78fc  MR-04 > DEC-04 - Attivazione dell'adattamento su accumulo di evidence clinica
 Page 26  b1d93470f3d0174451208c9bd19cea66  MR-04 > DEC-04 > FR-04 - Attivazione del percorso di evoluzione del prompt
 Page 27  4cc450cd755e4afafca7c0ba2a932a3a  MR-04 > DEC-04 > FR-05 - Attivazione del percorso di adattamento classificatorio
-Page 28  9faf8d41344390a05878e91d5d4ac7bd  MR-04 > DEC-11 > FR-08 - Derivazione del target di supervisione dalla priorita P-scale corretta
-Page 29  d9ec4630e904527ebcba1e2ff8d7dbba  Registro Base Analysis - BAReferent e BAProposition
-Page 30  0172ab39eab0f5138922026bc4d1125e  Registro Base Analysis - BAProposition
-Page 31  58e8c3acb5d1779941538a64c6bb1dd2  MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
-Page 32  a16f95dfc1caef469f326bef0ebfaf98  Indice di integrita delle pagine [INTEGRITY INDEX]
+Page 28  0bc6d19506b654c3e6ef3aebd3d68a34  MR-04 > DEC-05 - Separazione dei percorsi di adattamento per capability
+Page 29  e87f73ed8a77121cd40e5f04b3f87658  MR-04 > DEC-05 > FR-13 - Indipendenza delle condizioni di attivazione tra percorsi di adattamento
+Page 30  e4232081ef5e3573bf9355c5c2394851  MR-04 > DEC-05 > FR-14 - Indipendenza della qualificazione dell'evidence tra percorsi di adattamento
+Page 31  7ccf212862038cd02fccb29b590e7ce6  MR-04 > DEC-05 > FR-15 - Indipendenza dei risultati di qualificazione e accettazione tra percorsi di adattamento
+Page 32  9faf8d41344390a05878e91d5d4ac7bd  MR-04 > DEC-11 > FR-08 - Derivazione del target di supervisione dalla priorita P-scale corretta
+Page 33  a88683a25d7bb43dc90fe07ed38a1ebd  Registro Base Analysis - BAReferent e BAProposition
+Page 34  0172ab39eab0f5138922026bc4d1125e  Registro Base Analysis - BAProposition
+Page 35  58e8c3acb5d1779941538a64c6bb1dd2  MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
+Page 36  093d281c3a6ffd40a859982775608285  Indice di integrita delle pagine [INTEGRITY INDEX]
