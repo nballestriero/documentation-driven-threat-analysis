@@ -84,6 +84,6 @@ Page 79  e1b1becfc138e20474529fae47de6a05  Appendice temporanea - Construct Desc
 Page 80  435e9ecddb23d230df9cc32766e10610  Appendice temporanea - CDC direzione della spiegazione e revisione
 Page 81  9d02d27cc2ad8bb4e1b30d441667e854  Appendice temporanea - CDC campi 1-10
 Page 82  90b6659e5a0105e0cd7268d3f76137f6  Appendice temporanea - CDC campi 11-20
-Page 83  816d0bc660638027cd49ab41d5b87c2e  Appendice temporanea - roadmap corrente del rebuild R7
-Page 84  d8daf7031f5d8edb5455917e4fe6df90  Indice di integrita' delle pagine [INTEGRITY INDEX]
+Page 83  c4622709ab9c2bf97c8f3bce55724e42  Appendice temporanea - roadmap e registro dei costrutti da integrare/studiare
+Page 84  745556371bea3ab46039e71ad01143b7  Indice di integrita' delle pagine [INTEGRITY INDEX]
 Page 85  13cdd31df41e1d75e405e6ba020261fa  Appendice temporanea - laboratorio prove grafiche Mermaid da cancellare

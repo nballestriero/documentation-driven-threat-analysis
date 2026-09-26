@@ -110,8 +110,8 @@ Il contenuto di questa appendice governa \emph{come stiamo ricostruendo la guida
 \expandafter\def\csname PageMDfive80\endcsname{435e9ecddb23d230df9cc32766e10610}
 \expandafter\def\csname PageMDfive81\endcsname{9d02d27cc2ad8bb4e1b30d441667e854}
 \expandafter\def\csname PageMDfive82\endcsname{90b6659e5a0105e0cd7268d3f76137f6}
-\expandafter\def\csname PageMDfive83\endcsname{816d0bc660638027cd49ab41d5b87c2e}
-\expandafter\def\csname PageMDfive84\endcsname{d8daf7031f5d8edb5455917e4fe6df90}
+\expandafter\def\csname PageMDfive83\endcsname{c4622709ab9c2bf97c8f3bce55724e42}
+\expandafter\def\csname PageMDfive84\endcsname{745556371bea3ab46039e71ad01143b7}
 \expandafter\def\csname PageMDfive85\endcsname{13cdd31df41e1d75e405e6ba020261fa}
 %</PAGE-HASH-DEFS>
 
@@ -2807,28 +2807,41 @@ Per \texttt{provideService} il template resta completo, ma i campi ``Canonical s
 
 \clearpage
 
-%<PAGE-DESC:83>Appendice temporanea - roadmap corrente del rebuild R7
+%<PAGE-DESC:83>Appendice temporanea - roadmap e registro dei costrutti da integrare/studiare
 %<PAGE-CONTENT:83>
 \PageHashFooter{\PageMDfive{83}}
 \TemporaryRebuildBanner
-\subsection{Roadmap temporanea del rebuild}
-\small
-\begin{enumerate}
-  \setlength{\itemsep}{2pt}
-  \item usare \texttt{CDC-R1} come controllo di copertura e assumere le Sezioni 1--12 come base espositiva corrente della Rebuild R7;
-  \item preservare governed semantic fact, \BAR{}, \BAP{}, identity criterion, stopping rule e structural feedback boundary come fondazioni gia' riesaminate;
-  \item considerare \texttt{transfer}, \texttt{produce}, \texttt{realize} e \texttt{constrain} i primi quattro operatori completamente ricostruiti, \texttt{condition} il primo scoped modifier completamente ricostruito e \texttt{decisionRule} la prima struttura candidate;
-  \item mantenere i discriminatori necessari fra applicability, result selection, allowed-domain constraint, dependency e identity pressure, preservando in \texttt{constrain} anche la distinzione fra constraint nominato/riusabile e restriction locale;
-  \item per \texttt{decisionRule}, usare \texttt{eq}/\texttt{ne} come normalizzazione delle semantiche storiche e \texttt{gt} come sola estensione candidate attualmente giustificata; non completare per simmetria la famiglia dei comparator;
-  \item preservare i branch residuali nella forma source-grounded e nel loro scope, senza convertirli in \texttt{ELSE}, negazioni o comparison complementari; missing/invalid/out-of-domain restano non specificati quando la documentazione non li governa;
-  \item considerare superato il pressure test DermaTriage di \texttt{FR-MR01-04-01} per \texttt{gt} e residual preservation, senza trattare cio' come promotion della rilocazione strutturale;
-  \item completare la regression sul caso Facial Access e il checkpoint esplicito prima di modificare l'authority top-level di \texttt{decisionRule};
-  \item per il prossimo costrutto necessario, partire dalle guide precedenti, ricostruire prima il metodo generale e poi verificarlo con evidence corrente; prompt LLM e wrapper restano separati dalla semantica BA;
-  \item solo dopo BA accettata per uno scope, produrre e verificare le projection downstream previste.
-\end{enumerate}
+\subsection{Roadmap e registro temporaneo dei costrutti}
+\fontsize{8.15}{9.05}\selectfont
+Questo registro e' la coda esplicita della nuova guida cumulativa. Non promuove alcun costrutto: conserva cio' che e' gia' ricostruito, cio' che deve essere integrato e cio' che resta da studiare, usando il Source Register R25 e i ledger di review come evidence non normativa.
+
+\vspace{0.6mm}
+\begin{ddtaopen}[title={Registro temporaneo - candidate/strutture da integrare nella guida}]
+\fontsize{6.7}{7.35}\selectfont
+\renewcommand{\arraystretch}{1.03}
+\setlength{\tabcolsep}{2.4pt}
+\begin{tabularx}{\textwidth}{L{28mm}L{43mm}L{47mm}Y}
+\toprule
+\textbf{Costrutto} & \textbf{Classe} & \textbf{Stato corrente} & \textbf{Azione nel rebuild} \\
+\midrule
+\texttt{decisionRule} & local \texttt{operatorStructure} di \texttt{produce} (rilocazione candidate) & \texttt{CANDIDATE / NOT ADMITTED} & Sez. 12 gia' presente; completare regression Facial Access e checkpoint prima di qualsiasi promotion. \\
+\texttt{selection} & reusable local / second-level structure & \texttt{REUSABLE\_LOCAL\_STRUCTURE / NON-NORMATIVE}; current BA non modificata & \textbf{TO INTEGRATE}: prossimo costrutto di secondo livello da ricostruire nella guida cumulativa. Evidence: PR-13 con controlli FR-06/FR-18/FR-20. Firma generale \texttt{NOT FROZEN}. \\
+\texttt{CC-02 provideService} & candidate construct & \texttt{TESTED\_POSITIVE / NOT\_ADMITTED} & Hold: formal gate G1--G8 / evidence review prima di eventuale integrazione. \\
+\texttt{CC-03 storedIn} & candidate construct & \texttt{TESTED\_POSITIVE / NOT\_ADMITTED} & Hold: riesame formale dell'associazione at-rest; non confondere con transfer o write/persist. \\
+\texttt{CC-04 initiate} & candidate construct & \texttt{TESTED\_POSITIVE / NOT\_ADMITTED} & Hold: formal gate G1--G8 e regression cross-corpus prima di eventuale integrazione. \\
+\bottomrule
+\end{tabularx}
+\end{ddtaopen}
+
+\vspace{0.6mm}
+\begin{ddtaopen}[title={Pressures / delta ancora da studiare}]
+\fontsize{6.7}{7.35}\selectfont
+\texttt{PR-01} execution identity; \texttt{PR-02} pipeline composition/order; \texttt{PR-04} boundary/interaction; \texttt{PR-05/06} ordered/scalar comparison; \texttt{PR-07} structured information contract; \texttt{PR-09} acquisition/refresh; \texttt{PR-12} negative implication/non-sufficiency; \texttt{PR-14} applicability/configuration binding; \texttt{CMD-OP04} observe.result removal; \texttt{CMD-OP05} transition state/value refinement; \texttt{OBS-OT-01} operation-target/effect-scope. Nessuna voce puo' scomparire senza disposition esplicita.
+\end{ddtaopen}
 
 \begin{ddtaopen}[title={Stop point di questa R7}]
-La Rebuild R7 mantiene completa la ricostruzione di \texttt{transfer}, \texttt{produce}, \texttt{realize}, \texttt{constrain} e \texttt{condition}. La Sezione 12 conserva come candidate la rilocazione del mapping in \texttt{operatorStructure.decisionRule}. DermaTriage supporta ora \texttt{eq}/\texttt{ne}, la candidate minima \texttt{gt} e la preservazione dei residuali; la rilocazione nel suo complesso resta non ammessa fino a regression Facial Access e checkpoint esplicito.
+\fontsize{6.8}{7.45}\selectfont
+La Rebuild R7 mantiene completa la ricostruzione di \texttt{transfer}, \texttt{produce}, \texttt{realize}, \texttt{constrain} e \texttt{condition}. \texttt{decisionRule} resta la prima struttura candidate gia' descritta. \texttt{selection} e' ora registrata esplicitamente come reusable local / second-level structure R25 da integrare nella prossima revisione cumulativa, senza trasformarla in top-level operator e senza congelarne prematuramente la firma. Gli altri candidate/open item restano non ammessi fino alla rispettiva review.
 \end{ddtaopen}
 \normalsize
 %</PAGE-CONTENT:83>
@@ -2933,7 +2946,7 @@ La Rebuild R7 mantiene completa la ricostruzione di \texttt{transfer}, \texttt{p
 \IntegrityRow{80}{Appendice temporanea - CDC direzione della spiegazione e revisione}{\PageMDfive{80}}
 \IntegrityRow{81}{Appendice temporanea - CDC campi 1-10}{\PageMDfive{81}}
 \IntegrityRow{82}{Appendice temporanea - CDC campi 11-20}{\PageMDfive{82}}
-\IntegrityRow{83}{Appendice temporanea - roadmap corrente del rebuild R7}{\PageMDfive{83}}
+\IntegrityRow{83}{Appendice temporanea - roadmap e registro dei costrutti da integrare/studiare}{\PageMDfive{83}}
 \IntegrityRow{84}{Indice di integrita' delle pagine}{\PageMDfive{84}}
 \IntegrityRow{85}{Appendice temporanea - laboratorio prove grafiche Mermaid da cancellare}{\PageMDfive{85}}
 %</PAGE-INTEGRITY-ROWS>

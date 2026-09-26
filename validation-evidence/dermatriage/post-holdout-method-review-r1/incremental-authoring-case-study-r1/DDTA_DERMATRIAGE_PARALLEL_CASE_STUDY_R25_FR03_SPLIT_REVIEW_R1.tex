@@ -57,11 +57,13 @@
 \expandafter\def\csname PageMDfive34\endcsname{43f138821276abfcc9fc2aa76d4cc622}
 \expandafter\def\csname PageMDfive35\endcsname{2d870f81a5f24c387896ef85f94eacbd}
 \expandafter\def\csname PageMDfive36\endcsname{6a4807e4d18d4a97f3b02d62ad4f24e0}
-\expandafter\def\csname PageMDfive37\endcsname{9faf8d41344390a05878e91d5d4ac7bd}
-\expandafter\def\csname PageMDfive38\endcsname{8a435d38e0214f2e985937071ce0ddab}
-\expandafter\def\csname PageMDfive39\endcsname{0172ab39eab0f5138922026bc4d1125e}
-\expandafter\def\csname PageMDfive40\endcsname{df70ba8f961369f44bdd2b8e064a53bd}
-\expandafter\def\csname PageMDfive41\endcsname{e38dfff2c5883f7234cc87c4263d4a46}
+\expandafter\def\csname PageMDfive37\endcsname{475d59cb9fc8bc3342897fab12ed179c}
+\expandafter\def\csname PageMDfive38\endcsname{1596523e5d2a3554727d058d351afb63}
+\expandafter\def\csname PageMDfive39\endcsname{9faf8d41344390a05878e91d5d4ac7bd}
+\expandafter\def\csname PageMDfive40\endcsname{81091a5b8d2f1477e8e49d8ebfd5bfc8}
+\expandafter\def\csname PageMDfive41\endcsname{3fb4ab29517018401c110b38685507d7}
+\expandafter\def\csname PageMDfive42\endcsname{df70ba8f961369f44bdd2b8e064a53bd}
+\expandafter\def\csname PageMDfive43\endcsname{a22a5ac76953eb09ad50e9b2bbe35c12}
 %</PAGE-HASH-DEFS>
 
 \newcommand{\PageHashFooter}[1]{%
@@ -3156,12 +3158,186 @@ La BA puo' essere scritta gia' a questo checkpoint anche senza una nuova BAPropo
 %</PAGE-CONTENT:36>
 \clearpage
 
+%<PAGE-DESC:37>MR-04 > DEC-09 - Uso di evidence recente e limitata nel percorso di evoluzione del prompt
+%<PAGE-CONTENT:37>
+\PageHashFooter{\PageMDfive{37}}
+\subsection{DEC-09 - Uso di evidence recente e limitata nel percorso di evoluzione del prompt}
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-04} $\rightarrow$ \texttt{DEC-09}}\par
+
+\setlength{\columnsep}{7mm}
+\setlength{\columnseprule}{0.35pt}
+\columnratio{0.67}
+\begin{paracol}{2}
+
+{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
+\vspace{0.3em}
+
+\begin{ddtacore}[title={Decision}]
+\fontsize{5.05}{5.55}\selectfont
+\begin{tabularx}{\linewidth}{L{40mm}Y}
+\toprule
+\textbf{ID} & \texttt{DEC-09} \\
+\textbf{Lifecycle} & \texttt{current} \\
+\textbf{Authority} & \texttt{CURRENT\_GOVERNED} \\
+\textbf{Type} & \texttt{Decision} \\
+\textbf{Title} & Uso di evidence recente e limitata nel percorso di evoluzione del prompt \\
+\textbf{Parent MacroRequirement} & \texttt{MR-04} \\
+\textbf{Decision kind} & \texttt{SELECTABLE} \\
+\bottomrule
+\end{tabularx}
+
+\textbf{Context}\par
+L'evoluzione del prompt non utilizza una storia illimitata delle correzioni cliniche. La fonte governa l'uso di evidence recente e limitata per costruire il set del ciclo corrente.
+
+\textbf{Decision}\par
+Per l'evoluzione del prompt, DermaTriage usa una finestra scorrevole e limitata delle correzioni cliniche pertinenti piu' recenti.
+
+\textbf{Consequences}\par
+\texttt{FR-06} governa la selezione dell'evidence set. La finestra contiene i 20 esempi pertinenti piu' recenti; ordering, deduplication, underfill e riuso tra cicli restano non sufficientemente specificati.
+\end{ddtacore}
+
+\begin{ddtaquestions}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.15}{4.55}\selectfont
+\begin{itemize}
+  \item ``Piu' recenti'' governa la membership della finestra, non l'ordinamento con cui il result set viene restituito; nessun \texttt{orderingBasis} viene quindi assunto.
+  \item Non sono specificati deduplication, underfill, reuse/overlap tra cicli ne' il criterio completo di pertinenza.
+  \item La Decision non governa storage, query/read o transfer delle correzioni: il comportamento resta analizzato come black box fino a evidence tecnica successiva.
+\end{itemize}
+\end{ddtaquestions}
+
+\switchcolumn
+
+{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
+\vspace{0.3em}
+
+\begin{ddtareferentidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.3}{4.7}\selectfont
+\BACandidate{PromptEvolutionEvidenceSet} \BANew{}; \BACandidate{PromptEvolutionCycle}.\par
+\emph{\texttt{PromptEvolutionCycle} era gia' candidato in \texttt{FR-04}; qui riappare come scope del set del ciclo corrente.}
+\end{ddtareferentidentified}
+
+\begin{ddtareferentaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.35}{4.75}\selectfont
+\BAAccepted{DermaTriage}; \BAAccepted{PromptEvolutionPath}; \BAAccepted{ClinicalReviewResult}.
+\end{ddtareferentaccepted}
+
+\begin{ddtapropositionidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.0}{4.38}\selectfont
+\textbf{Selection pressure.}\par
+La source governa una selezione recent-N da una popolazione piu' ampia di review/correzioni, ma \texttt{selection} non e' un operatore corrente R7. La Decision non viene forzata in \texttt{observe}, \texttt{transfer}, \texttt{constrain} o \texttt{decisionRule}; \texttt{FR-06} fornisce l'owner produttivo da analizzare.
+\end{ddtapropositionidentified}
+
+\begin{ddtapropositionaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.35}{4.75}\selectfont
+\texttt{--}
+\end{ddtapropositionaccepted}
+
+\begin{ddtaopenrelations}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.85}{4.22}\selectfont
+La struttura candidate da preservare e' una selezione locale alla futura produzione dell'evidence set: filtra le correzioni pertinenti, usa la recency per scegliere i membri e applica bound 20. Non viene creato un BAReferent \texttt{RecentPertinentClinicalCorrections}: il significato puo' essere mantenuto come membership selezionata di \texttt{ClinicalReviewResult}. La forma esatta della local structure resta da ricostruire metodologicamente; questo caso la registra come pressione DermaTriage, non come vocabulary ammesso.
+\end{ddtaopenrelations}
+
+\end{paracol}
+%</PAGE-CONTENT:37>
+\clearpage
+
+%<PAGE-DESC:38>MR-04 > DEC-09 > FR-06 - Selezione dell'evidence recente per l'evoluzione del prompt
+%<PAGE-CONTENT:38>
+\PageHashFooter{\PageMDfive{38}}
+\subsubsection{FR-06 - Selezione dell'evidence recente per l'evoluzione del prompt}
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-04} $\rightarrow$ \texttt{DEC-09} $\rightarrow$ \texttt{FR-06}}\par
+
+\setlength{\columnsep}{7mm}
+\setlength{\columnseprule}{0.35pt}
+\columnratio{0.67}
+\begin{paracol}{2}
+
+{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
+\vspace{0.3em}
+
+\begin{ddtacore}[title={FunctionalRequirement}]
+\fontsize{5.0}{5.5}\selectfont
+\begin{tabularx}{\linewidth}{L{39mm}Y}
+\toprule
+\textbf{ID} & \texttt{FR-06} \\
+\textbf{Lifecycle} & \texttt{current} \\
+\textbf{Authority} & \texttt{CURRENT\_GOVERNED} \\
+\textbf{Type} & \texttt{FunctionalRequirement} \\
+\textbf{Title} & Selezione dell'evidence recente per l'evoluzione del prompt \\
+\textbf{Parent Decision} & \texttt{DEC-09} \\
+\textbf{Owning MR (derived)} & \texttt{MR-04} \\
+\textbf{SpecializedRequirement relation} & 0 active instances \\
+\bottomrule
+\end{tabularx}
+
+\textbf{Functional obligation}\par
+Costruire l'evidence set del ciclo prompt usando una finestra scorrevole limitata delle correzioni cliniche pertinenti piu' recenti.
+
+\textbf{Functional clauses / inherited \texttt{normativeClause [1..*]}}\par
+Per ciascun ciclo di evoluzione del prompt, DermaTriage MUST costruire l'evidence set utilizzando una finestra scorrevole dei 20 esempi di correzione clinica pertinenti piu' recenti.
+
+\textbf{SPO references (L2 support)}\par
+\texttt{DermaTriage -- select recent bounded --> PromptEvolutionEvidenceSet}\par
+\texttt{RecentPertinentClinicalCorrections -- populate --> PromptEvolutionEvidenceSet}
+\end{ddtacore}
+
+\begin{ddtaquestions}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.95}{4.33}\selectfont
+\begin{itemize}
+  \item \texttt{FR-04} attiva il ciclo quando l'evidence accumulata raggiunge 10 elementi; \texttt{FR-06} richiede una finestra di 20. La relazione fra conteggio di attivazione e popolazione disponibile alla selezione non e' specificata; se sono disponibili meno di 20 elementi, l'underfill resta \texttt{NOT SPECIFIED}.
+  \item Il requisito governa la produzione dell'evidence set, non ancora la produzione di una nuova \texttt{PromptVersion}: il comportamento downstream di evoluzione/update del prompt sara' verificato nel relativo blocco documentale.
+  \item Nessuna read/query o conveyance da uno storage viene inferita: se futura evidence governera' un boundary DB $\rightarrow$ funzione, quella semantica verra' analizzata separatamente.
+\end{itemize}
+\end{ddtaquestions}
+
+\switchcolumn
+
+{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
+\vspace{0.3em}
+
+\begin{ddtareferentidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.15}{4.55}\selectfont
+\BACandidate{PromptEvolutionCycle}; \BACandidate{PromptEvolutionEvidenceSet}.
+\end{ddtareferentidentified}
+
+\begin{ddtareferentaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.12}{4.52}\selectfont
+\BAAccepted{DermaTriage}; \BAAccepted{PromptEvolutionPath}; \BAAccepted{ClinicalReviewResult}; \BAAccepted{PromptEvolutionEvidenceSet} \BAFirstAccepted{}.
+\end{ddtareferentaccepted}
+
+\begin{ddtapropositionidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.72}{4.06}\selectfont
+\texttt{BAP-FR06-01}\par
+\texttt{semanticOperatorKey = produce}\par
+\hspace*{1em}\texttt{actor -> DermaTriage}\par
+\hspace*{1em}\texttt{input -> ClinicalReviewResult [0..*]}\par
+\hspace*{1em}\texttt{result -> PromptEvolutionEvidenceSet}\par
+\texttt{polarity = affirmative}\par
+\medskip
+\emph{Semantica identificata ma non consolidata nel vocabulary BA corrente: dalla popolazione disponibile di \texttt{ClinicalReviewResult}, il requisito seleziona le correzioni pertinenti piu' recenti, con bound 20, per costituire \texttt{PromptEvolutionEvidenceSet}. Nessuna struttura formale aggiuntiva viene accettata in questa pagina.}
+\end{ddtapropositionidentified}
+
+\begin{ddtapropositionaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.92}{4.28}\selectfont
+\textbf{BAP-FR06-01} come proposition \texttt{produce}.\par
+\emph{Acceptance boundary: l'input rappresenta la popolazione disponibile di \texttt{ClinicalReviewResult}; non viene introdotto un BAReferent artificiale \texttt{ClinicalReviewCollection}. L'accettazione non include una struttura formale per determinare la membership del result. ``Piu' recenti'' governa quali elementi appartengono all'evidence set e non prova ordering dell'output.}
+\end{ddtapropositionaccepted}
+
+\begin{ddtaopenrelations}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.62}{3.98}\selectfont
+\texttt{PromptEvolutionCycle} resta candidate: il riuso di ``per ciascun ciclo'' tra \texttt{FR-04}, \texttt{DEC-09} e \texttt{FR-06} fornisce pressione di identity/scope, ma non governa ancora lifecycle, partecipanti o altri criteri sufficienti per promuoverlo come BAReferent autonomo. \texttt{PromptEvolutionEvidenceSet} e' invece il result funzionale autonomo di \texttt{FR-06}. La semantica di selezione resta un finding identificato ma non consolidato nella BA corrente: correzione e pertinenza delimitano la membership, la recency determina la scelta dei piu' recenti e il bound governato e' 20; ordering dell'output, deduplication, underfill e riuso tra cicli restano non specificati. Nessuna \texttt{observe/read} viene aggiunta: DermaTriage e' qui la black box che usa un input ampio e produce il result governato. Eventuali storage/read/transfer tecnici restano fatti separati da introdurre soltanto se governati.
+\end{ddtaopenrelations}
+
+\end{paracol}
+%</PAGE-CONTENT:38>
+\clearpage
+
 % Preserve standalone FR-08 heading counter while DEC-04/DEC-05/DEC-06/DEC-07 branches are inserted ahead of it.
 \setcounter{subsection}{0}
 \setcounter{subsubsection}{0}
-%<PAGE-DESC:37>MR-04 > DEC-11 > FR-08 - Derivazione del target di supervisione dalla priorita P-scale corretta
-%<PAGE-CONTENT:37>
-\PageHashFooter{\PageMDfive{37}}
+%<PAGE-DESC:39>MR-04 > DEC-11 > FR-08 - Derivazione del target di supervisione dalla priorita P-scale corretta
+%<PAGE-CONTENT:39>
+\PageHashFooter{\PageMDfive{39}}
 \subsubsection{FR-08 - Derivazione del target di supervisione dalla priorita P-scale corretta}
 {\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-04} $\rightarrow$ \texttt{DEC-11} $\rightarrow$ \texttt{FR-08}}\par
 
@@ -3265,11 +3441,11 @@ Derivare il target di supervisione classificatoria dalla priorita P-scale corret
 \end{ddtapropositionaccepted}
 
 \end{paracol}
-%</PAGE-CONTENT:37>
+%</PAGE-CONTENT:39>
 \clearpage
-%<PAGE-DESC:38>Registro Base Analysis - BAReferent e BAProposition
-%<PAGE-CONTENT:38>
-\PageHashFooter{\PageMDfive{38}}
+%<PAGE-DESC:40>Registro Base Analysis - BAReferent e BAProposition
+%<PAGE-CONTENT:40>
+\PageHashFooter{\PageMDfive{40}}
 \section{Registro Base Analysis}
 
 \begin{ddtacore}[title={Sintesi BA corrente}]
@@ -3287,7 +3463,7 @@ Il registro raccoglie la tracciabilita' BA corrente senza introdurre campi o sta
 \toprule
 \textbf{BAReferent} & \textbf{Riferimenti documentali} \\
 \midrule
-DermaTriage & \texttt{MR-01}; \textbf{\texttt{DEC-MR01-01}}; \texttt{FR-MR01-01-01}; \texttt{DEC-MR01-03}; \texttt{FR-MR01-03-01}; \texttt{FR-MR01-03-02}; \texttt{FR-MR01-03-04}; \texttt{DEC-MR01-04}; \texttt{FR-MR01-04-01}; \texttt{MR-02}; \texttt{MR-03}; \texttt{DEC-03}; \texttt{FR-03}; \texttt{FR-12}; \texttt{DEC-15}; \texttt{FR-23}; \texttt{DEC-16}; \texttt{FR-24}; \texttt{FR-25}; \texttt{MR-04}; \texttt{DEC-04}; \texttt{FR-04}; \texttt{FR-05}; \texttt{DEC-05} ; \texttt{FR-09} \\
+DermaTriage & \texttt{MR-01}; \textbf{\texttt{DEC-MR01-01}}; \texttt{FR-MR01-01-01}; \texttt{DEC-MR01-03}; \texttt{FR-MR01-03-01}; \texttt{FR-MR01-03-02}; \texttt{FR-MR01-03-04}; \texttt{DEC-MR01-04}; \texttt{FR-MR01-04-01}; \texttt{MR-02}; \texttt{MR-03}; \texttt{DEC-03}; \texttt{FR-03}; \texttt{FR-12}; \texttt{DEC-15}; \texttt{FR-23}; \texttt{DEC-16}; \texttt{FR-24}; \texttt{FR-25}; \texttt{MR-04}; \texttt{DEC-04}; \texttt{FR-04}; \texttt{FR-05}; \texttt{DEC-05}; \texttt{FR-09}; \texttt{DEC-09}; \texttt{FR-06} \\
 DermatologicalCase & \textbf{\texttt{MR-01}}; \texttt{FR-MR01-01-01}; \texttt{FR-MR01-03-04} \\
 DermatologicalTriageEvaluation & \textbf{\texttt{MR-01}}; \texttt{DEC-MR01-01}; \texttt{FR-MR01-01-01}; \texttt{DEC-MR01-03} \\
 CaseUrgency & \textbf{\texttt{MR-01}}; \texttt{FR-MR01-01-01}; \texttt{FR-MR01-03-04}; \texttt{DEC-MR01-04}; \texttt{FR-MR01-04-01} \\
@@ -3323,7 +3499,9 @@ AITriageSynthesisContentContract & \textbf{\texttt{FR-MR01-03-04}} \\
 OperationalPriorityDerivation & \textbf{\texttt{FR-MR01-04-01}} \\
 AdaptationLayer & \textbf{\texttt{FR-MR01-04-01}} \\
 ControlledDermaTriageAdaptation & \textbf{\texttt{MR-04}} \\
-PromptEvolutionPath & \textbf{\texttt{MR-04}}; \texttt{DEC-04}; \texttt{FR-04}; \texttt{DEC-05}; \texttt{FR-13}; \texttt{FR-14}; \texttt{FR-15} \\
+PromptEvolutionPath & \textbf{\texttt{MR-04}}; \texttt{DEC-04}; \texttt{FR-04}; \texttt{DEC-05}; \texttt{FR-13}; \texttt{FR-14}; \texttt{FR-15}; \texttt{DEC-09}; \texttt{FR-06} \\
+PromptEvolutionCycle & \texttt{FR-04}; \texttt{DEC-09}; \texttt{FR-06} -- candidate; scope quantificato del ciclo, identity/lifecycle autonomi non ancora sufficientemente governati \\
+PromptEvolutionEvidenceSet & \texttt{DEC-09}; \textbf{\texttt{FR-06}} \\
 ClassifierAdaptationPath & \textbf{\texttt{MR-04}}; \texttt{DEC-04}; \texttt{FR-05}; \texttt{DEC-05}; \texttt{FR-13}; \texttt{FR-14}; \texttt{FR-15} \\
 CandidateUrgencyClassificationAdaptation & \textbf{\texttt{DEC-06}}; \texttt{FR-09}; \texttt{DEC-07} \\
 ApplicableReferenceVersion & \textbf{\texttt{DEC-06}}; \texttt{FR-09}; \texttt{DEC-07} \\
@@ -3337,7 +3515,7 @@ PostAdoptionEvaluationResult & \texttt{DEC-08}; \texttt{FR-10} -- candidate deco
 ClinicallyCorrectedOperationalTriagePriority & \textbf{\texttt{FR-08}} \\
 ClassifierUrgencyTarget & \textbf{\texttt{FR-08}} \\
 SpecialistDestinationIndication & \textbf{\texttt{MR-02}} \\
-ClinicalReviewResult & \textbf{\texttt{MR-03}}; \texttt{DEC-03}; \texttt{FR-03}; \texttt{FR-12}; \texttt{MR-04} \\
+ClinicalReviewResult & \textbf{\texttt{MR-03}}; \texttt{DEC-03}; \texttt{FR-03}; \texttt{FR-12}; \texttt{MR-04}; \texttt{DEC-09}; \texttt{FR-06} \\
 OriginalDermaTriageOutcome & \textbf{\texttt{MR-03}}; \texttt{DEC-03}; \texttt{FR-03}; \texttt{FR-12}; \texttt{FR-23} \\
 HealthcareProfessional & \textbf{\texttt{MR-03}} \\
 ClinicalReviewDisposition & \textbf{\texttt{FR-12}} \\
@@ -3352,11 +3530,11 @@ B4BearerJWT & \textbf{\texttt{FR-25}} \\
 \bottomrule
 \end{tabularx}
 
-%</PAGE-CONTENT:38>
+%</PAGE-CONTENT:40>
 \clearpage
-%<PAGE-DESC:39>Registro Base Analysis - BAProposition
-%<PAGE-CONTENT:39>
-\PageHashFooter{\PageMDfive{39}}
+%<PAGE-DESC:41>Registro Base Analysis - BAProposition
+%<PAGE-CONTENT:41>
+\PageHashFooter{\PageMDfive{41}}
 \section*{Registro Base Analysis - BAProposition}
 \begin{ddtacore}[title={Continuita' del registro}]
 \fontsize{6.0}{6.6}\selectfont
@@ -3413,14 +3591,15 @@ Questa pagina continua il registro BA della pagina precedente. Il \textbf{grasse
 \emph{\texttt{BAP-DEC04-01}} & \texttt{DEC-MR01-04} \\
 \textbf{\texttt{BAP-FR04-01-01}} & \texttt{FR-MR01-04-01} -- accepted \texttt{produce}, \texttt{condition: LesionImage available}; candidate \texttt{operatorStructure.decisionRule} mostrata inline nell'owner ma non ancora ammessa \\
 \textbf{\texttt{BAP-FR04-01-02}} & \texttt{FR-MR01-04-01} -- \texttt{realize} (\texttt{OperationalPriorityDerivation -> AdaptationLayer}) \\
+\textbf{\texttt{BAP-FR06-01}} & \texttt{FR-06} -- accepted \texttt{produce} (\texttt{DermaTriage}: available \texttt{ClinicalReviewResult} population $\rightarrow$ \texttt{PromptEvolutionEvidenceSet}); selection semantics retained as a non-consolidated finding on \texttt{FR-06} (correction+pertinence, recency, bound 20); no additional formal structure, output ordering, read or transfer accepted \\
 \textbf{\texttt{BAP-FR08-01-01}} & \texttt{FR-08} -- accepted \texttt{produce} (\texttt{DermaTriage}: corrected P-scale $\rightarrow$ classifier target); candidate \texttt{operatorStructure.decisionRule} mostrata inline nell'owner ma non ancora ammessa \\
 \bottomrule
 \end{tabularx}
-%</PAGE-CONTENT:39>
+%</PAGE-CONTENT:41>
 \clearpage
-%<PAGE-DESC:40>MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
-%<PAGE-CONTENT:40>
-\PageHashFooter{\PageMDfive{40}}
+%<PAGE-DESC:42>MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
+%<PAGE-CONTENT:42>
+\PageHashFooter{\PageMDfive{42}}
 \section{MR-01 - Inventario temporaneo transfer, contract e decisioni BA}
 
 \begin{ddtaopen}[title={PAGINA TEMPORANEA - AUDIT DATA-PATH MR-01 - DA CANCELLARE DOPO LA RIALLOCAZIONE DEI RISULTATI}]
@@ -3469,11 +3648,11 @@ la pagina precedente mescolava due funzioni con lifecycle e change impact separa
 \textbf{Decisione metodologica temporanea - necessity test di \texttt{correlate}:}
 \texttt{BAP-MR01-02} e \texttt{BAP-DEC01-02} sono rimosse dall'insieme attivo delle BAProposition candidate. Nei due passaggi sorgente, ``informazioni disponibili sul caso dermatologico'' e ``informazioni sintomatologiche disponibili sul caso'' descrivono il contesto del caso in analisi e gli input del comportamento di triage; non e' emersa una relazione governata, autonoma e interrogabile che richieda una proposition \texttt{correlate}. La rimozione non elimina i BAReferent ne' le proposition \texttt{produce} gia' candidate. Le occorrenze lessicali di ``correlation'' nella worklist restano domande aperte di binding/identity nei data contract e \textbf{non} indicano l'operatore BA \texttt{correlate}. L'operatore verra' riesaminato soltanto se evidence successiva mostrera' una relazione indipendente non ricostruibile tramite comportamento, identity e contract gia' governati. Questa nota e' temporanea e verra' cancellata a chiusura del case study dopo il consolidamento del risultato.
 \end{ddtaopen}
-%</PAGE-CONTENT:40>
+%</PAGE-CONTENT:42>
 \clearpage
-%<PAGE-DESC:41>Indice di integrita delle pagine
-%<PAGE-CONTENT:41>
-\PageHashFooter{\PageMDfive{41}}
+%<PAGE-DESC:43>Indice di integrita delle pagine
+%<PAGE-CONTENT:43>
+\PageHashFooter{\PageMDfive{43}}
 \section{Indice di integrita' delle pagine}
 
 \begin{ddtacore}[title={Regola di verifica}]
@@ -3528,11 +3707,13 @@ Ogni pagina possiede un MD5 del proprio contenuto canonico. Il calcolo esclude i
 \IntegrityRow{34}{MR-04 > DEC-07 - Prioritizzazione asimmetrica delle metriche di qualita}{\PageMDfive{34}}
 \IntegrityRow{35}{MR-04 > DEC-08 - Reversibilita dell'adattamento della classificazione in caso di degrado}{\PageMDfive{35}}
 \IntegrityRow{36}{MR-04 > DEC-08 > FR-10 - Revoca di un adattamento classificatorio degradante}{\PageMDfive{36}}
-\IntegrityRow{37}{MR-04 > DEC-11 > FR-08 - Derivazione del target di supervisione dalla priorita P-scale corretta}{\PageMDfive{37}}
-\IntegrityRow{38}{Registro Base Analysis - BAReferent e BAProposition}{\PageMDfive{38}}
-\IntegrityRow{39}{Registro Base Analysis - BAProposition}{\PageMDfive{39}}
-\IntegrityRow{40}{MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]}{\PageMDfive{40}}
-\IntegrityRow{41}{Indice di integrita delle pagine}{\PageMDfive{41}}
+\IntegrityRow{37}{MR-04 > DEC-09 - Uso di evidence recente e limitata nel percorso di evoluzione del prompt}{\PageMDfive{37}}
+\IntegrityRow{38}{MR-04 > DEC-09 > FR-06 - Selezione dell'evidence recente per l'evoluzione del prompt}{\PageMDfive{38}}
+\IntegrityRow{39}{MR-04 > DEC-11 > FR-08 - Derivazione del target di supervisione dalla priorita P-scale corretta}{\PageMDfive{39}}
+\IntegrityRow{40}{Registro Base Analysis - BAReferent e BAProposition}{\PageMDfive{40}}
+\IntegrityRow{41}{Registro Base Analysis - BAProposition}{\PageMDfive{41}}
+\IntegrityRow{42}{MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]}{\PageMDfive{42}}
+\IntegrityRow{43}{Indice di integrita delle pagine}{\PageMDfive{43}}
 %</PAGE-INTEGRITY-ROWS>
 \bottomrule
 \end{tabularx}
@@ -3540,6 +3721,6 @@ Ogni pagina possiede un MD5 del proprio contenuto canonico. Il calcolo esclude i
 
 \vspace{0.8mm}
 {\fontsize{4.8}{5.2}\selectfont\color{DDTAGray}Quando una pagina viene modificata intenzionalmente, cambia il suo MD5. Una variazione inattesa segnala una modifica da riesaminare prima di proseguire.}
-%</PAGE-CONTENT:41>
+%</PAGE-CONTENT:43>
 
 \end{document}
