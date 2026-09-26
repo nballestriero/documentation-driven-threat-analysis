@@ -61,11 +61,12 @@
 \expandafter\def\csname PageMDfive38\endcsname{1596523e5d2a3554727d058d351afb63}
 \expandafter\def\csname PageMDfive39\endcsname{d5d7d0db53aaf3407a0115a330c98c02}
 \expandafter\def\csname PageMDfive40\endcsname{2948054419b2fda2e7070f5b20f9da9c}
-\expandafter\def\csname PageMDfive41\endcsname{9faf8d41344390a05878e91d5d4ac7bd}
-\expandafter\def\csname PageMDfive42\endcsname{cc9d793c0d71a27123664f6236894985}
-\expandafter\def\csname PageMDfive43\endcsname{02f2e0d6851da52d8f4f83e10943184e}
-\expandafter\def\csname PageMDfive44\endcsname{df70ba8f961369f44bdd2b8e064a53bd}
-\expandafter\def\csname PageMDfive45\endcsname{1d43ee6df65cabfd2f1d59e7d3351a91}
+\expandafter\def\csname PageMDfive41\endcsname{e2240ebc51d9904f3871fe84395cb8af}
+\expandafter\def\csname PageMDfive42\endcsname{2e3701287182209225d02fbea0547c4c}
+\expandafter\def\csname PageMDfive43\endcsname{b5edd7fc3610ec76ec4b2992c199d786}
+\expandafter\def\csname PageMDfive44\endcsname{b4acc8dbd83e82b51a0c9ba5c1aba411}
+\expandafter\def\csname PageMDfive45\endcsname{df70ba8f961369f44bdd2b8e064a53bd}
+\expandafter\def\csname PageMDfive46\endcsname{4c67b7ffa89da0b2bff33367c1253d1d}
 %</PAGE-HASH-DEFS>
 
 \newcommand{\PageHashFooter}[1]{%
@@ -3534,12 +3535,91 @@ La membership qualification e' materialmente necessaria, ma \texttt{selection} r
 %</PAGE-CONTENT:40>
 \clearpage
 
-% Preserve standalone FR-08 heading counter while DEC-04/DEC-05/DEC-06/DEC-07 branches are inserted ahead of it.
-\setcounter{subsection}{0}
-\setcounter{subsubsection}{0}
-%<PAGE-DESC:41>MR-04 > DEC-11 > FR-08 - Derivazione del target di supervisione dalla priorita P-scale corretta
+%<PAGE-DESC:41>MR-04 > DEC-11 - Uso della priorita clinicamente corretta come sorgente del target di supervisione classificatoria
 %<PAGE-CONTENT:41>
 \PageHashFooter{\PageMDfive{41}}
+\subsection{DEC-11 - Uso della priorita clinicamente corretta come sorgente del target di supervisione classificatoria}
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-04} $\rightarrow$ \texttt{DEC-11}}\par
+
+\setlength{\columnsep}{7mm}
+\setlength{\columnseprule}{0.35pt}
+\columnratio{0.67}
+\begin{paracol}{2}
+
+{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
+\vspace{0.3em}
+
+\begin{ddtacore}[title={Decision}]
+\fontsize{5.0}{5.5}\selectfont
+\begin{tabularx}{\linewidth}{L{40mm}Y}
+\toprule
+\textbf{ID} & \texttt{DEC-11} \\
+\textbf{Lifecycle} & \texttt{current} \\
+\textbf{Authority} & \texttt{CURRENT\_GOVERNED} \\
+\textbf{Type} & \texttt{Decision} \\
+\textbf{Title} & Uso della priorita clinicamente corretta come sorgente del target di supervisione classificatoria \\
+\textbf{Parent MacroRequirement} & \texttt{MR-04} \\
+\textbf{Decision kind} & \texttt{SELECTABLE} \\
+\bottomrule
+\end{tabularx}
+
+\textbf{Context}\par
+L'adattamento della classificazione di urgenza richiede un target di supervisione coerente con l'esito clinicamente corretto del caso. La priorita operativa P-scale corretta dal professionista sanitario costituisce il riferimento clinico dal quale derivare il target utilizzato dal percorso di adattamento classificatorio.
+
+\textbf{Decision}\par
+Per l'adattamento della classificazione di urgenza, DermaTriage usa la priorita operativa P-scale clinicamente corretta come sorgente semantica del target di supervisione del classificatore.
+
+\textbf{Consequences}\par
+La priorita operativa P-scale clinicamente corretta e il target di supervisione classificatoria restano significati distinti. La derivazione del target di supervisione costituisce un comportamento funzionale distinto dal successivo retraining del classificatore. Il target derivato mantiene la pertinenza al caso clinico cui appartiene la priorita corretta.
+\end{ddtacore}
+
+\begin{ddtaquestions}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.0}{4.4}\selectfont
+\begin{itemize}
+  \item La Decision governa la sorgente semantica del target; il mapping concreto P-scale $\rightarrow$ target resta comportamento funzionale del requisito sottostante.
+  \item La priorita clinicamente corretta e il target derivato non vengono identificati come lo stesso significato, anche quando restano associati allo stesso caso.
+  \item Il successivo consumo del target nel retraining non prova da solo una conveyance interna con source e destination distinti.
+\end{itemize}
+\end{ddtaquestions}
+
+\switchcolumn
+
+{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
+\vspace{0.3em}
+
+\begin{ddtareferentidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.25}{4.65}\selectfont
+\BACandidate{ClinicallyCorrectedOperationalTriagePriority} \BANew{}; \BACandidate{ClassifierUrgencyTarget} \BANew{}.
+\end{ddtareferentidentified}
+
+\begin{ddtareferentaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.35}{4.75}\selectfont
+\BAAccepted{DermaTriage}; \BAAccepted{ClassifierAdaptationPath}.
+\end{ddtareferentaccepted}
+
+\begin{ddtapropositionidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.92}{4.3}\selectfont
+\textbf{Derivation pressure.}\par
+La Decision governa quale significato clinico alimenta il target di supervisione e mantiene distinti source semantic e result semantic. Non viene accettata una BAProposition autonoma a livello Decision: il comportamento produttivo concreto e il mapping sono posseduti dal FunctionalRequirement sottostante.
+\end{ddtapropositionidentified}
+
+\begin{ddtapropositionaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.35}{4.75}\selectfont
+\texttt{--}
+\end{ddtapropositionaccepted}
+
+\begin{ddtaopenrelations}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.78}{4.14}\selectfont
+La stessa \texttt{ClinicallyCorrectedOperationalTriagePriority} resta la sorgente semantica del \texttt{ClassifierUrgencyTarget} che verra' consolidato nel FunctionalRequirement. La Decision non introduce un \texttt{transfer}, un \texttt{realize} o una \texttt{transition}: provenienza B4, derivazione operativa e consumo downstream restano fatti distinti da preservare ai rispettivi boundary.
+\end{ddtaopenrelations}
+
+\end{paracol}
+%</PAGE-CONTENT:41>
+\clearpage
+
+%<PAGE-DESC:42>MR-04 > DEC-11 > FR-08 - Derivazione del target di supervisione dalla priorita P-scale corretta
+%<PAGE-CONTENT:42>
+\PageHashFooter{\PageMDfive{42}}
 \subsubsection{FR-08 - Derivazione del target di supervisione dalla priorita P-scale corretta}
 {\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-04} $\rightarrow$ \texttt{DEC-11} $\rightarrow$ \texttt{FR-08}}\par
 
@@ -3549,31 +3629,25 @@ La membership qualification e' materialmente necessaria, ma \texttt{selection} r
 \begin{paracol}{2}
 
 {\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
-\vspace{0.3em}
-\small
+\vspace{0.25em}
 
-\begin{ddtacore}[title={Decision + FunctionalRequirement}]
-\textbf{DEC-11 - Derivazione della supervision classificatoria dalla priorita clinicamente corretta}\par
-\textbf{Context}\par
-L'adattamento della classificazione di urgenza necessita di un target di supervisione. La priorita P-scale clinicamente corretta e' la sorgente semantica del target \texttt{HIGH / MEDIUM / LOW}.\par
-
-\textbf{Decision}\par
-Per i casi di adattamento classificatorio con priorita P-scale clinicamente corretta, DermaTriage deriva il target secondo il mapping governato \texttt{P1/P2 -> HIGH}, \texttt{P3 -> MEDIUM}, \texttt{P4 -> LOW}.\par
-
-\medskip
-\begin{tabularx}{\linewidth}{L{38mm}Y}
+\begin{ddtacore}[title={FunctionalRequirement}]
+\fontsize{4.45}{4.88}\selectfont
+\begin{tabularx}{\linewidth}{L{39mm}Y}
 \toprule
 \textbf{ID} & \texttt{FR-08} \\
 \textbf{Lifecycle} & \texttt{current} \\
 \textbf{Authority} & \texttt{CURRENT\_GOVERNED} \\
 \textbf{Type} & \texttt{FunctionalRequirement} \\
+\textbf{Title} & Derivazione del target di supervisione dalla priorita P-scale corretta \\
 \textbf{Parent Decision} & \texttt{DEC-11} \\
 \textbf{Owning MR (derived)} & \texttt{MR-04} \\
+\textbf{SpecializedRequirement relation} & 0 active instances \\
 \bottomrule
 \end{tabularx}
 
 \textbf{Functional obligation}\par
-Derivare il target di supervisione classificatoria dalla priorita P-scale corretta dal professionista sanitario.\par
+Per i casi destinati all'adattamento classificatorio, DermaTriage deriva il target di supervisione del classificatore dalla priorita operativa P-scale clinicamente corretta associata al caso. Nel workflow integrato, il \texttt{ValidatedOutcome} necessario al percorso di adattamento viene trasferito da B4 a DermaTriage; la relazione strutturale completa fra \texttt{ValidatedOutcome} e priorita P-scale clinicamente corretta non e' ulteriormente specificata e i due significati non vengono trattati come equivalenti. Nella realizzazione corrente, il target derivato e' utilizzato dal Continuous Retraining Protocol di EfficientNet-B4; la pipeline di auto-retraining e' implementata in \texttt{image\_classifier/retrainer.py}. I target \texttt{HIGH}, \texttt{MEDIUM}, \texttt{LOW} sono codificati correntemente con gli indici \texttt{0}, \texttt{1}, \texttt{2}; tale codifica e' un binding della realizzazione e non modifica l'identita funzionale del target. Non e' definita un'identita separata di funzione o metodo Python dedicato esclusivamente alla derivazione P-scale $\rightarrow$ target di supervisione.
 
 \textbf{Functional clauses / inherited \texttt{normativeClause [1..*]}}\par
 \begin{tabularx}{\linewidth}{L{52mm}Y}
@@ -3587,42 +3661,53 @@ Derivare il target di supervisione classificatoria dalla priorita P-scale corret
 \bottomrule
 \end{tabularx}
 
-\textbf{SPO references}\par
-\texttt{ClinicallyCorrectedOperationalTriagePriority -- maps to --> ClassifierUrgencyTarget}\par
-\texttt{DermaTriage -- derive --> ClassifierUrgencyTarget}
+\textbf{SPO references (L2 support)}\par
+\texttt{B4 -- transfers --> ValidatedOutcome}\par
+\texttt{ValidatedOutcome -- to --> DermaTriage}\par
+\texttt{ClinicallyCorrectedOperationalTriagePriority -- derives --> ClassifierUrgencyTarget}\par
+\texttt{DermaTriage -- derive --> ClassifierUrgencyTarget}\par
+\texttt{ClassifierUrgencyTarget -- consumed by --> EfficientNet-B4 retraining}
 \end{ddtacore}
 
-\begin{ddtaquestions}
-\small
+\begin{ddtaquestions}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.58}{3.93}\selectfont
 \begin{itemize}
-  \item Il comportamento per priorita corretta assente, invalida, fuori dominio o conflittuale non e' specificato da FR-08.
-  \item Nessuna relazione FR-07 $\rightarrow$ FR-08 viene inferita dal solo contesto condiviso di adattamento.
+  \item Il binding semantico completo fra \texttt{ValidatedOutcome} e \texttt{ClinicallyCorrectedOperationalTriagePriority} resta \texttt{NOT SPECIFIED}; l'esistenza del transfer B4 non autorizza a identificarli.
+  \item Il comportamento per priorita corretta assente, invalida, fuori dominio o conflittuale non e' specificato.
+  \item Non e' definito un handoff interno con source/destination sufficientemente distinti per promuovere il consumo di \texttt{ClassifierUrgencyTarget} da parte del retraining a un ulteriore transfer.
 \end{itemize}
 \end{ddtaquestions}
 
 \switchcolumn
 
 {\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
-\vspace{0.4em}
+\vspace{0.25em}
 
 \begin{ddtareferentidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
-\fontsize{5.0}{5.4}\selectfont
-\texttt{--}\par
+\fontsize{4.0}{4.38}\selectfont
+\BACandidate{ClinicallyCorrectedOperationalTriagePriority}; \BACandidate{ClassifierUrgencyTarget}.
 \end{ddtareferentidentified}
 
 \begin{ddtareferentaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
-\fontsize{5.0}{5.4}\selectfont
-\BAAccepted{DermaTriage}; \BAAccepted{ClinicallyCorrectedOperationalTriagePriority} \BAFirstAccepted{}; \BAAccepted{ClassifierUrgencyTarget} \BAFirstAccepted{}.
+\fontsize{3.72}{4.08}\selectfont
+\BAAccepted{DermaTriage}; \BAAccepted{ClassifierAdaptationPath}; \BAAccepted{B4}; \BAAccepted{ValidatedOutcome}; \BAAccepted{EfficientNet-B4}; \BAAccepted{ClinicallyCorrectedOperationalTriagePriority} \BAFirstAccepted{}; \BAAccepted{ClassifierUrgencyTarget} \BAFirstAccepted{}.
 \end{ddtareferentaccepted}
 
 \begin{ddtapropositionidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
-\fontsize{4.55}{4.95}\selectfont
-\texttt{--}\par
-\emph{Nessuna BAProposition separata per il mapping: la candidate \texttt{operatorStructure.decisionRule} e' locale alla proposition \texttt{produce} accettata sotto.}
+\fontsize{3.38}{3.72}\selectfont
+\textbf{Mapping structure / transfer boundary.}\par
+Il mapping P-scale $\rightarrow$ target e' una struttura locale della \texttt{produce} accettata sotto; la candidate \texttt{operatorStructure.decisionRule} non e' una proposition autonoma. Il transfer B4 $\rightarrow$ DermaTriage del \texttt{ValidatedOutcome} riusa \texttt{BAP-FR23-03}. Il consumo del \texttt{ClassifierUrgencyTarget} nel retraining non viene trasformato in un secondo transfer: source e destination interne non sono sufficientemente governate.
 \end{ddtapropositionidentified}
 
 \begin{ddtapropositionaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
-\fontsize{4.05}{4.42}\selectfont
+\fontsize{3.08}{3.39}\selectfont
+\texttt{BAP-FR23-03} \emph{[riuso]}\par
+\texttt{semanticOperatorKey = transfer}\par
+\hspace*{1em}\texttt{source -> B4}\par
+\hspace*{1em}\texttt{destination -> DermaTriage}\par
+\hspace*{1em}\texttt{content -> ValidatedOutcome}\par
+\texttt{polarity = affirmative}\par
+\medskip
 \texttt{BAP-FR08-01-01}\par
 \texttt{semanticOperatorKey = produce}\par
 \hspace*{1em}\texttt{actor -> DermaTriage}\par
@@ -3630,24 +3715,22 @@ Derivare il target di supervisione classificatoria dalla priorita P-scale corret
 \hspace*{1em}\texttt{result -> ClassifierUrgencyTarget}\par
 \hspace*{1em}\texttt{operatorStructure [CANDIDATE R7 / NOT ADMITTED]}\par
 \hspace*{2em}\texttt{decisionRule}\par
-\hspace*{3em}\texttt{branch: ClinicallyCorrectedOperationalTriagePriority eq P1}\par
-\hspace*{4em}\texttt{resultAssignment -> ClassifierUrgencyTarget = HIGH}\par
-\hspace*{3em}\texttt{branch: ClinicallyCorrectedOperationalTriagePriority eq P2}\par
-\hspace*{4em}\texttt{resultAssignment -> ClassifierUrgencyTarget = HIGH}\par
-\hspace*{3em}\texttt{branch: ClinicallyCorrectedOperationalTriagePriority eq P3}\par
-\hspace*{4em}\texttt{resultAssignment -> ClassifierUrgencyTarget = MEDIUM}\par
-\hspace*{3em}\texttt{branch: ClinicallyCorrectedOperationalTriagePriority eq P4}\par
-\hspace*{4em}\texttt{resultAssignment -> ClassifierUrgencyTarget = LOW}\par
+\hspace*{3em}\texttt{P1 -> HIGH; P2 -> HIGH; P3 -> MEDIUM; P4 -> LOW}\par
 \texttt{polarity = affirmative}\par
-\emph{Acceptance boundary: \texttt{BAP-FR08-01-01} e' accettata come proposition \texttt{produce}. La struttura annidata e' mostrata dentro lo stesso owner come secondo positive control, ma resta candidate R7 fino alla regression Facial Access e al checkpoint metodologico. Nessun ELSE e nessun comportamento missing/invalid/out-of-domain viene inferito.}
+\emph{Acceptance boundary: la \texttt{produce} e il transfer upstream gia' accettato sono preservati come fatti distinti. La struttura di mapping resta locale/candidate e non introduce un operatore top-level aggiuntivo.}
 \end{ddtapropositionaccepted}
 
+\begin{ddtaopenrelations}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.28}{3.6}\selectfont
+\texttt{ValidatedOutcome <semantic binding NOT SPECIFIED> ClinicallyCorrectedOperationalTriagePriority}. Gli indici \texttt{0/1/2} e \texttt{image\_classifier/retrainer.py} sono binding della realizzazione corrente e non diventano automaticamente BAReferent ne' una proposition \texttt{realize} della derivazione. \texttt{ClassifierUrgencyTarget -> retraining} resta consumo downstream documentato, non una conveyance BA autonoma.
+\end{ddtaopenrelations}
+
 \end{paracol}
-%</PAGE-CONTENT:41>
+%</PAGE-CONTENT:42>
 \clearpage
-%<PAGE-DESC:42>Registro Base Analysis - BAReferent e BAProposition
-%<PAGE-CONTENT:42>
-\PageHashFooter{\PageMDfive{42}}
+%<PAGE-DESC:43>Registro Base Analysis - BAReferent e BAProposition
+%<PAGE-CONTENT:43>
+\PageHashFooter{\PageMDfive{43}}
 \section{Registro Base Analysis}
 
 \begin{ddtacore}[title={Sintesi BA corrente}]
@@ -3665,7 +3748,7 @@ Il registro raccoglie la tracciabilita' BA corrente senza introdurre campi o sta
 \toprule
 \textbf{BAReferent} & \textbf{Riferimenti documentali} \\
 \midrule
-DermaTriage & \texttt{MR-01}; \textbf{\texttt{DEC-MR01-01}}; \texttt{FR-MR01-01-01}; \texttt{DEC-MR01-03}; \texttt{FR-MR01-03-01}; \texttt{FR-MR01-03-02}; \texttt{FR-MR01-03-04}; \texttt{DEC-MR01-04}; \texttt{FR-MR01-04-01}; \texttt{MR-02}; \texttt{MR-03}; \texttt{DEC-03}; \texttt{FR-03}; \texttt{FR-12}; \texttt{DEC-15}; \texttt{FR-23}; \texttt{DEC-16}; \texttt{FR-24}; \texttt{FR-25}; \texttt{MR-04}; \texttt{DEC-04}; \texttt{FR-04}; \texttt{FR-05}; \texttt{DEC-05}; \texttt{FR-09}; \texttt{DEC-09}; \texttt{FR-06}; \texttt{DEC-10}; \texttt{FR-07} \\
+DermaTriage & \texttt{MR-01}; \textbf{\texttt{DEC-MR01-01}}; \texttt{FR-MR01-01-01}; \texttt{DEC-MR01-03}; \texttt{FR-MR01-03-01}; \texttt{FR-MR01-03-02}; \texttt{FR-MR01-03-04}; \texttt{DEC-MR01-04}; \texttt{FR-MR01-04-01}; \texttt{MR-02}; \texttt{MR-03}; \texttt{DEC-03}; \texttt{FR-03}; \texttt{FR-12}; \texttt{DEC-15}; \texttt{FR-23}; \texttt{DEC-16}; \texttt{FR-24}; \texttt{FR-25}; \texttt{MR-04}; \texttt{DEC-04}; \texttt{FR-04}; \texttt{FR-05}; \texttt{DEC-05}; \texttt{FR-09}; \texttt{DEC-09}; \texttt{FR-06}; \texttt{DEC-10}; \texttt{FR-07}; \texttt{DEC-11}; \texttt{FR-08} \\
 DermatologicalCase & \textbf{\texttt{MR-01}}; \texttt{FR-MR01-01-01}; \texttt{FR-MR01-03-04} \\
 DermatologicalTriageEvaluation & \textbf{\texttt{MR-01}}; \texttt{DEC-MR01-01}; \texttt{FR-MR01-01-01}; \texttt{DEC-MR01-03} \\
 CaseUrgency & \textbf{\texttt{MR-01}}; \texttt{FR-MR01-01-01}; \texttt{FR-MR01-03-04}; \texttt{DEC-MR01-04}; \texttt{FR-MR01-04-01} \\
@@ -3675,7 +3758,7 @@ Patient & \texttt{MR-01} \\
 LesionImage & \texttt{DEC-MR01-01}; \textbf{\texttt{FR-MR01-01-01}}; \texttt{DEC-MR01-03}; \texttt{FR-MR01-03-01}; \texttt{FR-MR01-03-02} \\
 SymptomInformation & \texttt{DEC-MR01-01}; \textbf{\texttt{FR-MR01-01-01}}; \texttt{FR-MR01-03-04} \\
 ImageUrgencyAnalysis & \texttt{DEC-MR01-03}; \textbf{\texttt{FR-MR01-03-01}} \\
-EfficientNet-B4 & \textbf{\texttt{FR-MR01-03-01}}; \texttt{MR-04}; \texttt{FR-05}; \texttt{DEC-06}; \texttt{DEC-08}; \texttt{FR-10} \\
+EfficientNet-B4 & \textbf{\texttt{FR-MR01-03-01}}; \texttt{MR-04}; \texttt{FR-05}; \texttt{DEC-06}; \texttt{DEC-08}; \texttt{FR-10}; \texttt{FR-08} \\
 ImageUrgencyClassification & \textbf{\texttt{FR-MR01-03-01}}; \texttt{FR-MR01-03-04} \\
 ClinicalDescriptionGeneration & \texttt{DEC-MR01-03}; \textbf{\texttt{FR-MR01-03-02}}; \texttt{FR-MR01-03-03B} \\
 Qwen2-VL-7B-Instruct & \textbf{\texttt{FR-MR01-03-02}} \\
@@ -3704,7 +3787,7 @@ ControlledDermaTriageAdaptation & \textbf{\texttt{MR-04}} \\
 PromptEvolutionPath & \textbf{\texttt{MR-04}}; \texttt{DEC-04}; \texttt{FR-04}; \texttt{DEC-05}; \texttt{FR-13}; \texttt{FR-14}; \texttt{FR-15}; \texttt{DEC-09}; \texttt{FR-06} \\
 PromptEvolutionCycle & \texttt{FR-04}; \texttt{DEC-09}; \texttt{FR-06} -- candidate; scope quantificato del ciclo, identity/lifecycle autonomi non ancora sufficientemente governati \\
 PromptEvolutionEvidenceSet & \texttt{DEC-09}; \textbf{\texttt{FR-06}} \\
-ClassifierAdaptationPath & \textbf{\texttt{MR-04}}; \texttt{DEC-04}; \texttt{FR-05}; \texttt{DEC-05}; \texttt{FR-13}; \texttt{FR-14}; \texttt{FR-15}; \texttt{DEC-10}; \texttt{FR-07} \\
+ClassifierAdaptationPath & \textbf{\texttt{MR-04}}; \texttt{DEC-04}; \texttt{FR-05}; \texttt{DEC-05}; \texttt{FR-13}; \texttt{FR-14}; \texttt{FR-15}; \texttt{DEC-10}; \texttt{FR-07}; \texttt{DEC-11}; \texttt{FR-08} \\
 CandidateUrgencyClassificationAdaptation & \textbf{\texttt{DEC-06}}; \texttt{FR-09}; \texttt{DEC-07} \\
 ApplicableReferenceVersion & \textbf{\texttt{DEC-06}}; \texttt{FR-09}; \texttt{DEC-07} \\
 CandidateEvaluationResult & \texttt{FR-09} -- candidate decomposition; result artifact non ancora governato \\
@@ -3714,8 +3797,8 @@ ApplicableComparativeAcceptanceCriteria & \texttt{FR-09}; \textbf{\texttt{DEC-07
 ApplicablePostAdoptionReference & \textbf{\texttt{DEC-08}}; \texttt{FR-10} \\
 PreviousAcceptableVersionOrState & \textbf{\texttt{DEC-08}}; \texttt{FR-10} \\
 PostAdoptionEvaluationResult & \texttt{DEC-08}; \texttt{FR-10} -- candidate decomposition; producer/result artifact e measurement boundary non ancora governati \\
-ClinicallyCorrectedOperationalTriagePriority & \textbf{\texttt{FR-08}} \\
-ClassifierUrgencyTarget & \textbf{\texttt{FR-08}} \\
+ClinicallyCorrectedOperationalTriagePriority & \texttt{DEC-11}; \textbf{\texttt{FR-08}} \\
+ClassifierUrgencyTarget & \texttt{DEC-11}; \textbf{\texttt{FR-08}} \\
 SpecialistDestinationIndication & \textbf{\texttt{MR-02}} \\
 ClinicalReviewResult & \textbf{\texttt{MR-03}}; \texttt{DEC-03}; \texttt{FR-03}; \texttt{FR-12}; \texttt{MR-04}; \texttt{DEC-09}; \texttt{FR-06}; \texttt{DEC-10}; \texttt{FR-07} \\
 OriginalDermaTriageOutcome & \textbf{\texttt{MR-03}}; \texttt{DEC-03}; \texttt{FR-03}; \texttt{FR-12}; \texttt{FR-23}; \texttt{DEC-10}; \texttt{FR-07} \\
@@ -3723,10 +3806,10 @@ HealthcareProfessional & \textbf{\texttt{MR-03}} \\
 ClinicalReviewDisposition & \textbf{\texttt{FR-12}} \\
 ClinicianDisagreement & \texttt{DEC-10}; \textbf{\texttt{FR-07}} \\
 ClassifierAdaptationEvidence & \texttt{DEC-10}; \textbf{\texttt{FR-07}} \\
-B4 & \textbf{\texttt{DEC-15}}; \texttt{FR-23}; \texttt{DEC-16}; \texttt{FR-25}; \texttt{FR-07} \\
+B4 & \textbf{\texttt{DEC-15}}; \texttt{FR-23}; \texttt{DEC-16}; \texttt{FR-25}; \texttt{FR-07}; \texttt{FR-08} \\
 B4TriageOutcome & \texttt{DEC-15}; \textbf{\texttt{FR-23}} \\
 ClinicianValidation & \texttt{DEC-15}; \textbf{\texttt{FR-23}} \\
-ValidatedOutcome & \texttt{DEC-15}; \textbf{\texttt{FR-23}}; \texttt{FR-07} \\
+ValidatedOutcome & \texttt{DEC-15}; \textbf{\texttt{FR-23}}; \texttt{FR-07}; \texttt{FR-08} \\
 ProtectedDermaTriageOperation & \texttt{DEC-16}; \textbf{\texttt{FR-24}} \\
 B4CallAuthentication & \texttt{DEC-16}; \textbf{\texttt{FR-25}} \\
 DermaTriageB4Client & \textbf{\texttt{FR-25}} \\
@@ -3734,11 +3817,11 @@ B4BearerJWT & \textbf{\texttt{FR-25}} \\
 \bottomrule
 \end{tabularx}
 
-%</PAGE-CONTENT:42>
+%</PAGE-CONTENT:43>
 \clearpage
-%<PAGE-DESC:43>Registro Base Analysis - BAProposition
-%<PAGE-CONTENT:43>
-\PageHashFooter{\PageMDfive{43}}
+%<PAGE-DESC:44>Registro Base Analysis - BAProposition
+%<PAGE-CONTENT:44>
+\PageHashFooter{\PageMDfive{44}}
 \section*{Registro Base Analysis - BAProposition}
 \begin{ddtacore}[title={Continuita' del registro}]
 \fontsize{6.0}{6.6}\selectfont
@@ -3763,7 +3846,7 @@ Questa pagina continua il registro BA della pagina precedente. Il \textbf{grasse
 \emph{\texttt{BAP-DEC15-03}} & \texttt{DEC-15} -- candidate \texttt{transfer} (\texttt{B4 -> DermaTriage : ValidatedOutcome}) \\
 \textbf{\texttt{BAP-FR23-01}} & \texttt{FR-23} -- \texttt{transfer} (\texttt{DermaTriage -> B4 : B4TriageOutcome}) \\
 \textbf{\texttt{BAP-FR23-02}} & \texttt{FR-23} -- \texttt{transfer} (\texttt{DermaTriage -> B4 : ClinicianValidation}) \\
-\textbf{\texttt{BAP-FR23-03}} & \texttt{FR-23}; \texttt{FR-07} -- \texttt{transfer} (\texttt{B4 -> DermaTriage : ValidatedOutcome}); \texttt{FR-07} riusa la conveyance upstream gia' accettata e non crea una proposition duplicata \\
+\textbf{\texttt{BAP-FR23-03}} & \texttt{FR-23}; \texttt{FR-07}; \texttt{FR-08} -- \texttt{transfer} (\texttt{B4 -> DermaTriage : ValidatedOutcome}); \texttt{FR-07} e \texttt{FR-08} riusano la conveyance upstream gia\' accettata e non creano proposition duplicate \\
 \emph{\texttt{BAP-DEC16-01}} & \texttt{DEC-16} -- candidate \texttt{constrain} (\texttt{ProtectedDermaTriageOperation}: \texttt{authenticationMechanism} = \texttt{X-API-Key}); consolidated by \texttt{FR-24} \\
 \emph{\texttt{BAP-DEC16-02}} & \texttt{DEC-16} -- candidate \texttt{constrain} (\texttt{B4CallAuthentication}: \texttt{authenticationMechanism} = bearer JWT); consolidated by \texttt{FR-25} \\
 \textbf{\texttt{BAP-FR24-01}} & \texttt{FR-24} -- \texttt{constrain} (\texttt{ProtectedDermaTriageOperation}: required \texttt{authenticationMechanism} in \texttt{[X-API-Key]}) \\
@@ -3797,14 +3880,14 @@ Questa pagina continua il registro BA della pagina precedente. Il \textbf{grasse
 \textbf{\texttt{BAP-FR04-01-02}} & \texttt{FR-MR01-04-01} -- \texttt{realize} (\texttt{OperationalPriorityDerivation -> AdaptationLayer}) \\
 \textbf{\texttt{BAP-FR06-01}} & \texttt{FR-06} -- accepted \texttt{produce} (\texttt{DermaTriage}: available \texttt{ClinicalReviewResult} population $\rightarrow$ \texttt{PromptEvolutionEvidenceSet}); selection semantics retained as a non-consolidated finding on \texttt{FR-06} (correction+pertinence, recency, bound 20); no additional formal structure, output ordering, read or transfer accepted \\
 \textbf{\texttt{BAP-FR07-01}} & \texttt{FR-07} -- accepted \texttt{produce} (\texttt{DermaTriage}: available \texttt{ClinicalReviewResult} population $\rightarrow$ \texttt{ClassifierAdaptationEvidence}); membership criterion = \texttt{ClinicianDisagreement} relative to the pertinent \texttt{OriginalDermaTriageOutcome}; selection semantics retained as non-consolidated local finding; \texttt{BAP-FR23-03} reused for upstream B4 conveyance; \texttt{ValidatedOutcome <-> ClinicalReviewResult} binding remains \texttt{NOT SPECIFIED} \\
-\textbf{\texttt{BAP-FR08-01-01}} & \texttt{FR-08} -- accepted \texttt{produce} (\texttt{DermaTriage}: corrected P-scale $\rightarrow$ classifier target); candidate \texttt{operatorStructure.decisionRule} mostrata inline nell'owner ma non ancora ammessa \\
+\textbf{\texttt{BAP-FR08-01-01}} & \texttt{FR-08} -- accepted \texttt{produce} (\texttt{DermaTriage}: corrected P-scale $\rightarrow$ classifier target); \texttt{BAP-FR23-03} riusata per la conveyance B4 upstream; candidate \texttt{operatorStructure.decisionRule} locale al mapping; nessun transfer interno target $\rightarrow$ retraining accettato \\
 \bottomrule
 \end{tabularx}
-%</PAGE-CONTENT:43>
+%</PAGE-CONTENT:44>
 \clearpage
-%<PAGE-DESC:44>MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
-%<PAGE-CONTENT:44>
-\PageHashFooter{\PageMDfive{44}}
+%<PAGE-DESC:45>MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
+%<PAGE-CONTENT:45>
+\PageHashFooter{\PageMDfive{45}}
 \section{MR-01 - Inventario temporaneo transfer, contract e decisioni BA}
 
 \begin{ddtaopen}[title={PAGINA TEMPORANEA - AUDIT DATA-PATH MR-01 - DA CANCELLARE DOPO LA RIALLOCAZIONE DEI RISULTATI}]
@@ -3853,11 +3936,11 @@ la pagina precedente mescolava due funzioni con lifecycle e change impact separa
 \textbf{Decisione metodologica temporanea - necessity test di \texttt{correlate}:}
 \texttt{BAP-MR01-02} e \texttt{BAP-DEC01-02} sono rimosse dall'insieme attivo delle BAProposition candidate. Nei due passaggi sorgente, ``informazioni disponibili sul caso dermatologico'' e ``informazioni sintomatologiche disponibili sul caso'' descrivono il contesto del caso in analisi e gli input del comportamento di triage; non e' emersa una relazione governata, autonoma e interrogabile che richieda una proposition \texttt{correlate}. La rimozione non elimina i BAReferent ne' le proposition \texttt{produce} gia' candidate. Le occorrenze lessicali di ``correlation'' nella worklist restano domande aperte di binding/identity nei data contract e \textbf{non} indicano l'operatore BA \texttt{correlate}. L'operatore verra' riesaminato soltanto se evidence successiva mostrera' una relazione indipendente non ricostruibile tramite comportamento, identity e contract gia' governati. Questa nota e' temporanea e verra' cancellata a chiusura del case study dopo il consolidamento del risultato.
 \end{ddtaopen}
-%</PAGE-CONTENT:44>
+%</PAGE-CONTENT:45>
 \clearpage
-%<PAGE-DESC:45>Indice di integrita delle pagine
-%<PAGE-CONTENT:45>
-\PageHashFooter{\PageMDfive{45}}
+%<PAGE-DESC:46>Indice di integrita delle pagine
+%<PAGE-CONTENT:46>
+\PageHashFooter{\PageMDfive{46}}
 \section{Indice di integrita' delle pagine}
 
 \begin{ddtacore}[title={Regola di verifica}]
@@ -3916,11 +3999,12 @@ Ogni pagina possiede un MD5 del proprio contenuto canonico. Il calcolo esclude i
 \IntegrityRow{38}{MR-04 > DEC-09 > FR-06 - Selezione dell'evidence recente per l'evoluzione del prompt}{\PageMDfive{38}}
 \IntegrityRow{39}{MR-04 > DEC-10 - Qualificazione del disaccordo clinico come evidence per l'adattamento classificatorio}{\PageMDfive{39}}
 \IntegrityRow{40}{MR-04 > DEC-10 > FR-07 - Qualificazione del disaccordo clinico come evidence per l'adattamento classificatorio}{\PageMDfive{40}}
-\IntegrityRow{41}{MR-04 > DEC-11 > FR-08 - Derivazione del target di supervisione dalla priorita P-scale corretta}{\PageMDfive{41}}
-\IntegrityRow{42}{Registro Base Analysis - BAReferent e BAProposition}{\PageMDfive{42}}
-\IntegrityRow{43}{Registro Base Analysis - BAProposition}{\PageMDfive{43}}
-\IntegrityRow{44}{MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]}{\PageMDfive{44}}
-\IntegrityRow{45}{Indice di integrita delle pagine}{\PageMDfive{45}}
+\IntegrityRow{41}{MR-04 > DEC-11 - Uso della priorita clinicamente corretta come sorgente del target di supervisione classificatoria}{\PageMDfive{41}}
+\IntegrityRow{42}{MR-04 > DEC-11 > FR-08 - Derivazione del target di supervisione dalla priorita P-scale corretta}{\PageMDfive{42}}
+\IntegrityRow{43}{Registro Base Analysis - BAReferent e BAProposition}{\PageMDfive{43}}
+\IntegrityRow{44}{Registro Base Analysis - BAProposition}{\PageMDfive{44}}
+\IntegrityRow{45}{MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]}{\PageMDfive{45}}
+\IntegrityRow{46}{Indice di integrita delle pagine}{\PageMDfive{46}}
 %</PAGE-INTEGRITY-ROWS>
 \bottomrule
 \end{tabularx}
@@ -3928,6 +4012,6 @@ Ogni pagina possiede un MD5 del proprio contenuto canonico. Il calcolo esclude i
 
 \vspace{0.8mm}
 {\fontsize{4.8}{5.2}\selectfont\color{DDTAGray}Quando una pagina viene modificata intenzionalmente, cambia il suo MD5. Una variazione inattesa segnala una modifica da riesaminare prima di proseguire.}
-%</PAGE-CONTENT:45>
+%</PAGE-CONTENT:46>
 
 \end{document}
