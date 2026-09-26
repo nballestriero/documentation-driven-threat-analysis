@@ -40,8 +40,10 @@ Page 35  2d870f81a5f24c387896ef85f94eacbd  MR-04 > DEC-08 - Reversibilita dell'a
 Page 36  6a4807e4d18d4a97f3b02d62ad4f24e0  MR-04 > DEC-08 > FR-10 - Revoca di un adattamento classificatorio degradante
 Page 37  475d59cb9fc8bc3342897fab12ed179c  MR-04 > DEC-09 - Uso di evidence recente e limitata nel percorso di evoluzione del prompt
 Page 38  1596523e5d2a3554727d058d351afb63  MR-04 > DEC-09 > FR-06 - Selezione dell'evidence recente per l'evoluzione del prompt
-Page 39  9faf8d41344390a05878e91d5d4ac7bd  MR-04 > DEC-11 > FR-08 - Derivazione del target di supervisione dalla priorita P-scale corretta
-Page 40  81091a5b8d2f1477e8e49d8ebfd5bfc8  Registro Base Analysis - BAReferent e BAProposition
-Page 41  3fb4ab29517018401c110b38685507d7  Registro Base Analysis - BAProposition
-Page 42  df70ba8f961369f44bdd2b8e064a53bd  MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
-Page 43  a22a5ac76953eb09ad50e9b2bbe35c12  Indice di integrita delle pagine [INTEGRITY INDEX]
+Page 39  d5d7d0db53aaf3407a0115a330c98c02  MR-04 > DEC-10 - Qualificazione del disaccordo clinico come evidence per l'adattamento classificatorio
+Page 40  2948054419b2fda2e7070f5b20f9da9c  MR-04 > DEC-10 > FR-07 - Qualificazione del disaccordo clinico come evidence per l'adattamento classificatorio
+Page 41  9faf8d41344390a05878e91d5d4ac7bd  MR-04 > DEC-11 > FR-08 - Derivazione del target di supervisione dalla priorita P-scale corretta
+Page 42  cc9d793c0d71a27123664f6236894985  Registro Base Analysis - BAReferent e BAProposition
+Page 43  02f2e0d6851da52d8f4f83e10943184e  Registro Base Analysis - BAProposition
+Page 44  df70ba8f961369f44bdd2b8e064a53bd  MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
+Page 45  1d43ee6df65cabfd2f1d59e7d3351a91  Indice di integrita delle pagine [INTEGRITY INDEX]
