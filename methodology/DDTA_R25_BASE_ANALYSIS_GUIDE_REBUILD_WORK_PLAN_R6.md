@@ -2,7 +2,9 @@
 
 **Status:** ACTIVE / CURRENT FORWARD WORK PLAN - FULL SOURCE-PRESERVATION AUDIT, BA GRAPH COHERENCE AUDIT, THEN CONSTRUCT CONSOLIDATION
 
-**Repository baseline for this plan:** `1951e07`
+**Plan source baseline before adoption:** `1951e07`
+
+**Plan adoption checkpoint:** `539456e`
 
 **Predecessor:** `methodology/DDTA_R25_BASE_ANALYSIS_GUIDE_REBUILD_WORK_PLAN_R5.md`
 
@@ -48,7 +50,7 @@ No missing edge, contract, relation or selection structure may be invented to sa
 
 ---
 
-## 2. Current state reached at baseline `1951e07`
+## 2. State reached before plan adoption at source baseline `1951e07`
 
 The current DermaTriage case study has completed a first pass over the documented MR branches and now contains:
 
@@ -436,11 +438,19 @@ The live case study remains the readable Documentation + BA result, not the tran
 
 ## 11. Current stop point and immediate next action
 
-Current repository baseline:
+Plan adoption checkpoint:
 
 ```text
-1951e07
+539456e
 ```
+
+Execution baseline:
+
+```text
+record the clean repository HEAD immediately before Phase A begins
+```
+
+Non-semantic housekeeping commits that only align temporary working-set references do not alter the audit scope; the exact clean execution HEAD MUST be recorded in the Phase-A audit artifact.
 
 Current case-study state:
 
@@ -457,7 +467,7 @@ Threat analysis:                                       BLOCKED
 Immediate next action:
 
 ```text
-freeze baseline 1951e07
+record and freeze the clean execution HEAD
         ->
 re-open all six authorized original DermaTriage documents
         ->
