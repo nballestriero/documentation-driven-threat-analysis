@@ -1,10 +1,16 @@
 # DDTA R25 - Base Analysis Guide Rebuild and DermaTriage Parallel Application Work Plan R6
 
-**Status:** ACTIVE / CURRENT FORWARD WORK PLAN - FULL SOURCE-PRESERVATION AUDIT, BA GRAPH COHERENCE AUDIT, THEN CONSTRUCT CONSOLIDATION
+**Status:** ACTIVE / CURRENT FORWARD WORK PLAN - SOURCE-TO-HIERARCHY FINDING RECONCILIATION, DOCUMENTATION CORRECTION, BA REBUILD, THEN GRAPH/METHOD CONSOLIDATION
 
 **Plan source baseline before adoption:** `1951e07`
 
 **Plan adoption checkpoint:** `539456e`
+
+**Current clean execution baseline for the finding-reconciliation cycle:** `3d1cd23`
+
+**Current finding register:** `validation-evidence/dermatriage/post-holdout-method-review-r1/source-preservation-reconciliation-r1/DDTA_DERMATRIAGE_SOURCE_TO_HIERARCHY_FINDING_REGISTER_R1.md`
+
+**R6 content update:** the three-way audit findings are now controlled through a mandatory `original source -> MR -> Decision -> FR -> BA` reconciliation gate. This update changes no method authority.
 
 **Predecessor:** `methodology/DDTA_R25_BASE_ANALYSIS_GUIDE_REBUILD_WORK_PLAN_R5.md`
 
@@ -21,21 +27,28 @@ R25 has now completed a first documentation + Base Analysis pass across the Derm
 The next work MUST therefore proceed in this order:
 
 ```text
-current rewritten DermaTriage Documentation + BA
+three audit inputs
+(two independent reviews + internal source-first audit)
         ->
-A. full source-preservation audit against the original DermaTriage package
+A0. normalize findings into stable working IDs
         ->
-correct any semantic loss / retain explicit source gaps
+A1. reopen the exact original text for one finding at a time
         ->
-re-run affected BA only after documentation correction
+A2. reconstruct semantic ownership:
+        ORIGINAL SOURCE
+             -> MR
+             -> Decision, only if justified
+             -> FR, only if justified
         ->
-B. whole-BA graph connectivity and coherence audit
+A3. correct the DDTA documentation branch
+    and preserve realization/evidence inside that hierarchy
         ->
-classify every disconnected or isolated semantic element
+A4. re-run Base Analysis only from the corrected documentation
         ->
-C. construct consolidation / extension review
-   (information/data contracts, selection, decisionRule relocation,
-    and any other recurrent pressure actually supported by the completed audits)
+B. regenerate the accepted BA graph and classify every component
+        ->
+C. consolidate method pressure only after A/B
+   (contracts, selection, decisionRule, and other demonstrated pressures)
         ->
 D. close residual case-study work items and temporary review surfaces
         ->
@@ -100,7 +113,19 @@ The BA must not bypass the rewritten documentation by importing a missing projec
 
 When the source-preservation audit finds a fact that the rewritten documentation lost or weakened, the correction is made first in the DDTA documentation at the appropriate owner and level. Only then is the affected BA re-run.
 
-When the source itself is incomplete, the result remains an explicit gap. The audit is not a license to reconstruct intended behavior by plausibility.
+For this cycle, **appropriate owner** has a mandatory hierarchical meaning:
+
+```text
+ORIGINAL SOURCE -> MacroRequirement -> Decision -> FunctionalRequirement -> Base Analysis
+```
+
+The source fact must first be assigned to the MacroRequirement that owns its semantic responsibility. A Decision is reused or introduced only when the source establishes a governed commitment that restricts that MR. A FunctionalRequirement is reused or introduced only when the source establishes an operational behavior under that Decision. The hierarchy must not be filled artificially.
+
+A technical, interface, configuration, training, test or evidence detail can remain non-normative. It must nevertheless be preserved **inside the correct MR / Decision / FR branch** as current realization, reference/evidence, or explicit open gap. `SR`, `SecR`, evidence labels, implementation notes or BA constructs do not substitute for first establishing this MR/Decision/FR ownership.
+
+There is no direct `SOURCE -> BA` correction path.
+
+When the source itself is incomplete, the result remains an explicit gap in the correct documentation branch. The audit is not a license to reconstruct intended behavior by plausibility.
 
 ---
 
@@ -140,7 +165,7 @@ For each relevant fact, record:
 | Source locator | Original document + page/section/table/code reference where available |
 | Source statement / fact | Concise semantic meaning actually supported |
 | Meaning class | responsibility / behavior / decision / contract / constraint / realization / lifecycle / quality / security / evidence-only |
-| Current DDTA owner | MR / Decision / FR / SR / SecR or explicit gap |
+| Current DDTA owner | owning MR, then Decision/FR where justified; all realization/evidence/gaps remain anchored inside that hierarchy |
 | Current DDTA location | exact current element |
 | Preservation status | preserved / preserved elsewhere / intentionally excluded as evidence-only / source gap retained / weakened / missing |
 | Action | none / clarify / relocate / split / add normative clause / add governed reference / retain NOT SPECIFIED |
@@ -190,16 +215,73 @@ OUT OF DECLARED PROJECT/DOCUMENTATION SCOPE WITH RECORDED REASON
 
 Silent omission is not an allowed disposition.
 
-### 4.6 Phase-A completion gate
+### 4.6 Three-way finding reconciliation and mandatory per-finding owner reconstruction
+
+The two independent audits and the internal source-first audit are **finding-discovery inputs**, not project authority.
+
+Stable working IDs are maintained in:
+
+`validation-evidence/dermatriage/post-holdout-method-review-r1/source-preservation-reconciliation-r1/DDTA_DERMATRIAGE_SOURCE_TO_HIERARCHY_FINDING_REGISTER_R1.md`
+
+For every finding, analysis MUST restart from the original source and use this order:
+
+```text
+1. original source locator and surrounding context
+2. minimal source-supported meaning
+3. MR owner
+4. Decision owner, if a distinct governed commitment exists
+5. FR owner, if a distinct operational behavior exists
+6. placement of current realization / evidence / binding / open gap inside that branch
+7. documentation-family regression
+8. Base Analysis rebuilt only after documentation closure
+```
+
+A finding cannot be accepted merely because two or three audits agree. Conversely, a finding discovered by one audit remains valid if the original source and current DDTA establish the discrepancy.
+
+The initial controlled finding set is:
+
+```text
+SOURCE / HIERARCHY FIRST:
+RC-001 automatic rollback
+RC-002 Stage-4 output contract
+RC-003 P1-P4 SLA literals
+RC-004 baseline classifier absolute quality gates
+RC-005 classifier-retraining fine-tune parameters
+RC-006 case intake age/sex/localization
+RC-007 baseline initial-training realization
+RC-008 prompt 'every 10' recurrence semantics
+RC-009 unsupported/uncertain 'pertinent' prompt-evidence qualifier
+RC-013 B4 bearer-JWT endpoint/source binding
+RC-018 specialist-destination boundary vs SLA ownership
+RC-019 privacy/anonymization/in-memory facts
+RC-020 FR-13/14/15 source-strength + Downstream Utility review
+
+BA IDENTITY / GRAPH AFTER DOCUMENTATION:
+RC-010 HistoricalCaseRetrieval identity
+RC-011 ClinicalReviewDisposition identity
+RC-012 ClinicianDisagreement identity/granularity
+RC-014 accepted graph recomputation
+
+METHOD ONLY AFTER DOCUMENTATION + BA:
+RC-015 contract-model sufficiency
+RC-016 selection
+RC-017 decisionRule relocation
+```
+
+Finding IDs are working references only. They do not create requirements, BA identities or method constructs.
+
+### 4.7 Phase-A completion gate
 
 Phase A closes only when:
 
 - all six original source documents have been re-audited;
-- every relevant source-supported fact has a recorded disposition;
+- every relevant source-supported fact has a recorded disposition and an MR owner;
+- every Decision/FR owner has been reused, reworked or introduced only when justified by the original source;
 - every current FR has an explicit source-coverage check;
 - missing/weakened DDTA meaning has been corrected or retained as a visible gap;
 - no BA correction has been used as a substitute for fixing an upstream documentation loss;
-- affected BA has been re-run after documentation changes;
+- no Base Analysis correction has been made before the affected MR/Decision/FR branch was source-closed;
+- affected BA has been rebuilt from the corrected documentation after documentation changes;
 - page integrity information has been regenerated after any case-study modification.
 
 ---
@@ -395,22 +477,28 @@ Threat analysis remains blocked until the accepted BA baseline for the declared 
 
 ## 9. Required deliverables for this cycle
 
-The cycle should produce four reviewable artifacts before any final cleanup/promotion:
+The cycle should produce five reviewable artifacts before any final cleanup/promotion:
 
 ```text
-A. DERMATRIAGE_SOURCE_PRESERVATION_AUDIT
-   source fact -> current DDTA owner/location -> disposition -> correction/BA impact
+A. DERMATRIAGE_SOURCE_TO_HIERARCHY_FINDING_REGISTER
+   stable working finding IDs; original source anchor; candidate/current
+   MR -> Decision -> FR owner; status; per-finding closure record
 
-B. DERMATRIAGE_BA_GRAPH_COHERENCE_AUDIT
-   accepted graph inventory, components, isolated referents, classifications,
-   candidate/open overlay and reproducible graph-generation rules
+B. DERMATRIAGE_SOURCE_PRESERVATION_AUDIT
+   source fact -> MR/Decision/FR ownership -> preservation disposition
+   -> exact documentation correction -> BA impact
 
-C. BA_CONSTRUCT_REVIEW_DELTA
+C. DERMATRIAGE_BA_GRAPH_COHERENCE_AUDIT
+   regenerated accepted graph inventory, components, isolated referents,
+   classifications, candidate/open overlay and reproducible generation rules
+
+D. BA_CONSTRUCT_REVIEW_DELTA
    contract sufficiency result, selection review, decisionRule relocation status,
-   and only the additional construct pressures actually demonstrated by A/B
+   and only the additional construct pressures actually demonstrated by A/B/C
 
-D. UPDATED DERMATRIAGE DOCUMENTATION + BA
-   corrected case study, registers, temporary-worklist disposition and integrity index
+E. UPDATED DERMATRIAGE DOCUMENTATION + BA
+   corrected case study, rebuilt affected BA, registers,
+   temporary-worklist disposition and integrity index
 ```
 
 These artifacts are research/checkpoint evidence. They do not become project or method authority by recency.
@@ -421,7 +509,8 @@ These artifacts are research/checkpoint evidence. They do not become project or 
 
 Use the working-analysis record for:
 
-- source facts not yet assigned a stable DDTA owner;
+- source facts not yet assigned a stable MR/Decision/FR owner;
+- per-finding source-to-hierarchy owner decisions and rejected alternate owners;
 - possible semantic loss discovered during Phase A;
 - alternate FR ownership/decomposition;
 - graph component diagnostics;
@@ -444,46 +533,58 @@ Plan adoption checkpoint:
 539456e
 ```
 
-Execution baseline:
+Current clean execution baseline used by the completed audit inputs:
 
 ```text
-record the clean repository HEAD immediately before Phase A begins
+3d1cd23
 ```
 
-Non-semantic housekeeping commits that only align temporary working-set references do not alter the audit scope; the exact clean execution HEAD MUST be recorded in the Phase-A audit artifact.
-
-Current case-study state:
+Current state:
 
 ```text
-DermaTriage first pass across current documentation: completed
-Whole-source semantic-preservation audit:             NOT YET EXECUTED
-Whole accepted-BA graph coherence audit:               NOT YET EXECUTED
-Selection consolidation:                               PENDING
-Contract sufficiency regression:                       PENDING
-decisionRule relocation promotion:                     NOT AUTHORIZED
-Threat analysis:                                       BLOCKED
+DermaTriage first pass across current documentation:     completed
+Independent source-preservation audit #1:                completed
+Independent source-preservation audit #2:                completed
+Internal source-first audit:                             completed
+Three-way finding normalization/register:                active
+Source -> MR -> Decision -> FR adjudication:              NOT YET CLOSED
+Documentation correction from adjudicated findings:      NOT YET STARTED
+Affected BA rebuild from corrected documentation:         BLOCKED
+Accepted-BA graph regeneration after corrections:         BLOCKED
+Selection consolidation:                                 PENDING
+Contract sufficiency regression:                         PENDING
+decisionRule relocation promotion:                       NOT AUTHORIZED
+Threat analysis:                                         BLOCKED
 ```
+
+The audit reports disagree on some findings and graph counts. Those disagreements are not resolved by majority vote. They are controlled through the finding register and re-opened against the original source.
+
+The current accepted-graph result of **19 components at `3d1cd23`** is a diagnostic checkpoint only. It is not a target topology and MUST be recomputed after documentation correction and BA rebuild.
 
 Immediate next action:
 
 ```text
-record and freeze the clean execution HEAD
+freeze this R6 content update + finding register in the repository
         ->
-re-open all six authorized original DermaTriage documents
+start RC-001
         ->
-build the source-preservation matrix
+open the exact original rollback passages
         ->
-audit every current FR first, while preserving MR/Decision/SR/SecR context
+state the minimal source-supported meaning
         ->
-correct only demonstrated semantic loss
+revalidate MR-04 ownership
         ->
-re-run affected BA
+revalidate/rework DEC-08
         ->
-generate the accepted BA graph
+revalidate/rework FR-10
         ->
-classify all components and isolated elements
+record remaining source gaps
         ->
-only then resume construct consolidation
+ONLY THEN rebuild the affected BA
+        ->
+continue RC-002, RC-003, ... one finding at a time
 ```
 
-Do not begin by adding `selection`, a new `contract` operator, composition edges, correlation edges or any other construct merely to complete the model. The two whole-model audits decide which additional semantic machinery is actually required.
+Do not batch-write corrections merely because a review report listed them. Each finding must pass the source-to-hierarchy owner reconstruction before the live case study changes.
+
+Do not begin method promotion (`selection`, a new `contract` operator, composition edges, correlation edges or other constructs) while source/hierarchy findings remain open.
