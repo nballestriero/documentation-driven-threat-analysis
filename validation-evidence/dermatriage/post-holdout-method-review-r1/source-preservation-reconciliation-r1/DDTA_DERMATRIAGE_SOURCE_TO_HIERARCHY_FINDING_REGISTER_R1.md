@@ -1,7 +1,7 @@
 # DDTA DermaTriage - Source-to-Hierarchy Finding Register R1
 
-**Execution baseline used to create this register:** `3d1cd23`  
-**Status:** WORKING AUDIT / NOT PROJECT AUTHORITY / NOT BA AUTHORITY  
+**Execution baseline used to create this register:** `3d1cd23`
+**Status:** WORKING AUDIT / NOT PROJECT AUTHORITY / NOT BA AUTHORITY
 **Controlled by:** `methodology/DDTA_R25_BASE_ANALYSIS_GUIDE_REBUILD_WORK_PLAN_R6.md`
 
 ## 1. Purpose
