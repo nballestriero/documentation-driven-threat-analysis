@@ -2,7 +2,7 @@ DDTA_BASE_ANALYSIS_GUIDE_REBUILD_R7 - Page MD5 Index
 Canonical payload: LaTeX content between PAGE-CONTENT markers; own printed MD5 excluded.
 Integrity-index page resolves all other page hashes and canonicalizes its own hash as <SELF>.
 
-Page 1  01c092d9668cf627b6d85a12cd41587c  Frontespizio della Base Analysis Guide Rebuild R7
+Page 1  253ba024b45b8d85981f5732e10f2964  Frontespizio della Base Analysis Guide Rebuild R7
 Page 2  fa01b7db301f77cd9988907daf2b3397  1 - Che cos'e' la Base Analysis
 Page 3  3b620cf21e74f64e397656ec9f3038da  1 - Perche' esiste e principi di base
 Page 4  b12d8f94dc04c833c0d916453255f9be  1 - Direzione dell'authority e feedback
@@ -87,12 +87,22 @@ Page 82  2a701c771ac5753385b56105bab3c258  13 - Store: prompt LLM per identifica
 Page 83  12d72ba8edfed0badf4a8dd1bf10b958  13 - Store: output atteso e discriminazioni con costrutti vicini
 Page 84  f971ae4163101485d17a2525eed12930  13 - Store: rappresentazione Mermaid, direzioni e binding opzionali
 Page 85  d862d9363aa1ca311511499919febe1b  13 - Store: esempio grafico con transfer IN e OUT
-Page 86  3915eaee02f714ac47e0dfa764b2836f  Appendice temporanea - scopo, lineage e confine del rebuild
-Page 87  5475a02c3223c3fac62a7eebe62f6be2  Appendice temporanea - corpus e stati epistemici
-Page 88  e1b1becfc138e20474529fae47de6a05  Appendice temporanea - Construct Description Contract e principio espositivo
-Page 89  435e9ecddb23d230df9cc32766e10610  Appendice temporanea - CDC direzione della spiegazione e revisione
-Page 90  9d02d27cc2ad8bb4e1b30d441667e854  Appendice temporanea - CDC campi 1-10
-Page 91  90b6659e5a0105e0cd7268d3f76137f6  Appendice temporanea - CDC campi 11-20
-Page 92  2e99321550bf13010ea58df13810eab9  Appendice temporanea - roadmap e registro dei costrutti da integrare/studiare
-Page 93  bf4d809dca64cc4a52f3db2207d4f522  Indice di integrita' delle pagine [INTEGRITY INDEX]
-Page 94  13cdd31df41e1d75e405e6ba020261fa  Appendice temporanea - laboratorio prove grafiche Mermaid da cancellare
+Page 86  83feb5798b4ef3a54f9a845982b647e8  14 - selection: definizione, smallest fact e criteri d'uso
+Page 87  024d82caac57f291a8e90cde3aea6f80  14 - selection: forma canonica locale, ruoli e cardinalita
+Page 88  a832820401ab88c3308ad972799a3ba2  14 - selection: invarianti, confini semantici e forbidden inference
+Page 89  f14aa1cc78b75fc2f8d662fc1236f9d9  14 - selection: domande di identificazione e procedura di estrazione
+Page 90  8ea61ece3848e2e6eae7458fe86118f1  14 - selection: esempio generico e positive control DermaTriage FR06
+Page 91  adf1abd8f97e3e52920d492b96aaf418  14 - selection: positive control top-K e best senza full ranking
+Page 92  2aedd05e8f01b891dba4db2ee40ca71e  14 - selection: composizione con Store, contract e pressure case RC001
+Page 93  af2d69bd3016fe7243c3f049df550b9a  14 - selection: prompt LLM per identificazione controllata
+Page 94  95ae78d4a3ee6996d8eea6ce81784c25  14 - selection: output atteso e discriminazioni con costrutti vicini
+Page 95  fe76475cc1ecccd4abb7bd8c85034e6f  14 - selection: rappresentazione Mermaid e esempio grafico con Store
+Page 96  3915eaee02f714ac47e0dfa764b2836f  Appendice temporanea - scopo, lineage e confine del rebuild
+Page 97  5475a02c3223c3fac62a7eebe62f6be2  Appendice temporanea - corpus e stati epistemici
+Page 98  e1b1becfc138e20474529fae47de6a05  Appendice temporanea - Construct Description Contract e principio espositivo
+Page 99  435e9ecddb23d230df9cc32766e10610  Appendice temporanea - CDC direzione della spiegazione e revisione
+Page 100  9d02d27cc2ad8bb4e1b30d441667e854  Appendice temporanea - CDC campi 1-10
+Page 101  90b6659e5a0105e0cd7268d3f76137f6  Appendice temporanea - CDC campi 11-20
+Page 102  6c0bfc1303d2625419769ae6e58f4b68  Appendice temporanea - roadmap e registro dei costrutti da integrare/studiare
+Page 103  0116bbb625d36a26028cc43031381a75  Indice di integrita' delle pagine [INTEGRITY INDEX]
+Page 104  13cdd31df41e1d75e405e6ba020261fa  Appendice temporanea - laboratorio prove grafiche Mermaid da cancellare
