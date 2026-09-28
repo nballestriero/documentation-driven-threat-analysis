@@ -1,0 +1,185 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{libertinus}
+\usepackage[a2paper,landscape,top=18mm,bottom=18mm,left=20mm,right=20mm]{geometry}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric,calc}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+
+\definecolor{DDTANavy}{HTML}{17324D}
+\definecolor{DDTABlue}{HTML}{275D86}
+\definecolor{DDTALightBlue}{HTML}{EEF4F9}
+\definecolor{DDTAAmber}{HTML}{A96A16}
+\definecolor{DDTALightAmber}{HTML}{FFF4E3}
+\definecolor{DDTAGray}{HTML}{5B6770}
+\definecolor{DDTALightGray}{HTML}{F4F6F8}
+\definecolor{DDTATeal}{HTML}{2A7F78}
+\definecolor{DDTALightTeal}{HTML}{EAF5F3}
+
+\begin{document}
+
+{\sffamily\bfseries\color{DDTANavy}\fontsize{22}{25}\selectfont
+RC-001 -- working projection: evaluation, condition, rollback / restore}
+\hfill
+{\sffamily\scriptsize\color{DDTAGray}WORKING CHECKPOINT / NON-AUTHORITY}
+
+\vspace{6mm}
+
+\begin{center}
+\begin{tikzpicture}[
+  actor/.style={draw=DDTAGray,fill=DDTALightGray,dashed,rounded corners=3pt,thick,
+    align=center,minimum height=23mm,text width=70mm,inner sep=8pt,
+    font=\sffamily\fontsize{9.2}{10.5}\selectfont},
+  contentdoc/.style={draw=DDTABlue,fill=white,thick,align=center,minimum height=27mm,
+    text width=70mm,inner sep=8pt,font=\sffamily\fontsize{8.8}{10.0}\selectfont,
+    path picture={\draw[DDTABlue,thick]
+      ([xshift=-8mm]path picture bounding box.north east) --
+      ([xshift=-8mm,yshift=-8mm]path picture bounding box.north east) --
+      ([yshift=-8mm]path picture bounding box.north east);
+      \draw[DDTABlue,thick]
+      ([xshift=-8mm]path picture bounding box.north east) --
+      ([yshift=-8mm]path picture bounding box.north east);}},
+  storenode/.style={cylinder,shape border rotate=90,aspect=0.27,draw=DDTABlue,
+    fill=DDTALightBlue,thick,align=center,minimum height=30mm,text width=66mm,
+    inner sep=8pt,font=\sffamily\fontsize{8.8}{10.0}\selectfont},
+  conditiontag/.style={ellipse,draw=DDTAAmber,fill=DDTALightAmber,thick,
+    align=center,text width=126mm,minimum height=23mm,inner sep=7pt,
+    font=\sffamily\fontsize{9.0}{10.3}\selectfont},
+  local/.style={draw=DDTAGray,fill=DDTALightGray,dashed,rounded corners=2pt,
+    align=left,text width=96mm,inner sep=7pt,
+    font=\ttfamily\fontsize{7.3}{8.4}\selectfont},
+  binding/.style={draw=DDTAGray,fill=DDTALightGray,dashed,rounded corners=2pt,
+    align=center,text width=60mm,inner sep=6pt,
+    font=\ttfamily\fontsize{7.1}{8.2}\selectfont},
+  flow/.style={draw=DDTABlue,very thick,-{Stealth[length=3.6mm,width=2.4mm]}},
+  trigger/.style={draw=DDTAAmber,very thick,-{Stealth[length=3.6mm,width=2.4mm]}},
+  note/.style={draw=DDTAGray,thick,dashed}
+]
+
+% ---------------------------------------------------------------------------
+% 1. Performance evaluation and activation of the guarded rollback branch.
+% ---------------------------------------------------------------------------
+\node[actor] (eval) at (-15.5,8.7)
+  {\textbf{??-01}\\
+   {\scriptsize performance-evaluation function / \texttt{actor}}};
+
+\node[contentdoc] (degradation) at (-7.1,8.7)
+  {\textbf{PostAdoptionAccuracyDegradation}\\
+   {\scriptsize\texttt{result}}};
+
+\draw[flow] (eval.east) --
+  node[above,font=\sffamily\scriptsize,text=DDTABlue]{\texttt{produce}}
+  (degradation.west);
+
+% Condition remains the head of the rollback branch.
+\node[conditiontag] (condition) at (4.5,8.7)
+  {\textbf{\texttt{PostAdoptionAccuracyDegradation > 5\%}}\\
+   {\scriptsize relative to \texttt{ApplicablePostAdoptionReference}}};
+
+% Explicit activation link requested: this is not a transfer.
+\draw[trigger] (eval.north east) .. controls (-7.0,12.0) and (0.0,11.6) ..
+  node[above,font=\sffamily\scriptsize,text=DDTAAmber]{establishes / activates guarded branch}
+  (condition.north west);
+
+\node[actor] (rollback) at (4.5,1.0)
+  {\textbf{??-02}\\
+   {\scriptsize rollback / restore function}\\
+   {\scriptsize\texttt{destination} / \texttt{source} / \texttt{actor}}};
+
+\draw[trigger] (condition.south) --
+  node[right,font=\sffamily\scriptsize,text=DDTAAmber]{\texttt{scopedModifier.condition}}
+  (rollback.north);
+
+% ---------------------------------------------------------------------------
+% 2. Left-side inputs to ??-02.
+%    A) model_versions.json is represented as a Store plus its information content.
+% ---------------------------------------------------------------------------
+\node[storenode] (trackingstore) at (-17.2,2.6)
+  {\textbf{ModelVersionTrackingStore}\\{\scriptsize\texttt{source}}};
+
+\node[contentdoc] (trackingartifact) at (-7.8,2.6)
+  {\textbf{ModelVersionTrackingArtifact}\\
+   {\scriptsize\texttt{input} / selection basis}};
+
+\draw[flow] (trackingstore.east) -- (trackingartifact.west);
+\draw[flow] (trackingartifact.east) -- (rollback.west);
+
+\node[font=\sffamily\bfseries\color{DDTABlue}\fontsize{8.8}{10.0}\selectfont]
+  at (-7.8,4.95) {BAP-RC001-TTRACK \texttt{transfer}};
+
+\node[binding] (trackbind) at (-17.2,-0.9)
+  {\texttt{db/model\_versions.json}\\{\scriptsize locator}};
+\draw[note] (trackbind.north) -- (trackingstore.south);
+
+% ---------------------------------------------------------------------------
+% 3. Left/lower input: selected classifier version from the version Store.
+% ---------------------------------------------------------------------------
+\node[storenode] (vstore) at (-17.2,-5.5)
+  {\textbf{ClassifierVersionStore}\\{\scriptsize\texttt{source}}};
+
+\node[contentdoc] (tincontent) at (-7.8,-5.5)
+  {\textbf{PreviousAcceptable}\\\textbf{ClassifierVersion}\\{\scriptsize\texttt{content}}};
+
+\draw[flow] (vstore.east) -- (tincontent.west);
+\draw[flow] (tincontent.east) -- (rollback.south west);
+
+\node[font=\sffamily\bfseries\color{DDTABlue}\fontsize{8.8}{10.0}\selectfont]
+  at (-7.8,-3.15) {BAP-RC001-TIN \texttt{transfer}};
+
+\node[binding] (vbind) at (-17.2,-9.1)
+  {\texttt{models/versions/}\\{\scriptsize locator}};
+\draw[note] (vbind.north) -- (vstore.south);
+
+% ---------------------------------------------------------------------------
+% 4. Right-side output from ??-02 to the active classifier Store.
+% ---------------------------------------------------------------------------
+\node[contentdoc] (toutcontent) at (14.1,-5.5)
+  {\textbf{PreviousAcceptable}\\\textbf{ClassifierVersion}\\{\scriptsize\texttt{content}}};
+
+\node[storenode] (active) at (23.2,-5.5)
+  {\textbf{ActiveClassifierStore}\\{\scriptsize\texttt{destination}}};
+
+\draw[flow] (rollback.south east) -- (toutcontent.west);
+\draw[flow] (toutcontent.east) -- (active.west);
+
+\node[font=\sffamily\bfseries\color{DDTABlue}\fontsize{8.8}{10.0}\selectfont]
+  at (14.1,-3.15) {BAP-RC001-TOUT \texttt{transfer}};
+
+\node[binding] (abind) at (23.2,-9.1)
+  {\texttt{models/efficientnet\_b4.pth}\\{\scriptsize locator}};
+\draw[note] (abind.north) -- (active.south);
+
+% ---------------------------------------------------------------------------
+% 5. Selection is local to the rollback producer; no extra flow chain.
+% ---------------------------------------------------------------------------
+\node[local] (selection) at (4.5,-9.4)
+  {selection\\
+   candidateSource=ClassifierVersionStore\\
+   selectedResult=PreviousAcceptableClassifierVersion\\
+   membershipCriteria=acceptable\\
+   selectionBasis=ModelVersionTrackingArtifact};
+\draw[note] (selection.north) -- (rollback.south);
+
+% Projection convention note.
+\node[draw=DDTAGray,fill=DDTALightGray,rounded corners=2pt,
+  align=left,text width=112mm,inner sep=7pt,
+  font=\sffamily\fontsize{7.7}{8.8}\selectfont] (orientation) at (18.0,6.6)
+  {\textbf{Projection rule under test}\\
+   Inputs to an actor/function are placed preferentially on the \textbf{left or top};
+   results/outputs on the \textbf{right or bottom}. A condition is placed at the head of the governed branch.
+   These placement rules improve readability and do not add BA semantics.};
+
+\end{tikzpicture}
+\end{center}
+
+\vfill
+{\sffamily\scriptsize\color{DDTAGray}
+Repository working checkpoint only; not accepted BA authority. \texttt{ModelVersionTrackingStore} represents the persistent location bound to
+\texttt{db/model\_versions.json}; \texttt{ModelVersionTrackingArtifact} is the information consumed by \texttt{??-02} as input / selection basis.
+The explicit \texttt{??-01 -> condition} edge visualizes activation of the guarded rollback branch and is not a transfer.}
+
+\end{document}
