@@ -3,7 +3,7 @@
 \usepackage{amsmath,amssymb}
 
 \hypersetup{
-  pdftitle={DDTA Base Analysis Guide - Rebuild R7 - condition integration},
+  pdftitle={DDTA Base Analysis Guide - Rebuild R7 - cumulative reconstruction},
   pdfauthor={Documentation-Driven Threat Analysis research project}
 }
 
@@ -28,7 +28,7 @@ Il contenuto di questa appendice governa \emph{come stiamo ricostruendo la guida
 % -----------------------------------------------------------------------------
 \newcommand{\PageMDfive}[1]{\csname PageMDfive#1\endcsname}
 %<PAGE-HASH-DEFS>
-\expandafter\def\csname PageMDfive1\endcsname{e36c5f64cea8931b2a6e5abcb558c338}
+\expandafter\def\csname PageMDfive1\endcsname{01c092d9668cf627b6d85a12cd41587c}
 \expandafter\def\csname PageMDfive2\endcsname{fa01b7db301f77cd9988907daf2b3397}
 \expandafter\def\csname PageMDfive3\endcsname{3b620cf21e74f64e397656ec9f3038da}
 \expandafter\def\csname PageMDfive4\endcsname{b12d8f94dc04c833c0d916453255f9be}
@@ -41,8 +41,8 @@ Il contenuto di questa appendice governa \emph{come stiamo ricostruendo la guida
 \expandafter\def\csname PageMDfive11\endcsname{f0c4184f4f1ebcb7ce1ab9394c5c5209}
 \expandafter\def\csname PageMDfive12\endcsname{e3200807fcbf2aa290f0748b9c099b69}
 \expandafter\def\csname PageMDfive13\endcsname{b9028ef062953f4b7ab73bfb7ac7975c}
-\expandafter\def\csname PageMDfive14\endcsname{849a9ae9b63b6f5b84acbf3c1015a920}
-\expandafter\def\csname PageMDfive15\endcsname{c6fca40abd8cf6a72634f4b1d07fa450}
+\expandafter\def\csname PageMDfive14\endcsname{cf24da7acca0061993625715ee5b30c1}
+\expandafter\def\csname PageMDfive15\endcsname{17d66f19d9937e4c823ee9c212fb6ad8}
 \expandafter\def\csname PageMDfive16\endcsname{83b4a5ba93a8eb218e7a0816bb7e023a}
 \expandafter\def\csname PageMDfive17\endcsname{8063825cd44fdd393ef91bf9a5957e86}
 \expandafter\def\csname PageMDfive18\endcsname{f23c4cd3c7776e49c0d794a9ecfef9a9}
@@ -104,15 +104,24 @@ Il contenuto di questa appendice governa \emph{come stiamo ricostruendo la guida
 \expandafter\def\csname PageMDfive74\endcsname{04d2d044867055a500a4f10de2caf3e4}
 \expandafter\def\csname PageMDfive75\endcsname{f248e4c48942111fde0c866c423d5e24}
 \expandafter\def\csname PageMDfive76\endcsname{4f78ba264c6eb0c06268caa9286bcf93}
-\expandafter\def\csname PageMDfive77\endcsname{3915eaee02f714ac47e0dfa764b2836f}
-\expandafter\def\csname PageMDfive78\endcsname{5475a02c3223c3fac62a7eebe62f6be2}
-\expandafter\def\csname PageMDfive79\endcsname{e1b1becfc138e20474529fae47de6a05}
-\expandafter\def\csname PageMDfive80\endcsname{435e9ecddb23d230df9cc32766e10610}
-\expandafter\def\csname PageMDfive81\endcsname{9d02d27cc2ad8bb4e1b30d441667e854}
-\expandafter\def\csname PageMDfive82\endcsname{90b6659e5a0105e0cd7268d3f76137f6}
-\expandafter\def\csname PageMDfive83\endcsname{c4622709ab9c2bf97c8f3bce55724e42}
-\expandafter\def\csname PageMDfive84\endcsname{c3ce06bf4610c41060c775c30b2fb397}
-\expandafter\def\csname PageMDfive85\endcsname{13cdd31df41e1d75e405e6ba020261fa}
+\expandafter\def\csname PageMDfive77\endcsname{7f04a38cba2726ed2c38669a57491ef1}
+\expandafter\def\csname PageMDfive78\endcsname{7e09a4a32edab694e1b96da249779080}
+\expandafter\def\csname PageMDfive79\endcsname{f4f201840927f60df58e2cbc0e349539}
+\expandafter\def\csname PageMDfive80\endcsname{aabbe964a5f1ee9f87864f035745131e}
+\expandafter\def\csname PageMDfive81\endcsname{1231009e9f6363f0ff1a91e379e66e2f}
+\expandafter\def\csname PageMDfive82\endcsname{2a701c771ac5753385b56105bab3c258}
+\expandafter\def\csname PageMDfive83\endcsname{12d72ba8edfed0badf4a8dd1bf10b958}
+\expandafter\def\csname PageMDfive84\endcsname{f971ae4163101485d17a2525eed12930}
+\expandafter\def\csname PageMDfive85\endcsname{d862d9363aa1ca311511499919febe1b}
+\expandafter\def\csname PageMDfive86\endcsname{3915eaee02f714ac47e0dfa764b2836f}
+\expandafter\def\csname PageMDfive87\endcsname{5475a02c3223c3fac62a7eebe62f6be2}
+\expandafter\def\csname PageMDfive88\endcsname{e1b1becfc138e20474529fae47de6a05}
+\expandafter\def\csname PageMDfive89\endcsname{435e9ecddb23d230df9cc32766e10610}
+\expandafter\def\csname PageMDfive90\endcsname{9d02d27cc2ad8bb4e1b30d441667e854}
+\expandafter\def\csname PageMDfive91\endcsname{90b6659e5a0105e0cd7268d3f76137f6}
+\expandafter\def\csname PageMDfive92\endcsname{2e99321550bf13010ea58df13810eab9}
+\expandafter\def\csname PageMDfive93\endcsname{bf4d809dca64cc4a52f3db2207d4f522}
+\expandafter\def\csname PageMDfive94\endcsname{13cdd31df41e1d75e405e6ba020261fa}
 %</PAGE-HASH-DEFS>
 
 \newcommand{\PageHashFooter}[1]{%
@@ -150,9 +159,9 @@ Il contenuto di questa appendice governa \emph{come stiamo ricostruendo la guida
 \begin{ddtaopen}[title={RIQUADRO TEMPORANEO - WORKING SET E RIFERIMENTI - DA CANCELLARE PRIMA DELLA GUIDA DEFINITIVA}]
 {\scriptsize
 \textbf{Attivi:} \nolinkurl{DDTA_DOCUMENTATION_AUTHORING_GUIDE_R7_REBUILD_R8.tex}; \nolinkurl{DDTA_BASE_ANALYSIS_GUIDE_REBUILD_R7.tex}; \nolinkurl{DDTA_DERMATRIAGE_PARALLEL_CASE_STUDY_R25_FR03_SPLIT_REVIEW_R1.tex}.\par
-\textbf{Piano corrente:} \nolinkurl{DDTA_R25_BASE_ANALYSIS_GUIDE_REBUILD_WORK_PLAN_R6.md}; working analysis: \nolinkurl{DDTA_R25_DERMATRIAGE_CASE_STUDY_WORKING_ANALYSIS_R1.md}.\par
+\textbf{Piano corrente:} \nolinkurl{DDTA_R25_BASE_ANALYSIS_GUIDE_REBUILD_WORK_PLAN_R7.md}; working analysis: \nolinkurl{DDTA_R25_DERMATRIAGE_CASE_STUDY_WORKING_ANALYSIS_R1.md}.\par
 \textbf{Riferimenti metodologici:} Operational Guide R3 + BA0--BA5 come authority corrente; Core/Complete BA Candidate R1 e precedenti guide operative come research evidence per la ricostruzione didattica.\par
-\textbf{Fase corrente:} R6 sospende nuove promotion di costrutti durante il source-preservation audit completo e il successivo audit di coerenza/connettivita' della BA accettata. La Rebuild R7 resta la superficie cumulativa corrente: \texttt{transfer}, \texttt{produce}, \texttt{realize}, \texttt{constrain}, lo scoped modifier \texttt{condition} e le candidate gia' documentate restano preservati; \texttt{selection}, sufficienza del modello dei contratti e rilocazione di \texttt{decisionRule} vengono riesaminati solo dopo i due audit globali.
+\textbf{Fase corrente:} C0.1 storage/persistence dopo RC-001; poi \texttt{selection} e retrieval/access. Questo incremento documenta \texttt{store}, usa \texttt{semanticKind} direttamente sul \BAR{} nel working model e lascia \texttt{classify} fuori dal typing ordinario; i binding opzionali restano sotto test.
 }
 \end{ddtaopen}
 
@@ -160,11 +169,11 @@ Il contenuto di questa appendice governa \emph{come stiamo ricostruendo la guida
 \begin{tabularx}{0.93\textwidth}{L{46mm}Y}
 \toprule
 \textbf{Stato} & \texttt{CANDIDATE / NON-NORMATIVE / CUMULATIVE REBUILD} \\
-\textbf{Repository baseline} & \texttt{1502e6afc0a88a69fd976bb3b38de7e5fb8841a3} \\
+\textbf{Repository baseline} & \texttt{a98e1293b48747ab1674e38a6c4c0f64705996dc} \\
 \textbf{Predecessore cumulativo} & \nolinkurl{DDTA_BASE_ANALYSIS_GUIDE_REBUILD_R6} \\
 \textbf{Authority BA corrente} & R3 Operational Guide + BA0 R1 / BA1 R1 / BA2 R3 / BA3 R1 / BA4 R1 / BA5 R1 \\
-\textbf{Scopo di R7} & Ricostruzione cumulativa dei costrutti BA richiesti dal caso. I quattro operatori ricostruiti e \texttt{condition} restano invariati; questo incremento testa la candidate \texttt{operatorStructure.decisionRule}, cioe' la rilocazione dello stesso costrutto storico \texttt{decisionRule} dentro \texttt{produce} senza duplicare actor/input/result. \\
-\textbf{Authority change} & Nessuno. \texttt{decisionRule} resta authority corrente come \texttt{semanticOperatorKey} top-level; la sua rilocazione candidate come \texttt{operatorStructure.decisionRule} richiede regression + checkpoint prima di promotion. \\
+\textbf{Scopo di R7} & Stessa revisione cumulativa: sezione \texttt{Store}, \texttt{semanticKind} diretto sul \BAR{} e binding opzionali sotto regression. \\
+\textbf{Authority change} & Nessuna nuova famiglia BA1 o nuovo operator BA2. \texttt{classify} resta nell'authority inventory ma non e' richiesto per il typing ordinario; responsabilita' in review. \texttt{storedIn} deferito. \\
 \bottomrule
 \end{tabularx}
 
@@ -439,6 +448,10 @@ La domanda utile non e' ``questo nome compare nel testo?'', ma ``questo signific
 
 Se nessuna di queste esigenze esiste e la rimozione dell'identita' non fa perdere significato governato, un BAReferent separato puo' essere superfluo.
 
+\begin{ddtacore}[title={Working model di \texttt{semanticKind}}]
+Per mantenere il modello operativo e interrogabile senza introdurre proposition di typing prive di pressione concreta, questa R7 usa \texttt{semanticKind} direttamente sul \BAR{} come chiave controllata methodology-neutral: \texttt{semanticKind [0..*]}. Il kind non crea una nuova famiglia BA1. Provenance e review restano, per ora, alla granularita' del BAReferent; non viene introdotto un lifecycle separato per il singolo kind. La cardinalita' multipla resta disponibile ma si usa il minimo insieme sufficiente di kind realmente utile ai consumer.
+\end{ddtacore}
+
 La presenza lessicale, da sola, non basta: tecnologie, valori, campi e sostantivi diventano referent solo quando serve davvero un'identita' analitica indipendente.
 %</PAGE-CONTENT:14>
 
@@ -463,7 +476,7 @@ La documentazione consolidata di MR-01 offre gia' alcuni buoni esempi per applic
 Questa prima applicazione mostra come usare l'identity test. Non congela il registry DermaTriage e non decide ancora la granularita' instance-vs-concept: saranno le proposition necessarie a mostrare quali identita' devono sopravvivere autonomamente.
 \end{ddtaopen}
 
-Differenze come actor, component, information, behavior o state non richiedono di per se' famiglie BA diverse. Finche' classificazioni, ruoli, valori e proposition riescono a preservarle onestamente, restano all'interno della stessa famiglia BAReferent.
+Differenze come actor, component, information, behavior, state, contract o store non richiedono di per se' famiglie BA diverse. Quando la distinzione e' utile ai consumer, viene preservata tramite il \texttt{semanticKind} controllato dello stesso BAReferent; ruoli, valori e proposition descrivono invece come quel referent partecipa ai fatti governati.
 %</PAGE-CONTENT:15>
 
 \clearpage
@@ -2623,9 +2636,345 @@ Blu = produzione; ambra = applicability; grigio tratteggiato = result selection 
 
 \clearpage
 
-%<PAGE-DESC:77>Appendice temporanea - scopo, lineage e confine del rebuild
+
+
+\clearpage
+
+%<PAGE-DESC:77>13 - Store: definizione, smallest fact e criteri d'uso
 %<PAGE-CONTENT:77>
 \PageHashFooter{\PageMDfive{77}}
+\section{Semantic kind \texttt{store}}
+\CurrentTag
+
+\subsection{Che cosa rappresenta}
+\texttt{Store} e' la lettura umana del semantic kind canonico \texttt{store}. Non introduce una terza famiglia BA1 e non e' un nuovo operatore BA2: \texttt{semanticKind=store} descrive direttamente la natura di un \BAR{} nel working model corrente. La source governa una risorsa nella quale informazioni o artifact possono rimanere disponibili oltre la singola operazione che li ha collocati o consultati, senza che la BA debba conoscere la tecnologia concreta usata per conservarli o raggiungerli.
+
+\begin{ddtacore}[title={Smallest semantic fact}]
+Esiste una risorsa governata con identita' analitica indipendente che funge da luogo/fonte/destinazione di contenuto mantenuto disponibile oltre l'operazione corrente. Eliminando il semantic kind \texttt{store} si perde la distinzione tra tale risorsa e un normale process endpoint, service endpoint o contenuto in transito.
+\end{ddtacore}
+
+\subsection{Quando usarlo}
+Usare \texttt{store} quando la documentazione governa una risorsa identificabile in cui dati, informazioni, record, versioni o artifact vengono conservati, mantenuti, archiviati, salvati, cached o resi disponibili per uso successivo. Le parole sono soltanto indizi: il semantic kind deriva dal significato source-supported e dall'identity test BA1.
+
+\subsection{Quando non usarlo}
+Non assegnare \texttt{semanticKind=store} a un elemento soltanto perche' e' un file path, una tabella, un bucket, un database product, un repository nominale o un endpoint API. Un endpoint puo' esporre informazione calcolata o transiente; un path puo' essere soltanto una configurazione. La tecnologia corrente non decide la categoria BA.
+
+\begin{ddtaopen}[title={Incremento R7 sotto test - binding opzionali}]
+Il semantic kind \texttt{store} resta la distinzione preservata. Questa R7 candidate testa due semplificazioni complementari: il kind e' registrato direttamente sul \BAR{} e l'authoring shape opzionale \texttt{binding(locator,direction)} arricchisce lo stesso Store. Non vengono creati \texttt{StoreBinding}, nuovi BAReferent o nuovi operatori. Il binding profile e la responsabilita' residua di \texttt{classify} restano sotto regression prima di una futura promotion metodologica.
+\end{ddtaopen}
+%</PAGE-CONTENT:77>
+
+\clearpage
+
+%<PAGE-DESC:78>13 - Store: forma canonica, profilo binding e cardinalita
+%<PAGE-CONTENT:78>
+\PageHashFooter{\PageMDfive{78}}
+\subsection{Forma canonica BA e profilo authoring}
+Nel working model R7 il semantic kind e' parte della descrizione analitica del \BAR{}; non viene creata una \BAP{} \texttt{classify} soltanto per assegnare \texttt{store}. Il profilo \texttt{Store} presenta la stessa identita' insieme agli eventuali binding concreti senza creare una nuova identity family.
+
+\begin{lstlisting}
+BA CORE / STORE PROFILE
+BAReferent <store-id>
+  canonicalName = <project canonical name>
+  semanticKind  -> store
+
+  binding [0..*]
+    locator   -> <opaque source-supported literal> [1]
+    direction -> IN | OUT [0..2, unique]
+\end{lstlisting}
+
+\begin{tabularx}{\textwidth}{L{36mm}L{22mm}Y}
+\toprule
+\textbf{Elemento} & \textbf{Card.} & \textbf{Significato} \\
+\midrule
+Store referent & 1 & \BAR{} che supera l'identity test e conserva il semantic kind canonico \texttt{store}. \\
+\texttt{semanticKind} & 1 per uno Store accettato & Chiave controllata methodology-neutral del \BAR{}. Non crea una terza famiglia BA1 e non richiede una proposition di typing separata nel working model. \\
+\texttt{binding} & 0..* & Enrichment opzionale dello stesso Store. Uno Store senza binding concreto resta pienamente valido. \\
+\texttt{locator} & 1 per binding & Literal opaco source-supported: path, endpoint, URI, table/bucket identifier o altra forma concreta. Non crea una tassonomia tecnologica. \\
+\texttt{direction} & 0..2 uniche & Direzione relativa allo Store: \texttt{IN} = contenuto entra nello Store; \texttt{OUT} = contenuto esce dallo Store. Omettere se la direzione non e' governata. \\
+\bottomrule
+\end{tabularx}
+
+\begin{ddtacore}[title={Un solo costrutto, enrichment progressivo}]
+\texttt{semanticKind} e \texttt{binding} descrivono lo stesso BAReferent: non introducono una proposition di typing ne' un secondo costrutto. MR, Decision e FR possono riusare la stessa identita' Store e aggiungere binding mancanti o direzioni ulteriormente governate. Provenance/review restano, per ora, alla granularita' del BAReferent e l'enrichment non autorizza duplicati.
+\end{ddtacore}
+%</PAGE-CONTENT:78>
+
+\clearpage
+
+%<PAGE-DESC:79>13 - Store: identity continuity, invarianti e forbidden inference
+%<PAGE-CONTENT:79>
+\PageHashFooter{\PageMDfive{79}}
+\subsection{Identity continuity e invarianti}
+\begin{itemize}
+  \item il canonical semantic-kind key resta \texttt{store}; il display \texttt{Store} non crea un alias normativo;
+  \item \texttt{semanticKind=store} e' registrato sul BAReferent; non materializzare \texttt{classify} soltanto per il typing ordinario;
+  \item provenance e review del kind seguono, in questo working model, il BAReferent nel suo insieme; un lifecycle field-level verra' riaperto solo se un pressure case reale lo richiede;
+  \item uno Store e' sempre un \BAR{} riusabile: un dettaglio di binding nuovo non crea una nuova identita' se il significato della risorsa e' invariato;
+  \item \texttt{binding} e' opzionale: assenza di locator non nega l'esistenza dello Store;
+  \item ogni locator resta opaco alla BA; filesystem, SMB, API, database e object storage non diventano sottotipi BA;
+  \item \texttt{direction} e' sempre relativa allo Store: \texttt{IN} significa ingresso nello Store, \texttt{OUT} uscita dallo Store;
+  \item un binding puo' avere soltanto locator quando la source governa la realizzazione/access location ma non la direzione;
+  \item lo stesso locator puo' supportare sia \texttt{IN} sia \texttt{OUT}; locator diversi possono supportare direzioni diverse;
+  \item \texttt{transfer} verso uno Store e' la rappresentazione corrente sufficiente di un comportamento governato di save/write; \texttt{transfer} dallo Store e' la rappresentazione corrente sufficiente di load/read;
+  \item se la source governa soltanto che un contenuto e' mantenuto in una risorsa, non inventare un \texttt{transfer}: riconoscere lo Store e preservare soltanto i binding effettivamente supportati;
+  \item enrichment documentale: campo mancante + nuova evidence compatibile $\rightarrow$ completamento; evidence compatibile aggiuntiva $\rightarrow$ enrichment; evidence materialmente diversa $\rightarrow$ review, non overwrite silenzioso.
+\end{itemize}
+
+\subsection{Forbidden inference}
+Da \texttt{store} non inferire permanenza illimitata, retention minima/massima, ownership, versioning, deletion policy, replica, consistency, encryption, localita', protocollo, access control o lifecycle. Un file temporaneo puo' essere Store se la source governa la sua funzione di mantenere contenuto disponibile per un uso successivo. Eventuale retention temporale e' semantica separata e non viene inserita nella definizione minima.
+
+\begin{ddtaanti}[title={No synthetic persistence relation}]
+Questa R7 non ammette \texttt{storedIn}. Finche' \texttt{Store + transfer} preserva i fatti governati necessari, non si aggiunge una relazione at-rest per rendere il grafo piu' completo. Un counterexample futuro puo' riaprire il tema.
+\end{ddtaanti}
+%</PAGE-CONTENT:79>
+
+\clearpage
+
+%<PAGE-DESC:80>13 - Store: domande di identificazione, enrichment MR Decision FR e procedura
+%<PAGE-CONTENT:80>
+\PageHashFooter{\PageMDfive{80}}
+\subsection{Domande da porre alla documentazione}
+\begin{enumerate}
+  \item La source governa una risorsa nella quale informazioni o artifact possono rimanere disponibili oltre la singola operazione corrente?
+  \item Tale risorsa deve avere identita' analitica indipendente e poter essere riusata come endpoint o target in piu' proposition/viste?
+  \item Sto riconoscendo la risorsa logica oppure sto promuovendo automaticamente un path, endpoint, table o prodotto tecnologico?
+  \item Se compare un endpoint API, la source governa realmente una risorsa mantenuta dietro quell'accesso oppure soltanto una risposta calcolata/transiente/service-only?
+  \item Esiste gia' lo stesso Store nel registry BA e deve essere riusato?
+  \item La source governa un locator concreto? Se si', conservarlo come binding opaco senza dedurne tecnologia ulteriore.
+  \item La direzione rispetto allo Store e' esplicita? \texttt{IN}, \texttt{OUT}, entrambe, oppure \texttt{NOT SPECIFIED}?
+  \item Un livello documentale downstream aggiunge un binding o una direzione allo stesso Store? Se si', arricchire l'identita' esistente invece di creare un nuovo costrutto.
+  \item Un FR aggiunge soltanto campi dello Store oppure governa anche un comportamento operativo coerente? Il field completion puo' essere evidence di downstream utility, ma non giustifica da solo un FR.
+  \item La source governa davvero un movimento di content da/verso lo Store? Solo allora costruire la corrispondente proposition \texttt{transfer}.
+  \item Esistono binding incompatibili tra fonti/livelli? In tal caso registrare review/conflict invece di scegliere il piu' concreto.
+  \item Retention, expiry, replacement o deletion sono governati? Se si', preservarli come semantica separata; non incorporarli implicitamente in \texttt{store}.
+\end{enumerate}
+
+\begin{ddtacheck}[title={Procedura minima}]
+Ricostruire prima il significato della risorsa; applicare BA1; assegnare al BAReferent \texttt{semanticKind=store}; riusare la stessa identita' cross-level; raccogliere locator source-supported; assegnare \texttt{IN/OUT} soltanto quando la direzione e' governata; costruire eventuali \texttt{transfer} separatamente; infine verificare che MR/Decision/FR abbiano aggiunto significato senza duplicare Store o trasformare il completamento di un campo nell'unica ragione di esistenza di un branch.
+\end{ddtacheck}
+%</PAGE-CONTENT:80>
+
+\clearpage
+
+%<PAGE-DESC:81>13 - Store: esempio generico e pressure case DermaTriage RC001
+%<PAGE-CONTENT:81>
+\PageHashFooter{\PageMDfive{81}}
+\subsection{Esempio generico minimo}
+\begin{ddtaexample}[title={Documentazione inventata ma coerente}]
+``Il sistema conserva i \texttt{ReportRecord} nel \texttt{ReportStore}. La registrazione avviene tramite \texttt{POST /reports}; il recupero tramite \texttt{GET /reports/\{id\}}.''
+\end{ddtaexample}
+
+Assumendo che l'identita' superi BA1, l'authoring profile e':
+\begin{lstlisting}
+Store ReportStore
+  binding
+    locator   -> "POST /reports"
+    direction -> IN
+  binding
+    locator   -> "GET /reports/{id}"
+    direction -> OUT
+\end{lstlisting}
+La BA materializza direttamente \texttt{ReportStore} come BAReferent con \texttt{semanticKind=store}. I transfer di save/read vengono aggiunti solo se source, content e destination/source necessari sono governati.
+
+\subsection{Pressure case DermaTriage RC-001}
+La source corrente preservata stabilisce che le versioni del classificatore sono mantenute nel path \nolinkurl{models/versions/}. Il tracking usa \nolinkurl{db/model_versions.json}; il modello attivo usa \nolinkurl{models/efficientnet_b4.pth}. Per il primo elemento la working extraction puo' riconoscere:
+
+\begin{lstlisting}
+Store ClassifierVersionStore
+  binding
+    locator -> "models/versions/"
+    # direction omitted: access direction not yet established by this fact alone
+\end{lstlisting}
+
+\begin{ddtaopen}[title={Cosa resta da decidere nel rerun RC-001}]
+La sezione Store non chiude automaticamente se \texttt{ClassifierVersionRegistry} e \texttt{ActiveClassifierModelLocation} siano Store distinti ne' quale transfer realizzi il restore. Tali identita' vengono riesaminate source-first dopo C0.1 e, per il version choice, dopo \texttt{selection}. Il meccanismo copy/move/overwrite/load/reference-switch resta \texttt{NOT SPECIFIED}.
+\end{ddtaopen}
+%</PAGE-CONTENT:81>
+
+\clearpage
+
+%<PAGE-DESC:82>13 - Store: prompt LLM per identificazione ed enrichment controllati
+%<PAGE-CONTENT:82>
+\PageHashFooter{\PageMDfive{82}}
+\subsection{Prompt LLM di supporto all'authoring}
+\begin{lstlisting}
+TASK: identify governed BAReferents that qualify for semanticKind store,
+and preserve optional source-supported Store bindings.
+Use ONLY supplied documentation, existing BA registry and current BA authority.
+
+Rules:
+1. Apply the normal BA1 identity test before creating a new BAReferent.
+2. Accept store only when the source supports an independently identifiable
+   resource in which information/artifacts can remain available beyond the
+   current operation.
+3. Reuse an existing Store BAReferent when semantic identity is unchanged.
+4. Record semanticKind = store directly on that BAReferent. Do not create
+   a classify proposition solely to perform ordinary semantic typing.
+5. Do not infer Store from a filesystem path, database/table/bucket,
+   repository word or API endpoint alone.
+6. Preserve a concrete access/storage locator only when source-supported.
+7. Keep locator opaque; do not invent a technology taxonomy.
+8. direction is relative to the Store: IN enters Store; OUT leaves Store.
+9. Add IN/OUT only when direction is governed. Locator-only is valid.
+10. MR/Decision/FR may enrich the SAME Store with additional supported fields.
+   Do not create a duplicate Store merely because a lower level is more concrete.
+11. A lower-level field completion is not, by itself, evidence that a new FR
+    or Decision must exist; preserve the independent behavioral/governance gate.
+12. Do not infer transfer from Store existence or locator presence.
+13. When movement is governed, use current transfer semantics; do not invent
+    read, write or storedIn operators.
+14. Do not infer retention duration, permanence, deletion, versioning,
+    ownership, consistency, encryption, protocol or lifecycle.
+15. Conflicting bindings trigger REVIEW; never silently overwrite one source.
+16. If retained-availability meaning is missing, return NOT_A_STORE or
+    INSUFFICIENT_EVIDENCE rather than completing the source.
+
+Return EXACTLY the review wrapper and authoring output shape shown next.
+\end{lstlisting}
+
+\begin{ddtaprinciple}[title={Human review remains mandatory}]
+La review deve verificare identita' Store, semantic kind, locator e direzione, ma nel working model non apre un lifecycle separato per ciascun campo. Un output completo dell'LLM non sana una source che governa soltanto un endpoint o un path senza significato di storage.
+\end{ddtaprinciple}
+%</PAGE-CONTENT:82>
+
+\clearpage
+
+%<PAGE-DESC:83>13 - Store: output atteso e discriminazioni con costrutti vicini
+%<PAGE-CONTENT:83>
+\PageHashFooter{\PageMDfive{83}}
+\subsection{Output esatto atteso dall'estrazione assistita}
+Il wrapper integra semantic kind ed enrichment opzionale nello stesso BAReferent. Il blocco mostrato sotto non e' una nuova famiglia BA e non genera una proposition di typing separata.
+
+\begin{lstlisting}
+STORE_ASSESSMENT
+  decision = ACCEPT_STORE | NOT_A_STORE | INSUFFICIENT_EVIDENCE
+  evidence = <source locator / concise supported wording>
+  identity = REUSE | NEW_CANDIDATE
+  bindingStatus = NONE | LOCATOR_ONLY | DIRECTED | MIXED | REVIEW_CONFLICT
+  notSpecified = [<only unresolved material items>]
+
+BA_OUTPUT
+  BAReferent <canonical store referent name>
+    semanticKind -> store
+
+    binding [0..*]
+      locator   -> <opaque literal>
+      direction -> IN | OUT  # repeat 0..2 only if source-supported
+\end{lstlisting}
+
+\subsection{Discriminazioni con i costrutti vicini}
+\begin{tabularx}{\textwidth}{L{34mm}Y}
+\toprule
+\textbf{Confine} & \textbf{Discriminatore} \\
+\midrule
+Store / Information & lo Store e' la risorsa che mantiene disponibilita'; il content/artifact conservato mantiene la propria identita'. \\
+Store / transfer & Store identifica un endpoint semantico riusabile; transfer governa una conveyance specifica. Store non crea da solo movimento. \\
+Store / realize & un locator embedded preserva un binding opaco; usare \texttt{realize} quando una realization necessita propria identita' BA e relazione interrogabile con l'abstract. \\
+Store / consumeService & usare un'API/service capability non dimostra che il service sia Store; l'accesso service e la risorsa conservata restano separabili. \\
+Store / observe & read/query/retrieve possono richiedere review \texttt{observe}; questa sezione non risolve C0.3 e usa transfer quando la source governa conveyance. \\
+Store / selection & Store puo' fornire una source population; \texttt{selection} governa quale item/subset viene scelto, non dove e' conservato. \\
+Store / storedIn & \texttt{storedIn} resta deferito. Va riaperto solo se un fatto at-rest governato non e' preservabile con Store, transfer e documentazione senza inventare operazioni. \\
+semanticKind / classify & \texttt{semanticKind} descrive la natura analitica del BAReferent. Questa R7 non richiede \texttt{classify} per il typing ordinario; \texttt{classify} resta in review per eventuali classification assertion indipendenti dimostrate da futuri pressure case. \\
+Binding / BA fact & un binding completa la descrizione dello stesso Store; non e' automaticamente una nuova \BAP{} ne' un motivo sufficiente per creare un FR. \\
+\bottomrule
+\end{tabularx}
+%</PAGE-CONTENT:83>
+
+\clearpage
+
+%<PAGE-DESC:84>13 - Store: rappresentazione Mermaid, direzioni e binding opzionali
+%<PAGE-CONTENT:84>
+\PageHashFooter{\PageMDfive{84}}
+\subsection{Rappresentazione Mermaid di Store}
+Il semantic kind \texttt{store} pilota la forma del nodo: un cilindro rende immediatamente riconoscibile la risorsa mantenuta. La shape e' projection semantics derivata dal semantic kind; non crea un nuovo tipo BA. Il role assunto dallo Store in una proposition determina invece posizione/direzione del grafo e non modifica la shape.
+
+\begin{tabularx}{\textwidth}{L{40mm}Y}
+\toprule
+\textbf{Semantica} & \textbf{Regola di projection} \\
+\midrule
+\texttt{semanticKind=store} & Nodo cilindrico con nome canonico del \BAR{}. \\
+Store destination & Se lo Store partecipa come \texttt{destination}: source $\rightarrow$ content $\rightarrow$ cilindro; lettura umana write/save. \\
+Store source & Se lo Store partecipa come \texttt{source}: cilindro $\rightarrow$ content $\rightarrow$ destination; lettura umana read/load. \\
+Direction \texttt{IN} & Compatibile con accesso verso lo Store; non genera da solo una proposition transfer. \\
+Direction \texttt{OUT} & Compatibile con accesso dallo Store; non genera da solo una proposition transfer. \\
+Locator & Se la view lo include, compare come annotazione grigia/tratteggiata del cilindro; non come nuovo BA node. \\
+\bottomrule
+\end{tabularx}
+
+\begin{lstlisting}
+flowchart LR
+  P["ReportGeneration<br/>source"]
+  C@{ shape: doc, label: "ReportRecord<br/>content" }
+  S[("ReportStore<br/>store / destination")]
+  B["IN: POST /reports"]
+
+  P --> C --> S
+  B -.- S
+
+  classDef endpoint fill:#EEF4F9,stroke:#275D86,color:#17324D
+  classDef content fill:#FFFFFF,stroke:#275D86,color:#17324D
+  classDef store fill:#EEF4F9,stroke:#275D86,color:#17324D
+  classDef binding fill:#F4F6F8,stroke:#5B6770,color:#17324D
+  class P endpoint
+  class C content
+  class S store
+  class B binding
+\end{lstlisting}
+
+\begin{ddtacore}[title={No reverse inference dalla projection}]
+Il cilindro deriva da \texttt{semanticKind=store}. La presenza di un cilindro o di una label IN/OUT in una vista non autorizza a creare Store, binding o transfer che non siano gia' source-supported nella BA/authoring evidence.
+\end{ddtacore}
+%</PAGE-CONTENT:84>
+
+\clearpage
+
+%<PAGE-DESC:85>13 - Store: esempio grafico con transfer IN e OUT
+%<PAGE-CONTENT:85>
+\PageHashFooter{\PageMDfive{85}}
+\subsection{Esempio grafico corrispondente}
+Le due righe mostrano lo stesso semantic kind in due proposition transfer indipendenti. \texttt{IN/OUT} sono direzioni dei binding relative allo Store; le frecce derivano invece dai role source/destination di ciascun transfer.
+
+\vspace{3mm}
+\begin{center}
+\begin{tikzpicture}[
+  endpoint/.style={draw=DDTABlue,fill=DDTALightBlue,rounded corners=3pt,thick,align=center,minimum height=14mm,text width=31mm,inner sep=4pt,font=\sffamily\fontsize{6.5}{7.6}\selectfont},
+  contentdoc/.style={draw=DDTABlue,fill=white,thick,align=center,minimum height=17mm,text width=27mm,inner sep=4pt,font=\sffamily\fontsize{6.5}{7.6}\selectfont,
+    path picture={\draw[DDTABlue,thick] ([xshift=-5mm]path picture bounding box.north east) -- ([xshift=-5mm,yshift=-5mm]path picture bounding box.north east) -- ([yshift=-5mm]path picture bounding box.north east); \draw[DDTABlue,thick] ([xshift=-5mm]path picture bounding box.north east) -- ([yshift=-5mm]path picture bounding box.north east);}},
+  storenode/.style={cylinder,shape border rotate=90,aspect=0.27,draw=DDTABlue,fill=DDTALightBlue,thick,align=center,minimum height=19mm,text width=31mm,inner sep=5pt,font=\sffamily\fontsize{6.6}{7.7}\selectfont},
+  binding/.style={draw=DDTAGray,fill=DDTALightGray,dashed,rounded corners=2pt,align=center,text width=31mm,inner sep=4pt,font=\ttfamily\fontsize{6.0}{7.0}\selectfont},
+  flow/.style={draw=DDTABlue,very thick,-{Stealth[length=2.8mm,width=1.9mm]}},
+  note/.style={draw=DDTAGray,thick,dashed}
+]
+% write-like transfer
+\node[endpoint] (p1) at (-5.3,2.1) {\textbf{ReportGeneration}\\{\scriptsize\texttt{source}}};
+\node[contentdoc] (c1) at (-1.7,2.1) {\textbf{ReportRecord}\\{\scriptsize\texttt{content}}};
+\node[storenode] (s1) at (2.2,2.1) {\textbf{ReportStore}\\{\scriptsize\texttt{store / destination}}};
+\node[binding] (b1) at (5.6,2.1) {IN\\POST /reports};
+\draw[flow] (p1.east) -- (c1.west);
+\draw[flow] (c1.east) -- (s1.west);
+\draw[note] (s1.east) -- (b1.west);
+% read-like transfer
+\node[storenode] (s2) at (-4.5,-2.0) {\textbf{ReportStore}\\{\scriptsize\texttt{store / source}}};
+\node[contentdoc] (c2) at (-0.7,-2.0) {\textbf{ReportRecord}\\{\scriptsize\texttt{content}}};
+\node[endpoint] (p2) at (3.1,-2.0) {\textbf{ReportEvaluation}\\{\scriptsize\texttt{destination}}};
+\node[binding] (b2) at (6.0,-2.0) {OUT\\GET /reports/\{id\}};
+\draw[flow] (s2.east) -- (c2.west);
+\draw[flow] (c2.east) -- (p2.west);
+\draw[note] (p2.east) -- (b2.west);
+\end{tikzpicture}
+\end{center}
+
+\begin{ddtacheck}[title={Lettura del grafico}]
+Il cilindro segnala il semantic kind \texttt{store}; non significa database. Le due occorrenze grafiche di \texttt{ReportStore} sono la stessa identita' riusata in due proposition distinte. \texttt{IN/OUT} descrivono i locator source-supported; i transfer restano i fatti BA che governano la conveyance. Una view puo' omettere le annotazioni di binding mantenendo invariati Store e transfer.
+\end{ddtacheck}
+%</PAGE-CONTENT:85>
+
+\clearpage
+
+%<PAGE-DESC:86>Appendice temporanea - scopo, lineage e confine del rebuild
+%<PAGE-CONTENT:86>
+\PageHashFooter{\PageMDfive{86}}
 \appendix
 \section{Materiale temporaneo di rebuild}
 \TemporaryRebuildBanner
@@ -2652,13 +3001,13 @@ Rebuild candidate & questa guida & Superficie cumulativa di review; diventa auth
 \begin{ddtaopen}[title={Nessun target di cardinalita'}]
 Il fatto che la BA corrente abbia quattordici operatori top-level non crea un obiettivo di quattordici operatori. Anche il precedente snapshot a tredici elementi resta genealogia utile, non un target da ripristinare. Il numero finale deve essere un risultato della necessita' semantica e della regression, non una quota.
 \end{ddtaopen}
-%</PAGE-CONTENT:77>
+%</PAGE-CONTENT:86>
 
 \clearpage
 
-%<PAGE-DESC:78>Appendice temporanea - corpus e stati epistemici
-%<PAGE-CONTENT:78>
-\PageHashFooter{\PageMDfive{78}}
+%<PAGE-DESC:87>Appendice temporanea - corpus e stati epistemici
+%<PAGE-CONTENT:87>
+\PageHashFooter{\PageMDfive{87}}
 \TemporaryRebuildBanner
 \subsection{Corpus di ricostruzione e stati epistemici}
 
@@ -2685,13 +3034,13 @@ R42 Core/Complete e' una superficie di lettura aggiornata e molto utile per il r
 \begin{ddtacheck}[title={Regola anti-perdita}]
 Una guida piu' corta non e' una guida migliore se per ottenere la sintesi elimina una distinzione ancora utile. Il rebuild puo' comprimere la prosa soltanto dopo aver dimostrato che la distinzione resta ricostruibile e tracciabile.
 \end{ddtacheck}
-%</PAGE-CONTENT:78>
+%</PAGE-CONTENT:87>
 
 \clearpage
 
-%<PAGE-DESC:79>Appendice temporanea - Construct Description Contract e principio espositivo
-%<PAGE-CONTENT:79>
-\PageHashFooter{\PageMDfive{79}}
+%<PAGE-DESC:88>Appendice temporanea - Construct Description Contract e principio espositivo
+%<PAGE-CONTENT:88>
+\PageHashFooter{\PageMDfive{88}}
 \TemporaryRebuildBanner
 \subsection{Construct Description Contract}
 
@@ -2706,13 +3055,13 @@ Ogni costrutto usa la stessa sequenza descrittiva. Un campo puo' essere \texttt{
 \begin{ddtaprinciple}[title={Controllo rigoroso, esposizione naturale}]
 Il CDC e' un contratto di \emph{copertura}, non un template rigido di impaginazione. I campi richiesti devono essere tutti trattati e ricostruibili durante la review, ma la guida definitiva puo' combinarli in paragrafi e sezioni piu' naturali quando questo non nasconde informazioni, stato epistemico o confini semantici. Struttura di controllo rigorosa non significa esposizione meccanica.
 \end{ddtaprinciple}
-%</PAGE-CONTENT:79>
+%</PAGE-CONTENT:88>
 
 \clearpage
 
-%<PAGE-DESC:80>Appendice temporanea - CDC direzione della spiegazione e revisione
-%<PAGE-CONTENT:80>
-\PageHashFooter{\PageMDfive{80}}
+%<PAGE-DESC:89>Appendice temporanea - CDC direzione della spiegazione e revisione
+%<PAGE-CONTENT:89>
+\PageHashFooter{\PageMDfive{89}}
 \TemporaryRebuildBanner
 \subsection{Direzione obbligatoria della spiegazione}
 
@@ -2739,13 +3088,13 @@ human semantic idea
 
 \subsection{Revisione del contratto}
 Il contratto parte come \texttt{CDC-R1}. Ogni sua modifica futura deve avere un counterexample, una motivazione generalizzabile e una regression sui costrutti gia' descritti.
-%</PAGE-CONTENT:80>
+%</PAGE-CONTENT:89>
 
 \clearpage
 
-%<PAGE-DESC:81>Appendice temporanea - CDC campi 1-10
-%<PAGE-CONTENT:81>
-\PageHashFooter{\PageMDfive{81}}
+%<PAGE-DESC:90>Appendice temporanea - CDC campi 1-10
+%<PAGE-CONTENT:90>
+\PageHashFooter{\PageMDfive{90}}
 \TemporaryRebuildBanner
 \subsection{Construct Description Contract - template, parte 1}
 
@@ -2769,13 +3118,13 @@ Il contratto parte come \texttt{CDC-R1}. Ogni sua modifica futura deve avere un 
 \begin{ddtaprinciple}[title={Semantica prima della sintassi}]
 I campi 5--8 devono poter essere compresi anche da chi non conosce ancora la sintassi BA. I campi 9--10 formalizzano il significato; non lo sostituiscono.
 \end{ddtaprinciple}
-%</PAGE-CONTENT:81>
+%</PAGE-CONTENT:90>
 
 \clearpage
 
-%<PAGE-DESC:82>Appendice temporanea - CDC campi 11-20
-%<PAGE-CONTENT:82>
-\PageHashFooter{\PageMDfive{82}}
+%<PAGE-DESC:91>Appendice temporanea - CDC campi 11-20
+%<PAGE-CONTENT:91>
+\PageHashFooter{\PageMDfive{91}}
 \TemporaryRebuildBanner
 \subsection{Construct Description Contract - template, parte 2}
 
@@ -2803,13 +3152,13 @@ Se un costrutto non entra nel template, non si crea una eccezione locale. Si reg
 \begin{ddtaexample}[title={Candidate con firma non chiusa}]
 Per \texttt{provideService} il template resta completo, ma i campi ``Canonical syntax'' e ``Roles, types, cardinalities'' possono dichiarare \texttt{NOT FROZEN}. E' preferibile una lacuna esplicita a una firma inventata solo per uniformare l'impaginazione.
 \end{ddtaexample}
-%</PAGE-CONTENT:82>
+%</PAGE-CONTENT:91>
 
 \clearpage
 
-%<PAGE-DESC:83>Appendice temporanea - roadmap e registro dei costrutti da integrare/studiare
-%<PAGE-CONTENT:83>
-\PageHashFooter{\PageMDfive{83}}
+%<PAGE-DESC:92>Appendice temporanea - roadmap e registro dei costrutti da integrare/studiare
+%<PAGE-CONTENT:92>
+\PageHashFooter{\PageMDfive{92}}
 \TemporaryRebuildBanner
 \subsection{Roadmap e registro temporaneo dei costrutti}
 \fontsize{8.15}{9.05}\selectfont
@@ -2825,9 +3174,10 @@ Questo registro e' la coda esplicita della nuova guida cumulativa. Non promuove 
 \textbf{Costrutto} & \textbf{Classe} & \textbf{Stato corrente} & \textbf{Azione nel rebuild} \\
 \midrule
 \texttt{decisionRule} & local \texttt{operatorStructure} di \texttt{produce} (rilocazione candidate) & \texttt{CANDIDATE / NOT ADMITTED} & Sez. 12 gia' presente; completare regression Facial Access e checkpoint prima di qualsiasi promotion. \\
-\texttt{selection} & reusable local / second-level structure & \texttt{REUSABLE\_LOCAL\_STRUCTURE / NON-NORMATIVE}; current BA non modificata & \textbf{TO INTEGRATE}: prossimo costrutto di secondo livello da ricostruire nella guida cumulativa. Evidence: PR-13 con controlli FR-06/FR-18/FR-20. Firma generale \texttt{NOT FROZEN}. \\
+\texttt{store} & controlled \texttt{semanticKind} di \texttt{BAReferent} & direct-field + optional binding working model sotto regression & Sez. 13: \texttt{semanticKind=store} sul BAReferent; cilindro in projection; binding opzionali. \texttt{classify} non e' richiesto per il typing ordinario e resta in responsibility review. \\
+\texttt{selection} & reusable local / second-level structure & \texttt{REUSABLE\_LOCAL\_STRUCTURE / NON-NORMATIVE}; current BA non modificata & \textbf{NEXT}: riesame C0.2 dopo Store, con controlli recent-N/top-K e RC-001; firma generale \texttt{NOT FROZEN}. \\
 \texttt{CC-02 provideService} & candidate construct & \texttt{TESTED\_POSITIVE / NOT\_ADMITTED} & Hold: formal gate G1--G8 / evidence review prima di eventuale integrazione. \\
-\texttt{CC-03 storedIn} & candidate construct & \texttt{TESTED\_POSITIVE / NOT\_ADMITTED} & Hold: riesame formale dell'associazione at-rest; non confondere con transfer o write/persist. \\
+\texttt{CC-03 storedIn} & candidate construct & \texttt{DEFERRED / NO CURRENT ADMISSION PRESSURE} & Non integrare finche' un caso governato dimostra perdita reale con \texttt{Store + transfer}; non creare una relation at-rest per completezza grafica. \\
 \texttt{CC-04 initiate} & candidate construct & \texttt{TESTED\_POSITIVE / NOT\_ADMITTED} & Hold: formal gate G1--G8 e regression cross-corpus prima di eventuale integrazione. \\
 \bottomrule
 \end{tabularx}
@@ -2841,16 +3191,16 @@ Questo registro e' la coda esplicita della nuova guida cumulativa. Non promuove 
 
 \begin{ddtaopen}[title={Stop point di questa R7}]
 \fontsize{6.8}{7.45}\selectfont
-La Rebuild R7 mantiene completa la ricostruzione di \texttt{transfer}, \texttt{produce}, \texttt{realize}, \texttt{constrain} e \texttt{condition}. \texttt{decisionRule} resta la prima struttura candidate gia' descritta. \texttt{selection} e' ora registrata esplicitamente come reusable local / second-level structure R25 da integrare nella prossima revisione cumulativa, senza trasformarla in top-level operator e senza congelarne prematuramente la firma. Gli altri candidate/open item restano non ammessi fino alla rispettiva review.
+La Rebuild R7 mantiene completa la ricostruzione di \texttt{transfer}, \texttt{produce}, \texttt{realize}, \texttt{constrain} e \texttt{condition}; preserva la candidate \texttt{decisionRule}; e documenta ora \texttt{store} con un working model semplice: \texttt{semanticKind} diretto sul BAReferent e binding opzionali sotto regression. \texttt{classify} resta nell'authority inventory ma non e' richiesto per il typing ordinario finche' un pressure case non dimostra il valore di una classification assertion indipendente. \texttt{storedIn} resta deferito. Il prossimo microstep del Work Plan R7 e' \texttt{selection}; solo dopo si riesamina retrieval/access.
 \end{ddtaopen}
 \normalsize
-%</PAGE-CONTENT:83>
+%</PAGE-CONTENT:92>
 
 \clearpage
 
-%<PAGE-DESC:84>Indice di integrita' delle pagine
-%<PAGE-CONTENT:84>
-\PageHashFooter{\PageMDfive{84}}
+%<PAGE-DESC:93>Indice di integrita' delle pagine
+%<PAGE-CONTENT:93>
+\PageHashFooter{\PageMDfive{93}}
 \section*{Indice di integrita' delle pagine}
 {\footnotesize Ogni pagina possiede un MD5 del proprio contenuto canonico; il valore stampato e' escluso dal payload e l'hash della pagina indice usa \texttt{<SELF>} per evitare dipendenza circolare.}\par
 \vspace{1mm}
@@ -2940,29 +3290,38 @@ La Rebuild R7 mantiene completa la ricostruzione di \texttt{transfer}, \texttt{p
 \IntegrityRow{74}{12 - decisionRule: output candidate e discriminazioni}{\PageMDfive{74}}
 \IntegrityRow{75}{12 - decisionRule: rappresentazione Mermaid e visibility profile}{\PageMDfive{75}}
 \IntegrityRow{76}{12 - decisionRule: esempio grafico DermaTriage candidate}{\PageMDfive{76}}
-\IntegrityRow{77}{Appendice temporanea - scopo, lineage e confine del rebuild}{\PageMDfive{77}}
-\IntegrityRow{78}{Appendice temporanea - corpus e stati epistemici}{\PageMDfive{78}}
-\IntegrityRow{79}{Appendice temporanea - Construct Description Contract e principio espositivo}{\PageMDfive{79}}
-\IntegrityRow{80}{Appendice temporanea - CDC direzione della spiegazione e revisione}{\PageMDfive{80}}
-\IntegrityRow{81}{Appendice temporanea - CDC campi 1-10}{\PageMDfive{81}}
-\IntegrityRow{82}{Appendice temporanea - CDC campi 11-20}{\PageMDfive{82}}
-\IntegrityRow{83}{Appendice temporanea - roadmap e registro dei costrutti da integrare/studiare}{\PageMDfive{83}}
-\IntegrityRow{84}{Indice di integrita' delle pagine}{\PageMDfive{84}}
-\IntegrityRow{85}{Appendice temporanea - laboratorio prove grafiche Mermaid da cancellare}{\PageMDfive{85}}
+\IntegrityRow{77}{13 - Store: definizione, smallest fact e criteri d'uso}{\PageMDfive{77}}
+\IntegrityRow{78}{13 - Store: forma canonica, profilo binding e cardinalita}{\PageMDfive{78}}
+\IntegrityRow{79}{13 - Store: identity continuity, invarianti e forbidden inference}{\PageMDfive{79}}
+\IntegrityRow{80}{13 - Store: domande di identificazione, enrichment MR Decision FR e procedura}{\PageMDfive{80}}
+\IntegrityRow{81}{13 - Store: esempio generico e pressure case DermaTriage RC001}{\PageMDfive{81}}
+\IntegrityRow{82}{13 - Store: prompt LLM per identificazione ed enrichment controllati}{\PageMDfive{82}}
+\IntegrityRow{83}{13 - Store: output atteso e discriminazioni con costrutti vicini}{\PageMDfive{83}}
+\IntegrityRow{84}{13 - Store: rappresentazione Mermaid, direzioni e binding opzionali}{\PageMDfive{84}}
+\IntegrityRow{85}{13 - Store: esempio grafico con transfer IN e OUT}{\PageMDfive{85}}
+\IntegrityRow{86}{Appendice temporanea - scopo, lineage e confine del rebuild}{\PageMDfive{86}}
+\IntegrityRow{87}{Appendice temporanea - corpus e stati epistemici}{\PageMDfive{87}}
+\IntegrityRow{88}{Appendice temporanea - Construct Description Contract e principio espositivo}{\PageMDfive{88}}
+\IntegrityRow{89}{Appendice temporanea - CDC direzione della spiegazione e revisione}{\PageMDfive{89}}
+\IntegrityRow{90}{Appendice temporanea - CDC campi 1-10}{\PageMDfive{90}}
+\IntegrityRow{91}{Appendice temporanea - CDC campi 11-20}{\PageMDfive{91}}
+\IntegrityRow{92}{Appendice temporanea - roadmap e registro dei costrutti da integrare/studiare}{\PageMDfive{92}}
+\IntegrityRow{93}{Indice di integrita' delle pagine}{\PageMDfive{93}}
+\IntegrityRow{94}{Appendice temporanea - laboratorio prove grafiche Mermaid da cancellare}{\PageMDfive{94}}
 %</PAGE-INTEGRITY-ROWS>
 \bottomrule
 \end{longtable}
 \endgroup
 \vspace{1mm}
 {\footnotesize La pagina successiva resta il laboratorio grafico temporaneo da cancellare; le altre appendici di rebuild restano deliberate fino al consolidamento.}
-%</PAGE-CONTENT:84>
+%</PAGE-CONTENT:93>
 
 
 \clearpage
 
-%<PAGE-DESC:85>Appendice temporanea - laboratorio prove grafiche Mermaid da cancellare
-%<PAGE-CONTENT:85>
-\PageHashFooter{\PageMDfive{85}}
+%<PAGE-DESC:94>Appendice temporanea - laboratorio prove grafiche Mermaid da cancellare
+%<PAGE-CONTENT:94>
+\PageHashFooter{\PageMDfive{94}}
 \section*{PROVA GRAFICA TEMPORANEA - DA CANCELLARE}
 
 \begin{ddtaopen}[title={Scopo della pagina}]
@@ -3022,6 +3381,6 @@ flowchart LR
 \end{center}
 
 
-%</PAGE-CONTENT:85>
+%</PAGE-CONTENT:94>
 
 \end{document}

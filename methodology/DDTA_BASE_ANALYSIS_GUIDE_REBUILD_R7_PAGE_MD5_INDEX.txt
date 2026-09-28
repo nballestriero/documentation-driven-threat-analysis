@@ -2,7 +2,7 @@ DDTA_BASE_ANALYSIS_GUIDE_REBUILD_R7 - Page MD5 Index
 Canonical payload: LaTeX content between PAGE-CONTENT markers; own printed MD5 excluded.
 Integrity-index page resolves all other page hashes and canonicalizes its own hash as <SELF>.
 
-Page 1  e36c5f64cea8931b2a6e5abcb558c338  Frontespizio della Base Analysis Guide Rebuild R7
+Page 1  01c092d9668cf627b6d85a12cd41587c  Frontespizio della Base Analysis Guide Rebuild R7
 Page 2  fa01b7db301f77cd9988907daf2b3397  1 - Che cos'e' la Base Analysis
 Page 3  3b620cf21e74f64e397656ec9f3038da  1 - Perche' esiste e principi di base
 Page 4  b12d8f94dc04c833c0d916453255f9be  1 - Direzione dell'authority e feedback
@@ -15,8 +15,8 @@ Page 10  9fdf9a0139ea36eaa577008c81fb109f  3 - Dal testo documentale al signific
 Page 11  f0c4184f4f1ebcb7ce1ab9394c5c5209  3 - Governed semantic fact
 Page 12  e3200807fcbf2aa290f0748b9c099b69  3 - Segmentazione, ambiguita e livello documentale
 Page 13  b9028ef062953f4b7ab73bfb7ac7975c  4 - Elementi fondamentali della Base Analysis
-Page 14  849a9ae9b63b6f5b84acbf3c1015a920  4 - BAReferent: identita analitica riusabile
-Page 15  c6fca40abd8cf6a72634f4b1d07fa450  4 - BAReferent: esempi DermaTriage e confini
+Page 14  cf24da7acca0061993625715ee5b30c1  4 - BAReferent: identita analitica riusabile
+Page 15  17d66f19d9937e4c823ee9c212fb6ad8  4 - BAReferent: esempi DermaTriage e confini
 Page 16  83b4a5ba93a8eb218e7a0816bb7e023a  4 - BAProposition: asserzione analitica identificabile
 Page 17  8063825cd44fdd393ef91bf9a5957e86  4 - BAReferent e BAProposition insieme
 Page 18  f23c4cd3c7776e49c0d794a9ecfef9a9  5 - Granularita, minimalita e costruzione della BA
@@ -78,12 +78,21 @@ Page 73  2205a8b6a451a27635473eac1f53b945  12 - decisionRule: prompt LLM per l'i
 Page 74  04d2d044867055a500a4f10de2caf3e4  12 - decisionRule: output candidate e discriminazioni
 Page 75  f248e4c48942111fde0c866c423d5e24  12 - decisionRule: rappresentazione Mermaid e visibility profile
 Page 76  4f78ba264c6eb0c06268caa9286bcf93  12 - decisionRule: esempio grafico DermaTriage candidate
-Page 77  3915eaee02f714ac47e0dfa764b2836f  Appendice temporanea - scopo, lineage e confine del rebuild
-Page 78  5475a02c3223c3fac62a7eebe62f6be2  Appendice temporanea - corpus e stati epistemici
-Page 79  e1b1becfc138e20474529fae47de6a05  Appendice temporanea - Construct Description Contract e principio espositivo
-Page 80  435e9ecddb23d230df9cc32766e10610  Appendice temporanea - CDC direzione della spiegazione e revisione
-Page 81  9d02d27cc2ad8bb4e1b30d441667e854  Appendice temporanea - CDC campi 1-10
-Page 82  90b6659e5a0105e0cd7268d3f76137f6  Appendice temporanea - CDC campi 11-20
-Page 83  c4622709ab9c2bf97c8f3bce55724e42  Appendice temporanea - roadmap e registro dei costrutti da integrare/studiare
-Page 84  c3ce06bf4610c41060c775c30b2fb397  Indice di integrita' delle pagine [INTEGRITY INDEX]
-Page 85  13cdd31df41e1d75e405e6ba020261fa  Appendice temporanea - laboratorio prove grafiche Mermaid da cancellare
+Page 77  7f04a38cba2726ed2c38669a57491ef1  13 - Store: definizione, smallest fact e criteri d'uso
+Page 78  7e09a4a32edab694e1b96da249779080  13 - Store: forma canonica, profilo binding e cardinalita
+Page 79  f4f201840927f60df58e2cbc0e349539  13 - Store: identity continuity, invarianti e forbidden inference
+Page 80  aabbe964a5f1ee9f87864f035745131e  13 - Store: domande di identificazione, enrichment MR Decision FR e procedura
+Page 81  1231009e9f6363f0ff1a91e379e66e2f  13 - Store: esempio generico e pressure case DermaTriage RC001
+Page 82  2a701c771ac5753385b56105bab3c258  13 - Store: prompt LLM per identificazione ed enrichment controllati
+Page 83  12d72ba8edfed0badf4a8dd1bf10b958  13 - Store: output atteso e discriminazioni con costrutti vicini
+Page 84  f971ae4163101485d17a2525eed12930  13 - Store: rappresentazione Mermaid, direzioni e binding opzionali
+Page 85  d862d9363aa1ca311511499919febe1b  13 - Store: esempio grafico con transfer IN e OUT
+Page 86  3915eaee02f714ac47e0dfa764b2836f  Appendice temporanea - scopo, lineage e confine del rebuild
+Page 87  5475a02c3223c3fac62a7eebe62f6be2  Appendice temporanea - corpus e stati epistemici
+Page 88  e1b1becfc138e20474529fae47de6a05  Appendice temporanea - Construct Description Contract e principio espositivo
+Page 89  435e9ecddb23d230df9cc32766e10610  Appendice temporanea - CDC direzione della spiegazione e revisione
+Page 90  9d02d27cc2ad8bb4e1b30d441667e854  Appendice temporanea - CDC campi 1-10
+Page 91  90b6659e5a0105e0cd7268d3f76137f6  Appendice temporanea - CDC campi 11-20
+Page 92  2e99321550bf13010ea58df13810eab9  Appendice temporanea - roadmap e registro dei costrutti da integrare/studiare
+Page 93  bf4d809dca64cc4a52f3db2207d4f522  Indice di integrita' delle pagine [INTEGRITY INDEX]
+Page 94  13cdd31df41e1d75e405e6ba020261fa  Appendice temporanea - laboratorio prove grafiche Mermaid da cancellare
