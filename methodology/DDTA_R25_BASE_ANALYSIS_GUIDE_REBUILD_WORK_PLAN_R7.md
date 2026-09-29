@@ -807,13 +807,17 @@ RC-001 affected BA final rebuild:                        completed for checkpoin
 BA-to-Mermaid projection/composition guide R1:           created as candidate / non-normative
 RC-001 rollback projection regression example:           created / non-authority evidence
 RC-001 finding-register disposition:                     CLOSED for checkpoint
-RC-021 MR-family separation/classification:               completed for candidate checkpoint
+RC-021 MR-family separation/classification:               active / partially promoted
 MR-03 rework + clinical-review tooling placeholders:      authored as candidate / review-only
-MR-C6 environment preparation + decomposition map:        authored as candidate / review-only
+MR-C6 environment preparation:                            APPROVED / CURRENT_GOVERNED
+DEC-C6-01 explicit environment-setup procedure:           APPROVED / CURRENT_GOVERNED
+FR-C6-01-01 compute/storage resource preparation:         APPROVED / CURRENT_GOVERNED
+MR-C6 Base Analysis:                                      STARTED IN PARALLEL / approved branch represented
+MR-C6 residual decomposition C6-P02..P06:                 OPEN / candidate review
 MR-C7 verification + decomposition maps:                  authored as candidate / review-only
-MR-C6 / MR-C7 Base Analysis:                              NOT ANALYZED
+MR-C7 Base Analysis:                                      NOT ANALYZED
 MR-03 affected Base Analysis:                             REVALIDATION REQUIRED after documentation closure
-RC-002 Stage-4 output-contract reconciliation:            PAUSED until RC-021 candidate owner review closes
+RC-002 Stage-4 output-contract reconciliation:            PAUSED until RC-021 owner review is stable
 Source -> hierarchy reconciliation RC-003+:              QUEUED after MR-family review / RC-002
 Accepted-BA graph regeneration after corrections:         BLOCKED until source/hierarchy cycle resumes/closes
 Canonical projection-profile full consolidation:          DEFERRED until documentation/BA correction closes
@@ -909,9 +913,9 @@ RC-016 selection
 RC-017 decisionRule relocation
 ```
 
-RC-021 has completed the first family-wide MR separation/classification pass for the current source set. The controlled case-study checkpoint now contains a reworked MR-03 candidate, explicit proposal pages preserving the clinical-review tools/processes, candidate MR-C6 for environment preparation/initialization and candidate MR-C7 for verification, together with candidate decomposition maps. These pages are review surfaces, not promoted current authority.
+RC-021 has completed the first family-wide MR separation/classification pass for the current source set. The controlled case-study checkpoint still contains a reworked MR-03 candidate and candidate MR-C7 verification pages. The environment-preparation branch has now passed the first authoring/analysis gate: MR-C6 is CURRENT_GOVERNED, DEC-C6-01 governs explicit environment setup, and FR-C6-01-01 governs compute/storage resource preparation. The residual C6-P02..P06 map remains candidate review material.
 
-The candidate family currently preserves: MR-01 KEEP; MR-02 KEEP / STOP AT MR; MR-03 KEEP + REWORK; MR-04 KEEP; initial training as a distinct lifecycle meaning but LOWER LEVEL for this checkpoint; MR-C6 and MR-C7 as separate KEEP candidates. The next RC-021 activity is the human review / Decision-gate pass over those candidate pages, not a BA rerun.
+The working family currently preserves: MR-01 KEEP; MR-02 KEEP / STOP AT MR; MR-03 KEEP + REWORK candidate; MR-04 KEEP; initial training as a distinct lifecycle meaning but LOWER LEVEL for this checkpoint; MR-C6 approved/current; MR-C7 still a KEEP candidate. Documentation and Base Analysis now proceed in parallel inside an approved branch: documentation remains project authority, while BA is used immediately as a diagnostic representation test and may feed ambiguity or construct-pressure findings back to the appropriate layer without creating project meaning.
 
 For RC-002, the original Stage-4 evidence has been reopened, but final owner reconstruction remains paused until the RC-021 candidate-owner review is stable. The current runtime hint `MR-01 -> DEC-MR01-03 -> FR-MR01-03-04` is not authority. OR2's runtime Stage-4 description and OR5's Stage-4 verification oracle must remain distinct unless the project documentation establishes their relationship.
 
@@ -967,17 +971,17 @@ BA status: NOT ANALYZED UNTIL DOCUMENTATION CLOSED
 ### 11.7 Immediate next action
 
 ```text
-repository baseline 0c7f874: RC-001 finding closure saved
+repository baseline 99c106c: MR-03 / MR-C6 / MR-C7 candidate checkpoint saved
         ->
-RC-021 family-wide MR separation/classification checkpoint completed
+MR-C6 -> DEC-C6-01 -> FR-C6-01-01 approved with parallel BA checkpoint
         ->
-save/review MR-03 rework + clinical-review tooling proposal pages
-+ MR-C6/MR-C7 candidate pages and decomposition maps   [NEXT]
+continue MR-C6 residual decomposition C6-P02..P06 one branch at a time;
+author documentation and run BA in parallel after each governed node   [NEXT]
         ->
-apply Decision gates to the candidate decompositions;
-do not start BA for MR-C6/MR-C7 yet
+review/promote or rework MR-C7 only after its own gates;
+keep verification ownership distinct from runtime ownership
         ->
-resume RC-002 with runtime-vs-verification ownership separated
+resume RC-002 with runtime-vs-verification ownership separated when RC-021 is stable
         ->
 continue RC-003, RC-004, ... one finding at a time
         ->
@@ -988,6 +992,8 @@ regenerate the accepted BA graph deterministically
         ->
 run full Phase C consolidation/regression
 ```
+
+For the approved MR-C6 branch, do not wait for the whole subtree to close before running BA. After each MR/Decision/FR node is accepted, extract the minimum sufficient BA immediately. If the BA exposes a documentation ambiguity, return the question upstream; if the documentation is clear but the BA cannot represent it faithfully, record BA construct pressure. In neither case may BA create or strengthen project meaning.
 
 Do not batch-write corrections merely because a review report listed them. Each finding must pass the source-to-hierarchy owner reconstruction before the live case study changes.
 

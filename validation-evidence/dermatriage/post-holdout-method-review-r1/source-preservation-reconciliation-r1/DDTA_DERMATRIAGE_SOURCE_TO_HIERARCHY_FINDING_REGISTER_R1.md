@@ -75,7 +75,7 @@ BA status: NOT ANALYZED UNTIL DOCUMENTATION CLOSED
 | `RC-018` | MR-02 specialist boundary vs SLA meaning | OR2/OR3/OR5 | MR-02 plus separate owner review for SLA | **SOURCE OWNER REVIEW** | Keep specialist destination distinct from SLA; do not invent routing/vocabulary/booking. |
 | `RC-019` | Privacy / anonymization / in-memory upload facts | Original privacy/data sources | MR/Decision/FR owner NOT YET CLOSED | **SOURCE OWNER / CLASSIFICATION REVIEW** | First find hierarchy owner; only afterward decide whether security specialization is justified. |
 | `RC-020` | FR-13/14/15 non-propagation family | Original adaptation-loop semantics | MR-04 → DEC-05 → FR-13/14/15 | **SOURCE-STRENGTH + DOWNSTREAM-UTILITY REVIEW** | Re-test source support and branch autonomy after primary source-preservation corrections. |
-| `RC-021` | Environment preparation vs verification/test macro-responsibility split pressure | OR4 Training Environment Configuration §§1-9; OR5 Test Environment Setup §§1-9 | MR-03 rework candidate; new candidate MR-C6 Environment Preparation; new candidate MR-C7 Verification; initial-training lifecycle kept separate but not promoted to MR | **MR-FAMILY REVIEW CHECKPOINT / CANDIDATE DOCUMENTATION AUTHORED** | Review the candidate MR-03/C6/C7 pages and their proposed Decision/FR decomposition maps; promotion remains gated. Resume RC-002 only with runtime and verification ownership kept distinct. |
+| `RC-021` | Environment preparation vs verification/test macro-responsibility split pressure | OR4 Training Environment Configuration §§1-9; OR5 Test Environment Setup §§1-9 | MR-C6 → DEC-C6-01 → FR-C6-01-01 approved/current; residual C6-P02..P06 open; MR-C7 Verification candidate; MR-03 rework candidate; initial-training lifecycle kept separate but not promoted to MR | **PARTIAL PROMOTION / C6 BRANCH APPROVED / RC-021 OPEN** | Continue the C6 residual decomposition with documentation and BA in parallel; keep MR-C7 gated and verification ownership distinct. Resume RC-002 when the RC-021 owner review is stable. |
 
 
 ### RC-021 opening record
@@ -118,12 +118,16 @@ Initial training / baseline establishment -> preserve as a distinct lifecycle
 meaning, but LOWER LEVEL for this checkpoint; do not merge it into MR-04.
 Aggregate "environment setup + verification" -> SPLIT.
 
-Candidate MR-C6:
+MR-C6 environment-preparation branch:
   title -> Predisposizione e inizializzazione dell'ambiente DermaTriage
-  provisional classification -> KEEP candidate
-  candidate decomposition map -> prerequisites; software/dependencies;
-  model/resource availability; environment/integration configuration;
-  local-resource initialization; service startup.
+  classification -> KEEP / APPROVED / CURRENT_GOVERNED
+  approved Decision -> DEC-C6-01 Predisposizione dell'ambiente mediante una
+  procedura esplicita di setup
+  approved FR -> FR-C6-01-01 Predisposizione delle risorse di calcolo e storage
+  dell'ambiente
+  residual candidate decomposition -> C6-P02 software/dependencies; C6-P03
+  model/resource availability; C6-P04 environment/integration configuration;
+  C6-P05 local-resource initialization; C6-P06 service startup.
 
 Candidate MR-C7:
   title -> Verifica del sistema DermaTriage
@@ -131,18 +135,20 @@ Candidate MR-C7:
   candidate decomposition map -> service/readiness; API/endpoint; pipeline-stage;
   full-pipeline; B4 integration; retraining/rollback; acceptance/quality verification.
 
-Candidate documentation checkpoint:
+Documentation + BA checkpoint:
 The existing DermaTriage case-study file now contains:
-- the MR-03 rework candidate;
-- proposal pages for the missing clinical-review interaction/tooling branch;
-- candidate MR-C6 and its decomposition map;
+- the MR-03 rework candidate and proposal pages for missing clinical-review tooling;
+- MR-C6 promoted to CURRENT_GOVERNED;
+- DEC-C6-01 and FR-C6-01-01 promoted to CURRENT_GOVERNED;
+- accepted/candidate BA material for the approved C6 branch;
+- the residual C6-P02..P06 decomposition map as review material;
 - candidate MR-C7 and its decomposition maps.
-All new candidate Decision/FR pages are visibly marked as proposals to verify.
-Their BA is intentionally NOT ANALYZED. Existing affected BA must not be treated
-as revalidated merely because the documentation page was edited.
 
-The MR-C6 / MR-C7 split remains provisional until the candidate pages and
-decomposition maps pass human semantic review and the downstream Decision gates.
+The environment-preparation owner is therefore no longer provisional at MR level.
+Verification remains a separate candidate owner under MR-C7 and must pass its own
+MR/Decision/FR gates. BA is no longer globally blocked for RC-021: inside an
+approved documentation branch it is run immediately as a diagnostic representation
+check while documentation remains the sole project authority.
 
 Important non-inferences:
 - do not infer that every OR4 fact belongs to Candidate A;
@@ -160,23 +166,26 @@ the source-supported lifecycle for downstream threat analysis, but it is NOT the
 authority for creating either MR.
 
 Immediate next action:
-Use the candidate case-study pages as the controlled review surface. Validate the
-MR-03 rework and the MR-C6/MR-C7 separation, then apply the Decision gate to the
-proposed decomposition maps. Keep the concrete clinical-review tools,
-environment/setup bindings, verification oracles and acceptance evidence
-preserved even where exact semantic relations remain open.
+Continue the MR-C6 subtree from residual candidates C6-P02..P06 one branch at a
+time. For each accepted documentation node, run the minimum sufficient BA in
+parallel to test clarity and construct sufficiency. Preserve technical bindings at
+their correct level and return ambiguity to documentation rather than completing it
+through BA inference. MR-C7 remains candidate/review-only and must pass its own
+gates before promotion.
 
-After the macro-owner checkpoint is stable, resume RC-002 with OR2 runtime
+After the RC-021 owner checkpoint is stable, resume RC-002 with OR2 runtime
 Stage-4 semantics and OR5 Stage-4 verification expectations kept distinct.
 
 Documentation correction authorized:
-YES for this checkpoint as explicitly marked candidate/review documentation.
-NO for promotion of MR-C6/MR-C7 or their proposed Decision/FR decomposition to
-CURRENT_GOVERNED until the corresponding gates close.
+YES - MR-C6, DEC-C6-01 and FR-C6-01-01 are approved/current for this checkpoint.
+YES - residual C6 branches may be authored incrementally only after their gates.
+NO - MR-C7 and its proposed decomposition remain candidate until separately approved.
 
 BA status:
 MR-03 affected BA: REVALIDATION REQUIRED AFTER DOCUMENTATION CLOSURE.
-MR-C6 / MR-C7: NOT ANALYZED.
+MR-C6 approved branch: ANALYZED IN PARALLEL / CURRENT CHECKPOINT REPRESENTED.
+MR-C6 residual C6-P02..P06: ANALYZE IN PARALLEL AS EACH NODE IS ACCEPTED.
+MR-C7: NOT ANALYZED.
 ```
 
 
