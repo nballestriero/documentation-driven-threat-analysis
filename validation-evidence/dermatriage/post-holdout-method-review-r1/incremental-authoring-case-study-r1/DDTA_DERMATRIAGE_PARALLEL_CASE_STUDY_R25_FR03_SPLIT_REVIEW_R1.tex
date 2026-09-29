@@ -70,14 +70,15 @@
 \expandafter\def\csname PageMDfive47\endcsname{d05f1297a5e48fd1efb2cdc2cbb2e85c}
 \expandafter\def\csname PageMDfive48\endcsname{37981bd8610726344bd5a0dfc8555a37}
 \expandafter\def\csname PageMDfive49\endcsname{40a157f1a8c090426477fb4311149d80}
-\expandafter\def\csname PageMDfive50\endcsname{db8cb3709c90cd5265f4df212fd5f32f}
-\expandafter\def\csname PageMDfive51\endcsname{d6f6d4d2621b1f8a817ee3879782608a}
-\expandafter\def\csname PageMDfive52\endcsname{989bae884287eaeac14bb52a961776fe}
-\expandafter\def\csname PageMDfive53\endcsname{b902e88a80ccad3092c9c66cd324c034}
-\expandafter\def\csname PageMDfive54\endcsname{c4f40c1dccd5f10a2af5517477cdb540}
-\expandafter\def\csname PageMDfive55\endcsname{2c402e17f2e70274bf34658cf90f5b5c}
-\expandafter\def\csname PageMDfive56\endcsname{df70ba8f961369f44bdd2b8e064a53bd}
-\expandafter\def\csname PageMDfive57\endcsname{d199bb8337dd1f953d7f09e89f9d9cb6}
+\expandafter\def\csname PageMDfive50\endcsname{db19e807cec5e49e3ca695c110920d57}
+\expandafter\def\csname PageMDfive51\endcsname{17e825449c829bb6f73edfbac83e5ad1}
+\expandafter\def\csname PageMDfive52\endcsname{d6f6d4d2621b1f8a817ee3879782608a}
+\expandafter\def\csname PageMDfive53\endcsname{989bae884287eaeac14bb52a961776fe}
+\expandafter\def\csname PageMDfive54\endcsname{b902e88a80ccad3092c9c66cd324c034}
+\expandafter\def\csname PageMDfive55\endcsname{a3319117031ecbf4eba4b1c171e04273}
+\expandafter\def\csname PageMDfive56\endcsname{6f44701798f55184ba3e1d791bf92c65}
+\expandafter\def\csname PageMDfive57\endcsname{df70ba8f961369f44bdd2b8e064a53bd}
+\expandafter\def\csname PageMDfive58\endcsname{804f68cdf15cc99f5ae6c1a64bd97fcc}
 %</PAGE-HASH-DEFS>
 
 \newcommand{\PageHashFooter}[1]{%
@@ -4243,15 +4244,114 @@ Il minimum GPU VRAM di 8 GB e il recommended GPU VRAM di 24 GB+ restano da assoc
 \end{paracol}
 %</PAGE-CONTENT:49>
 \clearpage
-%<PAGE-DESC:50>MR-C6 - Mappa residua della decomposizione dell'ambiente
+%<PAGE-DESC:50>MR-C6 > DEC-C6-01 > FR-C6-01-02 - Predisposizione dello stack software e delle dipendenze
 %<PAGE-CONTENT:50>
 \PageHashFooter{\PageMDfive{50}}
+\subsubsection{FR-C6-01-02 - Predisposizione dello stack software e delle dipendenze}
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-C6} $\rightarrow$ \texttt{DEC-C6-01} $\rightarrow$ \texttt{FR-C6-01-02}}\par
+
+\setlength{\columnsep}{7mm}
+\setlength{\columnseprule}{0.35pt}
+\columnratio{0.67}
+\begin{paracol}{2}
+
+{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
+\vspace{0.25em}
+
+\begin{ddtacore}[title={FunctionalRequirement}]
+\fontsize{4.75}{5.2}\selectfont
+\begin{tabularx}{\linewidth}{L{38mm}Y}
+\toprule
+\textbf{ID} & \texttt{FR-C6-01-02} \\
+\textbf{Lifecycle} & \texttt{current} \\
+\textbf{Authority} & \texttt{CURRENT\_GOVERNED} \\
+\textbf{Type} & \texttt{FunctionalRequirement} \\
+\textbf{Title} & Predisposizione dello stack software e delle dipendenze \\
+\textbf{Parent Decision} & \texttt{DEC-C6-01} \\
+\textbf{Owning MR (derived)} & \texttt{MR-C6} \\
+\textbf{SpecializedRequirement relation} & 0 active instances \\
+\bottomrule
+\end{tabularx}
+
+\textbf{Functional obligation}\par
+Predisporre nell'ambiente DermaTriage lo stack software e le dipendenze necessarie all'esecuzione delle capability del sistema e alle attivita' di addestramento previste.
+
+\textbf{Functional clauses / inherited \texttt{normativeClause [1..*]}}\par
+L'ambiente DermaTriage MUST rendere disponibili le dipendenze software necessarie all'esecuzione del sistema e alle attivita' di addestramento previste.
+
+\textbf{Current realization / software stack}\par
+\begin{tabularx}{\linewidth}{L{31mm}Y}
+\toprule
+\textbf{Categoria} & \textbf{Baseline corrente} \\
+\midrule
+Runtime / language & Python 3.12.3 \\
+ML runtime & PyTorch 2.11.0a0+a6c236b9fd \\
+Web framework & \texttt{fastapi}, \texttt{uvicorn[standard]}, \texttt{jinja2}, \texttt{python-multipart}, \texttt{aiofiles} \\
+ML / Deep Learning & \texttt{torch}, \texttt{torchvision}, \texttt{efficientnet-pytorch}, \texttt{transformers>=4.45.0}, \texttt{accelerate} \\
+Vision Language & \texttt{qwen-vl-utils} \\
+RAG / Embeddings & \texttt{chromadb}, \texttt{sentence-transformers} \\
+Data Processing & \texttt{numpy}, \texttt{pandas}, \texttt{pillow} \\
+HTTP / Integration & \texttt{httpx}, \texttt{python-dotenv} \\
+\bottomrule
+\end{tabularx}
+
+\textbf{Current setup binding}\par
+\texttt{pip install -r requirements.txt}.
+\end{ddtacore}
+
+\begin{ddtaquestions}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.45}{4.9}\selectfont
+Le versioni e i package elencati sono preservati come current realization. La documentazione disponibile non stabilisce che Python 3.12.3, la build PyTorch indicata o ciascun package/versione costituiscano individualmente un commitment normativo stabile; non vengono quindi riscritti come clausole MUST separate.
+\end{ddtaquestions}
+
+\switchcolumn
+{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
+\vspace{0.25em}
+
+\begin{ddtareferentidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.65}{5.1}\selectfont
+--\par
+\emph{Scelta prudente: non viene introdotto un BAReferent \texttt{DermaTriageSoftwareDependencySet}. L'identity test verra' riaperto soltanto se un consumer o una proposition indipendente richiedera' il riuso dello stesso dependency set come identita' analitica autonoma.}
+\end{ddtareferentidentified}
+
+\begin{ddtareferentaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.7}{5.15}\selectfont
+\BAAccepted{DermaTriageEnvironment} (reuse).
+\end{ddtareferentaccepted}
+
+\begin{ddtapropositionidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.1}{4.55}\selectfont
+\texttt{BAP-FRC6-01-02-01}\par
+\texttt{semanticOperatorKey = constrain}\par
+\hspace*{1em}\texttt{constraintTarget -> DermaTriageEnvironment}\par
+\hspace*{1em}\texttt{constraintValue.property -> requiredSoftwareDependencies}\par
+\hspace*{1em}\texttt{constraintValue.presence -> required}\par
+\texttt{polarity = affirmative}
+\end{ddtapropositionidentified}
+
+\begin{ddtapropositionaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.25}{4.7}\selectfont
+\textbf{BAP-FRC6-01-02-01}.\par
+\emph{Acceptance boundary: la proposition preserva soltanto il requisito che l'ambiente disponga delle dipendenze software necessarie. Non promuove il package list a BAReferent, non rende normative le versioni della baseline e non interpreta il comando di installazione come nuovo operatore BA.}
+\end{ddtapropositionaccepted}
+
+\begin{ddtaopenrelations}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.2}{4.65}\selectfont
+La lista concreta dei package e \texttt{pip install -r requirements.txt} restano current realization / setup binding. Se C7 o un altro branch richiedera' di riferirsi allo stesso dependency set come oggetto indipendente, riaprire l'identity test invece di duplicare una struttura locale.
+\end{ddtaopenrelations}
+
+\end{paracol}
+%</PAGE-CONTENT:50>
+\clearpage
+%<PAGE-DESC:51>MR-C6 - Mappa residua della decomposizione dell'ambiente
+%<PAGE-CONTENT:51>
+\PageHashFooter{\PageMDfive{51}}
 \subsection*{MR-C6 - Mappa residua della decomposizione dell'ambiente}
 {\sffamily\scriptsize\color{DDTAGray}Worklist di authoring: il branch \texttt{DEC-C6-01} $\rightarrow$ \texttt{FR-C6-01-01} e' corrente; le righe residue restano candidate.}\par
 
 \begin{ddtaopen}[title={DECOMPOSIZIONE RESIDUA DA VERIFICARE}]
 \fontsize{5.05}{5.55}\selectfont
-Il precedente candidato \texttt{C6-P01} e' stato risolto nel branch corrente \texttt{DEC-C6-01} $\rightarrow$ \texttt{FR-C6-01-01} per la parte di risorse di calcolo/storage; i fatti di current realization sono conservati nello stesso FR e la relazione GPU/CPU resta aperta. Le famiglie sotto non sono ancora Decision o FR canonici. Documentation authoring e Base Analysis verranno eseguiti contestualmente per ciascun branch, mantenendo la documentazione come authority.
+I precedenti candidati \texttt{C6-P01} e \texttt{C6-P02} sono stati risolti sotto la Decision corrente \texttt{DEC-C6-01}: \texttt{FR-C6-01-01} governa la predisposizione delle risorse di calcolo/storage e \texttt{FR-C6-01-02} governa la disponibilita' dello stack software e delle dipendenze. I fatti di current realization restano separati dalle clausole normative; la relazione GPU/CPU di \texttt{FR-C6-01-01} resta aperta. Le famiglie sotto non sono ancora Decision o FR canonici. Documentation authoring e Base Analysis verranno eseguiti contestualmente per ciascun branch, mantenendo la documentazione come authority.
 \end{ddtaopen}
 
 \setlength{\columnsep}{7mm}
@@ -4293,11 +4393,11 @@ Da verificare: quali significati sopravvivono come Decision autonome; quali scen
 La BA non e' bloccata: verra' eseguita contestualmente all'authoring di ciascun branch candidato \texttt{C6-P02}--\texttt{C6-P06}. Questa pagina e' una worklist e non introduce da sola identita' o proposition BA.
 \end{ddtaopenrelations}
 \end{paracol}
-%</PAGE-CONTENT:50>
+%</PAGE-CONTENT:51>
 \clearpage
-%<PAGE-DESC:51>MR-C7 [review label] - Verifica del sistema DermaTriage
-%<PAGE-CONTENT:51>
-\PageHashFooter{\PageMDfive{51}}
+%<PAGE-DESC:52>MR-C7 [review label] - Verifica del sistema DermaTriage
+%<PAGE-CONTENT:52>
+\PageHashFooter{\PageMDfive{52}}
 \section*{MR-C7 [review label] - Verifica del sistema DermaTriage}
 {\sffamily\scriptsize\color{DDTAGray}MacroRequirement candidato emerso dalla review della famiglia MR; label provvisorio, non canonico.}\par
 
@@ -4355,11 +4455,11 @@ La responsabilita' di verifica resta distinta dalla responsabilita' che definisc
 \begin{ddtapropositionidentified}\scriptsize\texttt{NON ANALIZZATO}\end{ddtapropositionidentified}
 \begin{ddtapropositionaccepted}\scriptsize --\end{ddtapropositionaccepted}
 \end{paracol}
-%</PAGE-CONTENT:51>
+%</PAGE-CONTENT:52>
 \clearpage
-%<PAGE-DESC:52>MR-C7 [review label] - Mappa candidata di decomposizione: service, API e pipeline verification
-%<PAGE-CONTENT:52>
-\PageHashFooter{\PageMDfive{52}}
+%<PAGE-DESC:53>MR-C7 [review label] - Mappa candidata di decomposizione: service, API e pipeline verification
+%<PAGE-CONTENT:53>
+\PageHashFooter{\PageMDfive{53}}
 \subsection*{MR-C7 [review label] - Mappa candidata: service, API e pipeline verification}
 {\sffamily\scriptsize\color{DDTAGray}Segnaposto di decomposizione: nessuna riga di questa pagina e' ancora una Decision canonica.}\par
 
@@ -4402,11 +4502,11 @@ Da verificare: se readiness, endpoint e pipeline verification siano Decision aut
 \begin{ddtapropositionidentified}\scriptsize\texttt{NON ANALIZZATO}\end{ddtapropositionidentified}
 \begin{ddtapropositionaccepted}\scriptsize --\end{ddtapropositionaccepted}
 \end{paracol}
-%</PAGE-CONTENT:52>
+%</PAGE-CONTENT:53>
 \clearpage
-%<PAGE-DESC:53>MR-C7 [review label] - Mappa candidata di decomposizione: B4, retraining e acceptance
-%<PAGE-CONTENT:53>
-\PageHashFooter{\PageMDfive{53}}
+%<PAGE-DESC:54>MR-C7 [review label] - Mappa candidata di decomposizione: B4, retraining e acceptance
+%<PAGE-CONTENT:54>
+\PageHashFooter{\PageMDfive{54}}
 \subsection*{MR-C7 [review label] - Mappa candidata: B4, retraining e acceptance}
 {\sffamily\scriptsize\color{DDTAGray}Segnaposto di decomposizione: nessuna riga di questa pagina e' ancora una Decision canonica.}\par
 
@@ -4448,11 +4548,11 @@ Da verificare: relationship fra acceptance criteria e quality requirements; owne
 \begin{ddtapropositionidentified}\scriptsize\texttt{NON ANALIZZATO}\end{ddtapropositionidentified}
 \begin{ddtapropositionaccepted}\scriptsize --\end{ddtapropositionaccepted}
 \end{paracol}
-%</PAGE-CONTENT:53>
+%</PAGE-CONTENT:54>
 \clearpage
-%<PAGE-DESC:54>Registro Base Analysis - BAReferent e BAProposition
-%<PAGE-CONTENT:54>
-\PageHashFooter{\PageMDfive{54}}
+%<PAGE-DESC:55>Registro Base Analysis - BAReferent e BAProposition
+%<PAGE-CONTENT:55>
+\PageHashFooter{\PageMDfive{55}}
 \section{Registro Base Analysis}
 
 \begin{ddtacore}[title={Sintesi BA corrente}]
@@ -4541,16 +4641,16 @@ B4CallAuthentication & \texttt{DEC-16}; \textbf{\texttt{FR-25}} \\
 DermaTriageB4Client & \textbf{\texttt{FR-25}} \\
 B4BearerJWT & \textbf{\texttt{FR-25}} \\
 EnvironmentPreparation & \textbf{\texttt{MR-C6}}; \texttt{DEC-C6-01} \\
-DermaTriageEnvironment & \textbf{\texttt{MR-C6}}; \texttt{FR-C6-01-01} \\
+DermaTriageEnvironment & \textbf{\texttt{MR-C6}}; \texttt{FR-C6-01-01}; \texttt{FR-C6-01-02} \\
 EnvironmentSetupProcedure & \textbf{\texttt{DEC-C6-01}} \\
 \bottomrule
 \end{tabularx}
 
-%</PAGE-CONTENT:54>
+%</PAGE-CONTENT:55>
 \clearpage
-%<PAGE-DESC:55>Registro Base Analysis - BAProposition
-%<PAGE-CONTENT:55>
-\PageHashFooter{\PageMDfive{55}}
+%<PAGE-DESC:56>Registro Base Analysis - BAProposition
+%<PAGE-CONTENT:56>
+\PageHashFooter{\PageMDfive{56}}
 \section*{Registro Base Analysis - BAProposition}
 \begin{ddtacore}[title={Continuita' del registro}]
 \fontsize{6.0}{6.6}\selectfont
@@ -4622,13 +4722,14 @@ Questa pagina continua il registro BA della pagina precedente. Il \textbf{grasse
 \textbf{\texttt{BAP-FRC6-01-01-02}} & \texttt{FR-C6-01-01} -- \texttt{constrain} (\texttt{DermaTriageEnvironment}: \texttt{minimumStorage = 50 GB}) \\
 \emph{\texttt{BAP-FRC6-01-01-03}} & \texttt{FR-C6-01-01} -- candidate \texttt{constrain} (\texttt{recommendedRAM = 32 GB}); modality review aperta \\
 \emph{\texttt{BAP-FRC6-01-01-04}} & \texttt{FR-C6-01-01} -- candidate \texttt{constrain} (\texttt{recommendedStorage = 100 GB}); modality review aperta \\
+\textbf{\texttt{BAP-FRC6-01-02-01}} & \texttt{FR-C6-01-02} -- \texttt{constrain} (\texttt{DermaTriageEnvironment}: local \texttt{requiredSoftwareDependencies}, \texttt{presence=required}); package list e versioni restano current realization, senza nuovo BAReferent per il dependency set \\
 \bottomrule
 \end{tabularx}
-%</PAGE-CONTENT:55>
+%</PAGE-CONTENT:56>
 \clearpage
-%<PAGE-DESC:56>MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
-%<PAGE-CONTENT:56>
-\PageHashFooter{\PageMDfive{56}}
+%<PAGE-DESC:57>MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
+%<PAGE-CONTENT:57>
+\PageHashFooter{\PageMDfive{57}}
 \section{MR-01 - Inventario temporaneo transfer, contract e decisioni BA}
 
 \begin{ddtaopen}[title={PAGINA TEMPORANEA - AUDIT DATA-PATH MR-01 - DA CANCELLARE DOPO LA RIALLOCAZIONE DEI RISULTATI}]
@@ -4677,11 +4778,11 @@ la pagina precedente mescolava due funzioni con lifecycle e change impact separa
 \textbf{Decisione metodologica temporanea - necessity test di \texttt{correlate}:}
 \texttt{BAP-MR01-02} e \texttt{BAP-DEC01-02} sono rimosse dall'insieme attivo delle BAProposition candidate. Nei due passaggi sorgente, ``informazioni disponibili sul caso dermatologico'' e ``informazioni sintomatologiche disponibili sul caso'' descrivono il contesto del caso in analisi e gli input del comportamento di triage; non e' emersa una relazione governata, autonoma e interrogabile che richieda una proposition \texttt{correlate}. La rimozione non elimina i BAReferent ne' le proposition \texttt{produce} gia' candidate. Le occorrenze lessicali di ``correlation'' nella worklist restano domande aperte di binding/identity nei data contract e \textbf{non} indicano l'operatore BA \texttt{correlate}. L'operatore verra' riesaminato soltanto se evidence successiva mostrera' una relazione indipendente non ricostruibile tramite comportamento, identity e contract gia' governati. Questa nota e' temporanea e verra' cancellata a chiusura del case study dopo il consolidamento del risultato.
 \end{ddtaopen}
-%</PAGE-CONTENT:56>
+%</PAGE-CONTENT:57>
 \clearpage
-%<PAGE-DESC:57>Indice di integrita delle pagine
-%<PAGE-CONTENT:57>
-\PageHashFooter{\PageMDfive{57}}
+%<PAGE-DESC:58>Indice di integrita delle pagine
+%<PAGE-CONTENT:58>
+\PageHashFooter{\PageMDfive{58}}
 \section{Indice di integrita' delle pagine}
 
 \begin{ddtacore}[title={Regola di verifica}]
@@ -4749,14 +4850,15 @@ Ogni pagina possiede un MD5 del proprio contenuto canonico. Il calcolo esclude i
 \IntegrityRow{47}{MR-C6 - Predisposizione e inizializzazione dell'ambiente DermaTriage}{\PageMDfive{47}}
 \IntegrityRow{48}{MR-C6 > DEC-C6-01 - Predisposizione dell'ambiente mediante una procedura esplicita di setup}{\PageMDfive{48}}
 \IntegrityRow{49}{MR-C6 > DEC-C6-01 > FR-C6-01-01 - Predisposizione delle risorse di calcolo e storage dell'ambiente}{\PageMDfive{49}}
-\IntegrityRow{50}{MR-C6 - Mappa residua della decomposizione dell'ambiente}{\PageMDfive{50}}
-\IntegrityRow{51}{MR-C7 [review label] - Verifica del sistema DermaTriage}{\PageMDfive{51}}
-\IntegrityRow{52}{MR-C7 [review label] - Mappa candidata di decomposizione: service, API e pipeline verification}{\PageMDfive{52}}
-\IntegrityRow{53}{MR-C7 [review label] - Mappa candidata di decomposizione: B4, retraining e acceptance}{\PageMDfive{53}}
-\IntegrityRow{54}{Registro Base Analysis - BAReferent e BAProposition}{\PageMDfive{54}}
-\IntegrityRow{55}{Registro Base Analysis - BAProposition}{\PageMDfive{55}}
-\IntegrityRow{56}{MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]}{\PageMDfive{56}}
-\IntegrityRow{57}{Indice di integrita delle pagine}{\PageMDfive{57}}
+\IntegrityRow{50}{MR-C6 > DEC-C6-01 > FR-C6-01-02 - Predisposizione dello stack software e delle dipendenze}{\PageMDfive{50}}
+\IntegrityRow{51}{MR-C6 - Mappa residua della decomposizione dell'ambiente}{\PageMDfive{51}}
+\IntegrityRow{52}{MR-C7 [review label] - Verifica del sistema DermaTriage}{\PageMDfive{52}}
+\IntegrityRow{53}{MR-C7 [review label] - Mappa candidata di decomposizione: service, API e pipeline verification}{\PageMDfive{53}}
+\IntegrityRow{54}{MR-C7 [review label] - Mappa candidata di decomposizione: B4, retraining e acceptance}{\PageMDfive{54}}
+\IntegrityRow{55}{Registro Base Analysis - BAReferent e BAProposition}{\PageMDfive{55}}
+\IntegrityRow{56}{Registro Base Analysis - BAProposition}{\PageMDfive{56}}
+\IntegrityRow{57}{MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]}{\PageMDfive{57}}
+\IntegrityRow{58}{Indice di integrita delle pagine}{\PageMDfive{58}}
 %</PAGE-INTEGRITY-ROWS>
 \bottomrule
 \end{tabularx}
@@ -4764,6 +4866,6 @@ Ogni pagina possiede un MD5 del proprio contenuto canonico. Il calcolo esclude i
 
 \vspace{0.8mm}
 {\fontsize{4.8}{5.2}\selectfont\color{DDTAGray}Quando una pagina viene modificata intenzionalmente, cambia il suo MD5. Una variazione inattesa segnala una modifica da riesaminare prima di proseguire.}
-%</PAGE-CONTENT:57>
+%</PAGE-CONTENT:58>
 
 \end{document}
