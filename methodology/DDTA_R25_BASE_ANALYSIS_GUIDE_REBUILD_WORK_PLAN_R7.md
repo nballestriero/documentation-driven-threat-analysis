@@ -413,17 +413,17 @@ Working composition to test:
 ```text
 produce
     actor  -> <producer/selection behavior owner>
-    input  -> <source population or information made available to the actor>
+    input  -> <information genuinely consumed by the actor, when governed>
     result -> <selected result>
 
     operatorStructure / reusable local structure
         selection
-            sourcePopulation -> <population>
+            candidateSource  -> <governed population/source BAReferent>
             selectedResult   -> <result>
             criterion        -> <source-supported criterion or explicit ??/OPEN>
 ```
 
-The exact `selection` signature remains `NOT FROZEN` until the dedicated review and regression complete. RC-001 supplies one pressure case; recent-N/top-K and other existing DermaTriage cases remain mandatory controls so that a signature is not overfit to rollback.
+The exact `selection` signature remains `NOT FROZEN` until the dedicated review and regression complete. A `candidateSource` may be an owner input or a distinct Store/population source; a Store MUST NOT be duplicated as `produce.input` merely to satisfy the local selection signature. RC-001 supplies one pressure case; recent-N/top-K and other existing DermaTriage cases remain mandatory controls so that a signature is not overfit to rollback.
 
 #### C0.3 Retrieval / access boundary after storage and selection
 
@@ -444,16 +444,25 @@ selection      -> choice of item/subset from a population
 The review MUST test the technology-neutral cases:
 
 ```text
-READ from persistent source
-    persistent source -> content -> consumer/process
+RESPONSE-ONLY RETRIEVAL from persistent source
+    persistent source -> response/content -> consumer/process
     plus selection only when source-supported choice/filter/rank semantics exist
+    do NOT invent a request merely because a read/retrieval occurs
+
+REQUEST/RESPONSE RETRIEVAL
+    consumer/process -> request content -> persistent source
+    persistent source -> response/content -> consumer/process
+    request and response are two distinct transfer facts only when the
+    documentation governs a distinct request/query/selector/command content
 
 WRITE to persistent destination
     producer/process -> content -> persistent destination
     plus at-rest association only when durable residence is source-supported
 ```
 
-This checkpoint must also preserve the distinction between an API endpoint that realizes access to a persistent resource and an endpoint that merely exposes a transient/calculated/service response.
+When request content is governed, its shape/fields belong to the information/content contract. The current `BAReferent + constrain + structured constraint` model remains the first representation to test; do not invent a request contract for every filesystem/database/store read.
+
+This checkpoint must also preserve the distinction between an API endpoint that realizes access to a persistent resource and an endpoint that merely exposes a transient/calculated/service response. RC-001 is a control: the current documentation supports Store-to-process response/content transfers, but no separate retrieval-request BAReferent/transfer is introduced unless the documentation governs a distinct request content.
 
 #### C0.4 Exit gate and return to RC-001/RC-002
 
@@ -462,7 +471,7 @@ C0 closes only when:
 - persistence/store identity has a technology-neutral human definition;
 - the at-rest relation has a reviewed disposition (`storedIn` admitted, revised, or explicitly deferred with rationale);
 - `selection` has a reviewed composition boundary and a signature/status sufficient for deterministic testing without overfitting RC-001;
-- the retrieval/access review has exhausted current operators before proposing anything new;
+- the retrieval/access review has exhausted current operators before proposing anything new, including the distinction between response-only retrieval and source-governed request/response retrieval;
 - negative controls include filesystem, database/object-store and API access realizations;
 - RC-001 can be reconstructed without inventing source facts;
 - any remaining unsupported slots stay explicit (`??`, `OPEN`, `NOT SPECIFIED` as appropriate to the artifact/status);
@@ -483,6 +492,8 @@ The audit asks whether the accepted BA can be projected as one coherent graph/hy
 **Connectivity is a diagnostic, not a truth criterion.**
 
 A disconnected component MUST NOT be repaired by inventing an unsupported relation. It must instead be classified.
+
+**Deferred projection-profile task.** After Phase A source/hierarchy corrections are closed and the affected BA is frozen, but before canonical graph regeneration, consolidate the construct-level shape, color, line-style, annotation and composition rules already present in the cumulative BA Guide into one reproducible projection profile. This is a rendering/composition task, not new BA semantics. The profile must preserve one visual identity for reused BAReferent, define suppression/composition rules for duplicate visual paths, keep local structures such as `selection` as owner annotations, preserve branch-scoped `condition` without unnecessary duplication, and freeze the Mermaid renderer/profile inputs needed for deterministic regeneration. Renderer geometry remains non-semantic.
 
 ### 5.2 Canonical graph input
 
@@ -794,6 +805,7 @@ Retrieval/access/acquisition boundary:                   AFTER selection
 RC-001 BA final rebuild for this checkpoint:             BLOCKED on C0
 Source -> hierarchy reconciliation RC-002+:              SUSPENDED, MUST RESUME after RC-001 BA checkpoint
 Accepted-BA graph regeneration after corrections:         BLOCKED until source/hierarchy cycle resumes/closes
+Canonical projection-profile consolidation:              DEFERRED until documentation/BA correction closes
 Contract sufficiency regression:                         PENDING
 Full decisionRule relocation review/promotion:           NOT AUTHORIZED
 Threat analysis:                                         BLOCKED
@@ -955,7 +967,9 @@ resume RC-002 from the exact original source
         ->
 continue RC-003, RC-004, ... one finding at a time
         ->
-after source/hierarchy findings close, regenerate the accepted BA graph
+after source/hierarchy findings close, consolidate/freeze the canonical projection profile
+        ->
+regenerate the accepted BA graph deterministically
         ->
 run full Phase C consolidation/regression
 ```
