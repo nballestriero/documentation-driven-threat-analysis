@@ -1,0 +1,505 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{DDTA_METHODOLOGY_GUIDE_STYLE_R1}
+\usepackage{amsmath,amssymb}
+\usepackage{longtable}
+
+\hypersetup{
+  pdftitle={DDTA BA to Mermaid Projection Guide R1},
+  pdfauthor={Documentation-Driven Threat Analysis research project}
+}
+
+\newcommand{\BA}{\textit{Base Analysis}}
+\newcommand{\BAR}{\texttt{BAReferent}}
+\newcommand{\BAP}{\texttt{BAProposition}}
+\newcommand{\ProjectionGuideTag}{\ddtatag{DDTAAmber}{CANDIDATE / NON-NORMATIVE}}
+\newcommand{\RuleTag}{\ddtatag{DDTABlue}{PROJECTION RULE}}
+\newcommand{\OpenRuleTag}{\ddtatag{DDTAAmber}{OPEN / TO CONSOLIDATE}}
+
+\begin{document}
+\selectlanguage{italian}
+\fancyhead[L]{\sffamily\small\color{DDTAGray}DDTA BA to Mermaid Projection Guide}
+\fancyhead[R]{\sffamily\small\color{DDTABlue}R1 - CANDIDATE}
+\fancyfoot[L]{\sffamily\scriptsize\color{DDTAGray}Projection/composition guidance - no BA semantic authority}
+\fancyfoot[C]{}
+\fancyfoot[R]{\sffamily\scriptsize\color{DDTAGray}Pag. \thepage}
+
+\begin{titlepage}
+\thispagestyle{empty}
+\vspace*{12mm}
+{\sffamily\bfseries\color{DDTANavy}\fontsize{15}{18}\selectfont Documentation-Driven Threat Analysis}\par
+\vspace{5mm}
+{\sffamily\bfseries\color{DDTANavy}\fontsize{26}{30}\selectfont BA to Mermaid Projection Guide}\par
+\vspace{2mm}
+{\sffamily\color{DDTABlue}\fontsize{18}{22}\selectfont R1 - First deterministic projection/composition guide}\par
+
+\vspace{14mm}
+\begin{tcolorbox}[enhanced,arc=3pt,boxrule=0pt,colback=DDTANavy,left=13pt,right=13pt,top=12pt,bottom=12pt]
+{\color{white}\sffamily\bfseries\large Dalla Base Analysis congelata al grafo Mermaid}\par
+\vspace{2mm}
+{\color{white!88}\small Questa guida non interpreta la documentazione e non modifica la Base Analysis. Consuma una BA gia' accettata/congelata per uno scope dichiarato e definisce come trasformarla in un projection model, comporre participation sovrapposte e serializzare una vista Mermaid riproducibile.}
+\end{tcolorbox}
+
+\vspace{6mm}
+\begin{ddtaopen}[title={STATO DEL DOCUMENTO}]
+Questa e' una prima guida separata di projection. E' \textbf{candidate / non-normative}: raccoglie le regole rese esplicite durante il pressure test RC-001 e le convenzioni grafiche gia' presenti nella BA Guide R7. Non promuove nuovi costrutti BA e non rende definitive le pressure ancora aperte.
+\end{ddtaopen}
+
+\vfill
+\begin{tabularx}{0.94\textwidth}{L{48mm}Y}
+\toprule
+\textbf{Stato} & \texttt{CANDIDATE / NON-NORMATIVE / WORKING PROJECTION GUIDE} \\
+\textbf{Repository baseline di origine} & \texttt{fd8fff4ad0edbb8e6c7e099b98d4129ad4e405c8} \\
+\textbf{Input metodologico} & BA Guide R7: semantica dei costrutti, role e identity; questa guida governa soltanto projection/composition. \\
+\textbf{Primo regression example} & \nolinkurl{DDTA_R25_DERMATRIAGE_RC001_BA_TO_MERMAID_WORKING_EXAMPLE_R1.mmd} \\
+\textbf{Renderer target iniziale} & Mermaid flowchart, output SVG/PDF. \\
+\bottomrule
+\end{tabularx}
+\end{titlepage}
+
+\section{Confine fra Base Analysis e projection}
+
+La separazione fondamentale e':
+
+\begin{center}
+\begin{tcolorbox}[width=0.92\textwidth,colback=DDTALightGray,colframe=DDTAGray!55,boxrule=0.5pt,arc=2pt]
+\centering\sffamily
+Governed Documentation $\longrightarrow$ Base Analysis Guide $\longrightarrow$ accepted/frozen BA $\longrightarrow$ BA to Mermaid Projection Guide $\longrightarrow$ Rendered graph
+\end{tcolorbox}
+\end{center}
+
+La BA Guide si ferma alla ricostruzione del significato: identita' \BAR{}, \BAP{}, operatori, role, modifier, local structure, constraint e gap. Questa guida parte \textbf{dopo} tale lavoro. Non puo' aggiungere un referent, completare un role mancante, trasformare una open relation in edge, reinterpretare una condition o scegliere una semantica piu' comoda per il diagramma.
+
+\begin{ddtaprinciple}[title={No reverse inference}]
+Una forma, un edge, un subgraph o un layout Mermaid non possono diventare la ragione per modificare la BA. Se una vista richiede un significato non presente nella BA congelata, la projection deve dichiarare il gap o cambiare scope, non inventare il significato.
+\end{ddtaprinciple}
+
+\begin{ddtacore}[title={Determinismo semantico della projection}]
+A parita' di BA congelata, View Contract, Projection Profile e renderer/configurazione congelati, la projection deve produrre lo stesso inventario visuale semantico: stesse visual occurrence, stessi segmenti composti, stessi contributor/provenance, stesse annotation e stesse omissioni dichiarate. La geometria del layout resta non semantica salvo regole future esplicite.
+\end{ddtacore}
+
+\clearpage
+\section{Input obbligatorio: View Contract}
+
+Prima di espandere la BA in nodi ed edge, la view deve dichiarare il proprio contract. Il generator non decide implicitamente che cosa mostrare.
+
+\begin{lstlisting}
+ViewContract
+  viewId
+  viewType
+  sourceType = BA_ONLY | DOCUMENTATION_ONLY |
+               DOCUMENTATION_PLUS_BA_TRACEABILITY
+  sourceBaseline
+  scope
+  coverageMode = EXHAUSTIVE_FOR_DECLARED_SCOPE | SELECTIVE
+  includedReferents
+  includedPropositionsOrLocalStructures
+  omittedSemantics
+  projectionProfile
+  renderer
+\end{lstlisting}
+
+Per una view \texttt{BA\_ONLY}, la documentazione MR/Decision/FR e' provenance/traceability esterna alla topologia BA. Il fatto che una proposition provenga da \texttt{DEC-08} o \texttt{FR-10} non crea un subgraph, un edge \texttt{contains} o un ordine di esecuzione.
+
+\begin{ddtaanti}[title={Omissione non dichiarata vietata}]
+In una view \texttt{SELECTIVE}, una proposition accettata puo' essere omessa soltanto se l'omissione e' dichiarata dal View Contract con ragione compatibile con lo scope. In una view \texttt{EXHAUSTIVE\_FOR\_DECLARED\_SCOPE}, tutto il significato compatibile con quel tipo di view deve essere proiettato.
+\end{ddtaanti}
+
+\subsection{RC-001: scope del working example}
+
+Il primo esempio della guida usa una vista selettiva focalizzata sull'esecuzione del rollback:
+
+\begin{lstlisting}
+sourceType = BA_ONLY
+scope = MR-04 / DEC-08 / FR-10 rollback execution branch
+coverageMode = SELECTIVE
+included = BAP-FR10-01 .. BAP-FR10-05
+omitted = BAP-DEC08-01
+reason = producer of the condition datum is outside the
+         rollback-execution view; the governed condition meaning
+         remains visible in the condition annotation
+\end{lstlisting}
+
+Questa scelta non elimina \texttt{BAP-DEC08-01} dalla BA. Se lo scope fosse ``tutte le proposition accettate di DEC-08 + FR-10'', tale proposition dovrebbe essere renderizzata.
+
+\clearpage
+\section{Projection model intermedio}
+
+La trasformazione non deve essere concettualmente \texttt{BA -> Mermaid}. Introduciamo un projection model intermedio che non aggiunge semantica ma rende esplicite le decisioni di composizione.
+
+\begin{lstlisting}
+VisualOccurrence
+  occurrenceId
+  semanticReferentId
+  placementContext
+  side = SINGLE | IN | OUT
+  visualClass
+
+ProjectedSegment
+  fromOccurrence
+  toOccurrence
+  direction
+  contributors [1..*]
+    propositionId
+    semanticOperatorKey
+    rolePair
+
+ProjectionAnnotation
+  ownerOccurrence | ownerProposition
+  annotationKind
+  payload
+  provenance
+\end{lstlisting}
+
+\begin{ddtacore}[title={Identity e occurrence non coincidono}]
+Una \BAR{} e' una identita' semantica. Una \texttt{VisualOccurrence} e' una sua occorrenza grafica. Per default una identity produce una occurrence; alcune composition rule possono richiedere piu' occurrence visuali della stessa identity senza creare nuovi \BAR{}.
+\end{ddtacore}
+
+La provenance non deve necessariamente essere stampata sul diagramma, ma deve restare ricostruibile dal projection model. Questo consente di fondere segmenti visuali senza fondere le \BAP{} sottostanti.
+
+\clearpage
+\section{Ordine deterministico della pipeline}
+
+Le regole devono essere applicate in un ordine fisso. Cambiare ordine puo' cambiare il risultato visuale e quindi deve essere vietato salvo revisione esplicita della guida.
+
+\begin{enumerate}
+  \item \textbf{Freeze BA input.} Selezionare la baseline BA e non reinterpretare la documentazione durante la projection.
+  \item \textbf{Resolve View Contract.} Fissare scope, coverage, inclusioni e omissioni.
+  \item \textbf{Expand constructs.} Convertire ogni proposition inclusa in segmenti elementari secondo il mapping del proprio costrutto.
+  \item \textbf{Create default occurrences.} Creare una occurrence \texttt{SINGLE} per ogni identity inclusa.
+  \item \textbf{Resolve visual aliasing.} Applicare le regole che richiedono piu' occurrence della stessa identity.
+  \item \textbf{Remap segments.} Collegare ogni segmento alla occurrence corretta dopo l'aliasing.
+  \item \textbf{Coalesce same-direction edges.} Fondere soltanto segmenti visualmente equivalenti e unire i contributor.
+  \item \textbf{Project non-flow semantics.} Aggiungere condition, selection, constrain, binding e altre annotation ammesse.
+  \item \textbf{Apply visual profile.} Applicare shape, class, line style e label senza cambiare topologia/semantica.
+  \item \textbf{Stable serialization.} Ordinare node/edge/annotation e generare Mermaid con ID deterministici.
+  \item \textbf{Fixed rendering.} Usare renderer/version/config/seed congelati per gli artifact canonici o di regression.
+\end{enumerate}
+
+\begin{ddtaprinciple}[title={Aliasing prima del coalescing}]
+Il visual aliasing deve essere risolto prima del coalescing definitivo. In caso contrario due segmenti potrebbero essere fusi usando una singola occurrence e poi risultare appartenenti a lati visuali distinti dello stesso behavior.
+\end{ddtaprinciple}
+
+\clearpage
+\section{Espansione elementare dei costrutti attualmente usati}
+
+Questa prima R1 riporta soltanto i mapping necessari al pressure test corrente e gia' coerenti con le convenzioni presenti nella BA Guide R7. Il catalogo verra' esteso in seguito.
+
+\subsection{produce}
+
+Per una \BAP{} \texttt{produce}:
+
+\begin{lstlisting}
+for each input I:
+  segment I -> actor
+  contributor = produce / input -> actor
+
+for each result R:
+  segment actor -> R
+  contributor = produce / actor -> result
+\end{lstlisting}
+
+La proposition resta una sola; i segmenti sono decomposition visuale dei role. L'input non viene inventato per rendere piu' leggibile un transfer e il result non implica creazione ex novo: \texttt{produce} significa che l'actor rende disponibile il result secondo la semantica BA governata.
+
+\subsection{transfer}
+
+Per una \BAP{} \texttt{transfer}:
+
+\begin{lstlisting}
+source -> content
+content -> destination
+\end{lstlisting}
+
+I due segmenti rappresentano una sola proposition transfer. Se ci sono piu' content o destination, l'espansione replica i segmenti necessari mantenendo la provenance della stessa \BAP{}.
+
+\subsection{Store}
+
+\texttt{semanticKind=store} seleziona la shape cilindrica. La direzione dell'edge deriva dal role nella proposition, non dal cilindro e non dal binding \texttt{IN/OUT}. Il locator, quando visibile, e' annotation non-flow.
+
+\clearpage
+\section{Same-direction edge coalescing}
+\RuleTag
+
+Quando due o piu' projected participation generano la stessa edge diretta fra le stesse visual occurrence, la projection rende una sola edge e conserva tutti i contributor.
+
+\begin{lstlisting}
+Given projected participations:
+
+edge E1 = X -> Y
+edge E2 = X -> Y
+
+if:
+  same source BAReferent identity / resolved visual occurrence
+  same destination BAReferent identity / resolved visual occurrence
+  same direction
+  all participations are valid in the declared view
+
+then:
+  render one visual edge X -> Y
+  contributors = union(contributors(E1), contributors(E2))
+\end{lstlisting}
+
+\begin{ddtaanti}[title={Non e' deduplicazione della BA}]
+Il coalescing non unisce, elimina o riscrive le \BAP{}. Una edge visuale puo' soddisfare contemporaneamente piu' participation; la BA sottostante resta invariata e ogni contributor deve restare recuperabile.
+\end{ddtaanti}
+
+\subsection{Input composition}
+
+\begin{lstlisting}
+transfer:
+  S -> A -> P
+
+produce:
+  A -> P
+
+composed projection:
+  S -> A -> P
+
+S -> A = transfer source/content
+A -> P = transfer content/destination
+         + produce input/actor
+\end{lstlisting}
+
+\subsection{Output composition}
+
+\begin{lstlisting}
+produce:
+  P -> R
+
+transfer:
+  P -> R -> S
+
+composed projection:
+  P -> R -> S
+
+P -> R = produce actor/result
+         + transfer source/content
+R -> S = transfer content/destination
+\end{lstlisting}
+
+La regola non si applica a direzioni opposte, identity diverse, occurrence diverse dopo aliasing o participation fuori scope.
+
+\section{Role-side visual aliasing}
+\RuleTag
+
+Una sola identity puo' dover apparire piu' volte per rendere leggibili role opposti attorno allo stesso actor/process senza introdurre un loop grafico ambiguo.
+
+\begin{lstlisting}
+Given:
+  process/actor P
+  BAReferent X
+
+if the resolved projected participations contain both:
+  X -> P
+  P -> X
+within the same composed behavior view
+
+then:
+  create X@IN(P)
+  create X@OUT(P)
+
+  semanticIdentity(X@IN(P))  = X
+  semanticIdentity(X@OUT(P)) = X
+
+  route incoming-side segments through X@IN(P)
+  route outgoing-side segments through X@OUT(P)
+
+  do not create X@IN(P) -> X@OUT(P)
+  do not create a second BAReferent
+\end{lstlisting}
+
+\begin{ddtacore}[title={Visual alias non implica trasformazione}]
+\texttt{X@IN(P)} e \texttt{X@OUT(P)} sono due occurrence visuali della stessa identity. Non affermano \texttt{X before != X after}, non affermano che P modifica X e non introducono una transformation. Se la documentazione governa due identity semanticamente distinte, la separazione deve avvenire nella BA prima della projection.
+\end{ddtacore}
+
+\subsection{Regola di labeling}
+
+Ogni alias deve conservare il nome canonico della \BAR{} e puo' aggiungere soltanto un qualifier visuale esplicito, per esempio \texttt{input-side occurrence} / \texttt{result-side occurrence}. Il qualifier non diventa parte del canonical BA name.
+
+\clearpage
+\section{Projection delle semantic annotation}
+
+\subsection{condition}
+
+La condition e' una annotation dello scope/owner, non un data-flow node. Nella projection corrente usa un tag ambra/ellittico e un collegamento di qualificazione non interpretato come conveyance. Non genera automaticamente un ramo complementare, un rombo decisionale o una relation \texttt{initiate/trigger}.
+
+\begin{ddtaopen}[title={Branch-scoped composition pressure}]
+La BA corrente puo' contenere la condition soltanto sulla proposition owner che apre il ramo, mentre transfer downstream appartengono semanticamente allo stesso ramo. La regola generale con cui una condition owner viene mostrata una sola volta per un composed branch resta da consolidare; non duplicare la condition sui transfer soltanto per ottenere il grafico.
+\end{ddtaopen}
+
+\subsection{selection}
+
+\texttt{selection} e' una local structure dell'owner \texttt{produce}; viene mostrata come box/annotation grigia tratteggiata. \texttt{candidateSource} puo' riferire uno Store senza creare un data-flow edge Store $\rightarrow$ actor. L'accesso allo Store deve derivare da una proposition separata, per esempio un transfer.
+
+\subsection{constrain}
+
+\texttt{constrain} resta una proposition distinta ma non modifica il data path. Nella prima profile viene mostrato come annotation/constraint collegata al target. Nel caso RC-001 \texttt{automatic} qualifica \texttt{??-02}; non viene trasformato in actor o behavior aggiuntivo.
+
+\subsection{binding / locator}
+
+Il binding dello Store puo' essere mostrato con nota grigia/tratteggiata. \texttt{direction=IN|OUT} descrive il binding relativo allo Store, ma non crea da solo un transfer e non determina la direzione di una freccia se nessuna \BAP{} la governa.
+
+\clearpage
+\section{Projection Profile iniziale}
+
+Le convenzioni seguenti sono consolidate dalle rappresentazioni gia' presenti nella BA Guide R7 e usate nel regression example. Questa tabella e' un primo profilo, non ancora il catalogo completo.
+
+\begin{tabularx}{\textwidth}{L{42mm}L{48mm}Y}
+\toprule
+\textbf{Semantica} & \textbf{Visual class} & \textbf{Regola corrente} \\
+\midrule
+Actor / process & actor & rettangolo arrotondato, palette blu \\
+Information/content & content & documento bianco, bordo blu \\
+\texttt{semanticKind=store} & store & cilindro, palette blu \\
+\texttt{condition} & condition & tag ellittico ambra, collegamento non-flow \\
+\texttt{selection} & local structure & box grigio/tratteggiato, annotation dell'owner \\
+\texttt{constrain} & constraint & annotation teal/tratteggiata sul target \\
+Binding/locator & binding & nota grigia/tratteggiata dello Store \\
+Data-flow segment & flow & edge diretta blu \\
+\bottomrule
+\end{tabularx}
+
+\begin{ddtaprinciple}[title={Shape non cambia role}]
+La stessa \BAR{} mantiene la propria identity anche quando compare in role differenti. La forma grafica rappresenta il semantic kind / visual class; il role corrente deriva dalla proposition e dai contributor della edge, non dalla shape.
+\end{ddtaprinciple}
+
+\clearpage
+\section{Stable Mermaid serialization}
+
+Dopo che il projection model e' chiuso, la serializzazione Mermaid deve essere meccanica.
+
+\subsection{ID delle occurrence}
+
+Usare ID deterministici derivati da identity e placement context, non nomi casuali prodotti dal renderer/LLM. Una forma concettuale ammessa e':
+
+\begin{lstlisting}
+SINGLE:  V::<referentId>::SINGLE
+IN:      V::<referentId>::IN::<contextId>
+OUT:     V::<referentId>::OUT::<contextId>
+\end{lstlisting}
+
+La concreta escaping rule per Mermaid sara' congelata quando implementeremo il generator; il principio e' che lo stesso projection model produce gli stessi node ID.
+
+\subsection{Ordine di emissione}
+
+La prima regola di serializzazione e':
+
+\begin{enumerate}
+  \item node/occurrence ordinati per canonical occurrence key;
+  \item annotation ordinate per owner e \texttt{annotationKind};
+  \item edge ordinate per \texttt{fromOccurrence}, \texttt{toOccurrence}, direction e contributor key;
+  \item \texttt{classDef} e assegnazioni di classi in ordine fisso;
+  \item \texttt{linkStyle} generati dall'ordine finale delle edge, mai scritti prima del sort.
+\end{enumerate}
+
+\subsection{Renderer freeze}
+
+Per il regression example RC-001 sono stati fissati gli input renderer necessari a ottenere SVG byte-identici in due render indipendenti. Il file \nolinkurl{DDTA_R25_DERMATRIAGE_RC001_BA_TO_MERMAID_WORKING_EXAMPLE_R1_RENDER_CHECK.json} conserva il profilo esatto usato dal primo regression. Il checkpoint corrente usa Mermaid \texttt{11.12.2}, Chromium \texttt{144.0.7559.96} e:
+
+\begin{lstlisting}
+deterministicIds = true
+deterministicIDSeed = ddta-r25-rc001-fd8fff4-r4
+handDrawnSeed = 424242
+look = classic
+fontFamily = Arial, Helvetica, sans-serif
+flowchart.defaultRenderer = dagre
+flowchart.curve = linear
+flowchart.htmlLabels = true
+flowchart.nodeSpacing = 80
+flowchart.rankSpacing = 110
+flowchart.padding = 22
+flowchart.useMaxWidth = false
+\end{lstlisting}
+
+Un aggiornamento del renderer o di uno di questi input non e' una modifica semantica, ma richiede una nuova baseline visuale e un nuovo render check. La futura guida potra' introdurre un profilo renderer canonico indipendente dal singolo pressure test; fino ad allora il regression artifact deve conservare i parametri effettivamente usati.
+
+\begin{ddtaopen}[title={PDF byte determinism}]
+Il PDF puo' contenere metadata di generazione non semantici (per esempio timestamp). Per i regression canonici, \texttt{.mmd} e SVG sono gli artifact primari da rendere byte-deterministici. Un PDF byte-identico richiede anche normalizzazione dei metadata e non deve essere confuso con semantic determinism.
+\end{ddtaopen}
+
+\section{Worked regression example: RC-001 rollback}
+
+Il file \nolinkurl{DDTA_R25_DERMATRIAGE_RC001_BA_TO_MERMAID_WORKING_EXAMPLE_R1.mmd} e' il primo esempio di regressione per questa guida. E' \textbf{working evidence / non-authority}; serve a dimostrare la composition, non a diventare sorgente BA.
+
+\subsection{BA inclusa}
+
+\begin{lstlisting}
+BAP-FR10-01 produce
+  actor  -> ??-02
+  input  -> ModelVersionTrackingArtifact
+  result -> PreviousAcceptableVersionOrState
+  condition -> PostAdoptionAccuracyDegradation > 5%
+               relative to ApplicablePostAdoptionReference
+  selection
+    candidateSource -> ClassifierVersionStore
+    selectedResult  -> PreviousAcceptableVersionOrState
+    membershipCriteria -> acceptable
+    selectionBasis -> ModelVersionTrackingArtifact
+
+BAP-FR10-02 constrain
+  ??-02 -> automatic
+
+BAP-FR10-03 transfer
+  ModelVersionTrackingStore
+    -> ModelVersionTrackingArtifact
+    -> ??-02
+
+BAP-FR10-04 transfer
+  ClassifierVersionStore
+    -> PreviousAcceptableVersionOrState
+    -> ??-02
+
+BAP-FR10-05 transfer
+  ??-02
+    -> PreviousAcceptableVersionOrState
+    -> ActiveClassifierStore
+\end{lstlisting}
+
+\subsection{Composition result}
+
+Il tracking applica edge coalescing:
+
+\begin{lstlisting}
+ModelVersionTrackingStore
+  -> ModelVersionTrackingArtifact
+  -> ??-02
+
+edge Artifact -> ??-02 contributors:
+  BAP-FR10-03 transfer content/destination
+  BAP-FR10-01 produce input/actor
+\end{lstlisting}
+
+\texttt{PreviousAcceptableVersionOrState} applica role-side visual aliasing:
+
+\begin{lstlisting}
+ClassifierVersionStore
+  -> PreviousAcceptableVersionOrState@IN(??-02)
+  -> ??-02
+  -> PreviousAcceptableVersionOrState@OUT(??-02)
+  -> ActiveClassifierStore
+\end{lstlisting}
+
+Le due occurrence hanno la stessa semantic identity. Il lato OUT coalesca \texttt{produce.result} e il primo segmento di \texttt{BAP-FR10-05}. Non viene disegnato alcun trasferimento diretto Store-to-Store.
+
+\section{Open items e criterio di evoluzione della guida}
+
+Questa R1 non pretende di avere chiuso l'intera projection DDTA. Le pressure correnti devono essere trattate come problemi di projection, non risolte retroattivamente dentro la BA.
+
+\begin{itemize}
+  \item consolidare la composition branch-scoped della \texttt{condition} senza duplicazione downstream;
+  \item verificare il visual aliasing su casi non-RC-001 per escludere overfitting;
+  \item formalizzare il mapping completo dei restanti operatori BA e delle relative local structure;
+  \item definire un formato machine-readable del projection model e della provenance;
+  \item congelare escaping, canonical sort key, renderer version/config e regression commands;
+  \item separare progressivamente dalla BA Guide le sezioni Mermaid quando questa guida coprira' l'intero catalogo necessario;
+  \item mantenere i graph checkpoint come evidence/regression e mai come source per una rerun BA.
+\end{itemize}
+
+\begin{ddtaprinciple}[title={Criterio per spostare una regola qui dalla BA Guide}]
+Una regola appartiene a questa guida quando, a BA invariata, decide soltanto \emph{come} rendere/comporre visivamente il significato. Una regola resta nella BA Guide quando decide \emph{quale} significato, identity, proposition, role, modifier o local structure esiste.
+\end{ddtaprinciple}
+
+\begin{ddtaopen}[title={Stato R1}]
+La R1 e' sufficiente per riprodurre il pressure test RC-001 con input/view dichiarati, coalescing e visual aliasing. Non e' ancora sufficiente per dichiarare chiuso il Projection Profile dell'intera BA DermaTriage.
+\end{ddtaopen}
+
+\end{document}

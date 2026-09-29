@@ -1,0 +1,39 @@
+{
+  "status": "WORKING EXAMPLE / NON-AUTHORITY",
+  "repository_baseline": "fd8fff4ad0edbb8e6c7e099b98d4129ad4e405c8",
+  "projection_guide": "DDTA_BA_TO_MERMAID_PROJECTION_GUIDE_R1",
+  "mermaid_version": "11.12.2",
+  "chromium_version": "144.0.7559.96",
+  "renderer_module_asset": "mermaid.core-vMMZVCDT-B51BzRAT.js",
+  "svg_a_sha256": "01e9b4e77941ed9036c16dd7eeba530730f63e2646a302b7bfbd936c3075860a",
+  "svg_b_sha256": "01e9b4e77941ed9036c16dd7eeba530730f63e2646a302b7bfbd936c3075860a",
+  "byte_identical_svg": true,
+  "config": {
+    "startOnLoad": false,
+    "securityLevel": "strict",
+    "theme": "base",
+    "themeVariables": {
+      "edgeLabelBackground": "#FFFFFF",
+      "fontSize": "18px"
+    },
+    "deterministicIds": true,
+    "deterministicIDSeed": "ddta-r25-rc001-fd8fff4-r4",
+    "handDrawnSeed": 424242,
+    "look": "classic",
+    "fontFamily": "Arial, Helvetica, sans-serif",
+    "flowchart": {
+      "defaultRenderer": "dagre",
+      "curve": "linear",
+      "htmlLabels": true,
+      "nodeSpacing": 80,
+      "rankSpacing": 110,
+      "padding": 22,
+      "useMaxWidth": false
+    }
+  },
+  "artifact_sha256": {
+    "DDTA_R25_DERMATRIAGE_RC001_BA_TO_MERMAID_WORKING_EXAMPLE_R1.mmd": "db760af772a4501284e00fb09b318b16d81aa736780eea21885c4f13cc14b166",
+    "DDTA_R25_DERMATRIAGE_RC001_BA_TO_MERMAID_WORKING_EXAMPLE_R1.svg": "01e9b4e77941ed9036c16dd7eeba530730f63e2646a302b7bfbd936c3075860a",
+    "DDTA_R25_DERMATRIAGE_RC001_BA_TO_MERMAID_WORKING_EXAMPLE_R1.pdf": "fd50779ec36ef652c9cbab088586203f54d7b70b7e57e9af1c0feda84f54f823"
+  }
+}

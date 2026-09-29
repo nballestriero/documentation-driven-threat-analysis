@@ -493,7 +493,7 @@ The audit asks whether the accepted BA can be projected as one coherent graph/hy
 
 A disconnected component MUST NOT be repaired by inventing an unsupported relation. It must instead be classified.
 
-**Deferred projection-profile task.** After Phase A source/hierarchy corrections are closed and the affected BA is frozen, but before canonical graph regeneration, consolidate the construct-level shape, color, line-style, annotation and composition rules already present in the cumulative BA Guide into one reproducible projection profile. This is a rendering/composition task, not new BA semantics. The profile must preserve one visual identity for reused BAReferent, define suppression/composition rules for duplicate visual paths, keep local structures such as `selection` as owner annotations, preserve branch-scoped `condition` without unnecessary duplication, and freeze the Mermaid renderer/profile inputs needed for deterministic regeneration. Renderer geometry remains non-semantic.
+**Deferred projection-profile task.** After Phase A source/hierarchy corrections are closed and the affected BA is frozen, but before canonical graph regeneration, consolidate and freeze the projection/composition rules in the dedicated candidate guide `DDTA_BA_TO_MERMAID_PROJECTION_GUIDE_R1`. The BA Guide remains responsible for semantic identification and accepted BA structure; the projection guide consumes frozen BA and governs deterministic visual occurrences, composition/coalescing, annotation, style mapping, stable Mermaid serialization and renderer inputs. The RC-001 rollback working example `DDTA_R25_DERMATRIAGE_RC001_BA_TO_MERMAID_WORKING_EXAMPLE_R1` is retained as regression evidence beside the prior working graph checkpoint. Renderer geometry remains non-semantic, and graph appearance cannot drive upstream BA meaning.
 
 ### 5.2 Canonical graph input
 
@@ -726,7 +726,9 @@ C. BA_CONSTRUCT_UNBLOCK_CHECKPOINT
 
 D. DERMATRIAGE_BA_GRAPH_COHERENCE_AUDIT
    regenerated accepted graph inventory, components, isolated referents,
-   classifications, candidate/open overlay and reproducible generation rules
+   classifications, candidate/open overlay and reproducible generation rules;
+   projection-composition regression evidence governed by
+   `DDTA_BA_TO_MERMAID_PROJECTION_GUIDE_R1`
 
 E. BA_CONSTRUCT_REVIEW_DELTA
    full persistence/storage disposition, selection consolidation,
@@ -798,14 +800,16 @@ Independent source-preservation audit #2:                completed
 Internal source-first audit:                             completed
 Three-way finding normalization/register:                completed / active control surface
 RC-001 source -> MR -> Decision -> FR adjudication:       documentation source-closed for checkpoint
-RC-001 affected BA rebuild:                              PAUSED - construct vocabulary/composition blocker
-Persistence/storage construct review:                    NEXT
-Selection construct review:                              AFTER persistence/storage
-Retrieval/access/acquisition boundary:                   AFTER selection
-RC-001 BA final rebuild for this checkpoint:             BLOCKED on C0
-Source -> hierarchy reconciliation RC-002+:              SUSPENDED, MUST RESUME after RC-001 BA checkpoint
+Persistence/storage construct review for RC-001:         completed for checkpoint
+Selection construct review for RC-001:                   completed for checkpoint
+Retrieval/access/acquisition boundary for RC-001:        completed for checkpoint
+RC-001 affected BA final rebuild:                        completed for checkpoint
+BA-to-Mermaid projection/composition guide R1:           created as candidate / non-normative
+RC-001 rollback projection regression example:           created / non-authority evidence
+RC-001 finding-register disposition:                     NEXT
+Source -> hierarchy reconciliation RC-002+:              SUSPENDED, MUST RESUME after RC-001 register update
 Accepted-BA graph regeneration after corrections:         BLOCKED until source/hierarchy cycle resumes/closes
-Canonical projection-profile consolidation:              DEFERRED until documentation/BA correction closes
+Canonical projection-profile full consolidation:          DEFERRED until documentation/BA correction closes
 Contract sufficiency regression:                         PENDING
 Full decisionRule relocation review/promotion:           NOT AUTHORIZED
 Threat analysis:                                         BLOCKED
@@ -951,23 +955,26 @@ BA status: NOT ANALYZED UNTIL DOCUMENTATION CLOSED
 ### 11.7 Immediate next action
 
 ```text
-freeze R7 working plan at repository baseline e332663
+repository baseline fd8fff4: RC-001 documentation + BA checkpoint saved
         ->
-C0.1 formalize/review persistence/storage abstraction and at-rest relation
+C0.1 persistence/storage review: completed for RC-001 checkpoint
         ->
-C0.2 formalize/review selection
+C0.2 selection review: completed for RC-001 checkpoint
         ->
-C0.3 test retrieval/access boundary by exhausting current operators
+C0.3 retrieval/access boundary: completed for RC-001 checkpoint
         ->
-rebuild RC-001 BA from the unchanged corrected documentation
+RC-001 BA final rebuild + projection composition pressure test: completed
         ->
-record RC-001 disposition in the finding register
+BA-to-Mermaid candidate guide R1 + rollback regression example: save to repository
+        ->
+record RC-001 disposition in the finding register   [NEXT]
         ->
 resume RC-002 from the exact original source
         ->
 continue RC-003, RC-004, ... one finding at a time
         ->
 after source/hierarchy findings close, consolidate/freeze the canonical projection profile
+under `DDTA_BA_TO_MERMAID_PROJECTION_GUIDE_R1`
         ->
 regenerate the accepted BA graph deterministically
         ->

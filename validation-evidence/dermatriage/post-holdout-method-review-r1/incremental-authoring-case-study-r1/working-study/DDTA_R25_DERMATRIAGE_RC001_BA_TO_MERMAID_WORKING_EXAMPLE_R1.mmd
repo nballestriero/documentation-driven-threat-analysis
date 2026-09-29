@@ -1,0 +1,62 @@
+%% DDTA R25 DermaTriage RC-001 BA-to-Mermaid working example R1
+%% Source baseline: fd8fff4ad0edbb8e6c7e099b98d4129ad4e405c8
+%% WORKING EXAMPLE / NON-AUTHORITY / regression evidence for DDTA_BA_TO_MERMAID_PROJECTION_GUIDE_R1
+%% View: selective rollback-branch composition test
+%% BAP-DEC08-01 producer intentionally omitted from this view.
+%% Its governed meanings appear only inside the FR-10 condition statement.
+%% Composition applied: same-direction edge coalescing + visual aliasing of one BAReferent identity.
+flowchart LR
+
+  COND(["condition<br/>PostAdoptionAccuracyDegradation &gt; 5%<br/>relative to ApplicablePostAdoptionReference"])
+
+  TSTORE[("ModelVersionTrackingStore<br/>store / source")]
+  TART@{ shape: doc, label: "ModelVersionTrackingArtifact<br/>transfer content / produce input" }
+
+  VSTORE[("ClassifierVersionStore<br/>store / candidateSource / transfer source")]
+  PREVIN@{ shape: doc, label: "PreviousAcceptableVersionOrState<br/>input-side occurrence<br/>transfer content" }
+
+  ROLLBACK["??-02<br/>actor - rollback branch<br/>unresolved identity"]
+
+  PREVOUT@{ shape: doc, label: "PreviousAcceptableVersionOrState<br/>result-side occurrence<br/>produce result / transfer content" }
+  ASTORE[("ActiveClassifierStore<br/>store / destination")]
+
+  AUTO["automatic<br/>constrain"]
+  SEL["selection<br/>candidateSource = ClassifierVersionStore<br/>selectedResult = PreviousAcceptableVersionOrState<br/>membershipCriteria = acceptable<br/>selectionBasis = ModelVersionTrackingArtifact"]
+
+  BTRACK["OUT<br/>db/model_versions.json"]
+  BVERS["OUT<br/>models/versions/"]
+  BACTIVE["IN<br/>models/efficientnet_b4.pth"]
+
+  TSTORE --> TART --> ROLLBACK
+  VSTORE --> PREVIN --> ROLLBACK
+
+  COND -.-> ROLLBACK
+  SEL -.- ROLLBACK
+  AUTO -.-> ROLLBACK
+
+  ROLLBACK --> PREVOUT --> ASTORE
+
+  BTRACK -.- TSTORE
+  BVERS -.- VSTORE
+  BACTIVE -.- ASTORE
+
+  classDef actor fill:#EEF4F9,stroke:#275D86,color:#17324D,stroke-width:2px
+  classDef content fill:#FFFFFF,stroke:#275D86,color:#17324D,stroke-width:2px
+  classDef store fill:#EEF4F9,stroke:#275D86,color:#17324D,stroke-width:2px
+  classDef condition fill:#FFF4E3,stroke:#A96A16,color:#17324D,stroke-width:2px
+  classDef constraint fill:#EAF5F3,stroke:#2A7F78,color:#17324D,stroke-width:2px
+  classDef local fill:#F4F6F8,stroke:#5B6770,color:#17324D,stroke-width:1.8px,stroke-dasharray:5 5
+  classDef binding fill:#F4F6F8,stroke:#5B6770,color:#17324D,stroke-width:1.5px,stroke-dasharray:4 4
+
+  class ROLLBACK actor
+  class TART,PREVIN,PREVOUT content
+  class TSTORE,VSTORE,ASTORE store
+  class COND condition
+  class AUTO constraint
+  class SEL local
+  class BTRACK,BVERS,BACTIVE binding
+
+  linkStyle 0,1,2,3,7,8 stroke:#275D86,stroke-width:2.5px,color:#17324D
+  linkStyle 4 stroke:#A96A16,stroke-width:1.8px,stroke-dasharray:6 5,color:#7A4A0A
+  linkStyle 5,9,10,11 stroke:#5B6770,stroke-width:1.4px,stroke-dasharray:5 5,color:#3F484F
+  linkStyle 6 stroke:#2A7F78,stroke-width:1.8px,stroke-dasharray:6 5,color:#1F625D
