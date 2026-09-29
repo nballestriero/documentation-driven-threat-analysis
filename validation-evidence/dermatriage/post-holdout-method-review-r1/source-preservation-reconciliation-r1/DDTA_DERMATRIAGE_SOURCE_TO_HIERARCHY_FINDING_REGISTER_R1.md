@@ -2,7 +2,7 @@
 
 **Execution baseline used to create this register:** `3d1cd23`
 **Status:** WORKING AUDIT / NOT PROJECT AUTHORITY / NOT BA AUTHORITY
-**Controlled by:** `methodology/DDTA_R25_BASE_ANALYSIS_GUIDE_REBUILD_WORK_PLAN_R6.md`
+**Controlled by:** `methodology/DDTA_R25_BASE_ANALYSIS_GUIDE_REBUILD_WORK_PLAN_R7.md`
 
 ## 1. Purpose
 
@@ -55,7 +55,7 @@ BA status: NOT ANALYZED UNTIL DOCUMENTATION CLOSED
 
 | ID | Finding | Original-source anchor | Current/candidate hierarchy | Working status | Immediate next check |
 |---|---|---|---|---|---|
-| `RC-001` | Automatic rollback >5% | OR2 Architecture §4.2; OR4 Training Cycles | MR-04 → DEC-08 → FR-10 | **SOURCE-CONFIRMED / OWNER-CHAIN TO REVALIDATE** | Re-read source in context; confirm/rework existing branch before any BA. |
+| `RC-001` | Automatic rollback >5% | OR2 Architecture §4.2; OR4 Training Cycles | MR-04 → DEC-08 → FR-10 | **CLOSED** | Source/hierarchy, corrected documentation and affected BA are closed for this checkpoint. Reopen only if upstream authority/evidence changes invalidate the disposition. |
 | `RC-002` | Stage-4 JSON output contract: recommended_action + naming divergence | OR2 Architecture Stage 4; OR5 Stage 4 tests | MR-01 → DEC-MR01-03 → FR-MR01-03-04 | **SOURCE-CONFIRMED / OWNER-CHAIN TO REVALIDATE** | Reconstruct complete Stage-4 contract from both originals; preserve source disagreement explicitly. |
 | `RC-003` | P1-P4 SLA 24h/48h/72h/7d | OR2 Architecture adaptation mapping | MR/Decision/FR owner NOT YET CLOSED | **SOURCE-CONFIRMED / OWNER OPEN** | Determine macro responsibility first; do not attach SLA to nearest existing branch by convenience. |
 | `RC-004` | Baseline classifier absolute quality gates | OR2 Model Test Report; OR5 acceptance criteria | Likely MR-01 / Stage-1 branch; exact Decision/FR owner open | **SOURCE-CONFIRMED / OWNER OPEN** | Keep distinct from MR-04 comparative retraining gate; decide exact hierarchy from source meaning. |
@@ -75,6 +75,91 @@ BA status: NOT ANALYZED UNTIL DOCUMENTATION CLOSED
 | `RC-018` | MR-02 specialist boundary vs SLA meaning | OR2/OR3/OR5 | MR-02 plus separate owner review for SLA | **SOURCE OWNER REVIEW** | Keep specialist destination distinct from SLA; do not invent routing/vocabulary/booking. |
 | `RC-019` | Privacy / anonymization / in-memory upload facts | Original privacy/data sources | MR/Decision/FR owner NOT YET CLOSED | **SOURCE OWNER / CLASSIFICATION REVIEW** | First find hierarchy owner; only afterward decide whether security specialization is justified. |
 | `RC-020` | FR-13/14/15 non-propagation family | Original adaptation-loop semantics | MR-04 → DEC-05 → FR-13/14/15 | **SOURCE-STRENGTH + DOWNSTREAM-UTILITY REVIEW** | Re-test source support and branch autonomy after primary source-preservation corrections. |
+
+
+### RC-001 closure record
+
+```text
+Finding ID:
+RC-001
+
+Original source locator:
+OR2_Architecture_Document.pdf §4.2; OR4_Training_Cycles_Report.pdf
+
+Minimal source-supported meaning:
+An already-adopted classifier adaptation that exceeds the governed post-adoption
+accuracy-degradation threshold requires automatic rollback/restore of a previous
+acceptable classifier version/state. The rollback branch uses maintained version
+payloads and maintained version-tracking information to identify and restore the
+previous acceptable version/state.
+
+Source ambiguity / conflict:
+The 5% threshold is source-supported, but the source does not close whether this
+means relative percent or percentage points. It does not name the concrete actor
+that computes the post-adoption degradation, does not govern a complete ordering
+or tie-break among multiple acceptable stored versions, and does not specify the
+concrete filesystem restore mechanism or the fate of the replaced active model.
+
+Candidate MR owner:
+MR-04
+
+MR ownership rationale:
+Rollback is part of controlled adaptation lifecycle/recovery after adoption and
+therefore belongs to the macro-responsibility for controlled adaptation rather
+than baseline triage execution.
+
+MR action:
+REUSE
+
+Candidate Decision owner:
+DEC-08
+
+Decision rationale:
+DEC-08 owns the distinct post-adoption policy choice that material degradation
+above the governed threshold activates the rollback/restore branch. The corrected
+Decision keeps this post-adoption threshold semantically distinct from the
+pre-adoption comparative-qualification tolerance.
+
+Decision action:
+REWORK
+
+Candidate FR owner:
+FR-10
+
+Operational behavior:
+When post-adoption accuracy degradation exceeds the governed threshold, execute
+automatic rollback; use maintained version-tracking information to identify a
+previous acceptable version/state, retrieve it from the maintained classifier
+versions, and restore it as the active classifier.
+
+FR action:
+REWORK
+
+Placement of realization/evidence/binding inside the branch:
+models/versions/ -> ClassifierVersionStore / maintained restorable versions
+db/model_versions.json -> ModelVersionTrackingStore / ModelVersionTrackingArtifact
+models/efficientnet_b4.pth -> ActiveClassifierStore / active classifier binding
+
+Remaining NOT SPECIFIED / source gaps:
+- concrete identity of the actor that produces PostAdoptionAccuracyDegradation;
+- any additional inputs of that evaluation;
+- relative-percent vs percentage-point interpretation of the 5% threshold;
+- exact ordering/tie-break/choice among multiple acceptable versions;
+- concrete restore mechanics (copy/move/overwrite/load/reference switch/etc.);
+- fate of the previously active model after rollback.
+
+Documentation correction authorized:
+YES - applied and reviewed in the DEC-08 -> FR-10 branch before the affected BA
+was rebuilt.
+
+BA status:
+REBUILT FROM THE CORRECTED DOCUMENTATION / RC-001 CHECKPOINT COMPLETE.
+Accepted affected propositions are BAP-DEC08-01 and BAP-FR10-01..05. Store,
+selection and response-only retrieval/transfer semantics were reviewed through
+C0.1/C0.2/C0.3. The BA-to-Mermaid rollback example is regression evidence only
+and is not part of the finding's project or BA authority.
+```
+
 
 ## 4. Execution sequence
 

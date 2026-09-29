@@ -806,8 +806,8 @@ Retrieval/access/acquisition boundary for RC-001:        completed for checkpoin
 RC-001 affected BA final rebuild:                        completed for checkpoint
 BA-to-Mermaid projection/composition guide R1:           created as candidate / non-normative
 RC-001 rollback projection regression example:           created / non-authority evidence
-RC-001 finding-register disposition:                     NEXT
-Source -> hierarchy reconciliation RC-002+:              SUSPENDED, MUST RESUME after RC-001 register update
+RC-001 finding-register disposition:                     CLOSED for checkpoint
+Source -> hierarchy reconciliation RC-002+:              NEXT - resume from original source
 Accepted-BA graph regeneration after corrections:         BLOCKED until source/hierarchy cycle resumes/closes
 Canonical projection-profile full consolidation:          DEFERRED until documentation/BA correction closes
 Contract sufficiency regression:                         PENDING
@@ -868,7 +868,7 @@ relative-percent vs percentage-point interpretation of the 5% rollback threshold
 fate of the previously active model after rollback
 ```
 
-RC-001 is **not CLOSED** until C0 has been reviewed, the BA has been rebuilt from the unchanged corrected documentation, and the finding register records the resulting disposition.
+RC-001 is **CLOSED for this checkpoint**: C0.1/C0.2/C0.3 have been reviewed, the BA has been rebuilt from the unchanged corrected documentation, and the finding register records the resulting disposition. Reopen RC-001 only if later source/hierarchy evidence or methodology changes invalidate this closure.
 
 ### 11.4 Finding queue that MUST be resumed
 
@@ -955,21 +955,11 @@ BA status: NOT ANALYZED UNTIL DOCUMENTATION CLOSED
 ### 11.7 Immediate next action
 
 ```text
-repository baseline fd8fff4: RC-001 documentation + BA checkpoint saved
+repository baseline 301e859: RC-001 documentation + BA + BA-to-Mermaid checkpoint saved
         ->
-C0.1 persistence/storage review: completed for RC-001 checkpoint
+RC-001 finding-register closure: completed
         ->
-C0.2 selection review: completed for RC-001 checkpoint
-        ->
-C0.3 retrieval/access boundary: completed for RC-001 checkpoint
-        ->
-RC-001 BA final rebuild + projection composition pressure test: completed
-        ->
-BA-to-Mermaid candidate guide R1 + rollback regression example: save to repository
-        ->
-record RC-001 disposition in the finding register   [NEXT]
-        ->
-resume RC-002 from the exact original source
+resume RC-002 from the exact original source   [NEXT]
         ->
 continue RC-003, RC-004, ... one finding at a time
         ->
