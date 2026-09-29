@@ -56,7 +56,7 @@ BA status: NOT ANALYZED UNTIL DOCUMENTATION CLOSED
 | ID | Finding | Original-source anchor | Current/candidate hierarchy | Working status | Immediate next check |
 |---|---|---|---|---|---|
 | `RC-001` | Automatic rollback >5% | OR2 Architecture §4.2; OR4 Training Cycles | MR-04 → DEC-08 → FR-10 | **CLOSED** | Source/hierarchy, corrected documentation and affected BA are closed for this checkpoint. Reopen only if upstream authority/evidence changes invalidate the disposition. |
-| `RC-002` | Stage-4 JSON output contract: recommended_action + naming divergence | OR2 Architecture Stage 4; OR5 Stage 4 tests | MR-01 → DEC-MR01-03 → FR-MR01-03-04 | **SOURCE-CONFIRMED / OWNER-CHAIN TO REVALIDATE** | Reconstruct complete Stage-4 contract from both originals; preserve source disagreement explicitly. |
+| `RC-002` | Stage-4 JSON output contract: recommended_action + naming divergence | OR2 Architecture Stage 4; OR5 Stage 4 tests | Runtime owner hint: MR-01 → DEC-MR01-03 → FR-MR01-03-04; verification owner under RC-021 review | **SOURCE-CONFIRMED / OWNER-CHAIN TO REVALIDATE / PAUSED FOR RC-021** | Resume after the MR-family review; distinguish runtime Stage-4 semantics from the OR5 verification oracle before any documentation correction. |
 | `RC-003` | P1-P4 SLA 24h/48h/72h/7d | OR2 Architecture adaptation mapping | MR/Decision/FR owner NOT YET CLOSED | **SOURCE-CONFIRMED / OWNER OPEN** | Determine macro responsibility first; do not attach SLA to nearest existing branch by convenience. |
 | `RC-004` | Baseline classifier absolute quality gates | OR2 Model Test Report; OR5 acceptance criteria | Likely MR-01 / Stage-1 branch; exact Decision/FR owner open | **SOURCE-CONFIRMED / OWNER OPEN** | Keep distinct from MR-04 comparative retraining gate; decide exact hierarchy from source meaning. |
 | `RC-005` | Classifier-retraining fine-tune parameters | OR2 Architecture §4.2; OR4 Training Cycles §3.3 | MR-04 classifier-adaptation branch; Decision/FR owner open | **SOURCE-CONFIRMED / OWNER OPEN** | Preserve within correct hierarchy as normative or current realization only after source-level classification. |
@@ -75,6 +75,109 @@ BA status: NOT ANALYZED UNTIL DOCUMENTATION CLOSED
 | `RC-018` | MR-02 specialist boundary vs SLA meaning | OR2/OR3/OR5 | MR-02 plus separate owner review for SLA | **SOURCE OWNER REVIEW** | Keep specialist destination distinct from SLA; do not invent routing/vocabulary/booking. |
 | `RC-019` | Privacy / anonymization / in-memory upload facts | Original privacy/data sources | MR/Decision/FR owner NOT YET CLOSED | **SOURCE OWNER / CLASSIFICATION REVIEW** | First find hierarchy owner; only afterward decide whether security specialization is justified. |
 | `RC-020` | FR-13/14/15 non-propagation family | Original adaptation-loop semantics | MR-04 → DEC-05 → FR-13/14/15 | **SOURCE-STRENGTH + DOWNSTREAM-UTILITY REVIEW** | Re-test source support and branch autonomy after primary source-preservation corrections. |
+| `RC-021` | Environment preparation vs verification/test macro-responsibility split pressure | OR4 Training Environment Configuration §§1-9; OR5 Test Environment Setup §§1-9 | MR-03 rework candidate; new candidate MR-C6 Environment Preparation; new candidate MR-C7 Verification; initial-training lifecycle kept separate but not promoted to MR | **MR-FAMILY REVIEW CHECKPOINT / CANDIDATE DOCUMENTATION AUTHORED** | Review the candidate MR-03/C6/C7 pages and their proposed Decision/FR decomposition maps; promotion remains gated. Resume RC-002 only with runtime and verification ownership kept distinct. |
+
+
+### RC-021 opening record
+
+```text
+Finding ID:
+RC-021
+
+Original source locators:
+OR4_Training_Environment_Config.pdf §§1-9
+OR5_Test_Environment_Setup.pdf §§1-9
+
+Minimal source-supported meaning:
+The original corpus exposes a pre-use environment lifecycle with at least two
+separable responsibility candidates.
+
+Candidate A - environment preparation:
+OR4 documents the environment required to train and run DermaTriage, including
+resource prerequisites, software stack, model/resource acquisition, environment
+configuration, directory/storage structure, installation, ChromaDB
+initialization, server start and deployment verification.
+
+Candidate B - verification/test:
+OR5 documents setup and verification of the DermaTriage test environment and
+defines endpoint tests, per-stage pipeline tests, full-pipeline tests, B4
+integration tests, retraining tests, known limitations and acceptance criteria
+with expected results/pass conditions.
+
+Cross-source ownership pressure:
+OR4 also contains deployment verification/health checks, while OR5's stated
+purpose includes setup as well as verification. Therefore source-document
+boundaries MUST NOT be treated as semantic-owner boundaries.
+
+MR-family separation/classification checkpoint:
+MR-01 triage evaluation -> KEEP.
+MR-02 specialist-destination indication -> KEEP / STOP AT MR.
+MR-03 clinical-review management -> KEEP with REWORK candidate.
+MR-04 controlled continuous adaptation -> KEEP.
+Initial training / baseline establishment -> preserve as a distinct lifecycle
+meaning, but LOWER LEVEL for this checkpoint; do not merge it into MR-04.
+Aggregate "environment setup + verification" -> SPLIT.
+
+Candidate MR-C6:
+  title -> Predisposizione e inizializzazione dell'ambiente DermaTriage
+  provisional classification -> KEEP candidate
+  candidate decomposition map -> prerequisites; software/dependencies;
+  model/resource availability; environment/integration configuration;
+  local-resource initialization; service startup.
+
+Candidate MR-C7:
+  title -> Verifica del sistema DermaTriage
+  provisional classification -> KEEP candidate
+  candidate decomposition map -> service/readiness; API/endpoint; pipeline-stage;
+  full-pipeline; B4 integration; retraining/rollback; acceptance/quality verification.
+
+Candidate documentation checkpoint:
+The existing DermaTriage case-study file now contains:
+- the MR-03 rework candidate;
+- proposal pages for the missing clinical-review interaction/tooling branch;
+- candidate MR-C6 and its decomposition map;
+- candidate MR-C7 and its decomposition maps.
+All new candidate Decision/FR pages are visibly marked as proposals to verify.
+Their BA is intentionally NOT ANALYZED. Existing affected BA must not be treated
+as revalidated merely because the documentation page was edited.
+
+The MR-C6 / MR-C7 split remains provisional until the candidate pages and
+decomposition maps pass human semantic review and the downstream Decision gates.
+
+Important non-inferences:
+- do not infer that every OR4 fact belongs to Candidate A;
+- do not infer that every OR5 fact belongs to Candidate B;
+- do not infer "test passed -> runtime contract authority";
+- do not infer a mandatory production/deployment gate before operational use;
+- do not infer separate training and runtime environments unless a source closes
+  that distinction;
+- do not create an MR merely because a lifecycle phase is security-relevant.
+
+Security-analysis relevance:
+Preparation and verification are security-relevant because changes introduced
+during those phases may affect later runtime behavior. This motivates preserving
+the source-supported lifecycle for downstream threat analysis, but it is NOT the
+authority for creating either MR.
+
+Immediate next action:
+Use the candidate case-study pages as the controlled review surface. Validate the
+MR-03 rework and the MR-C6/MR-C7 separation, then apply the Decision gate to the
+proposed decomposition maps. Keep the concrete clinical-review tools,
+environment/setup bindings, verification oracles and acceptance evidence
+preserved even where exact semantic relations remain open.
+
+After the macro-owner checkpoint is stable, resume RC-002 with OR2 runtime
+Stage-4 semantics and OR5 Stage-4 verification expectations kept distinct.
+
+Documentation correction authorized:
+YES for this checkpoint as explicitly marked candidate/review documentation.
+NO for promotion of MR-C6/MR-C7 or their proposed Decision/FR decomposition to
+CURRENT_GOVERNED until the corresponding gates close.
+
+BA status:
+MR-03 affected BA: REVALIDATION REQUIRED AFTER DOCUMENTATION CLOSURE.
+MR-C6 / MR-C7: NOT ANALYZED.
+```
 
 
 ### RC-001 closure record
@@ -165,9 +268,9 @@ and is not part of the finding's project or BA authority.
 
 ### A. Source-to-hierarchy reconstruction
 
-Analyze first: `RC-001` through `RC-009`, then `RC-013`, `RC-018`, `RC-019`, `RC-020`.
+Analyze `RC-021` first as a family-wide MR-owner gate because it can change the macro ownership used by subsequent source findings. Then resume `RC-002` through `RC-009`, followed by `RC-013`, `RC-018`, `RC-019`, `RC-020`.
 
-These rows can change MR/Decision/FR meaning and therefore must be resolved before BA identity or graph corrections.
+These rows can change MR/Decision/FR meaning and therefore must be resolved before BA identity or graph corrections. `RC-021` does not authorize new MR authoring by itself: the complete MR family must first pass the active Documentation Authoring Guide separation/classification gates.
 
 ### B. BA identity and graph
 

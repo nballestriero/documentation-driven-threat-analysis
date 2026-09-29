@@ -807,7 +807,14 @@ RC-001 affected BA final rebuild:                        completed for checkpoin
 BA-to-Mermaid projection/composition guide R1:           created as candidate / non-normative
 RC-001 rollback projection regression example:           created / non-authority evidence
 RC-001 finding-register disposition:                     CLOSED for checkpoint
-Source -> hierarchy reconciliation RC-002+:              NEXT - resume from original source
+RC-021 MR-family separation/classification:               completed for candidate checkpoint
+MR-03 rework + clinical-review tooling placeholders:      authored as candidate / review-only
+MR-C6 environment preparation + decomposition map:        authored as candidate / review-only
+MR-C7 verification + decomposition maps:                  authored as candidate / review-only
+MR-C6 / MR-C7 Base Analysis:                              NOT ANALYZED
+MR-03 affected Base Analysis:                             REVALIDATION REQUIRED after documentation closure
+RC-002 Stage-4 output-contract reconciliation:            PAUSED until RC-021 candidate owner review closes
+Source -> hierarchy reconciliation RC-003+:              QUEUED after MR-family review / RC-002
 Accepted-BA graph regeneration after corrections:         BLOCKED until source/hierarchy cycle resumes/closes
 Canonical projection-profile full consolidation:          DEFERRED until documentation/BA correction closes
 Contract sufficiency regression:                         PENDING
@@ -876,7 +883,8 @@ After the RC-001 BA checkpoint, return to the finding register and continue one 
 
 ```text
 SOURCE / HIERARCHY FIRST - resume here:
-RC-002 Stage-4 output contract
+RC-021 environment preparation vs verification/test MR-family reconstruction
+RC-002 Stage-4 output contract [resume after RC-021 owner review]
 RC-003 P1-P4 SLA literals
 RC-004 baseline classifier absolute quality gates
 RC-005 classifier-retraining fine-tune parameters
@@ -901,7 +909,11 @@ RC-016 selection
 RC-017 decisionRule relocation
 ```
 
-For RC-002, reopen the original Stage-4 output-contract evidence before accepting the existing ownership hint. The current hint `MR-01 -> DEC-MR01-03 -> FR-MR01-03-04` is not authority and must be revalidated from the original source, including the OR2/OR5 naming/field divergence.
+RC-021 has completed the first family-wide MR separation/classification pass for the current source set. The controlled case-study checkpoint now contains a reworked MR-03 candidate, explicit proposal pages preserving the clinical-review tools/processes, candidate MR-C6 for environment preparation/initialization and candidate MR-C7 for verification, together with candidate decomposition maps. These pages are review surfaces, not promoted current authority.
+
+The candidate family currently preserves: MR-01 KEEP; MR-02 KEEP / STOP AT MR; MR-03 KEEP + REWORK; MR-04 KEEP; initial training as a distinct lifecycle meaning but LOWER LEVEL for this checkpoint; MR-C6 and MR-C7 as separate KEEP candidates. The next RC-021 activity is the human review / Decision-gate pass over those candidate pages, not a BA rerun.
+
+For RC-002, the original Stage-4 evidence has been reopened, but final owner reconstruction remains paused until the RC-021 candidate-owner review is stable. The current runtime hint `MR-01 -> DEC-MR01-03 -> FR-MR01-03-04` is not authority. OR2's runtime Stage-4 description and OR5's Stage-4 verification oracle must remain distinct unless the project documentation establishes their relationship.
 
 ### 11.5 Recovery reading order
 
@@ -955,11 +967,17 @@ BA status: NOT ANALYZED UNTIL DOCUMENTATION CLOSED
 ### 11.7 Immediate next action
 
 ```text
-repository baseline 301e859: RC-001 documentation + BA + BA-to-Mermaid checkpoint saved
+repository baseline 0c7f874: RC-001 finding closure saved
         ->
-RC-001 finding-register closure: completed
+RC-021 family-wide MR separation/classification checkpoint completed
         ->
-resume RC-002 from the exact original source   [NEXT]
+save/review MR-03 rework + clinical-review tooling proposal pages
++ MR-C6/MR-C7 candidate pages and decomposition maps   [NEXT]
+        ->
+apply Decision gates to the candidate decompositions;
+do not start BA for MR-C6/MR-C7 yet
+        ->
+resume RC-002 with runtime-vs-verification ownership separated
         ->
 continue RC-003, RC-004, ... one finding at a time
         ->
