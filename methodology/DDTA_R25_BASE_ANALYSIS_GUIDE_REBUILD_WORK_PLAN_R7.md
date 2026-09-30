@@ -814,8 +814,9 @@ DEC-C6-01 explicit environment-setup procedure:           APPROVED / CURRENT_GOV
 FR-C6-01-01 compute/storage resource preparation:         APPROVED / CURRENT_GOVERNED
 FR-C6-01-02 software/dependency preparation:             APPROVED / CURRENT_GOVERNED
 FR-C6-01-03 model/data resource availability:            APPROVED / CURRENT_GOVERNED
+FR-C6-01-04 environment/integration binding configuration: APPROVED / CURRENT_GOVERNED
 MR-C6 Base Analysis:                                      STARTED IN PARALLEL / approved branch represented
-MR-C6 residual decomposition C6-P04..P06:                 OPEN / candidate review
+MR-C6 residual decomposition C6-P05..P06:                 OPEN / candidate review
 MR-C7 verification + decomposition maps:                  authored as candidate / review-only
 MR-C7 Base Analysis:                                      NOT ANALYZED
 MR-03 affected Base Analysis:                             REVALIDATION REQUIRED after documentation closure
@@ -915,7 +916,7 @@ RC-016 selection
 RC-017 decisionRule relocation
 ```
 
-RC-021 has completed the first family-wide MR separation/classification pass for the current source set. The controlled case-study checkpoint still contains a reworked MR-03 candidate and candidate MR-C7 verification pages. The environment-preparation branch has now passed the first authoring/analysis gate: MR-C6 is CURRENT_GOVERNED, DEC-C6-01 governs explicit environment setup, FR-C6-01-01 governs compute/storage resource preparation, FR-C6-01-02 governs software/dependency availability, and FR-C6-01-03 governs model/data resource availability. The residual C6-P04..P06 map remains candidate review material.
+RC-021 has completed the first family-wide MR separation/classification pass for the current source set. The controlled case-study checkpoint still contains a reworked MR-03 candidate and candidate MR-C7 verification pages. The environment-preparation branch has now passed the first authoring/analysis gate: MR-C6 is CURRENT_GOVERNED, DEC-C6-01 governs explicit environment setup, FR-C6-01-01 governs compute/storage resource preparation, FR-C6-01-02 governs software/dependency availability, FR-C6-01-03 governs model/data resource availability, and FR-C6-01-04 governs environment/integration configuration bindings. The residual C6-P05..P06 map remains candidate review material.
 
 The working family currently preserves: MR-01 KEEP; MR-02 KEEP / STOP AT MR; MR-03 KEEP + REWORK candidate; MR-04 KEEP; initial training as a distinct lifecycle meaning but LOWER LEVEL for this checkpoint; MR-C6 approved/current; MR-C7 still a KEEP candidate. Documentation and Base Analysis now proceed in parallel inside an approved branch: documentation remains project authority, while BA is used immediately as a diagnostic representation test and may feed ambiguity or construct-pressure findings back to the appropriate layer without creating project meaning.
 
@@ -975,9 +976,9 @@ BA status: NOT ANALYZED UNTIL DOCUMENTATION CLOSED
 ```text
 repository baseline 99c106c: MR-03 / MR-C6 / MR-C7 candidate checkpoint saved
         ->
-MR-C6 -> DEC-C6-01 -> FR-C6-01-01 / FR-C6-01-02 / FR-C6-01-03 approved with parallel BA checkpoint
+MR-C6 -> DEC-C6-01 -> FR-C6-01-01 / FR-C6-01-02 / FR-C6-01-03 / FR-C6-01-04 approved with parallel BA checkpoint
         ->
-continue MR-C6 residual decomposition C6-P04..P06 one branch at a time;
+continue MR-C6 residual decomposition C6-P05..P06 one branch at a time;
 author documentation and run BA in parallel after each governed node   [NEXT]
         ->
 review/promote or rework MR-C7 only after its own gates;

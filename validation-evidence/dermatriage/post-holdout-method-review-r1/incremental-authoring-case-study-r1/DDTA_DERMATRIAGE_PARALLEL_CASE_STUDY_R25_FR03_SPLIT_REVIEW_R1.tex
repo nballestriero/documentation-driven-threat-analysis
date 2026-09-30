@@ -72,14 +72,16 @@
 \expandafter\def\csname PageMDfive49\endcsname{40a157f1a8c090426477fb4311149d80}
 \expandafter\def\csname PageMDfive50\endcsname{db19e807cec5e49e3ca695c110920d57}
 \expandafter\def\csname PageMDfive51\endcsname{37ce9d7e945eac0051591dd6c8fdce0e}
-\expandafter\def\csname PageMDfive52\endcsname{8e66bb01c5e11c8bcf88e3c9ed488b57}
-\expandafter\def\csname PageMDfive53\endcsname{d6f6d4d2621b1f8a817ee3879782608a}
-\expandafter\def\csname PageMDfive54\endcsname{989bae884287eaeac14bb52a961776fe}
-\expandafter\def\csname PageMDfive55\endcsname{b902e88a80ccad3092c9c66cd324c034}
-\expandafter\def\csname PageMDfive56\endcsname{69093cccc477ff10819c85579c92d36a}
-\expandafter\def\csname PageMDfive57\endcsname{c38cf69dfe44d23a7d8cafbce68107ee}
-\expandafter\def\csname PageMDfive58\endcsname{df70ba8f961369f44bdd2b8e064a53bd}
-\expandafter\def\csname PageMDfive59\endcsname{fc2e507c85ab0c7dcfbb063ab1a2bab6}
+\expandafter\def\csname PageMDfive52\endcsname{b314f8732d8a6555e9fb3bcab3be176e}
+\expandafter\def\csname PageMDfive53\endcsname{8bde3f1da3a7f0b4ab8607d04f55eb36}
+\expandafter\def\csname PageMDfive54\endcsname{5bf0d1c38038e2601ea01be641b852bf}
+\expandafter\def\csname PageMDfive55\endcsname{d6f6d4d2621b1f8a817ee3879782608a}
+\expandafter\def\csname PageMDfive56\endcsname{989bae884287eaeac14bb52a961776fe}
+\expandafter\def\csname PageMDfive57\endcsname{b902e88a80ccad3092c9c66cd324c034}
+\expandafter\def\csname PageMDfive58\endcsname{4bfde16c396be63d4f547dd655d71197}
+\expandafter\def\csname PageMDfive59\endcsname{70c4909cfde07869de8d318cb7b81276}
+\expandafter\def\csname PageMDfive60\endcsname{df70ba8f961369f44bdd2b8e064a53bd}
+\expandafter\def\csname PageMDfive61\endcsname{8de625f72aaafb17794feebe3f4bf7ab}
 %</PAGE-HASH-DEFS>
 
 \newcommand{\PageHashFooter}[1]{%
@@ -4468,15 +4470,194 @@ I nomi dei modelli, i model identifier, i locator, le source di download e le di
 %</PAGE-CONTENT:51>
 
 \clearpage
-%<PAGE-DESC:52>MR-C6 - Mappa residua della decomposizione dell'ambiente
+%<PAGE-DESC:52>MR-C6 > DEC-C6-01 > FR-C6-01-04 - Configurazione dei binding dell'ambiente e delle integrazioni [1/2]
 %<PAGE-CONTENT:52>
 \PageHashFooter{\PageMDfive{52}}
+\subsubsection{FR-C6-01-04 - Configurazione dei binding dell'ambiente e delle integrazioni}
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-C6} $\rightarrow$ \texttt{DEC-C6-01} $\rightarrow$ \texttt{FR-C6-01-04} -- parte 1/2}\par
+
+\setlength{\columnsep}{7mm}
+\setlength{\columnseprule}{0.35pt}
+\columnratio{0.66}
+\begin{paracol}{2}
+
+{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
+\vspace{0.15em}
+
+\begin{ddtacore}[title={FunctionalRequirement}]
+\fontsize{4.35}{4.75}\selectfont
+\begin{tabularx}{\linewidth}{L{38mm}Y}
+\toprule
+\textbf{ID} & \texttt{FR-C6-01-04} \\
+\textbf{Lifecycle} & \texttt{current} \\
+\textbf{Authority} & \texttt{CURRENT\_GOVERNED} \\
+\textbf{Type} & \texttt{FunctionalRequirement} \\
+\textbf{Title} & Configurazione dei binding dell'ambiente e delle integrazioni \\
+\textbf{Parent Decision} & \texttt{DEC-C6-01} \\
+\textbf{Owning MR (derived)} & \texttt{MR-C6} \\
+\textbf{SpecializedRequirement relation} & 0 active instances \\
+\bottomrule
+\end{tabularx}
+
+\textbf{Functional obligation}\par
+Predisporre nell'ambiente DermaTriage i binding di configurazione necessari a identificare le risorse utilizzate dal sistema, configurare l'esposizione del servizio e fornire i parametri e le credenziali richiesti dalle integrazioni previste.
+
+\textbf{Functional clauses / inherited \texttt{normativeClause [1..*]}}\par
+L'ambiente DermaTriage MUST rendere disponibili i binding di configurazione necessari alle risorse, al servizio e alle integrazioni applicabili.
+\end{ddtacore}
+
+\begin{ddtacore}[title={Current realization / environment configuration - parte 1}]
+\fontsize{3.95}{4.35}\selectfont
+La realizzazione corrente usa un file \texttt{.env}, derivato da \texttt{.env.example}, per fornire i binding configurabili dell'ambiente.\par
+\smallskip
+\begin{tabularx}{\linewidth}{L{42mm}L{47mm}Y}
+\toprule
+\textbf{Binding corrente} & \textbf{Significato documentato} & \textbf{Boundary} \\
+\midrule
+\texttt{EFFICIENTNET\_MODEL=}\nolinkurl{models/efficientnet_b4.pth} & path corrente dei pesi EfficientNet & risorsa governata da \texttt{FR-C6-01-03}; nessuna seconda identita' \\
+\texttt{RAG\_CSV\_PATH=}\nolinkurl{data/RAG_dataset.csv} & path corrente del dataset RAG & disponibilita' in \texttt{FR-C6-01-03}; uso nel retrieval \\
+\texttt{CHROMA\_DB\_PATH=}\nolinkurl{chroma_db} & path corrente del vector store & inizializzazione in \texttt{C6-P05}; uso nello Stage 3 \\
+\texttt{EMBEDDING\_MODEL=}\nolinkurl{sentence-transformers/all-MiniLM-L6-v2} & model identifier corrente & disponibilita' in \texttt{FR-C6-01-03} \\
+\texttt{QWEN2\_MODEL=}\nolinkurl{Qwen/Qwen2-VL-7B-Instruct} & model identifier corrente & disponibilita' in \texttt{FR-C6-01-03} \\
+\texttt{BIOMISTRAL\_MODEL=}\nolinkurl{BioMistral/BioMistral-7B} & model identifier corrente & disponibilita' in \texttt{FR-C6-01-03} \\
+\texttt{TOP\_K\_RESULTS=5} & valore configurato del numero di risultati RAG & significato del retrieval posseduto dallo Stage 3 \\
+\texttt{API\_HOST=0.0.0.0}; \texttt{API\_PORT=5000} & host e porta FastAPI correnti & binding P04; consumo all'avvio in \texttt{C6-P06} \\
+\bottomrule
+\end{tabularx}
+\end{ddtacore}
+
+\switchcolumn
+{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
+\vspace{0.15em}
+
+\begin{ddtareferentidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.4}{4.8}\selectfont
+Nessun nuovo BAReferent richiesto. \BACandidate{DermaTriageRAGDataset} e' riusato come candidate gia' emerso in \texttt{FR-C6-01-03}. \texttt{.env} e le singole variabili non vengono promossi a BAReferent.
+\end{ddtareferentidentified}
+
+\begin{ddtareferentaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.0}{4.4}\selectfont
+\BAAccepted{DermaTriageEnvironment}; \BAAccepted{EfficientNet-B4}; \BAAccepted{ActiveClassifierStore}; \BAAccepted{Qwen2-VL-7B-Instruct}; \BAAccepted{BioMistral-7B}; \BAAccepted{all-MiniLM-L6-v2}; \BAAccepted{ChromaDB}; \BAAccepted{HistoricalCaseSimilarityRetrieval}; \BAAccepted{B4}; \BAAccepted{ProtectedDermaTriageOperation}; \BAAccepted{B4CallAuthentication}; \BAAccepted{ClassifierAdaptationPath}.
+\end{ddtareferentaccepted}
+
+\begin{ddtapropositionidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.95}{4.35}\selectfont
+\texttt{BAP-FRC6-01-04-01} -- \texttt{constrain}\par
+\hspace*{1em}\texttt{constraintTarget -> DermaTriageEnvironment}\par
+\hspace*{1em}\texttt{constraintValue.property -> requiredConfigurationBindings}\par
+\hspace*{1em}\texttt{constraintValue.presence -> required}\par
+\texttt{polarity = affirmative}\par
+\smallskip
+\texttt{BAP-FR24-01} -- \texttt{constrain} (reuse)\par
+\hspace*{1em}\texttt{constraintTarget -> ProtectedDermaTriageOperation}\par
+\hspace*{1em}\texttt{authenticationMechanism: presence=required; vocabulary=[X-API-Key]}\par
+\texttt{polarity = affirmative}\par
+\smallskip
+\texttt{BAP-FR25-02} -- \texttt{constrain} (reuse)\par
+\hspace*{1em}\texttt{constraintTarget -> B4CallAuthentication}\par
+\hspace*{1em}\texttt{authenticationMechanism: vocabulary=[bearer JWT]}\par
+\texttt{polarity = affirmative}
+\end{ddtapropositionidentified}
+
+\begin{ddtapropositionaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.3}{4.7}\selectfont
+\textbf{BAP-FRC6-01-04-01}; reuse di \textbf{BAP-FR24-01} e \textbf{BAP-FR25-02}.\par
+\emph{Gli ID riusati identificano gli stessi semantic fact gia' accettati; \texttt{FR-C6-01-04} aggiunge una nuova occurrence documentale, non proposition duplicate.}
+\end{ddtapropositionaccepted}
+
+\begin{ddtaopenrelations}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.0}{4.4}\selectfont
+\texttt{EFFICIENTNET\_MODEL} riusa il locator di \texttt{ActiveClassifierStore}; \texttt{CHROMA\_DB\_PATH} riferisce la stessa identita' \texttt{ChromaDB}. I model identifier configurati non creano copie setup-specific dei modelli. Nessun assignment key/value viene trasformato automaticamente in una BAProposition.
+\end{ddtaopenrelations}
+
+\end{paracol}
+%</PAGE-CONTENT:52>
+
+\clearpage
+%<PAGE-DESC:53>MR-C6 > DEC-C6-01 > FR-C6-01-04 - Configurazione dei binding dell'ambiente e delle integrazioni [2/2]
+%<PAGE-CONTENT:53>
+\PageHashFooter{\PageMDfive{53}}
+\subsubsection*{FR-C6-01-04 - Boundary, gap documentali e completamento BA}
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-C6} $\rightarrow$ \texttt{DEC-C6-01} $\rightarrow$ \texttt{FR-C6-01-04} -- parte 2/2}\par
+
+\setlength{\columnsep}{7mm}
+\setlength{\columnseprule}{0.35pt}
+\columnratio{0.66}
+\begin{paracol}{2}
+
+{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
+\vspace{0.15em}
+
+\begin{ddtacore}[title={Current realization / environment configuration - parte 2}]
+\fontsize{4.1}{4.5}\selectfont
+\begin{tabularx}{\linewidth}{L{40mm}L{48mm}Y}
+\toprule
+\textbf{Binding corrente} & \textbf{Significato documentato} & \textbf{Boundary} \\
+\midrule
+\texttt{YOUR\_API\_KEY} & API key DermaTriage richiesta dalla configurazione & binding verso \texttt{X-API-Key} non esplicitato \\
+\texttt{B4\_API\_KEY} & API key della piattaforma B4 richiesta dalla configurazione & uso operativo specifico non documentato \\
+\texttt{B4\_BASE\_URL=}\nolinkurl{https://aivscancer.b4service.it} & base URL corrente della piattaforma B4 & binding dell'integrazione B4 \\
+\texttt{B4\_USERNAME} & username richiesto per l'autenticazione JWT B4 & policy auth governata altrove \\
+\texttt{B4\_PASSWORD} & password richiesta per l'autenticazione JWT B4 & policy auth governata altrove \\
+\texttt{RETRAINING\_THRESHOLD=50} & valore configurato della soglia del retraining classificatorio & significato governato dal branch MR-04 / FR-05 \\
+\bottomrule
+\end{tabularx}
+\smallskip
+I valori, i locator, i model identifier, gli endpoint e i nomi delle variabili descrivono la current realization e non diventano automaticamente commitment tecnologici immutabili.
+\end{ddtacore}
+
+\begin{ddtacore}[title={Cross-branch boundary}]
+\fontsize{4.4}{4.8}\selectfont
+\texttt{FR-C6-01-04} governa la presenza dei binding necessari alla configurazione dell'ambiente. Non acquisisce ownership del comportamento funzionale dei modelli, del numero di casi recuperati, della condizione di attivazione del retraining, delle policy di autenticazione, dell'inizializzazione del vector store o dell'avvio del servizio.
+\end{ddtacore}
+
+\begin{ddtaquestions}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.1}{4.5}\selectfont
+\textbf{Q1 - API key DermaTriage.} \texttt{YOUR\_API\_KEY} fornisce il valore atteso nell'header \texttt{X-API-Key} per le operazioni DermaTriage protette? Le fonti identificano entrambi i significati ma non esplicitano il binding; non e' stato identificato un utilizzo alternativo della variabile.\par
+\smallskip
+\textbf{Q2 - B4 API key.} Quale operazione utilizza \texttt{B4\_API\_KEY} e quale relazione ha, se esiste, con il flusso bearer JWT basato su \texttt{B4\_USERNAME} e \texttt{B4\_PASSWORD}? La variabile e' richiesta, ma il suo uso operativo non e' specificato.
+\end{ddtaquestions}
+
+\switchcolumn
+{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
+\vspace{0.15em}
+
+\begin{ddtaopenrelations}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.4}{4.8}\selectfont
+\textbf{Preserved meanings senza nuova BAProposition.}\par
+\texttt{TOP\_K\_RESULTS=5}: il binding e' preservato, ma il top-5 resta significato dello Stage 3 e la BA corrente non possiede ancora una proposition accettata che lo rappresenti come constraint stabile.\par
+\smallskip
+\texttt{RETRAINING\_THRESHOLD=50}: il binding e' preservato, ma il trigger e' governato dal branch di adattamento classificatorio e non viene duplicato sotto MR-C6.\par
+\smallskip
+\texttt{API\_HOST}/\texttt{API\_PORT}: configurati qui; il loro consumo durante l'avvio resta in \texttt{C6-P06}. \texttt{CHROMA\_DB\_PATH}: configurato qui; l'inizializzazione resta in \texttt{C6-P05}.
+\end{ddtaopenrelations}
+
+\begin{ddtaopenrelations}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.1}{4.5}\selectfont
+\textbf{Gap che la BA non sana.}\par
+\texttt{YOUR\_API\_KEY -> X-API-Key value}: \texttt{NOT EXPLICITLY SPECIFIED}.\par
+\texttt{B4\_API\_KEY -> specific operational use}: \texttt{NOT SPECIFIED}.\par
+Nessuna relazione generica \texttt{configurationKey -> configuredResource} viene inventata; \texttt{.env} resta artifact della current realization e non BAReferent autonomo.
+\end{ddtaopenrelations}
+
+\begin{ddtacheck}[title={Acceptance boundary}]
+\fontsize{4.05}{4.45}\selectfont
+La FR puo' essere corrente mantenendo Q1 e Q2 aperte: il requisito governa la necessita' dei binding di configurazione, mentre le omissioni riguardano il significato operativo di due variabili specifiche. La BA preserva le omissioni senza completarle per inferenza.
+\end{ddtacheck}
+
+\end{paracol}
+%</PAGE-CONTENT:53>
+
+\clearpage
+%<PAGE-DESC:54>MR-C6 - Mappa residua della decomposizione dell'ambiente
+%<PAGE-CONTENT:54>
+\PageHashFooter{\PageMDfive{54}}
 \subsection*{MR-C6 - Mappa residua della decomposizione dell'ambiente}
-{\sffamily\scriptsize\color{DDTAGray}Worklist di authoring: il branch \texttt{DEC-C6-01} possiede ora \texttt{FR-C6-01-01}, \texttt{FR-C6-01-02} e \texttt{FR-C6-01-03}; le righe residue restano candidate.}\par
+{\sffamily\scriptsize\color{DDTAGray}Worklist di authoring: il branch \texttt{DEC-C6-01} possiede ora \texttt{FR-C6-01-01}--\texttt{FR-C6-01-04}; le righe residue restano candidate.}\par
 
 \begin{ddtaopen}[title={DECOMPOSIZIONE RESIDUA DA VERIFICARE}]
 \fontsize{5.0}{5.5}\selectfont
-I candidati \texttt{C6-P01}, \texttt{C6-P02} e \texttt{C6-P03} sono stati risolti sotto la Decision corrente \texttt{DEC-C6-01}: \texttt{FR-C6-01-01} governa le risorse di calcolo/storage, \texttt{FR-C6-01-02} lo stack software e le dipendenze, \texttt{FR-C6-01-03} la disponibilita' delle risorse di modello e dei dati. I fatti di current realization restano separati dalle clausole normative; la relazione GPU/CPU di \texttt{FR-C6-01-01} e le relazioni artifact/version emerse in \texttt{FR-C6-01-03} restano aperte nei rispettivi owner. Le famiglie sotto non sono ancora Decision o FR canonici.
+I candidati \texttt{C6-P01}--\texttt{C6-P04} sono stati risolti sotto la Decision corrente \texttt{DEC-C6-01}: \texttt{FR-C6-01-01} governa le risorse di calcolo/storage, \texttt{FR-C6-01-02} lo stack software e le dipendenze, \texttt{FR-C6-01-03} la disponibilita' delle risorse di modello e dei dati, \texttt{FR-C6-01-04} la presenza dei binding di configurazione dell'ambiente e delle integrazioni. I fatti di current realization restano separati dalle clausole normative e i gap \texttt{YOUR\_API\_KEY -> X-API-Key} e ruolo di \texttt{B4\_API\_KEY} restano domande documentali esplicite. Le famiglie sotto non sono ancora Decision o FR canonici.
 \end{ddtaopen}
 
 \setlength{\columnsep}{7mm}
@@ -4492,7 +4673,6 @@ I candidati \texttt{C6-P01}, \texttt{C6-P02} e \texttt{C6-P03} sono stati risolt
 \toprule
 \textbf{Label} & \textbf{Candidate meaning} & \textbf{Dettagli da preservare nella decomposizione} \\
 \midrule
-\texttt{C6-P04} & Configurazione dell'ambiente e delle integrazioni & path di modelli/dati/ChromaDB; model identifiers; top-k; host/port; API key; B4 base URL e credenziali; retraining threshold. \\
 \texttt{C6-P05} & Inizializzazione delle risorse locali & struttura directory; predisposizione del model path; inizializzazione dell'indice ChromaDB; store e file locali usati dal sistema. \\
 \texttt{C6-P06} & Avvio del servizio & avvio FastAPI/Uvicorn sul servizio DermaTriage con host/port configurati. \\
 \bottomrule
@@ -4513,14 +4693,14 @@ Da verificare: quali significati residui richiedono FunctionalRequirement distin
 \begin{ddtapropositionaccepted}\scriptsize --\end{ddtapropositionaccepted}
 \begin{ddtaopenrelations}[top=4pt,bottom=4pt,left=5pt,right=5pt]
 \fontsize{4.55}{5.0}\selectfont
-La BA verra' eseguita contestualmente all'authoring di ciascun branch candidato \texttt{C6-P04}--\texttt{C6-P06}. Questa pagina resta una worklist e non introduce da sola identita' o proposition BA.
+La BA verra' eseguita contestualmente all'authoring di ciascun branch candidato \texttt{C6-P05}--\texttt{C6-P06}. Questa pagina resta una worklist e non introduce da sola identita' o proposition BA.
 \end{ddtaopenrelations}
 \end{paracol}
-%</PAGE-CONTENT:52>
+%</PAGE-CONTENT:54>
 \clearpage
-%<PAGE-DESC:53>MR-C7 [review label] - Verifica del sistema DermaTriage
-%<PAGE-CONTENT:53>
-\PageHashFooter{\PageMDfive{53}}
+%<PAGE-DESC:55>MR-C7 [review label] - Verifica del sistema DermaTriage
+%<PAGE-CONTENT:55>
+\PageHashFooter{\PageMDfive{55}}
 \section*{MR-C7 [review label] - Verifica del sistema DermaTriage}
 {\sffamily\scriptsize\color{DDTAGray}MacroRequirement candidato emerso dalla review della famiglia MR; label provvisorio, non canonico.}\par
 
@@ -4578,11 +4758,11 @@ La responsabilita' di verifica resta distinta dalla responsabilita' che definisc
 \begin{ddtapropositionidentified}\scriptsize\texttt{NON ANALIZZATO}\end{ddtapropositionidentified}
 \begin{ddtapropositionaccepted}\scriptsize --\end{ddtapropositionaccepted}
 \end{paracol}
-%</PAGE-CONTENT:53>
+%</PAGE-CONTENT:55>
 \clearpage
-%<PAGE-DESC:54>MR-C7 [review label] - Mappa candidata di decomposizione: service, API e pipeline verification
-%<PAGE-CONTENT:54>
-\PageHashFooter{\PageMDfive{54}}
+%<PAGE-DESC:56>MR-C7 [review label] - Mappa candidata di decomposizione: service, API e pipeline verification
+%<PAGE-CONTENT:56>
+\PageHashFooter{\PageMDfive{56}}
 \subsection*{MR-C7 [review label] - Mappa candidata: service, API e pipeline verification}
 {\sffamily\scriptsize\color{DDTAGray}Segnaposto di decomposizione: nessuna riga di questa pagina e' ancora una Decision canonica.}\par
 
@@ -4625,11 +4805,11 @@ Da verificare: se readiness, endpoint e pipeline verification siano Decision aut
 \begin{ddtapropositionidentified}\scriptsize\texttt{NON ANALIZZATO}\end{ddtapropositionidentified}
 \begin{ddtapropositionaccepted}\scriptsize --\end{ddtapropositionaccepted}
 \end{paracol}
-%</PAGE-CONTENT:54>
+%</PAGE-CONTENT:56>
 \clearpage
-%<PAGE-DESC:55>MR-C7 [review label] - Mappa candidata di decomposizione: B4, retraining e acceptance
-%<PAGE-CONTENT:55>
-\PageHashFooter{\PageMDfive{55}}
+%<PAGE-DESC:57>MR-C7 [review label] - Mappa candidata di decomposizione: B4, retraining e acceptance
+%<PAGE-CONTENT:57>
+\PageHashFooter{\PageMDfive{57}}
 \subsection*{MR-C7 [review label] - Mappa candidata: B4, retraining e acceptance}
 {\sffamily\scriptsize\color{DDTAGray}Segnaposto di decomposizione: nessuna riga di questa pagina e' ancora una Decision canonica.}\par
 
@@ -4671,11 +4851,11 @@ Da verificare: relationship fra acceptance criteria e quality requirements; owne
 \begin{ddtapropositionidentified}\scriptsize\texttt{NON ANALIZZATO}\end{ddtapropositionidentified}
 \begin{ddtapropositionaccepted}\scriptsize --\end{ddtapropositionaccepted}
 \end{paracol}
-%</PAGE-CONTENT:55>
+%</PAGE-CONTENT:57>
 \clearpage
-%<PAGE-DESC:56>Registro Base Analysis - BAReferent e BAProposition
-%<PAGE-CONTENT:56>
-\PageHashFooter{\PageMDfive{56}}
+%<PAGE-DESC:58>Registro Base Analysis - BAReferent e BAProposition
+%<PAGE-CONTENT:58>
+\PageHashFooter{\PageMDfive{58}}
 \section{Registro Base Analysis}
 
 \begin{ddtacore}[title={Sintesi BA corrente}]
@@ -4703,10 +4883,10 @@ Patient & \texttt{MR-01} \\
 LesionImage & \texttt{DEC-MR01-01}; \textbf{\texttt{FR-MR01-01-01}}; \texttt{DEC-MR01-03}; \texttt{FR-MR01-03-01}; \texttt{FR-MR01-03-02} \\
 SymptomInformation & \texttt{DEC-MR01-01}; \textbf{\texttt{FR-MR01-01-01}}; \texttt{FR-MR01-03-04} \\
 ImageUrgencyAnalysis & \texttt{DEC-MR01-03}; \textbf{\texttt{FR-MR01-03-01}}; \texttt{FR-C6-01-03} \\
-EfficientNet-B4 & \textbf{\texttt{FR-MR01-03-01}}; \texttt{MR-04}; \texttt{FR-C6-01-03}; \texttt{FR-05}; \texttt{DEC-06}; \texttt{DEC-08}; \texttt{FR-10}; \texttt{FR-08} \\
+EfficientNet-B4 & \textbf{\texttt{FR-MR01-03-01}}; \texttt{MR-04}; \texttt{FR-C6-01-03}; \texttt{FR-05}; \texttt{DEC-06}; \texttt{DEC-08}; \texttt{FR-10}; \texttt{FR-08}; \texttt{FR-C6-01-04} \\
 ImageUrgencyClassification & \textbf{\texttt{FR-MR01-03-01}}; \texttt{FR-MR01-03-04} \\
 ClinicalDescriptionGeneration & \texttt{DEC-MR01-03}; \textbf{\texttt{FR-MR01-03-02}}; \texttt{FR-MR01-03-03B}; \texttt{FR-C6-01-03} \\
-Qwen2-VL-7B-Instruct & \textbf{\texttt{FR-MR01-03-02}}; \texttt{FR-C6-01-03} \\
+Qwen2-VL-7B-Instruct & \textbf{\texttt{FR-MR01-03-02}}; \texttt{FR-C6-01-03}; \texttt{FR-C6-01-04} \\
 ClinicalDescription & \textbf{\texttt{FR-MR01-03-02}}; \texttt{FR-MR01-03-03B}; \texttt{FR-MR01-03-04} \\
 ClinicalDescriptionContentContract & \textbf{\texttt{FR-MR01-03-02}} \\
 HistoricalCaseRetrieval & \texttt{DEC-MR01-03}; \textbf{\texttt{FR-MR01-03-03B}} \\
@@ -4717,12 +4897,12 @@ HistoricalCaseEmbeddingGeneration & \textbf{\texttt{FR-MR01-03-03A}}; \texttt{FR
 HistoricalCaseEmbedding & \textbf{\texttt{FR-MR01-03-03A}} \\
 HistoricalCaseVectorIndexing & \textbf{\texttt{FR-MR01-03-03A}} \\
 HistoricalCaseVectorIndex & \textbf{\texttt{FR-MR01-03-03A}}; \texttt{FR-MR01-03-03B} \\
-HistoricalCaseSimilarityRetrieval & \textbf{\texttt{FR-MR01-03-03B}} \\
-ChromaDB & \textbf{\texttt{FR-MR01-03-03A}}; \texttt{FR-MR01-03-03B} \\
-all-MiniLM-L6-v2 & \textbf{\texttt{FR-MR01-03-03A}}; \texttt{FR-MR01-03-03B}; \texttt{FR-C6-01-03} \\
+HistoricalCaseSimilarityRetrieval & \textbf{\texttt{FR-MR01-03-03B}}; \texttt{FR-C6-01-04} \\
+ChromaDB & \textbf{\texttt{FR-MR01-03-03A}}; \texttt{FR-MR01-03-03B}; \texttt{FR-C6-01-04} \\
+all-MiniLM-L6-v2 & \textbf{\texttt{FR-MR01-03-03A}}; \texttt{FR-MR01-03-03B}; \texttt{FR-C6-01-03}; \texttt{FR-C6-01-04} \\
 RetrievedHistoricalCases & \textbf{\texttt{FR-MR01-03-03B}}; \texttt{FR-MR01-03-04} \\
 MultiSourceTriageSynthesis & \texttt{DEC-MR01-03}; \textbf{\texttt{FR-MR01-03-03B}}; \texttt{FR-MR01-03-04}; \texttt{FR-C6-01-03} \\
-BioMistral-7B & \textbf{\texttt{FR-MR01-03-04}}; \texttt{FR-C6-01-03} \\
+BioMistral-7B & \textbf{\texttt{FR-MR01-03-04}}; \texttt{FR-C6-01-03}; \texttt{FR-C6-01-04} \\
 TriageConfidence & \textbf{\texttt{FR-MR01-03-04}}; \texttt{DEC-MR01-04}; \texttt{FR-MR01-04-01} \\
 AITriageSynthesis & \textbf{\texttt{FR-MR01-03-04}}; \texttt{DEC-MR01-04} \\
 AITriageSynthesisContentContract & \textbf{\texttt{FR-MR01-03-04}} \\
@@ -4732,7 +4912,7 @@ ControlledDermaTriageAdaptation & \textbf{\texttt{MR-04}} \\
 PromptEvolutionPath & \textbf{\texttt{MR-04}}; \texttt{DEC-04}; \texttt{FR-04}; \texttt{DEC-05}; \texttt{FR-13}; \texttt{FR-14}; \texttt{FR-15}; \texttt{DEC-09}; \texttt{FR-06} \\
 PromptEvolutionCycle & \texttt{FR-04}; \texttt{DEC-09}; \texttt{FR-06} -- candidate; scope quantificato del ciclo, identity/lifecycle autonomi non ancora sufficientemente governati \\
 PromptEvolutionEvidenceSet & \texttt{DEC-09}; \textbf{\texttt{FR-06}} \\
-ClassifierAdaptationPath & \textbf{\texttt{MR-04}}; \texttt{DEC-04}; \texttt{FR-05}; \texttt{DEC-05}; \texttt{FR-13}; \texttt{FR-14}; \texttt{FR-15}; \texttt{DEC-10}; \texttt{FR-07}; \texttt{DEC-11}; \texttt{FR-08} \\
+ClassifierAdaptationPath & \textbf{\texttt{MR-04}}; \texttt{DEC-04}; \texttt{FR-05}; \texttt{DEC-05}; \texttt{FR-13}; \texttt{FR-14}; \texttt{FR-15}; \texttt{DEC-10}; \texttt{FR-07}; \texttt{DEC-11}; \texttt{FR-08}; \texttt{FR-C6-01-04} \\
 CandidateUrgencyClassificationAdaptation & \textbf{\texttt{DEC-06}}; \texttt{FR-09}; \texttt{DEC-07} \\
 ApplicableReferenceVersion & \textbf{\texttt{DEC-06}}; \texttt{FR-09}; \texttt{DEC-07} \\
 CandidateEvaluationResult & \texttt{FR-09} -- candidate decomposition; result artifact non ancora governato \\
@@ -4745,7 +4925,7 @@ PreviousAcceptableVersionOrState & \textbf{\texttt{DEC-08}}; \texttt{FR-10} \\
 ModelVersionTrackingArtifact & \textbf{\texttt{FR-10}} -- informazioni di tracking usate per identificare la versione/stato da ripristinare \\
 ClassifierVersionStore & \textbf{\texttt{FR-10}} -- \texttt{semanticKind=store}; \texttt{locator=models/versions/}; \texttt{direction=OUT} \\
 ModelVersionTrackingStore & \textbf{\texttt{FR-10}} -- \texttt{semanticKind=store}; \texttt{locator=db/model\_versions.json}; \texttt{direction=OUT} \\
-ActiveClassifierStore & \textbf{\texttt{FR-10}}; \texttt{FR-C6-01-03} -- \texttt{semanticKind=store}; \texttt{locator=models/efficientnet\_b4.pth}; \texttt{direction=IN} \\
+ActiveClassifierStore & \textbf{\texttt{FR-10}}; \texttt{FR-C6-01-03}; \texttt{FR-C6-01-04} -- \texttt{semanticKind=store}; \texttt{locator=models/efficientnet\_b4.pth}; \texttt{direction=IN} \\
 ClinicallyCorrectedOperationalTriagePriority & \texttt{DEC-11}; \textbf{\texttt{FR-08}} \\
 ClassifierUrgencyTarget & \texttt{DEC-11}; \textbf{\texttt{FR-08}} \\
 SpecialistDestinationIndication & \textbf{\texttt{MR-02}} \\
@@ -4755,27 +4935,27 @@ HealthcareProfessional & \textbf{\texttt{MR-03}} \\
 ClinicalReviewDisposition & \textbf{\texttt{FR-12}} \\
 ClinicianDisagreement & \texttt{DEC-10}; \textbf{\texttt{FR-07}} \\
 ClassifierAdaptationEvidence & \texttt{DEC-10}; \textbf{\texttt{FR-07}} \\
-B4 & \textbf{\texttt{DEC-15}}; \texttt{FR-23}; \texttt{DEC-16}; \texttt{FR-25}; \texttt{FR-07}; \texttt{FR-08} \\
+B4 & \textbf{\texttt{DEC-15}}; \texttt{FR-23}; \texttt{DEC-16}; \texttt{FR-25}; \texttt{FR-07}; \texttt{FR-08}; \texttt{FR-C6-01-04} \\
 B4TriageOutcome & \texttt{DEC-15}; \textbf{\texttt{FR-23}} \\
 ClinicianValidation & \texttt{DEC-15}; \textbf{\texttt{FR-23}} \\
 ValidatedOutcome & \texttt{DEC-15}; \textbf{\texttt{FR-23}}; \texttt{FR-07}; \texttt{FR-08} \\
-ProtectedDermaTriageOperation & \texttt{DEC-16}; \textbf{\texttt{FR-24}} \\
-B4CallAuthentication & \texttt{DEC-16}; \textbf{\texttt{FR-25}} \\
+ProtectedDermaTriageOperation & \texttt{DEC-16}; \textbf{\texttt{FR-24}}; \texttt{FR-C6-01-04} \\
+B4CallAuthentication & \texttt{DEC-16}; \textbf{\texttt{FR-25}}; \texttt{FR-C6-01-04} \\
 DermaTriageB4Client & \textbf{\texttt{FR-25}} \\
 B4BearerJWT & \textbf{\texttt{FR-25}} \\
 EnvironmentPreparation & \textbf{\texttt{MR-C6}}; \texttt{DEC-C6-01} \\
-DermaTriageEnvironment & \textbf{\texttt{MR-C6}}; \texttt{FR-C6-01-01}; \texttt{FR-C6-01-02}; \texttt{FR-C6-01-03} \\
-DermaTriageRAGDataset & \texttt{FR-C6-01-03} -- candidate; risorsa dati nominata e riusata fra retrieval e training, relazioni BA specifiche ancora da chiudere nei rispettivi owner \\
+DermaTriageEnvironment & \textbf{\texttt{MR-C6}}; \texttt{FR-C6-01-01}; \texttt{FR-C6-01-02}; \texttt{FR-C6-01-03}; \texttt{FR-C6-01-04} \\
+DermaTriageRAGDataset & \texttt{FR-C6-01-03}; \texttt{FR-C6-01-04} -- candidate; risorsa dati nominata e riusata fra retrieval e training, relazioni BA specifiche ancora da chiudere nei rispettivi owner \\
 TrainingImageCollection & \texttt{FR-C6-01-03} -- candidate; binding corrente \texttt{data/images/}, identita' da discriminare rispetto ai dataset/split del lifecycle di training \\
 EnvironmentSetupProcedure & \textbf{\texttt{DEC-C6-01}} \\
 \bottomrule
 \end{tabularx}
 
-%</PAGE-CONTENT:56>
+%</PAGE-CONTENT:58>
 \clearpage
-%<PAGE-DESC:57>Registro Base Analysis - BAProposition
-%<PAGE-CONTENT:57>
-\PageHashFooter{\PageMDfive{57}}
+%<PAGE-DESC:59>Registro Base Analysis - BAProposition
+%<PAGE-CONTENT:59>
+\PageHashFooter{\PageMDfive{59}}
 \section*{Registro Base Analysis - BAProposition}
 \begin{ddtacore}[title={Continuita' del registro}]
 \fontsize{6.0}{6.6}\selectfont
@@ -4803,9 +4983,9 @@ Questa pagina continua il registro BA della pagina precedente. Il \textbf{grasse
 \textbf{\texttt{BAP-FR23-03}} & \texttt{FR-23}; \texttt{FR-07}; \texttt{FR-08} -- \texttt{transfer} (\texttt{B4 -> DermaTriage : ValidatedOutcome}); \texttt{FR-07} e \texttt{FR-08} riusano la conveyance upstream gia\' accettata e non creano proposition duplicate \\
 \emph{\texttt{BAP-DEC16-01}} & \texttt{DEC-16} -- candidate \texttt{constrain} (\texttt{ProtectedDermaTriageOperation}: \texttt{authenticationMechanism} = \texttt{X-API-Key}); consolidated by \texttt{FR-24} \\
 \emph{\texttt{BAP-DEC16-02}} & \texttt{DEC-16} -- candidate \texttt{constrain} (\texttt{B4CallAuthentication}: \texttt{authenticationMechanism} = bearer JWT); consolidated by \texttt{FR-25} \\
-\textbf{\texttt{BAP-FR24-01}} & \texttt{FR-24} -- \texttt{constrain} (\texttt{ProtectedDermaTriageOperation}: required \texttt{authenticationMechanism} in \texttt{[X-API-Key]}) \\
+\textbf{\texttt{BAP-FR24-01}} & \texttt{FR-24}; \texttt{FR-C6-01-04} -- \texttt{constrain} (\texttt{ProtectedDermaTriageOperation}: required \texttt{authenticationMechanism} in \texttt{[X-API-Key]}) \\
 \textbf{\texttt{BAP-FR25-01}} & \texttt{FR-25} -- \texttt{realize} (\texttt{B4CallAuthentication -> DermaTriageB4Client}) \\
-\textbf{\texttt{BAP-FR25-02}} & \texttt{FR-25} -- \texttt{constrain} (\texttt{B4CallAuthentication}: \texttt{authenticationMechanism} in \texttt{[bearer JWT]}) \\
+\textbf{\texttt{BAP-FR25-02}} & \texttt{FR-25}; \texttt{FR-C6-01-04} -- \texttt{constrain} (\texttt{B4CallAuthentication}: \texttt{authenticationMechanism} in \texttt{[bearer JWT]}) \\
 \emph{\texttt{BAP-FR25-03}} & \texttt{FR-25} -- candidate \texttt{transfer} (\texttt{?? -> DermaTriageB4Client : B4BearerJWT}); token source \texttt{NOT SPECIFIED} \\
 \emph{\texttt{BAP-DEC01-01}} & \texttt{DEC-MR01-01} -- \texttt{produce}, \texttt{condition: LesionImage unavailable} \\
 \textbf{\texttt{BAP-FR01-01-01}} & \texttt{FR-MR01-01-01} -- \texttt{produce}, \texttt{condition: LesionImage unavailable} \\
@@ -4849,13 +5029,14 @@ Questa pagina continua il registro BA della pagina precedente. Il \textbf{grasse
 \emph{\texttt{BAP-FRC6-01-01-04}} & \texttt{FR-C6-01-01} -- candidate \texttt{constrain} (\texttt{recommendedStorage = 100 GB}); modality review aperta \\
 \textbf{\texttt{BAP-FRC6-01-02-01}} & \texttt{FR-C6-01-02} -- \texttt{constrain} (\texttt{DermaTriageEnvironment}: local \texttt{requiredSoftwareDependencies}, \texttt{presence=required}); package list e versioni restano current realization, senza nuovo BAReferent per il dependency set \\
 \textbf{\texttt{BAP-FRC6-01-03-01}} & \texttt{FR-C6-01-03} -- \texttt{constrain} (\texttt{DermaTriageEnvironment}: local \texttt{requiredModelAndDataResources}, \texttt{presence=required}); model/data identities riusate restano distinte dal constraint locale, acquisition transfer e artifact/version boundary non ancora accettati \\
+\textbf{\texttt{BAP-FRC6-01-04-01}} & \texttt{FR-C6-01-04} -- \texttt{constrain} (\texttt{DermaTriageEnvironment}: local \texttt{requiredConfigurationBindings}, \texttt{presence=required}); assignment \texttt{.env} e semantic owner downstream restano distinti dalla proposition locale \\
 \bottomrule
 \end{tabularx}
-%</PAGE-CONTENT:57>
+%</PAGE-CONTENT:59>
 \clearpage
-%<PAGE-DESC:58>MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
-%<PAGE-CONTENT:58>
-\PageHashFooter{\PageMDfive{58}}
+%<PAGE-DESC:60>MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
+%<PAGE-CONTENT:60>
+\PageHashFooter{\PageMDfive{60}}
 \section{MR-01 - Inventario temporaneo transfer, contract e decisioni BA}
 
 \begin{ddtaopen}[title={PAGINA TEMPORANEA - AUDIT DATA-PATH MR-01 - DA CANCELLARE DOPO LA RIALLOCAZIONE DEI RISULTATI}]
@@ -4904,11 +5085,11 @@ la pagina precedente mescolava due funzioni con lifecycle e change impact separa
 \textbf{Decisione metodologica temporanea - necessity test di \texttt{correlate}:}
 \texttt{BAP-MR01-02} e \texttt{BAP-DEC01-02} sono rimosse dall'insieme attivo delle BAProposition candidate. Nei due passaggi sorgente, ``informazioni disponibili sul caso dermatologico'' e ``informazioni sintomatologiche disponibili sul caso'' descrivono il contesto del caso in analisi e gli input del comportamento di triage; non e' emersa una relazione governata, autonoma e interrogabile che richieda una proposition \texttt{correlate}. La rimozione non elimina i BAReferent ne' le proposition \texttt{produce} gia' candidate. Le occorrenze lessicali di ``correlation'' nella worklist restano domande aperte di binding/identity nei data contract e \textbf{non} indicano l'operatore BA \texttt{correlate}. L'operatore verra' riesaminato soltanto se evidence successiva mostrera' una relazione indipendente non ricostruibile tramite comportamento, identity e contract gia' governati. Questa nota e' temporanea e verra' cancellata a chiusura del case study dopo il consolidamento del risultato.
 \end{ddtaopen}
-%</PAGE-CONTENT:58>
+%</PAGE-CONTENT:60>
 \clearpage
-%<PAGE-DESC:59>Indice di integrita delle pagine
-%<PAGE-CONTENT:59>
-\PageHashFooter{\PageMDfive{59}}
+%<PAGE-DESC:61>Indice di integrita delle pagine
+%<PAGE-CONTENT:61>
+\PageHashFooter{\PageMDfive{61}}
 \section{Indice di integrita' delle pagine}
 
 \begin{ddtacore}[title={Regola di verifica}]
@@ -4978,14 +5159,16 @@ Ogni pagina possiede un MD5 del proprio contenuto canonico. Il calcolo esclude i
 \IntegrityRow{49}{MR-C6 > DEC-C6-01 > FR-C6-01-01 - Predisposizione delle risorse di calcolo e storage dell'ambiente}{\PageMDfive{49}}
 \IntegrityRow{50}{MR-C6 > DEC-C6-01 > FR-C6-01-02 - Predisposizione dello stack software e delle dipendenze}{\PageMDfive{50}}
 \IntegrityRow{51}{MR-C6 > DEC-C6-01 > FR-C6-01-03 - Disponibilita delle risorse di modello e dei dati}{\PageMDfive{51}}
-\IntegrityRow{52}{MR-C6 - Mappa residua della decomposizione dell'ambiente}{\PageMDfive{52}}
-\IntegrityRow{53}{MR-C7 [review label] - Verifica del sistema DermaTriage}{\PageMDfive{53}}
-\IntegrityRow{54}{MR-C7 [review label] - Mappa candidata di decomposizione: service, API e pipeline verification}{\PageMDfive{54}}
-\IntegrityRow{55}{MR-C7 [review label] - Mappa candidata di decomposizione: B4, retraining e acceptance}{\PageMDfive{55}}
-\IntegrityRow{56}{Registro Base Analysis - BAReferent e BAProposition}{\PageMDfive{56}}
-\IntegrityRow{57}{Registro Base Analysis - BAProposition}{\PageMDfive{57}}
-\IntegrityRow{58}{MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]}{\PageMDfive{58}}
-\IntegrityRow{59}{Indice di integrita delle pagine}{\PageMDfive{59}}
+\IntegrityRow{52}{MR-C6 > DEC-C6-01 > FR-C6-01-04 - Configurazione dei binding dell'ambiente e delle integrazioni [1/2]}{\PageMDfive{52}}
+\IntegrityRow{53}{MR-C6 > DEC-C6-01 > FR-C6-01-04 - Configurazione dei binding dell'ambiente e delle integrazioni [2/2]}{\PageMDfive{53}}
+\IntegrityRow{54}{MR-C6 - Mappa residua della decomposizione dell'ambiente}{\PageMDfive{54}}
+\IntegrityRow{55}{MR-C7 [review label] - Verifica del sistema DermaTriage}{\PageMDfive{55}}
+\IntegrityRow{56}{MR-C7 [review label] - Mappa candidata di decomposizione: service, API e pipeline verification}{\PageMDfive{56}}
+\IntegrityRow{57}{MR-C7 [review label] - Mappa candidata di decomposizione: B4, retraining e acceptance}{\PageMDfive{57}}
+\IntegrityRow{58}{Registro Base Analysis - BAReferent e BAProposition}{\PageMDfive{58}}
+\IntegrityRow{59}{Registro Base Analysis - BAProposition}{\PageMDfive{59}}
+\IntegrityRow{60}{MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]}{\PageMDfive{60}}
+\IntegrityRow{61}{Indice di integrita delle pagine}{\PageMDfive{61}}
 %</PAGE-INTEGRITY-ROWS>
 \bottomrule
 \end{tabularx}
@@ -4993,6 +5176,6 @@ Ogni pagina possiede un MD5 del proprio contenuto canonico. Il calcolo esclude i
 
 \vspace{0.8mm}
 {\fontsize{4.8}{5.2}\selectfont\color{DDTAGray}Quando una pagina viene modificata intenzionalmente, cambia il suo MD5. Una variazione inattesa segnala una modifica da riesaminare prima di proseguire.}
-%</PAGE-CONTENT:59>
+%</PAGE-CONTENT:61>
 
 \end{document}

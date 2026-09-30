@@ -53,11 +53,13 @@ Page 48  37981bd8610726344bd5a0dfc8555a37  MR-C6 > DEC-C6-01 - Predisposizione d
 Page 49  40a157f1a8c090426477fb4311149d80  MR-C6 > DEC-C6-01 > FR-C6-01-01 - Predisposizione delle risorse di calcolo e storage dell'ambiente
 Page 50  db19e807cec5e49e3ca695c110920d57  MR-C6 > DEC-C6-01 > FR-C6-01-02 - Predisposizione dello stack software e delle dipendenze
 Page 51  37ce9d7e945eac0051591dd6c8fdce0e  MR-C6 > DEC-C6-01 > FR-C6-01-03 - Disponibilita delle risorse di modello e dei dati
-Page 52  8e66bb01c5e11c8bcf88e3c9ed488b57  MR-C6 - Mappa residua della decomposizione dell'ambiente
-Page 53  d6f6d4d2621b1f8a817ee3879782608a  MR-C7 [review label] - Verifica del sistema DermaTriage
-Page 54  989bae884287eaeac14bb52a961776fe  MR-C7 [review label] - Mappa candidata di decomposizione: service, API e pipeline verification
-Page 55  b902e88a80ccad3092c9c66cd324c034  MR-C7 [review label] - Mappa candidata di decomposizione: B4, retraining e acceptance
-Page 56  69093cccc477ff10819c85579c92d36a  Registro Base Analysis - BAReferent e BAProposition
-Page 57  c38cf69dfe44d23a7d8cafbce68107ee  Registro Base Analysis - BAProposition
-Page 58  df70ba8f961369f44bdd2b8e064a53bd  MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
-Page 59  fc2e507c85ab0c7dcfbb063ab1a2bab6  Indice di integrita delle pagine [INTEGRITY INDEX]
+Page 52  b314f8732d8a6555e9fb3bcab3be176e  MR-C6 > DEC-C6-01 > FR-C6-01-04 - Configurazione dei binding dell'ambiente e delle integrazioni [1/2]
+Page 53  8bde3f1da3a7f0b4ab8607d04f55eb36  MR-C6 > DEC-C6-01 > FR-C6-01-04 - Configurazione dei binding dell'ambiente e delle integrazioni [2/2]
+Page 54  5bf0d1c38038e2601ea01be641b852bf  MR-C6 - Mappa residua della decomposizione dell'ambiente
+Page 55  d6f6d4d2621b1f8a817ee3879782608a  MR-C7 [review label] - Verifica del sistema DermaTriage
+Page 56  989bae884287eaeac14bb52a961776fe  MR-C7 [review label] - Mappa candidata di decomposizione: service, API e pipeline verification
+Page 57  b902e88a80ccad3092c9c66cd324c034  MR-C7 [review label] - Mappa candidata di decomposizione: B4, retraining e acceptance
+Page 58  4bfde16c396be63d4f547dd655d71197  Registro Base Analysis - BAReferent e BAProposition
+Page 59  70c4909cfde07869de8d318cb7b81276  Registro Base Analysis - BAProposition
+Page 60  df70ba8f961369f44bdd2b8e064a53bd  MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
+Page 61  8de625f72aaafb17794feebe3f4bf7ab  Indice di integrita delle pagine [INTEGRITY INDEX]
