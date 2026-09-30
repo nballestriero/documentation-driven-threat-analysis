@@ -64,7 +64,7 @@ BA status: NOT ANALYZED UNTIL DOCUMENTATION CLOSED
 | `RC-007` | Baseline initial-training realization | OR2 Model Test Report; OR3; training documentation | MR-01; exact Decision/FR owner open | **SOURCE-CONFIRMED / OWNER OPEN** | Preserve baseline-training lineage separately from feedback retraining inside the correct MR/Decision/FR branch. |
 | `RC-008` | Prompt trigger semantics: 'Every 10 corrections' vs 'reaches 10' | OR2 Architecture prompt evolution | MR-04 → DEC-04 → FR-04 | **SOURCE-CONFIRMED / OWNER-CHAIN TO REVALIDATE** | Resolve recurrence semantics from original wording before BA. |
 | `RC-009` | Prompt-evidence qualifier 'pertinent' | OR2/OR4 prompt-evolution wording | MR-04 → DEC-09 → FR-06 | **SOURCE-OVERSTATEMENT CANDIDATE** | Verify whether any original establishes pertinence; otherwise remove/downgrade before selection review. |
-| `RC-010` | HistoricalCaseRetrieval vs HistoricalCaseSimilarityRetrieval identity | Corrected MR-01/Stage-3 documentation after Phase A | MR-01 → DEC-MR01-03 → FR-MR01-03-03B | **BA IDENTITY REVIEW DEFERRED** | Do not merge/remove until source-closed Stage-3 documentation is available. |
+| `RC-010` | HistoricalCaseRetrieval vs HistoricalCaseSimilarityRetrieval identity | Corrected MR-01/Stage-3 documentation after Phase A | MR-01 → DEC-MR01-03 → FR-MR01-03-03 | **BA IDENTITY REVIEW DEFERRED** | Do not merge/remove until source-closed Stage-3 documentation is available. |
 | `RC-011` | ClinicalReviewDisposition independent BA identity | Corrected MR-03/FR-12 documentation after Phase A | MR-03 → DEC-03 → FR-12 | **BA IDENTITY REVIEW DEFERRED** | After FR-12 source closure, decide whether independent BAReferent identity is justified. |
 | `RC-012` | ClinicianDisagreement vs agrees == False | OR4 retraining semantics + corrected MR-03/MR-04 branches | Cross-branch owner to revalidate; FR-07 currently involved | **SOURCE + BA IDENTITY RECHECK** | First establish governed documentation meaning; only then decide BA identity/granularity. |
 | `RC-013` | B4 bearer-JWT endpoint/source binding | OR2 B4 endpoint table | MR-03 → DEC-16 → FR-25 | **SOURCE-CONFIRMED / BINDING OWNER-CHAIN TO REVALIDATE** | Preserve documented token endpoint in FR-25 branch; BA transfer source remains a later question. |
@@ -75,7 +75,7 @@ BA status: NOT ANALYZED UNTIL DOCUMENTATION CLOSED
 | `RC-018` | MR-02 specialist boundary vs SLA meaning | OR2/OR3/OR5 | MR-02 plus separate owner review for SLA | **SOURCE OWNER REVIEW** | Keep specialist destination distinct from SLA; do not invent routing/vocabulary/booking. |
 | `RC-019` | Privacy / anonymization / in-memory upload facts | Original privacy/data sources | MR/Decision/FR owner NOT YET CLOSED | **SOURCE OWNER / CLASSIFICATION REVIEW** | First find hierarchy owner; only afterward decide whether security specialization is justified. |
 | `RC-020` | FR-13/14/15 non-propagation family | Original adaptation-loop semantics | MR-04 → DEC-05 → FR-13/14/15 | **SOURCE-STRENGTH + DOWNSTREAM-UTILITY REVIEW** | Re-test source support and branch autonomy after primary source-preservation corrections. |
-| `RC-021` | Environment preparation vs verification/test macro-responsibility split pressure | OR4 Training Environment Configuration §§1-9; OR5 Test Environment Setup §§1-9 | MR-C6 → DEC-C6-01 → FR-C6-01-01 / FR-C6-01-02 / FR-C6-01-03 / FR-C6-01-04 approved/current; residual C6-P05..P06 open; MR-C7 Verification candidate; MR-03 rework candidate; initial-training lifecycle kept separate but not promoted to MR | **PARTIAL PROMOTION / C6 BRANCH APPROVED / RC-021 OPEN** | Continue the C6 residual decomposition with documentation and BA in parallel; keep MR-C7 gated and verification ownership distinct. Resume RC-002 when the RC-021 owner review is stable. |
+| `RC-021` | Environment preparation vs verification/test macro-responsibility split pressure | OR4 Training Environment Configuration §§1-9; OR5 Test Environment Setup §§1-9 | MR-C6 → DEC-C6-01 → FR-C6-01-01 / FR-C6-01-02 / FR-C6-01-03 / FR-C6-01-04 / FR-C6-01-05 approved/current; residual C6-P06 open; MR-C7 Verification candidate; MR-03 rework candidate; initial-training lifecycle kept separate but not promoted to MR | **PARTIAL PROMOTION / C6 BRANCH APPROVED / RC-021 OPEN** | Continue the C6 residual decomposition with documentation and BA in parallel; keep MR-C7 gated and verification ownership distinct. Resume RC-002 when the RC-021 owner review is stable. |
 
 
 ### RC-021 opening record
@@ -128,8 +128,11 @@ MR-C6 environment-preparation branch:
   approved FR -> FR-C6-01-02 Predisposizione dello stack software e delle dipendenze
   approved FR -> FR-C6-01-03 Disponibilita' delle risorse di modello e dei dati
   approved FR -> FR-C6-01-04 Configurazione dei binding dell'ambiente e delle integrazioni
-  residual candidate decomposition -> C6-P05 local-resource initialization;
-  C6-P06 service startup.
+  approved FR -> FR-C6-01-05 Inizializzazione della base vettoriale dei casi storici
+  residual candidate decomposition -> C6-P06 service startup.
+  Stage-3 ownership review -> temporary FR-MR01-03-03A/B split closed;
+  offline historical-vector-base preparation -> FR-C6-01-05;
+  runtime retrieval -> canonical FR-MR01-03-03.
 
 Candidate MR-C7:
   title -> Verifica del sistema DermaTriage
@@ -141,9 +144,10 @@ Documentation + BA checkpoint:
 The existing DermaTriage case-study file now contains:
 - the MR-03 rework candidate and proposal pages for missing clinical-review tooling;
 - MR-C6 promoted to CURRENT_GOVERNED;
-- DEC-C6-01, FR-C6-01-01, FR-C6-01-02, FR-C6-01-03 and FR-C6-01-04 promoted to CURRENT_GOVERNED;
+- DEC-C6-01, FR-C6-01-01, FR-C6-01-02, FR-C6-01-03, FR-C6-01-04 and FR-C6-01-05 promoted to CURRENT_GOVERNED;
 - accepted/candidate BA material for the approved C6 branch;
-- the residual C6-P05..P06 decomposition map as review material;
+- the temporary FR-MR01-03-03A/B review split closed by relocating offline preparation to FR-C6-01-05 and restoring runtime retrieval to canonical FR-MR01-03-03;
+- the residual C6-P06 decomposition map as review material;
 - candidate MR-C7 and its decomposition maps.
 
 The environment-preparation owner is therefore no longer provisional at MR level.
@@ -168,7 +172,7 @@ the source-supported lifecycle for downstream threat analysis, but it is NOT the
 authority for creating either MR.
 
 Immediate next action:
-Continue the MR-C6 subtree from residual candidates C6-P05..P06 one branch at a
+Continue the MR-C6 subtree from residual candidate C6-P06 one branch at a
 time. For each accepted documentation node, run the minimum sufficient BA in
 parallel to test clarity and construct sufficiency. Preserve technical bindings at
 their correct level and return ambiguity to documentation rather than completing it
@@ -179,14 +183,14 @@ After the RC-021 owner checkpoint is stable, resume RC-002 with OR2 runtime
 Stage-4 semantics and OR5 Stage-4 verification expectations kept distinct.
 
 Documentation correction authorized:
-YES - MR-C6, DEC-C6-01, FR-C6-01-01, FR-C6-01-02, FR-C6-01-03 and FR-C6-01-04 are approved/current for this checkpoint.
+YES - MR-C6, DEC-C6-01, FR-C6-01-01, FR-C6-01-02, FR-C6-01-03, FR-C6-01-04 and FR-C6-01-05 are approved/current for this checkpoint.
 YES - residual C6 branches may be authored incrementally only after their gates.
 NO - MR-C7 and its proposed decomposition remain candidate until separately approved.
 
 BA status:
 MR-03 affected BA: REVALIDATION REQUIRED AFTER DOCUMENTATION CLOSURE.
 MR-C6 approved branch: ANALYZED IN PARALLEL / CURRENT CHECKPOINT REPRESENTED.
-MR-C6 residual C6-P05..P06: ANALYZE IN PARALLEL AS EACH NODE IS ACCEPTED.
+MR-C6 residual C6-P06: ANALYZE IN PARALLEL AS THE NODE IS ACCEPTED.
 MR-C7: NOT ANALYZED.
 ```
 

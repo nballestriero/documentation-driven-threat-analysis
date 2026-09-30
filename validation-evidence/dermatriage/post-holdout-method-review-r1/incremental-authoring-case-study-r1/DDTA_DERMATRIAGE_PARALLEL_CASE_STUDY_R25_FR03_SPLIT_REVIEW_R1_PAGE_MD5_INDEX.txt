@@ -2,7 +2,7 @@ DDTA_DERMATRIAGE_PARALLEL_CASE_STUDY_R25_FR03_SPLIT_REVIEW_R1 - Page MD5 Index
 Canonical payload: LaTeX content between PAGE-CONTENT markers; own printed MD5 excluded.
 Integrity-index page resolves all other page hashes and canonicalizes its own hash as <SELF>.
 
-Page 1  a1de098009060fcc73d51cdccab3ee0b  Frontespizio e struttura del case study
+Page 1  485f1d815c9a44fc31a18a29bf114837  Frontespizio e struttura del case study
 Page 2  a3275772d6cd2ce37195f7d8163144e8  Contesto generale del progetto - Project Problem Framing
 Page 3  46cbd47a5fe8e2c86417634fdddea7c8  MR-01 - Valutazione di triage del caso dermatologico
 Page 4  d464848d4f632cc58be0991cacf1b647  MR-01 > DEC-MR01-01 - Valutazione di urgenza in assenza di immagine
@@ -10,8 +10,8 @@ Page 5  b20178fc4e6cdc140cf16360634f5344  MR-01 > DEC-MR01-01 > FR-MR01-01-01 - 
 Page 6  a3198ac668083dc67b750dff9bd44175  MR-01 > DEC-MR01-03 - Percorso image-based a quattro stadi coordinati
 Page 7  e50995f0de66f6d8f847ce9ddfa6912f  MR-01 > DEC-MR01-03 > FR-MR01-03-01 - Stage 1: urgenza e confidence da immagine
 Page 8  452c3e6e4e672ba2f0d437f6363ee29c  MR-01 > DEC-MR01-03 > FR-MR01-03-02 - Stage 2: descrizione clinica strutturata
-Page 9  bb03073eb7e38e5511cf24446218dd47  MR-01 > DEC-MR01-03 > FR-MR01-03-03A [review label] - Preparazione della base storica per il retrieval
-Page 10  cba1a94e83a61109b957b847a25c73cd  MR-01 > DEC-MR01-03 > FR-MR01-03-03B [review label] - Stage 3: recupero di casi storici simili
+Page 9  a12562677fba8bfb29f2ebcc70eb7e80  Review closure - FR-MR01-03-03A provisional label reallocated to FR-C6-01-05
+Page 10  4433a8f7f95a1f949f958d18e9f3bec2  MR-01 > DEC-MR01-03 > FR-MR01-03-03 - Stage 3: recupero di casi storici simili
 Page 11  9d2c86231c54c3d67fc1a9a7c8ccbad7  MR-01 > DEC-MR01-03 > FR-MR01-03-04 - Stage 4: sintesi multi-source
 Page 12  986ebd679b75abfb4aba7daf6535585b  MR-01 > DEC-MR01-04 - Separazione tra valutazione dell'urgenza e priorita operativa
 Page 13  8c9bec5d00a83f1943ff65f5809fa586  MR-01 > DEC-MR01-04 > FR-MR01-04-01 - Mapping urgenza/confidence verso P1-P4
@@ -52,14 +52,15 @@ Page 47  d05f1297a5e48fd1efb2cdc2cbb2e85c  MR-C6 - Predisposizione e inizializza
 Page 48  37981bd8610726344bd5a0dfc8555a37  MR-C6 > DEC-C6-01 - Predisposizione dell'ambiente mediante una procedura esplicita di setup
 Page 49  40a157f1a8c090426477fb4311149d80  MR-C6 > DEC-C6-01 > FR-C6-01-01 - Predisposizione delle risorse di calcolo e storage dell'ambiente
 Page 50  db19e807cec5e49e3ca695c110920d57  MR-C6 > DEC-C6-01 > FR-C6-01-02 - Predisposizione dello stack software e delle dipendenze
-Page 51  37ce9d7e945eac0051591dd6c8fdce0e  MR-C6 > DEC-C6-01 > FR-C6-01-03 - Disponibilita delle risorse di modello e dei dati
-Page 52  b314f8732d8a6555e9fb3bcab3be176e  MR-C6 > DEC-C6-01 > FR-C6-01-04 - Configurazione dei binding dell'ambiente e delle integrazioni [1/2]
-Page 53  8bde3f1da3a7f0b4ab8607d04f55eb36  MR-C6 > DEC-C6-01 > FR-C6-01-04 - Configurazione dei binding dell'ambiente e delle integrazioni [2/2]
-Page 54  5bf0d1c38038e2601ea01be641b852bf  MR-C6 - Mappa residua della decomposizione dell'ambiente
-Page 55  d6f6d4d2621b1f8a817ee3879782608a  MR-C7 [review label] - Verifica del sistema DermaTriage
-Page 56  989bae884287eaeac14bb52a961776fe  MR-C7 [review label] - Mappa candidata di decomposizione: service, API e pipeline verification
-Page 57  b902e88a80ccad3092c9c66cd324c034  MR-C7 [review label] - Mappa candidata di decomposizione: B4, retraining e acceptance
-Page 58  4bfde16c396be63d4f547dd655d71197  Registro Base Analysis - BAReferent e BAProposition
-Page 59  70c4909cfde07869de8d318cb7b81276  Registro Base Analysis - BAProposition
-Page 60  df70ba8f961369f44bdd2b8e064a53bd  MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
-Page 61  8de625f72aaafb17794feebe3f4bf7ab  Indice di integrita delle pagine [INTEGRITY INDEX]
+Page 51  6f426f641f44c1709d38b12fa749c603  MR-C6 > DEC-C6-01 > FR-C6-01-03 - Disponibilita delle risorse di modello e dei dati
+Page 52  28bd0541b710fb98efe42fe2866280d9  MR-C6 > DEC-C6-01 > FR-C6-01-04 - Configurazione dei binding dell'ambiente e delle integrazioni [1/2]
+Page 53  79b5ca332a20b0c87f75deadae78792b  MR-C6 > DEC-C6-01 > FR-C6-01-04 - Configurazione dei binding dell'ambiente e delle integrazioni [2/2]
+Page 54  b271663a34d89196ec3cc5da07a799b8  MR-C6 > DEC-C6-01 > FR-C6-01-05 - Inizializzazione della base vettoriale dei casi storici
+Page 55  4ad977ce75d9361095c984e191999f44  MR-C6 - Mappa residua della decomposizione dell'ambiente
+Page 56  d6f6d4d2621b1f8a817ee3879782608a  MR-C7 [review label] - Verifica del sistema DermaTriage
+Page 57  989bae884287eaeac14bb52a961776fe  MR-C7 [review label] - Mappa candidata di decomposizione: service, API e pipeline verification
+Page 58  b902e88a80ccad3092c9c66cd324c034  MR-C7 [review label] - Mappa candidata di decomposizione: B4, retraining e acceptance
+Page 59  b00ca4fdb114611781ee9d8c0febed89  Registro Base Analysis - BAReferent e BAProposition
+Page 60  3a1460e067482409cd1d0ccf4edf145f  Registro Base Analysis - BAProposition
+Page 61  42c63c876189a9d341da909c38484215  MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
+Page 62  7ef7b82736cac116e2cfedb967b89f57  Indice di integrita delle pagine [INTEGRITY INDEX]
