@@ -70,7 +70,7 @@ Il contenuto di questa appendice governa \emph{come stiamo ricostruendo la guida
 \expandafter\def\csname PageMDfive40\endcsname{b0e191c6045d2c9e9e1f7237f8a64722}
 \expandafter\def\csname PageMDfive41\endcsname{fd686d1106dfb09f995cbd206d72f204}
 \expandafter\def\csname PageMDfive42\endcsname{7bf58985b2b7e03d4fa8cedf3a820e17}
-\expandafter\def\csname PageMDfive43\endcsname{376f50ac864805c54ebb05510ddd2437}
+\expandafter\def\csname PageMDfive43\endcsname{9b9c396fdc4904f4fc2aed0db151c640}
 \expandafter\def\csname PageMDfive44\endcsname{787e4c5ce9931b03135f6fe32337ab0c}
 \expandafter\def\csname PageMDfive45\endcsname{878f6fa9ebb37d3e1c92b53232d28d37}
 \expandafter\def\csname PageMDfive46\endcsname{1d9565d3ea82d81047cb85703c2209f8}
@@ -130,7 +130,7 @@ Il contenuto di questa appendice governa \emph{come stiamo ricostruendo la guida
 \expandafter\def\csname PageMDfive100\endcsname{9d02d27cc2ad8bb4e1b30d441667e854}
 \expandafter\def\csname PageMDfive101\endcsname{90b6659e5a0105e0cd7268d3f76137f6}
 \expandafter\def\csname PageMDfive102\endcsname{6c0bfc1303d2625419769ae6e58f4b68}
-\expandafter\def\csname PageMDfive103\endcsname{225568186b3fb30a7381ab275bb7b856}
+\expandafter\def\csname PageMDfive103\endcsname{00b7e809d799f096266b5c775ab47372}
 \expandafter\def\csname PageMDfive104\endcsname{13cdd31df41e1d75e405e6ba020261fa}
 %</PAGE-HASH-DEFS>
 
@@ -1398,6 +1398,13 @@ realization concrete -> Qwen2-VL-7B-Instruct
 \end{lstlisting}
 
 La realization non sostituisce il BAReferent astratto. Se altri documenti qualificano, vincolano o riusano \texttt{ClinicalDescriptionGeneration}, tali proposition continuano a riferirsi all'abstract e non vengono automaticamente trasferite alla tecnologia concreta.
+
+\begin{ddtaprinciple}[title={Funzione logica, continuita' nel lifecycle ed equivalenza relativa}]
+\small
+\textbf{Funzione logica e realization.} Quando un componente tecnico ha un ruolo funzionale distinguibile, la BA preserva, quando source-supported, sia l'identita' della funzione logica sia l'identita' della realizzazione concreta e le collega con \texttt{realize}. L'ordine dell'analisi non determina l'identita': se la stessa entita' compare prima nel setup e poi nel sistema operativo, o viceversa, lo stesso BAReferent viene riusato finche' il significato resta invariato. Installazione, configurazione, runtime, adattamento o altre fasi del lifecycle non giustificano da sole copie phase-specific del referent.\par
+\smallskip
+\textbf{Equivalenza relativa.} Due componenti concreti non sono equivalenti in assoluto. Una sostituzione puo' mantenere stabile lo stesso abstract soltanto nella misura in cui la nuova realization realizza la stessa funzione logica e preserva i contract e i constraint governati applicabili. \texttt{realize} da sola non implica sostituibilita' drop-in: se cambiano input, output, vincoli o boundary funzionale, il change impact deve riaprire i significati coinvolti invece di nascondere il cambiamento come semplice sostituzione tecnologica.
+\end{ddtaprinciple}
 
 \subsection{Invarianti}
 \begin{itemize}

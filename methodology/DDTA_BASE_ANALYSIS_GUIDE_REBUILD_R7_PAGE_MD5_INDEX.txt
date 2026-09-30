@@ -44,7 +44,7 @@ Page 39  7abd09f421a17323e61078e606c76cc5  8 - produce: rappresentazione Mermaid
 Page 40  b0e191c6045d2c9e9e1f7237f8a64722  8 - produce: esempio grafico Mermaid
 Page 41  fd686d1106dfb09f995cbd206d72f204  9 - realize: definizione, smallest fact e criteri d'uso
 Page 42  7bf58985b2b7e03d4fa8cedf3a820e17  9 - realize: firma canonica, ruoli e cardinalita
-Page 43  376f50ac864805c54ebb05510ddd2437  9 - realize: identity continuity, invarianti e forbidden inference
+Page 43  9b9c396fdc4904f4fc2aed0db151c640  9 - realize: identity continuity, invarianti e forbidden inference
 Page 44  787e4c5ce9931b03135f6fe32337ab0c  9 - realize: domande di identificazione e procedura di estrazione
 Page 45  878f6fa9ebb37d3e1c92b53232d28d37  9 - realize: esempio generico e worked example DermaTriage corrente
 Page 46  1d9565d3ea82d81047cb85703c2209f8  9 - realize: prompt LLM per l'identificazione controllata
@@ -87,16 +87,16 @@ Page 82  2a701c771ac5753385b56105bab3c258  13 - Store: prompt LLM per identifica
 Page 83  12d72ba8edfed0badf4a8dd1bf10b958  13 - Store: output atteso e discriminazioni con costrutti vicini
 Page 84  f971ae4163101485d17a2525eed12930  13 - Store: rappresentazione Mermaid, direzioni e binding opzionali
 Page 85  d862d9363aa1ca311511499919febe1b  13 - Store: esempio grafico con transfer IN e OUT
-Page 86  83feb5798b4ef3a54f9a845982b647e8  14 - selection: definizione, smallest fact e criteri d'uso
-Page 87  024d82caac57f291a8e90cde3aea6f80  14 - selection: forma canonica locale, ruoli e cardinalita
-Page 88  a832820401ab88c3308ad972799a3ba2  14 - selection: invarianti, confini semantici e forbidden inference
-Page 89  f14aa1cc78b75fc2f8d662fc1236f9d9  14 - selection: domande di identificazione e procedura di estrazione
+Page 86  7ca23dbdea726062717d92e8edcb2a90  14 - selection: definizione, smallest fact e criteri d'uso
+Page 87  6d65eca46280537a5a2e0e5ec9bbe8d1  14 - selection: forma canonica locale, ruoli e cardinalita
+Page 88  78d5aeca1bed00446ac85e4a81ea80fe  14 - selection: invarianti, confini semantici e forbidden inference
+Page 89  b43df1bdbbe817b4927efb93a65ef290  14 - selection: domande di identificazione e procedura di estrazione
 Page 90  8ea61ece3848e2e6eae7458fe86118f1  14 - selection: esempio generico e positive control DermaTriage FR06
 Page 91  adf1abd8f97e3e52920d492b96aaf418  14 - selection: positive control top-K e best senza full ranking
-Page 92  2aedd05e8f01b891dba4db2ee40ca71e  14 - selection: composizione con Store, contract e pressure case RC001
-Page 93  af2d69bd3016fe7243c3f049df550b9a  14 - selection: prompt LLM per identificazione controllata
-Page 94  95ae78d4a3ee6996d8eea6ce81784c25  14 - selection: output atteso e discriminazioni con costrutti vicini
-Page 95  fe76475cc1ecccd4abb7bd8c85034e6f  14 - selection: rappresentazione Mermaid e esempio grafico con Store
+Page 92  a0e7014efbf6db25c56ce330e60be766  14 - selection: composizione con Store, contract e pressure case RC001
+Page 93  1c30ae85bc1f5ba81e03fec5da97dcfd  14 - selection: prompt LLM per identificazione controllata
+Page 94  31418116d99a43c7196b8fcb428b7d62  14 - selection: output atteso e discriminazioni con costrutti vicini
+Page 95  0093149bd269138f15c2db83fea56324  14 - selection: rappresentazione Mermaid e esempio grafico con Store
 Page 96  3915eaee02f714ac47e0dfa764b2836f  Appendice temporanea - scopo, lineage e confine del rebuild
 Page 97  5475a02c3223c3fac62a7eebe62f6be2  Appendice temporanea - corpus e stati epistemici
 Page 98  e1b1becfc138e20474529fae47de6a05  Appendice temporanea - Construct Description Contract e principio espositivo
@@ -104,5 +104,5 @@ Page 99  435e9ecddb23d230df9cc32766e10610  Appendice temporanea - CDC direzione 
 Page 100  9d02d27cc2ad8bb4e1b30d441667e854  Appendice temporanea - CDC campi 1-10
 Page 101  90b6659e5a0105e0cd7268d3f76137f6  Appendice temporanea - CDC campi 11-20
 Page 102  6c0bfc1303d2625419769ae6e58f4b68  Appendice temporanea - roadmap e registro dei costrutti da integrare/studiare
-Page 103  0116bbb625d36a26028cc43031381a75  Indice di integrita' delle pagine [INTEGRITY INDEX]
+Page 103  00b7e809d799f096266b5c775ab47372  Indice di integrita' delle pagine [INTEGRITY INDEX]
 Page 104  13cdd31df41e1d75e405e6ba020261fa  Appendice temporanea - laboratorio prove grafiche Mermaid da cancellare
