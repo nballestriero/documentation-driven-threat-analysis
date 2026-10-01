@@ -1,4 +1,4 @@
-DDTA_DERMATRIAGE_PARALLEL_CASE_STUDY_R25_FR03_SPLIT_REVIEW_R1_C6_P06 - Page MD5 Index
+DDTA_DERMATRIAGE_PARALLEL_CASE_STUDY_R25_FR03_SPLIT_REVIEW_R1_C7_MR_DEC_R1 - Page MD5 Index
 Canonical payload: LaTeX content between PAGE-CONTENT markers; own printed MD5 excluded.
 Integrity-index page resolves all other page hashes and canonicalizes its own hash as <SELF>.
 
@@ -57,10 +57,10 @@ Page 52  d3e6fc0498b960a81d4085a821976f73  MR-C6 > DEC-C6-01 > FR-C6-01-04 - Con
 Page 53  05243bf62b8107ede9c8d9d96925cbfe  MR-C6 > DEC-C6-01 > FR-C6-01-04 - Configurazione dei binding dell'ambiente e delle integrazioni [2/2]
 Page 54  b271663a34d89196ec3cc5da07a799b8  MR-C6 > DEC-C6-01 > FR-C6-01-05 - Inizializzazione della base vettoriale dei casi storici
 Page 55  4a48d503ffc010c733ca14e2b7d35ada  MR-C6 > DEC-C6-01 > FR-C6-01-06 - Avvio del servizio API DermaTriage
-Page 56  d6f6d4d2621b1f8a817ee3879782608a  MR-C7 [review label] - Verifica del sistema DermaTriage
-Page 57  989bae884287eaeac14bb52a961776fe  MR-C7 [review label] - Mappa candidata di decomposizione: service, API e pipeline verification
-Page 58  b902e88a80ccad3092c9c66cd324c034  MR-C7 [review label] - Mappa candidata di decomposizione: B4, retraining e acceptance
-Page 59  49b7344c53e1378734fbaaf5533c808b  Registro Base Analysis - BAReferent e BAProposition
-Page 60  0a9238e4edda76256a62e253cf45cf1b  Registro Base Analysis - BAProposition
+Page 56  102bb73d527c550361d49540f34e0d0d  MR-C7 - Verifica del sistema DermaTriage
+Page 57  086ccbf418f6545accc9d179d1e8598d  MR-C7 > DEC-C7-01 - Verifica mediante controlli espliciti e criteri applicabili
+Page 58  83cd045c40a42cc43e06d2eaec7c6af6  MR-C7 > DEC-C7-01 - Worklist candidata di decomposizione C7-P01..P07
+Page 59  8bc7feec08c803c682573fc7481d43fb  Registro Base Analysis - BAReferent e BAProposition
+Page 60  2019ef5b1c63df2dd227b9a6eb7afcc9  Registro Base Analysis - BAProposition
 Page 61  42c63c876189a9d341da909c38484215  MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
-Page 62  41ad1bd982d5dc6a6b19937dc38bbd39  Indice di integrita delle pagine [INTEGRITY INDEX]
+Page 62  b059bc7097e060949567e1d535be621c  Indice di integrita delle pagine [INTEGRITY INDEX]

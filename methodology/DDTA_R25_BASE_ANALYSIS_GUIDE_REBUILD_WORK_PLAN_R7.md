@@ -807,7 +807,7 @@ RC-001 affected BA final rebuild:                        completed for checkpoin
 BA-to-Mermaid projection/composition guide R1:           created as candidate / non-normative
 RC-001 rollback projection regression example:           created / non-authority evidence
 RC-001 finding-register disposition:                     CLOSED for checkpoint
-RC-021 MR-family separation/classification:               active / partially promoted
+RC-021 MR-family separation/classification:               active / C6 complete / C7 MR+Decision promoted
 MR-03 rework + clinical-review tooling placeholders:      authored as candidate / review-only
 MR-C6 environment preparation:                            APPROVED / CURRENT_GOVERNED
 DEC-C6-01 explicit environment-setup procedure:           APPROVED / CURRENT_GOVERNED
@@ -819,8 +819,10 @@ FR-C6-01-05 historical vector-base initialization:         APPROVED / CURRENT_GO
 FR-C6-01-06 DermaTriage API service startup:              APPROVED / CURRENT_GOVERNED
 MR-C6 Base Analysis:                                      COMPLETED FOR APPROVED C6 BRANCH
 MR-C6 residual decomposition:                             CLOSED / no residual C6-Pxx candidates
-MR-C7 verification + decomposition maps:                  authored as candidate / review-only
-MR-C7 Base Analysis:                                      NOT ANALYZED
+MR-C7 verification responsibility:                        APPROVED / CURRENT_GOVERNED
+DEC-C7-01 explicit verification procedure:                APPROVED / CURRENT_GOVERNED
+MR-C7 residual FR decomposition:                          OPEN / C7-P01..P07 review worklist
+MR-C7 Base Analysis:                                      STARTED FOR APPROVED MR/DEC CHECKPOINT
 MR-03 affected Base Analysis:                             REVALIDATION REQUIRED after documentation closure
 RC-002 Stage-4 output-contract reconciliation:            PAUSED until RC-021 owner review is stable
 Source -> hierarchy reconciliation RC-003+:              QUEUED after MR-family review / RC-002
@@ -918,11 +920,11 @@ RC-016 selection
 RC-017 decisionRule relocation
 ```
 
-RC-021 has completed the first family-wide MR separation/classification pass for the current source set. The controlled case-study checkpoint still contains a reworked MR-03 candidate and candidate MR-C7 verification pages. The environment-preparation branch is now complete for the current C6 scope: MR-C6 is CURRENT_GOVERNED, DEC-C6-01 governs explicit environment setup, FR-C6-01-01 governs compute/storage resource preparation, FR-C6-01-02 governs software/dependency availability, FR-C6-01-03 governs model/data resource availability, FR-C6-01-04 governs environment/integration configuration bindings, FR-C6-01-05 governs initialization of the historical vector base, and FR-C6-01-06 governs startup of the DermaTriage API service. The temporary `FR-MR01-03-03A/B` review split remains closed: offline preparation is owned by FR-C6-01-05 and runtime retrieval is canonical FR-MR01-03-03. No residual `C6-Pxx` candidate remains. RC-021 stays open because MR-C7 verification ownership has not yet passed its own gates.
+RC-021 has completed the first family-wide MR separation/classification pass for the current source set. The environment-preparation branch is complete for the current C6 scope. The verification branch has now passed its MR and Decision gates: MR-C7 is CURRENT_GOVERNED and DEC-C7-01 governs verification through explicit controls and applicable criteria. The residual `C7-P01..P07` labels remain review-only placeholders and must be reconstructed one family at a time before any FunctionalRequirement promotion. RC-021 stays open until that FR-level ownership review is stable.
 
-The working family currently preserves: MR-01 KEEP; MR-02 KEEP / STOP AT MR; MR-03 KEEP + REWORK candidate; MR-04 KEEP; initial training as a distinct lifecycle meaning but LOWER LEVEL for this checkpoint; MR-C6 approved/current; MR-C7 still a KEEP candidate. Documentation and Base Analysis now proceed in parallel inside an approved branch: documentation remains project authority, while BA is used immediately as a diagnostic representation test and may feed ambiguity or construct-pressure findings back to the appropriate layer without creating project meaning.
+The working family currently preserves: MR-01 KEEP; MR-02 KEEP / STOP AT MR; MR-03 KEEP + REWORK candidate; MR-04 KEEP; initial training as a distinct lifecycle meaning but LOWER LEVEL for this checkpoint; MR-C6 approved/current; MR-C7 KEEP / APPROVED / CURRENT_GOVERNED with DEC-C7-01 approved/current and FR decomposition still open. Documentation and Base Analysis proceed in parallel inside approved branches: documentation remains project authority, while BA is used immediately as a diagnostic representation test and may feed ambiguity or construct-pressure findings back to the appropriate layer without creating project meaning.
 
-For RC-002, the original Stage-4 evidence has been reopened, but final owner reconstruction remains paused until the RC-021 candidate-owner review is stable. The current runtime hint `MR-01 -> DEC-MR01-03 -> FR-MR01-03-04` is not authority. OR2's runtime Stage-4 description and OR5's Stage-4 verification oracle must remain distinct unless the project documentation establishes their relationship.
+For RC-002, the original Stage-4 evidence has been reopened, but final owner reconstruction remains paused until the RC-021 FR-level owner review is stable. The current runtime hint `MR-01 -> DEC-MR01-03 -> FR-MR01-03-04` is not authority. OR2's runtime Stage-4 description and OR5's Stage-4 verification oracle must remain distinct unless the project documentation establishes their relationship.
 
 ### 11.5 Recovery reading order
 
@@ -976,15 +978,15 @@ BA status: NOT ANALYZED UNTIL DOCUMENTATION CLOSED
 ### 11.7 Immediate next action
 
 ```text
-repository baseline 99c106c: MR-03 / MR-C6 / MR-C7 candidate checkpoint saved
+repository baseline c34f00e: C6 branch-complete checkpoint saved
         ->
-MR-C6 -> DEC-C6-01 -> FR-C6-01-01 / FR-C6-01-02 / FR-C6-01-03 / FR-C6-01-04 / FR-C6-01-05 / FR-C6-01-06 approved with parallel BA checkpoint
+MR-C7 -> DEC-C7-01 approved/current with parallel BA checkpoint
         ->
-MR-C6 decomposition complete; no residual C6-Pxx candidate remains
+C7-P01..P07 remain candidate review labels under DEC-C7-01
         ->
-review MR-C7 from the original verification sources, one family at a time;   [NEXT]
-promote or rework only after its own MR/Decision/FR gates;
-keep verification ownership distinct from runtime ownership
+analyze the C7 FR families one at a time from the original verification documentation;   [NEXT]
+promote or rework each only after its own FR gate;
+keep verification ownership distinct from runtime/adaptation/quality ownership
         ->
 resume RC-002 with runtime-vs-verification ownership separated when RC-021 is stable
         ->

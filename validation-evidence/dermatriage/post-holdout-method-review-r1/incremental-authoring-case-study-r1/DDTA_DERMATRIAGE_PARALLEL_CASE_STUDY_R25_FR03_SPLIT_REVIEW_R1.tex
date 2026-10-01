@@ -76,13 +76,13 @@
 \expandafter\def\csname PageMDfive53\endcsname{05243bf62b8107ede9c8d9d96925cbfe}
 \expandafter\def\csname PageMDfive54\endcsname{b271663a34d89196ec3cc5da07a799b8}
 \expandafter\def\csname PageMDfive55\endcsname{4a48d503ffc010c733ca14e2b7d35ada}
-\expandafter\def\csname PageMDfive56\endcsname{d6f6d4d2621b1f8a817ee3879782608a}
-\expandafter\def\csname PageMDfive57\endcsname{989bae884287eaeac14bb52a961776fe}
-\expandafter\def\csname PageMDfive58\endcsname{b902e88a80ccad3092c9c66cd324c034}
-\expandafter\def\csname PageMDfive59\endcsname{49b7344c53e1378734fbaaf5533c808b}
-\expandafter\def\csname PageMDfive60\endcsname{0a9238e4edda76256a62e253cf45cf1b}
+\expandafter\def\csname PageMDfive56\endcsname{102bb73d527c550361d49540f34e0d0d}
+\expandafter\def\csname PageMDfive57\endcsname{086ccbf418f6545accc9d179d1e8598d}
+\expandafter\def\csname PageMDfive58\endcsname{83cd045c40a42cc43e06d2eaec7c6af6}
+\expandafter\def\csname PageMDfive59\endcsname{8bc7feec08c803c682573fc7481d43fb}
+\expandafter\def\csname PageMDfive60\endcsname{2019ef5b1c63df2dd227b9a6eb7afcc9}
 \expandafter\def\csname PageMDfive61\endcsname{42c63c876189a9d341da909c38484215}
-\expandafter\def\csname PageMDfive62\endcsname{41ad1bd982d5dc6a6b19937dc38bbd39}
+\expandafter\def\csname PageMDfive62\endcsname{b059bc7097e060949567e1d535be621c}
 %</PAGE-HASH-DEFS>
 
 \newcommand{\PageHashFooter}[1]{%
@@ -4817,41 +4817,37 @@ Verification di \texttt{/health}, \texttt{/stats} e \texttt{/docs}: owner estern
 \end{paracol}
 %</PAGE-CONTENT:55>
 \clearpage
-%<PAGE-DESC:56>MR-C7 [review label] - Verifica del sistema DermaTriage
+%<PAGE-DESC:56>MR-C7 - Verifica del sistema DermaTriage
 %<PAGE-CONTENT:56>
 \PageHashFooter{\PageMDfive{56}}
-\section*{MR-C7 [review label] - Verifica del sistema DermaTriage}
-{\sffamily\scriptsize\color{DDTAGray}MacroRequirement candidato emerso dalla review della famiglia MR; label provvisorio, non canonico.}\par
-
-\begin{ddtaopen}[title={PROPOSTA DA VERIFICARE}]
-\fontsize{5.2}{5.75}\selectfont
-Questa pagina conserva il candidato MacroRequirement relativo alla verifica di DermaTriage. La promozione a MR corrente, l'ID definitivo e la relazione \texttt{dependsOn} restano da verificare. L'ordine operativo ``setup poi test'' non viene trasformato automaticamente in dipendenza semantica da \texttt{MR-C6}. La verifica non acquisisce ownership dei comportamenti, dei contratti o dei criteri di qualita' posseduti dagli elementi verificati. La Base Analysis resta non avviata.
-\end{ddtaopen}
+\section{MR-C7 - Verifica del sistema DermaTriage}
 
 \setlength{\columnsep}{7mm}
 \setlength{\columnseprule}{0.35pt}
 \columnratio{0.67}
 \begin{paracol}{2}
 {\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
-\vspace{0.3em}
+\vspace{0.2em}
 
-\begin{ddtacore}[title={MacroRequirement - candidato}]
-\fontsize{5.15}{5.65}\selectfont
+\begin{ddtacore}[title={MacroRequirement}]
+\fontsize{4.65}{5.1}\selectfont
 \begin{tabularx}{\linewidth}{L{38mm}Y}
 \toprule
-\textbf{ID} & \texttt{MR-C7} (review label) \\
-\textbf{Lifecycle} & \texttt{candidate} \\
-\textbf{Authority} & \texttt{CANDIDATE\_NON\_CURRENT} \\
+\textbf{ID} & \texttt{MR-C7} \\
+\textbf{Lifecycle} & \texttt{current} \\
+\textbf{Authority} & \texttt{CURRENT\_GOVERNED} \\
 \textbf{Type} & \texttt{MacroRequirement} \\
 \textbf{Title} & Verifica del sistema DermaTriage \\
 \bottomrule
 \end{tabularx}
 
 \textbf{Intent}\par
-Verificare che l'ambiente, le capability e le integrazioni di DermaTriage soddisfino le aspettative e i criteri di verifica applicabili, rendendo determinabile l'esito dei controlli previsti.
+Verificare che l'ambiente, le capability, le integrazioni e i cambiamenti introdotti durante il lifecycle di DermaTriage soddisfino le aspettative e i criteri di verifica applicabili, rendendo determinabile l'esito dei controlli previsti.
 
 \textbf{Context}\par
-DermaTriage prevede attivita' di verifica che interessano la disponibilita' dei servizi, le interfacce esposte, i singoli stadi della pipeline, il funzionamento complessivo del processo di triage, l'integrazione con B4 e le operazioni relative all'adattamento del sistema. Le verifiche possono stabilire risultati attesi, condizioni di superamento e criteri di accettazione applicabili allo specifico oggetto verificato.
+DermaTriage prevede attivita' di verifica sulla disponibilita' dei servizi, sulle interfacce esposte, sui singoli stadi della pipeline, sul processo di triage completo, sull'integrazione con B4 e sui cambiamenti introdotti dai percorsi di adattamento feedback-driven.
+
+Le correzioni cliniche possono contribuire all'evoluzione dei prompt usati dai componenti language-model; il disaccordo clinico con precedenti risultati AI puo' alimentare il retraining del classificatore di urgenza. Tali cambiamenti possono modificare direttamente o indirettamente il comportamento della pipeline a quattro stadi e devono poter essere qualificati rispetto ai criteri applicabili, mantenendo distinguibili baseline, versione candidata, adozione e ripristino.
 
 La responsabilita' di verifica resta distinta dalla responsabilita' che definisce o realizza il comportamento sottoposto al controllo.
 
@@ -4859,116 +4855,161 @@ La responsabilita' di verifica resta distinta dalla responsabilita' che definisc
 --
 
 \textbf{Scope}\par
-\textbf{IN:} verifica della disponibilita' e dello stato dei servizi; verifica delle interfacce e delle risposte attese; verifica dei singoli stadi della pipeline e della pipeline completa; verifica delle integrazioni esterne; verifica delle operazioni di retraining e rollback; applicazione dei criteri di verifica e di accettazione documentati per gli elementi sottoposti a controllo.\par
-\textbf{OUT:} definizione del comportamento funzionale del triage; definizione della revisione clinica; esecuzione dell'adattamento; predisposizione e inizializzazione dell'ambiente; modifica del comportamento o dei dati sottoposti a verifica.
+\textbf{IN:} verifica di disponibilita' e stato dei servizi; verifica di interfacce, singoli stadi e pipeline completa; verifica delle integrazioni esterne; verifica delle operazioni di retraining, prompt evolution, version management e rollback quando applicabili; qualificazione dei cambiamenti candidati; verifica post-change degli elementi modificabili dall'adattamento; applicazione di expected result, pass condition e acceptance criteria governati.\par
+\textbf{OUT:} predisposizione e inizializzazione dell'ambiente, governate da \texttt{MR-C6}; definizione del comportamento runtime; produzione della revisione clinica; definizione ed esecuzione delle policy di adattamento, governate da \texttt{MR-04}; trasferimento automatico a \texttt{MR-C7} dell'ownership dei criteri verificati; trasformazione di valori osservati o PASS/FAIL in nuovi requisiti.
 
 \textbf{Assumptions / Constraints}\par
---
+Restano distinti owner del comportamento/criterio e owner della verifica; runtime contract e test oracle; normative target e observed value; adaptation behavior e verification of adapted behavior. La produzione di un nuovo modello o prompt non implica da sola che il cambiamento sia qualificato per sostituire la versione attiva.
 
 \textbf{dependsOn}\par
-\texttt{None}
+\texttt{None}. Il consumo di ambiente, output runtime o risultati di adattamento non viene trasformato automaticamente in una dependency MR-level.
 \end{ddtacore}
 
 \switchcolumn
 {\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
-\vspace{0.3em}
-\begin{ddtareferentidentified}\scriptsize\texttt{NON ANALIZZATO}\end{ddtareferentidentified}
-\begin{ddtareferentaccepted}\scriptsize --\end{ddtareferentaccepted}
-\begin{ddtapropositionidentified}\scriptsize\texttt{NON ANALIZZATO}\end{ddtapropositionidentified}
-\begin{ddtapropositionaccepted}\scriptsize --\end{ddtapropositionaccepted}
+\vspace{0.2em}
+\begin{ddtareferentidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.7}{5.15}\selectfont
+\BACandidate{DermaTriageVerification} \BANew{}.
+\end{ddtareferentidentified}
+\begin{ddtareferentaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.55}{5.0}\selectfont
+\BAAccepted{DermaTriage}; \BAAccepted{DermaTriageVerification} \BAFirstAccepted{}.
+\end{ddtareferentaccepted}
+\begin{ddtapropositionidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.35}{4.8}\selectfont
+\texttt{--}\par
+\emph{Il MacroRequirement governa l'identita' della responsabilita' di verifica, ma non stabilisce ancora una relation BA generica capace di esprimere target, criterio, osservazione ed esito.}
+\end{ddtapropositionidentified}
+\begin{ddtapropositionaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.5}{4.95}\selectfont
+\texttt{--}
+\end{ddtapropositionaccepted}
+\begin{ddtaopenrelations}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.15}{4.55}\selectfont
+La verifica deve poter seguire sia la baseline corrente sia i change path feedback-driven: correzioni cliniche $\rightarrow$ prompt evolution $\rightarrow$ comportamento Qwen2/BioMistral; disaccordo clinico $\rightarrow$ retraining EfficientNet $\rightarrow$ candidato $\rightarrow$ qualificazione $\rightarrow$ adozione o rollback. Non viene introdotto un operatore \texttt{verify} per completare la BA. I branch figli stabiliranno quali semantic fact sono rappresentabili con i costrutti ammessi e quali producono construct pressure.
+\end{ddtaopenrelations}
 \end{paracol}
 %</PAGE-CONTENT:56>
 \clearpage
-%<PAGE-DESC:57>MR-C7 [review label] - Mappa candidata di decomposizione: service, API e pipeline verification
+%<PAGE-DESC:57>MR-C7 > DEC-C7-01 - Verifica mediante controlli espliciti e criteri applicabili
 %<PAGE-CONTENT:57>
 \PageHashFooter{\PageMDfive{57}}
-\subsection*{MR-C7 [review label] - Mappa candidata: service, API e pipeline verification}
-{\sffamily\scriptsize\color{DDTAGray}Segnaposto di decomposizione: nessuna riga di questa pagina e' ancora una Decision canonica.}\par
-
-\begin{ddtaopen}[title={PROPOSTA DA VERIFICARE - DECOMPOSIZIONE 1/2}]
-\fontsize{5.1}{5.65}\selectfont
-Questa pagina preserva i significati di verifica relativi a readiness, endpoint, singoli stadi e pipeline completa. Expected output e pass condition appartengono alla verifica; non vengono usati automaticamente per riscrivere i contratti runtime dei branch verificati. La relazione tra test oracle e contratto runtime resta da chiudere caso per caso, incluso il finding aperto sullo Stage 4.
-\end{ddtaopen}
+\subsection{DEC-C7-01 - Verifica mediante controlli espliciti e criteri applicabili}
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-C7} $\rightarrow$ \texttt{DEC-C7-01}}\par
 
 \setlength{\columnsep}{7mm}
 \setlength{\columnseprule}{0.35pt}
 \columnratio{0.67}
 \begin{paracol}{2}
 {\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
-\vspace{0.2em}
+\vspace{0.25em}
 
-\begin{ddtacore}[title={Candidate verification families - parte 1}]
-\fontsize{4.55}{5.0}\selectfont
-\begin{tabularx}{\linewidth}{L{22mm}L{39mm}Y}
+\begin{ddtacore}[title={Decision}]
+\fontsize{5.0}{5.5}\selectfont
+\begin{tabularx}{\linewidth}{L{38mm}Y}
 \toprule
-\textbf{Label} & \textbf{Candidate meaning} & \textbf{Verifiche da preservare} \\
-\midrule
-\texttt{C7-P01} & Service/readiness verification & \texttt{GET /health}: risposta attesa con stato servizi; pass quando EfficientNet, ChromaDB e B4 connection risultano disponibili. \texttt{GET /stats}: statistiche della pipeline. \\
-\texttt{C7-P02} & API/endpoint verification & \texttt{POST /analyze}: multipart image + age/sex/localization, JSON atteso con P-scale/specialist/SLA/confidence, risposta sotto 30s e P-scale valida. \texttt{POST /diagnose}: consulto B4, 200 OK e risultato scritto su B4. \\
-\texttt{C7-P03} & Pipeline-stage verification & Stage 1: urgency/confidence/probabilities, urgency valida. Stage 2: descrizione clinica a 5 punti non vuota. Stage 3: top-5 casi con campi identificati, esattamente 5 risultati. Stage 4: JSON con \texttt{final\_urgency}, \texttt{confidence}, \texttt{reasoning}, \texttt{recommended\_action}, \texttt{predicted\_pathology}; JSON valido con tutti i 5 campi. \\
-\texttt{C7-P04} & Full-pipeline verification & Input image + age + sex + localization; risultato P1-P4 + specialista italiano + SLA; risposta completa sotto 30 secondi. \\
+\textbf{ID} & \texttt{DEC-C7-01} \\
+\textbf{Lifecycle} & \texttt{current} \\
+\textbf{Authority} & \texttt{CURRENT\_GOVERNED} \\
+\textbf{Type} & \texttt{Decision} \\
+\textbf{Title} & Verifica mediante controlli espliciti e criteri applicabili \\
+\textbf{Parent MacroRequirement} & \texttt{MR-C7} \\
+\textbf{Decision kind} & \texttt{SELECTABLE} \\
 \bottomrule
 \end{tabularx}
-\end{ddtacore}
 
-\begin{ddtaquestions}[top=3pt,bottom=3pt,left=5pt,right=5pt]
-\fontsize{4.4}{4.85}\selectfont
-Da verificare: se readiness, endpoint e pipeline verification siano Decision autonome o FR di una strategia di verifica piu' ampia; quali expected output siano test oracle e quali riflettano contratti governati altrove; come rappresentare la copertura dei quattro stadi senza duplicare MR-01.
-\end{ddtaquestions}
+\textbf{Context}\par
+La verifica di DermaTriage riguarda oggetti differenti: disponibilita' dei servizi, interfacce API, singoli stadi, pipeline completa, integrazioni B4, percorsi di adattamento e proprieta' qualitative. I controlli possono richiedere input, risultati attesi, condizioni di superamento o criteri di accettazione differenti; non tutti i controlli richiedono necessariamente tutte queste informazioni.
+
+\textbf{Decision}\par
+La verifica di DermaTriage e' attuata mediante una procedura esplicita composta da controlli distinti sugli elementi da verificare. Per ogni controllo vengono preservati, quando applicabili, l'oggetto verificato, gli input o le condizioni di esecuzione, il risultato atteso, la pass condition o acceptance criterion e l'esito osservato. L'assenza di una condizione di superamento non viene completata per inferenza.
+
+\textbf{Consequences}\par
+Le famiglie di verifica possono essere governate come FunctionalRequirement distinti sotto questa Decision. Un expected output o criterio usato da un controllo non acquisisce automaticamente ownership sotto \texttt{MR-C7}; un valore osservato non diventa automaticamente commitment normativo. Per i cambiamenti feedback-driven devono restare distinguibili produzione del cambiamento, qualification, adoption, verifica post-change e rollback/recovery quando questi significati sono governati.
+\end{ddtacore}
 
 \switchcolumn
 {\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
-\vspace{0.2em}
-\begin{ddtareferentidentified}\scriptsize\texttt{NON ANALIZZATO}\end{ddtareferentidentified}
-\begin{ddtareferentaccepted}\scriptsize --\end{ddtareferentaccepted}
-\begin{ddtapropositionidentified}\scriptsize\texttt{NON ANALIZZATO}\end{ddtapropositionidentified}
-\begin{ddtapropositionaccepted}\scriptsize --\end{ddtapropositionaccepted}
+\vspace{0.25em}
+\begin{ddtareferentidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.75}{5.2}\selectfont
+\BACandidate{DermaTriageVerificationProcedure} \BANew{}.
+\end{ddtareferentidentified}
+\begin{ddtareferentaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.65}{5.1}\selectfont
+\BAAccepted{DermaTriageVerification}; \BAAccepted{DermaTriageVerificationProcedure} \BAFirstAccepted{}.
+\end{ddtareferentaccepted}
+\begin{ddtapropositionidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.45}{4.9}\selectfont
+\texttt{BAP-DECC7-01-01}\par
+\texttt{semanticOperatorKey = realize}\par
+\hspace*{1em}\texttt{abstract -> DermaTriageVerification}\par
+\hspace*{1em}\texttt{realization -> DermaTriageVerificationProcedure}\par
+\texttt{polarity = affirmative}
+\end{ddtapropositionidentified}
+\begin{ddtapropositionaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.4}{4.85}\selectfont
+\textbf{BAP-DECC7-01-01}.\par
+\emph{Acceptance boundary: la procedura di controlli espliciti realizza la responsabilita' astratta di verifica. Non implica un test framework specifico, una sequenza universale, PASS/FAIL per ogni controllo, equivalenza fra test oracle e runtime contract o ownership dei criteri verificati.}
+\end{ddtapropositionaccepted}
+\begin{ddtaopenrelations}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.15}{4.55}\selectfont
+La struttura target--criterion--observation--outcome resta da pressure-testare sui FunctionalRequirement figli. Nessuna relation generica di \texttt{verify/evaluate/compare} viene ammessa in questa Decision; l'eventuale gap di rappresentazione deve emergere dai casi concreti.
+\end{ddtaopenrelations}
 \end{paracol}
 %</PAGE-CONTENT:57>
 \clearpage
-%<PAGE-DESC:58>MR-C7 [review label] - Mappa candidata di decomposizione: B4, retraining e acceptance
+%<PAGE-DESC:58>MR-C7 > DEC-C7-01 - Worklist candidata di decomposizione C7-P01..P07
 %<PAGE-CONTENT:58>
 \PageHashFooter{\PageMDfive{58}}
-\subsection*{MR-C7 [review label] - Mappa candidata: B4, retraining e acceptance}
-{\sffamily\scriptsize\color{DDTAGray}Segnaposto di decomposizione: nessuna riga di questa pagina e' ancora una Decision canonica.}\par
+\subsection*{MR-C7 $\rightarrow$ DEC-C7-01 - Worklist candidata di decomposizione}
+{\sffamily\scriptsize\color{DDTAGray}Le label \texttt{C7-P01}--\texttt{C7-P07} restano segnaposto di review; non sono ancora FunctionalRequirement canonici.}\par
 
-\begin{ddtaopen}[title={PROPOSTA DA VERIFICARE - DECOMPOSIZIONE 2/2}]
-\fontsize{5.05}{5.6}\selectfont
-Questa pagina preserva le famiglie di verifica relative all'integrazione B4, alle operazioni di retraining/rollback e ai criteri di acceptance. I target quantitativi e gli esiti PASS/FAIL devono essere classificati nel loro semantic owner corretto: un criterio usato dalla verifica non diventa automaticamente proprieta' posseduta dal MR di verifica, e un risultato osservato non diventa automaticamente requisito.
+\begin{ddtaopen}[title={DECOMPOSIZIONE DA RICOSTRUIRE UN BRANCH ALLA VOLTA}]
+\fontsize{4.75}{5.25}\selectfont
+La Decision comune e' ora governata. Questa pagina conserva soltanto la worklist delle famiglie di controllo da riesaminare. Expected output, pass condition, acceptance criterion e valori osservati devono restare distinti dai contratti runtime e dai requirement owner. In particolare i change path feedback-driven devono essere verificati senza duplicare la policy di adattamento posseduta da \texttt{MR-04}.
 \end{ddtaopen}
 
 \setlength{\columnsep}{7mm}
 \setlength{\columnseprule}{0.35pt}
-\columnratio{0.67}
+\columnratio{0.70}
 \begin{paracol}{2}
 {\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
-\vspace{0.2em}
-
-\begin{ddtacore}[title={Candidate verification families - parte 2}]
-\fontsize{4.55}{5.0}\selectfont
-\begin{tabularx}{\linewidth}{L{22mm}L{39mm}Y}
+\vspace{0.15em}
+\begin{ddtacore}[title={Candidate verification families}]
+\fontsize{4.05}{4.45}\selectfont
+\begin{tabularx}{\linewidth}{L{17mm}L{39mm}Y}
 \toprule
-\textbf{Label} & \textbf{Candidate meaning} & \textbf{Verifiche / criteri da preservare} \\
+\textbf{Label} & \textbf{Candidate meaning} & \textbf{Boundary di review} \\
 \midrule
-\texttt{C7-P05} & B4 integration verification & JWT auth restituisce \texttt{access\_token}; triage list restituisce consulto array; image download restituisce bytes; diagnostic-output write restituisce 200 OK; validated-outcome restituisce outcome; B4 health restituisce status OK. \\
-\texttt{C7-P06} & Retraining/rollback verification & status restituisce version/corrections/progress; check-and-trigger restituisce trigger/corrections/remaining; manual run avvia background task; history restituisce version list; rollback restituisce success oppure no-backup message. \\
-\texttt{C7-P07} & Acceptance / quality evaluation & health 200, EfficientNet, ChromaDB e B4 connection attesi disponibili; \texttt{/analyze} sotto 30s da verificare; HIGH sensitivity target $\geq 90\%$ con 90.24\% PASS; false LOW target $<5\%$ con 7.93\% FAIL; accuracy target $>85\%$ con 81.74\% FAIL; AUC-ROC target $>0.90$ con 0.906 PASS. \\
+\texttt{C7-P01} & Service/readiness verification & Readiness del servizio e delle dipendenze richieste; \texttt{/health} possiede expected/pass semantics. \texttt{/stats} e \texttt{/docs} non diventano readiness test senza criterio esplicito. \\
+\texttt{C7-P02} & API/endpoint verification & Verifica delle operazioni esposte, incluse \texttt{/analyze} e \texttt{/diagnose}; separare request/response, timing e side effect B4 dai contratti posseduti altrove. \\
+\texttt{C7-P03} & Pipeline-stage verification & Controlli sugli output attesi dei quattro stadi; mantenere distinti test oracle e runtime contract, incluso lo Stage 4. \\
+\texttt{C7-P04} & Full-pipeline verification & Verifica end-to-end della pipeline image-based completa, inclusi risultato operativo e tempo di risposta quando applicabile. \\
+\texttt{C7-P05} & B4 integration verification & Autenticazione, acquisizione consulti/documenti, write-back, validated outcome e health B4; non duplicare ownership dell'integrazione. \\
+\texttt{C7-P06} & Adaptive-change lifecycle verification & Visibilita' di trigger/progress, esecuzione, version/history e rollback per retraining; includere nella review anche prompt update/history/reset come change path distinto. \\
+\texttt{C7-P07} & Quality / qualification verification & Distinguere quality gate assoluti della baseline, criteri comparativi per candidate adoption e controllo post-change/rollback; non fondere target e current value. \\
 \bottomrule
 \end{tabularx}
 \end{ddtacore}
 
 \begin{ddtaquestions}[top=3pt,bottom=3pt,left=5pt,right=5pt]
-\fontsize{4.35}{4.8}\selectfont
-Da verificare: relationship fra acceptance criteria e quality requirements; ownership dei criteri assoluti del classificatore rispetto a MR-01 e al training iniziale; distinzione fra test di retraining e policy MR-04; quali current values siano evidence osservata anziche' commitment governato.
+\fontsize{4.05}{4.45}\selectfont
+Da chiudere branch per branch: owner di \texttt{/stats}; confine P06/P07; relationship fra quality target assoluti e comparative acceptance criteria; verifica post-change della pipeline; rapporto fra oracle Stage 4 e contratto runtime; eventuale construct pressure BA per target/criterion/observation/outcome.
 \end{ddtaquestions}
 
 \switchcolumn
 {\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
-\vspace{0.2em}
-\begin{ddtareferentidentified}\scriptsize\texttt{NON ANALIZZATO}\end{ddtareferentidentified}
-\begin{ddtareferentaccepted}\scriptsize --\end{ddtareferentaccepted}
-\begin{ddtapropositionidentified}\scriptsize\texttt{NON ANALIZZATO}\end{ddtapropositionidentified}
-\begin{ddtapropositionaccepted}\scriptsize --\end{ddtapropositionaccepted}
+\vspace{0.15em}
+\begin{ddtareferentidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]\fontsize{4.45}{4.9}\selectfont\texttt{NON ANALIZZATO A LIVELLO FIGLIO}\end{ddtareferentidentified}
+\begin{ddtareferentaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]\fontsize{4.45}{4.9}\selectfont\BAAccepted{DermaTriageVerification}; \BAAccepted{DermaTriageVerificationProcedure}.\end{ddtareferentaccepted}
+\begin{ddtapropositionidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]\fontsize{4.4}{4.85}\selectfont\texttt{NON ANALIZZATO A LIVELLO FIGLIO}\end{ddtapropositionidentified}
+\begin{ddtapropositionaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]\fontsize{4.45}{4.9}\selectfont\texttt{--}\end{ddtapropositionaccepted}
+\begin{ddtaopenrelations}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.0}{4.4}\selectfont
+La worklist non crea identita' o proposition per semplice corrispondenza riga-a-riga. La BA verra' eseguita contestualmente all'authoring di ciascun FunctionalRequirement governato.
+\end{ddtaopenrelations}
 \end{paracol}
 %</PAGE-CONTENT:58>
 \clearpage
@@ -4985,14 +5026,14 @@ Il registro raccoglie la tracciabilita' BA corrente senza introdurre campi o sta
 \vspace{0.2mm}
 {\sffamily\bfseries\color{DDTABlue}BAReferent}\par
 \vspace{0.1mm}
-\fontsize{4.88}{5.18}\selectfont
-\renewcommand{\arraystretch}{0.78}
+\fontsize{4.78}{5.08}\selectfont
+\renewcommand{\arraystretch}{0.76}
 \setlength{\tabcolsep}{3pt}
 \begin{tabularx}{\textwidth}{L{55mm}Y}
 \toprule
 \textbf{BAReferent} & \textbf{Riferimenti documentali} \\
 \midrule
-DermaTriage & \texttt{MR-01}; \textbf{\texttt{DEC-MR01-01}}; \texttt{FR-MR01-01-01}; \texttt{DEC-MR01-03}; \texttt{FR-MR01-03-01}; \texttt{FR-MR01-03-02}; \texttt{FR-MR01-03-04}; \texttt{DEC-MR01-04}; \texttt{FR-MR01-04-01}; \texttt{MR-02}; \texttt{MR-03}; \texttt{DEC-03}; \texttt{FR-03}; \texttt{FR-12}; \texttt{DEC-15}; \texttt{FR-23}; \texttt{DEC-16}; \texttt{FR-24}; \texttt{FR-25}; \texttt{MR-04}; \texttt{DEC-04}; \texttt{FR-04}; \texttt{FR-05}; \texttt{DEC-05}; \texttt{FR-09}; \texttt{DEC-09}; \texttt{FR-06}; \texttt{DEC-10}; \texttt{FR-07}; \texttt{DEC-11}; \texttt{FR-08} \\
+DermaTriage & \texttt{MR-01}; \textbf{\texttt{DEC-MR01-01}}; \texttt{FR-MR01-01-01}; \texttt{DEC-MR01-03}; \texttt{FR-MR01-03-01}; \texttt{FR-MR01-03-02}; \texttt{FR-MR01-03-04}; \texttt{DEC-MR01-04}; \texttt{FR-MR01-04-01}; \texttt{MR-02}; \texttt{MR-03}; \texttt{DEC-03}; \texttt{FR-03}; \texttt{FR-12}; \texttt{DEC-15}; \texttt{FR-23}; \texttt{DEC-16}; \texttt{FR-24}; \texttt{FR-25}; \texttt{MR-04}; \texttt{DEC-04}; \texttt{FR-04}; \texttt{FR-05}; \texttt{DEC-05}; \texttt{FR-09}; \texttt{DEC-09}; \texttt{FR-06}; \texttt{DEC-10}; \texttt{FR-07}; \texttt{DEC-11}; \texttt{FR-08}; \texttt{MR-C7} \\
 DermatologicalCase & \textbf{\texttt{MR-01}}; \texttt{FR-MR01-01-01}; \texttt{FR-MR01-03-04} \\
 DermatologicalTriageEvaluation & \textbf{\texttt{MR-01}}; \texttt{DEC-MR01-01}; \texttt{FR-MR01-01-01}; \texttt{DEC-MR01-03} \\
 CaseUrgency & \textbf{\texttt{MR-01}}; \texttt{FR-MR01-01-01}; \texttt{FR-MR01-03-04}; \texttt{DEC-MR01-04}; \texttt{FR-MR01-04-01} \\
@@ -5068,6 +5109,8 @@ DermaTriageRAGDataset & \texttt{FR-C6-01-03}; \texttt{FR-C6-01-04} -- candidate;
 TrainingImageCollection & \texttt{FR-C6-01-03} -- candidate; binding corrente \texttt{data/images/}, identita' da discriminare rispetto ai dataset/split del lifecycle di training \\
 EnvironmentSetupProcedure & \textbf{\texttt{DEC-C6-01}}; \texttt{FR-C6-01-06} \\
 DermaTriageAPIService & \textbf{\texttt{FR-C6-01-06}} \\
+DermaTriageVerification & \textbf{\texttt{MR-C7}}; \texttt{DEC-C7-01} \\
+DermaTriageVerificationProcedure & \textbf{\texttt{DEC-C7-01}} \\
 \bottomrule
 \end{tabularx}
 %</PAGE-CONTENT:59>
@@ -5150,6 +5193,7 @@ Questa pagina continua il registro BA della pagina precedente. Il \textbf{grasse
 \textbf{\texttt{BAP-FRC6-01-03-01}} & \texttt{FR-C6-01-03} -- \texttt{constrain} (\texttt{DermaTriageEnvironment}: local \texttt{requiredModelAndDataResources}, \texttt{presence=required}); model/data identities riusate restano distinte dal constraint locale, acquisition transfer e artifact/version boundary non ancora accettati \\
 \textbf{\texttt{BAP-FRC6-01-04-01}} & \texttt{FR-C6-01-04} -- \texttt{constrain} (\texttt{DermaTriageEnvironment}: local \texttt{requiredConfigurationBindings}, \texttt{presence=required}); assignment \texttt{.env} e semantic owner downstream restano distinti dalla proposition locale \\
 \textbf{\texttt{BAP-FRC6-01-06-01}} & \texttt{FR-C6-01-06} -- \texttt{produce} (\texttt{EnvironmentSetupProcedure -> DermaTriageAPIService}); rende disponibile il servizio tramite startup senza implicare verification, process supervision o tecnologia obbligatoria \\
+\textbf{\texttt{BAP-DECC7-01-01}} & \texttt{DEC-C7-01} -- \texttt{realize} (\texttt{DermaTriageVerification -> DermaTriageVerificationProcedure}); non implica framework, ordering universale, PASS/FAIL per ogni controllo o ownership dei criteri verificati \\
 \bottomrule
 \end{tabularx}
 %</PAGE-CONTENT:60>
@@ -5283,9 +5327,9 @@ Ogni pagina possiede un MD5 del proprio contenuto canonico. Il calcolo esclude i
 \IntegrityRow{53}{MR-C6 > DEC-C6-01 > FR-C6-01-04 - Configurazione dei binding dell'ambiente e delle integrazioni [2/2]}{\PageMDfive{53}}
 \IntegrityRow{54}{MR-C6 > DEC-C6-01 > FR-C6-01-05 - Inizializzazione della base vettoriale dei casi storici}{\PageMDfive{54}}
 \IntegrityRow{55}{MR-C6 > DEC-C6-01 > FR-C6-01-06 - Avvio del servizio API DermaTriage}{\PageMDfive{55}}
-\IntegrityRow{56}{MR-C7 [review label] - Verifica del sistema DermaTriage}{\PageMDfive{56}}
-\IntegrityRow{57}{MR-C7 [review label] - Mappa candidata di decomposizione: service, API e pipeline verification}{\PageMDfive{57}}
-\IntegrityRow{58}{MR-C7 [review label] - Mappa candidata di decomposizione: B4, retraining e acceptance}{\PageMDfive{58}}
+\IntegrityRow{56}{MR-C7 - Verifica del sistema DermaTriage}{\PageMDfive{56}}
+\IntegrityRow{57}{MR-C7 > DEC-C7-01 - Verifica mediante controlli espliciti e criteri applicabili}{\PageMDfive{57}}
+\IntegrityRow{58}{MR-C7 > DEC-C7-01 - Worklist candidata di decomposizione C7-P01..P07}{\PageMDfive{58}}
 \IntegrityRow{59}{Registro Base Analysis - BAReferent e BAProposition}{\PageMDfive{59}}
 \IntegrityRow{60}{Registro Base Analysis - BAProposition}{\PageMDfive{60}}
 \IntegrityRow{61}{MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]}{\PageMDfive{61}}
