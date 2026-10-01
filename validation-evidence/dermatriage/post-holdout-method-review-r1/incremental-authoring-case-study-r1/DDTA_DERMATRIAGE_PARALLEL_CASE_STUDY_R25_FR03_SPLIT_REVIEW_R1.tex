@@ -72,17 +72,17 @@
 \expandafter\def\csname PageMDfive49\endcsname{40a157f1a8c090426477fb4311149d80}
 \expandafter\def\csname PageMDfive50\endcsname{db19e807cec5e49e3ca695c110920d57}
 \expandafter\def\csname PageMDfive51\endcsname{6f426f641f44c1709d38b12fa749c603}
-\expandafter\def\csname PageMDfive52\endcsname{28bd0541b710fb98efe42fe2866280d9}
-\expandafter\def\csname PageMDfive53\endcsname{79b5ca332a20b0c87f75deadae78792b}
+\expandafter\def\csname PageMDfive52\endcsname{d3e6fc0498b960a81d4085a821976f73}
+\expandafter\def\csname PageMDfive53\endcsname{05243bf62b8107ede9c8d9d96925cbfe}
 \expandafter\def\csname PageMDfive54\endcsname{b271663a34d89196ec3cc5da07a799b8}
-\expandafter\def\csname PageMDfive55\endcsname{4ad977ce75d9361095c984e191999f44}
+\expandafter\def\csname PageMDfive55\endcsname{4a48d503ffc010c733ca14e2b7d35ada}
 \expandafter\def\csname PageMDfive56\endcsname{d6f6d4d2621b1f8a817ee3879782608a}
 \expandafter\def\csname PageMDfive57\endcsname{989bae884287eaeac14bb52a961776fe}
 \expandafter\def\csname PageMDfive58\endcsname{b902e88a80ccad3092c9c66cd324c034}
-\expandafter\def\csname PageMDfive59\endcsname{b00ca4fdb114611781ee9d8c0febed89}
-\expandafter\def\csname PageMDfive60\endcsname{3a1460e067482409cd1d0ccf4edf145f}
+\expandafter\def\csname PageMDfive59\endcsname{49b7344c53e1378734fbaaf5533c808b}
+\expandafter\def\csname PageMDfive60\endcsname{0a9238e4edda76256a62e253cf45cf1b}
 \expandafter\def\csname PageMDfive61\endcsname{42c63c876189a9d341da909c38484215}
-\expandafter\def\csname PageMDfive62\endcsname{7ef7b82736cac116e2cfedb967b89f57}
+\expandafter\def\csname PageMDfive62\endcsname{41ad1bd982d5dc6a6b19937dc38bbd39}
 %</PAGE-HASH-DEFS>
 
 \newcommand{\PageHashFooter}[1]{%
@@ -4458,7 +4458,7 @@ La realizzazione corrente usa un file \texttt{.env}, derivato da \texttt{.env.ex
 \texttt{QWEN2\_MODEL=}\nolinkurl{Qwen/Qwen2-VL-7B-Instruct} & model identifier corrente & disponibilita' in \texttt{FR-C6-01-03} \\
 \texttt{BIOMISTRAL\_MODEL=}\nolinkurl{BioMistral/BioMistral-7B} & model identifier corrente & disponibilita' in \texttt{FR-C6-01-03} \\
 \texttt{TOP\_K\_RESULTS=5} & valore configurato del numero di risultati RAG & significato del retrieval posseduto dallo Stage 3 \\
-\texttt{API\_HOST=0.0.0.0}; \texttt{API\_PORT=5000} & host e porta FastAPI correnti & binding P04; consumo all'avvio in \texttt{C6-P06} \\
+\texttt{API\_HOST=0.0.0.0}; \texttt{API\_PORT=5000} & host e porta FastAPI correnti & valori corrispondenti usati nello startup \texttt{FR-C6-01-06}; binding operativo non esplicitato \\
 \bottomrule
 \end{tabularx}
 \end{ddtacore}
@@ -4552,7 +4552,9 @@ I valori, i locator, i model identifier, gli endpoint e i nomi delle variabili d
 \fontsize{4.1}{4.5}\selectfont
 \textbf{Q1 - API key DermaTriage.} \texttt{YOUR\_API\_KEY} fornisce il valore atteso nell'header \texttt{X-API-Key} per le operazioni DermaTriage protette? Le fonti identificano entrambi i significati ma non esplicitano il binding; non e' stato identificato un utilizzo alternativo della variabile.\par
 \smallskip
-\textbf{Q2 - B4 API key.} Quale operazione utilizza \texttt{B4\_API\_KEY} e quale relazione ha, se esiste, con il flusso bearer JWT basato su \texttt{B4\_USERNAME} e \texttt{B4\_PASSWORD}? La variabile e' richiesta, ma il suo uso operativo non e' specificato.
+\textbf{Q2 - B4 API key.} Quale operazione utilizza \texttt{B4\_API\_KEY} e quale relazione ha, se esiste, con il flusso bearer JWT basato su \texttt{B4\_USERNAME} e \texttt{B4\_PASSWORD}? La variabile e' richiesta, ma il suo uso operativo non e' specificato.\par
+\smallskip
+\textbf{Q3 - Binding host/port dello startup.} \texttt{API\_HOST} e \texttt{API\_PORT} forniscono i valori usati dagli argomenti Uvicorn \texttt{--host} e \texttt{--port}? Le fonti mostrano gli stessi valori nella configurazione e nel comando corrente, ma non esplicitano il binding operativo.
 \end{ddtaquestions}
 
 \switchcolumn
@@ -4566,7 +4568,7 @@ I valori, i locator, i model identifier, gli endpoint e i nomi delle variabili d
 \smallskip
 \texttt{RETRAINING\_THRESHOLD=50}: il binding e' preservato, ma il trigger e' governato dal branch di adattamento classificatorio e non viene duplicato sotto MR-C6.\par
 \smallskip
-\texttt{API\_HOST}/\texttt{API\_PORT}: configurati qui; il loro consumo durante l'avvio resta in \texttt{C6-P06}. \texttt{CHROMA\_DB\_PATH}: configurato qui; l'inizializzazione della base vettoriale resta in \texttt{FR-C6-01-05}.
+\texttt{API\_HOST}/\texttt{API\_PORT}: configurati qui; lo startup corrente usa gli stessi valori in \texttt{FR-C6-01-06}, ma il binding variabile $\rightarrow$ argomento Uvicorn resta \texttt{NOT EXPLICITLY SPECIFIED}. \texttt{CHROMA\_DB\_PATH}: configurato qui; l'inizializzazione della base vettoriale resta in \texttt{FR-C6-01-05}.
 \end{ddtaopenrelations}
 
 \begin{ddtaopenrelations}[top=3pt,bottom=3pt,left=5pt,right=5pt]
@@ -4574,12 +4576,13 @@ I valori, i locator, i model identifier, gli endpoint e i nomi delle variabili d
 \textbf{Gap che la BA non sana.}\par
 \texttt{YOUR\_API\_KEY -> X-API-Key value}: \texttt{NOT EXPLICITLY SPECIFIED}.\par
 \texttt{B4\_API\_KEY -> specific operational use}: \texttt{NOT SPECIFIED}.\par
+\texttt{API\_HOST/API\_PORT -> Uvicorn --host/--port}: \texttt{NOT EXPLICITLY SPECIFIED}.\par
 Nessuna relazione generica \texttt{configurationKey -> configuredResource} viene inventata; \texttt{.env} resta artifact della current realization e non BAReferent autonomo.
 \end{ddtaopenrelations}
 
 \begin{ddtacheck}[title={Acceptance boundary}]
 \fontsize{4.05}{4.45}\selectfont
-La FR puo' essere corrente mantenendo Q1 e Q2 aperte: il requisito governa la necessita' dei binding di configurazione, mentre le omissioni riguardano il significato operativo di due variabili specifiche. La BA preserva le omissioni senza completarle per inferenza.
+La FR puo' restare corrente mantenendo Q1--Q3 aperte: il requisito governa la necessita' dei binding di configurazione, mentre le omissioni riguardano binding operativi specifici. La BA preserva le omissioni senza completarle per inferenza.
 \end{ddtacheck}
 
 \end{paracol}
@@ -4700,51 +4703,117 @@ Il requisito non governa il retrieval runtime, top-5, cosine similarity, update/
 \end{paracol}
 %</PAGE-CONTENT:54>
 \clearpage
-%<PAGE-DESC:55>MR-C6 - Mappa residua della decomposizione dell'ambiente
+%<PAGE-DESC:55>MR-C6 > DEC-C6-01 > FR-C6-01-06 - Avvio del servizio API DermaTriage
 %<PAGE-CONTENT:55>
 \PageHashFooter{\PageMDfive{55}}
-\subsection*{MR-C6 - Mappa residua della decomposizione dell'ambiente}
-{\sffamily\scriptsize\color{DDTAGray}Worklist di authoring: il branch \texttt{DEC-C6-01} possiede ora \texttt{FR-C6-01-01}--\texttt{FR-C6-01-05}; resta candidato soltanto l'avvio del servizio.}\par
-
-\begin{ddtaopen}[title={DECOMPOSIZIONE RESIDUA DA VERIFICARE}]
-\fontsize{5.0}{5.5}\selectfont
-I candidati \texttt{C6-P01}--\texttt{C6-P05} sono stati risolti sotto la Decision corrente \texttt{DEC-C6-01}. In particolare \texttt{FR-C6-01-05} governa l'inizializzazione della base vettoriale storica e chiude il precedente review label \texttt{FR-MR01-03-03A}; lo Stage 3 runtime torna all'ID canonico \texttt{FR-MR01-03-03}. I gap di configurazione gia' aperti restano invariati. Resta da verificare soltanto l'avvio del servizio.
-\end{ddtaopen}
+\subsubsection{FR-C6-01-06 - Avvio del servizio API DermaTriage}
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-C6} $\rightarrow$ \texttt{DEC-C6-01} $\rightarrow$ \texttt{FR-C6-01-06}; con questo requisito la decomposizione residua \texttt{C6-P01--P06} e' chiusa.}\par
 
 \setlength{\columnsep}{7mm}
 \setlength{\columnseprule}{0.35pt}
-\columnratio{0.67}
+\columnratio{0.66}
 \begin{paracol}{2}
-{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
-\vspace{0.25em}
 
-\begin{ddtacore}[title={Candidate family residua - da sottoporre al Decision/FR gate}]
-\fontsize{4.9}{5.35}\selectfont
-\begin{tabularx}{\linewidth}{L{25mm}L{43mm}Y}
+{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
+\vspace{0.15em}
+
+\begin{ddtacore}[title={FunctionalRequirement}]
+\fontsize{4.45}{4.85}\selectfont
+\begin{tabularx}{\linewidth}{L{38mm}Y}
 \toprule
-\textbf{Label} & \textbf{Candidate meaning} & \textbf{Dettagli da preservare nella decomposizione} \\
-\midrule
-\texttt{C6-P06} & Avvio del servizio & avvio FastAPI/Uvicorn sul servizio DermaTriage con host/port configurati. \\
+\textbf{ID} & \texttt{FR-C6-01-06} \\
+\textbf{Lifecycle} & \texttt{current} \\
+\textbf{Authority} & \texttt{CURRENT\_GOVERNED} \\
+\textbf{Type} & \texttt{FunctionalRequirement} \\
+\textbf{Title} & Avvio del servizio API DermaTriage \\
+\textbf{Parent Decision} & \texttt{DEC-C6-01} \\
+\textbf{Owning MR (derived)} & \texttt{MR-C6} \\
+\textbf{SpecializedRequirement relation} & 0 active instances \\
 \bottomrule
 \end{tabularx}
+
+\textbf{Functional obligation}\par
+Nell'ambito della predisposizione dell'ambiente DermaTriage, avviare il servizio API DermaTriage affinche' il servizio previsto dalla baseline sia reso disponibile per l'utilizzo successivo.
+
+\textbf{Functional clauses / inherited \texttt{normativeClause [1..*]}}\par
+La procedura di setup MUST avviare il servizio API DermaTriage.
+\end{ddtacore}
+
+\begin{ddtacore}[title={Current realization / service startup}]
+\fontsize{4.2}{4.6}\selectfont
+La baseline corrente distingue \texttt{Step 6 - Run the server} da \texttt{Step 7 - Verify deployment}. Lo startup usa:
+\begin{center}
+\texttt{uvicorn app:app --host 0.0.0.0 --port 5000}
+\end{center}
+\begin{tabularx}{\linewidth}{L{35mm}Y}
+\toprule
+\textbf{Elemento} & \textbf{Baseline corrente} \\
+\midrule
+Application binding & \texttt{app:app} \\
+Web/API stack & FastAPI + Uvicorn \\
+Host / port del comando & \texttt{0.0.0.0} / \texttt{5000} \\
+\bottomrule
+\end{tabularx}
+I valori e il comando restano current realization e non diventano automaticamente commitment tecnologici immutabili.
+\end{ddtacore}
+
+\begin{ddtacore}[title={Ownership boundary}]
+\fontsize{4.25}{4.65}\selectfont
+\texttt{FR-C6-01-06} governa lo startup del servizio. Non governa i binding di configurazione (\texttt{FR-C6-01-04}), i contratti delle API, le policy di autenticazione o la verifica successiva. \texttt{/health}, \texttt{/stats}, \texttt{/docs} e le relative pass condition restano nel branch di verification: l'ordine ``run server'' poi ``verify deployment'' non fonde le due responsabilita'.
 \end{ddtacore}
 
 \begin{ddtaquestions}[top=3pt,bottom=3pt,left=5pt,right=5pt]
-\fontsize{4.5}{4.95}\selectfont
-Da verificare il solo branch residuo \texttt{C6-P06}: quale obligation governa l'avvio del servizio e quali dettagli restano current realization del comando Uvicorn.
+\fontsize{4.05}{4.45}\selectfont
+\begin{itemize}
+  \item \texttt{API\_HOST}/\texttt{API\_PORT} alimentano direttamente \texttt{--host}/\texttt{--port}? La corrispondenza dei valori e' documentata, il binding operativo no.
+  \item Quale condizione autonoma stabilisce il successo dello startup prima della verifica successiva?
+  \item Supervision, restart automatico, shutdown controllato e recovery non sono specificati.
+\end{itemize}
 \end{ddtaquestions}
 
 \switchcolumn
 {\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
-\vspace{0.25em}
-\begin{ddtareferentidentified}\scriptsize --\end{ddtareferentidentified}
-\begin{ddtareferentaccepted}\scriptsize --\end{ddtareferentaccepted}
-\begin{ddtapropositionidentified}\scriptsize --\end{ddtapropositionidentified}
-\begin{ddtapropositionaccepted}\scriptsize --\end{ddtapropositionaccepted}
-\begin{ddtaopenrelations}[top=4pt,bottom=4pt,left=5pt,right=5pt]
-\fontsize{4.55}{5.0}\selectfont
-La BA verra' eseguita contestualmente all'authoring del branch candidato \texttt{C6-P06}. Questa pagina resta una worklist e non introduce da sola identita' o proposition BA.
+\vspace{0.15em}
+
+\begin{ddtareferentidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.5}{4.9}\selectfont
+\BACandidate{DermaTriageAPIService} \BANew{}.\par
+\emph{Identity rationale: il servizio possiede endpoint identificabili, un binding di esecuzione e puo' essere successivamente oggetto di verification; resta distinto dal sistema complessivo \texttt{DermaTriage}.}
+\end{ddtareferentidentified}
+
+\begin{ddtareferentaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.45}{4.85}\selectfont
+\BAAccepted{EnvironmentSetupProcedure}; \BAAccepted{DermaTriageAPIService} \BAFirstAccepted{}.
+\end{ddtareferentaccepted}
+
+\begin{ddtapropositionidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.2}{4.6}\selectfont
+\texttt{BAP-FRC6-01-06-01} -- \texttt{produce}\par
+\hspace*{1em}\texttt{actor -> EnvironmentSetupProcedure}\par
+\hspace*{1em}\texttt{result -> DermaTriageAPIService}\par
+\texttt{polarity = affirmative}
+\end{ddtapropositionidentified}
+
+\begin{ddtapropositionaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.35}{4.75}\selectfont
+\textbf{BAP-FRC6-01-06-01}.\par
+\emph{Acceptance boundary: \texttt{produce} significa che la procedura di setup rende disponibile il servizio mediante lo startup; non implica creazione ex novo, health verification, disponibilita' persistente, restart semantics o tecnologia obbligatoria.}
+\end{ddtapropositionaccepted}
+
+\begin{ddtaopenrelations}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.05}{4.45}\selectfont
+FastAPI, Uvicorn e \texttt{app:app} restano current realization: la sola presenza tecnica non giustifica una \texttt{realize}.\par
+\smallskip
+\texttt{API\_HOST/API\_PORT -> Uvicorn --host/--port}: \texttt{NOT EXPLICITLY SPECIFIED}.\par
+\texttt{DermaTriageAPIService <startup success/readiness condition>}: \texttt{NOT SPECIFIED}.\par
+Verification di \texttt{/health}, \texttt{/stats} e \texttt{/docs}: owner esterno a MR-C6.
 \end{ddtaopenrelations}
+
+\begin{ddtacheck}[title={C6 decomposition closure}]
+\fontsize{4.15}{4.55}\selectfont
+\texttt{DEC-C6-01} possiede ora \texttt{FR-C6-01-01}--\texttt{FR-C6-01-06}. Non restano candidati \texttt{C6-Pxx} nella mappa residua; i gap documentali specifici restano aperti nei rispettivi owner.
+\end{ddtacheck}
+
 \end{paracol}
 %</PAGE-CONTENT:55>
 \clearpage
@@ -4997,10 +5066,10 @@ EnvironmentPreparation & \textbf{\texttt{MR-C6}}; \texttt{DEC-C6-01} \\
 DermaTriageEnvironment & \textbf{\texttt{MR-C6}}; \texttt{FR-C6-01-01}; \texttt{FR-C6-01-02}; \texttt{FR-C6-01-03}; \texttt{FR-C6-01-04} \\
 DermaTriageRAGDataset & \texttt{FR-C6-01-03}; \texttt{FR-C6-01-04} -- candidate; risorsa dati nominata e riusata fra retrieval e training, relazioni BA specifiche ancora da chiudere nei rispettivi owner \\
 TrainingImageCollection & \texttt{FR-C6-01-03} -- candidate; binding corrente \texttt{data/images/}, identita' da discriminare rispetto ai dataset/split del lifecycle di training \\
-EnvironmentSetupProcedure & \textbf{\texttt{DEC-C6-01}} \\
+EnvironmentSetupProcedure & \textbf{\texttt{DEC-C6-01}}; \texttt{FR-C6-01-06} \\
+DermaTriageAPIService & \textbf{\texttt{FR-C6-01-06}} \\
 \bottomrule
 \end{tabularx}
-
 %</PAGE-CONTENT:59>
 \clearpage
 %<PAGE-DESC:60>Registro Base Analysis - BAProposition
@@ -5080,6 +5149,7 @@ Questa pagina continua il registro BA della pagina precedente. Il \textbf{grasse
 \textbf{\texttt{BAP-FRC6-01-02-01}} & \texttt{FR-C6-01-02} -- \texttt{constrain} (\texttt{DermaTriageEnvironment}: local \texttt{requiredSoftwareDependencies}, \texttt{presence=required}); package list e versioni restano current realization, senza nuovo BAReferent per il dependency set \\
 \textbf{\texttt{BAP-FRC6-01-03-01}} & \texttt{FR-C6-01-03} -- \texttt{constrain} (\texttt{DermaTriageEnvironment}: local \texttt{requiredModelAndDataResources}, \texttt{presence=required}); model/data identities riusate restano distinte dal constraint locale, acquisition transfer e artifact/version boundary non ancora accettati \\
 \textbf{\texttt{BAP-FRC6-01-04-01}} & \texttt{FR-C6-01-04} -- \texttt{constrain} (\texttt{DermaTriageEnvironment}: local \texttt{requiredConfigurationBindings}, \texttt{presence=required}); assignment \texttt{.env} e semantic owner downstream restano distinti dalla proposition locale \\
+\textbf{\texttt{BAP-FRC6-01-06-01}} & \texttt{FR-C6-01-06} -- \texttt{produce} (\texttt{EnvironmentSetupProcedure -> DermaTriageAPIService}); rende disponibile il servizio tramite startup senza implicare verification, process supervision o tecnologia obbligatoria \\
 \bottomrule
 \end{tabularx}
 %</PAGE-CONTENT:60>
@@ -5212,7 +5282,7 @@ Ogni pagina possiede un MD5 del proprio contenuto canonico. Il calcolo esclude i
 \IntegrityRow{52}{MR-C6 > DEC-C6-01 > FR-C6-01-04 - Configurazione dei binding dell'ambiente e delle integrazioni [1/2]}{\PageMDfive{52}}
 \IntegrityRow{53}{MR-C6 > DEC-C6-01 > FR-C6-01-04 - Configurazione dei binding dell'ambiente e delle integrazioni [2/2]}{\PageMDfive{53}}
 \IntegrityRow{54}{MR-C6 > DEC-C6-01 > FR-C6-01-05 - Inizializzazione della base vettoriale dei casi storici}{\PageMDfive{54}}
-\IntegrityRow{55}{MR-C6 - Mappa residua della decomposizione dell'ambiente}{\PageMDfive{55}}
+\IntegrityRow{55}{MR-C6 > DEC-C6-01 > FR-C6-01-06 - Avvio del servizio API DermaTriage}{\PageMDfive{55}}
 \IntegrityRow{56}{MR-C7 [review label] - Verifica del sistema DermaTriage}{\PageMDfive{56}}
 \IntegrityRow{57}{MR-C7 [review label] - Mappa candidata di decomposizione: service, API e pipeline verification}{\PageMDfive{57}}
 \IntegrityRow{58}{MR-C7 [review label] - Mappa candidata di decomposizione: B4, retraining e acceptance}{\PageMDfive{58}}
