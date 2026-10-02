@@ -23,7 +23,7 @@ Page 18  f23c4cd3c7776e49c0d794a9ecfef9a9  5 - Granularita, minimalita e costruz
 Page 19  bc3e4197b5ba6fc299035dd3ee55f0fa  6 - Indipendenza tra struttura documentale e struttura BA
 Page 20  90bad45a1ddf4546a84ffcaafe19514f  6 - Structural feedback e no authority inversion
 Page 21  a4a5a63a56b233dc9685ef8ade259ac3  6 - DermaTriage DEC02 DEC04 come pressure case
-Page 22  0b13ca345d9009ea1359e515bbbdf161  6 - Downstream Utility Test e riallineamento BA
+Page 22  1a84bfcdad71b08085d90a41d4a8a46e  6 - Downstream Utility Test e riallineamento BA
 Page 23  e33af8b0be91d76075d6f8d588152778  7 - transfer: definizione, smallest fact e criteri d'uso
 Page 24  e3dfd0ae1ea4b8fc206e94586671531d  7 - transfer: firma canonica, ruoli e cardinalita
 Page 25  7fe9e1357a2287afc0bcd8cdc5d05cad  7 - transfer: identity continuity, invarianti e forbidden inference
@@ -67,42 +67,43 @@ Page 62  ec89bcdef246536ca693660807fae78d  11 - condition: domande di identifica
 Page 63  5693f684c29fcc1a655605d77b85877d  11 - condition: esempio generico e worked example DermaTriage corrente
 Page 64  3cef93fdcd6726629e1dd667c5c0f775  11 - condition: prompt LLM per l'identificazione controllata
 Page 65  7956aba2ac06ebcc3c7973d91b70469a  11 - condition: output BA atteso e discriminazioni
-Page 66  4d65df60cd00baef5ce9044dbbc85f99  11 - condition: rappresentazione Mermaid e semantic determinism
+Page 66  e1c453cf30208169d99622231b489029  11 - condition: rappresentazione Mermaid e semantic determinism
 Page 67  ecda2667c8851cd4a8a88c0b5ab7a817  11 - condition: esempio grafico Mermaid composto con produce
-Page 68  838b86747edfaf9255eba656359ba686  12 - decisionRule: definizione, smallest fact e criteri d'uso
+Page 68  2b3ee74fb8bee5f0b59118188abec614  12 - decisionRule: definizione, smallest fact e criteri d'uso
 Page 69  47e9a7ceb31efd253c34453155337e71  12 - decisionRule: forma canonica candidate e cardinalita
-Page 70  c490bc72c060d4482b6f5599cc8eb8e1  12 - decisionRule: identity boundary, invarianti e forbidden inference
-Page 71  eadac7583a078dbaec5090052eb85974  12 - decisionRule: domande di identificazione e procedura di estrazione
-Page 72  d6ee47ee9de0501f164fdb328fc69ddb  12 - decisionRule: esempio generico e pressure case DermaTriage
-Page 73  2205a8b6a451a27635473eac1f53b945  12 - decisionRule: prompt LLM per l'identificazione controllata
-Page 74  04d2d044867055a500a4f10de2caf3e4  12 - decisionRule: output candidate e discriminazioni
-Page 75  f248e4c48942111fde0c866c423d5e24  12 - decisionRule: rappresentazione Mermaid e visibility profile
-Page 76  4f78ba264c6eb0c06268caa9286bcf93  12 - decisionRule: esempio grafico DermaTriage candidate
-Page 77  7f04a38cba2726ed2c38669a57491ef1  13 - Store: definizione, smallest fact e criteri d'uso
-Page 78  7e09a4a32edab694e1b96da249779080  13 - Store: forma canonica, profilo binding e cardinalita
-Page 79  f4f201840927f60df58e2cbc0e349539  13 - Store: identity continuity, invarianti e forbidden inference
-Page 80  aabbe964a5f1ee9f87864f035745131e  13 - Store: domande di identificazione, enrichment MR Decision FR e procedura
-Page 81  1231009e9f6363f0ff1a91e379e66e2f  13 - Store: esempio generico e pressure case DermaTriage RC001
-Page 82  2a701c771ac5753385b56105bab3c258  13 - Store: prompt LLM per identificazione ed enrichment controllati
-Page 83  12d72ba8edfed0badf4a8dd1bf10b958  13 - Store: output atteso e discriminazioni con costrutti vicini
-Page 84  f971ae4163101485d17a2525eed12930  13 - Store: rappresentazione Mermaid, direzioni e binding opzionali
-Page 85  d862d9363aa1ca311511499919febe1b  13 - Store: esempio grafico con transfer IN e OUT
-Page 86  7ca23dbdea726062717d92e8edcb2a90  14 - selection: definizione, smallest fact e criteri d'uso
-Page 87  6d65eca46280537a5a2e0e5ec9bbe8d1  14 - selection: forma canonica locale, ruoli e cardinalita
-Page 88  78d5aeca1bed00446ac85e4a81ea80fe  14 - selection: invarianti, confini semantici e forbidden inference
-Page 89  b43df1bdbbe817b4927efb93a65ef290  14 - selection: domande di identificazione e procedura di estrazione
-Page 90  8ea61ece3848e2e6eae7458fe86118f1  14 - selection: esempio generico e positive control DermaTriage FR06
-Page 91  adf1abd8f97e3e52920d492b96aaf418  14 - selection: positive control top-K e best senza full ranking
-Page 92  a0e7014efbf6db25c56ce330e60be766  14 - selection: composizione con Store, contract e pressure case RC001
-Page 93  1c30ae85bc1f5ba81e03fec5da97dcfd  14 - selection: prompt LLM per identificazione controllata
-Page 94  31418116d99a43c7196b8fcb428b7d62  14 - selection: output atteso e discriminazioni con costrutti vicini
-Page 95  0093149bd269138f15c2db83fea56324  14 - selection: rappresentazione Mermaid e esempio grafico con Store
-Page 96  3915eaee02f714ac47e0dfa764b2836f  Appendice temporanea - scopo, lineage e confine del rebuild
-Page 97  5475a02c3223c3fac62a7eebe62f6be2  Appendice temporanea - corpus e stati epistemici
-Page 98  e1b1becfc138e20474529fae47de6a05  Appendice temporanea - Construct Description Contract e principio espositivo
-Page 99  435e9ecddb23d230df9cc32766e10610  Appendice temporanea - CDC direzione della spiegazione e revisione
-Page 100  9d02d27cc2ad8bb4e1b30d441667e854  Appendice temporanea - CDC campi 1-10
-Page 101  90b6659e5a0105e0cd7268d3f76137f6  Appendice temporanea - CDC campi 11-20
-Page 102  6c0bfc1303d2625419769ae6e58f4b68  Appendice temporanea - roadmap e registro dei costrutti da integrare/studiare
-Page 103  00b7e809d799f096266b5c775ab47372  Indice di integrita' delle pagine [INTEGRITY INDEX]
-Page 104  13cdd31df41e1d75e405e6ba020261fa  Appendice temporanea - laboratorio prove grafiche Mermaid da cancellare
+Page 70  18a5450af9b82211970593cd0b649081  12 - decisionRule: identity boundary, invarianti e forbidden inference
+Page 71  81d491d1d4ca89729382bd6bc99fc006  12 - decisionRule: domande di identificazione e procedura di estrazione
+Page 72  94fe00fb66dfa7336e7273ec19e84522  12 - decisionRule: esempio generico e regression case A DermaTriage
+Page 73  392dd1e9fdb0a1c0b7c9f4c4d0e6fd82  12 - decisionRule: regression case B DermaTriage readiness C7
+Page 74  2205a8b6a451a27635473eac1f53b945  12 - decisionRule: prompt LLM per l'identificazione controllata
+Page 75  04d2d044867055a500a4f10de2caf3e4  12 - decisionRule: output candidate e discriminazioni
+Page 76  d689acd880201100fd9eea114f904f05  12 - decisionRule: rappresentazione Mermaid e visibility profile
+Page 77  686a906a0aa8c36f6d6d564c7ccbc9d7  12 - decisionRule: esempio grafico DermaTriage candidate
+Page 78  7f04a38cba2726ed2c38669a57491ef1  13 - Store: definizione, smallest fact e criteri d'uso
+Page 79  7e09a4a32edab694e1b96da249779080  13 - Store: forma canonica, profilo binding e cardinalita
+Page 80  f4f201840927f60df58e2cbc0e349539  13 - Store: identity continuity, invarianti e forbidden inference
+Page 81  aabbe964a5f1ee9f87864f035745131e  13 - Store: domande di identificazione, enrichment MR Decision FR e procedura
+Page 82  1231009e9f6363f0ff1a91e379e66e2f  13 - Store: esempio generico e pressure case DermaTriage RC001
+Page 83  2a701c771ac5753385b56105bab3c258  13 - Store: prompt LLM per identificazione ed enrichment controllati
+Page 84  12d72ba8edfed0badf4a8dd1bf10b958  13 - Store: output atteso e discriminazioni con costrutti vicini
+Page 85  f971ae4163101485d17a2525eed12930  13 - Store: rappresentazione Mermaid, direzioni e binding opzionali
+Page 86  fca15cd7f890667a60f46932685dc9b9  13 - Store: esempio grafico con transfer IN e OUT
+Page 87  7ca23dbdea726062717d92e8edcb2a90  14 - selection: definizione, smallest fact e criteri d'uso
+Page 88  6d65eca46280537a5a2e0e5ec9bbe8d1  14 - selection: forma canonica locale, ruoli e cardinalita
+Page 89  78d5aeca1bed00446ac85e4a81ea80fe  14 - selection: invarianti, confini semantici e forbidden inference
+Page 90  b43df1bdbbe817b4927efb93a65ef290  14 - selection: domande di identificazione e procedura di estrazione
+Page 91  8ea61ece3848e2e6eae7458fe86118f1  14 - selection: esempio generico e positive control DermaTriage FR06
+Page 92  adf1abd8f97e3e52920d492b96aaf418  14 - selection: positive control top-K e best senza full ranking
+Page 93  a0e7014efbf6db25c56ce330e60be766  14 - selection: composizione con Store, contract e pressure case RC001
+Page 94  1c30ae85bc1f5ba81e03fec5da97dcfd  14 - selection: prompt LLM per identificazione controllata
+Page 95  31418116d99a43c7196b8fcb428b7d62  14 - selection: output atteso e discriminazioni con costrutti vicini
+Page 96  0093149bd269138f15c2db83fea56324  14 - selection: rappresentazione Mermaid e esempio grafico con Store
+Page 97  3915eaee02f714ac47e0dfa764b2836f  Appendice temporanea - scopo, lineage e confine del rebuild
+Page 98  5475a02c3223c3fac62a7eebe62f6be2  Appendice temporanea - corpus e stati epistemici
+Page 99  e1b1becfc138e20474529fae47de6a05  Appendice temporanea - Construct Description Contract e principio espositivo
+Page 100  435e9ecddb23d230df9cc32766e10610  Appendice temporanea - CDC direzione della spiegazione e revisione
+Page 101  9d02d27cc2ad8bb4e1b30d441667e854  Appendice temporanea - CDC campi 1-10
+Page 102  90b6659e5a0105e0cd7268d3f76137f6  Appendice temporanea - CDC campi 11-20
+Page 103  7ff257b5e6b8672d978394fa7665c436  Appendice temporanea - roadmap e registro dei costrutti da integrare/studiare
+Page 104  ffa49b6751a6b0062d8be970dd39743a  Indice di integrita' delle pagine [INTEGRITY INDEX]
+Page 105  13cdd31df41e1d75e405e6ba020261fa  Appendice temporanea - laboratorio prove grafiche Mermaid da cancellare

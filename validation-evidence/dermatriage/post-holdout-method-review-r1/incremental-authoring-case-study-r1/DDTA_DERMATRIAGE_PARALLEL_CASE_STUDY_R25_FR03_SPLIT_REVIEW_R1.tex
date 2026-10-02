@@ -78,11 +78,12 @@
 \expandafter\def\csname PageMDfive55\endcsname{4a48d503ffc010c733ca14e2b7d35ada}
 \expandafter\def\csname PageMDfive56\endcsname{102bb73d527c550361d49540f34e0d0d}
 \expandafter\def\csname PageMDfive57\endcsname{086ccbf418f6545accc9d179d1e8598d}
-\expandafter\def\csname PageMDfive58\endcsname{83cd045c40a42cc43e06d2eaec7c6af6}
-\expandafter\def\csname PageMDfive59\endcsname{8bc7feec08c803c682573fc7481d43fb}
-\expandafter\def\csname PageMDfive60\endcsname{2019ef5b1c63df2dd227b9a6eb7afcc9}
-\expandafter\def\csname PageMDfive61\endcsname{42c63c876189a9d341da909c38484215}
-\expandafter\def\csname PageMDfive62\endcsname{b059bc7097e060949567e1d535be621c}
+\expandafter\def\csname PageMDfive58\endcsname{8ae4302668a30988ae5a7c6c02a8a2b1}
+\expandafter\def\csname PageMDfive59\endcsname{2b68023ed873eb0ed4f17eb01e7a96ff}
+\expandafter\def\csname PageMDfive60\endcsname{367f4656af9bebd5b63e0ef3e709e18b}
+\expandafter\def\csname PageMDfive61\endcsname{af76bf49763dfab3d3238837eba4b642}
+\expandafter\def\csname PageMDfive62\endcsname{42c63c876189a9d341da909c38484215}
+\expandafter\def\csname PageMDfive63\endcsname{4dd7c91fc60638547ddce1e8b4a732da}
 %</PAGE-HASH-DEFS>
 
 \newcommand{\PageHashFooter}[1]{%
@@ -4964,7 +4965,7 @@ La struttura target--criterion--observation--outcome resta da pressure-testare s
 %<PAGE-CONTENT:58>
 \PageHashFooter{\PageMDfive{58}}
 \subsection*{MR-C7 $\rightarrow$ DEC-C7-01 - Worklist candidata di decomposizione}
-{\sffamily\scriptsize\color{DDTAGray}Le label \texttt{C7-P01}--\texttt{C7-P07} restano segnaposto di review; non sono ancora FunctionalRequirement canonici.}\par
+{\sffamily\scriptsize\color{DDTAGray}\texttt{C7-P01} e' chiuso in \texttt{FR-C7-01-01} CURRENT\_GOVERNED. Le label \texttt{C7-P02}--\texttt{C7-P07} restano segnaposto di review e non sono ancora FunctionalRequirement canonici.}\par
 
 \begin{ddtaopen}[title={DECOMPOSIZIONE DA RICOSTRUIRE UN BRANCH ALLA VOLTA}]
 \fontsize{4.75}{5.25}\selectfont
@@ -4983,7 +4984,7 @@ La Decision comune e' ora governata. Questa pagina conserva soltanto la worklist
 \toprule
 \textbf{Label} & \textbf{Candidate meaning} & \textbf{Boundary di review} \\
 \midrule
-\texttt{C7-P01} & Service/readiness verification & Readiness del servizio e delle dipendenze richieste; \texttt{/health} possiede expected/pass semantics. \texttt{/stats} e \texttt{/docs} non diventano readiness test senza criterio esplicito. \\
+\texttt{C7-P01} & CLOSED $\rightarrow$ \texttt{FR-C7-01-01} & Verifica della readiness operativa tramite \texttt{/health}; HTTP 200 + EfficientNet + ChromaDB + B4 governano il valore PASS. \texttt{/stats} e \texttt{/docs} restano fuori dalla readiness. \\
 \texttt{C7-P02} & API/endpoint verification & Verifica delle operazioni esposte, incluse \texttt{/analyze} e \texttt{/diagnose}; separare request/response, timing e side effect B4 dai contratti posseduti altrove. \\
 \texttt{C7-P03} & Pipeline-stage verification & Controlli sugli output attesi dei quattro stadi; mantenere distinti test oracle e runtime contract, incluso lo Stage 4. \\
 \texttt{C7-P04} & Full-pipeline verification & Verifica end-to-end della pipeline image-based completa, inclusi risultato operativo e tempo di risposta quando applicabile. \\
@@ -4996,7 +4997,7 @@ La Decision comune e' ora governata. Questa pagina conserva soltanto la worklist
 
 \begin{ddtaquestions}[top=3pt,bottom=3pt,left=5pt,right=5pt]
 \fontsize{4.05}{4.45}\selectfont
-Da chiudere branch per branch: owner di \texttt{/stats}; confine P06/P07; relationship fra quality target assoluti e comparative acceptance criteria; verifica post-change della pipeline; rapporto fra oracle Stage 4 e contratto runtime; eventuale construct pressure BA per target/criterion/observation/outcome.
+Da chiudere branch per branch: classificazione di \texttt{/stats} fuori dalla readiness; confine P06/P07; relationship fra quality target assoluti e comparative acceptance criteria; verifica post-change della pipeline; rapporto fra oracle Stage 4 e contratto runtime; ulteriore regression BA su target/criterion/observation/outcome.
 \end{ddtaquestions}
 
 \switchcolumn
@@ -5013,9 +5014,96 @@ La worklist non crea identita' o proposition per semplice corrispondenza riga-a-
 \end{paracol}
 %</PAGE-CONTENT:58>
 \clearpage
-%<PAGE-DESC:59>Registro Base Analysis - BAReferent e BAProposition
+%<PAGE-DESC:59>MR-C7 > DEC-C7-01 > FR-C7-01-01 - Verifica della readiness operativa del servizio DermaTriage
 %<PAGE-CONTENT:59>
 \PageHashFooter{\PageMDfive{59}}
+\subsubsection{FR-C7-01-01 - Verifica della readiness operativa del servizio DermaTriage}
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-C7} $\rightarrow$ \texttt{DEC-C7-01} $\rightarrow$ \texttt{FR-C7-01-01}.}\par
+
+\setlength{\columnsep}{7mm}
+\setlength{\columnseprule}{0.35pt}
+\columnratio{0.67}
+\begin{paracol}{2}
+
+{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
+\vspace{0.2em}
+
+\begin{ddtacore}[title={FunctionalRequirement}]
+\fontsize{4.45}{4.9}\selectfont
+\begin{tabularx}{\linewidth}{L{39mm}Y}
+\toprule
+\textbf{ID} & \texttt{FR-C7-01-01} \\
+\textbf{Lifecycle} & \texttt{current} \\
+\textbf{Authority} & \texttt{CURRENT\_GOVERNED} \\
+\textbf{Type} & \texttt{FunctionalRequirement} \\
+\textbf{Title} & Verifica della readiness operativa del servizio DermaTriage \\
+\textbf{Parent Decision} & \texttt{DEC-C7-01} \\
+\textbf{Owning MR (derived)} & \texttt{MR-C7} \\
+\textbf{SpecializedRequirement relation} & 0 active instances \\
+\bottomrule
+\end{tabularx}
+
+\textbf{Functional obligation}\par
+Determinare l'esito della readiness operativa del servizio DermaTriage verificando la risposta di health e la disponibilita' delle dipendenze richieste dal controllo.
+
+\textbf{Functional clauses / inherited \texttt{normativeClause [1..*]}}\par
+La procedura di verifica MUST eseguire il controllo di health del servizio DermaTriage e MUST determinare un \texttt{ReadinessOutcome}. Il controllo MUST richiedere un esito HTTP \texttt{200}. Il valore \texttt{PASS} del \texttt{ReadinessOutcome} MUST essere assegnato quando \texttt{efficientnet=true}, \texttt{chromadb=true} e \texttt{b4\_connection=true}. Lo stato di Ollama non appartiene alla pass condition corrente.
+
+\textbf{Current verification realization}\par
+Il binding corrente del controllo e' \texttt{GET /health}. La risposta espone uno stato complessivo e lo stato dei servizi \texttt{efficientnet}, \texttt{chromadb}, \texttt{ollama} e \texttt{b4\_connection}. La baseline corrente riporta \texttt{status=degraded}, \texttt{efficientnet=true}, \texttt{chromadb=true}, \texttt{ollama=false}, \texttt{b4\_connection=true}. La compatibilita' di questa baseline con la pass condition non generalizza l'accettabilita' di ogni stato \texttt{degraded}.
+
+\textbf{Boundary}\par
+\texttt{GET /stats} resta fuori da questo FR: espone \texttt{total\_diagnoses}, \texttt{total\_corrections} e \texttt{urgency\_distribution}, ma non definisce qui una pass condition. \texttt{GET /docs} resta una disponibilita' della realizzazione corrente e non una condizione di readiness. L'avvio del servizio resta posseduto da \texttt{FR-C6-01-06}; questo FR governa il controllo successivo e non acquisisce ownership del comportamento runtime verificato.
+\end{ddtacore}
+
+\switchcolumn
+
+{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
+\vspace{0.2em}
+
+\begin{ddtareferentidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.35}{4.8}\selectfont
+\BACandidate{ServiceReadinessVerification} \BANew{}; \BACandidate{ServiceHealthCheckResult} \BANew{}; \BACandidate{ReadinessOutcome} \BANew{}.
+\end{ddtareferentidentified}
+
+\begin{ddtareferentaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.25}{4.7}\selectfont
+\BAAccepted{DermaTriageVerification}; \BAAccepted{DermaTriageVerificationProcedure}; \BAAccepted{DermaTriageAPIService}; \BAAccepted{ServiceReadinessVerification} \BAFirstAccepted{}; \BAAccepted{ServiceHealthCheckResult} \BAFirstAccepted{}; \BAAccepted{ReadinessOutcome} \BAFirstAccepted{}.
+\end{ddtareferentaccepted}
+
+\begin{ddtapropositionidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.95}{4.35}\selectfont
+\texttt{BAP-FRC7-01-01-01} -- \texttt{produce}\par
+\hspace*{1em}\texttt{actor -> ServiceReadinessVerification}\par
+\hspace*{1em}\texttt{input -> ServiceHealthCheckResult}\par
+\hspace*{1em}\texttt{result -> ReadinessOutcome}\par
+\hspace*{1em}\texttt{polarity = affirmative}\par
+\vspace{0.3mm}
+\emph{Candidate local structure:}\par
+\hspace*{1em}\texttt{operatorStructure.decisionRule}\par
+\hspace*{2em}\texttt{when -> HTTP status eq 200 AND efficientnet eq true}\par
+\hspace*{4em}\texttt{AND chromadb eq true AND b4\_connection eq true}\par
+\hspace*{2em}\texttt{resultAssignment -> ReadinessOutcome = PASS}
+\end{ddtapropositionidentified}
+
+\begin{ddtapropositionaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{4.05}{4.45}\selectfont
+\textbf{BAP-FRC7-01-01-01}.\par
+\emph{Acceptance boundary: e' accettato il fatto \texttt{produce} che la verifica di readiness usa il risultato osservato del health check per rendere disponibile un \texttt{ReadinessOutcome}. La \texttt{operatorStructure.decisionRule} resta candidate/non ammessa: il branch positivo costituisce regression evidence per la rilocazione locale, non modifica da solo l'authority BA.}
+\end{ddtapropositionaccepted}
+
+\begin{ddtaopenrelations}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.85}{4.25}\selectfont
+\textbf{Perche' non \texttt{condition}:} i criteri non stabiliscono quando la \texttt{produce} si applica; stabiliscono quale valore viene assegnato al suo result. La verifica deve rendere disponibile un esito anche quando la pass condition non e' soddisfatta. Usare \texttt{condition -> criteria satisfied} renderebbe invece applicabile l'intera proposition soltanto nel caso positivo.\par
+Il branch complementare non viene materializzato automaticamente come \texttt{FAIL}: una \texttt{decisionRule} non introduce da sola un \texttt{ELSE}. Se documentazione successiva governera' un esito non-PASS o due output downstream autonomi, riesaminare il confine result/value e l'eventuale output branching.
+\end{ddtaopenrelations}
+
+\end{paracol}
+%</PAGE-CONTENT:59>
+\clearpage
+%<PAGE-DESC:60>Registro Base Analysis - BAReferent e BAProposition
+%<PAGE-CONTENT:60>
+\PageHashFooter{\PageMDfive{60}}
 \section{Registro Base Analysis}
 
 \begin{ddtacore}[title={Sintesi BA corrente}]
@@ -5108,16 +5196,19 @@ DermaTriageEnvironment & \textbf{\texttt{MR-C6}}; \texttt{FR-C6-01-01}; \texttt{
 DermaTriageRAGDataset & \texttt{FR-C6-01-03}; \texttt{FR-C6-01-04} -- candidate; risorsa dati nominata e riusata fra retrieval e training, relazioni BA specifiche ancora da chiudere nei rispettivi owner \\
 TrainingImageCollection & \texttt{FR-C6-01-03} -- candidate; binding corrente \texttt{data/images/}, identita' da discriminare rispetto ai dataset/split del lifecycle di training \\
 EnvironmentSetupProcedure & \textbf{\texttt{DEC-C6-01}}; \texttt{FR-C6-01-06} \\
-DermaTriageAPIService & \textbf{\texttt{FR-C6-01-06}} \\
+DermaTriageAPIService & \textbf{\texttt{FR-C6-01-06}}; \texttt{FR-C7-01-01} \\
 DermaTriageVerification & \textbf{\texttt{MR-C7}}; \texttt{DEC-C7-01} \\
 DermaTriageVerificationProcedure & \textbf{\texttt{DEC-C7-01}} \\
+ServiceReadinessVerification & \textbf{\texttt{FR-C7-01-01}} \\
+ServiceHealthCheckResult & \textbf{\texttt{FR-C7-01-01}} \\
+ReadinessOutcome & \textbf{\texttt{FR-C7-01-01}} \\
 \bottomrule
 \end{tabularx}
-%</PAGE-CONTENT:59>
+%</PAGE-CONTENT:60>
 \clearpage
-%<PAGE-DESC:60>Registro Base Analysis - BAProposition
-%<PAGE-CONTENT:60>
-\PageHashFooter{\PageMDfive{60}}
+%<PAGE-DESC:61>Registro Base Analysis - BAProposition
+%<PAGE-CONTENT:61>
+\PageHashFooter{\PageMDfive{61}}
 \section*{Registro Base Analysis - BAProposition}
 \begin{ddtacore}[title={Continuita' del registro}]
 \fontsize{6.0}{6.6}\selectfont
@@ -5194,13 +5285,14 @@ Questa pagina continua il registro BA della pagina precedente. Il \textbf{grasse
 \textbf{\texttt{BAP-FRC6-01-04-01}} & \texttt{FR-C6-01-04} -- \texttt{constrain} (\texttt{DermaTriageEnvironment}: local \texttt{requiredConfigurationBindings}, \texttt{presence=required}); assignment \texttt{.env} e semantic owner downstream restano distinti dalla proposition locale \\
 \textbf{\texttt{BAP-FRC6-01-06-01}} & \texttt{FR-C6-01-06} -- \texttt{produce} (\texttt{EnvironmentSetupProcedure -> DermaTriageAPIService}); rende disponibile il servizio tramite startup senza implicare verification, process supervision o tecnologia obbligatoria \\
 \textbf{\texttt{BAP-DECC7-01-01}} & \texttt{DEC-C7-01} -- \texttt{realize} (\texttt{DermaTriageVerification -> DermaTriageVerificationProcedure}); non implica framework, ordering universale, PASS/FAIL per ogni controllo o ownership dei criteri verificati \\
+\textbf{\texttt{BAP-FRC7-01-01-01}} & \texttt{FR-C7-01-01} -- accepted \texttt{produce} (\texttt{ServiceReadinessVerification}: \texttt{ServiceHealthCheckResult} $\rightarrow$ \texttt{ReadinessOutcome}); candidate \texttt{operatorStructure.decisionRule} assegna \texttt{PASS} quando la pass condition governata e' soddisfatta; nessun \texttt{ELSE/FAIL} inferito \\
 \bottomrule
 \end{tabularx}
-%</PAGE-CONTENT:60>
+%</PAGE-CONTENT:61>
 \clearpage
-%<PAGE-DESC:61>MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
-%<PAGE-CONTENT:61>
-\PageHashFooter{\PageMDfive{61}}
+%<PAGE-DESC:62>MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
+%<PAGE-CONTENT:62>
+\PageHashFooter{\PageMDfive{62}}
 \section{MR-01 - Inventario temporaneo transfer, contract e decisioni BA}
 
 \begin{ddtaopen}[title={PAGINA TEMPORANEA - AUDIT DATA-PATH MR-01 - DA CANCELLARE DOPO LA RIALLOCAZIONE DEI RISULTATI}]
@@ -5249,11 +5341,11 @@ la review ha confermato due lifecycle separabili e ha ora chiuso il parent test.
 \textbf{Decisione metodologica temporanea - necessity test di \texttt{correlate}:}
 \texttt{BAP-MR01-02} e \texttt{BAP-DEC01-02} sono rimosse dall'insieme attivo delle BAProposition candidate. Nei due passaggi sorgente, ``informazioni disponibili sul caso dermatologico'' e ``informazioni sintomatologiche disponibili sul caso'' descrivono il contesto del caso in analisi e gli input del comportamento di triage; non e' emersa una relazione governata, autonoma e interrogabile che richieda una proposition \texttt{correlate}. La rimozione non elimina i BAReferent ne' le proposition \texttt{produce} gia' candidate. Le occorrenze lessicali di ``correlation'' nella worklist restano domande aperte di binding/identity nei data contract e \textbf{non} indicano l'operatore BA \texttt{correlate}. L'operatore verra' riesaminato soltanto se evidence successiva mostrera' una relazione indipendente non ricostruibile tramite comportamento, identity e contract gia' governati. Questa nota e' temporanea e verra' cancellata a chiusura del case study dopo il consolidamento del risultato.
 \end{ddtaopen}
-%</PAGE-CONTENT:61>
+%</PAGE-CONTENT:62>
 \clearpage
-%<PAGE-DESC:62>Indice di integrita delle pagine
-%<PAGE-CONTENT:62>
-\PageHashFooter{\PageMDfive{62}}
+%<PAGE-DESC:63>Indice di integrita delle pagine
+%<PAGE-CONTENT:63>
+\PageHashFooter{\PageMDfive{63}}
 \section{Indice di integrita' delle pagine}
 
 \begin{ddtacore}[title={Regola di verifica}]
@@ -5330,10 +5422,11 @@ Ogni pagina possiede un MD5 del proprio contenuto canonico. Il calcolo esclude i
 \IntegrityRow{56}{MR-C7 - Verifica del sistema DermaTriage}{\PageMDfive{56}}
 \IntegrityRow{57}{MR-C7 > DEC-C7-01 - Verifica mediante controlli espliciti e criteri applicabili}{\PageMDfive{57}}
 \IntegrityRow{58}{MR-C7 > DEC-C7-01 - Worklist candidata di decomposizione C7-P01..P07}{\PageMDfive{58}}
-\IntegrityRow{59}{Registro Base Analysis - BAReferent e BAProposition}{\PageMDfive{59}}
-\IntegrityRow{60}{Registro Base Analysis - BAProposition}{\PageMDfive{60}}
-\IntegrityRow{61}{MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]}{\PageMDfive{61}}
-\IntegrityRow{62}{Indice di integrita delle pagine}{\PageMDfive{62}}
+\IntegrityRow{59}{MR-C7 > DEC-C7-01 > FR-C7-01-01 - Verifica della readiness operativa del servizio DermaTriage}{\PageMDfive{59}}
+\IntegrityRow{60}{Registro Base Analysis - BAReferent e BAProposition}{\PageMDfive{60}}
+\IntegrityRow{61}{Registro Base Analysis - BAProposition}{\PageMDfive{61}}
+\IntegrityRow{62}{MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]}{\PageMDfive{62}}
+\IntegrityRow{63}{Indice di integrita delle pagine}{\PageMDfive{63}}
 %</PAGE-INTEGRITY-ROWS>
 \bottomrule
 \end{tabularx}
@@ -5341,6 +5434,6 @@ Ogni pagina possiede un MD5 del proprio contenuto canonico. Il calcolo esclude i
 
 \vspace{0.8mm}
 {\fontsize{4.8}{5.2}\selectfont\color{DDTAGray}Quando una pagina viene modificata intenzionalmente, cambia il suo MD5. Una variazione inattesa segnala una modifica da riesaminare prima di proseguire.}
-%</PAGE-CONTENT:62>
+%</PAGE-CONTENT:63>
 
 \end{document}

@@ -1,4 +1,4 @@
-DDTA_DERMATRIAGE_PARALLEL_CASE_STUDY_R25_FR03_SPLIT_REVIEW_R1_C7_MR_DEC_R1 - Page MD5 Index
+DDTA_DERMATRIAGE_PARALLEL_CASE_STUDY_R25_FR03_SPLIT_REVIEW_R1 - Page MD5 Index
 Canonical payload: LaTeX content between PAGE-CONTENT markers; own printed MD5 excluded.
 Integrity-index page resolves all other page hashes and canonicalizes its own hash as <SELF>.
 
@@ -59,8 +59,9 @@ Page 54  b271663a34d89196ec3cc5da07a799b8  MR-C6 > DEC-C6-01 > FR-C6-01-05 - Ini
 Page 55  4a48d503ffc010c733ca14e2b7d35ada  MR-C6 > DEC-C6-01 > FR-C6-01-06 - Avvio del servizio API DermaTriage
 Page 56  102bb73d527c550361d49540f34e0d0d  MR-C7 - Verifica del sistema DermaTriage
 Page 57  086ccbf418f6545accc9d179d1e8598d  MR-C7 > DEC-C7-01 - Verifica mediante controlli espliciti e criteri applicabili
-Page 58  83cd045c40a42cc43e06d2eaec7c6af6  MR-C7 > DEC-C7-01 - Worklist candidata di decomposizione C7-P01..P07
-Page 59  8bc7feec08c803c682573fc7481d43fb  Registro Base Analysis - BAReferent e BAProposition
-Page 60  2019ef5b1c63df2dd227b9a6eb7afcc9  Registro Base Analysis - BAProposition
-Page 61  42c63c876189a9d341da909c38484215  MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
-Page 62  b059bc7097e060949567e1d535be621c  Indice di integrita delle pagine [INTEGRITY INDEX]
+Page 58  8ae4302668a30988ae5a7c6c02a8a2b1  MR-C7 > DEC-C7-01 - Worklist candidata di decomposizione C7-P01..P07
+Page 59  2b68023ed873eb0ed4f17eb01e7a96ff  MR-C7 > DEC-C7-01 > FR-C7-01-01 - Verifica della readiness operativa del servizio DermaTriage
+Page 60  367f4656af9bebd5b63e0ef3e709e18b  Registro Base Analysis - BAReferent e BAProposition
+Page 61  af76bf49763dfab3d3238837eba4b642  Registro Base Analysis - BAProposition
+Page 62  42c63c876189a9d341da909c38484215  MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
+Page 63  4dd7c91fc60638547ddce1e8b4a732da  Indice di integrita delle pagine [INTEGRITY INDEX]
