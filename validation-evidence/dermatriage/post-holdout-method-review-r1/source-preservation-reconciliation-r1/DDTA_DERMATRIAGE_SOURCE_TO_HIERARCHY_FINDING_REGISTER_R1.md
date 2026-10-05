@@ -71,11 +71,11 @@ BA status: NOT ANALYZED UNTIL DOCUMENTATION CLOSED
 | `RC-014` | Accepted BA graph count/components | Accepted BA after all upstream corrections | Not a documentation owner | **POST-BA DIAGNOSTIC** | Current 19-component result at 3d1cd23 is diagnostic only; recompute deterministically after BA rerun. |
 | `RC-015` | Information/data-contract construct sufficiency | Source-closed contract-bearing FRs | Method Phase C | **METHOD DEFERRED** | No generic contract operator; reassess only after corrected contracts and BA. |
 | `RC-016` | selection construct pressure | Source-closed FR-06/FR-07 and other recurrent cases | Method Phase C | **METHOD DEFERRED** | Rebuild evidence set after RC-009/RC-012; do not freeze signature yet. |
-| `RC-017` | decisionRule relocation | Source-closed mapping FRs, C7 readiness qualification and C7 endpoint-verification pressure | Method Phase C | **METHOD DEFERRED / ENDPOINT PRESSURE RECORDED** | P-scale and readiness remain two positive local-structure regressions. C7-P02 adds source-driven `lt`, governed-domain criterion reuse and governed-fact occurrence reuse; no boolean/property/transfer duplication is admitted. Keep candidate/not admitted pending Facial Access cross-corpus regression + explicit checkpoint. |
+| `RC-017` | decisionRule relocation | Source-closed mapping FRs plus C7 verification-pressure cases | Method Phase C | **METHOD DEFERRED / C7 REVIEW PRESSURE RECORDED** | P-scale and readiness remain positive local-structure regressions. C7-P02 adds `lt`, governed-domain criterion reuse and governed-fact occurrence reuse. C7-P03..P07 add domain-validity, qualitative non-empty, `eq 5`, structured-content, completeness/timing and criterion-local outcome pressure; P06 shows observation-only verification without a documented pass condition, while P07 exposes a `gt`/`ge` source conflict. No new syntax/operator is admitted. Keep candidate/not admitted pending BA review, Facial Access cross-corpus regression + explicit checkpoint. |
 | `RC-018` | MR-02 specialist boundary vs SLA meaning | OR2/OR3/OR5 | MR-02 plus separate owner review for SLA | **SOURCE OWNER REVIEW** | Keep specialist destination distinct from SLA; do not invent routing/vocabulary/booking. |
 | `RC-019` | Privacy / anonymization / in-memory upload facts | Original privacy/data sources | MR/Decision/FR owner NOT YET CLOSED | **SOURCE OWNER / CLASSIFICATION REVIEW** | First find hierarchy owner; only afterward decide whether security specialization is justified. |
 | `RC-020` | FR-13/14/15 non-propagation family | Original adaptation-loop semantics | MR-04 → DEC-05 → FR-13/14/15 | **SOURCE-STRENGTH + DOWNSTREAM-UTILITY REVIEW** | Re-test source support and branch autonomy after primary source-preservation corrections. |
-| `RC-021` | Environment preparation vs verification/test macro-responsibility split pressure | OR4 Training Environment Configuration §§1-9; OR5 Test Environment Setup §§1-9 | MR-C6 → DEC-C6-01 → FR-C6-01-01 / FR-C6-01-02 / FR-C6-01-03 / FR-C6-01-04 / FR-C6-01-05 / FR-C6-01-06 approved/current; C6 decomposition complete; MR-C7 → DEC-C7-01 → FR-C7-01-01 / FR-C7-02-01 / FR-C7-02-02 approved/current; C7-P03..P07 residual review worklist; MR-03 rework candidate; initial-training lifecycle kept separate but not promoted to MR | **C6 COMPLETE / C7 P02 SPLIT PROMOTED / RC-021 OPEN** | Analyze C7-P03..P07 one family at a time and keep verification ownership distinct from runtime/adaptation/quality ownership. Resume RC-002 only when the RC-021 owner review is stable. |
+| `RC-021` | Environment preparation vs verification/test macro-responsibility split pressure | OR4 Training Environment Configuration §§1-9; OR5 Test Environment Setup §§1-9 | MR-C6 → DEC-C6-01 → FR-C6-01-01 / FR-C6-01-02 / FR-C6-01-03 / FR-C6-01-04 / FR-C6-01-05 / FR-C6-01-06 approved/current; C6 decomposition complete; MR-C7 → DEC-C7-01 → FR-C7-01-01 / FR-C7-02-01 / FR-C7-02-02 approved/current; FR-C7-03-01..04 / FR-C7-04-01 / FR-C7-05-01 / FR-C7-06-01 / FR-C7-07-01 materialized as candidate/non-current review; MR-03 rework candidate; initial-training lifecycle kept separate but not promoted to MR | **C6 COMPLETE / C7 P03-P07 REVIEW MATERIALIZED / RC-021 OPEN** | Jointly review candidate BA and lifecycle-owner Mermaid projections, then apply explicit promote/rework/split gates. Keep verification ownership distinct from runtime/adaptation/quality ownership. Resume RC-002 only after this RC-021 review checkpoint is stable. |
 
 
 ### RC-021 opening record
@@ -141,8 +141,12 @@ MR-C7 verification branch:
   approved FR -> FR-C7-01-01 Verifica della readiness operativa del servizio DermaTriage
   approved FR -> FR-C7-02-01 Verifica dell'endpoint di analisi diretta DermaTriage
   approved FR -> FR-C7-02-02 Verifica dell'endpoint integrato B4 di DermaTriage
-  residual candidate decomposition worklist -> pipeline-stage; full-pipeline; B4 integration;
-  adaptive-change lifecycle; acceptance/quality verification.
+  candidate/non-current review FR -> FR-C7-03-01 / FR-C7-03-02 / FR-C7-03-03 / FR-C7-03-04
+  for per-stage pipeline verification;
+  candidate/non-current review FR -> FR-C7-04-01 full-pipeline end-to-end verification;
+  candidate/non-current review FR -> FR-C7-05-01 aggregated B4 integration verification;
+  candidate/non-current review FR -> FR-C7-06-01 retraining-control observation;
+  candidate/non-current review FR -> FR-C7-07-01 baseline absolute-quality-gate verification.
   BA checkpoint -> DermaTriageVerification and DermaTriageVerificationProcedure accepted;
   ServiceReadinessVerification, ServiceHealthCheckResult and ReadinessOutcome accepted;
   DirectAnalysisEndpoint, DirectAnalysisEndpointVerification, DirectAnalysisEndpointObservation
@@ -151,8 +155,9 @@ MR-C7 verification branch:
   B4IntegratedDiagnosisEndpointObservation and B4IntegratedDiagnosisEndpointVerificationOutcome accepted;
   BAP-DECC7-01-01 realize, BAP-FRC7-01-01-01 produce,
   BAP-FRC7-02-01-01 produce and BAP-FRC7-02-02-01 produce accepted.
-  Nested operatorStructure.decisionRule material remains candidate/non-admitted; C7-P02 records
-  `lt` and governed-criterion reuse pressure without admitting new criterion syntax.
+  New C7-P03..P07 verification identities and produce propositions remain candidate/non-accepted;
+  nested operatorStructure.decisionRule material remains candidate/non-admitted. The review records
+  additional criterion-shape and source-conflict pressure without admitting new criterion syntax.
 
 Documentation + BA checkpoint:
 The existing DermaTriage case-study file now contains:
@@ -166,10 +171,10 @@ The existing DermaTriage case-study file now contains:
 - FR-C7-01-01 promoted to CURRENT_GOVERNED, closing C7-P01;
 - FR-C7-02-01 and FR-C7-02-02 promoted to CURRENT_GOVERNED, closing the C7-P02 endpoint-verification placeholder by split;
 - readiness and endpoint-verification BA accepted at produce level; nested decisionRule material remains candidate/non-admitted method evidence;
-- C7-P03..P07 remain candidate review labels.
+- C7-P03..P07 source-first reconstruction materialized as candidate/non-current FR pages with candidate BA and lifecycle-owner consolidation; no new FR or BA promotion is performed by this review checkpoint.
 
 The environment-preparation owner and the verification owner are therefore no longer provisional at MR level.
-MR-C7, DEC-C7-01, FR-C7-01-01, FR-C7-02-01 and FR-C7-02-02 have passed their gates; residual verification FR ownership remains open and must pass its own FR gates one family at a time.
+MR-C7, DEC-C7-01, FR-C7-01-01, FR-C7-02-01 and FR-C7-02-02 have passed their gates; residual verification FR ownership is now explicitly reconstructed but remains candidate/non-current pending joint BA/graph review and explicit promotion/rework gates.
 BA is no longer globally blocked for RC-021: inside an approved documentation branch
 it is run immediately as a diagnostic representation check while documentation remains
 the sole project authority.
@@ -198,27 +203,27 @@ authority for creating either MR.
 
 Immediate next action:
 C7-P01 is closed by FR-C7-01-01 and C7-P02 is closed by the approved split into
-FR-C7-02-01 and FR-C7-02-02. Analyze C7-P03..P07 from the original verification
-documentation, one candidate verification family at a time, starting with C7-P03.
-Apply the FR gate before promotion, keep test-oracle meaning distinct from the runtime,
-adaptation or quality owner being verified, and run the minimum sufficient BA after
-each FunctionalRequirement is accepted. MR-C7, DEC-C7-01, FR-C7-01-01,
-FR-C7-02-01 and FR-C7-02-02 are current; C7-P03..P07 remain non-canonical review labels.
+FR-C7-02-01 and FR-C7-02-02. The C7-P03..P07 source-first reconstruction is now
+materialized as candidate/non-current FR documentation and candidate BA. Jointly review
+the candidate BA identities/propositions and lifecycle-owner Mermaid projections; then
+apply explicit promote/rework/split gates. Keep test-oracle meaning distinct from the
+runtime, adaptation or quality owner being verified. MR-C7, DEC-C7-01, FR-C7-01-01,
+FR-C7-02-01 and FR-C7-02-02 remain current; the new C7-P03..P07 FRs are not current.
 
-After the RC-021 owner checkpoint is stable, resume RC-002 with OR2 runtime
-Stage-4 semantics and OR5 Stage-4 verification expectations kept distinct.
+After this RC-021 candidate BA/graph review checkpoint is stable, resume RC-002 with
+OR2 runtime Stage-4 semantics and OR5 Stage-4 verification expectations kept distinct.
 
 Documentation correction authorized:
 YES - MR-C6, DEC-C6-01 and FR-C6-01-01 through FR-C6-01-06 are approved/current for this checkpoint; the C6 decomposition is complete.
 NO - no residual C6-Pxx candidate remains.
 YES - MR-C7, DEC-C7-01, FR-C7-01-01, FR-C7-02-01 and FR-C7-02-02 are approved/current for this checkpoint; C7-P01 and C7-P02 are closed.
-NO - C7-P03..P07 remain non-canonical review labels pending FR analysis.
+YES - C7-P03..P07 are materialized as review-only candidate FR documentation for joint BA/graph validation; this does not authorize promotion.
 
 BA status:
 MR-03 affected BA: REVALIDATION REQUIRED AFTER DOCUMENTATION CLOSURE.
 MR-C6 approved branch: ANALYZED IN PARALLEL / COMPLETE FOR CURRENT C6 SCOPE.
-MR-C7 approved branch: ANALYZED IN PARALLEL THROUGH FR-C7-02-02; RESIDUAL FR-LEVEL BA PENDING.
-RC-017 note: readiness remains the second independent DermaTriage regression case for nested decisionRule. C7-P02 adds source-driven `lt` plus governed-domain/governed-fact criterion-reuse pressure; the structure remains candidate/non-admitted pending Facial Access regression and checkpoint.
+MR-C7 approved branch: ACCEPTED BA THROUGH FR-C7-02-02; C7-P03..P07 CANDIDATE BA MATERIALIZED / NOT ACCEPTED.
+RC-017 note: readiness remains the second independent DermaTriage regression case for nested decisionRule. C7-P02 adds `lt` plus governed-domain/governed-fact reuse pressure; C7-P03..P07 add further candidate criterion-shape and `gt`/`ge` conflict pressure. The structure remains candidate/non-admitted pending joint BA review, Facial Access regression and checkpoint.
 ```
 
 

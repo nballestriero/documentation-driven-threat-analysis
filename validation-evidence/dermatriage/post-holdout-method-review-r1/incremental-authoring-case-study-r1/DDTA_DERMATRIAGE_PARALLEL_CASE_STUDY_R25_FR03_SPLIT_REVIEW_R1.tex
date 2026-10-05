@@ -8,7 +8,7 @@
 \titlespacing*{\subsubsection}{0pt}{0.7em}{0.25em}
 
 \hypersetup{
-  pdftitle={DDTA DermaTriage - Parallel Case Study R25 - FR03 split review},
+  pdftitle={DDTA DermaTriage - C7 P03-P07 source-first review with Base Analysis},
   pdfauthor={Documentation-Driven Threat Analysis research project}
 }
 
@@ -78,15 +78,25 @@
 \expandafter\def\csname PageMDfive55\endcsname{4a48d503ffc010c733ca14e2b7d35ada}
 \expandafter\def\csname PageMDfive56\endcsname{102bb73d527c550361d49540f34e0d0d}
 \expandafter\def\csname PageMDfive57\endcsname{086ccbf418f6545accc9d179d1e8598d}
-\expandafter\def\csname PageMDfive58\endcsname{0872037f73ac68f5c907bacd8528ab34}
+\expandafter\def\csname PageMDfive58\endcsname{3d6434a24c425faa80ce5468b8e2392a}
 \expandafter\def\csname PageMDfive59\endcsname{2b68023ed873eb0ed4f17eb01e7a96ff}
 \expandafter\def\csname PageMDfive60\endcsname{77515cf68165b6ad69c1c8c91ad7d44f}
 \expandafter\def\csname PageMDfive61\endcsname{bbd93e05b580a7f7727cb538e5f04e87}
-\expandafter\def\csname PageMDfive62\endcsname{367f4656af9bebd5b63e0ef3e709e18b}
-\expandafter\def\csname PageMDfive63\endcsname{6d742aced02c4f7553638cc4e3f7cfe5}
-\expandafter\def\csname PageMDfive64\endcsname{0d0ecded1181724b8c66a338cb98afd8}
-\expandafter\def\csname PageMDfive65\endcsname{42c63c876189a9d341da909c38484215}
-\expandafter\def\csname PageMDfive66\endcsname{2d1052164b94d2d02aed7c6ff730fd27}
+\expandafter\def\csname PageMDfive62\endcsname{079dcee1a506a9bd40591c1676532ed7}
+\expandafter\def\csname PageMDfive63\endcsname{c68f512e08f57e3d5f872608298ebc14}
+\expandafter\def\csname PageMDfive64\endcsname{e96d187fad1a5cc33496a0c3eec5ede3}
+\expandafter\def\csname PageMDfive65\endcsname{551abfca21448b98b7e2d43c2aa9dffa}
+\expandafter\def\csname PageMDfive66\endcsname{f90b6eb71cc194e4df50c5177fc53f29}
+\expandafter\def\csname PageMDfive67\endcsname{a5e01c1fd6acb0fc9e9ea70b03626d03}
+\expandafter\def\csname PageMDfive68\endcsname{e0563e34c8c54b0f1b476be6007765b9}
+\expandafter\def\csname PageMDfive69\endcsname{a3dd980ffe2af8bd4b7a2d4a8a4b972a}
+\expandafter\def\csname PageMDfive70\endcsname{b5899854b9498724ee2f778c1b504765}
+\expandafter\def\csname PageMDfive71\endcsname{14f224c0a626f68a61bf866df0eee7ca}
+\expandafter\def\csname PageMDfive72\endcsname{367f4656af9bebd5b63e0ef3e709e18b}
+\expandafter\def\csname PageMDfive73\endcsname{6d742aced02c4f7553638cc4e3f7cfe5}
+\expandafter\def\csname PageMDfive74\endcsname{0d0ecded1181724b8c66a338cb98afd8}
+\expandafter\def\csname PageMDfive75\endcsname{42c63c876189a9d341da909c38484215}
+\expandafter\def\csname PageMDfive76\endcsname{bb71edd4a313233e828ca01f19fb5602}
 %</PAGE-HASH-DEFS>
 
 \newcommand{\PageHashFooter}[1]{%
@@ -4961,15 +4971,15 @@ La struttura target--criterion--observation--outcome resta da pressure-testare s
 \end{paracol}
 %</PAGE-CONTENT:57>
 \clearpage
-%<PAGE-DESC:58>MR-C7 > DEC-C7-01 - Worklist candidata di decomposizione C7-P01..P07
+%<PAGE-DESC:58>MR-C7 > DEC-C7-01 - C7-P03..P07 source-first review materialized
 %<PAGE-CONTENT:58>
 \PageHashFooter{\PageMDfive{58}}
-\subsection*{MR-C7 $\rightarrow$ DEC-C7-01 - Worklist candidata di decomposizione}
-{\sffamily\scriptsize\color{DDTAGray}\texttt{C7-P01} e' chiuso in \texttt{FR-C7-01-01} CURRENT\_GOVERNED. \texttt{C7-P02} e' chiuso dallo split approvato in \texttt{FR-C7-02-01} e \texttt{FR-C7-02-02}, entrambi CURRENT\_GOVERNED. \texttt{C7-P03}--\texttt{C7-P07} restano segnaposto di review.}\par
+\subsection*{MR-C7 $\rightarrow$ DEC-C7-01 - Review C7-P03..P07 materializzata}
+{\sffamily\scriptsize\color{DDTAGray}\texttt{C7-P01} e \texttt{C7-P02} restano CURRENT\_GOVERNED. Questa versione materializza \texttt{C7-P03}--\texttt{C7-P07} come FunctionalRequirement candidate di review; nessuna promotion nel repository e' implicata.}\par
 
-\begin{ddtaopen}[title={DECOMPOSIZIONE DA RICOSTRUIRE UN BRANCH ALLA VOLTA}]
-\fontsize{4.6}{5.05}\selectfont
-La Decision comune e' governata. La review source-first di \texttt{C7-P02} ha stabilizzato due operazioni verificabili con contratti di test e downstream utility distinti: analisi diretta e diagnosi integrata B4. Expected observation, pass condition, current value e runtime contract restano separati; la presenza dello stesso criterio in piu' test non trasferisce automaticamente ownership. La worklist residua riparte da \texttt{C7-P03}.
+\begin{ddtaopen}[title={CHECKPOINT DI REVIEW - SOURCE-FIRST, NESSUNA PROMOTION}]
+\fontsize{4.45}{4.9}\selectfont
+La ricostruzione mantiene separati lifecycle testato, owner del comportamento e owner della verifica. I test di Stage 1--4 non acquisiscono ownership della pipeline runtime; il controllo full-pipeline non viene fuso con \texttt{/analyze}; i controlli B4 non duplicano i transfer runtime; i retraining test verificano capability di \texttt{MR-04} senza appropriarsi di trigger, fine-tuning, qualification o rollback policy; i quality gate assoluti della baseline restano distinti dai criteri comparativi di candidate adoption.
 \end{ddtaopen}
 
 \setlength{\columnsep}{7mm}
@@ -4978,45 +4988,46 @@ La Decision comune e' governata. La review source-first di \texttt{C7-P02} ha st
 \begin{paracol}{2}
 {\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
 \vspace{0.15em}
-\begin{ddtacore}[title={Candidate verification families}]
-\fontsize{3.9}{4.28}\selectfont
-\begin{tabularx}{\linewidth}{L{17mm}L{42mm}Y}
+\begin{ddtacore}[title={Candidate verification families - materializzazione proposta}]
+\fontsize{3.72}{4.08}\selectfont
+\begin{tabularx}{\linewidth}{L{17mm}L{48mm}Y}
 \toprule
-\textbf{Label} & \textbf{Candidate meaning} & \textbf{Boundary di review} \\
+\textbf{Label} & \textbf{Candidate FR} & \textbf{Boundary di review} \\
 \midrule
-\texttt{C7-P01} & CLOSED $\rightarrow$ \texttt{FR-C7-01-01} & Readiness tramite \texttt{/health}; \texttt{/stats} e \texttt{/docs} fuori dalla pass condition. \\
-\texttt{C7-P02} & CLOSED $\rightarrow$ \texttt{FR-C7-02-01/02} & \texttt{/analyze}: direct-upload endpoint, valid P-scale + $<30$s. \texttt{/diagnose}: endpoint B4-integrated, HTTP 200 + write-back B4. \texttt{/stats} resta fuori. \\
-\texttt{C7-P03} & Pipeline-stage verification & Controlli sugli output dei quattro stadi; test oracle distinto dal runtime contract, incluso Stage 4. \\
-\texttt{C7-P04} & Full-pipeline verification & End-to-end della pipeline image-based; non fondere con il test di interfaccia \texttt{/analyze}. \\
-\texttt{C7-P05} & B4 integration verification & Auth, acquisizione, image download, write-back, validated outcome e health B4; non duplicare il test end-to-end \texttt{/diagnose}. \\
-\texttt{C7-P06} & Adaptive-change lifecycle verification & Trigger/progress, esecuzione, version/history e rollback; prompt evolution e CNN retraining restano change path distinti. \\
-\texttt{C7-P07} & Quality / qualification verification & Quality gate assoluti, criteri comparativi, post-change/rollback; target e current value separati. \\
+\texttt{C7-P01} & CLOSED $\rightarrow$ \texttt{FR-C7-01-01} & Readiness; CURRENT\_GOVERNED. \\
+\texttt{C7-P02} & CLOSED $\rightarrow$ \texttt{FR-C7-02-01/02} & Endpoint direct/B4-integrated; CURRENT\_GOVERNED. \\
+\texttt{C7-P03} & \texttt{FR-C7-03-01..04} & Quattro controlli di Stage; oracle di test distinto dai runtime contract. \\
+\texttt{C7-P04} & \texttt{FR-C7-04-01} & End-to-end dell'intero percorso image-based; distinto da \texttt{/analyze}. \\
+\texttt{C7-P05} & \texttt{FR-C7-05-01} & Un FR aggregato per sei controlli B4; nessun PASS globale inferito. \\
+\texttt{C7-P06} & \texttt{FR-C7-06-01} & Retraining controls: expected response preservata; pass condition non specificata. \\
+\texttt{C7-P07} & \texttt{FR-C7-07-01} & Quality gate assoluti baseline; nessun overall model PASS/FAIL inferito. \\
 \bottomrule
 \end{tabularx}
 \end{ddtacore}
 
 \begin{ddtaquestions}[top=3pt,bottom=3pt,left=5pt,right=5pt]
-\fontsize{3.9}{4.28}\selectfont
-P02 e' chiuso a livello documentale e BA \texttt{produce}. Restano method pressure controllate: \texttt{lt} e' comparison candidate source-driven; il riuso del dominio P1--P4 e del fatto di write-back B4 dentro una \texttt{decisionRule} non e' ancora sintassi BA ammessa. Prossima review: \texttt{C7-P03}; \texttt{/stats} resta fuori dai FR P02 e attende classificazione finale come observability/current evidence.
+\fontsize{3.8}{4.15}\selectfont
+Review da chiudere con lettura congiunta: \texttt{RC-002} per il contract Stage 4; owner SLA/specialist nel full-pipeline; eventuale split futuro di \texttt{FR-C7-05-01}; assenza di pass condition nei retraining test; conflitto \texttt{>90\%} vs \texttt{>=90\%} sul gate HIGH sensitivity; nessun overall result per i quattro quality gate. Il passaggio successivo, dopo approvazione documentale, e' la review BA/graph con Mermaid.
 \end{ddtaquestions}
 
 \switchcolumn
 {\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
 \vspace{0.15em}
-\begin{ddtareferentidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]\fontsize{4.15}{4.55}\selectfont
-\BACandidate{DirectAnalysisEndpoint}; \BACandidate{DirectAnalysisEndpointVerification}; \BACandidate{DirectAnalysisEndpointObservation}; \BACandidate{DirectAnalysisEndpointVerificationOutcome};\par
-\BACandidate{B4IntegratedDiagnosisEndpoint}; \BACandidate{B4IntegratedDiagnosisEndpointVerification}; \BACandidate{B4IntegratedDiagnosisEndpointObservation}; \BACandidate{B4IntegratedDiagnosisEndpointVerificationOutcome}.
+\begin{ddtareferentidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]\fontsize{3.78}{4.14}\selectfont
+Le nuove identity C7-P03..P07 sono materializzate nelle pagine candidate successive e riassunte nel registro di review. In questa versione restano \emph{candidate} fino al gate congiunto.
 \end{ddtareferentidentified}
-\begin{ddtareferentaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]\fontsize{4.15}{4.55}\selectfont
-\BAAccepted{DermaTriageVerification}; \BAAccepted{DermaTriageVerificationProcedure}; \BAAccepted{DermaTriageAPIService}; \BAAccepted{DirectAnalysisEndpoint}; \BAAccepted{DirectAnalysisEndpointVerification}; \BAAccepted{DirectAnalysisEndpointObservation}; \BAAccepted{DirectAnalysisEndpointVerificationOutcome}; \BAAccepted{B4IntegratedDiagnosisEndpoint}; \BAAccepted{B4IntegratedDiagnosisEndpointVerification}; \BAAccepted{B4IntegratedDiagnosisEndpointObservation}; \BAAccepted{B4IntegratedDiagnosisEndpointVerificationOutcome}.
+\begin{ddtareferentaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]\fontsize{3.78}{4.14}\selectfont
+Restano accettate le identity gia' governate fino a \texttt{FR-C7-02-02}, incluse \BAAccepted{DermaTriageVerification}, \BAAccepted{DermaTriageVerificationProcedure}, \BAAccepted{ServiceReadinessVerification}, \BAAccepted{DirectAnalysisEndpointVerification} e \BAAccepted{B4IntegratedDiagnosisEndpointVerification}. Nessuna nuova identity P03--P07 viene promossa in questa review.
 \end{ddtareferentaccepted}
-\begin{ddtapropositionidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]\fontsize{4.0}{4.4}\selectfont
-Le due \texttt{produce} accettate sono dettagliate nelle pagine FR successive. Le relative \texttt{decisionRule} restano candidate/non ammesse e conservano pressure su comparison \texttt{lt} e criterion reuse.
+\begin{ddtapropositionidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]\fontsize{3.68}{4.05}\selectfont
+Candidate \texttt{produce} vengono pressure-testate per Stage 1--4 e full-pipeline; P05 richiede result per singolo controllo senza aggregazione globale; P06 conserva una observation senza inferire un outcome PASS/FAIL; P07 richiede risultati per criterio senza inventare un overall acceptance result.
 \end{ddtapropositionidentified}
-\begin{ddtapropositionaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]\fontsize{4.05}{4.45}\selectfont\textbf{BAP-FRC7-02-01-01}; \textbf{BAP-FRC7-02-02-01}.\end{ddtapropositionaccepted}
-\begin{ddtaopenrelations}[top=3pt,bottom=3pt,left=5pt,right=5pt]
-\fontsize{3.9}{4.28}\selectfont
-Lo split non crea due owner runtime: crea due responsabilita' di verifica distinte. Le relazioni verso endpoint concreti, output runtime e write-back governati altrove devono essere riusate o lasciate aperte, non duplicate per rendere completo il test model.
+\begin{ddtapropositionaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]\fontsize{3.8}{4.18}\selectfont
+\texttt{--}\par
+\emph{Nessuna nuova BAProposition C7-P03..P07 e' accettata in questa versione di review.}
+\end{ddtapropositionaccepted}
+\begin{ddtaopenrelations}[top=3pt,bottom=3pt,left=5pt,right=5pt]\fontsize{3.58}{3.94}\selectfont
+Method pressure da preservare: governed-domain/cardinality reuse; predicato qualitativo \texttt{non-empty}; structured-content conformance; criterio \texttt{complete response}; sei control occurrences dentro un FR B4 aggregato; expected-response senza pass condition; per-gate outcome senza overall result; comparator \texttt{ge} source-driven ma non ammesso e in conflitto con \texttt{gt} sul target HIGH sensitivity.
 \end{ddtaopenrelations}
 \end{paracol}
 %</PAGE-CONTENT:58>
@@ -5265,9 +5276,691 @@ Questo FR governa la verifica end-to-end dell'operazione DermaTriage \texttt{/di
 \end{paracol}
 %</PAGE-CONTENT:61>
 \clearpage
-%<PAGE-DESC:62>Registro Base Analysis - BAReferent e BAProposition
+%<PAGE-DESC:62>MR-C7 > DEC-C7-01 > FR-C7-03-01 [candidate] - Verifica dello Stage 1 della pipeline DermaTriage
 %<PAGE-CONTENT:62>
 \PageHashFooter{\PageMDfive{62}}
+\subsubsection{FR-C7-03-01 [candidate] - Verifica dello Stage 1 della pipeline DermaTriage}
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia proposta: \texttt{MR-C7} $\rightarrow$ \texttt{DEC-C7-01} $\rightarrow$ \texttt{FR-C7-03-01}. Review-only: nessuna promotion in questa versione.}\par
+
+\setlength{\columnsep}{7mm}
+\setlength{\columnseprule}{0.35pt}
+\columnratio{0.67}
+\begin{paracol}{2}
+{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
+\vspace{0.15em}
+\begin{ddtacore}[title={FunctionalRequirement candidate}]
+\fontsize{3.78}{4.16}\selectfont
+\begin{tabularx}{\linewidth}{L{39mm}Y}
+\toprule
+\textbf{ID} & \texttt{FR-C7-03-01} \\
+\textbf{Lifecycle} & \texttt{candidate} \\
+\textbf{Authority} & \texttt{CANDIDATE\_NON\_CURRENT} \\
+\textbf{Type} & \texttt{FunctionalRequirement} \\
+\textbf{Title} & Verifica dello Stage 1 della pipeline DermaTriage \\
+\textbf{Parent Decision} & \texttt{DEC-C7-01} \\
+\textbf{Owning MR (derived)} & \texttt{MR-C7} \\
+\textbf{SpecializedRequirement relation} & 0 active instances \\
+\bottomrule
+\end{tabularx}
+
+\textbf{Functional obligation}\par
+Esercitare lo Stage 1 della pipeline e determinare l'esito del controllo sulla base dell'osservazione ottenuta e della pass condition applicabile.
+
+\textbf{Functional clauses / candidate \texttt{normativeClause [1..*]}}\par
+La procedura di verifica MUST esercitare lo Stage 1. L'expected observation MUST preservare una urgency \texttt{HIGH/MEDIUM/LOW}, una confidence nel range documentato \texttt{0.0--1.0} e un probabilities array. Il valore \texttt{PASS} MUST essere assegnato quando viene restituita una urgency string valida. Confidence e probabilities array restano expected observation e non diventano ulteriori pass criterion per inferenza.
+
+\textbf{Current verification realization / test vector}\par
+Il test corrente usa una dermoscopy JPEG e verifica la realizzazione EfficientNet-B4. Il runtime Stage 1 resta posseduto dal ramo \texttt{MR-01}; la soglia corrente \texttt{0.25} per HIGH e i quality gate assoluti non sono pass condition di questo controllo.
+
+\textbf{Boundary}\par
+Il FR non definisce il comportamento runtime dello Stage 1, non promuove il range confidence o il probabilities array a runtime contract e non verifica sensitivity, accuracy, AUC-ROC o false-LOW. Nessun \texttt{ELSE -> FAIL} viene inferito.
+\end{ddtacore}
+
+\switchcolumn
+{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
+\vspace{0.15em}
+\begin{ddtareferentidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.78}{4.16}\selectfont
+\BACandidate{Stage1Verification} \BANew{}; \BACandidate{Stage1VerificationObservation} \BANew{}; \BACandidate{Stage1VerificationOutcome} \BANew{}.
+\end{ddtareferentidentified}
+\begin{ddtareferentaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.68}{4.05}\selectfont
+\BAAccepted{DermaTriageVerification}; \BAAccepted{DermaTriageVerificationProcedure}; \BAAccepted{ImageUrgencyClassification}; \BAAccepted{EfficientNet-B4}. Le identity Stage1 restano candidate.
+\end{ddtareferentaccepted}
+\begin{ddtapropositionidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.45}{3.82}\selectfont
+\texttt{BAP-FRC7-03-01-01} -- \texttt{produce} [CANDIDATE]\\par
+\hspace*{1em}\texttt{actor -> Stage1Verification}\\par
+\hspace*{1em}\texttt{input -> Stage1VerificationObservation}\\par
+\hspace*{1em}\texttt{result -> Stage1VerificationOutcome}\\par
+\hspace*{1em}\texttt{polarity = affirmative}\par
+\smallskip\emph{Candidate local structure / NOT ADMITTED:}\par
+\hspace*{1em}\texttt{operatorStructure.decisionRule}\par
+\hspace*{2em}\texttt{when -> <observed ImageUrgencyClassification valid in governed HIGH/MEDIUM/LOW domain>}\par
+\hspace*{2em}\texttt{resultAssignment -> Stage1VerificationOutcome = PASS}
+\end{ddtapropositionidentified}
+\begin{ddtapropositionaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.7}{4.08}\selectfont
+\texttt{--}\par
+\emph{Review gate: nuove identity e proposition restano candidate; nessuna promotion BA in questa versione.}
+\end{ddtapropositionaccepted}
+\begin{ddtaopenrelations}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.4}{3.76}\selectfont
+\textbf{Governed-domain reuse.} La validita' dell'urgenza non viene riscritta come tre branch \texttt{eq HIGH/MEDIUM/LOW}; il controllo deve poter riusare il dominio gia' governato. Il probabilities array resta observation-only finche' un runtime owner non ne governa il contract.
+\end{ddtaopenrelations}
+\end{paracol}
+%</PAGE-CONTENT:62>
+\clearpage
+%<PAGE-DESC:63>MR-C7 > DEC-C7-01 > FR-C7-03-02 [candidate] - Verifica dello Stage 2 della pipeline DermaTriage
+%<PAGE-CONTENT:63>
+\PageHashFooter{\PageMDfive{63}}
+\subsubsection{FR-C7-03-02 [candidate] - Verifica dello Stage 2 della pipeline DermaTriage}
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia proposta: \texttt{MR-C7} $\rightarrow$ \texttt{DEC-C7-01} $\rightarrow$ \texttt{FR-C7-03-02}. Review-only: nessuna promotion in questa versione.}\par
+
+\setlength{\columnsep}{7mm}
+\setlength{\columnseprule}{0.35pt}
+\columnratio{0.67}
+\begin{paracol}{2}
+{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
+\vspace{0.15em}
+\begin{ddtacore}[title={FunctionalRequirement candidate}]
+\fontsize{3.78}{4.16}\selectfont
+\begin{tabularx}{\linewidth}{L{39mm}Y}
+\toprule
+\textbf{ID} & \texttt{FR-C7-03-02} \\
+\textbf{Lifecycle} & \texttt{candidate} \\
+\textbf{Authority} & \texttt{CANDIDATE\_NON\_CURRENT} \\
+\textbf{Type} & \texttt{FunctionalRequirement} \\
+\textbf{Title} & Verifica dello Stage 2 della pipeline DermaTriage \\
+\textbf{Parent Decision} & \texttt{DEC-C7-01} \\
+\textbf{Owning MR (derived)} & \texttt{MR-C7} \\
+\textbf{SpecializedRequirement relation} & 0 active instances \\
+\bottomrule
+\end{tabularx}
+
+\textbf{Functional obligation}\par
+Esercitare lo Stage 2 della pipeline e determinare l'esito del controllo sulla base dell'osservazione ottenuta e della pass condition applicabile.
+
+\textbf{Functional clauses / candidate \texttt{normativeClause [1..*]}}\par
+La procedura MUST esercitare lo Stage 2. L'expected observation MUST preservare un testo clinico in cinque parti relative a shape, borders, color, texture e suspicious features. Il valore \texttt{PASS} MUST essere assegnato quando la risposta testuale e' non vuota. Le cinque parti attese non vengono trasformate automaticamente in cinque pass criterion.
+
+\textbf{Current verification realization / test vector}\par
+Il test corrente usa una dermoscopy JPEG e verifica la realizzazione Qwen2-VL-7B. Il runtime Stage 2 e il \texttt{ClinicalDescriptionContentContract} restano posseduti dal ramo \texttt{MR-01}; prompt version e prompt evolution appartengono al lifecycle di adattamento, non a questo controllo.
+
+\textbf{Boundary}\par
+Il FR non qualifica correttezza clinica, completezza semantica, lingua o qualita' della descrizione. Non verifica il trigger delle 10 doctor corrections, la sliding window di 20 esempi o la versione del prompt. Nessun \texttt{ELSE -> FAIL} viene inferito.
+\end{ddtacore}
+
+\switchcolumn
+{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
+\vspace{0.15em}
+\begin{ddtareferentidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.78}{4.16}\selectfont
+\BACandidate{Stage2Verification} \BANew{}; \BACandidate{Stage2VerificationObservation} \BANew{}; \BACandidate{Stage2VerificationOutcome} \BANew{}.
+\end{ddtareferentidentified}
+\begin{ddtareferentaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.68}{4.05}\selectfont
+\BAAccepted{DermaTriageVerification}; \BAAccepted{DermaTriageVerificationProcedure}; \BAAccepted{ClinicalDescription}; \BAAccepted{ClinicalDescriptionContentContract}; \BAAccepted{Qwen2-VL-7B-Instruct}. Le identity Stage2 restano candidate.
+\end{ddtareferentaccepted}
+\begin{ddtapropositionidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.45}{3.82}\selectfont
+\texttt{BAP-FRC7-03-02-01} -- \texttt{produce} [CANDIDATE]\\par
+\hspace*{1em}\texttt{actor -> Stage2Verification}\\par
+\hspace*{1em}\texttt{input -> Stage2VerificationObservation}\\par
+\hspace*{1em}\texttt{result -> Stage2VerificationOutcome}\\par
+\hspace*{1em}\texttt{polarity = affirmative}\par
+\smallskip\emph{Candidate local structure / NOT ADMITTED:}\par
+\hspace*{1em}\texttt{operatorStructure.decisionRule}\par
+\hspace*{2em}\texttt{when -> observed text response is non-empty}\par
+\hspace*{2em}\texttt{resultAssignment -> Stage2VerificationOutcome = PASS}
+\end{ddtapropositionidentified}
+\begin{ddtapropositionaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.7}{4.08}\selectfont
+\texttt{--}\par
+\emph{Review gate: nuove identity e proposition restano candidate; nessuna promotion BA in questa versione.}
+\end{ddtapropositionaccepted}
+\begin{ddtaopenrelations}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.4}{3.76}\selectfont
+\textbf{Qualitative predicate pressure.} \texttt{non-empty} non viene riscritto come \texttt{length > 0}, \texttt{ne ""}, non-null o whitespace rule: la fonte governa solo il predicato qualitativo. Expected format e pass condition restano distinti.
+\end{ddtaopenrelations}
+\end{paracol}
+%</PAGE-CONTENT:63>
+\clearpage
+%<PAGE-DESC:64>MR-C7 > DEC-C7-01 > FR-C7-03-03 [candidate] - Verifica dello Stage 3 della pipeline DermaTriage
+%<PAGE-CONTENT:64>
+\PageHashFooter{\PageMDfive{64}}
+\subsubsection{FR-C7-03-03 [candidate] - Verifica dello Stage 3 della pipeline DermaTriage}
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia proposta: \texttt{MR-C7} $\rightarrow$ \texttt{DEC-C7-01} $\rightarrow$ \texttt{FR-C7-03-03}. Review-only: nessuna promotion in questa versione.}\par
+
+\setlength{\columnsep}{7mm}
+\setlength{\columnseprule}{0.35pt}
+\columnratio{0.67}
+\begin{paracol}{2}
+{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
+\vspace{0.15em}
+\begin{ddtacore}[title={FunctionalRequirement candidate}]
+\fontsize{3.78}{4.16}\selectfont
+\begin{tabularx}{\linewidth}{L{39mm}Y}
+\toprule
+\textbf{ID} & \texttt{FR-C7-03-03} \\
+\textbf{Lifecycle} & \texttt{candidate} \\
+\textbf{Authority} & \texttt{CANDIDATE\_NON\_CURRENT} \\
+\textbf{Type} & \texttt{FunctionalRequirement} \\
+\textbf{Title} & Verifica dello Stage 3 della pipeline DermaTriage \\
+\textbf{Parent Decision} & \texttt{DEC-C7-01} \\
+\textbf{Owning MR (derived)} & \texttt{MR-C7} \\
+\textbf{SpecializedRequirement relation} & 0 active instances \\
+\bottomrule
+\end{tabularx}
+
+\textbf{Functional obligation}\par
+Esercitare lo Stage 3 della pipeline e determinare l'esito del controllo sulla base dell'osservazione ottenuta e della pass condition applicabile.
+
+\textbf{Functional clauses / candidate \texttt{normativeClause [1..*]}}\par
+La procedura MUST esercitare lo Stage 3 con una clinical text query. L'expected observation MUST preservare top-5 cases con \texttt{patient\_id}, \texttt{diagnosis}, \texttt{urgency\_level} e \texttt{similarity\_score}. Il valore \texttt{PASS} MUST essere assegnato quando vengono restituiti esattamente 5 risultati. I quattro campi attesi non diventano ulteriori pass criterion.
+
+\textbf{Current verification realization / test vector}\par
+Il test corrente verifica il retrieval RAG/ChromaDB. Il runtime governa gia' il retrieval top-5 e la similarita' corrente; questo controllo osserva la cardinalita' senza reinizializzare o ripopolare la base vettoriale.
+
+\textbf{Boundary}\par
+Il FR non appartiene alla predisposizione ChromaDB di \texttt{MR-C6}, non definisce una soglia minima di similarity score e non trasferisce al test ownership del retrieval runtime. Nessun \texttt{ELSE -> FAIL} viene inferito.
+\end{ddtacore}
+
+\switchcolumn
+{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
+\vspace{0.15em}
+\begin{ddtareferentidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.78}{4.16}\selectfont
+\BACandidate{Stage3Verification} \BANew{}; \BACandidate{Stage3VerificationObservation} \BANew{}; \BACandidate{Stage3VerificationOutcome} \BANew{}.
+\end{ddtareferentidentified}
+\begin{ddtareferentaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.68}{4.05}\selectfont
+\BAAccepted{DermaTriageVerification}; \BAAccepted{DermaTriageVerificationProcedure}; \BAAccepted{HistoricalCaseRetrieval}; \BAAccepted{RetrievedHistoricalCases}; \BAAccepted{ChromaDB}. Le identity Stage3 restano candidate.
+\end{ddtareferentaccepted}
+\begin{ddtapropositionidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.45}{3.82}\selectfont
+\texttt{BAP-FRC7-03-03-01} -- \texttt{produce} [CANDIDATE]\\par
+\hspace*{1em}\texttt{actor -> Stage3Verification}\\par
+\hspace*{1em}\texttt{input -> Stage3VerificationObservation}\\par
+\hspace*{1em}\texttt{result -> Stage3VerificationOutcome}\\par
+\hspace*{1em}\texttt{polarity = affirmative}\par
+\smallskip\emph{Candidate local structure / NOT ADMITTED:}\par
+\hspace*{1em}\texttt{operatorStructure.decisionRule}\par
+\hspace*{2em}\texttt{when -> observedResultCount eq 5}\par
+\hspace*{2em}\texttt{resultAssignment -> Stage3VerificationOutcome = PASS}
+\end{ddtapropositionidentified}
+\begin{ddtapropositionaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.7}{4.08}\selectfont
+\texttt{--}\par
+\emph{Review gate: nuove identity e proposition restano candidate; nessuna promotion BA in questa versione.}
+\end{ddtapropositionaccepted}
+\begin{ddtaopenrelations}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.4}{3.76}\selectfont
+\textbf{Governed-cardinality reuse.} Il valore 5 coincide con la cardinalita' top-5 gia' documentata nel runtime: C7 la verifica ma non crea un secondo constraint. Campi di output e cardinalita' restano semanticamente distinti.
+\end{ddtaopenrelations}
+\end{paracol}
+%</PAGE-CONTENT:64>
+\clearpage
+%<PAGE-DESC:65>MR-C7 > DEC-C7-01 > FR-C7-03-04 [candidate] - Verifica dello Stage 4 della pipeline DermaTriage
+%<PAGE-CONTENT:65>
+\PageHashFooter{\PageMDfive{65}}
+\subsubsection{FR-C7-03-04 [candidate] - Verifica dello Stage 4 della pipeline DermaTriage}
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia proposta: \texttt{MR-C7} $\rightarrow$ \texttt{DEC-C7-01} $\rightarrow$ \texttt{FR-C7-03-04}. Review-only: nessuna promotion in questa versione.}\par
+
+\setlength{\columnsep}{7mm}
+\setlength{\columnseprule}{0.35pt}
+\columnratio{0.67}
+\begin{paracol}{2}
+{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
+\vspace{0.15em}
+\begin{ddtacore}[title={FunctionalRequirement candidate}]
+\fontsize{3.78}{4.16}\selectfont
+\begin{tabularx}{\linewidth}{L{39mm}Y}
+\toprule
+\textbf{ID} & \texttt{FR-C7-03-04} \\
+\textbf{Lifecycle} & \texttt{candidate} \\
+\textbf{Authority} & \texttt{CANDIDATE\_NON\_CURRENT} \\
+\textbf{Type} & \texttt{FunctionalRequirement} \\
+\textbf{Title} & Verifica dello Stage 4 della pipeline DermaTriage \\
+\textbf{Parent Decision} & \texttt{DEC-C7-01} \\
+\textbf{Owning MR (derived)} & \texttt{MR-C7} \\
+\textbf{SpecializedRequirement relation} & 0 active instances \\
+\bottomrule
+\end{tabularx}
+
+\textbf{Functional obligation}\par
+Esercitare lo Stage 4 della pipeline e determinare l'esito del controllo sulla base dell'osservazione ottenuta e della pass condition applicabile.
+
+\textbf{Functional clauses / candidate \texttt{normativeClause [1..*]}}\par
+La procedura MUST esercitare lo Stage 4 usando gli output Stage 1+2+3 e symptoms. L'expected observation MUST preservare un JSON con \texttt{final\_urgency}, \texttt{confidence}, \texttt{reasoning}, \texttt{recommended\_action} e \texttt{predicted\_pathology}. Il valore \texttt{PASS} MUST essere assegnato quando la risposta e' JSON valido con tutti e cinque i campi.
+
+\textbf{Current verification realization / test vector}\par
+Il test corrente verifica la realizzazione BioMistral-7B. Il runtime owner resta \texttt{MR-01}; il contract runtime corrente usa naming non perfettamente coincidente e non viene corretto per inferenza dentro C7.
+
+\textbf{Boundary}\par
+Questo FR non stabilisce che \texttt{urgency=final\_urgency}, che \texttt{pathology=predicted\_pathology} o che \texttt{recommended\_action} sia gia' un campo runtime governato. Non qualifica correttezza clinica, reasoning o pathology. \texttt{RC-002} resta aperto.
+\end{ddtacore}
+
+\switchcolumn
+{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
+\vspace{0.15em}
+\begin{ddtareferentidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.78}{4.16}\selectfont
+\BACandidate{Stage4Verification} \BANew{}; \BACandidate{Stage4VerificationObservation} \BANew{}; \BACandidate{Stage4VerificationOutcome} \BANew{}.
+\end{ddtareferentidentified}
+\begin{ddtareferentaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.68}{4.05}\selectfont
+\BAAccepted{DermaTriageVerification}; \BAAccepted{DermaTriageVerificationProcedure}; \BAAccepted{AITriageSynthesis}; \BAAccepted{AITriageSynthesisContentContract}; \BAAccepted{BioMistral-7B}. Le identity Stage4 restano candidate.
+\end{ddtareferentaccepted}
+\begin{ddtapropositionidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.45}{3.82}\selectfont
+\texttt{BAP-FRC7-03-04-01} -- \texttt{produce} [CANDIDATE]\\par
+\hspace*{1em}\texttt{actor -> Stage4Verification}\\par
+\hspace*{1em}\texttt{input -> Stage4VerificationObservation}\\par
+\hspace*{1em}\texttt{result -> Stage4VerificationOutcome}\\par
+\hspace*{1em}\texttt{polarity = affirmative}\par
+\smallskip\emph{Candidate local structure / NOT ADMITTED:}\par
+\hspace*{1em}\texttt{operatorStructure.decisionRule}\par
+\hspace*{2em}\texttt{when -> valid JSON AND required five-field set present}\par
+\hspace*{2em}\texttt{resultAssignment -> Stage4VerificationOutcome = PASS}
+\end{ddtapropositionidentified}
+\begin{ddtapropositionaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.7}{4.08}\selectfont
+\texttt{--}\par
+\emph{Review gate: nuove identity e proposition restano candidate; nessuna promotion BA in questa versione.}
+\end{ddtapropositionaccepted}
+\begin{ddtaopenrelations}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.4}{3.76}\selectfont
+\textbf{Structured-content pressure.} Validita' JSON e presenza del field-set non vengono trasformate in cinque boolean property node. Il test oracle resta distinto dal runtime content contract; la riconciliazione dei nomi e di \texttt{recommended\_action} e' demandata a \texttt{RC-002}.
+\end{ddtaopenrelations}
+\end{paracol}
+%</PAGE-CONTENT:65>
+\clearpage
+%<PAGE-DESC:66>MR-C7 > DEC-C7-01 > FR-C7-04-01 [candidate] - Verifica end-to-end della pipeline DermaTriage
+%<PAGE-CONTENT:66>
+\PageHashFooter{\PageMDfive{66}}
+\subsubsection{FR-C7-04-01 [candidate] - Verifica end-to-end della pipeline DermaTriage}
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia proposta: \texttt{MR-C7} $\rightarrow$ \texttt{DEC-C7-01} $\rightarrow$ \texttt{FR-C7-04-01}. Review-only: nessuna promotion in questa versione.}\par
+
+\setlength{\columnsep}{7mm}
+\setlength{\columnseprule}{0.35pt}
+\columnratio{0.67}
+\begin{paracol}{2}
+{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
+\vspace{0.15em}
+\begin{ddtacore}[title={FunctionalRequirement candidate}]
+\fontsize{3.78}{4.16}\selectfont
+\begin{tabularx}{\linewidth}{L{39mm}Y}
+\toprule
+\textbf{ID} & \texttt{FR-C7-04-01} \\
+\textbf{Lifecycle} & \texttt{candidate} \\
+\textbf{Authority} & \texttt{CANDIDATE\_NON\_CURRENT} \\
+\textbf{Type} & \texttt{FunctionalRequirement} \\
+\textbf{Title} & Verifica end-to-end della pipeline DermaTriage \\
+\textbf{Parent Decision} & \texttt{DEC-C7-01} \\
+\textbf{Owning MR (derived)} & \texttt{MR-C7} \\
+\textbf{SpecializedRequirement relation} & 0 active instances \\
+\bottomrule
+\end{tabularx}
+
+\textbf{Functional obligation}\par
+Esercitare l'intero percorso image-based e determinare l'esito del controllo end-to-end sulla base dell'osservazione ottenuta e della pass condition applicabile.
+
+\textbf{Functional clauses / candidate \texttt{normativeClause [1..*]}}\par
+La procedura MUST esercitare all stages con image, age, sex e localization. L'expected observation MUST preservare una priorita' P1--P4, un Italian specialist e uno SLA time. Il valore \texttt{PASS} MUST essere assegnato quando la risposta e' completa e viene ottenuta in meno di 30 secondi. La completezza non viene ulteriormente definita per inferenza.
+
+\textbf{Current verification realization / test vector}\par
+Il controllo attraversa Stage 1--4 e il passaggio verso il risultato operativo. E' distinto dal test \texttt{POST /analyze}: il Full test non importa automaticamente il criterio `valid P-scale value' ne' la confidence attesa dall'endpoint test.
+
+\textbf{Boundary}\par
+Il tested lifecycle e' runtime end-to-end. La pipeline analitica resta posseduta da \texttt{MR-01}; la destinazione specialistica e' governata a livello \texttt{MR-02}; l'owner esatto dello SLA resta aperto. Il FR non riguarda B4 write-back o retraining.
+\end{ddtacore}
+
+\switchcolumn
+{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
+\vspace{0.15em}
+\begin{ddtareferentidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.78}{4.16}\selectfont
+\BACandidate{FullPipelineVerification} \BANew{}; \BACandidate{FullPipelineVerificationObservation} \BANew{}; \BACandidate{FullPipelineVerificationOutcome} \BANew{}.
+\end{ddtareferentidentified}
+\begin{ddtareferentaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.68}{4.05}\selectfont
+\BAAccepted{DermaTriageVerification}; \BAAccepted{DermaTriageVerificationProcedure}; \BAAccepted{OperationalTriagePriority}; \BAAccepted{SpecialistDestinationIndication}. Nessun BAReferent SLA viene introdotto finche' l'owner resta aperto.
+\end{ddtareferentaccepted}
+\begin{ddtapropositionidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.45}{3.82}\selectfont
+\texttt{BAP-FRC7-04-01-01} -- \texttt{produce} [CANDIDATE]\\par
+\hspace*{1em}\texttt{actor -> FullPipelineVerification}\\par
+\hspace*{1em}\texttt{input -> FullPipelineVerificationObservation}\\par
+\hspace*{1em}\texttt{result -> FullPipelineVerificationOutcome}\\par
+\hspace*{1em}\texttt{polarity = affirmative}\par
+\smallskip\emph{Candidate local structure / NOT ADMITTED:}\par
+\hspace*{1em}\texttt{operatorStructure.decisionRule}\par
+\hspace*{2em}\texttt{when -> <complete response> AND responseTime lt 30s}\par
+\hspace*{2em}\texttt{resultAssignment -> FullPipelineVerificationOutcome = PASS}
+\end{ddtapropositionidentified}
+\begin{ddtapropositionaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.7}{4.08}\selectfont
+\texttt{--}\par
+\emph{Review gate: nuove identity e proposition restano candidate; nessuna promotion BA in questa versione.}
+\end{ddtapropositionaccepted}
+\begin{ddtaopenrelations}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.4}{3.76}\selectfont
+\textbf{Completeness pressure.} `complete response' resta un criterio source-grounded non scomposto. \textbf{Cross-owner pressure.} Il test osserva significati governati in piu' rami senza trasferirli sotto C7; SLA resta senza BA identity accettata in questa review.
+\end{ddtaopenrelations}
+\end{paracol}
+%</PAGE-CONTENT:66>
+\clearpage
+%<PAGE-DESC:67>MR-C7 > DEC-C7-01 > FR-C7-05-01 [candidate] - Verifica dell'integrazione DermaTriage-B4
+%<PAGE-CONTENT:67>
+\PageHashFooter{\PageMDfive{67}}
+\subsubsection{FR-C7-05-01 [candidate] - Verifica dell'integrazione DermaTriage-B4}
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia proposta: \texttt{MR-C7} $\rightarrow$ \texttt{DEC-C7-01} $\rightarrow$ \texttt{FR-C7-05-01}. Review-only: nessuna promotion in questa versione.}\par
+
+\setlength{\columnsep}{7mm}
+\setlength{\columnseprule}{0.35pt}
+\columnratio{0.67}
+\begin{paracol}{2}
+{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
+\vspace{0.15em}
+\begin{ddtacore}[title={FunctionalRequirement candidate}]
+\fontsize{3.78}{4.16}\selectfont
+\begin{tabularx}{\linewidth}{L{39mm}Y}
+\toprule
+\textbf{ID} & \texttt{FR-C7-05-01} \\
+\textbf{Lifecycle} & \texttt{candidate} \\
+\textbf{Authority} & \texttt{CANDIDATE\_NON\_CURRENT} \\
+\textbf{Type} & \texttt{FunctionalRequirement} \\
+\textbf{Title} & Verifica dell'integrazione DermaTriage-B4 \\
+\textbf{Parent Decision} & \texttt{DEC-C7-01} \\
+\textbf{Owning MR (derived)} & \texttt{MR-C7} \\
+\textbf{SpecializedRequirement relation} & 0 active instances \\
+\bottomrule
+\end{tabularx}
+
+\textbf{Functional obligation}\par
+Esercitare i controlli B4 applicabili e determinare l'esito dei singoli controlli secondo le rispettive pass condition, senza inferire un risultato aggregato globale.
+
+\textbf{Functional clauses / candidate \texttt{normativeClause [1..*]}}\par
+La procedura MUST preservare sei control occurrences: JWT auth $\rightarrow$ \texttt{access\_token} returned; triage list $\rightarrow$ array of consulto objects; image download $\rightarrow$ image bytes; write result $\rightarrow$ HTTP 200; read outcome $\rightarrow$ outcome value; B4 health $\rightarrow$ Status OK. L'assenza di una aggregate rule impedisce di inferire `all six PASS -> overall PASS'.
+
+\textbf{Current verification realization / test vector}\par
+Binding correnti: \texttt{POST /api/v1/auth/token}; \texttt{GET /api/v1/triage/list}; \texttt{GET /api/v1/chatbot/documento/\{id\}}; \texttt{PUT /diagnostic-output}; \texttt{GET /validated-outcome}; \texttt{GET /api/v1/chatbot/health}. Le forme abbreviate dei path di test non vengono silently reconciled con eventuali path runtime piu' completi.
+
+\textbf{Boundary}\par
+Per scelta di review i sei controlli restano in un unico FR. Lo split futuro resta possibile se owner, security boundary, failure mode, change-impact o implementation trace mostrano autonomia sufficiente. Nessun transfer runtime viene duplicato per rappresentare il controllo.
+\end{ddtacore}
+
+\switchcolumn
+{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
+\vspace{0.15em}
+\begin{ddtareferentidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.78}{4.16}\selectfont
+\BACandidate{B4IntegrationVerification} \BANew{}; \BACandidate{B4IntegrationControlObservation} \BANew{}; \BACandidate{B4IntegrationControlOutcome} \BANew{}.
+\end{ddtareferentidentified}
+\begin{ddtareferentaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.68}{4.05}\selectfont
+\BAAccepted{DermaTriageVerification}; \BAAccepted{DermaTriageVerificationProcedure}; \BAAccepted{B4}; \BAAccepted{DermaTriageB4Client}; \BAAccepted{B4BearerJWT}; \BAAccepted{B4TriageOutcome}; \BAAccepted{ValidatedOutcome}. Le identity di verifica restano candidate.
+\end{ddtareferentaccepted}
+\begin{ddtapropositionidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.45}{3.82}\selectfont
+\texttt{BAP-FRC7-05-01-01} -- \texttt{produce} [CANDIDATE]\\par
+\hspace*{1em}\texttt{actor -> B4IntegrationVerification}\\par
+\hspace*{1em}\texttt{input -> B4IntegrationControlObservation}\\par
+\hspace*{1em}\texttt{result -> B4IntegrationControlOutcome}\\par
+\hspace*{1em}\texttt{polarity = affirmative}\par
+\smallskip\emph{Occurrence note:}\par
+La stessa proposition candidate e' pensata per i sei control occurrences; non implica sei nuove semantic proposition ne' un aggregate outcome. Le relative pass condition restano criterion-local.
+\end{ddtapropositionidentified}
+\begin{ddtapropositionaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.7}{4.08}\selectfont
+\texttt{--}\par
+\emph{Review gate: nuove identity e proposition restano candidate; nessuna promotion BA in questa versione.}
+\end{ddtapropositionaccepted}
+\begin{ddtaopenrelations}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.4}{3.76}\selectfont
+\textbf{Multiplicity/aggregation pressure.} Un FR aggregato contiene sei controlli con outcome individuali. La BA non dispone ancora di una struttura ammessa per esprimere `per each applicable control' o un aggregate result; non si inventa una conjunction globale.
+\end{ddtaopenrelations}
+\end{paracol}
+%</PAGE-CONTENT:67>
+\clearpage
+%<PAGE-DESC:68>MR-C7 > DEC-C7-01 > FR-C7-06-01 [candidate] - Verifica dei controlli operativi del ciclo di retraining
+%<PAGE-CONTENT:68>
+\PageHashFooter{\PageMDfive{68}}
+\subsubsection{FR-C7-06-01 [candidate] - Verifica dei controlli operativi del ciclo di retraining}
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia proposta: \texttt{MR-C7} $\rightarrow$ \texttt{DEC-C7-01} $\rightarrow$ \texttt{FR-C7-06-01}. Review-only: nessuna promotion in questa versione.}\par
+
+\setlength{\columnsep}{7mm}
+\setlength{\columnseprule}{0.35pt}
+\columnratio{0.67}
+\begin{paracol}{2}
+{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
+\vspace{0.15em}
+\begin{ddtacore}[title={FunctionalRequirement candidate}]
+\fontsize{3.78}{4.16}\selectfont
+\begin{tabularx}{\linewidth}{L{39mm}Y}
+\toprule
+\textbf{ID} & \texttt{FR-C7-06-01} \\
+\textbf{Lifecycle} & \texttt{candidate} \\
+\textbf{Authority} & \texttt{CANDIDATE\_NON\_CURRENT} \\
+\textbf{Type} & \texttt{FunctionalRequirement} \\
+\textbf{Title} & Verifica dei controlli operativi del ciclo di retraining \\
+\textbf{Parent Decision} & \texttt{DEC-C7-01} \\
+\textbf{Owning MR (derived)} & \texttt{MR-C7} \\
+\textbf{SpecializedRequirement relation} & 0 active instances \\
+\bottomrule
+\end{tabularx}
+
+\textbf{Functional obligation}\par
+Esercitare i controlli operativi esposti per il retraining e preservare le relative osservazioni, senza inferire una pass condition non documentata.
+
+\textbf{Functional clauses / candidate \texttt{normativeClause [1..*]}}\par
+La procedura MUST esercitare i controlli di status, check trigger, manual run, history e rollback. Le expected response correnti sono: version + corrections count + progress; stato trigger con \texttt{triggered/corrections/remaining}; background-task-started message; list of model versions; success oppure no-backup message. In assenza di una pass condition esplicita, la procedura MUST NOT completare per inferenza un valore \texttt{PASS/FAIL}.
+
+\textbf{Current verification realization / test vector}\par
+Binding correnti: \texttt{GET /admin/retraining/status}; \texttt{POST /check-and-trigger}; \texttt{POST /admin/retraining/run}; \texttt{GET /admin/retraining/history}; \texttt{POST /admin/retraining/rollback}. Il current state documentato mostra una sola correzione e 49 remaining rispetto al trigger 50.
+
+\textbf{Boundary}\par
+Il tested owner e' \texttt{MR-04}: trigger 50 disagreement corrections, label mapping, fine-tuning, deploy qualification e rollback policy restano adaptation semantics. Gli endpoint prompt update/reset/history sono inventariati ma non hanno qui un test contract source-closed; non viene creato un FR di prompt verification.
+\end{ddtacore}
+
+\switchcolumn
+{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
+\vspace{0.15em}
+\begin{ddtareferentidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.78}{4.16}\selectfont
+\BACandidate{RetrainingLifecycleVerification} \BANew{}; \BACandidate{RetrainingControlObservation} \BANew{}.
+\end{ddtareferentidentified}
+\begin{ddtareferentaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.68}{4.05}\selectfont
+\BAAccepted{DermaTriageVerification}; \BAAccepted{DermaTriageVerificationProcedure}; \BAAccepted{ClassifierAdaptationPath}; \BAAccepted{ClassifierAdaptationRollback}; \BAAccepted{ClassifierVersionStore}; \BAAccepted{ModelVersionTrackingStore}. Le nuove identity P06 restano candidate.
+\end{ddtareferentaccepted}
+\begin{ddtapropositionidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.45}{3.82}\selectfont
+\texttt{BAP-FRC7-06-01-01} -- \texttt{produce} [CANDIDATE]\\par
+\hspace*{1em}\texttt{actor -> RetrainingLifecycleVerification}\\par
+\hspace*{1em}\texttt{result -> RetrainingControlObservation}\\par
+\hspace*{1em}\texttt{polarity = affirmative}\par
+\smallskip\emph{No decisionRule candidate:}\par
+la fonte fornisce expected response ma non una pass condition. Un outcome \texttt{PASS/FAIL} non viene introdotto per uniformare artificialmente P06 agli altri verification FR.
+\end{ddtapropositionidentified}
+\begin{ddtapropositionaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.7}{4.08}\selectfont
+\texttt{--}\par
+\emph{Review gate: nuove identity e proposition restano candidate; nessuna promotion BA in questa versione.}
+\end{ddtapropositionaccepted}
+\begin{ddtaopenrelations}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.4}{3.76}\selectfont
+\textbf{Observation-without-outcome pressure.} Questo caso separa semanticamente esecuzione/observation dalla qualification. La verifica non acquisisce ownership di trigger, retraining strategy, candidate adoption o rollback policy posseduti da MR-04.
+\end{ddtaopenrelations}
+\end{paracol}
+%</PAGE-CONTENT:68>
+\clearpage
+%<PAGE-DESC:69>MR-C7 > DEC-C7-01 > FR-C7-07-01 [candidate] - Verifica dei quality gate assoluti del classificatore di urgenza
+%<PAGE-CONTENT:69>
+\PageHashFooter{\PageMDfive{69}}
+\subsubsection{FR-C7-07-01 [candidate] - Verifica dei quality gate assoluti del classificatore di urgenza}
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia proposta: \texttt{MR-C7} $\rightarrow$ \texttt{DEC-C7-01} $\rightarrow$ \texttt{FR-C7-07-01}. Review-only: nessuna promotion in questa versione.}\par
+
+\setlength{\columnsep}{7mm}
+\setlength{\columnseprule}{0.35pt}
+\columnratio{0.67}
+\begin{paracol}{2}
+{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
+\vspace{0.15em}
+\begin{ddtacore}[title={FunctionalRequirement candidate}]
+\fontsize{3.78}{4.16}\selectfont
+\begin{tabularx}{\linewidth}{L{39mm}Y}
+\toprule
+\textbf{ID} & \texttt{FR-C7-07-01} \\
+\textbf{Lifecycle} & \texttt{candidate} \\
+\textbf{Authority} & \texttt{CANDIDATE\_NON\_CURRENT} \\
+\textbf{Type} & \texttt{FunctionalRequirement} \\
+\textbf{Title} & Verifica dei quality gate assoluti del classificatore di urgenza \\
+\textbf{Parent Decision} & \texttt{DEC-C7-01} \\
+\textbf{Owning MR (derived)} & \texttt{MR-C7} \\
+\textbf{SpecializedRequirement relation} & 0 active instances \\
+\bottomrule
+\end{tabularx}
+
+\textbf{Functional obligation}\par
+Valutare separatamente i quality gate assoluti applicabili alla baseline del classificatore di urgenza, preservando target, valore osservato e stato del singolo criterio senza inferire un overall model acceptance result.
+
+\textbf{Functional clauses / candidate \texttt{normativeClause [1..*]}}\par
+La procedura MUST preservare quattro gate: HIGH sensitivity target 90\% con comparator binding ancora conflittuale \texttt{gt/ge}; false LOW rate \texttt{<5\%}; overall accuracy \texttt{>85\%}; AUC-ROC \texttt{>0.90}. Ogni observed value e relativo PASS/FAIL restano evidenza del controllo. Nessuna conjunction globale dei quattro gate viene inferita.
+
+\textbf{Current verification realization / test vector}\par
+Baseline corrente: HIGH sensitivity 90.24\% PASS; false LOW 7.93\% FAIL; overall accuracy 81.74\% FAIL; AUC-ROC 0.906 PASS. Macro F1, Weighted F1, False HIGH e MEDIUM precision sono metriche/evidenze ma non diventano quality gate senza un target source-supported.
+
+\textbf{Boundary}\par
+I gate assoluti della baseline restano distinti dai criteri comparativi di candidate adoption e dal controllo post-adoption/rollback posseduti da \texttt{MR-04}. Il conflitto \texttt{>90\%} vs \texttt{>=90\%} sul target HIGH sensitivity resta aperto e non viene risolto contando le occorrenze documentali.
+\end{ddtacore}
+
+\switchcolumn
+{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
+\vspace{0.15em}
+\begin{ddtareferentidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.78}{4.16}\selectfont
+\BACandidate{BaselineClassifierQualityVerification} \BANew{}; \BACandidate{BaselineClassifierQualityObservation} \BANew{}; \BACandidate{BaselineQualityGateOutcome} \BANew{}.
+\end{ddtareferentidentified}
+\begin{ddtareferentaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.68}{4.05}\selectfont
+\BAAccepted{DermaTriageVerification}; \BAAccepted{DermaTriageVerificationProcedure}; \BAAccepted{EfficientNet-B4}. Le identity baseline-quality restano candidate e non riusano automaticamente \texttt{ApplicableComparativeAcceptanceCriteria} di MR-04.
+\end{ddtareferentaccepted}
+\begin{ddtapropositionidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.45}{3.82}\selectfont
+\texttt{BAP-FRC7-07-01-01} -- \texttt{produce} [CANDIDATE]\\par
+\hspace*{1em}\texttt{actor -> BaselineClassifierQualityVerification}\\par
+\hspace*{1em}\texttt{input -> BaselineClassifierQualityObservation}\\par
+\hspace*{1em}\texttt{result -> BaselineQualityGateOutcome}\\par
+\hspace*{1em}\texttt{polarity = affirmative}\par
+\smallskip\emph{Criterion-local rule family / NOT ADMITTED:}\par
+\hspace*{1em}\texttt{HIGH sensitivity: target 90\%, comparator gt/ge unresolved}\par
+\hspace*{1em}\texttt{false LOW: lt 5\%}\par
+\hspace*{1em}\texttt{accuracy: gt 85\%}\par
+\hspace*{1em}\texttt{AUC-ROC: gt 0.90}\par
+\emph{PASS/FAIL restano valori del singolo gate, non BAReferent.}
+\end{ddtapropositionidentified}
+\begin{ddtapropositionaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.7}{4.08}\selectfont
+\texttt{--}\par
+\emph{Review gate: nuove identity e proposition restano candidate; nessuna promotion BA in questa versione.}
+\end{ddtapropositionaccepted}
+\begin{ddtaopenrelations}[top=3pt,bottom=3pt,left=5pt,right=5pt]
+\fontsize{3.4}{3.76}\selectfont
+\textbf{Per-gate outcome pressure.} Una sola FR contiene quattro criterion outcomes ma nessun overall result. \textbf{Comparator pressure.} \texttt{ge} emerge source-driven ma confligge con \texttt{gt} sullo stesso target; nessuna normalizzazione viene ammessa in questa review.
+\end{ddtaopenrelations}
+\end{paracol}
+%</PAGE-CONTENT:69>
+\clearpage
+%<PAGE-DESC:70>Registro Base Analysis - C7-P03..P07 review candidates
+%<PAGE-CONTENT:70>
+\PageHashFooter{\PageMDfive{70}}
+\section*{Registro Base Analysis - C7-P03..P07 review candidates}
+{\sffamily\scriptsize\color{DDTAGray}Registro review-only: identity e proposition sotto sono candidate e non aggiornano il registro accepted corrente finche' il gate congiunto non viene chiuso.}\par
+
+\begin{ddtacore}[title={Candidate BAReferent / BAProposition register}]
+\fontsize{3.48}{3.82}\selectfont
+\begin{tabularx}{\linewidth}{L{29mm}L{70mm}Y}
+\toprule
+\textbf{Owner candidate} & \textbf{Candidate BAReferent} & \textbf{Candidate proposition / note} \\
+\midrule
+\texttt{FR-C7-03-01} & Stage1Verification; Stage1VerificationObservation; Stage1VerificationOutcome & \texttt{BAP-FRC7-03-01-01 produce}; valid-urgency domain reuse; no ELSE/FAIL. \\
+\texttt{FR-C7-03-02} & Stage2Verification; Stage2VerificationObservation; Stage2VerificationOutcome & \texttt{BAP-FRC7-03-02-01 produce}; non-empty predicate; 5-part expected format non trasformato in pass conjunction. \\
+\texttt{FR-C7-03-03} & Stage3Verification; Stage3VerificationObservation; Stage3VerificationOutcome & \texttt{BAP-FRC7-03-03-01 produce}; \texttt{eq 5}; cardinalita' runtime riusata, non duplicata. \\
+\texttt{FR-C7-03-04} & Stage4Verification; Stage4VerificationObservation; Stage4VerificationOutcome & \texttt{BAP-FRC7-03-04-01 produce}; valid JSON + five-field set; \texttt{RC-002} resta aperto. \\
+\texttt{FR-C7-04-01} & FullPipelineVerification; FullPipelineVerificationObservation; FullPipelineVerificationOutcome & \texttt{BAP-FRC7-04-01-01 produce}; complete response + \texttt{lt 30s}; cross-owner runtime meaning. \\
+\texttt{FR-C7-05-01} & B4IntegrationVerification; B4IntegrationControlObservation; B4IntegrationControlOutcome & \texttt{BAP-FRC7-05-01-01 produce}; proposition family candidata per 6 occurrences; aggregate result non specificato. \\
+\texttt{FR-C7-06-01} & RetrainingLifecycleVerification; RetrainingControlObservation & \texttt{BAP-FRC7-06-01-01 produce}; observation-only; nessun outcome/pass rule source-closed. \\
+\texttt{FR-C7-07-01} & BaselineClassifierQualityVerification; BaselineClassifierQualityObservation; BaselineQualityGateOutcome & \texttt{BAP-FRC7-07-01-01 produce}; per-gate outcome; nessun overall acceptance result; \texttt{gt/ge} conflict. \\
+\bottomrule
+\end{tabularx}
+\end{ddtacore}
+
+\begin{ddtaopen}[title={Identity reuse obbligatorio nella review}]
+\fontsize{3.75}{4.1}\selectfont
+Le candidate verification identity non sostituiscono i runtime owner gia' governati. Devono riusare, quando pertinenti: \texttt{ImageUrgencyClassification}, \texttt{ClinicalDescription}, \texttt{ClinicalDescriptionContentContract}, \texttt{RetrievedHistoricalCases}, \texttt{AITriageSynthesis}, \texttt{AITriageSynthesisContentContract}, \texttt{OperationalTriagePriority}, \texttt{SpecialistDestinationIndication}, \texttt{B4}, \texttt{B4BearerJWT}, \texttt{B4TriageOutcome}, \texttt{ValidatedOutcome}, \texttt{ClassifierAdaptationPath}, \texttt{ClassifierAdaptationRollback}, \texttt{EfficientNet-B4}. Nessuna occurrence ri-crea queste identity sotto C7.
+\end{ddtaopen}
+
+\begin{ddtaquestions}
+\fontsize{3.72}{4.08}\selectfont
+Gate BA da eseguire con il lettore: (1) accettare o meno le identity verification per Stage 1--4 e full-pipeline; (2) decidere se P05 richiede un costrutto/identity di control occurrence o uno split successivo; (3) confermare che P06 debba fermarsi a observation; (4) decidere se \texttt{BaselineQualityGateOutcome} rappresenta correttamente un result per criterio senza suggerire un aggregate; (5) regression Mermaid prima di promuovere nuovi semantic fact.
+\end{ddtaquestions}
+%</PAGE-CONTENT:70>
+\clearpage
+%<PAGE-DESC:71>MR-C7 - Consolidamento lifecycle/owner e finding aperti per graph review
+%<PAGE-CONTENT:71>
+\PageHashFooter{\PageMDfive{71}}
+\section*{MR-C7 - Consolidamento lifecycle/owner per la graph review}
+{\sffamily\scriptsize\color{DDTAGray}Questa pagina e' un checkpoint di review: serve a verificare che la documentazione si combini senza fondere installazione, runtime, clinical review, adaptation e verification.}\par
+
+\setlength{\columnsep}{7mm}
+\setlength{\columnseprule}{0.35pt}
+\columnratio{0.62}
+\begin{paracol}{2}
+{\sffamily\large\bfseries\color{DDTANavy}Lifecycle / owner matrix}\par
+\vspace{0.15em}
+\begin{ddtacore}[title={Responsabilita' separate ma verificabili trasversalmente}]
+\fontsize{3.68}{4.05}\selectfont
+\begin{tabularx}{\linewidth}{L{28mm}L{27mm}Y}
+\toprule
+\textbf{Lifecycle} & \textbf{Owner} & \textbf{C7 relation} \\
+\midrule
+Environment preparation / startup & \texttt{MR-C6} & Readiness verifica lo stato successivo; non ri-esegue setup/startup. \\
+Runtime Stage 1--4 & \texttt{MR-01} & \texttt{FR-C7-03-01..04} verificano output/oracle senza riscrivere i runtime contract. \\
+Runtime end-to-end & \texttt{MR-01} + \texttt{MR-02} + SLA owner aperto & \texttt{FR-C7-04-01} attraversa piu' owner senza assorbirli. \\
+B4 runtime integration & owner runtime/integration gia' governati & \texttt{FR-C7-05-01} verifica 6 controls; nessun transfer duplicato. \\
+Clinical review/correction & \texttt{MR-03} & Nessun nuovo child C7 source-closed in questa review. \\
+Prompt evolution & \texttt{MR-04} & Endpoint inventariati, ma nessun verification contract/pass semantics sufficiente a creare un nuovo FR. \\
+CNN retraining / adaptation & \texttt{MR-04} & \texttt{FR-C7-06-01} osserva controlli operativi; policy e qualification restano MR-04. \\
+Baseline classifier quality & evaluation/quality lifecycle & \texttt{FR-C7-07-01} verifica gate assoluti; distinto da comparative adoption. \\
+\bottomrule
+\end{tabularx}
+\end{ddtacore}
+
+\switchcolumn
+{\sffamily\large\bfseries\color{DDTABlue}Open findings / graph pressure}\par
+\vspace{0.15em}
+\begin{ddtaopen}[title={Da preservare prima dei Mermaid e della security analysis}]
+\fontsize{3.65}{4.0}\selectfont
+\textbf{RC-002 - Stage 4 contract.} Oracle C7 usa \texttt{final\_urgency/confidence/reasoning/recommended\_action/predicted\_pathology}; il runtime owner non viene silently reconciled.\par
+\textbf{SLA/specialist.} \texttt{SpecialistDestinationIndication} e' governato; SLA owner/identity resta da chiudere prima di collegare semanticamente il full-pipeline result.\par
+\textbf{P05 aggregation.} Sei controlli, pass condition individuali, nessun overall rule.\par
+\textbf{P06 no pass condition.} Expected response non equivale a PASS criterion.\par
+\textbf{P07 baseline quality.} Quattro gate con esiti individuali; nessun overall model acceptance result. HIGH sensitivity conserva il conflict \texttt{gt/ge}.\par
+\textbf{Method pressure.} Domain/cardinality reuse; non-empty predicate; structured-content conformance; completeness; control multiplicity; observation-without-outcome; per-gate outcomes.
+\end{ddtaopen}
+
+\begin{ddtaquestions}
+\fontsize{3.65}{4.0}\selectfont
+Dopo la lettura di queste pagine, il prossimo gate proposto e': validare documentazione e BA candidate; quindi generare Mermaid per (a) lifecycle/owner topology, (b) runtime dataflow, (c) verification overlay e (d) adaptation feedback loop. Solo dopo il graph regression conviene promuovere i nuovi BA fact e usare la topologia come ingresso alla security analysis.
+\end{ddtaquestions}
+\end{paracol}
+%</PAGE-CONTENT:71>
+\clearpage
+%<PAGE-DESC:72>Registro Base Analysis - BAReferent e BAProposition
+%<PAGE-CONTENT:72>
+\PageHashFooter{\PageMDfive{72}}
 \section{Registro Base Analysis}
 
 \begin{ddtacore}[title={Sintesi BA corrente}]
@@ -5368,11 +6061,11 @@ ServiceHealthCheckResult & \textbf{\texttt{FR-C7-01-01}} \\
 ReadinessOutcome & \textbf{\texttt{FR-C7-01-01}} \\
 \bottomrule
 \end{tabularx}
-%</PAGE-CONTENT:62>
+%</PAGE-CONTENT:72>
 \clearpage
-%<PAGE-DESC:63>Registro Base Analysis - BAReferent C7-P02 - first acceptance
-%<PAGE-CONTENT:63>
-\PageHashFooter{\PageMDfive{63}}
+%<PAGE-DESC:73>Registro Base Analysis - BAReferent C7-P02 - first acceptance
+%<PAGE-CONTENT:73>
+\PageHashFooter{\PageMDfive{73}}
 \section*{Registro Base Analysis - BAReferent C7-P02}
 \begin{ddtacore}[title={CONTINUITA' DEL REGISTRO - C7-P02}]
 \fontsize{6.0}{6.6}\selectfont
@@ -5403,11 +6096,11 @@ B4IntegratedDiagnosisEndpointVerificationOutcome & \textbf{\texttt{FR-C7-02-02}}
 \fontsize{5.6}{6.15}\selectfont
 Lo split preserva la possibilita' di collegare separatamente implementation trace, SpecializedRequirement di sicurezza/prestazioni e verification evidence. Le identity sono accettate per autonomia semantica e downstream utility, non per la sola presenza di path HTTP distinti.
 \end{ddtaopenrelations}
-%</PAGE-CONTENT:63>
+%</PAGE-CONTENT:73>
 \clearpage
-%<PAGE-DESC:64>Registro Base Analysis - BAProposition
-%<PAGE-CONTENT:64>
-\PageHashFooter{\PageMDfive{64}}
+%<PAGE-DESC:74>Registro Base Analysis - BAProposition
+%<PAGE-CONTENT:74>
+\PageHashFooter{\PageMDfive{74}}
 \section*{Registro Base Analysis - BAProposition}
 \begin{ddtacore}[title={Continuita' del registro}]
 \fontsize{6.0}{6.6}\selectfont
@@ -5489,11 +6182,11 @@ Questa pagina continua il registro BA della pagina precedente. Il \textbf{grasse
 \textbf{\texttt{BAP-FRC7-02-02-01}} & \texttt{FR-C7-02-02} -- accepted \texttt{produce} (B4-integrated endpoint observation $\rightarrow$ verification outcome); nested \texttt{decisionRule} remains candidate/non-admitted, combines HTTP \texttt{eq 200} with governed B4 write-occurrence criterion reuse, and creates no duplicate transfer \\
 \bottomrule
 \end{tabularx}
-%</PAGE-CONTENT:64>
+%</PAGE-CONTENT:74>
 \clearpage
-%<PAGE-DESC:65>MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
-%<PAGE-CONTENT:65>
-\PageHashFooter{\PageMDfive{65}}
+%<PAGE-DESC:75>MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
+%<PAGE-CONTENT:75>
+\PageHashFooter{\PageMDfive{75}}
 \section{MR-01 - Inventario temporaneo transfer, contract e decisioni BA}
 
 \begin{ddtaopen}[title={PAGINA TEMPORANEA - AUDIT DATA-PATH MR-01 - DA CANCELLARE DOPO LA RIALLOCAZIONE DEI RISULTATI}]
@@ -5542,11 +6235,11 @@ la review ha confermato due lifecycle separabili e ha ora chiuso il parent test.
 \textbf{Decisione metodologica temporanea - necessity test di \texttt{correlate}:}
 \texttt{BAP-MR01-02} e \texttt{BAP-DEC01-02} sono rimosse dall'insieme attivo delle BAProposition candidate. Nei due passaggi sorgente, ``informazioni disponibili sul caso dermatologico'' e ``informazioni sintomatologiche disponibili sul caso'' descrivono il contesto del caso in analisi e gli input del comportamento di triage; non e' emersa una relazione governata, autonoma e interrogabile che richieda una proposition \texttt{correlate}. La rimozione non elimina i BAReferent ne' le proposition \texttt{produce} gia' candidate. Le occorrenze lessicali di ``correlation'' nella worklist restano domande aperte di binding/identity nei data contract e \textbf{non} indicano l'operatore BA \texttt{correlate}. L'operatore verra' riesaminato soltanto se evidence successiva mostrera' una relazione indipendente non ricostruibile tramite comportamento, identity e contract gia' governati. Questa nota e' temporanea e verra' cancellata a chiusura del case study dopo il consolidamento del risultato.
 \end{ddtaopen}
-%</PAGE-CONTENT:65>
+%</PAGE-CONTENT:75>
 \clearpage
-%<PAGE-DESC:66>Indice di integrita delle pagine
-%<PAGE-CONTENT:66>
-\PageHashFooter{\PageMDfive{66}}
+%<PAGE-DESC:76>Indice di integrita delle pagine
+%<PAGE-CONTENT:76>
+\PageHashFooter{\PageMDfive{76}}
 \section{Indice di integrita' delle pagine}
 
 \begin{ddtacore}[title={Regola di verifica}]
@@ -5622,15 +6315,25 @@ Ogni pagina possiede un MD5 del proprio contenuto canonico. Il calcolo esclude i
 \IntegrityRow{55}{MR-C6 > DEC-C6-01 > FR-C6-01-06 - Avvio del servizio API DermaTriage}{\PageMDfive{55}}
 \IntegrityRow{56}{MR-C7 - Verifica del sistema DermaTriage}{\PageMDfive{56}}
 \IntegrityRow{57}{MR-C7 > DEC-C7-01 - Verifica mediante controlli espliciti e criteri applicabili}{\PageMDfive{57}}
-\IntegrityRow{58}{MR-C7 > DEC-C7-01 - Worklist candidata di decomposizione C7-P01..P07}{\PageMDfive{58}}
+\IntegrityRow{58}{MR-C7 > DEC-C7-01 - C7-P03..P07 source-first review materialized}{\PageMDfive{58}}
 \IntegrityRow{59}{MR-C7 > DEC-C7-01 > FR-C7-01-01 - Verifica della readiness operativa del servizio DermaTriage}{\PageMDfive{59}}
 \IntegrityRow{60}{MR-C7 > DEC-C7-01 > FR-C7-02-01 - Verifica dell'endpoint di analisi diretta}{\PageMDfive{60}}
 \IntegrityRow{61}{MR-C7 > DEC-C7-01 > FR-C7-02-02 - Verifica dell'endpoint integrato B4}{\PageMDfive{61}}
-\IntegrityRow{62}{Registro Base Analysis - BAReferent e BAProposition}{\PageMDfive{62}}
-\IntegrityRow{63}{Registro Base Analysis - BAReferent C7-P02 - first acceptance}{\PageMDfive{63}}
-\IntegrityRow{64}{Registro Base Analysis - BAProposition}{\PageMDfive{64}}
-\IntegrityRow{65}{MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]}{\PageMDfive{65}}
-\IntegrityRow{66}{Indice di integrita delle pagine}{\PageMDfive{66}}
+\IntegrityRow{62}{MR-C7 > DEC-C7-01 > FR-C7-03-01 [candidate] - Verifica dello Stage 1 della pipeline DermaTriage}{\PageMDfive{62}}
+\IntegrityRow{63}{MR-C7 > DEC-C7-01 > FR-C7-03-02 [candidate] - Verifica dello Stage 2 della pipeline DermaTriage}{\PageMDfive{63}}
+\IntegrityRow{64}{MR-C7 > DEC-C7-01 > FR-C7-03-03 [candidate] - Verifica dello Stage 3 della pipeline DermaTriage}{\PageMDfive{64}}
+\IntegrityRow{65}{MR-C7 > DEC-C7-01 > FR-C7-03-04 [candidate] - Verifica dello Stage 4 della pipeline DermaTriage}{\PageMDfive{65}}
+\IntegrityRow{66}{MR-C7 > DEC-C7-01 > FR-C7-04-01 [candidate] - Verifica end-to-end della pipeline DermaTriage}{\PageMDfive{66}}
+\IntegrityRow{67}{MR-C7 > DEC-C7-01 > FR-C7-05-01 [candidate] - Verifica dell'integrazione DermaTriage-B4}{\PageMDfive{67}}
+\IntegrityRow{68}{MR-C7 > DEC-C7-01 > FR-C7-06-01 [candidate] - Verifica dei controlli operativi del ciclo di retraining}{\PageMDfive{68}}
+\IntegrityRow{69}{MR-C7 > DEC-C7-01 > FR-C7-07-01 [candidate] - Verifica dei quality gate assoluti del classificatore di urgenza}{\PageMDfive{69}}
+\IntegrityRow{70}{Registro Base Analysis - C7-P03..P07 review candidates}{\PageMDfive{70}}
+\IntegrityRow{71}{MR-C7 - Consolidamento lifecycle/owner e finding aperti per graph review}{\PageMDfive{71}}
+\IntegrityRow{72}{Registro Base Analysis - BAReferent e BAProposition}{\PageMDfive{72}}
+\IntegrityRow{73}{Registro Base Analysis - BAReferent C7-P02 - first acceptance}{\PageMDfive{73}}
+\IntegrityRow{74}{Registro Base Analysis - BAProposition}{\PageMDfive{74}}
+\IntegrityRow{75}{MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]}{\PageMDfive{75}}
+\IntegrityRow{76}{Indice di integrita delle pagine}{\PageMDfive{76}}
 %</PAGE-INTEGRITY-ROWS>
 \bottomrule
 \end{tabularx}
@@ -5638,5 +6341,5 @@ Ogni pagina possiede un MD5 del proprio contenuto canonico. Il calcolo esclude i
 
 \vspace{0.8mm}
 {\fontsize{4.8}{5.2}\selectfont\color{DDTAGray}Quando una pagina viene modificata intenzionalmente, cambia il suo MD5. Una variazione inattesa segnala una modifica da riesaminare prima di proseguire.}
-%</PAGE-CONTENT:66>
+%</PAGE-CONTENT:76>
 \end{document}

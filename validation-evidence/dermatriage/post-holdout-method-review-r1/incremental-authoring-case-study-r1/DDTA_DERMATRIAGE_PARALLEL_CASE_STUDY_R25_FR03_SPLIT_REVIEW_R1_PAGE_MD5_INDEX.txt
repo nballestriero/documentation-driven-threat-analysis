@@ -1,4 +1,4 @@
-DDTA_DERMATRIAGE_PARALLEL_CASE_STUDY_R25_FR03_SPLIT_REVIEW_R1 - Page MD5 Index
+DDTA_DERMATRIAGE_PARALLEL_CASE_STUDY_R25_FR03_SPLIT_REVIEW_R1_C7_P03_P07_REVIEW_R1 - Page MD5 Index
 Canonical payload: LaTeX content between PAGE-CONTENT markers; own printed MD5 excluded.
 Integrity-index page resolves all other page hashes and canonicalizes its own hash as <SELF>.
 
@@ -59,12 +59,22 @@ Page 54  b271663a34d89196ec3cc5da07a799b8  MR-C6 > DEC-C6-01 > FR-C6-01-05 - Ini
 Page 55  4a48d503ffc010c733ca14e2b7d35ada  MR-C6 > DEC-C6-01 > FR-C6-01-06 - Avvio del servizio API DermaTriage
 Page 56  102bb73d527c550361d49540f34e0d0d  MR-C7 - Verifica del sistema DermaTriage
 Page 57  086ccbf418f6545accc9d179d1e8598d  MR-C7 > DEC-C7-01 - Verifica mediante controlli espliciti e criteri applicabili
-Page 58  0872037f73ac68f5c907bacd8528ab34  MR-C7 > DEC-C7-01 - Worklist candidata di decomposizione C7-P01..P07
+Page 58  3d6434a24c425faa80ce5468b8e2392a  MR-C7 > DEC-C7-01 - C7-P03..P07 source-first review materialized
 Page 59  2b68023ed873eb0ed4f17eb01e7a96ff  MR-C7 > DEC-C7-01 > FR-C7-01-01 - Verifica della readiness operativa del servizio DermaTriage
 Page 60  77515cf68165b6ad69c1c8c91ad7d44f  MR-C7 > DEC-C7-01 > FR-C7-02-01 - Verifica dell'endpoint di analisi diretta
 Page 61  bbd93e05b580a7f7727cb538e5f04e87  MR-C7 > DEC-C7-01 > FR-C7-02-02 - Verifica dell'endpoint integrato B4
-Page 62  367f4656af9bebd5b63e0ef3e709e18b  Registro Base Analysis - BAReferent e BAProposition
-Page 63  6d742aced02c4f7553638cc4e3f7cfe5  Registro Base Analysis - BAReferent C7-P02 - first acceptance
-Page 64  0d0ecded1181724b8c66a338cb98afd8  Registro Base Analysis - BAProposition
-Page 65  42c63c876189a9d341da909c38484215  MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
-Page 66  2d1052164b94d2d02aed7c6ff730fd27  Indice di integrita delle pagine [INTEGRITY INDEX]
+Page 62  079dcee1a506a9bd40591c1676532ed7  MR-C7 > DEC-C7-01 > FR-C7-03-01 [candidate] - Verifica dello Stage 1 della pipeline DermaTriage
+Page 63  c68f512e08f57e3d5f872608298ebc14  MR-C7 > DEC-C7-01 > FR-C7-03-02 [candidate] - Verifica dello Stage 2 della pipeline DermaTriage
+Page 64  e96d187fad1a5cc33496a0c3eec5ede3  MR-C7 > DEC-C7-01 > FR-C7-03-03 [candidate] - Verifica dello Stage 3 della pipeline DermaTriage
+Page 65  551abfca21448b98b7e2d43c2aa9dffa  MR-C7 > DEC-C7-01 > FR-C7-03-04 [candidate] - Verifica dello Stage 4 della pipeline DermaTriage
+Page 66  f90b6eb71cc194e4df50c5177fc53f29  MR-C7 > DEC-C7-01 > FR-C7-04-01 [candidate] - Verifica end-to-end della pipeline DermaTriage
+Page 67  a5e01c1fd6acb0fc9e9ea70b03626d03  MR-C7 > DEC-C7-01 > FR-C7-05-01 [candidate] - Verifica dell'integrazione DermaTriage-B4
+Page 68  e0563e34c8c54b0f1b476be6007765b9  MR-C7 > DEC-C7-01 > FR-C7-06-01 [candidate] - Verifica dei controlli operativi del ciclo di retraining
+Page 69  a3dd980ffe2af8bd4b7a2d4a8a4b972a  MR-C7 > DEC-C7-01 > FR-C7-07-01 [candidate] - Verifica dei quality gate assoluti del classificatore di urgenza
+Page 70  b5899854b9498724ee2f778c1b504765  Registro Base Analysis - C7-P03..P07 review candidates
+Page 71  14f224c0a626f68a61bf866df0eee7ca  MR-C7 - Consolidamento lifecycle/owner e finding aperti per graph review
+Page 72  367f4656af9bebd5b63e0ef3e709e18b  Registro Base Analysis - BAReferent e BAProposition
+Page 73  6d742aced02c4f7553638cc4e3f7cfe5  Registro Base Analysis - BAReferent C7-P02 - first acceptance
+Page 74  0d0ecded1181724b8c66a338cb98afd8  Registro Base Analysis - BAProposition
+Page 75  42c63c876189a9d341da909c38484215  MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
+Page 76  bb71edd4a313233e828ca01f19fb5602  Indice di integrita delle pagine [INTEGRITY INDEX]

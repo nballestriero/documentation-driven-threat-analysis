@@ -824,10 +824,10 @@ DEC-C7-01 explicit verification procedure:                APPROVED / CURRENT_GOV
 FR-C7-01-01 readiness verification:                       APPROVED / CURRENT_GOVERNED
 FR-C7-02-01 direct-analysis endpoint verification:        APPROVED / CURRENT_GOVERNED
 FR-C7-02-02 B4-integrated endpoint verification:          APPROVED / CURRENT_GOVERNED
-MR-C7 residual FR decomposition:                          OPEN / C7-P03..P07 review worklist
-MR-C7 Base Analysis:                                      STARTED / analyzed through FR-C7-02-02
+MR-C7 residual FR decomposition:                          MATERIALIZED / C7-P03..P07 source-first candidate review
+MR-C7 Base Analysis:                                      STARTED / candidate BA materialized through C7-P07; no new BA acceptance
 MR-03 affected Base Analysis:                             REVALIDATION REQUIRED after documentation closure
-RC-002 Stage-4 output-contract reconciliation:            PAUSED until RC-021 owner review is stable
+RC-002 Stage-4 output-contract reconciliation:            PAUSED until RC-021 candidate BA/lifecycle-graph review checkpoint is stable
 Source -> hierarchy reconciliation RC-003+:              QUEUED after MR-family review / RC-002
 Accepted-BA graph regeneration after corrections:         BLOCKED until source/hierarchy cycle resumes/closes
 Canonical projection-profile full consolidation:          DEFERRED until documentation/BA correction closes
@@ -923,11 +923,11 @@ RC-016 selection
 RC-017 decisionRule relocation
 ```
 
-RC-021 has completed the first family-wide MR separation/classification pass for the current source set. The environment-preparation branch is complete for the current C6 scope. The verification branch has passed its MR and Decision gates and now the readiness and endpoint-verification FR gates: MR-C7, DEC-C7-01, FR-C7-01-01, FR-C7-02-01 and FR-C7-02-02 are CURRENT_GOVERNED. FR-C7-01-01 governs readiness through the current `GET /health` binding. C7-P02 is closed by two distinct verification responsibilities: direct analysis (`/analyze`) and B4-integrated diagnosis (`/diagnose`). `/stats` is not promoted to either readiness or endpoint pass/fail semantics. The residual `C7-P03..P07` labels remain review-only placeholders and must be reconstructed one family at a time before further FunctionalRequirement promotion. RC-021 stays open until that residual FR-level ownership review is stable.
+RC-021 has completed the first family-wide MR separation/classification pass for the current source set. The environment-preparation branch is complete for the current C6 scope. The verification branch has passed its MR and Decision gates and the readiness and endpoint-verification FR gates: MR-C7, DEC-C7-01, FR-C7-01-01, FR-C7-02-01 and FR-C7-02-02 are CURRENT_GOVERNED. FR-C7-01-01 governs readiness through the current `GET /health` binding. C7-P02 is closed by two distinct verification responsibilities: direct analysis (`/analyze`) and B4-integrated diagnosis (`/diagnose`). `/stats` is not promoted to either readiness or endpoint pass/fail semantics. The source-first reconstruction of residual `C7-P03..P07` is now materialized as candidate FR review pages: FR-C7-03-01 through FR-C7-03-04, FR-C7-04-01, FR-C7-05-01, FR-C7-06-01 and FR-C7-07-01. They remain CANDIDATE_NON_CURRENT and their newly introduced BA identities/propositions remain candidate; this checkpoint performs no FR or BA promotion. RC-021 stays open pending joint BA/lifecycle-owner graph review and an explicit promotion/rework gate.
 
-The working family currently preserves: MR-01 KEEP; MR-02 KEEP / STOP AT MR; MR-03 KEEP + REWORK candidate; MR-04 KEEP; initial training as a distinct lifecycle meaning but LOWER LEVEL for this checkpoint; MR-C6 approved/current; MR-C7 KEEP / APPROVED / CURRENT_GOVERNED with DEC-C7-01, FR-C7-01-01, FR-C7-02-01 and FR-C7-02-02 approved/current and residual FR decomposition still open. Documentation and Base Analysis proceed in parallel inside approved branches: documentation remains project authority, while BA is used immediately as a diagnostic representation test and may feed ambiguity or construct-pressure findings back to the appropriate layer without creating project meaning.
+The working family currently preserves: MR-01 KEEP; MR-02 KEEP / STOP AT MR; MR-03 KEEP + REWORK candidate; MR-04 KEEP; initial training as a distinct lifecycle meaning but LOWER LEVEL for this checkpoint; MR-C6 approved/current; MR-C7 KEEP / APPROVED / CURRENT_GOVERNED with DEC-C7-01, FR-C7-01-01, FR-C7-02-01 and FR-C7-02-02 approved/current. Residual C7 verification ownership has been source-reconstructed into candidate FRs without changing authority state. Documentation and Base Analysis proceed in parallel inside approved branches: documentation remains project authority, while candidate BA is used as a diagnostic representation test and may feed ambiguity or construct-pressure findings back to the appropriate layer without creating project meaning.
 
-FR-C7-01-01 remains the second independent DermaTriage regression case for the candidate relocation of `decisionRule` as `operatorStructure` of `produce`. C7-P02 adds controlled method pressure without promoting the construct: the source-grounded `/analyze` threshold justifies candidate comparison key `lt`; `valid P-scale value` requires governed-domain criterion reuse; and `/diagnose` requires governed-fact occurrence reuse for B4 write-back without inventing `b4Write=true` or duplicating the runtime transfer. The nested structure remains candidate/non-admitted until the planned Facial Access cross-corpus regression and explicit checkpoint are completed.
+FR-C7-01-01 remains the second independent DermaTriage regression case for the candidate relocation of `decisionRule` as `operatorStructure` of `produce`. C7-P02 adds source-driven `lt`, governed-domain criterion reuse and governed-fact occurrence reuse. The C7-P03..P07 review adds further non-promotional pressure cases: governed-domain validity, non-empty qualitative predicates, exact-cardinality equality, structured-content conformance, completeness plus timing, criterion-local outcomes without aggregate acceptance, an observation-only retraining control with no documented pass condition, and a `gt`/`ge` source conflict for baseline HIGH-sensitivity qualification. None of these pressures admits new criterion syntax or promotes `decisionRule`; the nested structure remains candidate/non-admitted pending joint BA review, the planned Facial Access cross-corpus regression and explicit checkpoint.
 
 For RC-002, the original Stage-4 evidence has been reopened, but final owner reconstruction remains paused until the RC-021 residual FR-level owner review is stable. The current runtime hint `MR-01 -> DEC-MR01-03 -> FR-MR01-03-04` is not authority. OR2's runtime Stage-4 description and OR5's Stage-4 verification oracle must remain distinct unless the project documentation establishes their relationship.
 
@@ -990,10 +990,12 @@ FR-C7-01-01 readiness verification approved/current; C7-P01 closed
 FR-C7-02-01 direct-analysis endpoint verification approved/current
 FR-C7-02-02 B4-integrated endpoint verification approved/current; C7-P02 closed
         ->
-C7-P03..P07 remain candidate review labels under DEC-C7-01
+C7-P03..P07 source-first reconstruction materialized as candidate FR review pages
+FR-C7-03-01..04; FR-C7-04-01; FR-C7-05-01; FR-C7-06-01; FR-C7-07-01
+no new FunctionalRequirement or BA promotion at this checkpoint
         ->
-analyze the remaining C7 FR families one at a time from the original verification documentation; C7-P03 is next   [NEXT]
-promote or rework each only after its own FR gate;
+jointly review candidate BA identities/propositions and lifecycle-owner Mermaid projections   [NEXT]
+promote, split, merge or rework only after explicit FR/BA gates;
 keep verification ownership distinct from runtime/adaptation/quality ownership
         ->
 decisionRule rebuild retains two positive DermaTriage regression cases; C7-P02 records source-driven `lt` plus governed-domain/governed-fact criterion-reuse pressure; complete Facial Access cross-corpus regression and checkpoint before any promotion
