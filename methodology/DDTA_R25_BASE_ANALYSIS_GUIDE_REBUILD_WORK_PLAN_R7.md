@@ -1,6 +1,6 @@
 # DDTA R25 - Base Analysis Guide Rebuild and DermaTriage Parallel Application Work Plan R7
 
-**Status:** ACTIVE / CURRENT FORWARD WORK PLAN - SOURCE-TO-HIERARCHY RECONCILIATION PAUSED AT RC-001 FOR A CONTROLLED BA CONSTRUCT-UNBLOCK CHECKPOINT; THEN RESUME RC-002+
+**Status:** ACTIVE / CURRENT FORWARD WORK PLAN - RC-021 WHOLE-LIFECYCLE BA/MERMAID COHERENCE CHECKPOINT; RC-002+ PAUSED UNTIL THIS CHECKPOINT IS STABLE
 
 **Plan lineage source baseline before adoption:** `1951e07`
 
@@ -8,11 +8,13 @@
 
 **Finding-register creation/execution baseline:** `3d1cd23` (MUST remain unchanged inside the existing finding register)
 
-**Current clean repository execution baseline for this R7 plan:** `e332663`
+**Current clean repository execution baseline for this R7 plan:** `994790fb5be5ec171dfcdbf87d3f9cbead21bc3f`
 
 **Current finding register:** `validation-evidence/dermatriage/post-holdout-method-review-r1/source-preservation-reconciliation-r1/DDTA_DERMATRIAGE_SOURCE_TO_HIERARCHY_FINDING_REGISTER_R1.md`
 
 **R7 control update:** RC-001 has source-closed documentation meaning but exposes a BA vocabulary/composition limit around persistence/storage, selection and retrieval/access. The finding-reconciliation sequence is therefore deliberately suspended after RC-001 documentation closure, a narrow construct-unblock checkpoint is executed, RC-001 BA is rebuilt from the unchanged corrected documentation, and the source-to-hierarchy review then resumes at RC-002. This update changes no method authority by itself.
+
+**R7 whole-lifecycle projection update:** after the C7-P03..P07 source-first review was materialized, RC-021 now requires a controlled whole-lifecycle BA-to-Mermaid coherence checkpoint before RC-002 resumes. This checkpoint consumes frozen BA snapshots, uses explicit View Contracts and `DDTA_BA_TO_MERMAID_PROJECTION_GUIDE_R1`, and may expose identity/naming/connectivity defects; it MUST NOT create project meaning, promote candidate BA, or replace the final Phase-B graph audit.
 
 **Predecessor:** `methodology/DDTA_R25_BASE_ANALYSIS_GUIDE_REBUILD_WORK_PLAN_R6.md`
 
@@ -481,6 +483,172 @@ After C0, rebuild the RC-001 BA once, record its disposition in the finding regi
 
 ---
 
+### 4.10 Controlled whole-lifecycle BA / Mermaid projection checkpoint (RC-021)
+
+#### 4.10.1 Purpose and authority boundary
+
+Before RC-002 resumes, perform a controlled whole-lifecycle projection checkpoint over the DermaTriage BA reconstructed so far.
+
+The checkpoint is diagnostic and non-promotional. It does not close Phase A, does not promote the C7-P03..P07 candidate FR/BA material, and does not replace the canonical Phase-B graph audit that must be rerun after the remaining source/hierarchy findings close.
+
+The authority chain is fixed:
+
+```text
+governed DDTA documentation
+        ->
+Base Analysis
+        -> frozen accepted BA snapshot
+        + separately frozen candidate/open overlay
+        ->
+explicit View Contract
+        ->
+DDTA_BA_TO_MERMAID_PROJECTION_GUIDE_R1
+        ->
+projection model
+        ->
+Mermaid serialization / rendered graph
+```
+
+No graph element may bypass the BA. Lifecycle grouping, left-to-right placement, subgraphs, lanes and renderer geometry are projection context only and MUST NOT create semantic edges, containment, ordering or ownership that are absent from BA.
+
+#### 4.10.2 Deterministic lifecycle placement profile
+
+For the whole-lifecycle views, use this left-to-right placement order unless later BA/source review demonstrates that the placement contract itself must change:
+
+```text
+1. environment preparation / installation
+2. initial training / baseline establishment
+3. production / runtime triage
+4. clinical review / correction
+5. continuous adaptation / retraining / adoption / rollback
+```
+
+Verification is a transversal lane. `MR-C7` controls may point to the BA identities/propositions they verify according to the declared view, but verification MUST NOT be rendered as a chronological production stage merely to satisfy the left-to-right layout.
+
+The placement sequence does not imply semantic edges such as `installation -> training -> runtime -> review -> retraining`. Every rendered semantic edge must still derive from an included BAProposition expanded according to the projection guide.
+
+#### 4.10.3 Frozen View Contracts and levels of detail
+
+Define and freeze three distinct View Contracts before generating their Mermaid output.
+
+```text
+WL-G0 - WHOLE-LIFECYCLE OVERVIEW
+Purpose:
+  show the principal identity/data/artifact/store/service continuity across lifecycle areas.
+Coverage:
+  selective accepted BA only, using an explicit frozen inclusion list of BAReferent IDs
+  and BAProposition IDs.
+Required visibility:
+  lifecycle placement context; reused identities; major cross-lifecycle flows;
+  model/data/store/artifact continuity where represented in BA.
+Must not:
+  invent summary edges; collapse distinct BA identities; use candidate/open facts;
+  omit included BA semantics merely for layout convenience.
+
+WL-G1 - WHOLE-LIFECYCLE DETAILED ACCEPTED-BA SNAPSHOT
+Purpose:
+  test current accepted BA coherence at the highest detail available at this checkpoint.
+Coverage:
+  every accepted BAReferent and accepted BAProposition included by the declared
+  whole-lifecycle scope; construct expansion follows the projection guide.
+Required visibility:
+  disconnected components; degree-zero referents; transfers; produces; stores;
+  realizations; constraints/annotations as supported by the guide; contributor provenance.
+Status:
+  diagnostic snapshot only; NOT the final Phase-B canonical graph closure.
+
+WL-G2 - CANDIDATE / OPEN DIAGNOSTIC OVERLAY
+Purpose:
+  show whether current disconnections or identity questions intersect candidate/open BA.
+Coverage:
+  WL-G1 plus separately identified candidate BAPropositions, candidate operatorStructure,
+  open relations and other explicitly declared candidate semantics.
+Must not:
+  make the accepted graph appear connected by treating candidate/open semantics as accepted;
+  become project or method authority by visual inclusion.
+```
+
+The same BA snapshot + same View Contract + same projection-guide version/configuration MUST regenerate semantically equivalent Mermaid output with stable IDs/order, subject only to renderer geometry that is explicitly classified as non-semantic.
+
+#### 4.10.4 Identity and naming continuity during projection
+
+Do not create a separate manual normalization table as an upstream authority. Naming/identity normalization is performed incrementally while generating the views and is controlled by BA identity.
+
+For every projected name or suspected alias, resolve one of these cases:
+
+```text
+A. SAME BAReferent ID, multiple textual names
+   -> one semantic identity;
+   -> choose/use the canonical BA display label;
+   -> retain aliases/source names as provenance or diagnostic metadata;
+   -> multiple VisualOccurrence instances are permitted when the View Contract requires them.
+
+B. DIFFERENT BAReferent IDs, analyst suspects same meaning
+   -> identity-review finding;
+   -> DO NOT merge in Mermaid;
+   -> return to BA/documentation provenance before changing identity.
+
+C. SAME textual label, different BAReferent IDs
+   -> naming collision;
+   -> visually disambiguate without semantic merge;
+   -> record the collision for BA/documentation review.
+
+D. Meaning needed by the view has no BAReferent identity
+   -> upstream BA/documentation gap or deliberate omission;
+   -> graph MUST NOT invent the missing identity.
+```
+
+The projection working record should therefore be able to emit an identity-continuity table containing at least:
+
+```text
+semanticReferentId
+canonicalLabel
+observed aliases / source labels
+VisualOccurrence IDs / lifecycle placement contexts
+contributing BAProposition IDs
+realization/binding annotations included in the view
+identity-review status
+```
+
+A repeated lifecycle occurrence of the same semanticReferentId is not a new BA identity. Visual aliasing follows the projection guide and remains traceable to the same BAReferent.
+
+#### 4.10.5 Projection-gap handling
+
+If WL-G0/G1/G2 cannot be generated deterministically using the frozen BA plus the current projection guide:
+
+```text
+if the documentation meaning is unclear:
+    return upstream to the source/documentation owner;
+else if BA identity/proposition extraction is incomplete or inconsistent:
+    correct/review BA before regenerating the graph;
+else if BA is clear but projection is under-specified:
+    record a BA-to-Mermaid projection-guide pressure case;
+    extend/rework projection rules only through an explicit review checkpoint;
+else:
+    preserve the graph limitation as an explicit diagnostic gap.
+```
+
+Graph appearance MUST NOT be used to repair BA, merge identities, add missing edges, or promote candidate semantics.
+
+#### 4.10.6 Exit gate before RC-002
+
+This controlled RC-021 checkpoint is stable enough to resume RC-002 only when:
+
+- the accepted BA input snapshot used by WL-G0/G1 is frozen and recorded;
+- the candidate/open overlay used by WL-G2 is separately frozen and recorded;
+- the lifecycle placement profile is frozen for the checkpoint;
+- WL-G0, WL-G1 and WL-G2 each have an explicit View Contract;
+- every rendered semantic node/edge/annotation is traceable to BA identity/proposition or to an explicitly non-semantic placement/style rule;
+- same-identity naming differences and same-name identity collisions have explicit dispositions;
+- disconnected accepted components are preserved and classified rather than visually repaired;
+- candidate/open semantics remain distinguishable from accepted semantics;
+- any required projection-guide changes have been reviewed without changing BA meaning;
+- C7-P03..P07 candidate BA receives an explicit promote/rework/split/hold disposition after the graph review.
+
+After this gate, resume RC-002 with runtime Stage-4 semantics and verification-oracle semantics still separated unless their relationship is independently established by project documentation.
+
+---
+
 ## 5. Phase B - Whole Base Analysis graph connectivity and coherence audit
 
 ### 5.1 Objective
@@ -494,6 +662,8 @@ The audit asks whether the accepted BA can be projected as one coherent graph/hy
 A disconnected component MUST NOT be repaired by inventing an unsupported relation. It must instead be classified.
 
 **Deferred projection-profile task.** After Phase A source/hierarchy corrections are closed and the affected BA is frozen, but before canonical graph regeneration, consolidate and freeze the projection/composition rules in the dedicated candidate guide `DDTA_BA_TO_MERMAID_PROJECTION_GUIDE_R1`. The BA Guide remains responsible for semantic identification and accepted BA structure; the projection guide consumes frozen BA and governs deterministic visual occurrences, composition/coalescing, annotation, style mapping, stable Mermaid serialization and renderer inputs. The RC-001 rollback working example `DDTA_R25_DERMATRIAGE_RC001_BA_TO_MERMAID_WORKING_EXAMPLE_R1` is retained as regression evidence beside the prior working graph checkpoint. Renderer geometry remains non-semantic, and graph appearance cannot drive upstream BA meaning.
+
+**Relationship to the RC-021 whole-lifecycle checkpoint.** The WL-G0/WL-G1/WL-G2 views from §4.10 are controlled diagnostic snapshots over the BA available before RC-002 resumes. They do not satisfy this Phase-B completion gate. After the remaining source/hierarchy findings close and affected BA is rebuilt, the canonical accepted graph and candidate overlay MUST be regenerated from the then-authoritative BA baseline.
 
 ### 5.2 Canonical graph input
 
@@ -783,13 +953,13 @@ Finding-register creation/execution baseline:
 3d1cd23
 ```
 
-Current clean repository execution baseline for this R7 plan:
+Current clean repository execution baseline for this R7 plan before the whole-lifecycle checkpoint update:
 
 ```text
-e332663
+994790fb5be5ec171dfcdbf87d3f9cbead21bc3f
 ```
 
-The finding register intentionally states that its execution baseline is `3d1cd23`; R7 MUST NOT rewrite that provenance field merely because the repository later advanced to `e332663`.
+The finding register intentionally states that its execution baseline is `3d1cd23`; R7 MUST NOT rewrite that provenance field merely because the repository later advanced to `994790fb5be5ec171dfcdbf87d3f9cbead21bc3f`.
 
 ### 11.2 Current state
 
@@ -807,7 +977,7 @@ RC-001 affected BA final rebuild:                        completed for checkpoin
 BA-to-Mermaid projection/composition guide R1:           created as candidate / non-normative
 RC-001 rollback projection regression example:           created / non-authority evidence
 RC-001 finding-register disposition:                     CLOSED for checkpoint
-RC-021 MR-family separation/classification:               active / C6 complete / C7 P02 split promoted
+RC-021 MR-family separation/classification:               active / C6 complete / C7 P03-P07 candidate review materialized / lifecycle graph checkpoint NEXT
 MR-03 rework + clinical-review tooling placeholders:      authored as candidate / review-only
 MR-C6 environment preparation:                            APPROVED / CURRENT_GOVERNED
 DEC-C6-01 explicit environment-setup procedure:           APPROVED / CURRENT_GOVERNED
@@ -825,10 +995,13 @@ FR-C7-01-01 readiness verification:                       APPROVED / CURRENT_GOV
 FR-C7-02-01 direct-analysis endpoint verification:        APPROVED / CURRENT_GOVERNED
 FR-C7-02-02 B4-integrated endpoint verification:          APPROVED / CURRENT_GOVERNED
 MR-C7 residual FR decomposition:                          MATERIALIZED / C7-P03..P07 source-first candidate review
-MR-C7 Base Analysis:                                      STARTED / candidate BA materialized through C7-P07; no new BA acceptance
+MR-C7 Base Analysis:                                      STARTED / candidate BA materialized through C7-P07; whole-lifecycle coherence review NEXT; no new BA acceptance
 MR-03 affected Base Analysis:                             REVALIDATION REQUIRED after documentation closure
-RC-002 Stage-4 output-contract reconciliation:            PAUSED until RC-021 candidate BA/lifecycle-graph review checkpoint is stable
+RC-002 Stage-4 output-contract reconciliation:            PAUSED until RC-021 whole-lifecycle BA/Mermaid checkpoint is stable
 Source -> hierarchy reconciliation RC-003+:              QUEUED after MR-family review / RC-002
+Whole-lifecycle WL-G0/G1/G2 checkpoint:                    NEXT / controlled pre-RC002 diagnostic
+Whole-lifecycle View Contracts:                           NOT YET FROZEN
+Identity/name continuity review:                         NOT YET RUN
 Accepted-BA graph regeneration after corrections:         BLOCKED until source/hierarchy cycle resumes/closes
 Canonical projection-profile full consolidation:          DEFERRED until documentation/BA correction closes
 Contract sufficiency regression:                         PENDING
@@ -983,31 +1156,42 @@ BA status: NOT ANALYZED UNTIL DOCUMENTATION CLOSED
 ### 11.7 Immediate next action
 
 ```text
-repository baseline fefaf45894df375a6e53ca0359fed0eceedc5660: C7 FR01 + decisionRule checkpoint saved
+repository baseline 994790fb5be5ec171dfcdbf87d3f9cbead21bc3f:
+C7-P03..P07 review materialized; no new FR/BA promotion
         ->
-FR-C7-01-01 readiness verification approved/current; C7-P01 closed
+freeze current accepted BA snapshot for the whole-lifecycle checkpoint
+freeze candidate/open BA as a separate diagnostic overlay
         ->
-FR-C7-02-01 direct-analysis endpoint verification approved/current
-FR-C7-02-02 B4-integrated endpoint verification approved/current; C7-P02 closed
+freeze lifecycle placement profile:
+installation/setup -> initial training -> runtime -> clinical review -> retraining/rollback
+verification remains a transversal lane, not a chronological stage
         ->
-C7-P03..P07 source-first reconstruction materialized as candidate FR review pages
-FR-C7-03-01..04; FR-C7-04-01; FR-C7-05-01; FR-C7-06-01; FR-C7-07-01
-no new FunctionalRequirement or BA promotion at this checkpoint
+define and freeze WL-G0 / WL-G1 / WL-G2 View Contracts
         ->
-jointly review candidate BA identities/propositions and lifecycle-owner Mermaid projections   [NEXT]
-promote, split, merge or rework only after explicit FR/BA gates;
-keep verification ownership distinct from runtime/adaptation/quality ownership
+generate WL-G0 whole-lifecycle overview deterministically from BA
         ->
-decisionRule rebuild retains two positive DermaTriage regression cases; C7-P02 records source-driven `lt` plus governed-domain/governed-fact criterion-reuse pressure; complete Facial Access cross-corpus regression and checkpoint before any promotion
+run incremental identity/name continuity review while projecting;
+same BAReferent ID => same semantic identity even when multiple VisualOccurrence are used;
+identity conflicts return upstream and are never normalized only in Mermaid
         ->
-resume RC-002 with runtime-vs-verification ownership separated when RC-021 is stable
+generate WL-G1 detailed current accepted-BA snapshot
+run connectivity / isolated-component / realization-continuity diagnostics
+        ->
+generate WL-G2 candidate/open diagnostic overlay
+keep candidate/open semantics visually and semantically distinct from accepted BA
+        ->
+if a real projection gap appears, review DDTA_BA_TO_MERMAID_PROJECTION_GUIDE_R1;
+do not change BA meaning to improve graph appearance
+        ->
+review C7-P03..P07 candidate BA and apply explicit promote/rework/split/hold gates
+        ->
+when RC-021 whole-lifecycle checkpoint is stable, resume RC-002
+with runtime Stage-4 vs verification-oracle ownership still separated
         ->
 continue RC-003, RC-004, ... one finding at a time
         ->
-after source/hierarchy findings close, consolidate/freeze the canonical projection profile
-under `DDTA_BA_TO_MERMAID_PROJECTION_GUIDE_R1`
-        ->
-regenerate the accepted BA graph deterministically
+after source/hierarchy findings close, rerun canonical Phase-B accepted graph regeneration
+from the then-authoritative BA baseline
         ->
 run full Phase C consolidation/regression
 ```
