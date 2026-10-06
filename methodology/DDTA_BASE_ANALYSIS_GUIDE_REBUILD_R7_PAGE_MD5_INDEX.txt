@@ -105,7 +105,7 @@ Page 100  f41a65968ca547a5a345f6c4cbd81495  15 - hasPart: identity continuity, i
 Page 101  ae79b3fcdad6bce7bfb669880ea61643  15 - hasPart: domande di identificazione e procedura di estrazione
 Page 102  14152ea348dddc960ecaed41687436ee  15 - hasPart: esempio generico e regression case DermaTriage MR-C6
 Page 103  3a3739c47e7fe4959e76a26cf8f53549  15 - hasPart: prompt LLM per l'identificazione controllata
-Page 104  5909273f6705064e320cf049e4d782d3  15 - hasPart: output BA atteso e discriminazioni
+Page 104  2fbba520a32ed9a5a9543ad9d107d027  15 - hasPart: output BA atteso e discriminazioni
 Page 105  74f217286e414a180c1737d8f6ec1e7e  15 - hasPart: projection Mermaid a containment e occurrence multiple
 Page 106  93b0ca8880dc4da988725c4a75ed437a  15 - hasPart: regole grafiche e worked example containment
 Page 107  3915eaee02f714ac47e0dfa764b2836f  Appendice temporanea - scopo, lineage e confine del rebuild
@@ -115,5 +115,5 @@ Page 110  435e9ecddb23d230df9cc32766e10610  Appendice temporanea - CDC direzione
 Page 111  9d02d27cc2ad8bb4e1b30d441667e854  Appendice temporanea - CDC campi 1-10
 Page 112  90b6659e5a0105e0cd7268d3f76137f6  Appendice temporanea - CDC campi 11-20
 Page 113  96ac5c53cc5c33d707253290bc04c6bd  Appendice temporanea - roadmap e registro dei costrutti da integrare/studiare
-Page 114  69b33e993864dd6a3a4c852a71c150b5  Indice di integrita' delle pagine [INTEGRITY INDEX]
+Page 114  fbe0fc968c66dd6e61d3109a0fa6ab31  Indice di integrita' delle pagine [INTEGRITY INDEX]
 Page 115  13cdd31df41e1d75e405e6ba020261fa  Appendice temporanea - laboratorio prove grafiche Mermaid da cancellare

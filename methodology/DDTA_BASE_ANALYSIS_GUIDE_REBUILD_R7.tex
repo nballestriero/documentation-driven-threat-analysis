@@ -131,7 +131,7 @@ Il contenuto di questa appendice governa \emph{come stiamo ricostruendo la guida
 \expandafter\def\csname PageMDfive101\endcsname{ae79b3fcdad6bce7bfb669880ea61643}
 \expandafter\def\csname PageMDfive102\endcsname{14152ea348dddc960ecaed41687436ee}
 \expandafter\def\csname PageMDfive103\endcsname{3a3739c47e7fe4959e76a26cf8f53549}
-\expandafter\def\csname PageMDfive104\endcsname{5909273f6705064e320cf049e4d782d3}
+\expandafter\def\csname PageMDfive104\endcsname{2fbba520a32ed9a5a9543ad9d107d027}
 \expandafter\def\csname PageMDfive105\endcsname{74f217286e414a180c1737d8f6ec1e7e}
 \expandafter\def\csname PageMDfive106\endcsname{93b0ca8880dc4da988725c4a75ed437a}
 \expandafter\def\csname PageMDfive107\endcsname{3915eaee02f714ac47e0dfa764b2836f}
@@ -141,7 +141,7 @@ Il contenuto di questa appendice governa \emph{come stiamo ricostruendo la guida
 \expandafter\def\csname PageMDfive111\endcsname{9d02d27cc2ad8bb4e1b30d441667e854}
 \expandafter\def\csname PageMDfive112\endcsname{90b6659e5a0105e0cd7268d3f76137f6}
 \expandafter\def\csname PageMDfive113\endcsname{96ac5c53cc5c33d707253290bc04c6bd}
-\expandafter\def\csname PageMDfive114\endcsname{69b33e993864dd6a3a4c852a71c150b5}
+\expandafter\def\csname PageMDfive114\endcsname{fbe0fc968c66dd6e61d3109a0fa6ab31}
 \expandafter\def\csname PageMDfive115\endcsname{13cdd31df41e1d75e405e6ba020261fa}
 %</PAGE-HASH-DEFS>
 
@@ -3545,6 +3545,10 @@ Se \texttt{decision != ACCEPT\_HAS\_PART}, \texttt{BA\_OUTPUT} non contiene una 
 \texttt{hasPart} vs storage/location/use & Memorizzazione, collocazione o uso possono coinvolgere gli stessi referent, ma non equivalgono a composizione. \\
 \bottomrule
 \end{tabularx}
+
+\begin{ddtaprinciple}[title={Composizione funzionale stabile, realization e comportamento runtime}]
+Quando una parte tecnica svolge una funzione logicamente distinguibile, la BA preserva, quando source-supported, la funzione come identita' stabile e la realizzazione concreta come identita' sostituibile. \texttt{hasPart} puo' descrivere la \textbf{composizione funzionale stabile} del whole strutturale governato --- per esempio il sistema o una funzione composta --- mentre \texttt{realize} collega la funzione alla realization corrente. Decision, \texttt{condition} e relazioni comportamentali descrivono quali parti partecipano e come interagiscono nei diversi scenari runtime: non ridefiniscono automaticamente la composizione. Un percorso, branch o scenario operativo diventa \texttt{whole} di \texttt{hasPart} soltanto quando la source ne governa realmente la composizione come tale, non per il solo fatto che selezioni, attivi o coordini funzioni gia' parte del sistema. La composizione dell'environment o del deployment costituisce un ulteriore asse distinto e non viene dedotta automaticamente dalla composizione funzionale ne' da \texttt{realize}.
+\end{ddtaprinciple}
 %</PAGE-CONTENT:104>
 
 \clearpage
