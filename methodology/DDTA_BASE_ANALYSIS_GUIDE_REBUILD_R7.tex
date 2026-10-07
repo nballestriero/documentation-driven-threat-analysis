@@ -41,7 +41,7 @@ Il contenuto di questa appendice governa \emph{come stiamo ricostruendo la guida
 \expandafter\def\csname PageMDfive11\endcsname{f0c4184f4f1ebcb7ce1ab9394c5c5209}
 \expandafter\def\csname PageMDfive12\endcsname{e3200807fcbf2aa290f0748b9c099b69}
 \expandafter\def\csname PageMDfive13\endcsname{b9028ef062953f4b7ab73bfb7ac7975c}
-\expandafter\def\csname PageMDfive14\endcsname{cf24da7acca0061993625715ee5b30c1}
+\expandafter\def\csname PageMDfive14\endcsname{23934a19c0820cfc4e2d1aaaaac74123}
 \expandafter\def\csname PageMDfive15\endcsname{17d66f19d9937e4c823ee9c212fb6ad8}
 \expandafter\def\csname PageMDfive16\endcsname{83b4a5ba93a8eb218e7a0816bb7e023a}
 \expandafter\def\csname PageMDfive17\endcsname{8063825cd44fdd393ef91bf9a5957e86}
@@ -78,13 +78,13 @@ Il contenuto di questa appendice governa \emph{come stiamo ricostruendo la guida
 \expandafter\def\csname PageMDfive48\endcsname{452922a9ba3eda4dd4fa6a64e3e8f262}
 \expandafter\def\csname PageMDfive49\endcsname{ea668a6b4e75d6ae2af23bddd09f313e}
 \expandafter\def\csname PageMDfive50\endcsname{8eaecceab767d383792c89556a2de0a5}
-\expandafter\def\csname PageMDfive51\endcsname{19e590e985946f03fa9d509114958c3b}
-\expandafter\def\csname PageMDfive52\endcsname{c1b9d6fafafa9462c73f4489fad3664d}
+\expandafter\def\csname PageMDfive51\endcsname{af4db5949e0aab4804e8a9cd6ace92e0}
+\expandafter\def\csname PageMDfive52\endcsname{fc50de66cce38880e9166f51bfb29b58}
 \expandafter\def\csname PageMDfive53\endcsname{ed20ede9432d24c5fee8c50f3d80f862}
 \expandafter\def\csname PageMDfive54\endcsname{9866d0d6f214e0b181ad9015f5137ad9}
-\expandafter\def\csname PageMDfive55\endcsname{52f8b97d73181ebc63f4ffc2419beed0}
-\expandafter\def\csname PageMDfive56\endcsname{1e66cad562b25b4881d43e62c217878b}
-\expandafter\def\csname PageMDfive57\endcsname{b4c3dc1c60fb207da9be278f13f0263e}
+\expandafter\def\csname PageMDfive55\endcsname{3505ea11275edcfd95f5eea19a71a5c4}
+\expandafter\def\csname PageMDfive56\endcsname{2e1a2c1b73e09d122c8929481c96b89f}
+\expandafter\def\csname PageMDfive57\endcsname{355deffe798b78d1fd962f60d355d796}
 \expandafter\def\csname PageMDfive58\endcsname{9ac0774d88929da648825995c1076378}
 \expandafter\def\csname PageMDfive59\endcsname{ff13530c402da52d442b404aa8b443d7}
 \expandafter\def\csname PageMDfive60\endcsname{d5d06eb1db7d0bce9416648ab93e2c02}
@@ -141,7 +141,7 @@ Il contenuto di questa appendice governa \emph{come stiamo ricostruendo la guida
 \expandafter\def\csname PageMDfive111\endcsname{9d02d27cc2ad8bb4e1b30d441667e854}
 \expandafter\def\csname PageMDfive112\endcsname{90b6659e5a0105e0cd7268d3f76137f6}
 \expandafter\def\csname PageMDfive113\endcsname{96ac5c53cc5c33d707253290bc04c6bd}
-\expandafter\def\csname PageMDfive114\endcsname{fbe0fc968c66dd6e61d3109a0fa6ab31}
+\expandafter\def\csname PageMDfive114\endcsname{17bb90d1f18324a0081f08c8ee442e76}
 \expandafter\def\csname PageMDfive115\endcsname{13cdd31df41e1d75e405e6ba020261fa}
 %</PAGE-HASH-DEFS>
 
@@ -446,6 +446,10 @@ Se nessuna di queste esigenze esiste e la rimozione dell'identita' non fa perder
 \begin{ddtacore}[title={Working model di \texttt{semanticKind}}]
 Per mantenere il modello operativo e interrogabile senza introdurre proposition di typing prive di pressione concreta, questa R7 usa \texttt{semanticKind} direttamente sul \BAR{} come chiave controllata methodology-neutral: \texttt{semanticKind [0..*]}. Il kind non crea una nuova famiglia BA1. Provenance e review restano, per ora, alla granularita' del BAReferent; non viene introdotto un lifecycle separato per il singolo kind. La cardinalita' multipla resta disponibile ma si usa il minimo insieme sufficiente di kind realmente utile ai consumer.
 \end{ddtacore}
+
+\begin{ddtaprinciple}[title={Identita' di configurazione attiva}]
+Quando la source identifica una configurazione attiva come insieme riconoscibile di proprieta', binding, componenti o versioni che qualifica il sistema o il suo environment, applicare il normale identity test. Se l'insieme deve essere riusato, confrontato fra baseline, seguito attraverso change/revalidation o interrogato per impact/security analysis, la configurazione puo' costituire un \BAR{} autonomo. La promozione dell'insieme non promuove automaticamente le singole entry a BAReferent e non rende normative versioni o valori documentati soltanto come current realization. Un software-composition/BOM profile puo' quindi avere identita' BA anche quando package e versioni restano realization facts.
+\end{ddtaprinciple}
 
 La presenza lessicale, da sola, non basta: tecnologie, valori, campi e sostantivi diventano referent solo quando serve davvero un'identita' analitica indipendente.
 %</PAGE-CONTENT:14>
@@ -1600,6 +1604,13 @@ constraintValue -> <BAReferent>
 \end{lstlisting}
 Esempio: \texttt{ClinicalDescriptionContentContract}. Il nome non e' un'etichetta grafica: e' un BAReferent riusabile e change-addressable.
 
+La stessa forma copre un configuration profile con identita' BA indipendente:
+\begin{lstlisting}
+DermaTriageEnvironment
+  constrained by -> HardwareConfigurationProfile
+\end{lstlisting}
+\texttt{HardwareConfigurationProfile} resta un normale BAReferent usato come \texttt{constraintValue}: non introduce un ruolo \texttt{constraintSpecification}, un nuovo operatore o una terza shape di \texttt{constrain}. Il profilo puo' essere aperto a un livello successivo mediante ulteriori proposition che ne rendono interrogabile la struttura governata.
+
 \textbf{B. Constraint locale.} Quando non serve una nuova identita' BA, la restriction resta inline. Puo' essere un dominio locale controllato, oppure una struttura di proprieta':
 \begin{lstlisting}
 constraintValue
@@ -1631,14 +1642,17 @@ Questa catena permette di distinguere \emph{a quale dato si applica il contratto
 \begin{itemize}
   \item ogni proposition accettata possiede esattamente un \texttt{constraintTarget} e almeno un \texttt{constraintValue};
   \item un BAReferent usato come constraint nominato richiede normale giustificazione BA1 di identita' indipendente;
-  \item \texttt{property} e i valori locali non diventano automaticamente BAReferent;
+  \item un configuration profile accettato come BAReferent puo' essere \texttt{constraintValue} quando la source governa che il target debba rispettare quella configurazione;
+  \item l'identita' del profilo non rende automaticamente normative le sue entry e non promuove automaticamente property, package, versioni o valori locali a BAReferent;
+  \item un profilo software/BOM puo' restare analiticamente riusabile per change, vulnerability e supply-chain impact anche quando le singole versioni sono current realization;
+  \item un configuration profile puo' a sua volta essere \texttt{constraintTarget} di proposition piu' fini quando la struttura interna e' source-supported;
   \item \texttt{presence -> required} afferma la presenza della proprieta'; la sola \texttt{vocabulary} non la implica;
   \item piu' constraintValue restano nella stessa proposition soltanto se la stessa asserzione governata li applica allo stesso target e scope;
   \item una restriction sul content non si propaga automaticamente al behavior di transfer, e una restriction sul behavior non modifica automaticamente lo schema del content.
 \end{itemize}
 
 \subsection{Forbidden inference}
-Dal solo \texttt{constrain} non inferire il valore runtime osservato, validazione riuscita, enforcement mechanism, algoritmo, ordine di valutazione, selection, mapping decisionale, produzione, transfer, ownership, responsibility, encryption effettivamente applicata o conformita' di una specifica occorrenza. Un allowed domain non dice quale valore verra' scelto; un data contract non dice da solo chi invia o riceve il dato.
+Dal solo \texttt{constrain} non inferire il valore runtime osservato, validazione riuscita, enforcement mechanism, \emph{apply/load} della configurazione, algoritmo, ordine di valutazione, selection, mapping decisionale, produzione, transfer, ownership, responsibility, encryption effettivamente applicata o conformita' di una specifica occorrenza. \texttt{Target constrain Profile} afferma il vincolo governato, non che una procedura applichi materialmente il profilo. Un allowed domain non dice quale valore verra' scelto; un data contract non dice da solo chi invia o riceve il dato.
 %</PAGE-CONTENT:52>
 \clearpage
 %<PAGE-DESC:53>10 - constrain: domande di identificazione e procedura di estrazione
@@ -1738,20 +1752,26 @@ Rules:
 3. Reuse existing BAReferents when semantic identity is unchanged.
 4. Use a named constraint BAReferent only when independent BA1 identity is
    justified; otherwise keep the restriction local.
-5. For local structured constraints, use only governed property, presence and
+5. When the source identifies an active configuration/profile as a stable set
+   that must be reused, compared across baselines or queried for change/security
+   impact, apply BA1 to the set itself; do not keep it local merely because its
+   entries are concrete.
+6. Promoting a configuration/profile does not promote its entries. Preserve
+   package/version/BOM or current-realization facts without inventing normativity.
+7. For local structured constraints, use only governed property, presence and
    vocabulary information. Do not invent schema fields.
-6. presence=required only when the source explicitly requires presence.
-7. vocabulary does not imply presence.
-8. Preserve the distinction between content constraints and transfer-behavior
-   constraints. Do not move a restriction between them without source support.
-9. Do not turn runtime values, validation results, decision mappings, selection,
-   production or transfer semantics into constrain.
-10. Keep multiple constraintValue entries together only when they share the same
+8. presence=required only when the source explicitly requires presence.
+9. vocabulary does not imply presence.
+10. Preserve the distinction between content constraints and transfer-behavior
+    constraints. Do not move a restriction between them without source support.
+11. Do not turn runtime values, validation results, decision mappings, selection,
+    production, transfer or configuration-application behavior into constrain.
+12. Keep multiple constraintValue entries together only when they share the same
     governed target and assertion scope.
-11. Use polarity=negative only for an explicitly negated restriction assertion.
-12. Add condition/temporalScope only when explicitly governed.
-13. If target or every restriction value is missing, return INSUFFICIENT_EVIDENCE.
-14. Do not invent operators, roles, states, BAReferents or metadata.
+13. Use polarity=negative only for an explicitly negated restriction assertion.
+14. Add condition/temporalScope only when explicitly governed.
+15. If target or every restriction value is missing, return INSUFFICIENT_EVIDENCE.
+16. Do not invent operators, roles, states, BAReferents or metadata.
 
 Return EXACTLY the authoring wrapper and BA output shape shown next.
 \end{lstlisting}
@@ -1794,6 +1814,8 @@ BA_OUTPUT
 
 Se \texttt{decision != ACCEPT\_CONSTRAIN}, \texttt{BA\_OUTPUT} non contiene una proposition \texttt{constrain} accettabile. \texttt{constraintForm} e \texttt{targetKind} sono soltanto controlli di authoring per evitare che la scelta della rappresentazione alteri il significato governato.
 
+Un configuration profile riusabile usa \texttt{constraintForm = NAMED\_REFERENT} e compare nel BA output come normale \texttt{constraintValue -> <BAReferent>}. Non introdurre campi ad hoc come \texttt{constraintSpecification}; l'eventuale decomposizione del profilo avviene con proposition BA ulteriori e source-supported.
+
 \subsection{Discriminazioni con altri costrutti}
 -
 %</PAGE-CONTENT:56>
@@ -1811,10 +1833,12 @@ La projection mantiene visibile il \texttt{constraintTarget} e colloca la restri
 \midrule
 Content / dato trasferito & Constraint accanto al nodo documento/content. Source e destination continuano a leggere lo stesso BAReferent informativo. \\
 Transfer behavior & Constraint accanto al BAReferent del behavior/segmento di transfer, non al content. \\
-Constraint nominato & Nodo riusabile collegato al target con linea tratteggiata \texttt{constrain}. \\
+Constraint nominato & Nodo riusabile collegato al target con linea tratteggiata \texttt{constrain}. Un configuration profile usa questa stessa projection. \\
 Constraint locale strutturato & Nota/card vicina al target, con le sole property/presence/vocabulary governate. \\
 \bottomrule
 \end{tabularx}
+
+Per un configuration profile, una view meno dettagliata puo' fermarsi al BAReferent del profilo e alla proposition \texttt{target constrain profile}; una view successiva puo' aprire il profilo mostrando constraint interni source-supported. Il cambio di livello e' una scelta del View Contract: non crea una nuova semantica e non autorizza a inventare detail assenti dalla BA.
 
 \begin{lstlisting}
 flowchart LR

@@ -1,4 +1,4 @@
-DDTA_BASE_ANALYSIS_GUIDE_REBUILD_R7 - Page MD5 Index
+DDTA_BASE_ANALYSIS_GUIDE_REBUILD_R7_CONFIGURATION_PROFILE_WORKING_R1 - Page MD5 Index
 Canonical payload: LaTeX content between PAGE-CONTENT markers; own printed MD5 excluded.
 Integrity-index page resolves all other page hashes and canonicalizes its own hash as <SELF>.
 
@@ -15,7 +15,7 @@ Page 10  9fdf9a0139ea36eaa577008c81fb109f  3 - Dal testo documentale al signific
 Page 11  f0c4184f4f1ebcb7ce1ab9394c5c5209  3 - Governed semantic fact
 Page 12  e3200807fcbf2aa290f0748b9c099b69  3 - Segmentazione, ambiguita e livello documentale
 Page 13  b9028ef062953f4b7ab73bfb7ac7975c  4 - Elementi fondamentali della Base Analysis
-Page 14  cf24da7acca0061993625715ee5b30c1  4 - BAReferent: identita analitica riusabile
+Page 14  23934a19c0820cfc4e2d1aaaaac74123  4 - BAReferent: identita analitica riusabile
 Page 15  17d66f19d9937e4c823ee9c212fb6ad8  4 - BAReferent: esempi DermaTriage e confini
 Page 16  83b4a5ba93a8eb218e7a0816bb7e023a  4 - BAProposition: asserzione analitica identificabile
 Page 17  8063825cd44fdd393ef91bf9a5957e86  4 - BAReferent e BAProposition insieme
@@ -52,13 +52,13 @@ Page 47  541905031f0138d136150e7ae4a8c356  9 - realize: output BA atteso e discr
 Page 48  452922a9ba3eda4dd4fa6a64e3e8f262  9 - realize: rappresentazione Mermaid
 Page 49  ea668a6b4e75d6ae2af23bddd09f313e  9 - realize: esempio grafico Mermaid
 Page 50  8eaecceab767d383792c89556a2de0a5  10 - constrain: definizione, smallest fact e criteri d'uso
-Page 51  19e590e985946f03fa9d509114958c3b  10 - constrain: firma canonica e forme di constraintValue
-Page 52  c1b9d6fafafa9462c73f4489fad3664d  10 - constrain: identity continuity, invarianti e forbidden inference
+Page 51  af4db5949e0aab4804e8a9cd6ace92e0  10 - constrain: firma canonica e forme di constraintValue
+Page 52  fc50de66cce38880e9166f51bfb29b58  10 - constrain: identity continuity, invarianti e forbidden inference
 Page 53  ed20ede9432d24c5fee8c50f3d80f862  10 - constrain: domande di identificazione e procedura di estrazione
 Page 54  9866d0d6f214e0b181ad9015f5137ad9  10 - constrain: esempio generico e worked example DermaTriage corrente
-Page 55  52f8b97d73181ebc63f4ffc2419beed0  10 - constrain: prompt LLM per l'identificazione controllata
-Page 56  1e66cad562b25b4881d43e62c217878b  10 - constrain: output BA atteso e discriminazioni differite
-Page 57  b4c3dc1c60fb207da9be278f13f0263e  10 - constrain: rappresentazione Mermaid
+Page 55  3505ea11275edcfd95f5eea19a71a5c4  10 - constrain: prompt LLM per l'identificazione controllata
+Page 56  2e1a2c1b73e09d122c8929481c96b89f  10 - constrain: output BA atteso e discriminazioni differite
+Page 57  355deffe798b78d1fd962f60d355d796  10 - constrain: rappresentazione Mermaid
 Page 58  9ac0774d88929da648825995c1076378  10 - constrain: esempio grafico Mermaid composto con transfer
 Page 59  ff13530c402da52d442b404aa8b443d7  11 - condition: definizione, smallest fact e criteri d'uso
 Page 60  d5d06eb1db7d0bce9416648ab93e2c02  11 - condition: forma canonica, scope locale e cardinalita
@@ -115,5 +115,5 @@ Page 110  435e9ecddb23d230df9cc32766e10610  Appendice temporanea - CDC direzione
 Page 111  9d02d27cc2ad8bb4e1b30d441667e854  Appendice temporanea - CDC campi 1-10
 Page 112  90b6659e5a0105e0cd7268d3f76137f6  Appendice temporanea - CDC campi 11-20
 Page 113  96ac5c53cc5c33d707253290bc04c6bd  Appendice temporanea - roadmap e registro dei costrutti da integrare/studiare
-Page 114  fbe0fc968c66dd6e61d3109a0fa6ab31  Indice di integrita' delle pagine [INTEGRITY INDEX]
+Page 114  17bb90d1f18324a0081f08c8ee442e76  Indice di integrita' delle pagine [INTEGRITY INDEX]
 Page 115  13cdd31df41e1d75e405e6ba020261fa  Appendice temporanea - laboratorio prove grafiche Mermaid da cancellare

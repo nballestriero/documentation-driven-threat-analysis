@@ -18,7 +18,7 @@
 \providecommand{\passthrough}[1]{#1}
 %<PAGE-HASH-DEFS>
 \expandafter\def\csname PageMDfive1\endcsname{7289db2d0692a47b1d1013b12077997f}
-\expandafter\def\csname PageMDfive2\endcsname{14ee0b08318ee0c7e0fbe0df6796b7e5}
+\expandafter\def\csname PageMDfive2\endcsname{015c757c3dc4118c78c6d2960996936e}
 \expandafter\def\csname PageMDfive3\endcsname{22e57dfc4b4f586235f8aed3c522a7e2}
 \expandafter\def\csname PageMDfive4\endcsname{3bdac4b5fec97501c23d7968bf1619d5}
 \expandafter\def\csname PageMDfive5\endcsname{b69ae801bbd9fab0dd9722c5416054c4}
@@ -54,7 +54,7 @@
 \expandafter\def\csname PageMDfive35\endcsname{ddda2e275d829cad56c4dadb9a70d4ae}
 \expandafter\def\csname PageMDfive36\endcsname{f15a3bb4200cf549e5828495b75c4384}
 \expandafter\def\csname PageMDfive37\endcsname{e4a9d2dd8df5e956a76592038b883979}
-\expandafter\def\csname PageMDfive38\endcsname{75fb1fdc83af88cce5cf926df26987e1}
+\expandafter\def\csname PageMDfive38\endcsname{8b94f41bede4a3f9786ab2efb9d33ed5}
 \expandafter\def\csname PageMDfive39\endcsname{76fa920eae92f2bb829a2743a84b30a8}
 \expandafter\def\csname PageMDfive40\endcsname{e7136268d32bf6086596d5f030a947ad}
 \expandafter\def\csname PageMDfive41\endcsname{9bc0e63e85d2d026b925a81ded38de52}
@@ -62,7 +62,12 @@
 \expandafter\def\csname PageMDfive43\endcsname{9c03ac3e778c27333ef2d51de02f6eb2}
 \expandafter\def\csname PageMDfive44\endcsname{fbc67bc514bb10a6d2c69b4728ffd1ba}
 \expandafter\def\csname PageMDfive45\endcsname{e7298e5d8dcc77d5ea99741209730c0c}
-\expandafter\def\csname PageMDfive46\endcsname{477aa90c4377838130c76cffe2e7a58d}
+\expandafter\def\csname PageMDfive46\endcsname{5f5b0c26e4dacb02b8f71d3721b126bb}
+\expandafter\def\csname PageMDfive47\endcsname{3e4344fc346cd8db52a9d36deb9c1e3b}
+\expandafter\def\csname PageMDfive48\endcsname{e20b6314acab5f7db4f66b3254fe6590}
+\expandafter\def\csname PageMDfive49\endcsname{6fe18d01371bbfc2ba0a3c4877ed183c}
+\expandafter\def\csname PageMDfive50\endcsname{89ce247f911f19826656691138e0c416}
+\expandafter\def\csname PageMDfive51\endcsname{a7543abb9f190d58353750bbd106939b}
 %</PAGE-HASH-DEFS>
 
 \newcommand{\PageHashFooter}[1]{%
@@ -109,13 +114,12 @@
 \PageHashFooter{\PageMDfive{2}}
 \section{Step 0 - Project Problem Framing}
 
-\begin{ddtaopen}[title={RIQUADRO TEMPORANEO - WORKING SET E RIFERIMENTI - DA CANCELLARE PRIMA DELLA VERSIONE FINALE}]
-{\scriptsize
-\textbf{Artefatti attivi:} \nolinkurl{DDTA_DOCUMENTATION_AUTHORING_GUIDE_R7_REBUILD_R8.tex}; \nolinkurl{DDTA_BASE_ANALYSIS_GUIDE_REBUILD_R7.tex}; \nolinkurl{DDTA_DERMATRIAGE_PARALLEL_CASE_STUDY_R25_FR03_SPLIT_REVIEW_R1.tex}.\par
-\textbf{Controllo di lavoro:} \nolinkurl{DDTA_R25_BASE_ANALYSIS_GUIDE_REBUILD_WORK_PLAN_R6.md}; supporto di analisi: \nolinkurl{DDTA_R25_DERMATRIAGE_CASE_STUDY_WORKING_ANALYSIS_R1.md}.\par
-\textbf{Riferimenti:} \nolinkurl{DDTA_DOCUMENTATION_AUTHORING_GUIDE_R6_CANDIDATE_R2.tex}; \nolinkurl{DDTA_BASE_ANALYSIS_OPERATIONAL_GUIDE_R3.tex} + BA0--BA5; \nolinkurl{DDTA_R25_BASE_ANALYSIS_REBUILD_SOURCE_REGISTER_R1.md}; Core/Complete BA candidate R1 come research evidence.\par
-\textbf{Disciplina corrente:} il piano R6 apre prima un audit completo di preservazione semantica delle sei fonti originali DermaTriage rispetto alla documentazione DDTA corrente. Ogni perdita o indebolimento viene corretto nel layer documentale prima di rieseguire la BA; i gap della fonte restano espliciti. Solo dopo questo gate si esegue l'audit di coerenza/connettivita' dell'intera BA accettata e, successivamente, la review dei costrutti ancora aperti.\par
-}
+\begin{ddtaopen}[title={RIQUADRO TEMPORANEO - DA CANCELLARE PRIMA DELLA VERSIONE FINALE}]
+\textbf{Guida di partenza usata come riferimento genealogico della riscrittura:}
+\begin{center}
+\texttt{DDTA\_DOCUMENTATION\_AUTHORING\_GUIDE\_R6\_CANDIDATE\_R2.tex}
+\end{center}
+Questo riferimento serve solo durante la ricostruzione progressiva. Il contenuto della nuova guida non viene importato automaticamente: ogni regola viene riesaminata mentre viene applicata al caso DermaTriage.
 \end{ddtaopen}
 
 \subsection{Che cos'e' il framing}
@@ -1645,15 +1649,18 @@ ma:
 affinché non vada perso?"
 \end{ddtacheck}
 
-Resta inoltre una questione metodologica da affrontare in seguito:
-alcuni vincoli o proprietà potrebbero richiedere un proprio tipo di
-requisito specializzato, come già avviene per i
-\passthrough{\lstinline!SecurityRequirement!} nel caso della sicurezza.
+Alcuni vincoli o proprieta' possono richiedere un proprio requisito
+specializzato quando rafforzano le condizioni di soddisfazione del FR
+senza sostituirne l'obbligazione ordinaria. Il
+\passthrough{\lstinline!SecurityRequirement!} resta la specializzazione
+security gia' governata; lo \passthrough{\lstinline!Step 4!} di questa
+guida introduce e verifica anche il
+\passthrough{\lstinline!ConfigurationRequirement!} per le proprieta'
+configurative che superano i relativi gate.
 
-Questa sezione \textbf{non decide ancora} quali altri tipi debbano
-esistere. Fissa soltanto un principio: l\textquotesingle informazione
-non va eliminata perché non appartiene direttamente
-all\textquotesingle identità dell\textquotesingle FR.
+Questa sezione non promuove automaticamente un dettaglio tecnico a
+requisito specializzato. Fissa il principio di preservazione e rinvia
+allo Step 4 la classificazione normativa delle configurazioni.
 %</PAGE-CONTENT:38>
 
 \clearpage
@@ -2119,9 +2126,206 @@ il modello ad applicare quel ragionamento in modo controllato.
 %</PAGE-CONTENT:45>
 
 \clearpage
-%<PAGE-DESC:46>Indice di integrita' delle pagine
+%<PAGE-DESC:46>SpecializedRequirement - strengthening, parent unico e ownership distinta dallo usage scope
 %<PAGE-CONTENT:46>
 \PageHashFooter{\PageMDfive{46}}
+\section{Step 4 - SpecializedRequirement e ConfigurationRequirement}
+
+\subsection{SpecializedRequirement: quando serve un requisito aggiuntivo}
+
+Uno \passthrough{\lstinline!SpecializedRequirement!} governa una
+obbligazione concern-specific aggiuntiva che deve valere insieme a un
+singolo \passthrough{\lstinline!FunctionalRequirement!}. Non sostituisce
+la funzione ordinaria del parent e non esiste per classificare un
+dettaglio tecnico: deve aggiungere una condizione normativa autonoma di
+soddisfazione.
+
+\begin{lstlisting}[basicstyle=\ttfamily\small]
+SpecializedRequirement [abstract]
+    extends Requirement
+    parentFunctionalRequirement : FunctionalRequirement [1]
+
+Effective(F) = F AND S1 AND ... AND Sn
+\end{lstlisting}
+
+\begin{ddtacheck}[title={Gate di strengthening e removal}]
+Per ogni candidato chiedere:
+\begin{itemize}
+  \item esiste esattamente un FR parent riconoscibile?
+  \item rimuovendo il candidato, l'obbligazione funzionale ordinaria del FR resta riconoscibile?
+  \item il candidato rafforza le condizioni di soddisfazione invece di riscrivere il comportamento ordinario?
+  \item l'obbligazione concern-specific puo' essere revisionata o assessed indipendentemente dal parent senza cambiarne l'identita' funzionale?
+  \item la fonte governa davvero questo significato come obbligazione e non soltanto come realizzazione corrente?
+\end{itemize}
+Se una risposta decisiva e' negativa, non creare uno SpecializedRequirement per ragioni di ordine documentale.
+\end{ddtacheck}
+
+\begin{ddtacore}[title={Requirement ownership e usage scope sono assi distinti}]
+Il Requirement che governa la necessita', disponibilita' o configurazione di una risorsa, capability o artifact mantiene il proprio owner anche quando l'elemento risultante viene usato trasversalmente da piu' componenti o branch. L'uso condiviso non moltiplica il parent del Requirement e non trasferisce automaticamente ownership ai consumer.
+\end{ddtacore}
+
+Una libreria software, un dataset, un servizio condiviso o una risorsa di infrastruttura possono quindi essere giustificati e governati da un Requirement specifico e successivamente utilizzati da molte parti del sistema. Le relazioni di uso/consumo restano un problema distinto dalla gerarchia documentale del Requirement.
+%</PAGE-CONTENT:46>
+
+\clearpage
+%<PAGE-DESC:47>ConfigurationRequirement - definizione, contratto minimo e gate di accettazione
+%<PAGE-CONTENT:47>
+\PageHashFooter{\PageMDfive{47}}
+\subsection{ConfigurationRequirement}
+
+\begin{ddtaprinciple}[title={Definizione}]
+Un \passthrough{\lstinline!ConfigurationRequirement!} e' uno \passthrough{\lstinline!SpecializedRequirement!} che rafforza un singolo FunctionalRequirement imponendo proprieta' o condizioni configurative governate sotto le quali l'obbligazione del parent e' considerata soddisfatta. La configurazione puo' riguardare risorse hardware, software, runtime, binding, deployment o altri parametri solo quando la loro natura normativa e' source-supported.
+\end{ddtaprinciple}
+
+La prima integrazione metodologica usa il delta L1 minimo:
+
+\begin{lstlisting}[basicstyle=\ttfamily\small]
+ConfigurationRequirement
+    extends SpecializedRequirement
+
+Inherited:
+    parentFunctionalRequirement : FunctionalRequirement [1]
+    normativeClause             : NormativeClause [1..*]
+\end{lstlisting}
+
+Non viene introdotto in questa fase un campo L1 obbligatorio per il profilo. Un eventuale ConfigurationProfile e' una rappresentazione strutturata e tracciabile del contratto configurativo, disciplinata separatamente.
+
+\begin{ddtacheck}[title={Gate ConfigurationRequirement}]
+ACCEPT solo se sono sostenuti tutti i punti necessari:
+\begin{enumerate}
+  \item \textbf{Parent survival}: rimuovendo il ConfigurationRequirement, il comportamento/capability governato dal FR resta riconoscibile.
+  \item \textbf{Normative configuration}: la fonte stabilisce che almeno una proprieta' configurativa deve o dovrebbe valere; una baseline concreta da sola non basta.
+  \item \textbf{Independent change/assessment}: la configurazione puo' cambiare o essere verificata senza ridefinire l'identita' funzionale del parent.
+  \item \textbf{Realization boundary}: versioni, package, file, locator o valori correnti non diventano automaticamente obblighi normativi.
+  \item \textbf{Ownership boundary}: il requisito di configurazione non acquisisce automaticamente il significato funzionale degli elementi cui i binding fanno riferimento.
+\end{enumerate}
+\end{ddtacheck}
+
+\begin{lstlisting}[basicstyle=\ttfamily\small]
+Esiti di review consigliati:
+ACCEPT_CONFIGURATION_REQUIREMENT
+PROFILE_ONLY
+REALIZATION_ONLY
+HOLD / SOURCE_INSUFFICIENT
+\end{lstlisting}
+
+Un profilo software che elenca Python, librerie e versioni puo' quindi essere obbligatorio da preservare come evidenza tecnica senza dimostrare che ogni versione costituisca un ConfigurationRequirement.
+%</PAGE-CONTENT:47>
+
+\clearpage
+%<PAGE-DESC:48>ConfigurationProfile - rappresentazione tipizzata, machine-readable e confine tra normative e realization
+%<PAGE-CONTENT:48>
+\PageHashFooter{\PageMDfive{48}}
+\subsection{ConfigurationProfile come contratto leggibile e machine-readable}
+
+Un \textbf{ConfigurationProfile} raccoglie in forma compatta fatti configurativi che appartengono allo stesso contesto operativo. Puo' essere presentato come tabella, file strutturato o altra serializzazione machine-readable e puo' ricevere un identificatore documentale stabile. Questo non lo rende automaticamente un nuovo tipo L1 ne' un BAReferent.
+
+\begin{ddtacore}[title={Classificare ogni entry, non uniformare il profilo}]
+L'appartenenza allo stesso profilo non rende omogenea la semantica delle entry. Ogni voce deve conservare la propria classe e il proprio owner. Il profilo puo' contenere contemporaneamente obblighi, raccomandazioni, current realization, binding/references e gap, purche' la distinzione resti esplicita.
+\end{ddtacore}
+
+Una forma L2 utile e':
+
+\begin{lstlisting}[basicstyle=\ttfamily\small]
+ConfigurationProfile <id>
+  scope / concern: <...>
+  parent ConfigurationRequirement: <id | None>
+
+  entries:
+    - key: <property/binding/component>
+      value: <source-supported value or ->
+      semanticClass:
+        REQUIRED | RECOMMENDED | CURRENT_REALIZATION |
+        REFERENCE_BINDING | GAP | CONFLICTING
+      semanticOwner: <document owner | unresolved>
+      sourceEvidence: <reference>
+\end{lstlisting}
+
+Se il ConfigurationRequirement demanda i valori al profilo, la prosa normativa deve rendere identificabile quale sottoinsieme e' vincolante. Le entry \passthrough{\lstinline!CURRENT_REALIZATION!}, \passthrough{\lstinline!REFERENCE_BINDING!}, \passthrough{\lstinline!GAP!} o \passthrough{\lstinline!CONFLICTING!} non diventano vincoli solo perche' compaiono nello stesso artifact.
+
+\begin{ddtaprinciple}[title={Punto di incontro documentazione--codice}]
+Quando utile, la stessa rappresentazione strutturata puo' essere versionata, letta da tooling, usata per generare o validare configurazioni e richiamata dalla documentazione. L'automazione non cambia l'authority: il significato normativo continua a provenire dai Requirement e dalle fonti autorizzate; la serializzazione ne rende il contratto ispezionabile e verificabile.
+\end{ddtaprinciple}
+
+Se due fonti assegnano valori incompatibili alla stessa entry, il profilo registra \passthrough{\lstinline!CONFLICTING!}; non normalizza automaticamente il dato scegliendo il valore piu' plausibile.
+%</PAGE-CONTENT:48>
+
+\clearpage
+%<PAGE-DESC:49>Software BOM e version traceability - preservazione security-sensitive senza promozione normativa automatica
+%<PAGE-CONTENT:49>
+\PageHashFooter{\PageMDfive{49}}
+\subsection{Software composition inventory, BOM/SBOM e rilevanza security}
+
+Versioni, librerie, package e componenti software concreti possono essere \textbf{security-sensitive anche quando non sono Requirement normativi}. La loro sostituzione puo' cambiare superficie d'attacco, esposizione a vulnerabilita', dipendenze transitive e condizioni di supporto. Per questo la classificazione come current realization \textbf{non autorizza a perdere l'informazione}.
+
+\begin{ddtacore}[title={Regola di preservazione security-sensitive}]
+Quando le fonti autorizzate identificano componenti software, package o versioni, la documentazione deve mantenerli tracciabili in un inventario di composizione software o BOM/SBOM equivalente, usando soltanto i dati effettivamente supportati. Un campo non noto resta non specificato; non viene completato con conoscenza esterna durante la ricostruzione source-first.
+\end{ddtacore}
+
+L'inventario puo' essere un ConfigurationProfile software o un artifact collegato. La distinzione da preservare e':
+
+\begin{lstlisting}[basicstyle=\ttfamily\small]
+package/version presente nella baseline
+    -> CURRENT_REALIZATION / software inventory
+
+package/version imposto dalla fonte
+    -> candidate normative configuration
+
+obbligo di mantenere, validare o proteggere una BOM/SBOM
+    -> candidate Requirement concern-specific
+       da classificare secondo il concern source-supported
+\end{lstlisting}
+
+La rilevanza per la threat analysis non crea retroattivamente un commitment di progetto. Un package puo' essere importante per cercare CVE, attacchi di supply chain o impatti di sostituzione e rimanere comunque una realization concreta. Viceversa, se il progetto governa esplicitamente la presenza, versione, provenienza, integrita' o aggiornamento di un componente, quel significato puo' richiedere un ConfigurationRequirement, un SecurityRequirement o altro Requirement appropriato secondo la fonte.
+
+\begin{ddtacheck}[title={Handoff verso security e change impact}]
+L'inventario software deve permettere, quando la fonte lo consente, di risalire almeno all'identita' del componente e alla versione/variante documentata. Ulteriori attributi come source, hash, licenza o dipendenze vengono conservati solo quando disponibili o richiesti. La guida di authoring preserva l'informazione; la successiva analisi di sicurezza decide come usarla senza diventare authority del progetto.
+\end{ddtacheck}
+%</PAGE-CONTENT:49>
+
+\clearpage
+%<PAGE-DESC:50>ConfigurationRequirement - regression DermaTriage, authoring sequence e handoff alla Base Analysis
+%<PAGE-CONTENT:50>
+\PageHashFooter{\PageMDfive{50}}
+\subsection{Regression DermaTriage e procedura di authoring}
+
+I test sul branch C6 mostrano tre esiti differenti e impediscono una promozione meccanica:
+
+\begin{center}
+\scriptsize
+\begin{tabularx}{\textwidth}{L{27mm}L{36mm}Y}
+\toprule
+\textbf{Caso} & \textbf{Esito} & \textbf{Lettura metodologica} \\
+\midrule
+FR-C6-01-01 hardware & ConfigurationRequirement: PASS candidate & RAM/storage hanno valori minimum/recommended esplicitamente governati; il FR resta riconoscibile come disponibilita' delle risorse anche rimuovendo il profilo. \\
+FR-C6-01-02 software stack & PROFILE/INVENTORY: PASS; ConfigurationRequirement: HOLD & package e versioni sono preservati e security-sensitive, ma la source non stabilisce che ogni versione sia un commitment normativo stabile. \\
+FR-C6-01-04 binding ambiente & ConfigurationRequirement: PASS candidate con profilo misto & alcuni binding sono richiesti, mentre altri valori rinviano a owner funzionali differenti; l'appartenenza al profilo non trasferisce ownership. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{ddtacore}[title={Sequenza deterministica}]
+\begin{enumerate}
+  \item accettare prima il FunctionalRequirement e verificare che possieda una funzione/capability autonoma;
+  \item cercare proprieta' concern-specific che rafforzano la sua soddisfazione;
+  \item applicare i gate SpecializedRequirement e ConfigurationRequirement;
+  \item costruire, se utile, un ConfigurationProfile e classificare ogni entry;
+  \item preservare comunque software inventory/BOM e altre realization security-sensitive;
+  \item solo dopo consegnare la documentazione alla Base Analysis.
+\end{enumerate}
+\end{ddtacore}
+
+\subsection{Handoff alla Base Analysis}
+
+Il nuovo tipo documentale non introduce automaticamente un nuovo semantic operator BA. La BA continua a estrarre identita' e proposition secondo il significato: per esempio \passthrough{\lstinline!constrain!}, \passthrough{\lstinline!hasPart!}, \passthrough{\lstinline!realize!} o altri operatori gia' governati. Un ConfigurationProfile riceve identita' BA solo se supera l'identity test della BA; una riga del profilo non diventa una BAProposition per il solo fatto di essere presente.
+
+Le correzioni alla BA devono quindi essere riestratte dalla documentazione aggiornata, non introdotte nel documento per ottenere una topologia grafica desiderata.
+%</PAGE-CONTENT:50>
+
+\clearpage
+%<PAGE-DESC:51>Indice di integrita' delle pagine
+%<PAGE-CONTENT:51>
+\PageHashFooter{\PageMDfive{51}}
 \section*{Indice di integrita' delle pagine}
 \addcontentsline{toc}{section}{Indice di integrita' delle pagine}
 \begin{ddtacore}[title={Regola di verifica}]
@@ -2183,7 +2387,12 @@ Ogni pagina possiede un MD5 del proprio contenuto canonico. Il calcolo usa il co
 \IntegrityRow{43}{FunctionalRequirement - controllo famiglia, downstream utility e analisi indipendente}{\PageMDfive{43}}
 \IntegrityRow{44}{FunctionalRequirement - classificazione delle differenze tra analisi}{\PageMDfive{44}}
 \IntegrityRow{45}{FunctionalRequirement - replica indipendente e supporto LLM}{\PageMDfive{45}}
-\IntegrityRow{46}{Indice di integrita' delle pagine}{\PageMDfive{46}}
+\IntegrityRow{46}{SpecializedRequirement - strengthening, parent unico e ownership distinta dallo usage scope}{\PageMDfive{46}}
+\IntegrityRow{47}{ConfigurationRequirement - definizione, contratto minimo e gate di accettazione}{\PageMDfive{47}}
+\IntegrityRow{48}{ConfigurationProfile - rappresentazione tipizzata, machine-readable e confine tra normative e realization}{\PageMDfive{48}}
+\IntegrityRow{49}{Software BOM e version traceability - preservazione security-sensitive senza promozione normativa automatica}{\PageMDfive{49}}
+\IntegrityRow{50}{ConfigurationRequirement - regression DermaTriage, authoring sequence e handoff alla Base Analysis}{\PageMDfive{50}}
+\IntegrityRow{51}{Indice di integrita' delle pagine}{\PageMDfive{51}}
 %</PAGE-INTEGRITY-ROWS>
 \bottomrule
 \end{longtable}
@@ -2191,5 +2400,6 @@ Ogni pagina possiede un MD5 del proprio contenuto canonico. Il calcolo usa il co
 \vspace{2mm}
 {\small\color{DDTAGray}
 A ogni passo, una modifica intenzionale cambia l'MD5 della pagina interessata. Una variazione inattesa dell'MD5 di una pagina gia' approvata impone la revisione della modifica prima di proseguire.}
-%</PAGE-CONTENT:46>
+%</PAGE-CONTENT:51>
+
 \end{document}

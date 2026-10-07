@@ -1,9 +1,9 @@
-DDTA_DOCUMENTATION_AUTHORING_GUIDE_R7_REBUILD_R8 - Page MD5 Index
+DDTA_DOCUMENTATION_AUTHORING_GUIDE_R7_REBUILD_R8_CONFIGURATION_REQUIREMENT_WORKING_R1 - Page MD5 Index
 Canonical payload: LaTeX content between PAGE-CONTENT markers; own printed MD5 excluded.
 Integrity-index page resolves all other page hashes and canonicalizes its own hash as <SELF>.
 
 Page 1  7289db2d0692a47b1d1013b12077997f  Frontespizio della nuova guida di authoring
-Page 2  14ee0b08318ee0c7e0fbe0df6796b7e5  Project Problem Framing - definizione e regole di authoring
+Page 2  015c757c3dc4118c78c6d2960996936e  Project Problem Framing - definizione e regole di authoring
 Page 3  22e57dfc4b4f586235f8aed3c522a7e2  Project Problem Framing - procedura umana, gate ed esempio DermaTriage
 Page 4  3bdac4b5fec97501c23d7968bf1619d5  Project Problem Framing - LLM Execution Profile e prompt canonico
 Page 5  b69ae801bbd9fab0dd9722c5416054c4  Project Problem Framing - regola LLM e classificazione dei campi
@@ -39,7 +39,7 @@ Page 34  255ec7ee9d4053db3e78fe65baaf4216  FunctionalRequirement - non duplicazi
 Page 35  ddda2e275d829cad56c4dadb9a70d4ae  FunctionalRequirement - downstream utility regression e DermaTriage branch A
 Page 36  f15a3bb4200cf549e5828495b75c4384  FunctionalRequirement - DermaTriage downstream utility e consolidazione pratica
 Page 37  e4a9d2dd8df5e956a76592038b883979  FunctionalRequirement - lacune documentali ed esempio DermaTriage
-Page 38  75fb1fdc83af88cce5cf926df26987e1  FunctionalRequirement - obbligazione funzionale e dettagli della realizzazione
+Page 38  8b94f41bede4a3f9786ab2efb9d33ed5  FunctionalRequirement - obbligazione funzionale e dettagli della realizzazione
 Page 39  76fa920eae92f2bb829a2743a84b30a8  FunctionalRequirement - information preservation e change impact
 Page 40  e7136268d32bf6086596d5f030a947ad  FunctionalRequirement - contratto L1 e presentazione L2
 Page 41  9bc0e63e85d2d026b925a81ded38de52  FunctionalRequirement - scrittura delle clausole normative
@@ -47,4 +47,9 @@ Page 42  cc250cd2a2deb3069dd6892e943bd284  FunctionalRequirement - controllo fin
 Page 43  9c03ac3e778c27333ef2d51de02f6eb2  FunctionalRequirement - controllo famiglia, downstream utility e analisi indipendente
 Page 44  fbc67bc514bb10a6d2c69b4728ffd1ba  FunctionalRequirement - classificazione delle differenze tra analisi
 Page 45  e7298e5d8dcc77d5ea99741209730c0c  FunctionalRequirement - replica indipendente e supporto LLM
-Page 46  477aa90c4377838130c76cffe2e7a58d  Indice di integrita' delle pagine [INTEGRITY INDEX]
+Page 46  5f5b0c26e4dacb02b8f71d3721b126bb  SpecializedRequirement - strengthening, parent unico e ownership distinta dallo usage scope
+Page 47  3e4344fc346cd8db52a9d36deb9c1e3b  ConfigurationRequirement - definizione, contratto minimo e gate di accettazione
+Page 48  e20b6314acab5f7db4f66b3254fe6590  ConfigurationProfile - rappresentazione tipizzata, machine-readable e confine tra normative e realization
+Page 49  6fe18d01371bbfc2ba0a3c4877ed183c  Software BOM e version traceability - preservazione security-sensitive senza promozione normativa automatica
+Page 50  89ce247f911f19826656691138e0c416  ConfigurationRequirement - regression DermaTriage, authoring sequence e handoff alla Base Analysis
+Page 51  a7543abb9f190d58353750bbd106939b  Indice di integrita' delle pagine [INTEGRITY INDEX]
