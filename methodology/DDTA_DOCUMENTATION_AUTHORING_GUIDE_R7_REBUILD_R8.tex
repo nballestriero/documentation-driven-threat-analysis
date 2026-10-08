@@ -65,9 +65,9 @@
 \expandafter\def\csname PageMDfive46\endcsname{5f5b0c26e4dacb02b8f71d3721b126bb}
 \expandafter\def\csname PageMDfive47\endcsname{3e4344fc346cd8db52a9d36deb9c1e3b}
 \expandafter\def\csname PageMDfive48\endcsname{e20b6314acab5f7db4f66b3254fe6590}
-\expandafter\def\csname PageMDfive49\endcsname{6fe18d01371bbfc2ba0a3c4877ed183c}
+\expandafter\def\csname PageMDfive49\endcsname{26686d9f09a34bef1278db0f985789e6}
 \expandafter\def\csname PageMDfive50\endcsname{89ce247f911f19826656691138e0c416}
-\expandafter\def\csname PageMDfive51\endcsname{a7543abb9f190d58353750bbd106939b}
+\expandafter\def\csname PageMDfive51\endcsname{9527d376948e281c7fc1ed809a6849b9}
 %</PAGE-HASH-DEFS>
 
 \newcommand{\PageHashFooter}[1]{%
@@ -2256,11 +2256,19 @@ Se due fonti assegnano valori incompatibili alla stessa entry, il profilo regist
 \PageHashFooter{\PageMDfive{49}}
 \subsection{Software composition inventory, BOM/SBOM e rilevanza security}
 
+\begingroup
+\fontsize{10.0}{11.3}\selectfont
 Versioni, librerie, package e componenti software concreti possono essere \textbf{security-sensitive anche quando non sono Requirement normativi}. La loro sostituzione puo' cambiare superficie d'attacco, esposizione a vulnerabilita', dipendenze transitive e condizioni di supporto. Per questo la classificazione come current realization \textbf{non autorizza a perdere l'informazione}.
 
 \begin{ddtacore}[title={Regola di preservazione security-sensitive}]
 Quando le fonti autorizzate identificano componenti software, package o versioni, la documentazione deve mantenerli tracciabili in un inventario di composizione software o BOM/SBOM equivalente, usando soltanto i dati effettivamente supportati. Un campo non noto resta non specificato; non viene completato con conoscenza esterna durante la ricostruzione source-first.
 \end{ddtacore}
+
+\begin{ddtaprinciple}[title={Stato corrente e configurazione futura sono distinti}]
+\textbf{Lo stato corrente di una realizzazione puo' essere obbligatorio da documentare e analizzare senza essere obbligatorio come configurazione futura del sistema.} Quando un ConfigurationProfile/BOM fotografa la baseline effettivamente analizzata, la documentazione puo' esplicitare \texttt{profileStatus = CURRENT\_IMPLEMENTATION}: questo rende la baseline tracciabile per security e change-impact analysis, ma non trasforma le entry in Requirement normativi.
+
+Quando build, installazione o deployment usano un artifact machine-readable (per esempio un dependency manifest o lock file), la documentazione dovrebbe riferirsi a quell'artifact operativo. Se il profilo concretizza una configurazione logica governata, l'handoff alla BA applica l'identity test a configurazione astratta e realizzazione concreta: quando entrambe hanno identita' BA e la fonte supporta la materializzazione, il legame usa l'operatore BA gia' governato \texttt{realize}; non si introduce un operatore separato \texttt{currentImplementationOf}. Se uno dei gate non passa, resta soltanto traceability documentale. In ogni caso il legame non rende la realizzazione corrente un vincolo futuro. Se l'artifact non e' nel source set, contenuto e allineamento restano da verificare.
+\end{ddtaprinciple}
 
 L'inventario puo' essere un ConfigurationProfile software o un artifact collegato. La distinzione da preservare e':
 
@@ -2281,6 +2289,7 @@ La rilevanza per la threat analysis non crea retroattivamente un commitment di p
 \begin{ddtacheck}[title={Handoff verso security e change impact}]
 L'inventario software deve permettere, quando la fonte lo consente, di risalire almeno all'identita' del componente e alla versione/variante documentata. Ulteriori attributi come source, hash, licenza o dipendenze vengono conservati solo quando disponibili o richiesti. La guida di authoring preserva l'informazione; la successiva analisi di sicurezza decide come usarla senza diventare authority del progetto.
 \end{ddtacheck}
+\endgroup
 %</PAGE-CONTENT:49>
 
 \clearpage

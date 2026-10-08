@@ -1,4 +1,4 @@
-DDTA_DOCUMENTATION_AUTHORING_GUIDE_R7_REBUILD_R8_CONFIGURATION_REQUIREMENT_WORKING_R1 - Page MD5 Index
+DDTA_DOCUMENTATION_AUTHORING_GUIDE_R7_REBUILD_R8 - Page MD5 Index
 Canonical payload: LaTeX content between PAGE-CONTENT markers; own printed MD5 excluded.
 Integrity-index page resolves all other page hashes and canonicalizes its own hash as <SELF>.
 
@@ -50,6 +50,6 @@ Page 45  e7298e5d8dcc77d5ea99741209730c0c  FunctionalRequirement - replica indip
 Page 46  5f5b0c26e4dacb02b8f71d3721b126bb  SpecializedRequirement - strengthening, parent unico e ownership distinta dallo usage scope
 Page 47  3e4344fc346cd8db52a9d36deb9c1e3b  ConfigurationRequirement - definizione, contratto minimo e gate di accettazione
 Page 48  e20b6314acab5f7db4f66b3254fe6590  ConfigurationProfile - rappresentazione tipizzata, machine-readable e confine tra normative e realization
-Page 49  6fe18d01371bbfc2ba0a3c4877ed183c  Software BOM e version traceability - preservazione security-sensitive senza promozione normativa automatica
+Page 49  26686d9f09a34bef1278db0f985789e6  Software BOM e version traceability - preservazione security-sensitive senza promozione normativa automatica
 Page 50  89ce247f911f19826656691138e0c416  ConfigurationRequirement - regression DermaTriage, authoring sequence e handoff alla Base Analysis
-Page 51  a7543abb9f190d58353750bbd106939b  Indice di integrita' delle pagine [INTEGRITY INDEX]
+Page 51  9527d376948e281c7fc1ed809a6849b9  Indice di integrita' delle pagine [INTEGRITY INDEX]

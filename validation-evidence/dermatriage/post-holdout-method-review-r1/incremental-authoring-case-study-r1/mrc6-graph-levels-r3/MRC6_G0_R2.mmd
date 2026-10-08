@@ -1,0 +1,17 @@
+flowchart LR
+%% G0 View Contract: top-level accepted semantics only
+subgraph MRC6["MR-C6 - Predisposizione e inizializzazione dell'ambiente DermaTriage"]
+  DT["DermaTriage\nBAReferent - system"]
+  EP["EnvironmentPreparation\nBAReferent - preparation responsibility"]
+  PROC["EnvironmentSetupProcedure\nBAReferent - realization"]
+  ENV["DermaTriageEnvironment\nBAReferent - execution environment"]
+  DT -->|"dependOn\nBAP-MRC6-02"| ENV
+  EP -->|"produce\nBAP-MRC6-01"| ENV
+  PROC -.->|"realize\nBAP-DECC6-01-01"| EP
+end
+class DT,EP,PROC core; class ENV env;
+
+classDef core fill:#ffffff,stroke:#3D637C,stroke-width:2px,color:#23313D;
+classDef env fill:#FFFDF6,stroke:#B18A22,stroke-width:2px,color:#23313D;
+classDef part fill:#F4FAFE,stroke:#5C99C1,stroke-width:2px,color:#23313D;
+classDef profile fill:#F4FBF7,stroke:#4F8B68,stroke-width:2px,color:#23313D;
