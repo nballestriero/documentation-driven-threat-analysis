@@ -72,9 +72,9 @@
 \expandafter\def\csname PageMDfive49\endcsname{cdd1b55f58be26c39b3b9969cf8bbea2}
 \expandafter\def\csname PageMDfive50\endcsname{3d94469e6005250ecff20b57e3cfd48b}
 \expandafter\def\csname PageMDfive51\endcsname{fb22e0ebe2cf5d8c0a09af2f966c4365}
-\expandafter\def\csname PageMDfive52\endcsname{bbbf6396a413df717b56f13c21ccebab}
-\expandafter\def\csname PageMDfive53\endcsname{9448c33ff50d5513f346ae92d98fbe96}
-\expandafter\def\csname PageMDfive54\endcsname{3b9a96e0482613db73019ded69c9ce66}
+\expandafter\def\csname PageMDfive52\endcsname{f407726f4424567c9e62abf22e60cdd2}
+\expandafter\def\csname PageMDfive53\endcsname{683ccf173ea1d3364786af12f0c3c3bd}
+\expandafter\def\csname PageMDfive54\endcsname{bab2246e9b0b4cae7ab40e5afa1e0040}
 \expandafter\def\csname PageMDfive55\endcsname{c5b1af500227b30619356a3a56d86086}
 \expandafter\def\csname PageMDfive56\endcsname{bd474920e927b8610f3378862315bae1}
 \expandafter\def\csname PageMDfive57\endcsname{19c2352a4af3296144fbfd6cc012115f}
@@ -99,9 +99,9 @@
 \expandafter\def\csname PageMDfive76\endcsname{14f224c0a626f68a61bf866df0eee7ca}
 \expandafter\def\csname PageMDfive77\endcsname{ae356cf9c315c7408621074645c7a683}
 \expandafter\def\csname PageMDfive78\endcsname{6d742aced02c4f7553638cc4e3f7cfe5}
-\expandafter\def\csname PageMDfive79\endcsname{966c4c684b5d27c0bd42709c26ca8e03}
+\expandafter\def\csname PageMDfive79\endcsname{85b4573b2773c0a2d8efaa2c6dbfc1b2}
 \expandafter\def\csname PageMDfive80\endcsname{42c63c876189a9d341da909c38484215}
-\expandafter\def\csname PageMDfive81\endcsname{a82278d2720e42bc37cfabec89eb6b46}
+\expandafter\def\csname PageMDfive81\endcsname{cf80fe1c3ad1050ba8a037e2c8677da1}
 %</PAGE-HASH-DEFS>
 
 \newcommand{\PageHashFooter}[1]{%
@@ -4706,28 +4706,33 @@ La source non specifica concrete local path, artifact layout/version, ownership/
 \hspace*{1em}\texttt{content -> Qwen2VL7BModelArtifact}\par
 \hspace*{1em}\texttt{polarity = affirmative}\par
 \smallskip
+\texttt{BAP-FRC6-01-03A2-05}\par
+\hspace*{1em}\texttt{semanticOperatorKey = hasPart}\par
+\hspace*{1em}\texttt{whole -> ModelResources}\par
+\hspace*{1em}\texttt{part -> Qwen2LocalModelStore}\par
+\hspace*{1em}\texttt{polarity = affirmative}\par
+\smallskip
+\texttt{BAP-FRC6-01-03A2-06}\par
+\hspace*{1em}\texttt{semanticOperatorKey = realize}\par
+\hspace*{1em}\texttt{abstract -> Qwen2-VL-7B-Instruct}\par
+\hspace*{1em}\texttt{realization -> Qwen2VL7BModelArtifact}\par
+\hspace*{1em}\texttt{polarity = affirmative}\par
+\smallskip
 \textbf{Reuse}\par
 \hspace*{1em}\texttt{BAP-FR03-02-02}\par
 \hspace*{2em}\texttt{ClinicalDescriptionGeneration -> Qwen2-VL-7B-Instruct}\par
 \end{ddtapropositionidentified}
 
-\begin{ddtapropositionaccepted}[top=2pt,bottom=2pt,left=5pt,right=5pt]
-\fontsize{4.08}{4.48}\selectfont
-\textbf{BAP-FRC6-01-03A2-01}\par
-\textbf{BAP-FRC6-01-03A2-02}\par
-\textbf{BAP-FRC6-01-03A2-03}\par
-\textbf{BAP-FRC6-01-03A2-04}\par
-\textbf{BAP-FR03-02-02} \textit{[reuse]}\par
-\smallskip
-\emph{Il transfer usa la working reconstruction esplicita di \texttt{Auto-downloaded}; il locator della destination non viene inventato.}
+\begin{ddtapropositionaccepted}[top=1.5pt,bottom=1.5pt,left=5pt,right=5pt]
+\fontsize{3.72}{4.02}\selectfont
+\textbf{BAP-FRC6-01-03A2-01}; \textbf{A2-02}; \textbf{A2-03}; \textbf{A2-04}; \textbf{A2-05}; \textbf{A2-06}.\par
+\textbf{BAP-FR03-02-02} \textit{[reuse]}.\par
+\emph{La destination Store e' parte di \texttt{ModelResources}; la model identity corrente e' distinta dall'artifact auto-downloaded che la materializza localmente.}
 \end{ddtapropositionaccepted}
 
-\begin{ddtaopenrelations}[top=2pt,bottom=2pt,left=5pt,right=5pt]
-\fontsize{3.88}{4.28}\selectfont
-\texttt{Qwen2-VL-7B-Instruct}\par
-\hspace*{1em}relation con \texttt{Qwen2VL7BModelArtifact}: \texttt{OPEN}\par
-Artifact layout/version: \texttt{NOT SPECIFIED}.\par
-Authority boundary e integrity verification restano pressure/gap aperti.
+\begin{ddtaopenrelations}[top=1.5pt,bottom=1.5pt,left=5pt,right=5pt]
+\fontsize{3.58}{3.90}\selectfont
+Local destination path, artifact layout/version: \texttt{NOT SPECIFIED}. Authority boundary e integrity verification restano pressure/gap aperti.
 \end{ddtaopenrelations}
 
 \end{paracol}
@@ -4827,8 +4832,8 @@ La stessa model resource serve due funzioni logiche distinte; lo split non la du
 \hspace*{1em}\texttt{locator -> NOT SPECIFIED}\par
 \end{ddtareferentaccepted}
 
-\begin{ddtapropositionidentified}[top=2pt,bottom=2pt,left=5pt,right=5pt]
-\fontsize{3.88}{4.26}\selectfont
+\begin{ddtapropositionidentified}[top=1.5pt,bottom=1.5pt,left=5pt,right=5pt]
+\fontsize{3.44}{3.76}\selectfont
 \texttt{BAP-FRC6-01-03A3-01}\par
 \hspace*{1em}\texttt{semanticOperatorKey = hasPart}\par
 \hspace*{1em}\texttt{whole -> ModelResources}\par
@@ -4857,6 +4862,18 @@ La stessa model resource serve due funzioni logiche distinte; lo split non la du
 \hspace*{1em}\texttt{content -> AllMiniLML6V2ModelArtifact}\par
 \hspace*{1em}\texttt{polarity = affirmative}\par
 \smallskip
+\texttt{BAP-FRC6-01-03A3-05}\par
+\hspace*{1em}\texttt{semanticOperatorKey = hasPart}\par
+\hspace*{1em}\texttt{whole -> ModelResources}\par
+\hspace*{1em}\texttt{part -> MiniLMLocalModelStore}\par
+\hspace*{1em}\texttt{polarity = affirmative}\par
+\smallskip
+\texttt{BAP-FRC6-01-03A3-06}\par
+\hspace*{1em}\texttt{semanticOperatorKey = realize}\par
+\hspace*{1em}\texttt{abstract -> all-MiniLM-L6-v2}\par
+\hspace*{1em}\texttt{realization -> AllMiniLML6V2ModelArtifact}\par
+\hspace*{1em}\texttt{polarity = affirmative}\par
+\smallskip
 \textbf{Reuse}\par
 \hspace*{1em}\texttt{BAP-FR03-03-05}\par
 \hspace*{2em}\texttt{ClinicalDescriptionEmbeddingGeneration -> all-MiniLM-L6-v2}\par
@@ -4864,24 +4881,16 @@ La stessa model resource serve due funzioni logiche distinte; lo split non la du
 \hspace*{2em}\texttt{HistoricalCaseEmbeddingGeneration -> all-MiniLM-L6-v2}\par
 \end{ddtapropositionidentified}
 
-\begin{ddtapropositionaccepted}[top=2pt,bottom=2pt,left=5pt,right=5pt]
-\fontsize{4.02}{4.44}\selectfont
-\textbf{BAP-FRC6-01-03A3-01}\par
-\textbf{BAP-FRC6-01-03A3-02}\par
-\textbf{BAP-FRC6-01-03A3-03}\par
-\textbf{BAP-FRC6-01-03A3-04}\par
-\textbf{BAP-FR03-03-05} \textit{[reuse]}\par
-\textbf{BAP-FR03-03-07} \textit{[reuse]}\par
-\smallskip
-\emph{Un solo \texttt{EmbeddingModelResource} e un solo transfer di acquisizione servono entrambe le funzioni; nessuna duplicazione per consumer.}
+\begin{ddtapropositionaccepted}[top=1.5pt,bottom=1.5pt,left=5pt,right=5pt]
+\fontsize{3.64}{3.94}\selectfont
+\textbf{BAP-FRC6-01-03A3-01}; \textbf{A3-02}; \textbf{A3-03}; \textbf{A3-04}; \textbf{A3-05}; \textbf{A3-06}.\par
+\textbf{BAP-FR03-03-05}; \textbf{BAP-FR03-03-07} \textit{[reuse]}.\par
+\emph{Un solo model resource, artifact e local Store servono entrambe le funzioni di embedding; nessuna duplicazione per consumer.}
 \end{ddtapropositionaccepted}
 
-\begin{ddtaopenrelations}[top=2pt,bottom=2pt,left=5pt,right=5pt]
-\fontsize{3.84}{4.22}\selectfont
-\texttt{all-MiniLM-L6-v2}\par
-\hspace*{1em}relation con \texttt{AllMiniLML6V2ModelArtifact}: \texttt{OPEN}\par
-Exact cache path e artifact/version layout: \texttt{NOT SPECIFIED}.\par
-Authority boundary e integrity verification restano pressure/gap aperti.
+\begin{ddtaopenrelations}[top=1.5pt,bottom=1.5pt,left=5pt,right=5pt]
+\fontsize{3.54}{3.86}\selectfont
+Exact cache path e artifact/version layout: \texttt{NOT SPECIFIED}. Authority boundary e integrity verification restano pressure/gap aperti.
 \end{ddtaopenrelations}
 
 \end{paracol}
@@ -4979,8 +4988,8 @@ Concrete local path, artifact layout/version, ownership/authority della source e
 \hspace*{1em}\texttt{locator -> NOT SPECIFIED}\par
 \end{ddtareferentaccepted}
 
-\begin{ddtapropositionidentified}[top=2pt,bottom=2pt,left=5pt,right=5pt]
-\fontsize{3.90}{4.28}\selectfont
+\begin{ddtapropositionidentified}[top=1.5pt,bottom=1.5pt,left=5pt,right=5pt]
+\fontsize{3.46}{3.78}\selectfont
 \texttt{BAP-FRC6-01-03A4-01}\par
 \hspace*{1em}\texttt{semanticOperatorKey = hasPart}\par
 \hspace*{1em}\texttt{whole -> ModelResources}\par
@@ -5009,28 +5018,33 @@ Concrete local path, artifact layout/version, ownership/authority della source e
 \hspace*{1em}\texttt{content -> BioMistral7BModelArtifact}\par
 \hspace*{1em}\texttt{polarity = affirmative}\par
 \smallskip
+\texttt{BAP-FRC6-01-03A4-05}\par
+\hspace*{1em}\texttt{semanticOperatorKey = hasPart}\par
+\hspace*{1em}\texttt{whole -> ModelResources}\par
+\hspace*{1em}\texttt{part -> BioMistralLocalModelStore}\par
+\hspace*{1em}\texttt{polarity = affirmative}\par
+\smallskip
+\texttt{BAP-FRC6-01-03A4-06}\par
+\hspace*{1em}\texttt{semanticOperatorKey = realize}\par
+\hspace*{1em}\texttt{abstract -> BioMistral-7B}\par
+\hspace*{1em}\texttt{realization -> BioMistral7BModelArtifact}\par
+\hspace*{1em}\texttt{polarity = affirmative}\par
+\smallskip
 \textbf{Reuse}\par
 \hspace*{1em}\texttt{BAP-FR03-04-02}\par
 \hspace*{2em}\texttt{MultiSourceTriageSynthesis -> BioMistral-7B}\par
 \end{ddtapropositionidentified}
 
-\begin{ddtapropositionaccepted}[top=2pt,bottom=2pt,left=5pt,right=5pt]
-\fontsize{4.08}{4.48}\selectfont
-\textbf{BAP-FRC6-01-03A4-01}\par
-\textbf{BAP-FRC6-01-03A4-02}\par
-\textbf{BAP-FRC6-01-03A4-03}\par
-\textbf{BAP-FRC6-01-03A4-04}\par
-\textbf{BAP-FR03-04-02} \textit{[reuse]}\par
-\smallskip
-\emph{Il locator della destination resta assente: l'identita' Store non richiede un binding concreto per esistere.}
+\begin{ddtapropositionaccepted}[top=1.5pt,bottom=1.5pt,left=5pt,right=5pt]
+\fontsize{3.68}{3.98}\selectfont
+\textbf{BAP-FRC6-01-03A4-01}; \textbf{A4-02}; \textbf{A4-03}; \textbf{A4-04}; \textbf{A4-05}; \textbf{A4-06}.\par
+\textbf{BAP-FR03-04-02} \textit{[reuse]}.\par
+\emph{La destination Store e' parte di \texttt{ModelResources}; \texttt{BioMistral-7B} resta distinto dal model artifact che lo materializza localmente.}
 \end{ddtapropositionaccepted}
 
-\begin{ddtaopenrelations}[top=2pt,bottom=2pt,left=5pt,right=5pt]
-\fontsize{3.88}{4.28}\selectfont
-\texttt{BioMistral-7B}\par
-\hspace*{1em}relation con \texttt{BioMistral7BModelArtifact}: \texttt{OPEN}\par
-Exact cache path e artifact/version layout: \texttt{NOT SPECIFIED}.\par
-Authority boundary e integrity verification restano pressure/gap aperti.
+\begin{ddtaopenrelations}[top=1.5pt,bottom=1.5pt,left=5pt,right=5pt]
+\fontsize{3.56}{3.88}\selectfont
+Exact cache path e artifact/version layout: \texttt{NOT SPECIFIED}. Authority boundary e integrity verification restano pressure/gap aperti.
 \end{ddtaopenrelations}
 
 \end{paracol}
@@ -7005,14 +7019,20 @@ Questa pagina continua il registro BA della pagina precedente. Il \textbf{grasse
 \textbf{\texttt{BAP-FRC6-01-03A2-02}} & \texttt{FR-C6-01-03A2} -- \texttt{constrain} (\texttt{ClinicalDescriptionModelResource.availability: presence=required}) \\
 \textbf{\texttt{BAP-FRC6-01-03A2-03}} & \texttt{FR-C6-01-03A2} -- \texttt{realize} (\texttt{ClinicalDescriptionModelResource -> Qwen2-VL-7B-Instruct}) \\
 \textbf{\texttt{BAP-FRC6-01-03A2-04}} & \texttt{FR-C6-01-03A2} -- \texttt{transfer} (\texttt{HuggingFaceModelStore -> Qwen2LocalModelStore : Qwen2VL7BModelArtifact}); behavior \texttt{Qwen2ModelAcquisition}; destination locator NOT SPECIFIED \\
+\textbf{\texttt{BAP-FRC6-01-03A2-05}} & \texttt{FR-C6-01-03A2} -- \texttt{hasPart} (\texttt{ModelResources -> Qwen2LocalModelStore}) \\
+\textbf{\texttt{BAP-FRC6-01-03A2-06}} & \texttt{FR-C6-01-03A2} -- \texttt{realize} (\texttt{Qwen2-VL-7B-Instruct -> Qwen2VL7BModelArtifact}) \\
 \textbf{\texttt{BAP-FRC6-01-03A3-01}} & \texttt{FR-C6-01-03A3} -- \texttt{hasPart} (\texttt{ModelResources -> EmbeddingModelResource}) \\
 \textbf{\texttt{BAP-FRC6-01-03A3-02}} & \texttt{FR-C6-01-03A3} -- \texttt{constrain} (\texttt{EmbeddingModelResource.availability: presence=required}) \\
 \textbf{\texttt{BAP-FRC6-01-03A3-03}} & \texttt{FR-C6-01-03A3} -- \texttt{realize} (\texttt{EmbeddingModelResource -> all-MiniLM-L6-v2}) \\
 \textbf{\texttt{BAP-FRC6-01-03A3-04}} & \texttt{FR-C6-01-03A3} -- \texttt{transfer} (\texttt{HuggingFaceModelStore -> MiniLMLocalModelStore : AllMiniLML6V2ModelArtifact}); behavior \texttt{MiniLMModelAcquisition}; destination locator NOT SPECIFIED \\
+\textbf{\texttt{BAP-FRC6-01-03A3-05}} & \texttt{FR-C6-01-03A3} -- \texttt{hasPart} (\texttt{ModelResources -> MiniLMLocalModelStore}) \\
+\textbf{\texttt{BAP-FRC6-01-03A3-06}} & \texttt{FR-C6-01-03A3} -- \texttt{realize} (\texttt{all-MiniLM-L6-v2 -> AllMiniLML6V2ModelArtifact}) \\
 \textbf{\texttt{BAP-FRC6-01-03A4-01}} & \texttt{FR-C6-01-03A4} -- \texttt{hasPart} (\texttt{ModelResources -> TriageSynthesisModelResource}) \\
 \textbf{\texttt{BAP-FRC6-01-03A4-02}} & \texttt{FR-C6-01-03A4} -- \texttt{constrain} (\texttt{TriageSynthesisModelResource.availability: presence=required}) \\
 \textbf{\texttt{BAP-FRC6-01-03A4-03}} & \texttt{FR-C6-01-03A4} -- \texttt{realize} (\texttt{TriageSynthesisModelResource -> BioMistral-7B}) \\
 \textbf{\texttt{BAP-FRC6-01-03A4-04}} & \texttt{FR-C6-01-03A4} -- \texttt{transfer} (\texttt{HuggingFaceModelStore -> BioMistralLocalModelStore : BioMistral7BModelArtifact}); behavior \texttt{BioMistralModelAcquisition}; destination locator NOT SPECIFIED \\
+\textbf{\texttt{BAP-FRC6-01-03A4-05}} & \texttt{FR-C6-01-03A4} -- \texttt{hasPart} (\texttt{ModelResources -> BioMistralLocalModelStore}) \\
+\textbf{\texttt{BAP-FRC6-01-03A4-06}} & \texttt{FR-C6-01-03A4} -- \texttt{realize} (\texttt{BioMistral-7B -> BioMistral7BModelArtifact}) \\
 \textbf{\texttt{BAP-FRC6-01-04-01}} & \texttt{FR-C6-01-04} -- \texttt{constrain} (\texttt{DermaTriageEnvironment}: local \texttt{requiredConfigurationBindings}, \texttt{presence=required}); assignment \texttt{.env} e semantic owner downstream restano distinti dalla proposition locale \\
 \textbf{\texttt{BAP-FRC6-01-06-01}} & \texttt{FR-C6-01-06} -- \texttt{produce} (\texttt{EnvironmentSetupProcedure -> DermaTriageAPIService}); rende disponibile il servizio tramite startup senza implicare verification, process supervision o tecnologia obbligatoria \\
 \textbf{\texttt{BAP-DECC7-01-01}} & \texttt{DEC-C7-01} -- \texttt{realize} (\texttt{DermaTriageVerification -> DermaTriageVerificationProcedure}); non implica framework, ordering universale, PASS/FAIL per ogni controllo o ownership dei criteri verificati \\

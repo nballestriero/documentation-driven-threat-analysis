@@ -53,9 +53,9 @@ Page 48  37981bd8610726344bd5a0dfc8555a37  MR-C6 > DEC-C6-01 - Predisposizione d
 Page 49  cdd1b55f58be26c39b3b9969cf8bbea2  MR-C6 > DEC-C6-01 > FR-C6-01-01 - Disponibilita delle risorse di calcolo e storage dell'ambiente + ConfigurationRequirement
 Page 50  3d94469e6005250ecff20b57e3cfd48b  MR-C6 > DEC-C6-01 > FR-C6-01-02 - Predisposizione dello stack software e delle dipendenze
 Page 51  fb22e0ebe2cf5d8c0a09af2f966c4365  MR-C6 > DEC-C6-01 > FR-C6-01-03A1 [review label] - Predisposizione della risorsa modello per l'analisi di urgenza da immagine
-Page 52  bbbf6396a413df717b56f13c21ccebab  MR-C6 > DEC-C6-01 > FR-C6-01-03A2 [review label] - Predisposizione della risorsa modello per la generazione della descrizione clinica
-Page 53  9448c33ff50d5513f346ae92d98fbe96  MR-C6 > DEC-C6-01 > FR-C6-01-03A3 [review label] - Predisposizione della risorsa modello per la generazione degli embedding
-Page 54  3b9a96e0482613db73019ded69c9ce66  MR-C6 > DEC-C6-01 > FR-C6-01-03A4 [review label] - Predisposizione della risorsa modello per la sintesi multi-source
+Page 52  f407726f4424567c9e62abf22e60cdd2  MR-C6 > DEC-C6-01 > FR-C6-01-03A2 [review label] - Predisposizione della risorsa modello per la generazione della descrizione clinica
+Page 53  683ccf173ea1d3364786af12f0c3c3bd  MR-C6 > DEC-C6-01 > FR-C6-01-03A3 [review label] - Predisposizione della risorsa modello per la generazione degli embedding
+Page 54  bab2246e9b0b4cae7ab40e5afa1e0040  MR-C6 > DEC-C6-01 > FR-C6-01-03A4 [review label] - Predisposizione della risorsa modello per la sintesi multi-source
 Page 55  c5b1af500227b30619356a3a56d86086  MR-C6 > DEC-C6-01 > FR-C6-01-03B [review label] - Disponibilita del dataset RAG
 Page 56  bd474920e927b8610f3378862315bae1  MR-C6 > DEC-C6-01 > FR-C6-01-03C [review label] - Disponibilita delle immagini di training
 Page 57  19c2352a4af3296144fbfd6cc012115f  MR-C6 > DEC-C6-01 > FR-C6-01-04 - Configurazione dei binding dell'ambiente e delle integrazioni [1/2]
@@ -80,6 +80,6 @@ Page 75  b5899854b9498724ee2f778c1b504765  Registro Base Analysis - C7-P03..P07 
 Page 76  14f224c0a626f68a61bf866df0eee7ca  MR-C7 - Consolidamento lifecycle/owner e finding aperti per graph review
 Page 77  ae356cf9c315c7408621074645c7a683  Registro Base Analysis - BAReferent e BAProposition
 Page 78  6d742aced02c4f7553638cc4e3f7cfe5  Registro Base Analysis - BAReferent C7-P02 - first acceptance
-Page 79  966c4c684b5d27c0bd42709c26ca8e03  Registro Base Analysis - BAProposition
+Page 79  85b4573b2773c0a2d8efaa2c6dbfc1b2  Registro Base Analysis - BAProposition
 Page 80  42c63c876189a9d341da909c38484215  MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
-Page 81  a82278d2720e42bc37cfabec89eb6b46  Indice di integrita delle pagine [INTEGRITY INDEX]
+Page 81  cf80fe1c3ad1050ba8a037e2c8677da1  Indice di integrita delle pagine [INTEGRITY INDEX]
