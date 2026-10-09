@@ -23,6 +23,9 @@
 \definecolor{BARefDSix}{HTML}{E5F0FF}
 \definecolor{BARefDSeven}{HTML}{FFFFFF}
 \definecolor{BARefText}{HTML}{17324D}
+\definecolor{BADependStroke}{HTML}{C69214}
+\definecolor{BADependFill}{HTML}{FFF4CC}
+\definecolor{BADependText}{HTML}{7A5A00}
 
 \begin{document}
 \selectlanguage{italian}
@@ -129,6 +132,34 @@ La forma definitiva per una occurrence che contribuisce contemporaneamente a piu
 Un tag molto piccolo, e in particolare un tag bianco su fill molto chiari, puo' restare disponibile nel sorgente Mermaid o nel testo di un SVG/PDF vettoriale senza essere facilmente leggibile in una rasterizzazione o in uno screenshot. La traceability primaria resta quindi nel modello/sorgente; il trattamento visuale serve soltanto a non perdere il riferimento nella projection.
 \end{ddtaanti}
 %</MERMAID-GENERAL:traceability>
+
+
+%<MERMAID-GENERAL:projection-scope>
+\clearpage
+\section*{Scope cumulativo della projection}
+
+La projection Mermaid deve dichiarare esplicitamente quali analisi BA sono state incluse nel grafico. La dichiarazione e' una nota di provenance del sorgente e non viene visualizzata nel diagramma.
+
+\begin{ddtacore}[title={MERMAID-SCOPE-01 - dichiarazione dello scope BA}]
+All'inizio del codice Mermaid inserire un commento non renderizzato che elenca le analisi BA incluse e indica se il grafico e' completo rispetto a quello scope. Quando l'analisi viene estesa a un nuovo livello o ramo, il grafico precedente viene preservato come snapshot del proprio scope e si deriva un \textbf{nuovo file cumulativo} che dichiara lo scope esteso.
+\end{ddtacore}
+
+\begin{lstlisting}
+%% DDTA PROJECTION SCOPE
+%% BA analyses included: MR-EX
+%% Scope status: complete for MR-EX
+%% When extending the analysis, derive a new file from this graph
+%% and declare the cumulative scope, e.g. MR-EX + DEC-EX.
+\end{lstlisting}
+
+\begin{ddtaprinciple}[title={Completezza relativa allo scope dichiarato}]
+La parola ``complete'' non significa che il sistema sia completamente analizzato. Significa soltanto che la projection contiene tutte le proposition BA accettate appartenenti alle analisi elencate nel commento di scope. Un grafico successivo puo' quindi essere costruito per inclusione, per esempio \texttt{MR-EX} $\rightarrow$ \texttt{MR-EX + DEC-EX} $\rightarrow$ \texttt{MR-EX + DEC-EX + FR-EX}, senza riscrivere retroattivamente il significato dello snapshot precedente.
+\end{ddtaprinciple}
+
+\begin{ddtaanti}[title={Non sovrascrivere lo snapshot di uno scope concluso}]
+L'aggiunta di BA proveniente da uno scope successivo non trasforma il file precedente nello stesso grafico ``piu' grande''. Si crea invece una nuova projection cumulativa derivata dal file precedente, mantenendo nel codice una dichiarazione esplicita delle analisi BA che contribuiscono alla view.
+\end{ddtaanti}
+%</MERMAID-GENERAL:projection-scope>
 
 
 %<MERMAID-ELEMENT:hasPart>
@@ -427,5 +458,114 @@ La figura fissa soltanto gli aspetti specifici di \texttt{produce}: \textbf{blac
 Il fatto che un elemento occupi il role \texttt{result} non autorizza a renderlo con la stessa black box, con una shape ``output'' generica o con un colore scelto da \texttt{produce}. \texttt{produce} governa il pattern di connessione; lo stile del result appartiene alla regola visuale dell'elemento che occupa quel role.
 \end{ddtaanti}
 %</MERMAID-ELEMENT:produce>
+
+
+%<MERMAID-ELEMENT:dependOn>
+\clearpage
+\section{\texttt{dependOn}}
+
+\RuleTag\hspace{0.5em}\texttt{semanticOperatorKey = dependOn}
+
+\subsection{Scopo della rappresentazione}
+La proposition \texttt{dependOn} esprime una dipendenza direzionale fra un \texttt{dependent} e un \texttt{prerequisite}. La projection deve rendere leggibile la dipendenza senza attribuire ai due referent un nuovo semantic kind e senza competere visivamente con relazioni funzionali piu' strutturanti.
+
+Esempio generico:
+
+\begin{lstlisting}
+BAP-EX-02 - dependOn
+dependent    -> ExampleDependent
+prerequisite -> ExamplePrerequisite
+\end{lstlisting}
+
+La lettura grafica e': \texttt{ExampleDependent} dipende da \texttt{ExamplePrerequisite}.
+
+\subsection{Regola grafica candidata}
+
+\begin{tabularx}{\textwidth}{L{39mm}Y}
+\toprule
+\textbf{Parte BA} & \textbf{Projection Mermaid corrente} \\
+\midrule
+\texttt{dependent} & Sorgente della freccia. Mantiene la shape e lo stile propri del referent. E' l'anchor del trace tag della proposition. \\
+\texttt{dependOn} & Freccia direzionale tratteggiata, sottile, in famiglia giallo/ocra. La label e' una pill arrotondata con fondo giallo chiaro, bordo ocra e testo ocra scuro. \\
+\texttt{prerequisite} & Destinazione della freccia. Mantiene la shape e lo stile propri del referent. Se e' visualizzato come whole/subgraph, la relazione termina sul whole nel suo complesso. \\
+\bottomrule
+\end{tabularx}
+
+\begin{ddtacore}[title={DEPENDON-P01 - direzione dependent verso prerequisite}]
+La direzione della freccia segue direttamente i role BA: \texttt{dependent} $\rightarrow$ \texttt{prerequisite}. La label \texttt{dependOn} resta associata all'edge e non diventa un nodo BA autonomo.
+\end{ddtacore}
+
+\begin{ddtacore}[title={DEPENDON-P02 - peso visuale secondario}]
+La relazione usa stroke \texttt{\#C69214}, spessore \texttt{1.5px} e tratteggio \texttt{6 4}. Il trattamento leggero rende la dipendenza informativa distinguibile senza farla dominare sulla struttura funzionale o di containment della stessa view.
+\end{ddtacore}
+
+\begin{ddtacore}[title={DEPENDON-P03 - edge label giallo/ocra arrotondata}]
+La label \texttt{dependOn} usa fondo \texttt{\#FFF4CC}, bordo \texttt{\#C69214}, testo \texttt{\#7A5A00} e angoli arrotondati. La pill resta una label dell'edge: il trattamento grafico non introduce un nuovo referent.
+\end{ddtacore}
+
+\subsection{Traceability della proposition}
+Nella projection \texttt{dependOn}, il \texttt{dependent} e' l'anchor della proposition. Il relativo ID \BAP{} viene quindi riportato sotto la label del dependent, in piccolo e in bianco, secondo \texttt{MERMAID-TRACE-01}. Il prerequisite non ripete lo stesso ID.
+
+\subsection{Esempio Mermaid minimo}
+L'esempio seguente isola la sola relazione \texttt{dependOn}; poiche' contiene una sola edge label, il \texttt{themeCSS} puo' applicare direttamente il trattamento giallo/ocra alla label senza influenzare altri operatori.
+
+\begin{lstlisting}
+%%{init: {
+  "theme": "base",
+  "themeCSS": ".edgeLabel p { background:#FFF4CC !important; border:1px solid #C69214 !important; border-radius:10px !important; padding:2px 7px !important; color:#7A5A00 !important; }"
+}}%%
+
+flowchart LR
+
+ExampleDependent("ExampleDependent<br/><span style='font-size:7px;color:#FFFFFF'>BAP-EX-02</span>")
+ExamplePrerequisite("ExamplePrerequisite")
+
+ExampleDependent -.->|dependOn| ExamplePrerequisite
+
+classDef BAReferentD0 fill:#0066FF,stroke:#0047B3,
+  stroke-width:2px,color:#FFFFFF;
+class ExampleDependent,ExamplePrerequisite BAReferentD0;
+
+linkStyle 0 stroke:#C69214,stroke-width:1.5px,
+  stroke-dasharray:6 4;
+\end{lstlisting}
+
+\begin{ddtaworking}[title={Coesistenza di edge label con stili diversi}]
+In una view composita possono coesistere operatori con edge label differenti, per esempio \texttt{produce} e \texttt{dependOn}. La regola semantica fissa il target visuale di ciascun operatore; l'eventuale selettore CSS necessario a stilizzare una singola edge label deve essere verificato nel renderer adottato e non deve alterare le label degli altri operatori.
+\end{ddtaworking}
+
+\subsection{Esempio grafico visivo}
+\begin{center}
+\begin{tikzpicture}[>=Latex,font=\sffamily]
+  \node[
+    draw=BARefStroke,fill=BARefDZero,text=white,
+    rounded corners=6pt,line width=1pt,
+    minimum width=48mm,minimum height=15mm,align=center
+  ] (dep) {\textbf{ExampleDependent}\\[-0.3mm]
+           {\fontsize{5.5}{6}\selectfont\color{white}BAP-EX-02}};
+
+  \node[
+    draw=BARefStroke,fill=BARefDZero,text=white,
+    rounded corners=6pt,line width=1pt,
+    minimum width=48mm,minimum height=15mm,align=center,
+    right=48mm of dep
+  ] (pre) {\textbf{ExamplePrerequisite}};
+
+  \draw[-{Latex[length=2.6mm,width=1.8mm]},
+        draw=BADependStroke,line width=0.65pt,dash pattern=on 3.2pt off 2.1pt]
+    (dep.east) --
+    node[midway,above=2pt,fill=BADependFill,draw=BADependStroke,
+         line width=0.45pt,rounded corners=4pt,
+         inner xsep=5pt,inner ysep=2pt,text=BADependText]
+         {\small\texttt{dependOn}}
+    (pre.west);
+\end{tikzpicture}
+\end{center}
+
+\begin{ddtaprinciple}[title={DEPENDON-P04 - il prerequisite conserva la propria topology}]
+Se il prerequisite e' un \BAR{} espanso a subgraph perche' nella stessa view sono mostrate le sue part, la freccia \texttt{dependOn} termina sul frame del whole. Non viene scelta arbitrariamente una part interna come destinazione. Il giallo/ocra appartiene soltanto all'edge e alla label: i referent collegati mantengono shape, fill, depth palette e identita' determinati dalle rispettive regole visuali.
+\end{ddtaprinciple}
+
+%</MERMAID-ELEMENT:dependOn>
 
 \end{document}
