@@ -26,6 +26,16 @@
 \definecolor{BADependStroke}{HTML}{C69214}
 \definecolor{BADependFill}{HTML}{FFF4CC}
 \definecolor{BADependText}{HTML}{7A5A00}
+\definecolor{BARealizeStroke}{HTML}{3F4347}
+\definecolor{BARealizeDZero}{HTML}{5F6368}
+\definecolor{BARealizeDOne}{HTML}{777A7F}
+\definecolor{BARealizeDTwo}{HTML}{8F9295}
+\definecolor{BARealizeDThree}{HTML}{A7A9AC}
+\definecolor{BARealizeDFour}{HTML}{BFC1C3}
+\definecolor{BARealizeDFive}{HTML}{D7D8D9}
+\definecolor{BARealizeDSix}{HTML}{EFEFF0}
+\definecolor{BARealizeDSeven}{HTML}{FFFFFF}
+
 
 \begin{document}
 \selectlanguage{italian}
@@ -141,16 +151,26 @@ Un tag molto piccolo, e in particolare un tag bianco su fill molto chiari, puo' 
 La projection Mermaid deve dichiarare esplicitamente quali analisi BA sono state incluse nel grafico. La dichiarazione e' una nota di provenance del sorgente e non viene visualizzata nel diagramma.
 
 \begin{ddtacore}[title={MERMAID-SCOPE-01 - dichiarazione dello scope BA}]
-All'inizio del codice Mermaid inserire un commento non renderizzato che elenca le analisi BA incluse e indica se il grafico e' completo rispetto a quello scope. Quando l'analisi viene estesa a un nuovo livello o ramo, il grafico precedente viene preservato come snapshot del proprio scope e si deriva un \textbf{nuovo file cumulativo} che dichiara lo scope esteso.
+Nel file Markdown, immediatamente prima del blocco Mermaid, inserire un commento HTML non renderizzato che elenca le analisi BA incluse e indica se il grafico e' completo rispetto a quello scope. Il commento di provenance resta quindi esterno al parser del diagramma. Quando l'analisi viene estesa a un nuovo livello o ramo, il grafico precedente viene preservato come snapshot del proprio scope e si deriva un \textbf{nuovo file cumulativo} che dichiara lo scope esteso.
 \end{ddtacore}
 
 \begin{lstlisting}
-%% DDTA PROJECTION SCOPE
-%% BA analyses included: MR-EX
-%% Scope status: complete for MR-EX
-%% When extending the analysis, derive a new file from this graph
-%% and declare the cumulative scope, e.g. MR-EX + DEC-EX.
+<!--
+DDTA PROJECTION SCOPE
+BA analyses included: MR-EX
+Scope status: complete for MR-EX
+When extending the analysis, derive a new file from this graph
+and declare the cumulative scope, e.g. MR-EX + DEC-EX.
+-->
+
+```mermaid
+...
+```
 \end{lstlisting}
+
+\begin{ddtaprinciple}[title={Provenance esterna al parser Mermaid}]
+Nel renderer target verificato, i commenti Mermaid \texttt{\%\%} usati per la provenance possono comparire come contenuto grafico spurio. Per lo scope DDTA si usa quindi il commento HTML del file Markdown. La direttiva tecnica \texttt{\%\%\{init: ...\}\%\%} resta invece all'interno del blocco Mermaid quando necessaria al renderer.
+\end{ddtaprinciple}
 
 \begin{ddtaprinciple}[title={Completezza relativa allo scope dichiarato}]
 La parola ``complete'' non significa che il sistema sia completamente analizzato. Significa soltanto che la projection contiene tutte le proposition BA accettate appartenenti alle analisi elencate nel commento di scope. Un grafico successivo puo' quindi essere costruito per inclusione, per esempio \texttt{MR-EX} $\rightarrow$ \texttt{MR-EX + DEC-EX} $\rightarrow$ \texttt{MR-EX + DEC-EX + FR-EX}, senza riscrivere retroattivamente il significato dello snapshot precedente.
@@ -568,4 +588,198 @@ Se il prerequisite e' un \BAR{} espanso a subgraph perche' nella stessa view son
 
 %</MERMAID-ELEMENT:dependOn>
 
+
+
+%<MERMAID-ELEMENT:realize>
+\clearpage
+\section{\texttt{realize}}
+
+\RuleTag\hspace{0.5em}\texttt{semanticOperatorKey = realize}
+
+\subsection{Scopo della rappresentazione}
+La proposition \texttt{realize} collega una responsabilita' o funzione astratta alla realizzazione concreta che la attua nella baseline osservata. La projection deve mantenere distinte le due identita': l'\texttt{abstract} conserva la propria famiglia visuale, mentre la \texttt{realization} viene resa riconoscibile mediante una famiglia grigia dedicata alla relation view.
+
+Esempio generico:
+
+\begin{lstlisting}
+BAP-EX-03 - realize
+abstract    -> ExampleAbstract
+realization -> ExampleRealization
+\end{lstlisting}
+
+La lettura grafica e': \texttt{ExampleRealization} realizza \texttt{ExampleAbstract}.
+
+\begin{ddtacore}[title={REALIZE-P01 - direzione realization verso abstract}]
+La freccia segue direttamente i role BA: \texttt{realization} $\rightarrow$ \texttt{abstract}. L'edge usa stroke grigio \texttt{\#5F6368}, spessore \texttt{1.8px} e tratteggio \texttt{6 4}. La label \texttt{realize} resta associata all'edge e non diventa un nodo BA autonomo.
+\end{ddtacore}
+
+\begin{ddtacore}[title={REALIZE-P02 - famiglia grigia della realization}]
+L'occurrence che occupa il role \texttt{realization} usa come livello D0 il fill \texttt{\#5F6368}. Quando la realization e' espansa per mostrare le proprie part, il whole viene proiettato come subgraph/frame con stroke \texttt{\#3F4347}, spessore \texttt{2.5px} e bordo tratteggiato \texttt{6 4}. Il tratteggio del frame identifica la topology di realization nella projection; non introduce un nuovo semantic kind BA.
+\end{ddtacore}
+
+\begin{ddtacore}[title={REALIZE-P03 - depth palette interna alla realization}]
+Se nella stessa view sono mostrate proposition \texttt{hasPart} del referent che occupa il role \texttt{realization}, le part contenute usano la stessa famiglia grigia e vengono schiarite di \textbf{15 punti percentuali verso il bianco per ogni livello di containment}. Le part hanno bordo continuo; il bordo tratteggiato resta sul whole che costituisce l'endpoint della proposition \texttt{realize}.
+\end{ddtacore}
+
+\begin{ddtaprinciple}[title={L'abstract conserva il proprio stile}]
+\texttt{realize} non riclassifica l'\texttt{abstract}. Shape, fill e topology dell'abstract restano determinati dalle altre proposition e dalle altre regole visuali applicabili nella view. La famiglia grigia appartiene alla projection della realization e al suo containment interno.
+\end{ddtaprinciple}
+
+\subsection{Traceability}
+L'anchor della proposition \texttt{realize} e' la \texttt{realization}: l'ID della \BAP{} viene riportato sotto la label del nodo o del subgraph che rappresenta la realization secondo \texttt{MERMAID-TRACE-01}. Le proposition \texttt{hasPart} interne mantengono invece il proprio trace tag sotto la part corrispondente, secondo \texttt{HASPART-P03A}.
+
+\subsection{Esempio Mermaid generico}
+\begin{lstlisting}
+%%{init: {
+  "theme": "base",
+  "themeCSS": ".cluster rect { rx:28px !important; ry:28px !important; }"
+}}%%
+
+flowchart LR
+
+ExampleAbstract("ExampleAbstract")
+
+subgraph ExampleRealization["ExampleRealization<br/><span style='font-size:7px;color:#FFFFFF'>BAP-EX-03</span>"]
+  direction TB
+  ExampleStageA("ExampleStageA<br/><span style='font-size:7px;color:#FFFFFF'>BAP-EX-04</span>")
+  ExampleStageB("ExampleStageB<br/><span style='font-size:7px;color:#FFFFFF'>BAP-EX-05</span>")
+end
+
+ExampleRealization -.->|realize| ExampleAbstract
+
+classDef BAReferentD0 fill:#0066FF,stroke:#0047B3,
+  stroke-width:2px,color:#FFFFFF;
+classDef BARealizationD1 fill:#777A7F,stroke:#3F4347,
+  stroke-width:2px,color:#FFFFFF;
+
+class ExampleAbstract BAReferentD0;
+class ExampleStageA,ExampleStageB BARealizationD1;
+
+style ExampleRealization fill:#5F6368,stroke:#3F4347,
+  stroke-width:2.5px,stroke-dasharray:6 4,color:#FFFFFF
+
+linkStyle 0 stroke:#5F6368,stroke-width:1.8px,
+  stroke-dasharray:6 4;
+\end{lstlisting}
+
+\subsection{Esempio grafico visivo}
+\begin{center}
+\begin{tikzpicture}[>=Latex,font=\sffamily]
+  \node[
+    draw=BARefStroke,fill=BARefDZero,text=white,
+    rounded corners=6pt,line width=1pt,
+    minimum width=47mm,minimum height=15mm,align=center
+  ] (abstract) at (10.7,0) {\textbf{ExampleAbstract}};
+
+  \node[
+    draw=BARealizeStroke,fill=BARealizeDZero,text=white,
+    rounded corners=11pt,line width=1.2pt,
+    dash pattern=on 3.2pt off 2.1pt,
+    minimum width=68mm,minimum height=42mm,align=center
+  ] (realframe) at (4.0,0) {};
+
+  \node[text=white,font=\sffamily\bfseries\scriptsize,align=center]
+    at (4.0,1.38) {ExampleRealization\\[-0.5mm]
+    {\fontsize{5.2}{5.6}\selectfont\color{white}BAP-EX-03}};
+
+  \node[
+    draw=BARealizeStroke,fill=BARealizeDOne,text=white,
+    rounded corners=6pt,line width=0.9pt,
+    minimum width=26mm,minimum height=10mm,align=center
+  ] at (2.45,-0.65) {ExampleStageA};
+
+  \node[
+    draw=BARealizeStroke,fill=BARealizeDOne,text=white,
+    rounded corners=6pt,line width=0.9pt,
+    minimum width=26mm,minimum height=10mm,align=center
+  ] at (5.55,-0.65) {ExampleStageB};
+
+  \draw[-{Latex[length=2.6mm,width=1.8mm]},
+        draw=BARealizeDZero,line width=0.8pt,
+        dash pattern=on 3.2pt off 2.1pt]
+    (realframe.east) --
+    node[midway,above=2pt,fill=white,draw=BARealizeDZero,
+         line width=0.4pt,rounded corners=4pt,
+         inner xsep=5pt,inner ysep=2pt,text=BARealizeStroke]
+         {\small\texttt{realize}}
+    (abstract.west);
+\end{tikzpicture}
+\end{center}
+
+\begin{ddtaanti}[title={Non propagare il tratteggio alle part}]
+Il bordo tratteggiato non significa ``componente tecnico'' e non viene ereditato automaticamente dalle part. Le part interne mantengono bordo continuo e ricevono soltanto la schiaritura di depth della famiglia grigia, salvo che una proposition indipendente richieda per esse un'altra projection.
+\end{ddtaanti}
+
+
+\clearpage
+\section*{Scala cromatica completa della famiglia \texttt{realize}}
+
+La palette della realization applica la stessa regola deterministica di schiaritura usata per il containment: a partire dal base fill \texttt{\#5F6368}, il livello \(D_d\) e' ottenuto miscelando il colore base verso il bianco di \(L(d)=\min(15d,100)\%\). La scala e' una proprieta' grafica della projection e non una tassonomia BA.
+
+\begin{center}
+\begin{tabular}{c c c c}
+\toprule
+\textbf{Depth} & \textbf{Schiaritura} & \textbf{Fill} & \textbf{Testo principale} \\
+\midrule
+D0 & 0\%   & \texttt{\#5F6368} & \texttt{\#FFFFFF} \\
+D1 & 15\%  & \texttt{\#777A7F} & \texttt{\#FFFFFF} \\
+D2 & 30\%  & \texttt{\#8F9295} & \texttt{\#17324D} \\
+D3 & 45\%  & \texttt{\#A7A9AC} & \texttt{\#17324D} \\
+D4 & 60\%  & \texttt{\#BFC1C3} & \texttt{\#17324D} \\
+D5 & 75\%  & \texttt{\#D7D8D9} & \texttt{\#17324D} \\
+D6 & 90\%  & \texttt{\#EFEFF0} & \texttt{\#17324D} \\
+D7+ & 100\% & \texttt{\#FFFFFF} & \texttt{\#17324D} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{2mm}
+\begin{center}
+\begin{tikzpicture}[font=\sffamily]
+  \node[draw=BARealizeStroke,fill=BARealizeDZero,text=white,rounded corners=5pt,line width=0.9pt,dash pattern=on 3pt off 2pt,minimum width=37mm,minimum height=13mm,align=center] at (2.2,0) {\textbf{D0}\\{\scriptsize \#5F6368}};
+  \node[draw=BARealizeStroke,fill=BARealizeDOne,text=white,rounded corners=5pt,line width=0.9pt,minimum width=37mm,minimum height=13mm,align=center] at (6.1,0) {\textbf{D1}\\{\scriptsize \#777A7F}};
+  \node[draw=BARealizeStroke,fill=BARealizeDTwo,text=BARefText,rounded corners=5pt,line width=0.9pt,minimum width=37mm,minimum height=13mm,align=center] at (10.0,0) {\textbf{D2}\\{\scriptsize \#8F9295}};
+  \node[draw=BARealizeStroke,fill=BARealizeDThree,text=BARefText,rounded corners=5pt,line width=0.9pt,minimum width=37mm,minimum height=13mm,align=center] at (13.9,0) {\textbf{D3}\\{\scriptsize \#A7A9AC}};
+
+  \node[draw=BARealizeStroke,fill=BARealizeDFour,text=BARefText,rounded corners=5pt,line width=0.9pt,minimum width=37mm,minimum height=13mm,align=center] at (2.2,-1.75) {\textbf{D4}\\{\scriptsize \#BFC1C3}};
+  \node[draw=BARealizeStroke,fill=BARealizeDFive,text=BARefText,rounded corners=5pt,line width=0.9pt,minimum width=37mm,minimum height=13mm,align=center] at (6.1,-1.75) {\textbf{D5}\\{\scriptsize \#D7D8D9}};
+  \node[draw=BARealizeStroke,fill=BARealizeDSix,text=BARefText,rounded corners=5pt,line width=0.9pt,minimum width=37mm,minimum height=13mm,align=center] at (10.0,-1.75) {\textbf{D6}\\{\scriptsize \#EFEFF0}};
+  \node[draw=BARealizeStroke,fill=BARealizeDSeven,text=BARefText,rounded corners=5pt,line width=0.9pt,minimum width=37mm,minimum height=13mm,align=center] at (13.9,-1.75) {\textbf{D7+}\\{\scriptsize \#FFFFFF}};
+\end{tikzpicture}
+\end{center}
+
+\begin{ddtacore}[title={REALIZE-P04 - valori espliciti nel sorgente Mermaid}]
+Per ridurre differenze fra renderer, i valori D0--D7 vengono fissati esplicitamente nel sorgente. D0 e' il whole della realization; D1--D7 sono disponibili per le part annidate in base alla depth effettivamente mostrata nella view.
+\end{ddtacore}
+
+\clearpage
+\subsection*{Mermaid palette test completo}
+Il blocco seguente rende disponibili tutti i livelli della famiglia \texttt{realize} per test di renderer e per view con containment profondo. Il file di prova standalone usa gli stessi valori.
+
+\begin{lstlisting}
+classDef BARealizationD0 fill:#5F6368,stroke:#3F4347,
+  stroke-width:2.5px,color:#FFFFFF;
+classDef BARealizationD1 fill:#777A7F,stroke:#3F4347,
+  stroke-width:2px,color:#FFFFFF;
+classDef BARealizationD2 fill:#8F9295,stroke:#3F4347,
+  stroke-width:2px,color:#17324D;
+classDef BARealizationD3 fill:#A7A9AC,stroke:#3F4347,
+  stroke-width:2px,color:#17324D;
+classDef BARealizationD4 fill:#BFC1C3,stroke:#3F4347,
+  stroke-width:2px,color:#17324D;
+classDef BARealizationD5 fill:#D7D8D9,stroke:#3F4347,
+  stroke-width:2px,color:#17324D;
+classDef BARealizationD6 fill:#EFEFF0,stroke:#3F4347,
+  stroke-width:2px,color:#17324D;
+classDef BARealizationD7 fill:#FFFFFF,stroke:#3F4347,
+  stroke-width:2px,color:#17324D;
+\end{lstlisting}
+
+\begin{ddtaprinciple}[title={Il trace tag resta bianco}]
+Come stabilito da \texttt{MERMAID-TRACE-01}, il trace tag \BAP{} resta sempre bianco anche ai livelli chiari. Il cambio di colore indicato nella tabella riguarda il testo principale del nodo; la traceability autorevole resta nel sorgente anche quando il tag e' poco visibile.
+\end{ddtaprinciple}
+
+%</MERMAID-ELEMENT:realize>
+
 \end{document}
+
