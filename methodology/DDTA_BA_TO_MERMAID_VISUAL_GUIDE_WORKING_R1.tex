@@ -1,0 +1,431 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{DDTA_METHODOLOGY_GUIDE_STYLE_R1}
+\usepackage{amsmath,amssymb}
+
+\hypersetup{
+  pdftitle={DDTA BA to Mermaid Visual Guide - Working R1},
+  pdfauthor={Documentation-Driven Threat Analysis research project}
+}
+
+\newcommand{\BAR}{\texttt{BAReferent}}
+\newcommand{\BAP}{\texttt{BAProposition}}
+\newcommand{\VisualGuideTag}{\ddtatag{DDTAAmber}{WORKING / INCREMENTAL}}
+\newcommand{\RuleTag}{\ddtatag{DDTABlue}{VISUAL RULE}}
+\definecolor{BAProduceFill}{HTML}{212121}
+\definecolor{BATraceDim}{HTML}{292929}
+\definecolor{BARefStroke}{HTML}{0047B3}
+\definecolor{BARefDZero}{HTML}{0066FF}
+\definecolor{BARefDOne}{HTML}{267DFF}
+\definecolor{BARefDTwo}{HTML}{4C94FF}
+\definecolor{BARefDThree}{HTML}{73ABFF}
+\definecolor{BARefDFour}{HTML}{99C2FF}
+\definecolor{BARefDFive}{HTML}{BFD9FF}
+\definecolor{BARefDSix}{HTML}{E5F0FF}
+\definecolor{BARefDSeven}{HTML}{FFFFFF}
+\definecolor{BARefText}{HTML}{17324D}
+
+\begin{document}
+\selectlanguage{italian}
+
+\fancyhead[L]{\sffamily\small\color{DDTAGray}DDTA BA to Mermaid Visual Guide}
+\fancyhead[R]{\sffamily\small\color{DDTABlue}Working R1}
+\fancyfoot[L]{\sffamily\scriptsize\color{DDTAGray}BA semantics first - Mermaid rendering second}
+\fancyfoot[C]{}
+\fancyfoot[R]{\sffamily\scriptsize\color{DDTAGray}Pag. \thepage}
+
+% -----------------------------------------------------------------------------
+% TITLE PAGE
+% -----------------------------------------------------------------------------
+\begin{titlepage}
+\thispagestyle{empty}
+\vspace*{12mm}
+{\sffamily\bfseries\color{DDTANavy}\fontsize{15}{18}\selectfont Documentation-Driven Threat Analysis}\par
+\vspace{5mm}
+{\sffamily\bfseries\color{DDTANavy}\fontsize{25}{29}\selectfont BA to Mermaid Visual Guide}\par
+\vspace{2mm}
+{\sffamily\color{DDTABlue}\fontsize{17}{21}\selectfont Working R1 - costruzione incrementale delle regole grafiche}\par
+
+\vspace{14mm}
+\begin{tcolorbox}[enhanced,arc=3pt,boxrule=0pt,colback=DDTANavy,left=13pt,right=13pt,top=12pt,bottom=12pt]
+{\color{white}\sffamily\bfseries\large Dalla Base Analysis alla rappresentazione Mermaid}\par
+\vspace{2mm}
+{\color{white!88}\small La guida viene costruita un elemento alla volta attraverso casi di prova usati per comprendere e stabilizzare la projection. Non definisce nuova semantica BA: registra soltanto convenzioni grafiche generalizzabili. Gli esempi della guida restano methodology-neutral e non dipendono dal progetto usato per scoprirle.}
+\end{tcolorbox}
+
+\vspace{7mm}
+\begin{ddtaworking}[title={Regola editoriale della guida}]
+Ogni elemento o costrutto grafico BA/Mermaid inizia su una \textbf{pagina separata}. I blocchi sono mantenuti autocontenuti affinche', al termine della revisione, le pagine possano essere riordinate seguendo lo stesso ordine della Base Analysis Guide senza riscrivere il contenuto.
+\end{ddtaworking}
+
+\vfill
+\begin{tabularx}{0.94\textwidth}{L{43mm}Y}
+\toprule
+\textbf{Stato} & \VisualGuideTag \\
+\textbf{Metodo di costruzione} & Incrementale, mediante casi di prova ricostruiti dalla BA; gli esempi pubblicati nella guida sono generalizzati e project-independent. \\
+\textbf{Renderer target iniziale} & Mermaid flowchart, verificato dall'utente in VS Code. \\
+\textbf{Regola di authority} & La grafica rappresenta la BA; non modifica ne' completa la BA. \\
+\bottomrule
+\end{tabularx}
+\end{titlepage}
+
+% -----------------------------------------------------------------------------
+% GENERAL RENDERER BASELINE - not a BA element
+% -----------------------------------------------------------------------------
+\clearpage
+\section*{Baseline grafica del renderer}
+
+La stessa sorgente Mermaid puo' essere visualizzata dentro applicazioni con temi chiari o scuri. Per evitare che lo sfondo o i colori di default cambino in base al programma, ogni diagramma DDTA/BA deve partire da un \textbf{tema base esplicito}. Questa regola e' tecnica: non introduce classi o semantica BA.
+
+\begin{ddtacore}[title={MERMAID-BASE-01 - renderer baseline}]
+Usare \texttt{theme: base} e impostare esplicitamente almeno sfondo, testo di default, bordo di default, colore delle linee ed edge-label background. Gli elementi con significato grafico specifico ricevono poi una propria \texttt{classDef}; il tema dell'editor non deve determinarne l'aspetto.
+\end{ddtacore}
+
+\begin{lstlisting}
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "background": "#FFFFFF",
+    "primaryColor": "#FFFFFF",
+    "primaryTextColor": "#17324D",
+    "primaryBorderColor": "#5B6770",
+    "lineColor": "#5B6770",
+    "edgeLabelBackground": "#FFFFFF"
+  }
+}}%%
+\end{lstlisting}
+
+\begin{ddtaprinciple}[title={Baseline non equivale a semantic style}]
+Il colore/shape di default serve soltanto come fallback stabile. Non deve essere interpretato come stile canonico del BAReferent visualizzato. Quando una famiglia visuale viene definita, la relativa \texttt{classDef} sostituisce il fallback.
+\end{ddtaprinciple}
+
+
+%<MERMAID-GENERAL:traceability>
+\clearpage
+\section*{Traceability BA a bassa intrusivita'}
+
+Questa e' una \textbf{regola generale di projection} e non appartiene a uno specifico operatore. Quando una visual occurrence deriva da una \BAP{} inclusa nella view, il relativo identificatore puo' essere preservato nel nodo senza appesantire la lettura umana.
+
+\begin{ddtacore}[title={MERMAID-TRACE-01 - trace tag a bassa intrusivita'}]
+Quando una occurrence viene usata come anchor visuale di una \BAP{}, l'ID della proposition viene riportato \textbf{sotto la label canonica}, su una seconda riga, con font molto piccolo e colore \textbf{bianco} (\texttt{\#FFFFFF}). Il tag resta secondario rispetto alla label principale: la bassa intrusivita' deriva dalla dimensione ridotta, non dalla modifica del nome canonico o dalla scelta di un colore differente per ogni fill.
+\end{ddtacore}
+
+\begin{lstlisting}
+ExampleElement["ExampleElement<br/><span style='font-size:7px;color:#FFFFFF'>BAP-EX-01</span>"]
+\end{lstlisting}
+
+\begin{ddtaprinciple}[title={Posizione e colore del trace tag}]
+Il trace tag viene mantenuto sotto la label principale e usa sempre \texttt{\#FFFFFF}. Le regole dei singoli operatori stabiliscono quale occurrence funge da anchor della proposition. Se il fill e' molto chiaro o bianco il tag puo' diventare poco o per nulla visibile: la sua authority resta nel sorgente Mermaid, mentre la leggibilita' umana primaria appartiene alla label canonica.
+\end{ddtaprinciple}
+
+\begin{ddtaprinciple}[title={Il trace tag appartiene alla occurrence, non all'identita'}]
+Il codice \texttt{BAP-EX-01} identifica la proposition visualizzata. Non diventa parte del nome canonico o dell'identita' di \texttt{ExampleElement}. La regola descrive una annotazione di traceability della occurrence.
+\end{ddtaprinciple}
+
+\begin{ddtaworking}[title={Caso con piu' proposition}]
+La forma definitiva per una occurrence che contribuisce contemporaneamente a piu' \BAP{} resta da verificare. Non si accumulano automaticamente piu' codici nel nodo finche' un caso reale non permette di stabilire una regola leggibile e deterministica.
+\end{ddtaworking}
+
+\begin{ddtaanti}[title={Visibilita' umana e machine readability non sono equivalenti}]
+Un tag molto piccolo, e in particolare un tag bianco su fill molto chiari, puo' restare disponibile nel sorgente Mermaid o nel testo di un SVG/PDF vettoriale senza essere facilmente leggibile in una rasterizzazione o in uno screenshot. La traceability primaria resta quindi nel modello/sorgente; il trattamento visuale serve soltanto a non perdere il riferimento nella projection.
+\end{ddtaanti}
+%</MERMAID-GENERAL:traceability>
+
+
+%<MERMAID-ELEMENT:hasPart>
+\clearpage
+\section{\texttt{hasPart} e containment dei \BAR{}}
+
+\RuleTag\hspace{0.5em}\texttt{semanticOperatorKey = hasPart}
+
+\subsection{Premessa semantica}
+La projection non introduce un tipo grafico specifico in base al nome del referent. Se il modello BA identifica soltanto \BAR{}, il whole e le part restano membri della stessa famiglia visuale \BAR{}. La relazione \texttt{hasPart} determina invece una \textbf{topologia di containment}: il whole puo' diventare il frame/subgraph che contiene le occurrence delle part incluse nella view.
+
+\begin{ddtacore}[title={HASPART-P01 - containment senza riclassificazione}]
+La relazione \texttt{hasPart(whole, part)} puo' essere proiettata come \textbf{containment visuale}. Il whole e la part conservano la propria identita' BA e la stessa famiglia visuale; la profondita' nel containment modifica soltanto il trattamento grafico necessario a rendere leggibile la gerarchia.
+\end{ddtacore}
+
+\begin{ddtaprinciple}[title={Node e subgraph sono due topology della stessa famiglia}]
+Un \BAR{} senza part visualizzate puo' essere mostrato come nodo arrotondato. Quando nella stessa view vengono mostrate le sue part, la sua occurrence puo' essere espansa a subgraph/frame. Il passaggio da nodo a frame non crea un nuovo semantic kind e non cambia l'identita' del \BAR{}.
+\end{ddtaprinciple}
+
+\subsection{Profondita' di containment e schiaritura}
+Per rendere visibile l'annidamento senza introdurre colori semantici differenti, la famiglia \BAR{} usa un blu elettrico come livello esterno e si schiarisce di \textbf{15 punti percentuali verso il bianco per ogni livello di profondita'}. La percentuale e' assoluta rispetto al colore base, non cumulativa rispetto al livello precedente.
+
+\begin{ddtacore}[title={HASPART-P02 - depth palette deterministica}]
+Sia \(d\) la profondita' di containment, con \(d=0\) per il whole piu' esterno visualizzato. La schiaritura e' \(L(d)=\min(15d,100)\%\). Il fill e' ottenuto miscelando il colore base \texttt{\#0066FF} verso il bianco secondo \(L(d)\). A partire da D7 il fill e' bianco. Lo stroke resta \texttt{\#0047B3} per preservare la continuita' della famiglia visuale.
+\end{ddtacore}
+
+\begin{center}
+\begin{tabular}{c c c c}
+\toprule
+\textbf{Depth} & \textbf{Schiaritura} & \textbf{Fill} & \textbf{Testo} \\
+\midrule
+D0 & 0\%   & \texttt{\#0066FF} & bianco \\
+D1 & 15\%  & \texttt{\#267DFF} & bianco \\
+D2 & 30\%  & \texttt{\#4C94FF} & bianco \\
+D3 & 45\%  & \texttt{\#73ABFF} & blu scuro \\
+D4 & 60\%  & \texttt{\#99C2FF} & blu scuro \\
+D5 & 75\%  & \texttt{\#BFD9FF} & blu scuro \\
+D6 & 90\%  & \texttt{\#E5F0FF} & blu scuro \\
+D7+ & 100\% & \texttt{\#FFFFFF} & blu scuro \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Classi Mermaid della palette}
+I valori della palette vengono fissati esplicitamente nel sorgente per evitare differenze fra renderer. D0 e' normalmente applicato al frame esterno; D1--D7 possono essere applicati sia a nodi sia a frame in base alla topology della occurrence.
+
+\begin{lstlisting}
+classDef BAReferentD0 fill:#0066FF,stroke:#0047B3,
+  stroke-width:2.5px,color:#FFFFFF;
+classDef BAReferentD1 fill:#267DFF,stroke:#0047B3,
+  stroke-width:2px,color:#FFFFFF;
+classDef BAReferentD2 fill:#4C94FF,stroke:#0047B3,
+  stroke-width:2px,color:#FFFFFF;
+classDef BAReferentD3 fill:#73ABFF,stroke:#0047B3,
+  stroke-width:2px,color:#17324D;
+classDef BAReferentD4 fill:#99C2FF,stroke:#0047B3,
+  stroke-width:2px,color:#17324D;
+classDef BAReferentD5 fill:#BFD9FF,stroke:#0047B3,
+  stroke-width:2px,color:#17324D;
+classDef BAReferentD6 fill:#E5F0FF,stroke:#0047B3,
+  stroke-width:2px,color:#17324D;
+classDef BAReferentD7 fill:#FFFFFF,stroke:#0047B3,
+  stroke-width:2px,color:#17324D;
+\end{lstlisting}
+
+\subsection{Bordi arrotondati}
+I \BAR{} della famiglia di containment usano bordi arrotondati. Per i nodi si usa la sintassi Mermaid arrotondata \texttt{("...")}. Per i subgraph il renderer viene normalizzato con una regola CSS sui cluster:
+
+\begin{lstlisting}
+%%{init: {
+  "theme": "base",
+  "themeCSS": ".cluster rect { rx: 28px !important; ry: 28px !important; }"
+}}%%
+\end{lstlisting}
+
+\begin{ddtaworking}[title={Compatibilita' renderer}]
+L'arrotondamento dei cluster dipende dal supporto del renderer Mermaid a \texttt{themeCSS}. La regola rappresenta il target visuale della guida; la compatibilita' viene verificata nel renderer adottato prima di consolidare una release metodologica.
+\end{ddtaworking}
+
+\clearpage
+\subsection{Palette visuale D0--D7}
+La palette seguente e' una rappresentazione visuale della sola profondita' di containment; non corrisponde a differenti semantic kind BA.
+
+\begin{center}
+\begin{tikzpicture}[font=\sffamily]
+  \node[draw=BARefStroke,fill=BARefDZero,text=white,rounded corners=5pt,line width=1pt,minimum width=15mm,minimum height=12mm] at (0,0) {\textbf{D0}};
+  \node[draw=BARefStroke,fill=BARefDOne,text=white,rounded corners=5pt,line width=1pt,minimum width=15mm,minimum height=12mm] at (1.85,0) {\textbf{D1}};
+  \node[draw=BARefStroke,fill=BARefDTwo,text=white,rounded corners=5pt,line width=1pt,minimum width=15mm,minimum height=12mm] at (3.70,0) {\textbf{D2}};
+  \node[draw=BARefStroke,fill=BARefDThree,text=BARefText,rounded corners=5pt,line width=1pt,minimum width=15mm,minimum height=12mm] at (5.55,0) {\textbf{D3}};
+  \node[draw=BARefStroke,fill=BARefDFour,text=BARefText,rounded corners=5pt,line width=1pt,minimum width=15mm,minimum height=12mm] at (7.40,0) {\textbf{D4}};
+  \node[draw=BARefStroke,fill=BARefDFive,text=BARefText,rounded corners=5pt,line width=1pt,minimum width=15mm,minimum height=12mm] at (9.25,0) {\textbf{D5}};
+  \node[draw=BARefStroke,fill=BARefDSix,text=BARefText,rounded corners=5pt,line width=1pt,minimum width=15mm,minimum height=12mm] at (11.10,0) {\textbf{D6}};
+  \node[draw=BARefStroke,fill=BARefDSeven,text=BARefText,rounded corners=5pt,line width=1pt,minimum width=15mm,minimum height=12mm] at (12.95,0) {\textbf{D7+}};
+\end{tikzpicture}
+\end{center}
+
+\vspace{4mm}
+\subsection{Esempio grafico generico di containment}
+
+\begin{center}
+\begin{tikzpicture}[font=\sffamily]
+  \node[draw=BARefStroke,fill=BARefDZero,text=white,rounded corners=12pt,
+        line width=1.3pt,minimum width=142mm,minimum height=55mm,anchor=north west]
+        (outer) at (0,0) {};
+  \node[anchor=north west,text=white,font=\sffamily\bfseries] at (0.5,-0.35) {ExampleWhole -- D0};
+
+  \node[draw=BARefStroke,fill=BARefDOne,text=white,rounded corners=8pt,
+        line width=1pt,minimum width=37mm,minimum height=14mm,align=center]
+        at (2.8,-2.4) {ExamplePartA\\[-0.4mm]{\fontsize{5}{5.4}\selectfont\color{white}BAP-EX-01}};
+
+  \node[draw=BARefStroke,fill=BARefDOne,text=white,rounded corners=8pt,
+        line width=1pt,minimum width=37mm,minimum height=14mm,align=center]
+        at (7.2,-2.4) {ExamplePartB\\[-0.4mm]{\fontsize{5}{5.4}\selectfont\color{white}BAP-EX-02}};
+
+  \node[draw=BARefStroke,fill=BARefDOne,text=white,rounded corners=10pt,
+        line width=1pt,minimum width=44mm,minimum height=30mm,align=center]
+        (nested) at (10.9,-2.6) {};
+  \node[text=white,font=\sffamily\bfseries\scriptsize,align=center]
+        at (10.9,-1.68) {ExampleContainedWhole -- D1};
+  \node[draw=BARefStroke,fill=BARefDTwo,text=white,rounded corners=6pt,
+        line width=1pt,minimum width=30mm,minimum height=10mm,align=center]
+        at (10.9,-3.15) {ExampleNestedPart -- D2\\[-0.4mm]{\fontsize{5}{5.4}\selectfont\color{white}BAP-EX-03}};
+\end{tikzpicture}
+\end{center}
+
+\begin{ddtaprinciple}[title={HASPART-P03 - containment sostituisce l'edge nella composition view}]
+Nella vista di composizione, la presenza della part dentro il frame del whole rappresenta la proposition \texttt{hasPart}; non e' necessario aggiungere anche una freccia \texttt{hasPart}. Gli ID delle proposition possono essere preservati applicando la regola generale \texttt{MERMAID-TRACE-01} alle occurrence interessate.
+\end{ddtaprinciple}
+
+\begin{ddtacore}[title={HASPART-P03A - traceability sulla part}]
+Quando piu' proposition \texttt{hasPart} descrivono le part dirette dello stesso whole, il trace tag della singola proposition viene collocato \textbf{sotto la label della part corrispondente}. Il whole non ripete tutti gli ID delle relazioni: il containment identifica il whole comune, mentre ogni part conserva il proprio riferimento \BAP{} secondo \texttt{MERMAID-TRACE-01}.
+\end{ddtacore}
+
+\subsection{Esempio Mermaid generico}
+\begin{lstlisting}
+flowchart TB
+
+subgraph ExampleWhole["ExampleWhole"]
+  direction TB
+
+  ExamplePartA("ExamplePartA<br/><span style='font-size:7px;color:#FFFFFF'>BAP-EX-01</span>")
+  ExamplePartB("ExamplePartB<br/><span style='font-size:7px;color:#FFFFFF'>BAP-EX-02</span>")
+
+  subgraph ExampleContainedWhole["ExampleContainedWhole"]
+    ExampleNestedPart("ExampleNestedPart<br/><span style='font-size:7px;color:#FFFFFF'>BAP-EX-03</span>")
+  end
+end
+
+classDef BAReferentD1 fill:#267DFF,stroke:#0047B3,
+  stroke-width:2px,color:#FFFFFF;
+classDef BAReferentD2 fill:#4C94FF,stroke:#0047B3,
+  stroke-width:2px,color:#FFFFFF;
+
+class ExamplePartA,ExamplePartB BAReferentD1;
+class ExampleNestedPart BAReferentD2;
+
+style ExampleWhole fill:#0066FF,stroke:#0047B3,
+  stroke-width:2.5px,color:#FFFFFF
+style ExampleContainedWhole fill:#267DFF,stroke:#0047B3,
+  stroke-width:2.5px,color:#FFFFFF
+\end{lstlisting}
+
+\begin{ddtacore}[title={HASPART-P04 - le relazioni esterne puntano al whole}]
+Quando un \BAR{} e' espanso a subgraph per mostrare le sue part, una relazione BA che ha quel referent come endpoint deve terminare sul \textbf{frame del whole}, non su una part scelta per convenienza grafica. In Mermaid si usa quindi l'ID del subgraph come source o target dell'edge. Il containment non modifica l'endpoint semantico della proposition esterna.
+\end{ddtacore}
+
+\begin{lstlisting}
+ExternalActor -->|operator| ExampleWhole
+\end{lstlisting}
+
+\begin{ddtaanti}[title={Non dedurre una tassonomia dal livello visuale}]
+D0, D1, D2 e i livelli successivi non sono tipi BA. Descrivono soltanto la profondita' della occurrence nella projection corrente. Lo stesso \BAR{} puo' apparire a una profondita' diversa in una view con root differente senza cambiare identita' o semantica.
+\end{ddtaanti}
+%</MERMAID-ELEMENT:hasPart>
+
+%<MERMAID-ELEMENT:produce>
+\clearpage
+\section{\texttt{produce}}
+
+\RuleTag\hspace{0.5em}\texttt{semanticOperatorKey = produce}
+
+\subsection{Scopo della rappresentazione}
+La proposition \texttt{produce} viene letta graficamente come una funzione che riceve eventuali input, opera attraverso il proprio \texttt{actor} e rende disponibili uno o piu' \texttt{result}. La grafica di \texttt{produce} non assegna lo stile semantico ai result: ogni result conserva o ricevera' la propria regola visuale indipendente.
+
+Esempio generico:
+
+\begin{lstlisting}
+BAP-EX-01 - produce
+actor  -> ExampleProducer
+result -> ExampleResult
+\end{lstlisting}
+
+La lettura funzionale e': \texttt{ExampleProducer} produce \texttt{ExampleResult}.
+
+\subsection{Regola grafica candidata}
+
+\begin{tabularx}{\textwidth}{L{39mm}Y}
+\toprule
+\textbf{Parte BA} & \textbf{Projection Mermaid corrente} \\
+\midrule
+\texttt{actor} & Black box: rettangolo ad angoli retti, sfondo antracite/nero, bordo nero, testo principale bianco. \\
+\texttt{produce} & Freccia direzionale uscente dall'actor con label testuale \texttt{produce} su fondo bianco, bordo sottile e angoli arrotondati. Non viene creato un nodo autonomo \texttt{produce}. \\
+\texttt{input} & Quando presente, entra nella black box. La relativa shape dipende dalla regola visuale dell'elemento che occupa il role \texttt{input}. \\
+\texttt{result} & Esce dalla black box. La relativa shape e il colore \textbf{non sono definiti da produce}; dipendono dalla regola visuale propria del result. \\
+\bottomrule
+\end{tabularx}
+
+\begin{ddtacore}[title={PRODUCE-P01 - black box funzionale}]
+L'\texttt{actor} di una \texttt{produce} viene proiettato come \textbf{black box rettangolare ad angoli retti}. La black box comunica una funzione/responsabilita' osservata attraverso input e result senza trasformarla graficamente nella sua realizzazione concreta.
+\end{ddtacore}
+
+\begin{ddtacore}[title={PRODUCE-P02 - edge label arrotondata}]
+La label \texttt{produce} resta associata alla freccia e non diventa un nodo BA. Il target visuale usa \textbf{fondo bianco, bordo sottile e angoli arrotondati} per separare la label dalla linea senza introdurre una nuova shape semantica. Nel renderer Mermaid corrente il trattamento viene applicato alla edge label tramite \texttt{themeCSS}.
+\end{ddtacore}
+
+\begin{lstlisting}
+%%{init: {
+  "theme": "base",
+  "themeCSS": ".edgeLabel p { background:#FFFFFF !important; border:1px solid #B8CBE8 !important; border-radius:10px !important; padding:2px 7px !important; }"
+}}%%
+\end{lstlisting}
+
+\subsection{Classe visuale dell'actor}
+La classe e' nominata per il significato di projection, non per il colore:
+
+\begin{lstlisting}
+classDef BAProduceActor \
+    fill:#212121, \
+    stroke:#000000, \
+    stroke-width:2px, \
+    color:#FFFFFF;
+\end{lstlisting}
+
+La sintassi rettangolare Mermaid \texttt{["..."]} mantiene gli angoli retti; non vengono aggiunti \texttt{rx}/\texttt{ry}. Nella projection \texttt{produce}, l'actor e' anche l'anchor della proposition: il relativo ID \BAP{} viene quindi riportato sotto il nome dell'actor secondo \texttt{MERMAID-TRACE-01}.
+
+\subsection{Esempio Mermaid minimo}
+Il result \texttt{ExampleResult} e' lasciato intenzionalmente al solo fallback della baseline: la sua forma canonica dipende dalla regola visuale dell'elemento/famiglia che occupa il role \texttt{result} e \textbf{non} dalla regola \texttt{produce}.
+
+Applicare prima la baseline \texttt{MERMAID-BASE-01}; il blocco specifico della \texttt{produce} resta quindi compatto:
+
+\begin{lstlisting}
+flowchart LR
+
+ExampleProducer["ExampleProducer<br/><span style='font-size:7px;color:#FFFFFF'>BAP-EX-01</span>"]
+ExampleResult["ExampleResult"]
+
+ExampleProducer -->|produce| ExampleResult
+
+classDef BAProduceActor \
+  fill:#212121,stroke:#000000,stroke-width:2px,color:#FFFFFF;
+class ExampleProducer BAProduceActor;
+\end{lstlisting}
+
+
+\subsection{Esempio grafico visivo}
+La figura seguente mostra il \textbf{target visuale corrente} della sola regola \texttt{produce}. Il nodo di destra usa volutamente il fallback della baseline: non assegna al result una forma derivata da \texttt{produce}. Il disegno in guida e' un riferimento visuale della convenzione; il sorgente Mermaid resta la forma eseguibile da verificare nel renderer scelto.
+
+\vspace{3mm}
+\begin{center}
+\begin{tikzpicture}[>=Latex,font=\sffamily]
+  \node[
+    draw=black,
+    fill=BAProduceFill,
+    text=white,
+    line width=1.1pt,
+    minimum width=54mm,
+    minimum height=16mm,
+    align=center,
+    inner sep=3mm
+  ] (actor) {\textbf{ExampleProducer}\\[-0.2mm]
+             {\fontsize{5.5}{6}\selectfont\color{white}BAP-EX-01}};
+
+  \node[
+    draw=DDTAGray,
+    fill=white,
+    text=DDTANavy,
+    line width=0.8pt,
+    minimum width=48mm,
+    minimum height=14mm,
+    align=center,
+    inner sep=3mm,
+    right=36mm of actor
+  ] (result) {ExampleResult};
+
+  \draw[-{Latex[length=3mm,width=2mm]},line width=1.1pt,color=DDTAGray]
+    (actor.east) -- node[midway,above=2pt,fill=white,draw=DDTABlue,line width=0.35pt,rounded corners=4pt,inner xsep=5pt,inner ysep=2pt,text=DDTANavy]{\small\texttt{produce}} (result.west);
+\end{tikzpicture}
+\end{center}
+\vspace{2mm}
+
+\begin{ddtaprinciple}[title={Che cosa e' fissato dalla figura}]
+La figura fissa soltanto gli aspetti specifici di \texttt{produce}: \textbf{black box ad angoli retti} per l'\texttt{actor} e freccia uscente con label \texttt{produce} su pill bianca arrotondata con bordo sottile. Il trace tag applica la regola generale \texttt{MERMAID-TRACE-01}. Forma e stile del result restano intenzionalmente fuori da questa pagina.
+\end{ddtaprinciple}
+
+\begin{ddtaanti}[title={Non inferire lo stile del result da produce}]
+Il fatto che un elemento occupi il role \texttt{result} non autorizza a renderlo con la stessa black box, con una shape ``output'' generica o con un colore scelto da \texttt{produce}. \texttt{produce} governa il pattern di connessione; lo stile del result appartiene alla regola visuale dell'elemento che occupa quel role.
+\end{ddtaanti}
+%</MERMAID-ELEMENT:produce>
+
+\end{document}
