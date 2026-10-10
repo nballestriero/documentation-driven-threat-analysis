@@ -35,6 +35,15 @@
 \definecolor{BARealizeDFive}{HTML}{D7D8D9}
 \definecolor{BARealizeDSix}{HTML}{EFEFF0}
 \definecolor{BARealizeDSeven}{HTML}{FFFFFF}
+\definecolor{BAConstrainStroke}{HTML}{55308F}
+\definecolor{BAConstrainDZero}{HTML}{6F42C1}
+\definecolor{BAConstrainDOne}{HTML}{855ECA}
+\definecolor{BAConstrainDTwo}{HTML}{9A7BD4}
+\definecolor{BAConstrainDThree}{HTML}{B097DD}
+\definecolor{BAConstrainDFour}{HTML}{C5B3E6}
+\definecolor{BAConstrainDFive}{HTML}{DBD0F0}
+\definecolor{BAConstrainDSix}{HTML}{F1ECF9}
+\definecolor{BAConstrainDSeven}{HTML}{FFFFFF}
 
 
 \begin{document}
@@ -781,5 +790,200 @@ Come stabilito da \texttt{MERMAID-TRACE-01}, il trace tag \BAP{} resta sempre bi
 
 %</MERMAID-ELEMENT:realize>
 
-\end{document}
 
+%<MERMAID-ELEMENT:constrain>
+\clearpage
+\section{\texttt{constrain}}
+
+\RuleTag\hspace{0.5em}\texttt{semanticOperatorKey = constrain}
+
+\subsection{Scopo della rappresentazione}
+La proposition \texttt{constrain} collega un significato governato che impone una restriction al \texttt{constraintTarget}. Nella BA i role restano espliciti come \texttt{constraintTarget} e \texttt{constraintValue}; la projection Mermaid rende invece leggibile la frase naturale ``il constraint value vincola il target''.
+
+Esempio generico:
+
+\begin{lstlisting}
+BAP-EX-06 - constrain
+constraintTarget -> ExampleEnvironment
+constraintValue  -> ExampleConfigurationProfile
+polarity = affirmative
+\end{lstlisting}
+
+La lettura grafica e': \texttt{ExampleConfigurationProfile} vincola \texttt{ExampleEnvironment}.
+
+\begin{ddtacore}[title={CONSTRAIN-P01 - direzione constraintValue verso constraintTarget}]
+La freccia di projection e' orientata \texttt{constraintValue} $\rightarrow$ \texttt{constraintTarget}. Questa direzione non modifica i role BA: serve a rendere leggibile il predicato naturale ``X constrains Y''. L'edge usa stroke viola \texttt{\#6F42C1}, spessore \texttt{1.8px} e tratteggio \texttt{6 4}.
+\end{ddtacore}
+
+\begin{ddtacore}[title={CONSTRAIN-P02 - famiglia viola del named constraint}]
+Quando il \texttt{constraintValue} e' un \BAR{} nominato e riusabile, la sua occurrence usa la famiglia viola. Il livello D0 usa fill \texttt{\#6F42C1} e stroke \texttt{\#55308F}. Se il named constraint e' mostrato come nodo semplice, mantiene la propria identita' di BAReferent; se viene aperto per mostrarne il dettaglio, la stessa identita' diventa un subgraph/frame con bordo tratteggiato \texttt{6 4}.
+\end{ddtacore}
+
+\begin{ddtacore}[title={CONSTRAIN-P03 - apertura del named constraint senza hasPart}]
+Una view piu' dettagliata puo' aprire il named constraint e collocare al suo interno card che rappresentano constraint di dettaglio aventi quel profile come \texttt{constraintTarget}. Il containment e' una shorthand di projection per un target comune: \textbf{non introduce \texttt{hasPart}}, non crea un operatore \texttt{specialize} e non cambia l'identita' del profile.
+\end{ddtacore}
+
+\begin{ddtacore}[title={CONSTRAIN-P04 - depth palette interna}]
+Le card interne usano la stessa famiglia viola e vengono schiarite di \textbf{15 punti percentuali verso il bianco per ogni livello visuale}. D1--D7 usano bordo continuo. Il bordo tratteggiato resta sul whole D0 quando il named constraint e' espanso.
+\end{ddtacore}
+
+\begin{ddtaprinciple}[title={Authoring metadata non proiettato}]
+Campi di review come \texttt{constraintForm = NAMED\_REFERENT} non sono field BA canonici e non vengono proiettati. La view deriva soltanto dai role e dalle proposition BA accettate.
+\end{ddtaprinciple}
+
+\subsection{Traceability}
+Per la proposition principale, l'anchor visuale e' il named constraint che occupa il role \texttt{constraintValue}: il relativo ID \BAP{} viene mostrato sotto la label del nodo o del subgraph. Quando il profile e' aperto, ogni card di dettaglio puo' riportare il proprio ID \BAP{}; il frame comune rende visibile il target condiviso senza richiedere edge interni ripetuti.
+
+\subsection{Esempio Mermaid generico}
+\begin{lstlisting}
+%%{init: {
+  "theme": "base",
+  "themeCSS": ".cluster rect { rx:28px !important; ry:28px !important; }"
+}}%%
+
+flowchart LR
+
+ExampleEnvironment("ExampleEnvironment")
+
+subgraph ExampleConfigurationProfile["ExampleConfigurationProfile<br/><span style='font-size:7px;color:#FFFFFF'>BAP-EX-06</span>"]
+  direction TB
+  MinimumA("minimumA = 16<br/><span style='font-size:7px;color:#FFFFFF'>BAP-EX-07</span>")
+  MinimumB("minimumB = 50<br/><span style='font-size:7px;color:#FFFFFF'>BAP-EX-08</span>")
+end
+
+ExampleConfigurationProfile -.->|constrain| ExampleEnvironment
+
+classDef BAReferentD0 fill:#0066FF,stroke:#0047B3,
+  stroke-width:2px,color:#FFFFFF;
+classDef BAConstrainD1 fill:#855ECA,stroke:#55308F,
+  stroke-width:2px,color:#FFFFFF;
+
+class ExampleEnvironment BAReferentD0;
+class MinimumA,MinimumB BAConstrainD1;
+
+style ExampleConfigurationProfile fill:#6F42C1,stroke:#55308F,
+  stroke-width:2.5px,stroke-dasharray:6 4,color:#FFFFFF
+
+linkStyle 0 stroke:#6F42C1,stroke-width:1.8px,
+  stroke-dasharray:6 4;
+\end{lstlisting}
+
+\subsection{Esempio grafico visivo}
+\begin{center}
+\begin{tikzpicture}[>=Latex,font=\sffamily]
+  \node[
+    draw=BAConstrainStroke,fill=BAConstrainDZero,text=white,
+    rounded corners=11pt,line width=1.2pt,
+    dash pattern=on 3.2pt off 2.1pt,
+    minimum width=72mm,minimum height=44mm,align=center
+  ] (profileframe) at (4.2,0) {};
+
+  \node[text=white,font=\sffamily\bfseries\scriptsize,align=center]
+    at (4.2,1.42) {ExampleConfigurationProfile\\[-0.5mm]
+    {\fontsize{5.2}{5.6}\selectfont\color{white}BAP-EX-06}};
+
+  \node[
+    draw=BAConstrainStroke,fill=BAConstrainDOne,text=white,
+    rounded corners=6pt,line width=0.9pt,
+    minimum width=28mm,minimum height=10mm,align=center
+  ] at (2.55,-0.68) {minimumA = 16};
+
+  \node[
+    draw=BAConstrainStroke,fill=BAConstrainDOne,text=white,
+    rounded corners=6pt,line width=0.9pt,
+    minimum width=28mm,minimum height=10mm,align=center
+  ] at (5.85,-0.68) {minimumB = 50};
+
+  \node[
+    draw=BARefStroke,fill=BARefDZero,text=white,
+    rounded corners=6pt,line width=1pt,
+    minimum width=48mm,minimum height=15mm,align=center
+  ] (target) at (11.3,0) {\textbf{ExampleEnvironment}};
+
+  \draw[-{Latex[length=2.6mm,width=1.8mm]},
+        draw=BAConstrainDZero,line width=0.8pt,
+        dash pattern=on 3.2pt off 2.1pt]
+    (profileframe.east) --
+    node[midway,above=2pt,fill=white,draw=BAConstrainDZero,
+         line width=0.4pt,rounded corners=4pt,
+         inner xsep=5pt,inner ysep=2pt,text=BAConstrainStroke]
+         {\small\texttt{constrain}}
+    (target.west);
+\end{tikzpicture}
+\end{center}
+
+\begin{ddtaanti}[title={Non leggere il containment come composizione}]
+Le card interne non diventano part del profile per il solo fatto di essere disegnate nel frame. La semantica resta quella delle proposition \texttt{constrain} che condividono il profile come target. Se la BA non contiene tali proposition, la view non puo' inventare detail interni.
+\end{ddtaanti}
+
+\clearpage
+\section*{Scala cromatica completa della famiglia \texttt{constrain}}
+
+La palette applica la regola deterministica di schiaritura gia' usata dalle altre famiglie: a partire dal base fill \texttt{\#6F42C1}, il livello \(D_d\) e' ottenuto miscelando il colore base verso il bianco di \(L(d)=\min(15d,100)\%\). D0 identifica il named constraint/profile nella view; i livelli successivi sono disponibili per detail annidati.
+
+\begin{center}
+\begin{tabular}{c c c c}
+\toprule
+\textbf{Depth} & \textbf{Schiaritura} & \textbf{Fill} & \textbf{Testo principale} \\
+\midrule
+D0 & 0\%    & \texttt{\#6F42C1} & \texttt{\#FFFFFF} \\
+D1 & 15\%   & \texttt{\#855ECA} & \texttt{\#FFFFFF} \\
+D2 & 30\%   & \texttt{\#9A7BD4} & \texttt{\#FFFFFF} \\
+D3 & 45\%   & \texttt{\#B097DD} & \texttt{\#17324D} \\
+D4 & 60\%   & \texttt{\#C5B3E6} & \texttt{\#17324D} \\
+D5 & 75\%   & \texttt{\#DBD0F0} & \texttt{\#17324D} \\
+D6 & 90\%   & \texttt{\#F1ECF9} & \texttt{\#17324D} \\
+D7+ & 100\% & \texttt{\#FFFFFF} & \texttt{\#17324D} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{2mm}
+\begin{center}
+\begin{tikzpicture}[font=\sffamily]
+  \node[draw=BAConstrainStroke,fill=BAConstrainDZero,text=white,rounded corners=5pt,line width=0.9pt,dash pattern=on 3pt off 2pt,minimum width=37mm,minimum height=13mm,align=center] at (2.2,0) {\textbf{D0}\\{\scriptsize \#6F42C1}};
+  \node[draw=BAConstrainStroke,fill=BAConstrainDOne,text=white,rounded corners=5pt,line width=0.9pt,minimum width=37mm,minimum height=13mm,align=center] at (6.1,0) {\textbf{D1}\\{\scriptsize \#855ECA}};
+  \node[draw=BAConstrainStroke,fill=BAConstrainDTwo,text=white,rounded corners=5pt,line width=0.9pt,minimum width=37mm,minimum height=13mm,align=center] at (10.0,0) {\textbf{D2}\\{\scriptsize \#9A7BD4}};
+  \node[draw=BAConstrainStroke,fill=BAConstrainDThree,text=BARefText,rounded corners=5pt,line width=0.9pt,minimum width=37mm,minimum height=13mm,align=center] at (13.9,0) {\textbf{D3}\\{\scriptsize \#B097DD}};
+
+  \node[draw=BAConstrainStroke,fill=BAConstrainDFour,text=BARefText,rounded corners=5pt,line width=0.9pt,minimum width=37mm,minimum height=13mm,align=center] at (2.2,-1.75) {\textbf{D4}\\{\scriptsize \#C5B3E6}};
+  \node[draw=BAConstrainStroke,fill=BAConstrainDFive,text=BARefText,rounded corners=5pt,line width=0.9pt,minimum width=37mm,minimum height=13mm,align=center] at (6.1,-1.75) {\textbf{D5}\\{\scriptsize \#DBD0F0}};
+  \node[draw=BAConstrainStroke,fill=BAConstrainDSix,text=BARefText,rounded corners=5pt,line width=0.9pt,minimum width=37mm,minimum height=13mm,align=center] at (10.0,-1.75) {\textbf{D6}\\{\scriptsize \#F1ECF9}};
+  \node[draw=BAConstrainStroke,fill=BAConstrainDSeven,text=BARefText,rounded corners=5pt,line width=0.9pt,minimum width=37mm,minimum height=13mm,align=center] at (13.9,-1.75) {\textbf{D7+}\\{\scriptsize \#FFFFFF}};
+\end{tikzpicture}
+\end{center}
+
+\begin{ddtacore}[title={CONSTRAIN-P05 - valori espliciti nel sorgente Mermaid}]
+Per ridurre differenze fra renderer, i valori D0--D7 vengono fissati esplicitamente. La schiaritura e' una regola della projection e non una tassonomia BA.
+\end{ddtacore}
+
+\clearpage
+\subsection*{Mermaid palette test completo}
+Il blocco seguente rende disponibili tutti i livelli della famiglia \texttt{constrain}. D0 e' predisposto per il whole espanso; D1--D7 usano bordo continuo.
+
+\begin{lstlisting}
+classDef BAConstrainD0 fill:#6F42C1,stroke:#55308F,
+  stroke-width:2.5px,stroke-dasharray:6 4,color:#FFFFFF;
+classDef BAConstrainD1 fill:#855ECA,stroke:#55308F,
+  stroke-width:2px,color:#FFFFFF;
+classDef BAConstrainD2 fill:#9A7BD4,stroke:#55308F,
+  stroke-width:2px,color:#FFFFFF;
+classDef BAConstrainD3 fill:#B097DD,stroke:#55308F,
+  stroke-width:2px,color:#17324D;
+classDef BAConstrainD4 fill:#C5B3E6,stroke:#55308F,
+  stroke-width:2px,color:#17324D;
+classDef BAConstrainD5 fill:#DBD0F0,stroke:#55308F,
+  stroke-width:2px,color:#17324D;
+classDef BAConstrainD6 fill:#F1ECF9,stroke:#55308F,
+  stroke-width:2px,color:#17324D;
+classDef BAConstrainD7 fill:#FFFFFF,stroke:#55308F,
+  stroke-width:2px,color:#17324D;
+\end{lstlisting}
+
+\begin{ddtaprinciple}[title={Direzione e trace restano semantiche, il colore e' solo projection}]
+Il viola distingue visivamente la famiglia \texttt{constrain} da \texttt{dependOn}, \texttt{realize} e dai BAReferent blu. La direction resta \texttt{constraintValue -> constraintTarget}; il trace tag resta bianco secondo \texttt{MERMAID-TRACE-01}.
+\end{ddtaprinciple}
+
+%</MERMAID-ELEMENT:constrain>
+
+\end{document}
