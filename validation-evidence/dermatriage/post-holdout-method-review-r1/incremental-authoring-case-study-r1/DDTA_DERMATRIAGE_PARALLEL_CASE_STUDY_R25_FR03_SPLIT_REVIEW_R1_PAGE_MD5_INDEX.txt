@@ -2,7 +2,7 @@ DDTA_DERMATRIAGE_PARALLEL_CASE_STUDY_R25_FR03_SPLIT_REVIEW_R1 - Page MD5 Index
 Canonical payload: LaTeX content between PAGE-CONTENT markers; own printed MD5 excluded.
 Integrity-index page resolves all other page hashes and canonicalizes its own hash as <SELF>.
 
-Page 1  a7e31faef0a91dde72bfb1223e1cb81a  Frontespizio e struttura del case study
+Page 1  485f1d815c9a44fc31a18a29bf114837  Frontespizio e struttura del case study
 Page 2  a3275772d6cd2ce37195f7d8163144e8  Contesto generale del progetto - Project Problem Framing
 Page 3  46cbd47a5fe8e2c86417634fdddea7c8  MR-01 - Valutazione di triage del caso dermatologico
 Page 4  d464848d4f632cc58be0991cacf1b647  MR-01 > DEC-MR01-01 - Valutazione di urgenza in assenza di immagine
@@ -40,8 +40,8 @@ Page 35  80ffcd1c062b12142079d4c65b890aa6  MR-04 > DEC-05 > FR-15 - Indipendenza
 Page 36  7a62b581d6ec0a4f598d0c0edbcf24fe  MR-04 > DEC-06 - Accettazione comparativa dell'adattamento della classificazione di urgenza
 Page 37  d405c2f89335d7c7ac4fb433368e0658  MR-04 > DEC-06 > FR-09 - Qualificazione comparativa del candidato di adattamento classificatorio
 Page 38  43f138821276abfcc9fc2aa76d4cc622  MR-04 > DEC-07 - Prioritizzazione asimmetrica delle metriche di qualita
-Page 39  1c530c158121a0d079b3e3e7b435c1f8  MR-04 > DEC-08 - Reversibilita dell'adattamento della classificazione in caso di degrado
-Page 40  91284dd9ccfd611b519c5652cb1f97bb  MR-04 > DEC-08 > FR-10 - Revoca di un adattamento classificatorio degradante
+Page 39  cb911a128d1a42c9c5fa847cd3dad1be  MR-04 > DEC-08 - Reversibilita dell'adattamento della classificazione in caso di degrado
+Page 40  dbee6006bd8a5e02b346945fc394ea6f  MR-04 > DEC-08 > FR-10 - Revoca di un adattamento classificatorio degradante
 Page 41  475d59cb9fc8bc3342897fab12ed179c  MR-04 > DEC-09 - Uso di evidence recente e limitata nel percorso di evoluzione del prompt
 Page 42  3f74bcd5be8a7a3ee258f5ffe965c363  MR-04 > DEC-09 > FR-06 - Selezione dell'evidence recente per l'evoluzione del prompt
 Page 43  d5d7d0db53aaf3407a0115a330c98c02  MR-04 > DEC-10 - Qualificazione del disaccordo clinico come evidence per l'adattamento classificatorio
@@ -49,41 +49,44 @@ Page 44  347d55096c577c9f623efc66ca2dafea  MR-04 > DEC-10 > FR-07 - Qualificazio
 Page 45  e2240ebc51d9904f3871fe84395cb8af  MR-04 > DEC-11 - Uso della priorita clinicamente corretta come sorgente del target di supervisione classificatoria
 Page 46  21bb40765713e746fe5ae320bfd0cb3c  MR-04 > DEC-11 > FR-08 - Derivazione del target di supervisione dalla priorita P-scale corretta
 Page 47  399b4c41ce17bfe8487b21881fae6635  MR-C6 - Predisposizione e inizializzazione dell'ambiente DermaTriage
-Page 48  80f105f199455940930bfd0097388e06  MR-C6 > DEC-C6-01 - Predisposizione dell'ambiente mediante una procedura esplicita e strutturata di setup
+Page 48  e7969f0750ae01bbda03b33025f3545b  MR-C6 > DEC-C6-01 - Predisposizione dell'ambiente mediante una procedura esplicita e strutturata di setup
 Page 49  2f856a0cf5a8fec49565e41715383e91  MR-C6 > DEC-C6-01 > FR-C6-01-01 - Disponibilita delle risorse di calcolo e storage dell'ambiente
 Page 50  45850d5d1371842325dafe3d51337669  MR-C6 > DEC-C6-01 > FR-C6-01-01 > CR-C6-01-01 - ConfigurationRequirement per risorse hardware e storage
-Page 51  84723854df2ed439916cc97cabb6530b  MR-C6 > DEC-C6-01 > FR-C6-01-02 - Predisposizione dello stack software e delle dipendenze
-Page 52  fb22e0ebe2cf5d8c0a09af2f966c4365  MR-C6 > DEC-C6-01 > FR-C6-01-03A1 [review label] - Predisposizione della risorsa modello per l'analisi di urgenza da immagine
-Page 53  f407726f4424567c9e62abf22e60cdd2  MR-C6 > DEC-C6-01 > FR-C6-01-03A2 [review label] - Predisposizione della risorsa modello per la generazione della descrizione clinica
-Page 54  683ccf173ea1d3364786af12f0c3c3bd  MR-C6 > DEC-C6-01 > FR-C6-01-03A3 [review label] - Predisposizione della risorsa modello per la generazione degli embedding
-Page 55  bab2246e9b0b4cae7ab40e5afa1e0040  MR-C6 > DEC-C6-01 > FR-C6-01-03A4 [review label] - Predisposizione della risorsa modello per la sintesi multi-source
-Page 56  36ec22adb118055328c01e7c1be62738  MR-C6 > DEC-C6-01 > FR-C6-01-03B1 [review label] - Acquisizione e disponibilita del dataset storico DermaTriage
-Page 57  7e13017b4d7728d146a9f511a92c6e8b  MR-C6 > DEC-C6-01 > FR-C6-01-03B2 [review label] - Preparazione degli split training validation e test
-Page 58  11c592389c155e72d975ea4b506f02e5  MR-C6 > DEC-C6-01 > FR-C6-01-03B3 [review label] - Bilanciamento del training set
-Page 59  bd474920e927b8610f3378862315bae1  MR-C6 > DEC-C6-01 > FR-C6-01-03C [review label] - Disponibilita delle immagini di training
-Page 60  d4de6ad6f73c2dbf431f1eab81368a29  MR-C6 > DEC-C6-01 > FR-C6-01-04 - Configurazione dei binding dell'ambiente e delle integrazioni [1/2]
-Page 61  05243bf62b8107ede9c8d9d96925cbfe  MR-C6 > DEC-C6-01 > FR-C6-01-04 - Configurazione dei binding dell'ambiente e delle integrazioni [2/2]
-Page 62  52eb814f3f99bd52f5c09ba2510dc1c6  MR-C6 > DEC-C6-01 > FR-C6-01-05 - Inizializzazione della base vettoriale dei casi storici
-Page 63  4a48d503ffc010c733ca14e2b7d35ada  MR-C6 > DEC-C6-01 > FR-C6-01-06 - Avvio del servizio API DermaTriage
-Page 64  102bb73d527c550361d49540f34e0d0d  MR-C7 - Verifica del sistema DermaTriage
-Page 65  086ccbf418f6545accc9d179d1e8598d  MR-C7 > DEC-C7-01 - Verifica mediante controlli espliciti e criteri applicabili
-Page 66  3d6434a24c425faa80ce5468b8e2392a  MR-C7 > DEC-C7-01 - C7-P03..P07 source-first review materialized
-Page 67  2b68023ed873eb0ed4f17eb01e7a96ff  MR-C7 > DEC-C7-01 > FR-C7-01-01 - Verifica della readiness operativa del servizio DermaTriage
-Page 68  77515cf68165b6ad69c1c8c91ad7d44f  MR-C7 > DEC-C7-01 > FR-C7-02-01 - Verifica dell'endpoint di analisi diretta
-Page 69  bbd93e05b580a7f7727cb538e5f04e87  MR-C7 > DEC-C7-01 > FR-C7-02-02 - Verifica dell'endpoint integrato B4
-Page 70  079dcee1a506a9bd40591c1676532ed7  MR-C7 > DEC-C7-01 > FR-C7-03-01 [candidate] - Verifica dello Stage 1 della pipeline DermaTriage
-Page 71  c68f512e08f57e3d5f872608298ebc14  MR-C7 > DEC-C7-01 > FR-C7-03-02 [candidate] - Verifica dello Stage 2 della pipeline DermaTriage
-Page 72  e96d187fad1a5cc33496a0c3eec5ede3  MR-C7 > DEC-C7-01 > FR-C7-03-03 [candidate] - Verifica dello Stage 3 della pipeline DermaTriage
-Page 73  551abfca21448b98b7e2d43c2aa9dffa  MR-C7 > DEC-C7-01 > FR-C7-03-04 [candidate] - Verifica dello Stage 4 della pipeline DermaTriage
-Page 74  f90b6eb71cc194e4df50c5177fc53f29  MR-C7 > DEC-C7-01 > FR-C7-04-01 [candidate] - Verifica end-to-end della pipeline DermaTriage
-Page 75  a5e01c1fd6acb0fc9e9ea70b03626d03  MR-C7 > DEC-C7-01 > FR-C7-05-01 [candidate] - Verifica dell'integrazione DermaTriage-B4
-Page 76  e0563e34c8c54b0f1b476be6007765b9  MR-C7 > DEC-C7-01 > FR-C7-06-01 [candidate] - Verifica dei controlli operativi del ciclo di retraining
-Page 77  a3dd980ffe2af8bd4b7a2d4a8a4b972a  MR-C7 > DEC-C7-01 > FR-C7-07-01 [candidate] - Verifica dei quality gate assoluti del classificatore di urgenza
-Page 78  b5899854b9498724ee2f778c1b504765  Registro Base Analysis - C7-P03..P07 review candidates
-Page 79  14f224c0a626f68a61bf866df0eee7ca  MR-C7 - Consolidamento lifecycle/owner e finding aperti per graph review
-Page 80  c639c84652612efbbbd6b15e29718c5d  Registro Base Analysis - BAReferent e BAProposition
-Page 81  6d742aced02c4f7553638cc4e3f7cfe5  Registro Base Analysis - BAReferent C7-P02 - first acceptance
-Page 82  e515c10eced4df5fd8f6a9014fa88fef  Registro Base Analysis - BAProposition
-Page 83  de29b6897f532636a9fd1d13324f63de  Registro Base Analysis - C6 FR-C6-01-03B1..B3 increment
-Page 84  42c63c876189a9d341da909c38484215  MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
-Page 85  04308a912012d56037f42880401983e1  Indice di integrita delle pagine
+Page 51  1b9c846a5d55454b20de56ddb8ff87ac  MR-C6 > DEC-C6-01 > FR-C6-01-02 - Predisposizione dello stack software e delle dipendenze
+Page 52  ff0708dae98e9df8d876600a04ae6e28  MR-C6 > DEC-C6-01 > FR-C6-01-03A1 - Predisposizione della risorsa modello per l'analisi di urgenza da immagine [1/2]
+Page 53  53075a783cb6339387a4e8fb3d5919fa  MR-C6 > DEC-C6-01 > FR-C6-01-03A1 - Predisposizione della risorsa modello per l'analisi di urgenza da immagine [2/2]
+Page 54  f407726f4424567c9e62abf22e60cdd2  MR-C6 > DEC-C6-01 > FR-C6-01-03A2 [review label] - Predisposizione della risorsa modello per la generazione della descrizione clinica
+Page 55  683ccf173ea1d3364786af12f0c3c3bd  MR-C6 > DEC-C6-01 > FR-C6-01-03A3 [review label] - Predisposizione della risorsa modello per la generazione degli embedding
+Page 56  bab2246e9b0b4cae7ab40e5afa1e0040  MR-C6 > DEC-C6-01 > FR-C6-01-03A4 [review label] - Predisposizione della risorsa modello per la sintesi multi-source
+Page 57  80dd2f37bcd4f20f1065ce45719a396c  MR-C6 > DEC-C6-01 > FR-C6-01-03B1 [review label] - Acquisizione e disponibilita del dataset storico DermaTriage
+Page 58  197e2ae7d24de58a858b61ffba80a8d0  MR-C6 > DEC-C6-01 > FR-C6-01-03B2 [review label] - Preparazione degli split training validation e test
+Page 59  6945241a0d0a046aea5736b24b0554c6  MR-C6 > DEC-C6-01 > FR-C6-01-03B3 [review label] - Bilanciamento del training set
+Page 60  bd474920e927b8610f3378862315bae1  MR-C6 > DEC-C6-01 > FR-C6-01-03C [review label] - Disponibilita delle immagini di training
+Page 61  b6aa7e481477a999f2a4ada2ae298e7f  MR-C6 > DEC-C6-01 > FR-C6-01-04 - Configurazione dei binding dell'ambiente e delle integrazioni [1/2]
+Page 62  05243bf62b8107ede9c8d9d96925cbfe  MR-C6 > DEC-C6-01 > FR-C6-01-04 - Configurazione dei binding dell'ambiente e delle integrazioni [2/2]
+Page 63  8ad88021f595ffa9fe6d6664f4ca87b9  MR-C6 > DEC-C6-01 > FR-C6-01-05 - Inizializzazione della base vettoriale dei casi storici
+Page 64  f9e246e4155cbb9f3fafb94bb12aaab2  MR-C6 > DEC-C6-01 > FR-C6-01-06 - Avvio del servizio API DermaTriage
+Page 65  f07b03f93a8011b79b4e3f13e06ddf78  MR-C6 > DEC-C6-01 > FR-C6-01-07 - Acquisizione della base software DermaTriage
+Page 66  102bb73d527c550361d49540f34e0d0d  MR-C7 - Verifica del sistema DermaTriage
+Page 67  086ccbf418f6545accc9d179d1e8598d  MR-C7 > DEC-C7-01 - Verifica mediante controlli espliciti e criteri applicabili
+Page 68  3d6434a24c425faa80ce5468b8e2392a  MR-C7 > DEC-C7-01 - C7-P03..P07 source-first review materialized
+Page 69  2b68023ed873eb0ed4f17eb01e7a96ff  MR-C7 > DEC-C7-01 > FR-C7-01-01 - Verifica della readiness operativa del servizio DermaTriage
+Page 70  77515cf68165b6ad69c1c8c91ad7d44f  MR-C7 > DEC-C7-01 > FR-C7-02-01 - Verifica dell'endpoint di analisi diretta
+Page 71  bbd93e05b580a7f7727cb538e5f04e87  MR-C7 > DEC-C7-01 > FR-C7-02-02 - Verifica dell'endpoint integrato B4
+Page 72  079dcee1a506a9bd40591c1676532ed7  MR-C7 > DEC-C7-01 > FR-C7-03-01 [candidate] - Verifica dello Stage 1 della pipeline DermaTriage
+Page 73  c68f512e08f57e3d5f872608298ebc14  MR-C7 > DEC-C7-01 > FR-C7-03-02 [candidate] - Verifica dello Stage 2 della pipeline DermaTriage
+Page 74  e96d187fad1a5cc33496a0c3eec5ede3  MR-C7 > DEC-C7-01 > FR-C7-03-03 [candidate] - Verifica dello Stage 3 della pipeline DermaTriage
+Page 75  551abfca21448b98b7e2d43c2aa9dffa  MR-C7 > DEC-C7-01 > FR-C7-03-04 [candidate] - Verifica dello Stage 4 della pipeline DermaTriage
+Page 76  f90b6eb71cc194e4df50c5177fc53f29  MR-C7 > DEC-C7-01 > FR-C7-04-01 [candidate] - Verifica end-to-end della pipeline DermaTriage
+Page 77  a5e01c1fd6acb0fc9e9ea70b03626d03  MR-C7 > DEC-C7-01 > FR-C7-05-01 [candidate] - Verifica dell'integrazione DermaTriage-B4
+Page 78  e0563e34c8c54b0f1b476be6007765b9  MR-C7 > DEC-C7-01 > FR-C7-06-01 [candidate] - Verifica dei controlli operativi del ciclo di retraining
+Page 79  a3dd980ffe2af8bd4b7a2d4a8a4b972a  MR-C7 > DEC-C7-01 > FR-C7-07-01 [candidate] - Verifica dei quality gate assoluti del classificatore di urgenza
+Page 80  b5899854b9498724ee2f778c1b504765  Registro Base Analysis - C7-P03..P07 review candidates
+Page 81  14f224c0a626f68a61bf866df0eee7ca  MR-C7 - Consolidamento lifecycle/owner e finding aperti per graph review
+Page 82  10d78ef53a2fe12dc266bb3f677cfa07  Registro Base Analysis - BAReferent e BAProposition
+Page 83  6d742aced02c4f7553638cc4e3f7cfe5  Registro Base Analysis - BAReferent C7-P02 - first acceptance
+Page 84  72e2090c2b79181cdbaa0389c5ee50b3  Registro Base Analysis - BAProposition
+Page 85  db9f65b6c2c2b05164a596d6e9be6f11  Registro Base Analysis - C6 source code, dependency e A1 topology increment
+Page 86  de29b6897f532636a9fd1d13324f63de  Registro Base Analysis - C6 FR-C6-01-03B1..B3 increment
+Page 87  42c63c876189a9d341da909c38484215  MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
+Page 88  3048a838f27c80801a7d9bbb4d31aca8  Indice di integrita delle pagine [INTEGRITY INDEX]
