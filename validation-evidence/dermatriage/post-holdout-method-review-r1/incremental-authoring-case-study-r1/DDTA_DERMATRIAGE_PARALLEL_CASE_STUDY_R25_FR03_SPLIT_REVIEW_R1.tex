@@ -78,9 +78,9 @@
 \expandafter\def\csname PageMDfive55\endcsname{683ccf173ea1d3364786af12f0c3c3bd}
 \expandafter\def\csname PageMDfive56\endcsname{bab2246e9b0b4cae7ab40e5afa1e0040}
 \expandafter\def\csname PageMDfive57\endcsname{80dd2f37bcd4f20f1065ce45719a396c}
-\expandafter\def\csname PageMDfive58\endcsname{197e2ae7d24de58a858b61ffba80a8d0}
-\expandafter\def\csname PageMDfive59\endcsname{6945241a0d0a046aea5736b24b0554c6}
-\expandafter\def\csname PageMDfive60\endcsname{bd474920e927b8610f3378862315bae1}
+\expandafter\def\csname PageMDfive58\endcsname{42e3f2bf43550997412797df3e986641}
+\expandafter\def\csname PageMDfive59\endcsname{f7cab0739cb8eb4b2c7869b870171b72}
+\expandafter\def\csname PageMDfive60\endcsname{a16c28b6354d035c77dcab0075c9f2fb}
 \expandafter\def\csname PageMDfive61\endcsname{b6aa7e481477a999f2a4ada2ae298e7f}
 \expandafter\def\csname PageMDfive62\endcsname{05243bf62b8107ede9c8d9d96925cbfe}
 \expandafter\def\csname PageMDfive63\endcsname{8ad88021f595ffa9fe6d6664f4ca87b9}
@@ -102,13 +102,13 @@
 \expandafter\def\csname PageMDfive79\endcsname{a3dd980ffe2af8bd4b7a2d4a8a4b972a}
 \expandafter\def\csname PageMDfive80\endcsname{b5899854b9498724ee2f778c1b504765}
 \expandafter\def\csname PageMDfive81\endcsname{14f224c0a626f68a61bf866df0eee7ca}
-\expandafter\def\csname PageMDfive82\endcsname{10d78ef53a2fe12dc266bb3f677cfa07}
+\expandafter\def\csname PageMDfive82\endcsname{4147d1a25f0940061a147245a2e55be7}
 \expandafter\def\csname PageMDfive83\endcsname{6d742aced02c4f7553638cc4e3f7cfe5}
 \expandafter\def\csname PageMDfive84\endcsname{72e2090c2b79181cdbaa0389c5ee50b3}
 \expandafter\def\csname PageMDfive85\endcsname{db9f65b6c2c2b05164a596d6e9be6f11}
-\expandafter\def\csname PageMDfive86\endcsname{de29b6897f532636a9fd1d13324f63de}
+\expandafter\def\csname PageMDfive86\endcsname{251e20eabad327061da23389ed917818}
 \expandafter\def\csname PageMDfive87\endcsname{42c63c876189a9d341da909c38484215}
-\expandafter\def\csname PageMDfive88\endcsname{3048a838f27c80801a7d9bbb4d31aca8}
+\expandafter\def\csname PageMDfive88\endcsname{d19845e1cae6d62a391b02bf34ba3828}
 %</PAGE-HASH-DEFS>
 
 \newcommand{\PageHashFooter}[1]{%
@@ -5451,14 +5451,14 @@ TrainingSplit & artifact pre-SMOTE \texttt{NOT SPECIFIED} & 1,608 = H 762 / M 17
 ValidationSplit & \nolinkurl{data/processed/val.csv} & 345 = H 163 / M 37 / L 145 \\
 TestSplit & \nolinkurl{data/processed/test.csv} & 345 = H 164 / M 36 / L 145 \\
 Current realization & \texttt{prepare\_data.py} & source role: Data preparation \\
-Local processed Store & \nolinkurl{data/processed/} & contiene gli artifact processati documentati \\
+Local processed Store & \nolinkurl{data/processed/} & contiene \texttt{ValidationDatasetArtifact} e \texttt{TestDatasetArtifact}; materializzazione pre-SMOTE del training \texttt{NOT SPECIFIED} \\
 \bottomrule
 \end{tabularx}
 \end{ddtacore}
 
 \begin{ddtaquestions}[top=2pt,bottom=2pt,left=5pt,right=5pt]
 \fontsize{3.10}{3.42}\selectfont
-Il nome/path del training artifact prima di SMOTE e l'esatto contratto di \texttt{prepare\_data.py} restano \texttt{NOT SPECIFIED}. L'assegnazione \texttt{DatasetSplitting -> prepare\_data.py} e' una ricostruzione DDTA basata sul ruolo documentato dello script e sulla separazione esplicita dello script SMOTE.
+Il nome/path del training artifact prima di SMOTE e l'esatto contratto di \texttt{prepare\_data.py} restano \texttt{NOT SPECIFIED}. La persistenza documentata e' quindi parziale: \texttt{ValidationDatasetArtifact} e \texttt{TestDatasetArtifact} appartengono a \texttt{ProcessedTrainingDataStore}, mentre \texttt{TrainingSplit} resta un risultato logico senza artifact/store binding inventato. L'assegnazione \texttt{DatasetSplitting -> prepare\_data.py} e' una ricostruzione DDTA basata sul ruolo documentato dello script e sulla separazione esplicita dello script SMOTE.
 \end{ddtaquestions}
 
 \switchcolumn
@@ -5519,6 +5519,16 @@ Il nome/path del training artifact prima di SMOTE e l'esatto contratto di \textt
 \hspace*{1em}\texttt{semanticOperatorKey = hasPart}\par
 \hspace*{1em}\texttt{whole -> DataResources}\par
 \hspace*{1em}\texttt{part -> ProcessedTrainingDataStore}\par
+\smallskip
+\textbf{\texttt{BAP-FRC6-01-03B2-06}}\par
+\hspace*{1em}\texttt{semanticOperatorKey = hasPart}\par
+\hspace*{1em}\texttt{whole -> ProcessedTrainingDataStore}\par
+\hspace*{1em}\texttt{part -> ValidationDatasetArtifact}\par
+\smallskip
+\textbf{\texttt{BAP-FRC6-01-03B2-07}}\par
+\hspace*{1em}\texttt{semanticOperatorKey = hasPart}\par
+\hspace*{1em}\texttt{whole -> ProcessedTrainingDataStore}\par
+\hspace*{1em}\texttt{part -> TestDatasetArtifact}\par
 \end{ddtapropositionidentified}
 
 \begin{ddtapropositionaccepted}[top=2pt,bottom=2pt,left=4pt,right=4pt]
@@ -5528,8 +5538,10 @@ Il nome/path del training artifact prima di SMOTE e l'esatto contratto di \textt
 \textbf{BAP-FRC6-01-03B2-03}\par
 \textbf{BAP-FRC6-01-03B2-04}\par
 \textbf{BAP-FRC6-01-03B2-05}\par
+\textbf{BAP-FRC6-01-03B2-06}\par
+\textbf{BAP-FRC6-01-03B2-07}\par
 \smallskip
-\emph{TrainingSplit resta un BAReferent senza artifact binding inventato; la sua materializzazione concreta pre-SMOTE e' aperta.}
+\emph{B2-06 e B2-07 rendono esplicita la topologia documentata del local processed Store. TrainingSplit resta un BAReferent senza artifact binding inventato; la sua materializzazione concreta pre-SMOTE e' aperta.}
 \end{ddtapropositionaccepted}
 
 \end{paracol}
@@ -5583,6 +5595,7 @@ Current algorithm realization & \texttt{SMOTEBalancing}; technology: imbalanced-
 Concrete implementation binding & \texttt{smote\_balance.py} \\
 Result logical resource & \texttt{BalancedTrainingSplit}: 2,286 = 762/class \\
 Result artifact & \nolinkurl{data/processed/train_balanced.csv} \\
+Local processed Store & \texttt{ProcessedTrainingDataStore} [reuse]; \nolinkurl{data/processed/} \\
 Derived synthetic effect & MEDIUM +591; LOW +87; HIGH +0; totale +678 \\
 \bottomrule
 \end{tabularx}
@@ -5643,6 +5656,11 @@ L'exact binding con cui \texttt{smote\_balance.py} riceve il training split pre-
 \hspace*{1em}\texttt{semanticOperatorKey = realize}\par
 \hspace*{1em}\texttt{abstract -> BalancedTrainingSplit}\par
 \hspace*{1em}\texttt{realization -> BalancedTrainingDatasetArtifact}\par
+\smallskip
+\textbf{\texttt{BAP-FRC6-01-03B3-05}}\par
+\hspace*{1em}\texttt{semanticOperatorKey = hasPart}\par
+\hspace*{1em}\texttt{whole -> ProcessedTrainingDataStore}\par
+\hspace*{1em}\texttt{part -> BalancedTrainingDatasetArtifact}\par
 \end{ddtapropositionidentified}
 
 \begin{ddtapropositionaccepted}[top=2pt,bottom=2pt,left=4pt,right=4pt]
@@ -5651,8 +5669,9 @@ L'exact binding con cui \texttt{smote\_balance.py} riceve il training split pre-
 \textbf{BAP-FRC6-01-03B3-02}\par
 \textbf{BAP-FRC6-01-03B3-03}\par
 \textbf{BAP-FRC6-01-03B3-04}\par
+\textbf{BAP-FRC6-01-03B3-05}\par
 \smallskip
-\emph{La doppia \texttt{realize} separa la funzione governata, l'algoritmo SMOTE corrente e il concrete script che lo implementa.}
+\emph{La doppia \texttt{realize} separa la funzione governata, l'algoritmo SMOTE corrente e il concrete script che lo implementa. La \texttt{hasPart} esplicita la persistenza del risultato materializzato nel \texttt{ProcessedTrainingDataStore} riusato.}
 \end{ddtapropositionaccepted}
 
 \end{paracol}
@@ -5662,7 +5681,7 @@ L'exact binding con cui \texttt{smote\_balance.py} riceve il training split pre-
 %<PAGE-CONTENT:60>
 \PageHashFooter{\PageMDfive{60}}
 \subsubsection{Review split - \texttt{FR-C6-01-03C} [review label] - Disponibilita' delle immagini di training}
-{\sffamily\scriptsize\color{DDTAGray}Gerarchia candidata: \texttt{MR-C6} $\rightarrow$ \texttt{DEC-C6-01} $\rightarrow$ \texttt{FR-C6-01-03C}; contenuto documentale materializzato ora, Base Analysis intenzionalmente differita.}\par
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia candidata: \texttt{MR-C6} $\rightarrow$ \texttt{DEC-C6-01} $\rightarrow$ \texttt{FR-C6-01-03C}; contenuto documentale preservato e Base Analysis locale eseguita. Lo Store di origine delle training images resta \texttt{NOT SPECIFIED}.}\par
 
 \setlength{\columnsep}{7mm}
 \setlength{\columnseprule}{0.35pt}
@@ -5673,7 +5692,7 @@ L'exact binding con cui \texttt{smote\_balance.py} riceve il training split pre-
 \vspace{0.2em}
 
 \begin{ddtacore}[title={FunctionalRequirement - split review}]
-\fontsize{4.25}{4.68}\selectfont
+\fontsize{4.18}{4.56}\selectfont
 \begin{tabularx}{\linewidth}{L{38mm}Y}
 \toprule
 \textbf{ID} & \texttt{FR-C6-01-03C [review label]} \\
@@ -5698,43 +5717,80 @@ L'ambiente DermaTriage MUST rendere disponibili le risorse di immagine richieste
 \toprule
 \textbf{Elemento} & \textbf{Realizzazione corrente documentata} \\
 \midrule
-Risorsa & Training images \\
-Binding corrente & \nolinkurl{data/images/} \\
+Risorsa logica & Training images / \texttt{TrainingImageCollection} \\
+Binding locale corrente & \nolinkurl{data/images/} \\
 Dimensione corrente & circa 2 GB \\
 Collocazione documentata & directory \texttt{data/}, separata da \texttt{RAG\_dataset.csv} e da \texttt{processed/} \\
 Uso documentato & risorsa per le attivita' di training \\
+Store / meccanismo di origine & \texttt{NOT SPECIFIED} \\
 \bottomrule
 \end{tabularx}
 \end{ddtacore}
 
 \begin{ddtaquestions}[top=3pt,bottom=3pt,left=5pt,right=5pt]
-\fontsize{3.68}{4.08}\selectfont
-La fonte non specifica il mapping completo tra record del CSV e artifact immagine presenti in \texttt{data/images/}. Le immagini acquisite dal B4 durante il retraining costituiscono inoltre un percorso di acquisizione documentato separatamente e non vengono assimilate automaticamente a questa raccolta. Identita' della collection/repository, composizione e relazioni con dataset/split restano da chiudere nella Base Analysis di \texttt{FR-C6-01-03C}.
+\fontsize{3.62}{3.98}\selectfont
+La fonte documenta il binding locale \texttt{data/images/}, ma non identifica il locator dello Store di origine ne' il meccanismo concreto di acquisizione. La BA preserva quindi \texttt{TrainingImageSourceStore} con locator \texttt{NOT SPECIFIED}. Il transfer conserva la necessita' di portare la collection concreta nello Store locale senza attribuire una provenance o un acquisition behavior non documentati.
 \end{ddtaquestions}
 
 \switchcolumn
 {\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
-\vspace{0.2em}
+\vspace{0.15em}
 
-\begin{ddtareferentidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
-\fontsize{4.0}{4.4}\selectfont
-\textbf{NON ANALIZZATO}\par
-\emph{Il contenuto documentale e' preservato; identity test e operator selection vengono differiti al pass dedicato a \texttt{FR-C6-01-03C}.}
+\begin{ddtareferentidentified}[top=2.5pt,bottom=2.5pt,left=5pt,right=5pt]
+\fontsize{3.72}{4.05}\selectfont
+\BACandidate{TrainingImageCollection} \texttt{[reuse candidate]}; \BACandidate{TrainingImageStore} \BANew{}; \BACandidate{TrainingImageSourceStore} \BANew{}; \BACandidate{TrainingImageArtifactCollection} \BANew{}.\par
+\textbf{Reuse}\par
+\hspace*{1em}\texttt{DataResources}
 \end{ddtareferentidentified}
 
-\begin{ddtareferentaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
-\fontsize{4.0}{4.4}\selectfont
-\textbf{NON ANALIZZATO}
+\begin{ddtareferentaccepted}[top=2.5pt,bottom=2.5pt,left=5pt,right=5pt]
+\fontsize{3.62}{3.96}\selectfont
+\BAAccepted{TrainingImageCollection} \BAFirstAccepted{}\par
+\BAAccepted{TrainingImageStore} \BAFirstAccepted{}\par
+\hspace*{1em}\texttt{semanticKind -> store; direction -> IN}\par
+\hspace*{1em}\texttt{locator -> data/images/}\par
+\BAAccepted{TrainingImageSourceStore} \BAFirstAccepted{}\par
+\hspace*{1em}\texttt{semanticKind -> store; direction -> OUT}\par
+\hspace*{1em}\texttt{locator -> NOT SPECIFIED}\par
+\BAAccepted{TrainingImageArtifactCollection} \BAFirstAccepted{}\par
+\hspace*{1em}\texttt{concrete training-image content collection}\par
+\hspace*{1em}\texttt{local occurrence -> data/images/}\par
+\hspace*{1em}\texttt{source occurrence locator -> NOT SPECIFIED}
 \end{ddtareferentaccepted}
 
-\begin{ddtapropositionidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
-\fontsize{4.0}{4.4}\selectfont
-\textbf{NON ANALIZZATO}
+\begin{ddtapropositionidentified}[top=2.5pt,bottom=2.5pt,left=5pt,right=5pt]
+\fontsize{3.48}{3.80}\selectfont
+\texttt{BAP-FRC6-01-03C-01}\par
+\hspace*{1em}\texttt{semanticOperatorKey = hasPart}\par
+\hspace*{1em}\texttt{whole -> DataResources}\par
+\hspace*{1em}\texttt{part -> TrainingImageCollection}\par
+\texttt{BAP-FRC6-01-03C-02}\par
+\hspace*{1em}\texttt{semanticOperatorKey = hasPart}\par
+\hspace*{1em}\texttt{whole -> DataResources}\par
+\hspace*{1em}\texttt{part -> TrainingImageStore}\par
+\texttt{BAP-FRC6-01-03C-03}\par
+\hspace*{1em}\texttt{semanticOperatorKey = transfer}\par
+\hspace*{1em}\texttt{source -> TrainingImageSourceStore}\par
+\hspace*{1em}\texttt{destination -> TrainingImageStore}\par
+\hspace*{1em}\texttt{content -> TrainingImageArtifactCollection}\par
+\texttt{BAP-FRC6-01-03C-04}\par
+\hspace*{1em}\texttt{semanticOperatorKey = realize}\par
+\hspace*{1em}\texttt{abstract -> TrainingImageCollection}\par
+\hspace*{1em}\texttt{realization -> TrainingImageArtifactCollection}\par
+\texttt{BAP-FRC6-01-03C-05}\par
+\hspace*{1em}\texttt{semanticOperatorKey = hasPart}\par
+\hspace*{1em}\texttt{whole -> TrainingImageSourceStore}\par
+\hspace*{1em}\texttt{part -> TrainingImageArtifactCollection}\par
+\texttt{BAP-FRC6-01-03C-06}\par
+\hspace*{1em}\texttt{semanticOperatorKey = hasPart}\par
+\hspace*{1em}\texttt{whole -> TrainingImageStore}\par
+\hspace*{1em}\texttt{part -> TrainingImageArtifactCollection}
 \end{ddtapropositionidentified}
 
-\begin{ddtapropositionaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
-\fontsize{4.0}{4.4}\selectfont
-\textbf{NON ANALIZZATO}
+\begin{ddtapropositionaccepted}[top=2.5pt,bottom=2.5pt,left=5pt,right=5pt]
+\fontsize{3.48}{3.80}\selectfont
+\texttt{BAP-FRC6-01-03C-01}; \texttt{BAP-FRC6-01-03C-02}; \texttt{BAP-FRC6-01-03C-03}; \texttt{BAP-FRC6-01-03C-04}; \texttt{BAP-FRC6-01-03C-05}; \texttt{BAP-FRC6-01-03C-06}.\par
+Il transfer usa una sola identita' concreta, \texttt{TrainingImageArtifactCollection}, osservata prima e dopo il trasferimento. Il source Store resta non localizzato e non viene introdotto alcun \texttt{behavior} di acquisizione non supportato.
 \end{ddtapropositionaccepted}
 
 \end{paracol}
@@ -7550,13 +7606,16 @@ DermaTriageEnvironment & \textbf{\texttt{MR-C6}}; \texttt{FR-C6-01-01}; \texttt{
 ComputeResources & \textbf{\texttt{MR-C6}} -- direct part of \texttt{DermaTriageEnvironment}; functional use is not inferred from composition alone \\
 SoftwareComponents & \textbf{\texttt{MR-C6}} -- direct part of \texttt{DermaTriageEnvironment} \\
 ModelResources & \textbf{\texttt{MR-C6}}; \texttt{FR-C6-01-03A1..A4 [review family]} -- direct part of \texttt{DermaTriageEnvironment}; family split A1--A4 con BA locale rieseguita \\
-DataResources & \textbf{\texttt{MR-C6}}; \texttt{FR-C6-01-03B1..B3 [review family]}; \texttt{FR-C6-01-03C [review label]} -- direct part of \texttt{DermaTriageEnvironment}; B1--B3 con BA locale, C ancora differita \\
+DataResources & \textbf{\texttt{MR-C6}}; \texttt{FR-C6-01-03B1..B3 [review family]}; \texttt{FR-C6-01-03C [review label]} -- direct part of \texttt{DermaTriageEnvironment}; B1--B3 e C con BA locale rieseguita \\
 EnvironmentConfiguration & \textbf{\texttt{MR-C6}} -- direct part of \texttt{DermaTriageEnvironment} \\
 HardwareConfigurationProfile & \textbf{\texttt{FR-C6-01-01}}; \texttt{CR-C6-01-01} -- named hardware configuration profile; il FR vincola l'environment al profile, mentre il CR preserva e governa il dettaglio delle entry REQUIRED/RECOMMENDED/CONFLICTING/GAP \\
 RequiredSoftwareDependencies & \textbf{\texttt{FR-C6-01-02}} -- named logical configuration whose availability is required by the FR; used as named \texttt{constrain} value \\
 SoftwareCompositionProfile & \textbf{\texttt{FR-C6-01-02}} -- current concrete realization of \texttt{RequiredSoftwareDependencies}; document identity \texttt{SCP-C6-01-02}; canonical operational artifact \texttt{requirements.txt} \\
 DermaTriageRAGDataset & \textbf{\texttt{FR-C6-01-03B1 [review label]}}; \texttt{FR-C6-01-03B2}; \texttt{FR-C6-01-04} -- logical historical dataset; current artifact \texttt{data/RAG\_dataset.csv} \\
-TrainingImageCollection & \texttt{FR-C6-01-03C [review label]} -- candidate preesistente; binding corrente \texttt{data/images/}; documentazione C materializzata, BA del prodotto split non ancora eseguita \\
+TrainingImageCollection & \textbf{\texttt{FR-C6-01-03C [review label]}} -- logical training-image collection; current local realization under \texttt{data/images/} \\
+TrainingImageArtifactCollection & \textbf{\texttt{FR-C6-01-03C [review label]}} -- concrete training-image content collection; remote/local occurrences preserve one BA identity \\
+TrainingImageStore & \textbf{\texttt{FR-C6-01-03C [review label]}} -- semanticKind=store; direction=IN; locator \texttt{data/images/} \\
+TrainingImageSourceStore & \textbf{\texttt{FR-C6-01-03C [review label]}} -- semanticKind=store; direction=OUT; locator NOT SPECIFIED \\
 EnvironmentSetupProcedure & \textbf{\texttt{DEC-C6-01}}; \texttt{FR-C6-01-06} \\
 RepositoryAcquisitionStage & \textbf{\texttt{DEC-C6-01}} -- Stage 1 della pipeline generale di setup; contenuto tecnico specializzabile downstream \\
 SoftwareDependencyInstallationStage & \textbf{\texttt{DEC-C6-01}} -- Stage 2 della pipeline generale di setup; contenuto tecnico specializzabile downstream \\
@@ -7814,14 +7873,14 @@ Security-boundary overlay della projection Mermaid: non ancora BA.
 \end{paracol}
 %</PAGE-CONTENT:85>
 \clearpage
-%<PAGE-DESC:86>Registro Base Analysis - C6 FR-C6-01-03B1..B3 increment
+%<PAGE-DESC:86>Registro Base Analysis - C6 FR-C6-01-03B1..B3 e 03C increment
 %<PAGE-CONTENT:86>
 \PageHashFooter{\PageMDfive{86}}
 \section{Registro Base Analysis - incremento C6 dataset preparation}
 
 \begin{ddtacore}[title={Scope del registro incrementale}]
 \fontsize{5.0}{5.5}\selectfont
-Questa pagina integra il registro corrente con le identita' e le proposition introdotte dallo split \texttt{FR-C6-01-03B1..B3}. Le occurrence dei referent gia' esistenti restano nel registro principale; qui sono elencate le nuove first acceptance e le nuove BAProposition.
+Questa pagina integra il registro corrente con le identita' e le proposition introdotte da \texttt{FR-C6-01-03B1..B3} e \texttt{FR-C6-01-03C}. Le occurrence dei referent gia' esistenti restano nel registro principale; qui sono elencate le first acceptance e le nuove BAProposition del ramo data resources.
 \end{ddtacore}
 
 \setlength{\columnsep}{8mm}
@@ -7831,8 +7890,8 @@ Questa pagina integra il registro corrente con le identita' e le proposition int
 
 {\sffamily\bfseries\color{DDTABlue}BAReferent - first acceptance / binding}\par
 \vspace{0.3mm}
-\fontsize{3.95}{4.30}\selectfont
-\renewcommand{\arraystretch}{0.73}
+\fontsize{3.72}{4.02}\selectfont
+\renewcommand{\arraystretch}{0.68}
 \setlength{\tabcolsep}{2.0pt}
 \begin{tabularx}{\linewidth}{L{47mm}Y}
 \toprule
@@ -7856,14 +7915,18 @@ SMOTEBalancing & \textbf{FR-C6-01-03B3}; current algorithm realization \\
 SMOTEBalancingScript & \textbf{FR-C6-01-03B3}; locator \texttt{smote\_balance.py} \\
 BalancedTrainingSplit & \textbf{FR-C6-01-03B3}; logical balanced training data \\
 BalancedTrainingDatasetArtifact & \textbf{FR-C6-01-03B3}; \texttt{data/processed/train\_balanced.csv} \\
+TrainingImageCollection & \textbf{FR-C6-01-03C}; logical training-image collection \\
+TrainingImageArtifactCollection & \textbf{FR-C6-01-03C}; concrete content; local occurrence under \texttt{data/images/} \\
+TrainingImageStore & \textbf{FR-C6-01-03C}; store IN; \texttt{data/images/} \\
+TrainingImageSourceStore & \textbf{FR-C6-01-03C}; store OUT; locator NOT SPECIFIED \\
 \bottomrule
 \end{tabularx}
 
 \switchcolumn
 {\sffamily\bfseries\color{DDTABlue}BAProposition - new accepted facts}\par
 \vspace{0.3mm}
-\fontsize{3.78}{4.12}\selectfont
-\renewcommand{\arraystretch}{0.72}
+\fontsize{3.52}{3.82}\selectfont
+\renewcommand{\arraystretch}{0.67}
 \setlength{\tabcolsep}{2.0pt}
 \begin{tabularx}{\linewidth}{L{47mm}Y}
 \toprule
@@ -7879,10 +7942,19 @@ BalancedTrainingDatasetArtifact & \textbf{FR-C6-01-03B3}; \texttt{data/processed
 \textbf{BAP-FRC6-01-03B2-03} & realize: ValidationSplit -> ValidationDatasetArtifact \\
 \textbf{BAP-FRC6-01-03B2-04} & realize: TestSplit -> TestDatasetArtifact \\
 \textbf{BAP-FRC6-01-03B2-05} & hasPart: DataResources -> ProcessedTrainingDataStore \\
+\textbf{BAP-FRC6-01-03B2-06} & hasPart: ProcessedTrainingDataStore -> ValidationDatasetArtifact \\
+\textbf{BAP-FRC6-01-03B2-07} & hasPart: ProcessedTrainingDataStore -> TestDatasetArtifact \\
 \textbf{BAP-FRC6-01-03B3-01} & produce: TrainingSetBalancing; input TrainingSplit; result BalancedTrainingSplit \\
 \textbf{BAP-FRC6-01-03B3-02} & realize: TrainingSetBalancing -> SMOTEBalancing \\
 \textbf{BAP-FRC6-01-03B3-03} & realize: SMOTEBalancing -> SMOTEBalancingScript \\
 \textbf{BAP-FRC6-01-03B3-04} & realize: BalancedTrainingSplit -> BalancedTrainingDatasetArtifact \\
+\textbf{BAP-FRC6-01-03B3-05} & hasPart: ProcessedTrainingDataStore -> BalancedTrainingDatasetArtifact \\
+\textbf{BAP-FRC6-01-03C-01} & hasPart: DataResources -> TrainingImageCollection \\
+\textbf{BAP-FRC6-01-03C-02} & hasPart: DataResources -> TrainingImageStore \\
+\textbf{BAP-FRC6-01-03C-03} & transfer: TrainingImageSourceStore -> TrainingImageStore : TrainingImageArtifactCollection \\
+\textbf{BAP-FRC6-01-03C-04} & realize: TrainingImageCollection -> TrainingImageArtifactCollection \\
+\textbf{BAP-FRC6-01-03C-05} & hasPart: TrainingImageSourceStore -> TrainingImageArtifactCollection \\
+\textbf{BAP-FRC6-01-03C-06} & hasPart: TrainingImageStore -> TrainingImageArtifactCollection \\
 \bottomrule
 \end{tabularx}
 \end{paracol}
@@ -8047,7 +8119,7 @@ Ogni pagina possiede un MD5 del proprio contenuto canonico. Il calcolo esclude i
 \IntegrityRow{83}{Registro Base Analysis - BAReferent C7-P02 - first acceptance}{\PageMDfive{83}}
 \IntegrityRow{84}{Registro Base Analysis - BAProposition}{\PageMDfive{84}}
 \IntegrityRow{85}{Registro Base Analysis - C6 source code, dependency e A1 topology increment}{\PageMDfive{85}}
-\IntegrityRow{86}{Registro Base Analysis - C6 FR-C6-01-03B1..B3 increment}{\PageMDfive{86}}
+\IntegrityRow{86}{Registro Base Analysis - C6 FR-C6-01-03B1..B3 e 03C increment}{\PageMDfive{86}}
 \IntegrityRow{87}{MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]}{\PageMDfive{87}}
 \IntegrityRow{88}{Indice di integrita delle pagine}{\PageMDfive{88}}
 %</PAGE-INTEGRITY-ROWS>
