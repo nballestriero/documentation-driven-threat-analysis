@@ -1,8 +1,8 @@
-DDTA_BASE_ANALYSIS_GUIDE_REBUILD_R7_CONFIGURATION_PROFILE_WORKING_R1 - Page MD5 Index
+DDTA_BASE_ANALYSIS_GUIDE_REBUILD_R7_BOUNDARY_UPDATE_R1 - Page MD5 Index
 Canonical payload: LaTeX content between PAGE-CONTENT markers; own printed MD5 excluded.
 Integrity-index page resolves all other page hashes and canonicalizes its own hash as <SELF>.
 
-Page 1  96a95fb85926135eb35a416ee6ded16a  Frontespizio della Base Analysis Guide Rebuild R7
+Page 1  b72d1ef67f3ac0b3e3238e688b5d7024  Frontespizio della Base Analysis Guide Rebuild R7
 Page 2  fa01b7db301f77cd9988907daf2b3397  1 - Che cos'e' la Base Analysis
 Page 3  3b620cf21e74f64e397656ec9f3038da  1 - Perche' esiste e principi di base
 Page 4  b12d8f94dc04c833c0d916453255f9be  1 - Direzione dell'authority e feedback
@@ -17,7 +17,7 @@ Page 12  e3200807fcbf2aa290f0748b9c099b69  3 - Segmentazione, ambiguita e livell
 Page 13  b9028ef062953f4b7ab73bfb7ac7975c  4 - Elementi fondamentali della Base Analysis
 Page 14  23934a19c0820cfc4e2d1aaaaac74123  4 - BAReferent: identita analitica riusabile
 Page 15  17d66f19d9937e4c823ee9c212fb6ad8  4 - BAReferent: esempi DermaTriage e confini
-Page 16  83b4a5ba93a8eb218e7a0816bb7e023a  4 - BAProposition: asserzione analitica identificabile
+Page 16  df015ccb75d48910ced0a5f1ddcdd881  4 - BAProposition: asserzione analitica identificabile
 Page 17  8063825cd44fdd393ef91bf9a5957e86  4 - BAReferent e BAProposition insieme
 Page 18  f23c4cd3c7776e49c0d794a9ecfef9a9  5 - Granularita, minimalita e costruzione della BA
 Page 19  bc3e4197b5ba6fc299035dd3ee55f0fa  6 - Indipendenza tra struttura documentale e struttura BA
@@ -108,12 +108,19 @@ Page 103  3a3739c47e7fe4959e76a26cf8f53549  15 - hasPart: prompt LLM per l'ident
 Page 104  2fbba520a32ed9a5a9543ad9d107d027  15 - hasPart: output BA atteso e discriminazioni
 Page 105  74f217286e414a180c1737d8f6ec1e7e  15 - hasPart: projection Mermaid a containment e occurrence multiple
 Page 106  93b0ca8880dc4da988725c4a75ed437a  15 - hasPart: regole grafiche e worked example containment
-Page 107  3915eaee02f714ac47e0dfa764b2836f  Appendice temporanea - scopo, lineage e confine del rebuild
-Page 108  5475a02c3223c3fac62a7eebe62f6be2  Appendice temporanea - corpus e stati epistemici
-Page 109  e1b1becfc138e20474529fae47de6a05  Appendice temporanea - Construct Description Contract e principio espositivo
-Page 110  435e9ecddb23d230df9cc32766e10610  Appendice temporanea - CDC direzione della spiegazione e revisione
-Page 111  9d02d27cc2ad8bb4e1b30d441667e854  Appendice temporanea - CDC campi 1-10
-Page 112  90b6659e5a0105e0cd7268d3f76137f6  Appendice temporanea - CDC campi 11-20
-Page 113  96ac5c53cc5c33d707253290bc04c6bd  Appendice temporanea - roadmap e registro dei costrutti da integrare/studiare
-Page 114  17bb90d1f18324a0081f08c8ee442e76  Indice di integrita' delle pagine [INTEGRITY INDEX]
-Page 115  13cdd31df41e1d75e405e6ba020261fa  Appendice temporanea - laboratorio prove grafiche Mermaid da cancellare
+Page 107  5b69b4d552e3bf2b95a77b166a1f2952  16 - Boundary: definizione, neutralita semantica e criteri d'uso
+Page 108  21ede95f599985ac1d63fb65f0fdc203  16 - Boundary: semanticKind boundary e operatore boundaryOf
+Page 109  09003cdd9882afc94a6557fe42761f5a  16 - crossesBoundary: proposition qualificante e riferimento a BAProposition
+Page 110  47c0fe1cfe547096a372443c16325924  16 - Boundary: evidence, invarianti e forbidden inference
+Page 111  516087520bed492a8f301f8e0772dcba  16 - Boundary: domande di identificazione, procedura e unresolved crossing
+Page 112  2647f3048fb2ba53d2f26a44bdb1c5ca  16 - Boundary: regression DermaTriage GitHub Google Drive e Stage 2
+Page 113  73cec746d17ac4afb6e69a65ffc5312c  16 - Boundary: output authoring discriminazioni e handoff security projection
+Page 114  3915eaee02f714ac47e0dfa764b2836f  Appendice temporanea - scopo, lineage e confine del rebuild
+Page 115  5475a02c3223c3fac62a7eebe62f6be2  Appendice temporanea - corpus e stati epistemici
+Page 116  e1b1becfc138e20474529fae47de6a05  Appendice temporanea - Construct Description Contract e principio espositivo
+Page 117  435e9ecddb23d230df9cc32766e10610  Appendice temporanea - CDC direzione della spiegazione e revisione
+Page 118  9d02d27cc2ad8bb4e1b30d441667e854  Appendice temporanea - CDC campi 1-10
+Page 119  90b6659e5a0105e0cd7268d3f76137f6  Appendice temporanea - CDC campi 11-20
+Page 120  84cfbc76debaca8141cc88702aa0179f  Appendice temporanea - roadmap e registro dei costrutti da integrare/studiare
+Page 121  691d59fa456478a17e6ee36975680287  Indice di integrita' delle pagine [INTEGRITY INDEX]
+Page 122  13cdd31df41e1d75e405e6ba020261fa  Appendice temporanea - laboratorio prove grafiche Mermaid da cancellare

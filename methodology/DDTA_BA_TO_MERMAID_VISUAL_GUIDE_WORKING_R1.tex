@@ -986,4 +986,217 @@ Il viola distingue visivamente la famiglia \texttt{constrain} da \texttt{dependO
 
 %</MERMAID-ELEMENT:constrain>
 
+
+%<MERMAID-ELEMENT:boundary>
+\clearpage
+\section{\texttt{boundaryOf} e projection del Boundary}
+
+\RuleTag\hspace{0.5em}\texttt{semanticKind = boundary; semanticOperatorKey = boundaryOf}
+
+\subsection{Scopo della rappresentazione}
+Un \BAR{} con \texttt{semanticKind = boundary} identifica un confine architetturale/topologico. La proposition \texttt{boundaryOf} stabilisce quale scope e' delimitato dal boundary. La projection rende il boundary come \textbf{frame visibile attorno alla projection dello scope}; il frame appartiene al Boundary, non allo scope e non introduce composizione.
+
+\begin{lstlisting}
+BAP-EX-B01 - boundaryOf
+boundary -> ExampleEnvironmentBoundary
+scope    -> ExampleEnvironment
+polarity = affirmative
+\end{lstlisting}
+
+\begin{ddtacore}[title={BOUNDARY-P01 - frame deterministico di boundaryOf}]
+Se la BA inclusa nella view contiene \texttt{boundaryOf(boundary=B, scope=S)}, proiettare \texttt{B} come frame che circonda la occurrence o il subgraph con cui la stessa view proietta \texttt{S}. Il frame riporta la label canonica di \texttt{B}; la occurrence di \texttt{S} conserva shape, colore e topologia stabiliti dalle proprie regole.
+\end{ddtacore}
+
+\begin{ddtacore}[title={BOUNDARY-P02 - il frame non e' hasPart}]
+Il nesting grafico \texttt{Boundary -> scope} e' la projection di \texttt{boundaryOf}, non di \texttt{hasPart}. Non inferire quindi \texttt{Boundary hasPart scope}, ne' che gli elementi contenuti nello scope siano part del Boundary. Se lo scope e' gia' un frame di containment \texttt{hasPart}, i due frame restano annidati ma semanticamente distinti.
+\end{ddtacore}
+
+\begin{ddtaprinciple}[title={Boundary neutro rispetto al trust}]
+La BA del Boundary non classifica automaticamente i due lati come trusted/untrusted, sicuri/insicuri o a rischio alto/basso. Il boundary registra il cambio di scope rilevante; eventuali assunzioni di trust, controlli e livelli di rischio appartengono a una successiva analisi di sicurezza.
+\end{ddtaprinciple}
+
+\subsection{Stile visuale di default prima della security analysis}
+\begin{ddtacore}[title={BOUNDARY-P03 - rosso conservativo UNASSESSED}]
+Quando il Boundary non dispone ancora di una valutazione di sicurezza esplicita e tracciabile, usare fill \texttt{\#FFF8F8}, stroke rosso \texttt{\#C62828}, spessore \texttt{3px}, tratteggio \texttt{7 5} e testo \texttt{\#8B1A1A}. Il rosso e' uno \textbf{stato visuale conservativo UNASSESSED}: segnala un potenziale punto di pericolo da analizzare, non significa ``untrusted'', ``compromesso'' o ``risk = high''. Il tratteggio distingue il Boundary dal bordo continuo del containment, senza introdurre una nuova semantica.
+\end{ddtacore}
+
+\begin{lstlisting}
+style ExampleEnvironmentBoundary fill:#FFF8F8,stroke:#C62828,
+  stroke-width:3px,stroke-dasharray:7 5,color:#8B1A1A
+\end{lstlisting}
+
+\clearpage
+\subsection{\texttt{crossesBoundary}: overlay su una proposition esistente}
+\RuleTag\hspace{0.5em}\texttt{semanticOperatorKey = crossesBoundary}
+
+\begin{lstlisting}
+BAP-EX-R01 - <underlying relation>
+  ...roles of the underlying operator...
+
+BAP-EX-B02 - crossesBoundary
+relation -> BAP-EX-R01
+boundary -> ExampleEnvironmentBoundary
+polarity = affirmative
+\end{lstlisting}
+
+\begin{ddtacore}[title={BOUNDARY-P04 - nessuna seconda edge semantica}]
+\texttt{crossesBoundary} qualifica una \BAP{} gia' esistente. Nella projection non creare un nodo o una edge separata per il qualifier: applicare l'overlay di crossing alla edge/topologia con cui viene resa la proposition indicata dal role \texttt{relation}. L'operatore sottostante conserva direzione, role, dash pattern e significato.
+\end{ddtacore}
+
+\begin{ddtacore}[title={BOUNDARY-P05 - crossing UNASSESSED evidenziato in rosso}]
+Se una proposition inclusa nella view e' qualificata da \texttt{crossesBoundary} e non esiste ancora una security assessment che ne governi lo stato visuale, rendere il tratto relazionale di crossing in rosso \texttt{\#C62828} con spessore \texttt{3px}. Per un transfer gia' proiettato come linea continua, la linea resta continua e diventa rossa; per altri operatori si conserva il pattern definito dalla loro regola e si applica soltanto l'enfasi di crossing.
+\end{ddtacore}
+
+\begin{ddtaprinciple}[title={Il rosso non sostituisce la security analysis}]
+Boundary e crossing restano rossi finche' la view non include una valutazione di sicurezza esplicita. Una futura BA/security overlay potra' governare stati differenti --- per esempio giallo o verde --- ma soltanto mediante un contract tracciabile che definisca significato e criteri. Questa guida non assegna soglie di rischio ne' deduce un colore favorevole dalla sola presenza di controlli.
+\end{ddtaprinciple}
+
+\begin{ddtacore}[title={BOUNDARY-P06 - traceability dei due operatori}]
+L'ID della proposition \texttt{boundaryOf} e' ancorato al frame del Boundary sotto la label canonica. L'ID della proposition \texttt{crossesBoundary} e' ancorato alla relation qualificata, in una riga secondaria molto piccola dell'edge label quando tale label e' inclusa nella view. Questo caso specifico risolve la trace di una proposition qualificante senza creare una seconda edge.
+\end{ddtacore}
+
+\begin{ddtaanti}[title={Non dedurre il crossing dalla sola geometria}]
+Una edge che nel layout Mermaid sembra attraversare un frame non acquisisce \texttt{crossesBoundary}. Viceversa, una proposition \texttt{crossesBoundary} resta autorevole anche se il routing automatico del renderer rende il punto geometrico di attraversamento poco evidente. La semantica viene dalla BA, non dalla traiettoria calcolata dal layout engine.
+\end{ddtaanti}
+
+\clearpage
+\subsection{Esempio Mermaid generico e deterministico}
+L'esempio mostra uno scope con containment gia' proiettato, un Boundary distinto e una relation qualificata da \texttt{crossesBoundary}. La linea continua e' soltanto la projection gia' stabilita per la relation dell'esempio; \texttt{crossesBoundary} ne modifica l'enfasi visuale, non il tipo.
+
+\begin{lstlisting}
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "background": "#FFFFFF",
+    "primaryTextColor": "#17324D",
+    "lineColor": "#5B6770",
+    "edgeLabelBackground": "#FFFFFF"
+  },
+  "themeCSS": ".cluster rect { rx:22px !important; ry:22px !important; }"
+}}%%
+
+flowchart LR
+ExternalStore[("ExternalArtifactStore")]
+
+subgraph ExampleEnvironmentBoundary["ExampleEnvironmentBoundary<br/><span style='font-size:7px'>BAP-EX-B01</span>"]
+  direction TB
+  subgraph ExampleEnvironment["ExampleEnvironment"]
+    direction TB
+    LocalStore[("LocalArtifactStore")]
+    Service("ExampleService")
+  end
+end
+
+ExternalStore -->|"crossesBoundary<br/><span style='font-size:7px'>BAP-EX-B02</span>"| LocalStore
+
+classDef BAReferentD1 fill:#267DFF,stroke:#0047B3,
+  stroke-width:2px,color:#FFFFFF;
+classDef BAStore fill:#EEF4F9,stroke:#275D86,
+  stroke-width:2px,color:#17324D;
+class Service BAReferentD1;
+class ExternalStore,LocalStore BAStore;
+
+style ExampleEnvironment fill:#F5F9FF,stroke:#0047B3,
+  stroke-width:2.5px,color:#17324D
+style ExampleEnvironmentBoundary fill:#FFF8F8,stroke:#C62828,
+  stroke-width:3px,stroke-dasharray:7 5,color:#8B1A1A
+linkStyle 0 stroke:#C62828,stroke-width:3px;
+\end{lstlisting}
+
+\begin{ddtacheck}[title={Lettura del sorgente}]
+\texttt{ExampleEnvironmentBoundary} e' una identity BA distinta da \texttt{ExampleEnvironment}. Il frame rosso tratteggiato proietta \texttt{boundaryOf}; la relation rossa proietta la relation di base qualificata da \texttt{crossesBoundary}. Nessuno dei due colori dichiara trust o rischio gia' valutato. Se la BA identifica un Boundary, non sostituirlo con una cornice generica \texttt{EXTERNAL} o \texttt{untrusted}.
+\end{ddtacheck}
+
+\clearpage
+\subsection{Esempio grafico visivo}
+\begin{center}
+\begin{tikzpicture}[>=Latex,font=\sffamily]
+  % Boundary first: later nodes remain visible above its pale fill.
+  \node[
+    draw=red!75!black,fill=red!3,text=red!65!black,
+    rounded corners=12pt,line width=1.35pt,
+    dash pattern=on 4pt off 3pt,
+    minimum width=78mm,minimum height=48mm
+  ] (boundary) at (8.0,0) {};
+
+  \node[
+    draw=BARefStroke,fill=DDTALightBlue,text=BARefText,
+    rounded corners=7pt,line width=1.0pt,
+    minimum width=62mm,minimum height=30mm,align=center
+  ] (scope) at (8.0,-0.35) {};
+
+  \node[text=BARefText,font=\sffamily\bfseries\small]
+    at (8.0,0.55) {ExampleEnvironment};
+
+  \node[
+    draw=BARefStroke,fill=white,text=BARefText,
+    cylinder,shape border rotate=90,aspect=0.24,
+    minimum width=38mm,minimum height=13mm,align=center
+  ] (local) at (8.0,-1.05) {LocalArtifactStore};
+
+  \node[
+    draw=BARefStroke,fill=white,text=BARefText,
+    cylinder,shape border rotate=90,aspect=0.24,
+    minimum width=42mm,minimum height=13mm,align=center
+  ] (remote) at (1.65,-1.05) {ExternalArtifactStore};
+
+  \node[anchor=north west,text=red!65!black,font=\sffamily\bfseries\scriptsize]
+    at ([xshift=1.5mm,yshift=-1.5mm]boundary.north west)
+    {ExampleEnvironmentBoundary};
+  \node[anchor=north west,text=red!65!black,font=\sffamily\fontsize{5.4}{6}\selectfont]
+    at ([xshift=1.5mm,yshift=-6.2mm]boundary.north west)
+    {BAP-EX-B01 - UNASSESSED};
+
+  \draw[-{Latex[length=2.8mm,width=1.8mm]},draw=red!75!black,line width=1.25pt]
+    (remote.east) --
+    node[midway,above=2.5pt,fill=white,draw=red!75!black,
+         line width=0.4pt,rounded corners=4pt,inner xsep=5pt,inner ysep=2pt,
+         text=red!65!black,align=center,font=\sffamily\scriptsize]
+         {crossesBoundary\\[-0.4mm]{\fontsize{5.2}{5.8}\selectfont BAP-EX-B02}}
+    (local.west);
+\end{tikzpicture}
+\end{center}
+
+\begin{ddtacheck}[title={Tre letture da tenere separate}]
+Il frame rosso tratteggiato e' la occurrence di \texttt{ExampleEnvironmentBoundary}; il frame blu interno continua a essere la projection dello scope \texttt{ExampleEnvironment}; la freccia rossa e' una relation gia' esistente cui la BA aggiunge \texttt{crossesBoundary}. La sovrapposizione visuale non crea \texttt{hasPart} fra Boundary e scope e non riclassifica la relation.
+\end{ddtacheck}
+
+\begin{ddtaprinciple}[title={Worst-case visuale, non giudizio di trust}]
+In assenza di security assessment il rosso rende immediatamente visibile il punto che richiede analisi. Una successiva view puo' sostituire l'enfasi cromatica solo quando include una classificazione di sicurezza esplicita e un relativo projection contract; la topology del Boundary e la proposition di crossing restano le stesse.
+\end{ddtaprinciple}
+
+\clearpage
+\subsection{Evidence gate, crossing unresolved e regression minima}
+
+\begin{ddtacore}[title={BOUNDARY-P07 - outside richiede evidenza positiva}]
+Non classificare un elemento come esterno allo scope soltanto perche' non compare nella closure \texttt{hasPart} o perche' la documentazione non ne specifica la collocazione. La posizione rispetto al Boundary deve essere supportata da evidenza positiva o da una proposition BA accettata. Assenza di composizione non equivale a ``outside''.
+\end{ddtacore}
+
+\begin{ddtacore}[title={BOUNDARY-P08 - unresolved non viene trasformato in crossing}]
+Se source, destination o posizione rispetto al Boundary sono \texttt{NOT SPECIFIED}, non disegnare una relation rossa di crossing e non collocare artificialmente l'endpoint sul lato esterno. Se il View Contract include i gap documentali, mostrare una card diagnostica separata con \texttt{position relative to Boundary = NOT SPECIFIED}; la card non partecipa alla topology del Boundary.
+\end{ddtacore}
+
+\begin{tabularx}{\textwidth}{L{43mm}Y}
+\toprule
+\textbf{Caso BA} & \textbf{Projection deterministica} \\
+\midrule
+\texttt{boundaryOf(B,S)} & Frame rosso tratteggiato \texttt{B} attorno alla projection di \texttt{S}; nessun \texttt{hasPart} implicito. \\
+Relation \texttt{R} + \texttt{crossesBoundary(R,B)} & La projection di \texttt{R} conserva il proprio pattern e riceve overlay rosso UNASSESSED; nessuna edge aggiuntiva. \\
+Endpoint noto fuori, endpoint noto dentro, qualifier accettato & I due endpoint restano nei rispettivi lati e la relation qualificata viene evidenziata. \\
+Source/registry \texttt{NOT SPECIFIED} & Nessun lato inventato, nessun crossing dedotto; eventuale diagnostic card separata dalla topology. \\
+Security assessment assente & Boundary/crossing restano rossi come worst-case visual treatment UNASSESSED. \\
+Security assessment presente e inclusa nella view & Eventuale override cromatico soltanto secondo il relativo security projection contract; questa guida non inventa giallo/verde o soglie. \\
+\bottomrule
+\end{tabularx}
+
+\begin{ddtaprinciple}[title={Regression gate della projection Boundary}]
+Una implementazione della guida e' conforme soltanto se distingue almeno tre casi: crossing supportato da BA, relation interna senza crossing e crossing non determinabile per evidence incompleta. Il terzo caso non puo' essere reso uguale al primo per prudenza grafica: il worst-case rosso si applica a un Boundary/crossing \emph{identificato ma non security-assessed}, non autorizza a inventare topology mancante.
+\end{ddtaprinciple}
+
+\begin{ddtacheck}[title={Checklist operativa}]
+Verificare identity del Boundary e \texttt{boundaryOf}; preservare la projection dello scope; applicare il rosso al Boundary non valutato; applicare l'overlay rosso soltanto alle relation qualificate da \texttt{crossesBoundary}; non convertire il colore in trust/risk; non usare il routing del renderer come evidence; lasciare \texttt{NOT SPECIFIED} quando il lato non e' governato.
+\end{ddtacheck}
+
+%</MERMAID-ELEMENT:boundary>
+
 \end{document}
