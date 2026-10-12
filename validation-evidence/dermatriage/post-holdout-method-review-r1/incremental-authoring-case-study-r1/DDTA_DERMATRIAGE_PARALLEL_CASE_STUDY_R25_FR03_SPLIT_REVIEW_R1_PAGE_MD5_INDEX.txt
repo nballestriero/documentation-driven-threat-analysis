@@ -58,11 +58,11 @@
 58  42e3f2bf43550997412797df3e986641  MR-C6 > DEC-C6-01 > FR-C6-01-03B2 [review label] - Preparazione degli split training validation e test
 59  f7cab0739cb8eb4b2c7869b870171b72  MR-C6 > DEC-C6-01 > FR-C6-01-03B3 [review label] - Bilanciamento del training set
 60  a16c28b6354d035c77dcab0075c9f2fb  MR-C6 > DEC-C6-01 > FR-C6-01-03C [review label] - Disponibilita delle immagini di training
-61  b6aa7e481477a999f2a4ada2ae298e7f  MR-C6 > DEC-C6-01 > FR-C6-01-04 - Configurazione dei binding dell'ambiente e delle integrazioni [1/2]
-62  05243bf62b8107ede9c8d9d96925cbfe  MR-C6 > DEC-C6-01 > FR-C6-01-04 - Configurazione dei binding dell'ambiente e delle integrazioni [2/2]
-63  8ad88021f595ffa9fe6d6664f4ca87b9  MR-C6 > DEC-C6-01 > FR-C6-01-05 - Inizializzazione della base vettoriale dei casi storici
+61  f5c40decee22312d52a8a30a297f9d1b  MR-C6 > DEC-C6-01 > FR-C6-01-04 - Configurazione dei binding dell'ambiente e delle integrazioni [1/2]
+62  4b1270b8cc24445a03221ee57d90cc1a  MR-C6 > DEC-C6-01 > FR-C6-01-04 - Configurazione dei binding dell'ambiente e delle integrazioni [2/2]
+63  a804598dfc19031fac24b7359d4d7f99  MR-C6 > DEC-C6-01 > FR-C6-01-05 - Inizializzazione della base vettoriale dei casi storici
 64  f9e246e4155cbb9f3fafb94bb12aaab2  MR-C6 > DEC-C6-01 > FR-C6-01-06 - Avvio del servizio API DermaTriage
-65  f07b03f93a8011b79b4e3f13e06ddf78  MR-C6 > DEC-C6-01 > FR-C6-01-07 - Acquisizione della base software DermaTriage
+65  4c2e36258c71637bf202b9742c157473  MR-C6 > DEC-C6-01 > FR-C6-01-07 - Acquisizione della base software DermaTriage
 66  102bb73d527c550361d49540f34e0d0d  MR-C7 - Verifica del sistema DermaTriage
 67  086ccbf418f6545accc9d179d1e8598d  MR-C7 > DEC-C7-01 - Verifica mediante controlli espliciti e criteri applicabili
 68  3d6434a24c425faa80ce5468b8e2392a  MR-C7 > DEC-C7-01 - C7-P03..P07 source-first review materialized
@@ -79,10 +79,10 @@
 79  a3dd980ffe2af8bd4b7a2d4a8a4b972a  MR-C7 > DEC-C7-01 > FR-C7-07-01 [candidate] - Verifica dei quality gate assoluti del classificatore di urgenza
 80  b5899854b9498724ee2f778c1b504765  Registro Base Analysis - C7-P03..P07 review candidates
 81  14f224c0a626f68a61bf866df0eee7ca  MR-C7 - Consolidamento lifecycle/owner e finding aperti per graph review
-82  4147d1a25f0940061a147245a2e55be7  Registro Base Analysis - BAReferent e BAProposition
+82  748a8c4ef3fe1cb08302d275db81868f  Registro Base Analysis - BAReferent e BAProposition
 83  6d742aced02c4f7553638cc4e3f7cfe5  Registro Base Analysis - BAReferent C7-P02 - first acceptance
-84  72e2090c2b79181cdbaa0389c5ee50b3  Registro Base Analysis - BAProposition
-85  db9f65b6c2c2b05164a596d6e9be6f11  Registro Base Analysis - C6 source code, dependency e A1 topology increment
+84  4500889656a696f278769364638dc5e5  Registro Base Analysis - BAProposition
+85  caa1799765a2df4fb288734d2ea65b91  Registro Base Analysis - C6 source, dependency, configuration e initialization topology increment
 86  251e20eabad327061da23389ed917818  Registro Base Analysis - C6 FR-C6-01-03B1..B3 e 03C increment
 87  42c63c876189a9d341da909c38484215  MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
-88  d19845e1cae6d62a391b02bf34ba3828  Indice di integrita delle pagine
+88  6b15f5a431e898c7c41b90b8752cb49f  Indice di integrita delle pagine
