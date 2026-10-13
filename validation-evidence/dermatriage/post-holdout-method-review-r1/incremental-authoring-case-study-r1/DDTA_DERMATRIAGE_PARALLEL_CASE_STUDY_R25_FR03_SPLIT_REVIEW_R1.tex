@@ -8,7 +8,7 @@
 \titlespacing*{\subsubsection}{0pt}{0.7em}{0.25em}
 
 \hypersetup{
-  pdftitle={DDTA DermaTriage - C7 P03-P07 source-first review with Base Analysis},
+  pdftitle={DDTA DermaTriage - MR-C7 and DEC-C7-01 structured verification review},
   pdfauthor={Documentation-Driven Threat Analysis research project}
 }
 
@@ -86,9 +86,9 @@
 \expandafter\def\csname PageMDfive63\endcsname{a804598dfc19031fac24b7359d4d7f99}
 \expandafter\def\csname PageMDfive64\endcsname{1ff7867e4660fe4be66579921da862ee}
 \expandafter\def\csname PageMDfive65\endcsname{e6a66d58bcca1f1e81450eea2d4afd02}
-\expandafter\def\csname PageMDfive66\endcsname{102bb73d527c550361d49540f34e0d0d}
-\expandafter\def\csname PageMDfive67\endcsname{086ccbf418f6545accc9d179d1e8598d}
-\expandafter\def\csname PageMDfive68\endcsname{3d6434a24c425faa80ce5468b8e2392a}
+\expandafter\def\csname PageMDfive66\endcsname{364611b55382e0a685e42b35d3321b96}
+\expandafter\def\csname PageMDfive67\endcsname{da952edb21c723566ed4daf0fc233072}
+\expandafter\def\csname PageMDfive68\endcsname{8b5ca8317cd14b2fb64de011a010274a}
 \expandafter\def\csname PageMDfive69\endcsname{2b68023ed873eb0ed4f17eb01e7a96ff}
 \expandafter\def\csname PageMDfive70\endcsname{77515cf68165b6ad69c1c8c91ad7d44f}
 \expandafter\def\csname PageMDfive71\endcsname{bbd93e05b580a7f7727cb538e5f04e87}
@@ -108,7 +108,8 @@
 \expandafter\def\csname PageMDfive85\endcsname{bffa4fcc5469f12ebe1675a9e8376312}
 \expandafter\def\csname PageMDfive86\endcsname{251e20eabad327061da23389ed917818}
 \expandafter\def\csname PageMDfive87\endcsname{3cf5f4e96ab8903fd5a30023d363b0da}
-\expandafter\def\csname PageMDfive88\endcsname{640e6aef89be8c01c29069b613d5d4d1}
+\expandafter\def\csname PageMDfive88\endcsname{392da625725431da689302a7e885994a}
+\expandafter\def\csname PageMDfive89\endcsname{aadc615b571063ab8acaf0b143c6b383}
 %</PAGE-HASH-DEFS>
 
 \newcommand{\PageHashFooter}[1]{%
@@ -6494,7 +6495,7 @@ Stage 1 contiene il behavior di acquisizione; il \texttt{transfer} governa il cl
 \vspace{0.2em}
 
 \begin{ddtacore}[title={MacroRequirement}]
-\fontsize{4.65}{5.1}\selectfont
+\fontsize{4.55}{5.0}\selectfont
 \begin{tabularx}{\linewidth}{L{38mm}Y}
 \toprule
 \textbf{ID} & \texttt{MR-C7} \\
@@ -6506,12 +6507,10 @@ Stage 1 contiene il behavior di acquisizione; il \texttt{transfer} governa il cl
 \end{tabularx}
 
 \textbf{Intent}\par
-Verificare che l'ambiente, le capability, le integrazioni e i cambiamenti introdotti durante il lifecycle di DermaTriage soddisfino le aspettative e i criteri di verifica applicabili, rendendo determinabile l'esito dei controlli previsti.
+Verificare il sistema DermaTriage mediante controlli espliciti sulle capability, sulle interfacce, sulle integrazioni e sui comportamenti rilevanti, rendendo osservabili e valutabili i risultati dei controlli secondo gli expected result, le pass condition o gli acceptance criteria applicabili quando documentati.
 
 \textbf{Context}\par
-DermaTriage prevede attivita' di verifica sulla disponibilita' dei servizi, sulle interfacce esposte, sui singoli stadi della pipeline, sul processo di triage completo, sull'integrazione con B4 e sui cambiamenti introdotti dai percorsi di adattamento feedback-driven.
-
-Le correzioni cliniche possono contribuire all'evoluzione dei prompt usati dai componenti language-model; il disaccordo clinico con precedenti risultati AI puo' alimentare il retraining del classificatore di urgenza. Tali cambiamenti possono modificare direttamente o indirettamente il comportamento della pipeline a quattro stadi e devono poter essere qualificati rispetto ai criteri applicabili, mantenendo distinguibili baseline, versione candidata, adozione e ripristino.
+La verifica segue la predisposizione e l'avvio del sistema DermaTriage. Nella sequenza di setup documentata, l'avvio del servizio costituisce lo Step 6 e la verifica del deployment lo Step 7. La documentazione di test estende questa responsabilita' a controlli sulla readiness del servizio, sulle interfacce API, sui singoli stadi della pipeline, sulla pipeline completa, sull'integrazione con B4, sui controlli operativi del retraining e sui criteri di qualita' applicabili.
 
 La responsabilita' di verifica resta distinta dalla responsabilita' che definisce o realizza il comportamento sottoposto al controllo.
 
@@ -6519,14 +6518,14 @@ La responsabilita' di verifica resta distinta dalla responsabilita' che definisc
 --
 
 \textbf{Scope}\par
-\textbf{IN:} verifica di disponibilita' e stato dei servizi; verifica di interfacce, singoli stadi e pipeline completa; verifica delle integrazioni esterne; verifica delle operazioni di retraining, prompt evolution, version management e rollback quando applicabili; qualificazione dei cambiamenti candidati; verifica post-change degli elementi modificabili dall'adattamento; applicazione di expected result, pass condition e acceptance criteria governati.\par
-\textbf{OUT:} predisposizione e inizializzazione dell'ambiente, governate da \texttt{MR-C6}; definizione del comportamento runtime; produzione della revisione clinica; definizione ed esecuzione delle policy di adattamento, governate da \texttt{MR-04}; trasferimento automatico a \texttt{MR-C7} dell'ownership dei criteri verificati; trasformazione di valori osservati o PASS/FAIL in nuovi requisiti.
+\textbf{IN:} verifica della readiness e dello stato operativo del servizio; verifica delle operazioni API oggetto di controllo; verifica dei singoli stadi della pipeline; verifica end-to-end della pipeline; verifica delle integrazioni B4; verifica dei controlli operativi di retraining documentati; verifica dei criteri di qualita' applicabili.\par
+\textbf{OUT:} predisposizione e inizializzazione dell'ambiente, governate da \texttt{MR-C6}; definizione del comportamento runtime sottoposto a verifica; ownership delle API, dei transfer, degli artifact o dei dati osservati; definizione ed esecuzione delle policy di adattamento governate da \texttt{MR-04}; trasformazione automatica di expected result, observed value o PASS/FAIL in nuovi runtime contract o requisiti; inferenza di PASS/FAIL o di un risultato aggregato quando non documentati.
 
 \textbf{Assumptions / Constraints}\par
-Restano distinti owner del comportamento/criterio e owner della verifica; runtime contract e test oracle; normative target e observed value; adaptation behavior e verification of adapted behavior. La produzione di un nuovo modello o prompt non implica da sola che il cambiamento sia qualificato per sostituire la versione attiva.
+Owner del comportamento e owner della verifica restano distinti. Test oracle e runtime contract restano distinti. Expected result, pass condition, acceptance criterion, observed value ed outcome non vengono considerati sinonimi.
 
 \textbf{dependsOn}\par
-\texttt{None}. Il consumo di ambiente, output runtime o risultati di adattamento non viene trasformato automaticamente in una dependency MR-level.
+\texttt{None}. La continuita' lifecycle fra Step 6 e Step 7 non viene trasformata automaticamente in una dependency MR-level.
 \end{ddtacore}
 
 \switchcolumn
@@ -6543,83 +6542,127 @@ Restano distinti owner del comportamento/criterio e owner della verifica; runtim
 \begin{ddtapropositionidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
 \fontsize{4.35}{4.8}\selectfont
 \texttt{--}\par
-\emph{Il MacroRequirement governa l'identita' della responsabilita' di verifica, ma non stabilisce ancora una relation BA generica capace di esprimere target, criterio, osservazione ed esito.}
+\emph{Il MacroRequirement governa l'identita' della responsabilita' di verifica. La struttura della procedura e delle famiglie di controllo viene demandata alla Decision figlia e non viene anticipata a livello MR.}
 \end{ddtapropositionidentified}
 \begin{ddtapropositionaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
 \fontsize{4.5}{4.95}\selectfont
 \texttt{--}
 \end{ddtapropositionaccepted}
 \begin{ddtaopenrelations}[top=3pt,bottom=3pt,left=5pt,right=5pt]
-\fontsize{4.15}{4.55}\selectfont
-La verifica deve poter seguire sia la baseline corrente sia i change path feedback-driven: correzioni cliniche $\rightarrow$ prompt evolution $\rightarrow$ comportamento Qwen2/BioMistral; disaccordo clinico $\rightarrow$ retraining EfficientNet $\rightarrow$ candidato $\rightarrow$ qualificazione $\rightarrow$ adozione o rollback. Non viene introdotto un operatore \texttt{verify} per completare la BA. I branch figli stabiliranno quali semantic fact sono rappresentabili con i costrutti ammessi e quali producono construct pressure.
+\fontsize{4.10}{4.5}\selectfont
+La collocazione documentale nello Step 7 preserva la continuita' con lo startup precedente ma non introduce un nuovo BAReferent di sequencing. Non viene introdotto un operatore generico \texttt{verify}; i branch figli collegheranno progressivamente i controlli alle API, funzioni, Store, artifact e lifecycle gia' governati.
 \end{ddtaopenrelations}
 \end{paracol}
 %</PAGE-CONTENT:66>
 \clearpage
-%<PAGE-DESC:67>MR-C7 > DEC-C7-01 - Verifica mediante controlli espliciti e criteri applicabili
+%<PAGE-DESC:67>MR-C7 > DEC-C7-01 - Verifica mediante una procedura strutturata di controlli
 %<PAGE-CONTENT:67>
 \PageHashFooter{\PageMDfive{67}}
-\subsection{DEC-C7-01 - Verifica mediante controlli espliciti e criteri applicabili}
+\subsection{DEC-C7-01 - Verifica mediante una procedura strutturata di controlli}
 {\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-C7} $\rightarrow$ \texttt{DEC-C7-01}}\par
 
 \setlength{\columnsep}{7mm}
 \setlength{\columnseprule}{0.35pt}
-\columnratio{0.67}
+\columnratio{0.61}
 \begin{paracol}{2}
 {\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
-\vspace{0.25em}
+\vspace{0.18em}
 
 \begin{ddtacore}[title={Decision}]
-\fontsize{5.0}{5.5}\selectfont
-\begin{tabularx}{\linewidth}{L{38mm}Y}
+\fontsize{3.68}{4.03}\selectfont
+\begin{tabularx}{\linewidth}{L{39mm}Y}
 \toprule
 \textbf{ID} & \texttt{DEC-C7-01} \\
 \textbf{Lifecycle} & \texttt{current} \\
 \textbf{Authority} & \texttt{CURRENT\_GOVERNED} \\
 \textbf{Type} & \texttt{Decision} \\
-\textbf{Title} & Verifica mediante controlli espliciti e criteri applicabili \\
+\textbf{Title} & Verifica mediante una procedura strutturata di controlli \\
 \textbf{Parent MacroRequirement} & \texttt{MR-C7} \\
 \textbf{Decision kind} & \texttt{SELECTABLE} \\
 \bottomrule
 \end{tabularx}
 
 \textbf{Context}\par
-La verifica di DermaTriage riguarda oggetti differenti: disponibilita' dei servizi, interfacce API, singoli stadi, pipeline completa, integrazioni B4, percorsi di adattamento e proprieta' qualitative. I controlli possono richiedere input, risultati attesi, condizioni di superamento o criteri di accettazione differenti; non tutti i controlli richiedono necessariamente tutte queste informazioni.
+La verifica riguarda oggetti e capability differenti: readiness del servizio, operazioni API, singoli stadi della pipeline, pipeline completa, integrazione B4, controlli operativi di retraining e criteri di qualita'. I controlli possono richiedere input, expected result, pass condition, acceptance criterion, osservazioni ed esiti differenti; non tutti richiedono necessariamente tutte queste informazioni.
 
 \textbf{Decision}\par
-La verifica di DermaTriage e' attuata mediante una procedura esplicita composta da controlli distinti sugli elementi da verificare. Per ogni controllo vengono preservati, quando applicabili, l'oggetto verificato, gli input o le condizioni di esecuzione, il risultato atteso, la pass condition o acceptance criterion e l'esito osservato. L'assenza di una condizione di superamento non viene completata per inferenza.
+La responsabilita' astratta \texttt{DermaTriageVerification} e' realizzata mediante una procedura esplicita \texttt{DermaTriageVerificationProcedure}. La procedura e' strutturata nei seguenti verification stage:
+\begin{itemize}[leftmargin=1.2em,itemsep=0.08em,topsep=0.10em]
+\item \texttt{ServiceReadinessVerificationStage};
+\item \texttt{EndpointVerificationStage};
+\item \texttt{PipelineStageVerificationStage};
+\item \texttt{FullPipelineVerificationStage};
+\item \texttt{B4IntegrationVerificationStage};
+\item \texttt{RetrainingControlVerificationStage};
+\item \texttt{ClassifierQualityVerificationStage}.
+\end{itemize}
+\texttt{PipelineStageVerificationStage} e' a sua volta strutturato nei quattro controlli corrispondenti agli stadi della pipeline runtime:
+\begin{itemize}[leftmargin=1.2em,itemsep=0.08em,topsep=0.10em]
+\item Stage 1 -- \texttt{ImageUrgencyAnalysisVerificationStage};
+\item Stage 2 -- \texttt{ClinicalDescriptionGenerationVerificationStage};
+\item Stage 3 -- \texttt{HistoricalCaseRetrievalVerificationStage};
+\item Stage 4 -- \texttt{MultiSourceTriageSynthesisVerificationStage}.
+\end{itemize}
 
 \textbf{Consequences}\par
-Le famiglie di verifica possono essere governate come FunctionalRequirement distinti sotto questa Decision. Un expected output o criterio usato da un controllo non acquisisce automaticamente ownership sotto \texttt{MR-C7}; un valore osservato non diventa automaticamente commitment normativo. Per i cambiamenti feedback-driven devono restare distinguibili produzione del cambiamento, qualification, adoption, verifica post-change e rollback/recovery quando questi significati sono governati.
+I FunctionalRequirement subordinati possono dettagliare uno o piu' verification stage e collegarli progressivamente alle funzioni, API, artifact, Store e integrazioni gia' governati. Gli stage non introducono copie dei componenti runtime verificati. La corrispondenza fra verification stage e FunctionalRequirement non e' necessariamente uno-a-uno. Expected result, pass condition e acceptance criterion restano proprieta' del controllo specifico. Questa Decision non governa un ordine universale fra le famiglie di verifica; la numerazione Stage 1--4 preserva invece l'identita' dei quattro stadi della pipeline runtime documentata.
 \end{ddtacore}
 
 \switchcolumn
 {\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
-\vspace{0.25em}
-\begin{ddtareferentidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
-\fontsize{4.75}{5.2}\selectfont
-\BACandidate{DermaTriageVerificationProcedure} \BANew{}.
+\vspace{0.12em}
+
+\begin{ddtareferentidentified}[top=2pt,bottom=2pt,left=4pt,right=4pt]
+\fontsize{2.95}{3.22}\selectfont
+\BACandidate{DermaTriageVerificationProcedure} \BANew{};\par
+\BACandidate{ServiceReadinessVerificationStage} \BANew{}; \BACandidate{EndpointVerificationStage} \BANew{}; \BACandidate{PipelineStageVerificationStage} \BANew{};\par
+\BACandidate{FullPipelineVerificationStage} \BANew{}; \BACandidate{B4IntegrationVerificationStage} \BANew{}; \BACandidate{RetrainingControlVerificationStage} \BANew{}; \BACandidate{ClassifierQualityVerificationStage} \BANew{};\par
+\BACandidate{ImageUrgencyAnalysisVerificationStage} \BANew{}; \BACandidate{ClinicalDescriptionGenerationVerificationStage} \BANew{};\par
+\BACandidate{HistoricalCaseRetrievalVerificationStage} \BANew{}; \BACandidate{MultiSourceTriageSynthesisVerificationStage} \BANew{}.
 \end{ddtareferentidentified}
-\begin{ddtareferentaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
-\fontsize{4.65}{5.1}\selectfont
-\BAAccepted{DermaTriageVerification}; \BAAccepted{DermaTriageVerificationProcedure} \BAFirstAccepted{}.
+
+\begin{ddtareferentaccepted}[top=2pt,bottom=2pt,left=4pt,right=4pt]
+\fontsize{2.88}{3.15}\selectfont
+\BAAccepted{DermaTriageVerification}; \BAAccepted{DermaTriageVerificationProcedure} \BAFirstAccepted{};\par
+\BAAccepted{ServiceReadinessVerificationStage} \BAFirstAccepted{}; \BAAccepted{EndpointVerificationStage} \BAFirstAccepted{}; \BAAccepted{PipelineStageVerificationStage} \BAFirstAccepted{};\par
+\BAAccepted{FullPipelineVerificationStage} \BAFirstAccepted{}; \BAAccepted{B4IntegrationVerificationStage} \BAFirstAccepted{}; \BAAccepted{RetrainingControlVerificationStage} \BAFirstAccepted{}; \BAAccepted{ClassifierQualityVerificationStage} \BAFirstAccepted{};\par
+\BAAccepted{ImageUrgencyAnalysisVerificationStage} \BAFirstAccepted{}; \BAAccepted{ClinicalDescriptionGenerationVerificationStage} \BAFirstAccepted{};\par
+\BAAccepted{HistoricalCaseRetrievalVerificationStage} \BAFirstAccepted{}; \BAAccepted{MultiSourceTriageSynthesisVerificationStage} \BAFirstAccepted{}.
 \end{ddtareferentaccepted}
-\begin{ddtapropositionidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
-\fontsize{4.45}{4.9}\selectfont
-\texttt{BAP-DECC7-01-01}\par
-\texttt{semanticOperatorKey = realize}\par
-\hspace*{1em}\texttt{abstract -> DermaTriageVerification}\par
-\hspace*{1em}\texttt{realization -> DermaTriageVerificationProcedure}\par
-\texttt{polarity = affirmative}
+
+\begin{ddtapropositionidentified}[top=2pt,bottom=2pt,left=4pt,right=4pt]
+\fontsize{2.56}{2.83}\selectfont
+\renewcommand{\arraystretch}{0.58}
+\setlength{\tabcolsep}{1.4pt}
+\begin{tabularx}{\linewidth}{L{29mm}Y}
+\toprule
+\textbf{ID} & \textbf{Semantic fact} \\
+\midrule
+\texttt{BAP-DECC7-01-01} & \texttt{realize}(DermaTriageVerification, DermaTriageVerificationProcedure) \\
+\texttt{BAP-DECC7-01-02} & \texttt{hasPart}(DermaTriageVerificationProcedure, ServiceReadinessVerificationStage) \\
+\texttt{BAP-DECC7-01-03} & \texttt{hasPart}(DermaTriageVerificationProcedure, EndpointVerificationStage) \\
+\texttt{BAP-DECC7-01-04} & \texttt{hasPart}(DermaTriageVerificationProcedure, PipelineStageVerificationStage) \\
+\texttt{BAP-DECC7-01-05} & \texttt{hasPart}(DermaTriageVerificationProcedure, FullPipelineVerificationStage) \\
+\texttt{BAP-DECC7-01-06} & \texttt{hasPart}(DermaTriageVerificationProcedure, B4IntegrationVerificationStage) \\
+\texttt{BAP-DECC7-01-07} & \texttt{hasPart}(DermaTriageVerificationProcedure, RetrainingControlVerificationStage) \\
+\texttt{BAP-DECC7-01-08} & \texttt{hasPart}(DermaTriageVerificationProcedure, ClassifierQualityVerificationStage) \\
+\texttt{BAP-DECC7-01-09} & \texttt{hasPart}(PipelineStageVerificationStage, ImageUrgencyAnalysisVerificationStage) \\
+\texttt{BAP-DECC7-01-10} & \texttt{hasPart}(PipelineStageVerificationStage, ClinicalDescriptionGenerationVerificationStage) \\
+\texttt{BAP-DECC7-01-11} & \texttt{hasPart}(PipelineStageVerificationStage, HistoricalCaseRetrievalVerificationStage) \\
+\texttt{BAP-DECC7-01-12} & \texttt{hasPart}(PipelineStageVerificationStage, MultiSourceTriageSynthesisVerificationStage) \\
+\bottomrule
+\end{tabularx}
 \end{ddtapropositionidentified}
-\begin{ddtapropositionaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
-\fontsize{4.4}{4.85}\selectfont
-\textbf{BAP-DECC7-01-01}.\par
-\emph{Acceptance boundary: la procedura di controlli espliciti realizza la responsabilita' astratta di verifica. Non implica un test framework specifico, una sequenza universale, PASS/FAIL per ogni controllo, equivalenza fra test oracle e runtime contract o ownership dei criteri verificati.}
+
+\begin{ddtapropositionaccepted}[top=2pt,bottom=2pt,left=4pt,right=4pt]
+\fontsize{2.78}{3.05}\selectfont
+\textbf{Accepted:} \texttt{BAP-DECC7-01-01..12}.\par
+La procedura realizza la responsabilita' astratta di verifica; i verification stage ne definiscono la composizione strutturale. Il containment non implica sequencing, framework specifico, PASS/FAIL per ogni controllo, duplicazione dei componenti runtime o ownership dei criteri verificati.
 \end{ddtapropositionaccepted}
-\begin{ddtaopenrelations}[top=3pt,bottom=3pt,left=5pt,right=5pt]
-\fontsize{4.15}{4.55}\selectfont
-La struttura target--criterion--observation--outcome resta da pressure-testare sui FunctionalRequirement figli. Nessuna relation generica di \texttt{verify/evaluate/compare} viene ammessa in questa Decision; l'eventuale gap di rappresentazione deve emergere dai casi concreti.
+
+\begin{ddtaopenrelations}[top=2pt,bottom=2pt,left=4pt,right=4pt]
+\fontsize{2.72}{3.0}\selectfont
+I FunctionalRequirement successivi devono collegare i verification stage ai referent runtime gia' governati senza duplicarli. La struttura target--criterion--observation--outcome resta da pressure-testare sui controlli concreti; nessuna relation generica \texttt{verify/evaluate/compare} viene ammessa qui.
 \end{ddtaopenrelations}
 \end{paracol}
 %</PAGE-CONTENT:67>
@@ -6628,7 +6671,7 @@ La struttura target--criterion--observation--outcome resta da pressure-testare s
 %<PAGE-CONTENT:68>
 \PageHashFooter{\PageMDfive{68}}
 \subsection*{MR-C7 $\rightarrow$ DEC-C7-01 - Review C7-P03..P07 materializzata}
-{\sffamily\scriptsize\color{DDTAGray}\texttt{C7-P01} e \texttt{C7-P02} restano CURRENT\_GOVERNED. Questa versione materializza \texttt{C7-P03}--\texttt{C7-P07} come FunctionalRequirement candidate di review; nessuna promotion nel repository e' implicata.}\par
+{\sffamily\scriptsize\color{DDTAGray}\texttt{DEC-C7-01} governa ora la struttura della procedura di verifica e dei relativi verification stage. \texttt{C7-P01} e \texttt{C7-P02} restano CURRENT\_GOVERNED; \texttt{C7-P03}--\texttt{C7-P07} restano FunctionalRequirement candidate di review e non sono promossi da questa revisione strutturale.}\par
 
 \begin{ddtaopen}[title={CHECKPOINT DI REVIEW - SOURCE-FIRST, NESSUNA PROMOTION}]
 \fontsize{4.45}{4.9}\selectfont
@@ -6670,14 +6713,14 @@ Review da chiudere con lettura congiunta: \texttt{RC-002} per il contract Stage 
 Le nuove identity C7-P03..P07 sono materializzate nelle pagine candidate successive e riassunte nel registro di review. In questa versione restano \emph{candidate} fino al gate congiunto.
 \end{ddtareferentidentified}
 \begin{ddtareferentaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]\fontsize{3.78}{4.14}\selectfont
-Restano accettate le identity gia' governate fino a \texttt{FR-C7-02-02}, incluse \BAAccepted{DermaTriageVerification}, \BAAccepted{DermaTriageVerificationProcedure}, \BAAccepted{ServiceReadinessVerification}, \BAAccepted{DirectAnalysisEndpointVerification} e \BAAccepted{B4IntegratedDiagnosisEndpointVerification}. Nessuna nuova identity P03--P07 viene promossa in questa review.
+La struttura di \texttt{DEC-C7-01} e' CURRENT\_GOVERNED: restano accettate \BAAccepted{DermaTriageVerification} e \BAAccepted{DermaTriageVerificationProcedure}; sono inoltre accettati i verification stage strutturali introdotti dalla Decision. Le identity behavior/observation/outcome proprie di \texttt{C7-P03}--\texttt{C7-P07} restano candidate fino alla review dei singoli FunctionalRequirement.
 \end{ddtareferentaccepted}
 \begin{ddtapropositionidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]\fontsize{3.68}{4.05}\selectfont
 Candidate \texttt{produce} vengono pressure-testate per Stage 1--4 e full-pipeline; P05 richiede result per singolo controllo senza aggregazione globale; P06 conserva una observation senza inferire un outcome PASS/FAIL; P07 richiede risultati per criterio senza inventare un overall acceptance result.
 \end{ddtapropositionidentified}
 \begin{ddtapropositionaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]\fontsize{3.8}{4.18}\selectfont
-\texttt{--}\par
-\emph{Nessuna nuova BAProposition C7-P03..P07 e' accettata in questa versione di review.}
+\textbf{\texttt{BAP-DECC7-01-01..12}} sono accettate a livello Decision.\par
+\emph{Nessuna nuova BAProposition propria di C7-P03..P07 e' accettata in questa versione: i candidate \texttt{produce} delle pagine successive restano invariati fino alla relativa review.}
 \end{ddtapropositionaccepted}
 \begin{ddtaopenrelations}[top=3pt,bottom=3pt,left=5pt,right=5pt]\fontsize{3.58}{3.94}\selectfont
 Method pressure da preservare: governed-domain/cardinality reuse; predicato qualitativo \texttt{non-empty}; structured-content conformance; criterio \texttt{complete response}; sei control occurrences dentro un FR B4 aggregato; expected-response senza pass condition; per-gate outcome senza overall result; comparator \texttt{ge} source-driven ma non ammesso e in conflitto con \texttt{gt} sul target HIGH sensitivity.
@@ -8221,9 +8264,80 @@ Command parameters and \texttt{app:app} remain in documentation; no additional B
 \end{paracol}
 %</PAGE-CONTENT:87>
 \clearpage
-%<PAGE-DESC:88>Indice di integrita delle pagine
+%<PAGE-DESC:88>Registro Base Analysis - DEC-C7-01 verification procedure topology increment
 %<PAGE-CONTENT:88>
 \PageHashFooter{\PageMDfive{88}}
+\section*{Registro Base Analysis - DEC-C7-01 verification procedure topology increment}
+
+\setlength{\columnsep}{7mm}
+\setlength{\columnseprule}{0.35pt}
+\columnratio{0.46}
+\begin{paracol}{2}
+
+{\sffamily\large\bfseries\color{DDTABlue}BAReferent increment}\par
+\vspace{0.10em}
+\begin{ddtacore}[title={First acceptance / struttura della procedura di verifica},top=2pt,bottom=2pt,left=5pt,right=5pt]
+\fontsize{3.15}{3.46}\selectfont
+\renewcommand{\arraystretch}{0.68}
+\setlength{\tabcolsep}{1.7pt}
+\begin{tabularx}{\linewidth}{L{53mm}Y}
+\toprule
+\textbf{BAReferent} & \textbf{Riferimento / boundary} \\
+\midrule
+DermaTriageVerificationProcedure & \textbf{\texttt{DEC-C7-01}} -- realization strutturata della responsabilita' \texttt{DermaTriageVerification}. \\
+ServiceReadinessVerificationStage & \textbf{\texttt{DEC-C7-01}} -- stage strutturale per readiness/stato operativo; il behavior concreto resta specializzabile downstream. \\
+EndpointVerificationStage & \textbf{\texttt{DEC-C7-01}} -- stage strutturale per i controlli sulle operazioni API. \\
+PipelineStageVerificationStage & \textbf{\texttt{DEC-C7-01}} -- stage strutturale che raccoglie i quattro controlli corrispondenti agli stadi della pipeline runtime. \\
+FullPipelineVerificationStage & \textbf{\texttt{DEC-C7-01}} -- stage strutturale per il controllo end-to-end della pipeline completa. \\
+B4IntegrationVerificationStage & \textbf{\texttt{DEC-C7-01}} -- stage strutturale per i controlli di integrazione B4. \\
+RetrainingControlVerificationStage & \textbf{\texttt{DEC-C7-01}} -- stage strutturale per i controlli operativi del retraining; non acquisisce ownership delle policy MR-04. \\
+ClassifierQualityVerificationStage & \textbf{\texttt{DEC-C7-01}} -- stage strutturale per i quality gate assoluti applicabili al classificatore. \\
+ImageUrgencyAnalysisVerificationStage & \textbf{\texttt{DEC-C7-01}} -- Stage 1 della pipeline-stage verification; funzione runtime verificata distinta. \\
+ClinicalDescriptionGenerationVerificationStage & \textbf{\texttt{DEC-C7-01}} -- Stage 2 della pipeline-stage verification. \\
+HistoricalCaseRetrievalVerificationStage & \textbf{\texttt{DEC-C7-01}} -- Stage 3 della pipeline-stage verification. \\
+MultiSourceTriageSynthesisVerificationStage & \textbf{\texttt{DEC-C7-01}} -- Stage 4 della pipeline-stage verification. \\
+\bottomrule
+\end{tabularx}
+\end{ddtacore}
+
+\switchcolumn
+{\sffamily\large\bfseries\color{DDTABlue}BAProposition increment}\par
+\vspace{0.10em}
+\begin{ddtacore}[title={Accepted DEC-C7-01 structure},top=2pt,bottom=2pt,left=5pt,right=5pt]
+\fontsize{2.80}{3.08}\selectfont
+\renewcommand{\arraystretch}{0.60}
+\setlength{\tabcolsep}{1.5pt}
+\begin{tabularx}{\linewidth}{L{35mm}Y}
+\toprule
+\textbf{ID} & \textbf{Semantic fact} \\
+\midrule
+\textbf{BAP-DECC7-01-01} & \texttt{realize}(\texttt{DermaTriageVerification}, \texttt{DermaTriageVerificationProcedure}) \\
+\textbf{BAP-DECC7-01-02} & \texttt{hasPart}(\texttt{DermaTriageVerificationProcedure}, \texttt{ServiceReadinessVerificationStage}) \\
+\textbf{BAP-DECC7-01-03} & \texttt{hasPart}(\texttt{DermaTriageVerificationProcedure}, \texttt{EndpointVerificationStage}) \\
+\textbf{BAP-DECC7-01-04} & \texttt{hasPart}(\texttt{DermaTriageVerificationProcedure}, \texttt{PipelineStageVerificationStage}) \\
+\textbf{BAP-DECC7-01-05} & \texttt{hasPart}(\texttt{DermaTriageVerificationProcedure}, \texttt{FullPipelineVerificationStage}) \\
+\textbf{BAP-DECC7-01-06} & \texttt{hasPart}(\texttt{DermaTriageVerificationProcedure}, \texttt{B4IntegrationVerificationStage}) \\
+\textbf{BAP-DECC7-01-07} & \texttt{hasPart}(\texttt{DermaTriageVerificationProcedure}, \texttt{RetrainingControlVerificationStage}) \\
+\textbf{BAP-DECC7-01-08} & \texttt{hasPart}(\texttt{DermaTriageVerificationProcedure}, \texttt{ClassifierQualityVerificationStage}) \\
+\textbf{BAP-DECC7-01-09} & \texttt{hasPart}(\texttt{PipelineStageVerificationStage}, \texttt{ImageUrgencyAnalysisVerificationStage}) \\
+\textbf{BAP-DECC7-01-10} & \texttt{hasPart}(\texttt{PipelineStageVerificationStage}, \texttt{ClinicalDescriptionGenerationVerificationStage}) \\
+\textbf{BAP-DECC7-01-11} & \texttt{hasPart}(\texttt{PipelineStageVerificationStage}, \texttt{HistoricalCaseRetrievalVerificationStage}) \\
+\textbf{BAP-DECC7-01-12} & \texttt{hasPart}(\texttt{PipelineStageVerificationStage}, \texttt{MultiSourceTriageSynthesisVerificationStage}) \\
+\bottomrule
+\end{tabularx}
+\end{ddtacore}
+
+\begin{ddtaopenrelations}[top=2pt,bottom=2pt,left=5pt,right=5pt]
+\fontsize{3.05}{3.34}\selectfont
+La composizione della procedura e' strutturale. Non implica un ordine universale fra le famiglie di verifica e non crea copie dei referent runtime. I FunctionalRequirement successivi devono collegare stage e comportamenti di verifica alle API, funzioni, Store, artifact e lifecycle gia' governati. I quattro stage interni a \texttt{PipelineStageVerificationStage} preservano la corrispondenza con Stage 1--4 della pipeline runtime.
+\end{ddtaopenrelations}
+
+\end{paracol}
+%</PAGE-CONTENT:88>
+\clearpage
+%<PAGE-DESC:89>Indice di integrita delle pagine
+%<PAGE-CONTENT:89>
+\PageHashFooter{\PageMDfive{89}}
 \section{Indice di integrita' delle pagine}
 
 \begin{ddtacore}[title={Regola di verifica}]
@@ -8308,7 +8422,7 @@ Ogni pagina possiede un MD5 del proprio contenuto canonico. Il calcolo esclude i
 \IntegrityRow{64}{MR-C6 > DEC-C6-01 > FR-C6-01-06 - Avvio del servizio API DermaTriage}{\PageMDfive{64}}
 \IntegrityRow{65}{MR-C6 > DEC-C6-01 > FR-C6-01-07 - Acquisizione della base software DermaTriage}{\PageMDfive{65}}
 \IntegrityRow{66}{MR-C7 - Verifica del sistema DermaTriage}{\PageMDfive{66}}
-\IntegrityRow{67}{MR-C7 > DEC-C7-01 - Verifica mediante controlli espliciti e criteri applicabili}{\PageMDfive{67}}
+\IntegrityRow{67}{MR-C7 > DEC-C7-01 - Verifica mediante una procedura strutturata di controlli}{\PageMDfive{67}}
 \IntegrityRow{68}{MR-C7 > DEC-C7-01 - C7-P03..P07 source-first review materialized}{\PageMDfive{68}}
 \IntegrityRow{69}{MR-C7 > DEC-C7-01 > FR-C7-01-01 - Verifica della readiness operativa del servizio DermaTriage}{\PageMDfive{69}}
 \IntegrityRow{70}{MR-C7 > DEC-C7-01 > FR-C7-02-01 - Verifica dell'endpoint di analisi diretta}{\PageMDfive{70}}
@@ -8329,7 +8443,8 @@ Ogni pagina possiede un MD5 del proprio contenuto canonico. Il calcolo esclude i
 \IntegrityRow{85}{Registro Base Analysis - C6 source, dependency, configuration e initialization topology increment}{\PageMDfive{85}}
 \IntegrityRow{86}{Registro Base Analysis - C6 FR-C6-01-03B1..B3 e 03C increment}{\PageMDfive{86}}
 \IntegrityRow{87}{Registro Base Analysis - FR-C6-01-06 API composition and endpoint topology}{\PageMDfive{87}}
-\IntegrityRow{88}{Indice di integrita delle pagine}{\PageMDfive{88}}
+\IntegrityRow{88}{Registro Base Analysis - DEC-C7-01 verification procedure topology increment}{\PageMDfive{88}}
+\IntegrityRow{89}{Indice di integrita delle pagine}{\PageMDfive{89}}
 %</PAGE-INTEGRITY-ROWS>
 \bottomrule
 \end{tabularx}
@@ -8337,5 +8452,5 @@ Ogni pagina possiede un MD5 del proprio contenuto canonico. Il calcolo esclude i
 
 \vspace{0.8mm}
 {\fontsize{4.15}{4.45}\selectfont\color{DDTAGray}Quando una pagina viene modificata intenzionalmente, cambia il suo MD5. Una variazione inattesa segnala una modifica da riesaminare prima di proseguire.}
-%</PAGE-CONTENT:88>
+%</PAGE-CONTENT:89>
 \end{document}

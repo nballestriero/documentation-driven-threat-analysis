@@ -1,4 +1,4 @@
-DDTA_DERMATRIAGE_PARALLEL_CASE_STUDY_R25_FR03_SPLIT_REVIEW_R1_FR07_SOURCE_ACQUISITION_UPDATE_R1 - Page MD5 Index
+DDTA_DERMATRIAGE_PARALLEL_CASE_STUDY_R25_FR03_SPLIT_REVIEW_R1_MRC7_DEC_UPDATE_R1 - Page MD5 Index
 Canonical payload: LaTeX content between PAGE-CONTENT markers; own printed MD5 excluded.
 Integrity-index page resolves all other page hashes and canonicalizes its own hash as <SELF>.
 
@@ -67,9 +67,9 @@ Page 62  4b1270b8cc24445a03221ee57d90cc1a  MR-C6 > DEC-C6-01 > FR-C6-01-04 - Con
 Page 63  a804598dfc19031fac24b7359d4d7f99  MR-C6 > DEC-C6-01 > FR-C6-01-05 - Inizializzazione della base vettoriale dei casi storici
 Page 64  1ff7867e4660fe4be66579921da862ee  MR-C6 > DEC-C6-01 > FR-C6-01-06 - Avvio del servizio API DermaTriage
 Page 65  e6a66d58bcca1f1e81450eea2d4afd02  MR-C6 > DEC-C6-01 > FR-C6-01-07 - Acquisizione della base software DermaTriage
-Page 66  102bb73d527c550361d49540f34e0d0d  MR-C7 - Verifica del sistema DermaTriage
-Page 67  086ccbf418f6545accc9d179d1e8598d  MR-C7 > DEC-C7-01 - Verifica mediante controlli espliciti e criteri applicabili
-Page 68  3d6434a24c425faa80ce5468b8e2392a  MR-C7 > DEC-C7-01 - C7-P03..P07 source-first review materialized
+Page 66  364611b55382e0a685e42b35d3321b96  MR-C7 - Verifica del sistema DermaTriage
+Page 67  da952edb21c723566ed4daf0fc233072  MR-C7 > DEC-C7-01 - Verifica mediante una procedura strutturata di controlli
+Page 68  8b5ca8317cd14b2fb64de011a010274a  MR-C7 > DEC-C7-01 - C7-P03..P07 source-first review materialized
 Page 69  2b68023ed873eb0ed4f17eb01e7a96ff  MR-C7 > DEC-C7-01 > FR-C7-01-01 - Verifica della readiness operativa del servizio DermaTriage
 Page 70  77515cf68165b6ad69c1c8c91ad7d44f  MR-C7 > DEC-C7-01 > FR-C7-02-01 - Verifica dell'endpoint di analisi diretta
 Page 71  bbd93e05b580a7f7727cb538e5f04e87  MR-C7 > DEC-C7-01 > FR-C7-02-02 - Verifica dell'endpoint integrato B4
@@ -89,4 +89,5 @@ Page 84  172aa525a642da993fe8831670386ff6  Registro Base Analysis - BAPropositio
 Page 85  bffa4fcc5469f12ebe1675a9e8376312  Registro Base Analysis - C6 source, dependency, configuration e initialization topology increment
 Page 86  251e20eabad327061da23389ed917818  Registro Base Analysis - C6 FR-C6-01-03B1..B3 e 03C increment
 Page 87  3cf5f4e96ab8903fd5a30023d363b0da  Registro Base Analysis - FR-C6-01-06 API composition and endpoint topology
-Page 88  640e6aef89be8c01c29069b613d5d4d1  Indice di integrita delle pagine [INTEGRITY INDEX]
+Page 88  392da625725431da689302a7e885994a  Registro Base Analysis - DEC-C7-01 verification procedure topology increment
+Page 89  aadc615b571063ab8acaf0b143c6b383  Indice di integrita delle pagine [INTEGRITY INDEX]
