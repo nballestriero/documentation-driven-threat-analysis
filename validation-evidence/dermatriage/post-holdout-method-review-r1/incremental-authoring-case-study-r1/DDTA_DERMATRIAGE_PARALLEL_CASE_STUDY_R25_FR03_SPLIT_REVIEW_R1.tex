@@ -84,8 +84,8 @@
 \expandafter\def\csname PageMDfive61\endcsname{f5c40decee22312d52a8a30a297f9d1b}
 \expandafter\def\csname PageMDfive62\endcsname{4b1270b8cc24445a03221ee57d90cc1a}
 \expandafter\def\csname PageMDfive63\endcsname{a804598dfc19031fac24b7359d4d7f99}
-\expandafter\def\csname PageMDfive64\endcsname{f9e246e4155cbb9f3fafb94bb12aaab2}
-\expandafter\def\csname PageMDfive65\endcsname{4c2e36258c71637bf202b9742c157473}
+\expandafter\def\csname PageMDfive64\endcsname{1ff7867e4660fe4be66579921da862ee}
+\expandafter\def\csname PageMDfive65\endcsname{e6a66d58bcca1f1e81450eea2d4afd02}
 \expandafter\def\csname PageMDfive66\endcsname{102bb73d527c550361d49540f34e0d0d}
 \expandafter\def\csname PageMDfive67\endcsname{086ccbf418f6545accc9d179d1e8598d}
 \expandafter\def\csname PageMDfive68\endcsname{3d6434a24c425faa80ce5468b8e2392a}
@@ -104,11 +104,11 @@
 \expandafter\def\csname PageMDfive81\endcsname{14f224c0a626f68a61bf866df0eee7ca}
 \expandafter\def\csname PageMDfive82\endcsname{748a8c4ef3fe1cb08302d275db81868f}
 \expandafter\def\csname PageMDfive83\endcsname{6d742aced02c4f7553638cc4e3f7cfe5}
-\expandafter\def\csname PageMDfive84\endcsname{4500889656a696f278769364638dc5e5}
-\expandafter\def\csname PageMDfive85\endcsname{caa1799765a2df4fb288734d2ea65b91}
+\expandafter\def\csname PageMDfive84\endcsname{172aa525a642da993fe8831670386ff6}
+\expandafter\def\csname PageMDfive85\endcsname{bffa4fcc5469f12ebe1675a9e8376312}
 \expandafter\def\csname PageMDfive86\endcsname{251e20eabad327061da23389ed917818}
-\expandafter\def\csname PageMDfive87\endcsname{42c63c876189a9d341da909c38484215}
-\expandafter\def\csname PageMDfive88\endcsname{6b15f5a431e898c7c41b90b8752cb49f}
+\expandafter\def\csname PageMDfive87\endcsname{3cf5f4e96ab8903fd5a30023d363b0da}
+\expandafter\def\csname PageMDfive88\endcsname{640e6aef89be8c01c29069b613d5d4d1}
 %</PAGE-HASH-DEFS>
 
 \newcommand{\PageHashFooter}[1]{%
@@ -6179,7 +6179,7 @@ Top-5, cosine similarity e \texttt{find\_similar\_cases()} appartengono al runti
 %<PAGE-CONTENT:64>
 \PageHashFooter{\PageMDfive{64}}
 \subsubsection{FR-C6-01-06 - Avvio del servizio API DermaTriage}
-{\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-C6} $\rightarrow$ \texttt{DEC-C6-01} $\rightarrow$ \texttt{FR-C6-01-06}. La chiusura del branch C6 comprende anche \texttt{FR-C6-01-07}, introdotto per preservare lo Step 1 source-supported senza rinumerare gli FR gia' stabilizzati.}\par
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-C6} $\rightarrow$ \texttt{DEC-C6-01} $\rightarrow$ \texttt{FR-C6-01-06}. Lo Stage 6 e' \texttt{ServiceStartupStage}; la verifica successiva resta separata nel branch C7.}\par
 
 \setlength{\columnsep}{7mm}
 \setlength{\columnseprule}{0.35pt}
@@ -6187,10 +6187,10 @@ Top-5, cosine similarity e \texttt{find\_similar\_cases()} appartengono al runti
 \begin{paracol}{2}
 
 {\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
-\vspace{0.15em}
+\vspace{0.10em}
 
-\begin{ddtacore}[title={FunctionalRequirement}]
-\fontsize{4.45}{4.85}\selectfont
+\begin{ddtacore}[title={FunctionalRequirement},top=2pt,bottom=2pt,left=5pt,right=5pt]
+\fontsize{3.85}{4.20}\selectfont
 \begin{tabularx}{\linewidth}{L{38mm}Y}
 \toprule
 \textbf{ID} & \texttt{FR-C6-01-06} \\
@@ -6205,38 +6205,47 @@ Top-5, cosine similarity e \texttt{find\_similar\_cases()} appartengono al runti
 \end{tabularx}
 
 \textbf{Functional obligation}\par
-Nell'ambito della predisposizione dell'ambiente DermaTriage, avviare il servizio API DermaTriage affinche' il servizio previsto dalla baseline sia reso disponibile per l'utilizzo successivo.
+Nell'ambito di \texttt{ServiceStartupStage}, avviare il servizio API DermaTriage e renderne disponibile la realizzazione runtime per l'utilizzo successivo.
 
 \textbf{Functional clauses / inherited \texttt{normativeClause [1..*]}}\par
-La procedura di setup MUST avviare il servizio API DermaTriage.
+\begin{enumerate}[leftmargin=1.35em,itemsep=0.05em,topsep=0.08em]
+  \item \texttt{ServiceStartupStage} MUST comprendere il comportamento di startup del servizio API DermaTriage.
+  \item Lo startup MUST rendere disponibile il servizio runtime che realizza l'interfaccia \texttt{DermaTriageAPI}.
+\end{enumerate}
 \end{ddtacore}
 
-\begin{ddtacore}[title={Current realization / service startup}]
-\fontsize{4.2}{4.6}\selectfont
-La baseline corrente distingue \texttt{Step 6 - Run the server} da \texttt{Step 7 - Verify deployment}. Lo startup usa:
+\begin{ddtacore}[title={Current realization / service startup},top=2pt,bottom=2pt,left=5pt,right=5pt]
+\fontsize{3.18}{3.50}\selectfont
+La baseline distingue \texttt{Step 6 - Run the server} da \texttt{Step 7 - Verify deployment}. La current realization del comportamento di startup e' \texttt{UvicornServiceLaunch}; i dettagli restano documentazione della realization:
 \begin{center}
 \texttt{uvicorn app:app --host 0.0.0.0 --port 5000}
 \end{center}
-\begin{tabularx}{\linewidth}{L{35mm}Y}
+\begin{tabularx}{\linewidth}{L{43mm}Y}
 \toprule
-\textbf{Elemento} & \textbf{Baseline corrente} \\
+\textbf{Elemento documentale} & \textbf{Binding / evidenza corrente} \\
 \midrule
-Application binding & \texttt{app:app} \\
-Web/API stack & FastAPI + Uvicorn \\
+\texttt{UvicornServiceLaunch} & comando di startup sopra riportato; Uvicorn \\
+\texttt{FastAPIApplicationArtifact} & \texttt{app.py}; ``FastAPI main application''; provenance nel source tree completata in \texttt{FR-C6-01-07} \\
+Application target & \texttt{app:app} \\
 Host / port del comando & \texttt{0.0.0.0} / \texttt{5000} \\
 \bottomrule
 \end{tabularx}
-I valori e il comando restano current realization e non diventano automaticamente commitment tecnologici immutabili.
+Comando, target, host e port restano dettagli della documentazione corrente: la BA preserva l'identita' della realization e la relazione con il comportamento astratto, senza duplicarne tutti i parametri.
 \end{ddtacore}
 
-\begin{ddtacore}[title={Ownership boundary}]
-\fontsize{4.25}{4.65}\selectfont
-\texttt{FR-C6-01-06} governa lo startup del servizio. Non governa i binding di configurazione (\texttt{FR-C6-01-04}), i contratti delle API, le policy di autenticazione o la verifica successiva. \texttt{/health}, \texttt{/stats}, \texttt{/docs} e le relative pass condition restano nel branch di verification: l'ordine ``run server'' poi ``verify deployment'' non fonde le due responsabilita'.
+\begin{ddtacore}[title={API identity / composition context},top=2pt,bottom=2pt,left=5pt,right=5pt]
+\fontsize{3.12}{3.44}\selectfont
+La documentazione architetturale identifica una \texttt{DermaTriage API} con 20 endpoint. Ai fini della BA, \texttt{DermaTriageAPI} e' distinta dal servizio runtime che la realizza. La composizione completa e' registrata a pag.~87 mediante cinque gruppi logici: \texttt{TriageAPI}, \texttt{OperationalAPI}, \texttt{ClinicalReviewAPI}, \texttt{PromptManagementAPI}, \texttt{RetrainingAPI}. Metodi, path, autenticazione e descrizioni restano documentati nella stessa pagina e nelle fonti; non sono parametri dello startup.
 \end{ddtacore}
 
-\begin{ddtaquestions}[top=3pt,bottom=3pt,left=5pt,right=5pt]
-\fontsize{4.05}{4.45}\selectfont
-\begin{itemize}
+\begin{ddtacore}[title={Ownership boundary},top=2pt,bottom=2pt,left=5pt,right=5pt]
+\fontsize{3.05}{3.37}\selectfont
+\texttt{FR-C6-01-06} governa startup e disponibilita' del servizio runtime. Non governa il comportamento funzionale dei singoli endpoint, le policy di autenticazione, i binding di configurazione di \texttt{FR-C6-01-04} o la verification successiva. La composizione API e' un fatto architetturale riusato per identificare l'interfaccia realizzata dal servizio, non un nuovo obbligo di startup.
+\end{ddtacore}
+
+\begin{ddtaquestions}[top=2pt,bottom=2pt,left=5pt,right=5pt]
+\fontsize{2.95}{3.27}\selectfont
+\begin{itemize}[leftmargin=1.35em,itemsep=0.04em,topsep=0.05em]
   \item \texttt{API\_HOST}/\texttt{API\_PORT} alimentano direttamente \texttt{--host}/\texttt{--port}? La corrispondenza dei valori e' documentata, il binding operativo no.
   \item Quale condizione autonoma stabilisce il successo dello startup prima della verifica successiva?
   \item Supervision, restart automatico, shutdown controllato e recovery non sono specificati.
@@ -6245,47 +6254,64 @@ I valori e il comando restano current realization e non diventano automaticament
 
 \switchcolumn
 {\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
-\vspace{0.15em}
+\vspace{0.10em}
 
-\begin{ddtareferentidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
-\fontsize{4.5}{4.9}\selectfont
-\BACandidate{DermaTriageAPIService} \BANew{}.\par
-\emph{Identity rationale: il servizio possiede endpoint identificabili, un binding di esecuzione e puo' essere successivamente oggetto di verification; resta distinto dal sistema complessivo \texttt{DermaTriage}.}
+\begin{ddtareferentidentified}[top=2pt,bottom=2pt,left=5pt,right=5pt]
+\fontsize{3.18}{3.50}\selectfont
+\BACandidate{DermaTriageAPIServiceStartup} \BANew{}; \BACandidate{UvicornServiceLaunch} \BANew{}; \BACandidate{DermaTriageAPI} \BANew{}; \BACandidate{FastAPIApplicationArtifact} \BANew{}.\par
+\smallskip
+\textbf{Reuse:} \BAAccepted{DermaTriage}; \BAAccepted{ServiceStartupStage}; \BAAccepted{DermaTriageAPIService}.
 \end{ddtareferentidentified}
 
-\begin{ddtareferentaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
-\fontsize{4.45}{4.85}\selectfont
-\BAAccepted{EnvironmentSetupProcedure}; \BAAccepted{DermaTriageAPIService} \BAFirstAccepted{}.
+\begin{ddtareferentaccepted}[top=2pt,bottom=2pt,left=5pt,right=5pt]
+\fontsize{3.08}{3.40}\selectfont
+\BAAccepted{DermaTriageAPIServiceStartup} \BAFirstAccepted{}; \BAAccepted{UvicornServiceLaunch} \BAFirstAccepted{}; \BAAccepted{DermaTriageAPI} \BAFirstAccepted{}; \BAAccepted{FastAPIApplicationArtifact} \BAFirstAccepted{}.\par
+\emph{Identity boundary:} startup logico, launch Uvicorn, interfaccia API, servizio runtime e artifact \texttt{app.py} restano significati distinti. Il comando e i suoi parametri non sono BAReferent autonomi.
 \end{ddtareferentaccepted}
 
-\begin{ddtapropositionidentified}[top=3pt,bottom=3pt,left=5pt,right=5pt]
-\fontsize{4.2}{4.6}\selectfont
-\textbf{\texttt{BAP-FRC6-01-06-01}}\par
+\begin{ddtapropositionidentified}[top=2pt,bottom=2pt,left=5pt,right=5pt]
+\fontsize{2.53}{2.82}\selectfont
+\textbf{\texttt{BAP-FRC6-01-06-02}}\par
+\hspace*{1em}\texttt{semanticOperatorKey = hasPart}\par
+\hspace*{1em}\texttt{whole -> ServiceStartupStage}\par
+\hspace*{1em}\texttt{part -> DermaTriageAPIServiceStartup}\par
+\smallskip
+\textbf{\texttt{BAP-FRC6-01-06-03}}\par
+\hspace*{1em}\texttt{semanticOperatorKey = realize}\par
+\hspace*{1em}\texttt{abstract -> DermaTriageAPIServiceStartup}\par
+\hspace*{1em}\texttt{realization -> UvicornServiceLaunch}\par
+\smallskip
+\textbf{\texttt{BAP-FRC6-01-06-04}}\par
 \hspace*{1em}\texttt{semanticOperatorKey = produce}\par
-\hspace*{1em}\texttt{actor -> EnvironmentSetupProcedure}\par
+\hspace*{1em}\texttt{actor -> DermaTriageAPIServiceStartup}\par
 \hspace*{1em}\texttt{result -> DermaTriageAPIService}\par
-\hspace*{1em}\texttt{polarity = affirmative}
+\smallskip
+\textbf{\texttt{BAP-FRC6-01-06-05}}\par
+\hspace*{1em}\texttt{semanticOperatorKey = realize}\par
+\hspace*{1em}\texttt{abstract -> DermaTriageAPI}\par
+\hspace*{1em}\texttt{realization -> DermaTriageAPIService}\par
+\smallskip
+\textbf{\texttt{BAP-FRC6-01-06-06}}\par
+\hspace*{1em}\texttt{semanticOperatorKey = hasPart}\par
+\hspace*{1em}\texttt{whole -> DermaTriage}\par
+\hspace*{1em}\texttt{part -> DermaTriageAPI}\par
+\smallskip
+\hspace*{1em}\texttt{polarity = affirmative} per \texttt{-02..06}. \texttt{-07..31}: composizione API dettagliata a pag.~87.
 \end{ddtapropositionidentified}
 
-\begin{ddtapropositionaccepted}[top=3pt,bottom=3pt,left=5pt,right=5pt]
-\fontsize{4.35}{4.75}\selectfont
-\textbf{BAP-FRC6-01-06-01}.\par
-\emph{Acceptance boundary: \texttt{produce} significa che la procedura di setup rende disponibile il servizio mediante lo startup; non implica creazione ex novo, health verification, disponibilita' persistente, restart semantics o tecnologia obbligatoria.}
+\begin{ddtapropositionaccepted}[top=2pt,bottom=2pt,left=5pt,right=5pt]
+\fontsize{2.92}{3.24}\selectfont
+\textbf{Accepted active:} \texttt{BAP-FRC6-01-06-02..31}.\par
+\textbf{Historical/superseded:} \texttt{BAP-FRC6-01-06-01} (precedente \texttt{produce(EnvironmentSetupProcedure, DermaTriageAPIService)}), conservata come trace della lettura grossolana e non riutilizzata con un nuovo significato.\par
+\emph{Acceptance boundary:} lo startup specifico produce il servizio; Uvicorn realizza lo startup corrente; il servizio realizza l'interfaccia API. Nessuna proposition implica readiness, restart, health verification o immutabilita' della tecnologia.
 \end{ddtapropositionaccepted}
 
-\begin{ddtaopenrelations}[top=3pt,bottom=3pt,left=5pt,right=5pt]
-\fontsize{4.05}{4.45}\selectfont
-FastAPI, Uvicorn e \texttt{app:app} restano current realization: la sola presenza tecnica non giustifica una \texttt{realize}.\par
-\smallskip
-\texttt{API\_HOST/API\_PORT -> Uvicorn --host/--port}: \texttt{NOT EXPLICITLY SPECIFIED}.\par
-\texttt{DermaTriageAPIService <startup success/readiness condition>}: \texttt{NOT SPECIFIED}.\par
-Verification di \texttt{/health}, \texttt{/stats} e \texttt{/docs}: owner esterno a MR-C6.
+\begin{ddtaopenrelations}[top=2pt,bottom=2pt,left=5pt,right=5pt]
+\fontsize{2.92}{3.24}\selectfont
+\texttt{app:app}, host e port restano dettagli documentali della realization; non viene introdotta una proposition \texttt{FastAPIApplicationArtifact -> UvicornServiceLaunch}.\par
+\texttt{API\_HOST/API\_PORT -> --host/--port}: \texttt{NOT EXPLICITLY SPECIFIED}.\par
+\texttt{DermaTriageAPIService <startup success/readiness condition>}: \texttt{NOT SPECIFIED}. Verification: owner C7.
 \end{ddtaopenrelations}
-
-\begin{ddtacheck}[title={C6 decomposition closure}]
-\fontsize{4.15}{4.55}\selectfont
-\texttt{DEC-C6-01} possiede ora \texttt{FR-C6-01-01}--\texttt{FR-C6-01-07}; \texttt{FR-C6-01-07} governa l'acquisizione della base software associata allo Stage 1. Non restano candidati \texttt{C6-Pxx} nella mappa residua; i gap documentali specifici restano aperti nei rispettivi owner.
-\end{ddtacheck}
 
 \end{paracol}
 %</PAGE-CONTENT:64>
@@ -6305,7 +6331,7 @@ Verification di \texttt{/health}, \texttt{/stats} e \texttt{/docs}: owner estern
 \vspace{0.10em}
 
 \begin{ddtacore}[title={FunctionalRequirement -- FR-C6-01-07},top=2.5pt,bottom=2.5pt,left=5pt,right=5pt]
-\fontsize{3.72}{4.08}\selectfont
+\fontsize{3.65}{4.00}\selectfont
 \begin{tabularx}{\linewidth}{L{38mm}Y}
 \toprule
 \textbf{ID} & \texttt{FR-C6-01-07} \\
@@ -6320,36 +6346,40 @@ Verification di \texttt{/health}, \texttt{/stats} e \texttt{/docs}: owner estern
 \end{tabularx}
 
 \textbf{Functional obligation}\par
-Nell'ambito della procedura di setup, acquisire e rendere disponibile nell'ambiente DermaTriage la base software necessaria all'esecuzione e alle successive attivita' di configurazione, inizializzazione e adattamento del sistema.
+Nell'ambito della procedura di setup, acquisire localmente la base software DermaTriage dal repository sorgente documentato e renderla disponibile ai successivi passi di setup e alle funzioni del sistema che utilizzano gli artifact e gli script contenuti nel codebase.
 
 \textbf{Functional clauses / inherited \texttt{normativeClause [1..*]}}\par
-L'ambiente DermaTriage MUST disporre localmente della base software DermaTriage acquisita dal repository sorgente prima delle attivita' di setup che dipendono dal relativo codebase.
+La procedura di setup MUST rendere disponibile localmente la base software DermaTriage prima dell'esecuzione delle attivita' che dipendono dal relativo codebase. La current realization acquisisce il codebase mediante clone del repository documentato e usa la directory locale risultante come base per installazione, configurazione, inizializzazione e startup.
 \end{ddtacore}
 
-\begin{ddtacore}[title={Current realization / source-code topology e provenance},top=2.5pt,bottom=2.5pt,left=5pt,right=5pt]
-\fontsize{3.18}{3.50}\selectfont
-\begin{tabularx}{\linewidth}{L{38mm}L{42mm}Y}
+\begin{ddtacore}[title={Current realization / source-code acquisition topology},top=2.2pt,bottom=2.2pt,left=5pt,right=5pt]
+\fontsize{3.02}{3.32}\selectfont
+\begin{tabularx}{\linewidth}{L{38mm}L{43mm}Y}
 \toprule
 \textbf{Elemento} & \textbf{Ruolo documentato} & \textbf{Binding / evidenza corrente} \\
 \midrule
-\texttt{DermaTriageSourceRepositoryStore} & source repository store esterno & \nolinkurl{https://github.com/basil-github/image_classifier} \\
-\texttt{DermaTriageSourceTreeArtifact} & contenuto codebase trasferito dal clone & repository tree \texttt{image\_classifier}; stessa identity prima/dopo il transfer \\
-\texttt{DermaTriageRepositoryAcquisition} & behavior di acquisizione & \texttt{git clone .../image\_classifier}; quindi \texttt{cd image\_classifier} \\
+\texttt{DermaTriageSourceRepositoryStore} & repository sorgente esterno & \nolinkurl{https://github.com/basil-github/image_classifier} \\
+\texttt{DermaTriageRepositoryAcquisition} & behavior di acquisizione della base software & \texttt{git clone .../image\_classifier}; successiva selezione working directory: \texttt{cd image\_classifier} \\
+\texttt{DermaTriageSourceTreeArtifact} & contenuto del codebase acquisito & repository tree \texttt{image\_classifier}; stessa BA identity nelle occurrence remota e locale \\
 \texttt{DermaTriageSourceCodeStore} & store locale del codebase & locator \texttt{image\_classifier/} \\
-\texttt{RetrainerSourceArtifact} & source artifact con ruolo autonomo & \texttt{retrainer.py}; ``Auto-retraining pipeline'' \\
-\texttt{RequirementsManifestArtifact} & manifest di dipendenze & \texttt{requirements.txt}; owner semantico \texttt{FR-C6-01-02} \\
-\texttt{DotEnvExampleArtifact} & template di configurazione & \texttt{.env.example}; input della materializzazione governata da \texttt{FR-C6-01-04} \\
-\texttt{RAGIndexerScript} & source artifact con ruolo di indicizzazione & \texttt{rag/indexer.py}; realization governata da \texttt{FR-C6-01-05} \\
+\texttt{RetrainerSourceArtifact} & sorgente della pipeline di auto-retraining & \texttt{retrainer.py}; ``Auto-retraining pipeline'' \\
+\texttt{RequirementsManifestArtifact} & manifest delle dipendenze & \texttt{requirements.txt}; uso governato da \texttt{FR-C6-01-02} \\
+\texttt{DotEnvExampleArtifact} & template della configurazione locale & \texttt{.env.example}; uso governato da \texttt{FR-C6-01-04} \\
+\texttt{RAGIndexerScript} & script di inizializzazione/indexing RAG & \texttt{rag/indexer.py}; realization governata da \texttt{FR-C6-01-05} \\
+\texttt{FastAPIApplicationArtifact} & main application FastAPI & \texttt{app.py}; startup binding documentato da \texttt{FR-C6-01-06} \\
 \bottomrule
 \end{tabularx}
 
-\textbf{Source-preservation inventory}\par
-La struttura documentata preserva inoltre \texttt{app.py}, \texttt{predict.py}, \texttt{train.py}, \texttt{evaluate.py}, \texttt{prepare\_data.py}, \texttt{smote\_balance.py}, \texttt{adaptation\_layer.py}, \texttt{prompt\_manager.py}, \texttt{b4\_auth.py}, \texttt{b4\_client.py}, \texttt{models.py} e le directory \texttt{models/}, \texttt{data/}, \texttt{rag/}, \texttt{db/}, \texttt{logs/}, \texttt{results/}, \texttt{static/}, \texttt{templates/}. La directory structure mostra anche \texttt{.env/.env.example}; ai fini della provenance C6, \texttt{.env.example} e' il template acquisito con il tree, mentre \texttt{.env} e' modellato in \texttt{FR-C6-01-04} come artifact materializzato localmente da \texttt{cp .env.example .env}. Le fonti non stabiliscono che un \texttt{.env} popolato venga trasferito da GitHub.
+\textbf{Source-preservation inventory / ruoli tecnici}\par
+La base software preserva inoltre i ruoli documentati: \texttt{predict.py} (Inference pipeline); \texttt{train.py} (CNN training script); \texttt{evaluate.py} (Model evaluation); \texttt{prepare\_data.py} (Data preparation); \texttt{smote\_balance.py} (SMOTE class balancing); \texttt{adaptation\_layer.py} (Urgency $\rightarrow$ P1--P4 mapping); \texttt{prompt\_manager.py} (Prompt evolution); \texttt{b4\_auth.py} (B4 JWT authentication); \texttt{b4\_client.py} (B4 API client); \texttt{models.py} (Model definitions). Sono inoltre preservati \texttt{rag/searcher.py}, \texttt{db/storage.py}, \texttt{static/app.js}, \texttt{static/style.css} e \texttt{templates/} (6 HTML files). La preservazione documentale non promuove automaticamente ogni elemento a BAReferent.
+
+\textbf{Distinzione source tree / artifact materializzati successivamente}\par
+Il source tree acquisito contiene gli artifact sorgente usati dai passi successivi, inclusi \texttt{requirements.txt}, \texttt{.env.example}, \texttt{rag/indexer.py} e \texttt{app.py}. Gli artifact materializzati o acquisiti da passi successivi restano governati dai rispettivi FR: \texttt{.env} in \texttt{FR-C6-01-04}, i model artifact nei branch \texttt{FR-C6-01-03A*}, l'indice ChromaDB in \texttt{FR-C6-01-05}.
 \end{ddtacore}
 
 \begin{ddtaquestions}[top=2pt,bottom=2pt,left=5pt,right=5pt]
-\fontsize{3.22}{3.54}\selectfont
-Ownership/authority del repository GitHub, pinning di commit/tag e verifica di integrity/authenticity della base software non sono specificati. Il trasferimento GitHub $\rightarrow$ ambiente locale attraversa un confine rilevante per la security analysis; il boundary resta projection-only finche' non viene formalizzato nella BA.
+\fontsize{3.08}{3.38}\selectfont
+Ownership/authority del repository; branch/tag/commit pinning; integrity/authenticity del checkout; access mode/autenticazione del clone; expected version/hash; update/pull/re-clone policy e parent local installation directory non sono specificati. Il trasferimento GitHub $\rightarrow$ ambiente locale attraversa un confine rilevante per la security analysis.
 \end{ddtaquestions}
 
 \switchcolumn
@@ -6360,7 +6390,7 @@ Ownership/authority del repository GitHub, pinning di commit/tag e verifica di i
 \fontsize{3.28}{3.62}\selectfont
 \BACandidate{DermaTriageSourceRepositoryStore} \BANew{}; \BACandidate{DermaTriageSourceCodeStore} \BANew{}; \BACandidate{DermaTriageSourceTreeArtifact} \BANew{}; \BACandidate{DermaTriageRepositoryAcquisition} \BANew{}; \BACandidate{RetrainerSourceArtifact} \BANew{}.\par
 \smallskip
-\textbf{Reuse:} \BAAccepted{SoftwareComponents}; \BAAccepted{RepositoryAcquisitionStage}; \BAAccepted{RequirementsManifestArtifact}; \BAAccepted{DotEnvExampleArtifact}; \BAAccepted{RAGIndexerScript}.
+\textbf{Reuse:} \BAAccepted{SoftwareComponents}; \BAAccepted{RepositoryAcquisitionStage}; \BAAccepted{RequirementsManifestArtifact}; \BAAccepted{DotEnvExampleArtifact}; \BAAccepted{RAGIndexerScript}; \BAAccepted{FastAPIApplicationArtifact}.
 \end{ddtareferentidentified}
 
 \begin{ddtareferentaccepted}[top=2pt,bottom=2pt,left=5pt,right=5pt]
@@ -6378,7 +6408,7 @@ Ownership/authority del repository GitHub, pinning di commit/tag e verifica di i
 \end{ddtareferentaccepted}
 
 \begin{ddtapropositionidentified}[top=2pt,bottom=2pt,left=5pt,right=5pt]
-\fontsize{2.48}{2.74}\selectfont
+\fontsize{2.50}{2.76}\selectfont
 \textbf{\texttt{BAP-FRC6-01-07-01}}\par
 \hspace*{1em}\texttt{semanticOperatorKey = hasPart}\par
 \hspace*{1em}\texttt{whole -> SoftwareComponents}\par
@@ -6406,11 +6436,6 @@ Ownership/authority del repository GitHub, pinning di commit/tag e verifica di i
 \hspace*{1em}\texttt{whole -> DermaTriageSourceCodeStore}\par
 \hspace*{1em}\texttt{part -> DermaTriageSourceTreeArtifact}\par
 \hspace*{1em}\texttt{polarity = affirmative}\par
-\textbf{\texttt{BAP-FRC6-01-07-06}}\par
-\hspace*{1em}\texttt{semanticOperatorKey = hasPart}\par
-\hspace*{1em}\texttt{whole -> DermaTriageSourceCodeStore}\par
-\hspace*{1em}\texttt{part -> RetrainerSourceArtifact}\par
-\hspace*{1em}\texttt{polarity = affirmative}\par
 \textbf{\texttt{BAP-FRC6-01-07-07}}\par
 \hspace*{1em}\texttt{semanticOperatorKey = hasPart}\par
 \hspace*{1em}\texttt{whole -> DermaTriageSourceTreeArtifact}\par
@@ -6430,21 +6455,27 @@ Ownership/authority del repository GitHub, pinning di commit/tag e verifica di i
 \hspace*{1em}\texttt{semanticOperatorKey = hasPart}\par
 \hspace*{1em}\texttt{whole -> DermaTriageSourceTreeArtifact}\par
 \hspace*{1em}\texttt{part -> RAGIndexerScript}\par
+\hspace*{1em}\texttt{polarity = affirmative}\par
+\textbf{\texttt{BAP-FRC6-01-07-11}}\par
+\hspace*{1em}\texttt{semanticOperatorKey = hasPart}\par
+\hspace*{1em}\texttt{whole -> DermaTriageSourceTreeArtifact}\par
+\hspace*{1em}\texttt{part -> FastAPIApplicationArtifact}\par
 \hspace*{1em}\texttt{polarity = affirmative}
 \end{ddtapropositionidentified}
 
 \begin{ddtapropositionaccepted}[top=2pt,bottom=2pt,left=5pt,right=5pt]
-\fontsize{3.18}{3.50}\selectfont
-\textbf{Accepted:} \texttt{BAP-FRC6-01-07-01}--\texttt{10}.\par
-Stage 1 possiede il behavior di acquisizione; il \texttt{transfer} governa il clone del tree. \texttt{-07..10} preservano la composizione interna source-supported del tree e quindi la provenance dei file riusati downstream, senza creare transfer separati per ogni file.
+\fontsize{3.12}{3.44}\selectfont
+\textbf{Accepted:} \texttt{BAP-FRC6-01-07-01..05}; \texttt{BAP-FRC6-01-07-07..11}.\par
+Stage 1 contiene il behavior di acquisizione; il \texttt{transfer} governa il clone del tree e preserva una sola identity di \texttt{DermaTriageSourceTreeArtifact} nelle occurrence remota/locale. \texttt{-07..11} preservano la composizione interna del tree per gli artifact con identity BA autonoma, senza transfer separati per i singoli file.
 \end{ddtapropositionaccepted}
 
 \begin{ddtaopenrelations}[top=2pt,bottom=2pt,left=5pt,right=5pt]
 \fontsize{3.02}{3.34}\selectfont
-\texttt{RetrainerSourceArtifact -> retraining function}: relazione funzionale rinviata al branch lifecycle; nessuna \texttt{realize} viene introdotta in C6.\par
-\texttt{RequirementsManifestArtifact}: identity e uso operativo restano governati da \texttt{FR-C6-01-02}; qui viene aggiunta soltanto la provenance nel source tree.\par
-\texttt{DotEnvExampleArtifact}: identity e uso come template sono governati da \texttt{FR-C6-01-04}; qui viene aggiunta soltanto la provenance nel source tree.\par
-\texttt{RAGIndexerScript}: identity e uso come realization di \texttt{HistoricalCaseVectorIndexing} sono governati da \texttt{FR-C6-01-05}; qui viene aggiunta soltanto la provenance nel source tree.
+\texttt{RetrainerSourceArtifact -> retraining function}: relazione funzionale rinviata al ramo di retraining; nessuna \texttt{realize} viene introdotta in C6.\par
+\texttt{RequirementsManifestArtifact}: identity e uso operativo restano governati da \texttt{FR-C6-01-02}; qui viene preservata la provenance nel source tree.\par
+\texttt{DotEnvExampleArtifact}: identity e uso come template sono governati da \texttt{FR-C6-01-04}; qui viene preservata la provenance nel source tree.\par
+\texttt{RAGIndexerScript}: identity e uso come realization di \texttt{HistoricalCaseVectorIndexing} sono governati da \texttt{FR-C6-01-05}; qui viene preservata la provenance nel source tree.\par
+\texttt{FastAPIApplicationArtifact}: identity e startup binding sono governati da \texttt{FR-C6-01-06}; qui viene preservata la provenance nel source tree.
 \end{ddtaopenrelations}
 
 \end{paracol}
@@ -7884,8 +7915,10 @@ Questa pagina continua il registro BA della pagina precedente. Il \textbf{grasse
 \textbf{\texttt{BAP-FRC6-01-03A4-06}} & \texttt{FR-C6-01-03A4} -- \texttt{realize} (\texttt{BioMistral-7B -> BioMistral7BModelArtifact}) \\
 \textbf{\texttt{BAP-FRC6-01-04-01..05}} & \texttt{FR-C6-01-04} -- local configuration topology: environment \texttt{constrain}; Stage 4 \texttt{hasPart} materialization behavior; \texttt{produce} from \texttt{.env.example} to \texttt{.env}; \texttt{realize} of \texttt{EnvironmentConfiguration}; local file placement \\
 \textbf{\texttt{BAP-FRC6-01-05-01..07}} & \texttt{FR-C6-01-05} -- Stage 5 embedding/indexing placement; \texttt{RAGIndexerScript} realizes vector indexing; ChromaDB store/index-artifact topology; persistent artifact realizes logical vector index; RAG dataset contains historical descriptions \\
-\textbf{\texttt{BAP-FRC6-01-06-01}} & \texttt{FR-C6-01-06} -- \texttt{produce} (\texttt{EnvironmentSetupProcedure -> DermaTriageAPIService}); rende disponibile il servizio tramite startup senza implicare verification, process supervision o tecnologia obbligatoria \\
-\textbf{\texttt{BAP-FRC6-01-07-01..10}} & \texttt{FR-C6-01-07} -- source-code acquisition/containment, Stage 1 topology and source-tree provenance of \texttt{retrainer.py}, \texttt{requirements.txt}, \texttt{.env.example}, \texttt{rag/indexer.py} \\
+\emph{\texttt{BAP-FRC6-01-06-01}} & \texttt{FR-C6-01-06} -- historical/superseded coarse \texttt{produce(EnvironmentSetupProcedure, DermaTriageAPIService)}; ID retained only as trace \\
+\textbf{\texttt{BAP-FRC6-01-06-02..05}} & \texttt{FR-C6-01-06} -- Stage 6 startup topology: containment of \texttt{DermaTriageAPIServiceStartup}; \texttt{UvicornServiceLaunch} realization; startup \texttt{produce} service; service \texttt{realize} API \\
+\textbf{\texttt{BAP-FRC6-01-06-06..31}} & \texttt{FR-C6-01-06} -- \texttt{DermaTriage -> DermaTriageAPI} composition, five logical API groups and 20 endpoint identities; full mapping pag.~87 \\
+\textbf{\texttt{BAP-FRC6-01-07-01..05,07..11}} & \texttt{FR-C6-01-07} -- source-code acquisition/containment, Stage 1 topology and source-tree provenance of \texttt{retrainer.py}, \texttt{requirements.txt}, \texttt{.env.example}, \texttt{rag/indexer.py}, \texttt{app.py} \\
 \textbf{\texttt{BAP-DECC7-01-01}} & \texttt{DEC-C7-01} -- \texttt{realize} (\texttt{DermaTriageVerification -> DermaTriageVerificationProcedure}); non implica framework, ordering universale, PASS/FAIL per ogni controllo o ownership dei criteri verificati \\
 \textbf{\texttt{BAP-FRC7-01-01-01}} & \texttt{FR-C7-01-01} -- accepted \texttt{produce} (\texttt{ServiceReadinessVerification}: \texttt{ServiceHealthCheckResult} $\rightarrow$ \texttt{ReadinessOutcome}); candidate \texttt{operatorStructure.decisionRule} assegna \texttt{PASS} quando la pass condition governata e' soddisfatta; nessun \texttt{ELSE/FAIL} inferito \\
 \textbf{\texttt{BAP-FRC7-02-01-01}} & \texttt{FR-C7-02-01} -- accepted \texttt{produce} (direct-analysis observation $\rightarrow$ verification outcome); nested \texttt{decisionRule} remains candidate/non-admitted and requires source-grounded \texttt{lt} plus governed-domain criterion reuse \\
@@ -7929,6 +7962,7 @@ EfficientNetBackupWeightsArtifact & \texttt{FR-C6-01-03A1}; \texttt{models/versi
 \textbf{DotEnvExampleArtifact} & \texttt{FR-C6-01-04}; reuse \texttt{FR-C6-01-07}; \texttt{image\_classifier/.env.example} \\
 \textbf{DotEnvConfigurationFile} & \texttt{FR-C6-01-04}; \texttt{image\_classifier/.env}; realizes \texttt{EnvironmentConfiguration} \\
 \textbf{RAGIndexerScript} & \texttt{FR-C6-01-05}; \texttt{image\_classifier/rag/indexer.py}; provenance reused in \texttt{FR-C6-01-07} \\
+\textbf{FastAPIApplicationArtifact} & \texttt{FR-C6-01-06}; \texttt{image\_classifier/app.py}; provenance reused in \texttt{FR-C6-01-07}; startup binding remains documentation \\
 \textbf{ChromaDBVectorStore} & \texttt{FR-C6-01-05}; store IN; \texttt{locator=chroma\_db/}; current engine \texttt{ChromaDB} \\
 \textbf{HistoricalCaseVectorIndexArtifact} & \texttt{FR-C6-01-05}; persistent index content under \texttt{chroma\_db/} \\
 \bottomrule
@@ -7937,7 +7971,7 @@ EfficientNetBackupWeightsArtifact & \texttt{FR-C6-01-03A1}; \texttt{models/versi
 
 \begin{ddtaopenrelations}[top=2pt,bottom=2pt,left=5pt,right=5pt]
 \fontsize{3.10}{3.42}\selectfont
-Individual \texttt{.env} key/value entries remain documented current-realization properties, not BAReferent/BAProposition. Their meanings are preserved for downstream threat analysis. Package registry remains \texttt{NOT SPECIFIED}; security-boundary overlays remain projection-only.
+Individual \texttt{.env} key/value entries and the \texttt{UvicornServiceLaunch} command parameters remain documented current-realization properties, not autonomous BAReferent/BAProposition. No BA relation \texttt{FastAPIApplicationArtifact -> UvicornServiceLaunch} is inferred from \texttt{app:app}. Package registry remains \texttt{NOT SPECIFIED}; security-boundary overlays remain projection-only.
 \end{ddtaopenrelations}
 
 \switchcolumn
@@ -7955,11 +7989,12 @@ Individual \texttt{.env} key/value entries remain documented current-realization
 \textbf{BAP-FRC6-01-03A1-07} & \texttt{hasPart}(\texttt{GoogleDriveModelStore}, \texttt{EfficientNetB4WeightsArtifact}) \\
 \textbf{BAP-FRC6-01-03A1-08} & \texttt{hasPart}(\texttt{ActiveClassifierStore}, \texttt{EfficientNetB4WeightsArtifact}) \\
 \textbf{BAP-FRC6-01-03A1-09} & \texttt{hasPart}(\texttt{ModelResourceAcquisitionStage}, \texttt{EfficientNetModelAcquisition}) \\
-\textbf{BAP-FRC6-01-07-01..06} & existing source-code acquisition/placement facts \\
+\textbf{BAP-FRC6-01-07-01..05} & source-code acquisition/placement facts \\
 \textbf{BAP-FRC6-01-07-07} & \texttt{hasPart}(\texttt{DermaTriageSourceTreeArtifact}, \texttt{RetrainerSourceArtifact}) \\
 \textbf{BAP-FRC6-01-07-08} & \texttt{hasPart}(\texttt{DermaTriageSourceTreeArtifact}, \texttt{RequirementsManifestArtifact}) \\
 \textbf{BAP-FRC6-01-07-09} & \texttt{hasPart}(\texttt{DermaTriageSourceTreeArtifact}, \texttt{DotEnvExampleArtifact}) \\
 \textbf{BAP-FRC6-01-07-10} & \texttt{hasPart}(\texttt{DermaTriageSourceTreeArtifact}, \texttt{RAGIndexerScript}) \\
+\textbf{BAP-FRC6-01-07-11} & \texttt{hasPart}(\texttt{DermaTriageSourceTreeArtifact}, \texttt{FastAPIApplicationArtifact}) \\
 \textbf{BAP-FRC6-01-04-01} & \texttt{constrain}: \texttt{DermaTriageEnvironment.requiredConfigurationBindings}; presence required \\
 \textbf{BAP-FRC6-01-04-02} & \texttt{hasPart}(\texttt{EnvironmentConfigurationStage}, \texttt{EnvironmentConfigurationMaterialization}) \\
 \textbf{BAP-FRC6-01-04-03} & \texttt{produce}: actor materialization; input \texttt{DotEnvExampleArtifact}; result \texttt{DotEnvConfigurationFile} \\
@@ -8066,57 +8101,124 @@ TrainingImageSourceStore & \textbf{FR-C6-01-03C}; store OUT; locator NOT SPECIFI
 \end{paracol}
 %</PAGE-CONTENT:86>
 \clearpage
-%<PAGE-DESC:87>MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]
+%<PAGE-DESC:87>Registro Base Analysis - FR-C6-01-06 API composition and endpoint topology
 %<PAGE-CONTENT:87>
 \PageHashFooter{\PageMDfive{87}}
-\section{MR-01 - Inventario temporaneo transfer, contract e decisioni BA}
+\section*{Registro Base Analysis - FR-C6-01-06 API composition and endpoint topology}
 
-\begin{ddtaopen}[title={PAGINA TEMPORANEA - AUDIT DATA-PATH MR-01 - DA CANCELLARE DOPO LA RIALLOCAZIONE DEI RISULTATI}]
-\scriptsize
-Questa pagina e' un \textbf{worklist di ricerca}, non introduce nuovi campi L1, nuovi stati BA o nuovi operatori. I nomi dei contract sono etichette di lavoro. Ogni riga deve essere riesaminata contro la documentazione originale: il significato supportato viene riallocato nella documentazione DDTA al livello corretto; cio' che non e' stabilito resta \texttt{NOT SPECIFIED}/gap; solo dopo si riesegue la BA. Un transfer non genera automaticamente un FunctionalRequirement: l'eventuale FR deve superare i normali gate di comportamento, ownership e utilita' downstream.
+\begin{ddtacore}[title={Scope / derivation boundary},top=2pt,bottom=2pt,left=5pt,right=5pt]
+\fontsize{4.10}{4.48}\selectfont
+La fonte architetturale identifica \texttt{DermaTriage API (20 endpoints)} e documenta metodo, path, autenticazione e descrizione di ciascun endpoint. La BA preserva le identity degli endpoint e la composizione dell'interfaccia. I cinque grouping referent sono struttura analitica \textbf{DERIVED}: raggruppano endpoint con responsabilita' documentate omogenee senza introdurre nuovi path, contratti o requisiti. I dettagli method/path/auth restano documentazione e non vengono duplicati come BAProposition.
+\end{ddtacore}
 
-\vspace{1mm}
-\fontsize{5.6}{6.4}\selectfont
-\renewcommand{\arraystretch}{1.06}
-\setlength{\tabcolsep}{2.4pt}
-\begin{tabularx}{\textwidth}{L{12mm}L{82mm}L{150mm}}
+\setlength{\columnsep}{6mm}
+\setlength{\columnseprule}{0.35pt}
+\columnratio{0.48}
+\begin{paracol}{2}
+
+{\sffamily\large\bfseries\color{DDTABlue}BAReferent + binding documentali}\par
+\vspace{0.08em}
+\begin{ddtacore}[title={API logical groups and endpoint identities},top=1.5pt,bottom=1.5pt,left=4pt,right=4pt]
+\fontsize{2.52}{2.78}\selectfont
+\renewcommand{\arraystretch}{0.61}
+\setlength{\tabcolsep}{1.6pt}
+\begin{tabularx}{\linewidth}{L{40mm}L{36mm}Y}
 \toprule
-\textbf{ID} & \textbf{Transfer candidato} & \textbf{Information/data contract e punti da verificare} \\
+\textbf{BAReferent} & \textbf{Method / path} & \textbf{Current documentation} \\
 \midrule
-\texttt{T01} & \texttt{? -> DermaTriage : LesionImage} (direct upload) & Direct triage input contract: caller/source ?, payload completo ?, formato/encoding/dimensioni ?, case correlation ?. Endpoint corrente \texttt{POST /analyze}. \\
-\texttt{T02} & \texttt{B4Platform -> DermaTriage : CaseInformation} & B4 case-information contract: schema completo ?, required/optional ?, tipi/nullability ?, consultation identity e correlation ?. Verificare se \texttt{CaseInformation} richiede split semantico. \\
-\texttt{T03-A} & \texttt{B4Platform -> DermaTriage : ? document reference/list} & Consultation-document discovery contract: campi della lista ?, selection rule del documento-lesione ?, binding alla consultation ?. \\
-\texttt{T03-B} & \texttt{B4Platform -> DermaTriage : LesionImage} & B4 lesion-image contract: formato/media type/dimensioni ?, lifecycle temporaneo/persistenza ?, exact consultation correlation ?. Download image source-supported. \\
-\texttt{T04} & \texttt{? -> ImageUrgencyAnalysis : LesionImage} & Stage-1 image-input contract: \textbf{RGB 380x380} noto; source ?, preprocessing owner ?, normalization/crop/invalid handling ?, runtime boundary ?. \\
-\texttt{T05} & \texttt{? -> ClinicalDescriptionGeneration : LesionImage} & Stage-2 image-input contract: rappresentazione/format/dimensioni/preprocessing ?, source ?, relazione con la rappresentazione T04 ?, runtime boundary ?. \\
-\texttt{T07} & \texttt{ImageUrgencyAnalysis -> MultiSourceTriageSynthesis : ImageUrgencyClassification} & Stage-1 result contract: \texttt{HIGH|MEDIUM|LOW} + confidence associata; tipo/range confidence, invalid/missing semantics e concrete handoff realization da verificare. \\
-\texttt{T08} & \texttt{ClinicalDescriptionGeneration -> MultiSourceTriageSynthesis : ClinicalDescription} & Verificare se Stage4 consuma lo stesso \texttt{ClinicalDescriptionContentContract} riallocato con T06 o una rappresentazione distinta; correlation al caso e realization del passaggio ?. \\
-\texttt{T09} & \texttt{HistoricalCaseSimilarityRetrieval -> MultiSourceTriageSynthesis : RetrievedHistoricalCases} & Historical-cases contract: top-5 noto; per ciascun caso sono documentati \texttt{patient\_id}, \texttt{diagnosis}, \texttt{urgency\_level} e \texttt{similarity\_score}. Restano da chiarire ordering esposto come contratto, identity/correlation e underfill behavior. \\
-\texttt{T10} & \texttt{? -> MultiSourceTriageSynthesis : SymptomInformation} & Symptom-input contract: source ?, schema completo, required/optional, tipi/missing/invalid semantics, same-case correlation ?. \\
-\texttt{T11} & \texttt{MultiSourceTriageSynthesis -> OperationalPriorityDerivation : AITriageSynthesis / CaseUrgency + TriageConfidence} & Stage-4 output contract ora esplicito: la sintesi contiene urgency + confidence usati dal mapping. La funzione di derivazione e' realizzata correntemente dall'\emph{Adaptation Layer}; i riferimenti concreti \texttt{adaptation\_layer.py} e \texttt{map\_urgency\_to\_p\_scale()} sono preservati in \texttt{FR-MR01-04-01}. Resta da verificare se il handoff trasferisca l'intera sintesi o soltanto tali valori, oltre a confidence domain/nullability/invalid handling. Reasoning/pathology non risultano input del mapping corrente. \\
-\texttt{T12} & \texttt{? -> DermaTriage : SymptomInformation} & Symptom-only input contract: esempi itching/bleeding/growth-change/pain; source, schema completo, minimum evidence set e missing-field behavior ?. Nessun BAReferent \texttt{SymptomOnlyUrgencyAnalysis} viene introdotto senza identity evidence autonoma. \\
-\texttt{T13} & \texttt{DermaTriage -> ? : CaseUrgency (+ confidence ?)} & Symptom-only output contract: CaseUrgency supportata; confidence ?, destination ?, applicabilita' dello stesso mapping P1-P4 ?. \\
-\texttt{T14} & \texttt{DermaTriage / OperationalPriorityDerivation -> B4Platform : triage result} & B4 result-write contract: source semantica esatta ?, payload (urgency/confidence/P-scale/reasoning/pathology/specialist/SLA) ?, correlation alla consultation ?. \\
-\texttt{T15} & \texttt{DermaTriage -> LocalDiagnosisStore : persisted result} & Local persistence contract: contenuto/schema, owner/necessita' governata, case correlation, retention, update/finality semantics ?. \texttt{save\_diagnosis()} e' source-supported come realization. \textbf{TODO persistence/storage condiviso con \texttt{FR-03} e \texttt{FR-10}:} distinguere transfer verso store, write/persist riuscito e associazione at-rest; non riaprire \texttt{storedIn} finche' il blocco cumulativo non viene riesaminato. \\
+\textbf{DermaTriageAPI} & -- & logical interface; first acceptance \texttt{FR-C6-01-06} \\
+\textbf{TriageAPI} & -- & DERIVED grouping: access/direct triage \\
+HomeEndpoint & \texttt{GET /} & no auth; home page \\
+TriagePageEndpoint & \texttt{GET /triage} & no auth; upload page \\
+AnalyzeEndpoint & \texttt{POST /analyze} & no auth; full direct pipeline \\
+DiagnoseEndpoint & \texttt{POST /diagnose} & \texttt{X-API-Key}; B4-integrated pipeline \\
+\textbf{OperationalAPI} & -- & DERIVED grouping: service operation/observability \\
+HealthEndpoint & \texttt{GET /health} & no auth; service health check \\
+StatsEndpoint & \texttt{GET /stats} & no auth; pipeline statistics \\
+\textbf{ClinicalReviewAPI} & -- & DERIVED grouping: clinical review administration \\
+AdminDiagnosesEndpoint & \texttt{GET /admin/diagnoses} & \texttt{X-API-Key}; diagnoses dashboard \\
+AdminReviewEndpoint & \texttt{GET /admin/review/\{id\}} & \texttt{X-API-Key}; validation page \\
+AdminValidateEndpoint & \texttt{POST /admin/validate/\{id\}} & \texttt{X-API-Key}; save correction \\
+\textbf{PromptManagementAPI} & -- & DERIVED grouping: prompt management \\
+AdminPromptsEndpoint & \texttt{GET /admin/prompts} & \texttt{X-API-Key}; manager dashboard \\
+AdminPromptsUpdateEndpoint & \texttt{POST /admin/prompts/update} & \texttt{X-API-Key}; rebuild prompts \\
+AdminPromptsResetEndpoint & \texttt{POST /admin/prompts/reset/\{model\}} & \texttt{X-API-Key}; reset default \\
+AdminPromptsHistoryEndpoint & \texttt{GET /admin/prompts/history/\{model\}} & \texttt{X-API-Key}; version history \\
+\textbf{RetrainingAPI} & -- & DERIVED grouping: retraining lifecycle \\
+AdminRetrainingEndpoint & \texttt{GET /admin/retraining} & \texttt{X-API-Key}; dashboard \\
+AdminRetrainingStatusEndpoint & \texttt{GET /admin/retraining/status} & \texttt{X-API-Key}; version/progress \\
+AdminRetrainingCheckTriggerEndpoint & \texttt{POST /admin/retraining/check-and-trigger} & \texttt{X-API-Key}; event trigger \\
+AdminRetrainingRunEndpoint & \texttt{POST /admin/retraining/run} & \texttt{X-API-Key}; manual trigger \\
+AdminRetrainingHistoryEndpoint & \texttt{GET /admin/retraining/history} & \texttt{X-API-Key}; history list \\
+AdminRetrainingRollbackEndpoint & \texttt{POST /admin/retraining/rollback} & \texttt{X-API-Key}; restore previous model \\
+AdminRetrainingFetchEndpoint & \texttt{GET /admin/retraining/fetch} & \texttt{X-API-Key}; pull validated outcomes \\
 \bottomrule
 \end{tabularx}
+\end{ddtacore}
 
-\vspace{1mm}
-\fontsize{6.0}{6.8}\selectfont
-\textbf{Ordine di review:} T06 e' stato riesaminato e riallocato stabilmente in \texttt{FR-MR01-03-02}, nel candidato runtime \texttt{FR-MR01-03-03} e nel registro BA; per questo non compare piu' nella worklist. Proseguire da T07. T01--T05 restano riapribili finche' l'intero MR-01 non supera il gate data-path / information-contract. Eventuali transfer di pura realization (es. query ChromaDB, process/GPU handoff) restano fuori da questo primo inventario e vengono aggiunti solo se emergono come significato materialmente analizzabile.
+\begin{ddtacore}[title={Startup / source identities reused},top=1.5pt,bottom=1.5pt,left=4pt,right=4pt]
+\fontsize{2.85}{3.14}\selectfont
+\textbf{DermaTriageAPIServiceStartup} -- logical Stage 6 startup behavior.\par
+\textbf{UvicornServiceLaunch} -- current realization documented by \texttt{uvicorn app:app --host 0.0.0.0 --port 5000}.\par
+\textbf{DermaTriageAPIService} -- runtime service produced by startup and realization of \texttt{DermaTriageAPI}.\par
+\textbf{FastAPIApplicationArtifact} -- \texttt{app.py}; ``FastAPI main application''; provenance source-tree relation in \texttt{BAP-FRC6-01-07-11}.\par
+Command parameters and \texttt{app:app} remain in documentation; no additional BA relation is inferred.
+\end{ddtacore}
 
-\vspace{1mm}
-\textbf{Decisione documentale - chiusura della review dello split \texttt{FR-MR01-03-03}:}
-la review ha confermato due lifecycle separabili e ha ora chiuso il parent test. La preparazione offline della base vettoriale storica e' riallocata a \texttt{MR-C6 -> DEC-C6-01 -> FR-C6-01-05}; il retrieval runtime resta nello Stage 3 e riprende l'identita' canonica \texttt{FR-MR01-03-03}. I label \texttt{03A/03B} non diventano identita' canoniche. Le BAProposition \texttt{06--09} mantengono i loro ID e hanno current owner occurrence in \texttt{FR-C6-01-05}; \texttt{04--05,10--13} restano nella BA locale runtime di \texttt{FR-MR01-03-03}. Lo split non crea un quinto stage ne' una seconda identita' dell'indice.
+\switchcolumn
+{\sffamily\large\bfseries\color{DDTABlue}BAProposition - accepted composition}\par
+\vspace{0.08em}
+\begin{ddtacore}[title={FR-C6-01-06 proposition register},top=1.5pt,bottom=1.5pt,left=4pt,right=4pt]
+\fontsize{2.42}{2.68}\selectfont
+\renewcommand{\arraystretch}{0.57}
+\setlength{\tabcolsep}{1.5pt}
+\begin{tabularx}{\linewidth}{L{45mm}Y}
+\toprule
+\textbf{ID} & \textbf{Semantic fact} \\
+\midrule
+\emph{BAP-FRC6-01-06-01} & historical/superseded coarse \texttt{produce(EnvironmentSetupProcedure, DermaTriageAPIService)} \\
+\textbf{BAP-FRC6-01-06-02} & \texttt{hasPart(ServiceStartupStage, DermaTriageAPIServiceStartup)} \\
+\textbf{BAP-FRC6-01-06-03} & \texttt{realize}: abstract \texttt{DermaTriageAPIServiceStartup}; realization \texttt{UvicornServiceLaunch} \\
+\textbf{BAP-FRC6-01-06-04} & \texttt{produce}: actor \texttt{DermaTriageAPIServiceStartup}; result \texttt{DermaTriageAPIService} \\
+\textbf{BAP-FRC6-01-06-05} & \texttt{realize}: abstract \texttt{DermaTriageAPI}; realization \texttt{DermaTriageAPIService} \\
+\textbf{BAP-FRC6-01-06-06} & \texttt{hasPart(DermaTriage, DermaTriageAPI)} \\
+\textbf{BAP-FRC6-01-06-07} & \texttt{hasPart(DermaTriageAPI, TriageAPI)} \\
+\textbf{BAP-FRC6-01-06-08} & \texttt{hasPart(DermaTriageAPI, OperationalAPI)} \\
+\textbf{BAP-FRC6-01-06-09} & \texttt{hasPart(DermaTriageAPI, ClinicalReviewAPI)} \\
+\textbf{BAP-FRC6-01-06-10} & \texttt{hasPart(DermaTriageAPI, PromptManagementAPI)} \\
+\textbf{BAP-FRC6-01-06-11} & \texttt{hasPart(DermaTriageAPI, RetrainingAPI)} \\
+\textbf{BAP-FRC6-01-06-12} & \texttt{hasPart(TriageAPI, HomeEndpoint)} \\
+\textbf{BAP-FRC6-01-06-13} & \texttt{hasPart(TriageAPI, TriagePageEndpoint)} \\
+\textbf{BAP-FRC6-01-06-14} & \texttt{hasPart(TriageAPI, AnalyzeEndpoint)} \\
+\textbf{BAP-FRC6-01-06-15} & \texttt{hasPart(TriageAPI, DiagnoseEndpoint)} \\
+\textbf{BAP-FRC6-01-06-16} & \texttt{hasPart(OperationalAPI, HealthEndpoint)} \\
+\textbf{BAP-FRC6-01-06-17} & \texttt{hasPart(OperationalAPI, StatsEndpoint)} \\
+\textbf{BAP-FRC6-01-06-18} & \texttt{hasPart(ClinicalReviewAPI, AdminDiagnosesEndpoint)} \\
+\textbf{BAP-FRC6-01-06-19} & \texttt{hasPart(ClinicalReviewAPI, AdminReviewEndpoint)} \\
+\textbf{BAP-FRC6-01-06-20} & \texttt{hasPart(ClinicalReviewAPI, AdminValidateEndpoint)} \\
+\textbf{BAP-FRC6-01-06-21} & \texttt{hasPart(PromptManagementAPI, AdminPromptsEndpoint)} \\
+\textbf{BAP-FRC6-01-06-22} & \texttt{hasPart(PromptManagementAPI, AdminPromptsUpdateEndpoint)} \\
+\textbf{BAP-FRC6-01-06-23} & \texttt{hasPart(PromptManagementAPI, AdminPromptsResetEndpoint)} \\
+\textbf{BAP-FRC6-01-06-24} & \texttt{hasPart(PromptManagementAPI, AdminPromptsHistoryEndpoint)} \\
+\textbf{BAP-FRC6-01-06-25} & \texttt{hasPart(RetrainingAPI, AdminRetrainingEndpoint)} \\
+\textbf{BAP-FRC6-01-06-26} & \texttt{hasPart(RetrainingAPI, AdminRetrainingStatusEndpoint)} \\
+\textbf{BAP-FRC6-01-06-27} & \texttt{hasPart(RetrainingAPI, AdminRetrainingCheckTriggerEndpoint)} \\
+\textbf{BAP-FRC6-01-06-28} & \texttt{hasPart(RetrainingAPI, AdminRetrainingRunEndpoint)} \\
+\textbf{BAP-FRC6-01-06-29} & \texttt{hasPart(RetrainingAPI, AdminRetrainingHistoryEndpoint)} \\
+\textbf{BAP-FRC6-01-06-30} & \texttt{hasPart(RetrainingAPI, AdminRetrainingRollbackEndpoint)} \\
+\textbf{BAP-FRC6-01-06-31} & \texttt{hasPart(RetrainingAPI, AdminRetrainingFetchEndpoint)} \\
+\bottomrule
+\end{tabularx}
+\end{ddtacore}
 
-\vspace{0.8mm}
-\textbf{Decisione metodologica temporanea - identity continuity e scoped \texttt{condition}:}
-\texttt{DermatologicalTriageEvaluation} resta un unico BAReferent introdotto in \texttt{MR-01} e riusato nei contesti no-image e image-based: il riuso dello stesso BAReferent denota la stessa identita' semantica, non due significati omonimi dipendenti dal contesto. \texttt{FR-MR01-01-01} accetta una proposition \texttt{produce} con \texttt{condition -> LesionImage unavailable}. Nel percorso image-based, \texttt{condition -> LesionImage available} viene applicata soltanto alle proposition runtime il cui fatto e' governato dal percorso corrente: produzioni di Stage 1, Stage 2, Stage 3 runtime e Stage 4, piu' i transfer runtime gia' accettati. Non viene propagata meccanicamente alle proposition \texttt{realize}, ai \texttt{constrain} o alla preparazione offline della base storica: tali fatti restano veri come struttura/realization/contract indipendentemente dalla disponibilita' dell'immagine del singolo caso.\par
+\begin{ddtapropositionaccepted}[top=1.5pt,bottom=1.5pt,left=4pt,right=4pt]
+\fontsize{2.74}{3.04}\selectfont
+\textbf{Active accepted:} \texttt{BAP-FRC6-01-06-02..31}; \texttt{polarity = affirmative}.\par
+\textbf{Grouping boundary:} \texttt{-07..11} e i relativi endpoint containment descrivono composizione logica della API nella view corrente. Non implicano transitivity, ownership del codice, stessa authentication policy o stesso lifecycle per tutti gli endpoint.\par
+\textbf{Documentation boundary:} method, path, auth e descrizioni sono binding/documentation facts usati per ritrovare il dettaglio; la BA conserva identity e relation.
+\end{ddtapropositionaccepted}
 
-\vspace{0.8mm}
-\textbf{Decisione metodologica temporanea - necessity test di \texttt{correlate}:}
-\texttt{BAP-MR01-02} e \texttt{BAP-DEC01-02} sono rimosse dall'insieme attivo delle BAProposition candidate. Nei due passaggi sorgente, ``informazioni disponibili sul caso dermatologico'' e ``informazioni sintomatologiche disponibili sul caso'' descrivono il contesto del caso in analisi e gli input del comportamento di triage; non e' emersa una relazione governata, autonoma e interrogabile che richieda una proposition \texttt{correlate}. La rimozione non elimina i BAReferent ne' le proposition \texttt{produce} gia' candidate. Le occorrenze lessicali di ``correlation'' nella worklist restano domande aperte di binding/identity nei data contract e \textbf{non} indicano l'operatore BA \texttt{correlate}. L'operatore verra' riesaminato soltanto se evidence successiva mostrera' una relazione indipendente non ricostruibile tramite comportamento, identity e contract gia' governati. Questa nota e' temporanea e verra' cancellata a chiusura del case study dopo il consolidamento del risultato.
-\end{ddtaopen}
+\end{paracol}
 %</PAGE-CONTENT:87>
 \clearpage
 %<PAGE-DESC:88>Indice di integrita delle pagine
@@ -8226,7 +8328,7 @@ Ogni pagina possiede un MD5 del proprio contenuto canonico. Il calcolo esclude i
 \IntegrityRow{84}{Registro Base Analysis - BAProposition}{\PageMDfive{84}}
 \IntegrityRow{85}{Registro Base Analysis - C6 source, dependency, configuration e initialization topology increment}{\PageMDfive{85}}
 \IntegrityRow{86}{Registro Base Analysis - C6 FR-C6-01-03B1..B3 e 03C increment}{\PageMDfive{86}}
-\IntegrityRow{87}{MR-01 - Inventario temporaneo transfer, contract e decisioni BA [DA CANCELLARE]}{\PageMDfive{87}}
+\IntegrityRow{87}{Registro Base Analysis - FR-C6-01-06 API composition and endpoint topology}{\PageMDfive{87}}
 \IntegrityRow{88}{Indice di integrita delle pagine}{\PageMDfive{88}}
 %</PAGE-INTEGRITY-ROWS>
 \bottomrule
