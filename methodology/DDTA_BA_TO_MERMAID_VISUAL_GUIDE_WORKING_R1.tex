@@ -44,6 +44,13 @@
 \definecolor{BAConstrainDFive}{HTML}{DBD0F0}
 \definecolor{BAConstrainDSix}{HTML}{F1ECF9}
 \definecolor{BAConstrainDSeven}{HTML}{FFFFFF}
+\definecolor{BATransferStroke}{HTML}{A96A16}
+\definecolor{BATransferFill}{HTML}{FFF4E3}
+\definecolor{BADecisionFill}{HTML}{FFF7E6}
+\definecolor{BARuleStroke}{HTML}{5B6770}
+\definecolor{BAOutcomeStroke}{HTML}{2A7F78}
+\definecolor{BAOutcomeFill}{HTML}{EAF5F3}
+\definecolor{BAGapStroke}{HTML}{C62828}
 
 
 \begin{document}
@@ -1198,5 +1205,240 @@ Verificare identity del Boundary e \texttt{boundaryOf}; preservare la projection
 \end{ddtacheck}
 
 %</MERMAID-ELEMENT:boundary>
+
+
+%<MERMAID-ELEMENT:transfer>
+\clearpage
+\section{\texttt{transfer}}
+\RuleTag
+
+\subsection{Scopo della rappresentazione}
+
+La proposition \texttt{transfer} descrive il trasferimento di un contenuto da un \texttt{source} a un \texttt{destination}. La projection conserva i tre role BA ma non li trasforma in label grafiche. Il contenuto e' una occurrence autonoma e mantiene la propria shape/famiglia visuale.
+
+\begin{ddtacore}[title={TRANSFER-P01 - pattern source -> content -> destination}]
+Una \texttt{transfer} viene proiettata come percorso direzionale in due segmenti: \texttt{source -> content -> destination}. La label \texttt{transfer} compare sul primo segmento come nome dell'operatore. Il secondo segmento resta senza label di role. I nomi \texttt{source}, \texttt{content} e \texttt{destination} appartengono alla BA e \textbf{non} sono edge label Mermaid canoniche.
+\end{ddtacore}
+
+\begin{lstlisting}
+BAP-EX-T01 - transfer
+  source      -> ExampleSender
+  destination -> ExampleReceiver
+  content     -> ExampleMessage
+
+flowchart LR
+  ExampleSender -->|transfer| ExampleMessage
+  ExampleMessage --> ExampleReceiver
+\end{lstlisting}
+
+\begin{ddtaanti}[title={Non serializzare i role come etichette}]
+Non produrre edge label come \texttt{source}, \texttt{content} o \texttt{destination}. La direzione e la posizione dei tre endpoint rendono gia' visibili i role. Una label \texttt{destination} sul secondo segmento duplica la struttura BA e introduce rumore grafico senza nuovo significato.
+\end{ddtaanti}
+
+\begin{ddtaprinciple}[title={La shape del content non deriva da transfer}]
+\texttt{transfer} governa il pattern di connessione, non la forma del contenuto. Un documento, un dataset, un request message o un response envelope mantengono la classe visuale stabilita per la propria natura o per il relativo \texttt{semanticKind}. Lo stesso vale per source e destination.
+\end{ddtaprinciple}
+
+\clearpage
+\subsection{Request/response come due transfer indipendenti}
+
+Un'interazione API puo' essere resa senza introdurre un operatore grafico speciale di ``call''. Quando la BA governa un request leg e un response leg, la projection mostra due proposition \texttt{transfer} distinte e opposte.
+
+\begin{ddtacore}[title={TRANSFER-P02 - request e response non vengono fuse}]
+Il request e il response sono due trasferimenti autonomi. Il primo parte dal caller/evaluator e termina sull'endpoint; il secondo parte dall'endpoint e ritorna al caller/evaluator. Non dedurre \texttt{invoke}, \texttt{initiate}, causalita' interna o protocol behavior ulteriori dal solo fatto che i due transfer appartengano alla stessa interazione applicativa.
+\end{ddtacore}
+
+\begin{lstlisting}
+BAP-EX-T02 - transfer
+  source      -> ExampleVerification
+  destination -> ExampleEndpoint
+  content     -> ExampleRequest
+
+BAP-EX-T03 - transfer
+  source      -> ExampleEndpoint
+  destination -> ExampleVerification
+  content     -> ExampleResponse
+
+flowchart LR
+  ExampleVerification -->|transfer| ExampleRequest
+  ExampleRequest --> ExampleEndpoint
+  ExampleEndpoint -->|transfer| ExampleResponse
+  ExampleResponse --> ExampleVerification
+\end{lstlisting}
+
+\begin{ddtaprinciple}[title={Contenuto parzialmente specificato}]
+La projection puo' mostrare un content BA la cui struttura e' nota solo in parte. Le proprieta' effettivamente governate possono essere annotate nel nodo; quelle non governate restano \texttt{NOT SPECIFIED}. Non si espandono header, body, query parameter, timeout o altri campi soltanto per completare graficamente un request/response.
+\end{ddtaprinciple}
+
+\begin{ddtacheck}[title={Composite response}]
+Se la response e' un whole con proposition \texttt{hasPart} accettate, si applica la regola di containment gia' stabilita: il response envelope diventa il frame del whole e contiene le part. Il transfer termina sul whole, non su una part scelta per convenienza grafica.
+\end{ddtacheck}
+
+\clearpage
+\subsection{Esempio grafico generico request/response}
+
+\begin{center}
+\begin{tikzpicture}[>=Latex,font=\sffamily,node distance=14mm and 13mm]
+  \node[draw=black,fill=BAProduceFill,text=white,line width=1.0pt,
+        minimum width=44mm,minimum height=14mm,align=center] (ver)
+        {ExampleVerification\\[-0.4mm]{\fontsize{5.5}{6}\selectfont caller / evaluator}};
+  \node[draw=BARefStroke,fill=white,text=BARefText,rounded corners=5pt,
+        line width=0.9pt,minimum width=34mm,minimum height=13mm,align=center,
+        right=of ver] (req) {ExampleRequest};
+  \node[draw=BARefStroke,fill=DDTALightBlue,text=BARefText,rounded corners=8pt,
+        line width=1.0pt,minimum width=35mm,minimum height=14mm,align=center,
+        right=of req] (ep) {ExampleEndpoint};
+  \node[draw=BARefStroke,fill=white,text=BARefText,rounded corners=5pt,
+        line width=0.9pt,minimum width=36mm,minimum height=13mm,align=center,
+        below=16mm of req] (resp) {ExampleResponse};
+
+  \draw[-{Latex[length=2.6mm,width=1.7mm]},draw=BARefStroke,line width=1.05pt]
+    (ver.east) -- node[midway,above=2pt,fill=white,draw=BARefStroke,
+    rounded corners=4pt,inner xsep=5pt,inner ysep=1.6pt,font=\sffamily\scriptsize]{transfer} (req.west);
+  \draw[-{Latex[length=2.6mm,width=1.7mm]},draw=BARefStroke,line width=1.05pt]
+    (req.east) -- (ep.west);
+  \draw[-{Latex[length=2.6mm,width=1.7mm]},draw=BARefStroke,line width=1.05pt]
+    (ep.south) |- node[pos=0.58,right=2pt,fill=white,draw=BARefStroke,
+    rounded corners=4pt,inner xsep=5pt,inner ysep=1.6pt,font=\sffamily\scriptsize]{transfer} (resp.east);
+  \draw[-{Latex[length=2.6mm,width=1.7mm]},draw=BARefStroke,line width=1.05pt]
+    (resp.west) -| (ver.south);
+\end{tikzpicture}
+\end{center}
+
+\begin{ddtacheck}[title={Lettura del grafico}]
+Il nodo di verification resta distinto dall'endpoint. Il primo request transfer va dalla verification al request content e poi all'endpoint; il response transfer torna dall'endpoint attraverso il response content. Nessun segmento usa \texttt{destination} come label e nessuna relazione interna endpoint-servizi viene dedotta.
+\end{ddtacheck}
+
+%</MERMAID-ELEMENT:transfer>
+
+%<MERMAID-ELEMENT:decisionRule>
+\clearpage
+\section{\texttt{decisionRule}, branch e diagnostica \texttt{?}}
+\RuleTag
+
+\subsection{Decision node e rule card}
+
+La semantica di \texttt{decisionRule} resta nella Base Analysis. Questa sezione governa soltanto la sua projection quando il View Contract include esplicitamente la local structure. La decisione viene resa con un rombo; la regola/condizione puo' essere mostrata come card separata per non trasformare il testo della rule nel nome del nodo decisionale.
+
+\begin{ddtacore}[title={DECISION-P01 - candidate local structure resta candidate}]
+Se una \texttt{decisionRule} e' \texttt{CANDIDATE / NOT ADMITTED}, la review view puo' visualizzarla soltanto quando la include esplicitamente e deve riportarne lo stato nella rule card. La projection non promuove la local structure a proposition accettata.
+\end{ddtacore}
+
+\begin{lstlisting}
+ReadinessDecision{"condition satisfied?"}
+ReadinessRule["decisionRule / branch.when\nCANDIDATE / NOT ADMITTED\n..."]
+ReadinessRule -.- ReadinessDecision
+\end{lstlisting}
+
+\begin{ddtaprinciple}[title={Association edge della rule card}]
+Il collegamento fra rule card e decision node e' una association di projection, non una nuova proposition BA. Deve restare visivamente secondario e non deve essere letto come flow di esecuzione.
+\end{ddtaprinciple}
+
+\clearpage
+\subsection{Stile dei branch: continuo se governato, tratteggiato verso gap}
+
+\begin{ddtacore}[title={DECISION-P02 - branch governato con linea continua}]
+Quando un branch ha un outcome/result governato nello scope della view, il branch viene reso con freccia continua. La label di branch (per esempio \texttt{true} o \texttt{false}) puo' essere mantenuta sull'edge.
+\end{ddtacore}
+
+\begin{ddtacore}[title={DECISION-P03 - branch non tracciato completamente verso \texttt{?}}]
+Quando la decisione implica un branch complementare ma la BA non governa l'outcome o il percorso successivo, il branch termina su un marker \texttt{?} projection-only e la freccia e' tratteggiata. Il tratteggio segnala che il percorso deve ancora essere ricostruito; non significa ``false'', ``error'' o ``FAIL''.
+\end{ddtacore}
+
+\begin{lstlisting}
+Decision -->|true| GovernedOutcome
+Decision -.->|false| GAP_FALSE
+GAP_FALSE(("?"))
+\end{lstlisting}
+
+\begin{ddtaanti}[title={Non usare il tratteggio per un branch gia' governato}]
+Se anche il branch \texttt{false} porta a un outcome o a un ramo BA governato, la sua freccia deve essere continua come quella del branch \texttt{true}. Il tratteggio non codifica il valore booleano: codifica soltanto l'incompletezza del percorso nella projection corrente.
+\end{ddtaanti}
+
+\clearpage
+\subsection{Marker \texttt{?}: oggetto di projection, non fatto BA}
+
+\begin{ddtacore}[title={GAP-P01 - il marker \texttt{?} non appartiene alla BA}]
+Il cerchio rosso \texttt{?} e' un marker diagnostico della projection. Non e' un \BAR{}, non e' una \BAP{}, non e' un outcome implicito e non puo' essere usato come fonte per reverse inference sulla BA.
+\end{ddtacore}
+
+\begin{ddtacore}[title={GAP-P02 - unresolved semantic relation richiede review evidence}]
+Il pattern \texttt{A -> ? -> B} si usa soltanto quando la review ha identificato esplicitamente che fra due fatti gia' esistenti manca una relazione semanticamente rilevante. Il renderer non confronta automaticamente tutte le coppie di nodi e non inventa ``relazioni sospette''.
+\end{ddtacore}
+
+\begin{lstlisting}
+A -.->|relation NOT SPECIFIED| GAP_REL
+GAP_REL -.-> B
+GAP_REL(("?"))
+\end{lstlisting}
+
+\begin{ddtaprinciple}[title={Linee diagnostiche tratteggiate}]
+I segmenti che collegano un marker \texttt{?} restano tratteggiati per distinguerli dal flow governato. Il marker puo' essere accompagnato da una label esplicativa sull'edge, ma la label descrive il tipo di gap e non crea un nuovo operatore BA.
+\end{ddtaprinciple}
+
+\clearpage
+\subsection{Missing origin e livello di osservazione}
+
+Il missing origin puo' essere rilevato deterministicamente soltanto rispetto al livello di osservazione dichiarato dal View Contract. La presence di un datum in un composite gia' prodotto o trasferito governa la sua provenienza nel contract osservabile, ma non necessariamente la derivazione interna del suo valore.
+
+\begin{ddtacore}[title={GAP-P03 - non marcare automaticamente ogni part come origin-missing}]
+Una part contenuta in un whole che arriva attraverso un flow governato non riceve automaticamente un upstream \texttt{?}. Se la view mostra soltanto il contract osservabile, il containment e il flow del whole sono sufficienti. Il marker di missing origin compare soltanto quando lo scope richiede anche la derivazione interna del valore e nessuna relation upstream la governa.
+\end{ddtacore}
+
+\begin{lstlisting}
+ExampleResponse
+  hasPart -> ExampleStatus
+
+ExampleEndpoint -->|transfer| ExampleResponse
+ExampleResponse --> ExampleVerifier
+
+%% Nessun ? -> ExampleStatus nella contract view.
+%% Se una internal-origin view richiede chi determina ExampleStatus
+%% e la BA non lo governa, allora puo' comparire un diagnostic ?.
+\end{lstlisting}
+
+\begin{ddtaprinciple}[title={Il diagnostic scompare quando la BA si completa}]
+Quando una successiva analisi introduce una relation upstream governata che spiega l'origine interna del datum, il missing-origin marker viene rimosso automaticamente dalla projection aggiornata. Non serve modificare la BA per cancellare il \texttt{?}, perche' il marker non ne ha mai fatto parte.
+\end{ddtaprinciple}
+
+\begin{ddtaanti}[title={Non trasformare un gap interno in assenza di response provenance}]
+Il fatto che non sia documentato come un endpoint determini internamente un campo non autorizza a rappresentare quel campo come se ``nascesse dal nulla'' quando la response envelope e il suo containment sono gia' governati. Contract provenance e internal derivation sono due domande diverse.
+\end{ddtaanti}
+
+\clearpage
+\subsection{Esempio grafico combinato}
+
+\begin{center}
+\begin{tikzpicture}[>=Latex,font=\sffamily,node distance=14mm and 16mm]
+  \node[draw=black,fill=BAProduceFill,text=white,line width=1pt,
+        minimum width=42mm,minimum height=14mm,align=center] (eval) {ExampleVerification};
+  \node[diamond,aspect=2.2,draw=BATransferStroke,fill=BADecisionFill,
+        text=BARefText,line width=1pt,minimum width=37mm,minimum height=16mm,
+        right=24mm of eval,align=center] (dec) {condition\\satisfied?};
+  \node[draw=BARuleStroke,fill=DDTALightGray,text=BARefText,dashed,
+        rounded corners=3pt,line width=0.8pt,minimum width=45mm,minimum height=15mm,
+        above=13mm of dec,align=center,font=\sffamily\scriptsize] (rule)
+        {decisionRule / branch.when\\CANDIDATE / NOT ADMITTED};
+  \node[draw=BAOutcomeStroke,fill=BAOutcomeFill,text=BARefText,rounded corners=5pt,
+        line width=1pt,minimum width=32mm,minimum height=13mm,right=22mm of dec,
+        align=center] (pass) {GovernedOutcome};
+  \node[circle,draw=BAGapStroke,text=BAGapStroke,fill=white,line width=1.3pt,
+        minimum size=9mm,below=15mm of dec,font=\bfseries] (gap) {?};
+
+  \draw[-{Latex[length=2.6mm,width=1.7mm]},draw=BARefStroke,line width=1.0pt]
+    (eval.east) -- node[midway,above=2pt,font=\sffamily\scriptsize,fill=white]{produce} (dec.west);
+  \draw[dashed,draw=BARuleStroke,line width=0.8pt] (rule.south) -- (dec.north);
+  \draw[-{Latex[length=2.6mm,width=1.7mm]},draw=BAOutcomeStroke,line width=1.05pt]
+    (dec.east) -- node[midway,above=2pt,font=\sffamily\scriptsize,fill=white]{true} (pass.west);
+  \draw[-{Latex[length=2.6mm,width=1.7mm]},draw=BAGapStroke,line width=1.0pt,dashed]
+    (dec.south) -- node[midway,right=2pt,font=\sffamily\scriptsize,fill=white,text=BARefText]{false} (gap.north);
+\end{tikzpicture}
+\end{center}
+
+\begin{ddtacheck}[title={Regression minima per decision/gap}]
+Una implementation conforme deve distinguere almeno: (1) branch governato con linea continua; (2) branch complementare non governato con linea tratteggiata verso \texttt{?}; (3) rule card candidate separata dalla topology del flow; (4) marker \texttt{?} privo di identity BA. Se una di queste differenze viene persa, il grafico non conserva lo stato epistemico della BA/review.
+\end{ddtacheck}
+
+%</MERMAID-ELEMENT:decisionRule>
 
 \end{document}

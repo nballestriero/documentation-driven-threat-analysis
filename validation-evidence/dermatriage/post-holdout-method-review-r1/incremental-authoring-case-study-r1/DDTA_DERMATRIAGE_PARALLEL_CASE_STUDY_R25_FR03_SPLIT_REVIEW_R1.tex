@@ -88,7 +88,7 @@
 \expandafter\def\csname PageMDfive65\endcsname{e6a66d58bcca1f1e81450eea2d4afd02}
 \expandafter\def\csname PageMDfive66\endcsname{3fdfd9724d116d4b02585749ad46dfaa}
 \expandafter\def\csname PageMDfive67\endcsname{8a3faac622eda3cc320cdb37e6a6bd6a}
-\expandafter\def\csname PageMDfive68\endcsname{bd1f48231dd83d1c8a334ef30c051285}
+\expandafter\def\csname PageMDfive68\endcsname{273049f5f145a6dd2390fda29d462fac}
 \expandafter\def\csname PageMDfive69\endcsname{e4e69a1be1aee3b3293d697686516419}
 \expandafter\def\csname PageMDfive70\endcsname{c387e7077553935e1097c686a308c971}
 \expandafter\def\csname PageMDfive71\endcsname{73024aab59831480ae989295aba43034}
@@ -100,16 +100,16 @@
 \expandafter\def\csname PageMDfive77\endcsname{7792c0a50a77fa27a86f08bf4ee9a409}
 \expandafter\def\csname PageMDfive78\endcsname{dbbf21ee3061ecf500e2ede6e75cb42b}
 \expandafter\def\csname PageMDfive79\endcsname{aea7b2e7d442693e48ad13a54c811cdb}
-\expandafter\def\csname PageMDfive80\endcsname{08e2f3718f4ba2c285d1a5d6665c990e}
-\expandafter\def\csname PageMDfive81\endcsname{643299c93e8b92895d3a798f6acef2bb}
+\expandafter\def\csname PageMDfive80\endcsname{43a578699ff9d337059d1d34fda59ea0}
+\expandafter\def\csname PageMDfive81\endcsname{f81068ce72b46ff1101f6d8bef4f7586}
 \expandafter\def\csname PageMDfive82\endcsname{748a8c4ef3fe1cb08302d275db81868f}
-\expandafter\def\csname PageMDfive83\endcsname{6d742aced02c4f7553638cc4e3f7cfe5}
-\expandafter\def\csname PageMDfive84\endcsname{172aa525a642da993fe8831670386ff6}
+\expandafter\def\csname PageMDfive83\endcsname{324481c17c4c19ed2e5a1f056ec874cd}
+\expandafter\def\csname PageMDfive84\endcsname{68f3859f73c884957d71b600641976c2}
 \expandafter\def\csname PageMDfive85\endcsname{bffa4fcc5469f12ebe1675a9e8376312}
 \expandafter\def\csname PageMDfive86\endcsname{251e20eabad327061da23389ed917818}
 \expandafter\def\csname PageMDfive87\endcsname{3cf5f4e96ab8903fd5a30023d363b0da}
 \expandafter\def\csname PageMDfive88\endcsname{392da625725431da689302a7e885994a}
-\expandafter\def\csname PageMDfive89\endcsname{746a2d91a1025f851a529d5cc51fb1a9}
+\expandafter\def\csname PageMDfive89\endcsname{9e2133389870e2d04391c6af3fa9d21f}
 %</PAGE-HASH-DEFS>
 
 \newcommand{\PageHashFooter}[1]{%
@@ -6720,16 +6720,16 @@ I FunctionalRequirement devono collegare i verification stage ai referent runtim
 %<PAGE-CONTENT:68>
 \PageHashFooter{\PageMDfive{68}}
 \subsubsection{FR-C7-01-01 - Verifica della readiness operativa del servizio DermaTriage}
-{\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-C7} $\rightarrow$ \texttt{DEC-C7-01} $\rightarrow$ \texttt{FR-C7-01-01}. Reconstruction pass: authority corrente preservata; nuove proposition restano candidate senza ID.}\par
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-C7} $\rightarrow$ \texttt{DEC-C7-01} $\rightarrow$ \texttt{FR-C7-01-01}. Review BA completata distinguendo chiamante di verifica, endpoint, request/response transfer, payload health e valutazione locale della readiness.}\par
 
 \setlength{\columnsep}{7mm}
 \setlength{\columnseprule}{0.35pt}
-\columnratio{0.66}
+\columnratio{0.64}
 \begin{paracol}{2}
 {\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
-\vspace{0.15em}
+\vspace{0.10em}
 \begin{ddtacore}[title={FunctionalRequirement}]
-\fontsize{4.10}{4.50}\selectfont
+\fontsize{3.50}{3.84}\selectfont
 \begin{tabularx}{\linewidth}{L{39mm}Y}
 \toprule
 \textbf{ID} & \texttt{FR-C7-01-01} \\
@@ -6742,59 +6742,87 @@ I FunctionalRequirement devono collegare i verification stage ai referent runtim
 \bottomrule
 \end{tabularx}
 \textbf{Functional obligation}\par
-Verificare la readiness operativa del servizio DermaTriage mediante il controllo di health documentato.
+Verificare la readiness operativa del servizio DermaTriage mediante una chiamata al controllo di health dopo l'avvio del servizio.
 
 \textbf{Functional clauses / inherited \texttt{normativeClause [1..*]}}\par
-La procedura MUST esercitare \texttt{HealthEndpoint} e MUST determinare un \texttt{ReadinessOutcome}. Il controllo MUST richiedere HTTP \texttt{200}. Il valore \texttt{PASS} MUST essere assegnato quando \texttt{efficientnet=true}, \texttt{chromadb=true} e \texttt{b4\_connection=true}. Ollama non appartiene alla pass condition corrente.
+La procedura MUST trasferire una richiesta di health a \texttt{HealthEndpoint} e MUST ricevere la relativa risposta. Il payload di health MUST rendere disponibili \texttt{OverallHealthStatus}, \texttt{EfficientNetHealthStatus}, \texttt{ChromaDBHealthStatus}, \texttt{OllamaHealthStatus} e \texttt{B4ConnectionHealthStatus}. La procedura MUST determinare un \texttt{ReadinessOutcome}; il valore \texttt{PASS} MUST essere assegnato quando \texttt{EfficientNetHealthStatus=true}, \texttt{ChromaDBHealthStatus=true} e \texttt{B4ConnectionHealthStatus=true}. \texttt{OllamaHealthStatus} non appartiene alla local pass condition. Separatamente, il controllo endpoint richiede HTTP \texttt{200}; la relazione congiuntiva con la local PASS rule resta \texttt{NOT SPECIFIED}.
 
 \textbf{Current verification realization}\par
-Binding corrente: \texttt{GET /health}. La risposta espone uno stato complessivo e lo stato dei servizi \texttt{efficientnet}, \texttt{chromadb}, \texttt{ollama}, \texttt{b4\_connection}. La baseline corrente \texttt{status=degraded} resta observation e non viene generalizzata a contract.
+Binding corrente: \texttt{GET /health}. \texttt{HealthCheckRequest} rappresenta il messaggio applicativo trasferito dalla \texttt{ServiceReadinessVerification} a \texttt{HealthEndpoint}; oltre al binding \texttt{GET /health}, struttura interna, header e body restano \texttt{NOT SPECIFIED}. \texttt{HealthCheckResponse} rappresenta la risposta trasferita in senso inverso e contiene \texttt{HTTPResponseStatus} e \texttt{ServiceHealthCheckResult}. Il health result e' composto dai cinque status sopra. L'esempio corrente riporta \texttt{status=degraded}, \texttt{efficientnet=true}, \texttt{chromadb=true}, \texttt{ollama=false}, \texttt{b4\_connection=true}; tali valori osservati non vengono generalizzati a contract.
 
 \textbf{Boundary}\par
-\texttt{GET /stats} e' separato e viene materializzato in \texttt{FR-C7-02-03}. \texttt{GET /docs} resta disponibilita' della realizzazione corrente. Lo startup resta posseduto da \texttt{FR-C6-01-06}. Il comportamento su health response non conforme oltre alla pass condition documentata resta \texttt{NOT SPECIFIED}.
+La BA governa il contract osservabile caller $\leftrightarrow$ endpoint, non il meccanismo interno con cui \texttt{HealthEndpoint} determina i cinque status. Il binding fra un eventuale controllo health esterno B4 e \texttt{B4ConnectionHealthStatus}, la derivazione di \texttt{OverallHealthStatus} e l'esito complementare a \texttt{PASS} restano \texttt{NOT SPECIFIED}. \texttt{GET /stats} e' separato; lo startup resta posseduto da \texttt{FR-C6-01-06}.
 \end{ddtacore}
 
 \switchcolumn
 {\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
-\vspace{0.12em}
+\vspace{0.08em}
 \begin{ddtareferentidentified}[top=2pt,bottom=2pt,left=5pt,right=5pt]
-\fontsize{3.50}{3.86}\selectfont
-\BACandidate{ServiceReadinessVerification} \BANew{}; \BACandidate{ServiceHealthCheckResult} \BANew{}; \BACandidate{ReadinessOutcome} \BANew{}.\par
-\textbf{Reuse pressure:} \texttt{HealthEndpoint}; \texttt{ServiceReadinessVerificationStage}.
+\fontsize{2.82}{3.12}\selectfont
+\BACandidate{HealthCheckRequest} \BANew{}; \BACandidate{HealthCheckResponse} \BANew{}; \BACandidate{HTTPResponseStatus} \BANew{}; \BACandidate{OverallHealthStatus} \BANew{}; \BACandidate{EfficientNetHealthStatus} \BANew{}; \BACandidate{ChromaDBHealthStatus} \BANew{}; \BACandidate{OllamaHealthStatus} \BANew{}; \BACandidate{B4ConnectionHealthStatus} \BANew{}.\par
+\textbf{Reuse:} \texttt{HealthEndpoint}; \texttt{ServiceReadinessVerification}; \texttt{ServiceHealthCheckResult}; \texttt{ReadinessOutcome}.
 \end{ddtareferentidentified}
 \begin{ddtareferentaccepted}[top=2pt,bottom=2pt,left=5pt,right=5pt]
-\fontsize{3.35}{3.70}\selectfont
-\BAAccepted{DermaTriageVerification}; \BAAccepted{DermaTriageVerificationProcedure}; \BAAccepted{DermaTriageAPIService}; \BAAccepted{ServiceReadinessVerification} \BAFirstAccepted{}; \BAAccepted{ServiceHealthCheckResult} \BAFirstAccepted{}; \BAAccepted{ReadinessOutcome} \BAFirstAccepted{}.
+\fontsize{2.72}{3.00}\selectfont
+\BAAccepted{DermaTriageVerification}; \BAAccepted{DermaTriageVerificationProcedure}; \BAAccepted{DermaTriageAPIService}; \BAAccepted{ServiceReadinessVerification}; \BAAccepted{HealthCheckRequest} \BAFirstAccepted{}; \BAAccepted{HealthCheckResponse} \BAFirstAccepted{}; \BAAccepted{HTTPResponseStatus} \BAFirstAccepted{}; \BAAccepted{ServiceHealthCheckResult}; \BAAccepted{ReadinessOutcome}; \BAAccepted{OverallHealthStatus} \BAFirstAccepted{}; \BAAccepted{EfficientNetHealthStatus} \BAFirstAccepted{}; \BAAccepted{ChromaDBHealthStatus} \BAFirstAccepted{}; \BAAccepted{OllamaHealthStatus} \BAFirstAccepted{}; \BAAccepted{B4ConnectionHealthStatus} \BAFirstAccepted{}.
 \end{ddtareferentaccepted}
 \begin{ddtapropositionidentified}[top=2pt,bottom=2pt,left=5pt,right=5pt]
-\fontsize{3.18}{3.52}\selectfont
-\textbf{\texttt{BAP-FRC7-01-01-01}}\par
-\hspace*{1em}\texttt{semanticOperatorKey = produce}\par
+\fontsize{2.38}{2.64}\selectfont
+\texttt{BAP-FRC7-01-01-01}\par
+\texttt{semanticOperatorKey = produce}\par
 \hspace*{1em}\texttt{actor -> ServiceReadinessVerification}\par
 \hspace*{1em}\texttt{input -> ServiceHealthCheckResult}\par
 \hspace*{1em}\texttt{result -> ReadinessOutcome}\par
-\hspace*{1em}\texttt{polarity = affirmative}\par
+\hspace*{1em}\texttt{operatorStructure [CANDIDATE / NOT ADMITTED]}\par
+\hspace*{2em}\texttt{decisionRule}\par
+\hspace*{3em}\texttt{branch}\par
+\hspace*{4em}\texttt{when -> EfficientNetHealthStatus eq true AND ChromaDBHealthStatus eq true AND B4ConnectionHealthStatus eq true}\par
+\hspace*{4em}\texttt{resultAssignment -> ReadinessOutcome = PASS}\par
+\texttt{polarity = affirmative}\par
 \smallskip
-\emph{Candidate reconstruction -- ID non assegnato}\par
-\hspace*{1em}\texttt{semanticOperatorKey = hasPart}\par
-\hspace*{1em}\texttt{whole -> ServiceReadinessVerificationStage}\par
-\hspace*{1em}\texttt{part -> ServiceReadinessVerification}\par
-\hspace*{1em}\texttt{polarity = affirmative}\par
+\texttt{BAP-FRC7-01-01-02..06}\par
+\texttt{semanticOperatorKey = hasPart}\par
+\hspace*{1em}\texttt{whole -> ServiceHealthCheckResult}\par
+\hspace*{1em}\texttt{part -> OverallHealthStatus / EfficientNetHealthStatus / ChromaDBHealthStatus / OllamaHealthStatus / B4ConnectionHealthStatus}\par
+\texttt{polarity = affirmative}\par
 \smallskip
-\emph{Contract pressure -- ID non assegnato}\par
-\hspace*{1em}\texttt{semanticOperatorKey = constrain}\par
-\hspace*{1em}\texttt{constraintTarget -> ServiceHealthCheckResult}\par
-\hspace*{1em}\texttt{constraintValue.property -> services}\par
-\hspace*{2em}\texttt{members -> [efficientnet, chromadb, ollama, b4\_connection]}\par
-\hspace*{1em}\texttt{polarity = affirmative}
+\texttt{BAP-FRC7-01-01-07}\par
+\texttt{semanticOperatorKey = transfer}\par
+\hspace*{1em}\texttt{source -> ServiceReadinessVerification}\par
+\hspace*{1em}\texttt{destination -> HealthEndpoint}\par
+\hspace*{1em}\texttt{content -> HealthCheckRequest}\par
+\texttt{polarity = affirmative}\par
+\smallskip
+\texttt{BAP-FRC7-01-01-08}\par
+\texttt{semanticOperatorKey = transfer}\par
+\hspace*{1em}\texttt{source -> HealthEndpoint}\par
+\hspace*{1em}\texttt{destination -> ServiceReadinessVerification}\par
+\hspace*{1em}\texttt{content -> HealthCheckResponse}\par
+\texttt{polarity = affirmative}\par
+\smallskip
+\texttt{BAP-FRC7-01-01-09..10}\par
+\texttt{semanticOperatorKey = hasPart}\par
+\hspace*{1em}\texttt{whole -> HealthCheckResponse}\par
+\hspace*{1em}\texttt{part -> HTTPResponseStatus / ServiceHealthCheckResult}\par
+\texttt{polarity = affirmative}\par
+\smallskip
+\texttt{BAP-FRC7-01-01-11}\par
+\texttt{semanticOperatorKey = constrain}\par
+\hspace*{1em}\texttt{target -> HTTPResponseStatus}\par
+\hspace*{1em}\texttt{localProperty -> value}\par
+\hspace*{1em}\texttt{vocabulary -> [200]}\par
+\texttt{polarity = affirmative}
 \end{ddtapropositionidentified}
 \begin{ddtapropositionaccepted}[top=2pt,bottom=2pt,left=5pt,right=5pt]
-\fontsize{3.35}{3.70}\selectfont
-\textbf{BAP-FRC7-01-01-01}. Le nuove \texttt{hasPart/constrain} restano target di review; nessuna promotion in questo reconstruction pass.
+\fontsize{2.72}{3.00}\selectfont
+\textbf{\texttt{BAP-FRC7-01-01-01..11}}. I due \texttt{transfer} governano request e response come fatti distinti; i \texttt{hasPart} governano response envelope e health payload. La \texttt{decisionRule} resta candidate/non ammessa come struttura locale della proposition \texttt{-01}.
 \end{ddtapropositionaccepted}
 \begin{ddtaopenrelations}[top=2pt,bottom=2pt,left=5pt,right=5pt]
-\fontsize{3.08}{3.42}\selectfont
-La pass condition resta candidate \texttt{decisionRule}; non viene convertita in \texttt{condition}. Il pressure test del contract verifica se le proprieta' della health response possano essere governate come \texttt{constrain} sul BAReferent che entra come \texttt{input} nella verifica.
+\fontsize{2.48}{2.76}\selectfont
+\textbf{Internal health derivation.} I transfer governano il contract osservabile; non governano come \texttt{HealthEndpoint} interagisca internamente con EfficientNet, ChromaDB, Ollama o B4 ne' come determini i cinque status.\par
+\textbf{Overall derivation.} Nessuna rule accettata deriva \texttt{OverallHealthStatus} dagli status di servizio.\par
+\textbf{HTTP 200 / PASS.} \texttt{HTTPResponseStatus=200} e local PASS rule sono entrambi governati, ma la loro congiunzione nel mapping di \texttt{ReadinessOutcome} non e' specificata.\par
+\textbf{B4 binding.} Nessuna relation accettata collega un health observation esterno B4 a \texttt{B4ConnectionHealthStatus}. L'esito complementare a PASS resta \texttt{NOT SPECIFIED}.
 \end{ddtaopenrelations}
 \end{paracol}
 %</PAGE-CONTENT:68>
@@ -7568,15 +7596,15 @@ Per-gate outcome pressure: una sola FR contiene quattro criterion outcomes ma ne
 %<PAGE-CONTENT:80>
 \PageHashFooter{\PageMDfive{80}}
 \section*{Registro Base Analysis - C7 reconstruction target}
-{\sffamily\scriptsize\color{DDTAGray}Registro di lavoro per la review FR-by-FR. Le nuove identity/proposition restano candidate; gli ID nuovi non vengono assegnati prima della review individuale. Le proposition gia' accettate mantengono l'authority corrente finche' un rework non viene approvato.}\par
+{\sffamily\scriptsize\color{DDTAGray}Registro di lavoro per la review FR-by-FR. Le identity/proposition non ancora riesaminate restano candidate; gli ID nuovi vengono assegnati soltanto dopo la relativa review individuale. Le proposition gia' accettate mantengono l'authority corrente finche' un rework non viene approvato.}\par
 
-\begin{ddtacore}[title={C7 full reconstruction - candidate deltas}]
+\begin{ddtacore}[title={C7 full reconstruction - review status e candidate deltas}]
 \fontsize{3.28}{3.58}\selectfont
 \begin{tabularx}{\linewidth}{L{29mm}L{76mm}Y}
 \toprule
 \textbf{Owner} & \textbf{Reconstruction BA} & \textbf{Review target} \\
 \midrule
-\texttt{FR-C7-01-01} & ServiceReadinessVerification + Health result contract pressure & keep accepted produce; add stage containment / constrain only after review. \\
+\texttt{FR-C7-01-01} & ServiceReadinessVerification + HealthCheckRequest/Response + composite Health result & review closed: \texttt{produce}; request/response \texttt{transfer}; response-envelope + health-payload \texttt{hasPart}; status \texttt{constrain}; local \texttt{decisionRule} remains candidate. \\
 \texttt{FR-C7-02-01} & Reuse AnalyzeEndpoint; DirectAnalysisRequest/Response; ResponseTimeObservation & pressure-test runtime produce + constrain; rework accepted verification input away from generic observation. \\
 \texttt{FR-C7-02-02} & Reuse DiagnoseEndpoint; B4IntegratedDiagnosisRequest & constrain consulto\_id; reuse governed write-back criterion; no duplicate transfer. \\
 \texttt{FR-C7-02-03} & PipelineStatisticsResponse; StatsEndpointVerification; PipelineStatisticsObservation & NEW candidate FR; no pass condition/outcome. \\
@@ -7598,11 +7626,11 @@ Il reconstruction pass assume come ipotesi da verificare: un input/result di \te
 \end{ddtaopen}
 %</PAGE-CONTENT:80>
 \clearpage
-%<PAGE-DESC:81>MR-C7 - Source closure e open points prima della review FR-by-FR
+%<PAGE-DESC:81>MR-C7 - Source closure e progress della review FR-by-FR
 %<PAGE-CONTENT:81>
 \PageHashFooter{\PageMDfive{81}}
-\section*{MR-C7 - Source closure e open points prima della review FR-by-FR}
-{\sffamily\scriptsize\color{DDTAGray}Checkpoint successivo alla regression OR4/OR5/OR2. L'inventario FR e' ora completo come working reconstruction; la review puntuale resta necessaria prima della promotion dei candidate BA fact.}\par
+\section*{MR-C7 - Source closure e progress della review FR-by-FR}
+{\sffamily\scriptsize\color{DDTAGray}Checkpoint successivo alla regression source-first. L'inventario FR e' ora completo come working reconstruction; la review puntuale procede FR-by-FR prima della promotion dei candidate BA fact ancora aperti.}\par
 
 \setlength{\columnsep}{7mm}\setlength{\columnseprule}{0.35pt}\columnratio{0.62}\begin{paracol}{2}
 {\sffamily\large\bfseries\color{DDTANavy}Source closure}\par\vspace{0.15em}
@@ -7629,18 +7657,19 @@ Nessuna ulteriore famiglia source-supported emerge per \texttt{/docs}, prompt-ma
 {\sffamily\large\bfseries\color{DDTABlue}Open points / prossimo gate}\par\vspace{0.15em}
 \begin{ddtaopen}[title={Da chiudere durante la review individuale}]
 \fontsize{3.54}{3.90}\selectfont
+\textbf{Service readiness.} \texttt{FR-C7-01-01} e' chiuso per la review corrente: la verifica trasferisce una \texttt{HealthCheckRequest} a \texttt{HealthEndpoint}, riceve una \texttt{HealthCheckResponse} composta da \texttt{HTTPResponseStatus} e \texttt{ServiceHealthCheckResult}, quindi valuta il payload. La derivazione interna dei cinque status e la relazione HTTP-200/local-PASS restano \texttt{NOT SPECIFIED}.\par
 \textbf{Contract pressure.} Verificare \texttt{produce + constrain} sui request/result di \texttt{/analyze}, \texttt{/diagnose}, \texttt{/stats} e sugli output Stage 1--4.\par
 \textbf{Accepted C7-P02 rework.} Le identity/proposition correnti di \texttt{FR-C7-02-01/02} non vengono sostituite finche' il rework non e' approvato.\par
 \textbf{RC-002.} Stage 4 oracle e runtime content contract restano da riconciliare nell'owner corretto.\par
 \textbf{Full pipeline.} SLA owner/identity resta aperto; ``complete response'' resta criterio non scomposto.\par
 \textbf{B4 aggregation.} Sei controlli con outcome locali, nessun overall rule; decidere se lo split e' necessario.\par
 \textbf{Retraining.} Cinque controlli source-closed, expected response senza pass condition.\par
-\textbf{Quality.} HIGH sensitivity e' normalizzato a \texttt{>90\%} sulla base di OR2; nessun overall acceptance result.
+\textbf{Quality.} HIGH sensitivity e' normalizzato a \texttt{>90\%} secondo il gate governato corrente; nessun overall acceptance result.
 \end{ddtaopen}
 
 \begin{ddtaquestions}
 \fontsize{3.62}{3.98}\selectfont
-Prossimo gate: partire da \texttt{FR-C7-01-01}, approvare o correggere documentazione e BA; quindi aggiornare progressivamente il Mermaid. Continuare con \texttt{FR-C7-02-01}, dove il contract pressure test e' piu' completo. Solo dopo la review dei dodici FR si promuovono i nuovi BA fact e si aggiorna il registro accepted.
+Gate corrente chiuso: \texttt{FR-C7-01-01} e' stato riesaminato con una coppia deterministica request/response basata su \texttt{transfer}. Il prossimo gate e' \texttt{FR-C7-02-01}; il Mermaid cumulativo deve distinguere caller, endpoint, response envelope, payload e valutazione locale senza inventare le interazioni interne dell'endpoint con i servizi.
 \end{ddtaquestions}
 \end{paracol}
 %</PAGE-CONTENT:81>
@@ -7794,17 +7823,37 @@ ReadinessOutcome & \textbf{\texttt{FR-C7-01-01}} \\
 \renewcommand{\arraystretch}{0.69}
 %</PAGE-CONTENT:82>
 \clearpage
-%<PAGE-DESC:83>Registro Base Analysis - BAReferent C7-P02 - first acceptance
+%<PAGE-DESC:83>Registro Base Analysis - BAReferent C7 increment
 %<PAGE-CONTENT:83>
 \PageHashFooter{\PageMDfive{83}}
-\section*{Registro Base Analysis - BAReferent C7-P02}
-\begin{ddtacore}[title={CONTINUITA' DEL REGISTRO - C7-P02}]
+\section*{Registro Base Analysis - BAReferent C7 increment}
+\begin{ddtacore}[title={CONTINUITA' DEL REGISTRO - C7}]
 \fontsize{6.0}{6.6}\selectfont
-Questa pagina continua il registro BA con le identity accettate nello split di \texttt{C7-P02}. Il riferimento in \textbf{grassetto} indica la prima accettazione. La separazione fisica su questa pagina non introduce un nuovo stato BA.
+Questa pagina continua il registro BA con le identity C7 accettate durante la review FR-by-FR, includendo il completamento di \texttt{FR-C7-01-01} e le identity gia' accettate nello split di \texttt{C7-P02}. Il riferimento in \textbf{grassetto} indica la prima accettazione. La separazione fisica su questa pagina non introduce un nuovo stato BA.
 \end{ddtacore}
 
-\vspace{0.6mm}
-{\sffamily\bfseries\color{DDTABlue}BAReferent}\par
+\vspace{0.4mm}
+{\sffamily\bfseries\color{DDTABlue}BAReferent - FR-C7-01-01 completion}\par
+\vspace{0.15mm}
+\fontsize{4.35}{4.75}\selectfont
+\renewcommand{\arraystretch}{0.88}
+\begin{tabularx}{\textwidth}{L{58mm}Y}
+\toprule
+\textbf{BAReferent} & \textbf{Riferimento documentale / boundary} \\
+\midrule
+HealthCheckRequest & \textbf{\texttt{FR-C7-01-01}} -- messaggio applicativo trasferito dalla verification a \texttt{HealthEndpoint}; binding corrente \texttt{GET /health}; struttura interna ulteriore \texttt{NOT SPECIFIED}. \\
+HealthCheckResponse & \textbf{\texttt{FR-C7-01-01}} -- risposta applicativa trasferita da \texttt{HealthEndpoint} alla verification; composite di status HTTP e payload health. \\
+HTTPResponseStatus & \textbf{\texttt{FR-C7-01-01}} -- parte della health response; acceptance vocabulary corrente \texttt{[200]}. \\
+OverallHealthStatus & \textbf{\texttt{FR-C7-01-01}} -- parte del health result; derivazione interna del valore \texttt{NOT SPECIFIED}. \\
+EfficientNetHealthStatus & \textbf{\texttt{FR-C7-01-01}} -- parte del health result; criterio della local PASS rule; origine interna \texttt{NOT SPECIFIED}. \\
+ChromaDBHealthStatus & \textbf{\texttt{FR-C7-01-01}} -- parte del health result; criterio della local PASS rule; origine interna \texttt{NOT SPECIFIED}. \\
+OllamaHealthStatus & \textbf{\texttt{FR-C7-01-01}} -- parte del health result; fuori dalla local PASS rule; origine interna \texttt{NOT SPECIFIED}. \\
+B4ConnectionHealthStatus & \textbf{\texttt{FR-C7-01-01}} -- parte del health result; criterio della local PASS rule; binding health B4 \texttt{NOT SPECIFIED}. \\
+\bottomrule
+\end{tabularx}
+
+\vspace{0.45mm}
+{\sffamily\bfseries\color{DDTABlue}BAReferent - C7-P02}\par
 \vspace{0.2mm}
 \fontsize{6.1}{6.75}\selectfont
 \renewcommand{\arraystretch}{1.03}
@@ -7955,7 +8004,12 @@ Questa pagina continua il registro BA della pagina precedente. Il \textbf{grasse
 \textbf{\texttt{BAP-FRC6-01-06-06..31}} & \texttt{FR-C6-01-06} -- \texttt{DermaTriage -> DermaTriageAPI} composition, five logical API groups and 20 endpoint identities; full mapping pag.~87 \\
 \textbf{\texttt{BAP-FRC6-01-07-01..05,07..11}} & \texttt{FR-C6-01-07} -- source-code acquisition/containment, Stage 1 topology and source-tree provenance of \texttt{retrainer.py}, \texttt{requirements.txt}, \texttt{.env.example}, \texttt{rag/indexer.py}, \texttt{app.py} \\
 \textbf{\texttt{BAP-DECC7-01-01}} & \texttt{DEC-C7-01} -- \texttt{realize} (\texttt{DermaTriageVerification -> DermaTriageVerificationProcedure}); non implica framework, ordering universale, PASS/FAIL per ogni controllo o ownership dei criteri verificati \\
-\textbf{\texttt{BAP-FRC7-01-01-01}} & \texttt{FR-C7-01-01} -- accepted \texttt{produce} (\texttt{ServiceReadinessVerification}: \texttt{ServiceHealthCheckResult} $\rightarrow$ \texttt{ReadinessOutcome}); candidate \texttt{operatorStructure.decisionRule} assegna \texttt{PASS} quando la pass condition governata e' soddisfatta; nessun \texttt{ELSE/FAIL} inferito \\
+\textbf{\texttt{BAP-FRC7-01-01-01}} & \texttt{FR-C7-01-01} -- \texttt{produce} (\texttt{ServiceReadinessVerification}: \texttt{ServiceHealthCheckResult} $\rightarrow$ \texttt{ReadinessOutcome}); local \texttt{decisionRule} candidate assegna \texttt{PASS} sui tre status governati; nessun \texttt{ELSE/FAIL} inferito \\
+\textbf{\texttt{BAP-FRC7-01-01-02..06}} & \texttt{FR-C7-01-01} -- cinque \texttt{hasPart} da \texttt{ServiceHealthCheckResult} ai cinque status documentati \\
+\textbf{\texttt{BAP-FRC7-01-01-07}} & \texttt{FR-C7-01-01} -- request \texttt{transfer}: \texttt{ServiceReadinessVerification -> HealthEndpoint : HealthCheckRequest} \\
+\textbf{\texttt{BAP-FRC7-01-01-08}} & \texttt{FR-C7-01-01} -- response \texttt{transfer}: \texttt{HealthEndpoint -> ServiceReadinessVerification : HealthCheckResponse} \\
+\textbf{\texttt{BAP-FRC7-01-01-09..10}} & \texttt{FR-C7-01-01} -- \texttt{hasPart(HealthCheckResponse, HTTPResponseStatus / ServiceHealthCheckResult)} \\
+\textbf{\texttt{BAP-FRC7-01-01-11}} & \texttt{FR-C7-01-01} -- \texttt{constrain} su \texttt{HTTPResponseStatus.value} con vocabulary \texttt{[200]}; relazione congiuntiva con la local PASS rule NOT SPECIFIED \\
 \textbf{\texttt{BAP-FRC7-02-01-01}} & \texttt{FR-C7-02-01} -- accepted \texttt{produce} (direct-analysis observation $\rightarrow$ verification outcome); nested \texttt{decisionRule} remains candidate/non-admitted and requires source-grounded \texttt{lt} plus governed-domain criterion reuse \\
 \textbf{\texttt{BAP-FRC7-02-02-01}} & \texttt{FR-C7-02-02} -- accepted \texttt{produce} (B4-integrated endpoint observation $\rightarrow$ verification outcome); nested \texttt{decisionRule} remains candidate/non-admitted, combines HTTP \texttt{eq 200} with governed B4 write-occurrence criterion reuse, and creates no duplicate transfer \\
 \bottomrule
@@ -8428,9 +8482,9 @@ Ogni pagina possiede un MD5 del proprio contenuto canonico. Il calcolo esclude i
 \IntegrityRow{78}{MR-C7 > DEC-C7-01 > FR-C7-06-01 [candidate] - Verifica dei controlli operativi del retraining}{\PageMDfive{78}}
 \IntegrityRow{79}{MR-C7 > DEC-C7-01 > FR-C7-07-01 [candidate] - Verifica dei quality gate assoluti del classificatore di urgenza}{\PageMDfive{79}}
 \IntegrityRow{80}{Registro Base Analysis - C7 reconstruction target}{\PageMDfive{80}}
-\IntegrityRow{81}{MR-C7 - Source closure e open points prima della review FR-by-FR}{\PageMDfive{81}}
+\IntegrityRow{81}{MR-C7 - Source closure e progress della review FR-by-FR}{\PageMDfive{81}}
 \IntegrityRow{82}{Registro Base Analysis - BAReferent e BAProposition}{\PageMDfive{82}}
-\IntegrityRow{83}{Registro Base Analysis - BAReferent C7-P02 - first acceptance}{\PageMDfive{83}}
+\IntegrityRow{83}{Registro Base Analysis - BAReferent C7 increment}{\PageMDfive{83}}
 \IntegrityRow{84}{Registro Base Analysis - BAProposition}{\PageMDfive{84}}
 \IntegrityRow{85}{Registro Base Analysis - C6 source, dependency, configuration e initialization topology increment}{\PageMDfive{85}}
 \IntegrityRow{86}{Registro Base Analysis - C6 FR-C6-01-03B1..B3 e 03C increment}{\PageMDfive{86}}
