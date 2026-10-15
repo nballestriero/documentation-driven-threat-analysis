@@ -88,9 +88,9 @@
 \expandafter\def\csname PageMDfive65\endcsname{e6a66d58bcca1f1e81450eea2d4afd02}
 \expandafter\def\csname PageMDfive66\endcsname{3fdfd9724d116d4b02585749ad46dfaa}
 \expandafter\def\csname PageMDfive67\endcsname{8a3faac622eda3cc320cdb37e6a6bd6a}
-\expandafter\def\csname PageMDfive68\endcsname{273049f5f145a6dd2390fda29d462fac}
-\expandafter\def\csname PageMDfive69\endcsname{e4e69a1be1aee3b3293d697686516419}
-\expandafter\def\csname PageMDfive70\endcsname{c387e7077553935e1097c686a308c971}
+\expandafter\def\csname PageMDfive68\endcsname{fec369a26fc3b1b41b5b77400e2505c4}
+\expandafter\def\csname PageMDfive69\endcsname{84804a250901e2bfe704b971c5c31845}
+\expandafter\def\csname PageMDfive70\endcsname{7c16bf063a7aacda7891ea447db9823c}
 \expandafter\def\csname PageMDfive71\endcsname{73024aab59831480ae989295aba43034}
 \expandafter\def\csname PageMDfive72\endcsname{bbe78e89f8e0570bf6e925ccca602980}
 \expandafter\def\csname PageMDfive73\endcsname{4af5c8388084b0af4a6ebfbb0d1a8171}
@@ -100,16 +100,16 @@
 \expandafter\def\csname PageMDfive77\endcsname{7792c0a50a77fa27a86f08bf4ee9a409}
 \expandafter\def\csname PageMDfive78\endcsname{dbbf21ee3061ecf500e2ede6e75cb42b}
 \expandafter\def\csname PageMDfive79\endcsname{aea7b2e7d442693e48ad13a54c811cdb}
-\expandafter\def\csname PageMDfive80\endcsname{43a578699ff9d337059d1d34fda59ea0}
-\expandafter\def\csname PageMDfive81\endcsname{f81068ce72b46ff1101f6d8bef4f7586}
+\expandafter\def\csname PageMDfive80\endcsname{3ee19313a5962a15c6a1cf6f57c48c73}
+\expandafter\def\csname PageMDfive81\endcsname{d058e9db81793b5ecbe1703156012895}
 \expandafter\def\csname PageMDfive82\endcsname{748a8c4ef3fe1cb08302d275db81868f}
-\expandafter\def\csname PageMDfive83\endcsname{324481c17c4c19ed2e5a1f056ec874cd}
-\expandafter\def\csname PageMDfive84\endcsname{68f3859f73c884957d71b600641976c2}
+\expandafter\def\csname PageMDfive83\endcsname{f1072354fa516b5f91c2d361f5f92201}
+\expandafter\def\csname PageMDfive84\endcsname{b5c3ca193163598d30ba0200a8477990}
 \expandafter\def\csname PageMDfive85\endcsname{bffa4fcc5469f12ebe1675a9e8376312}
 \expandafter\def\csname PageMDfive86\endcsname{251e20eabad327061da23389ed917818}
 \expandafter\def\csname PageMDfive87\endcsname{3cf5f4e96ab8903fd5a30023d363b0da}
 \expandafter\def\csname PageMDfive88\endcsname{392da625725431da689302a7e885994a}
-\expandafter\def\csname PageMDfive89\endcsname{9e2133389870e2d04391c6af3fa9d21f}
+\expandafter\def\csname PageMDfive89\endcsname{28227b34a3cd57714cc6790898111271}
 %</PAGE-HASH-DEFS>
 
 \newcommand{\PageHashFooter}[1]{%
@@ -6720,7 +6720,7 @@ I FunctionalRequirement devono collegare i verification stage ai referent runtim
 %<PAGE-CONTENT:68>
 \PageHashFooter{\PageMDfive{68}}
 \subsubsection{FR-C7-01-01 - Verifica della readiness operativa del servizio DermaTriage}
-{\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-C7} $\rightarrow$ \texttt{DEC-C7-01} $\rightarrow$ \texttt{FR-C7-01-01}. Review BA completata distinguendo chiamante di verifica, endpoint, request/response transfer, payload health e valutazione locale della readiness.}\par
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-C7} $\rightarrow$ \texttt{DEC-C7-01} $\rightarrow$ \texttt{FR-C7-01-01}. Review BA completata distinguendo stage di appartenenza, chiamante di verifica, endpoint, request/response transfer, payload health e valutazione locale della readiness.}\par
 
 \setlength{\columnsep}{7mm}
 \setlength{\columnseprule}{0.35pt}
@@ -6758,20 +6758,19 @@ La BA governa il contract osservabile caller $\leftrightarrow$ endpoint, non il 
 {\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
 \vspace{0.08em}
 \begin{ddtareferentidentified}[top=2pt,bottom=2pt,left=5pt,right=5pt]
-\fontsize{2.82}{3.12}\selectfont
+\fontsize{2.76}{3.06}\selectfont
 \BACandidate{HealthCheckRequest} \BANew{}; \BACandidate{HealthCheckResponse} \BANew{}; \BACandidate{HTTPResponseStatus} \BANew{}; \BACandidate{OverallHealthStatus} \BANew{}; \BACandidate{EfficientNetHealthStatus} \BANew{}; \BACandidate{ChromaDBHealthStatus} \BANew{}; \BACandidate{OllamaHealthStatus} \BANew{}; \BACandidate{B4ConnectionHealthStatus} \BANew{}.\par
-\textbf{Reuse:} \texttt{HealthEndpoint}; \texttt{ServiceReadinessVerification}; \texttt{ServiceHealthCheckResult}; \texttt{ReadinessOutcome}.
+\textbf{Reuse:} \texttt{ServiceReadinessVerificationStage}; \texttt{HealthEndpoint}; \texttt{ServiceReadinessVerification}; \texttt{ServiceHealthCheckResult}; \texttt{ReadinessOutcome}.
 \end{ddtareferentidentified}
 \begin{ddtareferentaccepted}[top=2pt,bottom=2pt,left=5pt,right=5pt]
-\fontsize{2.72}{3.00}\selectfont
-\BAAccepted{DermaTriageVerification}; \BAAccepted{DermaTriageVerificationProcedure}; \BAAccepted{DermaTriageAPIService}; \BAAccepted{ServiceReadinessVerification}; \BAAccepted{HealthCheckRequest} \BAFirstAccepted{}; \BAAccepted{HealthCheckResponse} \BAFirstAccepted{}; \BAAccepted{HTTPResponseStatus} \BAFirstAccepted{}; \BAAccepted{ServiceHealthCheckResult}; \BAAccepted{ReadinessOutcome}; \BAAccepted{OverallHealthStatus} \BAFirstAccepted{}; \BAAccepted{EfficientNetHealthStatus} \BAFirstAccepted{}; \BAAccepted{ChromaDBHealthStatus} \BAFirstAccepted{}; \BAAccepted{OllamaHealthStatus} \BAFirstAccepted{}; \BAAccepted{B4ConnectionHealthStatus} \BAFirstAccepted{}.
+\fontsize{2.66}{2.94}\selectfont
+\BAAccepted{DermaTriageVerification}; \BAAccepted{DermaTriageVerificationProcedure}; \BAAccepted{ServiceReadinessVerificationStage}; \BAAccepted{DermaTriageAPIService}; \BAAccepted{ServiceReadinessVerification}; \BAAccepted{HealthCheckRequest} \BAFirstAccepted{}; \BAAccepted{HealthCheckResponse} \BAFirstAccepted{}; \BAAccepted{HTTPResponseStatus} \BAFirstAccepted{}; \BAAccepted{ServiceHealthCheckResult}; \BAAccepted{ReadinessOutcome}; \BAAccepted{OverallHealthStatus} \BAFirstAccepted{}; \BAAccepted{EfficientNetHealthStatus} \BAFirstAccepted{}; \BAAccepted{ChromaDBHealthStatus} \BAFirstAccepted{}; \BAAccepted{OllamaHealthStatus} \BAFirstAccepted{}; \BAAccepted{B4ConnectionHealthStatus} \BAFirstAccepted{}.
 \end{ddtareferentaccepted}
 \begin{ddtapropositionidentified}[top=2pt,bottom=2pt,left=5pt,right=5pt]
-\fontsize{2.38}{2.64}\selectfont
+\fontsize{2.30}{2.54}\selectfont
 \texttt{BAP-FRC7-01-01-01}\par
 \texttt{semanticOperatorKey = produce}\par
 \hspace*{1em}\texttt{actor -> ServiceReadinessVerification}\par
-\hspace*{1em}\texttt{input -> ServiceHealthCheckResult}\par
 \hspace*{1em}\texttt{result -> ReadinessOutcome}\par
 \hspace*{1em}\texttt{operatorStructure [CANDIDATE / NOT ADMITTED]}\par
 \hspace*{2em}\texttt{decisionRule}\par
@@ -6811,14 +6810,20 @@ La BA governa il contract osservabile caller $\leftrightarrow$ endpoint, non il 
 \hspace*{1em}\texttt{target -> HTTPResponseStatus}\par
 \hspace*{1em}\texttt{localProperty -> value}\par
 \hspace*{1em}\texttt{vocabulary -> [200]}\par
+\texttt{polarity = affirmative}\par
+\smallskip
+\texttt{BAP-FRC7-01-01-12}\par
+\texttt{semanticOperatorKey = hasPart}\par
+\hspace*{1em}\texttt{whole -> ServiceReadinessVerificationStage}\par
+\hspace*{1em}\texttt{part -> ServiceReadinessVerification}\par
 \texttt{polarity = affirmative}
 \end{ddtapropositionidentified}
 \begin{ddtapropositionaccepted}[top=2pt,bottom=2pt,left=5pt,right=5pt]
-\fontsize{2.72}{3.00}\selectfont
-\textbf{\texttt{BAP-FRC7-01-01-01..11}}. I due \texttt{transfer} governano request e response come fatti distinti; i \texttt{hasPart} governano response envelope e health payload. La \texttt{decisionRule} resta candidate/non ammessa come struttura locale della proposition \texttt{-01}.
+\fontsize{2.62}{2.90}\selectfont
+\textbf{\texttt{BAP-FRC7-01-01-01..12}}. I due \texttt{transfer} governano request e response come fatti distinti; i \texttt{hasPart} governano response envelope, health payload e placement del behavior nello \texttt{ServiceReadinessVerificationStage}. La \texttt{decisionRule} resta candidate/non ammessa come struttura locale della proposition \texttt{-01}.
 \end{ddtapropositionaccepted}
 \begin{ddtaopenrelations}[top=2pt,bottom=2pt,left=5pt,right=5pt]
-\fontsize{2.48}{2.76}\selectfont
+\fontsize{2.36}{2.62}\selectfont
 \textbf{Internal health derivation.} I transfer governano il contract osservabile; non governano come \texttt{HealthEndpoint} interagisca internamente con EfficientNet, ChromaDB, Ollama o B4 ne' come determini i cinque status.\par
 \textbf{Overall derivation.} Nessuna rule accettata deriva \texttt{OverallHealthStatus} dagli status di servizio.\par
 \textbf{HTTP 200 / PASS.} \texttt{HTTPResponseStatus=200} e local PASS rule sono entrambi governati, ma la loro congiunzione nel mapping di \texttt{ReadinessOutcome} non e' specificata.\par
@@ -6831,16 +6836,16 @@ La BA governa il contract osservabile caller $\leftrightarrow$ endpoint, non il 
 %<PAGE-CONTENT:69>
 \PageHashFooter{\PageMDfive{69}}
 \subsubsection{FR-C7-02-01 - Verifica dell'endpoint di analisi diretta}
-{\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-C7} $\rightarrow$ \texttt{DEC-C7-01} $\rightarrow$ \texttt{FR-C7-02-01}. Reconstruction target: riuso \texttt{AnalyzeEndpoint}; authority BA corrente preservata fino alla review individuale.}\par
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-C7} $\rightarrow$ \texttt{DEC-C7-01} $\rightarrow$ \texttt{FR-C7-02-01}. Review BA completata riusando \texttt{AnalyzeEndpoint}, separando request/response transfer e collocando il behavior nello \texttt{EndpointVerificationStage}.}\par
 
 \setlength{\columnsep}{7mm}
 \setlength{\columnseprule}{0.35pt}
-\columnratio{0.66}
+\columnratio{0.64}
 \begin{paracol}{2}
 {\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
-\vspace{0.12em}
+\vspace{0.10em}
 \begin{ddtacore}[title={FunctionalRequirement}]
-\fontsize{3.72}{4.08}\selectfont
+\fontsize{3.52}{3.86}\selectfont
 \begin{tabularx}{\linewidth}{L{39mm}Y}
 \toprule
 \textbf{ID} & \texttt{FR-C7-02-01} \\
@@ -6853,71 +6858,72 @@ La BA governa il contract osservabile caller $\leftrightarrow$ endpoint, non il 
 \bottomrule
 \end{tabularx}
 \textbf{Functional obligation}\par
-Verificare \texttt{AnalyzeEndpoint} esercitando l'operazione di analisi diretta e valutando la risposta e il tempo osservati.
+Verificare \texttt{AnalyzeEndpoint} esercitando l'operazione di analisi diretta mediante una request applicativa e valutando la response osservata rispetto alla local pass condition.
 
 \textbf{Functional clauses}\par
-Il test request documentato usa \texttt{Content-Type: multipart/form-data}, image JPEG/PNG, age, sex e localization. L'expected response espone urgency P1--P4, specialist, SLA e confidence. \texttt{PASS} richiede response time strettamente inferiore a 30 secondi e urgency valida nel dominio P1--P4. Gli altri expected fields non diventano ulteriori pass criterion.
+La procedura MUST trasferire una \texttt{DirectAnalysisRequest} a \texttt{AnalyzeEndpoint} e MUST ricevere una \texttt{DirectAnalysisResponse}. Il test request documentato usa \texttt{Content-Type: multipart/form-data}, image JPEG/PNG, age, sex e localization. L'expected response espone urgency P1--P4, specialist, SLA e confidence. \texttt{PASS} MUST essere assegnato quando response time e' strettamente inferiore a 30 secondi e urgency e' valida nel dominio P1--P4. Gli altri expected fields non diventano ulteriori pass criterion.
 
-\textbf{Current realization / test vector}\par
-Binding corrente: \texttt{POST /analyze}. I valori age=45, sex=male e localization=back sono test fixture, non commitment generali dell'endpoint.
+\textbf{Current verification realization / test vector}\par
+Binding corrente: \texttt{POST /analyze}, senza autenticazione nell'inventario corrente. I valori age=45, sex=male e localization=back sono test fixture, non commitment generali dell'endpoint. La verifica e' black-box rispetto alla pipeline runtime interna: questo FR governa il contract osservabile fra verification e endpoint, non duplica la pipeline a quattro stadi.
 
 \textbf{Boundary}\par
-Il comportamento per request non conforme e l'error-response contract sono \texttt{NOT SPECIFIED}. Questo FR non riscrive il runtime contract della pipeline e non trasforma l'assenza di autenticazione in acceptance criterion di sicurezza.
+Il comportamento per request non conforme e l'error-response contract sono \texttt{NOT SPECIFIED}. L'origine/meccanismo della misura temporale non viene introdotta come BAReferent autonomo in questa review. L'esito complementare a \texttt{PASS} resta \texttt{NOT SPECIFIED}. L'assenza di autenticazione e' un current interface fact, non un acceptance criterion di sicurezza.
 \end{ddtacore}
 
 \switchcolumn
 {\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
-\vspace{0.10em}
+\vspace{0.08em}
 \begin{ddtareferentidentified}[top=2pt,bottom=2pt,left=5pt,right=5pt]
-\fontsize{3.10}{3.42}\selectfont
-\textbf{Accepted baseline identities:} \BACandidate{DirectAnalysisEndpoint}; \BACandidate{DirectAnalysisEndpointVerification}; \BACandidate{DirectAnalysisEndpointObservation}; \BACandidate{DirectAnalysisEndpointVerificationOutcome}.\par
-\textbf{Reconstruction candidates:} \BACandidate{DirectAnalysisRequest} \BANew{}; \BACandidate{DirectAnalysisResponse} \BANew{}; \BACandidate{DirectAnalysisResponseTimeObservation} \BANew{}.\par
-\textbf{Reuse:} \texttt{AnalyzeEndpoint}; \texttt{EndpointVerificationStage}; \texttt{OperationalTriagePriority}.
+\fontsize{2.84}{3.14}\selectfont
+\BACandidate{DirectAnalysisRequest} \BANew{}; \BACandidate{DirectAnalysisResponse} \BANew{}.\par
+\textbf{Reuse:} \texttt{AnalyzeEndpoint}; \texttt{EndpointVerificationStage}; \texttt{DirectAnalysisEndpointVerification}; \texttt{DirectAnalysisEndpointVerificationOutcome}; \texttt{OperationalTriagePriority}.
 \end{ddtareferentidentified}
 \begin{ddtareferentaccepted}[top=2pt,bottom=2pt,left=5pt,right=5pt]
-\fontsize{3.02}{3.34}\selectfont
-\BAAccepted{DermaTriageVerification}; \BAAccepted{DermaTriageVerificationProcedure}; \BAAccepted{DermaTriageAPIService}; \BAAccepted{OperationalTriagePriority}; \BAAccepted{DirectAnalysisEndpoint} \BAFirstAccepted{}; \BAAccepted{DirectAnalysisEndpointVerification} \BAFirstAccepted{}; \BAAccepted{DirectAnalysisEndpointObservation} \BAFirstAccepted{}; \BAAccepted{DirectAnalysisEndpointVerificationOutcome} \BAFirstAccepted{}.
+\fontsize{2.76}{3.04}\selectfont
+\BAAccepted{DermaTriageVerification}; \BAAccepted{DermaTriageVerificationProcedure}; \BAAccepted{EndpointVerificationStage}; \BAAccepted{AnalyzeEndpoint}; \BAAccepted{OperationalTriagePriority}; \BAAccepted{DirectAnalysisEndpointVerification} \BAFirstAccepted{}; \BAAccepted{DirectAnalysisRequest} \BAFirstAccepted{}; \BAAccepted{DirectAnalysisResponse} \BAFirstAccepted{}; \BAAccepted{DirectAnalysisEndpointVerificationOutcome} \BAFirstAccepted{}.
 \end{ddtareferentaccepted}
 \begin{ddtapropositionidentified}[top=2pt,bottom=2pt,left=5pt,right=5pt]
-\fontsize{2.76}{3.06}\selectfont
-\textbf{\texttt{BAP-FRC7-02-01-01}}\par
-\hspace*{1em}\texttt{semanticOperatorKey = produce}\par
+\fontsize{2.34}{2.60}\selectfont
+\texttt{BAP-FRC7-02-01-01}\par
+\texttt{semanticOperatorKey = produce}\par
 \hspace*{1em}\texttt{actor -> DirectAnalysisEndpointVerification}\par
-\hspace*{1em}\texttt{input -> DirectAnalysisEndpointObservation}\par
 \hspace*{1em}\texttt{result -> DirectAnalysisEndpointVerificationOutcome}\par
-\hspace*{1em}\texttt{polarity = affirmative}\par
+\hspace*{1em}\texttt{operatorStructure [CANDIDATE / NOT ADMITTED]}\par
+\hspace*{2em}\texttt{decisionRule}\par
+\hspace*{3em}\texttt{branch}\par
+\hspace*{4em}\texttt{when -> responseTime lt 30s AND OperationalTriagePriority valid in governed P1-P4 domain}\par
+\hspace*{4em}\texttt{resultAssignment -> DirectAnalysisEndpointVerificationOutcome = PASS}\par
+\texttt{polarity = affirmative}\par
 \smallskip
-\emph{Candidate reconstruction -- ID non assegnato}\par
-\hspace*{1em}\texttt{semanticOperatorKey = produce}\par
-\hspace*{1em}\texttt{actor -> AnalyzeEndpoint}\par
-\hspace*{1em}\texttt{input -> DirectAnalysisRequest}\par
-\hspace*{1em}\texttt{result -> DirectAnalysisResponse}\par
-\hspace*{1em}\texttt{polarity = affirmative}\par
+\texttt{BAP-FRC7-02-01-02}\par
+\texttt{semanticOperatorKey = transfer}\par
+\hspace*{1em}\texttt{source -> DirectAnalysisEndpointVerification}\par
+\hspace*{1em}\texttt{destination -> AnalyzeEndpoint}\par
+\hspace*{1em}\texttt{content -> DirectAnalysisRequest}\par
+\texttt{polarity = affirmative}\par
 \smallskip
-\emph{Contract pressure -- ID non assegnato}\par
-\hspace*{1em}\texttt{semanticOperatorKey = constrain}\par
-\hspace*{1em}\texttt{constraintTarget -> DirectAnalysisRequest}\par
-\hspace*{2em}\texttt{contentType -> multipart/form-data; imageFormat -> [JPEG, PNG]}\par
-\hspace*{1em}\texttt{polarity = affirmative}\par
+\texttt{BAP-FRC7-02-01-03}\par
+\texttt{semanticOperatorKey = transfer}\par
+\hspace*{1em}\texttt{source -> AnalyzeEndpoint}\par
+\hspace*{1em}\texttt{destination -> DirectAnalysisEndpointVerification}\par
+\hspace*{1em}\texttt{content -> DirectAnalysisResponse}\par
+\texttt{polarity = affirmative}\par
 \smallskip
-\hspace*{1em}\texttt{semanticOperatorKey = constrain}\par
-\hspace*{1em}\texttt{constraintTarget -> DirectAnalysisResponse}\par
-\hspace*{2em}\texttt{requiredFields -> [urgency, specialist, SLA, confidence]}\par
-\hspace*{1em}\texttt{polarity = affirmative}\par
-\smallskip
-\emph{Verification rework target -- stesso ID da riesaminare}\par
-\hspace*{1em}\texttt{actor -> DirectAnalysisEndpointVerification}\par
-\hspace*{1em}\texttt{input -> DirectAnalysisResponse}\par
-\hspace*{1em}\texttt{input -> DirectAnalysisResponseTimeObservation}\par
-\hspace*{1em}\texttt{result -> DirectAnalysisEndpointVerificationOutcome}
+\texttt{BAP-FRC7-02-01-04}\par
+\texttt{semanticOperatorKey = hasPart}\par
+\hspace*{1em}\texttt{whole -> EndpointVerificationStage}\par
+\hspace*{1em}\texttt{part -> DirectAnalysisEndpointVerification}\par
+\texttt{polarity = affirmative}
 \end{ddtapropositionidentified}
 \begin{ddtapropositionaccepted}[top=2pt,bottom=2pt,left=5pt,right=5pt]
-\fontsize{3.0}{3.32}\selectfont
-\textbf{BAP-FRC7-02-01-01} resta l'authority corrente. Il rework che sostituisce la generic observation con runtime result + time observation resta candidate fino alla review individuale.
+\fontsize{2.70}{2.98}\selectfont
+\textbf{\texttt{BAP-FRC7-02-01-01..04}}. La verification appartiene allo \texttt{EndpointVerificationStage}; request e response sono due \texttt{transfer} distinti che riusano \texttt{AnalyzeEndpoint}. La \texttt{decisionRule} resta candidate/non ammessa come struttura locale della proposition \texttt{-01}; nessun \texttt{ELSE/FAIL} e' inferito.
 \end{ddtapropositionaccepted}
 \begin{ddtaopenrelations}[top=2pt,bottom=2pt,left=5pt,right=5pt]
-\fontsize{2.84}{3.14}\selectfont
-Pressure test: il contract di request/response viene modellato con \texttt{constrain} sui BAReferent che occupano i role \texttt{input/result}, non incorporato nella \texttt{produce}. Age/sex/localization presence non viene dichiarata required finche' la fonte non chiude il comportamento in caso di omissione.
+\fontsize{2.48}{2.74}\selectfont
+\textbf{Runtime pipeline.} Questo FR non introduce una seconda descrizione della pipeline interna attivata da \texttt{AnalyzeEndpoint}; i relativi comportamenti e le verifiche di Stage 1--4 restano governati nei rispettivi owner.\par
+\textbf{Message contract.} Multipart form, image JPEG/PNG, age/sex/localization e i campi expected della response restano fatti documentati del test vector; questa review non aggiunge ulteriori \texttt{constrain} BA oltre al flow approvato.\par
+\textbf{Timing.} La local rule usa response time $<30$s, ma il meccanismo che produce la misura resta fuori dalla BA corrente.
 \end{ddtaopenrelations}
 \end{paracol}
 %</PAGE-CONTENT:69>
@@ -6926,16 +6932,16 @@ Pressure test: il contract di request/response viene modellato con \texttt{const
 %<PAGE-CONTENT:70>
 \PageHashFooter{\PageMDfive{70}}
 \subsubsection{FR-C7-02-02 - Verifica dell'endpoint integrato B4}
-{\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-C7} $\rightarrow$ \texttt{DEC-C7-01} $\rightarrow$ \texttt{FR-C7-02-02}. Reconstruction target: riuso \texttt{DiagnoseEndpoint}; runtime write-back non duplicato.}\par
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-C7} $\rightarrow$ \texttt{DEC-C7-01} $\rightarrow$ \texttt{FR-C7-02-02}. Review BA completata riusando \texttt{DiagnoseEndpoint}, separando request/response transfer e riusando il write-back B4 gia' governato come criterio della local PASS rule.}\par
 
 \setlength{\columnsep}{7mm}
 \setlength{\columnseprule}{0.35pt}
-\columnratio{0.66}
+\columnratio{0.64}
 \begin{paracol}{2}
 {\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
-\vspace{0.12em}
+\vspace{0.10em}
 \begin{ddtacore}[title={FunctionalRequirement}]
-\fontsize{3.78}{4.14}\selectfont
+\fontsize{3.44}{3.78}\selectfont
 \begin{tabularx}{\linewidth}{L{39mm}Y}
 \toprule
 \textbf{ID} & \texttt{FR-C7-02-02} \\
@@ -6947,60 +6953,98 @@ Pressure test: il contract di request/response viene modellato con \texttt{const
 \textbf{Owning MR (derived)} & \texttt{MR-C7} \\
 \bottomrule
 \end{tabularx}
+
 \textbf{Functional obligation}\par
-Verificare \texttt{DiagnoseEndpoint} e l'avvenuto write-back del risultato di triage verso B4.
+Verificare l'operazione B4-integrated esercitando \texttt{DiagnoseEndpoint}, controllando la risposta dell'endpoint e verificando che il risultato di triage sia stato scritto sulla piattaforma B4.
 
 \textbf{Functional clauses}\par
-La procedura MUST esercitare l'operazione su un consulto identificato. La tested request usa \texttt{X-API-Key} e \texttt{consulto\_id}. Il valore \texttt{PASS} richiede HTTP \texttt{200} e result written to B4.
+La procedura MUST trasferire una \texttt{B4IntegratedDiagnosisRequest} a \texttt{DiagnoseEndpoint} e MUST ricevere una \texttt{B4IntegratedDiagnosisResponse}. La tested request usa \texttt{X-API-Key} e un body con \texttt{consulto\_id}; il valore \texttt{consulto\_id=1} e' test fixture, non valore normativo. Il valore \texttt{PASS} MUST essere assegnato quando la response ha HTTP status \texttt{200} e si verifica il write-back del \texttt{B4TriageOutcome} verso B4.
 
-\textbf{Current realization / test vector}\par
-Binding corrente: \texttt{POST /diagnose}. \texttt{consulto\_id=1} e' test fixture. La policy X-API-Key resta governata dal relativo owner; il write-back runtime resta un fatto gia' governato e non viene duplicato in C7.
+\textbf{Current verification realization / test vector}\par
+Binding corrente: \texttt{POST /diagnose}. \texttt{DiagnoseEndpoint} e' gia' l'identity governata dell'operazione B4-integrated. Il diagnostic-output write-back non viene ridefinito in C7: la verifica riusa il transfer runtime gia' governato \texttt{DermaTriage -> B4 : B4TriageOutcome}. Il response body di \texttt{/diagnose} non e' specificato dalla fonte di test; per questa review la response espone soltanto il significato necessario \texttt{HTTPResponseStatus}.
 
 \textbf{Boundary}\par
-Invalid-request behavior e error-response contract restano \texttt{NOT SPECIFIED}. I sei B4 integration controls restano separati in \texttt{FR-C7-05-01}.
+La policy \texttt{X-API-Key} resta posseduta dal relativo owner e non viene duplicata come proposition C7. Invalid-request behavior ed error-response contract restano \texttt{NOT SPECIFIED}. I controlli di integrazione B4 granulari (JWT, triage list, document/image acquisition, write result, read outcome, health) restano separati in \texttt{FR-C7-05-01}. Nessun \texttt{ELSE -> FAIL} viene inferito.
 \end{ddtacore}
 
 \switchcolumn
 {\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
-\vspace{0.10em}
+\vspace{0.08em}
+
 \begin{ddtareferentidentified}[top=2pt,bottom=2pt,left=5pt,right=5pt]
-\fontsize{3.10}{3.42}\selectfont
-\textbf{Accepted baseline identities:} \BACandidate{B4IntegratedDiagnosisEndpoint}; \BACandidate{B4IntegratedDiagnosisEndpointVerification}; \BACandidate{B4IntegratedDiagnosisEndpointObservation}; \BACandidate{B4IntegratedDiagnosisEndpointVerificationOutcome}.\par
-\textbf{Reconstruction candidate:} \BACandidate{B4IntegratedDiagnosisRequest} \BANew{}.\par
-\textbf{Reuse:} \texttt{DiagnoseEndpoint}; \texttt{EndpointVerificationStage}; \texttt{B4}; \texttt{B4TriageOutcome}; \texttt{ProtectedDermaTriageOperation}.
+\fontsize{2.72}{3.00}\selectfont
+\BACandidate{B4IntegratedDiagnosisRequest} \BANew{}; \BACandidate{B4IntegratedDiagnosisResponse} \BANew{}.\par
+\textbf{Reuse:} \texttt{EndpointVerificationStage}; \texttt{DiagnoseEndpoint}; \texttt{HTTPResponseStatus}; \texttt{B4}; \texttt{B4TriageOutcome}; \texttt{B4IntegratedDiagnosisEndpointVerification}; \texttt{B4IntegratedDiagnosisEndpointVerificationOutcome}.
 \end{ddtareferentidentified}
+
 \begin{ddtareferentaccepted}[top=2pt,bottom=2pt,left=5pt,right=5pt]
-\fontsize{3.02}{3.34}\selectfont
-\BAAccepted{DermaTriageVerification}; \BAAccepted{DermaTriageVerificationProcedure}; \BAAccepted{DermaTriageAPIService}; \BAAccepted{B4}; \BAAccepted{B4TriageOutcome}; \BAAccepted{ProtectedDermaTriageOperation}; \BAAccepted{B4IntegratedDiagnosisEndpoint} \BAFirstAccepted{}; \BAAccepted{B4IntegratedDiagnosisEndpointVerification} \BAFirstAccepted{}; \BAAccepted{B4IntegratedDiagnosisEndpointObservation} \BAFirstAccepted{}; \BAAccepted{B4IntegratedDiagnosisEndpointVerificationOutcome} \BAFirstAccepted{}.
+\fontsize{2.60}{2.88}\selectfont
+\BAAccepted{DermaTriageVerification}; \BAAccepted{DermaTriageVerificationProcedure}; \BAAccepted{EndpointVerificationStage}; \BAAccepted{DiagnoseEndpoint}; \BAAccepted{HTTPResponseStatus}; \BAAccepted{B4}; \BAAccepted{B4TriageOutcome}; \BAAccepted{B4IntegratedDiagnosisEndpointVerification} \BAFirstAccepted{}; \BAAccepted{B4IntegratedDiagnosisRequest} \BAFirstAccepted{}; \BAAccepted{B4IntegratedDiagnosisResponse} \BAFirstAccepted{}; \BAAccepted{B4IntegratedDiagnosisEndpointVerificationOutcome} \BAFirstAccepted{}.
 \end{ddtareferentaccepted}
+
 \begin{ddtapropositionidentified}[top=2pt,bottom=2pt,left=5pt,right=5pt]
-\fontsize{2.82}{3.12}\selectfont
-\textbf{\texttt{BAP-FRC7-02-02-01}}\par
-\hspace*{1em}\texttt{semanticOperatorKey = produce}\par
+\fontsize{2.18}{2.42}\selectfont
+\texttt{BAP-FRC7-02-02-01}\par
+\texttt{semanticOperatorKey = produce}\par
 \hspace*{1em}\texttt{actor -> B4IntegratedDiagnosisEndpointVerification}\par
-\hspace*{1em}\texttt{input -> B4IntegratedDiagnosisEndpointObservation}\par
 \hspace*{1em}\texttt{result -> B4IntegratedDiagnosisEndpointVerificationOutcome}\par
-\hspace*{1em}\texttt{polarity = affirmative}\par
+\hspace*{1em}\texttt{operatorStructure [CANDIDATE / NOT ADMITTED]}\par
+\hspace*{2em}\texttt{decisionRule}\par
+\hspace*{3em}\texttt{branch}\par
+\hspace*{4em}\texttt{when -> HTTPResponseStatus eq 200 AND governed B4TriageOutcome write-back occurrence}\par
+\hspace*{4em}\texttt{resultAssignment -> B4IntegratedDiagnosisEndpointVerificationOutcome = PASS}\par
+\texttt{polarity = affirmative}\par
 \smallskip
-\emph{Candidate reconstruction -- ID non assegnato}\par
-\hspace*{1em}\texttt{semanticOperatorKey = constrain}\par
-\hspace*{1em}\texttt{constraintTarget -> B4IntegratedDiagnosisRequest}\par
-\hspace*{2em}\texttt{property -> consulto\_id}\par
-\hspace*{2em}\texttt{presence -> required}\par
-\hspace*{1em}\texttt{polarity = affirmative}\par
+
+\texttt{BAP-FRC7-02-02-02}\par
+\texttt{semanticOperatorKey = transfer}\par
+\hspace*{1em}\texttt{source -> B4IntegratedDiagnosisEndpointVerification}\par
+\hspace*{1em}\texttt{destination -> DiagnoseEndpoint}\par
+\hspace*{1em}\texttt{content -> B4IntegratedDiagnosisRequest}\par
+\texttt{polarity = affirmative}\par
 \smallskip
-\hspace*{1em}\texttt{semanticOperatorKey = hasPart}\par
+
+\texttt{BAP-FRC7-02-02-03}\par
+\texttt{semanticOperatorKey = transfer}\par
+\hspace*{1em}\texttt{source -> DiagnoseEndpoint}\par
+\hspace*{1em}\texttt{destination -> B4IntegratedDiagnosisEndpointVerification}\par
+\hspace*{1em}\texttt{content -> B4IntegratedDiagnosisResponse}\par
+\texttt{polarity = affirmative}\par
+\smallskip
+
+\texttt{BAP-FRC7-02-02-04}\par
+\texttt{semanticOperatorKey = hasPart}\par
+\hspace*{1em}\texttt{whole -> B4IntegratedDiagnosisResponse}\par
+\hspace*{1em}\texttt{part -> HTTPResponseStatus}\par
+\texttt{polarity = affirmative}\par
+\smallskip
+
+\texttt{BAP-FRC7-02-02-05}\par
+\texttt{semanticOperatorKey = constrain}\par
+\hspace*{1em}\texttt{target -> HTTPResponseStatus}\par
+\hspace*{1em}\texttt{localProperty -> value}\par
+\hspace*{1em}\texttt{vocabulary -> [200]}\par
+\texttt{polarity = affirmative}\par
+\smallskip
+
+\texttt{BAP-FRC7-02-02-06}\par
+\texttt{semanticOperatorKey = hasPart}\par
 \hspace*{1em}\texttt{whole -> EndpointVerificationStage}\par
 \hspace*{1em}\texttt{part -> B4IntegratedDiagnosisEndpointVerification}\par
-\hspace*{1em}\texttt{polarity = affirmative}
+\texttt{polarity = affirmative}
 \end{ddtapropositionidentified}
+
 \begin{ddtapropositionaccepted}[top=2pt,bottom=2pt,left=5pt,right=5pt]
-\fontsize{3.0}{3.32}\selectfont
-\textbf{BAP-FRC7-02-02-01} resta l'authority corrente. Le candidate reconstruction non modificano ancora la proposition accettata e non creano un secondo transfer verso B4.
+\fontsize{2.52}{2.80}\selectfont
+\textbf{\texttt{BAP-FRC7-02-02-01..06}}. Request e response sono due \texttt{transfer} distinti; \texttt{HTTPResponseStatus} e' parte della response ed e' vincolato a \texttt{200} per il test. La verification appartiene a \texttt{EndpointVerificationStage}. La local \texttt{decisionRule} riusa il write-back runtime \texttt{BAP-FR23-01} come criterio senza creare un secondo transfer DermaTriage--B4.
 \end{ddtapropositionaccepted}
+
 \begin{ddtaopenrelations}[top=2pt,bottom=2pt,left=5pt,right=5pt]
-\fontsize{2.90}{3.20}\selectfont
-Il criterion ``result written to B4'' deve riusare il runtime fact governato senza normalizzarlo in un boolean inventato. \texttt{X-API-Key} non viene duplicato nel request contract: e' gia' governato da \texttt{ProtectedDermaTriageOperation}.
+\fontsize{2.30}{2.56}\selectfont
+\textbf{Write-back reuse.} ``Result written to B4'' e' verificato come occorrenza del transfer runtime gia' governato; non viene normalizzato in un boolean autonomo ne' duplicato in C7.\par
+\textbf{Response contract.} Oltre allo status HTTP necessario al criterio di PASS, il response body resta \texttt{NOT SPECIFIED}.\par
+\textbf{Outcome consumer.} La fonte non specifica un consumer successivo di \texttt{B4IntegratedDiagnosisEndpointVerificationOutcome}, ne' una regola che aggreghi gli outcome locali di C7 in un overall verification result. L'outcome resta quindi terminale nella view corrente.\par
+\textbf{Complement.} L'esito complementare a PASS resta \texttt{NOT SPECIFIED}.
 \end{ddtaopenrelations}
 \end{paracol}
 %</PAGE-CONTENT:70>
@@ -7599,14 +7643,14 @@ Per-gate outcome pressure: una sola FR contiene quattro criterion outcomes ma ne
 {\sffamily\scriptsize\color{DDTAGray}Registro di lavoro per la review FR-by-FR. Le identity/proposition non ancora riesaminate restano candidate; gli ID nuovi vengono assegnati soltanto dopo la relativa review individuale. Le proposition gia' accettate mantengono l'authority corrente finche' un rework non viene approvato.}\par
 
 \begin{ddtacore}[title={C7 full reconstruction - review status e candidate deltas}]
-\fontsize{3.28}{3.58}\selectfont
+\fontsize{3.20}{3.50}\selectfont
 \begin{tabularx}{\linewidth}{L{29mm}L{76mm}Y}
 \toprule
 \textbf{Owner} & \textbf{Reconstruction BA} & \textbf{Review target} \\
 \midrule
-\texttt{FR-C7-01-01} & ServiceReadinessVerification + HealthCheckRequest/Response + composite Health result & review closed: \texttt{produce}; request/response \texttt{transfer}; response-envelope + health-payload \texttt{hasPart}; status \texttt{constrain}; local \texttt{decisionRule} remains candidate. \\
-\texttt{FR-C7-02-01} & Reuse AnalyzeEndpoint; DirectAnalysisRequest/Response; ResponseTimeObservation & pressure-test runtime produce + constrain; rework accepted verification input away from generic observation. \\
-\texttt{FR-C7-02-02} & Reuse DiagnoseEndpoint; B4IntegratedDiagnosisRequest & constrain consulto\_id; reuse governed write-back criterion; no duplicate transfer. \\
+\texttt{FR-C7-01-01} & ServiceReadinessVerification + HealthCheckRequest/Response + composite Health result & review closed: stage \texttt{hasPart}; request/response \texttt{transfer}; response-envelope + health-payload \texttt{hasPart}; status \texttt{constrain}; local \texttt{decisionRule} remains candidate. \\
+\texttt{FR-C7-02-01} & Reuse AnalyzeEndpoint; DirectAnalysisRequest/Response & review closed: EndpointVerificationStage \texttt{hasPart}; request/response \texttt{transfer}; verification \texttt{produce}; local \texttt{decisionRule} remains candidate; generic observation retired. \\
+\texttt{FR-C7-02-02} & Reuse DiagnoseEndpoint; B4IntegratedDiagnosisRequest/Response & review closed: EndpointVerificationStage \texttt{hasPart}; request/response \texttt{transfer}; response-status \texttt{hasPart} + \texttt{constrain}; verification \texttt{produce}; write-back criterion reuses \texttt{BAP-FR23-01}; local \texttt{decisionRule} remains candidate. \\
 \texttt{FR-C7-02-03} & PipelineStatisticsResponse; StatsEndpointVerification; PipelineStatisticsObservation & NEW candidate FR; no pass condition/outcome. \\
 \texttt{FR-C7-03-01} & ImageUrgencyAnalysisVerification; ImageUrgencyAnalysisVerificationOutcome & reuse ImageUrgencyClassification directly; contract refinement pressure. \\
 \texttt{FR-C7-03-02} & ClinicalDescriptionGenerationVerification; ...Outcome & reuse ClinicalDescription directly; reuse runtime content contract. \\
@@ -7620,9 +7664,9 @@ Per-gate outcome pressure: una sola FR contiene quattro criterion outcomes ma ne
 \end{tabularx}
 \end{ddtacore}
 
-\begin{ddtaopen}[title={Projection consequence of the contract pressure test}]
-\fontsize{3.72}{4.06}\selectfont
-Il reconstruction pass assume come ipotesi da verificare: un input/result di \texttt{produce} resta un BAReferent autonomo; quando source-supported il suo contract puo' essere espresso con proposition \texttt{constrain} sul medesimo BAReferent. Una view di flow puo' omettere le \texttt{constrain}; una view data-contract puo' espanderle senza cambiare la BA sottostante. Nessun nuovo operatore \texttt{contract/conformsTo} viene introdotto.
+\begin{ddtaopen}[title={Projection consequence of the C7 flow review}]
+\fontsize{3.64}{3.98}\selectfont
+Per i flow di verifica riesaminati, il movimento di un messaggio fra due elementi noti viene governato con \texttt{transfer}: source e destination sono gli estremi, mentre request/response e' il content trasferito. I role \texttt{input} non vengono duplicati come relazioni autonome quando il trasferimento gia' governa come il dato raggiunge il behavior. La \texttt{produce} della verification governa il result di verifica; le \texttt{decisionRule} locali restano candidate finche' il costrutto non viene ammesso metodologicamente. Gli outcome locali restano terminali quando la fonte non governa un consumer o una regola di aggregazione complessiva.
 \end{ddtaopen}
 %</PAGE-CONTENT:80>
 \clearpage
@@ -7630,7 +7674,7 @@ Il reconstruction pass assume come ipotesi da verificare: un input/result di \te
 %<PAGE-CONTENT:81>
 \PageHashFooter{\PageMDfive{81}}
 \section*{MR-C7 - Source closure e progress della review FR-by-FR}
-{\sffamily\scriptsize\color{DDTAGray}Checkpoint successivo alla regression source-first. L'inventario FR e' ora completo come working reconstruction; la review puntuale procede FR-by-FR prima della promotion dei candidate BA fact ancora aperti.}\par
+{\sffamily\scriptsize\color{DDTAGray}Checkpoint successivo alla regression source-first. L'inventario FR e' completo come working reconstruction; la review puntuale procede FR-by-FR prima della promotion dei candidate BA fact ancora aperti.}\par
 
 \setlength{\columnsep}{7mm}\setlength{\columnseprule}{0.35pt}\columnratio{0.62}\begin{paracol}{2}
 {\sffamily\large\bfseries\color{DDTANavy}Source closure}\par\vspace{0.15em}
@@ -7656,10 +7700,10 @@ Nessuna ulteriore famiglia source-supported emerge per \texttt{/docs}, prompt-ma
 \switchcolumn
 {\sffamily\large\bfseries\color{DDTABlue}Open points / prossimo gate}\par\vspace{0.15em}
 \begin{ddtaopen}[title={Da chiudere durante la review individuale}]
-\fontsize{3.54}{3.90}\selectfont
-\textbf{Service readiness.} \texttt{FR-C7-01-01} e' chiuso per la review corrente: la verifica trasferisce una \texttt{HealthCheckRequest} a \texttt{HealthEndpoint}, riceve una \texttt{HealthCheckResponse} composta da \texttt{HTTPResponseStatus} e \texttt{ServiceHealthCheckResult}, quindi valuta il payload. La derivazione interna dei cinque status e la relazione HTTP-200/local-PASS restano \texttt{NOT SPECIFIED}.\par
-\textbf{Contract pressure.} Verificare \texttt{produce + constrain} sui request/result di \texttt{/analyze}, \texttt{/diagnose}, \texttt{/stats} e sugli output Stage 1--4.\par
-\textbf{Accepted C7-P02 rework.} Le identity/proposition correnti di \texttt{FR-C7-02-01/02} non vengono sostituite finche' il rework non e' approvato.\par
+\fontsize{3.46}{3.80}\selectfont
+\textbf{Service readiness.} \texttt{FR-C7-01-01} e' chiuso: \texttt{ServiceReadinessVerification} e' parte di \texttt{ServiceReadinessVerificationStage}; request/response sono due transfer distinti; derivazione interna dei cinque status e relazione HTTP-200/local-PASS restano \texttt{NOT SPECIFIED}.\par
+\textbf{Direct analysis.} \texttt{FR-C7-02-01} e' chiuso: \texttt{DirectAnalysisEndpointVerification} e' parte di \texttt{EndpointVerificationStage}; riusa \texttt{AnalyzeEndpoint} e scambia \texttt{DirectAnalysisRequest/Response}. Il runtime interno della pipeline non viene duplicato in questo FR.\par
+\textbf{B4-integrated endpoint.} \texttt{FR-C7-02-02} e' chiuso: \texttt{B4IntegratedDiagnosisEndpointVerification} e' parte di \texttt{EndpointVerificationStage}; riusa \texttt{DiagnoseEndpoint}, scambia request/response esplicite e usa HTTP 200 + occorrenza del write-back \texttt{BAP-FR23-01} nella local PASS rule senza duplicare il runtime transfer.\par
 \textbf{RC-002.} Stage 4 oracle e runtime content contract restano da riconciliare nell'owner corretto.\par
 \textbf{Full pipeline.} SLA owner/identity resta aperto; ``complete response'' resta criterio non scomposto.\par
 \textbf{B4 aggregation.} Sei controlli con outcome locali, nessun overall rule; decidere se lo split e' necessario.\par
@@ -7668,8 +7712,8 @@ Nessuna ulteriore famiglia source-supported emerge per \texttt{/docs}, prompt-ma
 \end{ddtaopen}
 
 \begin{ddtaquestions}
-\fontsize{3.62}{3.98}\selectfont
-Gate corrente chiuso: \texttt{FR-C7-01-01} e' stato riesaminato con una coppia deterministica request/response basata su \texttt{transfer}. Il prossimo gate e' \texttt{FR-C7-02-01}; il Mermaid cumulativo deve distinguere caller, endpoint, response envelope, payload e valutazione locale senza inventare le interazioni interne dell'endpoint con i servizi.
+\fontsize{3.58}{3.94}\selectfont
+Gate corrente chiuso: \texttt{FR-C7-02-02}. Gli outcome locali dei FR riesaminati non vengono collegati a un overall verification result perche' la fonte non governa un consumer/aggregator complessivo. Prossimo gate: \texttt{FR-C7-02-03}.
 \end{ddtaquestions}
 \end{paracol}
 %</PAGE-CONTENT:81>
@@ -7828,15 +7872,15 @@ ReadinessOutcome & \textbf{\texttt{FR-C7-01-01}} \\
 \PageHashFooter{\PageMDfive{83}}
 \section*{Registro Base Analysis - BAReferent C7 increment}
 \begin{ddtacore}[title={CONTINUITA' DEL REGISTRO - C7}]
-\fontsize{6.0}{6.6}\selectfont
-Questa pagina continua il registro BA con le identity C7 accettate durante la review FR-by-FR, includendo il completamento di \texttt{FR-C7-01-01} e le identity gia' accettate nello split di \texttt{C7-P02}. Il riferimento in \textbf{grassetto} indica la prima accettazione. La separazione fisica su questa pagina non introduce un nuovo stato BA.
+\fontsize{5.8}{6.35}\selectfont
+Questa pagina continua il registro BA con le identity C7 accettate durante la review FR-by-FR, includendo il completamento di \texttt{FR-C7-01-01}, \texttt{FR-C7-02-01} e \texttt{FR-C7-02-02}. Il riferimento in \textbf{grassetto} indica la prima accettazione. La separazione fisica su questa pagina non introduce un nuovo stato BA.
 \end{ddtacore}
 
-\vspace{0.4mm}
+\vspace{0.35mm}
 {\sffamily\bfseries\color{DDTABlue}BAReferent - FR-C7-01-01 completion}\par
-\vspace{0.15mm}
-\fontsize{4.35}{4.75}\selectfont
-\renewcommand{\arraystretch}{0.88}
+\vspace{0.12mm}
+\fontsize{4.18}{4.56}\selectfont
+\renewcommand{\arraystretch}{0.84}
 \begin{tabularx}{\textwidth}{L{58mm}Y}
 \toprule
 \textbf{BAReferent} & \textbf{Riferimento documentale / boundary} \\
@@ -7852,29 +7896,29 @@ B4ConnectionHealthStatus & \textbf{\texttt{FR-C7-01-01}} -- parte del health res
 \bottomrule
 \end{tabularx}
 
-\vspace{0.45mm}
-{\sffamily\bfseries\color{DDTABlue}BAReferent - C7-P02}\par
-\vspace{0.2mm}
-\fontsize{6.1}{6.75}\selectfont
-\renewcommand{\arraystretch}{1.03}
+\vspace{0.30mm}
+{\sffamily\bfseries\color{DDTABlue}BAReferent - endpoint verification increment}\par
+\vspace{0.12mm}
+\fontsize{5.30}{5.82}\selectfont
+\renewcommand{\arraystretch}{0.88}
 \begin{tabularx}{\textwidth}{L{68mm}Y}
 \toprule
 \textbf{BAReferent} & \textbf{Riferimento documentale / boundary} \\
 \midrule
-DirectAnalysisEndpoint & \textbf{\texttt{FR-C7-02-01}} -- identity semantica dell'operazione direct-analysis; current binding \texttt{POST /analyze}. \\
-DirectAnalysisEndpointVerification & \textbf{\texttt{FR-C7-02-01}} -- comportamento di verifica distinto dall'endpoint runtime. \\
-DirectAnalysisEndpointObservation & \textbf{\texttt{FR-C7-02-01}} -- evidence osservata dal controllo, inclusi payload/tempo senza imporre property BA non formalizzate. \\
+DirectAnalysisEndpointVerification & \textbf{\texttt{FR-C7-02-01}} -- behavior di verifica black-box collocato in \texttt{EndpointVerificationStage}; endpoint runtime riusato: \texttt{AnalyzeEndpoint}. \\
+DirectAnalysisRequest & \textbf{\texttt{FR-C7-02-01}} -- content del request transfer verso \texttt{AnalyzeEndpoint}; current test vector multipart con image, age, sex, localization. \\
+DirectAnalysisResponse & \textbf{\texttt{FR-C7-02-01}} -- content del response transfer da \texttt{AnalyzeEndpoint}; expected observation con P-scale, specialist, SLA e confidence. \\
 DirectAnalysisEndpointVerificationOutcome & \textbf{\texttt{FR-C7-02-01}} -- result della verification; \texttt{PASS} resta valore locale della candidate rule, non BAReferent autonomo. \\
-B4IntegratedDiagnosisEndpoint & \textbf{\texttt{FR-C7-02-02}} -- identity semantica dell'operazione B4-integrated; current binding \texttt{POST /diagnose}. \\
-B4IntegratedDiagnosisEndpointVerification & \textbf{\texttt{FR-C7-02-02}} -- comportamento di verifica end-to-end dell'endpoint. \\
-B4IntegratedDiagnosisEndpointObservation & \textbf{\texttt{FR-C7-02-02}} -- evidence osservata dal controllo, distinta dal runtime write-back. \\
-B4IntegratedDiagnosisEndpointVerificationOutcome & \textbf{\texttt{FR-C7-02-02}} -- result della verification; \texttt{PASS} resta valore locale della candidate rule, non BAReferent autonomo. \\
+B4IntegratedDiagnosisEndpointVerification & \textbf{\texttt{FR-C7-02-02}} -- behavior di verifica B4-integrated collocato in \texttt{EndpointVerificationStage}; endpoint runtime riusato: \texttt{DiagnoseEndpoint}. \\
+B4IntegratedDiagnosisRequest & \textbf{\texttt{FR-C7-02-02}} -- content del request transfer verso \texttt{DiagnoseEndpoint}; current test vector con \texttt{X-API-Key} e body \texttt{consulto\_id}. \\
+B4IntegratedDiagnosisResponse & \textbf{\texttt{FR-C7-02-02}} -- content del response transfer da \texttt{DiagnoseEndpoint}; oltre a \texttt{HTTPResponseStatus}, response body \texttt{NOT SPECIFIED}. \\
+B4IntegratedDiagnosisEndpointVerificationOutcome & \textbf{\texttt{FR-C7-02-02}} -- result locale della verification; \texttt{PASS} e' assegnato dalla candidate rule; consumer/overall aggregator \texttt{NOT SPECIFIED}. \\
 \bottomrule
 \end{tabularx}
 
-\begin{ddtaopenrelations}
-\fontsize{5.6}{6.15}\selectfont
-Lo split preserva la possibilita' di collegare separatamente implementation trace, SpecializedRequirement di sicurezza/prestazioni e verification evidence. Le identity sono accettate per autonomia semantica e downstream utility, non per la sola presenza di path HTTP distinti.
+\begin{ddtaopenrelations}[top=2pt,bottom=2pt,left=5pt,right=5pt]
+\fontsize{5.05}{5.58}\selectfont
+\texttt{DirectAnalysisEndpoint}/\texttt{DirectAnalysisEndpointObservation} non sono mantenuti come identity separate: si riusano \texttt{AnalyzeEndpoint} e request/response esplicite. Analogamente \texttt{B4IntegratedDiagnosisEndpoint}/\texttt{B4IntegratedDiagnosisEndpointObservation} vengono riconciliati con \texttt{DiagnoseEndpoint} e \texttt{B4IntegratedDiagnosisRequest/Response}. Gli outcome locali restano terminali finche' una fonte non governa un consumer o un overall verification result.
 \end{ddtaopenrelations}
 %</PAGE-CONTENT:83>
 \clearpage
@@ -7883,15 +7927,15 @@ Lo split preserva la possibilita' di collegare separatamente implementation trac
 \PageHashFooter{\PageMDfive{84}}
 \section*{Registro Base Analysis - BAProposition}
 \begin{ddtacore}[title={Continuita' del registro}]
-\fontsize{6.0}{6.6}\selectfont
+\fontsize{5.6}{6.1}\selectfont
 Questa pagina continua il registro BA della pagina precedente. Il \textbf{grassetto} indica la prima accettazione; il \emph{corsivo} indica proposition candidate non ancora accettate. Nessun nuovo stato BA viene introdotto dalla separazione fisica del registro su due pagine.
 \end{ddtacore}
 
-\vspace{0.35mm}
+\vspace{0.20mm}
 {\sffamily\bfseries\color{DDTABlue}BAProposition}\par
 \vspace{0.1mm}
-\fontsize{3.84}{4.12}\selectfont
-\renewcommand{\arraystretch}{0.64}
+\fontsize{3.25}{3.48}\selectfont
+\renewcommand{\arraystretch}{0.50}
 \begin{tabularx}{\textwidth}{L{58mm}Y}
 \toprule
 \textbf{BAProposition} & \textbf{Riferimenti documentali} \\
@@ -8004,14 +8048,23 @@ Questa pagina continua il registro BA della pagina precedente. Il \textbf{grasse
 \textbf{\texttt{BAP-FRC6-01-06-06..31}} & \texttt{FR-C6-01-06} -- \texttt{DermaTriage -> DermaTriageAPI} composition, five logical API groups and 20 endpoint identities; full mapping pag.~87 \\
 \textbf{\texttt{BAP-FRC6-01-07-01..05,07..11}} & \texttt{FR-C6-01-07} -- source-code acquisition/containment, Stage 1 topology and source-tree provenance of \texttt{retrainer.py}, \texttt{requirements.txt}, \texttt{.env.example}, \texttt{rag/indexer.py}, \texttt{app.py} \\
 \textbf{\texttt{BAP-DECC7-01-01}} & \texttt{DEC-C7-01} -- \texttt{realize} (\texttt{DermaTriageVerification -> DermaTriageVerificationProcedure}); non implica framework, ordering universale, PASS/FAIL per ogni controllo o ownership dei criteri verificati \\
-\textbf{\texttt{BAP-FRC7-01-01-01}} & \texttt{FR-C7-01-01} -- \texttt{produce} (\texttt{ServiceReadinessVerification}: \texttt{ServiceHealthCheckResult} $\rightarrow$ \texttt{ReadinessOutcome}); local \texttt{decisionRule} candidate assegna \texttt{PASS} sui tre status governati; nessun \texttt{ELSE/FAIL} inferito \\
+\textbf{\texttt{BAP-FRC7-01-01-01}} & \texttt{FR-C7-01-01} -- \texttt{produce}(\texttt{ServiceReadinessVerification -> ReadinessOutcome}); local \texttt{decisionRule} candidate assegna \texttt{PASS} sui tre status governati; nessun \texttt{ELSE/FAIL} inferito \\
 \textbf{\texttt{BAP-FRC7-01-01-02..06}} & \texttt{FR-C7-01-01} -- cinque \texttt{hasPart} da \texttt{ServiceHealthCheckResult} ai cinque status documentati \\
 \textbf{\texttt{BAP-FRC7-01-01-07}} & \texttt{FR-C7-01-01} -- request \texttt{transfer}: \texttt{ServiceReadinessVerification -> HealthEndpoint : HealthCheckRequest} \\
 \textbf{\texttt{BAP-FRC7-01-01-08}} & \texttt{FR-C7-01-01} -- response \texttt{transfer}: \texttt{HealthEndpoint -> ServiceReadinessVerification : HealthCheckResponse} \\
 \textbf{\texttt{BAP-FRC7-01-01-09..10}} & \texttt{FR-C7-01-01} -- \texttt{hasPart(HealthCheckResponse, HTTPResponseStatus / ServiceHealthCheckResult)} \\
 \textbf{\texttt{BAP-FRC7-01-01-11}} & \texttt{FR-C7-01-01} -- \texttt{constrain} su \texttt{HTTPResponseStatus.value} con vocabulary \texttt{[200]}; relazione congiuntiva con la local PASS rule NOT SPECIFIED \\
-\textbf{\texttt{BAP-FRC7-02-01-01}} & \texttt{FR-C7-02-01} -- accepted \texttt{produce} (direct-analysis observation $\rightarrow$ verification outcome); nested \texttt{decisionRule} remains candidate/non-admitted and requires source-grounded \texttt{lt} plus governed-domain criterion reuse \\
-\textbf{\texttt{BAP-FRC7-02-02-01}} & \texttt{FR-C7-02-02} -- accepted \texttt{produce} (B4-integrated endpoint observation $\rightarrow$ verification outcome); nested \texttt{decisionRule} remains candidate/non-admitted, combines HTTP \texttt{eq 200} with governed B4 write-occurrence criterion reuse, and creates no duplicate transfer \\
+\textbf{\texttt{BAP-FRC7-01-01-12}} & \texttt{FR-C7-01-01} -- \texttt{hasPart(ServiceReadinessVerificationStage, ServiceReadinessVerification)} \\
+\textbf{\texttt{BAP-FRC7-02-01-01}} & \texttt{FR-C7-02-01} -- \texttt{produce(DirectAnalysisEndpointVerification -> DirectAnalysisEndpointVerificationOutcome)}; local \texttt{decisionRule} candidate: response time \texttt{lt 30s} AND P-scale valida; nessun \texttt{ELSE/FAIL} inferito \\
+\textbf{\texttt{BAP-FRC7-02-01-02}} & \texttt{FR-C7-02-01} -- request \texttt{transfer}: \texttt{DirectAnalysisEndpointVerification -> AnalyzeEndpoint : DirectAnalysisRequest} \\
+\textbf{\texttt{BAP-FRC7-02-01-03}} & \texttt{FR-C7-02-01} -- response \texttt{transfer}: \texttt{AnalyzeEndpoint -> DirectAnalysisEndpointVerification : DirectAnalysisResponse} \\
+\textbf{\texttt{BAP-FRC7-02-01-04}} & \texttt{FR-C7-02-01} -- \texttt{hasPart(EndpointVerificationStage, DirectAnalysisEndpointVerification)} \\
+\textbf{\texttt{BAP-FRC7-02-02-01}} & \texttt{FR-C7-02-02} -- \texttt{produce(B4IntegratedDiagnosisEndpointVerification -> B4IntegratedDiagnosisEndpointVerificationOutcome)}; local \texttt{decisionRule} candidate combina HTTP \texttt{eq 200} con l'occorrenza del write-back \texttt{BAP-FR23-01}; nessun \texttt{ELSE/FAIL} inferito \\
+\textbf{\texttt{BAP-FRC7-02-02-02}} & \texttt{FR-C7-02-02} -- request \texttt{transfer}: \texttt{B4IntegratedDiagnosisEndpointVerification -> DiagnoseEndpoint : B4IntegratedDiagnosisRequest} \\
+\textbf{\texttt{BAP-FRC7-02-02-03}} & \texttt{FR-C7-02-02} -- response \texttt{transfer}: \texttt{DiagnoseEndpoint -> B4IntegratedDiagnosisEndpointVerification : B4IntegratedDiagnosisResponse} \\
+\textbf{\texttt{BAP-FRC7-02-02-04}} & \texttt{FR-C7-02-02} -- \texttt{hasPart(B4IntegratedDiagnosisResponse, HTTPResponseStatus)} \\
+\textbf{\texttt{BAP-FRC7-02-02-05}} & \texttt{FR-C7-02-02} -- \texttt{constrain} su \texttt{HTTPResponseStatus.value} con vocabulary \texttt{[200]} per la verification \\
+\textbf{\texttt{BAP-FRC7-02-02-06}} & \texttt{FR-C7-02-02} -- \texttt{hasPart(EndpointVerificationStage, B4IntegratedDiagnosisEndpointVerification)} \\
 \bottomrule
 \end{tabularx}
 %</PAGE-CONTENT:84>
