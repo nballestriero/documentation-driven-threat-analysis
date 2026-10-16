@@ -91,8 +91,8 @@
 \expandafter\def\csname PageMDfive68\endcsname{fec369a26fc3b1b41b5b77400e2505c4}
 \expandafter\def\csname PageMDfive69\endcsname{84804a250901e2bfe704b971c5c31845}
 \expandafter\def\csname PageMDfive70\endcsname{7c16bf063a7aacda7891ea447db9823c}
-\expandafter\def\csname PageMDfive71\endcsname{73024aab59831480ae989295aba43034}
-\expandafter\def\csname PageMDfive72\endcsname{bbe78e89f8e0570bf6e925ccca602980}
+\expandafter\def\csname PageMDfive71\endcsname{5b6905399ebc9e70a9d9e3b127932a95}
+\expandafter\def\csname PageMDfive72\endcsname{67f8d62e5966d443cdfc2899aa5d5be2}
 \expandafter\def\csname PageMDfive73\endcsname{4af5c8388084b0af4a6ebfbb0d1a8171}
 \expandafter\def\csname PageMDfive74\endcsname{e801661bb7821f2ae91f0bb26719fa63}
 \expandafter\def\csname PageMDfive75\endcsname{b3fcde2fd16f845ce5d613dd943fbae8}
@@ -100,16 +100,16 @@
 \expandafter\def\csname PageMDfive77\endcsname{7792c0a50a77fa27a86f08bf4ee9a409}
 \expandafter\def\csname PageMDfive78\endcsname{dbbf21ee3061ecf500e2ede6e75cb42b}
 \expandafter\def\csname PageMDfive79\endcsname{aea7b2e7d442693e48ad13a54c811cdb}
-\expandafter\def\csname PageMDfive80\endcsname{3ee19313a5962a15c6a1cf6f57c48c73}
-\expandafter\def\csname PageMDfive81\endcsname{d058e9db81793b5ecbe1703156012895}
+\expandafter\def\csname PageMDfive80\endcsname{1fa4a4b5de7b2c244189b58e64b40f38}
+\expandafter\def\csname PageMDfive81\endcsname{411ae30a39d8d617fb50388bef55de3a}
 \expandafter\def\csname PageMDfive82\endcsname{748a8c4ef3fe1cb08302d275db81868f}
-\expandafter\def\csname PageMDfive83\endcsname{f1072354fa516b5f91c2d361f5f92201}
-\expandafter\def\csname PageMDfive84\endcsname{b5c3ca193163598d30ba0200a8477990}
+\expandafter\def\csname PageMDfive83\endcsname{64f63463e006bfab11fb992dd396a2bf}
+\expandafter\def\csname PageMDfive84\endcsname{e42f7bfb092efa4bce2e1e885de79c65}
 \expandafter\def\csname PageMDfive85\endcsname{bffa4fcc5469f12ebe1675a9e8376312}
 \expandafter\def\csname PageMDfive86\endcsname{251e20eabad327061da23389ed917818}
 \expandafter\def\csname PageMDfive87\endcsname{3cf5f4e96ab8903fd5a30023d363b0da}
 \expandafter\def\csname PageMDfive88\endcsname{392da625725431da689302a7e885994a}
-\expandafter\def\csname PageMDfive89\endcsname{28227b34a3cd57714cc6790898111271}
+\expandafter\def\csname PageMDfive89\endcsname{6fd26247acd1a5113ed69490e7185b46}
 %</PAGE-HASH-DEFS>
 
 \newcommand{\PageHashFooter}[1]{%
@@ -7049,157 +7049,212 @@ La policy \texttt{X-API-Key} resta posseduta dal relativo owner e non viene dupl
 \end{paracol}
 %</PAGE-CONTENT:70>
 \clearpage
-%<PAGE-DESC:71>MR-C7 > DEC-C7-01 > FR-C7-02-03 [candidate] - Verifica dell'endpoint di statistiche della pipeline
+%<PAGE-DESC:71>MR-C7 > DEC-C7-01 > FR-C7-02-03 - Verifica dell'endpoint di statistiche della pipeline
 %<PAGE-CONTENT:71>
 \PageHashFooter{\PageMDfive{71}}
-\subsubsection{FR-C7-02-03 [candidate] - Verifica dell'endpoint di statistiche della pipeline}
-{\sffamily\scriptsize\color{DDTAGray}Gerarchia proposta: \texttt{MR-C7} $\rightarrow$ \texttt{DEC-C7-01} $\rightarrow$ \texttt{FR-C7-02-03}. Nuovo FR candidate emerso dalla regression OR4/OR5; nessuna promotion BA.}\par
+\subsubsection{FR-C7-02-03 - Verifica dell'endpoint di statistiche della pipeline}
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-C7} $\rightarrow$ \texttt{DEC-C7-01} $\rightarrow$ \texttt{FR-C7-02-03}. Review BA completata come request/response flow senza local pass condition, biforcazione o verification outcome.}\par
 
 \setlength{\columnsep}{7mm}
 \setlength{\columnseprule}{0.35pt}
-\columnratio{0.66}
+\columnratio{0.64}
 \begin{paracol}{2}
 {\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
-\vspace{0.12em}
-\begin{ddtacore}[title={FunctionalRequirement candidate}]
-\fontsize{3.82}{4.18}\selectfont
+\vspace{0.10em}
+\begin{ddtacore}[title={FunctionalRequirement}]
+\fontsize{3.52}{3.86}\selectfont
 \begin{tabularx}{\linewidth}{L{39mm}Y}
 \toprule
 \textbf{ID} & \texttt{FR-C7-02-03} \\
-\textbf{Lifecycle} & \texttt{candidate} \\
-\textbf{Authority} & \texttt{CANDIDATE\_NON\_CURRENT} \\
+\textbf{Lifecycle} & \texttt{current} \\
+\textbf{Authority} & \texttt{CURRENT\_GOVERNED} \\
 \textbf{Type} & \texttt{FunctionalRequirement} \\
 \textbf{Title} & Verifica dell'endpoint di statistiche della pipeline DermaTriage \\
 \textbf{Parent Decision} & \texttt{DEC-C7-01} \\
 \textbf{Owning MR (derived)} & \texttt{MR-C7} \\
 \bottomrule
 \end{tabularx}
+
 \textbf{Functional obligation}\par
-Esercitare \texttt{StatsEndpoint} e preservare l'osservazione delle statistiche operative restituite.
+Esercitare \texttt{StatsEndpoint}, ricevere la risposta delle statistiche della pipeline e preservarne la struttura informativa documentata.
 
-\textbf{Functional clauses / candidate \texttt{normativeClause [1..*]}}\par
-La procedura MUST esercitare \texttt{StatsEndpoint}. L'expected response documentata espone \texttt{total\_diagnoses}, \texttt{total\_corrections} e \texttt{urgency\_distribution} con chiavi P1, P2, P3 e P4. La fonte non documenta una pass condition autonoma; nessun PASS/FAIL viene inferito.
+\textbf{Functional clauses}\par
+La procedura MUST trasferire una \texttt{PipelineStatisticsRequest} a \texttt{StatsEndpoint} e MUST ricevere una \texttt{PipelineStatisticsResponse}. La response MUST comprendere \texttt{TotalDiagnosesCount}, \texttt{TotalCorrectionsCount} e \texttt{UrgencyDistribution}; quest'ultima MUST comprendere i conteggi \texttt{P1Count}, \texttt{P2Count}, \texttt{P3Count} e \texttt{P4Count}. La fonte non documenta una pass condition autonoma: nessuna \texttt{decisionRule}, biforcazione PASS/FAIL o verification outcome viene inferita.
 
-\textbf{Current verification realization}\par
-Binding corrente: \texttt{GET /stats}. I valori numerici 30, 1, P1=2, P2=0, P3=24, P4=4 sono baseline osservata e non contract generale.
+\textbf{Current verification realization / observed example}\par
+Binding corrente: \texttt{GET /stats}, senza autenticazione nell'inventario corrente. L'esempio documentato riporta \texttt{total\_diagnoses=30}, \texttt{total\_corrections=1} e \texttt{urgency\_distribution=\{P1:2,P2:0,P3:24,P4:4\}}. Tali valori sono osservazioni dell'esempio e non target, soglie o contract numerici generali.
 
 \textbf{Boundary}\par
-Questo FR verifica la forma informativa della response documentata; non crea una quality rule sulle statistiche e non trasforma i valori osservati in target.
+Questo FR governa il request/response flow e la composizione informativa della response. Non crea una quality rule sulle statistiche, non produce un \texttt{StatsEndpointVerificationOutcome} e non introduce un consumer successivo delle statistiche. L'origine interna dei conteggi restituiti da \texttt{StatsEndpoint} resta fuori da questa review.
 \end{ddtacore}
 
 \switchcolumn
 {\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
-\vspace{0.10em}
+\vspace{0.08em}
+
 \begin{ddtareferentidentified}[top=2pt,bottom=2pt,left=5pt,right=5pt]
-\fontsize{3.45}{3.80}\selectfont
-\BACandidate{PipelineStatisticsResponse} \BANew{}; \BACandidate{StatsEndpointVerification} \BANew{}; \BACandidate{PipelineStatisticsObservation} \BANew{}.\par
+\fontsize{2.64}{2.94}\selectfont
+\BACandidate{StatsEndpointVerification} \BANew{}; \BACandidate{PipelineStatisticsRequest} \BANew{}; \BACandidate{PipelineStatisticsResponse} \BANew{}; \BACandidate{TotalDiagnosesCount} \BANew{}; \BACandidate{TotalCorrectionsCount} \BANew{}; \BACandidate{UrgencyDistribution} \BANew{}; \BACandidate{P1Count} \BANew{}; \BACandidate{P2Count} \BANew{}; \BACandidate{P3Count} \BANew{}; \BACandidate{P4Count} \BANew{}.\par
 \textbf{Reuse:} \texttt{StatsEndpoint}; \texttt{EndpointVerificationStage}.
 \end{ddtareferentidentified}
+
 \begin{ddtareferentaccepted}[top=2pt,bottom=2pt,left=5pt,right=5pt]
-\fontsize{3.35}{3.70}\selectfont
-\BAAccepted{DermaTriageVerification}; \BAAccepted{DermaTriageVerificationProcedure}; \BAAccepted{StatsEndpoint}; \BAAccepted{EndpointVerificationStage}. Le nuove identity restano candidate.
+\fontsize{2.48}{2.76}\selectfont
+\BAAccepted{DermaTriageVerification}; \BAAccepted{DermaTriageVerificationProcedure}; \BAAccepted{EndpointVerificationStage}; \BAAccepted{StatsEndpoint}; \BAAccepted{StatsEndpointVerification} \BAFirstAccepted{}; \BAAccepted{PipelineStatisticsRequest} \BAFirstAccepted{}; \BAAccepted{PipelineStatisticsResponse} \BAFirstAccepted{}; \BAAccepted{TotalDiagnosesCount} \BAFirstAccepted{}; \BAAccepted{TotalCorrectionsCount} \BAFirstAccepted{}; \BAAccepted{UrgencyDistribution} \BAFirstAccepted{}; \BAAccepted{P1Count} \BAFirstAccepted{}; \BAAccepted{P2Count} \BAFirstAccepted{}; \BAAccepted{P3Count} \BAFirstAccepted{}; \BAAccepted{P4Count} \BAFirstAccepted{}.
 \end{ddtareferentaccepted}
+
 \begin{ddtapropositionidentified}[top=2pt,bottom=2pt,left=5pt,right=5pt]
-\fontsize{3.02}{3.34}\selectfont
-\emph{Candidate reconstruction -- ID non assegnato}\par
-\hspace*{1em}\texttt{semanticOperatorKey = produce}\par
-\hspace*{1em}\texttt{actor -> StatsEndpoint}\par
-\hspace*{1em}\texttt{result -> PipelineStatisticsResponse}\par
-\hspace*{1em}\texttt{polarity = affirmative}\par
+\fontsize{2.12}{2.36}\selectfont
+\texttt{BAP-FRC7-02-03-01}\par
+\texttt{semanticOperatorKey = transfer}\par
+\hspace*{1em}\texttt{source -> StatsEndpointVerification}\par
+\hspace*{1em}\texttt{destination -> StatsEndpoint}\par
+\hspace*{1em}\texttt{content -> PipelineStatisticsRequest}\par
+\texttt{polarity = affirmative}\par
 \smallskip
-\hspace*{1em}\texttt{semanticOperatorKey = constrain}\par
-\hspace*{1em}\texttt{constraintTarget -> PipelineStatisticsResponse}\par
-\hspace*{2em}\texttt{requiredFields -> [total\_diagnoses, total\_corrections, urgency\_distribution]}\par
-\hspace*{2em}\texttt{urgency\_distribution.keys -> [P1, P2, P3, P4]}\par
-\hspace*{1em}\texttt{polarity = affirmative}\par
+\texttt{BAP-FRC7-02-03-02}\par
+\texttt{semanticOperatorKey = transfer}\par
+\hspace*{1em}\texttt{source -> StatsEndpoint}\par
+\hspace*{1em}\texttt{destination -> StatsEndpointVerification}\par
+\hspace*{1em}\texttt{content -> PipelineStatisticsResponse}\par
+\texttt{polarity = affirmative}\par
 \smallskip
-\hspace*{1em}\texttt{semanticOperatorKey = hasPart}\par
+\texttt{BAP-FRC7-02-03-03}\par
+\texttt{semanticOperatorKey = hasPart}\par
 \hspace*{1em}\texttt{whole -> EndpointVerificationStage}\par
 \hspace*{1em}\texttt{part -> StatsEndpointVerification}\par
-\hspace*{1em}\texttt{polarity = affirmative}\par
+\texttt{polarity = affirmative}\par
 \smallskip
-\hspace*{1em}\texttt{semanticOperatorKey = produce}\par
-\hspace*{1em}\texttt{actor -> StatsEndpointVerification}\par
-\hspace*{1em}\texttt{input -> PipelineStatisticsResponse}\par
-\hspace*{1em}\texttt{result -> PipelineStatisticsObservation}\par
-\hspace*{1em}\texttt{polarity = affirmative}
+\texttt{BAP-FRC7-02-03-04..06}\par
+\texttt{semanticOperatorKey = hasPart}\par
+\hspace*{1em}\texttt{whole -> PipelineStatisticsResponse}\par
+\hspace*{1em}\texttt{part -> TotalDiagnosesCount / TotalCorrectionsCount / UrgencyDistribution}\par
+\texttt{polarity = affirmative}\par
+\smallskip
+\texttt{BAP-FRC7-02-03-07..10}\par
+\texttt{semanticOperatorKey = hasPart}\par
+\hspace*{1em}\texttt{whole -> UrgencyDistribution}\par
+\hspace*{1em}\texttt{part -> P1Count / P2Count / P3Count / P4Count}\par
+\texttt{polarity = affirmative}
 \end{ddtapropositionidentified}
+
 \begin{ddtapropositionaccepted}[top=2pt,bottom=2pt,left=5pt,right=5pt]
-\fontsize{3.35}{3.70}\selectfont
-\texttt{--}. Nuovo FR e relative identity/proposition restano candidate fino alla review individuale.
+\fontsize{2.42}{2.70}\selectfont
+\textbf{\texttt{BAP-FRC7-02-03-01..10}}. La verification appartiene a \texttt{EndpointVerificationStage}; request e response sono due \texttt{transfer} distinti; la response e la nested \texttt{UrgencyDistribution} sono composite governate tramite \texttt{hasPart}. Non e' accettata alcuna \texttt{produce} locale per observation/outcome.
 \end{ddtapropositionaccepted}
+
 \begin{ddtaopenrelations}[top=2pt,bottom=2pt,left=5pt,right=5pt]
-\fontsize{3.05}{3.38}\selectfont
-Caso di pressure test principale per la nuova regola: il flow puo' mostrare \texttt{StatsEndpoint -> PipelineStatisticsResponse -> StatsEndpointVerification}; le \texttt{constrain} sul response BAReferent possono essere omesse da una view generale senza alterare la BA.
+\fontsize{2.32}{2.58}\selectfont
+\textbf{No local decision.} Nessuna pass condition autonoma e' documentata per \texttt{GET /stats}; il flow termina con la ricezione della \texttt{PipelineStatisticsResponse}.\par
+\textbf{Observed values.} I valori numerici dell'esempio non sono promossi a constraint o acceptance target.\par
+\textbf{Observation identity retired.} \texttt{PipelineStatisticsObservation} non viene mantenuto come BAReferent separato: la response ricevuta e' gia' l'oggetto informativo osservato dalla verification.\par
+\textbf{Internal derivation.} La BA corrente non governa come \texttt{StatsEndpoint} calcoli o recuperi i conteggi restituiti.
 \end{ddtaopenrelations}
 \end{paracol}
 %</PAGE-CONTENT:71>
 \clearpage
-%<PAGE-DESC:72>MR-C7 > DEC-C7-01 > FR-C7-03-01 [candidate] - Verifica dell'Image Urgency Analysis
+%<PAGE-DESC:72>MR-C7 > DEC-C7-01 > FR-C7-03-01 - Verifica dell'Image Urgency Analysis
 %<PAGE-CONTENT:72>
 \PageHashFooter{\PageMDfive{72}}
-\subsubsection{FR-C7-03-01 [candidate] - Verifica dell'Image Urgency Analysis}
-{\sffamily\scriptsize\color{DDTAGray}Gerarchia proposta: \texttt{MR-C7} $\rightarrow$ \texttt{DEC-C7-01} $\rightarrow$ \texttt{FR-C7-03-01}. Reconstruction-only: nessuna promotion.}\par
+\subsubsection{FR-C7-03-01 - Verifica dell'Image Urgency Analysis}
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-C7} $\rightarrow$ \texttt{DEC-C7-01} $\rightarrow$ \texttt{FR-C7-03-01}. Review BA completata distinguendo acquisizione del test vector, inoltro della \texttt{LesionImage}, runtime Stage 1 e local PASS rule.}\par
 
-\setlength{\columnsep}{7mm}\setlength{\columnseprule}{0.35pt}\columnratio{0.67}\begin{paracol}{2}
-{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par\vspace{0.12em}
-\begin{ddtacore}[title={FunctionalRequirement candidate}]
-\fontsize{3.78}{4.14}\selectfont
-\begin{tabularx}{\linewidth}{L{39mm}Y}\toprule
+\setlength{\columnsep}{7mm}
+\setlength{\columnseprule}{0.35pt}
+\columnratio{0.64}
+\begin{paracol}{2}
+{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
+\vspace{0.10em}
+\begin{ddtacore}[title={FunctionalRequirement}]
+\fontsize{3.42}{3.76}\selectfont
+\begin{tabularx}{\linewidth}{L{39mm}Y}
+\toprule
 \textbf{ID} & \texttt{FR-C7-03-01} \\
-\textbf{Lifecycle} & \texttt{candidate} \\
-\textbf{Authority} & \texttt{CANDIDATE\_NON\_CURRENT} \\
+\textbf{Lifecycle} & \texttt{current} \\
+\textbf{Authority} & \texttt{CURRENT\_GOVERNED} \\
 \textbf{Type} & \texttt{FunctionalRequirement} \\
 \textbf{Title} & Verifica dell'Image Urgency Analysis della pipeline DermaTriage \\
 \textbf{Parent Decision} & \texttt{DEC-C7-01} \\
 \textbf{Owning MR (derived)} & \texttt{MR-C7} \\
-\bottomrule\end{tabularx}
+\bottomrule
+\end{tabularx}
+
 \textbf{Functional obligation}\par
-Esercitare \texttt{ImageUrgencyAnalysis} e determinare l'esito del controllo sull'output prodotto.
+Esercitare \texttt{ImageUrgencyAnalysis} mediante una dermoscopy image di test, ricevere la relativa \texttt{ImageUrgencyClassification} e determinare l'esito locale della verifica sulla base della validita' dell'urgenza restituita.
 
 \textbf{Functional clauses}\par
-L'expected observation MUST preservare urgency HIGH/MEDIUM/LOW, confidence 0.0--1.0 e probabilities array. \texttt{PASS} richiede una urgency string valida. Confidence e probabilities non diventano ulteriori pass criteria.
+La verification MUST disporre di una \texttt{LesionImage} e MUST trasferirla a \texttt{ImageUrgencyAnalysis}. La provenienza/acquisizione della dermoscopy JPEG usata dal test non e' specificata dalla fonte e non viene inventata. \texttt{ImageUrgencyAnalysis} MUST restituire una \texttt{ImageUrgencyClassification}; il runtime Stage 1 e' realizzato correntemente da \texttt{EfficientNet-B4}. L'expected observation documentata comprende urgency HIGH/MEDIUM/LOW, confidence 0.0--1.0 e probabilities array. Il valore \texttt{PASS} MUST essere assegnato quando viene restituita una urgency string valida. Confidence e probabilities non diventano ulteriori pass criteria per inferenza.
 
-\textbf{Current realization / test vector}\par
-Input corrente: dermoscopy JPEG. Realizzazione verificata: \texttt{EfficientNet-B4}.
+\textbf{Runtime reuse}\par
+La verification non ridefinisce lo Stage 1. Riusa \texttt{BAP-FR03-01-01}: \texttt{ImageUrgencyAnalysis} elabora \texttt{LesionImage} e produce \texttt{ImageUrgencyClassification}; riusa inoltre \texttt{BAP-FR03-01-02}, che collega la funzione logica alla realizzazione \texttt{EfficientNet-B4}. La classificazione preserva urgency e confidence associate come un unico risultato governato; nessun producer separato di confidence viene introdotto.
 
 \textbf{Boundary}\par
-I quality gate assoluti appartengono a \texttt{FR-C7-07-01}. Il contract runtime non viene appropriato da C7.
+La source del test vector prima della \texttt{ImageUrgencyAnalysisVerification} resta \texttt{NOT SPECIFIED}. Non viene introdotto uno store runtime della \texttt{LesionImage}. Il probabilities array e il range confidence sono source-supported per l'expected observation C7, ma il loro eventuale promotion/refinement nel runtime contract di \texttt{ImageUrgencyClassification} resta owner-review MR-01. I quality gate assoluti appartengono a \texttt{FR-C7-07-01}; nessun \texttt{ELSE -> FAIL} viene inferito.
 \end{ddtacore}
+
 \switchcolumn
-{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par\vspace{0.10em}
-\begin{ddtareferentidentified}[top=2pt,bottom=2pt,left=5pt,right=5pt]\fontsize{3.48}{3.82}\selectfont
+{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
+\vspace{0.08em}
+
+\begin{ddtareferentidentified}[top=2pt,bottom=2pt,left=5pt,right=5pt]
+\fontsize{2.72}{3.00}\selectfont
 \BACandidate{ImageUrgencyAnalysisVerification} \BANew{}; \BACandidate{ImageUrgencyAnalysisVerificationOutcome} \BANew{}.\par
-\textbf{Reuse:} \texttt{ImageUrgencyAnalysis}; \texttt{ImageUrgencyClassification}; \texttt{EfficientNet-B4}; \texttt{ImageUrgencyAnalysisVerificationStage}.
+\textbf{Reuse:} \texttt{LesionImage}; \texttt{ImageUrgencyAnalysis}; \texttt{ImageUrgencyClassification}; \texttt{EfficientNet-B4}; \texttt{ImageUrgencyAnalysisVerificationStage}.
 \end{ddtareferentidentified}
-\begin{ddtareferentaccepted}[top=2pt,bottom=2pt,left=5pt,right=5pt]\fontsize{3.35}{3.70}\selectfont
-\BAAccepted{DermaTriageVerification}; \BAAccepted{DermaTriageVerificationProcedure}; \BAAccepted{ImageUrgencyAnalysis}; \BAAccepted{ImageUrgencyClassification}; \BAAccepted{EfficientNet-B4}; \BAAccepted{ImageUrgencyAnalysisVerificationStage}. Le nuove identity restano candidate.
+
+\begin{ddtareferentaccepted}[top=2pt,bottom=2pt,left=5pt,right=5pt]
+\fontsize{2.58}{2.86}\selectfont
+\BAAccepted{DermaTriageVerification}; \BAAccepted{DermaTriageVerificationProcedure}; \BAAccepted{ImageUrgencyAnalysisVerificationStage}; \BAAccepted{LesionImage}; \BAAccepted{ImageUrgencyAnalysis}; \BAAccepted{ImageUrgencyClassification}; \BAAccepted{EfficientNet-B4}; \BAAccepted{ImageUrgencyAnalysisVerification} \BAFirstAccepted{}; \BAAccepted{ImageUrgencyAnalysisVerificationOutcome} \BAFirstAccepted{}.
 \end{ddtareferentaccepted}
-\begin{ddtapropositionidentified}[top=2pt,bottom=2pt,left=5pt,right=5pt]\fontsize{3.00}{3.32}\selectfont
-\textbf{\texttt{BAP-FRC7-03-01-01}} \emph{[CANDIDATE - REWORK]}\par
-\hspace*{1em}\texttt{semanticOperatorKey = produce}\par
+
+\begin{ddtapropositionidentified}[top=2pt,bottom=2pt,left=5pt,right=5pt]
+\fontsize{2.18}{2.42}\selectfont
+\texttt{BAP-FRC7-03-01-01}\par
+\texttt{semanticOperatorKey = produce}\par
 \hspace*{1em}\texttt{actor -> ImageUrgencyAnalysisVerification}\par
-\hspace*{1em}\texttt{input -> ImageUrgencyClassification}\par
 \hspace*{1em}\texttt{result -> ImageUrgencyAnalysisVerificationOutcome}\par
-\hspace*{1em}\texttt{polarity = affirmative}\par
+\hspace*{1em}\texttt{operatorStructure [CANDIDATE / NOT ADMITTED]}\par
+\hspace*{2em}\texttt{decisionRule}\par
+\hspace*{3em}\texttt{branch}\par
+\hspace*{4em}\texttt{when -> observed ImageUrgencyClassification urgency valid in governed HIGH/MEDIUM/LOW domain}\par
+\hspace*{4em}\texttt{resultAssignment -> ImageUrgencyAnalysisVerificationOutcome = PASS}\par
+\texttt{polarity = affirmative}\par
 \smallskip
-\emph{Candidate containment -- ID non assegnato}\par
-\hspace*{1em}\texttt{semanticOperatorKey = hasPart}\par
+
+\texttt{BAP-FRC7-03-01-02}\par
+\texttt{semanticOperatorKey = transfer}\par
+\hspace*{1em}\texttt{source -> ImageUrgencyAnalysisVerification}\par
+\hspace*{1em}\texttt{destination -> ImageUrgencyAnalysis}\par
+\hspace*{1em}\texttt{content -> LesionImage}\par
+\texttt{polarity = affirmative}\par
+\smallskip
+
+\texttt{BAP-FRC7-03-01-03}\par
+\texttt{semanticOperatorKey = transfer}\par
+\hspace*{1em}\texttt{source -> ImageUrgencyAnalysis}\par
+\hspace*{1em}\texttt{destination -> ImageUrgencyAnalysisVerification}\par
+\hspace*{1em}\texttt{content -> ImageUrgencyClassification}\par
+\texttt{polarity = affirmative}\par
+\smallskip
+
+\texttt{BAP-FRC7-03-01-04}\par
+\texttt{semanticOperatorKey = hasPart}\par
 \hspace*{1em}\texttt{whole -> ImageUrgencyAnalysisVerificationStage}\par
 \hspace*{1em}\texttt{part -> ImageUrgencyAnalysisVerification}\par
-\hspace*{1em}\texttt{polarity = affirmative}\par
-\smallskip
-\emph{Contract pressure -- ID non assegnato}\par
-\hspace*{1em}\texttt{semanticOperatorKey = constrain}\par
-\hspace*{1em}\texttt{constraintTarget -> ImageUrgencyClassification}\par
-\hspace*{2em}\texttt{urgency -> [HIGH, MEDIUM, LOW]; confidence -> [0.0,1.0]; probabilities -> required}\par
-\hspace*{1em}\texttt{polarity = affirmative}
+\texttt{polarity = affirmative}
 \end{ddtapropositionidentified}
-\begin{ddtapropositionaccepted}[top=2pt,bottom=2pt,left=5pt,right=5pt]\fontsize{3.36}{3.70}\selectfont
-\texttt{--}. Il rework elimina la generic \texttt{Stage1VerificationObservation} e riusa direttamente l'output runtime; nessuna promotion in questa versione.
+
+\begin{ddtapropositionaccepted}[top=2pt,bottom=2pt,left=5pt,right=5pt]
+\fontsize{2.50}{2.78}\selectfont
+\textbf{\texttt{BAP-FRC7-03-01-01..04}}. La verification appartiene allo stage dedicato; inoltra la \texttt{LesionImage} alla funzione Stage 1 e riceve la \texttt{ImageUrgencyClassification}. La local \texttt{decisionRule} resta candidate/non ammessa come struttura interna della proposition \texttt{-01}; nessun outcome complementare viene inferito.
 \end{ddtapropositionaccepted}
-\begin{ddtaopenrelations}[top=2pt,bottom=2pt,left=5pt,right=5pt]\fontsize{3.02}{3.34}\selectfont
-La candidate \texttt{constrain} affina il runtime contract e va verificata con l'owner MR-01 prima di accettarla. La validita' dell'urgenza deve riusare il dominio governato, non duplicarlo in branch locali.
+
+\begin{ddtaopenrelations}[top=2pt,bottom=2pt,left=5pt,right=5pt]
+\fontsize{2.28}{2.54}\selectfont
+\textbf{Test-vector acquisition.} La dermoscopy JPEG deve raggiungere \texttt{ImageUrgencyAnalysisVerification}, ma la source, il meccanismo di acquisizione e un eventuale store sono \texttt{NOT SPECIFIED}; nessuna proposition con source inventata viene creata.\par
+\textbf{Runtime result.} Urgency e confidence sono prodotte insieme dentro \texttt{ImageUrgencyClassification}; la confidence non viene materializzata come BAReferent separato.\par
+\textbf{Expected-observation pressure.} Confidence \texttt{0.0--1.0} e probabilities array sono documentati dal test. L'eventuale \texttt{constrain} sul runtime \texttt{ImageUrgencyClassification} resta owner-review MR-01 e non viene promosso in C7.\par
+\textbf{Complement.} L'esito complementare a PASS resta \texttt{NOT SPECIFIED}.
 \end{ddtaopenrelations}
 \end{paracol}
 %</PAGE-CONTENT:72>
@@ -7651,8 +7706,8 @@ Per-gate outcome pressure: una sola FR contiene quattro criterion outcomes ma ne
 \texttt{FR-C7-01-01} & ServiceReadinessVerification + HealthCheckRequest/Response + composite Health result & review closed: stage \texttt{hasPart}; request/response \texttt{transfer}; response-envelope + health-payload \texttt{hasPart}; status \texttt{constrain}; local \texttt{decisionRule} remains candidate. \\
 \texttt{FR-C7-02-01} & Reuse AnalyzeEndpoint; DirectAnalysisRequest/Response & review closed: EndpointVerificationStage \texttt{hasPart}; request/response \texttt{transfer}; verification \texttt{produce}; local \texttt{decisionRule} remains candidate; generic observation retired. \\
 \texttt{FR-C7-02-02} & Reuse DiagnoseEndpoint; B4IntegratedDiagnosisRequest/Response & review closed: EndpointVerificationStage \texttt{hasPart}; request/response \texttt{transfer}; response-status \texttt{hasPart} + \texttt{constrain}; verification \texttt{produce}; write-back criterion reuses \texttt{BAP-FR23-01}; local \texttt{decisionRule} remains candidate. \\
-\texttt{FR-C7-02-03} & PipelineStatisticsResponse; StatsEndpointVerification; PipelineStatisticsObservation & NEW candidate FR; no pass condition/outcome. \\
-\texttt{FR-C7-03-01} & ImageUrgencyAnalysisVerification; ImageUrgencyAnalysisVerificationOutcome & reuse ImageUrgencyClassification directly; contract refinement pressure. \\
+\texttt{FR-C7-02-03} & StatsEndpointVerification + PipelineStatisticsRequest/Response + nested statistics & review closed: EndpointVerificationStage \texttt{hasPart}; request/response \texttt{transfer}; response + urgency-distribution \texttt{hasPart}; no local decision/outcome; generic observation retired. \\
+\texttt{FR-C7-03-01} & ImageUrgencyAnalysisVerification + Outcome; reuse LesionImage / ImageUrgencyAnalysis / ImageUrgencyClassification / EfficientNet-B4 & review closed: stage \texttt{hasPart}; image/result \texttt{transfer}; verification \texttt{produce}; local rule checks valid urgency; test-vector acquisition NOT SPECIFIED; confidence/probabilities runtime refinement remains owner-review MR-01. \\
 \texttt{FR-C7-03-02} & ClinicalDescriptionGenerationVerification; ...Outcome & reuse ClinicalDescription directly; reuse runtime content contract. \\
 \texttt{FR-C7-03-03} & HistoricalCaseRetrievalVerification; ...Outcome & reuse RetrievedHistoricalCases directly; no duplicate top-5 contract. \\
 \texttt{FR-C7-03-04} & MultiSourceTriageSynthesisVerification; ...Outcome & reuse AITriageSynthesis; RC-002 remains owner of field-name reconciliation. \\
@@ -7666,7 +7721,7 @@ Per-gate outcome pressure: una sola FR contiene quattro criterion outcomes ma ne
 
 \begin{ddtaopen}[title={Projection consequence of the C7 flow review}]
 \fontsize{3.64}{3.98}\selectfont
-Per i flow di verifica riesaminati, il movimento di un messaggio fra due elementi noti viene governato con \texttt{transfer}: source e destination sono gli estremi, mentre request/response e' il content trasferito. I role \texttt{input} non vengono duplicati come relazioni autonome quando il trasferimento gia' governa come il dato raggiunge il behavior. La \texttt{produce} della verification governa il result di verifica; le \texttt{decisionRule} locali restano candidate finche' il costrutto non viene ammesso metodologicamente. Gli outcome locali restano terminali quando la fonte non governa un consumer o una regola di aggregazione complessiva.
+Per i flow di verifica riesaminati, il movimento di un messaggio fra due elementi noti viene governato con \texttt{transfer}: source e destination sono gli estremi, mentre request/response e' il content trasferito. I role \texttt{input} non vengono duplicati come relazioni autonome quando il trasferimento gia' governa come il dato raggiunge il behavior. La \texttt{produce} della verification governa il result di verifica; le \texttt{decisionRule} locali restano candidate finche' il costrutto non viene ammesso metodologicamente. Gli outcome locali restano terminali quando la fonte non governa un consumer o una regola di aggregazione complessiva; un verification flow privo di pass condition, come \texttt{FR-C7-02-03}, puo' terminare direttamente con la response osservata senza introdurre un outcome artificiale.
 \end{ddtaopen}
 %</PAGE-CONTENT:80>
 \clearpage
@@ -7700,10 +7755,12 @@ Nessuna ulteriore famiglia source-supported emerge per \texttt{/docs}, prompt-ma
 \switchcolumn
 {\sffamily\large\bfseries\color{DDTABlue}Open points / prossimo gate}\par\vspace{0.15em}
 \begin{ddtaopen}[title={Da chiudere durante la review individuale}]
-\fontsize{3.46}{3.80}\selectfont
+\fontsize{3.28}{3.60}\selectfont
 \textbf{Service readiness.} \texttt{FR-C7-01-01} e' chiuso: \texttt{ServiceReadinessVerification} e' parte di \texttt{ServiceReadinessVerificationStage}; request/response sono due transfer distinti; derivazione interna dei cinque status e relazione HTTP-200/local-PASS restano \texttt{NOT SPECIFIED}.\par
 \textbf{Direct analysis.} \texttt{FR-C7-02-01} e' chiuso: \texttt{DirectAnalysisEndpointVerification} e' parte di \texttt{EndpointVerificationStage}; riusa \texttt{AnalyzeEndpoint} e scambia \texttt{DirectAnalysisRequest/Response}. Il runtime interno della pipeline non viene duplicato in questo FR.\par
 \textbf{B4-integrated endpoint.} \texttt{FR-C7-02-02} e' chiuso: \texttt{B4IntegratedDiagnosisEndpointVerification} e' parte di \texttt{EndpointVerificationStage}; riusa \texttt{DiagnoseEndpoint}, scambia request/response esplicite e usa HTTP 200 + occorrenza del write-back \texttt{BAP-FR23-01} nella local PASS rule senza duplicare il runtime transfer.\par
+\textbf{Pipeline statistics endpoint.} \texttt{FR-C7-02-03} e' chiuso: \texttt{StatsEndpointVerification} e' parte di \texttt{EndpointVerificationStage}; riusa \texttt{StatsEndpoint}, scambia \texttt{PipelineStatisticsRequest/Response} e preserva la struttura dei conteggi restituiti. Nessuna pass condition, biforcazione o outcome viene inferito.\par
+\textbf{Image urgency Stage 1.} \texttt{FR-C7-03-01} e' chiuso: \texttt{ImageUrgencyAnalysisVerification} e' parte di \texttt{ImageUrgencyAnalysisVerificationStage}; riceve una dermoscopy JPEG da source \texttt{NOT SPECIFIED}, inoltra la stessa \texttt{LesionImage} a \texttt{ImageUrgencyAnalysis}, riusa \texttt{EfficientNet-B4} come realizzazione e valuta la \texttt{ImageUrgencyClassification}. PASS richiede solo urgency valida; confidence/probabilities restano expected observation con runtime owner-review.\par
 \textbf{RC-002.} Stage 4 oracle e runtime content contract restano da riconciliare nell'owner corretto.\par
 \textbf{Full pipeline.} SLA owner/identity resta aperto; ``complete response'' resta criterio non scomposto.\par
 \textbf{B4 aggregation.} Sei controlli con outcome locali, nessun overall rule; decidere se lo split e' necessario.\par
@@ -7713,7 +7770,7 @@ Nessuna ulteriore famiglia source-supported emerge per \texttt{/docs}, prompt-ma
 
 \begin{ddtaquestions}
 \fontsize{3.58}{3.94}\selectfont
-Gate corrente chiuso: \texttt{FR-C7-02-02}. Gli outcome locali dei FR riesaminati non vengono collegati a un overall verification result perche' la fonte non governa un consumer/aggregator complessivo. Prossimo gate: \texttt{FR-C7-02-03}.
+Gate corrente chiuso: \texttt{FR-C7-03-01}. La prima verifica di pipeline stage riusa il runtime Stage 1 senza inventare la source del test vector o duplicare urgency/confidence in producer separati. Prossimo gate: \texttt{FR-C7-03-02}.
 \end{ddtaquestions}
 \end{paracol}
 %</PAGE-CONTENT:81>
@@ -7873,7 +7930,7 @@ ReadinessOutcome & \textbf{\texttt{FR-C7-01-01}} \\
 \section*{Registro Base Analysis - BAReferent C7 increment}
 \begin{ddtacore}[title={CONTINUITA' DEL REGISTRO - C7}]
 \fontsize{5.8}{6.35}\selectfont
-Questa pagina continua il registro BA con le identity C7 accettate durante la review FR-by-FR, includendo il completamento di \texttt{FR-C7-01-01}, \texttt{FR-C7-02-01} e \texttt{FR-C7-02-02}. Il riferimento in \textbf{grassetto} indica la prima accettazione. La separazione fisica su questa pagina non introduce un nuovo stato BA.
+Questa pagina continua il registro BA con le identity C7 accettate durante la review FR-by-FR, includendo il completamento di \texttt{FR-C7-01-01}, della famiglia endpoint verification \texttt{FR-C7-02-01..03} e di \texttt{FR-C7-03-01}. Il riferimento in \textbf{grassetto} indica la prima accettazione. La separazione fisica su questa pagina non introduce un nuovo stato BA.
 \end{ddtacore}
 
 \vspace{0.35mm}
@@ -7899,8 +7956,8 @@ B4ConnectionHealthStatus & \textbf{\texttt{FR-C7-01-01}} -- parte del health res
 \vspace{0.30mm}
 {\sffamily\bfseries\color{DDTABlue}BAReferent - endpoint verification increment}\par
 \vspace{0.12mm}
-\fontsize{5.30}{5.82}\selectfont
-\renewcommand{\arraystretch}{0.88}
+\fontsize{4.42}{4.88}\selectfont
+\renewcommand{\arraystretch}{0.72}
 \begin{tabularx}{\textwidth}{L{68mm}Y}
 \toprule
 \textbf{BAReferent} & \textbf{Riferimento documentale / boundary} \\
@@ -7913,12 +7970,34 @@ B4IntegratedDiagnosisEndpointVerification & \textbf{\texttt{FR-C7-02-02}} -- beh
 B4IntegratedDiagnosisRequest & \textbf{\texttt{FR-C7-02-02}} -- content del request transfer verso \texttt{DiagnoseEndpoint}; current test vector con \texttt{X-API-Key} e body \texttt{consulto\_id}. \\
 B4IntegratedDiagnosisResponse & \textbf{\texttt{FR-C7-02-02}} -- content del response transfer da \texttt{DiagnoseEndpoint}; oltre a \texttt{HTTPResponseStatus}, response body \texttt{NOT SPECIFIED}. \\
 B4IntegratedDiagnosisEndpointVerificationOutcome & \textbf{\texttt{FR-C7-02-02}} -- result locale della verification; \texttt{PASS} e' assegnato dalla candidate rule; consumer/overall aggregator \texttt{NOT SPECIFIED}. \\
+StatsEndpointVerification & \textbf{\texttt{FR-C7-02-03}} -- behavior di verifica collocato in \texttt{EndpointVerificationStage}; endpoint runtime riusato: \texttt{StatsEndpoint}. \\
+PipelineStatisticsRequest & \textbf{\texttt{FR-C7-02-03}} -- content del request transfer verso \texttt{StatsEndpoint}; nessuna struttura interna ulteriore richiesta dalla fonte. \\
+PipelineStatisticsResponse & \textbf{\texttt{FR-C7-02-03}} -- content del response transfer da \texttt{StatsEndpoint}; composite delle statistiche documentate. \\
+TotalDiagnosesCount & \textbf{\texttt{FR-C7-02-03}} -- parte della statistics response; il valore osservato 30 non e' un target generale. \\
+TotalCorrectionsCount & \textbf{\texttt{FR-C7-02-03}} -- parte della statistics response; il valore osservato 1 non e' un target generale. \\
+UrgencyDistribution & \textbf{\texttt{FR-C7-02-03}} -- parte composite della statistics response, articolata sui conteggi P1--P4. \\
+P1Count / P2Count / P3Count / P4Count & \textbf{\texttt{FR-C7-02-03}} -- parti di \texttt{UrgencyDistribution}; i valori osservati 2/0/24/4 non diventano constraint. \\
+\bottomrule
+\end{tabularx}
+
+
+\vspace{0.22mm}
+{\sffamily\bfseries\color{DDTABlue}BAReferent - pipeline-stage verification increment}\par
+\vspace{0.08mm}
+\fontsize{4.18}{4.58}\selectfont
+\renewcommand{\arraystretch}{0.68}
+\begin{tabularx}{\textwidth}{L{68mm}Y}
+\toprule
+\textbf{BAReferent} & \textbf{Riferimento documentale / boundary} \\
+\midrule
+ImageUrgencyAnalysisVerification & \textbf{\texttt{FR-C7-03-01}} -- behavior di verifica collocato in \texttt{ImageUrgencyAnalysisVerificationStage}; inoltra \texttt{LesionImage} e osserva \texttt{ImageUrgencyClassification}. \\
+ImageUrgencyAnalysisVerificationOutcome & \textbf{\texttt{FR-C7-03-01}} -- result locale della verification; \texttt{PASS} e' assegnato dalla candidate rule quando l'urgenza restituita e' valida; consumer successivo \texttt{NOT SPECIFIED}. \\
 \bottomrule
 \end{tabularx}
 
 \begin{ddtaopenrelations}[top=2pt,bottom=2pt,left=5pt,right=5pt]
-\fontsize{5.05}{5.58}\selectfont
-\texttt{DirectAnalysisEndpoint}/\texttt{DirectAnalysisEndpointObservation} non sono mantenuti come identity separate: si riusano \texttt{AnalyzeEndpoint} e request/response esplicite. Analogamente \texttt{B4IntegratedDiagnosisEndpoint}/\texttt{B4IntegratedDiagnosisEndpointObservation} vengono riconciliati con \texttt{DiagnoseEndpoint} e \texttt{B4IntegratedDiagnosisRequest/Response}. Gli outcome locali restano terminali finche' una fonte non governa un consumer o un overall verification result.
+\fontsize{4.62}{5.10}\selectfont
+\texttt{DirectAnalysisEndpoint}/\texttt{DirectAnalysisEndpointObservation} e \texttt{B4IntegratedDiagnosisEndpoint}/\texttt{B4IntegratedDiagnosisEndpointObservation} sono riconciliati con gli endpoint runtime e request/response esplicite. \texttt{PipelineStatisticsObservation} e' ritirato: la \texttt{PipelineStatisticsResponse} ricevuta e' gia' l'oggetto osservato. Gli outcome locali restano terminali quando presenti; \texttt{FR-C7-02-03} non ne introduce uno. Per \texttt{FR-C7-03-01}, \texttt{LesionImage}, \texttt{ImageUrgencyAnalysis}, \texttt{ImageUrgencyClassification} ed \texttt{EfficientNet-B4} sono identity riusate; la source del test vector non viene materializzata.
 \end{ddtaopenrelations}
 %</PAGE-CONTENT:83>
 \clearpage
@@ -7934,8 +8013,8 @@ Questa pagina continua il registro BA della pagina precedente. Il \textbf{grasse
 \vspace{0.20mm}
 {\sffamily\bfseries\color{DDTABlue}BAProposition}\par
 \vspace{0.1mm}
-\fontsize{3.25}{3.48}\selectfont
-\renewcommand{\arraystretch}{0.50}
+\fontsize{2.92}{3.14}\selectfont
+\renewcommand{\arraystretch}{0.43}
 \begin{tabularx}{\textwidth}{L{58mm}Y}
 \toprule
 \textbf{BAProposition} & \textbf{Riferimenti documentali} \\
@@ -8065,8 +8144,19 @@ Questa pagina continua il registro BA della pagina precedente. Il \textbf{grasse
 \textbf{\texttt{BAP-FRC7-02-02-04}} & \texttt{FR-C7-02-02} -- \texttt{hasPart(B4IntegratedDiagnosisResponse, HTTPResponseStatus)} \\
 \textbf{\texttt{BAP-FRC7-02-02-05}} & \texttt{FR-C7-02-02} -- \texttt{constrain} su \texttt{HTTPResponseStatus.value} con vocabulary \texttt{[200]} per la verification \\
 \textbf{\texttt{BAP-FRC7-02-02-06}} & \texttt{FR-C7-02-02} -- \texttt{hasPart(EndpointVerificationStage, B4IntegratedDiagnosisEndpointVerification)} \\
+\textbf{\texttt{BAP-FRC7-02-03-01}} & \texttt{FR-C7-02-03} -- request \texttt{transfer}: \texttt{StatsEndpointVerification -> StatsEndpoint : PipelineStatisticsRequest} \\
+\textbf{\texttt{BAP-FRC7-02-03-02}} & \texttt{FR-C7-02-03} -- response \texttt{transfer}: \texttt{StatsEndpoint -> StatsEndpointVerification : PipelineStatisticsResponse} \\
+\textbf{\texttt{BAP-FRC7-02-03-03}} & \texttt{FR-C7-02-03} -- \texttt{hasPart(EndpointVerificationStage, StatsEndpointVerification)} \\
+\textbf{\texttt{BAP-FRC7-02-03-04..06}} & \texttt{FR-C7-02-03} -- \texttt{hasPart(PipelineStatisticsResponse, TotalDiagnosesCount / TotalCorrectionsCount / UrgencyDistribution)} \\
+\textbf{\texttt{BAP-FRC7-02-03-07..10}} & \texttt{FR-C7-02-03} -- \texttt{hasPart(UrgencyDistribution, P1Count / P2Count / P3Count / P4Count)}; nessun valore osservato e' promosso a target \\
+\textbf{\texttt{BAP-FRC7-03-01-01}} & \texttt{FR-C7-03-01} -- \texttt{produce(ImageUrgencyAnalysisVerification -> ImageUrgencyAnalysisVerificationOutcome)}; local \texttt{decisionRule} candidate assegna \texttt{PASS} quando l'urgenza osservata e' valida nel dominio governato; nessun \texttt{ELSE/FAIL} inferito \\
+\textbf{\texttt{BAP-FRC7-03-01-02}} & \texttt{FR-C7-03-01} -- \texttt{transfer}: \texttt{ImageUrgencyAnalysisVerification -> ImageUrgencyAnalysis : LesionImage}; l'acquisizione precedente della test image resta \texttt{NOT SPECIFIED} \\
+\textbf{\texttt{BAP-FRC7-03-01-03}} & \texttt{FR-C7-03-01} -- \texttt{transfer}: \texttt{ImageUrgencyAnalysis -> ImageUrgencyAnalysisVerification : ImageUrgencyClassification} \\
+\textbf{\texttt{BAP-FRC7-03-01-04}} & \texttt{FR-C7-03-01} -- \texttt{hasPart(ImageUrgencyAnalysisVerificationStage, ImageUrgencyAnalysisVerification)}; confidence/probabilities runtime refinement non promosso in C7 \\
 \bottomrule
 \end{tabularx}
+\fontsize{3.05}{3.27}\selectfont
+\renewcommand{\arraystretch}{0.46}
 %</PAGE-CONTENT:84>
 \clearpage
 %<PAGE-DESC:85>Registro Base Analysis - C6 source, dependency, configuration e initialization topology increment
@@ -8525,8 +8615,8 @@ Ogni pagina possiede un MD5 del proprio contenuto canonico. Il calcolo esclude i
 \IntegrityRow{68}{MR-C7 > DEC-C7-01 > FR-C7-01-01 - Verifica della readiness operativa del servizio DermaTriage}{\PageMDfive{68}}
 \IntegrityRow{69}{MR-C7 > DEC-C7-01 > FR-C7-02-01 - Verifica dell'endpoint di analisi diretta}{\PageMDfive{69}}
 \IntegrityRow{70}{MR-C7 > DEC-C7-01 > FR-C7-02-02 - Verifica dell'endpoint integrato B4}{\PageMDfive{70}}
-\IntegrityRow{71}{MR-C7 > DEC-C7-01 > FR-C7-02-03 [candidate] - Verifica dell'endpoint di statistiche della pipeline}{\PageMDfive{71}}
-\IntegrityRow{72}{MR-C7 > DEC-C7-01 > FR-C7-03-01 [candidate] - Verifica dell'Image Urgency Analysis}{\PageMDfive{72}}
+\IntegrityRow{71}{MR-C7 > DEC-C7-01 > FR-C7-02-03 - Verifica dell'endpoint di statistiche della pipeline}{\PageMDfive{71}}
+\IntegrityRow{72}{MR-C7 > DEC-C7-01 > FR-C7-03-01 - Verifica dell'Image Urgency Analysis}{\PageMDfive{72}}
 \IntegrityRow{73}{MR-C7 > DEC-C7-01 > FR-C7-03-02 [candidate] - Verifica della Clinical Description Generation}{\PageMDfive{73}}
 \IntegrityRow{74}{MR-C7 > DEC-C7-01 > FR-C7-03-03 [candidate] - Verifica dell'Historical Case Retrieval}{\PageMDfive{74}}
 \IntegrityRow{75}{MR-C7 > DEC-C7-01 > FR-C7-03-04 [candidate] - Verifica della Multi-Source Triage Synthesis}{\PageMDfive{75}}
