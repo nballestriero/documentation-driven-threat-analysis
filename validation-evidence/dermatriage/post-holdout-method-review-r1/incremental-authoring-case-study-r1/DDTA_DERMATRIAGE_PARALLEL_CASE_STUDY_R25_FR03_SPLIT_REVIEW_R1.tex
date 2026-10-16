@@ -93,23 +93,23 @@
 \expandafter\def\csname PageMDfive70\endcsname{7c16bf063a7aacda7891ea447db9823c}
 \expandafter\def\csname PageMDfive71\endcsname{5b6905399ebc9e70a9d9e3b127932a95}
 \expandafter\def\csname PageMDfive72\endcsname{67f8d62e5966d443cdfc2899aa5d5be2}
-\expandafter\def\csname PageMDfive73\endcsname{4af5c8388084b0af4a6ebfbb0d1a8171}
+\expandafter\def\csname PageMDfive73\endcsname{77f9566cc687c33e1e43582f6710d9bf}
 \expandafter\def\csname PageMDfive74\endcsname{e801661bb7821f2ae91f0bb26719fa63}
 \expandafter\def\csname PageMDfive75\endcsname{b3fcde2fd16f845ce5d613dd943fbae8}
 \expandafter\def\csname PageMDfive76\endcsname{7f3e92757f24a49f8d179855b1cb9d69}
 \expandafter\def\csname PageMDfive77\endcsname{7792c0a50a77fa27a86f08bf4ee9a409}
 \expandafter\def\csname PageMDfive78\endcsname{dbbf21ee3061ecf500e2ede6e75cb42b}
 \expandafter\def\csname PageMDfive79\endcsname{aea7b2e7d442693e48ad13a54c811cdb}
-\expandafter\def\csname PageMDfive80\endcsname{1fa4a4b5de7b2c244189b58e64b40f38}
-\expandafter\def\csname PageMDfive81\endcsname{411ae30a39d8d617fb50388bef55de3a}
+\expandafter\def\csname PageMDfive80\endcsname{1ac7527e1ebb29564f8092f372852616}
+\expandafter\def\csname PageMDfive81\endcsname{90bcd7642b3e32c57f16e151754d5024}
 \expandafter\def\csname PageMDfive82\endcsname{748a8c4ef3fe1cb08302d275db81868f}
-\expandafter\def\csname PageMDfive83\endcsname{64f63463e006bfab11fb992dd396a2bf}
-\expandafter\def\csname PageMDfive84\endcsname{e42f7bfb092efa4bce2e1e885de79c65}
+\expandafter\def\csname PageMDfive83\endcsname{77e96596720dd88c931f58e75751bb1d}
+\expandafter\def\csname PageMDfive84\endcsname{c1fdf818e98463864ea4038a84771e2e}
 \expandafter\def\csname PageMDfive85\endcsname{bffa4fcc5469f12ebe1675a9e8376312}
 \expandafter\def\csname PageMDfive86\endcsname{251e20eabad327061da23389ed917818}
 \expandafter\def\csname PageMDfive87\endcsname{3cf5f4e96ab8903fd5a30023d363b0da}
 \expandafter\def\csname PageMDfive88\endcsname{392da625725431da689302a7e885994a}
-\expandafter\def\csname PageMDfive89\endcsname{6fd26247acd1a5113ed69490e7185b46}
+\expandafter\def\csname PageMDfive89\endcsname{1290e11ce1df6fb783447355dd743f99}
 %</PAGE-HASH-DEFS>
 
 \newcommand{\PageHashFooter}[1]{%
@@ -7259,65 +7259,114 @@ La source del test vector prima della \texttt{ImageUrgencyAnalysisVerification} 
 \end{paracol}
 %</PAGE-CONTENT:72>
 \clearpage
-%<PAGE-DESC:73>MR-C7 > DEC-C7-01 > FR-C7-03-02 [candidate] - Verifica della Clinical Description Generation
+%<PAGE-DESC:73>MR-C7 > DEC-C7-01 > FR-C7-03-02 - Verifica della Clinical Description Generation
 %<PAGE-CONTENT:73>
 \PageHashFooter{\PageMDfive{73}}
-\subsubsection{FR-C7-03-02 [candidate] - Verifica della Clinical Description Generation}
-{\sffamily\scriptsize\color{DDTAGray}Gerarchia proposta: \texttt{MR-C7} $\rightarrow$ \texttt{DEC-C7-01} $\rightarrow$ \texttt{FR-C7-03-02}. Reconstruction-only: nessuna promotion.}\par
-\setlength{\columnsep}{7mm}\setlength{\columnseprule}{0.35pt}\columnratio{0.67}\begin{paracol}{2}
-{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par\vspace{0.12em}
-\begin{ddtacore}[title={FunctionalRequirement candidate}]
-\fontsize{3.82}{4.18}\selectfont
-\begin{tabularx}{\linewidth}{L{39mm}Y}\toprule
+\subsubsection{FR-C7-03-02 - Verifica della Clinical Description Generation}
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-C7} $\rightarrow$ \texttt{DEC-C7-01} $\rightarrow$ \texttt{FR-C7-03-02}. Review BA completata distinguendo acquisizione del test vector, inoltro della \texttt{LesionImage}, runtime Stage 2 e local PASS rule.}\par
+
+\setlength{\columnsep}{7mm}
+\setlength{\columnseprule}{0.35pt}
+\columnratio{0.64}
+\begin{paracol}{2}
+
+{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
+\vspace{0.10em}
+
+\begin{ddtacore}[title={FunctionalRequirement}]
+\fontsize{3.40}{3.74}\selectfont
+\begin{tabularx}{\linewidth}{L{39mm}Y}
+\toprule
 \textbf{ID} & \texttt{FR-C7-03-02} \\
-\textbf{Lifecycle} & \texttt{candidate} \\
-\textbf{Authority} & \texttt{CANDIDATE\_NON\_CURRENT} \\
+\textbf{Lifecycle} & \texttt{current} \\
+\textbf{Authority} & \texttt{CURRENT\_GOVERNED} \\
 \textbf{Type} & \texttt{FunctionalRequirement} \\
 \textbf{Title} & Verifica della Clinical Description Generation \\
 \textbf{Parent Decision} & \texttt{DEC-C7-01} \\
 \textbf{Owning MR (derived)} & \texttt{MR-C7} \\
-\bottomrule\end{tabularx}
+\bottomrule
+\end{tabularx}
+
 \textbf{Functional obligation}\par
-Esercitare \texttt{ClinicalDescriptionGeneration} e determinare l'esito del controllo sulla \texttt{ClinicalDescription} prodotta.
+Esercitare \texttt{ClinicalDescriptionGeneration} mediante una dermoscopy image di test, ricevere la relativa \texttt{ClinicalDescription} e determinare l'esito locale della verifica sulla base della pass condition documentata.
 
 \textbf{Functional clauses}\par
-L'expected observation MUST preservare un testo clinico articolato in shape, borders, color, texture e suspicious features. \texttt{PASS} richiede una text response non-empty. Le cinque parti attese non diventano cinque pass criterion.
+La verification MUST disporre di una \texttt{LesionImage} e MUST trasferirla a \texttt{ClinicalDescriptionGeneration}. La provenance/acquisizione della dermoscopy JPEG usata dal test non e' specificata e non viene inventata. \texttt{ClinicalDescriptionGeneration} MUST restituire una \texttt{ClinicalDescription}. L'expected observation riusa il contract runtime gia' governato: testo clinico in cinque parti relative a shape, borders, color, texture e suspicious features. \texttt{PASS} MUST essere assegnato quando la text response e' non-empty. Le cinque parti attese non diventano cinque pass criterion.
 
-\textbf{Current realization / test vector}\par
-Input corrente: dermoscopy JPEG. Realizzazione verificata: \texttt{Qwen2-VL-7B-Instruct}.
+\textbf{Runtime reuse / realization}\par
+La verification non ridefinisce lo Stage 2. Riusa \texttt{BAP-FR03-02-01}: \texttt{ClinicalDescriptionGeneration} elabora \texttt{LesionImage} e produce \texttt{ClinicalDescription}; riusa \texttt{BAP-FR03-02-02}, che collega la funzione logica alla realizzazione corrente \texttt{Qwen2-VL-7B-Instruct}; riusa inoltre \texttt{BAP-FR03-02-03..04} per il \texttt{ClinicalDescriptionContentContract}.
 
 \textbf{Boundary}\par
-Il controllo non qualifica correttezza clinica, completezza semantica, lingua, prompt version o prompt evolution.
+Il controllo non qualifica correttezza clinica, completezza semantica, lingua, label/separatori, lunghezza, encoding, prompt version o prompt evolution. La source del test vector prima della \texttt{ClinicalDescriptionGenerationVerification} resta \texttt{NOT SPECIFIED}; nessuno store o producer upstream viene inferito. Nessun \texttt{ELSE -> FAIL} viene inferito.
 \end{ddtacore}
+
 \switchcolumn
-{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par\vspace{0.10em}
-\begin{ddtareferentidentified}[top=2pt,bottom=2pt,left=5pt,right=5pt]\fontsize{3.45}{3.80}\selectfont
+
+{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
+\vspace{0.08em}
+
+\begin{ddtareferentidentified}[top=2pt,bottom=2pt,left=5pt,right=5pt]
+\fontsize{2.70}{2.98}\selectfont
 \BACandidate{ClinicalDescriptionGenerationVerification} \BANew{}; \BACandidate{ClinicalDescriptionGenerationVerificationOutcome} \BANew{}.\par
-\textbf{Reuse:} \texttt{ClinicalDescriptionGeneration}; \texttt{ClinicalDescription}; \texttt{ClinicalDescriptionContentContract}; \texttt{Qwen2-VL-7B-Instruct}; \texttt{ClinicalDescriptionGenerationVerificationStage}.
+\textbf{Reuse:} \texttt{ClinicalDescriptionGeneration}; \texttt{ClinicalDescription}; \texttt{ClinicalDescriptionContentContract}; \texttt{LesionImage}; \texttt{Qwen2-VL-7B-Instruct}; \texttt{ClinicalDescriptionGenerationVerificationStage}.
 \end{ddtareferentidentified}
-\begin{ddtareferentaccepted}[top=2pt,bottom=2pt,left=5pt,right=5pt]\fontsize{3.30}{3.64}\selectfont
-\BAAccepted{DermaTriageVerification}; \BAAccepted{DermaTriageVerificationProcedure}; \BAAccepted{ClinicalDescriptionGeneration}; \BAAccepted{ClinicalDescription}; \BAAccepted{ClinicalDescriptionContentContract}; \BAAccepted{Qwen2-VL-7B-Instruct}; \BAAccepted{ClinicalDescriptionGenerationVerificationStage}. Le nuove identity restano candidate.
+
+\begin{ddtareferentaccepted}[top=2pt,bottom=2pt,left=5pt,right=5pt]
+\fontsize{2.54}{2.82}\selectfont
+\BAAccepted{DermaTriageVerification}; \BAAccepted{DermaTriageVerificationProcedure}; \BAAccepted{ClinicalDescriptionGenerationVerificationStage}; \BAAccepted{LesionImage}; \BAAccepted{ClinicalDescriptionGeneration}; \BAAccepted{ClinicalDescription}; \BAAccepted{ClinicalDescriptionContentContract}; \BAAccepted{Qwen2-VL-7B-Instruct}; \BAAccepted{ClinicalDescriptionGenerationVerification} \BAFirstAccepted{}; \BAAccepted{ClinicalDescriptionGenerationVerificationOutcome} \BAFirstAccepted{}.
 \end{ddtareferentaccepted}
-\begin{ddtapropositionidentified}[top=2pt,bottom=2pt,left=5pt,right=5pt]\fontsize{3.04}{3.36}\selectfont
-\textbf{\texttt{BAP-FRC7-03-02-01}} \emph{[CANDIDATE - REWORK]}\par
-\hspace*{1em}\texttt{semanticOperatorKey = produce}\par
+
+\begin{ddtapropositionidentified}[top=2pt,bottom=2pt,left=5pt,right=5pt]
+\fontsize{2.16}{2.40}\selectfont
+
+\texttt{BAP-FRC7-03-02-01}\par
+\texttt{semanticOperatorKey = produce}\par
 \hspace*{1em}\texttt{actor -> ClinicalDescriptionGenerationVerification}\par
-\hspace*{1em}\texttt{input -> ClinicalDescription}\par
 \hspace*{1em}\texttt{result -> ClinicalDescriptionGenerationVerificationOutcome}\par
-\hspace*{1em}\texttt{polarity = affirmative}\par
+\hspace*{1em}\texttt{operatorStructure [CANDIDATE / NOT ADMITTED]}\par
+\hspace*{2em}\texttt{decisionRule}\par
+\hspace*{3em}\texttt{branch}\par
+\hspace*{4em}\texttt{when -> observed ClinicalDescription is non-empty}\par
+\hspace*{4em}\texttt{resultAssignment -> ClinicalDescriptionGenerationVerificationOutcome = PASS}\par
+\texttt{polarity = affirmative}\par
 \smallskip
-\emph{Candidate containment -- ID non assegnato}\par
-\hspace*{1em}\texttt{semanticOperatorKey = hasPart}\par
+
+\texttt{BAP-FRC7-03-02-02}\par
+\texttt{semanticOperatorKey = transfer}\par
+\hspace*{1em}\texttt{source -> ClinicalDescriptionGenerationVerification}\par
+\hspace*{1em}\texttt{destination -> ClinicalDescriptionGeneration}\par
+\hspace*{1em}\texttt{content -> LesionImage}\par
+\texttt{polarity = affirmative}\par
+\smallskip
+
+\texttt{BAP-FRC7-03-02-03}\par
+\texttt{semanticOperatorKey = transfer}\par
+\hspace*{1em}\texttt{source -> ClinicalDescriptionGeneration}\par
+\hspace*{1em}\texttt{destination -> ClinicalDescriptionGenerationVerification}\par
+\hspace*{1em}\texttt{content -> ClinicalDescription}\par
+\texttt{polarity = affirmative}\par
+\smallskip
+
+\texttt{BAP-FRC7-03-02-04}\par
+\texttt{semanticOperatorKey = hasPart}\par
 \hspace*{1em}\texttt{whole -> ClinicalDescriptionGenerationVerificationStage}\par
 \hspace*{1em}\texttt{part -> ClinicalDescriptionGenerationVerification}\par
-\hspace*{1em}\texttt{polarity = affirmative}
+\texttt{polarity = affirmative}
 \end{ddtapropositionidentified}
-\begin{ddtapropositionaccepted}[top=2pt,bottom=2pt,left=5pt,right=5pt]\fontsize{3.38}{3.72}\selectfont
-\texttt{--}. La reconstruction riusa direttamente \texttt{ClinicalDescription}; non duplica il contract gia' governato nel runtime branch.
+
+\begin{ddtapropositionaccepted}[top=2pt,bottom=2pt,left=5pt,right=5pt]
+\fontsize{2.48}{2.76}\selectfont
+\textbf{\texttt{BAP-FRC7-03-02-01..04}}. La verification appartiene allo stage dedicato, inoltra la \texttt{LesionImage} alla funzione Stage 2 e riceve la \texttt{ClinicalDescription}. La local \texttt{decisionRule} resta candidate/non ammessa come struttura interna della proposition \texttt{-01}; nessun outcome complementare viene inferito. Il contract a cinque parti e' riusato dal runtime branch e non viene duplicato in C7.
 \end{ddtapropositionaccepted}
-\begin{ddtaopenrelations}[top=2pt,bottom=2pt,left=5pt,right=5pt]\fontsize{3.08}{3.40}\selectfont
-Il predicato source-grounded \texttt{non-empty} resta qualitativo e non viene riscritto come length, non-null o whitespace rule. Il pattern contract viene pressure-testato qui tramite il riuso del contract runtime esistente, non tramite nuove constrain C7.
+
+\begin{ddtaopenrelations}[top=2pt,bottom=2pt,left=5pt,right=5pt]
+\fontsize{2.28}{2.54}\selectfont
+\textbf{Test-vector acquisition.} La dermoscopy JPEG deve raggiungere \texttt{ClinicalDescriptionGenerationVerification}, ma source, meccanismo di acquisizione ed eventuale store sono \texttt{NOT SPECIFIED}; nessuna proposition upstream viene inventata.\par
+\textbf{PASS predicate.} \texttt{non-empty} resta qualitativo e non viene riscritto come length, non-null o whitespace rule.\par
+\textbf{Runtime contract.} Shape, borders, color, texture e suspicious features restano parti richieste del \texttt{ClinicalDescriptionContentContract}, ma non diventano cinque criteri PASS C7.\par
+\textbf{Prompt lifecycle.} PromptManager, prompt store e prompt version non sono parte del controllo Stage 2 corrente.
 \end{ddtaopenrelations}
+
 \end{paracol}
 %</PAGE-CONTENT:73>
 \clearpage
@@ -7698,7 +7747,7 @@ Per-gate outcome pressure: una sola FR contiene quattro criterion outcomes ma ne
 {\sffamily\scriptsize\color{DDTAGray}Registro di lavoro per la review FR-by-FR. Le identity/proposition non ancora riesaminate restano candidate; gli ID nuovi vengono assegnati soltanto dopo la relativa review individuale. Le proposition gia' accettate mantengono l'authority corrente finche' un rework non viene approvato.}\par
 
 \begin{ddtacore}[title={C7 full reconstruction - review status e candidate deltas}]
-\fontsize{3.20}{3.50}\selectfont
+\fontsize{3.10}{3.40}\selectfont
 \begin{tabularx}{\linewidth}{L{29mm}L{76mm}Y}
 \toprule
 \textbf{Owner} & \textbf{Reconstruction BA} & \textbf{Review target} \\
@@ -7708,7 +7757,7 @@ Per-gate outcome pressure: una sola FR contiene quattro criterion outcomes ma ne
 \texttt{FR-C7-02-02} & Reuse DiagnoseEndpoint; B4IntegratedDiagnosisRequest/Response & review closed: EndpointVerificationStage \texttt{hasPart}; request/response \texttt{transfer}; response-status \texttt{hasPart} + \texttt{constrain}; verification \texttt{produce}; write-back criterion reuses \texttt{BAP-FR23-01}; local \texttt{decisionRule} remains candidate. \\
 \texttt{FR-C7-02-03} & StatsEndpointVerification + PipelineStatisticsRequest/Response + nested statistics & review closed: EndpointVerificationStage \texttt{hasPart}; request/response \texttt{transfer}; response + urgency-distribution \texttt{hasPart}; no local decision/outcome; generic observation retired. \\
 \texttt{FR-C7-03-01} & ImageUrgencyAnalysisVerification + Outcome; reuse LesionImage / ImageUrgencyAnalysis / ImageUrgencyClassification / EfficientNet-B4 & review closed: stage \texttt{hasPart}; image/result \texttt{transfer}; verification \texttt{produce}; local rule checks valid urgency; test-vector acquisition NOT SPECIFIED; confidence/probabilities runtime refinement remains owner-review MR-01. \\
-\texttt{FR-C7-03-02} & ClinicalDescriptionGenerationVerification; ...Outcome & reuse ClinicalDescription directly; reuse runtime content contract. \\
+\texttt{FR-C7-03-02} & ClinicalDescriptionGenerationVerification + Outcome; reuse LesionImage / ClinicalDescriptionGeneration / ClinicalDescription / ClinicalDescriptionContentContract / Qwen2-VL-7B-Instruct & review closed: stage \texttt{hasPart}; image/result \texttt{transfer}; verification \texttt{produce}; local rule checks non-empty text only; test-vector acquisition NOT SPECIFIED; runtime five-part contract reused, not duplicated. \\
 \texttt{FR-C7-03-03} & HistoricalCaseRetrievalVerification; ...Outcome & reuse RetrievedHistoricalCases directly; no duplicate top-5 contract. \\
 \texttt{FR-C7-03-04} & MultiSourceTriageSynthesisVerification; ...Outcome & reuse AITriageSynthesis; RC-002 remains owner of field-name reconciliation. \\
 \texttt{FR-C7-04-01} & FullPipelineVerification + Observation + Outcome & aggregated observation retained for cross-owner result. \\
@@ -7734,7 +7783,7 @@ Per i flow di verifica riesaminati, il movimento di un messaggio fra due element
 \setlength{\columnsep}{7mm}\setlength{\columnseprule}{0.35pt}\columnratio{0.62}\begin{paracol}{2}
 {\sffamily\large\bfseries\color{DDTANavy}Source closure}\par\vspace{0.15em}
 \begin{ddtacore}[title={Inventario C7 dopo la regression}]
-\fontsize{3.58}{3.94}\selectfont
+\fontsize{3.48}{3.84}\selectfont
 \begin{tabularx}{\linewidth}{L{28mm}Y}
 \toprule
 \textbf{Verification family} & \textbf{FR reconstruction} \\
@@ -7755,12 +7804,13 @@ Nessuna ulteriore famiglia source-supported emerge per \texttt{/docs}, prompt-ma
 \switchcolumn
 {\sffamily\large\bfseries\color{DDTABlue}Open points / prossimo gate}\par\vspace{0.15em}
 \begin{ddtaopen}[title={Da chiudere durante la review individuale}]
-\fontsize{3.28}{3.60}\selectfont
+\fontsize{3.16}{3.48}\selectfont
 \textbf{Service readiness.} \texttt{FR-C7-01-01} e' chiuso: \texttt{ServiceReadinessVerification} e' parte di \texttt{ServiceReadinessVerificationStage}; request/response sono due transfer distinti; derivazione interna dei cinque status e relazione HTTP-200/local-PASS restano \texttt{NOT SPECIFIED}.\par
 \textbf{Direct analysis.} \texttt{FR-C7-02-01} e' chiuso: \texttt{DirectAnalysisEndpointVerification} e' parte di \texttt{EndpointVerificationStage}; riusa \texttt{AnalyzeEndpoint} e scambia \texttt{DirectAnalysisRequest/Response}. Il runtime interno della pipeline non viene duplicato in questo FR.\par
 \textbf{B4-integrated endpoint.} \texttt{FR-C7-02-02} e' chiuso: \texttt{B4IntegratedDiagnosisEndpointVerification} e' parte di \texttt{EndpointVerificationStage}; riusa \texttt{DiagnoseEndpoint}, scambia request/response esplicite e usa HTTP 200 + occorrenza del write-back \texttt{BAP-FR23-01} nella local PASS rule senza duplicare il runtime transfer.\par
 \textbf{Pipeline statistics endpoint.} \texttt{FR-C7-02-03} e' chiuso: \texttt{StatsEndpointVerification} e' parte di \texttt{EndpointVerificationStage}; riusa \texttt{StatsEndpoint}, scambia \texttt{PipelineStatisticsRequest/Response} e preserva la struttura dei conteggi restituiti. Nessuna pass condition, biforcazione o outcome viene inferito.\par
 \textbf{Image urgency Stage 1.} \texttt{FR-C7-03-01} e' chiuso: \texttt{ImageUrgencyAnalysisVerification} e' parte di \texttt{ImageUrgencyAnalysisVerificationStage}; riceve una dermoscopy JPEG da source \texttt{NOT SPECIFIED}, inoltra la stessa \texttt{LesionImage} a \texttt{ImageUrgencyAnalysis}, riusa \texttt{EfficientNet-B4} come realizzazione e valuta la \texttt{ImageUrgencyClassification}. PASS richiede solo urgency valida; confidence/probabilities restano expected observation con runtime owner-review.\par
+\textbf{Clinical description Stage 2.} \texttt{FR-C7-03-02} e' chiuso: \texttt{ClinicalDescriptionGenerationVerification} e' parte di \texttt{ClinicalDescriptionGenerationVerificationStage}; riceve una dermoscopy JPEG da source \texttt{NOT SPECIFIED}, inoltra la stessa \texttt{LesionImage} a \texttt{ClinicalDescriptionGeneration}, riusa \texttt{Qwen2-VL-7B-Instruct} come realizzazione e osserva la \texttt{ClinicalDescription}. PASS richiede solo text response non-empty; il contract runtime a cinque parti viene riusato senza duplicarlo come criteri PASS.\par
 \textbf{RC-002.} Stage 4 oracle e runtime content contract restano da riconciliare nell'owner corretto.\par
 \textbf{Full pipeline.} SLA owner/identity resta aperto; ``complete response'' resta criterio non scomposto.\par
 \textbf{B4 aggregation.} Sei controlli con outcome locali, nessun overall rule; decidere se lo split e' necessario.\par
@@ -7770,7 +7820,7 @@ Nessuna ulteriore famiglia source-supported emerge per \texttt{/docs}, prompt-ma
 
 \begin{ddtaquestions}
 \fontsize{3.58}{3.94}\selectfont
-Gate corrente chiuso: \texttt{FR-C7-03-01}. La prima verifica di pipeline stage riusa il runtime Stage 1 senza inventare la source del test vector o duplicare urgency/confidence in producer separati. Prossimo gate: \texttt{FR-C7-03-02}.
+Gate corrente chiuso: \texttt{FR-C7-03-02}. Le prime due verifiche di pipeline stage riusano i rispettivi runtime behavior senza inventare la source del test vector. Stage 2 preserva il contract clinico a cinque parti ma usa come local PASS rule soltanto la risposta testuale non-empty. Prossimo gate: \texttt{FR-C7-03-03}.
 \end{ddtaquestions}
 \end{paracol}
 %</PAGE-CONTENT:81>
@@ -7930,7 +7980,7 @@ ReadinessOutcome & \textbf{\texttt{FR-C7-01-01}} \\
 \section*{Registro Base Analysis - BAReferent C7 increment}
 \begin{ddtacore}[title={CONTINUITA' DEL REGISTRO - C7}]
 \fontsize{5.8}{6.35}\selectfont
-Questa pagina continua il registro BA con le identity C7 accettate durante la review FR-by-FR, includendo il completamento di \texttt{FR-C7-01-01}, della famiglia endpoint verification \texttt{FR-C7-02-01..03} e di \texttt{FR-C7-03-01}. Il riferimento in \textbf{grassetto} indica la prima accettazione. La separazione fisica su questa pagina non introduce un nuovo stato BA.
+Questa pagina continua il registro BA con le identity C7 accettate durante la review FR-by-FR, includendo il completamento di \texttt{FR-C7-01-01}, della famiglia endpoint verification \texttt{FR-C7-02-01..03} e di \texttt{FR-C7-03-01..02}. Il riferimento in \textbf{grassetto} indica la prima accettazione. La separazione fisica su questa pagina non introduce un nuovo stato BA.
 \end{ddtacore}
 
 \vspace{0.35mm}
@@ -7984,20 +8034,22 @@ P1Count / P2Count / P3Count / P4Count & \textbf{\texttt{FR-C7-02-03}} -- parti d
 \vspace{0.22mm}
 {\sffamily\bfseries\color{DDTABlue}BAReferent - pipeline-stage verification increment}\par
 \vspace{0.08mm}
-\fontsize{4.18}{4.58}\selectfont
-\renewcommand{\arraystretch}{0.68}
+\fontsize{3.98}{4.36}\selectfont
+\renewcommand{\arraystretch}{0.63}
 \begin{tabularx}{\textwidth}{L{68mm}Y}
 \toprule
 \textbf{BAReferent} & \textbf{Riferimento documentale / boundary} \\
 \midrule
 ImageUrgencyAnalysisVerification & \textbf{\texttt{FR-C7-03-01}} -- behavior di verifica collocato in \texttt{ImageUrgencyAnalysisVerificationStage}; inoltra \texttt{LesionImage} e osserva \texttt{ImageUrgencyClassification}. \\
 ImageUrgencyAnalysisVerificationOutcome & \textbf{\texttt{FR-C7-03-01}} -- result locale della verification; \texttt{PASS} e' assegnato dalla candidate rule quando l'urgenza restituita e' valida; consumer successivo \texttt{NOT SPECIFIED}. \\
+ClinicalDescriptionGenerationVerification & \textbf{\texttt{FR-C7-03-02}} -- behavior di verifica collocato in \texttt{ClinicalDescriptionGenerationVerificationStage}; inoltra \texttt{LesionImage} e osserva \texttt{ClinicalDescription}. \\
+ClinicalDescriptionGenerationVerificationOutcome & \textbf{\texttt{FR-C7-03-02}} -- result locale della verification; \texttt{PASS} e' assegnato dalla candidate rule quando la risposta testuale e' non-empty; consumer successivo \texttt{NOT SPECIFIED}. \\
 \bottomrule
 \end{tabularx}
 
 \begin{ddtaopenrelations}[top=2pt,bottom=2pt,left=5pt,right=5pt]
 \fontsize{4.62}{5.10}\selectfont
-\texttt{DirectAnalysisEndpoint}/\texttt{DirectAnalysisEndpointObservation} e \texttt{B4IntegratedDiagnosisEndpoint}/\texttt{B4IntegratedDiagnosisEndpointObservation} sono riconciliati con gli endpoint runtime e request/response esplicite. \texttt{PipelineStatisticsObservation} e' ritirato: la \texttt{PipelineStatisticsResponse} ricevuta e' gia' l'oggetto osservato. Gli outcome locali restano terminali quando presenti; \texttt{FR-C7-02-03} non ne introduce uno. Per \texttt{FR-C7-03-01}, \texttt{LesionImage}, \texttt{ImageUrgencyAnalysis}, \texttt{ImageUrgencyClassification} ed \texttt{EfficientNet-B4} sono identity riusate; la source del test vector non viene materializzata.
+\texttt{DirectAnalysisEndpoint}/\texttt{DirectAnalysisEndpointObservation} e \texttt{B4IntegratedDiagnosisEndpoint}/\texttt{B4IntegratedDiagnosisEndpointObservation} sono riconciliati con gli endpoint runtime e request/response esplicite. \texttt{PipelineStatisticsObservation} e' ritirato: la \texttt{PipelineStatisticsResponse} ricevuta e' gia' l'oggetto osservato. Gli outcome locali restano terminali quando presenti; \texttt{FR-C7-02-03} non ne introduce uno. Per \texttt{FR-C7-03-01..02}, \texttt{LesionImage} e i rispettivi runtime behavior/result/model sono identity riusate; la source del test vector non viene materializzata. \texttt{FR-C7-03-02} riusa anche \texttt{ClinicalDescriptionContentContract} senza creare identity C7 per le cinque parti.
 \end{ddtaopenrelations}
 %</PAGE-CONTENT:83>
 \clearpage
@@ -8013,8 +8065,8 @@ Questa pagina continua il registro BA della pagina precedente. Il \textbf{grasse
 \vspace{0.20mm}
 {\sffamily\bfseries\color{DDTABlue}BAProposition}\par
 \vspace{0.1mm}
-\fontsize{2.92}{3.14}\selectfont
-\renewcommand{\arraystretch}{0.43}
+\fontsize{2.80}{3.02}\selectfont
+\renewcommand{\arraystretch}{0.40}
 \begin{tabularx}{\textwidth}{L{58mm}Y}
 \toprule
 \textbf{BAProposition} & \textbf{Riferimenti documentali} \\
@@ -8153,6 +8205,10 @@ Questa pagina continua il registro BA della pagina precedente. Il \textbf{grasse
 \textbf{\texttt{BAP-FRC7-03-01-02}} & \texttt{FR-C7-03-01} -- \texttt{transfer}: \texttt{ImageUrgencyAnalysisVerification -> ImageUrgencyAnalysis : LesionImage}; l'acquisizione precedente della test image resta \texttt{NOT SPECIFIED} \\
 \textbf{\texttt{BAP-FRC7-03-01-03}} & \texttt{FR-C7-03-01} -- \texttt{transfer}: \texttt{ImageUrgencyAnalysis -> ImageUrgencyAnalysisVerification : ImageUrgencyClassification} \\
 \textbf{\texttt{BAP-FRC7-03-01-04}} & \texttt{FR-C7-03-01} -- \texttt{hasPart(ImageUrgencyAnalysisVerificationStage, ImageUrgencyAnalysisVerification)}; confidence/probabilities runtime refinement non promosso in C7 \\
+\textbf{\texttt{BAP-FRC7-03-02-01}} & \texttt{FR-C7-03-02} -- \texttt{produce(ClinicalDescriptionGenerationVerification -> ClinicalDescriptionGenerationVerificationOutcome)}; local \texttt{decisionRule} candidate assegna \texttt{PASS} quando la \texttt{ClinicalDescription} osservata e' non-empty; nessun \texttt{ELSE/FAIL} inferito \\
+\textbf{\texttt{BAP-FRC7-03-02-02}} & \texttt{FR-C7-03-02} -- \texttt{transfer}: \texttt{ClinicalDescriptionGenerationVerification -> ClinicalDescriptionGeneration : LesionImage}; acquisizione precedente della test image \texttt{NOT SPECIFIED} \\
+\textbf{\texttt{BAP-FRC7-03-02-03}} & \texttt{FR-C7-03-02} -- \texttt{transfer}: \texttt{ClinicalDescriptionGeneration -> ClinicalDescriptionGenerationVerification : ClinicalDescription} \\
+\textbf{\texttt{BAP-FRC7-03-02-04}} & \texttt{FR-C7-03-02} -- \texttt{hasPart(ClinicalDescriptionGenerationVerificationStage, ClinicalDescriptionGenerationVerification)}; \texttt{ClinicalDescriptionContentContract} riusato dal runtime branch, non duplicato in C7 \\
 \bottomrule
 \end{tabularx}
 \fontsize{3.05}{3.27}\selectfont
@@ -8617,7 +8673,7 @@ Ogni pagina possiede un MD5 del proprio contenuto canonico. Il calcolo esclude i
 \IntegrityRow{70}{MR-C7 > DEC-C7-01 > FR-C7-02-02 - Verifica dell'endpoint integrato B4}{\PageMDfive{70}}
 \IntegrityRow{71}{MR-C7 > DEC-C7-01 > FR-C7-02-03 - Verifica dell'endpoint di statistiche della pipeline}{\PageMDfive{71}}
 \IntegrityRow{72}{MR-C7 > DEC-C7-01 > FR-C7-03-01 - Verifica dell'Image Urgency Analysis}{\PageMDfive{72}}
-\IntegrityRow{73}{MR-C7 > DEC-C7-01 > FR-C7-03-02 [candidate] - Verifica della Clinical Description Generation}{\PageMDfive{73}}
+\IntegrityRow{73}{MR-C7 > DEC-C7-01 > FR-C7-03-02 - Verifica della Clinical Description Generation}{\PageMDfive{73}}
 \IntegrityRow{74}{MR-C7 > DEC-C7-01 > FR-C7-03-03 [candidate] - Verifica dell'Historical Case Retrieval}{\PageMDfive{74}}
 \IntegrityRow{75}{MR-C7 > DEC-C7-01 > FR-C7-03-04 [candidate] - Verifica della Multi-Source Triage Synthesis}{\PageMDfive{75}}
 \IntegrityRow{76}{MR-C7 > DEC-C7-01 > FR-C7-04-01 [candidate] - Verifica end-to-end della pipeline DermaTriage}{\PageMDfive{76}}

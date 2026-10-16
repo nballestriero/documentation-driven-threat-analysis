@@ -1,0 +1,1223 @@
+# DermaTriage cumulative BA graph — C7 through FR-C7-03-02 — R41
+
+This is the cumulative graph through the latest reviewed FR.
+
+It preserves the complete previous R40 content and integrates the local
+`FR-C7-03-02 - Clinical Description Generation verification` review.
+
+## Newly integrated Stage 2 review
+
+- `ClinicalDescriptionGenerationVerification` is contained in
+  `ClinicalDescriptionGenerationVerificationStage`.
+- The dermoscopy test image must first reach the verification behavior, but its
+  upstream acquisition/source remains `NOT SPECIFIED`.
+- Two visual `LesionImage` occurrences are the same BA identity and represent
+  receive-then-forward.
+- The verification transfers `LesionImage` to the already governed
+  `ClinicalDescriptionGeneration`.
+- The existing `Qwen2-VL-7B-Instruct realize ClinicalDescriptionGeneration`
+  relation is reused from the cumulative runtime graph and is not duplicated.
+- `ClinicalDescriptionGeneration` returns `ClinicalDescription`.
+- `ClinicalDescription` reuses the already governed
+  `ClinicalDescriptionContentContract` (TEXTUAL, five parts: shape, borders,
+  color, texture, suspicious features).
+- The local candidate PASS rule checks only that the returned
+  `ClinicalDescription` is non-empty.
+- No complementary FAIL result is inferred.
+- `hasPart` remains represented by containment, not by arrows.
+
+```mermaid
+%%{init: {"theme":"base","themeVariables":{"background":"#FFFFFF","primaryColor":"#FFFFFF","primaryTextColor":"#17324D","primaryBorderColor":"#0047B3","lineColor":"#0047B3","edgeLabelBackground":"#FFFFFF"},"themeCSS":".cluster rect { rx:28px !important; ry:28px !important; } .edgeLabel p { background:#FFFFFF !important; border-radius:10px !important; padding:2px 7px !important; }"}}%%
+
+flowchart LR
+
+    %% ---------------------------------------------------------------------
+    %% Visual MR zones only. These outer subgraphs are NOT BA containment.
+    %% ---------------------------------------------------------------------
+    subgraph MR_C6_ZONE["MR-C6 - Predisposizione e inizializzazione dell'ambiente DermaTriage"]
+        direction TB
+
+    EnvironmentPreparation["EnvironmentPreparation<br/><span style='font-size:7px;color:#FFFFFF'>BAP-MRC6-01</span>"]
+
+    subgraph DermaTriage["DermaTriage<br/><span style='font-size:7px;color:#FFFFFF'>BAP-MRC6-02</span>"]
+        direction TB
+
+        subgraph DermaTriageAPI["DermaTriageAPI<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-06-06</span>"]
+            direction TB
+
+            subgraph TriageAPI["TriageAPI<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-06-07</span>"]
+                direction TB
+                HomeEndpoint("HomeEndpoint<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-06-12</span>")
+                TriagePageEndpoint("TriagePageEndpoint<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-06-13</span>")
+                AnalyzeEndpoint("AnalyzeEndpoint<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-06-14</span>")
+                DiagnoseEndpoint("DiagnoseEndpoint<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-06-15</span>")
+            end
+
+            subgraph OperationalAPI["OperationalAPI<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-06-08</span>"]
+                direction TB
+                HealthEndpoint("HealthEndpoint<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-06-16</span>")
+                StatsEndpoint("StatsEndpoint<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-06-17</span>")
+            end
+
+            subgraph ClinicalReviewAPI["ClinicalReviewAPI<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-06-09</span>"]
+                direction TB
+                AdminDiagnosesEndpoint("AdminDiagnosesEndpoint<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-06-18</span>")
+                AdminReviewEndpoint("AdminReviewEndpoint<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-06-19</span>")
+                AdminValidateEndpoint("AdminValidateEndpoint<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-06-20</span>")
+            end
+
+            subgraph PromptManagementAPI["PromptManagementAPI<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-06-10</span>"]
+                direction TB
+                AdminPromptsEndpoint("AdminPromptsEndpoint<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-06-21</span>")
+                AdminPromptsUpdateEndpoint("AdminPromptsUpdateEndpoint<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-06-22</span>")
+                AdminPromptsResetEndpoint("AdminPromptsResetEndpoint<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-06-23</span>")
+                AdminPromptsHistoryEndpoint("AdminPromptsHistoryEndpoint<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-06-24</span>")
+            end
+
+            subgraph RetrainingAPI["RetrainingAPI<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-06-11</span>"]
+                direction TB
+                AdminRetrainingEndpoint("AdminRetrainingEndpoint<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-06-25</span>")
+                AdminRetrainingStatusEndpoint("AdminRetrainingStatusEndpoint<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-06-26</span>")
+                AdminRetrainingCheckTriggerEndpoint("AdminRetrainingCheckTriggerEndpoint<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-06-27</span>")
+                AdminRetrainingRunEndpoint("AdminRetrainingRunEndpoint<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-06-28</span>")
+                AdminRetrainingHistoryEndpoint("AdminRetrainingHistoryEndpoint<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-06-29</span>")
+                AdminRetrainingRollbackEndpoint("AdminRetrainingRollbackEndpoint<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-06-30</span>")
+                AdminRetrainingFetchEndpoint("AdminRetrainingFetchEndpoint<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-06-31</span>")
+            end
+        end
+    end
+
+    DermaTriageAPIService("DermaTriageAPIService<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-06-04 / BAP-FRC6-01-06-05</span><br/><span style='font-size:9px'>runtime service</span>")
+
+
+    subgraph SECURITY_BOUNDARY_GITHUB["EXTERNAL"]
+        direction TB
+
+        subgraph HP_DermaTriageSourceRepositoryStore["DermaTriageSourceRepositoryStore<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-07-04</span>"]
+            direction TB
+
+            DermaTriageSourceRepositoryStore[("DermaTriageSourceRepositoryStore<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-07-03</span><br/><span style='font-size:9px'>github.com/basil-github/image_classifier</span>")]
+
+            subgraph HP_DermaTriageSourceTree_REMOTE["DermaTriageSourceTreeArtifact<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-07-04</span>"]
+                direction TB
+
+                DermaTriageSourceTree_REMOTE@{ shape: doc, label: "DermaTriageSourceTreeArtifact<br/><span style='font-size:9px'>image_classifier repository tree<br/>icon-preserving marker</span>" }
+
+                RetrainerSourceArtifact_REMOTE@{ shape: doc, label: "RetrainerSourceArtifact<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-07-07</span><br/><span style='font-size:9px'>retrainer.py / remote occurrence<br/>same BA identity</span>" }
+
+                RequirementsManifestArtifact_REMOTE@{ shape: doc, label: "RequirementsManifestArtifact<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-07-08</span><br/><span style='font-size:9px'>requirements.txt / remote occurrence<br/>same BA identity</span>" }
+
+                DotEnvExampleArtifact_REMOTE@{ shape: doc, label: "DotEnvExampleArtifact<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-07-09</span><br/><span style='font-size:9px'>.env.example / remote occurrence<br/>same BA identity</span>" }
+
+                RAGIndexerScript_REMOTE@{ shape: doc, label: "RAGIndexerScript<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-07-10</span><br/><span style='font-size:9px'>rag/indexer.py / remote occurrence<br/>same BA identity</span>" }
+
+                FastAPIApplicationArtifact_REMOTE@{ shape: doc, label: "FastAPIApplicationArtifact<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-07-11</span><br/><span style='font-size:9px'>app.py / remote occurrence<br/>same BA identity</span>" }
+            end
+        end
+    end
+
+
+    subgraph SECURITY_BOUNDARY_GOOGLEDRIVE["EXTERNAL"]
+        direction TB
+
+        subgraph HP_GoogleDriveModelStore["GoogleDriveModelStore<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-03A1-07</span>"]
+            direction TB
+
+            GoogleDriveModelStore[("GoogleDriveModelStore<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-03A1-04</span><br/><span style='font-size:9px'>Google Drive file URL</span>")]
+
+            EfficientNetWeights_REMOTE@{ shape: doc, label: "EfficientNetB4WeightsArtifact<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-03A1-07</span><br/><span style='font-size:9px'>efficientnet_b4.pth</span>" }
+        end
+    end
+
+
+    subgraph SECURITY_BOUNDARY_HUGGINGFACE["EXTERNAL"]
+        direction TB
+
+        subgraph HP_HuggingFaceModelStore["HuggingFaceModelStore<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-03A2-07</span>"]
+            direction TB
+
+            HuggingFaceModelStore[("HuggingFaceModelStore")]
+
+            Qwen2VL7BModelArtifact_REMOTE@{ shape: doc, label: "Qwen2VL7BModelArtifact<br/><span style='font-size:9px'>Qwen/Qwen2-VL-7B-Instruct</span>" }
+
+            AllMiniLML6V2ModelArtifact_REMOTE@{ shape: doc, label: "AllMiniLML6V2ModelArtifact<br/><span style='font-size:9px'>sentence-transformers/all-MiniLM-L6-v2</span>" }
+
+            BioMistral7BModelArtifact_REMOTE@{ shape: doc, label: "BioMistral7BModelArtifact<br/><span style='font-size:9px'>BioMistral/BioMistral-7B</span>" }
+        end
+    end
+
+
+    subgraph SECURITY_BOUNDARY_ISIC["EXTERNAL"]
+        direction TB
+
+        subgraph HP_ISICPublicDatasetStore["ISICPublicDatasetStore"]
+            direction TB
+
+            ISICPublicDatasetStore[("ISICPublicDatasetStore<br/><span style='font-size:9px'>locator: NOT SPECIFIED</span>")]
+
+            RAGDatasetArtifact_REMOTE@{ shape: doc, label: "RAGDatasetArtifact<br/><span style='font-size:9px'>remote occurrence - same concrete BA identity</span>" }
+        end
+    end
+
+
+    subgraph SECURITY_BOUNDARY_TRAINING_IMAGES["EXTERNAL"]
+        direction TB
+
+        subgraph HP_TrainingImageSourceStore["TrainingImageSourceStore"]
+            direction TB
+
+            TrainingImageSourceStore[("TrainingImageSourceStore<br/><span style='font-size:9px'>store / source<br/>locator: NOT SPECIFIED</span>")]
+
+            TrainingImageArtifactCollection_REMOTE@{ shape: doc, label: "TrainingImageArtifactCollection<br/><span style='font-size:9px'>remote occurrence - same concrete BA identity</span>" }
+        end
+    end
+
+
+    subgraph DermaTriageEnvironment["DermaTriageEnvironment"]
+        direction TB
+
+        ComputeResources("ComputeResources<br/><span style='font-size:7px;color:#FFFFFF'>BAP-MRC6-03</span>")
+
+
+        subgraph SoftwareComponents["SoftwareComponents<br/><span style='font-size:7px;color:#FFFFFF'>BAP-MRC6-04</span>"]
+            direction TB
+
+            subgraph HP_DermaTriageSourceCodeStore["DermaTriageSourceCodeStore"]
+                direction TB
+
+                DermaTriageSourceCodeStore[("DermaTriageSourceCodeStore<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-07-01</span><br/><span style='font-size:9px'>image_classifier/</span>")]
+
+                subgraph HP_DermaTriageSourceTree_LOCAL["DermaTriageSourceTreeArtifact<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-07-05</span>"]
+                    direction TB
+
+                    DermaTriageSourceTree_LOCAL@{ shape: doc, label: "DermaTriageSourceTreeArtifact<br/><span style='font-size:9px'>local repository tree<br/>icon-preserving marker</span>" }
+
+                    RetrainerSourceArtifact_LOCAL@{ shape: doc, label: "RetrainerSourceArtifact<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-07-07</span><br/><span style='font-size:9px'>retrainer.py / local occurrence<br/>same BA identity</span>" }
+
+                    RequirementsManifestArtifact_LOCAL@{ shape: doc, label: "RequirementsManifestArtifact<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-02-03 / BAP-FRC6-01-07-08</span><br/><span style='font-size:9px'>requirements.txt / local occurrence<br/>same BA identity</span>" }
+
+                    DotEnvExampleArtifact_LOCAL@{ shape: doc, label: "DotEnvExampleArtifact<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-07-09</span><br/><span style='font-size:9px'>.env.example / local occurrence<br/>same BA identity</span>" }
+
+                    RAGIndexerScript_LOCAL@{ shape: doc, label: "RAGIndexerScript<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-05-03 / BAP-FRC6-01-07-10</span><br/><span style='font-size:9px'>rag/indexer.py / local occurrence<br/>same BA identity</span>" }
+
+                    FastAPIApplicationArtifact_LOCAL@{ shape: doc, label: "FastAPIApplicationArtifact<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-07-11</span><br/><span style='font-size:9px'>app.py / local occurrence<br/>same BA identity</span>" }
+                end
+
+                DotEnvConfigurationFile_STORE@{ shape: doc, label: "DotEnvConfigurationFile<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-04-05</span><br/><span style='font-size:9px'>.env / local storage occurrence<br/>same BA identity</span>" }
+            end
+        end
+
+
+        subgraph ModelResources["ModelResources<br/><span style='font-size:7px;color:#FFFFFF'>BAP-MRC6-05</span>"]
+            direction TB
+
+            ImageUrgencyModelResource("ImageUrgencyModelResource<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-03A1-01</span>")
+
+            ClinicalDescriptionModelResource("ClinicalDescriptionModelResource<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-03A2-01</span>")
+
+            EmbeddingModelResource("EmbeddingModelResource<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-03A3-01</span>")
+
+            TriageSynthesisModelResource("TriageSynthesisModelResource<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-03A4-01</span>")
+
+            subgraph HP_ActiveClassifierStore["ActiveClassifierStore"]
+                direction TB
+
+                ActiveClassifierStore[("ActiveClassifierStore<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-03A1-05</span><br/><span style='font-size:9px'>models/</span>")]
+
+                EfficientNetWeights_LOCAL@{ shape: doc, label: "EfficientNetB4WeightsArtifact<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-03A1-08</span><br/><span style='font-size:9px'>efficientnet_b4.pth</span>" }
+            end
+
+            subgraph HP_Qwen2LocalModelStore["Qwen2LocalModelStore<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-03A2-05</span>"]
+                direction TB
+
+                Qwen2LocalModelStore[("Qwen2LocalModelStore<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-03A2-05</span><br/><span style='font-size:9px'>locator: NOT SPECIFIED</span>")]
+
+                Qwen2VL7BModelArtifact_LOCAL@{ shape: doc, label: "Qwen2VL7BModelArtifact<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-03A2-08</span><br/><span style='font-size:9px'>local occurrence - same concrete BA identity</span>" }
+            end
+
+
+            subgraph HP_MiniLMLocalModelStore["MiniLMLocalModelStore<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-03A3-05</span>"]
+                direction TB
+
+                MiniLMLocalModelStore[("MiniLMLocalModelStore<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-03A3-05</span><br/><span style='font-size:9px'>locator: NOT SPECIFIED</span>")]
+
+                AllMiniLML6V2ModelArtifact_LOCAL@{ shape: doc, label: "AllMiniLML6V2ModelArtifact<br/><span style='font-size:9px'>local occurrence - same concrete BA identity</span>" }
+            end
+
+
+            subgraph HP_BioMistralLocalModelStore["BioMistralLocalModelStore<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-03A4-05</span>"]
+                direction TB
+
+                BioMistralLocalModelStore[("BioMistralLocalModelStore<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-03A4-05</span><br/><span style='font-size:9px'>locator: NOT SPECIFIED</span>")]
+
+                BioMistral7BModelArtifact_LOCAL@{ shape: doc, label: "BioMistral7BModelArtifact<br/><span style='font-size:9px'>local occurrence - same concrete BA identity</span>" }
+            end
+        end
+
+
+        subgraph DataResources["DataResources<br/><span style='font-size:7px;color:#FFFFFF'>BAP-MRC6-06</span>"]
+            direction TB
+
+            subgraph HP_DermaTriageRAGDataset["DermaTriageRAGDataset<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-03B1-01</span>"]
+                direction TB
+
+                HistoricalCaseDescription("HistoricalCaseDescription<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-05-07</span><br/><span style='font-size:9px'>current source field: DermaTriageRAGDataset.image_description</span>")
+            end
+
+            subgraph HP_RAGDatasetStore["RAGDatasetStore<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-03B1-05</span>"]
+                direction TB
+
+                RAGDatasetStore[("RAGDatasetStore<br/><span style='font-size:9px'>locator: data/RAG_dataset.csv</span>")]
+
+                RAGDatasetArtifact_LOCAL@{ shape: doc, label: "RAGDatasetArtifact<br/><span style='font-size:9px'>data/RAG_dataset.csv</span>" }
+            end
+
+            subgraph HP_ProcessedTrainingDataStore["ProcessedTrainingDataStore<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-03B2-05</span>"]
+                direction TB
+
+                ProcessedTrainingDataStore[("ProcessedTrainingDataStore<br/><span style='font-size:9px'>locator: data/processed/</span>")]
+
+                ValidationDatasetArtifact@{ shape: doc, label: "ValidationDatasetArtifact<br/><span style='font-size:9px'>data/processed/val.csv</span>" }
+
+                TestDatasetArtifact@{ shape: doc, label: "TestDatasetArtifact<br/><span style='font-size:9px'>data/processed/test.csv</span>" }
+
+                BalancedTrainingDatasetArtifact@{ shape: doc, label: "BalancedTrainingDatasetArtifact<br/><span style='font-size:9px'>data/processed/train_balanced.csv</span>" }
+            end
+
+
+            TrainingImageCollection("TrainingImageCollection<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-03C-01</span>")
+
+            HistoricalCaseEmbedding("HistoricalCaseEmbedding<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FR03-03-06 / BAP-FR03-03-08</span><br/><span style='font-size:9px'>logical intermediate result</span>")
+
+            HistoricalCaseVectorIndex("HistoricalCaseVectorIndex<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FR03-03-08 / BAP-FRC6-01-05-06</span><br/><span style='font-size:9px'>logical initialized vector index</span>")
+
+            subgraph HP_ChromaDBVectorStore["ChromaDBVectorStore<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-05-04</span>"]
+                direction TB
+
+                ChromaDBVectorStore[("ChromaDBVectorStore<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-05-04</span><br/><span style='font-size:9px'>engine: ChromaDB<br/>locator: chroma_db/</span>")]
+
+                HistoricalCaseVectorIndexArtifact@{ shape: doc, label: "HistoricalCaseVectorIndexArtifact<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-05-05 / BAP-FRC6-01-05-06</span><br/><span style='font-size:9px'>persistent ChromaDB index<br/>chroma.sqlite3 + index files</span>" }
+            end
+
+            subgraph HP_TrainingImageStore["TrainingImageStore<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-03C-02</span>"]
+                direction TB
+
+                TrainingImageStore[("TrainingImageStore<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-03C-02</span><br/><span style='font-size:9px'>locator: data/images/</span>")]
+
+                TrainingImageArtifactCollection_LOCAL@{ shape: doc, label: "TrainingImageArtifactCollection<br/><span style='font-size:9px'>local occurrence - same concrete BA identity</span>" }
+            end
+        end
+
+        subgraph HP_EnvironmentConfiguration["EnvironmentConfiguration<br/><span style='font-size:7px;color:#FFFFFF'>BAP-MRC6-07</span>"]
+            direction TB
+
+            EnvironmentConfiguration("EnvironmentConfiguration<br/><span style='font-size:9px'>logical configuration</span>")
+
+            DotEnvConfigurationFile_CONFIG@{ shape: doc, label: "DotEnvConfigurationFile<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-04-04</span><br/><span style='font-size:9px'>.env / configuration realization occurrence<br/>same BA identity</span>" }
+        end
+    end
+
+
+    subgraph EnvironmentSetupProcedure["EnvironmentSetupProcedure<br/><span style='font-size:7px;color:#FFFFFF'>BAP-DECC6-01-01</span>"]
+        direction TB
+
+        subgraph RepositoryAcquisitionStage["1 - RepositoryAcquisitionStage<br/><span style='font-size:7px;color:#FFFFFF'>BAP-DECC6-01-02</span>"]
+            direction TB
+
+            DermaTriageRepositoryAcquisition("DermaTriageRepositoryAcquisition<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-07-02</span>")
+        end
+
+
+        subgraph SoftwareDependencyInstallationStage["2 - SoftwareDependencyInstallationStage<br/><span style='font-size:7px;color:#FFFFFF'>BAP-DECC6-01-03</span>"]
+            direction TB
+
+            SoftwareDependencyInstallation("SoftwareDependencyInstallation<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-02-04</span><br/><span style='font-size:9px'>pip install -r requirements.txt</span>")
+        end
+
+
+        subgraph ModelResourceAcquisitionStage["3 - ModelResourceAcquisitionStage<br/><span style='font-size:7px;color:#FFFFFF'>BAP-DECC6-01-04</span>"]
+            direction TB
+
+            EfficientNetModelAcquisition("EfficientNetModelAcquisition<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-03A1-09</span>")
+
+            Qwen2ModelAcquisition("Qwen2ModelAcquisition<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-03A2-09</span>")
+
+
+            MiniLMModelAcquisition("MiniLMModelAcquisition")
+
+
+            BioMistralModelAcquisition("BioMistralModelAcquisition")
+        end
+
+
+        subgraph EnvironmentConfigurationStage["4 - EnvironmentConfigurationStage<br/><span style='font-size:7px;color:#FFFFFF'>BAP-DECC6-01-05</span><br/><span style='font-size:7px;color:#FFFFFF'>FR-C6-01-04</span>"]
+            direction TB
+
+            EnvironmentConfigurationMaterialization["EnvironmentConfigurationMaterialization<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-04-02 / BAP-FRC6-01-04-03</span><br/><span style='font-size:9px'>cp .env.example -> .env; edit .env</span>"]
+
+        end
+
+        subgraph LocalResourceInitializationStage["5 - LocalResourceInitializationStage<br/><span style='font-size:7px;color:#FFFFFF'>BAP-DECC6-01-06</span><br/><span style='font-size:7px;color:#FFFFFF'>FR-C6-01-05</span>"]
+            direction TB
+
+            HistoricalCaseEmbeddingGeneration["HistoricalCaseEmbeddingGeneration<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-05-01 / BAP-FR03-03-06 / BAP-FR03-03-07</span>"]
+
+            HistoricalCaseVectorIndexing["HistoricalCaseVectorIndexing<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-05-02 / BAP-FRC6-01-05-03 / BAP-FR03-03-08</span>"]
+        end
+
+        subgraph ServiceStartupStage["6 - ServiceStartupStage<br/><span style='font-size:7px;color:#FFFFFF'>BAP-DECC6-01-07</span>"]
+            direction TB
+
+            DermaTriageAPIServiceStartup["DermaTriageAPIServiceStartup<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-06-02</span><br/><span style='font-size:9px'>logical startup behavior</span>"]
+        end
+
+
+        RepositoryAcquisitionStage --> SoftwareDependencyInstallationStage
+        SoftwareDependencyInstallationStage --> ModelResourceAcquisitionStage
+        ModelResourceAcquisitionStage --> EnvironmentConfigurationStage
+        EnvironmentConfigurationStage --> LocalResourceInitializationStage
+        LocalResourceInitializationStage --> ServiceStartupStage
+    end
+
+    UvicornServiceLaunch["UvicornServiceLaunch<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-06-03</span><br/><span style='font-size:9px'>current startup realization</span>"]
+
+
+    subgraph HardwareConfigurationProfile["HardwareConfigurationProfile<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-01-05</span>"]
+        direction TB
+
+        MinimumRAM("minimumRAM = 16 GB<br/><span style='font-size:7px;color:#FFFFFF'>BAP-CRC6-01-01-01</span>")
+
+        MinimumStorage("minimumStorage = 50 GB<br/><span style='font-size:7px;color:#FFFFFF'>BAP-CRC6-01-01-02</span>")
+    end
+
+
+    RequiredSoftwareDependencies["RequiredSoftwareDependencies<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-02-01</span>"]
+
+    SoftwareCompositionProfile["SoftwareCompositionProfile<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-02-02</span>"]
+    ImageUrgencyAnalysis("ImageUrgencyAnalysis<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FR03-01-02</span>")
+
+    ClinicalDescriptionGeneration("ClinicalDescriptionGeneration<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FR03-02-02</span>")
+
+    EfficientNetB4["EfficientNet-B4<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-03A1-03</span>"]
+
+    Qwen2VL7BInstruct["Qwen2-VL-7B-Instruct<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-03A2-03</span>"]
+
+
+
+    ClinicalDescriptionEmbeddingGeneration("ClinicalDescriptionEmbeddingGeneration")
+
+    AllMiniLML6V2["all-MiniLM-L6-v2<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-03A3-03</span>"]
+
+
+    MultiSourceTriageSynthesis("MultiSourceTriageSynthesis")
+
+    BioMistral7B["BioMistral-7B<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC6-01-03A4-03</span>"]
+
+
+    RAGDatasetAcquisition("RAGDatasetAcquisition")
+
+
+    DatasetSplitting("DatasetSplitting")
+
+    PrepareDataScript("PrepareDataScript<br/><span style='font-size:9px'>prepare_data.py</span>")
+
+    TrainingSplit("TrainingSplit<br/><span style='font-size:9px'>logical intermediate result</span>")
+
+    ValidationSplit("ValidationSplit<br/><span style='font-size:9px'>logical result</span>")
+
+    TestSplit("TestSplit<br/><span style='font-size:9px'>logical result</span>")
+
+    TrainingSetBalancing("TrainingSetBalancing")
+
+    SMOTEBalancing["SMOTEBalancing"]
+
+    SMOTEBalancingScript("SMOTEBalancingScript<br/><span style='font-size:9px'>smote_balance.py</span>")
+
+    BalancedTrainingSplit("BalancedTrainingSplit<br/><span style='font-size:9px'>logical result</span>")
+
+
+    EnvironmentPreparation -->|produce| DermaTriageEnvironment
+
+    DermaTriage -.->|dependOn| DermaTriageEnvironment
+
+    EnvironmentSetupProcedure -.->|realize| EnvironmentPreparation
+
+    HardwareConfigurationProfile -.->|constrain| DermaTriageEnvironment
+
+    RequiredSoftwareDependencies -.->|constrain| DermaTriageEnvironment
+
+    SoftwareCompositionProfile -.->|realize| RequiredSoftwareDependencies
+    EfficientNetB4 -.->|realize| ImageUrgencyModelResource
+
+    EfficientNetB4 -.->|realize| ImageUrgencyAnalysis
+
+    Qwen2VL7BModelArtifact_LOCAL -.->|realize| Qwen2VL7BInstruct
+
+    Qwen2VL7BInstruct -.->|realize| ClinicalDescriptionModelResource
+
+    Qwen2VL7BInstruct -.->|realize| ClinicalDescriptionGeneration
+
+    HP_DermaTriageSourceTree_REMOTE -->|transfer| HP_DermaTriageSourceTree_LOCAL
+
+    EfficientNetWeights_REMOTE -->|transfer| EfficientNetWeights_LOCAL
+
+    Qwen2VL7BModelArtifact_REMOTE -->|transfer| Qwen2VL7BModelArtifact_LOCAL
+
+    DermaTriageRepositoryAcquisition -.-|behavior| HP_DermaTriageSourceTree_LOCAL
+
+    EfficientNetModelAcquisition -.-|behavior| EfficientNetWeights_LOCAL
+
+    Qwen2ModelAcquisition -.-|behavior| Qwen2VL7BModelArtifact_LOCAL
+
+
+    AllMiniLML6V2ModelArtifact_LOCAL -.->|realize| AllMiniLML6V2
+
+    AllMiniLML6V2 -.->|realize| EmbeddingModelResource
+
+    AllMiniLML6V2 -.->|realize| HistoricalCaseEmbeddingGeneration
+
+    AllMiniLML6V2 -.->|realize| ClinicalDescriptionEmbeddingGeneration
+
+    AllMiniLML6V2ModelArtifact_REMOTE -->|transfer| AllMiniLML6V2ModelArtifact_LOCAL
+
+    MiniLMModelAcquisition -.-|behavior| AllMiniLML6V2ModelArtifact_LOCAL
+
+
+    BioMistral7BModelArtifact_LOCAL -.->|realize| BioMistral7B
+
+    BioMistral7B -.->|realize| TriageSynthesisModelResource
+
+    BioMistral7B -.->|realize| MultiSourceTriageSynthesis
+
+    BioMistral7BModelArtifact_REMOTE -->|transfer| BioMistral7BModelArtifact_LOCAL
+
+    BioMistralModelAcquisition -.-|behavior| BioMistral7BModelArtifact_LOCAL
+
+
+    RAGDatasetArtifact_LOCAL -.->|realize| HP_DermaTriageRAGDataset
+
+    RAGDatasetArtifact_REMOTE -->|transfer| RAGDatasetArtifact_LOCAL
+
+    RAGDatasetAcquisition -.-|behavior| RAGDatasetArtifact_LOCAL
+
+
+    DatasetSplitting -->|produce| TrainingSplit
+
+    DatasetSplitting -->|produce| ValidationSplit
+
+    DatasetSplitting -->|produce| TestSplit
+
+    PrepareDataScript -.->|realize| DatasetSplitting
+
+    ValidationDatasetArtifact -.->|realize| ValidationSplit
+
+    TestDatasetArtifact -.->|realize| TestSplit
+
+    TrainingSplit -->|input| TrainingSetBalancing
+
+    TrainingSetBalancing -->|produce| BalancedTrainingSplit
+
+    SMOTEBalancing -.->|realize| TrainingSetBalancing
+
+    SMOTEBalancingScript -.->|realize| SMOTEBalancing
+
+    BalancedTrainingDatasetArtifact -.->|realize| BalancedTrainingSplit
+
+    TrainingImageArtifactCollection_REMOTE -->|transfer| TrainingImageArtifactCollection_LOCAL
+
+    TrainingImageArtifactCollection_LOCAL -.->|realize| TrainingImageCollection
+
+
+    DotEnvConfigurationFile_CONFIG -.->|realize| EnvironmentConfiguration
+
+
+
+    DotEnvExampleArtifact_LOCAL -->|input| EnvironmentConfigurationMaterialization
+
+    EnvironmentConfigurationMaterialization -->|produce| DotEnvConfigurationFile_STORE
+
+
+
+    HistoricalCaseDescription -->|input| HistoricalCaseEmbeddingGeneration
+
+    HistoricalCaseEmbeddingGeneration -->|produce| HistoricalCaseEmbedding
+
+    HistoricalCaseEmbedding -->|input| HistoricalCaseVectorIndexing
+
+    HistoricalCaseVectorIndexing -->|produce| HistoricalCaseVectorIndex
+
+    RAGIndexerScript_LOCAL -.->|realize| HistoricalCaseVectorIndexing
+
+    HistoricalCaseVectorIndexArtifact -.->|realize| HistoricalCaseVectorIndex
+
+
+
+
+
+
+
+
+
+    DermaTriageAPIServiceStartup -->|produce| DermaTriageAPIService
+
+    DermaTriageAPIService -.->|realize| DermaTriageAPI
+
+    UvicornServiceLaunch -.->|realize| DermaTriageAPIServiceStartup
+
+    end
+
+
+    %% ---------------------------------------------------------------------
+    %% MR-C7 visual zone. Outer region is rendering-only organization.
+    %% Accepted MR-C7 + DEC-C7-01 structure with FR-C7-01-01 and FR-C7-02-01 integrated into their owning stages.
+    %% FR-C7-01-01 and FR-C7-02-01 decisionRule structures remain CANDIDATE / NOT ADMITTED.
+    %% Red ? nodes are projection diagnostics only.
+    %% ---------------------------------------------------------------------
+    subgraph MR_C7_ZONE["MR-C7 - Verifica del sistema DermaTriage"]
+        direction TB
+
+        DermaTriageVerification["DermaTriageVerification<br/><span style='font-size:7px;color:#FFFFFF'>BAP-DECC7-01-01</span>"]
+
+        subgraph DermaTriageVerificationProcedure["DermaTriageVerificationProcedure<br/><span style='font-size:7px;color:#FFFFFF'>BAP-DECC7-01-01</span>"]
+            direction TB
+
+            %% ---------------------------------------------------------
+            %% Service readiness stage.
+            %% FR-C7-01-01 behavior is placed inside the stage that owns
+            %% readiness verification. The containment is the candidate
+            %% BA addition BAP-FRC7-01-01-12.
+            %% ---------------------------------------------------------
+            subgraph ServiceReadinessVerificationStage["ServiceReadinessVerificationStage<br/><span style='font-size:7px;color:#FFFFFF'>BAP-DECC7-01-02</span>"]
+                direction LR
+
+                ServiceReadinessVerification["ServiceReadinessVerification<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC7-01-01-01 / -07 / -08 / -12</span>"]
+
+                HealthCheckRequest["HealthCheckRequest<br/><span style='font-size:7px;color:#17324D'>BAP-FRC7-01-01-07</span>"]
+
+                subgraph HealthCheckResponse["HealthCheckResponse<br/><span style='font-size:7px;color:#17324D'>BAP-FRC7-01-01-08..10</span>"]
+                    direction TB
+
+                    HTTPResponseStatus["HTTPResponseStatus<br/><span style='font-size:7px;color:#17324D'>BAP-FRC7-01-01-09 / -11</span>"]
+
+                    subgraph ServiceHealthCheckResult["ServiceHealthCheckResult<br/><span style='font-size:7px;color:#17324D'>BAP-FRC7-01-01-02..06 / -10</span>"]
+                        direction TB
+                        OverallHealthStatus["OverallHealthStatus<br/><span style='font-size:7px;color:#17324D'>BAP-FRC7-01-01-02</span>"]
+                        EfficientNetHealthStatus["EfficientNetHealthStatus<br/><span style='font-size:7px;color:#17324D'>BAP-FRC7-01-01-03</span>"]
+                        ChromaDBHealthStatus["ChromaDBHealthStatus<br/><span style='font-size:7px;color:#17324D'>BAP-FRC7-01-01-04</span>"]
+                        OllamaHealthStatus["OllamaHealthStatus<br/><span style='font-size:7px;color:#17324D'>BAP-FRC7-01-01-05</span>"]
+                        B4ConnectionHealthStatus["B4ConnectionHealthStatus<br/><span style='font-size:7px;color:#17324D'>BAP-FRC7-01-01-06</span>"]
+                    end
+                end
+
+                ReadinessDecision{"local PASS rule<br/>satisfied?"}
+
+                ReadinessRule["decisionRule / branch.when<br/><span style='font-size:7px;color:#17324D'>BAP-FRC7-01-01-01 / CANDIDATE</span><br/><span style='font-size:9px'>EfficientNetHealthStatus = true<br/>AND ChromaDBHealthStatus = true<br/>AND B4ConnectionHealthStatus = true</span>"]
+
+                ReadinessOutcomePASS["ReadinessOutcome<br/><span style='font-size:7px;color:#17324D'>BAP-FRC7-01-01-01</span>"]
+
+                GAP_FALSE(("?"))
+                GAP_HTTP(("?"))
+
+                HTTP200Constraint["HTTPResponseStatus.value<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC7-01-01-11</span>"]
+
+                %% Request transfer: source -> content -> destination.
+                ServiceReadinessVerification -->|"transfer<br/>BAP-FRC7-01-01-07"| HealthCheckRequest
+                HealthCheckRequest --> HealthEndpoint
+
+                %% Response transfer: source -> content -> destination.
+                HealthEndpoint -->|"transfer<br/>BAP-FRC7-01-01-08"| HealthCheckResponse
+                HealthCheckResponse --> ServiceReadinessVerification
+
+                %% Candidate local decision structure.
+                ServiceReadinessVerification -->|"produce"| ReadinessDecision
+                ReadinessRule -.- ReadinessDecision
+                ReadinessDecision -->|"true"| ReadinessOutcomePASS
+                ReadinessDecision -.->|"false"| GAP_FALSE
+
+                %% HTTP 200 is governed separately; its conjunction with PASS
+                %% remains NOT SPECIFIED.
+                HTTPResponseStatus -.->|"constrain"| HTTP200Constraint
+                HTTP200Constraint -.->|"relation to local PASS<br/>NOT SPECIFIED"| GAP_HTTP
+                GAP_HTTP -.-> ReadinessDecision
+            end
+
+            %% ---------------------------------------------------------
+            %% Endpoint verification stage.
+            %% FR-C7-02-01 direct-analysis verification and FR-C7-02-02
+            %% B4-integrated diagnosis verification are placed inside the
+            %% API-endpoint verification stage.
+            %% ---------------------------------------------------------
+            subgraph EndpointVerificationStage["EndpointVerificationStage<br/><span style='font-size:7px;color:#FFFFFF'>BAP-DECC7-01-03</span>"]
+                direction LR
+
+                DirectAnalysisEndpointVerification["DirectAnalysisEndpointVerification<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC7-02-01-01..04</span>"]
+
+                DirectAnalysisRequest["DirectAnalysisRequest<br/><span style='font-size:7px;color:#17324D'>BAP-FRC7-02-01-02</span>"]
+
+                DirectAnalysisResponse["DirectAnalysisResponse<br/><span style='font-size:7px;color:#17324D'>BAP-FRC7-02-01-03</span>"]
+
+                DirectAnalysisDecision{"local PASS rule<br/>satisfied?"}
+
+                DirectAnalysisRule["decisionRule / branch.when<br/><span style='font-size:7px;color:#17324D'>BAP-FRC7-02-01-01 / CANDIDATE</span><br/><span style='font-size:9px'>responseTime &lt; 30s<br/>AND OperationalTriagePriority in P1-P4</span>"]
+
+                DirectAnalysisOutcomePASS["DirectAnalysisEndpointVerificationOutcome<br/><span style='font-size:7px;color:#17324D'>BAP-FRC7-02-01-01</span>"]
+
+                GAP_DIRECT_FALSE(("?"))
+
+                %% Request transfer: source -> content -> destination.
+                DirectAnalysisEndpointVerification -->|"transfer<br/>BAP-FRC7-02-01-02"| DirectAnalysisRequest
+                DirectAnalysisRequest --> AnalyzeEndpoint
+
+                %% Response transfer: source -> content -> destination.
+                AnalyzeEndpoint -->|"transfer<br/>BAP-FRC7-02-01-03"| DirectAnalysisResponse
+                DirectAnalysisResponse --> DirectAnalysisEndpointVerification
+
+                %% Candidate local decision structure.
+                DirectAnalysisEndpointVerification -->|"produce"| DirectAnalysisDecision
+                DirectAnalysisRule -.- DirectAnalysisDecision
+                DirectAnalysisDecision -->|"true"| DirectAnalysisOutcomePASS
+                DirectAnalysisDecision -.->|"false"| GAP_DIRECT_FALSE
+
+                %% FR-C7-02-02 — B4-integrated endpoint verification.
+                B4IntegratedDiagnosisEndpointVerification["B4IntegratedDiagnosisEndpointVerification<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC7-02-02-01..06</span>"]
+
+                B4IntegratedDiagnosisRequest["B4IntegratedDiagnosisRequest<br/><span style='font-size:7px;color:#17324D'>BAP-FRC7-02-02-02</span>"]
+
+                subgraph B4IntegratedDiagnosisResponse["B4IntegratedDiagnosisResponse<br/><span style='font-size:7px;color:#17324D'>BAP-FRC7-02-02-03..05</span>"]
+                    direction TB
+                    HTTPResponseStatus_B4["HTTPResponseStatus<br/><span style='font-size:7px;color:#17324D'>reuse / BAP-FRC7-02-02-04..05</span>"]
+                end
+
+                B4DiagnosisDecision{"local PASS rule<br/>satisfied?"}
+
+                B4DiagnosisRule["decisionRule / branch.when<br/><span style='font-size:7px;color:#17324D'>BAP-FRC7-02-02-01 / CANDIDATE</span><br/><span style='font-size:9px'>HTTPResponseStatus = 200<br/>AND governed B4TriageOutcome write-back occurrence<br/>(reuse BAP-FR23-01)</span>"]
+
+                B4DiagnosisOutcomePASS["B4IntegratedDiagnosisEndpointVerificationOutcome<br/><span style='font-size:7px;color:#17324D'>BAP-FRC7-02-02-01</span>"]
+
+                B4HTTP200Constraint["HTTPResponseStatus.value<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC7-02-02-05</span>"]
+
+                GAP_B4_DIAG_FALSE(("?"))
+
+                %% FR-C7-02-03 — pipeline-statistics endpoint verification.
+                StatsEndpointVerification["StatsEndpointVerification<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC7-02-03-01..10</span>"]
+                PipelineStatisticsRequest["PipelineStatisticsRequest<br/><span style='font-size:7px;color:#17324D'>BAP-FRC7-02-03-01</span>"]
+
+                subgraph PipelineStatisticsResponse["PipelineStatisticsResponse<br/><span style='font-size:7px;color:#17324D'>BAP-FRC7-02-03-02 / -04..10</span>"]
+                    direction TB
+                    TotalDiagnosesCount["TotalDiagnosesCount<br/><span style='font-size:7px;color:#17324D'>BAP-FRC7-02-03-04</span>"]
+                    TotalCorrectionsCount["TotalCorrectionsCount<br/><span style='font-size:7px;color:#17324D'>BAP-FRC7-02-03-05</span>"]
+
+                    subgraph UrgencyDistribution["UrgencyDistribution<br/><span style='font-size:7px;color:#17324D'>BAP-FRC7-02-03-06..10</span>"]
+                        direction LR
+                        P1Count["P1Count<br/><span style='font-size:7px;color:#17324D'>BAP-FRC7-02-03-07</span>"]
+                        P2Count["P2Count<br/><span style='font-size:7px;color:#17324D'>BAP-FRC7-02-03-08</span>"]
+                        P3Count["P3Count<br/><span style='font-size:7px;color:#17324D'>BAP-FRC7-02-03-09</span>"]
+                        P4Count["P4Count<br/><span style='font-size:7px;color:#17324D'>BAP-FRC7-02-03-10</span>"]
+                    end
+                end
+            end
+
+            %% ---------------------------------------------------------
+            %% Remaining DEC-C7-01 structural stages. Their concrete
+            %% verification behaviors are added by later FR reviews.
+            %% ---------------------------------------------------------
+            subgraph PipelineStageVerificationStage["PipelineStageVerificationStage<br/><span style='font-size:7px;color:#FFFFFF'>BAP-DECC7-01-04</span>"]
+                direction LR
+
+                subgraph ImageUrgencyAnalysisVerificationStage["ImageUrgencyAnalysisVerificationStage<br/><span style='font-size:7px;color:#FFFFFF'>BAP-DECC7-01-09</span>"]
+                    direction LR
+                    ImageUrgencyAnalysisVerification["ImageUrgencyAnalysisVerification<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC7-03-01-01..04</span>"]
+                end
+
+                subgraph ClinicalDescriptionGenerationVerificationStage["ClinicalDescriptionGenerationVerificationStage<br/><span style='font-size:7px;color:#FFFFFF'>BAP-DECC7-01-10</span>"]
+                    direction LR
+                    ClinicalDescriptionGenerationVerification["ClinicalDescriptionGenerationVerification<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FRC7-03-02-01..04</span>"]
+                end
+
+                HistoricalCaseRetrievalVerificationStage("HistoricalCaseRetrievalVerificationStage<br/><span style='font-size:7px;color:#FFFFFF'>BAP-DECC7-01-11</span>")
+
+                MultiSourceTriageSynthesisVerificationStage("MultiSourceTriageSynthesisVerificationStage<br/><span style='font-size:7px;color:#FFFFFF'>BAP-DECC7-01-12</span>")
+            end
+
+            FullPipelineVerificationStage("FullPipelineVerificationStage<br/><span style='font-size:7px;color:#FFFFFF'>BAP-DECC7-01-05</span>")
+
+            B4IntegrationVerificationStage("B4IntegrationVerificationStage<br/><span style='font-size:7px;color:#FFFFFF'>BAP-DECC7-01-06</span>")
+
+            RetrainingControlVerificationStage("RetrainingControlVerificationStage<br/><span style='font-size:7px;color:#FFFFFF'>BAP-DECC7-01-07</span>")
+
+            ClassifierQualityVerificationStage("ClassifierQualityVerificationStage<br/><span style='font-size:7px;color:#FFFFFF'>BAP-DECC7-01-08</span>")
+        end
+
+        DermaTriageVerificationProcedure -.->|realize| DermaTriageVerification
+
+    end
+
+    %% -----------------------------------------------------------------
+    %% FR-C7-03-01 — Stage 1 verification support nodes.
+    %% Two LesionImage occurrences render the receive-then-forward flow.
+    %% They are the SAME BA identity, not two distinct BAReferents.
+    %% The upstream acquisition source remains projection-only NOT SPECIFIED.
+    %% -----------------------------------------------------------------
+    GAP_STAGE1_IMAGE_SOURCE(("?"))
+
+    LesionImage_TEST["LesionImage<br/><span style='font-size:7px;color:#17324D'>reuse BAP-FR03-01-01</span><br/><span style='font-size:8px'>test-vector occurrence</span>"]
+    LesionImage_STAGE1["LesionImage<br/><span style='font-size:7px;color:#17324D'>reuse BAP-FR03-01-01</span><br/><span style='font-size:8px'>same BA identity / forwarded occurrence</span>"]
+
+    ImageUrgencyClassification_C7["ImageUrgencyClassification<br/><span style='font-size:7px;color:#17324D'>reuse BAP-FR03-01-01</span><br/><span style='font-size:8px'>urgency + associated confidence</span>"]
+
+    Stage1ExpectedObservation["expected observation / owner review<br/><span style='font-size:8px'>urgency HIGH/MEDIUM/LOW<br/>confidence 0.0-1.0<br/>probabilities array required</span>"]
+
+    ImageUrgencyVerificationDecision{"local PASS rule<br/>satisfied?"}
+    ImageUrgencyVerificationRule["decisionRule / branch.when<br/><span style='font-size:7px;color:#17324D'>BAP-FRC7-03-01-01 / CANDIDATE</span><br/><span style='font-size:9px'>valid urgency string returned</span>"]
+    ImageUrgencyVerificationOutcomePASS["ImageUrgencyAnalysisVerificationOutcome<br/><span style='font-size:7px;color:#17324D'>BAP-FRC7-03-01-01</span>"]
+    GAP_STAGE1_FALSE(("?"))
+
+    %% -----------------------------------------------------------------
+    %% FR-C7-03-02 — Stage 2 verification support nodes.
+    %% Two LesionImage occurrences render the receive-then-forward flow.
+    %% They are the SAME BA identity, not two distinct BAReferents.
+    %% The upstream acquisition source remains projection-only NOT SPECIFIED.
+    %% -----------------------------------------------------------------
+    GAP_STAGE2_IMAGE_SOURCE(("?"))
+
+    LesionImage_STAGE2_TEST["LesionImage<br/><span style='font-size:7px;color:#17324D'>reuse BAP-FR03-02-01</span><br/><span style='font-size:8px'>Stage 2 test-vector occurrence</span>"]
+    LesionImage_STAGE2["LesionImage<br/><span style='font-size:7px;color:#17324D'>reuse BAP-FR03-02-01</span><br/><span style='font-size:8px'>same BA identity / forwarded occurrence</span>"]
+
+    ClinicalDescription_C7["ClinicalDescription<br/><span style='font-size:7px;color:#17324D'>reuse BAP-FR03-02-01 / -03</span>"]
+
+    ClinicalDescriptionContentContract_C7["ClinicalDescriptionContentContract<br/><span style='font-size:7px;color:#FFFFFF'>reuse BAP-FR03-02-03..04</span><br/><span style='font-size:8px'>TEXTUAL / 5 parts<br/>shape · borders · color · texture · suspicious features</span>"]
+
+    ClinicalDescriptionVerificationDecision{"local PASS rule<br/>satisfied?"}
+    ClinicalDescriptionVerificationRule["decisionRule / branch.when<br/><span style='font-size:7px;color:#17324D'>BAP-FRC7-03-02-01 / CANDIDATE</span><br/><span style='font-size:9px'>ClinicalDescription is non-empty</span>"]
+    ClinicalDescriptionVerificationOutcomePASS["ClinicalDescriptionGenerationVerificationOutcome<br/><span style='font-size:7px;color:#17324D'>BAP-FRC7-03-02-01</span>"]
+    GAP_STAGE2_FALSE(("?"))
+
+    %% -----------------------------------------------------------------
+    %% FR-C7-02-02 edges are declared after the MR-C7 containment zone so
+    %% existing R37 linkStyle indices remain stable.
+    %% hasPart is projected by containment, not by an arrow.
+    %% -----------------------------------------------------------------
+
+    %% Request transfer: source -> content -> destination.
+    B4IntegratedDiagnosisEndpointVerification -->|"transfer<br/>BAP-FRC7-02-02-02"| B4IntegratedDiagnosisRequest
+    B4IntegratedDiagnosisRequest --> DiagnoseEndpoint
+
+    %% Response transfer: source -> content -> destination.
+    DiagnoseEndpoint -->|"transfer<br/>BAP-FRC7-02-02-03"| B4IntegratedDiagnosisResponse
+    B4IntegratedDiagnosisResponse --> B4IntegratedDiagnosisEndpointVerification
+
+    %% HTTP 200 constraint.
+    HTTPResponseStatus_B4 -.->|"constrain"| B4HTTP200Constraint
+
+    %% Candidate local decision structure.
+    B4IntegratedDiagnosisEndpointVerification -->|"produce"| B4DiagnosisDecision
+    B4DiagnosisRule -.- B4DiagnosisDecision
+    B4DiagnosisDecision -->|"true"| B4DiagnosisOutcomePASS
+    B4DiagnosisDecision -.->|"false"| GAP_B4_DIAG_FALSE
+
+    %% FR-C7-02-03 request transfer: source -> content -> destination.
+    StatsEndpointVerification -->|"transfer<br/>BAP-FRC7-02-03-01"| PipelineStatisticsRequest
+    PipelineStatisticsRequest --> StatsEndpoint
+
+    %% FR-C7-02-03 response transfer: source -> content -> destination.
+    StatsEndpoint -->|"transfer<br/>BAP-FRC7-02-03-02"| PipelineStatisticsResponse
+    PipelineStatisticsResponse --> StatsEndpointVerification
+
+    %% FR-C7-03-01: acquisition of the verification test image is unresolved.
+    GAP_STAGE1_IMAGE_SOURCE -.->|"input provenance / acquisition<br/>NOT SPECIFIED"| LesionImage_TEST
+    LesionImage_TEST -.-> ImageUrgencyAnalysisVerification
+
+    %% Verification forwards the same LesionImage to Stage 1.
+    ImageUrgencyAnalysisVerification -->|"transfer<br/>BAP-FRC7-03-01-02"| LesionImage_STAGE1
+    LesionImage_STAGE1 --> ImageUrgencyAnalysis
+
+    %% Stage 1 result is returned to the verification behavior.
+    ImageUrgencyAnalysis -->|"transfer<br/>BAP-FRC7-03-01-03"| ImageUrgencyClassification_C7
+    ImageUrgencyClassification_C7 --> ImageUrgencyAnalysisVerification
+
+    %% Source-supported expected observation beyond the already-governed runtime contract.
+    ImageUrgencyClassification_C7 -.->|"expected observation<br/>owner review"| Stage1ExpectedObservation
+
+    %% Local verification result.
+    ImageUrgencyAnalysisVerification -->|"produce"| ImageUrgencyVerificationDecision
+    ImageUrgencyVerificationRule -.- ImageUrgencyVerificationDecision
+    ImageUrgencyVerificationDecision -->|"true"| ImageUrgencyVerificationOutcomePASS
+    ImageUrgencyVerificationDecision -.->|"false"| GAP_STAGE1_FALSE
+
+    %% FR-C7-03-02: acquisition of the Stage 2 test image is unresolved.
+    GAP_STAGE2_IMAGE_SOURCE -.->|"input provenance / acquisition<br/>NOT SPECIFIED"| LesionImage_STAGE2_TEST
+    LesionImage_STAGE2_TEST -.-> ClinicalDescriptionGenerationVerification
+
+    %% Verification forwards the same LesionImage to Stage 2.
+    ClinicalDescriptionGenerationVerification -->|"transfer<br/>BAP-FRC7-03-02-02"| LesionImage_STAGE2
+    LesionImage_STAGE2 --> ClinicalDescriptionGeneration
+
+    %% Qwen2-VL-7B-Instruct already realizes ClinicalDescriptionGeneration
+    %% elsewhere in the cumulative graph; the realize relation is not duplicated here.
+
+    %% Stage 2 result is returned to the verification behavior.
+    ClinicalDescriptionGeneration -->|"transfer<br/>BAP-FRC7-03-02-03"| ClinicalDescription_C7
+    ClinicalDescription_C7 --> ClinicalDescriptionGenerationVerification
+
+    %% Reuse the already-governed five-part runtime content contract.
+    ClinicalDescription_C7 -.->|"constrain<br/>reuse BAP-FR03-02-03..04"| ClinicalDescriptionContentContract_C7
+
+    %% Local verification result.
+    ClinicalDescriptionGenerationVerification -->|"produce"| ClinicalDescriptionVerificationDecision
+    ClinicalDescriptionVerificationRule -.- ClinicalDescriptionVerificationDecision
+    ClinicalDescriptionVerificationDecision -->|"true"| ClinicalDescriptionVerificationOutcomePASS
+    ClinicalDescriptionVerificationDecision -.->|"false"| GAP_STAGE2_FALSE
+
+    %% Projection-only sequencing hint; NOT a BA proposition.
+    %% Canonical BA semantics for pipeline/stage ordering are intentionally deferred.
+    ServiceStartupStage --> DermaTriageVerification
+
+
+    classDef BAProduceActor fill:#212121,stroke:#000000,stroke-width:2px,color:#FFFFFF;
+
+
+    classDef BAReferentD0 fill:#0066FF,stroke:#0047B3,stroke-width:2px,color:#FFFFFF;
+    classDef BAReferentD1 fill:#267DFF,stroke:#0047B3,stroke-width:2px,color:#FFFFFF;
+    classDef BAReferentD2 fill:#4C94FF,stroke:#0047B3,stroke-width:2px,color:#FFFFFF;
+    classDef BAReferentD3 fill:#73ABFF,stroke:#0047B3,stroke-width:2px,color:#17324D;
+
+    classDef BARealizationD0 fill:#5F6368,stroke:#3F4347,stroke-width:2px,color:#FFFFFF;
+    classDef BARealizationD1 fill:#777A7F,stroke:#4C5054,stroke-width:2px,color:#FFFFFF;
+    classDef BARealizationD2 fill:#8F9295,stroke:#4C5054,stroke-width:2px,color:#FFFFFF;
+
+    classDef BAConstrainD0 fill:#6F42C1,stroke:#55308F,stroke-width:2px,color:#FFFFFF;
+    classDef BAConstrainD1 fill:#855ECA,stroke:#55308F,stroke-width:2px,color:#FFFFFF;
+
+    classDef BAStore fill:#EEF4F9,stroke:#275D86,stroke-width:2px,color:#17324D;
+
+    classDef BAContent fill:#FFFFFF,stroke:#275D86,stroke-width:2px,color:#17324D;
+
+    classDef BALogicalData fill:#FFFFFF,stroke:#5C99C1,stroke-width:2px,color:#23313D;
+
+    classDef BATransferBehavior fill:#FFF4E3,stroke:#A96A16,stroke-width:2px,color:#17324D;
+    classDef HiddenAnchor fill:transparent,stroke:transparent,color:transparent;
+    classDef BADecision fill:#FFF7E6,stroke:#A96A16,stroke-width:2px,color:#17324D;
+    classDef BARule fill:#F4F6F8,stroke:#5B6770,stroke-width:1.5px,color:#17324D,stroke-dasharray:5 4;
+    classDef BAOutcome fill:#EAF5F3,stroke:#2A7F78,stroke-width:2px,color:#17324D;
+    classDef BAGap fill:#FFFFFF,stroke:#C62828,stroke-width:3px,color:#C62828;
+    classDef BAConstraintCard fill:#6F42C1,stroke:#55308F,stroke-width:2px,color:#FFFFFF;
+
+
+    class EnvironmentPreparation BAProduceActor;
+
+    class ImageUrgencyAnalysis,ClinicalDescriptionGeneration,ClinicalDescriptionEmbeddingGeneration,MultiSourceTriageSynthesis BAReferentD0;
+
+    class HomeEndpoint,TriagePageEndpoint,AnalyzeEndpoint,DiagnoseEndpoint,HealthEndpoint,StatsEndpoint,AdminDiagnosesEndpoint,AdminReviewEndpoint,AdminValidateEndpoint,AdminPromptsEndpoint,AdminPromptsUpdateEndpoint,AdminPromptsResetEndpoint,AdminPromptsHistoryEndpoint,AdminRetrainingEndpoint,AdminRetrainingStatusEndpoint,AdminRetrainingCheckTriggerEndpoint,AdminRetrainingRunEndpoint,AdminRetrainingHistoryEndpoint,AdminRetrainingRollbackEndpoint,AdminRetrainingFetchEndpoint BAReferentD3;
+
+    class ComputeResources,EnvironmentConfiguration BAReferentD1;
+
+    class ImageUrgencyModelResource,ClinicalDescriptionModelResource,EmbeddingModelResource,TriageSynthesisModelResource BAReferentD2;
+
+    class TrainingSplit,ValidationSplit,TestSplit,BalancedTrainingSplit,TrainingImageCollection,HistoricalCaseDescription,HistoricalCaseEmbedding,HistoricalCaseVectorIndex BALogicalData;
+
+    class RequiredSoftwareDependencies BAConstrainD0;
+
+    class SoftwareCompositionProfile,EfficientNetB4,Qwen2VL7BInstruct,AllMiniLML6V2,BioMistral7B,PrepareDataScript,SMOTEBalancing,SMOTEBalancingScript,DermaTriageAPIService,UvicornServiceLaunch BARealizationD0;
+
+    class EnvironmentConfigurationStage,LocalResourceInitializationStage,ServiceStartupStage BARealizationD1;
+
+    class SoftwareDependencyInstallation BARealizationD2;
+
+    class MinimumRAM,MinimumStorage BAConstrainD1;
+
+    class DermaTriageSourceRepositoryStore,DermaTriageSourceCodeStore,GoogleDriveModelStore,ActiveClassifierStore,HuggingFaceModelStore,Qwen2LocalModelStore,MiniLMLocalModelStore,BioMistralLocalModelStore,ISICPublicDatasetStore,RAGDatasetStore,ProcessedTrainingDataStore,TrainingImageStore,TrainingImageSourceStore,ChromaDBVectorStore BAStore;
+
+    class DermaTriageSourceTree_REMOTE,DermaTriageSourceTree_LOCAL,RetrainerSourceArtifact_REMOTE,RetrainerSourceArtifact_LOCAL,RequirementsManifestArtifact_REMOTE,RequirementsManifestArtifact_LOCAL,DotEnvExampleArtifact_REMOTE,EfficientNetWeights_REMOTE,EfficientNetWeights_LOCAL,Qwen2VL7BModelArtifact_REMOTE,Qwen2VL7BModelArtifact_LOCAL,AllMiniLML6V2ModelArtifact_REMOTE,AllMiniLML6V2ModelArtifact_LOCAL,BioMistral7BModelArtifact_REMOTE,BioMistral7BModelArtifact_LOCAL,RAGDatasetArtifact_REMOTE,RAGDatasetArtifact_LOCAL,ValidationDatasetArtifact,TestDatasetArtifact,BalancedTrainingDatasetArtifact,TrainingImageArtifactCollection_REMOTE,TrainingImageArtifactCollection_LOCAL,RAGIndexerScript_REMOTE,RAGIndexerScript_LOCAL,HistoricalCaseVectorIndexArtifact,FastAPIApplicationArtifact_REMOTE,FastAPIApplicationArtifact_LOCAL BAContent;
+
+    class DermaTriageRepositoryAcquisition,EfficientNetModelAcquisition,Qwen2ModelAcquisition,MiniLMModelAcquisition,BioMistralModelAcquisition,RAGDatasetAcquisition BATransferBehavior;
+
+    class DatasetSplitting,TrainingSetBalancing,EnvironmentConfigurationMaterialization,HistoricalCaseEmbeddingGeneration,HistoricalCaseVectorIndexing,DermaTriageAPIServiceStartup BAProduceActor;
+    class DotEnvExampleArtifact_LOCAL,DotEnvConfigurationFile_STORE,DotEnvConfigurationFile_CONFIG BAContent;
+
+    class DermaTriageVerification BAReferentD0;
+    class ServiceReadinessVerificationStage,EndpointVerificationStage,FullPipelineVerificationStage,B4IntegrationVerificationStage,RetrainingControlVerificationStage,ClassifierQualityVerificationStage BARealizationD1;
+    class ImageUrgencyAnalysisVerificationStage,ClinicalDescriptionGenerationVerificationStage,HistoricalCaseRetrievalVerificationStage,MultiSourceTriageSynthesisVerificationStage BARealizationD2;
+
+    class ServiceReadinessVerification BAProduceActor;
+    class HealthCheckRequest,HTTPResponseStatus,OverallHealthStatus,EfficientNetHealthStatus,ChromaDBHealthStatus,OllamaHealthStatus,B4ConnectionHealthStatus BALogicalData;
+    class ReadinessDecision BADecision;
+    class ReadinessRule BARule;
+    class ReadinessOutcomePASS BAOutcome;
+    class GAP_FALSE,GAP_HTTP BAGap;
+    class HTTP200Constraint BAConstraintCard;
+
+    class DirectAnalysisEndpointVerification BAProduceActor;
+    class DirectAnalysisRequest,DirectAnalysisResponse BALogicalData;
+    class DirectAnalysisDecision BADecision;
+    class DirectAnalysisRule BARule;
+    class DirectAnalysisOutcomePASS BAOutcome;
+    class GAP_DIRECT_FALSE BAGap;
+
+    class B4IntegratedDiagnosisEndpointVerification BAProduceActor;
+    class B4IntegratedDiagnosisRequest,HTTPResponseStatus_B4 BALogicalData;
+    class B4DiagnosisDecision BADecision;
+    class B4DiagnosisRule BARule;
+    class B4DiagnosisOutcomePASS BAOutcome;
+    class B4HTTP200Constraint BAConstraintCard;
+    class GAP_B4_DIAG_FALSE BAGap;
+
+    class StatsEndpointVerification BAProduceActor;
+    class PipelineStatisticsRequest,TotalDiagnosesCount,TotalCorrectionsCount,P1Count,P2Count,P3Count,P4Count BAContent;
+
+    class ImageUrgencyAnalysisVerification BAProduceActor;
+    class LesionImage_TEST,LesionImage_STAGE1,ImageUrgencyClassification_C7 BALogicalData;
+    class Stage1ExpectedObservation BAConstraintCard;
+    class ImageUrgencyVerificationDecision BADecision;
+    class ImageUrgencyVerificationRule BARule;
+    class ImageUrgencyVerificationOutcomePASS BAOutcome;
+    class GAP_STAGE1_IMAGE_SOURCE,GAP_STAGE1_FALSE BAGap;
+
+    class ClinicalDescriptionGenerationVerification BAProduceActor;
+    class LesionImage_STAGE2_TEST,LesionImage_STAGE2,ClinicalDescription_C7 BALogicalData;
+    class ClinicalDescriptionContentContract_C7 BAConstraintCard;
+    class ClinicalDescriptionVerificationDecision BADecision;
+    class ClinicalDescriptionVerificationRule BARule;
+    class ClinicalDescriptionVerificationOutcomePASS BAOutcome;
+    class GAP_STAGE2_IMAGE_SOURCE,GAP_STAGE2_FALSE BAGap;
+
+
+    style DermaTriageEnvironment fill:#0066FF,stroke:#0047B3,stroke-width:2.5px,color:#FFFFFF
+
+    style SoftwareComponents fill:#267DFF,stroke:#0047B3,stroke-width:2.3px,color:#FFFFFF
+
+    style ModelResources fill:#267DFF,stroke:#0047B3,stroke-width:2.3px,color:#FFFFFF
+
+
+    style DataResources fill:#267DFF,stroke:#0047B3,stroke-width:2.3px,color:#FFFFFF
+
+    style HP_EnvironmentConfiguration fill:#267DFF,stroke:#0047B3,stroke-width:2.3px,color:#FFFFFF
+
+    style SECURITY_BOUNDARY_GITHUB fill:#FFF8F8,stroke:#C62828,stroke-width:3px,stroke-dasharray:7 5,color:#8B1A1A
+
+    style SECURITY_BOUNDARY_GOOGLEDRIVE fill:#FFF8F8,stroke:#C62828,stroke-width:3px,stroke-dasharray:7 5,color:#8B1A1A
+
+    style SECURITY_BOUNDARY_HUGGINGFACE fill:#FFF8F8,stroke:#C62828,stroke-width:3px,stroke-dasharray:7 5,color:#8B1A1A
+
+
+    style SECURITY_BOUNDARY_ISIC fill:#FFF8F8,stroke:#C62828,stroke-width:3px,stroke-dasharray:7 5,color:#8B1A1A
+
+    style SECURITY_BOUNDARY_TRAINING_IMAGES fill:#FFF8F8,stroke:#C62828,stroke-width:3px,stroke-dasharray:7 5,color:#8B1A1A
+
+    style HP_DermaTriageSourceRepositoryStore fill:#F8FBFD,stroke:#275D86,stroke-width:2.5px,color:#17324D
+
+    style HP_DermaTriageSourceCodeStore fill:#F8FBFD,stroke:#275D86,stroke-width:2.5px,color:#17324D
+
+    style HP_GoogleDriveModelStore fill:#F8FBFD,stroke:#275D86,stroke-width:2.5px,color:#17324D
+
+    style HP_ActiveClassifierStore fill:#F8FBFD,stroke:#275D86,stroke-width:2.5px,color:#17324D
+
+    style HP_HuggingFaceModelStore fill:#F8FBFD,stroke:#275D86,stroke-width:2.5px,color:#17324D
+
+
+    style HP_ISICPublicDatasetStore fill:#F8FBFD,stroke:#275D86,stroke-width:2.5px,color:#17324D
+
+    style FR_C7_01_01_VIEW fill:#FCFDFE,stroke:#7A8A99,stroke-width:1.5px,stroke-dasharray:5 4,color:#17324D
+    style FR_C7_02_01_VIEW fill:#FCFDFE,stroke:#7A8A99,stroke-width:1.5px,stroke-dasharray:5 4,color:#17324D
+    style HealthCheckResponse fill:#F8FBFD,stroke:#275D86,stroke-width:2.4px,color:#17324D
+    style ServiceHealthCheckResult fill:#FFFFFF,stroke:#275D86,stroke-width:2.2px,color:#17324D
+    style PipelineStatisticsResponse fill:#F8FBFD,stroke:#275D86,stroke-width:2.4px,color:#17324D
+    style UrgencyDistribution fill:#FFFFFF,stroke:#275D86,stroke-width:2.2px,color:#17324D
+
+    style HP_RAGDatasetStore fill:#F8FBFD,stroke:#275D86,stroke-width:2.5px,color:#17324D
+
+    style HP_ProcessedTrainingDataStore fill:#F8FBFD,stroke:#275D86,stroke-width:2.5px,color:#17324D
+
+    style HP_TrainingImageStore fill:#F8FBFD,stroke:#275D86,stroke-width:2.5px,color:#17324D
+
+    style HP_ChromaDBVectorStore fill:#F8FBFD,stroke:#275D86,stroke-width:2.5px,color:#17324D
+
+    style HP_TrainingImageSourceStore fill:#F8FBFD,stroke:#275D86,stroke-width:2.5px,color:#17324D
+
+    style HP_Qwen2LocalModelStore fill:#F8FBFD,stroke:#275D86,stroke-width:2.5px,color:#17324D
+
+    style HP_MiniLMLocalModelStore fill:#F8FBFD,stroke:#275D86,stroke-width:2.5px,color:#17324D
+
+    style HP_BioMistralLocalModelStore fill:#F8FBFD,stroke:#275D86,stroke-width:2.5px,color:#17324D
+
+    style HP_DermaTriageRAGDataset fill:#FFFFFF,stroke:#5C99C1,stroke-width:2.3px,color:#23313D
+
+    style HP_DermaTriageSourceTree_REMOTE fill:#F8FBFD,stroke:#275D86,stroke-width:2.3px,color:#17324D
+
+    style HP_DermaTriageSourceTree_LOCAL fill:#F8FBFD,stroke:#275D86,stroke-width:2.3px,color:#17324D
+
+    style MR_C6_ZONE fill:#FFFFFF,stroke:#AAB5BE,stroke-width:1.2px,color:#44525C
+    style MR_C7_ZONE fill:#FFFFFF,stroke:#AAB5BE,stroke-width:1.2px,color:#44525C
+
+    style DermaTriageVerificationProcedure fill:#5F6368,stroke:#3F4347,stroke-width:2.5px,stroke-dasharray:6 4,color:#FFFFFF
+    style PipelineStageVerificationStage fill:#777A7F,stroke:#4C5054,stroke-width:2px,color:#FFFFFF
+    style ImageUrgencyAnalysisVerificationStage fill:#8F9295,stroke:#4C5054,stroke-width:2px,color:#FFFFFF
+    style ClinicalDescriptionGenerationVerificationStage fill:#8F9295,stroke:#4C5054,stroke-width:2px,color:#FFFFFF
+
+    style EnvironmentSetupProcedure fill:#5F6368,stroke:#3F4347,stroke-width:2.5px,stroke-dasharray:6 4,color:#FFFFFF
+
+    style RepositoryAcquisitionStage fill:#777A7F,stroke:#4C5054,stroke-width:2px,color:#FFFFFF
+
+    style SoftwareDependencyInstallationStage fill:#777A7F,stroke:#4C5054,stroke-width:2px,color:#FFFFFF
+
+    style ModelResourceAcquisitionStage fill:#777A7F,stroke:#4C5054,stroke-width:2px,color:#FFFFFF
+
+    style EnvironmentConfigurationStage fill:#777A7F,stroke:#4C5054,stroke-width:2px,color:#FFFFFF
+
+    style LocalResourceInitializationStage fill:#777A7F,stroke:#4C5054,stroke-width:2px,color:#FFFFFF
+
+    style ServiceStartupStage fill:#777A7F,stroke:#4C5054,stroke-width:2px,color:#FFFFFF
+
+    style HardwareConfigurationProfile fill:#6F42C1,stroke:#55308F,stroke-width:2.5px,stroke-dasharray:6 4,color:#FFFFFF
+
+    style DermaTriage fill:#0066FF,stroke:#0047B3,stroke-width:2.5px,color:#FFFFFF
+
+    style DermaTriageAPI fill:#267DFF,stroke:#0047B3,stroke-width:2.3px,color:#FFFFFF
+
+    style TriageAPI fill:#4C94FF,stroke:#0047B3,stroke-width:2.1px,color:#FFFFFF
+    style OperationalAPI fill:#4C94FF,stroke:#0047B3,stroke-width:2.1px,color:#FFFFFF
+    style ClinicalReviewAPI fill:#4C94FF,stroke:#0047B3,stroke-width:2.1px,color:#FFFFFF
+    style PromptManagementAPI fill:#4C94FF,stroke:#0047B3,stroke-width:2.1px,color:#FFFFFF
+    style RetrainingAPI fill:#4C94FF,stroke:#0047B3,stroke-width:2.1px,color:#FFFFFF
+
+    linkStyle 0 stroke:#7A7E83,stroke-width:1.3px;
+    linkStyle 1 stroke:#7A7E83,stroke-width:1.3px;
+    linkStyle 2 stroke:#7A7E83,stroke-width:1.3px;
+    linkStyle 3 stroke:#7A7E83,stroke-width:1.3px;
+    linkStyle 4 stroke:#7A7E83,stroke-width:1.3px;
+    linkStyle 5 stroke:#0047B3,stroke-width:2px;
+    linkStyle 6 stroke:#C69214,stroke-width:1.5px,stroke-dasharray:6 4;
+    linkStyle 7 stroke:#5F6368,stroke-width:1.8px,stroke-dasharray:6 4;
+    linkStyle 8 stroke:#6F42C1,stroke-width:1.8px,stroke-dasharray:6 4;
+    linkStyle 9 stroke:#6F42C1,stroke-width:1.8px,stroke-dasharray:6 4;
+    linkStyle 10 stroke:#5F6368,stroke-width:1.8px,stroke-dasharray:6 4;
+    linkStyle 11 stroke:#5F6368,stroke-width:1.8px,stroke-dasharray:6 4;
+    linkStyle 12 stroke:#5F6368,stroke-width:1.8px,stroke-dasharray:6 4;
+    linkStyle 13 stroke:#5F6368,stroke-width:1.8px,stroke-dasharray:6 4;
+    linkStyle 14 stroke:#5F6368,stroke-width:1.8px,stroke-dasharray:6 4;
+    linkStyle 15 stroke:#5F6368,stroke-width:1.8px,stroke-dasharray:6 4;
+    linkStyle 16 stroke:#C62828,stroke-width:3px;
+    linkStyle 17 stroke:#C62828,stroke-width:3px;
+    linkStyle 18 stroke:#C62828,stroke-width:3px;
+    linkStyle 19 stroke:#A96A16,stroke-width:1.5px,stroke-dasharray:5 5;
+    linkStyle 20 stroke:#A96A16,stroke-width:1.5px,stroke-dasharray:5 5;
+    linkStyle 21 stroke:#A96A16,stroke-width:1.5px,stroke-dasharray:5 5;
+    linkStyle 22 stroke:#5F6368,stroke-width:1.8px,stroke-dasharray:6 4;
+    linkStyle 23 stroke:#5F6368,stroke-width:1.8px,stroke-dasharray:6 4;
+    linkStyle 24 stroke:#5F6368,stroke-width:1.8px,stroke-dasharray:6 4;
+    linkStyle 25 stroke:#5F6368,stroke-width:1.8px,stroke-dasharray:6 4;
+    linkStyle 26 stroke:#C62828,stroke-width:3px;
+    linkStyle 27 stroke:#A96A16,stroke-width:1.5px,stroke-dasharray:5 5;
+    linkStyle 28 stroke:#5F6368,stroke-width:1.8px,stroke-dasharray:6 4;
+    linkStyle 29 stroke:#5F6368,stroke-width:1.8px,stroke-dasharray:6 4;
+    linkStyle 30 stroke:#5F6368,stroke-width:1.8px,stroke-dasharray:6 4;
+    linkStyle 31 stroke:#C62828,stroke-width:3px;
+    linkStyle 32 stroke:#A96A16,stroke-width:1.5px,stroke-dasharray:5 5;
+    linkStyle 33 stroke:#5F6368,stroke-width:1.8px,stroke-dasharray:6 4;
+    linkStyle 34 stroke:#C62828,stroke-width:3px;
+    linkStyle 35 stroke:#A96A16,stroke-width:1.5px,stroke-dasharray:5 5;
+    linkStyle 36 stroke:#0047B3,stroke-width:2px;
+    linkStyle 37 stroke:#0047B3,stroke-width:2px;
+    linkStyle 38 stroke:#0047B3,stroke-width:2px;
+    linkStyle 39 stroke:#5F6368,stroke-width:1.8px,stroke-dasharray:6 4;
+    linkStyle 40 stroke:#5F6368,stroke-width:1.8px,stroke-dasharray:6 4;
+    linkStyle 41 stroke:#5F6368,stroke-width:1.8px,stroke-dasharray:6 4;
+    linkStyle 42 stroke:#7A7E83,stroke-width:1.3px;
+    linkStyle 43 stroke:#0047B3,stroke-width:2px;
+    linkStyle 44 stroke:#5F6368,stroke-width:1.8px,stroke-dasharray:6 4;
+    linkStyle 45 stroke:#5F6368,stroke-width:1.8px,stroke-dasharray:6 4;
+    linkStyle 46 stroke:#5F6368,stroke-width:1.8px,stroke-dasharray:6 4;
+    linkStyle 47 stroke:#C62828,stroke-width:3px;
+    linkStyle 48 stroke:#5F6368,stroke-width:1.8px,stroke-dasharray:6 4;
+    linkStyle 49 stroke:#5F6368,stroke-width:1.8px,stroke-dasharray:6 4;
+    linkStyle 50 stroke:#7A7E83,stroke-width:1.3px;
+    linkStyle 51 stroke:#0047B3,stroke-width:2px;
+    linkStyle 52 stroke:#7A7E83,stroke-width:1.3px;
+    linkStyle 53 stroke:#0047B3,stroke-width:2px;
+    linkStyle 54 stroke:#7A7E83,stroke-width:1.3px;
+    linkStyle 55 stroke:#0047B3,stroke-width:2px;
+    linkStyle 56 stroke:#5F6368,stroke-width:1.8px,stroke-dasharray:6 4;
+    linkStyle 57 stroke:#5F6368,stroke-width:1.8px,stroke-dasharray:6 4;
+    linkStyle 58 stroke:#0047B3,stroke-width:2px;
+    linkStyle 59 stroke:#5F6368,stroke-width:1.8px,stroke-dasharray:6 4;
+    linkStyle 60 stroke:#5F6368,stroke-width:1.8px,stroke-dasharray:6 4;
+    linkStyle 61 stroke:#5F6368,stroke-width:1.8px,stroke-dasharray:6 4;
+    %% FR-C7-01-01 request/response transfers and decision projection.
+    %% 61..64 = accepted request/response transfer segments.
+    linkStyle 61 stroke:#0047B3,stroke-width:2px;
+    linkStyle 62 stroke:#0047B3,stroke-width:2px;
+    linkStyle 63 stroke:#0047B3,stroke-width:2px;
+    linkStyle 64 stroke:#0047B3,stroke-width:2px;
+    %% 65 produce; 66 rule association; 67 true; 68 unresolved false.
+    linkStyle 65 stroke:#212121,stroke-width:2px;
+    linkStyle 66 stroke:#5B6770,stroke-width:1.5px,stroke-dasharray:5 4;
+    linkStyle 67 stroke:#2A7F78,stroke-width:2px;
+    linkStyle 68 stroke:#C62828,stroke-width:2.2px,stroke-dasharray:5 4;
+    %% 69 constrain; 70..71 unresolved HTTP-200/local-PASS relation.
+    linkStyle 69 stroke:#6F42C1,stroke-width:1.8px,stroke-dasharray:6 4;
+    linkStyle 70 stroke:#C62828,stroke-width:2.2px,stroke-dasharray:5 4;
+    linkStyle 71 stroke:#C62828,stroke-width:2.2px,stroke-dasharray:5 4;
+
+    %% FR-C7-02-01.
+    linkStyle 72 stroke:#0047B3,stroke-width:2px;
+    linkStyle 73 stroke:#0047B3,stroke-width:2px;
+    linkStyle 74 stroke:#0047B3,stroke-width:2px;
+    linkStyle 75 stroke:#0047B3,stroke-width:2px;
+    linkStyle 76 stroke:#212121,stroke-width:2px;
+    linkStyle 77 stroke:#5B6770,stroke-width:1.5px,stroke-dasharray:5 4;
+    linkStyle 78 stroke:#2A7F78,stroke-width:2px;
+    linkStyle 79 stroke:#C62828,stroke-width:2.2px,stroke-dasharray:5 4;
+
+    %% DEC-C7-01 realize.
+    linkStyle 80 stroke:#5F6368,stroke-width:1.8px,stroke-dasharray:6 4;
+
+    %% FR-C7-02-02.
+    linkStyle 81 stroke:#0047B3,stroke-width:2px;
+    linkStyle 82 stroke:#0047B3,stroke-width:2px;
+    linkStyle 83 stroke:#0047B3,stroke-width:2px;
+    linkStyle 84 stroke:#0047B3,stroke-width:2px;
+    linkStyle 85 stroke:#6F42C1,stroke-width:1.8px,stroke-dasharray:6 4;
+    linkStyle 86 stroke:#212121,stroke-width:2px;
+    linkStyle 87 stroke:#5B6770,stroke-width:1.5px,stroke-dasharray:5 4;
+    linkStyle 88 stroke:#2A7F78,stroke-width:2px;
+    linkStyle 89 stroke:#C62828,stroke-width:2.2px,stroke-dasharray:5 4;
+
+    %% FR-C7-02-03: request/response only; no local decision/outcome.
+    linkStyle 90 stroke:#0047B3,stroke-width:2px;
+    linkStyle 91 stroke:#0047B3,stroke-width:2px;
+    linkStyle 92 stroke:#0047B3,stroke-width:2px;
+    linkStyle 93 stroke:#0047B3,stroke-width:2px;
+
+    %% FR-C7-03-01.
+    linkStyle 94 stroke:#C62828,stroke-width:2.2px,stroke-dasharray:5 4;
+    linkStyle 95 stroke:#C62828,stroke-width:2.2px,stroke-dasharray:5 4;
+    linkStyle 96 stroke:#0047B3,stroke-width:2px;
+    linkStyle 97 stroke:#0047B3,stroke-width:2px;
+    linkStyle 98 stroke:#0047B3,stroke-width:2px;
+    linkStyle 99 stroke:#0047B3,stroke-width:2px;
+    linkStyle 100 stroke:#6F42C1,stroke-width:1.8px,stroke-dasharray:6 4;
+    linkStyle 101 stroke:#212121,stroke-width:2px;
+    linkStyle 102 stroke:#5B6770,stroke-width:1.5px,stroke-dasharray:5 4;
+    linkStyle 103 stroke:#2A7F78,stroke-width:2px;
+    linkStyle 104 stroke:#C62828,stroke-width:2.2px,stroke-dasharray:5 4;
+
+    %% FR-C7-03-02.
+    %% 105..106 unresolved test-vector acquisition.
+    linkStyle 105 stroke:#C62828,stroke-width:2.2px,stroke-dasharray:5 4;
+    linkStyle 106 stroke:#C62828,stroke-width:2.2px,stroke-dasharray:5 4;
+    %% 107..110 request/result transfer segments.
+    linkStyle 107 stroke:#0047B3,stroke-width:2px;
+    linkStyle 108 stroke:#0047B3,stroke-width:2px;
+    linkStyle 109 stroke:#0047B3,stroke-width:2px;
+    linkStyle 110 stroke:#0047B3,stroke-width:2px;
+    %% 111 reuse of runtime content constraint.
+    linkStyle 111 stroke:#6F42C1,stroke-width:1.8px,stroke-dasharray:6 4;
+    %% 112 produce; 113 candidate rule; 114 true; 115 unresolved false.
+    linkStyle 112 stroke:#212121,stroke-width:2px;
+    linkStyle 113 stroke:#5B6770,stroke-width:1.5px,stroke-dasharray:5 4;
+    linkStyle 114 stroke:#2A7F78,stroke-width:2px;
+    linkStyle 115 stroke:#C62828,stroke-width:2.2px,stroke-dasharray:5 4;
+
+    %% Existing projection-only sequencing hint.
+    linkStyle 116 stroke:#7A7E83,stroke-width:1.3px;
+
+```
