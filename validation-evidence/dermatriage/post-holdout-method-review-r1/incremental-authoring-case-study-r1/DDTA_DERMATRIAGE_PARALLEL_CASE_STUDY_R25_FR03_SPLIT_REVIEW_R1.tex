@@ -97,19 +97,19 @@
 \expandafter\def\csname PageMDfive74\endcsname{23eafa63e01a36ddcb574e6167287082}
 \expandafter\def\csname PageMDfive75\endcsname{ff0b8e3a960c2cf216a6738e9acf6a4f}
 \expandafter\def\csname PageMDfive76\endcsname{05f05c5f8609614efc56921e387aac3d}
-\expandafter\def\csname PageMDfive77\endcsname{7792c0a50a77fa27a86f08bf4ee9a409}
+\expandafter\def\csname PageMDfive77\endcsname{c614838e542157d757be8c601547e9c3}
 \expandafter\def\csname PageMDfive78\endcsname{dbbf21ee3061ecf500e2ede6e75cb42b}
 \expandafter\def\csname PageMDfive79\endcsname{aea7b2e7d442693e48ad13a54c811cdb}
-\expandafter\def\csname PageMDfive80\endcsname{e796e93d4750a9e24e0b44e7ecb50a26}
-\expandafter\def\csname PageMDfive81\endcsname{ce48c8ec6bbea4f753143751ab9bdaa7}
+\expandafter\def\csname PageMDfive80\endcsname{071a3e41062b2c94ce21576b5a757c67}
+\expandafter\def\csname PageMDfive81\endcsname{b0eecdfaa9885f64cad1720f7d2b8da5}
 \expandafter\def\csname PageMDfive82\endcsname{748a8c4ef3fe1cb08302d275db81868f}
-\expandafter\def\csname PageMDfive83\endcsname{bb0156aa24d0b26935fd638c6e62d788}
-\expandafter\def\csname PageMDfive84\endcsname{9d5778ab7c9273c3d71e8b9d717679b2}
+\expandafter\def\csname PageMDfive83\endcsname{7216dcd7c965262c8a33cc1e53833563}
+\expandafter\def\csname PageMDfive84\endcsname{4a75f6f03071fd04f64df5d19ed90da2}
 \expandafter\def\csname PageMDfive85\endcsname{bffa4fcc5469f12ebe1675a9e8376312}
 \expandafter\def\csname PageMDfive86\endcsname{251e20eabad327061da23389ed917818}
 \expandafter\def\csname PageMDfive87\endcsname{3cf5f4e96ab8903fd5a30023d363b0da}
 \expandafter\def\csname PageMDfive88\endcsname{392da625725431da689302a7e885994a}
-\expandafter\def\csname PageMDfive89\endcsname{ad199d2f7b95b143457176c46a63c301}
+\expandafter\def\csname PageMDfive89\endcsname{b7ec4dfe5880b836fb01009a7f8732b4}
 %</PAGE-HASH-DEFS>
 
 \newcommand{\PageHashFooter}[1]{%
@@ -7694,63 +7694,86 @@ L'ownership delle funzioni runtime resta MR-01; la destinazione specialistica re
 \end{paracol}
 %</PAGE-CONTENT:76>
 \clearpage
-%<PAGE-DESC:77>MR-C7 > DEC-C7-01 > FR-C7-05-01 [candidate] - Verifica dell'integrazione DermaTriage-B4
+%<PAGE-DESC:77>MR-C7 > DEC-C7-01 > FR-C7-05-01 - Verifica dell'integrazione DermaTriage-B4
 %<PAGE-CONTENT:77>
 \PageHashFooter{\PageMDfive{77}}
-\subsubsection{FR-C7-05-01 [candidate] - Verifica dell'integrazione DermaTriage-B4}
-{\sffamily\scriptsize\color{DDTAGray}Gerarchia proposta: \texttt{MR-C7} $\rightarrow$ \texttt{DEC-C7-01} $\rightarrow$ \texttt{FR-C7-05-01}. Sei controlli restano aggregati in questo reconstruction pass.}\par
-\setlength{\columnsep}{7mm}\setlength{\columnseprule}{0.35pt}\columnratio{0.67}\begin{paracol}{2}
-{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par\vspace{0.12em}
-\begin{ddtacore}[title={FunctionalRequirement candidate}]
-\fontsize{3.55}{3.92}\selectfont
+\subsubsection{FR-C7-05-01 - Verifica dell'integrazione DermaTriage-B4}
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-C7} $\rightarrow$ \texttt{DEC-C7-01} $\rightarrow$ \texttt{FR-C7-05-01}. Primo passaggio completo: sei controlli individuali, nessun PASS aggregato; legami JWT per endpoint ancora non specificati.}\par
+\setlength{\columnsep}{7mm}\setlength{\columnseprule}{0.35pt}\columnratio{0.60}\begin{paracol}{2}
+{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par\vspace{0.10em}
+\begin{ddtacore}[title={FunctionalRequirement}]
+\fontsize{6.0}{6.55}\selectfont
 \begin{tabularx}{\linewidth}{L{39mm}Y}\toprule
 \textbf{ID} & \texttt{FR-C7-05-01} \\
-\textbf{Lifecycle} & \texttt{candidate} \\
-\textbf{Authority} & \texttt{CANDIDATE\_NON\_CURRENT} \\
+\textbf{Lifecycle} & \texttt{current} \\
+\textbf{Authority} & \texttt{CURRENT\_GOVERNED} \\
 \textbf{Type} & \texttt{FunctionalRequirement} \\
 \textbf{Title} & Verifica dell'integrazione DermaTriage-B4 \\
 \textbf{Parent Decision} & \texttt{DEC-C7-01} \\
 \textbf{Owning MR (derived)} & \texttt{MR-C7} \\
 \bottomrule\end{tabularx}
 \textbf{Functional obligation}\par
-Esercitare i controlli B4 documentati preservando l'esito del singolo controllo senza inferire un overall result.
+Esercitare i sei controlli di integrazione B4, acquisire per ciascuno la risposta osservabile e valutare la rispettiva condizione locale di \texttt{PASS}, senza introdurre un esito globale.
 
-\textbf{Functional clauses}\par
-La procedura MUST preservare sei control occurrences: JWT auth $\rightarrow$ access\_token returned; triage list $\rightarrow$ array of consulto objects; image download $\rightarrow$ image bytes; write result $\rightarrow$ HTTP 200; read outcome $\rightarrow$ outcome value; B4 health $\rightarrow$ Status OK. Nessuna rule ``all six PASS $\rightarrow$ overall PASS'' e' documentata.
+\textbf{Test contract e binding correnti}\par
+\texttt{JWT Auth}: POST \texttt{/api/v1/auth/token} $\rightarrow$ \texttt{access\_token} restituito.\par
+\texttt{Triage list}: GET \texttt{/api/v1/triage/list} $\rightarrow$ array di oggetti \texttt{consulto}.\par
+\texttt{Image download}: GET \texttt{/api/v1/chatbot/documento/\{id\}} $\rightarrow$ image bytes.\par
+\texttt{Write result}: PUT \texttt{/diagnostic-output} $\rightarrow$ HTTP 200.\par
+\texttt{Read outcome}: GET \texttt{/validated-outcome} $\rightarrow$ outcome value.\par
+\texttt{B4 health}: GET \texttt{/api/v1/chatbot/health} $\rightarrow$ Status OK.
 
-\textbf{Current bindings}\par
-\texttt{POST /api/v1/auth/token}; \texttt{GET /api/v1/triage/list}; \texttt{GET /api/v1/chatbot/documento/\{id\}}; \texttt{PUT /diagnostic-output}; \texttt{GET /validated-outcome}; \texttt{GET /api/v1/chatbot/health}.
+\textbf{Autenticazione B4}\par
+Il meccanismo documentato delle chiamate B4 autenticate e' Bearer JWT; \texttt{POST /api/v1/auth/token} restituisce \texttt{access\_token}. Il token ha durata indicata di 3600 s ed e' aggiornato automaticamente dalla classe \texttt{B4Auth}. Le chiamate B4 non vanno confuse con gli endpoint DermaTriage che utilizzano \texttt{X-API-Key}.
+
+\textbf{Limite di conoscenza}\par
+La matrice di test non dichiara, per ciascuno degli altri cinque endpoint, se un Bearer JWT sia obbligatorio, presente nella request o utilizzato durante quel controllo. Non si inferiscono prerequisiti di sequenza, comportamento 401, refresh per-test o autenticazione obbligatoria dell'health endpoint. I path abbreviati dei test di write/read non vengono sostituiti automaticamente con i path runtime completi.
 
 \textbf{Boundary}\par
-I sei controlli restano in un unico FR per ora. Lo split futuro resta possibile se owner, security boundary, failure mode, change-impact o trace di implementazione mostrano autonomia sufficiente. Nessun runtime transfer viene duplicato.
+L'integrazione di test usa la stessa identity \texttt{B4} delle relazioni runtime gia' identificate, ma i transfer di test sono distinti da \texttt{BAP-FR23-01} e \texttt{BAP-FR23-03}. La eventuale separazione dei sei controlli e la riconciliazione dei binding JWT sono rinviate alla review trasversale finale.
 \end{ddtacore}
 \switchcolumn
-{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par\vspace{0.10em}
-\begin{ddtareferentidentified}[top=2pt,bottom=2pt,left=5pt,right=5pt]\fontsize{3.42}{3.76}\selectfont
-\BACandidate{B4IntegrationVerification} \BANew{}; \BACandidate{B4IntegrationControlObservation} \BANew{}; \BACandidate{B4IntegrationControlOutcome} \BANew{}.
+{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par\vspace{0.08em}
+\begin{ddtareferentidentified}[top=2pt,bottom=2pt,left=5pt,right=5pt]
+\fontsize{5.35}{5.85}\selectfont
+\BACandidate{B4IntegrationVerification} \BANew{}; \BACandidate{B4IntegrationControlRequest} \BANew{}; \BACandidate{B4IntegrationControlObservation} \BANew{}; \BACandidate{B4IntegrationControlOutcome} \BANew{}. Le sei occorrenze non creano sei nuove identity per famiglia.
 \end{ddtareferentidentified}
-\begin{ddtareferentaccepted}[top=2pt,bottom=2pt,left=5pt,right=5pt]\fontsize{3.28}{3.62}\selectfont
-\BAAccepted{DermaTriageVerification}; \BAAccepted{DermaTriageVerificationProcedure}; \BAAccepted{B4}; \BAAccepted{DermaTriageB4Client}; \BAAccepted{B4BearerJWT}; \BAAccepted{B4TriageOutcome}; \BAAccepted{ValidatedOutcome}; \BAAccepted{B4IntegrationVerificationStage}. Le nuove identity restano candidate.
+\begin{ddtareferentaccepted}[top=2pt,bottom=2pt,left=5pt,right=5pt]
+\fontsize{5.0}{5.50}\selectfont
+\BAAccepted{B4}; \BAAccepted{B4BearerJWT}; \BAAccepted{B4CallAuthentication}; \BAAccepted{DermaTriageB4Client}; \BAAccepted{B4TriageOutcome}; \BAAccepted{ValidatedOutcome}; \BAAccepted{B4IntegrationVerificationStage}; \BAAccepted{B4IntegrationVerification} \BAFirstAccepted{}; \BAAccepted{B4IntegrationControlRequest} \BAFirstAccepted{}; \BAAccepted{B4IntegrationControlObservation} \BAFirstAccepted{}; \BAAccepted{B4IntegrationControlOutcome} \BAFirstAccepted{}.
 \end{ddtareferentaccepted}
-\begin{ddtapropositionidentified}[top=2pt,bottom=2pt,left=5pt,right=5pt]\fontsize{3.00}{3.32}\selectfont
-\textbf{\texttt{BAP-FRC7-05-01-01}} \emph{[CANDIDATE]}\par
-\hspace*{1em}\texttt{semanticOperatorKey = produce}\par
-\hspace*{1em}\texttt{actor -> B4IntegrationVerification}\par
-\hspace*{1em}\texttt{input -> B4IntegrationControlObservation}\par
-\hspace*{1em}\texttt{result -> B4IntegrationControlOutcome}\par
-\hspace*{1em}\texttt{polarity = affirmative}\par
-\smallskip
-\emph{Candidate containment -- ID non assegnato}\par
-\hspace*{1em}\texttt{semanticOperatorKey = hasPart}\par
-\hspace*{1em}\texttt{whole -> B4IntegrationVerificationStage}\par
-\hspace*{1em}\texttt{part -> B4IntegrationVerification}\par
-\hspace*{1em}\texttt{polarity = affirmative}
+\begin{ddtapropositionidentified}[top=2pt,bottom=2pt,left=5pt,right=5pt]
+\fontsize{5.15}{5.70}\selectfont
+\textbf{\texttt{BAP-FRC7-05-01-01}} \texttt{produce}\par
+\hspace*{0.7em}\texttt{actor -> B4IntegrationVerification}\par
+\hspace*{0.7em}\texttt{result -> B4IntegrationControlOutcome}\par
+\hspace*{0.7em}\texttt{operatorStructure [CANDIDATE / NOT ADMITTED]:}\par
+\hspace*{1.8em}\texttt{decisionRule per control occurrence}; \texttt{PASS} se soddisfatto l'oracolo locale.\par
+\textbf{\texttt{BAP-FRC7-05-01-02}} \texttt{hasPart}\par
+\hspace*{0.7em}\texttt{whole -> B4IntegrationVerificationStage}\par
+\hspace*{0.7em}\texttt{part -> B4IntegrationVerification}\par
+\textbf{\texttt{BAP-FRC7-05-01-03}} \texttt{transfer}\par
+\hspace*{0.7em}\texttt{source -> B4IntegrationVerification}\par
+\hspace*{0.7em}\texttt{content -> B4IntegrationControlRequest}\par
+\hspace*{0.7em}\texttt{destination -> B4}\par
+\textbf{\texttt{BAP-FRC7-05-01-04}} \texttt{transfer}\par
+\hspace*{0.7em}\texttt{source -> B4}\par
+\hspace*{0.7em}\texttt{content -> B4IntegrationControlObservation}\par
+\hspace*{0.7em}\texttt{destination -> B4IntegrationVerification}\par
+\textbf{\texttt{BAP-FRC7-05-01-05}} \texttt{transfer}\par
+\hspace*{0.7em}\texttt{source -> B4}\par
+\hspace*{0.7em}\texttt{content -> B4BearerJWT}\par
+\hspace*{0.7em}\texttt{destination -> B4IntegrationVerification}\par
+\texttt{polarity = affirmative} per \texttt{-01..05}.
 \end{ddtapropositionidentified}
-\begin{ddtapropositionaccepted}[top=2pt,bottom=2pt,left=5pt,right=5pt]\fontsize{3.36}{3.70}\selectfont
-\texttt{--}. Il candidate \texttt{produce} resta da pressure-testare rispetto alla molteplicita' delle sei occurrence e non implica un outcome aggregato.
+\begin{ddtapropositionaccepted}[top=2pt,bottom=2pt,left=5pt,right=5pt]
+\fontsize{5.15}{5.70}\selectfont
+\textbf{\texttt{BAP-FRC7-05-01-01..05}}. \texttt{-03} copre le sei request occurrences; \texttt{-04} le cinque response occurrences diverse da JWT Auth; \texttt{-05} la risposta JWT il cui content e' la identity riusata \texttt{B4BearerJWT}. \texttt{-01} produce soltanto un esito per controllo; le sei regole \texttt{PASS} restano locali e candidate quanto a \texttt{decisionRule}.
 \end{ddtapropositionaccepted}
-\begin{ddtaopenrelations}[top=2pt,bottom=2pt,left=5pt,right=5pt]\fontsize{3.02}{3.34}\selectfont
-Durante la review individuale si decide se una sola identity di verification e una proposition occurrence-family siano sufficienti oppure se l'autonomia dei sei controlli richieda split semantico/documentale.
+\begin{ddtaopenrelations}[top=2pt,bottom=2pt,left=5pt,right=5pt]
+\fontsize{4.95}{5.45}\selectfont
+\textbf{JWT per endpoint: NOT SPECIFIED.} Le cinque linee diagnostiche \texttt{B4BearerJWT -- transfer -- ? -- request} nel Mermaid hanno tratto rosso e non costituiscono nuove BAProposition ammesse: l'applicabilita' della credenziale resta non documentata. Nessuna decisione su sequenza dei test, validita' del token o risultato aggregato e' attribuita a C7.\par
+\textbf{Binding test/runtime.} I path abbreviati \texttt{/diagnostic-output} e \texttt{/validated-outcome} non sono qui assimilati ai path runtime completi.
 \end{ddtaopenrelations}
 \end{paracol}
 %</PAGE-CONTENT:77>
@@ -7902,7 +7925,7 @@ Per-gate outcome pressure: una sola FR contiene quattro criterion outcomes ma ne
 \texttt{FR-C7-03-03} & HistoricalCaseRetrievalVerification + Outcome; reuse ClinicalDescription / embedding generation / HistoricalCaseVectorIndex / similarity retrieval / RetrievedHistoricalCases / all-MiniLM-L6-v2 / ChromaDB & review closed: stage \texttt{hasPart}; query/result \texttt{transfer}; verification \texttt{produce}; local rule checks result count \texttt{eq 5}; test-query source NOT SPECIFIED; four result fields remain source-supported with BA structure relation NOT SPECIFIED. \\
 \texttt{FR-C7-03-04} & MultiSourceTriageSynthesisVerification + Outcome; reuse Stage 1 ImageUrgencyClassification, Stage 2 ClinicalDescription, Stage 3 RetrievedHistoricalCases, SymptomInformation, BioMistral-7B, AITriageSynthesis / CaseUrgency / TriageConfidence & review closed: stage \texttt{hasPart}; four input \texttt{transfer}; AITriageSynthesis return \texttt{transfer}; verification \texttt{produce}; PASS on valid JSON with five named test fields; local decisionRule candidate. \\
 \texttt{FR-C7-04-01} & FullPipelineVerification + FullPipelineTestInput / FullPipelineResponse + Outcome & review closed: stage \texttt{hasPart}; test-input/response \texttt{transfer} through \texttt{DermaTriage}; verification \texttt{produce}; PASS = complete response AND responseTime lt 30s; cross-owner meanings reused and deeper review deferred. \\
-\texttt{FR-C7-05-01} & B4IntegrationVerification + per-control observation/outcome & six occurrences stay aggregated until multiplicity/split review. \\
+\texttt{FR-C7-05-01} & B4IntegrationVerification + request/observation/outcome; reuse B4BearerJWT & review closed: stage \texttt{hasPart}; six request \texttt{transfer}; five ordinary response \texttt{transfer} plus JWT response \texttt{transfer} with token identity; six local PASS rules; token applicability to five endpoints NOT SPECIFIED; no overall outcome. \\
 \texttt{FR-C7-06-01} & RetrainingControlVerification + Observation & rename from LifecycleVerification; no outcome/pass rule. \\
 \texttt{FR-C7-07-01} & BaselineClassifierQualityVerification + Observation + per-gate Outcome & gt 90\% canonical; no overall result. \\
 \bottomrule
@@ -7964,7 +7987,7 @@ Nessuna ulteriore famiglia source-supported emerge per \texttt{/docs}, prompt-ma
 
 \begin{ddtaquestions}
 \fontsize{3.32}{3.65}\selectfont
-Gate corrente chiuso: \texttt{FR-C7-04-01}. Dopo le quattro verifiche locali Stage 1--4, la verifica end-to-end esercita il boundary logico \texttt{DermaTriage} tramite \texttt{FullPipelineTestInput/Response}; regola locale: complete response in meno di 30 secondi. Prossimo gate: \texttt{FR-C7-05-01}. I dubbi di riconciliazione saranno trattati nel passaggio finale dopo la copertura completa.
+Gate corrente chiuso: \texttt{FR-C7-05-01}. Dopo le quattro verifiche locali Stage 1--4, la verifica end-to-end esercita il boundary logico \texttt{DermaTriage} tramite \texttt{FullPipelineTestInput/Response}; regola locale: complete response in meno di 30 secondi. Prossimo gate: \texttt{FR-C7-06-01}. I dubbi di riconciliazione saranno trattati nel passaggio finale dopo la copertura completa.
 \end{ddtaquestions}
 \end{paracol}
 %</PAGE-CONTENT:81>
@@ -8196,6 +8219,10 @@ FullPipelineVerification & \textbf{\texttt{FR-C7-04-01}} -- verification end-to-
 FullPipelineTestInput & \textbf{\texttt{FR-C7-04-01}} -- contenuto di test trasferito: image, age, sex, localization. \\
 FullPipelineResponse & \textbf{\texttt{FR-C7-04-01}} -- response end-to-end restituita; osservazione attesa: P1--P4, Italian specialist, SLA time. \\
 FullPipelineVerificationOutcome & \textbf{\texttt{FR-C7-04-01}} -- result della verifica; \texttt{PASS} quando risposta complete AND responseTime lt 30s; local rule candidate. \\
+B4IntegrationVerification & \textbf{\texttt{FR-C7-05-01}} -- verifica B4, sei occorrenze con outcome distinti. \\
+B4IntegrationControlRequest & \textbf{\texttt{FR-C7-05-01}} -- sei richieste documentate verso \texttt{B4}; identity riusata per occurrence. \\
+B4IntegrationControlObservation & \textbf{\texttt{FR-C7-05-01}} -- cinque risposte non-JWT con oracoli locali. \\
+B4IntegrationControlOutcome & \textbf{\texttt{FR-C7-05-01}} -- esiti locali PASS, senza aggregazione; complementary branch aperto. \\
 \bottomrule
 \end{tabularx}
 
@@ -8376,6 +8403,11 @@ Questa pagina continua il registro BA della pagina precedente. Il \textbf{grasse
 \textbf{\texttt{BAP-FRC7-04-01-02}} & \texttt{FR-C7-04-01} -- \texttt{transfer}: FullPipelineVerification $\rightarrow$ DermaTriage : FullPipelineTestInput (image, age, sex, localization) \\
 \textbf{\texttt{BAP-FRC7-04-01-03}} & \texttt{FR-C7-04-01} -- \texttt{transfer}: DermaTriage $\rightarrow$ FullPipelineVerification : FullPipelineResponse \\
 \textbf{\texttt{BAP-FRC7-04-01-04}} & \texttt{FR-C7-04-01} -- \texttt{hasPart}: FullPipelineVerificationStage $\rightarrow$ FullPipelineVerification \\
+\textbf{\texttt{BAP-FRC7-05-01-01}} & \texttt{produce}: B4IntegrationVerification $\rightarrow$ B4IntegrationControlOutcome (sei controlli locali); decisionRule candidate. \\
+\textbf{\texttt{BAP-FRC7-05-01-02}} & \texttt{hasPart}: B4IntegrationVerificationStage $\rightarrow$ B4IntegrationVerification. \\
+\textbf{\texttt{BAP-FRC7-05-01-03}} & \texttt{transfer}: B4IntegrationVerification $\rightarrow$ B4 : B4IntegrationControlRequest (sei occurrence). \\
+\textbf{\texttt{BAP-FRC7-05-01-04}} & \texttt{transfer}: B4 $\rightarrow$ B4IntegrationVerification : B4IntegrationControlObservation (cinque occurrence). \\
+\textbf{\texttt{BAP-FRC7-05-01-05}} & \texttt{transfer}: B4 $\rightarrow$ B4IntegrationVerification : B4BearerJWT (JWT Auth). Cinque path applicabilita' JWT con \texttt{?} non sono proposition. \\
 \bottomrule
 \end{tabularx}
 \fontsize{3.05}{3.27}\selectfont
@@ -8844,7 +8876,7 @@ Ogni pagina possiede un MD5 del proprio contenuto canonico. Il calcolo esclude i
 \IntegrityRow{74}{MR-C7 > DEC-C7-01 > FR-C7-03-03 - Verifica dell'Historical Case Retrieval}{\PageMDfive{74}}
 \IntegrityRow{75}{MR-C7 > DEC-C7-01 > FR-C7-03-04 - Verifica della Multi-Source Triage Synthesis}{\PageMDfive{75}}
 \IntegrityRow{76}{MR-C7 > DEC-C7-01 > FR-C7-04-01 - Verifica end-to-end della pipeline DermaTriage}{\PageMDfive{76}}
-\IntegrityRow{77}{MR-C7 > DEC-C7-01 > FR-C7-05-01 [candidate] - Verifica dell'integrazione DermaTriage-B4}{\PageMDfive{77}}
+\IntegrityRow{77}{MR-C7 > DEC-C7-01 > FR-C7-05-01 - Verifica dell'integrazione DermaTriage-B4}{\PageMDfive{77}}
 \IntegrityRow{78}{MR-C7 > DEC-C7-01 > FR-C7-06-01 [candidate] - Verifica dei controlli operativi del retraining}{\PageMDfive{78}}
 \IntegrityRow{79}{MR-C7 > DEC-C7-01 > FR-C7-07-01 [candidate] - Verifica dei quality gate assoluti del classificatore di urgenza}{\PageMDfive{79}}
 \IntegrityRow{80}{Registro Base Analysis - C7 reconstruction target}{\PageMDfive{80}}

@@ -1,4 +1,4 @@
-DDTA_DERMATRIAGE_PARALLEL_CASE_STUDY_R25_FR03_SPLIT_REVIEW_R1_C7_FR04_01_BA_COMPLETION_R1 - Page MD5 Index
+DDTA_DERMATRIAGE_PARALLEL_CASE_STUDY_R25_FR03_SPLIT_REVIEW_R1_C7_FR05_01_BA_COMPLETION_R1 - Page MD5 Index
 Canonical payload: LaTeX content between PAGE-CONTENT markers; own printed MD5 excluded.
 Integrity-index page resolves all other page hashes and canonicalizes its own hash as <SELF>.
 
@@ -78,16 +78,16 @@ Page 73  0c1825d457ea5a144981c17b811a0541  MR-C7 > DEC-C7-01 > FR-C7-03-02 - Ver
 Page 74  23eafa63e01a36ddcb574e6167287082  MR-C7 > DEC-C7-01 > FR-C7-03-03 - Verifica dell'Historical Case Retrieval
 Page 75  ff0b8e3a960c2cf216a6738e9acf6a4f  MR-C7 > DEC-C7-01 > FR-C7-03-04 - Verifica della Multi-Source Triage Synthesis
 Page 76  05f05c5f8609614efc56921e387aac3d  MR-C7 > DEC-C7-01 > FR-C7-04-01 - Verifica end-to-end della pipeline DermaTriage
-Page 77  7792c0a50a77fa27a86f08bf4ee9a409  MR-C7 > DEC-C7-01 > FR-C7-05-01 [candidate] - Verifica dell'integrazione DermaTriage-B4
+Page 77  c614838e542157d757be8c601547e9c3  MR-C7 > DEC-C7-01 > FR-C7-05-01 - Verifica dell'integrazione DermaTriage-B4
 Page 78  dbbf21ee3061ecf500e2ede6e75cb42b  MR-C7 > DEC-C7-01 > FR-C7-06-01 [candidate] - Verifica dei controlli operativi del retraining
 Page 79  aea7b2e7d442693e48ad13a54c811cdb  MR-C7 > DEC-C7-01 > FR-C7-07-01 [candidate] - Verifica dei quality gate assoluti del classificatore di urgenza
-Page 80  e796e93d4750a9e24e0b44e7ecb50a26  Registro Base Analysis - C7 reconstruction target
-Page 81  ce48c8ec6bbea4f753143751ab9bdaa7  MR-C7 - Source closure e progress della review FR-by-FR
+Page 80  071a3e41062b2c94ce21576b5a757c67  Registro Base Analysis - C7 reconstruction target
+Page 81  b0eecdfaa9885f64cad1720f7d2b8da5  MR-C7 - Source closure e progress della review FR-by-FR
 Page 82  748a8c4ef3fe1cb08302d275db81868f  Registro Base Analysis - BAReferent e BAProposition
-Page 83  bb0156aa24d0b26935fd638c6e62d788  Registro Base Analysis - BAReferent C7 increment
-Page 84  9d5778ab7c9273c3d71e8b9d717679b2  Registro Base Analysis - BAProposition
+Page 83  7216dcd7c965262c8a33cc1e53833563  Registro Base Analysis - BAReferent C7 increment
+Page 84  4a75f6f03071fd04f64df5d19ed90da2  Registro Base Analysis - BAProposition
 Page 85  bffa4fcc5469f12ebe1675a9e8376312  Registro Base Analysis - C6 source, dependency, configuration e initialization topology increment
 Page 86  251e20eabad327061da23389ed917818  Registro Base Analysis - C6 FR-C6-01-03B1..B3 e 03C increment
 Page 87  3cf5f4e96ab8903fd5a30023d363b0da  Registro Base Analysis - FR-C6-01-06 API composition and endpoint topology
 Page 88  392da625725431da689302a7e885994a  Registro Base Analysis - DEC-C7-01 verification procedure topology increment
-Page 89  ad199d2f7b95b143457176c46a63c301  Indice di integrita delle pagine [INTEGRITY INDEX]
+Page 89  b7ec4dfe5880b836fb01009a7f8732b4  Indice di integrita delle pagine
