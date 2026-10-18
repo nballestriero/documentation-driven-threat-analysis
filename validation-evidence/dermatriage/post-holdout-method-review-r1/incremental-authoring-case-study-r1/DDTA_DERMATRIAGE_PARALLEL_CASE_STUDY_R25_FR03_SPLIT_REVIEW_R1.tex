@@ -92,24 +92,24 @@
 \expandafter\def\csname PageMDfive69\endcsname{84804a250901e2bfe704b971c5c31845}
 \expandafter\def\csname PageMDfive70\endcsname{7c16bf063a7aacda7891ea447db9823c}
 \expandafter\def\csname PageMDfive71\endcsname{5b6905399ebc9e70a9d9e3b127932a95}
-\expandafter\def\csname PageMDfive72\endcsname{67f8d62e5966d443cdfc2899aa5d5be2}
-\expandafter\def\csname PageMDfive73\endcsname{77f9566cc687c33e1e43582f6710d9bf}
-\expandafter\def\csname PageMDfive74\endcsname{e801661bb7821f2ae91f0bb26719fa63}
-\expandafter\def\csname PageMDfive75\endcsname{b3fcde2fd16f845ce5d613dd943fbae8}
+\expandafter\def\csname PageMDfive72\endcsname{0f26ac2ff18266c9886a85b4b1c89687}
+\expandafter\def\csname PageMDfive73\endcsname{0c1825d457ea5a144981c17b811a0541}
+\expandafter\def\csname PageMDfive74\endcsname{23eafa63e01a36ddcb574e6167287082}
+\expandafter\def\csname PageMDfive75\endcsname{ff0b8e3a960c2cf216a6738e9acf6a4f}
 \expandafter\def\csname PageMDfive76\endcsname{7f3e92757f24a49f8d179855b1cb9d69}
 \expandafter\def\csname PageMDfive77\endcsname{7792c0a50a77fa27a86f08bf4ee9a409}
 \expandafter\def\csname PageMDfive78\endcsname{dbbf21ee3061ecf500e2ede6e75cb42b}
 \expandafter\def\csname PageMDfive79\endcsname{aea7b2e7d442693e48ad13a54c811cdb}
-\expandafter\def\csname PageMDfive80\endcsname{1ac7527e1ebb29564f8092f372852616}
-\expandafter\def\csname PageMDfive81\endcsname{90bcd7642b3e32c57f16e151754d5024}
+\expandafter\def\csname PageMDfive80\endcsname{e8a6ca175e52945b7f162f8e69d44ddf}
+\expandafter\def\csname PageMDfive81\endcsname{87a07a55a82a144c0b1897426d4ba045}
 \expandafter\def\csname PageMDfive82\endcsname{748a8c4ef3fe1cb08302d275db81868f}
-\expandafter\def\csname PageMDfive83\endcsname{77e96596720dd88c931f58e75751bb1d}
-\expandafter\def\csname PageMDfive84\endcsname{c1fdf818e98463864ea4038a84771e2e}
+\expandafter\def\csname PageMDfive83\endcsname{b7c2dbe255608f69d37eb48c3ebf3048}
+\expandafter\def\csname PageMDfive84\endcsname{ffb39c67a805b490e521223e7a1b3860}
 \expandafter\def\csname PageMDfive85\endcsname{bffa4fcc5469f12ebe1675a9e8376312}
 \expandafter\def\csname PageMDfive86\endcsname{251e20eabad327061da23389ed917818}
 \expandafter\def\csname PageMDfive87\endcsname{3cf5f4e96ab8903fd5a30023d363b0da}
 \expandafter\def\csname PageMDfive88\endcsname{392da625725431da689302a7e885994a}
-\expandafter\def\csname PageMDfive89\endcsname{1290e11ce1df6fb783447355dd743f99}
+\expandafter\def\csname PageMDfive89\endcsname{40afac43cba3526ccbda27a42b716b8b}
 %</PAGE-HASH-DEFS>
 
 \newcommand{\PageHashFooter}[1]{%
@@ -7183,13 +7183,13 @@ Questo FR governa il request/response flow e la composizione informativa della r
 Esercitare \texttt{ImageUrgencyAnalysis} mediante una dermoscopy image di test, ricevere la relativa \texttt{ImageUrgencyClassification} e determinare l'esito locale della verifica sulla base della validita' dell'urgenza restituita.
 
 \textbf{Functional clauses}\par
-La verification MUST disporre di una \texttt{LesionImage} e MUST trasferirla a \texttt{ImageUrgencyAnalysis}. La provenienza/acquisizione della dermoscopy JPEG usata dal test non e' specificata dalla fonte e non viene inventata. \texttt{ImageUrgencyAnalysis} MUST restituire una \texttt{ImageUrgencyClassification}; il runtime Stage 1 e' realizzato correntemente da \texttt{EfficientNet-B4}. L'expected observation documentata comprende urgency HIGH/MEDIUM/LOW, confidence 0.0--1.0 e probabilities array. Il valore \texttt{PASS} MUST essere assegnato quando viene restituita una urgency string valida. Confidence e probabilities non diventano ulteriori pass criteria per inferenza.
+La verification MUST disporre di una \texttt{LesionImage} e MUST trasferirla a \texttt{ImageUrgencyAnalysis}. La provenienza/acquisizione della dermoscopy JPEG usata dal test non e' specificata dalla fonte e non viene inventata. \texttt{ImageUrgencyAnalysis} MUST restituire una \texttt{ImageUrgencyClassification}; il runtime Stage 1 e' realizzato correntemente da \texttt{EfficientNet-B4}. La fonte documenta, nel risultato Stage 1, urgency HIGH/MEDIUM/LOW, confidence 0.0--1.0 e probabilities array. Il valore \texttt{PASS} MUST essere assegnato quando viene restituita una urgency string valida. Confidence e probabilities non diventano ulteriori pass criteria per inferenza.
 
 \textbf{Runtime reuse}\par
 La verification non ridefinisce lo Stage 1. Riusa \texttt{BAP-FR03-01-01}: \texttt{ImageUrgencyAnalysis} elabora \texttt{LesionImage} e produce \texttt{ImageUrgencyClassification}; riusa inoltre \texttt{BAP-FR03-01-02}, che collega la funzione logica alla realizzazione \texttt{EfficientNet-B4}. La classificazione preserva urgency e confidence associate come un unico risultato governato; nessun producer separato di confidence viene introdotto.
 
 \textbf{Boundary}\par
-La source del test vector prima della \texttt{ImageUrgencyAnalysisVerification} resta \texttt{NOT SPECIFIED}. Non viene introdotto uno store runtime della \texttt{LesionImage}. Il probabilities array e il range confidence sono source-supported per l'expected observation C7, ma il loro eventuale promotion/refinement nel runtime contract di \texttt{ImageUrgencyClassification} resta owner-review MR-01. I quality gate assoluti appartengono a \texttt{FR-C7-07-01}; nessun \texttt{ELSE -> FAIL} viene inferito.
+La source del test vector prima della \texttt{ImageUrgencyAnalysisVerification} resta \texttt{NOT SPECIFIED}. Non viene introdotto uno store runtime della \texttt{LesionImage}. Il probabilities array e il range confidence sono source-supported, ma la relazione BA che ne formalizza la struttura rispetto a \texttt{ImageUrgencyClassification} resta \texttt{NOT SPECIFIED}; l'eventuale refinement del runtime contract resta owner-review MR-01. I quality gate assoluti appartengono a \texttt{FR-C7-07-01}; nessun \texttt{ELSE -> FAIL} viene inferito.
 \end{ddtacore}
 
 \switchcolumn
@@ -7291,7 +7291,7 @@ La source del test vector prima della \texttt{ImageUrgencyAnalysisVerification} 
 Esercitare \texttt{ClinicalDescriptionGeneration} mediante una dermoscopy image di test, ricevere la relativa \texttt{ClinicalDescription} e determinare l'esito locale della verifica sulla base della pass condition documentata.
 
 \textbf{Functional clauses}\par
-La verification MUST disporre di una \texttt{LesionImage} e MUST trasferirla a \texttt{ClinicalDescriptionGeneration}. La provenance/acquisizione della dermoscopy JPEG usata dal test non e' specificata e non viene inventata. \texttt{ClinicalDescriptionGeneration} MUST restituire una \texttt{ClinicalDescription}. L'expected observation riusa il contract runtime gia' governato: testo clinico in cinque parti relative a shape, borders, color, texture e suspicious features. \texttt{PASS} MUST essere assegnato quando la text response e' non-empty. Le cinque parti attese non diventano cinque pass criterion.
+La verification MUST disporre di una \texttt{LesionImage} e MUST trasferirla a \texttt{ClinicalDescriptionGeneration}. La provenance/acquisizione della dermoscopy JPEG usata dal test non e' specificata e non viene inventata. \texttt{ClinicalDescriptionGeneration} MUST restituire una \texttt{ClinicalDescription}. Il risultato Stage 2 riusa il contract runtime gia' governato: testo clinico in cinque parti relative a shape, borders, color, texture e suspicious features. \texttt{PASS} MUST essere assegnato quando la text response e' non-empty. Le cinque parti attese non diventano cinque pass criterion.
 
 \textbf{Runtime reuse / realization}\par
 La verification non ridefinisce lo Stage 2. Riusa \texttt{BAP-FR03-02-01}: \texttt{ClinicalDescriptionGeneration} elabora \texttt{LesionImage} e produce \texttt{ClinicalDescription}; riusa \texttt{BAP-FR03-02-02}, che collega la funzione logica alla realizzazione corrente \texttt{Qwen2-VL-7B-Instruct}; riusa inoltre \texttt{BAP-FR03-02-03..04} per il \texttt{ClinicalDescriptionContentContract}.
@@ -7370,127 +7370,244 @@ Il controllo non qualifica correttezza clinica, completezza semantica, lingua, l
 \end{paracol}
 %</PAGE-CONTENT:73>
 \clearpage
-%<PAGE-DESC:74>MR-C7 > DEC-C7-01 > FR-C7-03-03 [candidate] - Verifica dell'Historical Case Retrieval
+%<PAGE-DESC:74>MR-C7 > DEC-C7-01 > FR-C7-03-03 - Verifica dell'Historical Case Retrieval
 %<PAGE-CONTENT:74>
 \PageHashFooter{\PageMDfive{74}}
-\subsubsection{FR-C7-03-03 [candidate] - Verifica dell'Historical Case Retrieval}
-{\sffamily\scriptsize\color{DDTAGray}Gerarchia proposta: \texttt{MR-C7} $\rightarrow$ \texttt{DEC-C7-01} $\rightarrow$ \texttt{FR-C7-03-03}. Reconstruction-only: nessuna promotion.}\par
-\setlength{\columnsep}{7mm}\setlength{\columnseprule}{0.35pt}\columnratio{0.67}\begin{paracol}{2}
-{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par\vspace{0.12em}
-\begin{ddtacore}[title={FunctionalRequirement candidate}]
-\fontsize{3.82}{4.18}\selectfont
-\begin{tabularx}{\linewidth}{L{39mm}Y}\toprule
+\subsubsection{FR-C7-03-03 - Verifica dell'Historical Case Retrieval}
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-C7} $\rightarrow$ \texttt{DEC-C7-01} $\rightarrow$ \texttt{FR-C7-03-03}. Review BA completata distinguendo query di test, runtime Stage 3, dipendenze environment e local PASS rule.}\par
+
+\setlength{\columnsep}{7mm}
+\setlength{\columnseprule}{0.35pt}
+\columnratio{0.64}
+\begin{paracol}{2}
+
+{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par
+\vspace{0.10em}
+
+\begin{ddtacore}[title={FunctionalRequirement}]
+\fontsize{3.28}{3.60}\selectfont
+\begin{tabularx}{\linewidth}{L{39mm}Y}
+\toprule
 \textbf{ID} & \texttt{FR-C7-03-03} \\
-\textbf{Lifecycle} & \texttt{candidate} \\
-\textbf{Authority} & \texttt{CANDIDATE\_NON\_CURRENT} \\
+\textbf{Lifecycle} & \texttt{current} \\
+\textbf{Authority} & \texttt{CURRENT\_GOVERNED} \\
 \textbf{Type} & \texttt{FunctionalRequirement} \\
 \textbf{Title} & Verifica dell'Historical Case Retrieval \\
 \textbf{Parent Decision} & \texttt{DEC-C7-01} \\
 \textbf{Owning MR (derived)} & \texttt{MR-C7} \\
-\bottomrule\end{tabularx}
+\bottomrule
+\end{tabularx}
+
 \textbf{Functional obligation}\par
-Esercitare il retrieval dei casi storici e verificare la cardinalita' del risultato.
+Esercitare il runtime Stage 3 mediante una clinical text query, ricevere i casi storici recuperati e determinare l'esito locale della verifica sulla base della cardinalita' restituita.
 
 \textbf{Functional clauses}\par
-L'expected observation MUST preservare top-5 cases con patient\_id, diagnosis, urgency\_level e similarity\_score. \texttt{PASS} richiede esattamente 5 risultati. I quattro campi attesi non diventano ulteriori pass criterion.
+La verification MUST disporre di una \texttt{ClinicalDescription} usata come query e MUST trasferirla a \texttt{ClinicalDescriptionEmbeddingGeneration}. Il runtime Stage 3 MUST produrre \texttt{RetrievedHistoricalCases}. La fonte documenta top-5 cases con \texttt{patient\_id}, \texttt{diagnosis}, \texttt{urgency\_level} e \texttt{similarity\_score}. \texttt{PASS} MUST essere assegnato quando vengono restituiti esattamente 5 risultati. I quattro campi documentati non diventano quattro pass criterion.
 
-\textbf{Current realization / test vector}\par
-Input di test: clinical text query. Realizzazione verificata: RAG / \texttt{ChromaDB}.
+\textbf{Runtime reuse / environment dependencies}\par
+La verification non ridefinisce lo Stage 3. \texttt{ClinicalDescriptionEmbeddingGeneration} produce \texttt{ClinicalDescriptionEmbedding} ed e' realizzata correntemente da \texttt{all-MiniLM-L6-v2}. \texttt{HistoricalCaseSimilarityRetrieval} usa \texttt{ClinicalDescriptionEmbedding} e \texttt{HistoricalCaseVectorIndex}, produce \texttt{RetrievedHistoricalCases} ed e' realizzata correntemente da \texttt{ChromaDB}. La predisposizione di \texttt{ChromaDBVectorStore} e \texttt{HistoricalCaseVectorIndexArtifact} resta nel branch environment MR-C6.
 
 \textbf{Boundary}\par
-Nessuna threshold minima di similarity viene inferita; predisposizione e popolamento della base vettoriale restano MR-C6.
+La provenance/acquisizione della clinical text query del test isolato e' \texttt{NOT SPECIFIED}: il normale runtime Stage 2 non viene assunto come producer del test vector. Nessuna minimum similarity threshold viene inferita. La relazione BA che formalizza \texttt{patient\_id}, \texttt{diagnosis}, \texttt{urgency\_level} e \texttt{similarity\_score} come struttura interna del result resta \texttt{NOT SPECIFIED}. Nessun \texttt{ELSE -> FAIL} viene inferito.
 \end{ddtacore}
+
 \switchcolumn
-{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par\vspace{0.10em}
-\begin{ddtareferentidentified}[top=2pt,bottom=2pt,left=5pt,right=5pt]\fontsize{3.42}{3.76}\selectfont
+
+{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par
+\vspace{0.08em}
+
+\begin{ddtareferentidentified}[top=2pt,bottom=2pt,left=5pt,right=5pt]
+\fontsize{2.64}{2.92}\selectfont
 \BACandidate{HistoricalCaseRetrievalVerification} \BANew{}; \BACandidate{HistoricalCaseRetrievalVerificationOutcome} \BANew{}.\par
-\textbf{Reuse:} \texttt{HistoricalCaseRetrieval}; \texttt{HistoricalCaseSimilarityRetrieval}; \texttt{RetrievedHistoricalCases}; \texttt{ChromaDB}; \texttt{HistoricalCaseRetrievalVerificationStage}.
+\textbf{Reuse:} \texttt{ClinicalDescription}; \texttt{ClinicalDescriptionEmbeddingGeneration}; \texttt{ClinicalDescriptionEmbedding}; \texttt{HistoricalCaseVectorIndex}; \texttt{HistoricalCaseSimilarityRetrieval}; \texttt{RetrievedHistoricalCases}; \texttt{all-MiniLM-L6-v2}; \texttt{ChromaDB}; \texttt{ChromaDBVectorStore}; \texttt{HistoricalCaseVectorIndexArtifact}; \texttt{HistoricalCaseRetrievalVerificationStage}.
 \end{ddtareferentidentified}
-\begin{ddtareferentaccepted}[top=2pt,bottom=2pt,left=5pt,right=5pt]\fontsize{3.28}{3.62}\selectfont
-\BAAccepted{DermaTriageVerification}; \BAAccepted{DermaTriageVerificationProcedure}; \BAAccepted{HistoricalCaseRetrieval}; \BAAccepted{HistoricalCaseSimilarityRetrieval}; \BAAccepted{RetrievedHistoricalCases}; \BAAccepted{ChromaDB}; \BAAccepted{HistoricalCaseRetrievalVerificationStage}. Le nuove identity restano candidate.
+
+\begin{ddtareferentaccepted}[top=2pt,bottom=2pt,left=5pt,right=5pt]
+\fontsize{2.42}{2.68}\selectfont
+\BAAccepted{DermaTriageVerification}; \BAAccepted{DermaTriageVerificationProcedure}; \BAAccepted{HistoricalCaseRetrievalVerificationStage}; \BAAccepted{ClinicalDescription}; \BAAccepted{ClinicalDescriptionEmbeddingGeneration}; \BAAccepted{ClinicalDescriptionEmbedding}; \BAAccepted{HistoricalCaseVectorIndex}; \BAAccepted{HistoricalCaseSimilarityRetrieval}; \BAAccepted{RetrievedHistoricalCases}; \BAAccepted{all-MiniLM-L6-v2}; \BAAccepted{ChromaDB}; \BAAccepted{ChromaDBVectorStore}; \BAAccepted{HistoricalCaseVectorIndexArtifact}; \BAAccepted{HistoricalCaseRetrievalVerification} \BAFirstAccepted{}; \BAAccepted{HistoricalCaseRetrievalVerificationOutcome} \BAFirstAccepted{}.
 \end{ddtareferentaccepted}
-\begin{ddtapropositionidentified}[top=2pt,bottom=2pt,left=5pt,right=5pt]\fontsize{3.04}{3.36}\selectfont
-\textbf{\texttt{BAP-FRC7-03-03-01}} \emph{[CANDIDATE - REWORK]}\par
-\hspace*{1em}\texttt{semanticOperatorKey = produce}\par
+
+\begin{ddtapropositionidentified}[top=2pt,bottom=2pt,left=5pt,right=5pt]
+\fontsize{2.10}{2.34}\selectfont
+
+\texttt{BAP-FRC7-03-03-01}\par
+\texttt{semanticOperatorKey = produce}\par
 \hspace*{1em}\texttt{actor -> HistoricalCaseRetrievalVerification}\par
-\hspace*{1em}\texttt{input -> RetrievedHistoricalCases}\par
 \hspace*{1em}\texttt{result -> HistoricalCaseRetrievalVerificationOutcome}\par
-\hspace*{1em}\texttt{polarity = affirmative}\par
+\hspace*{1em}\texttt{operatorStructure [CANDIDATE / NOT ADMITTED]}\par
+\hspace*{2em}\texttt{decisionRule}\par
+\hspace*{3em}\texttt{branch}\par
+\hspace*{4em}\texttt{when -> observed RetrievedHistoricalCases count eq 5}\par
+\hspace*{4em}\texttt{resultAssignment -> HistoricalCaseRetrievalVerificationOutcome = PASS}\par
+\texttt{polarity = affirmative}\par
 \smallskip
-\emph{Candidate containment -- ID non assegnato}\par
-\hspace*{1em}\texttt{semanticOperatorKey = hasPart}\par
+
+\texttt{BAP-FRC7-03-03-02}\par
+\texttt{semanticOperatorKey = transfer}\par
+\hspace*{1em}\texttt{source -> HistoricalCaseRetrievalVerification}\par
+\hspace*{1em}\texttt{destination -> ClinicalDescriptionEmbeddingGeneration}\par
+\hspace*{1em}\texttt{content -> ClinicalDescription}\par
+\texttt{polarity = affirmative}\par
+\smallskip
+
+\texttt{BAP-FRC7-03-03-03}\par
+\texttt{semanticOperatorKey = transfer}\par
+\hspace*{1em}\texttt{source -> HistoricalCaseSimilarityRetrieval}\par
+\hspace*{1em}\texttt{destination -> HistoricalCaseRetrievalVerification}\par
+\hspace*{1em}\texttt{content -> RetrievedHistoricalCases}\par
+\texttt{polarity = affirmative}\par
+\smallskip
+
+\texttt{BAP-FRC7-03-03-04}\par
+\texttt{semanticOperatorKey = hasPart}\par
 \hspace*{1em}\texttt{whole -> HistoricalCaseRetrievalVerificationStage}\par
 \hspace*{1em}\texttt{part -> HistoricalCaseRetrievalVerification}\par
-\hspace*{1em}\texttt{polarity = affirmative}
+\texttt{polarity = affirmative}
 \end{ddtapropositionidentified}
-\begin{ddtapropositionaccepted}[top=2pt,bottom=2pt,left=5pt,right=5pt]\fontsize{3.38}{3.72}\selectfont
-\texttt{--}. La reconstruction riusa direttamente \texttt{RetrievedHistoricalCases}; non crea una generic observation separata.
+
+\begin{ddtapropositionaccepted}[top=2pt,bottom=2pt,left=5pt,right=5pt]
+\fontsize{2.30}{2.56}\selectfont
+\textbf{\texttt{BAP-FRC7-03-03-01..04}}. La verification appartiene allo stage dedicato, trasferisce la \texttt{ClinicalDescription} al primo behavior runtime governato dello Stage 3 e riceve i \texttt{RetrievedHistoricalCases} dal behavior che li produce. La local \texttt{decisionRule} resta candidate/non ammessa come struttura interna della proposition \texttt{-01}; nessun outcome complementare viene inferito.
 \end{ddtapropositionaccepted}
-\begin{ddtaopenrelations}[top=2pt,bottom=2pt,left=5pt,right=5pt]\fontsize{3.08}{3.40}\selectfont
-Il valore 5 coincide con la cardinalita' top-5 gia' governata nel runtime branch: C7 la verifica e non crea un secondo contract finche' il riuso del vincolo runtime e' sufficiente.
+
+\begin{ddtaopenrelations}[top=2pt,bottom=2pt,left=5pt,right=5pt]
+\fontsize{2.20}{2.46}\selectfont
+\textbf{Test-query acquisition.} La \texttt{ClinicalDescription} deve raggiungere \texttt{HistoricalCaseRetrievalVerification}, ma la source del test isolato e' \texttt{NOT SPECIFIED}.\par
+\textbf{Result structure.} I quattro campi dei casi recuperati sono source-supported, ma non e' accettata qui una relation \texttt{hasPart} o un content contract che li formalizzi: il gap resta esplicito.\par
+\textbf{Environment/runtime topology.} Le identity \texttt{all-MiniLM-L6-v2}, \texttt{ChromaDB}, \texttt{HistoricalCaseVectorIndex}, \texttt{ChromaDBVectorStore} e \texttt{HistoricalCaseVectorIndexArtifact} sono riusate; C7 non acquisisce ownership della loro predisposizione.
 \end{ddtaopenrelations}
+
 \end{paracol}
 %</PAGE-CONTENT:74>
 \clearpage
-%<PAGE-DESC:75>MR-C7 > DEC-C7-01 > FR-C7-03-04 [candidate] - Verifica della Multi-Source Triage Synthesis
+%<PAGE-DESC:75>MR-C7 > DEC-C7-01 > FR-C7-03-04 - Verifica della Multi-Source Triage Synthesis
 %<PAGE-CONTENT:75>
 \PageHashFooter{\PageMDfive{75}}
-\subsubsection{FR-C7-03-04 [candidate] - Verifica della Multi-Source Triage Synthesis}
-{\sffamily\scriptsize\color{DDTAGray}Gerarchia proposta: \texttt{MR-C7} $\rightarrow$ \texttt{DEC-C7-01} $\rightarrow$ \texttt{FR-C7-03-04}. Reconstruction-only: nessuna promotion.}\par
-\setlength{\columnsep}{7mm}\setlength{\columnseprule}{0.35pt}\columnratio{0.67}\begin{paracol}{2}
-{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par\vspace{0.12em}
-\begin{ddtacore}[title={FunctionalRequirement candidate}]
-\fontsize{3.78}{4.14}\selectfont
-\begin{tabularx}{\linewidth}{L{39mm}Y}\toprule
+\subsubsection{FR-C7-03-04 - Verifica della Multi-Source Triage Synthesis}
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-C7} $\rightarrow$ \texttt{DEC-C7-01} $\rightarrow$ \texttt{FR-C7-03-04}. Review della verifica Stage 4: riuso degli input/output runtime e local PASS rule.}\par
+
+\setlength{\columnsep}{7mm}
+\setlength{\columnseprule}{0.35pt}
+\columnratio{0.62}
+\begin{paracol}{2}
+{\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par\vspace{0.1em}
+\begin{ddtacore}[title={FunctionalRequirement}]
+\fontsize{4.5}{4.95}\selectfont
+\begin{tabularx}{\linewidth}{L{37mm}Y}\toprule
 \textbf{ID} & \texttt{FR-C7-03-04} \\
-\textbf{Lifecycle} & \texttt{candidate} \\
-\textbf{Authority} & \texttt{CANDIDATE\_NON\_CURRENT} \\
+\textbf{Lifecycle} & \texttt{current} \\
+\textbf{Authority} & \texttt{CURRENT\_GOVERNED} \\
 \textbf{Type} & \texttt{FunctionalRequirement} \\
 \textbf{Title} & Verifica della Multi-Source Triage Synthesis \\
 \textbf{Parent Decision} & \texttt{DEC-C7-01} \\
 \textbf{Owning MR (derived)} & \texttt{MR-C7} \\
 \bottomrule\end{tabularx}
+
 \textbf{Functional obligation}\par
-Esercitare \texttt{MultiSourceTriageSynthesis} e verificare che il risultato soddisfi il test oracle documentato.
+Esercitare la sintesi multi-source Stage 4 con i risultati degli Stage 1, 2, 3 e con le informazioni sintomatologiche, quindi verificare il JSON ottenuto.
 
-\textbf{Functional clauses}\par
-Il test usa gli output Stage 1+2+3 e symptoms. L'expected observation MUST preservare JSON con final\_urgency, confidence, reasoning, recommended\_action e predicted\_pathology. \texttt{PASS} richiede JSON valido con tutti e cinque i campi.
+\textbf{Input funzionali identificati nella BA runtime}\par
+\renewcommand{\arraystretch}{0.88}
+\begin{tabularx}{\linewidth}{L{15mm}L{39mm}Y}\toprule
+\textbf{Origine} & \textbf{Behavior runtime} & \textbf{Output / input Stage 4} \\
+\midrule
+Stage 1 & \texttt{ImageUrgencyAnalysis} & \texttt{ImageUrgencyClassification} \\
+Stage 2 & \texttt{ClinicalDescriptionGeneration} & \texttt{ClinicalDescription} \\
+Stage 3 & \texttt{HistoricalCaseSimilarityRetrieval} & \texttt{RetrievedHistoricalCases} \\
+Caso & Informazioni sintomatologiche & \texttt{SymptomInformation} \\
+\bottomrule\end{tabularx}
+\renewcommand{\arraystretch}{1}
 
-\textbf{Current realization / test vector}\par
-Realizzazione verificata: \texttt{BioMistral-7B}.
+\textbf{Functional clauses / test oracle}\par
+La verifica MUST usare i quattro input indicati. Il risultato verificato MUST essere un JSON valido contenente i cinque campi \texttt{final\_urgency}, \texttt{confidence}, \texttt{reasoning}, \texttt{recommended\_action} e \texttt{predicted\_pathology}. La condizione locale \texttt{PASS} richiede JSON valido e presenza di tutti e cinque i campi; non impone ulteriori criteri sui singoli valori.
 
-\textbf{Boundary}\par
-C7 non riconcilia per inferenza final\_urgency/urgency, predicted\_pathology/pathology o recommended\_action con il runtime contract. \texttt{RC-002} resta owner della riconciliazione.
+\textbf{Realizzazione e risultati runtime riusati}\par
+\texttt{MultiSourceTriageSynthesis} e' realizzata da \texttt{BioMistral-7B} (\texttt{BAP-FR03-04-02}). La proposition \texttt{BAP-FR03-04-01} produce \texttt{AITriageSynthesis}, \texttt{CaseUrgency} e \texttt{TriageConfidence}. La verifica riceve \texttt{AITriageSynthesis}; gli altri due risultati restano disponibili al successivo comportamento di derivazione della priorita' operativa, senza due transfer aggiuntivi verso il test.
+
+\textbf{Confine del contratto}\par
+Il criterio JSON dello Stage 4 e' il test oracle C7: non modifica il \texttt{AITriageSynthesisContentContract} runtime. La riconciliazione dei nomi dei campi resta nel punto \texttt{RC-002} gia' aperto.
 \end{ddtacore}
+
 \switchcolumn
-{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par\vspace{0.10em}
-\begin{ddtareferentidentified}[top=2pt,bottom=2pt,left=5pt,right=5pt]\fontsize{3.42}{3.76}\selectfont
+{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par\vspace{0.08em}
+
+\begin{ddtareferentidentified}[top=2pt,bottom=2pt,left=5pt,right=5pt]
+\fontsize{3.65}{4.04}\selectfont
 \BACandidate{MultiSourceTriageSynthesisVerification} \BANew{}; \BACandidate{MultiSourceTriageSynthesisVerificationOutcome} \BANew{}.\par
-\textbf{Reuse:} \texttt{MultiSourceTriageSynthesis}; \texttt{AITriageSynthesis}; \texttt{AITriageSynthesisContentContract}; \texttt{BioMistral-7B}; \texttt{MultiSourceTriageSynthesisVerificationStage}.
+\textbf{Reuse:} \texttt{ImageUrgencyClassification}; \texttt{ClinicalDescription}; \texttt{RetrievedHistoricalCases}; \texttt{SymptomInformation}; \texttt{MultiSourceTriageSynthesis}; \texttt{AITriageSynthesis}; \texttt{CaseUrgency}; \texttt{TriageConfidence}; \texttt{AITriageSynthesisContentContract}; \texttt{BioMistral-7B}; \texttt{MultiSourceTriageSynthesisVerificationStage}.
 \end{ddtareferentidentified}
-\begin{ddtareferentaccepted}[top=2pt,bottom=2pt,left=5pt,right=5pt]\fontsize{3.28}{3.62}\selectfont
-\BAAccepted{DermaTriageVerification}; \BAAccepted{DermaTriageVerificationProcedure}; \BAAccepted{MultiSourceTriageSynthesis}; \BAAccepted{AITriageSynthesis}; \BAAccepted{AITriageSynthesisContentContract}; \BAAccepted{BioMistral-7B}; \BAAccepted{MultiSourceTriageSynthesisVerificationStage}. Le nuove identity restano candidate.
+
+\begin{ddtareferentaccepted}[top=2pt,bottom=2pt,left=5pt,right=5pt]
+\fontsize{3.40}{3.72}\selectfont
+\BAAccepted{DermaTriageVerification}; \BAAccepted{DermaTriageVerificationProcedure}; \BAAccepted{MultiSourceTriageSynthesisVerificationStage}; \BAAccepted{MultiSourceTriageSynthesis}; \BAAccepted{ImageUrgencyClassification}; \BAAccepted{ClinicalDescription}; \BAAccepted{RetrievedHistoricalCases}; \BAAccepted{SymptomInformation}; \BAAccepted{AITriageSynthesis}; \BAAccepted{CaseUrgency}; \BAAccepted{TriageConfidence}; \BAAccepted{BioMistral-7B}; \BAAccepted{MultiSourceTriageSynthesisVerification} \BAFirstAccepted{}; \BAAccepted{MultiSourceTriageSynthesisVerificationOutcome} \BAFirstAccepted{}.
 \end{ddtareferentaccepted}
-\begin{ddtapropositionidentified}[top=2pt,bottom=2pt,left=5pt,right=5pt]\fontsize{3.04}{3.36}\selectfont
-\textbf{\texttt{BAP-FRC7-03-04-01}} \emph{[CANDIDATE - REWORK]}\par
-\hspace*{1em}\texttt{semanticOperatorKey = produce}\par
+
+\begin{ddtapropositionidentified}[top=2pt,bottom=2pt,left=5pt,right=5pt]
+\fontsize{3.55}{3.93}\selectfont
+\texttt{BAP-FRC7-03-04-01}\par
+\texttt{semanticOperatorKey = produce}\par
 \hspace*{1em}\texttt{actor -> MultiSourceTriageSynthesisVerification}\par
-\hspace*{1em}\texttt{input -> AITriageSynthesis}\par
 \hspace*{1em}\texttt{result -> MultiSourceTriageSynthesisVerificationOutcome}\par
-\hspace*{1em}\texttt{polarity = affirmative}\par
+\hspace*{1em}\texttt{operatorStructure [CANDIDATE / NOT ADMITTED]}\par
+\hspace*{2em}\texttt{decisionRule}\par
+\hspace*{3em}\texttt{branch}\par
+\hspace*{4em}\texttt{when -> JSON valid AND all five test fields present}\par
+\hspace*{4em}\texttt{resultAssignment -> MultiSourceTriageSynthesisVerificationOutcome = PASS}\par
+\texttt{polarity = affirmative}\par
 \smallskip
-\emph{Candidate containment -- ID non assegnato}\par
-\hspace*{1em}\texttt{semanticOperatorKey = hasPart}\par
+
+\texttt{BAP-FRC7-03-04-02}\par
+\texttt{semanticOperatorKey = transfer}\par
+\hspace*{1em}\texttt{source -> MultiSourceTriageSynthesisVerification}\par
+\hspace*{1em}\texttt{destination -> MultiSourceTriageSynthesis}\par
+\hspace*{1em}\texttt{content -> ImageUrgencyClassification}\par
+\texttt{polarity = affirmative}\par
+\smallskip
+
+\texttt{BAP-FRC7-03-04-03}\par
+\texttt{semanticOperatorKey = transfer}\par
+\hspace*{1em}\texttt{source -> MultiSourceTriageSynthesisVerification}\par
+\hspace*{1em}\texttt{destination -> MultiSourceTriageSynthesis}\par
+\hspace*{1em}\texttt{content -> ClinicalDescription}\par
+\texttt{polarity = affirmative}\par
+\smallskip
+
+\texttt{BAP-FRC7-03-04-04}\par
+\texttt{semanticOperatorKey = transfer}\par
+\hspace*{1em}\texttt{source -> MultiSourceTriageSynthesisVerification}\par
+\hspace*{1em}\texttt{destination -> MultiSourceTriageSynthesis}\par
+\hspace*{1em}\texttt{content -> RetrievedHistoricalCases}\par
+\texttt{polarity = affirmative}\par
+\smallskip
+
+\texttt{BAP-FRC7-03-04-05}\par
+\texttt{semanticOperatorKey = transfer}\par
+\hspace*{1em}\texttt{source -> MultiSourceTriageSynthesisVerification}\par
+\hspace*{1em}\texttt{destination -> MultiSourceTriageSynthesis}\par
+\hspace*{1em}\texttt{content -> SymptomInformation}\par
+\texttt{polarity = affirmative}\par
+\smallskip
+
+\texttt{BAP-FRC7-03-04-06}\par
+\texttt{semanticOperatorKey = transfer}\par
+\hspace*{1em}\texttt{source -> MultiSourceTriageSynthesis}\par
+\hspace*{1em}\texttt{destination -> MultiSourceTriageSynthesisVerification}\par
+\hspace*{1em}\texttt{content -> AITriageSynthesis}\par
+\texttt{polarity = affirmative}\par
+\smallskip
+
+\texttt{BAP-FRC7-03-04-07}\par
+\texttt{semanticOperatorKey = hasPart}\par
 \hspace*{1em}\texttt{whole -> MultiSourceTriageSynthesisVerificationStage}\par
 \hspace*{1em}\texttt{part -> MultiSourceTriageSynthesisVerification}\par
-\hspace*{1em}\texttt{polarity = affirmative}
+\texttt{polarity = affirmative}
 \end{ddtapropositionidentified}
-\begin{ddtapropositionaccepted}[top=2pt,bottom=2pt,left=5pt,right=5pt]\fontsize{3.38}{3.72}\selectfont
-\texttt{--}. La reconstruction riusa direttamente \texttt{AITriageSynthesis}; nessun contract C7 viene accettato finche' \texttt{RC-002} non chiude il mapping dei campi.
+
+\begin{ddtapropositionaccepted}[top=2pt,bottom=2pt,left=5pt,right=5pt]
+\fontsize{3.52}{3.88}\selectfont
+\textbf{\texttt{BAP-FRC7-03-04-01..07}}. Le quattro \texttt{transfer} inviano i dati di test alla sintesi, il \texttt{transfer} di ritorno trasporta la \texttt{AITriageSynthesis} prodotta da \texttt{BAP-FR03-04-01}, e \texttt{hasPart} colloca la verifica nello Stage 4. La local \texttt{decisionRule} resta candidate/non ammessa; nessun \texttt{ELSE -> FAIL} viene introdotto.
 \end{ddtapropositionaccepted}
-\begin{ddtaopenrelations}[top=2pt,bottom=2pt,left=5pt,right=5pt]\fontsize{3.04}{3.36}\selectfont
-Structured-content pressure: validita' JSON e presenza del field-set restano test oracle distinti dal runtime content contract. Nessun boolean property node viene inventato.
-\end{ddtaopenrelations}
+
 \end{paracol}
 %</PAGE-CONTENT:75>
 \clearpage
@@ -7747,7 +7864,7 @@ Per-gate outcome pressure: una sola FR contiene quattro criterion outcomes ma ne
 {\sffamily\scriptsize\color{DDTAGray}Registro di lavoro per la review FR-by-FR. Le identity/proposition non ancora riesaminate restano candidate; gli ID nuovi vengono assegnati soltanto dopo la relativa review individuale. Le proposition gia' accettate mantengono l'authority corrente finche' un rework non viene approvato.}\par
 
 \begin{ddtacore}[title={C7 full reconstruction - review status e candidate deltas}]
-\fontsize{3.10}{3.40}\selectfont
+\fontsize{2.98}{3.28}\selectfont
 \begin{tabularx}{\linewidth}{L{29mm}L{76mm}Y}
 \toprule
 \textbf{Owner} & \textbf{Reconstruction BA} & \textbf{Review target} \\
@@ -7758,8 +7875,8 @@ Per-gate outcome pressure: una sola FR contiene quattro criterion outcomes ma ne
 \texttt{FR-C7-02-03} & StatsEndpointVerification + PipelineStatisticsRequest/Response + nested statistics & review closed: EndpointVerificationStage \texttt{hasPart}; request/response \texttt{transfer}; response + urgency-distribution \texttt{hasPart}; no local decision/outcome; generic observation retired. \\
 \texttt{FR-C7-03-01} & ImageUrgencyAnalysisVerification + Outcome; reuse LesionImage / ImageUrgencyAnalysis / ImageUrgencyClassification / EfficientNet-B4 & review closed: stage \texttt{hasPart}; image/result \texttt{transfer}; verification \texttt{produce}; local rule checks valid urgency; test-vector acquisition NOT SPECIFIED; confidence/probabilities runtime refinement remains owner-review MR-01. \\
 \texttt{FR-C7-03-02} & ClinicalDescriptionGenerationVerification + Outcome; reuse LesionImage / ClinicalDescriptionGeneration / ClinicalDescription / ClinicalDescriptionContentContract / Qwen2-VL-7B-Instruct & review closed: stage \texttt{hasPart}; image/result \texttt{transfer}; verification \texttt{produce}; local rule checks non-empty text only; test-vector acquisition NOT SPECIFIED; runtime five-part contract reused, not duplicated. \\
-\texttt{FR-C7-03-03} & HistoricalCaseRetrievalVerification; ...Outcome & reuse RetrievedHistoricalCases directly; no duplicate top-5 contract. \\
-\texttt{FR-C7-03-04} & MultiSourceTriageSynthesisVerification; ...Outcome & reuse AITriageSynthesis; RC-002 remains owner of field-name reconciliation. \\
+\texttt{FR-C7-03-03} & HistoricalCaseRetrievalVerification + Outcome; reuse ClinicalDescription / embedding generation / HistoricalCaseVectorIndex / similarity retrieval / RetrievedHistoricalCases / all-MiniLM-L6-v2 / ChromaDB & review closed: stage \texttt{hasPart}; query/result \texttt{transfer}; verification \texttt{produce}; local rule checks result count \texttt{eq 5}; test-query source NOT SPECIFIED; four result fields remain source-supported with BA structure relation NOT SPECIFIED. \\
+\texttt{FR-C7-03-04} & MultiSourceTriageSynthesisVerification + Outcome; reuse Stage 1 ImageUrgencyClassification, Stage 2 ClinicalDescription, Stage 3 RetrievedHistoricalCases, SymptomInformation, BioMistral-7B, AITriageSynthesis / CaseUrgency / TriageConfidence & review closed: stage \texttt{hasPart}; four input \texttt{transfer}; AITriageSynthesis return \texttt{transfer}; verification \texttt{produce}; PASS on valid JSON with five named test fields; local decisionRule candidate. \\
 \texttt{FR-C7-04-01} & FullPipelineVerification + Observation + Outcome & aggregated observation retained for cross-owner result. \\
 \texttt{FR-C7-05-01} & B4IntegrationVerification + per-control observation/outcome & six occurrences stay aggregated until multiplicity/split review. \\
 \texttt{FR-C7-06-01} & RetrainingControlVerification + Observation & rename from LifecycleVerification; no outcome/pass rule. \\
@@ -7804,13 +7921,16 @@ Nessuna ulteriore famiglia source-supported emerge per \texttt{/docs}, prompt-ma
 \switchcolumn
 {\sffamily\large\bfseries\color{DDTABlue}Open points / prossimo gate}\par\vspace{0.15em}
 \begin{ddtaopen}[title={Da chiudere durante la review individuale}]
-\fontsize{3.16}{3.48}\selectfont
+\fontsize{2.90}{3.20}\selectfont
 \textbf{Service readiness.} \texttt{FR-C7-01-01} e' chiuso: \texttt{ServiceReadinessVerification} e' parte di \texttt{ServiceReadinessVerificationStage}; request/response sono due transfer distinti; derivazione interna dei cinque status e relazione HTTP-200/local-PASS restano \texttt{NOT SPECIFIED}.\par
 \textbf{Direct analysis.} \texttt{FR-C7-02-01} e' chiuso: \texttt{DirectAnalysisEndpointVerification} e' parte di \texttt{EndpointVerificationStage}; riusa \texttt{AnalyzeEndpoint} e scambia \texttt{DirectAnalysisRequest/Response}. Il runtime interno della pipeline non viene duplicato in questo FR.\par
 \textbf{B4-integrated endpoint.} \texttt{FR-C7-02-02} e' chiuso: \texttt{B4IntegratedDiagnosisEndpointVerification} e' parte di \texttt{EndpointVerificationStage}; riusa \texttt{DiagnoseEndpoint}, scambia request/response esplicite e usa HTTP 200 + occorrenza del write-back \texttt{BAP-FR23-01} nella local PASS rule senza duplicare il runtime transfer.\par
 \textbf{Pipeline statistics endpoint.} \texttt{FR-C7-02-03} e' chiuso: \texttt{StatsEndpointVerification} e' parte di \texttt{EndpointVerificationStage}; riusa \texttt{StatsEndpoint}, scambia \texttt{PipelineStatisticsRequest/Response} e preserva la struttura dei conteggi restituiti. Nessuna pass condition, biforcazione o outcome viene inferito.\par
-\textbf{Image urgency Stage 1.} \texttt{FR-C7-03-01} e' chiuso: \texttt{ImageUrgencyAnalysisVerification} e' parte di \texttt{ImageUrgencyAnalysisVerificationStage}; riceve una dermoscopy JPEG da source \texttt{NOT SPECIFIED}, inoltra la stessa \texttt{LesionImage} a \texttt{ImageUrgencyAnalysis}, riusa \texttt{EfficientNet-B4} come realizzazione e valuta la \texttt{ImageUrgencyClassification}. PASS richiede solo urgency valida; confidence/probabilities restano expected observation con runtime owner-review.\par
+\textbf{Image urgency Stage 1.} \texttt{FR-C7-03-01} e' chiuso: \texttt{ImageUrgencyAnalysisVerification} e' parte di \texttt{ImageUrgencyAnalysisVerificationStage}; riceve una dermoscopy JPEG da source \texttt{NOT SPECIFIED}, inoltra la stessa \texttt{LesionImage} a \texttt{ImageUrgencyAnalysis}, riusa \texttt{EfficientNet-B4} come realizzazione e valuta la \texttt{ImageUrgencyClassification}. PASS richiede solo urgency valida; confidence/probabilities sono source-supported ma la relazione BA che ne formalizza la struttura resta \texttt{NOT SPECIFIED}.\par
 \textbf{Clinical description Stage 2.} \texttt{FR-C7-03-02} e' chiuso: \texttt{ClinicalDescriptionGenerationVerification} e' parte di \texttt{ClinicalDescriptionGenerationVerificationStage}; riceve una dermoscopy JPEG da source \texttt{NOT SPECIFIED}, inoltra la stessa \texttt{LesionImage} a \texttt{ClinicalDescriptionGeneration}, riusa \texttt{Qwen2-VL-7B-Instruct} come realizzazione e osserva la \texttt{ClinicalDescription}. PASS richiede solo text response non-empty; il contract runtime a cinque parti viene riusato senza duplicarlo come criteri PASS.\par
+\textbf{Historical case retrieval Stage 3.} \texttt{FR-C7-03-03} e' chiuso: \texttt{HistoricalCaseRetrievalVerification} e' parte di \texttt{HistoricalCaseRetrievalVerificationStage}; riceve una clinical text query da source \texttt{NOT SPECIFIED}, trasferisce la \texttt{ClinicalDescription} a \texttt{ClinicalDescriptionEmbeddingGeneration} e riceve \texttt{RetrievedHistoricalCases} da \texttt{HistoricalCaseSimilarityRetrieval}. Il runtime riusa \texttt{all-MiniLM-L6-v2}, \texttt{HistoricalCaseVectorIndex} e \texttt{ChromaDB}; PASS richiede esattamente 5 risultati. I quattro campi documentati del result non sono formalizzati qui da una nuova relation BA.
+
+\textbf{Multi-source synthesis Stage 4.} \texttt{FR-C7-03-04} e' chiuso: la verification in \texttt{MultiSourceTriageSynthesisVerificationStage} usa gli output \texttt{ImageUrgencyClassification} (Stage 1), \texttt{ClinicalDescription} (Stage 2), \texttt{RetrievedHistoricalCases} (Stage 3) e \texttt{SymptomInformation}. Quattro transfer portano questi dati a \texttt{MultiSourceTriageSynthesis}, realizzata da \texttt{BioMistral-7B}. \texttt{BAP-FR03-04-01} produce \texttt{AITriageSynthesis}, \texttt{CaseUrgency} e \texttt{TriageConfidence}; il test riceve la sola \texttt{AITriageSynthesis} e verifica un JSON valido con i cinque campi nominati dal suo oracle.\par
 \textbf{RC-002.} Stage 4 oracle e runtime content contract restano da riconciliare nell'owner corretto.\par
 \textbf{Full pipeline.} SLA owner/identity resta aperto; ``complete response'' resta criterio non scomposto.\par
 \textbf{B4 aggregation.} Sei controlli con outcome locali, nessun overall rule; decidere se lo split e' necessario.\par
@@ -7819,8 +7939,8 @@ Nessuna ulteriore famiglia source-supported emerge per \texttt{/docs}, prompt-ma
 \end{ddtaopen}
 
 \begin{ddtaquestions}
-\fontsize{3.58}{3.94}\selectfont
-Gate corrente chiuso: \texttt{FR-C7-03-02}. Le prime due verifiche di pipeline stage riusano i rispettivi runtime behavior senza inventare la source del test vector. Stage 2 preserva il contract clinico a cinque parti ma usa come local PASS rule soltanto la risposta testuale non-empty. Prossimo gate: \texttt{FR-C7-03-03}.
+\fontsize{3.32}{3.65}\selectfont
+Gate corrente chiuso: \texttt{FR-C7-03-04}. Le quattro verifiche Stage 1..4 riusano i behavior runtime e le realizzazioni gia' governate. Stage 4 usa quattro input BA distinti e controlla il JSON \texttt{AITriageSynthesis}; \texttt{CaseUrgency} e \texttt{TriageConfidence} restano output runtime senza transfer autonomi verso la verification. Prossimo gate: \texttt{FR-C7-04-01}.
 \end{ddtaquestions}
 \end{paracol}
 %</PAGE-CONTENT:81>
@@ -7980,7 +8100,7 @@ ReadinessOutcome & \textbf{\texttt{FR-C7-01-01}} \\
 \section*{Registro Base Analysis - BAReferent C7 increment}
 \begin{ddtacore}[title={CONTINUITA' DEL REGISTRO - C7}]
 \fontsize{5.8}{6.35}\selectfont
-Questa pagina continua il registro BA con le identity C7 accettate durante la review FR-by-FR, includendo il completamento di \texttt{FR-C7-01-01}, della famiglia endpoint verification \texttt{FR-C7-02-01..03} e di \texttt{FR-C7-03-01..02}. Il riferimento in \textbf{grassetto} indica la prima accettazione. La separazione fisica su questa pagina non introduce un nuovo stato BA.
+Questa pagina continua il registro BA con le identity C7 accettate durante la review FR-by-FR, includendo il completamento di \texttt{FR-C7-01-01}, della famiglia endpoint verification \texttt{FR-C7-02-01..03} e di \texttt{FR-C7-03-01..04}. Il riferimento in \textbf{grassetto} indica la prima accettazione. La separazione fisica su questa pagina non introduce un nuovo stato BA.
 \end{ddtacore}
 
 \vspace{0.35mm}
@@ -8014,7 +8134,7 @@ B4ConnectionHealthStatus & \textbf{\texttt{FR-C7-01-01}} -- parte del health res
 \midrule
 DirectAnalysisEndpointVerification & \textbf{\texttt{FR-C7-02-01}} -- behavior di verifica black-box collocato in \texttt{EndpointVerificationStage}; endpoint runtime riusato: \texttt{AnalyzeEndpoint}. \\
 DirectAnalysisRequest & \textbf{\texttt{FR-C7-02-01}} -- content del request transfer verso \texttt{AnalyzeEndpoint}; current test vector multipart con image, age, sex, localization. \\
-DirectAnalysisResponse & \textbf{\texttt{FR-C7-02-01}} -- content del response transfer da \texttt{AnalyzeEndpoint}; expected observation con P-scale, specialist, SLA e confidence. \\
+DirectAnalysisResponse & \textbf{\texttt{FR-C7-02-01}} -- content del response transfer da \texttt{AnalyzeEndpoint}; la fonte documenta P-scale, specialist, SLA e confidence. \\
 DirectAnalysisEndpointVerificationOutcome & \textbf{\texttt{FR-C7-02-01}} -- result della verification; \texttt{PASS} resta valore locale della candidate rule, non BAReferent autonomo. \\
 B4IntegratedDiagnosisEndpointVerification & \textbf{\texttt{FR-C7-02-02}} -- behavior di verifica B4-integrated collocato in \texttt{EndpointVerificationStage}; endpoint runtime riusato: \texttt{DiagnoseEndpoint}. \\
 B4IntegratedDiagnosisRequest & \textbf{\texttt{FR-C7-02-02}} -- content del request transfer verso \texttt{DiagnoseEndpoint}; current test vector con \texttt{X-API-Key} e body \texttt{consulto\_id}. \\
@@ -8034,8 +8154,8 @@ P1Count / P2Count / P3Count / P4Count & \textbf{\texttt{FR-C7-02-03}} -- parti d
 \vspace{0.22mm}
 {\sffamily\bfseries\color{DDTABlue}BAReferent - pipeline-stage verification increment}\par
 \vspace{0.08mm}
-\fontsize{3.98}{4.36}\selectfont
-\renewcommand{\arraystretch}{0.63}
+\fontsize{3.58}{3.92}\selectfont
+\renewcommand{\arraystretch}{0.58}
 \begin{tabularx}{\textwidth}{L{68mm}Y}
 \toprule
 \textbf{BAReferent} & \textbf{Riferimento documentale / boundary} \\
@@ -8044,12 +8164,16 @@ ImageUrgencyAnalysisVerification & \textbf{\texttt{FR-C7-03-01}} -- behavior di 
 ImageUrgencyAnalysisVerificationOutcome & \textbf{\texttt{FR-C7-03-01}} -- result locale della verification; \texttt{PASS} e' assegnato dalla candidate rule quando l'urgenza restituita e' valida; consumer successivo \texttt{NOT SPECIFIED}. \\
 ClinicalDescriptionGenerationVerification & \textbf{\texttt{FR-C7-03-02}} -- behavior di verifica collocato in \texttt{ClinicalDescriptionGenerationVerificationStage}; inoltra \texttt{LesionImage} e osserva \texttt{ClinicalDescription}. \\
 ClinicalDescriptionGenerationVerificationOutcome & \textbf{\texttt{FR-C7-03-02}} -- result locale della verification; \texttt{PASS} e' assegnato dalla candidate rule quando la risposta testuale e' non-empty; consumer successivo \texttt{NOT SPECIFIED}. \\
+HistoricalCaseRetrievalVerification & \textbf{\texttt{FR-C7-03-03}} -- behavior di verifica collocato in \texttt{HistoricalCaseRetrievalVerificationStage}; trasferisce \texttt{ClinicalDescription} al runtime Stage 3 e riceve \texttt{RetrievedHistoricalCases}. \\
+HistoricalCaseRetrievalVerificationOutcome & \textbf{\texttt{FR-C7-03-03}} -- result locale della verification; \texttt{PASS} e' assegnato dalla candidate rule quando il numero dei \texttt{RetrievedHistoricalCases} e' esattamente 5; consumer successivo \texttt{NOT SPECIFIED}. \\
+MultiSourceTriageSynthesisVerification & \textbf{\texttt{FR-C7-03-04}} -- verifica Stage 4 che invia i quattro input BA a \texttt{MultiSourceTriageSynthesis} e riceve \texttt{AITriageSynthesis}. \\
+MultiSourceTriageSynthesisVerificationOutcome & \textbf{\texttt{FR-C7-03-04}} -- result locale della verifica: \texttt{PASS} per JSON valido con tutti e cinque i campi dell'oracle; regola candidata. \\
 \bottomrule
 \end{tabularx}
 
 \begin{ddtaopenrelations}[top=2pt,bottom=2pt,left=5pt,right=5pt]
-\fontsize{4.62}{5.10}\selectfont
-\texttt{DirectAnalysisEndpoint}/\texttt{DirectAnalysisEndpointObservation} e \texttt{B4IntegratedDiagnosisEndpoint}/\texttt{B4IntegratedDiagnosisEndpointObservation} sono riconciliati con gli endpoint runtime e request/response esplicite. \texttt{PipelineStatisticsObservation} e' ritirato: la \texttt{PipelineStatisticsResponse} ricevuta e' gia' l'oggetto osservato. Gli outcome locali restano terminali quando presenti; \texttt{FR-C7-02-03} non ne introduce uno. Per \texttt{FR-C7-03-01..02}, \texttt{LesionImage} e i rispettivi runtime behavior/result/model sono identity riusate; la source del test vector non viene materializzata. \texttt{FR-C7-03-02} riusa anche \texttt{ClinicalDescriptionContentContract} senza creare identity C7 per le cinque parti.
+\fontsize{4.30}{4.74}\selectfont
+\texttt{DirectAnalysisEndpoint}/\texttt{DirectAnalysisEndpointObservation} e \texttt{B4IntegratedDiagnosisEndpoint}/\texttt{B4IntegratedDiagnosisEndpointObservation} sono riconciliati con gli endpoint runtime e request/response esplicite. \texttt{PipelineStatisticsObservation} e' ritirato: la \texttt{PipelineStatisticsResponse} ricevuta e' gia' l'oggetto osservato. Gli outcome locali restano terminali quando presenti; \texttt{FR-C7-02-03} non ne introduce uno. Per \texttt{FR-C7-03-01..04}, test vector, runtime behavior/result e realizzazioni sono identity riusate; la source dei test vector isolati non viene materializzata. \texttt{FR-C7-03-02} riusa \texttt{ClinicalDescriptionContentContract}; \texttt{FR-C7-03-03} riusa \texttt{all-MiniLM-L6-v2}, \texttt{HistoricalCaseVectorIndex}, \texttt{ChromaDB}, \texttt{ChromaDBVectorStore} e \texttt{HistoricalCaseVectorIndexArtifact}. Per Stage 4 si riusano inoltre \texttt{ImageUrgencyClassification}, \texttt{ClinicalDescription}, \texttt{RetrievedHistoricalCases}, \texttt{SymptomInformation}, \texttt{AITriageSynthesis}, \texttt{CaseUrgency} e \texttt{TriageConfidence} senza duplicare il runtime.
 \end{ddtaopenrelations}
 %</PAGE-CONTENT:83>
 \clearpage
@@ -8065,8 +8189,8 @@ Questa pagina continua il registro BA della pagina precedente. Il \textbf{grasse
 \vspace{0.20mm}
 {\sffamily\bfseries\color{DDTABlue}BAProposition}\par
 \vspace{0.1mm}
-\fontsize{2.80}{3.02}\selectfont
-\renewcommand{\arraystretch}{0.40}
+\fontsize{2.57}{2.80}\selectfont
+\renewcommand{\arraystretch}{0.35}
 \begin{tabularx}{\textwidth}{L{58mm}Y}
 \toprule
 \textbf{BAProposition} & \textbf{Riferimenti documentali} \\
@@ -8209,6 +8333,17 @@ Questa pagina continua il registro BA della pagina precedente. Il \textbf{grasse
 \textbf{\texttt{BAP-FRC7-03-02-02}} & \texttt{FR-C7-03-02} -- \texttt{transfer}: \texttt{ClinicalDescriptionGenerationVerification -> ClinicalDescriptionGeneration : LesionImage}; acquisizione precedente della test image \texttt{NOT SPECIFIED} \\
 \textbf{\texttt{BAP-FRC7-03-02-03}} & \texttt{FR-C7-03-02} -- \texttt{transfer}: \texttt{ClinicalDescriptionGeneration -> ClinicalDescriptionGenerationVerification : ClinicalDescription} \\
 \textbf{\texttt{BAP-FRC7-03-02-04}} & \texttt{FR-C7-03-02} -- \texttt{hasPart(ClinicalDescriptionGenerationVerificationStage, ClinicalDescriptionGenerationVerification)}; \texttt{ClinicalDescriptionContentContract} riusato dal runtime branch, non duplicato in C7 \\
+\textbf{\texttt{BAP-FRC7-03-03-01}} & \texttt{FR-C7-03-03} -- \texttt{produce(HistoricalCaseRetrievalVerification -> HistoricalCaseRetrievalVerificationOutcome)}; local \texttt{decisionRule} candidate assegna \texttt{PASS} quando \texttt{RetrievedHistoricalCases count eq 5}; nessun \texttt{ELSE/FAIL} inferito \\
+\textbf{\texttt{BAP-FRC7-03-03-02}} & \texttt{FR-C7-03-03} -- \texttt{transfer}: \texttt{HistoricalCaseRetrievalVerification -> ClinicalDescriptionEmbeddingGeneration : ClinicalDescription}; source precedente della query di test \texttt{NOT SPECIFIED} \\
+\textbf{\texttt{BAP-FRC7-03-03-03}} & \texttt{FR-C7-03-03} -- \texttt{transfer}: \texttt{HistoricalCaseSimilarityRetrieval -> HistoricalCaseRetrievalVerification : RetrievedHistoricalCases} \\
+\textbf{\texttt{BAP-FRC7-03-03-04}} & \texttt{FR-C7-03-03} -- \texttt{hasPart(HistoricalCaseRetrievalVerificationStage, HistoricalCaseRetrievalVerification)}; runtime Stage 3 e environment resources riusati senza duplicazione; struttura interna dei quattro result field \texttt{NOT SPECIFIED} \\
+\textbf{\texttt{BAP-FRC7-03-04-01}} & \texttt{FR-C7-03-04} -- \texttt{produce}: verification $\rightarrow$ outcome; decisionRule candidate, PASS = valid JSON e cinque test field \\
+\textbf{\texttt{BAP-FRC7-03-04-02}} & \texttt{FR-C7-03-04} -- \texttt{transfer}: verification $\rightarrow$ synthesis : ImageUrgencyClassification (Stage 1) \\
+\textbf{\texttt{BAP-FRC7-03-04-03}} & \texttt{FR-C7-03-04} -- \texttt{transfer}: verification $\rightarrow$ synthesis : ClinicalDescription (Stage 2) \\
+\textbf{\texttt{BAP-FRC7-03-04-04}} & \texttt{FR-C7-03-04} -- \texttt{transfer}: verification $\rightarrow$ synthesis : RetrievedHistoricalCases (Stage 3) \\
+\textbf{\texttt{BAP-FRC7-03-04-05}} & \texttt{FR-C7-03-04} -- \texttt{transfer}: verification $\rightarrow$ synthesis : SymptomInformation \\
+\textbf{\texttt{BAP-FRC7-03-04-06}} & \texttt{FR-C7-03-04} -- \texttt{transfer}: synthesis $\rightarrow$ verification : AITriageSynthesis; CaseUrgency/TriageConfidence non trasferiti separatamente \\
+\textbf{\texttt{BAP-FRC7-03-04-07}} & \texttt{FR-C7-03-04} -- \texttt{hasPart}: MultiSourceTriageSynthesisVerificationStage $\rightarrow$ MultiSourceTriageSynthesisVerification \\
 \bottomrule
 \end{tabularx}
 \fontsize{3.05}{3.27}\selectfont
@@ -8674,8 +8809,8 @@ Ogni pagina possiede un MD5 del proprio contenuto canonico. Il calcolo esclude i
 \IntegrityRow{71}{MR-C7 > DEC-C7-01 > FR-C7-02-03 - Verifica dell'endpoint di statistiche della pipeline}{\PageMDfive{71}}
 \IntegrityRow{72}{MR-C7 > DEC-C7-01 > FR-C7-03-01 - Verifica dell'Image Urgency Analysis}{\PageMDfive{72}}
 \IntegrityRow{73}{MR-C7 > DEC-C7-01 > FR-C7-03-02 - Verifica della Clinical Description Generation}{\PageMDfive{73}}
-\IntegrityRow{74}{MR-C7 > DEC-C7-01 > FR-C7-03-03 [candidate] - Verifica dell'Historical Case Retrieval}{\PageMDfive{74}}
-\IntegrityRow{75}{MR-C7 > DEC-C7-01 > FR-C7-03-04 [candidate] - Verifica della Multi-Source Triage Synthesis}{\PageMDfive{75}}
+\IntegrityRow{74}{MR-C7 > DEC-C7-01 > FR-C7-03-03 - Verifica dell'Historical Case Retrieval}{\PageMDfive{74}}
+\IntegrityRow{75}{MR-C7 > DEC-C7-01 > FR-C7-03-04 - Verifica della Multi-Source Triage Synthesis}{\PageMDfive{75}}
 \IntegrityRow{76}{MR-C7 > DEC-C7-01 > FR-C7-04-01 [candidate] - Verifica end-to-end della pipeline DermaTriage}{\PageMDfive{76}}
 \IntegrityRow{77}{MR-C7 > DEC-C7-01 > FR-C7-05-01 [candidate] - Verifica dell'integrazione DermaTriage-B4}{\PageMDfive{77}}
 \IntegrityRow{78}{MR-C7 > DEC-C7-01 > FR-C7-06-01 [candidate] - Verifica dei controlli operativi del retraining}{\PageMDfive{78}}

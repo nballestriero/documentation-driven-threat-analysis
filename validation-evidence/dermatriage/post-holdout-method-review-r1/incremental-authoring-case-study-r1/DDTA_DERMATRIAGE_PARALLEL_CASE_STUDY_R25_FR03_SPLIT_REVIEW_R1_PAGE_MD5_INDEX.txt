@@ -1,4 +1,4 @@
-DDTA_DERMATRIAGE_PARALLEL_CASE_STUDY_R25_FR03_SPLIT_REVIEW_R1_C7_FR03_02_BA_COMPLETION_R1 - Page MD5 Index
+DDTA_DERMATRIAGE_PARALLEL_CASE_STUDY_R25_FR03_SPLIT_REVIEW_R1_C7_FR03_04_BA_COMPLETION_R1 - Page MD5 Index
 Canonical payload: LaTeX content between PAGE-CONTENT markers; own printed MD5 excluded.
 Integrity-index page resolves all other page hashes and canonicalizes its own hash as <SELF>.
 
@@ -73,21 +73,21 @@ Page 68  fec369a26fc3b1b41b5b77400e2505c4  MR-C7 > DEC-C7-01 > FR-C7-01-01 - Ver
 Page 69  84804a250901e2bfe704b971c5c31845  MR-C7 > DEC-C7-01 > FR-C7-02-01 - Verifica dell'endpoint di analisi diretta
 Page 70  7c16bf063a7aacda7891ea447db9823c  MR-C7 > DEC-C7-01 > FR-C7-02-02 - Verifica dell'endpoint integrato B4
 Page 71  5b6905399ebc9e70a9d9e3b127932a95  MR-C7 > DEC-C7-01 > FR-C7-02-03 - Verifica dell'endpoint di statistiche della pipeline
-Page 72  67f8d62e5966d443cdfc2899aa5d5be2  MR-C7 > DEC-C7-01 > FR-C7-03-01 - Verifica dell'Image Urgency Analysis
-Page 73  77f9566cc687c33e1e43582f6710d9bf  MR-C7 > DEC-C7-01 > FR-C7-03-02 - Verifica della Clinical Description Generation
-Page 74  e801661bb7821f2ae91f0bb26719fa63  MR-C7 > DEC-C7-01 > FR-C7-03-03 [candidate] - Verifica dell'Historical Case Retrieval
-Page 75  b3fcde2fd16f845ce5d613dd943fbae8  MR-C7 > DEC-C7-01 > FR-C7-03-04 [candidate] - Verifica della Multi-Source Triage Synthesis
+Page 72  0f26ac2ff18266c9886a85b4b1c89687  MR-C7 > DEC-C7-01 > FR-C7-03-01 - Verifica dell'Image Urgency Analysis
+Page 73  0c1825d457ea5a144981c17b811a0541  MR-C7 > DEC-C7-01 > FR-C7-03-02 - Verifica della Clinical Description Generation
+Page 74  23eafa63e01a36ddcb574e6167287082  MR-C7 > DEC-C7-01 > FR-C7-03-03 - Verifica dell'Historical Case Retrieval
+Page 75  ff0b8e3a960c2cf216a6738e9acf6a4f  MR-C7 > DEC-C7-01 > FR-C7-03-04 - Verifica della Multi-Source Triage Synthesis
 Page 76  7f3e92757f24a49f8d179855b1cb9d69  MR-C7 > DEC-C7-01 > FR-C7-04-01 [candidate] - Verifica end-to-end della pipeline DermaTriage
 Page 77  7792c0a50a77fa27a86f08bf4ee9a409  MR-C7 > DEC-C7-01 > FR-C7-05-01 [candidate] - Verifica dell'integrazione DermaTriage-B4
 Page 78  dbbf21ee3061ecf500e2ede6e75cb42b  MR-C7 > DEC-C7-01 > FR-C7-06-01 [candidate] - Verifica dei controlli operativi del retraining
 Page 79  aea7b2e7d442693e48ad13a54c811cdb  MR-C7 > DEC-C7-01 > FR-C7-07-01 [candidate] - Verifica dei quality gate assoluti del classificatore di urgenza
-Page 80  1ac7527e1ebb29564f8092f372852616  Registro Base Analysis - C7 reconstruction target
-Page 81  90bcd7642b3e32c57f16e151754d5024  MR-C7 - Source closure e progress della review FR-by-FR
+Page 80  e8a6ca175e52945b7f162f8e69d44ddf  Registro Base Analysis - C7 reconstruction target
+Page 81  87a07a55a82a144c0b1897426d4ba045  MR-C7 - Source closure e progress della review FR-by-FR
 Page 82  748a8c4ef3fe1cb08302d275db81868f  Registro Base Analysis - BAReferent e BAProposition
-Page 83  77e96596720dd88c931f58e75751bb1d  Registro Base Analysis - BAReferent C7 increment
-Page 84  c1fdf818e98463864ea4038a84771e2e  Registro Base Analysis - BAProposition
+Page 83  b7c2dbe255608f69d37eb48c3ebf3048  Registro Base Analysis - BAReferent C7 increment
+Page 84  ffb39c67a805b490e521223e7a1b3860  Registro Base Analysis - BAProposition
 Page 85  bffa4fcc5469f12ebe1675a9e8376312  Registro Base Analysis - C6 source, dependency, configuration e initialization topology increment
 Page 86  251e20eabad327061da23389ed917818  Registro Base Analysis - C6 FR-C6-01-03B1..B3 e 03C increment
 Page 87  3cf5f4e96ab8903fd5a30023d363b0da  Registro Base Analysis - FR-C6-01-06 API composition and endpoint topology
 Page 88  392da625725431da689302a7e885994a  Registro Base Analysis - DEC-C7-01 verification procedure topology increment
-Page 89  1290e11ce1df6fb783447355dd743f99  Indice di integrita delle pagine [INTEGRITY INDEX]
+Page 89  40afac43cba3526ccbda27a42b716b8b  Indice di integrita delle pagine [INTEGRITY INDEX]
