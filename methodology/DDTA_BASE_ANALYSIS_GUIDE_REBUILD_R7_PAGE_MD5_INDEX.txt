@@ -4,7 +4,7 @@ Integrity-index page resolves all other page hashes and canonicalizes its own ha
 
 Page 1  b72d1ef67f3ac0b3e3238e688b5d7024  Frontespizio della Base Analysis Guide Rebuild R7
 Page 2  fa01b7db301f77cd9988907daf2b3397  1 - Che cos'e' la Base Analysis
-Page 3  3b620cf21e74f64e397656ec9f3038da  1 - Perche' esiste e principi di base
+Page 3  3a2189854eb57bd28ecc87f0b303b931  1 - Perche' esiste e principi di base
 Page 4  b12d8f94dc04c833c0d916453255f9be  1 - Direzione dell'authority e feedback
 Page 5  44c236d6809ab29df535fe29ff00352d  1 - Minimum sufficient BA, NOT SPECIFIED e gap
 Page 6  b9514c3f03bdb13c46c35ba6ae647130  2 - BA View / Projection Contract e source types
@@ -122,5 +122,5 @@ Page 117  435e9ecddb23d230df9cc32766e10610  Appendice temporanea - CDC direzione
 Page 118  9d02d27cc2ad8bb4e1b30d441667e854  Appendice temporanea - CDC campi 1-10
 Page 119  90b6659e5a0105e0cd7268d3f76137f6  Appendice temporanea - CDC campi 11-20
 Page 120  84cfbc76debaca8141cc88702aa0179f  Appendice temporanea - roadmap e registro dei costrutti da integrare/studiare
-Page 121  691d59fa456478a17e6ee36975680287  Indice di integrita' delle pagine [INTEGRITY INDEX]
+Page 121  7f26fbd11f49592bcc39addae19efe0d  Indice di integrita' delle pagine [INTEGRITY INDEX]
 Page 122  13cdd31df41e1d75e405e6ba020261fa  Appendice temporanea - laboratorio prove grafiche Mermaid da cancellare

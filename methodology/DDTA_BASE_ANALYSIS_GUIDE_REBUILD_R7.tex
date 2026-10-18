@@ -30,7 +30,7 @@ Il contenuto di questa appendice governa \emph{come stiamo ricostruendo la guida
 %<PAGE-HASH-DEFS>
 \expandafter\def\csname PageMDfive1\endcsname{b72d1ef67f3ac0b3e3238e688b5d7024}
 \expandafter\def\csname PageMDfive2\endcsname{fa01b7db301f77cd9988907daf2b3397}
-\expandafter\def\csname PageMDfive3\endcsname{3b620cf21e74f64e397656ec9f3038da}
+\expandafter\def\csname PageMDfive3\endcsname{3a2189854eb57bd28ecc87f0b303b931}
 \expandafter\def\csname PageMDfive4\endcsname{b12d8f94dc04c833c0d916453255f9be}
 \expandafter\def\csname PageMDfive5\endcsname{44c236d6809ab29df535fe29ff00352d}
 \expandafter\def\csname PageMDfive6\endcsname{b9514c3f03bdb13c46c35ba6ae647130}
@@ -148,7 +148,7 @@ Il contenuto di questa appendice governa \emph{come stiamo ricostruendo la guida
 \expandafter\def\csname PageMDfive118\endcsname{9d02d27cc2ad8bb4e1b30d441667e854}
 \expandafter\def\csname PageMDfive119\endcsname{90b6659e5a0105e0cd7268d3f76137f6}
 \expandafter\def\csname PageMDfive120\endcsname{84cfbc76debaca8141cc88702aa0179f}
-\expandafter\def\csname PageMDfive121\endcsname{691d59fa456478a17e6ee36975680287}
+\expandafter\def\csname PageMDfive121\endcsname{7f26fbd11f49592bcc39addae19efe0d}
 \expandafter\def\csname PageMDfive122\endcsname{13cdd31df41e1d75e405e6ba020261fa}
 %</PAGE-HASH-DEFS>
 
@@ -244,6 +244,28 @@ Se ciascun consumer ripartisse direttamente dalla prosa, aumenterebbe il rischio
 Tre esigenze devono rimanere in equilibrio. La prima e' preservare l'authority documentale: cio' che compare nella BA deve poter essere ricondotto al significato governato. La seconda e' la minimalita': aggiungere struttura che non preserva alcuna distinzione utile rende la rappresentazione piu' pesante senza renderla piu' corretta. La terza e' il feedback: quando una vista o un'analisi incontra un problema, la difficolta' deve poter essere riportata al livello che puo' davvero risolverla.
 
 Questi tre principi spiegano perche' la BA e' contemporaneamente una rappresentazione condivisa e un confine: abbastanza ricca da essere riusata, ma non tanto libera da trasformarsi in una seconda documentazione di progetto.
+\begin{ddtaprinciple}[title={Analisi funzionale e approfondimento guidati dalle relazioni}]
+Nel metodo DDTA, identificare componenti, funzioni, dati e relazioni non e' soltanto un
+risultato della documentazione: la struttura BA che emerge contribuisce a guidare
+la scrittura stessa dei requisiti e il successivo approfondimento funzionale e
+logico. Le relazioni individuate suggeriscono possibili percorsi di analisi,
+attraversano confini tra funzioni e responsabilita', rendono visibili dipendenze e
+aiutano a scegliere il livello di profondita' adeguato all'obiettivo corrente.
+
+L'ordine dell'analisi non deve quindi necessariamente coincidere con l'ordine di
+esecuzione del sistema, con la gerarchia degli MR o con la struttura di una fonte
+preesistente. L'approfondimento procede in modo incrementale e source-supported:
+le identita' gia' riconosciute restano tracciabili e riusabili, mentre aspetti
+non ancora sufficientemente descritti possono essere ripresi in una successiva
+iterazione senza inventare relazioni per chiuderli artificialmente.
+
+La ricostruzione retrospettiva di documenti tradizionali in DDTA, come nel caso
+di studio DermaTriage, e' un esperimento di validazione su un progetto reale,
+non il processo di authoring di riferimento. Nel normale utilizzo DDTA, la
+documentazione dei requisiti e la BA crescono insieme: l'analisi delle relazioni
+orienta la documentazione e il feedback documentale affina la BA, preservando
+sempre l'authority dei significati governati.
+\end{ddtaprinciple}
 %</PAGE-CONTENT:3>
 \clearpage
 %<PAGE-DESC:4>1 - Direzione dell'authority e feedback

@@ -96,20 +96,20 @@
 \expandafter\def\csname PageMDfive73\endcsname{0c1825d457ea5a144981c17b811a0541}
 \expandafter\def\csname PageMDfive74\endcsname{23eafa63e01a36ddcb574e6167287082}
 \expandafter\def\csname PageMDfive75\endcsname{ff0b8e3a960c2cf216a6738e9acf6a4f}
-\expandafter\def\csname PageMDfive76\endcsname{7f3e92757f24a49f8d179855b1cb9d69}
+\expandafter\def\csname PageMDfive76\endcsname{05f05c5f8609614efc56921e387aac3d}
 \expandafter\def\csname PageMDfive77\endcsname{7792c0a50a77fa27a86f08bf4ee9a409}
 \expandafter\def\csname PageMDfive78\endcsname{dbbf21ee3061ecf500e2ede6e75cb42b}
 \expandafter\def\csname PageMDfive79\endcsname{aea7b2e7d442693e48ad13a54c811cdb}
-\expandafter\def\csname PageMDfive80\endcsname{e8a6ca175e52945b7f162f8e69d44ddf}
-\expandafter\def\csname PageMDfive81\endcsname{87a07a55a82a144c0b1897426d4ba045}
+\expandafter\def\csname PageMDfive80\endcsname{e796e93d4750a9e24e0b44e7ecb50a26}
+\expandafter\def\csname PageMDfive81\endcsname{ce48c8ec6bbea4f753143751ab9bdaa7}
 \expandafter\def\csname PageMDfive82\endcsname{748a8c4ef3fe1cb08302d275db81868f}
-\expandafter\def\csname PageMDfive83\endcsname{b7c2dbe255608f69d37eb48c3ebf3048}
-\expandafter\def\csname PageMDfive84\endcsname{ffb39c67a805b490e521223e7a1b3860}
+\expandafter\def\csname PageMDfive83\endcsname{bb0156aa24d0b26935fd638c6e62d788}
+\expandafter\def\csname PageMDfive84\endcsname{9d5778ab7c9273c3d71e8b9d717679b2}
 \expandafter\def\csname PageMDfive85\endcsname{bffa4fcc5469f12ebe1675a9e8376312}
 \expandafter\def\csname PageMDfive86\endcsname{251e20eabad327061da23389ed917818}
 \expandafter\def\csname PageMDfive87\endcsname{3cf5f4e96ab8903fd5a30023d363b0da}
 \expandafter\def\csname PageMDfive88\endcsname{392da625725431da689302a7e885994a}
-\expandafter\def\csname PageMDfive89\endcsname{40afac43cba3526ccbda27a42b716b8b}
+\expandafter\def\csname PageMDfive89\endcsname{ad199d2f7b95b143457176c46a63c301}
 %</PAGE-HASH-DEFS>
 
 \newcommand{\PageHashFooter}[1]{%
@@ -7611,61 +7611,85 @@ Il criterio JSON dello Stage 4 e' il test oracle C7: non modifica il \texttt{AIT
 \end{paracol}
 %</PAGE-CONTENT:75>
 \clearpage
-%<PAGE-DESC:76>MR-C7 > DEC-C7-01 > FR-C7-04-01 [candidate] - Verifica end-to-end della pipeline DermaTriage
+%<PAGE-DESC:76>MR-C7 > DEC-C7-01 > FR-C7-04-01 - Verifica end-to-end della pipeline DermaTriage
 %<PAGE-CONTENT:76>
 \PageHashFooter{\PageMDfive{76}}
-\subsubsection{FR-C7-04-01 [candidate] - Verifica end-to-end della pipeline DermaTriage}
-{\sffamily\scriptsize\color{DDTAGray}Gerarchia proposta: \texttt{MR-C7} $\rightarrow$ \texttt{DEC-C7-01} $\rightarrow$ \texttt{FR-C7-04-01}. Reconstruction-only: nessuna promotion.}\par
-\setlength{\columnsep}{7mm}\setlength{\columnseprule}{0.35pt}\columnratio{0.67}\begin{paracol}{2}
+\subsubsection{FR-C7-04-01 - Verifica end-to-end della pipeline DermaTriage}
+{\sffamily\scriptsize\color{DDTAGray}Gerarchia: \texttt{MR-C7} $\rightarrow$ \texttt{DEC-C7-01} $\rightarrow$ \texttt{FR-C7-04-01}. Analisi del full-pipeline test: runtime riusato e decisione locale candidate.}\par
+\setlength{\columnsep}{7mm}\setlength{\columnseprule}{0.35pt}\columnratio{0.63}\begin{paracol}{2}
 {\sffamily\large\bfseries\color{DDTANavy}Documentazione DDTA}\par\vspace{0.12em}
-\begin{ddtacore}[title={FunctionalRequirement candidate}]
-\fontsize{3.78}{4.14}\selectfont
+\begin{ddtacore}[title={FunctionalRequirement}]
+\fontsize{5.8}{6.35}\selectfont
 \begin{tabularx}{\linewidth}{L{39mm}Y}\toprule
 \textbf{ID} & \texttt{FR-C7-04-01} \\
-\textbf{Lifecycle} & \texttt{candidate} \\
-\textbf{Authority} & \texttt{CANDIDATE\_NON\_CURRENT} \\
+\textbf{Lifecycle} & \texttt{current} \\
+\textbf{Authority} & \texttt{CURRENT\_GOVERNED} \\
 \textbf{Type} & \texttt{FunctionalRequirement} \\
 \textbf{Title} & Verifica end-to-end della pipeline DermaTriage \\
 \textbf{Parent Decision} & \texttt{DEC-C7-01} \\
 \textbf{Owning MR (derived)} & \texttt{MR-C7} \\
 \bottomrule\end{tabularx}
 \textbf{Functional obligation}\par
-Esercitare l'intero percorso image-based DermaTriage e determinare l'esito del controllo end-to-end.
+Esercitare il percorso completo image-based tramite un test che fornisce \texttt{image}, \texttt{age}, \texttt{sex} e \texttt{localization}, e verificare il risultato operativo restituito, mantenendo distinti gli owner dei comportamenti attraversati.
 
 \textbf{Functional clauses}\par
-Il test MUST usare image, age, sex e localization. L'expected observation MUST preservare P1--P4, Italian specialist e SLA time. \texttt{PASS} richiede complete response ottenuta in meno di 30 secondi. ``Complete response'' non viene ulteriormente scomposta per inferenza.
+Il full-pipeline test MUST attraversare gli Stage 1--4. Il risultato atteso riporta priorita' P1--P4, specialista italiano e SLA time. \texttt{PASS} MUST essere assegnato quando la risposta e' \emph{complete} AND \texttt{responseTime < 30s}. ``Complete response'' resta il criterio documentato, non viene ridefinito come semplice congiunzione dei campi elencati.
 
-\textbf{Boundary}\par
-La pipeline analitica resta MR-01; la destinazione specialistica resta MR-02; l'owner esatto dello SLA resta aperto. Il controllo non include B4 write-back o retraining e resta distinto dal test \texttt{/analyze}.
+\textbf{Current realization / verified flow}\par
+Il test parte dal boundary logico \texttt{DermaTriage}, senza identificare uno specifico endpoint. Le funzioni runtime gia' governate producono \texttt{ImageUrgencyClassification} (Stage 1), \texttt{ClinicalDescription} (Stage 2), \texttt{RetrievedHistoricalCases} (Stage 3); \texttt{MultiSourceTriageSynthesis} combina questi con \texttt{SymptomInformation}, producendo \texttt{AITriageSynthesis}, \texttt{CaseUrgency}, \texttt{TriageConfidence}. La derivazione della priorita' operativa riusa \texttt{CaseUrgency} e \texttt{TriageConfidence}. La source distingue questo test dal test \texttt{POST /analyze}.
+
+\textbf{Boundary / first pass}\par
+L'ownership delle funzioni runtime resta MR-01; la destinazione specialistica resta governata da MR-02; lo SLA non e' attribuito qui a una nuova BA identity. Il test Full non importa il criterio separato \texttt{valid P-scale} di \texttt{/analyze}; non riguarda B4 write-back o retraining. Gli approfondimenti cross-owner saranno riesaminati dopo il primo passaggio completo della documentazione.
 \end{ddtacore}
 \switchcolumn
-{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par\vspace{0.10em}
-\begin{ddtareferentidentified}[top=2pt,bottom=2pt,left=5pt,right=5pt]\fontsize{3.46}{3.80}\selectfont
-\BACandidate{FullPipelineVerification} \BANew{}; \BACandidate{FullPipelineVerificationObservation} \BANew{}; \BACandidate{FullPipelineVerificationOutcome} \BANew{}.\par
-\textbf{Reuse:} \texttt{OperationalTriagePriority}; \texttt{SpecialistDestinationIndication}; \texttt{FullPipelineVerificationStage}.
+{\sffamily\large\bfseries\color{DDTABlue}Base Analysis}\par\vspace{0.08em}
+\begin{ddtareferentidentified}[top=2pt,bottom=2pt,left=5pt,right=5pt]
+\fontsize{4.6}{5.05}\selectfont
+\BACandidate{FullPipelineVerification} \BANew{}; \BACandidate{FullPipelineTestInput} \BANew{}; \BACandidate{FullPipelineResponse} \BANew{}; \BACandidate{FullPipelineVerificationOutcome} \BANew{}.\par
+\textbf{Reuse:} \texttt{DermaTriage}; \texttt{FullPipelineVerificationStage}; \texttt{OperationalTriagePriority}; \texttt{SpecialistDestinationIndication}; runtime Stage 1--4.
 \end{ddtareferentidentified}
-\begin{ddtareferentaccepted}[top=2pt,bottom=2pt,left=5pt,right=5pt]\fontsize{3.34}{3.68}\selectfont
-\BAAccepted{DermaTriageVerification}; \BAAccepted{DermaTriageVerificationProcedure}; \BAAccepted{OperationalTriagePriority}; \BAAccepted{SpecialistDestinationIndication}; \BAAccepted{FullPipelineVerificationStage}. Le nuove identity restano candidate; nessun BAReferent SLA viene introdotto finche' l'owner resta aperto.
+\begin{ddtareferentaccepted}[top=2pt,bottom=2pt,left=5pt,right=5pt]
+\fontsize{4.35}{4.80}\selectfont
+\BAAccepted{DermaTriage}; \BAAccepted{DermaTriageVerification}; \BAAccepted{DermaTriageVerificationProcedure}; \BAAccepted{FullPipelineVerificationStage}; \BAAccepted{OperationalTriagePriority}; \BAAccepted{SpecialistDestinationIndication}; \BAAccepted{FullPipelineVerification} \BAFirstAccepted{}; \BAAccepted{FullPipelineTestInput} \BAFirstAccepted{}; \BAAccepted{FullPipelineResponse} \BAFirstAccepted{}; \BAAccepted{FullPipelineVerificationOutcome} \BAFirstAccepted{}.
 \end{ddtareferentaccepted}
-\begin{ddtapropositionidentified}[top=2pt,bottom=2pt,left=5pt,right=5pt]\fontsize{3.04}{3.36}\selectfont
-\textbf{\texttt{BAP-FRC7-04-01-01}} \emph{[CANDIDATE]}\par
-\hspace*{1em}\texttt{semanticOperatorKey = produce}\par
+\begin{ddtapropositionidentified}[top=2pt,bottom=2pt,left=5pt,right=5pt]
+\fontsize{4.35}{4.75}\selectfont
+\texttt{BAP-FRC7-04-01-01}\par
+\texttt{semanticOperatorKey = produce}\par
 \hspace*{1em}\texttt{actor -> FullPipelineVerification}\par
-\hspace*{1em}\texttt{input -> FullPipelineVerificationObservation}\par
 \hspace*{1em}\texttt{result -> FullPipelineVerificationOutcome}\par
-\hspace*{1em}\texttt{polarity = affirmative}\par
-\smallskip
-\emph{Candidate containment -- ID non assegnato}\par
-\hspace*{1em}\texttt{semanticOperatorKey = hasPart}\par
+\hspace*{1em}\texttt{operatorStructure [CANDIDATE / NOT ADMITTED]}\par
+\hspace*{2em}\texttt{decisionRule}\par
+\hspace*{3em}\texttt{branch}\par
+\hspace*{4em}\texttt{when -> complete response AND responseTime lt 30s}\par
+\hspace*{4em}\texttt{resultAssignment -> FullPipelineVerificationOutcome = PASS}\par
+\texttt{polarity = affirmative}\par\smallskip
+\texttt{BAP-FRC7-04-01-02}\par
+\texttt{semanticOperatorKey = transfer}\par
+\hspace*{1em}\texttt{source -> FullPipelineVerification}\par
+\hspace*{1em}\texttt{destination -> DermaTriage}\par
+\hspace*{1em}\texttt{content -> FullPipelineTestInput}\par
+\texttt{polarity = affirmative}\par\smallskip
+\texttt{BAP-FRC7-04-01-03}\par
+\texttt{semanticOperatorKey = transfer}\par
+\hspace*{1em}\texttt{source -> DermaTriage}\par
+\hspace*{1em}\texttt{destination -> FullPipelineVerification}\par
+\hspace*{1em}\texttt{content -> FullPipelineResponse}\par
+\texttt{polarity = affirmative}\par\smallskip
+\texttt{BAP-FRC7-04-01-04}\par
+\texttt{semanticOperatorKey = hasPart}\par
 \hspace*{1em}\texttt{whole -> FullPipelineVerificationStage}\par
 \hspace*{1em}\texttt{part -> FullPipelineVerification}\par
-\hspace*{1em}\texttt{polarity = affirmative}
+\texttt{polarity = affirmative}
 \end{ddtapropositionidentified}
-\begin{ddtapropositionaccepted}[top=2pt,bottom=2pt,left=5pt,right=5pt]\fontsize{3.40}{3.74}\selectfont
-\texttt{--}. In questo caso la observation aggregata resta utile perche' il controllo attraversa significati posseduti da owner diversi.
+\begin{ddtapropositionaccepted}[top=2pt,bottom=2pt,left=5pt,right=5pt]
+\fontsize{4.4}{4.85}\selectfont
+\textbf{\texttt{BAP-FRC7-04-01-01..04}}. Il risultato della verification e' distinto dalla \texttt{FullPipelineResponse} trasferita dal boundary. I due \texttt{transfer} governano l'andata del test input e il ritorno della response; \texttt{hasPart} colloca la verification nello stage. La local \texttt{decisionRule} di \texttt{-01} resta struttura candidate/non ammessa; l'esito complementare non viene inferito.
 \end{ddtapropositionaccepted}
-\begin{ddtaopenrelations}[top=2pt,bottom=2pt,left=5pt,right=5pt]\fontsize{3.08}{3.40}\selectfont
-Cross-owner pressure: ``complete response'' e SLA devono essere riesaminati senza trasferire ownership sotto C7. Nessun criterio \texttt{valid P-scale} viene importato automaticamente dal test \texttt{/analyze}.
+\begin{ddtaopenrelations}[top=2pt,bottom=2pt,left=5pt,right=5pt]
+\fontsize{4.4}{4.85}\selectfont
+\textbf{Complete response.} La definizione operativa del predicato non viene inventata. P1--P4, specialista e SLA sono significati attesi, senza imporre qui un nuovo contratto di composizione.\par
+\textbf{Cross-owner.} Il test riusa identita' funzionali gia' note, senza anticipare una review sistematica di MR-01 o stabilire un owner SLA. La revisione dei dubbi e' differita al passaggio conclusivo.
 \end{ddtaopenrelations}
 \end{paracol}
 %</PAGE-CONTENT:76>
@@ -7877,7 +7901,7 @@ Per-gate outcome pressure: una sola FR contiene quattro criterion outcomes ma ne
 \texttt{FR-C7-03-02} & ClinicalDescriptionGenerationVerification + Outcome; reuse LesionImage / ClinicalDescriptionGeneration / ClinicalDescription / ClinicalDescriptionContentContract / Qwen2-VL-7B-Instruct & review closed: stage \texttt{hasPart}; image/result \texttt{transfer}; verification \texttt{produce}; local rule checks non-empty text only; test-vector acquisition NOT SPECIFIED; runtime five-part contract reused, not duplicated. \\
 \texttt{FR-C7-03-03} & HistoricalCaseRetrievalVerification + Outcome; reuse ClinicalDescription / embedding generation / HistoricalCaseVectorIndex / similarity retrieval / RetrievedHistoricalCases / all-MiniLM-L6-v2 / ChromaDB & review closed: stage \texttt{hasPart}; query/result \texttt{transfer}; verification \texttt{produce}; local rule checks result count \texttt{eq 5}; test-query source NOT SPECIFIED; four result fields remain source-supported with BA structure relation NOT SPECIFIED. \\
 \texttt{FR-C7-03-04} & MultiSourceTriageSynthesisVerification + Outcome; reuse Stage 1 ImageUrgencyClassification, Stage 2 ClinicalDescription, Stage 3 RetrievedHistoricalCases, SymptomInformation, BioMistral-7B, AITriageSynthesis / CaseUrgency / TriageConfidence & review closed: stage \texttt{hasPart}; four input \texttt{transfer}; AITriageSynthesis return \texttt{transfer}; verification \texttt{produce}; PASS on valid JSON with five named test fields; local decisionRule candidate. \\
-\texttt{FR-C7-04-01} & FullPipelineVerification + Observation + Outcome & aggregated observation retained for cross-owner result. \\
+\texttt{FR-C7-04-01} & FullPipelineVerification + FullPipelineTestInput / FullPipelineResponse + Outcome & review closed: stage \texttt{hasPart}; test-input/response \texttt{transfer} through \texttt{DermaTriage}; verification \texttt{produce}; PASS = complete response AND responseTime lt 30s; cross-owner meanings reused and deeper review deferred. \\
 \texttt{FR-C7-05-01} & B4IntegrationVerification + per-control observation/outcome & six occurrences stay aggregated until multiplicity/split review. \\
 \texttt{FR-C7-06-01} & RetrainingControlVerification + Observation & rename from LifecycleVerification; no outcome/pass rule. \\
 \texttt{FR-C7-07-01} & BaselineClassifierQualityVerification + Observation + per-gate Outcome & gt 90\% canonical; no overall result. \\
@@ -7921,7 +7945,7 @@ Nessuna ulteriore famiglia source-supported emerge per \texttt{/docs}, prompt-ma
 \switchcolumn
 {\sffamily\large\bfseries\color{DDTABlue}Open points / prossimo gate}\par\vspace{0.15em}
 \begin{ddtaopen}[title={Da chiudere durante la review individuale}]
-\fontsize{2.90}{3.20}\selectfont
+\fontsize{2.72}{3.02}\selectfont
 \textbf{Service readiness.} \texttt{FR-C7-01-01} e' chiuso: \texttt{ServiceReadinessVerification} e' parte di \texttt{ServiceReadinessVerificationStage}; request/response sono due transfer distinti; derivazione interna dei cinque status e relazione HTTP-200/local-PASS restano \texttt{NOT SPECIFIED}.\par
 \textbf{Direct analysis.} \texttt{FR-C7-02-01} e' chiuso: \texttt{DirectAnalysisEndpointVerification} e' parte di \texttt{EndpointVerificationStage}; riusa \texttt{AnalyzeEndpoint} e scambia \texttt{DirectAnalysisRequest/Response}. Il runtime interno della pipeline non viene duplicato in questo FR.\par
 \textbf{B4-integrated endpoint.} \texttt{FR-C7-02-02} e' chiuso: \texttt{B4IntegratedDiagnosisEndpointVerification} e' parte di \texttt{EndpointVerificationStage}; riusa \texttt{DiagnoseEndpoint}, scambia request/response esplicite e usa HTTP 200 + occorrenza del write-back \texttt{BAP-FR23-01} nella local PASS rule senza duplicare il runtime transfer.\par
@@ -7932,7 +7956,7 @@ Nessuna ulteriore famiglia source-supported emerge per \texttt{/docs}, prompt-ma
 
 \textbf{Multi-source synthesis Stage 4.} \texttt{FR-C7-03-04} e' chiuso: la verification in \texttt{MultiSourceTriageSynthesisVerificationStage} usa gli output \texttt{ImageUrgencyClassification} (Stage 1), \texttt{ClinicalDescription} (Stage 2), \texttt{RetrievedHistoricalCases} (Stage 3) e \texttt{SymptomInformation}. Quattro transfer portano questi dati a \texttt{MultiSourceTriageSynthesis}, realizzata da \texttt{BioMistral-7B}. \texttt{BAP-FR03-04-01} produce \texttt{AITriageSynthesis}, \texttt{CaseUrgency} e \texttt{TriageConfidence}; il test riceve la sola \texttt{AITriageSynthesis} e verifica un JSON valido con i cinque campi nominati dal suo oracle.\par
 \textbf{RC-002.} Stage 4 oracle e runtime content contract restano da riconciliare nell'owner corretto.\par
-\textbf{Full pipeline.} SLA owner/identity resta aperto; ``complete response'' resta criterio non scomposto.\par
+\textbf{Full pipeline.} \texttt{FR-C7-04-01} e' chiuso: \texttt{FullPipelineVerification} invia \texttt{FullPipelineTestInput} al boundary \texttt{DermaTriage} e riceve \texttt{FullPipelineResponse}. Il test riusa gli Stage 1--4 senza modificare MR-01; SLA owner/identity resta aperto e il predicato complete response non e' scomposto.\par
 \textbf{B4 aggregation.} Sei controlli con outcome locali, nessun overall rule; decidere se lo split e' necessario.\par
 \textbf{Retraining.} Cinque controlli source-closed, expected response senza pass condition.\par
 \textbf{Quality.} HIGH sensitivity e' normalizzato a \texttt{>90\%} secondo il gate governato corrente; nessun overall acceptance result.
@@ -7940,7 +7964,7 @@ Nessuna ulteriore famiglia source-supported emerge per \texttt{/docs}, prompt-ma
 
 \begin{ddtaquestions}
 \fontsize{3.32}{3.65}\selectfont
-Gate corrente chiuso: \texttt{FR-C7-03-04}. Le quattro verifiche Stage 1..4 riusano i behavior runtime e le realizzazioni gia' governate. Stage 4 usa quattro input BA distinti e controlla il JSON \texttt{AITriageSynthesis}; \texttt{CaseUrgency} e \texttt{TriageConfidence} restano output runtime senza transfer autonomi verso la verification. Prossimo gate: \texttt{FR-C7-04-01}.
+Gate corrente chiuso: \texttt{FR-C7-04-01}. Dopo le quattro verifiche locali Stage 1--4, la verifica end-to-end esercita il boundary logico \texttt{DermaTriage} tramite \texttt{FullPipelineTestInput/Response}; regola locale: complete response in meno di 30 secondi. Prossimo gate: \texttt{FR-C7-05-01}. I dubbi di riconciliazione saranno trattati nel passaggio finale dopo la copertura completa.
 \end{ddtaquestions}
 \end{paracol}
 %</PAGE-CONTENT:81>
@@ -8154,8 +8178,8 @@ P1Count / P2Count / P3Count / P4Count & \textbf{\texttt{FR-C7-02-03}} -- parti d
 \vspace{0.22mm}
 {\sffamily\bfseries\color{DDTABlue}BAReferent - pipeline-stage verification increment}\par
 \vspace{0.08mm}
-\fontsize{3.58}{3.92}\selectfont
-\renewcommand{\arraystretch}{0.58}
+\fontsize{3.34}{3.66}\selectfont
+\renewcommand{\arraystretch}{0.53}
 \begin{tabularx}{\textwidth}{L{68mm}Y}
 \toprule
 \textbf{BAReferent} & \textbf{Riferimento documentale / boundary} \\
@@ -8168,6 +8192,10 @@ HistoricalCaseRetrievalVerification & \textbf{\texttt{FR-C7-03-03}} -- behavior 
 HistoricalCaseRetrievalVerificationOutcome & \textbf{\texttt{FR-C7-03-03}} -- result locale della verification; \texttt{PASS} e' assegnato dalla candidate rule quando il numero dei \texttt{RetrievedHistoricalCases} e' esattamente 5; consumer successivo \texttt{NOT SPECIFIED}. \\
 MultiSourceTriageSynthesisVerification & \textbf{\texttt{FR-C7-03-04}} -- verifica Stage 4 che invia i quattro input BA a \texttt{MultiSourceTriageSynthesis} e riceve \texttt{AITriageSynthesis}. \\
 MultiSourceTriageSynthesisVerificationOutcome & \textbf{\texttt{FR-C7-03-04}} -- result locale della verifica: \texttt{PASS} per JSON valido con tutti e cinque i campi dell'oracle; regola candidata. \\
+FullPipelineVerification & \textbf{\texttt{FR-C7-04-01}} -- verification end-to-end inclusa in \texttt{FullPipelineVerificationStage}; invia il test input e riceve la response dal boundary \texttt{DermaTriage}. \\
+FullPipelineTestInput & \textbf{\texttt{FR-C7-04-01}} -- contenuto di test trasferito: image, age, sex, localization. \\
+FullPipelineResponse & \textbf{\texttt{FR-C7-04-01}} -- response end-to-end restituita; osservazione attesa: P1--P4, Italian specialist, SLA time. \\
+FullPipelineVerificationOutcome & \textbf{\texttt{FR-C7-04-01}} -- result della verifica; \texttt{PASS} quando risposta complete AND responseTime lt 30s; local rule candidate. \\
 \bottomrule
 \end{tabularx}
 
@@ -8344,6 +8372,10 @@ Questa pagina continua il registro BA della pagina precedente. Il \textbf{grasse
 \textbf{\texttt{BAP-FRC7-03-04-05}} & \texttt{FR-C7-03-04} -- \texttt{transfer}: verification $\rightarrow$ synthesis : SymptomInformation \\
 \textbf{\texttt{BAP-FRC7-03-04-06}} & \texttt{FR-C7-03-04} -- \texttt{transfer}: synthesis $\rightarrow$ verification : AITriageSynthesis; CaseUrgency/TriageConfidence non trasferiti separatamente \\
 \textbf{\texttt{BAP-FRC7-03-04-07}} & \texttt{FR-C7-03-04} -- \texttt{hasPart}: MultiSourceTriageSynthesisVerificationStage $\rightarrow$ MultiSourceTriageSynthesisVerification \\
+\textbf{\texttt{BAP-FRC7-04-01-01}} & \texttt{FR-C7-04-01} -- \texttt{produce}: FullPipelineVerification $\rightarrow$ FullPipelineVerificationOutcome; local decisionRule candidate assegna PASS a complete response AND responseTime lt 30s \\
+\textbf{\texttt{BAP-FRC7-04-01-02}} & \texttt{FR-C7-04-01} -- \texttt{transfer}: FullPipelineVerification $\rightarrow$ DermaTriage : FullPipelineTestInput (image, age, sex, localization) \\
+\textbf{\texttt{BAP-FRC7-04-01-03}} & \texttt{FR-C7-04-01} -- \texttt{transfer}: DermaTriage $\rightarrow$ FullPipelineVerification : FullPipelineResponse \\
+\textbf{\texttt{BAP-FRC7-04-01-04}} & \texttt{FR-C7-04-01} -- \texttt{hasPart}: FullPipelineVerificationStage $\rightarrow$ FullPipelineVerification \\
 \bottomrule
 \end{tabularx}
 \fontsize{3.05}{3.27}\selectfont
@@ -8811,7 +8843,7 @@ Ogni pagina possiede un MD5 del proprio contenuto canonico. Il calcolo esclude i
 \IntegrityRow{73}{MR-C7 > DEC-C7-01 > FR-C7-03-02 - Verifica della Clinical Description Generation}{\PageMDfive{73}}
 \IntegrityRow{74}{MR-C7 > DEC-C7-01 > FR-C7-03-03 - Verifica dell'Historical Case Retrieval}{\PageMDfive{74}}
 \IntegrityRow{75}{MR-C7 > DEC-C7-01 > FR-C7-03-04 - Verifica della Multi-Source Triage Synthesis}{\PageMDfive{75}}
-\IntegrityRow{76}{MR-C7 > DEC-C7-01 > FR-C7-04-01 [candidate] - Verifica end-to-end della pipeline DermaTriage}{\PageMDfive{76}}
+\IntegrityRow{76}{MR-C7 > DEC-C7-01 > FR-C7-04-01 - Verifica end-to-end della pipeline DermaTriage}{\PageMDfive{76}}
 \IntegrityRow{77}{MR-C7 > DEC-C7-01 > FR-C7-05-01 [candidate] - Verifica dell'integrazione DermaTriage-B4}{\PageMDfive{77}}
 \IntegrityRow{78}{MR-C7 > DEC-C7-01 > FR-C7-06-01 [candidate] - Verifica dei controlli operativi del retraining}{\PageMDfive{78}}
 \IntegrityRow{79}{MR-C7 > DEC-C7-01 > FR-C7-07-01 [candidate] - Verifica dei quality gate assoluti del classificatore di urgenza}{\PageMDfive{79}}
