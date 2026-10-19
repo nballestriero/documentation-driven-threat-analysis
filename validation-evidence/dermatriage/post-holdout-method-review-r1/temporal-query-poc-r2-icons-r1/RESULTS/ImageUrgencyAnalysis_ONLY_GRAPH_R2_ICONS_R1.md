@@ -1,0 +1,39 @@
+# ImageUrgencyAnalysis — solo topologia BA (stile DDTA B)
+
+Il frame bianco è esclusivamente grafico, non una relazione BA.
+
+```mermaid
+%%{init: {"theme":"base","themeVariables":{"background":"#FFFFFF","lineColor":"#171717","edgeLabelBackground":"#FFFFFF"}}}%%
+
+flowchart LR
+
+    %% Selected from structured BA Markdown: source is NOT the cumulative Mermaid.
+    %% Profile B (verified in VS Code): R3 document icons, R50 actor/edge classes.
+    %% BA_VIEW_WHITE is visual-only: not hasPart and not a trust boundary.
+    subgraph BA_VIEW_WHITE["BA view — layout only"]
+      direction LR
+      R_EfficientNet_B4["EfficientNet-B4<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FR03-01-02</span>"]
+      R_ImageUrgencyAnalysis("ImageUrgencyAnalysis<br/><span style='font-size:7px;color:#FFFFFF'>BAP-FR03-01-01</span>")
+      R_ImageUrgencyClassification@{ shape: doc, label: "ImageUrgencyClassification" }
+      R_LesionImage@{ shape: doc, label: "LesionImage" }
+
+      R_EfficientNet_B4 -.->|realize| R_ImageUrgencyAnalysis
+      R_LesionImage --> R_ImageUrgencyAnalysis
+      R_ImageUrgencyAnalysis -->|"produce<br/>BAP-FR03-01-01"| R_ImageUrgencyClassification
+    end
+
+    classDef BAProduceActor fill:#212121,stroke:#000000,stroke-width:2px,color:#FFFFFF;
+    classDef BARealizationD2 fill:#8F9295,stroke:#4C5054,stroke-width:2px,color:#FFFFFF;
+    classDef BAStore fill:#EEF4F9,stroke:#275D86,stroke-width:2px,color:#17324D;
+    classDef BAContent fill:#FFFFFF,stroke:#275D86,stroke-width:2px,color:#17324D;
+    classDef BALogicalData fill:#FFFFFF,stroke:#5C99C1,stroke-width:2px,color:#23313D;
+    classDef BATransferBehavior fill:#FFF4E3,stroke:#A96A16,stroke-width:2px,color:#17324D;
+    classDef BAGap fill:#FFFFFF,stroke:#C62828,stroke-width:3px,color:#C62828;
+    style BA_VIEW_WHITE fill:#FFFFFF,stroke:#D4DCE3,stroke-width:1px,color:#17324D;
+    class R_EfficientNet_B4 BARealizationD2;
+    class R_ImageUrgencyAnalysis BAProduceActor;
+    class R_ImageUrgencyClassification,R_LesionImage BAContent;
+    linkStyle 0 stroke:#5F6368,stroke-width:2px,stroke-dasharray:6 4;
+    linkStyle 1 stroke:#171717,stroke-width:3px;
+    linkStyle 2 stroke:#171717,stroke-width:3px;
+```

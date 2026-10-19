@@ -1,0 +1,14 @@
+flowchart LR
+  %% Pure temporal metadata; NO edges here are BAPropositions.
+  TC_PRE_BASELINE["PRE_BASELINE / UNKNOWN / historical-evidence"]
+  TC_T_SETUP["T_SETUP / PRESENT / documented-step"]
+  TC_T_DEPLOY_CHECK["T_DEPLOY_CHECK / UNKNOWN / documented-test"]
+  TC_T_RUNTIME["T_RUNTIME / PRESENT / governed-behavior"]
+  TC_T_RETRAIN["T_RETRAIN / UNKNOWN / governed-future-behavior"]
+  TC_T_QUALIFY["T_QUALIFY / UNKNOWN / governed-future-behavior"]
+  TC_T_SETUP -.->|"precedes / NON BA"| TC_T_DEPLOY_CHECK
+  TC_T_DEPLOY_CHECK -.->|"precedes / NON BA"| TC_T_RUNTIME
+  TC_T_SETUP -.->|"precedes / NON BA"| TC_T_RETRAIN
+  TC_T_RETRAIN -.->|"precedes / NON BA"| TC_T_QUALIFY
+  classDef BATemporalView fill:#F5F6F8,stroke:#8B949E,stroke-width:1.5px,stroke-dasharray:3 3,color:#40464E;
+  class TC_PRE_BASELINE,TC_T_SETUP,TC_T_DEPLOY_CHECK,TC_T_RUNTIME,TC_T_RETRAIN,TC_T_QUALIFY BATemporalView;

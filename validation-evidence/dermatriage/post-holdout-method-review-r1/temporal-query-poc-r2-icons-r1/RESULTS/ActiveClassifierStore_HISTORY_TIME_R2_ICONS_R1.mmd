@@ -1,0 +1,6 @@
+flowchart LR
+  %% Pure temporal metadata; NO edges here are BAPropositions.
+  TC_T_SETUP["T_SETUP / PRESENT / documented-step"]
+  TC_T_RUNTIME["T_RUNTIME / PRESENT / governed-behavior"]
+  classDef BATemporalView fill:#F5F6F8,stroke:#8B949E,stroke-width:1.5px,stroke-dasharray:3 3,color:#40464E;
+  class TC_T_SETUP,TC_T_RUNTIME BATemporalView;
