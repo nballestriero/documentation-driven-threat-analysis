@@ -4,7 +4,7 @@ Integrity-index page resolves all other page hashes and canonicalizes its own ha
 
 Page 1  485f1d815c9a44fc31a18a29bf114837  Frontespizio e struttura del case study
 Page 2  a3275772d6cd2ce37195f7d8163144e8  Contesto generale del progetto - Project Problem Framing
-Page 3  46cbd47a5fe8e2c86417634fdddea7c8  MR-01 - Valutazione di triage del caso dermatologico
+Page 3  10c93bc02abf32f083ea765f88747983  MR-01 - Valutazione di triage del caso dermatologico
 Page 4  d464848d4f632cc58be0991cacf1b647  MR-01 > DEC-MR01-01 - Valutazione di urgenza in assenza di immagine
 Page 5  b20178fc4e6cdc140cf16360634f5344  MR-01 > DEC-MR01-01 > FR-MR01-01-01 - Determinazione dell'urgenza su base sintomatologica
 Page 6  a3198ac668083dc67b750dff9bd44175  MR-01 > DEC-MR01-03 - Percorso image-based a quattro stadi coordinati
@@ -90,4 +90,4 @@ Page 85  bffa4fcc5469f12ebe1675a9e8376312  Registro Base Analysis - C6 source, d
 Page 86  251e20eabad327061da23389ed917818  Registro Base Analysis - C6 FR-C6-01-03B1..B3 e 03C increment
 Page 87  3cf5f4e96ab8903fd5a30023d363b0da  Registro Base Analysis - FR-C6-01-06 API composition and endpoint topology
 Page 88  392da625725431da689302a7e885994a  Registro Base Analysis - DEC-C7-01 verification procedure topology increment
-Page 89  97b32e791c0db51d565b2a91bf08edea  Indice di integrita delle pagine
+Page 89  49a90ccb994eec9df6b90a8f76ad1e7f  Indice di integrita delle pagine

@@ -23,7 +23,7 @@
 %<PAGE-HASH-DEFS>
 \expandafter\def\csname PageMDfive1\endcsname{485f1d815c9a44fc31a18a29bf114837}
 \expandafter\def\csname PageMDfive2\endcsname{a3275772d6cd2ce37195f7d8163144e8}
-\expandafter\def\csname PageMDfive3\endcsname{46cbd47a5fe8e2c86417634fdddea7c8}
+\expandafter\def\csname PageMDfive3\endcsname{10c93bc02abf32f083ea765f88747983}
 \expandafter\def\csname PageMDfive4\endcsname{d464848d4f632cc58be0991cacf1b647}
 \expandafter\def\csname PageMDfive5\endcsname{b20178fc4e6cdc140cf16360634f5344}
 \expandafter\def\csname PageMDfive6\endcsname{a3198ac668083dc67b750dff9bd44175}
@@ -109,7 +109,7 @@
 \expandafter\def\csname PageMDfive86\endcsname{251e20eabad327061da23389ed917818}
 \expandafter\def\csname PageMDfive87\endcsname{3cf5f4e96ab8903fd5a30023d363b0da}
 \expandafter\def\csname PageMDfive88\endcsname{392da625725431da689302a7e885994a}
-\expandafter\def\csname PageMDfive89\endcsname{97b32e791c0db51d565b2a91bf08edea}
+\expandafter\def\csname PageMDfive89\endcsname{49a90ccb994eec9df6b90a8f76ad1e7f}
 %</PAGE-HASH-DEFS>
 
 \newcommand{\PageHashFooter}[1]{%
@@ -328,6 +328,9 @@ Paziente.
 \scriptsize
 \texttt{CaseUrgency <relazione da determinare> DermatologicalCase}\par
 \texttt{OperationalTriagePriority <relazione da determinare> DermatologicalCase}\par
+\smallskip
+\textbf{Gap di ingresso di CaseInformation.} Il dato partecipa come \texttt{input} alla \texttt{produce} \texttt{BAP-MR01-01}, ma l'origine e il trasferimento fino a \texttt{DermatologicalTriageEvaluation} sono \texttt{NOT SPECIFIED}.\par
+\texttt{transfer} in review: source = \texttt{NOT SPECIFIED}; content = \texttt{CaseInformation}; destination = \texttt{DermatologicalTriageEvaluation}. Solo assessment, non una BAProposition \texttt{transfer} ammessa. Il marker \texttt{?} e' diagnostico nella proiezione Mermaid.\par
 \end{ddtaopenrelations}
 
 \end{paracol}
