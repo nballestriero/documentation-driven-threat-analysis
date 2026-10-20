@@ -1,41 +1,37 @@
-# DEC-MR01-02 — Sorgenti Markdown modulari e template per tipo DDTA
+# DEC-MR01-02 — Rappresentazione dichiarativa e generazione guidata dal formato
 
 **Parent MacroRequirement:** `MR-01`\
 **Lifecycle:** `candidate`\
 **Authority:** `EXPERIMENTAL_NON_CANONICAL`\
-**Decision kind:** `SELECTABLE` *(classificazione di review)*\
+**Decision kind:** `SELECTABLE` *(classificazione di review)*
 
 ## Context
 
-Un documento DDTA deve restare leggibile, ma una sorgente Markdown completamente libera non consente di riconoscere in modo affidabile tipo, identità e campi governati. Inoltre documentazione, Base Analysis (BA) e proiezioni Mermaid hanno ruoli differenti: conservarle in un unico file rende più difficile verificare sintassi, provenienza e coerenza; mantenerle come sorgenti concorrenti rischia di introdurre discrepanze. Il nome del file, da solo, non può definire l'identità governata.
+I tipi documentali DDTA hanno campi, cardinalità e strutture differenti, pur richiedendo un'esperienza comune di creazione e manutenzione. Un generatore costruito separatamente per ogni tipo duplicherebbe le regole di rappresentazione e potrebbe far divergere le strutture prodotte. Un Markdown privo di dichiarazioni strutturate non permette di identificare in modo affidabile tipo e identità; occorre quindi scegliere una rappresentazione leggibile e interpretabile.
 
 ## Decision
 
-**Commitment candidato sul modello dei file:**
+**Commitment progettuale candidato:** adottare Markdown come sorgente leggibile dei documenti DDTA e della BA, con *YAML front matter* per i metadati identificativi e di collegamento, e contenuti descrittivi mantenuti nelle sezioni Markdown. Per ciascun tipo supportato utilizzare una **definizione di formato YAML esterna, identificabile e caricabile**. Il servizio comune di creazione seleziona la definizione richiesta e produce il template corrispondente; CLI, editor e altre interfacce non mantengono cataloghi indipendenti dei campi.
 
-- **Documentazione DDTA:** ogni elemento documentale governato (MR, Decision, FR o specializzazione) è redatto in un proprio file Markdown. Contiene il significato documentale e i suoi campi, non la rappresentazione canonica delle BAProposition.
-- **Base Analysis:** la BA relativa a un elemento documentale è conservata in un **file Markdown distinto**, collegato in modo esplicito all'identità del documento che analizza. Può essere creata e mantenuta anche in modo incrementale, senza essere automaticamente accettata per il solo fatto di esistere. Le identità BA condivise devono essere risolte in modo coerente, non duplicate per ogni file.
-- **Mermaid:** ogni proiezione locale è conservata in un **file Markdown distinto**, con un blocco Mermaid generato dalla BA e non editato come fonte alternativa di verità. Sono ammesse viste che compongono BA collegate a più documenti; la loro generazione e composizione sono governate nel ramo `MR-04`, non mediante concatenazione manuale dei Mermaid locali.
-- **Identificazione:** tipo, identità e collegamenti fra artefatti devono essere dichiarati e verificabili indipendentemente dalle convenzioni di denominazione. La risoluzione dei riferimenti e il riuso delle identità sono responsabilità di `MR-03`.
-- **Template:** la creazione di documenti DDTA e di file BA utilizza schemi formalizzati e versionati condivisi tra CLI e VS Code. Il Mermaid viene prodotto dal sistema di proiezione a partire dalla BA validata; il relativo file non è un template da riempire manualmente.
+Le definizioni di formato esplicitano i vincoli rappresentabili con il contratto comune, compresi campi richiesti/facoltativi, tipi, cardinalità e struttura delle sezioni. Devono poter essere consumate anche dal servizio di verifica di `MR-02` senza reinterpretazioni divergenti. Uno schema caricato non genera significati documentali o BA che l'autore non abbia fornito. La selezione del tipo e dell'identità non si fonda esclusivamente sul nome del file.
 
-Si conferma Markdown come formato comune dei file. La **sintassi precisa dei metadati** (per esempio YAML front matter), i nomi dei campi di collegamento e le convenzioni dei percorsi restano *candidate da specificare*, non sono approvati da questa Decision.
+La separazione fisica e semantica fra documentazione DDTA, BA e proiezioni Mermaid è governata da `DEC-MR01-04`, non da questa Decision. La generazione delle proiezioni è governata da `MR-04`.
 
 ## Consequences
 
-- Documentazione, BA e Mermaid possono essere sottoposti a controlli sintattici separati; la correttezza di ciascun file non dimostra automaticamente la coerenza semantica con gli altri.
-- È possibile avere un documento DDTA senza una BA già redatta oppure con una BA `IDENTIFIED`/`CANDIDATE`, senza produrre automaticamente una vista Mermaid o dichiarare la BA accettata.
-- Il generatore di template non crea significati di progetto, BAReferent, BAProposition o collegamenti di `realize` in assenza di analisi.
-- I nomi dei file possono essere convenzionali, ma l'associazione documento–BA–vista dipende da identità dichiarate e riferimenti controllabili.
-- La grammatica dei campi e degli operatori è soggetta al servizio di validazione di `MR-02`; la risoluzione delle identità compete a `MR-03`.
-- `MR-04` governa il modello grafico intermedio, il rendering locale e la composizione di viste cumulative senza alterare le relazioni BA. `MR-05` governa la pubblicazione in LaTeX/PDF.
-- Questa Decision non specifica il linguaggio di programmazione, le librerie, il protocollo dell'editor o il layout visivo concreto.
+- Un generatore comune può produrre strutture di tipi differenti selezionando una definizione di formato, senza duplicare il flusso di creazione per MR, Decision e FR.
+- La struttura generata rispetta i campi richiesti e facoltativi previsti dal formato selezionato, senza compilare i campi di significato governato con contenuti inventati.
+- Un formato assente, non valido o non supportato non può essere interpretato come un tipo conosciuto e richiede un esito esplicito di mancata generazione.
+- Il servizio di verifica di `MR-02` può utilizzare gli stessi formati mantenendo una propria responsabilità funzionale.
+- Il contratto comune può supportare nuovi tipi mediante nuove definizioni; caratteristiche non rappresentabili dal contratto richiedono una capacità esplicita, non eccezioni silenziose dipendenti dal filename.
 
 ## Questioni di review (non normative)
 
-- Quale struttura esatta deve dichiarare tipo/ID del documento, ID del documento analizzato dalla BA e selezione/provenienza della vista Mermaid?
-- Quali convenzioni di percorso e suffisso rendono distinguibili i file senza trasformare il filename in fonte d'identità?
-- Dove risiede il registro canonico BA e come sono gestiti il riuso e le occorrenze cross-documento (`MR-03`)?
-- Come sono selezionate, rigenerate e verificate le viste locali e cumulative (`MR-04`)?
-- Quale politica disciplina versioni di schema e migrazione dei file esistenti?
-- La BA di questa Decision non è ancora stata redatta in un file separato; nessuna BAProposition viene introdotta dalla presente revisione.
+- Definire il vocabolario esatto dei campi YAML, le modalità di selezione del formato e le regole della sua versione.
+- Precisare quali caratteristiche del Markdown sono modellabili in uno schema generico e quando servono controlli specializzati.
+- Determinare la compatibilità e la migrazione dei documenti Markdown già presenti nel repository, senza riscrittura automatica del contenuto governato.
+- Riesaminare `FR-MR01-02-01` e `FR-MR01-02-02` dopo questo split, preservandone il parent unico `DEC-MR01-02` finché la review non richiede modifiche esplicite.
+
+## Base Analysis
+
+**NOT YET AUTHORED.** La BA canonica di questa Decision dovrà risiedere in un file Markdown separato; nessun BAReferent, BAProposition o `realize` è identificato automaticamente da questa scelta.

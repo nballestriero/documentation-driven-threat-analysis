@@ -1,6 +1,6 @@
 # DDTA Authoring & Projection Tool
 
-**Documentazione di progetto DDTA — working candidate R3**
+**Documentazione di progetto DDTA — working candidate R4**
 
 Questa cartella e' un nuovo progetto documentato secondo DDTA, dedicato alla redazione, validazione, continuita' di identita', proiezione grafica e pubblicazione coerente di documentazione e Base Analysis. **Il contenuto e' candidato**, non una baseline semantica accettata, e non contiene implementazioni Python o estensioni VS Code.
 
@@ -22,7 +22,7 @@ Questa cartella e' un nuovo progetto documentato secondo DDTA, dedicato alla red
 - `docs/01-macro-requirements/MR-04.md`: proiezioni Mermaid e viste componibili.
 - `docs/01-macro-requirements/MR-05.md`: pubblicazione di artefatti coerenti.
 
-### Ramo MR-01 (tre Decision, nove FR candidati)
+### Ramo MR-01 (quattro Decision, nove FR candidati)
 
 ```text
 MR-01
@@ -34,29 +34,40 @@ MR-01
 |-- DEC-MR01-02 - Sorgente Markdown dichiarativo e template
 |   |-- FR-MR01-02-01 - Identificazione di tipo e identita'
 |   `-- FR-MR01-02-02 - Creazione dei template
-`-- DEC-MR01-03 - Assistenza contestuale in editor
-    |-- FR-MR01-03-01 - Verifica durante la scrittura
-    |-- FR-MR01-03-02 - Completamento contestuale
-    `-- FR-MR01-03-03 - Diagnostica e correzione controllata
+|-- DEC-MR01-03 - Assistenza contestuale in editor
+|   |-- FR-MR01-03-01 - Verifica durante la scrittura
+|   |-- FR-MR01-03-02 - Completamento contestuale
+|   `-- FR-MR01-03-03 - Diagnostica e correzione controllata
+`-- DEC-MR01-04 - Separazione di documentazione, BA e Mermaid
+    (FR da determinare in review; nessun FR inventato)
+```
+
+### Ramo MR-02 (due Decision candidate; FR ancora da redigere)
+
+```text
+MR-02
+|-- DEC-MR02-01 - Validazione comune guidata dal formato
+`-- DEC-MR02-02 - Diagnostiche strutturate e profili draft/strict
 ```
 
 - Le Decision sono in `docs/02-decisions/`.
 - Gli FR sono in `docs/03-functional-requirements/`.
 - La matrice tecnica di review e' `docs/04-design-review/FR_TO_PYTHON_MAPPING_CANDIDATE.md`.
 
-## Modello dei file (DEC-MR01-02, CANDIDATE)
+## Modello dei file (DEC-MR01-04, CANDIDATE)
 
 - **Documentazione DDTA**: un file Markdown per elemento (MR, Decision, FR, specializzazioni); la documentazione rimane l'autorita' del significato governato.
 - **Base Analysis**: un file Markdown **separato e collegato per ID** al documento analizzato; contiene BAReferent/BAProposition dopo l'analisi. Un documento puo' non avere ancora una BA redatta.
 - **Mermaid**: file Markdown **separato e generato** dalla BA validata; le viste locali o cumulative sono composte da BA normalizzate e riferimenti risolti, non concatenando i file Mermaid esistenti.
 - **Confini**: MR-01 governa sorgenti e template; MR-02 le regole di validazione; MR-03 i riferimenti/identita' condivisi; MR-04 la proiezione e la composizione; MR-05 LaTeX/PDF.
-- **Sintassi ancora aperta**: YAML front matter, schema esatto dei link, nomi dei file, registro BA, formato delle definizioni di vista. I percorsi esemplificativi non costituiscono un contratto approvato.
+- **Formato di authoring candidato (`DEC-MR01-02`)**: Markdown leggibile, metadati in YAML front matter e definizioni YAML caricabili per tipo; generatore e validatore consumano lo stesso contratto. La scelta non equivale ancora a una implementazione o a una migrazione dei file esistenti.
+- **Dettagli ancora aperti**: vocabolario YAML, schema dei link, nomi dei file, versionamento e compatibilita' dei formati, registro BA e formato delle viste. I percorsi esemplificativi non costituiscono un contratto completo.
 - Le sezioni `Base Analysis` e `Riferimenti SPO e BA` gia' presenti nei documenti CANDIDATE sono solo **segnaposto di review**, non file BA o proposition canoniche; la loro migrazione verra' valutata separatamente.
 
 ## Responsabilita' dei rami
 
-- **MR-01**: accesso, creazione, assistenza e interazione con i servizi condivisi.
-- **MR-02**: parser, regole formali e servizio comune di validazione/diagnostica.
+- **MR-01**: redazione, accesso, creazione e assistenza documentale; non implementa autonomamente i controlli di conformita' di MR-02.
+- **MR-02**: verifiche formali guidate dal tipo, controlli condivisi e restituzione diagnostica draft/strict.
 - **MR-03**: registro delle identita' e riferimenti cross-documento.
 - **MR-04**: composizione e proiezione deterministica delle viste BA/Mermaid.
 - **MR-05**: derivazione e pubblicazione di LaTeX/PDF dal sorgente Markdown validato.
@@ -64,9 +75,9 @@ MR-01
 ## Stato delle scelte da sottoporre a review
 
 - D0 e D1: riesaminare framing, coverage e confini dei cinque MR.
-- D2: approvare o correggere le tre Decision di MR-01; *YAML front matter* e *Language Server* sono scelte candidate.
-- D3: controllare le nove normative obligations e la correttezza delle rispettive parent Decision.
+- D2: quattro Decision candidate di MR-01 e due di MR-02; *YAML front matter*, schemi caricabili e *Language Server* restano scelte del progetto non ancora promosse ad authority metodologica.
+- D3: rivedere i nove FR di MR-01 alla luce dello split di `DEC-MR01-02`, senza spostare automaticamente il parent unico; scrivere i FR di MR-02 solo dopo review delle relative Decision.
 - BA: non ancora estratta; nessun operatore, ruolo o identity e' dedotto dal nome di un modulo Python.
-- Gli MR 02..05 non hanno ancora Decision o FR in questo checkpoint.
+- MR-02 dispone di due Decision candidate ma non ancora di FR; MR 03..05 non hanno ancora Decision o FR in questo checkpoint.
 
 I file vengono conservati nel repository per review e per sviluppo incrementale **senza promozione automatica a current**.
