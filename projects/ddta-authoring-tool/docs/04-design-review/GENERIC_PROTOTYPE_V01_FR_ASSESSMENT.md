@@ -1,8 +1,8 @@
 # Prototype generic-v01 — assessment di implementazione verso FR (CANDIDATE)
 
-**Stato:** `EXPERIMENTAL_NON_CANONICAL`; assessment tecnico del prototipo, **non** BA e **non** attestazione di conformita' completa.  
-**Baseline documentale:** commit `a105cea` (`master`).  
-**Sorgenti di codice:** `projects/ddta-authoring-tool/prototype/generic-v01/`.  
+**Stato:** `EXPERIMENTAL_NON_CANONICAL`; assessment tecnico del prototipo, **non** BA e **non** attestazione di conformita' completa.
+**Baseline documentale:** commit `a105cea` (`master`).
+**Sorgenti di codice:** `projects/ddta-authoring-tool/prototype/generic-v01/`.
 **Evidenza:** suite `tests/test_generic.py`: 33 test superati su Windows con Python 3.14 il 2026-10-20, confermati anche in ambiente di prova Linux; i tre esempi `examples/MR-VALID.md`, `DEC-VALID.md`, `FR-VALID.md` passano `strict` senza diagnostiche.
 
 ## Perimetro verificato
