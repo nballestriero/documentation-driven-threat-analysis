@@ -22,11 +22,11 @@
 \newcommand{\PageMDfive}[1]{\csname PageMDfive#1\endcsname}
 %<PAGE-HASH-DEFS>
 \expandafter\def\csname PageMDfive1\endcsname{485f1d815c9a44fc31a18a29bf114837}
-\expandafter\def\csname PageMDfive2\endcsname{a3275772d6cd2ce37195f7d8163144e8}
-\expandafter\def\csname PageMDfive3\endcsname{10c93bc02abf32f083ea765f88747983}
-\expandafter\def\csname PageMDfive4\endcsname{d464848d4f632cc58be0991cacf1b647}
-\expandafter\def\csname PageMDfive5\endcsname{b20178fc4e6cdc140cf16360634f5344}
-\expandafter\def\csname PageMDfive6\endcsname{a3198ac668083dc67b750dff9bd44175}
+\expandafter\def\csname PageMDfive2\endcsname{fdfff0a08f0a7af494d6d7147aedcf4e}
+\expandafter\def\csname PageMDfive3\endcsname{d43d731af7f4fff5b66cef3d50e493be}
+\expandafter\def\csname PageMDfive4\endcsname{1d079f8beae979bb9e04dd5e86ea4aaf}
+\expandafter\def\csname PageMDfive5\endcsname{fe4ed8017f636c0b27ee53f206c3caf1}
+\expandafter\def\csname PageMDfive6\endcsname{d0dcb49f3ed5b107e5a4f60db5eefd9a}
 \expandafter\def\csname PageMDfive7\endcsname{e50995f0de66f6d8f847ce9ddfa6912f}
 \expandafter\def\csname PageMDfive8\endcsname{452c3e6e4e672ba2f0d437f6363ee29c}
 \expandafter\def\csname PageMDfive9\endcsname{a12562677fba8bfb29f2ebcc70eb7e80}
@@ -102,14 +102,14 @@
 \expandafter\def\csname PageMDfive79\endcsname{0a3ff135d4b81beaba8e4255d4350ac1}
 \expandafter\def\csname PageMDfive80\endcsname{fbce9406fa40866e3f645121349549c9}
 \expandafter\def\csname PageMDfive81\endcsname{3daa21680576d4248d6cd3ed4b232e05}
-\expandafter\def\csname PageMDfive82\endcsname{748a8c4ef3fe1cb08302d275db81868f}
+\expandafter\def\csname PageMDfive82\endcsname{b27af2206cd2b89a071fc71b1aa1a4fe}
 \expandafter\def\csname PageMDfive83\endcsname{ae5ead992ff0d1691f1ae04d2d4fc343}
-\expandafter\def\csname PageMDfive84\endcsname{0080d817bca5359341afc7f78327f9b7}
+\expandafter\def\csname PageMDfive84\endcsname{cbb409c2d15873d73699fa810ec16747}
 \expandafter\def\csname PageMDfive85\endcsname{bffa4fcc5469f12ebe1675a9e8376312}
 \expandafter\def\csname PageMDfive86\endcsname{251e20eabad327061da23389ed917818}
 \expandafter\def\csname PageMDfive87\endcsname{3cf5f4e96ab8903fd5a30023d363b0da}
 \expandafter\def\csname PageMDfive88\endcsname{392da625725431da689302a7e885994a}
-\expandafter\def\csname PageMDfive89\endcsname{49a90ccb994eec9df6b90a8f76ad1e7f}
+\expandafter\def\csname PageMDfive89\endcsname{c7a46dad536247d12b75f5eb00b645ce}
 %</PAGE-HASH-DEFS>
 
 \newcommand{\PageHashFooter}[1]{%
@@ -226,7 +226,7 @@ Il problema che DermaTriage deve affrontare e' il supporto al triage precoce di 
 
 \begin{ddtareferentidentified}
 \scriptsize
-\BACandidate{DermaTriage} \BANew{}; \BACandidate{DermatologicalCase} \BANew{}; \BACandidate{CaseUrgency} \BANew{}; \BACandidate{OperationalTriagePriority} \BANew{}; \BACandidate{DermatologicalTriageEvaluation} \BANew{}; \BACandidate{CaseInformation} \BANew{}.\par
+\BACandidate{DermaTriage} \BANew{}; \BACandidate{DermatologicalCase} \BANew{}; \BACandidate{CaseUrgency} \BANew{}; \BACandidate{OperationalTriagePriority} \BANew{}; \BACandidate{CaseInformation} \BANew{}.\par
 \end{ddtareferentidentified}
 
 \begin{ddtareferentaccepted}
@@ -298,23 +298,23 @@ Paziente.
 
 \begin{ddtareferentidentified}
 \scriptsize
-\BACandidate{Patient} \BANew{}; \BACandidate{CaseInformation} \BANew{}.\par
+\BACandidate{Patient} \BANew{}; \BACandidate{CaseInformation} \BANew{}. \BACandidate{LesionImageAvailability} \BANew{}.\par
 \end{ddtareferentidentified}
 
 \begin{ddtareferentaccepted}
 \scriptsize
-\BAAccepted{DermatologicalCase} \BAFirstAccepted{}; \BAAccepted{DermatologicalTriageEvaluation} \BAFirstAccepted{}; \BAAccepted{CaseUrgency} \BAFirstAccepted{}; \BAAccepted{OperationalTriagePriority} \BAFirstAccepted{}.\par
+\BAAccepted{DermatologicalCase} \BAFirstAccepted{}; \BAAccepted{DermaTriage} \BAFirstAccepted{}; \BAAccepted{SymptomInformation} \BAFirstAccepted{}; \BAAccepted{LesionImage} \BAFirstAccepted{}; \BAAccepted{CaseUrgency} \BAFirstAccepted{}; \BAAccepted{OperationalTriagePriority} \BAFirstAccepted{}.\par
 \end{ddtareferentaccepted}
 
 \begin{ddtapropositionidentified}
 \scriptsize
 {\itshape
-\texttt{BAP-MR01-01}\par
+\texttt{BAP-MR01-02} -- \texttt{IDENTIFIED}, rework dell'asserzione precedente\par
 \texttt{semanticOperatorKey = produce}\par
-\hspace*{1em}\texttt{actor -> DermatologicalTriageEvaluation}\par
-\hspace*{1em}\texttt{input -> CaseInformation}\par
-\hspace*{1em}\texttt{result -> CaseUrgency}\par
-\hspace*{1em}\texttt{result -> OperationalTriagePriority}\par
+\hspace*{1em}\texttt{actor -> DermaTriage}\par
+\hspace*{1em}\texttt{input -> SymptomInformation}\par
+\hspace*{1em}\texttt{input -> LesionImage [opzionale]}\par
+\hspace*{1em}\texttt{result -> LesionImageAvailability}\par
 \texttt{polarity = affirmative}\par
 }
 \end{ddtapropositionidentified}
@@ -326,11 +326,9 @@ Paziente.
 
 \begin{ddtaopenrelations}
 \scriptsize
-\texttt{CaseUrgency <relazione da determinare> DermatologicalCase}\par
-\texttt{OperationalTriagePriority <relazione da determinare> DermatologicalCase}\par
-\smallskip
-\textbf{Gap di ingresso di CaseInformation.} Il dato partecipa come \texttt{input} alla \texttt{produce} \texttt{BAP-MR01-01}, ma l'origine e il trasferimento fino a \texttt{DermatologicalTriageEvaluation} sono \texttt{NOT SPECIFIED}.\par
-\texttt{transfer} in review: source = \texttt{NOT SPECIFIED}; content = \texttt{CaseInformation}; destination = \texttt{DermatologicalTriageEvaluation}. Solo assessment, non una BAProposition \texttt{transfer} ammessa. Il marker \texttt{?} e' diagnostico nella proiezione Mermaid.\par
+\texttt{CaseInformation}: identita' di livello MR, specializzata nella vista della Decision in \texttt{SymptomInformation} e \texttt{LesionImage}; non costituisce un terzo input.\par
+\texttt{DermatologicalTriageEvaluation}: denominazione riconciliata con l'unica identita' funzionale \texttt{DermaTriage}; nessun secondo actor.\par
+\texttt{BAP-MR01-02} esprime la disponibilita' dell'immagine; il dettaglio dei due rami e' descritto nella Decision. Nessun \texttt{transfer} di ingresso inferito.\par
 \end{ddtaopenrelations}
 
 \end{paracol}
@@ -355,13 +353,13 @@ Paziente.
 \texttt{MR-01}
 
 \textbf{Context}\par
-Un caso dermatologico puo' avere un'immagine della lesione, oppure no.
+La valutazione riceve le informazioni sintomatologiche e, quando disponibile, l'immagine della lesione. La disponibilita' dell'immagine distingue i due percorsi.
 
 \textbf{Decision}\par
-DermaTriage supporta la valutazione di urgenza anche per i casi privi di immagine della lesione, adottando in tale situazione una strategia basata sulle informazioni sintomatologiche disponibili sul caso.
+DermaTriage usa la disponibilita' dell'immagine per distinguere il percorso image-based da quello privo di immagine. Nel percorso con immagine la pipeline di analisi determina l'urgenza e la priorita' operativa. In assenza di immagine rimane previsto il fallback basato sui sintomi.
 
 \textbf{Consequences}\par
-L'immagine non costituisce una precondizione assoluta per la determinazione dell'urgenza. In sua assenza, l'urgenza puo' comunque essere determinata utilizzando le informazioni sintomatologiche disponibili sul caso.
+La pipeline image-based e' approfondita dai FR successivi. Il percorso senza immagine e' documentato come fallback per l'urgenza, ma qui la sua topologia resta non specificata; il marker grafico `?' non nega tale comportamento.
 \end{ddtacore}
 
 \begin{ddtaquestions}
@@ -380,26 +378,21 @@ L'immagine non costituisce una precondizione assoluta per la determinazione dell
 
 \begin{ddtareferentidentified}
 \scriptsize
-\BACandidate{LesionImage} \BANew{}; \BACandidate{SymptomInformation} \BANew{}.\par
+\BACandidate{ImageBasedTriagePipeline} \BANew{}.\par\par
 \end{ddtareferentidentified}
 
 \begin{ddtareferentaccepted}
 \scriptsize
-\BAAccepted{DermaTriage} \BAFirstAccepted{}; \BAAccepted{DermatologicalTriageEvaluation}.\par
+\BAAccepted{DermaTriage}; \BAAccepted{LesionImage}; \BAAccepted{SymptomInformation}; \BAAccepted{LesionImageAvailability} \BAFirstAccepted{}; \BAAccepted{ImageBasedTriagePipeline} \BAFirstAccepted{}; \BAAccepted{CaseUrgency}; \BAAccepted{OperationalTriagePriority}.\par
 \end{ddtareferentaccepted}
 
 \begin{ddtapropositionidentified}
-\scriptsize
-{\itshape
-\texttt{BAP-DEC01-01}\par
-\texttt{semanticOperatorKey = produce}\par
-\hspace*{1em}\texttt{actor -> DermaTriage}\par
-\hspace*{1em}\texttt{input -> SymptomInformation}\par
-\hspace*{1em}\texttt{result -> CaseUrgency}\par
-\hspace*{1em}\texttt{scopedModifier}\par
-\hspace*{2em}\texttt{condition -> LesionImage unavailable}\par
-\texttt{polarity = affirmative}\par
-}
+\fontsize{6.0}{6.9}\selectfont
+\texttt{BAP-DEC01-01} -- \texttt{IDENTIFIED}: \texttt{produce}, actor \texttt{DermaTriage}, input \texttt{SymptomInformation}, result \texttt{CaseUrgency}, \texttt{condition: LesionImage unavailable}. Preserva il fallback documentato, non espanso nel grafico.\par
+\smallskip
+\texttt{BAP-DEC01-02} -- \texttt{IDENTIFIED}: \texttt{produce}, actor \texttt{ImageBasedTriagePipeline}, input \texttt{LesionImage} e \texttt{SymptomInformation}, result \texttt{CaseUrgency} e \texttt{OperationalTriagePriority}, \texttt{condition: LesionImage available}.\par
+\smallskip
+La condition a rombo e' la projection di \texttt{LesionImageAvailability}, risultato della \texttt{BAP-MR01-02}. La biforcazione MR--Decision non introduce una proposition \texttt{transfer} o una regola di scoring non documentata.\par
 \end{ddtapropositionidentified}
 
 \begin{ddtapropositionaccepted}
@@ -409,8 +402,8 @@ L'immagine non costituisce una precondizione assoluta per la determinazione dell
 
 \begin{ddtaopenrelations}
 \scriptsize
-\texttt{SymptomInformation <relazione da determinare> CaseInformation}\par
-\texttt{LesionImage <relazione da determinare> CaseInformation}\par
+Il ramo senza immagine e' rappresentato da \texttt{?} per la topologia non ancora espansa in questa Decision; il result di urgenza del fallback e' governato dal successivo \texttt{FR-MR01-01-01}.\par
+Il gruppo dei FR nel Mermaid e' un raggruppamento di vista: non attribuisce per inferenza nuovi \texttt{hasPart}.\par
 \end{ddtaopenrelations}
 
 \end{paracol}
@@ -477,7 +470,7 @@ Nessuna relazione stabilita.
 
 \begin{ddtareferentaccepted}
 \scriptsize
-\BAAccepted{DermaTriage}; \BAAccepted{DermatologicalCase}; \BAAccepted{DermatologicalTriageEvaluation}; \BAAccepted{CaseUrgency}; \BAAccepted{LesionImage} \BAFirstAccepted{}; \BAAccepted{SymptomInformation} \BAFirstAccepted{}.\par
+\BAAccepted{DermaTriage}; \BAAccepted{DermatologicalCase}; \BAAccepted{CaseUrgency}; \BAAccepted{LesionImage}; \BAAccepted{SymptomInformation}.\par
 \end{ddtareferentaccepted}
 
 \begin{ddtapropositionidentified}
@@ -551,7 +544,7 @@ Il percorso image-based richiede la disponibilita' dell'immagine della lesione e
 
 \begin{ddtareferentaccepted}
 \scriptsize
-\BAAccepted{DermaTriage}; \BAAccepted{DermatologicalTriageEvaluation}; \BAAccepted{LesionImage}.\par
+\BAAccepted{DermaTriage}; \BAAccepted{LesionImage}.\par
 \end{ddtareferentaccepted}
 
 \begin{ddtapropositionidentified}
@@ -8093,15 +8086,16 @@ Il registro conserva identity continuity e traceability della BA corrente. Il \t
 \toprule
 \textbf{BAReferent} & \textbf{Riferimenti documentali} \\
 \midrule
-DermaTriage & \texttt{MR-01}; \textbf{\texttt{DEC-MR01-01}}; \texttt{FR-MR01-01-01}; \texttt{DEC-MR01-03}; \texttt{FR-MR01-03-01}; \texttt{FR-MR01-03-02}; \texttt{FR-MR01-03-04}; \texttt{DEC-MR01-04}; \texttt{FR-MR01-04-01}; \texttt{MR-02}; \texttt{MR-03}; \texttt{DEC-03}; \texttt{FR-03}; \texttt{FR-12}; \texttt{DEC-15}; \texttt{FR-23}; \texttt{DEC-16}; \texttt{FR-24}; \texttt{FR-25}; \texttt{MR-04}; \texttt{DEC-04}; \texttt{FR-04}; \texttt{FR-05}; \texttt{DEC-05}; \texttt{FR-09}; \texttt{DEC-09}; \texttt{FR-06}; \texttt{DEC-10}; \texttt{FR-07}; \texttt{DEC-11}; \texttt{FR-08}; \texttt{MR-C6}; \texttt{MR-C7} \\
+DermaTriage & \textbf{\texttt{MR-01}}; \texttt{DEC-MR01-01}; \texttt{FR-MR01-01-01}; \texttt{DEC-MR01-03}; \texttt{FR-MR01-03-01}; \texttt{FR-MR01-03-02}; \texttt{FR-MR01-03-04}; \texttt{DEC-MR01-04}; \texttt{FR-MR01-04-01}; \texttt{MR-02}; \texttt{MR-03}; \texttt{DEC-03}; \texttt{FR-03}; \texttt{FR-12}; \texttt{DEC-15}; \texttt{FR-23}; \texttt{DEC-16}; \texttt{FR-24}; \texttt{FR-25}; \texttt{MR-04}; \texttt{DEC-04}; \texttt{FR-04}; \texttt{FR-05}; \texttt{DEC-05}; \texttt{FR-09}; \texttt{DEC-09}; \texttt{FR-06}; \texttt{DEC-10}; \texttt{FR-07}; \texttt{DEC-11}; \texttt{FR-08}; \texttt{MR-C6}; \texttt{MR-C7} \\
 DermatologicalCase & \textbf{\texttt{MR-01}}; \texttt{FR-MR01-01-01}; \texttt{FR-MR01-03-04} \\
-DermatologicalTriageEvaluation & \textbf{\texttt{MR-01}}; \texttt{DEC-MR01-01}; \texttt{FR-MR01-01-01}; \texttt{DEC-MR01-03} \\
 CaseUrgency & \textbf{\texttt{MR-01}}; \texttt{FR-MR01-01-01}; \texttt{FR-MR01-03-04}; \texttt{DEC-MR01-04}; \texttt{FR-MR01-04-01} \\
 OperationalTriagePriority & \textbf{\texttt{MR-01}}; \texttt{DEC-MR01-04}; \texttt{FR-MR01-04-01} \\
-CaseInformation & \texttt{MR-01} \\
+CaseInformation & \texttt{MR-01} -- identita' generica, non terzo input in \texttt{DEC-MR01-01} \\
 Patient & \texttt{MR-01} \\
-LesionImage & \texttt{DEC-MR01-01}; \textbf{\texttt{FR-MR01-01-01}}; \texttt{DEC-MR01-03}; \texttt{FR-MR01-03-01}; \texttt{FR-MR01-03-02} \\
-SymptomInformation & \texttt{DEC-MR01-01}; \textbf{\texttt{FR-MR01-01-01}}; \texttt{FR-MR01-03-04} \\
+LesionImageAvailability & \texttt{MR-01}; \textbf{\texttt{DEC-MR01-01}} -- condition source-supported \\
+ImageBasedTriagePipeline & \textbf{\texttt{DEC-MR01-01}} -- funzione image-based, FR in specializzazione \\
+LesionImage & \textbf{\texttt{MR-01}}; \texttt{DEC-MR01-01}; \texttt{FR-MR01-01-01}; \texttt{DEC-MR01-03}; \texttt{FR-MR01-03-01}; \texttt{FR-MR01-03-02} \\
+SymptomInformation & \textbf{\texttt{MR-01}}; \texttt{DEC-MR01-01}; \texttt{FR-MR01-01-01}; \texttt{FR-MR01-03-04} \\
 ImageUrgencyAnalysis & \texttt{DEC-MR01-03}; \textbf{\texttt{FR-MR01-03-01}}; \texttt{FR-C6-01-03A1} \\
 EfficientNet-B4 & \textbf{\texttt{FR-MR01-03-01}}; \texttt{MR-04}; \texttt{FR-C6-01-03A1}; \texttt{FR-05}; \texttt{DEC-06}; \texttt{DEC-08}; \texttt{FR-10}; \texttt{FR-08} \\
 ImageUrgencyClassification & \textbf{\texttt{FR-MR01-03-01}}; \texttt{FR-MR01-03-04} \\
@@ -8339,7 +8333,8 @@ Questa pagina continua il registro BA della pagina precedente. Il \textbf{grasse
 \toprule
 \textbf{BAProposition} & \textbf{Riferimenti documentali} \\
 \midrule
-\emph{\texttt{BAP-MR01-01}} & \texttt{MR-01} \\
+\emph{\texttt{BAP-MR01-01}} & \texttt{MR-01} -- \texttt{SUPERSEDED / NOT ACCEPTED}: precedente macro-produce (DermatologicalTriageEvaluation, CaseInformation verso urgenza e priorita); preservata per tracciabilita \\
+\emph{\texttt{BAP-MR01-02}} & \texttt{MR-01} -- \texttt{produce} (\texttt{DermaTriage}: sintomi + immagine opzionale $\rightarrow$ \texttt{LesionImageAvailability}); nuova proposition IDENTIFIED, non reimpiega il vecchio ID \\
 \textbf{\texttt{BAP-MR02-01}} & \texttt{MR-02} -- \texttt{produce} (\texttt{DermaTriage -> SpecialistDestinationIndication}); nessun input o routing interno inferito \\
 \emph{\texttt{BAP-MR03-01}} & \texttt{MR-03} -- candidate \texttt{transfer} (\texttt{HealthcareProfessional -> DermaTriage : ClinicalReviewResult}); delivery path tecnico non ancora accettato \\
 \textbf{\texttt{BAP-FR12-01}} & \texttt{FR-12} -- \texttt{constrain} (\texttt{ClinicalReviewResult}: \texttt{clinicalReviewDisposition} in \texttt{[confirmation, correction]}) \\
@@ -8355,7 +8350,8 @@ Questa pagina continua il registro BA della pagina precedente. Il \textbf{grasse
 \textbf{\texttt{BAP-FR25-01}} & \texttt{FR-25} -- \texttt{realize} (\texttt{B4CallAuthentication -> DermaTriageB4Client}) \\
 \textbf{\texttt{BAP-FR25-02}} & \texttt{FR-25} -- \texttt{constrain} (\texttt{B4CallAuthentication}: \texttt{authenticationMechanism} in \texttt{[bearer JWT]}) \\
 \emph{\texttt{BAP-FR25-03}} & \texttt{FR-25} -- candidate \texttt{transfer} (\texttt{?? -> DermaTriageB4Client : B4BearerJWT}); token source \texttt{NOT SPECIFIED} \\
-\emph{\texttt{BAP-DEC01-01}} & \texttt{DEC-MR01-01} -- \texttt{produce}, \texttt{condition: LesionImage unavailable} \\
+\emph{\texttt{BAP-DEC01-01}} & \texttt{DEC-MR01-01} -- fallback \texttt{produce}, \texttt{condition: LesionImage unavailable}; non espanso nella vista DEC \\
+\emph{\texttt{BAP-DEC01-02}} & \texttt{DEC-MR01-01} -- \texttt{produce} image-based (\texttt{ImageBasedTriagePipeline} $\rightarrow$ \texttt{CaseUrgency}, \texttt{OperationalTriagePriority}), \texttt{condition: LesionImage available} \\
 \textbf{\texttt{BAP-FR01-01-01}} & \texttt{FR-MR01-01-01} -- \texttt{produce}, \texttt{condition: LesionImage unavailable} \\
 \textbf{\texttt{BAP-FR03-01-01}} & \texttt{FR-MR01-03-01} -- \texttt{produce}, \texttt{condition: LesionImage available} \\
 \textbf{\texttt{BAP-FR03-01-02}} & \texttt{FR-MR01-03-01}; \texttt{FR-C6-01-03A1} -- \texttt{realize} (\texttt{ImageUrgencyAnalysis -> EfficientNet-B4}) \\

@@ -1,13 +1,9 @@
-DDTA_DERMATRIAGE_PARALLEL_CASE_STUDY_R25_FR03_SPLIT_REVIEW_R1 - Page MD5 Index
-Canonical payload: LaTeX content between PAGE-CONTENT markers; own printed MD5 excluded.
-Integrity-index page resolves all other page hashes and canonicalizes its own hash as <SELF>.
-
 Page 1  485f1d815c9a44fc31a18a29bf114837  Frontespizio e struttura del case study
-Page 2  a3275772d6cd2ce37195f7d8163144e8  Contesto generale del progetto - Project Problem Framing
-Page 3  10c93bc02abf32f083ea765f88747983  MR-01 - Valutazione di triage del caso dermatologico
-Page 4  d464848d4f632cc58be0991cacf1b647  MR-01 > DEC-MR01-01 - Valutazione di urgenza in assenza di immagine
-Page 5  b20178fc4e6cdc140cf16360634f5344  MR-01 > DEC-MR01-01 > FR-MR01-01-01 - Determinazione dell'urgenza su base sintomatologica
-Page 6  a3198ac668083dc67b750dff9bd44175  MR-01 > DEC-MR01-03 - Percorso image-based a quattro stadi coordinati
+Page 2  fdfff0a08f0a7af494d6d7147aedcf4e  Contesto generale del progetto - Project Problem Framing
+Page 3  d43d731af7f4fff5b66cef3d50e493be  MR-01 - Valutazione di triage del caso dermatologico
+Page 4  1d079f8beae979bb9e04dd5e86ea4aaf  MR-01 > DEC-MR01-01 - Valutazione di urgenza in assenza di immagine
+Page 5  fe4ed8017f636c0b27ee53f206c3caf1  MR-01 > DEC-MR01-01 > FR-MR01-01-01 - Determinazione dell'urgenza su base sintomatologica
+Page 6  d0dcb49f3ed5b107e5a4f60db5eefd9a  MR-01 > DEC-MR01-03 - Percorso image-based a quattro stadi coordinati
 Page 7  e50995f0de66f6d8f847ce9ddfa6912f  MR-01 > DEC-MR01-03 > FR-MR01-03-01 - Stage 1: urgenza e confidence da immagine
 Page 8  452c3e6e4e672ba2f0d437f6363ee29c  MR-01 > DEC-MR01-03 > FR-MR01-03-02 - Stage 2: descrizione clinica strutturata
 Page 9  a12562677fba8bfb29f2ebcc70eb7e80  Review closure - FR-MR01-03-03A provisional label reallocated to FR-C6-01-05
@@ -83,11 +79,11 @@ Page 78  6579b656965b3c7e3ce58b581782d39b  MR-C7 > DEC-C7-01 > FR-C7-06-01 - Ver
 Page 79  0a3ff135d4b81beaba8e4255d4350ac1  MR-C7 > DEC-C7-01 > FR-C7-07-01 [candidate] - Verifica dei quality gate assoluti del classificatore di urgenza
 Page 80  fbce9406fa40866e3f645121349549c9  Registro Base Analysis - C7 reconstruction target
 Page 81  3daa21680576d4248d6cd3ed4b232e05  MR-C7 - Source closure e progress della review FR-by-FR
-Page 82  748a8c4ef3fe1cb08302d275db81868f  Registro Base Analysis - BAReferent e BAProposition
+Page 82  b27af2206cd2b89a071fc71b1aa1a4fe  Registro Base Analysis - BAReferent e BAProposition
 Page 83  ae5ead992ff0d1691f1ae04d2d4fc343  Registro Base Analysis - BAReferent C7 increment
-Page 84  0080d817bca5359341afc7f78327f9b7  Registro Base Analysis - BAProposition
+Page 84  cbb409c2d15873d73699fa810ec16747  Registro Base Analysis - BAProposition
 Page 85  bffa4fcc5469f12ebe1675a9e8376312  Registro Base Analysis - C6 source, dependency, configuration e initialization topology increment
 Page 86  251e20eabad327061da23389ed917818  Registro Base Analysis - C6 FR-C6-01-03B1..B3 e 03C increment
 Page 87  3cf5f4e96ab8903fd5a30023d363b0da  Registro Base Analysis - FR-C6-01-06 API composition and endpoint topology
 Page 88  392da625725431da689302a7e885994a  Registro Base Analysis - DEC-C7-01 verification procedure topology increment
-Page 89  49a90ccb994eec9df6b90a8f76ad1e7f  Indice di integrita delle pagine
+Page 89  c7a46dad536247d12b75f5eb00b645ce  Indice di integrita delle pagine
