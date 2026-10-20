@@ -1,6 +1,6 @@
 # DDTA Authoring & Projection Tool
 
-**Documentazione di progetto DDTA — working candidate R4**
+**Documentazione di progetto DDTA — working candidate R5**
 
 Questa cartella e' un nuovo progetto documentato secondo DDTA, dedicato alla redazione, validazione, continuita' di identita', proiezione grafica e pubblicazione coerente di documentazione e Base Analysis. **Il contenuto e' candidato**, non una baseline semantica accettata, e non contiene implementazioni Python o estensioni VS Code.
 
@@ -22,7 +22,7 @@ Questa cartella e' un nuovo progetto documentato secondo DDTA, dedicato alla red
 - `docs/01-macro-requirements/MR-04.md`: proiezioni Mermaid e viste componibili.
 - `docs/01-macro-requirements/MR-05.md`: pubblicazione di artefatti coerenti.
 
-### Ramo MR-01 (quattro Decision, nove FR candidati)
+### Ramo MR-01 (quattro Decision, dieci FR candidati)
 
 ```text
 MR-01
@@ -31,7 +31,7 @@ MR-01
 |   |-- FR-MR01-01-02 - Selezione dello scope documentale
 |   |-- FR-MR01-01-03 - Invocazione del servizio condiviso di controllo
 |   `-- FR-MR01-01-04 - Controllo esplicito senza editor
-|-- DEC-MR01-02 - Sorgente Markdown dichiarativo e template
+|-- DEC-MR01-02 - Rappresentazione dichiarativa e generazione per formato
 |   |-- FR-MR01-02-01 - Identificazione di tipo e identita'
 |   `-- FR-MR01-02-02 - Creazione dei template
 |-- DEC-MR01-03 - Assistenza contestuale in editor
@@ -39,15 +39,19 @@ MR-01
 |   |-- FR-MR01-03-02 - Completamento contestuale
 |   `-- FR-MR01-03-03 - Diagnostica e correzione controllata
 `-- DEC-MR01-04 - Separazione di documentazione, BA e Mermaid
-    (FR da determinare in review; nessun FR inventato)
+    `-- FR-MR01-04-01 - Collegamento BA-documento dichiarato
 ```
 
-### Ramo MR-02 (due Decision candidate; FR ancora da redigere)
+### Ramo MR-02 (due Decision e quattro FR candidati)
 
 ```text
 MR-02
 |-- DEC-MR02-01 - Validazione comune guidata dal formato
+|   |-- FR-MR02-01-01 - Selezione del formato di verifica
+|   `-- FR-MR02-01-02 - Verifica della conformita' formale
 `-- DEC-MR02-02 - Diagnostiche strutturate e profili draft/strict
+    |-- FR-MR02-02-01 - Produzione di diagnostiche strutturate
+    `-- FR-MR02-02-02 - Applicazione dei profili draft/strict
 ```
 
 - Le Decision sono in `docs/02-decisions/`.
@@ -76,8 +80,8 @@ MR-02
 
 - D0 e D1: riesaminare framing, coverage e confini dei cinque MR.
 - D2: quattro Decision candidate di MR-01 e due di MR-02; *YAML front matter*, schemi caricabili e *Language Server* restano scelte del progetto non ancora promosse ad authority metodologica.
-- D3: rivedere i nove FR di MR-01 alla luce dello split di `DEC-MR01-02`, senza spostare automaticamente il parent unico; scrivere i FR di MR-02 solo dopo review delle relative Decision.
+- D3: `FR-MR01-02-01` e `FR-MR01-02-02` riveduti per il formato generico; `FR-MR01-04-01` aggiunto per il collegamento BA-documento; quattro FR di MR-02 aggiunti per verifica e diagnostiche, tutti `candidate`. Gli altri sette FR di MR-01 richiedono ancora la regression review prima dell'implementazione.
 - BA: non ancora estratta; nessun operatore, ruolo o identity e' dedotto dal nome di un modulo Python.
-- MR-02 dispone di due Decision candidate ma non ancora di FR; MR 03..05 non hanno ancora Decision o FR in questo checkpoint.
+- MR-02 dispone di due Decision e quattro FR candidate; MR 03..05 non hanno ancora Decision o FR in questo checkpoint.
 
 I file vengono conservati nel repository per review e per sviluppo incrementale **senza promozione automatica a current**.
