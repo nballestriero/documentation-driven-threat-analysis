@@ -1,6 +1,6 @@
 # DDTA Authoring & Projection Tool
 
-**Documentazione di progetto DDTA — working candidate R2**
+**Documentazione di progetto DDTA — working candidate R3**
 
 Questa cartella e' un nuovo progetto documentato secondo DDTA, dedicato alla redazione, validazione, continuita' di identita', proiezione grafica e pubblicazione coerente di documentazione e Base Analysis. **Il contenuto e' candidato**, non una baseline semantica accettata, e non contiene implementazioni Python o estensioni VS Code.
 
@@ -43,6 +43,15 @@ MR-01
 - Le Decision sono in `docs/02-decisions/`.
 - Gli FR sono in `docs/03-functional-requirements/`.
 - La matrice tecnica di review e' `docs/04-design-review/FR_TO_PYTHON_MAPPING_CANDIDATE.md`.
+
+## Modello dei file (DEC-MR01-02, CANDIDATE)
+
+- **Documentazione DDTA**: un file Markdown per elemento (MR, Decision, FR, specializzazioni); la documentazione rimane l'autorita' del significato governato.
+- **Base Analysis**: un file Markdown **separato e collegato per ID** al documento analizzato; contiene BAReferent/BAProposition dopo l'analisi. Un documento puo' non avere ancora una BA redatta.
+- **Mermaid**: file Markdown **separato e generato** dalla BA validata; le viste locali o cumulative sono composte da BA normalizzate e riferimenti risolti, non concatenando i file Mermaid esistenti.
+- **Confini**: MR-01 governa sorgenti e template; MR-02 le regole di validazione; MR-03 i riferimenti/identita' condivisi; MR-04 la proiezione e la composizione; MR-05 LaTeX/PDF.
+- **Sintassi ancora aperta**: YAML front matter, schema esatto dei link, nomi dei file, registro BA, formato delle definizioni di vista. I percorsi esemplificativi non costituiscono un contratto approvato.
+- Le sezioni `Base Analysis` e `Riferimenti SPO e BA` gia' presenti nei documenti CANDIDATE sono solo **segnaposto di review**, non file BA o proposition canoniche; la loro migrazione verra' valutata separatamente.
 
 ## Responsabilita' dei rami
 
