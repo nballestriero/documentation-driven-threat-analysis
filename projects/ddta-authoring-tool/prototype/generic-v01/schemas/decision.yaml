@@ -1,0 +1,16 @@
+# DDTA Authoring Tool experiment (CANDIDATE), not a DDTA methodology update.
+schemaId: Decision
+schemaVersion: '0.1'
+metadata:
+  type: {type: string, required: true, default: Decision, const: Decision}
+  schemaVersion: {type: string, required: true, default: '0.1', const: '0.1'}
+  id: {type: string, required: true, default: ''}
+  title: {type: string, required: true, default: ''}
+  parentMacroRequirement: {type: string, required: true, default: ''}
+  lifecycle: {type: string, required: true, default: candidate, enum: [candidate, current, historical]}
+  authority: {type: string, required: false, default: EXPERIMENTAL_NON_CANONICAL}
+  decisionKind: {type: string, required: false, default: '', enum: [SELECTABLE, NECESSITY-CONSTRAINED, DEFAULT]}
+sections:
+  - {name: Context, required: true, kind: text, hint: 'Tensione, alternative o necessita locali'}
+  - {name: Decision, required: true, kind: text, hint: 'Commitment specifico sul Parent MR'}
+  - {name: Consequences, required: true, kind: text, hint: 'Effetti materiali, trade-off e responsabilita downstream'}

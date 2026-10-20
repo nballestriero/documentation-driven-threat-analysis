@@ -1,0 +1,20 @@
+# DDTA Authoring Tool experiment (CANDIDATE), not a DDTA methodology update.
+schemaId: FunctionalRequirement
+schemaVersion: '0.1'
+metadata:
+  type: {type: string, required: true, default: FunctionalRequirement, const: FunctionalRequirement}
+  schemaVersion: {type: string, required: true, default: '0.1', const: '0.1'}
+  id: {type: string, required: true, default: ''}
+  title: {type: string, required: true, default: ''}
+  parentDecision: {type: string, required: true, default: ''}
+  lifecycle: {type: string, required: true, default: candidate, enum: [candidate, current, historical]}
+  authority: {type: string, required: false, default: EXPERIMENTAL_NON_CANONICAL}
+sections:
+  - {name: Functional obligation, required: true, kind: text, hint: 'Unita funzionale coerente'}
+  - name: Normative clauses
+    required: true
+    kind: clauses
+    minItems: 1
+    itemPattern: '- \*\*(NC-[0-9]+):\*\*\s*(.*)'
+    itemTemplate: '- **NC-1:** <!-- Da compilare -->'
+  - {name: SPO references, required: false, kind: text, hint: 'Referent governati se disponibili; supporto non normativo'}

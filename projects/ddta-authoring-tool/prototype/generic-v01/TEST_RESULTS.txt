@@ -1,0 +1,91 @@
+FIX1 Windows encoding regression — 2026-10-20
+Original Windows user execution: 29 passed / 4 failures in a 33-test suite.
+Root cause: test fixtures read using the Windows default ANSI encoding instead of UTF-8; U+2014 becomes mojibake, causing DOC-H1-MISMATCH.
+Fix: 25 bare read_text() calls and 2 bare write_text(doc) calls changed to encoding="utf-8" in tests/test_generic.py.
+Shared engine, CLI and YAML schemas were not modified.
+
+Normal Linux test run:
+test_adding_fourth_schema_needs_no_python_changes (test_generic.GenericEngineTest.test_adding_fourth_schema_needs_no_python_changes) ... ok
+test_all_three_examples_strict (test_generic.GenericEngineTest.test_all_three_examples_strict) ... ok
+test_all_three_schemas_load (test_generic.GenericEngineTest.test_all_three_schemas_load) ... ok
+test_cannot_overwrite_existing_output (test_generic.GenericEngineTest.test_cannot_overwrite_existing_output) ... ok
+test_cli_json (test_generic.GenericEngineTest.test_cli_json) ... ok
+test_cli_report_invalid_exit_one (test_generic.GenericEngineTest.test_cli_report_invalid_exit_one) ... ok
+test_code_fence_does_not_create_extra_heading (test_generic.GenericEngineTest.test_code_fence_does_not_create_extra_heading) ... ok
+test_depends_on_self_and_duplicates (test_generic.GenericEngineTest.test_depends_on_self_and_duplicates) ... ok
+test_duplicate_yaml_keys (test_generic.GenericEngineTest.test_duplicate_yaml_keys) ... ok
+test_fr_duplicate_clause (test_generic.GenericEngineTest.test_fr_duplicate_clause) ... ok
+test_fr_empty_clause_draft_warns_strict_errors (test_generic.GenericEngineTest.test_fr_empty_clause_draft_warns_strict_errors) ... ok
+test_fr_malformed_clause (test_generic.GenericEngineTest.test_fr_malformed_clause) ... ok
+test_fr_min_one_normative_clause (test_generic.GenericEngineTest.test_fr_min_one_normative_clause) ... ok
+test_frontmatter_missing_is_not_pass (test_generic.GenericEngineTest.test_frontmatter_missing_is_not_pass) ... ok
+test_generated_drafts_valid_and_warn (test_generic.GenericEngineTest.test_generated_drafts_valid_and_warn) ... ok
+test_generic_parser_can_receive_in_memory_text (test_generic.GenericEngineTest.test_generic_parser_can_receive_in_memory_text) ... ok
+test_missing_title_is_warn_in_draft (test_generic.GenericEngineTest.test_missing_title_is_warn_in_draft) ... ok
+test_no_implicit_cross_file_resolution (test_generic.GenericEngineTest.test_no_implicit_cross_file_resolution) ... ok
+test_no_mr_parent_and_no_objective (test_generic.GenericEngineTest.test_no_mr_parent_and_no_objective) ... ok
+test_optional_section_does_not_need_presence (test_generic.GenericEngineTest.test_optional_section_does_not_need_presence) ... ok
+test_parent_decision_missing_is_strict_error (test_generic.GenericEngineTest.test_parent_decision_missing_is_strict_error) ... ok
+test_parent_decision_wrong_type_error (test_generic.GenericEngineTest.test_parent_decision_wrong_type_error) ... ok
+test_parent_fr_missing_is_strict_error (test_generic.GenericEngineTest.test_parent_fr_missing_is_strict_error) ... ok
+test_parent_metadata_in_correct_type (test_generic.GenericEngineTest.test_parent_metadata_in_correct_type) ... ok
+test_reject_unknown_constraint_in_schema_fail_closed (test_generic.GenericEngineTest.test_reject_unknown_constraint_in_schema_fail_closed) ... ok
+test_required_section_missing (test_generic.GenericEngineTest.test_required_section_missing) ... ok
+test_schema_bad_regex_rejected (test_generic.GenericEngineTest.test_schema_bad_regex_rejected) ... ok
+test_section_typo (test_generic.GenericEngineTest.test_section_typo) ... ok
+test_unknown_type_is_incomplete_diagnostic (test_generic.GenericEngineTest.test_unknown_type_is_incomplete_diagnostic) ... ok
+test_unknown_yaml_field_suggests_correct_name (test_generic.GenericEngineTest.test_unknown_yaml_field_suggests_correct_name) ... ok
+test_wrong_h1 (test_generic.GenericEngineTest.test_wrong_h1) ... ok
+test_wrong_schema_version_rejected (test_generic.GenericEngineTest.test_wrong_schema_version_rejected) ... ok
+test_yaml_bad_is_not_pass (test_generic.GenericEngineTest.test_yaml_bad_is_not_pass) ... ok
+
+----------------------------------------------------------------------
+Ran 33 tests in 6.399s
+
+OK
+
+Linux with UTF-8 mode disabled (LC_ALL=C, PYTHONUTF8=0):
+test_adding_fourth_schema_needs_no_python_changes (test_generic.GenericEngineTest.test_adding_fourth_schema_needs_no_python_changes) ... ok
+test_all_three_examples_strict (test_generic.GenericEngineTest.test_all_three_examples_strict) ... ok
+test_all_three_schemas_load (test_generic.GenericEngineTest.test_all_three_schemas_load) ... ok
+test_cannot_overwrite_existing_output (test_generic.GenericEngineTest.test_cannot_overwrite_existing_output) ... ok
+test_cli_json (test_generic.GenericEngineTest.test_cli_json) ... ok
+test_cli_report_invalid_exit_one (test_generic.GenericEngineTest.test_cli_report_invalid_exit_one) ... ok
+test_code_fence_does_not_create_extra_heading (test_generic.GenericEngineTest.test_code_fence_does_not_create_extra_heading) ... ok
+test_depends_on_self_and_duplicates (test_generic.GenericEngineTest.test_depends_on_self_and_duplicates) ... ok
+test_duplicate_yaml_keys (test_generic.GenericEngineTest.test_duplicate_yaml_keys) ... ok
+test_fr_duplicate_clause (test_generic.GenericEngineTest.test_fr_duplicate_clause) ... ok
+test_fr_empty_clause_draft_warns_strict_errors (test_generic.GenericEngineTest.test_fr_empty_clause_draft_warns_strict_errors) ... ok
+test_fr_malformed_clause (test_generic.GenericEngineTest.test_fr_malformed_clause) ... ok
+test_fr_min_one_normative_clause (test_generic.GenericEngineTest.test_fr_min_one_normative_clause) ... ok
+test_frontmatter_missing_is_not_pass (test_generic.GenericEngineTest.test_frontmatter_missing_is_not_pass) ... ok
+test_generated_drafts_valid_and_warn (test_generic.GenericEngineTest.test_generated_drafts_valid_and_warn) ... ok
+test_generic_parser_can_receive_in_memory_text (test_generic.GenericEngineTest.test_generic_parser_can_receive_in_memory_text) ... ok
+test_missing_title_is_warn_in_draft (test_generic.GenericEngineTest.test_missing_title_is_warn_in_draft) ... ok
+test_no_implicit_cross_file_resolution (test_generic.GenericEngineTest.test_no_implicit_cross_file_resolution) ... ok
+test_no_mr_parent_and_no_objective (test_generic.GenericEngineTest.test_no_mr_parent_and_no_objective) ... ok
+test_optional_section_does_not_need_presence (test_generic.GenericEngineTest.test_optional_section_does_not_need_presence) ... ok
+test_parent_decision_missing_is_strict_error (test_generic.GenericEngineTest.test_parent_decision_missing_is_strict_error) ... ok
+test_parent_decision_wrong_type_error (test_generic.GenericEngineTest.test_parent_decision_wrong_type_error) ... ok
+test_parent_fr_missing_is_strict_error (test_generic.GenericEngineTest.test_parent_fr_missing_is_strict_error) ... ok
+test_parent_metadata_in_correct_type (test_generic.GenericEngineTest.test_parent_metadata_in_correct_type) ... ok
+test_reject_unknown_constraint_in_schema_fail_closed (test_generic.GenericEngineTest.test_reject_unknown_constraint_in_schema_fail_closed) ... ok
+test_required_section_missing (test_generic.GenericEngineTest.test_required_section_missing) ... ok
+test_schema_bad_regex_rejected (test_generic.GenericEngineTest.test_schema_bad_regex_rejected) ... ok
+test_section_typo (test_generic.GenericEngineTest.test_section_typo) ... ok
+test_unknown_type_is_incomplete_diagnostic (test_generic.GenericEngineTest.test_unknown_type_is_incomplete_diagnostic) ... ok
+test_unknown_yaml_field_suggests_correct_name (test_generic.GenericEngineTest.test_unknown_yaml_field_suggests_correct_name) ... ok
+test_wrong_h1 (test_generic.GenericEngineTest.test_wrong_h1) ... ok
+test_wrong_schema_version_rejected (test_generic.GenericEngineTest.test_wrong_schema_version_rejected) ... ok
+test_yaml_bad_is_not_pass (test_generic.GenericEngineTest.test_yaml_bad_is_not_pass) ... ok
+
+----------------------------------------------------------------------
+Ran 33 tests in 6.100s
+
+OK
+
+Strict CLI smoke tests under the same non-UTF-8 environment:
+MR-VALID.md: check strict: 0 errors, 0 warnings; PASS
+DEC-VALID.md: check strict: 0 errors, 0 warnings; PASS
+FR-VALID.md: check strict: 0 errors, 0 warnings; PASS
+Windows test execution of FIX1 pending user verification.

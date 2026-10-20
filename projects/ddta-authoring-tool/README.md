@@ -2,7 +2,7 @@
 
 **Documentazione di progetto DDTA — working candidate R5**
 
-Questa cartella e' un nuovo progetto documentato secondo DDTA, dedicato alla redazione, validazione, continuita' di identita', proiezione grafica e pubblicazione coerente di documentazione e Base Analysis. **Il contenuto e' candidato**, non una baseline semantica accettata, e non contiene implementazioni Python o estensioni VS Code.
+Questa cartella e' un nuovo progetto documentato secondo DDTA, dedicato alla redazione, validazione, continuita' di identita', proiezione grafica e pubblicazione coerente di documentazione e Base Analysis. **La documentazione resta candidata**, non una baseline semantica accettata. E' ora disponibile un **prototipo Python generico** in `prototype/generic-v01/`, verificato per MR, Decision e FR: e' una realizzazione sperimentale parziale, non un'implementazione completa degli FR. Non e' presente alcuna estensione VS Code.
 
 ## Stato e confine
 
@@ -57,6 +57,7 @@ MR-02
 - Le Decision sono in `docs/02-decisions/`.
 - Gli FR sono in `docs/03-functional-requirements/`.
 - La matrice tecnica di review e' `docs/04-design-review/FR_TO_PYTHON_MAPPING_CANDIDATE.md`.
+- Il tracciamento del **codice prototipale effettivo** agli FR, con test e limiti, e' `docs/04-design-review/GENERIC_PROTOTYPE_V01_FR_ASSESSMENT.md`. La matrice precedente rimane una proposta di progettazione, non una descrizione dei moduli effettivamente presenti.
 
 ## Modello dei file (DEC-MR01-04, CANDIDATE)
 
@@ -64,7 +65,7 @@ MR-02
 - **Base Analysis**: un file Markdown **separato e collegato per ID** al documento analizzato; contiene BAReferent/BAProposition dopo l'analisi. Un documento puo' non avere ancora una BA redatta.
 - **Mermaid**: file Markdown **separato e generato** dalla BA validata; le viste locali o cumulative sono composte da BA normalizzate e riferimenti risolti, non concatenando i file Mermaid esistenti.
 - **Confini**: MR-01 governa sorgenti e template; MR-02 le regole di validazione; MR-03 i riferimenti/identita' condivisi; MR-04 la proiezione e la composizione; MR-05 LaTeX/PDF.
-- **Formato di authoring candidato (`DEC-MR01-02`)**: Markdown leggibile, metadati in YAML front matter e definizioni YAML caricabili per tipo; generatore e validatore consumano lo stesso contratto. La scelta non equivale ancora a una implementazione o a una migrazione dei file esistenti.
+- **Formato di authoring candidato (`DEC-MR01-02`)**: Markdown leggibile, metadati in YAML front matter e definizioni YAML caricabili per tipo; generatore e validatore consumano lo stesso contratto. Questa scelta ha una prima realizzazione sperimentale parziale in `prototype/generic-v01/`; **non** implica la conformita' integrale agli FR e **non** ha migrato i file preesistenti.
 - **Dettagli ancora aperti**: vocabolario YAML, schema dei link, nomi dei file, versionamento e compatibilita' dei formati, registro BA e formato delle viste. I percorsi esemplificativi non costituiscono un contratto completo.
 - Le sezioni `Base Analysis` e `Riferimenti SPO e BA` gia' presenti nei documenti CANDIDATE sono solo **segnaposto di review**, non file BA o proposition canoniche; la loro migrazione verra' valutata separatamente.
 
@@ -85,3 +86,22 @@ MR-02
 - MR-02 dispone di due Decision e quattro FR candidate; MR 03..05 non hanno ancora Decision o FR in questo checkpoint.
 
 I file vengono conservati nel repository per review e per sviluppo incrementale **senza promozione automatica a current**.
+
+## Prototipo generico Python (checkpoint tecnico R1)
+
+- **Percorso:** `prototype/generic-v01/` (non il precedente prototipo MR-only, mai integrato).
+- **Motore:** `ddta_tool/engine.py`; **CLI:** `ddta_tool/__main__.py`; **schemi:** `schemas/*.yaml`; **test:** `tests/test_generic.py`.
+- **Test Windows 2026-10-20:** 33/33 OK con Python 3.14; `strict PASS` sui tre esempi MR/Decision/FR.
+- **Supporto limitato:** nuovo tipo soltanto con un altro schema YAML se usa le regole gia' rappresentabili dalla DSL 0.1; in caso contrario va esteso il motore comune.
+- **Nessuna migrazione:** gli attuali documenti in `docs/` non hanno automaticamente un front matter YAML e non devono essere dichiarati conformi dal prototipo.
+- **Assessment:** `docs/04-design-review/GENERIC_PROTOTYPE_V01_FR_ASSESSMENT.md`. La BA non e' ancora stata prodotta.
+
+Eseguire dalla cartella `prototype/generic-v01`:
+
+```powershell
+py -3 -m pip install -r requirements.txt
+py -3 -m unittest discover -s tests -v
+py -3 -m ddta_tool check examples/MR-VALID.md --profile strict
+py -3 -m ddta_tool check examples/DEC-VALID.md --profile strict
+py -3 -m ddta_tool check examples/FR-VALID.md --profile strict
+```

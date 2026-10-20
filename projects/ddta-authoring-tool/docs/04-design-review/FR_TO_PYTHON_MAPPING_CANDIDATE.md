@@ -1,6 +1,6 @@
 # Ramo MR-01 — Tracciamento funzionale verso realizzazioni Python (PROPOSTA)
 
-**Stato:** `CANDIDATE / REVIEW ONLY`. Le librerie e le API citate sono nomi proposti, **non codice esistente** e **non BAProposition già identificate o accettate**.
+**Stato:** `CANDIDATE / REVIEW ONLY`. I nomi di librerie e API nella matrice sono **proposte di architettura**, non una descrizione dell'effettiva struttura del prototipo. Non identificano BAProposition o `realize` accettati. Per il codice sperimentale realmente disponibile, vedere `GENERIC_PROTOTYPE_V01_FR_ASSESSMENT.md` e `../../prototype/generic-v01/`.
 
 ## Regola metodologica
 
@@ -72,7 +72,7 @@ VS Code client → didOpen/didChange → Language Server Python
 
 Per VS Code, l'estensione client può richiedere un piccolo modulo JavaScript/TypeScript; **parser, schemi e validatore rimangono Python**. Un agente AI che usa la CLI non necessita di un percorso proprio. Se chiama direttamente la libreria, deve consumare lo stesso servizio.
 
-## Scelte da approvare prima del codice
+## Scelte ancora da risolvere per completare il prodotto
 
 1. Identità dichiarata tramite metadati YAML front matter oppure altra sintassi?
 2. Come riconoscere workspace root e file inclusi in un controllo su cartella?

@@ -1,0 +1,25 @@
+=== STRICT: MR ===
+check strict: 0 errors, 0 warnings; PASS
+=== STRICT: DEC ===
+check strict: 0 errors, 0 warnings; PASS
+=== STRICT: FR ===
+check strict: 0 errors, 0 warnings; PASS
+=== DRAFT: INVALID FR ===
+{
+  "file": "examples/FR-INVALID.md",
+  "type": "FunctionalRequirement",
+  "profile": "draft",
+  "complete": true,
+  "valid": true,
+  "errors": 0,
+  "warnings": 1,
+  "diagnostics": [
+    {
+      "code": "DOC-CLAUSE-MISSING",
+      "severity": "warning",
+      "message": "Normative clauses requires 1 nonempty normative clause(s)",
+      "line": 17,
+      "column": 1
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+# DDTA Authoring Tool experiment (CANDIDATE), not a DDTA methodology update.
+schemaId: MacroRequirement
+schemaVersion: '0.1'
+metadata:
+  type: {type: string, required: true, default: MacroRequirement, const: MacroRequirement}
+  schemaVersion: {type: string, required: true, default: '0.1', const: '0.1'}
+  id: {type: string, required: true, default: ''}
+  title: {type: string, required: true, default: ''}
+  lifecycle: {type: string, required: true, default: candidate, enum: [candidate, current, historical]}
+  authority: {type: string, required: false, default: EXPERIMENTAL_NON_CANONICAL}
+  dependsOn: {type: string-list, required: false, default: [], unique: true, disallowSelf: true}
+sections:
+  - {name: Intent, required: true, kind: text, hint: 'Scopo, valore e responsabilita macro; non specificare algoritmi'}
+  - {name: Context, required: true, kind: text, hint: 'Contesto necessario a interpretare la responsabilita'}
+  - {name: Stakeholders, required: true, kind: text, hint: 'Ruoli coinvolti o impattati'}
+  - {name: Scope, required: true, kind: text, hint: 'Confini IN e OUT quando utili'}
+  - {name: Assumptions / Constraints, required: false, kind: text, hint: 'Vincoli macro, se presenti'}
