@@ -19,7 +19,8 @@ still be reviewed and approved operator by operator; no automatic promotion.
 - [`reviews/transfer-review-r3.md`](reviews/transfer-review-r3.md):
   obsolete historical draft retained for traceability, **not an authority**.
 - `operators/`: candidate/approved operator sheets; the loader activates
-  only `reviewStatus: reviewed`. `transfer.md` remains draft.
+  only `reviewStatus: reviewed`. `transfer.md` is now structurally reviewed
+  and executable, while its `methodStatus` remains `candidate`.
 
 ## Validation and activation boundaries
 
@@ -27,8 +28,9 @@ still be reviewed and approved operator by operator; no automatic promotion.
    sections using `schemas/ba-operator-guide.yaml`.
 2. The C4 BA Rule Loader checks the unique `yaml ba-rule` block,
    role definitions, constraints, and diagnostic contracts.
-3. Only explicitly approved and enabled operator sheets under `operators/`
-   become available to the future BA Engine.
+3. Only operator sheets with `reviewStatus: reviewed` under `operators/`
+   are executable by the C4 BA Engine. This is structural rule activation,
+   not automatic semantic acceptance of analyzed BA assertions.
 4. The general guide is not subjected to the operator-sheet schema.
 5. Mermaid projection rules are maintained separately, not embedded in
    operator sheets.
@@ -68,18 +70,21 @@ The code comments are traceability evidence, **not** proof that those FRs
 have been completely implemented or semantically accepted. A future
 implementation review must check code behavior and FR scope together.
 
-## How to check the current draft
+## How to check the reviewed structural rule
 
 From `projects/ddta-authoring-tool/prototype/generic-v01/`:
 
 ```powershell
 py -3 -m ddta_tool check ../../guides/ba/operators/transfer.md --profile strict
+py -3 -m ddta_tool check-ba examples/BA-C4-TRANSFER-VALID.md --json
+py -3 -m ddta_tool check-ba examples/BA-C4-TRANSFER-INVALID.md --json
 py -3 -m ddta_tool check ../../guides/ba/templates/BA_OPERATOR_GUIDE_TEMPLATE.md --profile draft
 py -3 -m unittest discover -s tests -v
 ```
 
-The first command checks the draft's **document format only**. It does not
-evaluate or activate the machine-readable contract.
+The first command checks **guide format only**. The two `check-ba` calls
+exercise the active machine-readable rule: VALID must pass and INVALID must
+fail with `BA-POLARITY-MISSING`.
 
 ## Sources
 
@@ -88,7 +93,7 @@ evaluate or activate the machine-readable contract.
 
 ## C4 candidate BA engine checkpoint (not accepted)
 
-See [`contracts/README.md`](contracts/README.md) for the required common `polarity` and local BAProposition ID checks. The recognized-operator registry is [`operator-registry.yaml`](operator-registry.yaml). `operators/transfer.md` is still `reviewStatus: draft` and is therefore NOT executable: the guide requires semantic approval before activation. The generic CLI `check-ba` distinguishes formal BA failures from uncovered recognized operators. Existing `check` / `check-workspace` are unchanged in scope.
+See [`contracts/README.md`](contracts/README.md) for the required common `polarity` and local BAProposition ID checks. The recognized-operator registry is [`operator-registry.yaml`](operator-registry.yaml). `operators/transfer.md` was initially `reviewStatus: draft` and thus was not executable in C4 R1; C4 R3 subsequently reviewed and activated its structural contract. The generic CLI `check-ba` distinguishes formal BA failures from uncovered recognized operators. Existing `check` / `check-workspace` are unchanged in scope.
 
 ## C4 R2 — Temporal scope and authority correction
 
@@ -98,3 +103,12 @@ optional in the shared proposition contract, recognized as a proposed local
 field (`temporalScope = ...`), and produces `BA-TEMPORAL-SCOPE-UNVERIFIED`
 until a reviewed temporal grammar is introduced. Existing propositions without
 a temporal scope remain unchanged; missing polarity remains an error.
+
+## C4 R3 — Reviewed transfer structural rule
+
+`operators/transfer.md` has `reviewStatus: reviewed` and `methodStatus: candidate`.
+It is executable for role and cardinality checks. The meaning of `transfer`
+and its signatures are grounded in the R7 working rebuild; the method itself
+is not promoted to `current`. A structural PASS does not prove source evidence
+or cross-document identity, and a declared `temporalScope` remains INCOMPLETE.
+The obsolete R3 draft is archival only.

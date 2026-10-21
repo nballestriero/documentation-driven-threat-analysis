@@ -29,10 +29,18 @@ class BARulePrototypeTest(unittest.TestCase):
         shutil.copytree(GUIDES, self.guides)
 
     def active_transfer(self):
+        # DDTA-FR: FR-MR02-03-01 — the checked-in C4 R3 guide is already active.
         file = self.guides / 'operators' / 'transfer.md'
         src = file.read_text(encoding='utf-8')
-        self.assertIn('reviewStatus: draft', src)
-        file.write_text(src.replace('reviewStatus: draft','reviewStatus: reviewed'), encoding='utf-8')
+        self.assertIn('reviewStatus: reviewed', src)
+        self.assertIn('methodStatus: candidate', src)
+        return file
+
+    def draft_transfer(self):
+        # Test the review gate by demoting an isolated copy, never the repository.
+        file = self.active_transfer()
+        src = file.read_text(encoding='utf-8')
+        file.write_text(src.replace('reviewStatus: reviewed','reviewStatus: draft'), encoding='utf-8')
         return file
 
     def source(self):
@@ -41,9 +49,20 @@ class BARulePrototypeTest(unittest.TestCase):
     def check(self, text):
         return check_ba_text(text, self.guides)
 
-    def test_current_transfer_remains_disabled_without_approval(self):
-        rules = load_rules(self.guides)
+    def test_current_transfer_is_reviewed_and_active(self):
+        # DDTA-FR: FR-MR02-03-01; FR-MR02-03-03.
+        rules = load_rules(GUIDES)
         self.assertIn('transfer', rules.recognized)
+        self.assertIn('transfer', rules.active)
+        self.assertNotIn('transfer', rules.pending)
+        outcome = check_ba_text(self.source(), GUIDES)
+        self.assertTrue(outcome.valid, outcome.as_dict())
+        self.assertTrue(outcome.complete)
+        self.assertEqual(outcome.errors, 0)
+
+    def test_draft_guide_copy_is_not_executable(self):
+        self.draft_transfer()
+        rules = load_rules(self.guides)
         self.assertIn('transfer', rules.pending)
         self.assertNotIn('transfer', rules.active)
         outcome = self.check(self.source())
@@ -61,6 +80,7 @@ class BARulePrototypeTest(unittest.TestCase):
         self.assertTrue(outcome.ruleset.get('operator:transfer'))
 
     def test_missing_polarity_is_error_even_with_draft_operator(self):
+        self.draft_transfer()
         outcome = self.check(BAD_EXAMPLE.read_text(encoding='utf-8'))
         self.assertIn('BA-POLARITY-MISSING', {d.code for d in outcome.diagnostics})
         self.assertGreater(outcome.errors,0)
@@ -236,6 +256,27 @@ class BARulePrototypeTest(unittest.TestCase):
         self.assertNotIn('OPERATIONAL_GUIDE_R3', (root/'operator-registry.yaml').read_text(encoding='utf-8'))
         self.assertNotIn('OPERATIONAL_GUIDE_R3', (root/'operators'/'transfer.md').read_text(encoding='utf-8'))
         self.assertIn('REBUILD_R7', (root/'operator-registry.yaml').read_text(encoding='utf-8'))
+
+    def test_cli_real_guides_valid_transfer_passes(self):
+        # DDTA-FR: FR-MR02-03-02 — real configured rule, not a temporary toggle.
+        command = [sys.executable, '-m', 'ddta_tool', 'check-ba', str(EXAMPLE), '--json']
+        proc = subprocess.run(command, cwd=ROOT, capture_output=True, text=True, encoding='utf-8')
+        self.assertEqual(proc.returncode, 0, proc.stderr + proc.stdout)
+        import json
+        result = json.loads(proc.stdout)
+        self.assertTrue(result['valid'])
+        self.assertTrue(result['complete'])
+        self.assertEqual(result['errors'], 0)
+        self.assertIn('operator:transfer', result['ruleset'])
+
+    def test_cli_real_guides_missing_polarity_is_error(self):
+        command = [sys.executable, '-m', 'ddta_tool', 'check-ba', str(BAD_EXAMPLE), '--json']
+        proc = subprocess.run(command, cwd=ROOT, capture_output=True, text=True, encoding='utf-8')
+        self.assertEqual(proc.returncode, 1, proc.stderr + proc.stdout)
+        import json
+        result = json.loads(proc.stdout)
+        self.assertIn('BA-POLARITY-MISSING', {d['code'] for d in result['diagnostics']})
+        self.assertNotIn('BA-OP-UNCOVERED', {d['code'] for d in result['diagnostics']})
 
     def test_cli_json_exit_one_for_missing_polarity(self):
         command=[sys.executable,'-m','ddta_tool','check-ba',str(BAD_EXAMPLE),

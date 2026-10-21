@@ -6,7 +6,7 @@ Tool, not the project's MR, Decision, or FR documents (those remain in `docs/`).
 ## Areas
 
 - [`ba/`](ba/README.md): a freeform general BA guide, an operator-sheet
-  template, and individually reviewed operator drafts.
+  template, and operator sheets with explicit structural review status.
 - [`mermaid/`](mermaid/README.md): a separate, currently placeholder guide
   for BA-to-Mermaid projection. Graphical conventions are not BA semantics.
 
@@ -25,3 +25,10 @@ BA Rule Loader validates machine-readable operator contracts. A future
 BA Engine evaluates BA occurrences in DDTA documents, while the Mermaid
 projection engine consumes validated BA through its own separate guidance.
 Passing an earlier stage does not imply that later stages have passed.
+
+## C4 R3 current BA rule status
+
+The generic BA Rule Loader is implemented in the candidate prototype.
+`ba/operators/transfer.md` is structurally executable after `reviewStatus`
+was set to `reviewed`; `methodStatus: candidate` is unchanged. The general
+BA guide and Mermaid guide are still separate workstreams.

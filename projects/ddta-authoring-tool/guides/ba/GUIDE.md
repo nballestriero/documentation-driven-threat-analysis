@@ -31,9 +31,13 @@ review. Neither field is an operator role. The R7 authoring model discusses
 
 ## Operator catalog
 
-Approved operator sheets will reside in [`operators/`](operators/).
-Unapproved drafts remain in [`reviews/`](reviews/). Methodological recognition
-and executable validation coverage are different states.
+Operator sheets reside in [`operators/`](operators/) and are executable
+only when their `reviewStatus` is `reviewed`. This does not require
+`methodStatus: current`: `transfer` was approved for C4 R3 **structural
+validation** while the broader methodological status remains `candidate`.
+Historical drafts are preserved in [`reviews/`](reviews/) for traceability,
+not authority. Methodological recognition and executable rule coverage are
+different states.
 
 ## Historical references
 

@@ -2,20 +2,21 @@
 type: BAOperatorGuide
 schemaVersion: '0.1'
 id: BA2-OP-TRANSFER
-title: 'Transfer — executable contract candidate C4'
+title: 'Transfer — reviewed structural rule C4 R3'
 methodStatus: candidate
-reviewStatus: draft
+reviewStatus: reviewed
 sourceRefs:
   - methodology/DDTA_BASE_ANALYSIS_GUIDE_REBUILD_R7.tex
 ---
 
-# BA2-OP-TRANSFER — Transfer — executable contract candidate C4
+# BA2-OP-TRANSFER — Transfer — reviewed structural rule C4 R3
 
-> **CANDIDATE / NOT YET ENABLED.** The declared rules are compatible with the
-> proposed BA Rule Loader, but `reviewStatus: draft` means the operator MUST NOT
-> become executable until explicit semantic review. `methodStatus: candidate`
-> denotes candidate methodology pending review against the R7 working
-> source and explicit authoring decisions. Obsolete R3 is not authority.
+> **REVIEWED FOR STRUCTURAL VALIDATION — C4 R3.**
+> `reviewStatus: reviewed` authorizes the generic BA Rule Loader to execute
+> the declared role and cardinality checks. `methodStatus: candidate` remains
+> unchanged: this approval neither finalizes the methodology nor certifies
+> that any individual transfer assertion is supported by its source evidence.
+> R7 is the working methodological source; obsolete R3 is not authority.
 
 ## Meaning
 
@@ -58,10 +59,10 @@ operators. Do not introduce unreviewed distinctions simply to fill this field. -
 
 ## Canonical contract
 
-The following block is a **candidate machine-readable encoding** of the
-R7 working signature. The BA Rule Loader checks this grammar and diagnostics before enabling
-the operator. In particular, `unbounded`
-and the diagnostic keys are proposed DSL syntax, not methodological terms.
+The following block is the **reviewed machine-readable structural rule**
+for `transfer`, derived from the R7 working signature. The generic BA Rule
+Loader validates this rule before execution. `unbounded` and the diagnostic
+keys are C4 DSL syntax, not independent methodological concepts.
 
 ```yaml ba-rule
 contractVersion: '0.1'
@@ -128,12 +129,12 @@ but its semantics are not yet checkable; it is never a transfer role.
 
 ## Diagnostics
 
-The candidate codes `BA-ROLE-MISSING`, `BA-ROLE-CARDINALITY`, and
+The executable diagnostic codes `BA-ROLE-MISSING`, `BA-ROLE-CARDINALITY`, and
 `BA-ROLE-UNKNOWN` are declared within the rule block above; their diagnostic
 messages and LLM instructions must be read from the guide rather than
-hard-coded separately into the Python engine. A future diagnostic must link
-to the relevant rule ID and section, identify the affected source location
-when available, and distinguish a formal violation from unresolved evidence.
+hard-coded separately into the Python engine. The diagnostic result must link to the relevant guide section and identify
+the affected source location when available. Structural violations must remain
+distinct from missing or disputed semantic evidence.
 
 Shared diagnostics, such as an unrecognized `semanticOperatorKey` or missing
 BAProposition-level `polarity`, belong to the common BA engine and operator
@@ -179,7 +180,7 @@ BAP-EX-TRANSFER-BAD-01 - transfer
   polarity    = affirmative
 ```
 
-Expected candidate diagnostic: `BA-ROLE-MISSING` (`content`).
+Expected structural diagnostic: `BA-ROLE-MISSING` (`content`).
 
 **Two sources in a single proposition:**
 
@@ -192,7 +193,7 @@ BAP-EX-TRANSFER-BAD-02 - transfer
   polarity    = affirmative
 ```
 
-Expected candidate diagnostic: `BA-ROLE-CARDINALITY` (`source`).
+Expected structural diagnostic: `BA-ROLE-CARDINALITY` (`source`).
 
 **Source evidence states only “Stage B uses X”:** an upstream `source`
 cannot be inferred from that statement alone. This is a semantic evidence
@@ -215,11 +216,15 @@ does not establish the independent transfer identity's semantic necessity.
   contains a placeholder; the new `Disambiguation` section remains optional.
 - **Excluded R7 content:** graphical rendering and projection rules
   belong to a separate guide. None are part of the BA operator contract.
-- **Items requiring future review:** temporalScope/condition modifier
-  semantics and grammar, additional operator constraints, cross-document
-  identity, and activation/authority workflows.
+- **Review scope C4 R3:** the role/cardinality rule, shared mandatory
+  `polarity`, and guide-derived diagnostics are approved for structural
+  execution; `methodStatus` remains `candidate`.
+- **Items still pending:** `temporalScope`/condition modifier semantics
+  and grammar, evidence sufficiency, additional operator constraints,
+  cross-document identity, and any broader methodological approval.
 
-**Activation gate:** joint review must approve this encoded contract and then
-change `reviewStatus` to `reviewed`; the loader checks both the document schema
-and the strict machine-rule grammar before applying it. Markdown format PASS
-alone does not activate or approve an operator.
+**Activation record (C4 R3):** the structural contract was reviewed and
+`reviewStatus` is now `reviewed`. The loader must still reject invalid guide
+format or unsupported rule grammar. Structural BA PASS does **not** verify
+source evidence, BAReferent identity, temporal semantics, or methodological
+acceptance of the broader candidate R7 material.
