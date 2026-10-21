@@ -35,91 +35,47 @@ L’autore DDTA può intervenire da terminale, da un editor o tramite un agente 
 
 ## Base Analysis
 
-**Stato:** BA incrementale *candidate* della Decision, composta con quella di `MR-01`. Non modifica `lifecycle`, `authority` o il contenuto normativo della Decision; non attribuisce implementazione concreta alle identità astratte.
+### BAReferent
 
-### Continuità con la BA parent (MR-01)
-
-La Decision **riutilizza**, senza ridefinire, l'identità `DDTADocumentAuthoring` (`BAR-EX-MR01-01`), introdotta da MR-01. Conserva altresì `DDTADocument` (`BAR-EX-MR01-02`) e la proposition macro:
-
-```text
-BAP-EX-MR01-01 - produce                  # INHERITED / non duplicata
-  actor  -> DDTADocumentAuthoring          # BAR-EX-MR01-01
-  result -> DDTADocument                   # BAR-EX-MR01-02
-```
-
-Questo blocco è una **vista del contenuto BA ereditato**, non una seconda definizione della proposition. La BA incrementale della Decision è costituita soltanto dalle nuove identità e proposition qui sotto.
-
-### BAReferent introdotti in DEC-MR01-01
-
-| BAReferent | ID stabile candidato | Significato e limite |
+| BAReferent | ID | Significato |
 |---|---|---|
-| `CLIChannel` | `BAR-EX-DEC-MR01-01-01` | Modalità di accesso da terminale a file salvati; non richiede una classe/adapter software autonoma. |
-| `EditorChannel` | `BAR-EX-DEC-MR01-01-02` | Modalità di accesso da editor che può fornire contenuto ancora in memoria. |
-| `ApplicationAIChannel` | `BAR-EX-DEC-MR01-01-03` | Modalità di accesso applicativa o AI, che può usare la CLI su file o un'interfaccia in memoria; non implica un terzo parser. |
-| `DocumentSnapshot` | `BAR-EX-DEC-MR01-01-04` | Contenuto acquisito e contesto identificativo; una sola identità BA con possibili occurrence provenienti da canali differenti. Non realizza `DDTADocument`. |
-| `SharedDocumentVerification` | `BAR-EX-DEC-MR01-01-05` | Servizio comune di interpretazione e verifica. Le regole di controllo e la diagnostica sono governate da MR-02. |
-| `CommonDocumentContract` | `BAR-EX-DEC-MR01-01-06` | Contratto comune che vincola interpretazione e controllo rispetto a contenuto, contesto e versione delle regole. Non equivale necessariamente a uno schema YAML o a un modulo Python. |
-| `DocumentCheckOutcome` | `BAR-EX-DEC-MR01-01-07` | Esito generale del controllo reso disponibile al chiamante; struttura diagnostica e modalità di visualizzazione sono oggetto di ulteriori specializzazioni. |
+| `CLIChannel` | `BAR-EX-DEC-MR01-01-01` | Modalità di accesso da terminale a documenti salvati. |
+| `EditorChannel` | `BAR-EX-DEC-MR01-01-02` | Modalità di accesso da editor, anche per contenuto non salvato. |
+| `ApplicationAIChannel` | `BAR-EX-DEC-MR01-01-03` | Modalità di accesso applicativa o tramite agente AI, su file o testo in memoria. |
+| `DocumentSnapshot` | `BAR-EX-DEC-MR01-01-04` | Contenuto documentale acquisito con il relativo contesto identificativo. |
+| `SharedDocumentVerification` | `BAR-EX-DEC-MR01-01-05` | Servizio condiviso di interpretazione e verifica del documento. |
+| `CommonDocumentContract` | `BAR-EX-DEC-MR01-01-06` | Contratto comune di interpretazione e controllo per contenuto, contesto e versione delle regole. |
+| `DocumentCheckOutcome` | `BAR-EX-DEC-MR01-01-07` | Esito della verifica del documento reso disponibile al chiamante. |
 
-### BAProposition introdotte dalla Decision
-
-**Collegamento di raffinamento alla funzione macro:** `DDTADocumentAuthoring` utilizza il servizio comune di verifica; non lo possiede come parte e non ne è automaticamente una realizzazione. `consumeService` è un operatore già presente nel vocabolario BA; il suo stile Mermaid è da validare nella guida visuale.
+### BAProposition
 
 ```text
 BAP-EX-DEC-MR01-01-CS01 - consumeService
-  consumer -> DDTADocumentAuthoring       # BAR-EX-MR01-01, REUSED
+  consumer -> DDTADocumentAuthoring       # BAR-EX-MR01-01
   service  -> SharedDocumentVerification  # BAR-EX-DEC-MR01-01-05
-  provider -> NOT SPECIFIED
-```
 
-**Modalità alternative di consegna della snapshot.** I canali esprimono tre possibilità, non un obbligo di trasferimento simultaneo. L'AI può utilizzare lo stesso percorso CLI o quello applicativo in memoria. Le tre proposition condividono l'identità `DocumentSnapshot`.
-
-```text
 BAP-EX-DEC-MR01-01-T01 - transfer
-  source      -> CLIChannel                   # BAR-EX-DEC-MR01-01-01
-  content     -> DocumentSnapshot             # BAR-EX-DEC-MR01-01-04
-  destination -> SharedDocumentVerification   # BAR-EX-DEC-MR01-01-05
+  source      -> CLIChannel                  # BAR-EX-DEC-MR01-01-01
+  content     -> DocumentSnapshot            # BAR-EX-DEC-MR01-01-04
+  destination -> SharedDocumentVerification  # BAR-EX-DEC-MR01-01-05
 
 BAP-EX-DEC-MR01-01-T02 - transfer
-  source      -> EditorChannel                # BAR-EX-DEC-MR01-01-02
-  content     -> DocumentSnapshot             # BAR-EX-DEC-MR01-01-04
-  destination -> SharedDocumentVerification   # BAR-EX-DEC-MR01-01-05
+  source      -> EditorChannel               # BAR-EX-DEC-MR01-01-02
+  content     -> DocumentSnapshot            # BAR-EX-DEC-MR01-01-04
+  destination -> SharedDocumentVerification  # BAR-EX-DEC-MR01-01-05
 
 BAP-EX-DEC-MR01-01-T03 - transfer
-  source      -> ApplicationAIChannel         # BAR-EX-DEC-MR01-01-03
-  content     -> DocumentSnapshot             # BAR-EX-DEC-MR01-01-04
-  destination -> SharedDocumentVerification   # BAR-EX-DEC-MR01-01-05
-```
+  source      -> ApplicationAIChannel        # BAR-EX-DEC-MR01-01-03
+  content     -> DocumentSnapshot            # BAR-EX-DEC-MR01-01-04
+  destination -> SharedDocumentVerification  # BAR-EX-DEC-MR01-01-05
 
-**Contratto comune ed esito generale.** La funzione condivisa deve restituire un esito coerente quando contenuto, contesto e versione delle regole coincidono, senza consentire grammatiche differenti per canale.
-
-```text
 BAP-EX-DEC-MR01-01-C01 - constrain
-  constraintValue  -> CommonDocumentContract        # BAR-EX-DEC-MR01-01-06
-  constraintTarget -> SharedDocumentVerification    # BAR-EX-DEC-MR01-01-05
+  constraintValue  -> CommonDocumentContract       # BAR-EX-DEC-MR01-01-06
+  constraintTarget -> SharedDocumentVerification   # BAR-EX-DEC-MR01-01-05
   polarity         = affirmative
 
 BAP-EX-DEC-MR01-01-P01 - produce
-  actor  -> SharedDocumentVerification               # BAR-EX-DEC-MR01-01-05
-  input  -> DocumentSnapshot                         # BAR-EX-DEC-MR01-01-04
-  result -> DocumentCheckOutcome                     # BAR-EX-DEC-MR01-01-07
+  actor  -> SharedDocumentVerification  # BAR-EX-DEC-MR01-01-05
+  input  -> DocumentSnapshot            # BAR-EX-DEC-MR01-01-04
+  result -> DocumentCheckOutcome        # BAR-EX-DEC-MR01-01-07
 ```
-
-### Confini e punti di specializzazione FR
-
-- `DDTADocumentAuthoring` conserva l'identità macro `BAR-EX-MR01-01`; la Decision introduce soltanto una nuova relazione di uso del servizio comune. **Non introdurre `hasPart` o `realize` per forzare la connettività del Mermaid.**
-- `DocumentSnapshot` non è una parte né una realizzazione di `DDTADocument`. I dettagli dell'identificazione di file e buffer appartengono a `FR-MR01-01-01`.
-- La selezione di file/cartella e le relative condizioni di errore sono da specializzare in `FR-MR01-01-02`.
-- L'inoltro di contenuto, contesto e profilo al servizio e il ritorno dell'esito al chiamante sono precisati da `FR-MR01-01-03`; non dedurre qui protocolli o endpoint.
-- L'invocazione concreta senza editor e la diagnostica CLI sono da specializzare in `FR-MR01-01-04`.
-- Il controllo e le diagnostiche restano sotto `MR-02`; la relazione `consumeService` non implica `dependsOn` documentale né modifica la proprietà di quelle regole.
-
-### Contratto candidato di composizione BA → Mermaid
-
-1. Caricare la BA parent `MR-01` e mantenere per ID le identità `BAR-EX-MR01-01`, `BAR-EX-MR01-02` e la proposition `BAP-EX-MR01-01`.
-2. Applicare l'incremento della Decision: riuso di `BAR-EX-MR01-01`, sette nuovi BAR e sei nuove BAP (`CS01`, `T01`, `T02`, `T03`, `C01`, `P01`).
-3. Rigettare collisioni di ID con significati/ruoli incompatibili; non ricreare una nuova identità per una seconda occurrence di `DocumentSnapshot`.
-4. Generare il Mermaid **soltanto** dalla BA cumulativa. Ogni occurrence mostra sotto al nome il proprio codice BAR; gli anchor delle proposition mostrano anche il BAP, preservando la prima origine `MR01`/`DEC-MR01-01` senza rinumerazioni downstream.
-5. Validare il collegamento semantico al parent attraverso `consumeService`; non creare edge generici di collegamento né assumere un `hasPart` in assenza di una proposition.
-
-**Stato di review:** analisi approvata come impostazione di lavoro in questa discussione, ma la documentazione del progetto rimane `candidate / EXPERIMENTAL_NON_CANONICAL`. Questa sezione non promuove il contratto di composizione a regola metodologica definitiva, né dimostra l'implementazione software.

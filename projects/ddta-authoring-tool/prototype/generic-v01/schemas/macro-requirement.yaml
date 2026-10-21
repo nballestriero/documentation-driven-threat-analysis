@@ -17,3 +17,4 @@ sections:
   - {name: Assumptions / Constraints, required: false, kind: text, hint: 'Vincoli macro, se presenti'}
   # Nota discorsiva storica: metadata.dependsOn resta la dichiarazione machine-readable.
   - {name: dependsOn, required: false, kind: text, hint: 'Motivazione e questioni di review sulle dipendenze MR'}
+  - {name: 'Base Analysis', required: false, kind: text, hint: 'BAReferent e BAProposition del MacroRequirement, se presenti'}
