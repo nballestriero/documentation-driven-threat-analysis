@@ -7,6 +7,7 @@ import sys
 from .engine import DEFAULT_SCHEMAS, SchemaError, render_template, validate
 from .relations import check_workspace
 from .implementations import check_implementation_bindings
+from .ba_rules import DEFAULT_GUIDES, check_ba_file
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -35,7 +36,24 @@ def main(argv: list[str] | None = None) -> int:
     i = sub.add_parser('check-implementations', help='Verify declared FR-to-Python binding evidence')
     i.add_argument('project', type=Path, help='Project folder containing docs and prototype')
     i.add_argument('--json', action='store_true')
+    b = sub.add_parser('check-ba', help='Check structural Base Analysis separately from document checks')
+    b.add_argument('file', type=Path, help='DDTA document containing an embedded Base Analysis')
+    b.add_argument('--guides-root', type=Path, default=DEFAULT_GUIDES)
+    b.add_argument('--json', action='store_true')
     args = p.parse_args(argv)
+    if args.command == 'check-ba':
+        # DDTA-FR: FR-MR02-03-02; FR-MR02-02-03; BA result is separate from DOC checks.
+        outcome = check_ba_file(args.file, args.guides_root)
+        if args.json:
+            print(json.dumps({'file': str(args.file), **outcome.as_dict()}, ensure_ascii=False, indent=2))
+        else:
+            for diagnostic in outcome.as_dict()['diagnostics']:
+                where = f'{args.file}:{diagnostic["line"] or "?"}'
+                print(f'{where}: {diagnostic["severity"].upper()} {diagnostic["code"]}: {diagnostic["message"]}')
+            print(f'check-ba: {outcome.errors} errors, {outcome.warnings} warnings; '
+                  f'{"PASS" if outcome.valid else "FAIL"}'
+                  + (' (INCOMPLETE coverage)' if not outcome.complete else ''))
+        return 0 if outcome.valid else 1
     if args.command == 'new':
         try:
             pairs = {}

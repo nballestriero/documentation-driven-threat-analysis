@@ -81,3 +81,7 @@ evaluate or activate the machine-readable contract.
 - `methodology/DDTA_BASE_ANALYSIS_OPERATIONAL_GUIDE_R3.tex` (current).
 - `methodology/DDTA_BASE_ANALYSIS_GUIDE_REBUILD_R7.tex` (candidate).
 - Mermaid-specific guides remain separately maintained in `methodology/`.
+
+## C4 candidate BA engine checkpoint (not accepted)
+
+See [`contracts/README.md`](contracts/README.md) for the required common `polarity` and local BAProposition ID checks. The recognized-operator registry is [`operator-registry.yaml`](operator-registry.yaml). `operators/transfer.md` is still `reviewStatus: draft` and is therefore NOT executable: the guide requires semantic approval before activation. The generic CLI `check-ba` distinguishes formal BA failures from uncovered recognized operators. Existing `check` / `check-workspace` are unchanged in scope.

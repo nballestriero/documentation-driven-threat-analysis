@@ -1,0 +1,8 @@
+# Shared BAProposition contract; roles and cardinalities are operator-local.
+# No default polarity. Formal checks cannot certify source-supported meaning.
+contractVersion: '0.1'
+fields:
+  id: {type: string, required: true, uniqueness: document}
+  semanticOperatorKey: {type: string, required: true}
+  polarity: {type: enum, required: true, values: [affirmative, negative]}
+  roles: {type: mapping, required: true}
