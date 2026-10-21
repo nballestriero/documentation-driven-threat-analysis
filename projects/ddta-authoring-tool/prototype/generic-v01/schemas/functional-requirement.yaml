@@ -17,4 +17,7 @@ sections:
     minItems: 1
     itemPattern: '- \*\*(NC-[0-9]+):\*\*\s*(.*)'
     itemTemplate: '- **NC-1:** <!-- Da compilare -->'
-  - {name: SPO references, required: false, kind: text, hint: 'Referent governati se disponibili; supporto non normativo'}
+  - {name: SPO references, required: false, kind: text, hint: 'Compatibilita con il nome storico dello schema 0.1'}
+  - {name: 'Riferimenti SPO e BA', required: false, kind: text, hint: 'Riferimenti e stato BA non normativi'}
+  - {name: 'Esempio di assessment (supporto di review, non normativa)', required: false, kind: text, hint: 'Esempi di verifica non normativi'}
+  - {name: 'Nota di rilocazione (review, non normativa)', required: false, kind: text, hint: 'Tracciamento di rilocazioni non normative'}

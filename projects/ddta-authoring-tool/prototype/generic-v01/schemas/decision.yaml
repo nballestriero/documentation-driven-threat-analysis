@@ -14,3 +14,5 @@ sections:
   - {name: Context, required: true, kind: text, hint: 'Tensione, alternative o necessita locali'}
   - {name: Decision, required: true, kind: text, hint: 'Commitment specifico sul Parent MR'}
   - {name: Consequences, required: true, kind: text, hint: 'Effetti materiali, trade-off e responsabilita downstream'}
+  - {name: 'Questioni di review (non normative)', required: false, kind: text, hint: 'Questioni aperte non normative'}
+  - {name: 'Base Analysis', required: false, kind: text, hint: 'Nota di collegamento alla BA separata, se presente'}

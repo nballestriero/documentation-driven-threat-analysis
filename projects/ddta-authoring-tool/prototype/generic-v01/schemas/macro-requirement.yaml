@@ -15,3 +15,5 @@ sections:
   - {name: Stakeholders, required: true, kind: text, hint: 'Ruoli coinvolti o impattati'}
   - {name: Scope, required: true, kind: text, hint: 'Confini IN e OUT quando utili'}
   - {name: Assumptions / Constraints, required: false, kind: text, hint: 'Vincoli macro, se presenti'}
+  # Nota discorsiva storica: metadata.dependsOn resta la dichiarazione machine-readable.
+  - {name: dependsOn, required: false, kind: text, hint: 'Motivazione e questioni di review sulle dipendenze MR'}

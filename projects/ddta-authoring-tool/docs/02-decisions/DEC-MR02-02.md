@@ -1,9 +1,15 @@
-# DEC-MR02-02 — Diagnostiche strutturate e profili di controllo
+---
+type: Decision
+schemaVersion: '0.1'
+id: DEC-MR02-02
+title: 'Diagnostiche strutturate e profili di controllo'
+parentMacroRequirement: MR-02
+lifecycle: candidate
+authority: EXPERIMENTAL_NON_CANONICAL
+decisionKind: SELECTABLE  # classificazione di review, non normativa
+---
 
-**Parent MacroRequirement:** `MR-02`\
-**Lifecycle:** `candidate`\
-**Authority:** `EXPERIMENTAL_NON_CANONICAL`\
-**Decision kind:** `SELECTABLE` *(classificazione di review)*
+# DEC-MR02-02 — Diagnostiche strutturate e profili di controllo
 
 ## Context
 

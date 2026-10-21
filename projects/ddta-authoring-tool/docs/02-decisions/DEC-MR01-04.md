@@ -1,9 +1,15 @@
-# DEC-MR01-04 — Separazione delle sorgenti documentali, BA e Mermaid
+---
+type: Decision
+schemaVersion: '0.1'
+id: DEC-MR01-04
+title: 'Separazione delle sorgenti documentali, BA e Mermaid'
+parentMacroRequirement: MR-01
+lifecycle: candidate
+authority: EXPERIMENTAL_NON_CANONICAL
+decisionKind: SELECTABLE  # classificazione di review, non normativa
+---
 
-**Parent MacroRequirement:** `MR-01`\
-**Lifecycle:** `candidate`\
-**Authority:** `EXPERIMENTAL_NON_CANONICAL`\
-**Decision kind:** `SELECTABLE` *(classificazione di review)*
+# DEC-MR01-04 — Separazione delle sorgenti documentali, BA e Mermaid
 
 ## Context
 

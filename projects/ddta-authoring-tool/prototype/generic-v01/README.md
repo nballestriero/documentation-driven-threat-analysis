@@ -1,10 +1,10 @@
 # DDTA Authoring Tool — Generic MR/Decision/FR prototype 0.1
 
-**CANDIDATE / REVIEW ONLY.** This is a technical prototype, not a new methodological authority, not a Base Analysis, and not a migration of existing Markdown files.
+**CANDIDATE / REVIEW ONLY.** This is a technical prototype, not a new methodological authority, not a Base Analysis. The accompanying checkpoint migrates candidate documents without semantic rewriting.
 
 ## Principle verified
 
-One generator and one validator operate on different document types through loadable YAML format definitions. Existing files in the repository without YAML front matter are not migrated or silently accepted. **Adding another type only needs another YAML schema if all required rules fit the common supported grammar.** Unsupported features are explicitly rejected; Python must be extended once, generically, before such additional schema rules are accepted.
+One generator and one validator operate on different document types through loadable YAML format definitions. Documents without YAML front matter are never silently accepted. The companion migration is an explicit, auditable operation. **Adding another type only needs another YAML schema if all required rules fit the common supported grammar.** Unsupported features are explicitly rejected; Python must be extended once, generically, before such additional schema rules are accepted.
 
 ## Project requirements this prototype addresses partially
 
@@ -71,7 +71,7 @@ Schemas are discovered from `schemas/*.yaml`. To use another schema directory, p
 - It checks parent fields are present and are strings; it **does not confirm** that the referenced document exists (MR-03).
 - Inline Markdown headings inside fenced blocks are ignored. Parsing is limited to simple `#` / `##` headings; this is not a full CommonMark implementation.
 - Clause statements currently use the single-line Markdown list format `- **NC-1:** text`, controlled by the FR YAML schema. Multiline/nested clause syntax is not supported by this initial DSL; do not claim that the complete DDTA clause grammar has been implemented.
-- The existing repository's DDTA Markdown uses different headings and no YAML front matter; bulk conversion is not included.
+- The 25 candidate MR/Decision/FR documents in docs/ have been explicitly migrated to front matter and the schemas extended for their non-normative review sections. This is a format migration, not a semantic acceptance or BA update.
 - Profile `draft` only downgrades expected incompleteness; a noninterpretable format is an error in both modes.
 
 ## Evidence
@@ -81,3 +81,9 @@ Schemas are discovered from `schemas/*.yaml`. To use another schema directory, p
 ## Checkpoint and user environment confirmation (2026-10-20)
 
 The FIX1 package was tested by the author on Windows PowerShell with Python 3.14: **33/33 tests OK**; all three strict example checks (MR, Decision, FR) reported `0 errors, 0 warnings; PASS`. This confirmation supplements, rather than rewrites, the original `TEST_RESULTS.txt` snapshot, whose last line predates the Windows run. No full specification conformance is claimed.
+
+## Explicit candidate-document conversion checkpoint (R1)
+
+All 5 MR, 6 Decision and 14 FR candidate documents under `docs/` now use `type`, `schemaVersion`, `id`, `title`, lifecycle, authority and their applicable parent/dependency metadata in YAML front matter. All existing H2 sections and body text have been preserved. The three YAML format definitions explicitly recognize the existing non-normative review, assessment and BA-reference sections. The MR `dependsOn: []` metadata is based on each document's explicit statement that no MR dependency was declared; the accompanying prose remains in `## dependsOn`.
+
+The Python validator and its semantic limits are unchanged. `strict` PASS only establishes formal conformity to the schema, not correctness of documentary meaning, identity resolution, parent existence, BA or FR implementation. The original review assessment remains a historical snapshot of the earlier prototype.
