@@ -146,8 +146,8 @@ class BARulePrototypeTest(unittest.TestCase):
         result=self.check(src)
         self.assertIn('BA-ID-DUPLICATE',{d.code for d in result.diagnostics})
 
-    def test_known_uncovered_produce_is_incomplete(self):
-        src=self.source().replace(' - transfer',' - produce')
+    def test_known_uncovered_observe_is_incomplete(self):
+        src=self.source().replace(' - transfer',' - observe')
         outcome=self.check(src)
         self.assertFalse(outcome.complete)
         self.assertIn('BA-OP-UNCOVERED',{d.code for d in outcome.diagnostics})

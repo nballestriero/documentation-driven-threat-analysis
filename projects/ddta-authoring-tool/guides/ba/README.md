@@ -19,8 +19,8 @@ still be reviewed and approved operator by operator; no automatic promotion.
 - [`reviews/transfer-review-r3.md`](reviews/transfer-review-r3.md):
   obsolete historical draft retained for traceability, **not an authority**.
 - `operators/`: candidate/approved operator sheets; the loader activates
-  only `reviewStatus: reviewed`. `transfer.md` is now structurally reviewed
-  and executable, while its `methodStatus` remains `candidate`.
+  only `reviewStatus: reviewed`. Both `transfer.md` (C4 R3) and `produce.md`
+  (C5 R2) have reviewed structural rules; both retain `methodStatus: candidate`.
 
 ## Validation and activation boundaries
 
@@ -112,3 +112,12 @@ and its signatures are grounded in the R7 working rebuild; the method itself
 is not promoted to `current`. A structural PASS does not prove source evidence
 or cross-document identity, and a declared `temporalScope` remains INCOMPLETE.
 The obsolete R3 draft is archival only.
+
+## C5 R2 — Reviewed produce structural rule
+
+`operators/produce.md` is now `reviewStatus: reviewed` with `methodStatus: candidate`.
+The loader reads its `actor [1]`, `input [0..*]`, and `result [1..*]`
+cardinalities from the Markdown guide, without new operator-specific Python.
+`transfer` remains active. The existing `MR-01` `produce` proposition still
+fails `BA-POLARITY-MISSING` until deliberately corrected; it no longer yields
+`BA-OP-UNCOVERED`. A declared `temporalScope` remains INCOMPLETE.

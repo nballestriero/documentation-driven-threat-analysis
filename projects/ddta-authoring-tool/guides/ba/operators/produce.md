@@ -2,21 +2,20 @@
 type: BAOperatorGuide
 schemaVersion: '0.1'
 id: BA2-OP-PRODUCE
-title: 'Produce — structural rule candidate C5 R1'
+title: 'Produce — reviewed structural rule C5 R2'
 methodStatus: candidate
-reviewStatus: draft
+reviewStatus: reviewed
 sourceRefs:
   - methodology/DDTA_BASE_ANALYSIS_GUIDE_REBUILD_R7.tex
 ---
 
-# BA2-OP-PRODUCE — Produce — structural rule candidate C5 R1
+# BA2-OP-PRODUCE — Produce — reviewed structural rule C5 R2
 
-> **CANDIDATE / NOT ACTIVE.** This operator sheet is authored from the R7
-> working rebuild (chapter 8, described pages 32–38). Its structural contract
-> is reviewable by the C4 BA Rule Loader but cannot execute while
-> `reviewStatus: draft`. `methodStatus: candidate` is separate from executable
-> rule review. A structurally valid assertion is not automatically supported
-> by the project's governed evidence.
+> **REVIEWED FOR STRUCTURAL VALIDATION — C5 R2.** This operator sheet is
+> sourced only from the R7 working rebuild (chapter 8, described pages 32–38).
+> `reviewStatus: reviewed` enables the BA Rule Loader to check declared roles
+> and cardinalities. `methodStatus: candidate` is unchanged: structural review
+> does not approve the broader methodology or prove source-supported meaning.
 
 ## Meaning
 
@@ -63,10 +62,10 @@ produce is not a claim of transfer, persistence, or ex-novo creation. -->
 
 ## Canonical contract
 
-The `yaml ba-rule` block is a candidate structural encoding of the R7 chapter
-8 signature. Its DSL names, cardinalities, and diagnostic contract use the
-same generic grammar as the reviewed `transfer` rule. The rule is **not
-executable** while this guide has `reviewStatus: draft`.
+The `yaml ba-rule` block is the **reviewed executable structural encoding**
+of the R7 chapter 8 signature. Its cardinalities and diagnostics use the
+same generic grammar as the active `transfer` rule. The loader reads this
+contract from Markdown; no `produce`-specific Python implementation is added.
 
 ```yaml ba-rule
 contractVersion: '0.1'
@@ -138,16 +137,16 @@ shared parser/contract; no implicit support is claimed.
 
 `BA-ROLE-MISSING`, `BA-ROLE-CARDINALITY`, and `BA-ROLE-UNKNOWN` are structural
 errors, with their human messages and LLM correction instructions declared
-inside this guide's `yaml ba-rule` block. When eventually activated, the
-validator must link each error to the affected proposition and the
-`Canonical contract` guide section.
+inside this guide's `yaml ba-rule` block. The active validator links each
+error to the affected proposition and the `Canonical contract` guide section.
 
 Shared errors including `BA-POLARITY-MISSING` and local proposition ID
 collisions are controlled by the common BAProposition contract, not by
-`produce`'s roles. A recognized `produce` proposition currently yields
-`BA-OP-UNCOVERED` and an INCOMPLETE result because this guide is still draft.
-A time-qualified proposition additionally requires an unfinished temporal
-validation; neither condition permits a false BA PASS.
+`produce`'s roles. With this reviewed guide, a structurally valid unqualified
+`produce` proposition can pass; missing `polarity` remains an error. A
+proposition declaring `temporalScope` still requires an unfinished temporal
+validation and cannot receive an unrestricted BA PASS. Source evidence and
+BAReferent identity remain beyond the structural check.
 
 ## Valid examples
 
@@ -200,7 +199,7 @@ BAP-EX-PRODUCE-BAD-01 - produce
   polarity = affirmative
 ```
 
-Expected structural diagnostic after rule activation: `BA-ROLE-MISSING`
+Expected structural diagnostic: `BA-ROLE-MISSING`
 for `actor`.
 
 **Missing result:**
@@ -247,7 +246,7 @@ DataX upstream is insufficient to assert its use as a `produce.input`.
 - **Scope boundary:** Mermaid shapes and projection rules are excluded from
   this semantic operator guide.
 
-**Activation gate:** review this sheet's semantics and its executable DSL,
-then explicitly set `reviewStatus: reviewed` in a separate checkpoint.
-Do not promote `methodStatus: candidate` automatically. A document-format
-PASS alone does not activate the guide.
+**C5 R2 activation boundary:** `reviewStatus: reviewed` enables only the
+formal role/cardinality checks stated above. `methodStatus: candidate`
+remains unchanged. A format PASS or structural BA PASS is not evidence of
+semantic acceptance, correct BAReferent identity, or temporal validity.

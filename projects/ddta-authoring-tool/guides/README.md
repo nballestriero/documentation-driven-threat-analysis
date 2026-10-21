@@ -32,3 +32,10 @@ The generic BA Rule Loader is implemented in the candidate prototype.
 `ba/operators/transfer.md` is structurally executable after `reviewStatus`
 was set to `reviewed`; `methodStatus: candidate` is unchanged. The general
 BA guide and Mermaid guide are still separate workstreams.
+
+## C5 R2 current BA rule status
+
+`ba/operators/transfer.md` and `ba/operators/produce.md` are both
+structurally executable (`reviewStatus: reviewed`, `methodStatus: candidate`).
+The machine rules come from their English Markdown guides. Source-evidence
+review, identity resolution, and temporal semantics are not implied by PASS.

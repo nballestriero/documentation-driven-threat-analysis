@@ -1,4 +1,4 @@
-"""C5 R1: candidate produce operator review, without enabling it.
+"""C5 R2: actual reviewed produce guide and structural activation.
 
 DDTA-FR: FR-MR02-03-01  # guide and machine-rule loading
 DDTA-FR: FR-MR02-03-02  # shared BAProposition checks
@@ -32,40 +32,53 @@ class ProduceCandidateTest(unittest.TestCase):
         return (EXAMPLES / name).read_text(encoding='utf-8')
 
     def reviewed_in_temporary_copy(self):
+        # Verify existing checked-in rule without mutating its approval status.
         path = self.guides / 'operators' / 'produce.md'
+        self.assertIn('reviewStatus: reviewed', path.read_text(encoding='utf-8'))
+        return path
+
+    def draft_in_temporary_copy(self):
+        # Check the activation gate in an isolated copy; never alter the repo.
+        path = self.reviewed_in_temporary_copy()
         raw = path.read_text(encoding='utf-8')
-        self.assertIn('reviewStatus: draft', raw)
-        path.write_text(raw.replace('reviewStatus: draft', 'reviewStatus: reviewed'), encoding='utf-8')
+        path.write_text(raw.replace('reviewStatus: reviewed', 'reviewStatus: draft'), encoding='utf-8')
+        return path
 
     def check(self, name='BA-C5-PRODUCE-VALID.md'):
         return check_ba_text(self.source(name), self.guides)
 
-    def test_draft_produce_document_format_is_valid(self):
+    def test_reviewed_produce_document_format_is_valid(self):
         result = validate(PRODUCE_GUIDE.read_text(encoding='utf-8'), 'strict')
         self.assertTrue(result.valid)
 
-    def test_produce_is_recognized_but_pending_and_transfer_remains_active(self):
+    def test_produce_is_reviewed_active_and_transfer_remains_active(self):
         rules = load_rules(GUIDES)
         self.assertIn('produce', rules.recognized)
-        self.assertIn('produce', rules.pending)
-        self.assertNotIn('produce', rules.active)
+        self.assertIn('produce', rules.active)
+        self.assertNotIn('produce', rules.pending)
+        self.assertEqual(rules.active['produce'].roles['actor'], (1, 1))
+        self.assertEqual(rules.active['produce'].roles['input'], (0, None))
+        self.assertEqual(rules.active['produce'].roles['result'], (1, None))
         self.assertIn('transfer', rules.active)
+        self.assertIn('operator:produce', rules.fingerprints)
+        self.assertIn('operator:transfer', rules.fingerprints)
 
     def test_r7_only_as_current_source(self):
         text = PRODUCE_GUIDE.read_text(encoding='utf-8')
         self.assertIn('DDTA_BASE_ANALYSIS_GUIDE_REBUILD_R7.tex', text)
         self.assertNotIn('OPERATIONAL_GUIDE_R3', text)
         self.assertIn('methodStatus: candidate', text)
-        self.assertIn('reviewStatus: draft', text)
+        self.assertIn('reviewStatus: reviewed', text)
 
-    def test_unapproved_produce_is_not_false_pass(self):
+    def test_draft_copy_of_produce_is_not_false_pass(self):
+        self.draft_in_temporary_copy()
         out = self.check()
         self.assertFalse(out.valid)
         self.assertFalse(out.complete)
         self.assertEqual(out.errors, 0)
         self.assertIn('BA-OP-UNCOVERED', {d.code for d in out.diagnostics})
 
-    def test_temporary_reviewed_guide_enables_produce_without_python_changes(self):
+    def test_real_reviewed_guide_enables_produce_without_python_changes(self):
         self.reviewed_in_temporary_copy()
         rules = load_rules(self.guides)
         self.assertEqual(rules.active['produce'].roles['actor'], (1, 1))
@@ -110,11 +123,13 @@ class ProduceCandidateTest(unittest.TestCase):
 
     def test_shared_polarity_error_survives_draft_and_review(self):
         name = 'BA-C5-PRODUCE-MISSING-POLARITY.md'
+        self.draft_in_temporary_copy()
         before = self.check(name)
         self.assertIn('BA-POLARITY-MISSING', {d.code for d in before.diagnostics})
-        self.reviewed_in_temporary_copy()
-        after = self.check(name)
+        self.assertIn('BA-OP-UNCOVERED', {d.code for d in before.diagnostics})
+        after = check_ba_text(self.source(name), GUIDES)
         self.assertIn('BA-POLARITY-MISSING', {d.code for d in after.diagnostics})
+        self.assertNotIn('BA-OP-UNCOVERED', {d.code for d in after.diagnostics})
         self.assertGreater(after.errors, 0)
 
     def test_optional_temporal_scope_remains_incomplete_even_when_reviewed(self):
@@ -126,11 +141,60 @@ class ProduceCandidateTest(unittest.TestCase):
         self.assertFalse(out.complete)
         self.assertFalse(out.valid)
 
-    def test_transfer_still_passes_with_candidate_produce_present(self):
+    def test_transfer_still_passes_with_reviewed_produce_present(self):
         source = (EXAMPLES / 'BA-C4-TRANSFER-VALID.md').read_text(encoding='utf-8')
         out = check_ba_text(source, self.guides)
         self.assertTrue(out.valid, out.as_dict())
         self.assertIn('operator:transfer', out.ruleset)
+
+
+    def test_real_guide_valid_produce_has_structural_pass(self):
+        out = check_ba_text(self.source(), GUIDES)
+        self.assertTrue(out.complete)
+        self.assertTrue(out.valid, out.as_dict())
+        self.assertEqual(out.errors, 0)
+        self.assertEqual(out.warnings, 0)
+        self.assertIn('operator:produce', out.ruleset)
+        self.assertIn('operator:transfer', out.ruleset)
+
+    def test_real_guide_missing_actor_reads_human_and_llm_diagnostic(self):
+        out = check_ba_text(self.source('BA-C5-PRODUCE-MISSING-ACTOR.md'), GUIDES)
+        self.assertFalse(out.valid)
+        self.assertTrue(out.complete)
+        d = next(d for d in out.diagnostics if d.code == 'BA-ROLE-MISSING')
+        self.assertIn('actor', d.message)
+        self.assertEqual('Canonical contract', d.guideSection)
+        self.assertEqual('operators/produce.md', d.guideRef)
+        self.assertIn('Never invent', d.llmInstruction)
+        self.assertNotIn('BA-OP-UNCOVERED', {item.code for item in out.diagnostics})
+
+    def test_real_guide_missing_polarity_still_errors(self):
+        out = check_ba_text(self.source('BA-C5-PRODUCE-MISSING-POLARITY.md'), GUIDES)
+        self.assertFalse(out.valid)
+        self.assertTrue(out.complete)
+        self.assertIn('BA-POLARITY-MISSING', {d.code for d in out.diagnostics})
+        self.assertNotIn('BA-OP-UNCOVERED', {d.code for d in out.diagnostics})
+
+    def test_actual_cli_valid_produce_returns_zero(self):
+        import subprocess, sys, json
+        source_file = EXAMPLES / 'BA-C5-PRODUCE-VALID.md'
+        proc = subprocess.run([sys.executable, '-m', 'ddta_tool', 'check-ba',
+                               str(source_file), '--json'], cwd=ROOT,
+                              capture_output=True, text=True, encoding='utf-8')
+        self.assertEqual(proc.returncode, 0, proc.stderr + proc.stdout)
+        data = json.loads(proc.stdout)
+        self.assertTrue(data['valid'])
+        self.assertTrue(data['complete'])
+        self.assertIn('operator:produce', data['ruleset'])
+
+    def test_mr01_old_produce_has_polarity_error_but_no_uncovered(self):
+        # Source fixture mirrors the known BA shape in MR-01; no auto-correction.
+        src = self.source().replace('  polarity = affirmative\n', '')
+        out = check_ba_text(src, GUIDES)
+        self.assertIn('BA-POLARITY-MISSING', {d.code for d in out.diagnostics})
+        self.assertNotIn('BA-OP-UNCOVERED', {d.code for d in out.diagnostics})
+        self.assertFalse(out.valid)
+
 
 
 if __name__ == '__main__':
