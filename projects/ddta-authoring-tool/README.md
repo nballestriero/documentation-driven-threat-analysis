@@ -54,19 +54,34 @@ MR-02
     `-- FR-MR02-02-02 - Applicazione dei profili draft/strict
 ```
 
-### Ramo MR-03 (una Decision e due FR candidati)
+### Ramo MR-03 (tre Decision candidate, quattro FR; parent-change documentato ma non implementato)
 
 ```text
 MR-03
-`-- DEC-MR03-01 - Risoluzione dichiarativa dei riferimenti documentali
-    |-- FR-MR03-01-01 - Indicizzazione delle identita' documentali
-    `-- FR-MR03-01-02 - Verifica delle relazioni fra documenti
+|-- DEC-MR03-01 - Risoluzione dichiarativa dei riferimenti documentali
+|   |-- FR-MR03-01-01 - Indicizzazione delle identita' documentali
+|   `-- FR-MR03-01-02 - Verifica delle relazioni fra documenti
+|-- DEC-MR03-02 - Tracciabilita FR e artefatti implementativi
+|   |-- FR-MR03-02-01 - Dichiarazione FR-to-code
+|   `-- FR-MR03-02-02 - Verifica artefatti dichiarati
+`-- DEC-MR03-03 - Review parent-change (nessun FR; NON IMPLEMENTATA)
 ```
 
 La prima realizzazione tecnica in `prototype/generic-v01/ddta_tool/relations.py`
 verifica le relazioni YAML tra MR, Decision e FR all'interno dello scope selezionato;
 non gestisce ancora identita' e occorrenze BA o revisioni documentali.
 Il relativo assessment e' in `docs/04-design-review/MR03_DOCUMENT_RELATIONS_R1_ASSESSMENT.md`.
+
+### Tracciabilità FR ↔ codice (candidate)
+
+`DEC-MR03-02` con `FR-MR03-02-01` / `FR-MR03-02-02` governa la prima
+verifica formale dei binding FR verso simboli Python: metadati
+`implementationClaim` / `implementationBindings` nel singolo FR e
+riferimento inverso `DDTA-FR: <ID>` nella docstring del simbolo. Il controllo
+accerta file, simbolo e ritorno all'FR, **non** la conformità delle clausole.
+Gli assessment storici restano snapshot datati; i binding dichiarati nei FR
+sono la vista corrente dei riferimenti tecnici. `DEC-MR03-03` documenta la
+review di rilocazione dei parent ma **non è implementata**.
 
 - Le Decision sono in `docs/02-decisions/`.
 - Gli FR sono in `docs/03-functional-requirements/`.

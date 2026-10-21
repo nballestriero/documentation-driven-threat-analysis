@@ -9,6 +9,9 @@ metadata:
   parentDecision: {type: string, required: true, default: ''}
   lifecycle: {type: string, required: true, default: candidate, enum: [candidate, current, historical]}
   authority: {type: string, required: false, default: EXPERIMENTAL_NON_CANONICAL}
+  # Candidate L2 trace fields, not L1 FunctionalRequirement attributes.
+  implementationClaim: {type: string, required: false, default: unassessed, enum: [unassessed, partial, implemented]}
+  implementationBindings: {type: string-list, required: false, default: [], unique: true}
 sections:
   - {name: Functional obligation, required: true, kind: text, hint: 'Unita funzionale coerente'}
   - name: Normative clauses

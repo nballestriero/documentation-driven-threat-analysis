@@ -15,7 +15,7 @@ One generator and one validator operate on different document types through load
 - `DEC-MR02-02` / `FR-MR02-02-01`, `FR-MR02-02-02`: structured diagnostics, draft vs strict.
 - `DEC-MR01-01` / `FR-MR01-01-04`: execute from PowerShell or Linux via Python CLI.
 
-No complete FR compliance, semantic acceptance, editor LSP, reference resolution (MR-03), BA or Mermaid projection is claimed.
+No complete FR compliance, semantic acceptance, editor LSP, BA or Mermaid projection is claimed. MR-03 document reference resolution has a separate partial implementation.
 
 ## Windows UTF-8 regression fix (FIX1)
 
@@ -121,3 +121,30 @@ python3 -m unittest discover -s tests -v
   directory are not followed; they cannot be considered validated by this run.
 
 See `../../docs/04-design-review/MR03_DOCUMENT_RELATIONS_R1_ASSESSMENT.md`.
+
+## FR ↔ Python artifact trace checkpoint (candidate R1)
+
+**Scope: FunctionalRequirement only.** Under `DEC-MR03-02` /
+`FR-MR03-02-01` / `FR-MR03-02-02`, FR front matter may contain
+`implementationClaim: unassessed|partial|implemented` and a
+`implementationBindings` list of `prototype/.../*.py::TopLevelSymbol` paths
+relative to the Authoring Tool project root. For a `partial` or `implemented`
+claim, at least one binding is required; each target must exist, contain the
+selected top-level symbol, and include `DDTA-FR: <FR id>` in its docstring.
+
+The checkpoint initially marks existing concrete links as `partial`;
+**no full FR compliance is claimed**. Unassessed documents have no claim of
+non-implementation. A successful evidence check does NOT validate semantics,
+coverage of normative clauses, code behavior, or test adequacy. Existing
+assessments remain historical; FR bindings are the living declaration.
+
+Run from `prototype/generic-v01`:
+
+```powershell
+py -3 -m ddta_tool check-implementations ../.. --json
+py -3 -m ddta_tool check-workspace ../../docs --profile strict
+py -3 -m unittest discover -s tests -v
+```
+
+No BA identity is introduced. The parent-change review `DEC-MR03-03` is
+DOCUMENTED ONLY; no change/migration command is implemented.

@@ -115,6 +115,9 @@ def check_workspace(root: Path, profile: str = 'strict',
     Direct child directories named in DOCUMENT_FOLDERS (or one such directory
     passed directly) are the entire scope. Unrelated Markdown is not scanned.
     Missing/ambiguous identities fail; draft never downgrades broken links.
+
+    DDTA-FR: FR-MR03-01-01
+    DDTA-FR: FR-MR03-01-02
     """
     if profile not in ('draft', 'strict'):
         raise ValueError('profile must be draft or strict')

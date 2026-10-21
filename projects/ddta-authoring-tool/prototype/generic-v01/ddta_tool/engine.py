@@ -27,6 +27,10 @@ ALLOWED_SECTION_KEYS = {'name', 'required', 'kind', 'hint', 'minItems', 'itemPat
 
 @dataclass(frozen=True)
 class Diagnostic:
+    """DDTA candidate implementation trace; partial, not semantic approval.
+
+    DDTA-FR: FR-MR02-02-01
+    """
     code: str
     severity: str
     message: str
@@ -39,6 +43,10 @@ class Diagnostic:
 
 @dataclass
 class CheckResult:
+    """DDTA candidate implementation trace; partial, not semantic approval.
+
+    DDTA-FR: FR-MR02-02-01
+    """
     document_type: str | None
     profile: str
     diagnostics: list[Diagnostic]
@@ -177,6 +185,10 @@ def _validate_schema(s: Any) -> dict[str, Any]:
 
 
 def load_schema(document_type: str, schemas_dir: Path = DEFAULT_SCHEMAS) -> dict[str, Any]:
+    """DDTA candidate implementation trace; partial, not semantic approval.
+
+    DDTA-FR: FR-MR02-01-01
+    """
     if not isinstance(document_type, str) or not document_type.strip():
         raise SchemaError('Document type is missing')
     if not schemas_dir.is_dir():
@@ -231,6 +243,10 @@ def _metadata_line(lines: list[str], key: str, ending: int) -> int | None:
 
 def render_template(document_type: str, identifier: str, title: str = '',
                     values: dict[str, str] | None = None, schemas_dir: Path = DEFAULT_SCHEMAS) -> str:
+    """DDTA candidate implementation trace; partial, not semantic approval.
+
+    DDTA-FR: FR-MR01-02-02
+    """
     schema = load_schema(document_type, schemas_dir)
     if not isinstance(identifier, str) or not identifier.strip() or '\n' in identifier or '\r' in identifier:
         raise ValueError('id must be a nonempty single-line string')
@@ -264,6 +280,12 @@ def render_template(document_type: str, identifier: str, title: str = '',
 
 
 def validate(text: str, profile: str = 'strict', schemas_dir: Path = DEFAULT_SCHEMAS) -> CheckResult:
+    """DDTA candidate implementation trace; partial, not semantic approval.
+
+    DDTA-FR: FR-MR01-02-01
+    DDTA-FR: FR-MR02-01-02
+    DDTA-FR: FR-MR02-02-02
+    """
     if profile not in ('draft', 'strict'):
         raise ValueError('profile must be draft or strict')
     ds: list[Diagnostic] = []
