@@ -6,8 +6,8 @@
 
 ## What is Base Analysis
 
-*To be drafted together from the current Operational Guide R3, using the
-Rebuild R7 as a separately reviewed source.*
+*To be drafted and reviewed using the R7 rebuild and the explicit
+methodological decisions made during this authoring process.*
 
 ## Semantic authority and the BA/documentation boundary
 
@@ -16,9 +16,10 @@ Rebuild R7 as a separately reviewed source.*
 ## BAReferent and BAProposition
 
 *To be drafted and reviewed. Do not duplicate operator signatures here.*
-The agreed general `polarity` attribute of BAProposition will be specified
-here when the common BAProposition contract is reviewed, rather than repeated
-within every operator's role table.
+The shared contract is `contracts/ba-proposition.yaml`. `polarity` is
+required; `temporalScope` is optional and its value semantics are still under
+review. Neither field is an operator role. The R7 authoring model discusses
+`temporalScope` as a proposition-level scoped modifier.
 
 ## Identity, granularity, and continuity
 
@@ -36,8 +37,7 @@ and executable validation coverage are different states.
 
 ## Historical references
 
-- `methodology/DDTA_BASE_ANALYSIS_OPERATIONAL_GUIDE_R3.tex` — current operational reference.
-- `methodology/DDTA_BASE_ANALYSIS_GUIDE_REBUILD_R7.tex` — candidate rebuild, subject to reconciliation.
+- `methodology/DDTA_BASE_ANALYSIS_GUIDE_REBUILD_R7.tex` — working review source; no automatic promotion.
 
 This general guide must not be checked against `BAOperatorGuide` fields. Generic
 Markdown checks may be introduced separately.

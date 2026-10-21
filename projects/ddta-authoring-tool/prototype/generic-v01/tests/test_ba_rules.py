@@ -186,6 +186,57 @@ class BARulePrototypeTest(unittest.TestCase):
         path.write_text(raw,encoding='utf-8')
         with self.assertRaises(BARuleError):load_rules(self.guides)
 
+    def test_optional_temporal_scope_absent_has_no_extra_diagnostic(self):
+        self.active_transfer()
+        out = self.check(self.source())
+        self.assertTrue(out.valid, out.as_dict())
+        self.assertNotIn('BA-TEMPORAL-SCOPE-UNVERIFIED', {d.code for d in out.diagnostics})
+
+    def test_temporal_scope_is_recognized_but_incomplete(self):
+        self.active_transfer()
+        src = self.source().replace('  polarity    = affirmative',
+                                    '  temporalScope = DuringTraining\n  polarity    = affirmative')
+        out = self.check(src)
+        codes = {d.code for d in out.diagnostics}
+        self.assertIn('BA-TEMPORAL-SCOPE-UNVERIFIED', codes)
+        self.assertNotIn('BA-ROLE-UNKNOWN', codes)
+        self.assertNotIn('BA-PARSE', codes)
+        self.assertFalse(out.complete)
+        self.assertFalse(out.valid)
+        warning = next(d for d in out.diagnostics if d.code == 'BA-TEMPORAL-SCOPE-UNVERIFIED')
+        self.assertEqual(warning.guideSection, 'temporalScope')
+        self.assertIn('temporal qualification', warning.llmInstruction)
+
+    def test_temporal_scope_missing_value_is_error(self):
+        self.active_transfer()
+        src = self.source().replace('  polarity    = affirmative',
+                                    '  temporalScope =\n  polarity    = affirmative')
+        out = self.check(src)
+        self.assertIn('BA-TEMPORAL-SCOPE-EMPTY', {d.code for d in out.diagnostics})
+        self.assertGreater(out.errors, 0)
+
+    def test_temporal_scope_duplicate_is_error(self):
+        self.active_transfer()
+        src = self.source().replace('  polarity    = affirmative',
+                                    '  temporalScope = BeforeEvent\n  temporalScope = AfterEvent\n  polarity    = affirmative')
+        out = self.check(src)
+        self.assertIn('BA-TEMPORAL-SCOPE-DUPLICATE', {d.code for d in out.diagnostics})
+        self.assertFalse(out.valid)
+
+    def test_temporal_scope_does_not_suppress_polarity_error(self):
+        src = self.source().replace('  polarity    = affirmative',
+                                    '  temporalScope = DuringTraining')
+        out = self.check(src)
+        self.assertIn('BA-POLARITY-MISSING', {d.code for d in out.diagnostics})
+        self.assertIn('BA-TEMPORAL-SCOPE-UNVERIFIED', {d.code for d in out.diagnostics})
+
+    def test_current_operator_source_is_r7_not_r3(self):
+        from ddta_tool.ba_rules import DEFAULT_GUIDES
+        root = DEFAULT_GUIDES
+        self.assertNotIn('OPERATIONAL_GUIDE_R3', (root/'operator-registry.yaml').read_text(encoding='utf-8'))
+        self.assertNotIn('OPERATIONAL_GUIDE_R3', (root/'operators'/'transfer.md').read_text(encoding='utf-8'))
+        self.assertIn('REBUILD_R7', (root/'operator-registry.yaml').read_text(encoding='utf-8'))
+
     def test_cli_json_exit_one_for_missing_polarity(self):
         command=[sys.executable,'-m','ddta_tool','check-ba',str(BAD_EXAMPLE),
                  '--guides-root',str(self.guides),'--json']

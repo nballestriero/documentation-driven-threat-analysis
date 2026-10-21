@@ -3,10 +3,9 @@ type: BAOperatorGuide
 schemaVersion: '0.1'
 id: BA2-OP-TRANSFER
 title: 'Transfer — executable contract candidate C4'
-methodStatus: current
+methodStatus: candidate
 reviewStatus: draft
 sourceRefs:
-  - methodology/DDTA_BASE_ANALYSIS_OPERATIONAL_GUIDE_R3.tex
   - methodology/DDTA_BASE_ANALYSIS_GUIDE_REBUILD_R7.tex
 ---
 
@@ -14,9 +13,9 @@ sourceRefs:
 
 > **CANDIDATE / NOT YET ENABLED.** The declared rules are compatible with the
 > proposed BA Rule Loader, but `reviewStatus: draft` means the operator MUST NOT
-> become executable until explicit semantic review. `methodStatus: current`
-> reflects the operator's presence in Operational Guide R3, not approval of
-> this newly encoded executable contract.
+> become executable until explicit semantic review. `methodStatus: candidate`
+> denotes candidate methodology pending review against the R7 working
+> source and explicit authoring decisions. Obsolete R3 is not authority.
 
 ## Meaning
 
@@ -60,8 +59,8 @@ operators. Do not introduce unreviewed distinctions simply to fill this field. -
 ## Canonical contract
 
 The following block is a **candidate machine-readable encoding** of the
-source-supported signature. The future BA Rule Loader must check this grammar
-and its diagnostics before enabling the operator. In particular, `unbounded`
+R7 working signature. The BA Rule Loader checks this grammar and diagnostics before enabling
+the operator. In particular, `unbounded`
 and the diagnostic keys are proposed DSL syntax, not methodological terms.
 
 ```yaml ba-rule
@@ -108,8 +107,9 @@ diagnostics:
 all BAPropositions and is not repeated in the `roles` mapping. The agreed
 values are `affirmative` and `negative`: the latter requires an explicitly
 governed negation of this exact transfer claim. Missing evidence is **not**
-a negative transfer. No implicit polarity default is authorized; the precise
-shared machine rule remains a separate authoring/validation step.
+a negative transfer. No implicit polarity default is authorized: the shared contract enforces
+explicit polarity. An optional proposition-level `temporalScope` is recognized,
+but its semantics are not yet checkable; it is never a transfer role.
 
 ## Invariants
 
@@ -203,12 +203,10 @@ does not establish the independent transfer identity's semantic necessity.
 
 ## Source reconciliation
 
-- **Operational Guide R3:** the operator's signature is `behavior [0..1]`,
-  `source [1]`, `destination [1..*]`, and `content [1..*]`; its `behavior`
-  refinement is explicitly limited to transfer. Relevant parts include
-  “transfer — qualcosa viene trasferito …”, “Ruoli e cardinalità principali”,
-  and “Il delta BA2 R3 / transfer.behavior”. These source titles are retained
-  as literal locators, not as the language of the new guide.
+- **Working source R7, chapter 7:** the candidate signature is
+  `behavior [0..1]`, `source [1]`, `destination [1..*]`,
+  and `content [1..*]`; the optional `behavior` requires independent
+  governed meaning for the transfer segment.
 - **Rebuild R7, chapter 7, described pages 23–29:** confirms that signature
   and expands on governed evidence, content identity continuity, negative
   assertions, and controlled LLM-assisted authoring. The rebuild is a
@@ -217,9 +215,9 @@ does not establish the independent transfer identity's semantic necessity.
   contains a placeholder; the new `Disambiguation` section remains optional.
 - **Excluded R7 content:** graphical rendering and projection rules
   belong to a separate guide. None are part of the BA operator contract.
-- **Items requiring future review:** formal grammar of the YAML DSL;
-  supported `constraints`; shared proposition fields including `polarity`;
-  links to operator registries; and the authority/revision workflow.
+- **Items requiring future review:** temporalScope/condition modifier
+  semantics and grammar, additional operator constraints, cross-document
+  identity, and activation/authority workflows.
 
 **Activation gate:** joint review must approve this encoded contract and then
 change `reviewStatus` to `reviewed`; the loader checks both the document schema

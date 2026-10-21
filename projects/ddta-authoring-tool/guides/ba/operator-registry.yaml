@@ -1,7 +1,8 @@
-# Source: methodology/DDTA_BASE_ANALYSIS_OPERATIONAL_GUIDE_R3.tex, operator table.
+# Working operator inventory reviewed against the R7 rebuild.
+# Provisional recognition; R7 proposals are not automatically activated.
 # Recognition does not grant executable coverage or rule approval.
 registryVersion: '0.1'
-sourceRef: methodology/DDTA_BASE_ANALYSIS_OPERATIONAL_GUIDE_R3.tex
+sourceRef: methodology/DDTA_BASE_ANALYSIS_GUIDE_REBUILD_R7.tex
 recognized:
   - transfer
   - produce

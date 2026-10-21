@@ -24,6 +24,7 @@ DEFAULT_GUIDES = Path(__file__).resolve().parents[3] / 'guides' / 'ba'
 PROPOSITION_HEADER = re.compile(r'^(?P<id>BAP-[A-Za-z0-9][A-Za-z0-9-]*)\s+-\s+(?P<operator>[A-Za-z][A-Za-z0-9]*)\s*$')
 ROLE_LINE = re.compile(r'^\s*(?P<role>[A-Za-z][A-Za-z0-9]*)\s*->\s*(?P<target>[^#\n]+?)(?:\s+#\s*BAR-[^\n]+)?\s*$')
 POLARITY_LINE = re.compile(r'^\s*polarity\s*=\s*(?P<value>\S+)\s*$')
+TEMPORAL_LINE = re.compile(r'^\s*temporalScope\s*=\s*(?P<value>.*?)\s*$')
 GUIDE_FENCE = re.compile(r'^```yaml ba-rule\s*\n(.*?)^```\s*$', re.MULTILINE | re.DOTALL)
 SECTION = re.compile(r'^##\s+(.+?)\s*$')
 BA_SUBSECTION = re.compile(r'^###\s+(.+?)\s*$')
@@ -132,12 +133,13 @@ def _load_common(root: Path) -> tuple[dict[str, dict[str, Any]], str]:
     m = _exact_mapping(contract, {'contractVersion', 'fields'}, 'Shared BA contract')
     if m['contractVersion'] != '0.1':
         raise BARuleError('Unsupported shared BA contract version')
-    fields = _exact_mapping(m['fields'], {'id', 'semanticOperatorKey', 'polarity', 'roles'}, 'Shared BA fields')
+    fields = _exact_mapping(m['fields'], {'id', 'semanticOperatorKey', 'polarity', 'roles', 'temporalScope'}, 'Shared BA fields')
     expected = {
         'id': {'type': 'string', 'required': True, 'uniqueness': 'document'},
         'semanticOperatorKey': {'type': 'string', 'required': True},
         'polarity': {'type': 'enum', 'required': True, 'values': ['affirmative', 'negative']},
         'roles': {'type': 'mapping', 'required': True},
+        'temporalScope': {'type': 'string', 'required': False, 'semanticStatus': 'pending'},
     }
     # The initial generic grammar deliberately supports exactly these field kinds.
     # Unsupported changes must fail rather than be ignored.
@@ -249,6 +251,7 @@ class Proposition:
     line: int
     roles: dict[str, list[str]] = field(default_factory=dict)
     polarity: list[tuple[int, str]] = field(default_factory=list)
+    temporal_scope: list[tuple[int, str]] = field(default_factory=list)
 
 
 def _parse_propositions(src: str, result: BAResult) -> list[Proposition]:
@@ -308,6 +311,11 @@ def _parse_propositions(src: str, result: BAResult) -> list[Proposition]:
             if p:
                 prop.polarity.append((i+1,p.group('value')))
                 continue
+            # DDTA-FR: FR-MR02-03-02 — optional shared temporalScope; not an operator role.
+            temporal = TEMPORAL_LINE.fullmatch(stripped)
+            if temporal:
+                prop.temporal_scope.append((i+1, temporal.group('value').strip()))
+                continue
             role = ROLE_LINE.fullmatch(lines[i])
             if role:
                 target = role.group('target').strip()
@@ -352,6 +360,30 @@ def check_ba_text(src: str, guides_root: Path = DEFAULT_GUIDES) -> BAResult:
             result.diagnostics.append(BADiagnostic('BA-POLARITY-DUPLICATE','error', 'Exactly one polarity declaration is required',prop.line,prop.identifier))
         elif prop.polarity[0][1] not in rules.common_fields['polarity']['values']:
             result.diagnostics.append(BADiagnostic('BA-POLARITY-INVALID','error',f'Unsupported polarity {prop.polarity[0][1]!r}',prop.polarity[0][0],prop.identifier))
+        # DDTA-FR: FR-MR02-03-02; FR-MR02-03-03; FR-MR02-02-03.
+        # An optional declared temporalScope is recognized, but its temporal
+        # grammar is not approved. It cannot silently receive semantic PASS.
+        if len(prop.temporal_scope) > 1:
+            result.diagnostics.append(BADiagnostic('BA-TEMPORAL-SCOPE-DUPLICATE','error',
+                'At most one temporalScope declaration is supported in the C4 prototype',
+                prop.temporal_scope[1][0],prop.identifier,'contracts/ba-proposition.yaml','temporalScope',
+                'Review the source and remove conflicting scopes; do not select one by inference.'))
+            result.complete = False
+        if prop.temporal_scope:
+            when, value = prop.temporal_scope[0]
+            if not value:
+                result.diagnostics.append(BADiagnostic('BA-TEMPORAL-SCOPE-EMPTY','error',
+                    'temporalScope must not be empty when declared',when,prop.identifier,
+                    'contracts/ba-proposition.yaml','temporalScope',
+                    'Use a scope only if the source governs it; otherwise omit the field.'))
+                result.complete = False
+            else:
+                result.complete = False
+                result.diagnostics.append(BADiagnostic('BA-TEMPORAL-SCOPE-UNVERIFIED','warning',
+                    'temporalScope is recognized but temporal semantics are not yet verified',
+                    when,prop.identifier,'contracts/ba-proposition.yaml','temporalScope',
+                    'Inspect the source-supported temporal qualification; do not infer '
+                    'dates, intervals, event boundaries, or time validity.'))
         if prop.operator not in rules.recognized:
             result.diagnostics.append(BADiagnostic('BA-OP-UNKNOWN','error',f'Unrecognized BA operator {prop.operator}; review operator-registry.yaml',prop.line,prop.identifier,
                 'operator-registry.yaml',None,'Compare the recorded meaning to the operator registry. Do not invent or silently substitute an operator.'))

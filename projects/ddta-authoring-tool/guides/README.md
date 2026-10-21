@@ -14,8 +14,9 @@ Tool, not the project's MR, Decision, or FR documents (those remain in `docs/`).
 
 This checkpoint introduces the candidate English format and review draft for
 `transfer`, **without** adding executable operator rules or a BA Engine.
-The current methodological authority of Operational Guide R3 is preserved;
-Rebuild R7 is a source for reconciliation, not automatic promotion.
+Operational Guide R3 is obsolete and MUST NOT be used as methodological
+authority. The R7 rebuild is the working review source; each proposed rule
+still requires explicit methodological approval before activation.
 
 ## Validation stages
 

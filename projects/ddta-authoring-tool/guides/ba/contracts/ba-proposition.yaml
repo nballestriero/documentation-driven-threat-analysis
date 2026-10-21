@@ -6,3 +6,4 @@ fields:
   semanticOperatorKey: {type: string, required: true}
   polarity: {type: enum, required: true, values: [affirmative, negative]}
   roles: {type: mapping, required: true}
+  temporalScope: {type: string, required: false, semanticStatus: pending}

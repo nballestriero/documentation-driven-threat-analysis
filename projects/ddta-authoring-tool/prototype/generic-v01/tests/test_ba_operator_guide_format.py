@@ -134,8 +134,7 @@ class BAOperatorGuideFormatTest(unittest.TestCase):
 
     def test_missing_source_refs_is_not_strict_pass(self):
         source = TEMPLATE.read_text(encoding='utf-8').replace(
-            'sourceRefs:\n  - methodology/DDTA_BASE_ANALYSIS_OPERATIONAL_GUIDE_R3.tex\n'
-            '  - methodology/DDTA_BASE_ANALYSIS_GUIDE_REBUILD_R7.tex',
+            'sourceRefs:\n  - methodology/DDTA_BASE_ANALYSIS_GUIDE_REBUILD_R7.tex',
             'sourceRefs: []')
         codes = {d.code for d in validate(source, 'strict').diagnostics}
         self.assertIn('DOC-FIELD-LIST-SIZE', codes)

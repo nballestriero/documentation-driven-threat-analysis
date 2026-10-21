@@ -6,7 +6,6 @@ title: 'Operator guide template'
 methodStatus: unresolved
 reviewStatus: draft
 sourceRefs:
-  - methodology/DDTA_BASE_ANALYSIS_OPERATIONAL_GUIDE_R3.tex
   - methodology/DDTA_BASE_ANALYSIS_GUIDE_REBUILD_R7.tex
 ---
 
@@ -58,4 +57,4 @@ diagnostics: {}
 
 ## Source reconciliation
 
-<!-- Compare R3/R7, documenting errata, conflicts, and review status. -->
+<!-- Compare the R7 working source and approved decisions; do not use obsolete R3 authority. -->

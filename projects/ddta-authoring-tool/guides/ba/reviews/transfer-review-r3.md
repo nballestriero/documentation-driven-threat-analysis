@@ -3,7 +3,7 @@ type: BAOperatorGuide
 schemaVersion: '0.1'
 id: BA2-OP-TRANSFER
 title: 'Transfer — operator review draft R3'
-methodStatus: current
+methodStatus: historical
 reviewStatus: draft
 sourceRefs:
   - methodology/DDTA_BASE_ANALYSIS_OPERATIONAL_GUIDE_R3.tex
@@ -12,12 +12,14 @@ sourceRefs:
 
 # BA2-OP-TRANSFER — Transfer — operator review draft R3
 
+> **OBSOLETE HISTORICAL REVIEW / NOT EXECUTABLE.** R3 is superseded
+> and MUST NOT be used as semantic authority for BA operator decisions.
 > **REVIEW DRAFT / NOT EXECUTABLE.** This document belongs to `reviews/`, not
 > `operators/`. Its Markdown format can be checked against `BAOperatorGuide`,
 > but its semantic rules and machine-readable contract require explicit review
-> before they can become active BA validation rules. `methodStatus: current`
-> refers to the operator's presence in Operational Guide R3; it does not approve
-> this review draft or imply executable validation coverage.
+> before they can become active BA validation rules. `methodStatus: historical`
+> is retained only for historical traceability and does not approve this
+> draft or imply executable validation coverage.
 
 ## Meaning
 
@@ -204,7 +206,7 @@ does not establish the independent transfer identity's semantic necessity.
 
 ## Source reconciliation
 
-- **Operational Guide R3:** the operator's signature is `behavior [0..1]`,
+- **Historical R3 text (OBSOLETE, NOT AUTHORITY):** the operator's signature is `behavior [0..1]`,
   `source [1]`, `destination [1..*]`, and `content [1..*]`; its `behavior`
   refinement is explicitly limited to transfer. Relevant parts include
   “transfer — qualcosa viene trasferito …”, “Ruoli e cardinalità principali”,
