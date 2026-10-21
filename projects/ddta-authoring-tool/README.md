@@ -54,6 +54,20 @@ MR-02
     `-- FR-MR02-02-02 - Applicazione dei profili draft/strict
 ```
 
+### Ramo MR-03 (una Decision e due FR candidati)
+
+```text
+MR-03
+`-- DEC-MR03-01 - Risoluzione dichiarativa dei riferimenti documentali
+    |-- FR-MR03-01-01 - Indicizzazione delle identita' documentali
+    `-- FR-MR03-01-02 - Verifica delle relazioni fra documenti
+```
+
+La prima realizzazione tecnica in `prototype/generic-v01/ddta_tool/relations.py`
+verifica le relazioni YAML tra MR, Decision e FR all'interno dello scope selezionato;
+non gestisce ancora identita' e occorrenze BA o revisioni documentali.
+Il relativo assessment e' in `docs/04-design-review/MR03_DOCUMENT_RELATIONS_R1_ASSESSMENT.md`.
+
 - Le Decision sono in `docs/02-decisions/`.
 - Gli FR sono in `docs/03-functional-requirements/`.
 - La matrice tecnica di review e' `docs/04-design-review/FR_TO_PYTHON_MAPPING_CANDIDATE.md`.
@@ -65,7 +79,7 @@ MR-02
 - **Base Analysis**: un file Markdown **separato e collegato per ID** al documento analizzato; contiene BAReferent/BAProposition dopo l'analisi. Un documento puo' non avere ancora una BA redatta.
 - **Mermaid**: file Markdown **separato e generato** dalla BA validata; le viste locali o cumulative sono composte da BA normalizzate e riferimenti risolti, non concatenando i file Mermaid esistenti.
 - **Confini**: MR-01 governa sorgenti e template; MR-02 le regole di validazione; MR-03 i riferimenti/identita' condivisi; MR-04 la proiezione e la composizione; MR-05 LaTeX/PDF.
-- **Formato di authoring candidato (`DEC-MR01-02`)**: Markdown leggibile, metadati in YAML front matter e definizioni YAML caricabili per tipo; generatore e validatore consumano lo stesso contratto. Questa scelta ha una prima realizzazione sperimentale parziale in `prototype/generic-v01/`; **non** implica la conformita' integrale agli FR e **non** ha migrato i file preesistenti.
+- **Formato di authoring candidato (`DEC-MR01-02`)**: Markdown leggibile, metadati in YAML front matter e definizioni YAML caricabili per tipo; generatore e validatore consumano lo stesso contratto. Questa scelta ha una prima realizzazione sperimentale parziale in `prototype/generic-v01/`; **non** implica la conformita' integrale agli FR e i 25 documenti MR/Decision/FR sono stati migrati al front matter YAML nel commit `267465a`.
 - **Dettagli ancora aperti**: vocabolario YAML, schema dei link, nomi dei file, versionamento e compatibilita' dei formati, registro BA e formato delle viste. I percorsi esemplificativi non costituiscono un contratto completo.
 - Le sezioni `Base Analysis` e `Riferimenti SPO e BA` gia' presenti nei documenti CANDIDATE sono solo **segnaposto di review**, non file BA o proposition canoniche; la loro migrazione verra' valutata separatamente.
 
@@ -83,7 +97,7 @@ MR-02
 - D2: quattro Decision candidate di MR-01 e due di MR-02; *YAML front matter*, schemi caricabili e *Language Server* restano scelte del progetto non ancora promosse ad authority metodologica.
 - D3: `FR-MR01-02-01` e `FR-MR01-02-02` riveduti per il formato generico; `FR-MR01-04-01` aggiunto per il collegamento BA-documento; quattro FR di MR-02 aggiunti per verifica e diagnostiche, tutti `candidate`. Gli altri sette FR di MR-01 richiedono ancora la regression review prima dell'implementazione.
 - BA: non ancora estratta; nessun operatore, ruolo o identity e' dedotto dal nome di un modulo Python.
-- MR-02 dispone di due Decision e quattro FR candidate; MR 03..05 non hanno ancora Decision o FR in questo checkpoint.
+- MR-02 dispone di due Decision e quattro FR candidate; MR-03 dispone di una Decision e due FR candidate per le relazioni fra documenti; MR-04 e MR-05 non hanno ancora Decision o FR in questo checkpoint.
 
 I file vengono conservati nel repository per review e per sviluppo incrementale **senza promozione automatica a current**.
 
@@ -93,7 +107,7 @@ I file vengono conservati nel repository per review e per sviluppo incrementale 
 - **Motore:** `ddta_tool/engine.py`; **CLI:** `ddta_tool/__main__.py`; **schemi:** `schemas/*.yaml`; **test:** `tests/test_generic.py`.
 - **Test Windows 2026-10-20:** 33/33 OK con Python 3.14; `strict PASS` sui tre esempi MR/Decision/FR.
 - **Supporto limitato:** nuovo tipo soltanto con un altro schema YAML se usa le regole gia' rappresentabili dalla DSL 0.1; in caso contrario va esteso il motore comune.
-- **Nessuna migrazione:** gli attuali documenti in `docs/` non hanno automaticamente un front matter YAML e non devono essere dichiarati conformi dal prototipo.
+- **Migrazione completata (`267465a`):** i 25 documenti MR/Decision/FR sono ora in YAML front matter e hanno superato `strict` nel checkpoint di migrazione.
 - **Assessment:** `docs/04-design-review/GENERIC_PROTOTYPE_V01_FR_ASSESSMENT.md`. La BA non e' ancora stata prodotta.
 
 Eseguire dalla cartella `prototype/generic-v01`:

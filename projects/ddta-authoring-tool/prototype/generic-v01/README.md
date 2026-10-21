@@ -87,3 +87,37 @@ The FIX1 package was tested by the author on Windows PowerShell with Python 3.14
 All 5 MR, 6 Decision and 14 FR candidate documents under `docs/` now use `type`, `schemaVersion`, `id`, `title`, lifecycle, authority and their applicable parent/dependency metadata in YAML front matter. All existing H2 sections and body text have been preserved. The three YAML format definitions explicitly recognize the existing non-normative review, assessment and BA-reference sections. The MR `dependsOn: []` metadata is based on each document's explicit statement that no MR dependency was declared; the accompanying prose remains in `## dependsOn`.
 
 The Python validator and its semantic limits are unchanged. `strict` PASS only establishes formal conformity to the schema, not correctness of documentary meaning, identity resolution, parent existence, BA or FR implementation. The original review assessment remains a historical snapshot of the earlier prototype.
+
+## MR-03 document relations incremental checkpoint (2026-10-21)
+
+**CANDIDATE / REVIEW ONLY; baseline `267465a`.** `ddta_tool/relations.py` provides
+`check_workspace(root, profile, schemas_dir)` for MR/Decision/FR declared IDs and
+links in an explicit `docs/` directory (or one of its DDTA-type subdirectories).
+`engine.py` and all existing schema files remain unchanged by this increment.
+
+From `prototype/generic-v01/`:
+
+```powershell
+py -3 -m ddta_tool check-workspace ../../docs --profile strict
+py -3 -m ddta_tool check-workspace ../../docs --profile strict --json
+py -3 -m unittest discover -s tests -v
+```
+
+```bash
+python3 -m ddta_tool check-workspace ../../docs --profile strict
+python3 -m unittest discover -s tests -v
+```
+
+- Reports duplicate `id` declarations, absent/ambiguous/wrong-type parent
+  references (Decision → MR, FR → Decision), and invalid MR `dependsOn` targets.
+- Reuses `engine.validate()`; invalid source documents or unreadable scope never
+  silently become a workspace PASS. Unrelated `.md` files outside the three
+  recognized DDTA document folders are excluded by the documented scope rule.
+- Returns structured per-file `DOC-*` and `REL-*` diagnostics, JSON output and
+  command status 0 for PASS or 1 for FAIL.
+- This checks declared document links, **not** semantic appropriateness,
+  BAReferent resolution, changes across revisions, or temporal BA identity.
+- Scope completeness is relative to the directory passed. Paths outside that
+  directory are not followed; they cannot be considered validated by this run.
+
+See `../../docs/04-design-review/MR03_DOCUMENT_RELATIONS_R1_ASSESSMENT.md`.

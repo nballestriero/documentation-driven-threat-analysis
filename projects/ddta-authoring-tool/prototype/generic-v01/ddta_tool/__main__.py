@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 import sys
 from .engine import DEFAULT_SCHEMAS, SchemaError, render_template, validate
+from .relations import check_workspace
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -21,6 +22,10 @@ def main(argv: list[str] | None = None) -> int:
     c.add_argument('file', type=Path)
     c.add_argument('--profile', choices=['draft', 'strict'], default='strict')
     c.add_argument('--json', action='store_true')
+    w = sub.add_parser('check-workspace', help='Check MR/Decision/FR identities and links across a document scope')
+    w.add_argument('root', type=Path, help='docs/ directory or a DDTA document-type subdirectory')
+    w.add_argument('--profile', choices=['draft', 'strict'], default='strict')
+    w.add_argument('--json', action='store_true')
     args = p.parse_args(argv)
     if args.command == 'new':
         try:
@@ -41,6 +46,19 @@ def main(argv: list[str] | None = None) -> int:
             return 2
         print(f'Created: {args.output} (draft)')
         return 0
+    if args.command == 'check-workspace':
+        result = check_workspace(args.root, args.profile, args.schemas_dir)
+        if args.json:
+            print(json.dumps(result.as_dict(), ensure_ascii=False, indent=2))
+        else:
+            for d in result.diagnostics:
+                where = f'{args.root / d.path if d.path else args.root}:{d.line or "?"}:{d.column or "?"}'
+                print(f'{where}: {d.severity.upper()} {d.code}: {d.message}')
+            print(f'check-workspace {args.profile}: {result.documents} documents; '
+                  f'{result.errors} errors, {result.warnings} warnings; '
+                  f'{"PASS" if result.valid else "FAIL"}'
+                  + (' (incomplete check)' if not result.complete else ''))
+        return 0 if result.valid else 1
     try:
         src = args.file.read_text(encoding='utf-8')
     except OSError as exc:
