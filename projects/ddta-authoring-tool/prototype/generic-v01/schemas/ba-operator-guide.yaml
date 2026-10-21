@@ -1,0 +1,22 @@
+# Candidate document format for BA operator guide sheets; no BA semantics are asserted.
+schemaId: BAOperatorGuide
+schemaVersion: '0.1'
+metadata:
+  type: {type: string, required: true, default: BAOperatorGuide, const: BAOperatorGuide}
+  schemaVersion: {type: string, required: true, default: '0.1', const: '0.1'}
+  id: {type: string, required: true, default: ''}
+  title: {type: string, required: true, default: ''}
+  methodStatus: {type: string, required: true, default: unresolved, enum: [unresolved, current, candidate, open, historical]}
+  reviewStatus: {type: string, required: true, default: draft, enum: [draft, reviewed]}
+  sourceRefs: {type: string-list, required: true, default: [], unique: true, minItems: 1}
+sections:
+  - {name: Meaning, required: true, kind: text, hint: 'Smallest governed semantic meaning of the operator'}
+  - {name: When to use, required: true, kind: text, hint: 'Positive applicability criteria'}
+  - {name: When not to use, required: true, kind: text, hint: 'Non-applicable cases and semantic boundaries'}
+  - {name: Disambiguation, required: false, kind: text, hint: 'Comparisons with similar operators; may remain empty'}
+  - {name: Canonical contract, required: true, kind: text, hint: 'Single yaml ba-rule block; to be checked by the future BA Rule Loader'}
+  - {name: Invariants, required: true, kind: text, hint: 'Invariants, semantic constraints, and prohibited inferences'}
+  - {name: Diagnostics, required: true, kind: text, hint: 'Diagnostics, guidance references, and LLM instructions'}
+  - {name: Valid examples, required: true, kind: text, hint: 'Reviewed valid BA examples'}
+  - {name: Invalid examples, required: true, kind: text, hint: 'Reviewed counterexamples and rationale'}
+  - {name: Source reconciliation, required: true, kind: text, hint: 'Source references and reconciliation of ambiguities and errata'}
