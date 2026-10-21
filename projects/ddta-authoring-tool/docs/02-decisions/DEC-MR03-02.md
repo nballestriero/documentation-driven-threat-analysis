@@ -17,9 +17,9 @@ Un assessment statico può descrivere una realizzazione tecnica in un particolar
 
 ## Decision
 
-**Scelta progettuale candidata:** ogni `FunctionalRequirement` può dichiarare nel front matter YAML `implementationClaim` (`unassessed`, `partial`, `implemented`) e una lista `implementationBindings` di elementi `percorso-relativo-al-progetto.py::simbolo`. La dichiarazione è una *claim dell'autore*, non un'approvazione di conformità. Se la claim è `partial` oppure `implemented`, deve esistere almeno un binding risolvibile in uno scope di progetto esplicito. Ciascun simbolo Python dichiarato deve contenere nella propria docstring un riferimento testuale `DDTA-FR: <ID-FR>`; le interfacce e i validatori non devono mantenere copie autonome delle associazioni.
+**Scelta progettuale candidata:** ogni `FunctionalRequirement` può dichiarare nel front matter YAML `implementationClaim` (`unassessed`, `partial`, `implemented`) e una lista `implementationBindings` di elementi `percorso-relativo-al-progetto.py::simbolo`. La dichiarazione di `implementationClaim` è una responsabilità esplicita del programmatore (o del responsabile tecnico della realizzazione): il servizio non assegna, non promuove e non corregge automaticamente il valore `implemented`. La claim non costituisce da sola approvazione semantica o dimostrazione di conformità delle clausole. Se la claim è `partial` oppure `implemented`, deve esistere almeno un binding risolvibile in uno scope di progetto esplicito. Ciascun simbolo Python dichiarato deve contenere nella propria docstring un riferimento testuale `DDTA-FR: <ID-FR>`; le interfacce e i validatori non devono mantenere copie autonome delle associazioni.
 
-La verifica formale controlla soltanto la risolvibilità del file, la presenza del simbolo nel sorgente Python e il riferimento di ritorno al FunctionalRequirement realmente indicato. Non valuta la copertura delle `normativeClause`, l'equivalenza semantica, l'adeguatezza dei test o lo stato di accettazione. I metadati sono supporto documentale L2 sperimentale; non introducono una nuova proprietà L1 o una BA. Non vengono modificati automaticamente i vecchi assessment: restano evidenze datate, non il registro corrente dei binding.
+La verifica formale controlla soltanto la risolvibilità del file, la presenza del simbolo nel sorgente Python e il riferimento di ritorno al FunctionalRequirement realmente indicato. Anche per `implemented` è obbligatorio almeno un binding verificabile; un binding mancante o invalido impedisce un esito positivo del controllo di tracciabilità, ma il suo esito positivo non assegna né conferma automaticamente la completezza funzionale della claim. Non valuta la copertura delle `normativeClause`, l'equivalenza semantica, l'adeguatezza dei test o lo stato di accettazione. I metadati sono supporto documentale L2 sperimentale; non introducono una nuova proprietà L1 o una BA. Non vengono modificati automaticamente i vecchi assessment: restano evidenze datate, non il registro corrente dei binding.
 
 ## Consequences
 
@@ -31,7 +31,7 @@ La verifica formale controlla soltanto la risolvibilità del file, la presenza d
 
 ## Questioni di review (non normative)
 
-- Prima di attribuire `implemented`, quali evidenze di test e review dei singoli obblighi saranno richieste?
+- Quali evidenze di test e review delle singole clausole il programmatore deve consultare per giustificare la propria dichiarazione `implemented`? Le eventuali regole di assessment aggiuntive richiederanno un contratto documentato distinto; il validatore corrente non le inventa.
 - Come estendere i binding a metodi, classi non Python o repository esterni con regole esplicite, senza supporre automaticamente la loro equivalenza?
 
 ## Base Analysis
