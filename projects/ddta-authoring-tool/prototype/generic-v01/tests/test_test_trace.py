@@ -25,7 +25,7 @@ class TestTraceabilityTest(unittest.TestCase):
             'docs/03-functional-requirements/FR-MR03-06-02.md',
             'docs/05-test-specifications/TS-FR-MR02-03-01.md',
             'docs/05-test-specifications/TS-FR-MR03-06-02.md',
-            'prototype/generic-v01/tests/test_ba_catalog.py',
+            'prototype/generic-v01/tests/test_fr_mr02_03_01.py',
             'prototype/generic-v01/tests/test_test_trace.py',
         ]
         with tempfile.TemporaryDirectory() as tmp:
@@ -36,10 +36,10 @@ class TestTraceabilityTest(unittest.TestCase):
                 shutil.copyfile(PROJECT / name, target)
             valid = check_test_specifications(root, 'pilot')
             self.assertTrue(valid.valid, valid.as_dict())
-            self.assertEqual(valid.cases, 2)
-            self.assertEqual(valid.mapped_tests, 2)
+            self.assertEqual(valid.cases, 5)
+            self.assertEqual(valid.mapped_tests, 6)
             self.assertEqual(valid.unmapped_tests, 0)
-            edited = root / 'prototype/generic-v01/tests/test_ba_catalog.py'
+            edited = root / 'prototype/generic-v01/tests/test_fr_mr02_03_01.py'
             original = edited.read_text(encoding='utf-8')
             edited.write_text(original.replace('DDTA-TC: TC-FR-MR02-03-01-01',
                                                'DDTA-TC: TC-FR-MR02-03-01-99'), encoding='utf-8')
