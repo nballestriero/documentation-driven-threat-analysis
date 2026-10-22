@@ -19,6 +19,8 @@ I test del prototipo verificano aspetti strutturali, errori e vincoli, ma una li
 
 **Scelta candidata:** definire `TestSpecification` come documento di verifica distinto da uno SpecializedRequirement, con esattamente un `parentFunctionalRequirement` dichiarato. Una TestSpecification puo contenere piu casi di test con ID stabili: ciascun caso indica almeno la clausola `NC` del parent che verifica, la motivazione, le precondizioni, l'azione, il risultato atteso e uno o piu binding a funzioni di test Python.
 
+**Granularita dei casi ed equivalenza degli scenari:** ogni `TestCase` documenta uno scenario di verifica distinguibile per condizioni di ingresso, azione astratta, contesto o profilo applicabile e risultato atteso, rispetto a una o piu NC del proprio FR. La condivisione della stessa NC, dello stesso codice diagnostico o di un nome di test simile non dimostra da sola l'equivalenza di due scenari. Uno stesso caso puo avere piu `testBindings` se i metodi verificano lo stesso comportamento osservabile rispetto a contratti applicabili equivalenti: ad esempio, due tipi documentali possono imporre lo stesso vincolo dichiarativo, pur usando campi parent diversi. Il `rationale` del caso deve motivare l'equivalenza richiamando i contratti pertinenti, mentre `preconditions`, `action` ed `expectedResult` devono descrivere lo scenario comune senza nascondere differenze sostanziali. Se cambiano l'obbligazione verificata, la condizione rilevante, il profilo o l'esito atteso, occorrono casi distinguibili, anche se la NC e la stessa. L'equivalenza fra contratti e una valutazione di review, non una deduzione automatica dal numero di funzioni collegate; un controllo di tracciabilita puo verificare i binding, non provare tale equivalenza.
+
 Il collegamento e bidirezionale: il documento di test dichiara ogni simbolo che lo realizza; la docstring di ciascuna funzione di test dichiara `DDTA-TC: <ID-caso>`. Il servizio confronta entrambe le dichiarazioni e risolve il parent e la clausola senza dedurli dal filename, dal nome del metodo o dalla sua somiglianza semantica. La localizzazione di una funzione Python e verificata, ma tale presenza non prova che la funzione verifichi correttamente la clausola.
 
 Ogni test deve avere una giustificazione derivabile da un FR o da un contratto governato dall'FR. Evitare casi dedicati all'assenza di componenti storici che non fanno parte del progetto. Per il catalogo BA, la proprieta da verificare e la corrispondenza completa fra guide ammesse e operatori riconosciuti, indipendentemente dai singoli operatori presenti. Un elenco di nomi specifici non e la fonte del catalogo.
@@ -34,7 +36,7 @@ L'introduzione e incrementale: in una fase pilota il controllo circoscritto alle
 ## Consequences
 
 - La fonte del comportamento testato rimane l'FR, non la suite Python.
-- Un caso di test viene giustificato una volta sola e puo avere piu realizzazioni tecniche dichiarate senza duplicare la sua specifica.
+- Un caso di test viene giustificato una volta sola e puo avere piu realizzazioni tecniche dichiarate quando l'equivalenza dello scenario e motivata in riferimento ai contratti; condizioni distinguibili rimangono casi separati.
 - Test con riferimenti assenti, duplicati o discordanti sono riconoscibili automaticamente.
 - La riconciliazione degli attuali test avviene per invariante funzionale, non per numero di metodi o per cronologia dei checkpoint.
 - I risultati dei test sono evidenze tecniche, non accettazione semantica delle clausole.
@@ -44,7 +46,7 @@ L'introduzione e incrementale: in una fase pilota il controllo circoscritto alle
 ## Questioni di review (non normative)
 
 - Valutare la futura espressione di una copertura quantitativa per clausola senza trasformarla in prova automatica di adeguatezza.
-- Rivedere i test legacy prima di eliminarli, identificando gli eventuali comportamenti essenziali non ancora esplicitati nei casi di test.
+- Rivedere i test legacy prima di eliminarli, identificando gli eventuali comportamenti essenziali non ancora esplicitati nei casi di test. Nei casi con piu binding, verificare e documentare se i metodi condividono davvero uno scenario o se vanno separati.
 
 ## Base Analysis
 
