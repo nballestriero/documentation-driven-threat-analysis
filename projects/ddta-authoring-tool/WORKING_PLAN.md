@@ -2,7 +2,7 @@
 
 **Stato:** piano operativo di lavoro, non normativo  
 **Ultimo aggiornamento:** 2026-10-22  
-**Baseline Git pubblicata:** `master` / `aa302fc` (C8 R3G); C8 R3H verificato localmente, commit non ancora pubblicato
+**Baseline Git pubblicata:** `master` / `4da8ee7` (C9 R1A); C9 R1B verificato localmente, commit in attesa
 **Ambito:** progetto `projects/ddta-authoring-tool/` nella tesi; futura separazione del framework ancora da verificare.
 
 ## 1. Scopo e autorità
@@ -47,9 +47,9 @@ Questo è il piano del **progetto Authoring Tool**, separato dai work plan metod
 | ID | Stato | Scopo operativo | Documenti governanti | Gate di chiusura |
 |---|---|---|---|---|
 | **C8 R3G** | **DONE** | Riconciliare i 15 metodi attuali di `test_implementations.py` con scenari, NC e TestSpecification | `DEC-MR03-02`; `FR-MR03-02-01`, `FR-MR03-02-02`; test trace in `DEC-MR03-06` | Nessun metodo perso; casi distinti documentati; suite e controlli pilota verdi |
-| **C8 R3H** | **IN_PROGRESS** | Riconciliare i 18 metodi dei quattro moduli di test BA residui, decidendo i corretti FR governanti prima di spostare i test | `MR-02`, `DEC-MR02-03`, `FR-MR02-03-*`; `DEC-MR01-04`, `FR-MR01-04-01`, secondo la verifica di pertinenza | Ogni metodo mantenuto, separato o rimosso con motivazione e tracciabilità |
+| **C8 R3H** | **DONE** | Riconciliare i 18 metodi dei quattro moduli di test BA residui, decidendo i corretti FR governanti prima di spostare i test | `MR-02`, `DEC-MR02-03`, `FR-MR02-03-*`; `DEC-MR01-04`, `FR-MR01-04-01`, secondo la verifica di pertinenza | Ogni metodo mantenuto, separato o rimosso con motivazione e tracciabilità |
 | **C8 chiusura** | IN_PROGRESS | Audit dell'intera suite attuale e separazione fra tracciabilità dei test e copertura di tutte le NC | `DEC-MR03-06`; `FR-MR03-06-01/02/03/04` | Nessun metodo eseguibile senza classificazione/giustificazione; elenco NC scoperte distinto; non forzare `fullSuiteCovered` |
-| **C9 R1** | PLANNED | Definire e collaudare lo scope di un **progetto DDTA indipendente** | `MR-01`, `DEC-MR01-01`, `FR-MR01-01-01/02/03/04`; `MR-03`, `DEC-MR03-01`, `FR-MR03-01-01/02` | Un sottoprogetto estraneo ai documenti dell'Authoring Tool viene validato senza importare sorgenti del progetto ospite |
+| **C9 R1** | IN_PROGRESS | Definire e collaudare lo scope di un **progetto DDTA indipendente** | `MR-01`, `DEC-MR01-01`, `FR-MR01-01-01/02/03/04`; `MR-03`, `DEC-MR03-01`, `FR-MR03-01-01/02` | Un sottoprogetto estraneo ai documenti dell'Authoring Tool viene validato senza importare sorgenti del progetto ospite |
 | **C9 R2** | PLANNED | Collegare VS Code al motore comune; diagnostiche su buffer non salvato | `DEC-MR01-03`, `FR-MR01-03-01`, `FR-MR01-03-03`; diagnostiche sotto `MR-02` | Aprire/modificare MR/Decision/FR nel progetto pilota e vedere errori aggiornati senza salvataggio |
 | **C9 R3** | PLANNED | Completamento dei campi, dei valori e dei contratti esistenti; proposta di fix controllata | `FR-MR01-03-02`, `FR-MR01-03-03`; schemi in `prototype/generic-v01/schemas/` | Suggerimenti contestuali coerenti con schema e posizione; nessuna correzione applicata senza azione esplicita |
 | **C9 R4** | PLANNED | **Self-hosting**: VS Code deve assistere anche l'editing della documentazione e delle guide del framework stesso | `DEC-MR01-03`, `DEC-MR01-04`, `MR-02`, `MR-03` e guide BA pertinenti | Stessi controlli, stessi ID diagnostici e stessa semantica da CLI e VS Code, nel framework e in un progetto DDTA separato |
@@ -105,9 +105,11 @@ Il primo test non significa che ogni guida o schema sia già coperto da un contr
 | C8 R3E | DONE | Commit `030353a`, scenari riconciliati con fix del controllo test trace |
 | C8 R3F | DONE | Commit `4f4826d`, 115 test verdi e relazioni documentali riconciliate |
 | **C8 R3G** | DONE — commit `aa302fc` | 116 test Python superati; `pilot`: 17 TestSpecification, 94 TestCase, 98 binding, 0 unmapped, 0 errori; `fullSuiteCovered: false` |
-| **C8 R3H** | IN_PROGRESS (commit pending) | 115 test Python superati; `pilot`: 17 TestSpecification, 111 TestCase, 115 binding, 0 unmapped, 0 errori; fixture sintetica autonoma; nessun test storico di catalogo fisso |
+| **C8 R3H** | DONE — commit `f80ef9b` | 115 test Python superati; `pilot`: 17 TestSpecification, 111 TestCase, 115 binding, 0 unmapped, 0 errori; fixture sintetica autonoma; nessun test storico di catalogo fisso |
+| **C9 R1A** | DONE — commit `4da8ee7` | 118 test Python OK; snapshot CLI/API equivalenti, progetto pilota 3 documenti, 0 errori; nessuna scrittura su disco nel test |
+| **C9 R1B** | IN_PROGRESS (commit pending) | VS Code riconosce la VSIX 0.1.1; `REL-TARGET-MISSING` alla riga 6 su buffer non salvato e rimozione automatica dopo correzione; `node --check` OK; regressione 118/118 OK |
 | **C8 audit globale** | IN_PROGRESS | `scope: all`: 66 `TC-UNCOVERED-NC` in 24 FR (MR-01: 25, MR-02: 13, MR-03: 28); 0 `TC-UNMAPPED`; `fullSuiteCovered: false`. Da classificare per obbligo, senza dichiarare conformita sulla sola presenza di un TC |
 
-**Prossima azione concreta:** registrare il commit C8 R3H dopo verifica dello staging; quindi classificare le 66 NC senza TestCase rilevate dallo scope globale, partendo dalle 13 NC di MR-02. Non introdurre binding fittizi o modificare gli FR per ottenere PASS.
+**Prossima azione concreta:** consolidare C9 R1B e verificare i successivi gate VS Code/self-hosting. L’audit globale delle 66 NC rimane aperto e distinto; non introdurre binding fittizi per ottenere PASS.
 
 **Regola di chiusura:** dopo ogni checkpoint aggiornare questa sezione soltanto con l'esito realmente osservato, riportando commit, test e limiti rimasti. Non confondere commit pubblicato, validazione strutturale e accettazione semantica.

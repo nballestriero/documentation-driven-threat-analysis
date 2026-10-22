@@ -1,0 +1,25 @@
+{
+  "name": "ddta-authoring-pilot",
+  "displayName": "DDTA Authoring Pilot",
+  "description": "Thin VS Code diagnostics adapter for the shared DDTA Python validator.",
+  "version": "0.1.1",
+  "publisher": "ddta-research",
+  "private": true,
+  "engines": {"vscode": "^1.85.0"},
+  "main": "./extension.js",
+  "activationEvents": ["onLanguage:markdown", "onCommand:ddta.checkCurrent"],
+  "contributes": {
+    "commands": [{"command": "ddta.checkCurrent", "title": "DDTA: Check Current Document"}],
+    "configuration": {
+      "title": "DDTA Pilot",
+      "properties": {
+        "ddta.pythonExecutable": {"type": "string", "default": "python", "description": "Python executable with PyYAML available."},
+        "ddta.frameworkModuleRoot": {"type": "string", "default": "", "description": "Absolute folder containing ddta_tool Python package; if empty, locate it in the TESI workspace."},
+        "ddta.profile": {"type": "string", "enum": ["draft", "strict"], "default": "draft"},
+        "ddta.debounceMs": {"type": "number", "default": 350, "minimum": 0}
+      }
+    }
+  },
+  "scripts": {"test": "node --check extension.js"},
+  "license": "UNLICENSED"
+}
