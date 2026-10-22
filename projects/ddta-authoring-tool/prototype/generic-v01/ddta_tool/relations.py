@@ -7,7 +7,7 @@ from __future__ import annotations
 
 from dataclasses import asdict, dataclass
 from pathlib import Path
-from typing import Any
+from typing import Any, Mapping
 import re
 
 import yaml
@@ -109,7 +109,8 @@ def _read_metadata(text: str) -> dict[str, Any] | None:
 
 
 def check_workspace(root: Path, profile: str = 'strict',
-                    schemas_dir: Path = DEFAULT_SCHEMAS) -> WorkspaceResult:
+                    schemas_dir: Path = DEFAULT_SCHEMAS,
+                    overrides: Mapping[str, str] | None = None) -> WorkspaceResult:
     """Check identity, declared parent links and MR dependencies in a known scope.
 
     Direct child directories named in DOCUMENT_FOLDERS (or one such directory
@@ -122,6 +123,9 @@ def check_workspace(root: Path, profile: str = 'strict',
     if profile not in ('draft', 'strict'):
         raise ValueError('profile must be draft or strict')
     root = Path(root)
+    overrides = dict(overrides or {})
+    if any(not isinstance(key, str) or not isinstance(value, str) for key, value in overrides.items()):
+        raise ValueError('Snapshot overrides must map relative POSIX paths to text')
     diagnostics: list[RelationDiagnostic] = []
     complete = True
     records: list[_Record] = []
@@ -153,6 +157,12 @@ def check_workspace(root: Path, profile: str = 'strict',
         add(None, 'REL-SCOPE-EMPTY', 'No Markdown documents in selected DDTA folders')
         return WorkspaceResult(str(root), profile, 0, diagnostics, False)
 
+    available = {path.relative_to(root).as_posix() for path in files}
+    # Reject missing/foreign snapshots; never silently read a different project.
+    for name in sorted(overrides):
+        if name not in available:
+            add(name, 'REL-SNAPSHOT-OUT-OF-SCOPE', 'Snapshot does not identify a document in selected workspace')
+            complete = False
     for path in files:
         rel = path.relative_to(root).as_posix()
         if path.is_symlink():
@@ -160,7 +170,7 @@ def check_workspace(root: Path, profile: str = 'strict',
             complete = False
             continue
         try:
-            source = path.read_text(encoding='utf-8')
+            source = overrides[rel] if rel in overrides else path.read_text(encoding='utf-8')
         except (OSError, UnicodeError) as exc:
             add(rel, 'REL-SOURCE-READ', f'Cannot read document as UTF-8: {exc}')
             complete = False

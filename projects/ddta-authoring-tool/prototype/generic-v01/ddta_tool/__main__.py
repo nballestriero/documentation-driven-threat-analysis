@@ -6,6 +6,7 @@ from pathlib import Path
 import sys
 from .engine import DEFAULT_SCHEMAS, SchemaError, render_template, validate
 from .relations import check_workspace
+from .snapshot import check_snapshot
 from .implementations import check_implementation_bindings
 from .ba_rules import DEFAULT_GUIDES, check_ba_file
 
@@ -33,6 +34,11 @@ def main(argv: list[str] | None = None) -> int:
     w.add_argument('root', type=Path, help='docs/ directory or a DDTA document-type subdirectory')
     w.add_argument('--profile', choices=['draft', 'strict'], default='strict')
     w.add_argument('--json', action='store_true')
+    sn = sub.add_parser('check-snapshot', help='Validate unsaved UTF-8 stdin using the same workspace engine')
+    sn.add_argument('root', type=Path, help='Explicit document scope directory')
+    sn.add_argument('document', type=Path, help='In-scope document path (relative to root or absolute)')
+    sn.add_argument('--profile', choices=['draft', 'strict'], default='draft')
+    sn.add_argument('--json', action='store_true')
     i = sub.add_parser('check-implementations', help='Verify declared FR-to-Python binding evidence')
     i.add_argument('project', type=Path, help='Project folder containing docs and prototype')
     i.add_argument('--json', action='store_true')
@@ -41,6 +47,21 @@ def main(argv: list[str] | None = None) -> int:
     b.add_argument('--guides-root', type=Path, default=DEFAULT_GUIDES)
     b.add_argument('--json', action='store_true')
     args = p.parse_args(argv)
+    if args.command == 'check-snapshot':
+        try:
+            source = sys.stdin.buffer.read().decode("utf-8")
+            outcome = check_snapshot(args.root, args.document, source,
+                                     profile=args.profile, schemas_dir=args.schemas_dir)
+        except (OSError, UnicodeError, ValueError, TypeError) as exc:
+            print('ERROR:', exc, file=sys.stderr)
+            return 2
+        if args.json:
+            print(json.dumps(outcome, ensure_ascii=False, indent=2))
+        else:
+            print('check-snapshot {}: {}'.format(args.profile, "PASS" if outcome["valid"] else "FAIL"))
+            for item in outcome['workspace']['diagnostics']:
+                print('{path}: {severity} {code}: {message}'.format(**item))
+        return 0 if outcome['valid'] else 1
     if args.command == 'check-ba':
         # DDTA-FR: FR-MR02-03-02; FR-MR02-02-03; BA result is separate from DOC checks.
         outcome = check_ba_file(args.file, args.guides_root)
