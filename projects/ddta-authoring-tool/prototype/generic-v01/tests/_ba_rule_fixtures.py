@@ -36,3 +36,14 @@ class BARuleFixture:
 
     def check(self, text):
         return check_ba_text(text, self.guides)
+
+# Shared arrange helpers for BA `produce` contract scenarios.
+PRODUCE_VALID = ROOT / 'examples' / 'BA-C5-PRODUCE-VALID.md'
+PRODUCE_MISSING_ACTOR = ROOT / 'examples' / 'BA-C5-PRODUCE-MISSING-ACTOR.md'
+
+class ProduceFixture(BARuleFixture):
+    def produce_source(self, name='BA-C5-PRODUCE-VALID.md'):
+        return (ROOT / 'examples' / name).read_text(encoding='utf-8')
+
+    def check_produce(self, text=None):
+        return self.check(self.produce_source() if text is None else text)

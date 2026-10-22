@@ -104,6 +104,10 @@ class BARuleCoverageTest(BARuleFixture, unittest.TestCase):
         result=self.check(doc)
         self.assertTrue(result.valid,result.as_dict())
         self.assertIn('operator:syntheticPart',result.ruleset)
+        # Adding an operator must not change the result of an existing transfer rule.
+        still_supported=self.check(self.source())
+        self.assertTrue(still_supported.valid, still_supported.as_dict())
+        self.assertIn('operator:transfer', still_supported.ruleset)
 
     def test_temporal_scope_is_recognized_but_incomplete(self):
         """DDTA-TC: TC-FR-MR02-03-03-04

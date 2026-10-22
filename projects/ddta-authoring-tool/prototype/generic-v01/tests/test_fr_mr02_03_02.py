@@ -7,7 +7,7 @@ import sys
 import tempfile
 import unittest
 from ddta_tool.ba_rules import BARuleError, check_ba_text, load_rules
-from _ba_rule_fixtures import BARuleFixture, ROOT, GUIDES, EXAMPLE, BAD_EXAMPLE
+from _ba_rule_fixtures import BARuleFixture, ProduceFixture, ROOT, GUIDES, EXAMPLE, BAD_EXAMPLE
 
 class BAPropositionTest(BARuleFixture, unittest.TestCase):
 
@@ -140,6 +140,48 @@ class BAPropositionTest(BARuleFixture, unittest.TestCase):
         result = json.loads(proc.stdout)
         self.assertIn('BA-POLARITY-MISSING', {d['code'] for d in result['diagnostics']})
         self.assertNotIn('BA-OP-UNCOVERED', {d['code'] for d in result['diagnostics']})
+
+
+
+class ProduceRoleContractTest(ProduceFixture, unittest.TestCase):
+    def test_produce_valid_actor_and_result(self):
+        """DDTA-TC: TC-FR-MR02-03-02-06
+        DDTA-NC: FR-MR02-03-02/NC-2 MD5=8a8437e527896e2f851c0b6091c96c7d
+        """
+        outcome=self.check_produce()
+        self.assertTrue(outcome.valid, outcome.as_dict())
+        self.assertTrue(outcome.complete)
+        self.assertEqual(outcome.errors, 0)
+        self.assertIn('operator:produce', outcome.ruleset)
+
+    def test_produce_multiple_results_and_optional_input(self):
+        """DDTA-TC: TC-FR-MR02-03-02-06
+        DDTA-NC: FR-MR02-03-02/NC-2 MD5=8a8437e527896e2f851c0b6091c96c7d
+        """
+        src=self.produce_source().replace('  polarity = affirmative',
+            '  result   -> ReportSummary # BAR-EX-C5-SUMMARY\n  polarity = affirmative')
+        result=self.check_produce(src)
+        self.assertTrue(result.valid, result.as_dict())
+        self.assertTrue(result.complete)
+
+    def test_produce_requires_result(self):
+        """DDTA-TC: TC-FR-MR02-03-02-07
+        DDTA-NC: FR-MR02-03-02/NC-2 MD5=8a8437e527896e2f851c0b6091c96c7d
+        """
+        src='\n'.join(line for line in self.produce_source().splitlines()
+                      if not line.strip().startswith('result   ->'))
+        result=self.check_produce(src)
+        self.assertIn('BA-ROLE-MISSING', {d.code for d in result.diagnostics})
+        self.assertTrue(any('result' in d.message for d in result.diagnostics))
+
+    def test_produce_rejects_two_actors(self):
+        """DDTA-TC: TC-FR-MR02-03-02-07
+        DDTA-NC: FR-MR02-03-02/NC-2 MD5=8a8437e527896e2f851c0b6091c96c7d
+        """
+        src=self.produce_source().replace('  result   ->',
+            '  actor    -> SecondProducer # BAR-EX-C5-SECOND\n  result   ->')
+        out=self.check_produce(src)
+        self.assertIn('BA-ROLE-CARDINALITY', {d.code for d in out.diagnostics})
 
 if __name__ == "__main__":
     unittest.main()

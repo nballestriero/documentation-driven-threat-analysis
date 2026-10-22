@@ -7,7 +7,7 @@ import sys
 import tempfile
 import unittest
 from ddta_tool.ba_rules import BARuleError, check_ba_text, load_rules
-from _ba_rule_fixtures import BARuleFixture, ROOT, GUIDES, EXAMPLE, BAD_EXAMPLE
+from _ba_rule_fixtures import BARuleFixture, ProduceFixture, ROOT, GUIDES, EXAMPLE, BAD_EXAMPLE
 
 class BAGuideDiagnosticsTest(BARuleFixture, unittest.TestCase):
 
@@ -24,6 +24,25 @@ class BAGuideDiagnosticsTest(BARuleFixture, unittest.TestCase):
         self.assertIn('Canonical contract',d.guideSection)
         self.assertIn('never invent',d.llmInstruction)
         self.assertIn('operators/transfer.md',d.guideRef)
+
+
+
+class ProduceGuideDiagnosticsTest(ProduceFixture, unittest.TestCase):
+    def test_produce_missing_actor_uses_guide_diagnostic(self):
+        """DDTA-TC: TC-FR-MR02-02-03-02
+        DDTA-NC: FR-MR02-02-03/NC-1 MD5=fd9f206be8404f51925d325c0c52764e
+        DDTA-NC: FR-MR02-02-03/NC-2 MD5=1755882b68fc682d99b4083434d0e3a8
+        DDTA-NC: FR-MR02-02-03/NC-5 MD5=30d5f78f5673be63db47fa6a965f2f78
+        """
+        result=self.check_produce(self.produce_source('BA-C5-PRODUCE-MISSING-ACTOR.md'))
+        self.assertFalse(result.valid)
+        self.assertTrue(result.complete)
+        d=next(d for d in result.diagnostics if d.code == 'BA-ROLE-MISSING')
+        self.assertIn('actor', d.message)
+        self.assertEqual(d.guideSection, 'Canonical contract')
+        self.assertEqual(d.guideRef, 'operators/produce.md')
+        self.assertIn('never invent', d.llmInstruction)
+        self.assertNotIn('BA-OP-UNCOVERED', {item.code for item in result.diagnostics})
 
 if __name__ == "__main__":
     unittest.main()
