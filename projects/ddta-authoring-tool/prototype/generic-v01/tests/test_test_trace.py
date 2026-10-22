@@ -1,12 +1,13 @@
-"""Pilot regression for TestSpecification ↔ Python test reciprocal links."""
+"""Isolated synthetic regression for TestSpecification <-> Python test links.
+
+The temporary project contains no copies of production FR, TS or test modules.
+"""
 from pathlib import Path
-import shutil
 import tempfile
 import unittest
 
+from ddta_tool.clause_md5 import md5_clause
 from ddta_tool.test_trace import check_test_specifications
-
-PROJECT = Path(__file__).resolve().parents[3]
 
 
 class TestTraceabilityTest(unittest.TestCase):
@@ -20,50 +21,122 @@ class TestTraceabilityTest(unittest.TestCase):
         DDTA-NC: FR-MR03-06-02/NC-7 MD5=0473234dc5ae5868ff5f84e837e3a7b9
         DDTA-NC: FR-MR03-06-02/NC-8 MD5=fae02eb0b16eb9178e4b569289ebc3a2
         """
-        paths = [
-            'docs/03-functional-requirements/FR-MR02-03-01.md',
-            'docs/03-functional-requirements/FR-MR03-06-02.md',
-            'docs/05-test-specifications/TS-FR-MR02-03-01.md',
-            'docs/05-test-specifications/TS-FR-MR03-06-02.md',
-            'prototype/generic-v01/tests/test_fr_mr02_03_01.py',
-            'prototype/generic-v01/tests/test_test_trace.py',
-        ]
+        parent = 'FR-MR03-06-02'
+        clause_one = 'Il controllo MUST validare ogni collegamento dichiarato.'
+        clause_two = 'Il controllo MUST rilevare le impronte normative non aggiornate.'
+        md5_one, md5_two = md5_clause(clause_one), md5_clause(clause_two)
+        fr_rel = f'docs/03-functional-requirements/{parent}.md'
+        ts_rel = f'docs/05-test-specifications/TS-{parent}.md'
+        test_rel = 'prototype/generic-v01/tests/test_fixture_trace.py'
+        fr = f"""---
+type: FunctionalRequirement
+schemaVersion: '0.1'
+id: {parent}
+title: Fixture sintetica per la tracciabilita
+parentDecision: DEC-MR03-06
+lifecycle: candidate
+authority: EXPERIMENTAL_NON_CANONICAL
+---
+
+# {parent} — Fixture sintetica per la tracciabilita
+
+## Functional obligation
+
+Fixture temporanea per esercitare i riferimenti bidirezionali.
+
+## Normative clauses
+
+- **NC-1:** {clause_one}
+- **NC-2:** {clause_two}
+"""
+        ts = f"""---
+type: TestSpecification
+schemaVersion: '0.1'
+id: TS-{parent}
+title: Verifica sintetica della tracciabilita
+parentFunctionalRequirement: {parent}
+---
+
+# TS-{parent} — Verifica sintetica della tracciabilita
+
+## Purpose
+
+Verificare riferimenti diretti e inversi senza importare documenti reali.
+
+## Test cases
+
+```yaml test-cases
+cases:
+  - id: TC-{parent}-90
+    covers:
+      - {{clause: NC-1, md5: "{md5_one}"}}
+    rationale: Collegamento positivo al primo metodo sintetico.
+    preconditions: Fixture temporanea completa.
+    action: Verificare il riferimento della prima NC.
+    expectedResult: Riferimento bidirezionale valido.
+    testBindings:
+      - {test_rel}::FixtureTraceTest.test_first
+  - id: TC-{parent}-91
+    covers:
+      - {{clause: NC-2, md5: "{md5_two}"}}
+    rationale: Collegamento positivo al secondo metodo sintetico.
+    preconditions: Fixture temporanea completa.
+    action: Verificare il riferimento della seconda NC.
+    expectedResult: Riferimento bidirezionale valido.
+    testBindings:
+      - {test_rel}::FixtureTraceTest.test_second
+```
+"""
+        python_tests = f"""import unittest
+
+class FixtureTraceTest(unittest.TestCase):
+    def test_first(self):
+        {chr(34)*3}DDTA-TC: TC-{parent}-90
+        DDTA-NC: {parent}/NC-1 MD5={md5_one}
+        {chr(34)*3}
+        pass
+
+    def test_second(self):
+        {chr(34)*3}DDTA-TC: TC-{parent}-91
+        DDTA-NC: {parent}/NC-2 MD5={md5_two}
+        {chr(34)*3}
+        pass
+"""
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
-            for name in paths:
-                target = root / name
+            def write(rel, content):
+                target = root / rel
                 target.parent.mkdir(parents=True, exist_ok=True)
-                shutil.copyfile(PROJECT / name, target)
+                target.write_text(content, encoding='utf-8')
+            write(fr_rel, fr)
+            write(ts_rel, ts)
+            write(test_rel, python_tests)
+
             valid = check_test_specifications(root, 'pilot')
             self.assertTrue(valid.valid, valid.as_dict())
-            self.assertEqual(valid.cases, 6)
-            self.assertEqual(valid.mapped_tests, 6)
+            self.assertEqual(valid.specifications, 1)
+            self.assertEqual(valid.cases, 2)
+            self.assertEqual(valid.mapped_tests, 2)
             self.assertEqual(valid.unmapped_tests, 0)
-            edited = root / 'prototype/generic-v01/tests/test_fr_mr02_03_01.py'
-            original = edited.read_text(encoding='utf-8')
-            edited.write_text(original.replace('DDTA-TC: TC-FR-MR02-03-01-01',
-                                               'DDTA-TC: TC-FR-MR02-03-01-99'), encoding='utf-8')
+
+            # A broken Python -> TestCase backlink must be detected.
+            write(test_rel, python_tests.replace('DDTA-TC: TC-' + parent + '-90',
+                                                'DDTA-TC: TC-' + parent + '-99'))
             invalid = check_test_specifications(root, 'pilot')
-            self.assertFalse(invalid.valid)
             self.assertIn('TC-BACKLINK', {d.code for d in invalid.diagnostics})
-            # Restore the case ID, then make the code claim a stale NC fingerprint.
-            edited.write_text(original, encoding='utf-8')
-            other_test = root / 'prototype/generic-v01/tests/test_test_trace.py'
-            other_source = other_test.read_text(encoding='utf-8')
-            other_test.write_text(other_source.replace('MD5=502c0fa19d4338c953ecaa4b4642072b',
-                                                      'MD5=00000000000000000000000000000000'),
-                                  encoding='utf-8')
-            stale_code = check_test_specifications(root, 'pilot')
-            self.assertIn('TC-BACKLINK-NC', {d.code for d in stale_code.diagnostics})
-            # Restore the code, change the FR without changing any expected MD5.
-            other_test.write_text(other_source, encoding='utf-8')
-            fr = root / 'docs/03-functional-requirements/FR-MR03-06-02.md'
-            src = fr.read_text(encoding='utf-8')
-            fr.write_text(src.replace('MUST risolvere il `parentFunctionalRequirement`',
-                                      'MUST individuare e risolvere il `parentFunctionalRequirement`'),
-                          encoding='utf-8')
-            changed_fr = check_test_specifications(root, 'pilot')
-            self.assertIn('TC-CLAUSE-MD5', {d.code for d in changed_fr.diagnostics})
+
+            # A stale DDTA-NC in Python must be detected independently.
+            write(test_rel, python_tests.replace('MD5=' + md5_one,
+                                                'MD5=' + '0' * 32))
+            invalid = check_test_specifications(root, 'pilot')
+            self.assertIn('TC-BACKLINK-NC', {d.code for d in invalid.diagnostics})
+
+            # Changing the source clause without updating TS must invalidate TS.
+            write(test_rel, python_tests)
+            write(fr_rel, fr.replace(clause_one,
+                                     'Il controllo MUST validare tutti i collegamenti dichiarati.'))
+            invalid = check_test_specifications(root, 'pilot')
+            self.assertIn('TC-CLAUSE-MD5', {d.code for d in invalid.diagnostics})
 
 
 if __name__ == '__main__':

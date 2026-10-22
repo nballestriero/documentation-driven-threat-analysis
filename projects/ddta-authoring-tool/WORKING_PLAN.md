@@ -2,7 +2,7 @@
 
 **Stato:** piano operativo di lavoro, non normativo  
 **Ultimo aggiornamento:** 2026-10-22  
-**Baseline verificata:** `master` / `4f4826d`  
+**Baseline Git pubblicata:** `master` / `aa302fc` (C8 R3G); C8 R3H verificato localmente, commit non ancora pubblicato
 **Ambito:** progetto `projects/ddta-authoring-tool/` nella tesi; futura separazione del framework ancora da verificare.
 
 ## 1. Scopo e autorità
@@ -30,25 +30,25 @@ Questo è il piano del **progetto Authoring Tool**, separato dai work plan metod
 | Indicatore | Stato al 2026-10-22 | Significato e limiti |
 |---|---|---|
 | Gerarchia documentale | 5 MR, 13 Decision, 29 FR | 47 documenti formalmente validi (`strict`); non equivalgono a 47 implementazioni |
-| TestSpecification | 14 | 14 FR con almeno una specifica di test |
-| TestCase | 78 | Casi documentati nel perimetro pilota |
-| Test Python | 116 superati | Regressione eseguita dopo C8 R3G |
-| Metodi Python tracciati nel pilota | 98 | `unmappedTests: 0` **nel solo perimetro pilota** |
-| Metodi da riconciliare nella suite attuale | 18 | Quattro moduli BA residui, da verificare in C8 R3H |
-| Tracciabilità globale | Non completata | `fullSuiteCovered: false`; verificare separatamente test senza TC e NC ancora scoperte |
+| TestSpecification | 17 | Specifiche presenti nello scope di tracciabilita attuale |
+| TestCase | 111 | Casi documentati nel perimetro di verifica attuale |
+| Test Python | 115 superati | Regressione C8 R3H verificata localmente; due test storici rimossi |
+| Metodi Python tracciati | 115 | `scope: pilot`: 115 collegati, 0 mancanti, 0 errori; non prova copertura di tutte le NC |
+| Metodi da riconciliare nella suite attuale | 0 | Tutti i 115 metodi attualmente eseguibili sono associati a TestCase |
+| Tracciabilita globale | Audit eseguito: 66 NC senza copertura | `scope: all`: 115 metodi collegati, 0 unmapped, 66 `TC-UNCOVERED-NC`; `valid: false`, `fullSuiteCovered: false` |
 | Integrazione VS Code | Non implementata | Prevista sotto `DEC-MR01-03` |
 | Sottoprogetto DDTA indipendente | Non ancora verificato end-to-end | Occorre separare runtime/framework dai sorgenti del progetto utilizzatore |
 | Operatori BA attivi nel prototipo | `transfer`, `produce` | Gli altri operatori sono esplicitamente differiti |
 
-**Checkpoint già consolidati:** C8 R3E — commit `030353a`; C8 R3F — commit `4f4826d`. Lo stato corrente dichiarato in questo file deve essere aggiornato solo a seguito di nuove evidenze.
+**Checkpoint già consolidati:** C8 R3E — commit `030353a`; C8 R3F — commit `4f4826d`; C8 R3G — commit `aa302fc`. C8 R3H ha regressione e tracciabilita verificate localmente, ma resta in attesa del commit.
 
 ## 4. Backlog prioritario
 
 | ID | Stato | Scopo operativo | Documenti governanti | Gate di chiusura |
 |---|---|---|---|---|
 | **C8 R3G** | **DONE** | Riconciliare i 15 metodi attuali di `test_implementations.py` con scenari, NC e TestSpecification | `DEC-MR03-02`; `FR-MR03-02-01`, `FR-MR03-02-02`; test trace in `DEC-MR03-06` | Nessun metodo perso; casi distinti documentati; suite e controlli pilota verdi |
-| **C8 R3H** | **NEXT** | Riconciliare i 18 metodi dei quattro moduli di test BA residui, decidendo i corretti FR governanti prima di spostare i test | `MR-02`, `DEC-MR02-03`, `FR-MR02-03-*`; `DEC-MR01-04`, `FR-MR01-04-01`, secondo la verifica di pertinenza | Ogni metodo mantenuto, separato o rimosso con motivazione e tracciabilità |
-| **C8 chiusura** | PLANNED | Audit dell'intera suite attuale e separazione fra tracciabilità dei test e copertura di tutte le NC | `DEC-MR03-06`; `FR-MR03-06-01/02/03/04` | Nessun metodo eseguibile senza classificazione/giustificazione; elenco NC scoperte distinto; non forzare `fullSuiteCovered` |
+| **C8 R3H** | **IN_PROGRESS** | Riconciliare i 18 metodi dei quattro moduli di test BA residui, decidendo i corretti FR governanti prima di spostare i test | `MR-02`, `DEC-MR02-03`, `FR-MR02-03-*`; `DEC-MR01-04`, `FR-MR01-04-01`, secondo la verifica di pertinenza | Ogni metodo mantenuto, separato o rimosso con motivazione e tracciabilità |
+| **C8 chiusura** | IN_PROGRESS | Audit dell'intera suite attuale e separazione fra tracciabilità dei test e copertura di tutte le NC | `DEC-MR03-06`; `FR-MR03-06-01/02/03/04` | Nessun metodo eseguibile senza classificazione/giustificazione; elenco NC scoperte distinto; non forzare `fullSuiteCovered` |
 | **C9 R1** | PLANNED | Definire e collaudare lo scope di un **progetto DDTA indipendente** | `MR-01`, `DEC-MR01-01`, `FR-MR01-01-01/02/03/04`; `MR-03`, `DEC-MR03-01`, `FR-MR03-01-01/02` | Un sottoprogetto estraneo ai documenti dell'Authoring Tool viene validato senza importare sorgenti del progetto ospite |
 | **C9 R2** | PLANNED | Collegare VS Code al motore comune; diagnostiche su buffer non salvato | `DEC-MR01-03`, `FR-MR01-03-01`, `FR-MR01-03-03`; diagnostiche sotto `MR-02` | Aprire/modificare MR/Decision/FR nel progetto pilota e vedere errori aggiornati senza salvataggio |
 | **C9 R3** | PLANNED | Completamento dei campi, dei valori e dei contratti esistenti; proposta di fix controllata | `FR-MR01-03-02`, `FR-MR01-03-03`; schemi in `prototype/generic-v01/schemas/` | Suggerimenti contestuali coerenti con schema e posizione; nessuna correzione applicata senza azione esplicita |
@@ -104,8 +104,10 @@ Il primo test non significa che ogni guida o schema sia già coperto da un contr
 | C8 R3D | DONE | Commit `630a3cf`, principio di equivalenza degli scenari |
 | C8 R3E | DONE | Commit `030353a`, scenari riconciliati con fix del controllo test trace |
 | C8 R3F | DONE | Commit `4f4826d`, 115 test verdi e relazioni documentali riconciliate |
-| **C8 R3G** | DONE (commit pending) | 116 test Python superati; `pilot`: 17 TestSpecification, 94 TestCase, 98 binding, 0 unmapped, 0 errori; `fullSuiteCovered: false` |
+| **C8 R3G** | DONE — commit `aa302fc` | 116 test Python superati; `pilot`: 17 TestSpecification, 94 TestCase, 98 binding, 0 unmapped, 0 errori; `fullSuiteCovered: false` |
+| **C8 R3H** | IN_PROGRESS (commit pending) | 115 test Python superati; `pilot`: 17 TestSpecification, 111 TestCase, 115 binding, 0 unmapped, 0 errori; fixture sintetica autonoma; nessun test storico di catalogo fisso |
+| **C8 audit globale** | IN_PROGRESS | `scope: all`: 66 `TC-UNCOVERED-NC` in 24 FR (MR-01: 25, MR-02: 13, MR-03: 28); 0 `TC-UNMAPPED`; `fullSuiteCovered: false`. Da classificare per obbligo, senza dichiarare conformita sulla sola presenza di un TC |
 
-**Prossima azione concreta:** avviare C8 R3H e riconciliare i 18 metodi dei quattro moduli di test BA residui, senza confondere la tracciabilitÃ  pilota completata con la copertura globale della suite.
+**Prossima azione concreta:** registrare il commit C8 R3H dopo verifica dello staging; quindi classificare le 66 NC senza TestCase rilevate dallo scope globale, partendo dalle 13 NC di MR-02. Non introdurre binding fittizi o modificare gli FR per ottenere PASS.
 
 **Regola di chiusura:** dopo ogni checkpoint aggiornare questa sezione soltanto con l'esito realmente osservato, riportando commit, test e limiti rimasti. Non confondere commit pubblicato, validazione strutturale e accettazione semantica.
