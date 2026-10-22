@@ -9,7 +9,7 @@ Questa cartella e' un nuovo progetto documentato secondo DDTA, dedicato alla red
 - **Lifecycle:** `candidate`.
 - **Authority:** `EXPERIMENTAL_NON_CANONICAL`.
 - **Framing:** `docs/00-project-framing.md`; precondizione metodologica, non tipo L1.
-- **Guide metodologiche di riferimento:** `methodology/DDTA_DOCUMENTATION_BA_AUTHORING_GUIDE_R5.tex`, `methodology/DDTA_DOCUMENTATION_BA_AUTHORING_ANALYSIS_GUIDE_R24.tex`, `methodology/DDTA_DOCUMENTATION_METHOD_BASELINE_R24_CHECKPOINT_R1.md`.
+- **Fonti di sviluppo:** `docs/01-macro-requirements/`, `docs/02-decisions/`, `docs/03-functional-requirements/`; le guide BA sono canoniche per i costrutti e i contratti YAML sono configurazioni eseguibili. Il presente README e' un indice, non un'ulteriore specifica.
 - I riferimenti a moduli Python nella matrice tecnica sono **proposte di realizzazione**: non definiscono BAReferent o BAProposition accettate.
 
 ## Documentazione disponibile
@@ -38,8 +38,8 @@ MR-01
 |   |-- FR-MR01-03-01 - Verifica durante la scrittura
 |   |-- FR-MR01-03-02 - Completamento contestuale
 |   `-- FR-MR01-03-03 - Diagnostica e correzione controllata
-`-- DEC-MR01-04 - Separazione di documentazione, BA e Mermaid
-    `-- FR-MR01-04-01 - Collegamento BA-documento dichiarato
+`-- DEC-MR01-04 - Base Analysis nel documento e Mermaid separato
+    `-- FR-MR01-04-01 - Predisposizione BA nello stesso documento
 ```
 
 ### Ramo MR-02 (due Decision e quattro FR candidati)
@@ -91,12 +91,12 @@ review di rilocazione dei parent ma **non è implementata**.
 ## Modello dei file (DEC-MR01-04, CANDIDATE)
 
 - **Documentazione DDTA**: un file Markdown per elemento (MR, Decision, FR, specializzazioni); la documentazione rimane l'autorita' del significato governato.
-- **Base Analysis**: un file Markdown **separato e collegato per ID** al documento analizzato; contiene BAReferent/BAProposition dopo l'analisi. Un documento puo' non avere ancora una BA redatta.
+- **Base Analysis**: sezione facoltativa `## Base Analysis` nel medesimo Markdown del documento MR, Decision o FR; contiene BAReferent/BAProposition quando l'analisi e' disponibile. Nessun file BA autonomo e' richiesto.
 - **Mermaid**: file Markdown **separato e generato** dalla BA validata; le viste locali o cumulative sono composte da BA normalizzate e riferimenti risolti, non concatenando i file Mermaid esistenti.
 - **Confini**: MR-01 governa sorgenti e template; MR-02 le regole di validazione; MR-03 i riferimenti/identita' condivisi; MR-04 la proiezione e la composizione; MR-05 LaTeX/PDF.
 - **Formato di authoring candidato (`DEC-MR01-02`)**: Markdown leggibile, metadati in YAML front matter e definizioni YAML caricabili per tipo; generatore e validatore consumano lo stesso contratto. Questa scelta ha una prima realizzazione sperimentale parziale in `prototype/generic-v01/`; **non** implica la conformita' integrale agli FR e i 25 documenti MR/Decision/FR sono stati migrati al front matter YAML nel commit `267465a`.
 - **Dettagli ancora aperti**: vocabolario YAML, schema dei link, nomi dei file, versionamento e compatibilita' dei formati, registro BA e formato delle viste. I percorsi esemplificativi non costituiscono un contratto completo.
-- Le sezioni `Base Analysis` e `Riferimenti SPO e BA` gia' presenti nei documenti CANDIDATE sono solo **segnaposto di review**, non file BA o proposition canoniche; la loro migrazione verra' valutata separatamente.
+- Le sezioni `Base Analysis` gia' compilate fanno parte dei rispettivi documenti. Eventuali segnaposto rimangono non compilati; un PASS formale BA non implica approvazione semantica.
 
 ## Responsabilita' dei rami
 
@@ -110,8 +110,8 @@ review di rilocazione dei parent ma **non è implementata**.
 
 - D0 e D1: riesaminare framing, coverage e confini dei cinque MR.
 - D2: quattro Decision candidate di MR-01 e due di MR-02; *YAML front matter*, schemi caricabili e *Language Server* restano scelte del progetto non ancora promosse ad authority metodologica.
-- D3: `FR-MR01-02-01` e `FR-MR01-02-02` riveduti per il formato generico; `FR-MR01-04-01` aggiunto per il collegamento BA-documento; quattro FR di MR-02 aggiunti per verifica e diagnostiche, tutti `candidate`. Gli altri sette FR di MR-01 richiedono ancora la regression review prima dell'implementazione.
-- BA: non ancora estratta; nessun operatore, ruolo o identity e' dedotto dal nome di un modulo Python.
+- D3: `FR-MR01-02-01` e `FR-MR01-02-02` governano il formato; `FR-MR01-04-01` governa la BA embedded; gli FR di MR-02 governano i controlli. Le realizzazioni restano parziali dove non e' stata verificata la conformita' completa.
+- BA: `MR-01` contiene una proposition `produce` strutturalmente validata. La conformita' del formato non approva automaticamente il significato; nessun operatore o ruolo e' dedotto dal nome di un modulo Python.
 - MR-02 dispone di due Decision e quattro FR candidate; MR-03 dispone di una Decision e due FR candidate per le relazioni fra documenti; MR-04 e MR-05 non hanno ancora Decision o FR in questo checkpoint.
 
 I file vengono conservati nel repository per review e per sviluppo incrementale **senza promozione automatica a current**.
@@ -123,7 +123,7 @@ I file vengono conservati nel repository per review e per sviluppo incrementale 
 - **Test Windows 2026-10-20:** 33/33 OK con Python 3.14; `strict PASS` sui tre esempi MR/Decision/FR.
 - **Supporto limitato:** nuovo tipo soltanto con un altro schema YAML se usa le regole gia' rappresentabili dalla DSL 0.1; in caso contrario va esteso il motore comune.
 - **Migrazione completata (`267465a`):** i 25 documenti MR/Decision/FR sono ora in YAML front matter e hanno superato `strict` nel checkpoint di migrazione.
-- **Assessment:** `docs/04-design-review/GENERIC_PROTOTYPE_V01_FR_ASSESSMENT.md`. La BA non e' ancora stata prodotta.
+- **Assessment storico:** `docs/04-design-review/GENERIC_PROTOTYPE_V01_FR_ASSESSMENT.md`; le realizzazioni correnti e i vincoli da soddisfare sono governati dagli FR e dai contratti collegati.
 
 Eseguire dalla cartella `prototype/generic-v01`:
 

@@ -2,38 +2,37 @@
 type: Decision
 schemaVersion: '0.1'
 id: DEC-MR01-04
-title: 'Separazione delle sorgenti documentali, BA e Mermaid'
+title: 'Base Analysis nel documento DDTA e proiezione Mermaid separata'
 parentMacroRequirement: MR-01
 lifecycle: candidate
 authority: EXPERIMENTAL_NON_CANONICAL
 decisionKind: SELECTABLE  # classificazione di review, non normativa
 ---
 
-# DEC-MR01-04 — Separazione delle sorgenti documentali, BA e Mermaid
+# DEC-MR01-04 — Base Analysis nel documento DDTA e proiezione Mermaid separata
 
 ## Context
 
-Il documento DDTA descrive significato governato, la Base Analysis ne esplicita le identità e le proposition e Mermaid ne offre una vista. Incorporare queste rappresentazioni in un unico sorgente rende più difficile controllarne confini e stati; considerarle tre fonti di verità concorrenti permette disallineamenti. La loro gestione richiede quindi una scelta esplicita del confine fra sorgenti e rappresentazioni derivate.
+Il documento DDTA descrive significato governato, la Base Analysis ne esplicita le identità e le proposition e Mermaid ne offre una vista. Separare la BA dal documento DDTA obbligherebbe autori e sviluppatori a mantenere due sorgenti per lo stesso elemento, con collegamenti aggiuntivi e rischio di disallineamento. La BA deve essere leggibile insieme al significato documentato; Mermaid è invece una proiezione derivata che non deve diventare una seconda fonte di verità.
 
 ## Decision
 
-**Commitment progettuale candidato:** conservare la documentazione DDTA di ciascun elemento in un file Markdown distinto; conservare la Base Analysis dell'elemento in un altro file Markdown con riferimento dichiarato all'identità del documento analizzato; conservare la proiezione Mermaid locale in un ulteriore file Markdown, generato dalla BA e non editato come authority semantica alternativa. I collegamenti fra artefatti sono espliciti e verificabili, non inferiti soltanto dai nomi dei file.
+**Scelta progettuale:** conservare per ogni MR, Decision e FR un solo documento Markdown autorevole che contenga sia il testo documentale sia la sua eventuale sezione `## Base Analysis` (`### BAReferent` e `### BAProposition`). La BA appartiene all'identità dichiarata nel front matter dello stesso documento: non richiede un file BA separato né un collegamento fra due file. La proiezione Mermaid locale è invece un artefatto Markdown separato, generato dalla BA validata, senza autorità semantica indipendente.
 
-Un documento DDTA può esistere senza una BA già elaborata. La BA può contenere stati non ancora accettati senza che la sua semplice presenza ne costituisca approvazione. Le viste cumulative sono derivate dalla composizione delle BA e dalla risoluzione coerente delle identità, non dalla concatenazione testuale dei Mermaid locali. La risoluzione delle identità compete a `MR-03`, la composizione e proiezione a `MR-04`.
+Un documento DDTA può esistere senza una BA già elaborata; la sezione BA è facoltativa finché non è redatta. La sua presenza non implica accettazione semantica. L'identità del documento e il suo rapporto con il parent derivano dai metadati dichiarati, mentre l'identità dei BAReferent condivisi richiede la risoluzione governata da `MR-03`. Le viste cumulative sono generate dalla composizione delle BA nei documenti, non dalla concatenazione dei Mermaid locali; proiezione e composizione appartengono a `MR-04`.
 
 ## Consequences
 
-- Sorgenti documentali, BA e viste grafiche hanno confini distinti e possono essere sottoposte a controlli specifici senza introdurre una seconda autorità sul significato.
-- I riferimenti dichiarati consentono di collegare e verificare i diversi artefatti anche quando i loro percorsi e nomi cambiano.
-- La presenza di un documento non implica quella della BA, e la presenza della BA non implica che esista una vista approvata.
+- Il testo DDTA e la sua BA condividono un unico sorgente e la stessa identità documentale, pur mantenendo sezioni e verifiche distinte.
+- Non sono necessari file BA aggiuntivi né collegamenti artificiosi fra documento e BA; i riferimenti parent e le identità BA rimangono espliciti e verificabili.
+- L'assenza della sezione BA è ammessa finché non viene elaborata; la sua presenza non implica approvazione.
 - Mermaid rimane un artefatto derivato; le viste cumulative preservano il riuso delle identità e le relazioni BA senza rielaborare manualmente diagrammi già prodotti.
 
 ## Questioni di review (non normative)
 
-- Specificare sintassi dei collegamenti, cardinalità fra documento e BA e convenzioni di percorso senza trasformare il filename in identità.
-- Definire il comportamento di sincronizzazione e aggiornamento delle viste derivate (`MR-04`) e la verifica dei riferimenti (`MR-03`).
-- Valutare durante la review degli FR se la separazione comporta ulteriori obbligazioni operative; non crearle soltanto per riempire il branch.
+- Precisare la sintassi e la compilazione incrementale delle sezioni BA embedded, senza inventare identità o proposition.
+- Definire il comportamento di aggiornamento delle viste Mermaid derivate (`MR-04`) e la risoluzione dei riferimenti interdocumentali (`MR-03`).
 
 ## Base Analysis
 
-**NOT YET AUTHORED.** Nessuna BAProposition viene dedotta automaticamente dalla presenza di file distinti.
+**NOT YET AUTHORED.** Questa Decision non introduce automaticamente BAReferent o BAProposition per la funzione di authoring.

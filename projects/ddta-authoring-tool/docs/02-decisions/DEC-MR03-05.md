@@ -15,7 +15,7 @@ decisionKind: SELECTABLE
 
 La gerarchia documentale MR → Decision → FR definisce una relazione di specializzazione, ma la sola presenza del riferimento `parentMacroRequirement` o `parentDecision` non prova che la Base Analysis del figlio conservi un collegamento funzionale con la Base Analysis del padre. Una BA figlia può introdurre referent e proposition formalmente validi che rimangono tuttavia scollegati dalle identità rappresentate nel parent. Questo difetto strutturale è rilevante anche quando la congruità semantica delle proposition non può essere verificata automaticamente.
 
-Le BA possono essere elaborate in momenti diversi e, secondo `DEC-MR01-04`, possono essere archiviate in file separati collegati esplicitamente al documento DDTA. L'assenza di una BA non autorizza ad inventare un collegamento né a dichiarare verificato l'aggancio. La risoluzione delle identità e delle relazioni parent appartiene a MR-03; i vincoli di ruolo dei singoli operatori appartengono a MR-02.
+Le BA possono essere elaborate in momenti diversi e, secondo `DEC-MR01-04`, appartengono alle sezioni `## Base Analysis` dei rispettivi documenti DDTA. L'assenza della sezione BA non autorizza a inventare un collegamento né a dichiarare verificato l'aggancio. La risoluzione delle identità e delle relazioni parent appartiene a MR-03; i vincoli di ruolo dei singoli operatori appartengono a MR-02.
 
 ## Decision
 
@@ -38,7 +38,7 @@ Il superamento del controllo prova soltanto l'esistenza di un **collegamento str
 
 ## Questioni di review (non normative)
 
-- Formalizzare il contratto dei file BA separati e della loro associazione al documento (`DEC-MR01-04`), conservando anche il supporto alle BA temporaneamente embedded.
+- Formalizzare il controllo delle BA embedded nei rispettivi documenti (`DEC-MR01-04`), mantenendo separata la risoluzione delle identità BAReferent condivise.
 - Precisare l'insieme dei referent del parent riconoscibili come candidati all'aggancio quando il parent riutilizza a sua volta identità ereditate, senza creare nuove identità.
 - Testare su casi diversi da MR-01 / DEC-MR01-01 se ogni specializzazione documentale implichi lo stesso vincolo di aggancio e quando un'alternativa esplicita sia giustificata; fino alla review la severità resta warning.
 - Definire la collocazione futura delle istruzioni diagnostiche machine-readable per le regole gerarchiche, distinta dalle guide dei singoli operatori, per evitare copie divergenti dei prompt.

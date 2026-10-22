@@ -13,7 +13,7 @@ decisionKind: SELECTABLE
 
 ## Context
 
-La Base Analysis utilizza identità, proposition, operatori, ruoli e vincoli comuni ai documenti DDTA, indipendentemente dal loro tipo. Una verifica implementata separatamente per ogni MacroRequirement, Decision o FunctionalRequirement replicherebbe gli stessi controlli. Una tabella degli operatori mantenuta nel codice, indipendentemente dalla guida BA, potrebbe divergere dalle definizioni metodologiche. Inoltre la ricostruzione della guida procede per costrutti successivi, perciò la verifica deve distinguere le regole disponibili da quelle non ancora verificabili.
+La Base Analysis utilizza identità, proposition, operatori, ruoli e vincoli comuni ai documenti DDTA, indipendentemente dal loro tipo. Una verifica implementata separatamente per ogni MacroRequirement, Decision o FunctionalRequirement replicherebbe gli stessi controlli. Una tabella degli operatori mantenuta nel codice, indipendentemente dalla guida BA, potrebbe divergere dalle definizioni metodologiche. La definizione delle guide degli operatori procede per costrutti successivi, perciò la verifica deve distinguere le regole disponibili da quelle non ancora verificabili.
 
 ## Decision
 
@@ -21,20 +21,20 @@ La Base Analysis utilizza identità, proposition, operatori, ruoli e vincoli com
 
 Le regole BA applicabili sono indipendenti dal tipo del documento che contiene la Base Analysis. L'introduzione di un nuovo operatore espresso nel contratto dichiarativo supportato richiede l'aggiunta e la verifica della relativa guida, non la modifica di un ramo Python dedicato all'operatore. Le regole già caricate mantengono il proprio comportamento salvo revisione esplicita del contratto; una nuova capacità non può alterarle silenziosamente.
 
-Il controllo distingue: costrutto ammesso con regola eseguibile; costrutto metodologicamente riconosciuto ma non ancora coperto da una regola eseguibile; costrutto non riconosciuto nel registro applicabile. Il controllo non eseguito non dà luogo a conformità BA completa. Lo stesso servizio riceve contenuto da file o memoria e produce risultati condivisi dai diversi canali; la risoluzione delle identità fra documenti compete a MR-03, mentre le proiezioni Mermaid competono a MR-04.
+Il catalogo è ricavato direttamente dalle schede Markdown presenti nella cartella `guides/ba/operators/`, leggendo l'identità dell'operatore dal contratto della guida: non esiste un registro indipendente da sincronizzare. Un elenco visualizzabile è generato su richiesta da tali guide. Il controllo distingue: guida presente e `reviewed` con regola eseguibile; guida presente ma `draft` con controllo incompleto; operatore privo di guida, non riconosciuto. Il controllo non eseguito non dà luogo a conformità BA completa. Lo stesso servizio riceve contenuto da file o memoria e produce risultati condivisi dai diversi canali; la risoluzione delle identità fra documenti compete a MR-03, mentre le proiezioni Mermaid competono a MR-04.
 
 ## Consequences
 
 - Il medesimo insieme di regole BA si applica alle sezioni Base Analysis di MR, Decision e FR, senza implementazioni specifiche per il tipo documentale.
 - Il caricamento di nuove regole compatibili con il contratto dichiarativo estende la copertura senza introdurre nuove ramificazioni software per singolo operatore.
 - Una guida invalida, una regola non interpretabile o una copertura insufficiente devono essere riconoscibili nell'esito: non è ammesso un PASS BA totale per controlli necessari non eseguiti.
-- Le guide possono descrivere il significato di una regola anche prima che il suo controllo sia disponibile; il catalogo metodologico e la copertura eseguibile restano distinti.
+- Le guide `draft` sono riconosciute ma non eseguibili; l'assenza di una guida significa operatore sconosciuto. L'elenco degli operatori è una vista derivata, non una seconda fonte di verità.
 - Modifiche ai contratti già verificabili richiedono review esplicita e regressione; il motore non promuove autonomamente costrutti candidati a regole metodologiche correnti.
 - Le diagnostiche restano responsabilità della Decision DEC-MR02-02; l'integrazione editor non mantiene una diversa interpretazione delle regole.
 
 ## Questioni di review (non normative)
 
-- Definire il formato verificabile di una guida operatore, inclusi identificativo, ruoli, cardinalità, diagnostiche e riferimenti alle fonti metodologiche.
-- Precisare come identificare il registro degli operatori ammessi e distinguere lo stato metodologico dalla disponibilità del controllo eseguibile.
+- Mantenere il formato verificabile delle guide operatori autonomo e sufficiente: identificativo, ruoli, cardinalità, diagnostiche e contratto YAML nella stessa scheda.
+- La cartella degli operatori costituisce il catalogo: non sono necessari registro esterno, riferimenti alle guide storiche o campi di provenienza.
 - Definire quali classi di vincolo generiche siano inizialmente supportate dal motore e come rifiutare una regola che ne richiede altre.
 - Stabilire le modalità di composizione delle identità e proposition con il servizio governato da MR-03 e la selezione di una versione/snapshot delle regole per esiti riproducibili.
