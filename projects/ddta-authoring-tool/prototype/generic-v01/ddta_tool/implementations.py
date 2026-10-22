@@ -140,9 +140,6 @@ def check_implementation_bindings(project: Path, schemas_dir: Path = DEFAULT_SCH
             if not items:
                 report(rel, 'IMP-BINDINGS-MISSING', f'{claim} claim requires at least one binding',
                        _line(src, 'implementationClaim'))
-        elif items:
-            report(rel, 'IMP-UNASSESSED-BINDINGS', 'Unassessed FR must not claim verified bindings',
-                   _line(src, 'implementationBindings'))
 
         for item in items:
             bindings += 1

@@ -32,9 +32,9 @@ Questo è il piano del **progetto Authoring Tool**, separato dai work plan metod
 | Gerarchia documentale | 5 MR, 13 Decision, 29 FR | 47 documenti formalmente validi (`strict`); non equivalgono a 47 implementazioni |
 | TestSpecification | 14 | 14 FR con almeno una specifica di test |
 | TestCase | 78 | Casi documentati nel perimetro pilota |
-| Test Python | 115 superati | Regressione eseguita dopo C8 R3F |
-| Metodi Python tracciati nel pilota | 82 | `unmappedTests: 0` **nel solo perimetro pilota** |
-| Metodi da riconciliare nella suite attuale | 33 | 15 in `test_implementations.py`, 18 nei quattro moduli BA residui |
+| Test Python | 116 superati | Regressione eseguita dopo C8 R3G |
+| Metodi Python tracciati nel pilota | 98 | `unmappedTests: 0` **nel solo perimetro pilota** |
+| Metodi da riconciliare nella suite attuale | 18 | Quattro moduli BA residui, da verificare in C8 R3H |
 | Tracciabilità globale | Non completata | `fullSuiteCovered: false`; verificare separatamente test senza TC e NC ancora scoperte |
 | Integrazione VS Code | Non implementata | Prevista sotto `DEC-MR01-03` |
 | Sottoprogetto DDTA indipendente | Non ancora verificato end-to-end | Occorre separare runtime/framework dai sorgenti del progetto utilizzatore |
@@ -46,8 +46,8 @@ Questo è il piano del **progetto Authoring Tool**, separato dai work plan metod
 
 | ID | Stato | Scopo operativo | Documenti governanti | Gate di chiusura |
 |---|---|---|---|---|
-| **C8 R3G** | **NEXT** | Riconciliare i 15 metodi attuali di `test_implementations.py` con scenari, NC e TestSpecification | `DEC-MR03-02`; `FR-MR03-02-01`, `FR-MR03-02-02`; test trace in `DEC-MR03-06` | Nessun metodo perso; casi distinti documentati; suite e controlli pilota verdi |
-| **C8 R3H** | PLANNED | Riconciliare i 18 metodi dei quattro moduli di test BA residui, decidendo i corretti FR governanti prima di spostare i test | `MR-02`, `DEC-MR02-03`, `FR-MR02-03-*`; `DEC-MR01-04`, `FR-MR01-04-01`, secondo la verifica di pertinenza | Ogni metodo mantenuto, separato o rimosso con motivazione e tracciabilità |
+| **C8 R3G** | **DONE** | Riconciliare i 15 metodi attuali di `test_implementations.py` con scenari, NC e TestSpecification | `DEC-MR03-02`; `FR-MR03-02-01`, `FR-MR03-02-02`; test trace in `DEC-MR03-06` | Nessun metodo perso; casi distinti documentati; suite e controlli pilota verdi |
+| **C8 R3H** | **NEXT** | Riconciliare i 18 metodi dei quattro moduli di test BA residui, decidendo i corretti FR governanti prima di spostare i test | `MR-02`, `DEC-MR02-03`, `FR-MR02-03-*`; `DEC-MR01-04`, `FR-MR01-04-01`, secondo la verifica di pertinenza | Ogni metodo mantenuto, separato o rimosso con motivazione e tracciabilità |
 | **C8 chiusura** | PLANNED | Audit dell'intera suite attuale e separazione fra tracciabilità dei test e copertura di tutte le NC | `DEC-MR03-06`; `FR-MR03-06-01/02/03/04` | Nessun metodo eseguibile senza classificazione/giustificazione; elenco NC scoperte distinto; non forzare `fullSuiteCovered` |
 | **C9 R1** | PLANNED | Definire e collaudare lo scope di un **progetto DDTA indipendente** | `MR-01`, `DEC-MR01-01`, `FR-MR01-01-01/02/03/04`; `MR-03`, `DEC-MR03-01`, `FR-MR03-01-01/02` | Un sottoprogetto estraneo ai documenti dell'Authoring Tool viene validato senza importare sorgenti del progetto ospite |
 | **C9 R2** | PLANNED | Collegare VS Code al motore comune; diagnostiche su buffer non salvato | `DEC-MR01-03`, `FR-MR01-03-01`, `FR-MR01-03-03`; diagnostiche sotto `MR-02` | Aprire/modificare MR/Decision/FR nel progetto pilota e vedere errori aggiornati senza salvataggio |
@@ -104,8 +104,8 @@ Il primo test non significa che ogni guida o schema sia già coperto da un contr
 | C8 R3D | DONE | Commit `630a3cf`, principio di equivalenza degli scenari |
 | C8 R3E | DONE | Commit `030353a`, scenari riconciliati con fix del controllo test trace |
 | C8 R3F | DONE | Commit `4f4826d`, 115 test verdi e relazioni documentali riconciliate |
-| **C8 R3G** | **NEXT** | Avviare la review dei 15 metodi di `prototype/generic-v01/tests/test_implementations.py`, senza modificare gli FR per giustificare il codice |
+| **C8 R3G** | DONE (commit pending) | 116 test Python superati; `pilot`: 17 TestSpecification, 94 TestCase, 98 binding, 0 unmapped, 0 errori; `fullSuiteCovered: false` |
 
-**Prossima azione concreta:** analizzare `test_implementations.py` metodo per metodo rispetto a `FR-MR03-02-01` e `FR-MR03-02-02`, costruire i TestCase distinti e verificare i riferimenti alle NC correnti prima di preparare il pacchetto C8 R3G.
+**Prossima azione concreta:** avviare C8 R3H e riconciliare i 18 metodi dei quattro moduli di test BA residui, senza confondere la tracciabilitÃ  pilota completata con la copertura globale della suite.
 
 **Regola di chiusura:** dopo ogni checkpoint aggiornare questa sezione soltanto con l'esito realmente osservato, riportando commit, test e limiti rimasti. Non confondere commit pubblicato, validazione strutturale e accettazione semantica.
