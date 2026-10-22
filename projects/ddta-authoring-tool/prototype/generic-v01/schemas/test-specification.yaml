@@ -1,0 +1,12 @@
+# FR-MR03-06-01: pilot document format, not a new DDTA L1 requirement.
+schemaId: TestSpecification
+schemaVersion: '0.1'
+metadata:
+  type: {type: string, required: true, default: TestSpecification, const: TestSpecification}
+  schemaVersion: {type: string, required: true, default: '0.1', const: '0.1'}
+  id: {type: string, required: true, default: ''}
+  title: {type: string, required: true, default: ''}
+  parentFunctionalRequirement: {type: string, required: true, default: ''}
+sections:
+  - {name: Purpose, required: true, kind: text, hint: 'Explain what is verified and why'}
+  - {name: Test cases, required: true, kind: fenced, hint: 'Exactly one yaml test-cases block; each case links its parent clauses and code'}

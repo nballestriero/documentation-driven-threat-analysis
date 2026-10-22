@@ -198,7 +198,13 @@ def load_rules(guides_root: Path = DEFAULT_GUIDES) -> RuleSet:
     operators_dir = root / 'operators'
     if not operators_dir.is_dir():
         raise BARuleError(f'Missing operator guides directory: {operators_dir}')
-    files = sorted(operators_dir.glob('*.md'))
+    # FR-MR02-03-01: the directory itself is the catalogue boundary.
+    # Do not ignore unknown extensions or subdirectories during discovery.
+    entries = sorted(operators_dir.iterdir(), key=lambda p: p.name)
+    for entry in entries:
+        if not entry.is_file() or entry.is_symlink() or entry.suffix != '.md':
+            raise BARuleError(f'Unexpected entry in BA operators directory: {entry}')
+    files = entries
     recognized: set[str] = set()
     active: dict[str, OperatorRule] = {}
     pending: set[str] = set()

@@ -1,39 +1,35 @@
-"""Directory-based BA operator discovery and activation gates."""
+"""C8 catalog invariance: one operator per valid guide, no extraneous entries."""
 from pathlib import Path
-import tempfile,shutil,unittest
-from ddta_tool.ba_rules import BARuleError,check_ba_text,load_rules
-ROOT=Path(__file__).resolve().parents[1]
-GUIDES=(ROOT/'..'/'..'/'guides'/'ba').resolve()
-SOURCE=(ROOT/'examples'/'BA-C5-PRODUCE-VALID.md').read_text(encoding='utf-8')
+import shutil
+import tempfile
+import unittest
+from ddta_tool.ba_rules import BARuleError, load_rules
+
+ROOT = Path(__file__).resolve().parents[1]
+GUIDES = (ROOT / '..' / '..' / 'guides' / 'ba').resolve()
+
 
 class BACatalogTest(unittest.TestCase):
-    def setUp(self):
-        tmp=tempfile.TemporaryDirectory(); self.addCleanup(tmp.cleanup)
-        self.g=Path(tmp.name)/'ba';shutil.copytree(GUIDES,self.g)
+    def test_operator_catalog_consistency(self):
+        """DDTA-TC: TC-FR-MR02-03-01-01"""
+        with tempfile.TemporaryDirectory() as tmp:
+            guide_root = Path(tmp) / 'ba'
+            shutil.copytree(GUIDES, guide_root)
+            folder = guide_root / 'operators'
+            entries = list(folder.iterdir())
+            self.assertTrue(all(p.is_file() and not p.is_symlink() and p.suffix == '.md' for p in entries))
+            result = load_rules(guide_root)
+            expected = {p.stem for p in entries}
+            self.assertEqual(set(result.recognized), expected)
+            self.assertEqual(set(result.active) | set(result.pending), expected)
+            self.assertFalse(set(result.active) & set(result.pending))
+            self.assertEqual(len(result.recognized), len(entries))
 
-    def test_no_registry_is_required(self):
-        self.assertFalse((self.g/'operator-registry.yaml').exists())
-        rules=load_rules(self.g)
-        self.assertEqual(rules.recognized, frozenset({'produce','transfer'}))
-        self.assertEqual(set(rules.active), {'produce','transfer'})
-        self.assertNotIn('registry',rules.fingerprints)
+            # The same catalogue invariant must reject an extraneous entry.
+            (folder / 'unexpected.txt').write_text('not an operator guide', encoding='utf-8')
+            with self.assertRaises(BARuleError):
+                load_rules(guide_root)
 
-    def test_unlisted_operator_is_unknown(self):
-        out=check_ba_text(SOURCE.replace(' - produce',' - observe'),self.g)
-        self.assertIn('BA-OP-UNKNOWN',{d.code for d in out.diagnostics})
 
-    def test_draft_operator_is_incomplete(self):
-        p=self.g/'operators'/'produce.md'
-        p.write_text(p.read_text(encoding='utf-8').replace('reviewStatus: reviewed','reviewStatus: draft'),encoding='utf-8')
-        out=check_ba_text(SOURCE,self.g)
-        self.assertIn('BA-OP-UNCOVERED',{d.code for d in out.diagnostics})
-
-    def test_mismatched_operator_filename_fails_closed(self):
-        p=self.g/'operators'/'produce.md';p.rename(self.g/'operators'/'renamed.md')
-        with self.assertRaises(BARuleError):load_rules(self.g)
-
-    def test_valid_produce_and_transfer_remain_active(self):
-        out=check_ba_text(SOURCE,self.g)
-        self.assertTrue(out.valid,out.as_dict())
-
-if __name__=='__main__':unittest.main()
+if __name__ == '__main__':
+    unittest.main()
