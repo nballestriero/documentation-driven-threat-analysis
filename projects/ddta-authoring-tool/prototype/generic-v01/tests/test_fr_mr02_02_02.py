@@ -39,7 +39,7 @@ class GenericEngineTest(unittest.TestCase):
                 self.assertEqual(s.errors, d.warnings)
 
     def test_fr_empty_clause_draft_warns_strict_errors(self):
-        """DDTA-TC: TC-FR-MR02-02-02-01
+        """DDTA-TC: TC-FR-MR02-02-02-02
         DDTA-NC: FR-MR02-02-02/NC-1 MD5=4b1cc02cb12f9c7dec4cccacfa06c2d9
         DDTA-NC: FR-MR02-02-02/NC-2 MD5=833a75add75f7c8b668a9528f4237a7b
         DDTA-NC: FR-MR02-02-02/NC-3 MD5=58652ed147e0c948febac4bbb0296035
@@ -51,7 +51,7 @@ class GenericEngineTest(unittest.TestCase):
         self.assertEqual(next(d.severity for d in validate(src).diagnostics if d.code == 'DOC-CLAUSE-MISSING'), 'error')
 
     def test_missing_title_is_warn_in_draft(self):
-        """DDTA-TC: TC-FR-MR02-02-02-01
+        """DDTA-TC: TC-FR-MR02-02-02-03
         DDTA-NC: FR-MR02-02-02/NC-1 MD5=4b1cc02cb12f9c7dec4cccacfa06c2d9
         DDTA-NC: FR-MR02-02-02/NC-2 MD5=833a75add75f7c8b668a9528f4237a7b
         DDTA-NC: FR-MR02-02-02/NC-3 MD5=58652ed147e0c948febac4bbb0296035

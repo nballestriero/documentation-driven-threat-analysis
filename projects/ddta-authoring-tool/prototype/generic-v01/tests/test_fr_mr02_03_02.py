@@ -31,7 +31,7 @@ class BAPropositionTest(BARuleFixture, unittest.TestCase):
         self.assertFalse(result.valid)
 
     def test_negative_polarity_is_valid_when_explicit(self):
-        """DDTA-TC: TC-FR-MR02-03-02-01
+        """DDTA-TC: TC-FR-MR02-03-02-08
         DDTA-NC: FR-MR02-03-02/NC-1 MD5=548eb8ef3b147a68c0791a94563b045b
         """
         self.active_transfer()
@@ -39,7 +39,7 @@ class BAPropositionTest(BARuleFixture, unittest.TestCase):
         self.assertTrue(result.valid, result.as_dict())
 
     def test_invalid_polarity_is_error(self):
-        """DDTA-TC: TC-FR-MR02-03-02-01
+        """DDTA-TC: TC-FR-MR02-03-02-09
         DDTA-NC: FR-MR02-03-02/NC-1 MD5=548eb8ef3b147a68c0791a94563b045b
         """
         self.active_transfer()
@@ -47,7 +47,7 @@ class BAPropositionTest(BARuleFixture, unittest.TestCase):
         self.assertIn('BA-POLARITY-INVALID',{d.code for d in result.diagnostics})
 
     def test_duplicate_polarity_is_error(self):
-        """DDTA-TC: TC-FR-MR02-03-02-01
+        """DDTA-TC: TC-FR-MR02-03-02-10
         DDTA-NC: FR-MR02-03-02/NC-1 MD5=548eb8ef3b147a68c0791a94563b045b
         """
         self.active_transfer()
@@ -64,7 +64,7 @@ class BAPropositionTest(BARuleFixture, unittest.TestCase):
         self.assertIn('BA-ROLE-CARDINALITY',{d.code for d in result.diagnostics})
 
     def test_unknown_role_is_rejected(self):
-        """DDTA-TC: TC-FR-MR02-03-02-02
+        """DDTA-TC: TC-FR-MR02-03-02-11
         DDTA-NC: FR-MR02-03-02/NC-2 MD5=8a8437e527896e2f851c0b6091c96c7d
         """
         self.active_transfer()
@@ -93,7 +93,7 @@ class BAPropositionTest(BARuleFixture, unittest.TestCase):
         self.assertNotIn('BA-TEMPORAL-SCOPE-UNVERIFIED', {d.code for d in out.diagnostics})
 
     def test_temporal_scope_missing_value_is_error(self):
-        """DDTA-TC: TC-FR-MR02-03-02-05
+        """DDTA-TC: TC-FR-MR02-03-02-12
         DDTA-NC: FR-MR02-03-02/NC-1 MD5=548eb8ef3b147a68c0791a94563b045b
         """
         self.active_transfer()
@@ -104,7 +104,7 @@ class BAPropositionTest(BARuleFixture, unittest.TestCase):
         self.assertGreater(out.errors, 0)
 
     def test_temporal_scope_duplicate_is_error(self):
-        """DDTA-TC: TC-FR-MR02-03-02-05
+        """DDTA-TC: TC-FR-MR02-03-02-13
         DDTA-NC: FR-MR02-03-02/NC-1 MD5=548eb8ef3b147a68c0791a94563b045b
         """
         self.active_transfer()
@@ -130,7 +130,7 @@ class BAPropositionTest(BARuleFixture, unittest.TestCase):
         self.assertIn('operator:transfer', result['ruleset'])
 
     def test_cli_real_guides_missing_polarity_is_error(self):
-        """DDTA-TC: TC-FR-MR02-03-02-04
+        """DDTA-TC: TC-FR-MR02-03-02-14
         DDTA-NC: FR-MR02-03-02/NC-1 MD5=548eb8ef3b147a68c0791a94563b045b
         """
         command = [sys.executable, '-m', 'ddta_tool', 'check-ba', str(BAD_EXAMPLE), '--json']
@@ -155,7 +155,7 @@ class ProduceRoleContractTest(ProduceFixture, unittest.TestCase):
         self.assertIn('operator:produce', outcome.ruleset)
 
     def test_produce_multiple_results_and_optional_input(self):
-        """DDTA-TC: TC-FR-MR02-03-02-06
+        """DDTA-TC: TC-FR-MR02-03-02-15
         DDTA-NC: FR-MR02-03-02/NC-2 MD5=8a8437e527896e2f851c0b6091c96c7d
         """
         src=self.produce_source().replace('  polarity = affirmative',
@@ -175,7 +175,7 @@ class ProduceRoleContractTest(ProduceFixture, unittest.TestCase):
         self.assertTrue(any('result' in d.message for d in result.diagnostics))
 
     def test_produce_rejects_two_actors(self):
-        """DDTA-TC: TC-FR-MR02-03-02-07
+        """DDTA-TC: TC-FR-MR02-03-02-16
         DDTA-NC: FR-MR02-03-02/NC-2 MD5=8a8437e527896e2f851c0b6091c96c7d
         """
         src=self.produce_source().replace('  result   ->',

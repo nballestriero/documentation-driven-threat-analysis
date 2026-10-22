@@ -40,7 +40,7 @@ class GenericEngineTest(unittest.TestCase):
         self.assertIn('DOC-SCHEMA', {x.code for x in result.diagnostics})
 
     def test_wrong_schema_version_rejected(self):
-        """DDTA-TC: TC-FR-MR02-01-01-02
+        """DDTA-TC: TC-FR-MR02-01-01-04
         DDTA-NC: FR-MR02-01-01/NC-3 MD5=0ea8f8ddff6bcd9528cff93a7fcbf6b3
         """
         src = (EXAMPLES / 'MR-VALID.md').read_text(encoding='utf-8').replace("schemaVersion: '0.1'", "schemaVersion: '9.9'")
@@ -61,7 +61,7 @@ class GenericEngineTest(unittest.TestCase):
             self.assertIn('DOC-SCHEMA', {x.code for x in result.diagnostics})
 
     def test_schema_bad_regex_rejected(self):
-        """DDTA-TC: TC-FR-MR02-01-01-03
+        """DDTA-TC: TC-FR-MR02-01-01-05
         DDTA-NC: FR-MR02-01-01/NC-3 MD5=0ea8f8ddff6bcd9528cff93a7fcbf6b3
         """
         with tempfile.TemporaryDirectory() as td:

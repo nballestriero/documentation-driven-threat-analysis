@@ -46,7 +46,7 @@ class GenericEngineTest(unittest.TestCase):
         self.assertIn('DOC-FIELD-MISSING', codes(src.replace('parentDecision: DEC-DEMO-01\n', '')))
 
     def test_parent_decision_wrong_type_error(self):
-        """DDTA-TC: TC-FR-MR02-01-02-02
+        """DDTA-TC: TC-FR-MR02-01-02-07
         DDTA-NC: FR-MR02-01-02/NC-1 MD5=b945f945cb37a6f4abf9701149c67ee5
         """
         src = (EXAMPLES / 'DEC-VALID.md').read_text(encoding='utf-8')
@@ -60,7 +60,7 @@ class GenericEngineTest(unittest.TestCase):
         self.assertIn('DOC-CLAUSE-MISSING', codes(src.replace('- **NC-1:** Il motore MUST produrre un risultato verificabile.', '')))
 
     def test_fr_duplicate_clause(self):
-        """DDTA-TC: TC-FR-MR02-01-02-03
+        """DDTA-TC: TC-FR-MR02-01-02-12
         DDTA-NC: FR-MR02-01-02/NC-1 MD5=b945f945cb37a6f4abf9701149c67ee5
         """
         src = (EXAMPLES / 'FR-VALID.md').read_text(encoding='utf-8')
@@ -68,7 +68,7 @@ class GenericEngineTest(unittest.TestCase):
         self.assertIn('DOC-CLAUSE-DUPLICATE', codes(src.replace(needle, needle+'\n'+needle)))
 
     def test_fr_malformed_clause(self):
-        """DDTA-TC: TC-FR-MR02-01-02-03
+        """DDTA-TC: TC-FR-MR02-01-02-13
         DDTA-NC: FR-MR02-01-02/NC-1 MD5=b945f945cb37a6f4abf9701149c67ee5
         """
         src = (EXAMPLES / 'FR-VALID.md').read_text(encoding='utf-8')
@@ -84,7 +84,7 @@ class GenericEngineTest(unittest.TestCase):
         self.assertIn('DOC-YAML', {x.code for x in result.diagnostics})
 
     def test_unknown_yaml_field_suggests_correct_name(self):
-        """DDTA-TC: TC-FR-MR02-01-02-02
+        """DDTA-TC: TC-FR-MR02-01-02-08
         DDTA-NC: FR-MR02-01-02/NC-1 MD5=b945f945cb37a6f4abf9701149c67ee5
         """
         src = (EXAMPLES / 'MR-VALID.md').read_text(encoding='utf-8').replace('lifecycle:', 'lifecyle:')
@@ -92,22 +92,28 @@ class GenericEngineTest(unittest.TestCase):
         self.assertIn('lifecycle', str(validate(src).diagnostics))
 
     def test_no_mr_parent_and_no_objective(self):
-        """DDTA-TC: TC-FR-MR02-01-02-02
+        """DDTA-TC: TC-FR-MR02-01-02-09
         DDTA-NC: FR-MR02-01-02/NC-1 MD5=b945f945cb37a6f4abf9701149c67ee5
         """
         src = (EXAMPLES / 'MR-VALID.md').read_text(encoding='utf-8').replace('lifecycle:', 'parentDecision: DEC-X\nobjective: Wrong\nlifecycle:')
         self.assertIn('DOC-FIELD-UNKNOWN', codes(src))
 
-    def test_depends_on_self_and_duplicates(self):
-        """DDTA-TC: TC-FR-MR02-01-02-02
+    def test_depends_on_self(self):
+        """DDTA-TC: TC-FR-MR02-01-02-10
         DDTA-NC: FR-MR02-01-02/NC-1 MD5=b945f945cb37a6f4abf9701149c67ee5
         """
         src = (EXAMPLES / 'MR-VALID.md').read_text(encoding='utf-8')
         self.assertIn('DOC-FIELD-SELF', codes(src.replace('dependsOn: []', 'dependsOn: [MR-DEMO-01]')))
+
+    def test_depends_on_duplicate_entries(self):
+        """DDTA-TC: TC-FR-MR02-01-02-11
+        DDTA-NC: FR-MR02-01-02/NC-1 MD5=b945f945cb37a6f4abf9701149c67ee5
+        """
+        src = (EXAMPLES / 'MR-VALID.md').read_text(encoding='utf-8')
         self.assertIn('DOC-FIELD-DUPLICATE', codes(src.replace('dependsOn: []', 'dependsOn: [MR-2, MR-2]')))
 
     def test_duplicate_yaml_keys(self):
-        """DDTA-TC: TC-FR-MR02-01-02-04
+        """DDTA-TC: TC-FR-MR02-01-02-14
         DDTA-NC: FR-MR02-01-02/NC-3 MD5=dc1decc96057ea96d112e923f5b11fac
         """
         src = (EXAMPLES / 'DEC-VALID.md').read_text(encoding='utf-8').replace('id: DEC-DEMO-01', 'id: DEC-DEMO-01\nid: DEC-X')
@@ -122,21 +128,21 @@ class GenericEngineTest(unittest.TestCase):
         self.assertIn('DOC-SECTION-MISSING', codes(src))
 
     def test_code_fence_does_not_create_extra_heading(self):
-        """DDTA-TC: TC-FR-MR02-01-02-05
+        """DDTA-TC: TC-FR-MR02-01-02-15
         DDTA-NC: FR-MR02-01-02/NC-1 MD5=b945f945cb37a6f4abf9701149c67ee5
         """
         src = (EXAMPLES / 'MR-VALID.md').read_text(encoding='utf-8')+'\n```markdown\n# A SECOND H1\n## Context\n```\n'
         self.assertTrue(validate(src).valid)
 
     def test_required_section_missing(self):
-        """DDTA-TC: TC-FR-MR02-01-02-05
+        """DDTA-TC: TC-FR-MR02-01-02-16
         DDTA-NC: FR-MR02-01-02/NC-1 MD5=b945f945cb37a6f4abf9701149c67ee5
         """
         src = (EXAMPLES / 'DEC-VALID.md').read_text(encoding='utf-8').split('## Consequences')[0]
         self.assertIn('DOC-SECTION-MISSING', codes(src))
 
     def test_wrong_h1(self):
-        """DDTA-TC: TC-FR-MR02-01-02-05
+        """DDTA-TC: TC-FR-MR02-01-02-17
         DDTA-NC: FR-MR02-01-02/NC-1 MD5=b945f945cb37a6f4abf9701149c67ee5
         """
         src = (EXAMPLES / 'FR-VALID.md').read_text(encoding='utf-8').replace('# FR-DEMO-01', '# FR-WRONG-01')

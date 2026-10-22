@@ -49,7 +49,7 @@ class BARuleLoadingTest(BARuleFixture, unittest.TestCase):
         with self.assertRaises(BARuleError):load_rules(self.guides)
 
     def test_invalid_rule_contract_duplicates_and_unknown_key(self):
-        """DDTA-TC: TC-FR-MR02-03-01-04
+        """DDTA-TC: TC-FR-MR02-03-01-05
         DDTA-NC: FR-MR02-03-01/NC-2 MD5=dc6245cc70957ffeb45860136f21c2de
         """
         path=self.active_transfer()

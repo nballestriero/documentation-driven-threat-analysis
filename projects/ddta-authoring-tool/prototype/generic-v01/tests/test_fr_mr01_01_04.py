@@ -31,7 +31,7 @@ class GenericEngineTest(unittest.TestCase):
         self.assertEqual((data['type'],data['valid'],data['errors']),('FunctionalRequirement',True,0))
 
     def test_cli_report_invalid_exit_one(self):
-        """DDTA-TC: TC-FR-MR01-01-04-01
+        """DDTA-TC: TC-FR-MR01-01-04-02
         DDTA-NC: FR-MR01-01-04/NC-1 MD5=28cbf70282a967317aeb2d3134b6870b
         """
         cmd = [sys.executable, '-m','ddta_tool', 'check',str(EXAMPLES/'FR-INVALID.md'),'--profile','strict','--json']

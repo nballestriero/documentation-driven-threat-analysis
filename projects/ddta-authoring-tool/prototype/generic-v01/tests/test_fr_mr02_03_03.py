@@ -27,7 +27,7 @@ class BARuleCoverageTest(BARuleFixture, unittest.TestCase):
         self.assertEqual(outcome.errors, 0)
 
     def test_draft_guide_copy_is_not_executable(self):
-        """DDTA-TC: TC-FR-MR02-03-03-01
+        """DDTA-TC: TC-FR-MR02-03-03-05
         DDTA-NC: FR-MR02-03-03/NC-2 MD5=dad9c7ba80f4cf4ec45f72a7dc6ba398
         DDTA-NC: FR-MR02-03-03/NC-3 MD5=007a1638fcb3ff5dcda27b3ccb868512
         """
@@ -41,7 +41,7 @@ class BARuleCoverageTest(BARuleFixture, unittest.TestCase):
         self.assertIn('BA-OP-UNCOVERED', {d.code for d in outcome.diagnostics})
 
     def test_unrecognized_operator_is_reported(self):
-        """DDTA-TC: TC-FR-MR02-03-03-01
+        """DDTA-TC: TC-FR-MR02-03-03-06
         DDTA-NC: FR-MR02-03-03/NC-2 MD5=dad9c7ba80f4cf4ec45f72a7dc6ba398
         DDTA-NC: FR-MR02-03-03/NC-3 MD5=007a1638fcb3ff5dcda27b3ccb868512
         """
@@ -52,7 +52,7 @@ class BARuleCoverageTest(BARuleFixture, unittest.TestCase):
         self.assertNotIn('BA-OP-UNCOVERED',{d.code for d in outcome.diagnostics})
 
     def test_deleted_guide_makes_operator_unknown(self):
-        """DDTA-TC: TC-FR-MR02-03-03-01
+        """DDTA-TC: TC-FR-MR02-03-03-06
         DDTA-NC: FR-MR02-03-03/NC-2 MD5=dad9c7ba80f4cf4ec45f72a7dc6ba398
         DDTA-NC: FR-MR02-03-03/NC-3 MD5=007a1638fcb3ff5dcda27b3ccb868512
         """
@@ -62,7 +62,7 @@ class BARuleCoverageTest(BARuleFixture, unittest.TestCase):
         self.assertNotIn('BA-OP-UNCOVERED', {d.code for d in result.diagnostics})
 
     def test_draft_guide_stays_recognized_but_uncovered(self):
-        """DDTA-TC: TC-FR-MR02-03-03-01
+        """DDTA-TC: TC-FR-MR02-03-03-05
         DDTA-NC: FR-MR02-03-03/NC-2 MD5=dad9c7ba80f4cf4ec45f72a7dc6ba398
         DDTA-NC: FR-MR02-03-03/NC-3 MD5=007a1638fcb3ff5dcda27b3ccb868512
         """
@@ -128,7 +128,7 @@ class BARuleCoverageTest(BARuleFixture, unittest.TestCase):
         self.assertIn('temporal qualification', warning.llmInstruction)
 
     def test_temporal_scope_does_not_suppress_polarity_error(self):
-        """DDTA-TC: TC-FR-MR02-03-03-04
+        """DDTA-TC: TC-FR-MR02-03-03-07
         DDTA-NC: FR-MR02-03-03/NC-3 MD5=007a1638fcb3ff5dcda27b3ccb868512
         """
         src = self.source().replace('  polarity    = affirmative',

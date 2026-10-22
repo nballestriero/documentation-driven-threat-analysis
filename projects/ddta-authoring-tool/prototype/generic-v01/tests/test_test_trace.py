@@ -36,7 +36,7 @@ class TestTraceabilityTest(unittest.TestCase):
                 shutil.copyfile(PROJECT / name, target)
             valid = check_test_specifications(root, 'pilot')
             self.assertTrue(valid.valid, valid.as_dict())
-            self.assertEqual(valid.cases, 5)
+            self.assertEqual(valid.cases, 6)
             self.assertEqual(valid.mapped_tests, 6)
             self.assertEqual(valid.unmapped_tests, 0)
             edited = root / 'prototype/generic-v01/tests/test_fr_mr02_03_01.py'
