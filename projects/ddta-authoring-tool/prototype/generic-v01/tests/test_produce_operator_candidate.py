@@ -63,11 +63,14 @@ class ProduceCandidateTest(unittest.TestCase):
         self.assertIn('operator:produce', rules.fingerprints)
         self.assertIn('operator:transfer', rules.fingerprints)
 
-    def test_r7_only_as_current_source(self):
+    def test_produce_guide_is_self_contained(self):
         text = PRODUCE_GUIDE.read_text(encoding='utf-8')
-        self.assertIn('DDTA_BASE_ANALYSIS_GUIDE_REBUILD_R7.tex', text)
-        self.assertNotIn('OPERATIONAL_GUIDE_R3', text)
-        self.assertIn('methodStatus: candidate', text)
+        self.assertNotIn('sourceRefs:', text)
+        self.assertNotIn('methodStatus:', text)
+        self.assertNotIn('R7', text)
+        self.assertNotIn('C5 R2', text)
+        self.assertNotIn('## Source reconciliation', text)
+        self.assertNotIn('## Diagnostics', text)
         self.assertIn('reviewStatus: reviewed', text)
 
     def test_draft_copy_of_produce_is_not_false_pass(self):
@@ -97,7 +100,7 @@ class ProduceCandidateTest(unittest.TestCase):
         self.assertIn('actor', d.message)
         self.assertEqual(d.guideSection, 'Canonical contract')
         self.assertIn('operators/produce.md', d.guideRef)
-        self.assertIn('Never invent', d.llmInstruction)
+        self.assertIn('never invent', d.llmInstruction)
 
     def test_missing_result_is_error_when_reviewed(self):
         self.reviewed_in_temporary_copy()
@@ -165,7 +168,7 @@ class ProduceCandidateTest(unittest.TestCase):
         self.assertIn('actor', d.message)
         self.assertEqual('Canonical contract', d.guideSection)
         self.assertEqual('operators/produce.md', d.guideRef)
-        self.assertIn('Never invent', d.llmInstruction)
+        self.assertIn('never invent', d.llmInstruction)
         self.assertNotIn('BA-OP-UNCOVERED', {item.code for item in out.diagnostics})
 
     def test_real_guide_missing_polarity_still_errors(self):

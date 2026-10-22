@@ -33,7 +33,7 @@ class BARulePrototypeTest(unittest.TestCase):
         file = self.guides / 'operators' / 'transfer.md'
         src = file.read_text(encoding='utf-8')
         self.assertIn('reviewStatus: reviewed', src)
-        self.assertIn('methodStatus: candidate', src)
+        self.assertIn('reviewStatus: reviewed', src)
         return file
 
     def draft_transfer(self):
@@ -113,7 +113,7 @@ class BARulePrototypeTest(unittest.TestCase):
         d = next(d for d in result.diagnostics if d.code == 'BA-ROLE-MISSING')
         self.assertIn('content', d.message)
         self.assertIn('Canonical contract',d.guideSection)
-        self.assertIn('Do not invent BAReferents',d.llmInstruction)
+        self.assertIn('never invent',d.llmInstruction)
         self.assertIn('operators/transfer.md',d.guideRef)
 
     def test_two_sources_violate_cardinality(self):
@@ -146,12 +146,12 @@ class BARulePrototypeTest(unittest.TestCase):
         result=self.check(src)
         self.assertIn('BA-ID-DUPLICATE',{d.code for d in result.diagnostics})
 
-    def test_known_uncovered_observe_is_incomplete(self):
+    def test_absent_observe_is_unknown(self):
         src=self.source().replace(' - transfer',' - observe')
         outcome=self.check(src)
-        self.assertFalse(outcome.complete)
-        self.assertIn('BA-OP-UNCOVERED',{d.code for d in outcome.diagnostics})
-        self.assertNotIn('BA-OP-UNKNOWN',{d.code for d in outcome.diagnostics})
+        self.assertFalse(outcome.valid)
+        self.assertIn('BA-OP-UNKNOWN',{d.code for d in outcome.diagnostics})
+        self.assertNotIn('BA-OP-UNCOVERED',{d.code for d in outcome.diagnostics})
 
     def test_unknown_operator_is_error(self):
         src=self.source().replace(' - transfer',' - invention')
@@ -177,9 +177,7 @@ class BARulePrototypeTest(unittest.TestCase):
 
     def test_new_synthetic_operator_needs_only_guide_not_python(self):
         self.active_transfer()
-        registry=self.guides/'operator-registry.yaml'
-        registry.write_text(registry.read_text(encoding='utf-8')+'  - syntheticPart\n',encoding='utf-8')
-        guide=self.guides/'operators'/'synthetic-part.md'
+        guide=self.guides/'operators'/'syntheticPart.md'
         raw=(self.guides/'operators'/'transfer.md').read_text(encoding='utf-8')
         raw=raw.replace('BA2-OP-TRANSFER','BA2-OP-SYNTHETICPART')
         raw=raw.replace('semanticOperatorKey: transfer','semanticOperatorKey: syntheticPart')
@@ -250,12 +248,28 @@ class BARulePrototypeTest(unittest.TestCase):
         self.assertIn('BA-POLARITY-MISSING', {d.code for d in out.diagnostics})
         self.assertIn('BA-TEMPORAL-SCOPE-UNVERIFIED', {d.code for d in out.diagnostics})
 
-    def test_current_operator_source_is_r7_not_r3(self):
+    def test_catalog_is_discovered_from_operator_sheets(self):
         from ddta_tool.ba_rules import DEFAULT_GUIDES
         root = DEFAULT_GUIDES
-        self.assertNotIn('OPERATIONAL_GUIDE_R3', (root/'operator-registry.yaml').read_text(encoding='utf-8'))
-        self.assertNotIn('OPERATIONAL_GUIDE_R3', (root/'operators'/'transfer.md').read_text(encoding='utf-8'))
-        self.assertIn('REBUILD_R7', (root/'operator-registry.yaml').read_text(encoding='utf-8'))
+        self.assertFalse((root/'operator-registry.yaml').exists())
+        rules = load_rules(root)
+        self.assertEqual(rules.recognized, frozenset({'transfer','produce'}))
+        self.assertEqual(set(rules.active), {'transfer','produce'})
+        self.assertNotIn('registry', rules.fingerprints)
+
+    def test_deleted_guide_makes_operator_unknown(self):
+        (self.guides/'operators'/'produce.md').unlink()
+        result = self.check(self.source().replace(' - transfer', ' - produce'))
+        self.assertIn('BA-OP-UNKNOWN', {d.code for d in result.diagnostics})
+        self.assertNotIn('BA-OP-UNCOVERED', {d.code for d in result.diagnostics})
+
+    def test_draft_guide_stays_recognized_but_uncovered(self):
+        p = self.guides/'operators'/'produce.md'
+        raw = p.read_text(encoding='utf-8')
+        p.write_text(raw.replace('reviewStatus: reviewed','reviewStatus: draft'), encoding='utf-8')
+        result = self.check(self.source().replace(' - transfer', ' - produce'))
+        self.assertIn('BA-OP-UNCOVERED', {d.code for d in result.diagnostics})
+        self.assertNotIn('BA-OP-UNKNOWN', {d.code for d in result.diagnostics})
 
     def test_cli_real_guides_valid_transfer_passes(self):
         # DDTA-FR: FR-MR02-03-02 — real configured rule, not a temporary toggle.

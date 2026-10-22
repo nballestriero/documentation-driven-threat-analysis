@@ -1,48 +1,17 @@
 # Base Analysis — General Guide
 
-> **PLACEHOLDER — TO BE AUTHORED AND REVIEWED.** This freeform Markdown guide
-> is intended for authors and LLMs. It does not use the `BAOperatorGuide`
-> schema and it does not contain executable BA operator rules.
-
 ## What is Base Analysis
 
-*To be drafted and reviewed using the R7 rebuild and the explicit
-methodological decisions made during this authoring process.*
+Base Analysis identifies governed meanings as BAReferents and records assertions about them as BAPropositions. Each proposition uses an operator defined in its own canonical guide.
 
-## Semantic authority and the BA/documentation boundary
+## BAProposition
 
-*To be drafted and reviewed.*
-
-## BAReferent and BAProposition
-
-*To be drafted and reviewed. Do not duplicate operator signatures here.*
-The shared contract is `contracts/ba-proposition.yaml`. `polarity` is
-required; `temporalScope` is optional and its value semantics are still under
-review. Neither field is an operator role. The R7 authoring model discusses
-`temporalScope` as a proposition-level scoped modifier.
-
-## Identity, granularity, and continuity
-
-*To be drafted and reviewed.*
-
-## Construction and review method
-
-*To be drafted and reviewed.*
+The shared contract is [`contracts/ba-proposition.yaml`](contracts/ba-proposition.yaml). An explicit `polarity` is required: `affirmative` asserts the governed fact and `negative` expressly negates it. Missing evidence is neither polarity. `temporalScope` is optional; when supplied, its semantics are not yet verified.
 
 ## Operator catalog
 
-Operator sheets reside in [`operators/`](operators/) and are executable
-only when their `reviewStatus` is `reviewed`. This does not require
-`methodStatus: current`: `transfer` (C4 R3) and `produce` (C5 R2) are
-approved for **structural validation** while their broader methodological
-status remains `candidate`.
-Historical drafts are preserved in [`reviews/`](reviews/) for traceability,
-not authority. Methodological recognition and executable rule coverage are
-different states.
+See [`operators/`](operators/). These files are the complete recognized-operator set. A sheet with `reviewStatus: reviewed` provides an executable structural rule; draft sheets are not yet executable.
 
-## Historical references
+## Validation boundary
 
-- `methodology/DDTA_BASE_ANALYSIS_GUIDE_REBUILD_R7.tex` — working review source; no automatic promotion.
-
-This general guide must not be checked against `BAOperatorGuide` fields. Generic
-Markdown checks may be introduced separately.
+The validator checks the declared BA structure, but it cannot by itself establish that a documented assertion is semantically justified or that a BAReferent's identity is consistent across documents.

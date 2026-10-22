@@ -31,7 +31,7 @@ BA_SUBSECTION = re.compile(r'^###\s+(.+?)\s*$')
 
 
 class BARuleError(ValueError):
-    """A guide, common contract or registry is missing/unsupported/ambiguous."""
+    """A guide or common contract is missing, invalid, or ambiguous."""
 
 
 @dataclass(frozen=True)
@@ -149,18 +149,6 @@ def _load_common(root: Path) -> tuple[dict[str, dict[str, Any]], str]:
     return fields, _sha(raw)
 
 
-def _load_registry(root: Path) -> tuple[frozenset[str], str]:
-    data, raw = _read_yaml(root / 'operator-registry.yaml')
-    m = _exact_mapping(data, {'registryVersion', 'sourceRef', 'recognized'}, 'BA operator registry')
-    names = m['recognized']
-    if (m['registryVersion'] != '0.1' or not isinstance(m['sourceRef'], str)
-            or not m['sourceRef'].strip() or not isinstance(names, list)
-            or not names or not all(isinstance(x, str) and re.fullmatch(r'[A-Za-z][A-Za-z0-9]*', x) for x in names)
-            or len(set(names)) != len(names)):
-        raise BARuleError('Invalid recognized BA operator registry')
-    return frozenset(names), _sha(raw)
-
-
 def _machine_rule(raw: str, metadata: dict[str, Any], path: Path) -> OperatorRule:
     matches = list(GUIDE_FENCE.finditer(raw))
     if len(matches) != 1:
@@ -202,13 +190,16 @@ def _machine_rule(raw: str, metadata: dict[str, Any], path: Path) -> OperatorRul
 def load_rules(guides_root: Path = DEFAULT_GUIDES) -> RuleSet:
     """DDTA-FR: FR-MR02-03-01; FR-MR02-03-03.
 
-    Only reviewed/format-valid operator guides are executable. Drafts never run.
-    Reject unsupported declarative grammar, duplicate operator keys and bad guides.
+    Discover recognized operators from valid Markdown sheets in operators/.
+    Only reviewed guides execute; invalid or duplicate guides fail closed.
     """
     root = Path(guides_root)
     fields, common_sha = _load_common(root)
-    recognized, registry_sha = _load_registry(root)
-    files = sorted((root / 'operators').glob('*.md'))
+    operators_dir = root / 'operators'
+    if not operators_dir.is_dir():
+        raise BARuleError(f'Missing operator guides directory: {operators_dir}')
+    files = sorted(operators_dir.glob('*.md'))
+    recognized: set[str] = set()
     active: dict[str, OperatorRule] = {}
     pending: set[str] = set()
     ids: set[str] = set()
@@ -229,19 +220,20 @@ def load_rules(guides_root: Path = DEFAULT_GUIDES) -> RuleSet:
             raise BARuleError(f'{path}: duplicate operator guide id')
         ids.add(meta['id'])
         rule = _machine_rule(raw, meta, path)
-        if rule.key not in recognized:
-            raise BARuleError(f'{path}: {rule.key} not in recognized operator registry')
-        if rule.key in active or rule.key in pending:
+        if path.stem != rule.key:
+            raise BARuleError(f'{path}: guide filename must match operator {rule.key}.md')
+        if rule.key in recognized:
             raise BARuleError(f'{path}: duplicate operator key {rule.key}')
+        recognized.add(rule.key)
         if meta.get('reviewStatus') == 'draft':
             pending.add(rule.key)
         elif meta.get('reviewStatus') == 'reviewed':
             active[rule.key] = rule
         else:
             raise BARuleError(f'{path}: unsupported reviewStatus')
-    hashes = {'sharedContract': common_sha, 'registry': registry_sha}
+    hashes = {'sharedContract': common_sha}
     hashes.update({f'operator:{key}': rule.checksum for key, rule in active.items()})
-    return RuleSet(recognized, active, frozenset(pending), hashes, fields)
+    return RuleSet(frozenset(recognized), active, frozenset(pending), hashes, fields)
 
 
 @dataclass
@@ -385,14 +377,14 @@ def check_ba_text(src: str, guides_root: Path = DEFAULT_GUIDES) -> BAResult:
                     'Inspect the source-supported temporal qualification; do not infer '
                     'dates, intervals, event boundaries, or time validity.'))
         if prop.operator not in rules.recognized:
-            result.diagnostics.append(BADiagnostic('BA-OP-UNKNOWN','error',f'Unrecognized BA operator {prop.operator}; review operator-registry.yaml',prop.line,prop.identifier,
-                'operator-registry.yaml',None,'Compare the recorded meaning to the operator registry. Do not invent or silently substitute an operator.'))
+            result.diagnostics.append(BADiagnostic('BA-OP-UNKNOWN','error',f'Unrecognized BA operator {prop.operator}; no canonical operator guide exists',prop.line,prop.identifier,
+                'operators/',None,'Use an existing operator guide or author and review a new one. Do not invent or silently substitute an operator.'))
             continue
         rule = rules.active.get(prop.operator)
         if rule is None:
             result.complete = False
             result.diagnostics.append(BADiagnostic('BA-OP-UNCOVERED','warning', f'Recognized operator {prop.operator} has no reviewed executable guide',prop.line,prop.identifier,
-                'operator-registry.yaml',None,'Consult source-supported operator guidance and report incomplete coverage. Do not claim PASS.'))
+                f'operators/{prop.operator}.md',None,'The operator guide is still draft; do not claim PASS.'))
             continue
         for role in sorted(prop.roles):
             if role not in rule.roles:

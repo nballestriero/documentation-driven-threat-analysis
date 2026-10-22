@@ -20,7 +20,7 @@ H2_RE = re.compile(r'^##\s+(.+?)\s*$')
 META_RE = re.compile(r'^([A-Za-z][A-Za-z0-9]*):(?:\s|$)')
 HTML_COMMENT_RE = re.compile(r'<!--.*?-->', re.DOTALL)
 ALLOWED_FIELD_TYPES = {'string', 'string-list'}
-ALLOWED_SECTION_KINDS = {'text', 'clauses'}
+ALLOWED_SECTION_KINDS = {'text', 'clauses', 'fenced'}
 ALLOWED_FIELD_KEYS = {'type', 'required', 'default', 'enum', 'const', 'pattern', 'unique', 'disallowSelf', 'minItems'}
 ALLOWED_SECTION_KEYS = {'name', 'required', 'kind', 'hint', 'minItems', 'itemPattern', 'itemTemplate'}
 
@@ -389,6 +389,25 @@ def validate(text: str, profile: str = 'strict', schemas_dir: Path = DEFAULT_SCH
         end_index = found[index + 1][0] if index + 1 < len(found) else len(lines)
         body_lines = [(i, s) for i, s in visible if start_index < i < end_index]
         body = '\n'.join(s for _, s in body_lines)
+        if spec['kind'] == 'fenced':
+            # DDTA-FR: FR-MR02-01-02. A code-only section's payload is
+            # excluded from visible headings; delimiters or prose alone
+            # must not count as substantive content.
+            payload: list[str] = []
+            open_fence: str | None = None
+            for raw_line in lines[start_index + 1:end_index]:
+                marker = FENCE_RE.match(raw_line)
+                if open_fence is None:
+                    if marker:
+                        open_fence = marker.group('fence')
+                    continue
+                if (marker and marker.group('fence')[0] == open_fence[0]
+                        and len(marker.group('fence')) >= len(open_fence)
+                        and not raw_line[marker.end():].strip()):
+                    open_fence = None
+                else:
+                    payload.append(raw_line)
+            body = '\n'.join(payload) if open_fence is None else ''
         if spec['required'] and _is_blank(body):
             diag('DOC-SECTION-EMPTY', f'Required section is empty: {name}', loc, 1, True)
         if spec['kind'] == 'clauses':

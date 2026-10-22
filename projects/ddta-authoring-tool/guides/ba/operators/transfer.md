@@ -2,67 +2,34 @@
 type: BAOperatorGuide
 schemaVersion: '0.1'
 id: BA2-OP-TRANSFER
-title: 'Transfer — reviewed structural rule C4 R3'
-methodStatus: candidate
+title: 'Transfer'
 reviewStatus: reviewed
-sourceRefs:
-  - methodology/DDTA_BASE_ANALYSIS_GUIDE_REBUILD_R7.tex
 ---
 
-# BA2-OP-TRANSFER — Transfer — reviewed structural rule C4 R3
-
-> **REVIEWED FOR STRUCTURAL VALIDATION — C4 R3.**
-> `reviewStatus: reviewed` authorizes the generic BA Rule Loader to execute
-> the declared role and cardinality checks. `methodStatus: candidate` remains
-> unchanged: this approval neither finalizes the methodology nor certifies
-> that any individual transfer assertion is supported by its source evidence.
-> R7 is the working methodological source; obsolete R3 is not authority.
+# BA2-OP-TRANSFER — Transfer
 
 ## Meaning
 
-`transfer` represents a **governed conveyance** of one or more identified
-contents from one identified source to one or more identified destinations.
-Its smallest governed semantic fact is that *content X is conveyed from A to B*.
-A transfer is not merely an architectural connection, an execution sequence,
-or an inferred dependency between adjacent components.
+`transfer` asserts that one or more identified contents are conveyed from one identified source to one or more identified destinations. It is a governed conveyance, not merely a structural connection or an execution sequence.
 
 ## When to use
 
-Use `transfer` only when the documentation supports each required participant:
-
-- Exactly one `source`, the governed origin of the conveyance.
-- At least one `destination`, the governed receiver of the content.
-- At least one `content`, the meaning-bearing item being conveyed.
-
-Reuse an existing BAReferent for content that retains the same governed meaning
-between production, transfer, and consumption. Introduce an optional `behavior`
-BAReferent only if the transfer segment itself must be independently referenced,
-constrained, realized, reviewed, or compared. Use multiple destinations or
-contents in one proposition only when the same governed assertion supports them.
+- Identify exactly one source, at least one destination, and at least one content.
+- Reuse the same BAReferent for content whose governed meaning remains unchanged across production, transfer, and consumption.
+- Add optional `behavior` only when the transfer segment has an independently governed identity.
+- Combine contents or destinations only when the same governed assertion supports them.
 
 ## When not to use
 
-Do not infer a transfer solely from a component receiving an input, from a
-mentioned API, from two components shown together, or from the ordering of
-processing stages. If a source, destination, or content cannot be established,
-record **INSUFFICIENT EVIDENCE / NOT SPECIFIED** for human review rather than
-inventing a role assignment.
-
-Do not infer transport protocol, medium, network hops, synchronization,
-delivery success, encryption, retries, acknowledgment, persistence, ownership,
-storage, service consumption, or failure semantics from the transfer assertion.
+- Do not infer a transfer from component adjacency, input usage, an API mention, or processing order alone.
+- If source, destination, or content is not established, record insufficient evidence instead of inventing a role.
+- Do not infer protocol, medium, persistence, encryption, successful delivery, retries, ownership, or storage.
 
 ## Disambiguation
 
-<!-- Optional. R7 contains an unfinished subsection on comparisons with other
-operators. Do not introduce unreviewed distinctions simply to fill this field. -->
+<!-- -->
 
 ## Canonical contract
-
-The following block is the **reviewed machine-readable structural rule**
-for `transfer`, derived from the R7 working signature. The generic BA Rule
-Loader validates this rule before execution. `unbounded` and the diagnostic
-keys are C4 DSL syntax, not independent methodological concepts.
 
 ```yaml ba-rule
 contractVersion: '0.1'
@@ -79,99 +46,46 @@ diagnostics:
     severity: error
     guideSection: Canonical contract
     message: 'Required transfer role {role} is missing.'
-    llmInstruction: >
-      Read BA2-OP-TRANSFER, especially Canonical contract and When not to use.
-      Inspect the affected BAProposition and its governed source evidence.
-      Suggest a role assignment only when the evidence supports it. Otherwise
-      report INSUFFICIENT EVIDENCE. Do not invent BAReferents.
+    llmInstruction: 'Read BA2-OP-TRANSFER. Verify the required role against documented evidence; never invent referents or roles.'
   cardinality:
     code: BA-ROLE-CARDINALITY
     severity: error
     guideSection: Canonical contract
     message: 'Role {role} violates the declared transfer cardinality.'
-    llmInstruction: >
-      Read BA2-OP-TRANSFER and examine the proposition and its evidence.
-      Explain the cardinality mismatch. Suggest splitting or changing a
-      proposition only when the source warrants a semantic distinction.
+    llmInstruction: 'Read BA2-OP-TRANSFER. Check whether the governed assertion requires a split; do not guess.'
   unknownRole:
     code: BA-ROLE-UNKNOWN
     severity: error
     guideSection: Canonical contract
     message: 'Role {role} is not part of the transfer signature.'
-    llmInstruction: >
-      Read BA2-OP-TRANSFER and the valid-operator registry. Check the intended
-      meaning and suggest only a source-supported, canonically defined role.
-      Do not invent an operator or silently rename the role.
+    llmInstruction: 'Read BA2-OP-TRANSFER. Use only the declared role keys; do not silently change the operator.'
 ```
-
-**Shared BAProposition contract (not an operator role).** `polarity` applies to
-all BAPropositions and is not repeated in the `roles` mapping. The agreed
-values are `affirmative` and `negative`: the latter requires an explicitly
-governed negation of this exact transfer claim. Missing evidence is **not**
-a negative transfer. No implicit polarity default is authorized: the shared contract enforces
-explicit polarity. An optional proposition-level `temporalScope` is recognized,
-but its semantics are not yet checkable; it is never a transfer role.
-
-## Invariants
-
-- Each formally valid `transfer` proposition has exactly one `source`, at
-  least one `destination`, and at least one `content`.
-- A role key is scoped to this operator: `source` means an origin in the
-  transfer assertion, not an intrinsic global type of the BAReferent.
-- An optional `behavior` identifies the transfer segment, not its content or
-  either endpoint; it does not replace any required role.
-- Different syntactic locations do not, by themselves, create distinct
-  BAReferent identities for semantically unchanged content.
-- Explicit negation (`polarity = negative`) differs from lack of evidence.
-- Role names and cardinalities are automatically checkable. Whether the
-  documentation truly supports a conveyance, an optional `behavior`, or an
-  identity reuse remains subject to semantic review.
-
-## Diagnostics
-
-The executable diagnostic codes `BA-ROLE-MISSING`, `BA-ROLE-CARDINALITY`, and
-`BA-ROLE-UNKNOWN` are declared within the rule block above; their diagnostic
-messages and LLM instructions must be read from the guide rather than
-hard-coded separately into the Python engine. The diagnostic result must link to the relevant guide section and identify
-the affected source location when available. Structural violations must remain
-distinct from missing or disputed semantic evidence.
-
-Shared diagnostics, such as an unrecognized `semanticOperatorKey` or missing
-BAProposition-level `polarity`, belong to the common BA engine and operator
-registry, not to the `transfer` rule definition.
 
 ## Valid examples
 
-**Affirmative transfer (example only; referent identities must be established):**
+**Valid — governed conveyance:**
 
 ```text
 BAP-EX-TRANSFER-01 - transfer
-  source      -> MeasurementAcquisition  # BAR-EX-ACQUISITION
-  destination -> EvaluationEngine        # BAR-EX-EVALUATION
-  content     -> MeasurementRecord       # BAR-EX-RECORD
+  source      -> Acquisition
+  destination -> Evaluation
+  content     -> Measurement
   polarity    = affirmative
 ```
 
-Evidence assumption: the source states that the acquisition subsystem
-conveys the measurement record to the evaluation engine.
-
-**Explicitly prohibited transfer:**
+**Valid — explicitly prohibited conveyance:**
 
 ```text
 BAP-EX-TRANSFER-02 - transfer
-  source      -> SystemA   # BAR-EX-A
-  destination -> SystemB   # BAR-EX-B
-  content     -> DataX     # BAR-EX-X
+  source      -> SystemA
+  destination -> SystemB
+  content     -> SensitiveData
   polarity    = negative
 ```
 
-Evidence assumption: the governed documentation explicitly states that
-SystemA must not convey DataX to SystemB. This is not an example of unknown
-or absent evidence.
-
 ## Invalid examples
 
-**Missing required content:**
+**Missing content:**
 
 ```text
 BAP-EX-TRANSFER-BAD-01 - transfer
@@ -180,51 +94,4 @@ BAP-EX-TRANSFER-BAD-01 - transfer
   polarity    = affirmative
 ```
 
-Expected structural diagnostic: `BA-ROLE-MISSING` (`content`).
-
-**Two sources in a single proposition:**
-
-```text
-BAP-EX-TRANSFER-BAD-02 - transfer
-  source      -> SystemA
-  source      -> SystemC
-  destination -> SystemB
-  content     -> DataX
-  polarity    = affirmative
-```
-
-Expected structural diagnostic: `BA-ROLE-CARDINALITY` (`source`).
-
-**Source evidence states only “Stage B uses X”:** an upstream `source`
-cannot be inferred from that statement alone. This is a semantic evidence
-gap, not permission to fill the role with a plausible upstream stage.
-
-**Unjustified `behavior`:** providing a syntactically valid behavior role
-does not establish the independent transfer identity's semantic necessity.
-
-## Source reconciliation
-
-- **Working source R7, chapter 7:** the candidate signature is
-  `behavior [0..1]`, `source [1]`, `destination [1..*]`,
-  and `content [1..*]`; the optional `behavior` requires independent
-  governed meaning for the transfer segment.
-- **Rebuild R7, chapter 7, described pages 23–29:** confirms that signature
-  and expands on governed evidence, content identity continuity, negative
-  assertions, and controlled LLM-assisted authoring. The rebuild is a
-  review source and does not automatically promote new rules.
-- **Identified R7 unfinished text:** “Discriminazioni con altri costrutti”
-  contains a placeholder; the new `Disambiguation` section remains optional.
-- **Excluded R7 content:** graphical rendering and projection rules
-  belong to a separate guide. None are part of the BA operator contract.
-- **Review scope C4 R3:** the role/cardinality rule, shared mandatory
-  `polarity`, and guide-derived diagnostics are approved for structural
-  execution; `methodStatus` remains `candidate`.
-- **Items still pending:** `temporalScope`/condition modifier semantics
-  and grammar, evidence sufficiency, additional operator constraints,
-  cross-document identity, and any broader methodological approval.
-
-**Activation record (C4 R3):** the structural contract was reviewed and
-`reviewStatus` is now `reviewed`. The loader must still reject invalid guide
-format or unsupported rule grammar. Structural BA PASS does **not** verify
-source evidence, BAReferent identity, temporal semantics, or methodological
-acceptance of the broader candidate R7 material.
+**Unjustified source:** a downstream component's use of data does not identify the source of transfer.
