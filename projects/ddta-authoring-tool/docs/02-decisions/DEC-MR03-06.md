@@ -23,6 +23,10 @@ Il collegamento e bidirezionale: il documento di test dichiara ogni simbolo che 
 
 Ogni test deve avere una giustificazione derivabile da un FR o da un contratto governato dall'FR. Evitare casi dedicati all'assenza di componenti storici che non fanno parte del progetto. Per il catalogo BA, la proprieta da verificare e la corrispondenza completa fra guide ammesse e operatori riconosciuti, indipendentemente dai singoli operatori presenti. Un elenco di nomi specifici non e la fonte del catalogo.
 
+**Impronte delle clausole:** le NC conservano un identificatore stabile (`NC-1`, ...) ma non richiedono versioni manuali. Un servizio comune, utilizzabile da test e validatori, estrae il contenuto normativo di ogni clausola di un FR e calcola un MD5 deterministico del testo normalizzato. Il formato di normalizzazione è governato da un FR dedicato e non può variare implicitamente fra ambienti o componenti. Il numero della NC non è incluso nell'impronta: l'identità e il contenuto sono due verifiche indipendenti. MD5 è usato unicamente come rilevatore di modifiche documentali, **non** come controllo di integrità contro alterazioni intenzionali.
+
+Ogni caso di TestSpecification dichiara le NC coperte **con i rispettivi MD5 attesi**; ciascuna funzione Python di test dichiara `DDTA-TC` e i riferimenti `DDTA-NC: FR-ID/NC-ID MD5=<impronta>`. Il validatore confronta i tre lati FR / TestSpecification / codice: un riferimento orfano, una versione di contenuto superata o un disallineamento fra le due dichiarazioni di test produce una diagnostica. Le impronte attese **non** vengono aggiornate automaticamente quando cambia il FR: la modifica richiede review dei test e conferma esplicita del nuovo riferimento.
+
 L'introduzione e incrementale: in una fase pilota il controllo circoscritto alle TestSpecification dichiarate puo riuscire mentre la suite legacy resta **non riconciliata**. Un controllo globale non puo dare un PASS di copertura finche esistono funzioni di test senza caso o casi senza binding reciproco. La review semantica dei test rimane responsabilita umana.
 
 ## Consequences
@@ -32,6 +36,8 @@ L'introduzione e incrementale: in una fase pilota il controllo circoscritto alle
 - Test con riferimenti assenti, duplicati o discordanti sono riconoscibili automaticamente.
 - La riconciliazione degli attuali test avviene per invariante funzionale, non per numero di metodi o per cronologia dei checkpoint.
 - I risultati dei test sono evidenze tecniche, non accettazione semantica delle clausole.
+- La modifica del contenuto di una NC cambia la sua impronta e rende visibile la necessità di riesaminare i test che vi fanno riferimento, indipendentemente da una versione manuale.
+- Il controllo di completezza delle NC senza test resta distinto dal controllo dei riferimenti reciproci; nessun PASS pilota attesta copertura globale.
 
 ## Questioni di review (non normative)
 

@@ -13,10 +13,12 @@ import re
 
 import yaml
 from .engine import UniqueKeysLoader, validate
+from .clause_md5 import ClauseFingerprintError, fingerprint_clauses
 
 CASE_BLOCK = re.compile(r'^```yaml test-cases\s*\n(.*?)^```\s*$', re.M | re.S)
-CLAUSE = re.compile(r'^- \*\*(NC-[0-9]+):\*\*', re.M)
 CASE_REF = re.compile(r'^DDTA-TC: (TC-[A-Za-z0-9-]+)$', re.M)
+NC_REF = re.compile(r'^DDTA-NC: (FR-MR[0-9]{2}-[0-9]{2}-[0-9]{2})/(NC-[0-9]+) MD5=([0-9a-f]{32})$', re.M)
+MD5_RE = re.compile(r'^[0-9a-f]{32}$')
 TEST_BINDING = re.compile(r'^(prototype/generic-v01/tests/test_[A-Za-z0-9_]+\.py)::([A-Za-z_]\w*\.test_[A-Za-z0-9_]+)$')
 CASE_ID = re.compile(r'^TC-FR-MR\d\d-\d\d-\d\d-\d\d$')
 REQUIRED_CASE_FIELDS = {'id', 'covers', 'rationale', 'preconditions', 'action', 'expectedResult', 'testBindings'}
@@ -67,7 +69,7 @@ def _metadata(src: str) -> dict:
     return data
 
 
-def _tests_in_source(path: Path) -> dict[str, str | None]:
+def _tests_in_source(path: Path) -> dict[str, tuple[str | None, frozenset[tuple[str, str, str]] | None]]:
     """Index concrete unittest methods by `Class.method` and their sole DDTA-TC tag."""
     tree = ast.parse(path.read_text(encoding='utf-8'), filename=str(path))
     result = {}
@@ -79,8 +81,16 @@ def _tests_in_source(path: Path) -> dict[str, str | None]:
         ):
             for meth in node.body:
                 if isinstance(meth, (ast.FunctionDef, ast.AsyncFunctionDef)) and meth.name.startswith('test_'):
-                    tags = CASE_REF.findall(ast.get_docstring(meth) or '')
-                    result[f'{node.name}.{meth.name}'] = tags[0] if len(tags) == 1 else None
+                    doc = ast.get_docstring(meth) or ''
+                    tags = CASE_REF.findall(doc)
+                    references = NC_REF.findall(doc)
+                    # A syntactically declared NC line must conform to the agreed contract.
+                    nc_lines = [line.strip() for line in doc.splitlines() if line.strip().startswith('DDTA-NC:')]
+                    valid_refs = (len(nc_lines) == len(references)
+                                  and len(references) == len(set(references)))
+                    result[f'{node.name}.{meth.name}'] = (
+                        tags[0] if len(tags) == 1 else None,
+                        frozenset(references) if valid_refs else None)
     return result
 
 
@@ -125,10 +135,12 @@ def check_test_specifications(project: Path, scope: str = 'pilot') -> TestTraceR
         return TestTraceResult(scope, 0, 0, 0, 0, diagnostics)
 
     referenced: dict[tuple[str, str], str] = {}
+    expected_clauses: dict[str, frozenset[tuple[str, str, str]]] = {}
+    covered: set[tuple[str, str]] = set()
     cases_seen: set[str] = set()
     documents_seen: set[str] = set()
     parsed = 0
-    test_cache: dict[str, dict[str, str | None]] = {}
+    test_cache: dict[str, dict[str, tuple[str | None, frozenset[tuple[str, str, str]] | None]]] = {}
     for spec in specs:
         relspec = spec.relative_to(project).as_posix()
         try:
@@ -149,7 +161,7 @@ def check_test_specifications(project: Path, scope: str = 'pilot') -> TestTraceR
             parents = [p for p in possible if _metadata(p.read_text(encoding='utf-8')).get('id') == parent]
             if len(parents) != 1:
                 raise ValueError('Parent FR absent or ambiguous')
-            clauses = set(CLAUSE.findall(parents[0].read_text(encoding='utf-8')))
+            clauses = fingerprint_clauses(parents[0].read_text(encoding='utf-8'))
             blocks = CASE_BLOCK.findall(content)
             if len(blocks) != 1:
                 raise ValueError('Exactly one yaml test-cases block required')
@@ -164,9 +176,27 @@ def check_test_specifications(project: Path, scope: str = 'pilot') -> TestTraceR
                     raise ValueError(f'Invalid or duplicate case ID: {cid!r}')
                 cases_seen.add(cid)
                 parsed += 1
-                if (not isinstance(case['covers'], list) or not case['covers']
-                        or not all(isinstance(c, str) and c in clauses for c in case['covers'])):
-                    report(relspec, 'TC-CLAUSE', f'{cid} cites a missing parent FR normative clause')
+                covers = case['covers']
+                if (not isinstance(covers, list) or not covers
+                        or not all(isinstance(c, dict) and set(c) == {'clause', 'md5'}
+                                       and isinstance(c['clause'], str)
+                                       and isinstance(c['md5'], str)
+                                       and MD5_RE.fullmatch(c['md5']) for c in covers)):
+                    report(relspec, 'TC-CLAUSE-FORMAT', f'{cid} must declare NC identifier and MD5')
+                    continue
+                keys = [c['clause'] for c in covers]
+                if len(keys) != len(set(keys)):
+                    report(relspec, 'TC-CLAUSE-DUPLICATE', f'{cid} declares duplicate NC references')
+                    continue
+                for cover in covers:
+                    target, digest = cover['clause'], cover['md5']
+                    if target not in clauses:
+                        report(relspec, 'TC-CLAUSE', f'{cid} cites absent {parent}/{target}')
+                    elif clauses[target] != digest:
+                        report(relspec, 'TC-CLAUSE-MD5', f'{cid}: {parent}/{target} fingerprint changed; review the test')
+                    else:
+                        covered.add((parent, target))
+                expected_clauses[cid] = frozenset((parent, c['clause'], c['md5']) for c in covers)
                 for field in ('rationale', 'preconditions', 'action', 'expectedResult'):
                     if not isinstance(case[field], str) or not case[field].strip():
                         report(relspec, 'TC-FIELD', f'{cid} missing {field}')
@@ -190,8 +220,24 @@ def check_test_specifications(project: Path, scope: str = 'pilot') -> TestTraceR
                     if key in referenced:
                         report(relspec, 'TC-BINDING-DUPLICATE', f'{reltest}::{symbol} linked by more than one case')
                     referenced[key] = cid
-        except (ValueError, OSError, UnicodeError, yaml.YAMLError) as exc:
+        except (ValueError, OSError, UnicodeError, yaml.YAMLError, ClauseFingerprintError) as exc:
             report(relspec, 'TC-SPEC', str(exc))
+
+    if scope == 'all':
+        # Count uncovered normative clauses separately from broken test bindings.
+        for fr_path in sorted(fr_folder.glob('*.md')):
+            try:
+                fr_source = fr_path.read_text(encoding='utf-8')
+                fr_meta = _metadata(fr_source)
+                if fr_meta.get('type') != 'FunctionalRequirement':
+                    continue
+                fr_id = fr_meta.get('id')
+                for nc_id in fingerprint_clauses(fr_source):
+                    if (fr_id, nc_id) not in covered:
+                        report(fr_path.relative_to(project).as_posix(), 'TC-UNCOVERED-NC',
+                               f'{fr_id}/{nc_id} has no current TestSpecification coverage')
+            except (ValueError, OSError, UnicodeError, ClauseFingerprintError) as exc:
+                report(fr_path.relative_to(project).as_posix(), 'TC-FR-CLAUSES', str(exc))
 
     # In pilot mode, verify every runnable test method in the explicitly linked files.
     # The global suite is checked only when scope=all is explicitly selected.
@@ -215,8 +261,11 @@ def check_test_specifications(project: Path, scope: str = 'pilot') -> TestTraceR
                 unmapped += 1
                 if scope == 'all' or rel in {b[0] for b in referenced}:
                     report(rel, 'TC-UNMAPPED', f'{symbol} has no TestSpecification binding')
-            elif declared != expected:
-                report(rel, 'TC-BACKLINK', f'{symbol} DDTA-TC {declared!r}, expected {expected}')
+            elif declared[0] != expected:
+                report(rel, 'TC-BACKLINK', f'{symbol} DDTA-TC {declared[0]!r}, expected {expected}')
+            elif declared[1] is None or declared[1] != expected_clauses.get(expected):
+                report(rel, 'TC-BACKLINK-NC',
+                       f'{symbol} DDTA-NC declarations do not match TestSpecification NC/MD5 references')
             else:
                 matched += 1
 

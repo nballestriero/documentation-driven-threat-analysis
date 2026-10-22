@@ -11,7 +11,11 @@ GUIDES = (ROOT / '..' / '..' / 'guides' / 'ba').resolve()
 
 class BACatalogTest(unittest.TestCase):
     def test_operator_catalog_consistency(self):
-        """DDTA-TC: TC-FR-MR02-03-01-01"""
+        """DDTA-TC: TC-FR-MR02-03-01-01
+        DDTA-NC: FR-MR02-03-01/NC-1 MD5=a0c0a2418e53828f54107a142f1a234f
+        DDTA-NC: FR-MR02-03-01/NC-2 MD5=dc6245cc70957ffeb45860136f21c2de
+        DDTA-NC: FR-MR02-03-01/NC-3 MD5=28c22ed27c0e5018b2ebd53d46b01fef
+        """
         with tempfile.TemporaryDirectory() as tmp:
             guide_root = Path(tmp) / 'ba'
             shutil.copytree(GUIDES, guide_root)
