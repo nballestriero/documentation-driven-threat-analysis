@@ -1,8 +1,8 @@
 # DDTA Authoring Tool — Working Plan
 
-**Stato:** piano operativo di lavoro, non normativo  
-**Ultimo aggiornamento:** 2026-10-22  
-**Baseline Git pubblicata:** `master` / `4da8ee7` (C9 R1A); C9 R1B verificato localmente, commit in attesa
+**Stato:** piano operativo di lavoro, non normativo
+**Ultimo aggiornamento:** 2026-10-23
+**Baseline Git pubblicata:** `master` / `61ba4b6` (C9 R1B); C9 R2 applicato e verificato localmente, commit in attesa
 **Ambito:** progetto `projects/ddta-authoring-tool/` nella tesi; futura separazione del framework ancora da verificare.
 
 ## 1. Scopo e autorità
@@ -32,15 +32,15 @@ Questo è il piano del **progetto Authoring Tool**, separato dai work plan metod
 | Gerarchia documentale | 5 MR, 13 Decision, 29 FR | 47 documenti formalmente validi (`strict`); non equivalgono a 47 implementazioni |
 | TestSpecification | 17 | Specifiche presenti nello scope di tracciabilita attuale |
 | TestCase | 111 | Casi documentati nel perimetro di verifica attuale |
-| Test Python | 115 superati | Regressione C8 R3H verificata localmente; due test storici rimossi |
+| Test Python | 121 superati | Ultima regressione locale C9 R2 (2026-10-23); il checkpoint C8 R3H aveva 115 test |
 | Metodi Python tracciati | 115 | `scope: pilot`: 115 collegati, 0 mancanti, 0 errori; non prova copertura di tutte le NC |
 | Metodi da riconciliare nella suite attuale | 0 | Tutti i 115 metodi attualmente eseguibili sono associati a TestCase |
 | Tracciabilita globale | Audit eseguito: 66 NC senza copertura | `scope: all`: 115 metodi collegati, 0 unmapped, 66 `TC-UNCOVERED-NC`; `valid: false`, `fullSuiteCovered: false` |
-| Integrazione VS Code | Non implementata | Prevista sotto `DEC-MR01-03` |
-| Sottoprogetto DDTA indipendente | Non ancora verificato end-to-end | Occorre separare runtime/framework dai sorgenti del progetto utilizzatore |
+| Integrazione VS Code | Pilot 0.1.2 verificato localmente | Diagnostiche su buffer non salvati (C9 R1B); completamento YAML campi/valori e diagnostica di campo obbligatorio (C9 R2). Hover e self-hosting non ancora verificati |
+| Sottoprogetto DDTA indipendente | Pilot MR/Decision/FR verificato, gate complessivo aperto | 3 documenti del pilot strict validi; mancano prove con BA, TestSpecification, nuovo contratto e self-hosting |
 | Operatori BA attivi nel prototipo | `transfer`, `produce` | Gli altri operatori sono esplicitamente differiti |
 
-**Checkpoint già consolidati:** C8 R3E — commit `030353a`; C8 R3F — commit `4f4826d`; C8 R3G — commit `aa302fc`. C8 R3H ha regressione e tracciabilita verificate localmente, ma resta in attesa del commit.
+**Checkpoint già consolidati:** C8 R3E — commit `030353a`; C8 R3F — commit `4f4826d`; C8 R3G — commit `aa302fc`; C8 R3H — commit `f80ef9b`; C9 R1A — commit `4da8ee7`; C9 R1B — commit `61ba4b6`. C9 R2 verificato localmente; commit in attesa.
 
 ## 4. Backlog prioritario
 
@@ -50,8 +50,8 @@ Questo è il piano del **progetto Authoring Tool**, separato dai work plan metod
 | **C8 R3H** | **DONE** | Riconciliare i 18 metodi dei quattro moduli di test BA residui, decidendo i corretti FR governanti prima di spostare i test | `MR-02`, `DEC-MR02-03`, `FR-MR02-03-*`; `DEC-MR01-04`, `FR-MR01-04-01`, secondo la verifica di pertinenza | Ogni metodo mantenuto, separato o rimosso con motivazione e tracciabilità |
 | **C8 chiusura** | IN_PROGRESS | Audit dell'intera suite attuale e separazione fra tracciabilità dei test e copertura di tutte le NC | `DEC-MR03-06`; `FR-MR03-06-01/02/03/04` | Nessun metodo eseguibile senza classificazione/giustificazione; elenco NC scoperte distinto; non forzare `fullSuiteCovered` |
 | **C9 R1** | IN_PROGRESS | Definire e collaudare lo scope di un **progetto DDTA indipendente** | `MR-01`, `DEC-MR01-01`, `FR-MR01-01-01/02/03/04`; `MR-03`, `DEC-MR03-01`, `FR-MR03-01-01/02` | Un sottoprogetto estraneo ai documenti dell'Authoring Tool viene validato senza importare sorgenti del progetto ospite |
-| **C9 R2** | PLANNED | Collegare VS Code al motore comune; diagnostiche su buffer non salvato | `DEC-MR01-03`, `FR-MR01-03-01`, `FR-MR01-03-03`; diagnostiche sotto `MR-02` | Aprire/modificare MR/Decision/FR nel progetto pilota e vedere errori aggiornati senza salvataggio |
-| **C9 R3** | PLANNED | Completamento dei campi, dei valori e dei contratti esistenti; proposta di fix controllata | `FR-MR01-03-02`, `FR-MR01-03-03`; schemi in `prototype/generic-v01/schemas/` | Suggerimenti contestuali coerenti con schema e posizione; nessuna correzione applicata senza azione esplicita |
+| **C9 R2** | **DONE (risultato conseguito da C9 R1B)** | Collegare VS Code al motore comune; diagnostiche su buffer non salvato | `DEC-MR01-03`, `FR-MR01-03-01`, `FR-MR01-03-03`; diagnostiche sotto `MR-02` | VS Code 0.1.1: REL-TARGET-MISSING e rimozione automatica su buffer non salvato; commit `61ba4b6` |
+| **C9 R3** | IN_PROGRESS (primo incremento operativo C9 R2) | Completamento schema-driven e proposta di fix controllata | `FR-MR01-03-02`, `FR-MR01-03-03`; schemi in `prototype/generic-v01/schemas/` | C9 R2: campi e valori YAML verificati in VS Code 0.1.2; fix controllati, nuovi tipi e contratti ancora da verificare |
 | **C9 R4** | PLANNED | **Self-hosting**: VS Code deve assistere anche l'editing della documentazione e delle guide del framework stesso | `DEC-MR01-03`, `DEC-MR01-04`, `MR-02`, `MR-03` e guide BA pertinenti | Stessi controlli, stessi ID diagnostici e stessa semantica da CLI e VS Code, nel framework e in un progetto DDTA separato |
 | **C9 R5** | PLANNED | Stabilire confini/versioni per il riuso e preparare l'eventuale estrazione del framework | Assessment C9 R1–R4; eventuali Decision/FR da formalizzare in review | Un progetto può dichiarare la versione dei contratti usati; estrazione in repo autonomo senza duplicare il motore |
 | **Dopo C9** | DEFERRED | Estendere catalogo degli operatori BA e supporto a ulteriori tipi di documento | Guide BA e nuovi documenti governanti approvati | Nessun nuovo operatore o schema trattato come eseguibile prima di test e review |
@@ -85,6 +85,17 @@ Il primo test non significa che ogni guida o schema sia già coperto da un contr
 - **Estendibilità:** specificare separatamente guide/schemi stabili e guide/schemi in preparazione, preservando la possibilità di evolvere il framework.
 - **Evidenza:** test automatici, prova manuale VS Code registrata, documenti/scope utilizzati e commit/versione del motore associati al risultato.
 
+### Gate trasversale C9 — estensibilita dichiarativa e descrizioni
+
+Il client VS Code non deve codificare cataloghi specifici MR/Decision/FR/BA. Un nuovo tipo documentale o operatore che rientra nelle grammatiche gia supportate deve poter essere aggiunto mediante un contratto registrato, senza modifiche al codice Python o JavaScript. Se una nuova grammatica non e supportata, il motore puo richiedere un incremento generale una sola volta, non una implementazione dedicata per ciascun tipo.
+
+- **Test di estensibilita:** introdurre uno schema sintetico nella posizione prevista; verificare scoperta, validazione, suggerimenti e scope nel servizio Python, CLI e VS Code, senza modifiche al codice dopo la registrazione.
+- **Descrizioni e hover:** introdurre una capacita generica `describe` che restituisca descrizioni esistenti nei contratti, senza inventarle nel client; verificare comportamento per descrizione assente.
+- **Multi-contesto:** estendere le stesse funzioni alle grammatiche BA supportate (`transfer`, `produce`), ai documenti collegati agli FR (partendo dalle TestSpecification) e alle guide effettivamente contrattualizzate.
+- **Self-hosting:** il progetto pilota e il framework devono usare il medesimo motore, rispettando confini di progetto, profilo e versione dei contratti.
+
+Questi sono gate tecnici, non nuovi contratti normativi: qualsiasi modifica a MR/Decision/FR/BA richiede review separata. I checkpoint implementativi C9 R1B/R2 e le voci C9 R2/R3 del backlog non sono una corrispondenza uno-a-uno: prevale il risultato verificato documentato nel registro.
+
 ## 6. Questioni aperte e non-goal immediati
 
 | Questione | Stato | Azione richiesta |
@@ -107,9 +118,10 @@ Il primo test non significa che ogni guida o schema sia già coperto da un contr
 | **C8 R3G** | DONE — commit `aa302fc` | 116 test Python superati; `pilot`: 17 TestSpecification, 94 TestCase, 98 binding, 0 unmapped, 0 errori; `fullSuiteCovered: false` |
 | **C8 R3H** | DONE — commit `f80ef9b` | 115 test Python superati; `pilot`: 17 TestSpecification, 111 TestCase, 115 binding, 0 unmapped, 0 errori; fixture sintetica autonoma; nessun test storico di catalogo fisso |
 | **C9 R1A** | DONE — commit `4da8ee7` | 118 test Python OK; snapshot CLI/API equivalenti, progetto pilota 3 documenti, 0 errori; nessuna scrittura su disco nel test |
-| **C9 R1B** | IN_PROGRESS (commit pending) | VS Code riconosce la VSIX 0.1.1; `REL-TARGET-MISSING` alla riga 6 su buffer non salvato e rimozione automatica dopo correzione; `node --check` OK; regressione 118/118 OK |
+| **C9 R1B** | DONE — commit `61ba4b6` | VS Code riconosce la VSIX 0.1.1; `REL-TARGET-MISSING` alla riga 6 su buffer non salvato e rimozione automatica dopo correzione; `node --check` OK; regressione 118/118 OK |
+| **C9 R2 — primo completamento YAML** | IN_PROGRESS (verificato localmente, commit pending) | Modulo Python `suggest`, CLI, adapter VS Code 0.1.2; 121/121 test Python OK; `node --check` OK; `git diff --check` senza errori; VSIX installata con byte identici ai sorgenti; suggerimenti `implementationBindings`, `implementationClaim`, valori `lifecycle` e diagnostica per campo obbligatorio osservati in VS Code |
 | **C8 audit globale** | IN_PROGRESS | `scope: all`: 66 `TC-UNCOVERED-NC` in 24 FR (MR-01: 25, MR-02: 13, MR-03: 28); 0 `TC-UNMAPPED`; `fullSuiteCovered: false`. Da classificare per obbligo, senza dichiarare conformita sulla sola presenza di un TC |
 
-**Prossima azione concreta:** consolidare C9 R1B e verificare i successivi gate VS Code/self-hosting. L’audit globale delle 66 NC rimane aperto e distinto; non introdurre binding fittizi per ottenere PASS.
+**Prossima azione concreta:** consolidare in Git C9 R2 (5 file del checkpoint e questo piano), poi eseguire un esperimento di estendibilita dichiarativa: aggiunta di un nuovo schema/tipo sintetico e assistenza CLI/VS Code senza cambiare codice. In seguito hover descrittivo generico, supporto delle grammatiche BA gia disponibili, TestSpecification e self-hosting. L’audit globale delle 66 NC rimane aperto e distinto; non introdurre binding fittizi per ottenere PASS.
 
 **Regola di chiusura:** dopo ogni checkpoint aggiornare questa sezione soltanto con l'esito realmente osservato, riportando commit, test e limiti rimasti. Non confondere commit pubblicato, validazione strutturale e accettazione semantica.

@@ -109,8 +109,37 @@ function schedule(document, immediate = false) {
   timers.set(key, setTimeout(() => { timers.delete(key); check(document); }, ms));
 }
 
+async function ddtaCompletions(document, position) {
+  if (!contextFor(document)) return [];
+  const moduleRoot = frameworkRoot(document);
+  if (!moduleRoot) return [];
+  const cfg = vscode.workspace.getConfiguration('ddta', document.uri);
+  const python = cfg.get('pythonExecutable', 'python');
+  return new Promise(resolve => {
+    const env = {...process.env, PYTHONPATH: moduleRoot + (process.env.PYTHONPATH ? path.delimiter + process.env.PYTHONPATH : '')};
+    const proc = cp.spawn(python, ['-m', 'ddta_tool', 'suggest', '--line', String(position.line + 1), '--column', String(position.character + 1), '--json'], {env, windowsHide:true, stdio:['pipe','pipe','pipe']});
+    let data = '';
+    proc.stdout.setEncoding('utf8');
+    proc.stdout.on('data', chunk => {data += chunk;});
+    proc.on('error', e => {output.appendLine('DDTA suggest: '+e.message); resolve([]);});
+    proc.on('close', () => {
+      try {
+        const result = JSON.parse(data);
+        resolve((result.items || []).map(entry => {
+          const item = new vscode.CompletionItem(entry.label, entry.kind === 'value' ? vscode.CompletionItemKind.Value : vscode.CompletionItemKind.Field);
+          item.insertText = entry.insertText;
+          return item;
+        }));
+      } catch (e) {output.appendLine('DDTA suggest: '+e.message); resolve([]);}
+    });
+    proc.stdin.on('error', () => {});
+    proc.stdin.end(Buffer.from(document.getText(), 'utf8'));
+  });
+}
+
 function activate(context) {
   collection = vscode.languages.createDiagnosticCollection('DDTA');
+  context.subscriptions.push(vscode.languages.registerCompletionItemProvider({language: 'markdown', scheme: 'file'}, {provideCompletionItems: ddtaCompletions}, ':', ' '));
   output = vscode.window.createOutputChannel('DDTA Pilot');
   context.subscriptions.push(collection, output);
   context.subscriptions.push(vscode.workspace.onDidOpenTextDocument(d => schedule(d, true)));

@@ -6,6 +6,7 @@ from pathlib import Path
 import sys
 from .engine import DEFAULT_SCHEMAS, SchemaError, render_template, validate
 from .relations import check_workspace
+from .suggest import suggest
 from .snapshot import check_snapshot
 from .implementations import check_implementation_bindings
 from .ba_rules import DEFAULT_GUIDES, check_ba_file
@@ -46,6 +47,10 @@ def main(argv: list[str] | None = None) -> int:
     b.add_argument('file', type=Path, help='DDTA document containing an embedded Base Analysis')
     b.add_argument('--guides-root', type=Path, default=DEFAULT_GUIDES)
     b.add_argument('--json', action='store_true')
+    sg = sub.add_parser('suggest', help='Schema-derived authoring suggestions for an in-memory document')
+    sg.add_argument('--line', type=int, required=True, help='1-based cursor line')
+    sg.add_argument('--column', type=int, required=True, help='1-based cursor column')
+    sg.add_argument('--json', action='store_true')
     args = p.parse_args(argv)
     if args.command == 'check-snapshot':
         try:
@@ -62,6 +67,15 @@ def main(argv: list[str] | None = None) -> int:
             for item in outcome['workspace']['diagnostics']:
                 print('{path}: {severity} {code}: {message}'.format(**item))
         return 0 if outcome['valid'] else 1
+    if args.command == 'suggest':
+        try:
+            source = sys.stdin.buffer.read().decode('utf-8')
+            result = suggest(source, args.line, args.column, args.schemas_dir)
+        except (UnicodeError, OSError, ValueError, SchemaError) as exc:
+            print('ERROR:', exc, file=sys.stderr)
+            return 2
+        print(json.dumps(result, ensure_ascii=False))
+        return 0
     if args.command == 'check-ba':
         # DDTA-FR: FR-MR02-03-02; FR-MR02-02-03; BA result is separate from DOC checks.
         outcome = check_ba_file(args.file, args.guides_root)
