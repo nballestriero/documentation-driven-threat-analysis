@@ -2,7 +2,7 @@
 
 **Stato:** piano operativo di lavoro, non normativo
 **Ultimo aggiornamento:** 2026-10-23
-**Baseline Git pubblicata:** `master` / `61ba4b6` (C9 R1B); C9 R2 applicato e verificato localmente, commit in attesa
+**Baseline Git pubblicata:** `master` / `0290aa6` (C9 R2, completamento schema-driven).
 **Ambito:** progetto `projects/ddta-authoring-tool/` nella tesi; futura separazione del framework ancora da verificare.
 
 ## 1. Scopo e autorità
@@ -40,7 +40,7 @@ Questo è il piano del **progetto Authoring Tool**, separato dai work plan metod
 | Sottoprogetto DDTA indipendente | Pilot MR/Decision/FR verificato, gate complessivo aperto | 3 documenti del pilot strict validi; mancano prove con BA, TestSpecification, nuovo contratto e self-hosting |
 | Operatori BA attivi nel prototipo | `transfer`, `produce` | Gli altri operatori sono esplicitamente differiti |
 
-**Checkpoint già consolidati:** C8 R3E — commit `030353a`; C8 R3F — commit `4f4826d`; C8 R3G — commit `aa302fc`; C8 R3H — commit `f80ef9b`; C9 R1A — commit `4da8ee7`; C9 R1B — commit `61ba4b6`. C9 R2 verificato localmente; commit in attesa.
+**Checkpoint già consolidati:** C8 R3E — commit `030353a`; C8 R3F — commit `4f4826d`; C8 R3G — commit `aa302fc`; C8 R3H — commit `f80ef9b`; C9 R1A — commit `4da8ee7`; C9 R1B — commit `61ba4b6`. C9 R2 pubblicato — commit `0290aa6`.
 
 ## 4. Backlog prioritario
 
@@ -96,6 +96,18 @@ Il client VS Code non deve codificare cataloghi specifici MR/Decision/FR/BA. Un 
 
 Questi sono gate tecnici, non nuovi contratti normativi: qualsiasi modifica a MR/Decision/FR/BA richiede review separata. I checkpoint implementativi C9 R1B/R2 e le voci C9 R2/R3 del backlog non sono una corrispondenza uno-a-uno: prevale il risultato verificato documentato nel registro.
 
+
+### C9 R2P — indipendenza dei client e riproducibilita (checkpoint operativo, non normativo)
+
+**Stato: IN_PROGRESS, verifica e commit in attesa.** Principio architetturale: contratti DDTA indipendenti dall'implementazione; motore Python utilizzabile senza VS Code, Node.js o LLM; CLI, editor, CI e AI sono client, senza copie di regole o dizionari. Le nuove grammatiche richiedono eventuali estensioni generali del motore, non eccezioni per ogni documento.
+
+- Script versionati: `scripts/build_vsix.py`, `scripts/build-vsix.ps1`, `scripts/build-vsix.sh`.
+- Procedura: `docs/installation/ARCHITECTURE_AND_REPRODUCIBILITY.md`, `WINDOWS.md`, `LINUX.md`.
+- Gate R1 build: VSIX generata dai sorgenti con metadati deterministici; file `extension.js` e `package.json` identici byte-per-byte e verifica con SHA256.
+- Gate R2 installazione: procedura Windows e Linux documentata, prova di installazione su ambiente pulito **ancora aperta**.
+- Gate R3 comportamento: validazione CLI autonoma e diagnostica/completamento VS Code confrontati con identico contratto, profilo e progetto.
+- La riuscita dei gate non deve essere dichiarata per sola presenza della documentazione. Nessun aggiornamento agli FR normativi in questo checkpoint.
+
 ## 6. Questioni aperte e non-goal immediati
 
 | Questione | Stato | Azione richiesta |
@@ -119,9 +131,9 @@ Questi sono gate tecnici, non nuovi contratti normativi: qualsiasi modifica a MR
 | **C8 R3H** | DONE — commit `f80ef9b` | 115 test Python superati; `pilot`: 17 TestSpecification, 111 TestCase, 115 binding, 0 unmapped, 0 errori; fixture sintetica autonoma; nessun test storico di catalogo fisso |
 | **C9 R1A** | DONE — commit `4da8ee7` | 118 test Python OK; snapshot CLI/API equivalenti, progetto pilota 3 documenti, 0 errori; nessuna scrittura su disco nel test |
 | **C9 R1B** | DONE — commit `61ba4b6` | VS Code riconosce la VSIX 0.1.1; `REL-TARGET-MISSING` alla riga 6 su buffer non salvato e rimozione automatica dopo correzione; `node --check` OK; regressione 118/118 OK |
-| **C9 R2 — primo completamento YAML** | IN_PROGRESS (verificato localmente, commit pending) | Modulo Python `suggest`, CLI, adapter VS Code 0.1.2; 121/121 test Python OK; `node --check` OK; `git diff --check` senza errori; VSIX installata con byte identici ai sorgenti; suggerimenti `implementationBindings`, `implementationClaim`, valori `lifecycle` e diagnostica per campo obbligatorio osservati in VS Code |
+| **C9 R2 — primo completamento YAML** | DONE — commit `0290aa6` | Modulo Python `suggest`, CLI, adapter VS Code 0.1.2; 121/121 test Python OK; `node --check` OK; `git diff --check` senza errori; VSIX installata con byte identici ai sorgenti; suggerimenti `implementationBindings`, `implementationClaim`, valori `lifecycle` e diagnostica per campo obbligatorio osservati in VS Code |
 | **C8 audit globale** | IN_PROGRESS | `scope: all`: 66 `TC-UNCOVERED-NC` in 24 FR (MR-01: 25, MR-02: 13, MR-03: 28); 0 `TC-UNMAPPED`; `fullSuiteCovered: false`. Da classificare per obbligo, senza dichiarare conformita sulla sola presenza di un TC |
 
-**Prossima azione concreta:** consolidare in Git C9 R2 (5 file del checkpoint e questo piano), poi eseguire un esperimento di estendibilita dichiarativa: aggiunta di un nuovo schema/tipo sintetico e assistenza CLI/VS Code senza cambiare codice. In seguito hover descrittivo generico, supporto delle grammatiche BA gia disponibili, TestSpecification e self-hosting. L’audit globale delle 66 NC rimane aperto e distinto; non introdurre binding fittizi per ottenere PASS.
+**Prossima azione concreta:** verificare build e installazione riproducibili dell’estensione (checkpoint infrastrutturale C9 R2P), poi eseguire un esperimento di estendibilita dichiarativa: aggiunta di un nuovo schema/tipo sintetico e assistenza CLI/VS Code senza cambiare codice. In seguito hover descrittivo generico, supporto delle grammatiche BA gia disponibili, TestSpecification e self-hosting. L’audit globale delle 66 NC rimane aperto e distinto; non introdurre binding fittizi per ottenere PASS.
 
 **Regola di chiusura:** dopo ogni checkpoint aggiornare questa sezione soltanto con l'esito realmente osservato, riportando commit, test e limiti rimasti. Non confondere commit pubblicato, validazione strutturale e accettazione semantica.

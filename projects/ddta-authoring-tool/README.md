@@ -2,7 +2,9 @@
 
 **Documentazione di progetto DDTA — working candidate R5**
 
-Questa cartella e' un nuovo progetto documentato secondo DDTA, dedicato alla redazione, validazione, continuita' di identita', proiezione grafica e pubblicazione coerente di documentazione e Base Analysis. **La documentazione resta candidata**, non una baseline semantica accettata. E' ora disponibile un **prototipo Python generico** in `prototype/generic-v01/`, verificato per MR, Decision e FR: e' una realizzazione sperimentale parziale, non un'implementazione completa degli FR. Non e' presente alcuna estensione VS Code.
+Questa cartella e' un nuovo progetto documentato secondo DDTA, dedicato alla redazione, validazione, continuita' di identita', proiezione grafica e pubblicazione coerente di documentazione e Base Analysis. **La documentazione resta candidata**, non una baseline semantica accettata. E' ora disponibile un **prototipo Python generico** in `prototype/generic-v01/`, verificato per MR, Decision e FR: e' una realizzazione sperimentale parziale, non un'implementazione completa degli FR. E' disponibile un adattatore VS Code sperimentale `0.1.2` in `vscode/ddta-authoring-pilot/` per diagnostiche su buffer e completamento YAML; hover, estensibilita dichiarativa e self-hosting non sono ancora verificati.
+
+**Installazione e riproducibilita:** [architettura e gate](docs/installation/ARCHITECTURE_AND_REPRODUCIBILITY.md), [Windows](docs/installation/WINDOWS.md), [Linux](docs/installation/LINUX.md). Il motore Python funziona autonomamente; VS Code e' un client opzionale.
 
 ## Stato e confine
 
