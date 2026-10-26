@@ -1,0 +1,65 @@
+gold_id,dimension,scoring_layer,gold_fact,gold_qualification,gold_evidence,deepseek_assessment_historic,deepseek_ids,qwen_assessment_candidate,qwen_ids,mistral_assessment_candidate,mistral_ids,review_status
+R3-001,O,ENTITY_MENTION,Piattaforma di commercio elettronico,,Una piattaforma di commercio elettronico,MATCH,O-001,MATCH,O-001,MATCH,O-001,REVIEW_CANDIDATE
+R3-002,O,ENTITY_MENTION,Cliente/i,,ai clienti,MATCH,O-002,MATCH,O-002,MATCH,O-002,REVIEW_CANDIDATE
+R3-003,O,ENTITY_MENTION,Prodotto/i,,Ogni prodotto possiede,MATCH,O-003,MATCH,O-003,MATCH,O-003,REVIEW_CANDIDATE
+R3-004,O,ENTITY_MENTION,Catalogo,,nel catalogo,MATCH,O-004,MATCH,O-004,MATCH,O-004,REVIEW_CANDIDATE
+R3-005,O,ENTITY_MENTION,Catalog Service,,Catalog Service,MATCH,O-008,MATCH,O-008,MATCH,O-008,REVIEW_CANDIDATE
+R3-006,O,ENTITY_MENTION,Informazioni sulla disponibilità,,informazioni sulla disponibilità,PARTIAL,O-009;R-003,MATCH,O-010,MATCH,O-009,REVIEW_CANDIDATE
+R3-007,O,ENTITY_MENTION,Inventory Store,,Inventory Store,MATCH,O-010,MATCH,O-009,MATCH,O-010,REVIEW_CANDIDATE
+R3-008,O,ENTITY_MENTION,Order Service,,Order Service,MATCH,O-011,MATCH,O-012,MATCH,O-011,REVIEW_CANDIDATE
+R3-009,O,ENTITY_MENTION,Richiesta,Rinominazione: nel testo è «la richiesta»,"la richiesta contenente l'identificativo del cliente, i prodotti selezionati e le quantità richieste",MATCH,O-012,MATCH,O-013,MATCH,O-012,REVIEW_CANDIDATE
+R3-010,O,ENTITY_MENTION,Inventory Service,,Inventory Service,MATCH,O-016,MATCH,O-017,MATCH,O-015,REVIEW_CANDIDATE
+R3-011,O,ENTITY_MENTION,Quantità disponibili,,quantità disponibili,MATCH,O-017,MATCH,O-018,MATCH,O-016,REVIEW_CANDIDATE
+R3-012,O,ENTITY_MENTION,Ordine,,crea un ordine,MATCH,O-018,MATCH,O-011,MATCH,O-017,REVIEW_CANDIDATE
+R3-013,O,ENTITY_MENTION,Order Store,,Order Store,MATCH,O-019,MATCH,O-019,MATCH,O-018,REVIEW_CANDIDATE
+R3-014,O,ENTITY_MENTION,Payment Service,,Payment Service,MATCH,O-020,MATCH,O-020,MATCH,O-019,REVIEW_CANDIDATE
+R3-015,O,ENTITY_MENTION,Autorizzazione del pagamento,,l'autorizzazione del pagamento,MATCH,O-021,MATCH,O-021,MATCH,O-021,REVIEW_CANDIDATE
+R3-016,O,ENTITY_MENTION,Payment Provider,,Payment Provider esterno,MATCH,O-022,MATCH,O-022,MATCH,O-022,REVIEW_CANDIDATE
+R3-017,O,ENTITY_MENTION,Esito autorizzazione,,l'esito dell'autorizzazione,MATCH,O-023,MATCH,O-023,MATCH,O-023,REVIEW_CANDIDATE
+R3-018,O,ENTITY_MENTION,Quantità ordinate,Equivalenza con QuantitaRichieste non dichiarata,quantità ordinate,MATCH,O-024,PARTIAL,A-015,MATCH,O-031,REVIEW_CANDIDATE
+R3-019,O,ENTITY_MENTION,Stato Confirmed,,stato Confirmed,MATCH,O-026,MATCH,O-024,MATCH,O-024,REVIEW_CANDIDATE
+R3-020,O,ENTITY_MENTION,Notifica al cliente,,una notifica al cliente,MATCH,O-027,MATCH,O-025,MATCH,O-026,REVIEW_CANDIDATE
+R3-021,O,ENTITY_MENTION,Notification Service,,Notification Service,MATCH,O-028,MATCH,O-026,MATCH,O-027,REVIEW_CANDIDATE
+R3-022,O,ENTITY_MENTION,Stato Rejected,,come Rejected,MATCH,O-029,MATCH,O-027,MATCH,O-025,REVIEW_CANDIDATE
+R3-023,O,ENTITY_MENTION,Organizzazione esterna,,un'organizzazione esterna,MATCH,O-030,MATCH,O-028,MATCH,O-028,REVIEW_CANDIDATE
+R3-024,O,ENTITY_MENTION,Infrastruttura associata al servizio del Payment Provider,Il referente del pronome «ne» è contestuale,"La piattaforma utilizza il suo servizio, ma non ne gestisce l'infrastruttura.",MATCH,O-031,MATCH,O-029,MATCH,O-029,REVIEW_CANDIDATE
+R3-025,R,SEMANTIC_FACT,Prodotto possiede identificativo,,"Ogni prodotto possiede un identificativo, una descrizione e un prezzo.",MATCH,R-001,MATCH,R-002,MATCH,R-001,REVIEW_CANDIDATE
+R3-026,R,SEMANTIC_FACT,Prodotto possiede descrizione,,"Ogni prodotto possiede un identificativo, una descrizione e un prezzo.",MATCH,R-001,MATCH,R-003,MATCH,R-001,REVIEW_CANDIDATE
+R3-027,R,SEMANTIC_FACT,Prodotto possiede prezzo,,"Ogni prodotto possiede un identificativo, una descrizione e un prezzo.",MATCH,R-001,MATCH,R-004,MATCH,R-001,REVIEW_CANDIDATE
+R3-028,R,SEMANTIC_FACT,Catalog Service mantiene catalogo,,Il catalogo viene mantenuto dal Catalog Service,MATCH,R-002,MATCH,R-005,MATCH,R-002,REVIEW_CANDIDATE
+R3-029,R,SEMANTIC_FACT,Informazioni disponibilità conservate in Inventory Store,,le informazioni sulla disponibilità sono conservate nell'Inventory Store,MATCH,R-003,MATCH,R-006,MATCH,R-003,REVIEW_CANDIDATE
+R3-030,R,SEMANTIC_FACT,Richiesta contiene identificativo cliente,,"la richiesta contenente l'identificativo del cliente, i prodotti selezionati e le quantità richieste",MATCH,R-004,MATCH,R-007,MATCH,R-005,REVIEW_CANDIDATE
+R3-031,R,SEMANTIC_FACT,Richiesta contiene prodotti selezionati,,"la richiesta contenente l'identificativo del cliente, i prodotti selezionati e le quantità richieste",MATCH,R-004,MATCH,R-008,PARTIAL,R-005,REVIEW_CANDIDATE
+R3-032,R,SEMANTIC_FACT,Richiesta contiene quantità richieste,,"la richiesta contenente l'identificativo del cliente, i prodotti selezionati e le quantità richieste",MATCH,R-004,MATCH,R-009,MATCH,R-005,REVIEW_CANDIDATE
+R3-033,R,SEMANTIC_FACT,Payment Provider è esterno,,un Payment Provider esterno,MATCH,O-022;A-009,PARTIAL,O-022,MATCH,O-022,REVIEW_CANDIDATE
+R3-034,R,SEMANTIC_FACT,Organizzazione esterna gestisce Payment Provider,,Il Payment Provider è gestito da un'organizzazione esterna.,MATCH,R-005,MATCH,R-011,MATCH,R-006,REVIEW_CANDIDATE
+R3-035,R,SEMANTIC_FACT,Piattaforma usa servizio del Payment Provider,,La piattaforma utilizza il suo servizio,MATCH,R-006,MATCH,R-012,MATCH,R-007,REVIEW_CANDIDATE
+R3-036,N,POLARITY_CHECK,Piattaforma NON gestisce infrastruttura del Payment Provider,NEGATIVA,ma non ne gestisce l'infrastruttura.,MATCH,R-007,MATCH,R-013,MATCH,R-008,REVIEW_CANDIDATE
+R3-037,A,BEHAVIOR,Cliente conferma un acquisto,TRIGGER,Quando un cliente conferma un acquisto,MATCH,A-001,PARTIAL,A-004,MATCH,A-003,REVIEW_CANDIDATE
+R3-038,A,BEHAVIOR,Order Service riceve richiesta,TRIGGER: conferma acquisto,"Quando un cliente conferma un acquisto, l'Order Service riceve la richiesta contenente l'identificativo del cliente, i prodotti selezionati e le quantità richieste.",PARTIAL,A-001;A-002,MATCH,A-005,MATCH,A-004,REVIEW_CANDIDATE
+R3-039,A,BEHAVIOR,Order Service verifica disponibilità,,L'Order Service verifica la disponibilità interrogando l'Inventory Service,MATCH,A-003,MATCH,A-006,MATCH,A-005,REVIEW_CANDIDATE
+R3-040,A,BEHAVIOR,Order Service interroga Inventory Service,,interrogando l'Inventory Service,MATCH,A-003,MATCH,A-007,MATCH,A-006,REVIEW_CANDIDATE
+R3-041,A,BEHAVIOR,Inventory Service consulta Inventory Store,,che consulta l'Inventory Store,MATCH,A-004,MATCH,A-008,MATCH,A-007,REVIEW_CANDIDATE
+R3-042,A,BEHAVIOR,Inventory Service restituisce quantità disponibili,,restituisce le quantità disponibili,MATCH,A-005,MATCH,A-009,MATCH,A-008,REVIEW_CANDIDATE
+R3-043,A,BEHAVIOR,Order Service crea un ordine,SE: tutti disponibili,"Se tutti i prodotti richiesti sono disponibili, l'Order Service crea un ordine",MATCH,A-006,MATCH,A-010,MATCH,A-009,REVIEW_CANDIDATE
+R3-044,A,BEHAVIOR,Order Service registra ordine in Order Store,SE: tutti disponibili,"Se tutti i prodotti richiesti sono disponibili, l'Order Service crea un ordine e lo registra nell'Order Store.",PARTIAL,A-007;A-006,MATCH,A-011,PARTIAL,A-010,REVIEW_CANDIDATE
+R3-045,A,BEHAVIOR,Order Service richiede autorizzazione a Payment Service,DOPO: registrazione ordine,Successivamente richiede al Payment Service l'autorizzazione del pagamento.,PARTIAL,A-008,MATCH,A-012,PARTIAL,A-011,REVIEW_CANDIDATE
+R3-046,A,BEHAVIOR,Payment Service comunica con Payment Provider,,Il Payment Service comunica con un Payment Provider esterno,MATCH,A-009,MATCH,A-013,MATCH,A-012,REVIEW_CANDIDATE
+R3-047,A,BEHAVIOR,Payment Service restituisce esito autorizzazione,,restituisce l'esito dell'autorizzazione,MATCH,A-010,MATCH,A-014,MATCH,A-013,REVIEW_CANDIDATE
+R3-048,A,BEHAVIOR,Order Service richiede riserva a Inventory Service,QUANDO: pagamento autorizzato,"Quando il pagamento viene autorizzato, l'Order Service richiede all'Inventory Service di riservare le quantità ordinate.",MATCH,A-012,PARTIAL,A-015,MATCH,A-014,REVIEW_CANDIDATE
+R3-049,A,BEHAVIOR,Ordine assume stato Confirmed,DOPO: conferma riserva,"Dopo la conferma della riserva, l'ordine assume lo stato Confirmed",MATCH,A-013,MATCH,A-017,MATCH,A-015,REVIEW_CANDIDATE
+R3-050,A,BEHAVIOR,Notifica inviata al cliente tramite Notification Service,DOPO: conferma riserva,"Dopo la conferma della riserva, l'ordine assume lo stato Confirmed e viene inviata una notifica al cliente tramite il Notification Service.",MATCH,A-014,MATCH,A-018,MATCH,A-016,REVIEW_CANDIDATE
+R3-051,A,BEHAVIOR,Ordine contrassegnato come Rejected,SE: pagamento NON autorizzato,"Se il pagamento non viene autorizzato, l'ordine viene contrassegnato come Rejected.",MATCH,A-015,MATCH,A-019,MATCH,A-017,REVIEW_CANDIDATE
+R3-052,A,BEHAVIOR,Richiesta rifiutata,SE: disponibilità insufficiente; PRIMA: contatto Payment Service,"Se la disponibilità è insufficiente, la richiesta viene rifiutata prima di contattare il Payment Service.",PARTIAL,A-016,PARTIAL,A-020,PARTIAL,A-018,REVIEW_CANDIDATE
+R3-053,U,UNCERTAINTY_CHECK,Protocollo di comunicazione non specificato,NON SPECIFICATO,La documentazione non specifica il protocollo di comunicazione utilizzato,MATCH,ambiguities[0],MATCH,ambiguities[0],MATCH,ambiguities[3],REVIEW_CANDIDATE
+R3-054,U,UNCERTAINTY_CHECK,Meccanismo di annullamento autorizzazioni non specificato,NON SPECIFICATO,né il meccanismo di annullamento delle autorizzazioni di pagamento.,MATCH,ambiguities[0],MATCH,ambiguities[1],MATCH,ambiguities[4],REVIEW_CANDIDATE
+R3-055,U,UNCERTAINTY_CHECK,Soggetto mittente della notifica non identificato,NON IDENTIFICATO,viene inviata una notifica al cliente tramite il Notification Service,MATCH,ambiguities[1];A-014,MATCH,ambiguities[2],MATCH,A-016,REVIEW_CANDIDATE
+R3-056,U,UNCERTAINTY_CHECK,Esecuzione della riserva non direttamente descritta,NON CONCLUDERE esecuzione incondizionata,richiede all'Inventory Service di riservare le quantità ordinate,PARTIAL,A-012;O-025,REVIEW_REQUIRED,A-016,MATCH,A-014,REVIEW_CANDIDATE
+R3-057,A,BEHAVIOR,Piattaforma permette ai clienti di acquistare prodotti,CAPACITÀ / ABILITAZIONE,Una piattaforma di commercio elettronico permette ai clienti di acquistare prodotti disponibili nel catalogo.,PARTIAL,O-001;O-002;O-003,PARTIAL,A-001,MATCH,A-001;A-002,REVIEW_CANDIDATE
+R3-058,R,SEMANTIC_FACT,Prodotti disponibili nel catalogo,,prodotti disponibili nel catalogo,PARTIAL,O-003;O-004,MATCH,R-001,MATCH,R-004,REVIEW_CANDIDATE
+R3-059,O,ENTITY_MENTION,Identificativo del cliente (menzione),MENZIONE VALUTABILE,l'identificativo del cliente,MATCH,O-013,MATCH,O-014,MATCH,O-013,REVIEW_CANDIDATE
+R3-060,O,ENTITY_MENTION,Prodotti selezionati (menzione),MENZIONE VALUTABILE,i prodotti selezionati,MATCH,O-014,MATCH,O-015,PARTIAL,R-005,REVIEW_CANDIDATE
+R3-061,O,ENTITY_MENTION,Quantità richieste (menzione),MENZIONE VALUTABILE,le quantità richieste,MATCH,O-015,MATCH,O-016,MATCH,O-014,REVIEW_CANDIDATE
+R3-062,T,TEMPORAL_CHECK,Conferma della riserva menzionata come antecedente,DOPO: la conferma precede Confirmed e invio notifica,Dopo la conferma della riserva,MATCH,A-013;A-014;O-025,MATCH,A-017;A-018,MATCH,A-015;A-016,REVIEW_CANDIDATE
+R3-063,O,ENTITY_MENTION,Acquisto (menzione),MENZIONE VALUTABILE,un acquisto,MATCH,O-034,PARTIAL,A-001,MATCH,O-030,REVIEW_CANDIDATE
+R3-064,O,ENTITY_MENTION,Disponibilità verificata (menzione; identità rispetto a informazioni conservate non risolta),IDENTITÀ NON RISOLTA,verifica la disponibilità,PARTIAL,O-009;A-003,PARTIAL,O-010;A-006,PARTIAL,O-009;A-005,REVIEW_CANDIDATE
