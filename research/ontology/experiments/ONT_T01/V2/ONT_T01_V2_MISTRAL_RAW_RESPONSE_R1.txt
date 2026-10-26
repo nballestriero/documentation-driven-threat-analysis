@@ -1,0 +1,357 @@
+{
+  "review_findings": [
+    {
+      "findingId": "F-001",
+      "targetModel": "DEEPSEEK",
+      "targetCollection": "actions",
+      "targetRecordId": "A-002",
+      "issueType": "CONDITION",
+      "explanation": "La ricezione della richiesta è presentata senza la condizione documentata: il testo lega esplicitamente la ricezione alla conferma dell'acquisto tramite 'Quando'. La guardia andava conservata, come fanno Qwen (A-005) e Mistral (A-004).",
+      "exactSourceEvidence": "Quando un cliente conferma un acquisto, l'Order Service riceve la richiesta contenente l'identificativo del cliente",
+      "suggestedCorrection": "Aggiungere condition: 'Quando un cliente conferma un acquisto' ad A-002."
+    },
+    {
+      "findingId": "F-002",
+      "targetModel": "DEEPSEEK",
+      "targetCollection": "actions",
+      "targetRecordId": "A-007",
+      "issueType": "CONDITION",
+      "explanation": "La registrazione dell'ordine è governata dalla stessa frase condizionale che governa la creazione ('Se tutti i prodotti richiesti sono disponibili, l'Order Service crea un ordine e lo registra nell'Order Store'). A-007 ha condition: null, perdendo la guardia documentata. Qwen (A-011) la conserva correttamente.",
+      "exactSourceEvidence": "Se tutti i prodotti richiesti sono disponibili, l'Order Service crea un ordine e lo registra nell'Order Store.",
+      "suggestedCorrection": "Aggiungere condition: 'Se tutti i prodotti richiesti sono disponibili' ad A-007, con nota che la guardia è nella stessa frase di A-006."
+    },
+    {
+      "findingId": "F confonde richiesta, esecuzione e conferma.",
+      "exactSourceEvidence": "l'Order Service richiede all'Inventory Service di riservare le quantità ordinate",
+      "suggestedCorrection": "Rimuovere A-016 o riformularla come comportamento richiesto (non eseguito), conservando l'incertezza sull'esecuzione e sull'esecutore."
+    },
+    {
+      "findingId": "F-012",
+      "targetModel": "QWEN",
+      "targetCollection": "actions",
+      "targetRecordId": "A-004",
+      "issueType": "UNSUPPORTED",
+      "explanation": "Il partecipante di A-004 è la 'Richiesta di acquisto' (O-013), ma l'evidenza letterale dice che il cliente conferma 'un acquisto'. Il testo non afferma che il cliente confermi la richiesta; il referente dell'evidenza è l'acquisto. Il partecipante non è supportato dall'evidenza e Qwen non possiede alcun oggetto 'Acquisto'.",
+      "exactSourceEvidence": "Quando un cliente conferma un acquisto",
+      "suggestedCorrection": "Creare l'oggetto 'Acquisto' e usarlo come partecipante della conferma (come DeepSeek A-001 e Mistral A-003)."
+    },
+    {
+      "findingId": "F-013",
+      "targetModel": "QWEN",
+      "targetCollection": "objects",
+      "targetRecordId": "O-013",
+      "issueType": "OTHER",
+      "explanation": "La denominazione 'Richiesta di acquisto' non compare nel testo, che usa solo 'la richiesta'. La normalizzazione non è dimostrabilmente errata (il contesto è un acquisto), ma introduce un'etichetta non letterale che può penalizzare il confronto con estrazioni che usano 'Richiesta'.",
+      "exactSourceEvidence": "l'Order Service riceve la richiesta contenente l'identificativo del cliente, i prodotti selezionati e le quantità richieste",
+      "suggestedCorrection": "Rinominare in 'Richiesta', eventualmente con nota di normalizzazione."
+    },
+    {
+      "findingId": "F-014",
+      "targetModel": "QWEN",
+      "targetCollection": "actions",
+      "targetRecordId": "A-002",
+      "issueType": "MODALITY",
+      "explanation": "'Il catalogo viene mantenuto dal Catalog Service' descrive uno stato di fatto persistente, ma Qwen lo rappresenta sia come relazione (R-005) sia come azione (A-002), duplicando lo stesso fatto in due forme. Analoga duplicazione tra R-006 e A-003 ('conservare'). Rappresentare uno stato persistente come comportamento svolto rischia la confusione tra associazione e azione.",
+      "exactSourceEvidence": "Il catalogo viene mantenuto dal Catalog Service",
+      "suggestedCorrection": "Mantenere i fatti come relazioni persistenti (R-005, R-006) e rimuovere le azioni duplicate A-002 e A-003, oppure documentare la scelta di doppia rappresentazione."
+    },
+    {
+      "findingId": "F-015",
+      "targetModel": "QWEN",
+      "targetCollection": "actions",
+      "targetRecordId": "A-010",
+      "issueType": "OTHER",
+      "explanation": "In A-010 l'Ordine compare sia come partecipante ('Oggetto creato') sia in resultIds. La doppia elencazione dello stesso referente con due ruoli crea ambiguità sulla semantica del risultato e rende il confronto più fragile.",
+      "exactSourceEvidence": "l'Order Service crea un ordine",
+      "suggestedCorrection": "Rimuovere il partecipante duplicato e conservare l'Ordine solo in resultIds."
+    },
+    {
+      "findingId": "F-016",
+      "targetModel": "QWEN",
+      "targetCollection": "ambiguities",
+      "targetRecordId": "ambiguities[0]",
+      "issueType": "UNSUPPORTED",
+      "explanation": "Le interpretazioni candidate proposte ('HTTP/REST', 'gRPC', 'protocollo message-based come AMQP o Kafka') non hanno alcun appoggio nel testo, che si limita a dire che il protocollo non è specificato. Analogo problema in ambiguities[1] ('rollback automatico', 'gestito manualmente'). Le interpretazioni dovrebbero riguardare lo stato dell'informazione (documentata/non determinabile), non tecnologie inventate.",
+      "exactSourceEvidence": "La documentazione non specifica il protocollo di comunicazione utilizzato",
+      "suggestedCorrection": "Riformulare le interpretazioni come: 'Un protocollo esiste ma non è documentato' / 'L'informazione non è determinabile dal testo'."
+    },
+    {
+      "findingId": "F-017",
+      "targetModel": "QWEN",
+      "targetCollection": "actions",
+      "targetRecordId": "",
+      "issueType": "OMISSION",
+      "explanation": "Qwen copre 'acquistare' (A-001) ma non l'azione 'permettere' della piattaforma, che è il verbo principale della prima frase e l'abilitazione documentata.",
+      "exactSourceEvidence": "Una piattaforma di commercio elettronico permette ai clienti di acquistare prodotti disponibili nel catalogo",
+      "suggestedCorrection": "Aggiungere l'azione 'permettere' con attore Piattaforma e partecipante Clienti (soggetto abilitato)."
+    },
+    {
+      "findingId": "F-018",
+      "targetModel": "QWEN",
+      "targetCollection": "ambiguities",
+      "targetRecordId": "",
+      "issueType": "OMISSION",
+      "explanation": "Mancano le ambiguità sul soggetto che autorizza il pagamento e sul soggetto che conferma la riserva, entrambe in forma passiva nella fonte. Mistral V1 le registra (ambiguities[1] e ambiguities[2]).",
+      "exactSourceEvidence": "Quando il pagamento viene autorizzato",
+      "suggestedCorrection": "Aggiungere le due ambiguità con le rispettive evidenze letterali."
+    },
+    {
+      "findingId": "F-019",
+      "targetModel": "QWEN",
+      "targetCollection": "actions",
+      "targetRecordId": "A-006",
+      "issueType": "IDENTITY",
+      "explanation": "A-006 usa O-010 ('Informazioni sulla disponibilità') come oggetto della verifica, ma il testo dice che l'Order Service verifica 'la disponibilità'. L'identificazione tra il referente verificato e le informazioni conservate nell'Inventory Store è un'interpretazione non dichiarata (stesso problema di F-006 per DeepSeek).",
+      "exactSourceEvidence": "L'Order Service verifica la disponibilità interrogando l'Inventory Service",
+      "suggestedCorrection": "Dichiarare l'incertezza di identificazione oppure usare un'ancora distinta per 'la disponibilità' verificata."
+    },
+    {
+      "findingId": "F-020",
+      "targetModel": "MISTRAL",
+      "targetCollection": "actions",
+      "targetRecordId": "A-010",
+      "issueType": "CONDITION",
+      "explanation": "La registrazione dell'ordine ha condition: null, ma la stessa frase condizionale governa creazione e registrazione. La guardia documentata andava conservata anche per A-010 (Qwen A-011 lo fa correttamente).",
+      "exactSourceEvidence": "Se tutti i prodotti richiesti sono disponibili, l'Order Service crea un ordine e lo registra nell'Order Store.",
+      "suggestedCorrection": "Aggiungere condition: 'Se tutti i prodotti richiesti sono disponibili' ad A-010."
+    },
+    {
+      "findingId": "F-021",
+      "targetModel": "MISTRAL",
+      "targetCollection": "actions",
+      "targetRecordId": "A-011",
+      "issueType": "CONDITION",
+      "explanation": "'Successivamente' esprime una sequenza temporale documentata tra la registrazione dell'ordine e la richiesta di autorizzazione; in V1 compare solo nell'evidenza, non come qualificatore. Qwen A-012 lo cattura come condizione, preservando meglio l'informazione strutturale.",
+      "exactSourceEvidence": "Successivamente richiede al Payment Service l'autorizzazione del pagamento",
+      "suggestedCorrection": "Aggiungere il qualificatore temporale in condition, distinguendolo dalle guardie logiche."
+    },
+    {
+      "findingId": "F-022",
+      "targetModel": "MISTRAL",
+      "targetCollection": "objects",
+      "targetRecordId": "",
+      "issueType": "OMISSION",
+      "explanation": "Manca un oggetto per 'il suo servizio' usato dalla piattaforma, referente esplicito distinto (almeno potenzialmente) dal Payment Provider. DeepSeek lo modella (O-032) con nota sul pronome.",
+      "exactSourceEvidence": "La piattaforma utilizza il suo servizio",
+      "suggestedCorrection": "Aggiungere l'oggetto 'Servizio del Payment Provider' con incertezza sul riferimento pronominale e sulla distinzione dal provider."
+    },
+    {
+      "findingId": "F-023",
+      "targetModel": "MISTRAL",
+      "targetCollection": "objects",
+      "targetRecordId": "",
+      "issueType": "OMISSION",
+      "explanation": "Manca un'ancora per 'la riserva', citata dalla fonte ('la conferma della riserva') e usata come condizione in A-015/A-016. DeepSeek la modella (O-025). Senza ancora, i riferimenti alla conferma restano sospesi.",
+      "exactSourceEvidence": "Dopo la conferma della riserva",
+      "suggestedCorrection": "Aggiungere l'oggetto 'Riserva' con incertezza: la sua esecuzione ed esecutore non sono descritti direttamente."
+    },
+    {
+      "findingId": "F-024",
+      "targetModel": "MISTRAL",
+      "targetCollection": "relations",
+      "targetRecordId": "R-005",
+      "issueType": "IDENTITY",
+      "explanation": "I 'prodotti selezionati' vengono fusi nell'oggetto generico 'Prodotti' (O-003), con incertezza dichiarata ma senza ancora propria. DeepSeek e Qwen mantengono un oggetto distinto. Mantenere referenti distinti riduce il rischio di fusioni improprie.",
+      "exactSourceEvidence": "i prodotti selezionati",
+      "suggestedCorrection": "Creare l'oggetto 'Prodotti selezionati' distinto da 'Prodotti' e usarlo in R-005, registrando l'ambiguità di identità."
+    },
+    {
+      "findingId": "F-025",
+      "targetModel": "MISTRAL",
+      "targetCollection": "ambiguities",
+      "targetRecordId": "",
+      "issueType": "OMISSION",
+      "explanation": "Il mittente della notifica non identificato è catturato solo come uncertainty di A-016 e non come ambiguità autonoma. DeepSeek e Qwen la registrano esplicitamente nelle ambiguità.",
+      "exactSourceEvidence": "viene inviata una notifica al cliente tramite il Notification Service",
+      "suggestedCorrection": "Aggiungere l'ambiguità sul mittente della notifica."
+    }
+  ]
+}
+
+
+
+
+2. v2_extraction
+json
+Copia
+
+{
+  "testId": "ONT-T01",
+  "objects": [
+    { "id": "O-001", "name": "Piattaforma di commercio elettronico", "candidateCategory": "Sistema o piattaforma", "evidence": "Una piattaforma di commercio elettronico permette ai clienti di acquistare prodotti disponibili nel catalogo", "uncertainty": null },
+    { "id": "O-002", "name": "Clienti", "candidateCategory": "Attore o entità esterna", "evidence": "permette ai clienti di acquistare prodotti disponibili nel catalogo", "uncertainty": null },
+    { "id": "O-003", "name": "Prodotti", "candidateCategory": "Risorsa o entità", "evidence": "acquistare prodotti disponibili nel catalogo", "uncertainty": null },
+    { "id": "O-004", "name": "Catalogo", "candidateCategory": "Risorsa o raccolta di dati", "evidence": "prodotti disponibili nel catalogo", "uncertainty": null },
+    { "id": "O-005", "name": "Identificativo del prodotto", "candidateCategory": "Dato o attributo", "evidence": "Ogni prodotto possiede un identificativo, una descrizione e un prezzo", "uncertainty": null },
+    { "id": "O-006", "name": "Descrizione del prodotto", "candidateCategory": "Dato o attributo", "evidence": "Ogni prodotto possiede un identificativo, una descrizione e un prezzo", "uncertainty": null },
+    { "id": "O-007", "name": "Prezzo", "candidateCategory": "Dato o attributo", "evidence": "Ogni prodotto possiede un identificativo, una descrizione e un prezzo", "uncertainty": null },
+    { "id": "O-008", "name": "Catalog Service", "candidateCategory": "Componente software o servizio", "evidence": "Il catalogo viene mantenuto dal Catalog Service", "uncertainty": null },
+    { "id": "O-009", "name": "Informazioni sulla disponibilità", "candidateCategory": "Dato o informazione", "evidence": "le informazioni sulla disponibilità sono conservate nell'Inventory Store", "uncertainty": "Non è dichiarato se questo referente coincida con 'la disponibilità' verificata dall'Order Service." },
+    { "id": "O-010", "name": "Inventory Store", "candidateCategory": "Componente software o archivio dati", "evidence": "le informazioni sulla disponibilità sono conservate nell'Inventory Store", "uncertainty": null },
+    { "id": "O-011", "name": "Order Service", "candidateCategory": "Componente software o servizio", "evidence": "l'Order Service riceve la richiesta contenente l'identificativo del cliente, i prodotti selezionati e le quantità richieste", "uncertainty": null },
+    { "id": "O-012", "name": "Richiesta", "candidateCategory": "Dato o documento", "evidence": "l'Order Service riceve la richiesta contenente l'identificativo del cliente, i prodotti selezionati e le quantità richieste", "uncertainty": "Il mittente della richiesta non è indicato nel testo." },
+    { "id": "O-013", "name": "Identificativo del cliente", "candidateCategory": "Dato o attributo", "evidence": "la richiesta contenente l'identificativo del cliente, i prodotti selezionati e le quantità richieste", "uncertainty": null },
+    { "id": "O-014", "name": "Prodotti selezionati", "candidateCategory": "Insieme di prodotti o dato", "evidence": "i prodotti selezionati", "uncertainty": "Non è specificato se i 'prodotti selezionati' coincidano con i 'Prodotti' del catalogo (O-003) o ne costituiscano un sottoinsieme distinto." },
+    { "id": "O-015", "name": "Quantità richieste", "candidateCategory": "Dato o informazione", "evidence": "la richiesta contenente l'identificativo del cliente, i prodotti selezionati e le quantità richieste", "uncertainty": null },
+    { "id": "O-016", "name": "Inventory Service", "candidateCategory": "Componente software o servizio", "evidence": "interrogando l'Inventory Service", "uncertainty": null },
+    { "id": "O-017", "name": "Quantità disponibili", "candidateCategory": "Dato o informazione", "evidence": "restituisce le quantità disponibili", "uncertainty": null },
+    { "id": "O-018", "name": "Ordine", "candidateCategory": "Risorsa o entità", "evidence": "l'Order Service crea un ordine e lo registra nell'Order Store", "uncertainty": null },
+    { "id": "O-019", "name": "Order Store", "candidateCategory": "Componente software o archivio dati", "evidence": "lo registra nell'Order Store", "uncertainty": null },
+    { "id": "O-020", "name": "Payment Service", "candidateCategory": "Componente software o servizio", "evidence": "richiede al Payment Service l'autorizzazione del pagamento", "uncertainty": null },
+    { "id": "O-021", "name": "Pagamento", "candidateCategory": "Concetto o entità", "evidence": "l'autorizzazione del pagamento", "uncertainty": null },
+    { "id": "O-022", "name": "Autorizzazione del pagamento", "candidateCategory": "Dato o esito di processo", "evidence": "richiede al Payment Service l'autorizzazione del pagamento", "uncertainty": null },
+    { "id": "O-023", "name": "Payment Provider esterno", "candidateCategory": "Servizio o componente esterno", "evidence": "Il Payment Service comunica con un Payment Provider esterno", "uncertainty": null },
+    { "id": "O-024", "name": "Esito dell'autorizzazione", "candidateCategory": "Dato o informazione", "evidence": "restituisce l'esito dell'autorizzazione", "uncertainty": null },
+    { "id": "O-025", "name": "Riserva", "candidateCategory": "Concetto o operazione", "evidence": "Dopo la conferma della riserva", "uncertainty": "'La riserva' è citata tramite la nominalizzazione 'la conferma della riserva'; la sua esecuzione e il suo esecutore non sono descritti direttamente nel testo." },
+    { "id": "O-026", "name": "Stato Confirmed", "candidateCategory": "Stato", "evidence": "l'ordine assume lo stato Confirmed", "uncertainty": null },
+    { "id": "O-027", "name": "Stato Rejected", "candidateCategory": "Stato", "evidence": "l'ordine viene contrassegnato come Rejected", "uncertainty": null },
+    { "id": "O-028", "name": "Notifica", "candidateCategory": "Messaggio o comunicazione", "evidence": "viene inviata una notifica al cliente tramite il Notification Service", "uncertainty": null },
+    { "id": "O-029", "name": "Notification Service", "candidateCategory": "Componente software o servizio", "evidence": "viene inviata una notifica al cliente tramite il Notification Service", "uncertainty": null },
+    { "id": "O-030", "name": "Organizzazione esterna", "candidateCategory": "Entità o organizzazione", "evidence": "Il Payment Provider è gestito da un'organizzazione esterna", "uncertainty": null },
+    { "id": "O-031", "name": "Infrastruttura del Payment Provider", "candidateCategory": "Risorsa o infrastruttura", "evidence": "ma non ne gestisce l'infrastruttura", "uncertainty": "L'infrastruttura è menzionata solo all'interno di una negazione; il referente di 'ne' è il Payment Provider citato nella frase precedente." },
+    { "id": "O-032", "name": "Servizio del Payment Provider", "candidateCategory": "Servizio", "evidence": "La piattaforma utilizza il suo servizio", "uncertainty": "Il riferimento 'il suo servizio' è pronominale e si riferisce al Payment Provider; non è specificato se il servizio coincida con il provider stesso o sia un'entità distinta." },
+    { "id": "O-033", "name": "Acquisto", "candidateCategory": "Concetto o entità", "evidence": "Quando un cliente conferma un acquisto", "uncertainty": null },
+    { "id": "O-034", "name": "Quantità ordinate", "candidateCategory": "Dato o informazione", "evidence": "le quantità ordinate", "uncertainty": "Non è specificato se le 'quantità ordinate' coincidano con le 'quantità richieste' contenute nella richiesta (O-015)." }
+  ],
+  "relations": [
+    { "id": "R-001", "description": "Ogni prodotto possiede un identificativo, una descrizione e un prezzo", "participants": [ { "objectId": "O-003", "role": "Elemento possessore" }, { "objectId": "O-005", "role": "Attributo posseduto" }, { "objectId": "O-006", "role": "Attributo posseduto" }, { "objectId": "O-007", "role": "Attributo posseduto" } ], "evidence": "Ogni prodotto possiede un identificativo, una descrizione e un prezzo", "uncertainty": "Rappresentazione aggregata; una scomposizione in tre relazioni binarie è equivalente." },
+    { "id": "R-002", "description": "Il catalogo viene mantenuto dal Catalog Service", "participants": [ { "objectId": "O-008", "role": "Componente che mantiene" }, { "objectId": "O-004", "role": "Elemento mantenuto" } ], "evidence": "Il catalogo viene mantenuto dal Catalog Service", "uncertainty": null },
+    { "id": "R-003", "description": "Le informazioni sulla disponibilità sono conservate nell'Inventory Store", "participants": [ { "objectId": "O-010", "role": "Luogo di conservazione" }, { "objectId": "O-009", "role": "Informazione conservata" } ], "evidence": "le informazioni sulla disponibilità sono conservate nell'Inventory Store", "uncertainty": null },
+    { "id": "R-004", "description": "I prodotti sono disponibili nel catalogo", "participants": [ { "objectId": "O-003", "role": "Elemento disponibile" }, { "objectId": "O-004", "role": "Contesto di disponibilità" } ], "evidence": "prodotti disponibili nel catalogo", "uncertainty": null },
+    { "id": "R-005", "description": "La richiesta contiene l'identificativo del cliente, i prodotti selezionati e le quantità richieste", "participants": [ { "objectId": "O-012", "role": "Contenitore" }, { "objectId": "O-013", "role": "Contenuto" }, { "objectId": "O-014", "role": "Contenuto" }, { "objectId": "O-015", "role": "Contenuto" } ], "evidence": "la richiesta contenente l'identificativo del cliente, i prodotti selezionati e le quantità richieste", "uncertainty": "I 'prodotti selezionati' sono modellati come referente distinto (O-014); l'identità con i 'Prodotti' del catalogo non è specificata." },
+    { "id": "R-006", "description": "Il Payment Provider è gestito da un'organizzazione esterna", "participants": [ { "objectId": "O-030", "role": "Gestore" }, { "objectId": "O-023", "role": "Elemento gestito" } ], "evidence": "Il Payment Provider è gestito da un'organizzazione esterna", "uncertainty": null },
+    { "id": "R-007", "description": "La piattaforma utilizza il servizio del Payment Provider", "participants": [ { "objectId": "O-001", "role": "Utilizzatore" }, { "objectId": "O-032", "role": "Servizio utilizzato" }, { "objectId": "O-023", "role": "Fornitore o titolare del servizio" } ], "evidence": "La piattaforma utilizza il suo servizio", "uncertainty": "Il riferimento 'il suo servizio' è pronominale e si riferisce al Payment Provider citato nella frase precedente." },
+    { "id": "R-008", "description": "La piattaforma non gestisce l'infrastruttura del Payment Provider (negazione esplicitamente documentata)", "participants": [ { "objectId": "O-001", "role": "Soggetto che non gestisce" }, { "objectId": "O-031", "role": "Infrastruttura non gestita" }, { "objectId": "O-023", "role": "Referente dell'infrastruttura" } ], "evidence": "ma non ne gestisce l'infrastruttura", "uncertainty": null },
+    { "id": "R-009", "description": "L'autorizzazione riguarda il pagamento", "participants": [ { "objectId": "O-022", "role": "Autorizzazione" }, { "objectId": "O-021", "role": "Pagamento cui l'autorizzazione si riferisce" } ], "evidence": "l'autorizzazione del pagamento", "uncertainty": null }
+  ],
+  "actions": [
+    { "id": "A-001", "verb": "permettere", "actorId": "O-001", "participants": [ { "objectId": "O-002", "role": "Soggetto abilitato" }, { "objectId": "O-003", "role": "Oggetto dell'acquisto permesso" } ], "resultIds": [], "condition": null, "evidence": "Una piattaforma di commercio elettronico permette ai clienti di acquistare prodotti disponibili nel catalogo", "uncertainty": "Descrive una capacità della piattaforma, non un evento specifico verificatosi." },
+    { "id": "A-002", "verb": "acquistare", "actorId": "O-002", "participants": [ { "objectId": "O-003", "role": "Oggetto dell'acquisto" } ], "resultIds": [], "condition": null, "evidence": "permette ai clienti di acquistare prodotti disponibili nel catalogo", "uncertainty": "Descrive un comportamento abilitato, non un evento specifico verificatosi." },
+    { "id": "A-003", "verb": "confermare", "actorId": "O-002", "participants": [ { "objectId": "O-033", "role": "Oggetto della conferma" } ], "resultIds": [], "condition": null, "evidence": "Quando un cliente conferma un acquisto", "uncertainty": null },
+    { "id": "A-004", "verb": "ricevere", "actorId": "O-011", "participants": [ { "objectId": "O-012", "role": "Oggetto ricevuto" } ], "resultIds": [], "condition": "Quando un cliente conferma un acquisto", "evidence": "l'Order Service riceve la richiesta contenente l'identificativo del cliente, i prodotti selezionati e le quantità richieste", "uncertainty": "Il mittente della richiesta non è indicato nel testo." },
+    { "id": "A-005", "verb": "verificare", "actorId": "O-011", "participants": [ { "objectId": "O-009", "role": "Oggetto della verifica" } ], "resultIds": [], "condition": null, "evidence": "L'Order Service verifica la disponibilità interrogando l'Inventory Service", "uncertainty": "Il testo dice 'la disponibilità'; la sua identificazione con le 'informazioni sulla disponibilità' (O-009) è un'interpretazione." },
+    { "id": "A-006", "verb": "interrogare", "actorId": "O-011", "participants": [ { "objectId": "O-016", "role": "Componente interrogata" } ], "resultIds": [], "condition": null, "evidence": "interrogando l'Inventory Service", "uncertainty": null },
+    { "id": "A-007", "verb": "consultare", "actorId": "O-016", "participants": [ { "objectId": "O-010", "role": "Archivio consultato" } ], "resultIds": [], "condition": null, "evidence": "consulta l'Inventory Store", "uncertainty": null },
+    { "id": "A-008", "verb": "restituire", "actorId": "O-016", "participants": [], "resultIds": [ "O-017" ], "condition": null, "evidence": "restituisce le quantità disponibili", "uncertainty": "Il destinatario della restituzione non è indicato esplicitamente nel testo." },
+    { "id": "A-009", "verb": "creare", "actorId": "O-011", "participants": [], "resultIds": [ "O-018" ], "condition": "Se tutti i prodotti richiesti sono disponibili", "evidence": "Se tutti i prodotti richiesti sono disponibili, l'Order Service crea un ordine", "uncertainty": null },
+    { "id": "A-010", "verb": "registrare", "actorId": "O-011", "participants": [ { "objectId": "O-018", "role": "Oggetto registrato" }, { "objectId": "O-019", "role": "Destinazione della registrazione" } ], "resultIds": [], "condition": "Se tutti i prodotti richiesti sono disponibili", "evidence": "lo registra nell'Order Store", "uncertainty": "La guardia non compare nel segmento dell'azione ma governa l'intera frase: 'Se tutti i prodotti richiesti sono disponibili, l'Order Service crea un ordine e lo registra nell'Order Store.'" },
+    { "id": "A-011", "verb": "richiedere", "actorId": "O-011", "participants": [ { "objectId": "O-020", "role": "Destinatario della richiesta" }, { "objectId": "O-022", "role": "Oggetto richiesto" }, { "objectId": "O-021", "role": "Pagamento cui si riferisce l'autorizzazione richiesta" } ], "resultIds": [], "condition": "Successivamente", "evidence": "Successivamente richiede al Payment Service l'autorizzazione del pagamento", "uncertainty": "'Successivamente' esprime una sequenza temporale documentata rispetto alla frase precedente (creazione e registrazione dell'ordine); non è una guardia logica." },
+    { "id": "A-012", "verb": "comunicare", "actorId": "O-020", "participants": [ { "objectId": "O-023", "role": "Interlocutore" } ], "resultIds": [], "condition": null, "evidence": "Il Payment Service comunica con un Payment Provider esterno", "uncertainty": "Il protocollo di comunicazione utilizzato non è specificato dalla documentazione." },
+    { "id": "A-013", "verb": "restituire", "actorId": "O-020", "participants": [], "resultIds": [ "O-024" ], "condition": null, "evidence": "restituisce l'esito dell'autorizzazione", "uncertainty": "Il destinatario dell'esito non è indicato esplicitamente nel testo." },
+    { "id": "A-014", "verb": "richiedere", "actorId": "O-011", "participants": [ { "objectId": "O-016", "role": "Destinatario della richiesta" }, { "objectId": "O-034", "role": "Oggetto della riservazione richiesta" } ], "resultIds": [], "condition": "Quando il pagamento viene autorizzato", "evidence": "l'Order Service richiede all'Inventory Service di riservare le quantità ordinate", "uncertainty": "Il testo documenta la richiesta, non l'esecuzione della riserva: l'esecutore e l'avvenuta esecuzione non sono descritti direttamente; successivamente il testo menziona 'la conferma della riserva'." },
+    { "id": "A-015", "verb": "assumere", "actorId": "O-018", "participants": [], "resultIds": [ "O-026" ], "condition": "Dopo la conferma della riserva", "evidence": "l'ordine assume lo stato Confirmed", "uncertainty": null },
+    { "id": "A-016", "verb": "inviare", "actorId": null, "participants": [ { "objectId": "O-002", "role": "Destinatario" }, { "objectId": "O-029", "role": "Mezzo o canale" } ], "resultIds": [ "O-028" ], "condition": "Dopo la conferma della riserva", "evidence": "viene inviata una notifica al cliente tramite il Notification Service", "uncertainty": "L'attore che invia la notifica non è identificato nel testo (forma passiva)." },
+    { "id": "A-017", "verb": "contrassegnare", "actorId": null, "participants": [ { "objectId": "O-018", "role": "Oggetto contrassegnato" } ], "resultIds": [ "O-027" ], "condition": "Se il pagamento non viene autorizzato", "evidence": "l'ordine viene contrassegnato come Rejected", "uncertainty": "L'attore che contrassegna l'ordine non è identificato nel testo (forma passiva)." },
+    { "id": "A-018", "verb": "rifiutare", "actorId": null, "participants": [ { "objectId": "O-012", "role": "Oggetto rifiutato" } ], "resultIds": [], "condition": "Se la disponibilità è insufficiente", "evidence": "Se la disponibilità è insufficiente, la richiesta viene rifiutata prima di contattare il Payment Service", "uncertainty": "L'attore che rifiuta la richiesta non è identificato nel testo (forma passiva); l'ordine documentato 'prima di contattare il Payment Service' è riportato nell'evidenza." }
+  ],
+  "ambiguities": [
+    { "description": "Non è specificato se le 'quantità richieste' contenute nella richiesta e le 'quantità ordinate' da riservare siano lo stesso elemento o elementi distinti.", "evidence": "di riservare le quantità ordinate", "possibleInterpretations": [ "Le 'quantità ordinate' coincidono con le 'quantità richieste' contenute nella richiesta", "Le 'quantità ordinate' costituiscono un elemento distinto dalle 'quantità richieste'" ] },
+    { "description": "Non è specificato chi autorizza il pagamento (costruzione passiva).", "evidence": "Quando il pagamento viene autorizzato", "possibleInterpretations": [ "L'autorizzazione è attribuibile al Payment Provider esterno", "L'autorizzazione è attribuibile al Payment Service", "Il soggetto dell'autorizzazione non è determinabile dal testo" ] },
+    { "description": "Non è specificato chi o cosa conferma la riserva.", "evidence": "Dopo la conferma della riserva", "possibleInterpretations": [ "La conferma proviene dall'Inventory Service", "La conferma avviene tramite un soggetto o meccanismo non documentato" ] },
+    { "description": "Il mittente della notifica al cliente non è identificato (costruzione passiva).", "evidence": "viene inviata una notifica al cliente tramite il Notification Service", "possibleInterpretations": [ "Il Notification Service invia la notifica", "Un altro componente invia la notifica tramite il Notification Service", "Il mittente non è determinabile dal testo" ] },
+    { "description": "Non è specificato se i 'prodotti selezionati' contenuti nella richiesta coincidano con i prodotti del catalogo o ne costituiscano un sottoinsieme distinto.", "evidence": "i prodotti selezionati", "possibleInterpretations": [ "I 'prodotti selezionati' coincidono con i 'Prodotti' del catalogo", "I 'prodotti selezionati' costituiscono un sottoinsieme o referente distinto" ] },
+    { "description": "Non è specificato se 'la disponibilità' verificata dall'Order Service coincida con le 'informazioni sulla disponibilità' conservate nell'Inventory Store.", "evidence": "L'Order Service verifica la disponibilità interrogando l'Inventory Service", "possibleInterpretations": [ "I due referenti coincidono", "I due referenti sono distinti: la disponibilità verificata e le informazioni conservate su di essa" ] },
+    { "description": "Il protocollo di comunicazione utilizzato non è specificato dalla documentazione.", "evidence": "La documentazione non specifica il protocollo di comunicazione utilizzato", "possibleInterpretations": [ "Un protocollo esiste ma non è documentato", "L'informazione non è determinabile dal testo" ] },
+    { "description": "Il meccanismo di annullamento delle autorizzazioni di pagamento non è specificato dalla documentazione.", "evidence": "né il meccanismo di annullamento delle autorizzazioni di pagamento", "possibleInterpretations": [ "Un meccanismo di annullamento esiste ma non è documentato", "L'informazione non è determinabile dal testo" ] }
+  ]
+}
+
+
+
+
+3. change_log
+json
+Copia
+
+{
+  "change_log": [
+    { "changeId": "C-001", "newV2RecordId": "O-001", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:objects:O-001", "QWEN:objects:O-001", "MISTRAL:objects:O-001"], "reason": "Riconfermato direttamente dal testo fonte.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza di tutti i modelli; verificato indipendentemente." },
+    { "changeId": "C-002", "newV2RecordId": "O-002", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:objects:O-002", "QWEN:objects:O-002", "MISTRAL:objects:O-002"], "reason": "Riconfermato direttamente dal testo fonte.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza di tutti i modelli." },
+    { "changeId": "C-003", "newV2RecordId": "O-003", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:objects:O-003", "QWEN:objects:O-003", "MISTRAL:objects:O-003"], "reason": "Riconfermato direttamente dal testo fonte.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza di tutti i modelli." },
+    { "changeId": "C-004", "newV2RecordId": "O-004", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:objects:O-004", "QWEN:objects:O-004", "MISTRAL:objects:O-004"], "reason": "Riconfermato direttamente dal testo fonte.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza di tutti i modelli." },
+    { "changeId": "C-005", "newV2RecordId": "O-005", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:objects:O-005", "QWEN:objects:O-005", "MISTRAL:objects:O-005"], "reason": "Riconfermato direttamente dal testo fonte.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza di tutti i modelli." },
+    { "changeId": "C-006", "newV2RecordId": "O-006", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:objects:O-006", "QWEN:objects:O-006", "MISTRAL:objects:O-006"], "reason": "Riconfermato direttamente dal testo fonte.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza di tutti i modelli." },
+    { "changeId": "C-007", "newV2RecordId": "O-007", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:objects:O-007", "QWEN:objects:O-007", "MISTRAL:objects:O-007"], "reason": "Riconfermato direttamente dal testo fonte.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza di tutti i modelli." },
+    { "changeId": "C-008", "newV2RecordId": "O-008", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:objects:O-008", "QWEN:objects:O-008", "MISTRAL:objects:O-008"], "reason": "Riconfermato direttamente dal testo fonte.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza di tutti i modelli." },
+    { "changeId": "C-009", "newV2RecordId": "O-009", "changeType": "CORRECTED", "relatedV1": ["DEEPSEEK:objects:O-009", "QWEN:objects:O-010", "MISTRAL:objects:O-009"], "reason": "Nome allineato all'evidenza ('Informazioni sulla disponibilità', non 'Disponibilità' come in DeepSeek) e aggiunta uncertainty sulla non coincidenza dichiarata con 'la disponibilità' verificata.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Riclassificazione propria a partire dal confronto tra le tre formulazioni." },
+    { "changeId": "C-010", "newV2RecordId": "O-010", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:objects:O-010", "QWEN:objects:O-009", "MISTRAL:objects:O-010"], "reason": "Riconfermato direttamente dal testo fonte.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza di tutti i modelli." },
+    { "changeId": "C-011", "newV2RecordId": "O-011", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:objects:O-011", "QWEN:objects:O-012", "MISTRAL:objects:O-011"], "reason": "Riconfermato direttamente dal testo fonte.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza di tutti i modelli." },
+    { "changeId": "C-012", "newV2RecordId": "O-012", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:objects:O-012", "QWEN:objects:O-013", "MISTRAL:objects:O-012"], "reason": "Riconfermato con nome letterale 'Richiesta'; scartata la normalizzazione 'Richiesta di acquisto' di Qwen non presente nel testo. Aggiunta uncertainty sul mittente non indicato.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Scelta di denominazione propria, informata dal confronto." },
+    { "changeId": "C-013", "newV2RecordId": "O-013", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:objects:O-013", "QWEN:objects:O-014", "MISTRAL:objects:O-013"], "reason": "Riconfermato direttamente dal testo fonte.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza di tutti i modelli." },
+    { "changeId": "C-014", "newV2RecordId": "O-014", "changeType": "ADDED", "relatedV1": ["DEEPSEEK:objects:O-014", "QWEN:objects:O-015"], "reason": "Aggiunto oggetto distinto 'Prodotti selezionati': in V1 (Mistral) era fuso in 'Prodotti' con sola nota; mantenerlo separato riduce le fusioni improprie. Uncertainty sull'identità con i prodotti del catalogo.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Pratica di DeepSeek e Qwen adottata dopo rianalisi propria." },
+    { "changeId": "C-015", "newV2RecordId": "O-015", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:objects:O-015", "QWEN:objects:O-016", "MISTRAL:objects:O-014"], "reason": "Riconfermato direttamente dal testo fonte.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza di tutti i modelli." },
+    { "changeId": "C-016", "newV2RecordId": "O-016", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:objects:O-016", "QWEN:objects:O-017", "MISTRAL:objects:O-015"], "reason": "Riconfermato direttamente dal testo fonte.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza di tutti i modelli." },
+    { "changeId": "C-017", "newV2RecordId": "O-017", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:objects:O-017", "QWEN:objects:O-018", "MISTRAL:objects:O-016"], "reason": "Riconfermato direttamente dal testo fonte.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza di tutti i modelli." },
+    { "changeId": "C-018", "newV2RecordId": "O-018", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:objects:O-018", "QWEN:objects:O-011", "MISTRAL:objects:O-017"], "reason": "Riconfermato direttamente dal testo fonte.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza di tutti i modelli." },
+    { "changeId": "C-019", "newV2RecordId": "O-019", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:objects:O-019", "QWEN:objects:O-019", "MISTRAL:objects:O-018"], "reason": "Riconfermato direttamente dal testo fonte.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza di tutti i modelli." },
+    { "changeId": "C-020", "newV2RecordId": "O-020", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:objects:O-020", "QWEN:objects:O-020", "MISTRAL:objects:O-019"], "reason": "Riconfermato direttamente dal testo fonte.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza di tutti i modelli." },
+    { "changeId": "C-021", "newV2RecordId": "O-021", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:objects:O-033", "MISTRAL:objects:O-020"], "reason": "Riconfermato; Qwen non modella 'Pagamento' separatamente, ma il referente è attestato ('l'autorizzazione del pagamento').", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza DeepSeek/Mistral; verificato indipendentemente." },
+    { "changeId": "C-022", "newV2RecordId": "O-022", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:objects:O-021", "QWEN:objects:O-021", "MISTRAL:objects:O-021"], "reason": "Riconfermato direttamente dal testo fonte.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza di tutti i modelli." },
+    { "changeId": "C-023", "newV2RecordId": "O-023", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:objects:O-022", "QWEN:objects:O-022", "MISTRAL:objects:O-022"], "reason": "Riconfermato direttamente dal testo fonte.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza di tutti i modelli." },
+    { "changeId": "C-024", "newV2RecordId": "O-024", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:objects:O-023", "QWEN:objects:O-023", "MISTRAL:objects:O-023"], "reason": "Riconfermato direttamente dal testo fonte.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza di tutti i modelli." },
+    { "changeId": "C-025", "newV2RecordId": "O-025", "changeType": "ADDED", "relatedV1": ["DEEPSEEK:objects:O-025"], "reason": "Aggiunta ancora 'Riserva', citata dalla fonte ('la conferma della riserva') e necessaria per ancorare le condizioni di A-015/A-016; uncertainty su esecuzione ed esecutore non descritti.", "contributionAttribution": "INFORMED_BY_DEEPSEEK", "attributionExplanation": "Oggetto di DeepSeek rianalizzato e confermato sul testo." },
+    { "changeId": "C-026", "newV2RecordId": "O-026", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:objects:O-026", "QWEN:objects:O-024", "MISTRAL:objects:O-024"], "reason": "Riconfermato direttamente dal testo fonte.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza di tutti i modelli." },
+    { "changeId": "C-027", "newV2RecordId": "O-027", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:objects:O-029", "QWEN:objects:O-027", "MISTRAL:objects:O-025"], "reason": "Riconfermato direttamente dal testo fonte.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza di tutti i modelli." },
+    { "changeId": "C-028", "newV2RecordId": "O-028", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:objects:O-027", "QWEN:objects:O-025", "MISTRAL:objects:O-026"], "reason": "Riconfermato direttamente dal testo fonte.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza di tutti i modelli." },
+    { "changeId": "C-029", "newV2RecordId": "O-029", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:objects:O-028", "QWEN:objects:O-026", "MISTRAL:objects:O-027"], "reason": "Riconfermato direttamente dal testo fonte.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza di tutti i modelli." },
+    { "changeId": "C-030", "newV2RecordId": "O-030", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:objects:O-030", "QWEN:objects:O-028", "MISTRAL:objects:O-028"], "reason": "Riconfermato direttamente dal testo fonte.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza di tutti i modelli." },
+    { "changeId": "C-031", "newV2RecordId": "O-031", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:objects:O-031", "QWEN:objects:O-029", "MISTRAL:objects:O-029"], "reason": "Riconfermato; mantenuta l'incertezza sul referente pronominale 'ne'.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza di tutti i modelli." },
+    { "changeId": "C-032", "newV2RecordId": "O-032", "changeType": "ADDED", "relatedV1": ["DEEPSEEK:objects:O-032"], "reason": "Aggiunto 'Servizio del Payment Provider': referente esplicito ('il suo servizio') con uncertainty sul riferimento pronominale e sulla distinzione dal provider.", "contributionAttribution": "INFORMED_BY_DEEPSEEK", "attributionExplanation": "Oggetto di DeepSeek rianalizzato e confermato sul testo." },
+    { "changeId": "C-033", "newV2RecordId": "O-033", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:objects:O-034", "MISTRAL:objects:O-030"], "reason": "Riconfermato; Qwen ne sentiva la mancanza, usando la Richiesta come oggetto della conferma.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza DeepSeek/Mistral; verificato indipendentemente." },
+    { "changeId": "C-034", "newV2RecordId": "O-034", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:objects:O-024", "MISTRAL:objects:O-031"], "reason": "Riconfermato come referente distinto da 'Quantità richieste'; scartata la fusione operata da Qwen (A-015/A-016 usavano O-016). Uncertainty sull'identità non dichiarata.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza DeepSeek/Mistral; verificato indipendentemente." },
+    { "changeId": "C-035", "newV2RecordId": "R-001", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:relations:R-001", "QWEN:relations:R-002", "QWEN:relations:R-003", "QWEN:relations:R-004", "MISTRAL:relations:R-001"], "reason": "Mantenuta la forma aggregata; la scomposizione binaria di Qwen è dichiarata equivalente in uncertainty.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Scelta di granularità propria dopo confronto." },
+    { "changeId": "C-036", "newV2RecordId": "R-002", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:relations:R-002", "QWEN:relations:R-005", "MISTRAL:relations:R-002"], "reason": "Riconfermato come relazione persistente; non adottata la duplicazione relazione+azione di Qwen (A-002).", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza dei modelli sulla relazione." },
+    { "changeId": "C-037", "newV2RecordId": "R-003", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:relations:R-003", "QWEN:relations:R-006", "MISTRAL:relations:R-003"], "reason": "Riconfermato come relazione persistente; non adottata la duplicazione relazione+azione di Qwen (A-003).", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza dei modelli sulla relazione." },
+    { "changeId": "C-038", "newV2RecordId": "R-004", "changeType": "UNCHANGED", "relatedV1": ["QWEN:relations:R-001", "MISTRAL:relations:R-004"], "reason": "Riconfermata la relazione prodotto–catalogo, assente in DeepSeek.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza Qwen/Mistral; verificato indipendentemente." },
+    { "changeId": "C-039", "newV2RecordId": "R-005", "changeType": "CORRECTED", "relatedV1": ["DEEPSEEK:relations:R-004", "QWEN:relations:R-007", "QWEN:relations:R-008", "QWEN:relations:R-009", "MISTRAL:relations:R-005"], "reason": "Corretto il partecipante: i 'prodotti selezionati' ora usano l'oggetto distinto O-014 invece della fusione in O-003 usata in V1 (Mistral).", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Pratica di DeepSeek/Qwen adottata dopo rianalisi propria (F-024)." },
+    { "changeId": "C-040", "newV2RecordId": "R-006", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:relations:R-005", "QWEN:relations:R-011", "MISTRAL:relations:R-006"], "reason": "Riconfermato direttamente dal testo fonte.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza di tutti i modelli." },
+    { "changeId": "C-041", "newV2RecordId": "R-007", "changeType": "CORRECTED", "relatedV1": ["DEEPSEEK:relations:R-006", "QWEN:relations:R-012", "MISTRAL:relations:R-007"], "reason": "Aggiunto 'Servizio del Payment Provider' (O-032) come partecipante distinto, oltre al fornitore (O-023), con uncertainty pronominale.", "contributionAttribution": "INFORMED_BY_DEEPSEEK", "attributionExplanation": "Struttura partecipanti di DeepSeek adottata dopo rianalisi." },
+    { "changeId": "C-042", "newV2RecordId": "R-008", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:relations:R-007", "QWEN:relations:R-013", "MISTRAL:relations:R-008"], "reason": "Riconfermata la negazione esplicita come relazione marcata.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza di tutti i modelli." },
+    { "changeId": "C-043", "newV2RecordId": "R-009", "changeType": "UNCHANGED", "relatedV1": ["MISTRAL:relations:R-009"], "reason": "Riconfermata; assente in DeepSeek e Qwen.", "contributionAttribution": "OWN_REANALYSIS", "attributionExplanation": "Rianalisi propria confermata dal testo." },
+    { "changeId": "C-044", "newV2RecordId": "A-001", "changeType": "CORRECTED", "relatedV1": ["MISTRAL:actions:A-001"], "reason": "Azione 'permettere' confermata (assente in DeepSeek e Qwen); aggiunta uncertainty di modalità: capacità, non evento verificatosi.", "contributionAttribution": "OWN_REANALYSIS", "attributionExplanation": "Rianalisi propria, corroborata dal contrasto con le omissioni dei pari." },
+    { "changeId": "C-045", "newV2RecordId": "A-002", "changeType": "CORRECTED", "relatedV1": ["QWEN:actions:A-001", "MISTRAL:actions:A-002"], "reason": "Azione 'acquistare' confermata; aggiunta uncertainty di modalità (comportamento abilitato, non evento specifico).", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza Qwen/Mistral; nota di modalità propria." },
+    { "changeId": "C-046", "newV2RecordId": "A-003", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:actions:A-001", "QWEN:actions:A-004", "MISTRAL:actions:A-003"], "reason": "Conferma dell'acquisto con oggetto 'Acquisto'; scartato il partecipante 'Richiesta' di Qwen non supportato dall'evidenza.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza DeepSeek/Mistral; correzione dell'errore di Qwen." },
+    { "changeId": "C-047", "newV2RecordId": "A-004", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:actions:A-002", "QWEN:actions:A-005", "MISTRAL:actions:A-004"], "reason": "Riconfermata con condizione trigger; l'omissione della condizione in DeepSeek è stata corretta tramite la forma di Qwen/Mistral. Aggiunta uncertainty sul mittente.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza Qwen/Mistral sulla guardia." },
+    { "changeId": "C-048", "newV2RecordId": "A-005", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:actions:A-003", "QWEN:actions:A-006", "MISTRAL:actions:A-005"], "reason": "Riconfermata con uncertainty sull'identificazione 'la disponibilità'/'informazioni sulla disponibilità'.", "contributionAttribution": "OWN_REANALYSIS", "attributionExplanation": "Trattamento V1 mantenuto; coerente con F-006/F-019." },
+    { "changeId": "C-049", "newV2RecordId": "A-006", "changeType": "UNCHANGED", "relatedV1": ["QWEN:actions:A-007", "MISTRAL:actions:A-006"], "reason": "Riconfermata come azione distinta da 'verificare' (DeepSeek la fondeva come partecipante).", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza Qwen/Mistral sulla separazione." },
+    { "changeId": "C-050", "newV2RecordId": "A-007", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:actions:A-004", "QWEN:actions:A-008", "MISTRAL:actions:A-007"], "reason": "Riconfermato direttamente dal testo fonte.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza di tutti i modelli." },
+    { "changeId": "C-051", "newV2RecordId": "A-008", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:actions:A-005", "QWEN:actions:A-009", "MISTRAL:actions:A-008"], "reason": "Riconfermata con risultato O-017 e uncertainty sul destinatario non esplicitato.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza di tutti i modelli; uncertainty propria." },
+    { "changeId": "C-052", "newV2RecordId": "A-009", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:actions:A-006", "QWEN:actions:A-010", "MISTRAL:actions:A-009"], "reason": "Riconfermata con guardia letterale.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza di tutti i modelli." },
+    { "changeId": "C-053", "newV2RecordId": "A-010", "changeType": "CORRECTED", "relatedV1": ["DEEPSEEK:actions:A-007", "QWEN:actions:A-011", "MISTRAL:actions:A-010"], "reason": "Aggiunta la condizione 'Se tutti i prodotti richiesti sono disponibili', che governa l'intera frase (F-020); uncertainty esplicita sulla fonte della guardia.", "contributionAttribution": "INFORMED_BY_QWEN", "attributionExplanation": "Trattamento di Qwen adottato dopo verifica sul testo." },
+    { "changeId": "C-054", "newV2RecordId": "A-011", "changeType": "CORRECTED", "relatedV1": ["DEEPSEEK:actions:A-008", "QWEN:actions:A-012", "MISTRAL:actions:A-011"], "reason": "Aggiunto il qualificatore temporale documentato 'Successivamente' in condition, distinguendolo dalle guardie logiche (F-021); aggiunto partecipante Pagamento come in DeepSeek.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Qualificatore da Qwen, partecipante da DeepSeek, verifica propria." },
+    { "changeId": "C-055", "newV2RecordId": "A-012", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:actions:A-009", "QWEN:actions:A-013", "MISTRAL:actions:A-012"], "reason": "Riconfermata; aggiunta uncertainty sul protocollo non specificato, coerente con l'ambiguità dedicata.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza di tutti i modelli." },
+    { "changeId": "C-056", "newV2RecordId": "A-013", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:actions:A-010", "QWEN:actions:A-014", "MISTRAL:actions:A-013"], "reason": "Riconfermata con risultato O-024 e uncertainty sul destinatario.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza di tutti i modelli." },
+    { "changeId": "C-057", "newV2RecordId": "A-014", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:actions:A-012", "QWEN:actions:A-015", "MISTRAL:actions:A-014"], "reason": "Riconfermata come richiesta (non esecuzione) con oggetto 'Quantità ordinate' distinto (O-034); scartata la fusione di Qwen con 'Quantità richieste' e non adottata alcuna azione di esecuzione della riserva.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza DeepSeek/Mistral; correzione degli errori di Qwen." },
+    { "changeId": "C-058", "newV2RecordId": "A-015", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:actions:A-013", "QWEN:actions:A-017", "MISTRAL:actions:A-015"], "reason": "Riconfermata con condizione 'Dopo la conferma della riserva'.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza di tutti i modelli." },
+    { "changeId": "C-059", "newV2RecordId": "A-016", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:actions:A-014", "QWEN:actions:A-018", "MISTRAL:actions:A-016"], "reason": "Riconfermata con attore nullo (forma passiva), destinatario, mezzo e risultato.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza di tutti i modelli." },
+    { "changeId": "C-060", "newV2RecordId": "A-017", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:actions:A-015", "QWEN:actions:A-019", "MISTRAL:actions:A-017"], "reason": "Riconfermata con attore nullo, condizione negativa e risultato.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza di tutti i modelli." },
+    { "changeId": "C-061", "newV2RecordId": "A-018", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:actions:A-016", "QWEN:actions:A-020", "MISTRAL:actions:A-018"], "reason": "Riconfermata con attore nullo e condizione; l'ordine documentato 'prima di contattare il Payment Service' resta nell'evidenza ed è richiamato in uncertainty.", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza di tutti i modelli." },
+    { "changeId": "C-062", "newV2RecordId": "ambiguities[0]", "changeType": "UNCHANGED", "relatedV1": ["MISTRAL:ambiguities:ambiguities[0]"], "reason": "Riconfermata l'ambiguità sull'identità tra quantità richieste e ordinate, non registrata da DeepSeek e Qwen (Qwen le fondeva).", "contributionAttribution": "OWN_REANALYSIS", "attributionExplanation": "Rianalisi propria confermata dal testo." },
+    { "changeId": "C-063", "newV2RecordId": "ambiguities[1]", "changeType": "UNCHANGED", "relatedV1": ["MISTRAL:ambiguities:ambiguities[1]"], "reason": "Riconfermata l'ambiguità sul soggetto dell'autorizzazione del pagamento.", "contributionAttribution": "OWN_REANALYSIS", "attributionExplanation": "Rianalisi propria confermata dal testo." },
+    { "changeId": "C-064", "newV2RecordId": "ambiguities[2]", "changeType": "UNCHANGED", "relatedV1": ["MISTRAL:ambiguities:ambiguities[2]"], "reason": "Riconfermata l'ambiguità sul soggetto della conferma della riserva.", "contributionAttribution": "OWN_REANALYSIS", "attributionExplanation": "Rianalisi propria confermata dal testo." },
+    { "changeId": "C-065", "newV2RecordId": "ambiguities[3]", "changeType": "ADDED", "relatedV1": ["DEEPSEEK:ambiguities:ambiguities[0]", "QWEN:ambiguities:ambiguities[2]"], "reason": "Aggiunta l'ambiguità sul mittente della notifica, in V1 presente solo come uncertainty dell'azione (F-025).", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Pratica di DeepSeek/Qwen adottata dopo rianalisi." },
+    { "changeId": "C-066", "newV2RecordId": "ambiguities[4]", "changeType": "ADDED", "relatedV1": ["MISTRAL:relations:R-005"], "reason": "Promossa ad ambiguità autonoma l'incertezza sui 'prodotti selezionati' rispetto ai prodotti del catalogo.", "contributionAttribution": "OWN_REANALYSIS", "attributionExplanation": "Nota di V1 trasformata in ambiguità esplicita." },
+    { "changeId": "C-067", "newV2RecordId": "ambiguities[5]", "changeType": "ADDED", "relatedV1": ["MISTRAL:actions:A-005"], "reason": "Promossa ad ambiguità autonoma l'incertezza tra 'la disponibilità' verificata e le 'informazioni sulla disponibilità' conservate.", "contributionAttribution": "OWN_REANALYSIS", "attributionExplanation": "Nota di V1 trasformata in ambiguità esplicita." },
+    { "changeId": "C-068", "newV2RecordId": "ambiguities[6]", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:ambiguities:ambiguities[0]", "QWEN:ambiguities:ambiguities[0]", "MISTRAL:ambiguities:ambiguities[3]"], "reason": "Riconfermata; non adottate le interpretazioni di Qwen con tecnologie specifiche non supportate dal testo (F-016).", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza sulla lacuna; riformulazione delle interpretazioni propria." },
+    { "changeId": "C-069", "newV2RecordId": "ambiguities[7]", "changeType": "UNCHANGED", "relatedV1": ["DEEPSEEK:ambiguities:ambiguities[0]", "QWEN:ambiguities:ambiguities[1]", "MISTRAL:ambiguities:ambiguities[4]"], "reason": "Riconfermata; non adottate le interpretazioni speculative di Qwen (rollback, gestione manuale).", "contributionAttribution": "MULTIPLE", "attributionExplanation": "Convergenza sulla lacuna; riformulazione delle interpretazioni propria." },
+    { "changeId": "C-070", "newV2RecordId": "", "changeType": "REMOVED", "relatedV1": ["QWEN:objects:O-030", "QWEN:objects:O-031"], "reason": "Non adottati gli oggetti 'Protocollo di comunicazione' e 'Meccanismo di annullamento': la fonte li dichiara non specificati; una lacuna non diventa un elemento positivo (F-008, F-009).", "contributionAttribution": "OWN_REANALYSIS", "attributionExplanation": "Esclusione propria basata sul testo." },
+    { "changeId": "C-071", "newV2RecordId": "", "changeType": "REMOVED", "relatedV1": ["QWEN:actions:A-016", "QWEN:actions:A-002", "QWEN:actions:A-003"], "reason": "Non adottata l'azione di esecuzione della riserva attribuita all'Inventory Service (non documentata) né le duplicazioni relazione/azione 'mantenere' e 'conservare' (F-011, F-014).", "contributionAttribution": "OWN_REANALYSIS", "attributionExplanation": "Esclusione propria basata sul testo." },
+    { "changeId": "C-072", "newV2RecordId": "", "changeType": "REMOVED", "relatedV1": ["DEEPSEEK:actions:A-011", "DEEPSEEK:actions:A-017"], "reason": "Non adottate le guardie 'viene autorizzato'/'non viene autorizzato' come azioni autonome senza nota di modalità; le guardie restano come condizioni di A-014 e A-017 (F-005).", "contributionAttribution": "OWN_REANALYSIS", "attributionExplanation": "Esclusione propria basata sul testo." }
+  ]
+}
+
+
+
+
+4. Riepilogo
+Principali miglioramenti rispetto alle V1:
+Guardie e temporalità: aggiunte la condizione alla registrazione dell'ordine (assente in DeepSeek e Mistral V1) e il qualificatore documentato "Successivamente" per la richiesta di autorizzazione (forme di Qwen adottate dopo verifica).
+Identità preservate: "Quantità ordinate" e "Quantità richieste" restano referenti distinti (errore di fusione di Qwen corretto); "Prodotti selezionati" ottiene un oggetto proprio (fusione di Mistral V1 corretta); la conferma del cliente ha come oggetto l'"Acquisto", non la richiesta (errore di Qwen corretto).
+Richiesta vs esecuzione: nessuna azione di esecuzione della riserva attribuita all'Inventory Service (rimossa l'asserzione non supportata di Qwen); l'incertezza è dichiarata in uncertainty e nelle ambiguità.
+Lacune non trasformate in fatti: non adottati gli oggetti "Protocollo di comunicazione" e "Meccanismo di annullamento" di Qwen; le ambiguità corrispondenti usano interpretazioni sullo stato dell'informazione, non tecnologie inventate.
+Copertura più completa: aggiunti "Riserva" e "Servizio del Payment Provider" come ancore; le incertezze sparse in V1 sono promosse ad ambiguità esplicite (mittente notifica, prodotti selezionati, disponibilità verificata).
+Possibili regressioni o rischi:
+La granularità cresce (34 oggetti, 9 relazioni, 18 azioni, 8 ambiguità): un confronto automatico basato sui conteggi risulterebbe più oneroso e sensibile alle differenze di granularità.
+Gli oggetti "Riserva" e "Servizio del Payment Provider" sono ancore parzialmente interpretive (nominalizzazione e riferimento pronominale): sono dichiarate con uncertainty, ma restano scelte modellistiche discutibili.
+Rappresentare "permettere"/"acquistare" come azioni con nota di capacità introduce una distinzione di modalità che estrazioni future potrebbero non applicare in modo uniforme.
+Nessun troncamento: tutti i blocchi sono completi.

@@ -1,0 +1,58 @@
+{
+  "experiment": "ONT-T01 V2 single-round",
+  "status": "REVIEW CANDIDATE",
+  "v1_baseline": "54d8f3c",
+  "sources": {
+    "DEEPSEEK": {
+      "raw_response_file": "ONT_T01_V2_DEEPSEEK_RAW_RESPONSE_R1.txt",
+      "records": {
+        "objects": 35,
+        "relations": 10,
+        "actions": 21,
+        "ambiguities": 12
+      },
+      "finding_count": 18,
+      "change_count": 28
+    },
+    "QWEN": {
+      "raw_response_file": "ONT_T01_V2_QWEN_RAW_RESPONSE_R1.md",
+      "records": {
+        "objects": 32,
+        "relations": 12,
+        "actions": 16,
+        "ambiguities": 6
+      },
+      "finding_count": 5,
+      "change_count": 5
+    },
+    "MISTRAL": {
+      "raw_response_file": "ONT_T01_V2_MISTRAL_RAW_RESPONSE_R1.txt",
+      "records": {
+        "objects": 34,
+        "relations": 9,
+        "actions": 18,
+        "ambiguities": 8
+      },
+      "finding_count": 17,
+      "change_count": 72
+    }
+  },
+  "files": {
+    "ONT_T01_V1_V2_COMPARATIVE_REPORT_R1.md": "2cffa9e5470ef0affda15a4d2da651993000c97d0b1e33fe81ab636cea3ccea4",
+    "ONT_T01_V2_ALL_RECORDS_VERIFICATION_R1.csv": "0c5dd16efc11e4bb26c2adb6d35752bce03dc73002c560c29b42b64d6e6c0e14",
+    "ONT_T01_V2_DEEPSEEK_CHANGE_LOG_R1.json": "bb867056a79fea2766b8c4b7fe746175e2da850efcb8137112deb1c10e94bd35",
+    "ONT_T01_V2_DEEPSEEK_EXTRACTION_R1.json": "2495b0f3ec63de2411cd29bf81c8c42a04f69caa20986dcacc8d252648fefd58",
+    "ONT_T01_V2_DEEPSEEK_RAW_RESPONSE_R1.txt": "48597c85a20dc73cdd60bebf515a9509749883b61483f846d29b5529df3f4a94",
+    "ONT_T01_V2_DEEPSEEK_REVIEW_FINDINGS_R1.json": "749b8d7a929564bec60a9baaf497566a5847ed12e6d67aca10b7c04ff73490a9",
+    "ONT_T01_V2_MISTRAL_CHANGE_LOG_R1.json": "3080fb19fc97aca7dce4f695176afac2e521382f674fac2200816f34525babef",
+    "ONT_T01_V2_MISTRAL_EXTRACTION_R1.json": "7d45e68b553d47de30049aa6d34e7369bc0d61f2bdad2933f82c8c09b0f27556",
+    "ONT_T01_V2_MISTRAL_RAW_RESPONSE_R1.txt": "430efb3de73d5f7a8d16f54c73cda647f80b5d5a5572e937e07bf6dd1140c414",
+    "ONT_T01_V2_MISTRAL_REVIEW_FINDINGS_R1.json": "52f0a033e51f68a3ca278b5244b988ee9eb45c7f51929ceff1f441769233cd4e",
+    "ONT_T01_V2_QWEN_CHANGE_LOG_R1.json": "62388e43d738de66539792ddbae15ac01a31dae58695b71e5ba522fcb241ce3f",
+    "ONT_T01_V2_QWEN_EXTRACTION_R1.json": "37aff24e24c458aca9cd25a5f6b5cbd9e0f892cb71ae735b1cba3324f8de1672",
+    "ONT_T01_V2_QWEN_RAW_RESPONSE_R1.md": "71b7892f92975394f75c40418c21fec43fc57f241dce9e81fe7f93f58a48b458",
+    "ONT_T01_V2_QWEN_REVIEW_FINDINGS_R1.json": "efe236e1bed8f821519e08a748faf4da87b8b1daed16790dbf47bcbd6d32859d",
+    "ONT_T01_V2_STRUCTURAL_CHECK_R1.json": "ccfbe4e8235e175bc6495d607812135f74a6ec0d1f88630471eb567ed5b92cbe",
+    "VERIFY_V2_RESULTS_R1.py": "c9417f6ba55de20952e7fd72a3543460f56efffbf6c44a415502775a9da3d0a8"
+  }
+}

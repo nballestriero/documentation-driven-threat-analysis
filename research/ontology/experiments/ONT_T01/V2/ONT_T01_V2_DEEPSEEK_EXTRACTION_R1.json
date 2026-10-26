@@ -1,0 +1,884 @@
+{
+  "testId": "ONT-T01",
+  "objects": [
+    {
+      "id": "O-001",
+      "name": "Piattaforma di commercio elettronico",
+      "candidateCategory": "sistema",
+      "evidence": "Una piattaforma di commercio elettronico permette ai clienti di acquistare prodotti disponibili nel catalogo.",
+      "uncertainty": null
+    },
+    {
+      "id": "O-002",
+      "name": "Clienti",
+      "candidateCategory": "attore",
+      "evidence": "Una piattaforma di commercio elettronico permette ai clienti di acquistare prodotti disponibili nel catalogo.",
+      "uncertainty": null
+    },
+    {
+      "id": "O-003",
+      "name": "Prodotti",
+      "candidateCategory": "entità",
+      "evidence": "Una piattaforma di commercio elettronico permette ai clienti di acquistare prodotti disponibili nel catalogo.",
+      "uncertainty": null
+    },
+    {
+      "id": "O-004",
+      "name": "Catalogo",
+      "candidateCategory": "risorsa",
+      "evidence": "Una piattaforma di commercio elettronico permette ai clienti di acquistare prodotti disponibili nel catalogo.",
+      "uncertainty": null
+    },
+    {
+      "id": "O-005",
+      "name": "Identificativo del prodotto",
+      "candidateCategory": "dato",
+      "evidence": "Ogni prodotto possiede un identificativo, una descrizione e un prezzo.",
+      "uncertainty": null
+    },
+    {
+      "id": "O-006",
+      "name": "Descrizione del prodotto",
+      "candidateCategory": "dato",
+      "evidence": "Ogni prodotto possiede un identificativo, una descrizione e un prezzo.",
+      "uncertainty": null
+    },
+    {
+      "id": "O-007",
+      "name": "Prezzo del prodotto",
+      "candidateCategory": "dato",
+      "evidence": "Ogni prodotto possiede un identificativo, una descrizione e un prezzo.",
+      "uncertainty": null
+    },
+    {
+      "id": "O-008",
+      "name": "Catalog Service",
+      "candidateCategory": "servizio",
+      "evidence": "Il catalogo viene mantenuto dal Catalog Service",
+      "uncertainty": null
+    },
+    {
+      "id": "O-009",
+      "name": "Informazioni sulla disponibilità",
+      "candidateCategory": "informazione",
+      "evidence": "le informazioni sulla disponibilità sono conservate nell'Inventory Store",
+      "uncertainty": null
+    },
+    {
+      "id": "O-010",
+      "name": "Inventory Store",
+      "candidateCategory": "risorsa",
+      "evidence": "le informazioni sulla disponibilità sono conservate nell'Inventory Store",
+      "uncertainty": null
+    },
+    {
+      "id": "O-011",
+      "name": "Order Service",
+      "candidateCategory": "servizio",
+      "evidence": "l'Order Service riceve la richiesta contenente l'identificativo del cliente, i prodotti selezionati e le quantità richieste.",
+      "uncertainty": null
+    },
+    {
+      "id": "O-012",
+      "name": "Richiesta",
+      "candidateCategory": "messaggio",
+      "evidence": "l'Order Service riceve la richiesta contenente l'identificativo del cliente, i prodotti selezionati e le quantità richieste.",
+      "uncertainty": "Il testo dice 'la richiesta'; non la normalizzo in 'richiesta di acquisto'."
+    },
+    {
+      "id": "O-013",
+      "name": "Identificativo del cliente",
+      "candidateCategory": "dato",
+      "evidence": "la richiesta contenente l'identificativo del cliente, i prodotti selezionati e le quantità richieste",
+      "uncertainty": null
+    },
+    {
+      "id": "O-014",
+      "name": "Prodotti selezionati",
+      "candidateCategory": "insieme di prodotti",
+      "evidence": "la richiesta contenente l'identificativo del cliente, i prodotti selezionati e le quantità richieste",
+      "uncertainty": "Non è dichiarato che coincidano con l'oggetto generico Prodotti."
+    },
+    {
+      "id": "O-015",
+      "name": "Quantità richieste",
+      "candidateCategory": "dato",
+      "evidence": "la richiesta contenente l'identificativo del cliente, i prodotti selezionati e le quantità richieste",
+      "uncertainty": "Non è dichiarata l'equivalenza con le quantità ordinate."
+    },
+    {
+      "id": "O-016",
+      "name": "Inventory Service",
+      "candidateCategory": "servizio",
+      "evidence": "L'Order Service verifica la disponibilità interrogando l'Inventory Service",
+      "uncertainty": null
+    },
+    {
+      "id": "O-017",
+      "name": "Quantità disponibili",
+      "candidateCategory": "dato",
+      "evidence": "che consulta l'Inventory Store e restituisce le quantità disponibili",
+      "uncertainty": null
+    },
+    {
+      "id": "O-018",
+      "name": "Ordine",
+      "candidateCategory": "entità",
+      "evidence": "l'Order Service crea un ordine",
+      "uncertainty": null
+    },
+    {
+      "id": "O-019",
+      "name": "Order Store",
+      "candidateCategory": "risorsa",
+      "evidence": "lo registra nell'Order Store",
+      "uncertainty": null
+    },
+    {
+      "id": "O-020",
+      "name": "Payment Service",
+      "candidateCategory": "servizio",
+      "evidence": "Successivamente richiede al Payment Service l'autorizzazione del pagamento.",
+      "uncertainty": null
+    },
+    {
+      "id": "O-021",
+      "name": "Autorizzazione del pagamento",
+      "candidateCategory": "autorizzazione",
+      "evidence": "Successivamente richiede al Payment Service l'autorizzazione del pagamento.",
+      "uncertainty": null
+    },
+    {
+      "id": "O-022",
+      "name": "Payment Provider",
+      "candidateCategory": "servizio esterno",
+      "evidence": "Il Payment Service comunica con un Payment Provider esterno",
+      "uncertainty": "L'esternità è documentata nella frase, ma non nel nome dell'oggetto."
+    },
+    {
+      "id": "O-023",
+      "name": "Esito dell'autorizzazione",
+      "candidateCategory": "esito",
+      "evidence": "e restituisce l'esito dell'autorizzazione",
+      "uncertainty": null
+    },
+    {
+      "id": "O-024",
+      "name": "Quantità ordinate",
+      "candidateCategory": "dato",
+      "evidence": "l'Order Service richiede all'Inventory Service di riservare le quantità ordinate",
+      "uncertainty": "Non è dichiarata l'equivalenza con le quantità richieste."
+    },
+    {
+      "id": "O-025",
+      "name": "Riserva",
+      "candidateCategory": "operazione menzionata",
+      "evidence": "Dopo la conferma della riserva",
+      "uncertainty": "Il testo menziona una conferma della riserva, ma non descrive direttamente l'esecuzione né l'attore della riserva."
+    },
+    {
+      "id": "O-026",
+      "name": "Stato Confirmed",
+      "candidateCategory": "stato",
+      "evidence": "l'ordine assume lo stato Confirmed",
+      "uncertainty": null
+    },
+    {
+      "id": "O-027",
+      "name": "Notifica",
+      "candidateCategory": "messaggio",
+      "evidence": "viene inviata una notifica al cliente tramite il Notification Service",
+      "uncertainty": null
+    },
+    {
+      "id": "O-028",
+      "name": "Notification Service",
+      "candidateCategory": "servizio",
+      "evidence": "viene inviata una notifica al cliente tramite il Notification Service",
+      "uncertainty": null
+    },
+    {
+      "id": "O-029",
+      "name": "Stato Rejected",
+      "candidateCategory": "stato",
+      "evidence": "l'ordine viene contrassegnato come Rejected",
+      "uncertainty": null
+    },
+    {
+      "id": "O-030",
+      "name": "Organizzazione esterna",
+      "candidateCategory": "organizzazione",
+      "evidence": "Il Payment Provider è gestito da un'organizzazione esterna.",
+      "uncertainty": null
+    },
+    {
+      "id": "O-031",
+      "name": "Infrastruttura",
+      "candidateCategory": "risorsa",
+      "evidence": "ma non ne gestisce l'infrastruttura",
+      "uncertainty": "Il referente del pronome 'ne' è ambiguo: Payment Provider oppure servizio del Payment Provider."
+    },
+    {
+      "id": "O-032",
+      "name": "Servizio del Payment Provider",
+      "candidateCategory": "servizio",
+      "evidence": "La piattaforma utilizza il suo servizio",
+      "uncertainty": "Il pronome 'suo' è riferito al Payment Provider; non si introduce ownership."
+    },
+    {
+      "id": "O-033",
+      "name": "Pagamento",
+      "candidateCategory": "concetto",
+      "evidence": "il pagamento viene autorizzato",
+      "uncertainty": null
+    },
+    {
+      "id": "O-034",
+      "name": "Acquisto",
+      "candidateCategory": "concetto o operazione",
+      "evidence": "Quando un cliente conferma un acquisto",
+      "uncertainty": "Può essere letto come oggetto della conferma o come operazione; il testo non obbliga a una sola lettura."
+    },
+    {
+      "id": "O-035",
+      "name": "Conferma della riserva",
+      "candidateCategory": "evento o stato menzionato",
+      "evidence": "Dopo la conferma della riserva",
+      "uncertainty": "Attore, modalità e timing della conferma non sono specificati."
+    }
+  ],
+  "relations": [
+    {
+      "id": "R-001",
+      "description": "Il prodotto possiede identificativo, descrizione e prezzo",
+      "participants": [
+        {
+          "objectId": "O-003",
+          "role": "possessore"
+        },
+        {
+          "objectId": "O-005",
+          "role": "identificativo posseduto"
+        },
+        {
+          "objectId": "O-006",
+          "role": "descrizione posseduta"
+        },
+        {
+          "objectId": "O-007",
+          "role": "prezzo posseduto"
+        }
+      ],
+      "evidence": "Ogni prodotto possiede un identificativo, una descrizione e un prezzo.",
+      "uncertainty": null
+    },
+    {
+      "id": "R-002",
+      "description": "Il catalogo è mantenuto dal Catalog Service",
+      "participants": [
+        {
+          "objectId": "O-004",
+          "role": "catalogo mantenuto"
+        },
+        {
+          "objectId": "O-008",
+          "role": "mantenitore"
+        }
+      ],
+      "evidence": "Il catalogo viene mantenuto dal Catalog Service",
+      "uncertainty": null
+    },
+    {
+      "id": "R-003",
+      "description": "Le informazioni sulla disponibilità sono conservate nell'Inventory Store",
+      "participants": [
+        {
+          "objectId": "O-009",
+          "role": "informazioni conservate"
+        },
+        {
+          "objectId": "O-010",
+          "role": "luogo di conservazione"
+        }
+      ],
+      "evidence": "le informazioni sulla disponibilità sono conservate nell'Inventory Store",
+      "uncertainty": null
+    },
+    {
+      "id": "R-004",
+      "description": "I prodotti sono disponibili nel catalogo",
+      "participants": [
+        {
+          "objectId": "O-003",
+          "role": "prodotti disponibili"
+        },
+        {
+          "objectId": "O-004",
+          "role": "contesto di disponibilità"
+        }
+      ],
+      "evidence": "prodotti disponibili nel catalogo",
+      "uncertainty": null
+    },
+    {
+      "id": "R-005",
+      "description": "La richiesta contiene identificativo del cliente, prodotti selezionati e quantità richieste",
+      "participants": [
+        {
+          "objectId": "O-012",
+          "role": "contenitore"
+        },
+        {
+          "objectId": "O-013",
+          "role": "contenuto"
+        },
+        {
+          "objectId": "O-014",
+          "role": "contenuto"
+        },
+        {
+          "objectId": "O-015",
+          "role": "contenuto"
+        }
+      ],
+      "evidence": "la richiesta contenente l'identificativo del cliente, i prodotti selezionati e le quantità richieste",
+      "uncertainty": null
+    },
+    {
+      "id": "R-006",
+      "description": "Il Payment Provider è esterno",
+      "participants": [
+        {
+          "objectId": "O-022",
+          "role": "provider qualificato come esterno"
+        }
+      ],
+      "evidence": "un Payment Provider esterno",
+      "uncertainty": null
+    },
+    {
+      "id": "R-007",
+      "description": "Il Payment Provider è gestito da un'organizzazione esterna",
+      "participants": [
+        {
+          "objectId": "O-022",
+          "role": "gestito"
+        },
+        {
+          "objectId": "O-030",
+          "role": "gestore"
+        }
+      ],
+      "evidence": "Il Payment Provider è gestito da un'organizzazione esterna.",
+      "uncertainty": null
+    },
+    {
+      "id": "R-008",
+      "description": "La piattaforma utilizza il servizio del Payment Provider",
+      "participants": [
+        {
+          "objectId": "O-001",
+          "role": "utilizzatore"
+        },
+        {
+          "objectId": "O-032",
+          "role": "servizio utilizzato"
+        },
+        {
+          "objectId": "O-022",
+          "role": "referente pronominale del servizio"
+        }
+      ],
+      "evidence": "La piattaforma utilizza il suo servizio",
+      "uncertainty": "Il pronome 'suo' è riferito al Payment Provider; non si attribuisce ownership."
+    },
+    {
+      "id": "R-009",
+      "description": "La piattaforma NON gestisce l'infrastruttura",
+      "participants": [
+        {
+          "objectId": "O-001",
+          "role": "soggetto che non gestisce"
+        },
+        {
+          "objectId": "O-031",
+          "role": "infrastruttura non gestita"
+        }
+      ],
+      "evidence": "ma non ne gestisce l'infrastruttura",
+      "uncertainty": "Il referente di 'ne' è ambiguo: Payment Provider oppure servizio del Payment Provider."
+    },
+    {
+      "id": "R-010",
+      "description": "L'autorizzazione riguarda il pagamento",
+      "participants": [
+        {
+          "objectId": "O-021",
+          "role": "autorizzazione"
+        },
+        {
+          "objectId": "O-033",
+          "role": "pagamento oggetto dell'autorizzazione"
+        }
+      ],
+      "evidence": "l'autorizzazione del pagamento",
+      "uncertainty": null
+    }
+  ],
+  "actions": [
+    {
+      "id": "A-001",
+      "verb": "permette",
+      "actorId": "O-001",
+      "participants": [
+        {
+          "objectId": "O-002",
+          "role": "soggetto abilitato"
+        },
+        {
+          "objectId": "O-003",
+          "role": "oggetto dell'acquisto permesso"
+        },
+        {
+          "objectId": "O-004",
+          "role": "contesto di disponibilità"
+        }
+      ],
+      "resultIds": [],
+      "condition": null,
+      "evidence": "Una piattaforma di commercio elettronico permette ai clienti di acquistare prodotti disponibili nel catalogo.",
+      "uncertainty": "Capacità/permesso, non evento avvenuto."
+    },
+    {
+      "id": "A-002",
+      "verb": "acquistare",
+      "actorId": "O-002",
+      "participants": [
+        {
+          "objectId": "O-003",
+          "role": "oggetto dell'acquisto"
+        },
+        {
+          "objectId": "O-004",
+          "role": "contesto di disponibilità"
+        }
+      ],
+      "resultIds": [],
+      "condition": null,
+      "evidence": "Una piattaforma di commercio elettronico permette ai clienti di acquistare prodotti disponibili nel catalogo.",
+      "uncertainty": "Azione embedded nella capacità 'permette'; non si afferma un acquisto effettivo."
+    },
+    {
+      "id": "A-003",
+      "verb": "conferma",
+      "actorId": "O-002",
+      "participants": [
+        {
+          "objectId": "O-034",
+          "role": "acquisto confermato"
+        }
+      ],
+      "resultIds": [],
+      "condition": null,
+      "evidence": "Quando un cliente conferma un acquisto",
+      "uncertainty": "Il testo usa 'acquisto'; non identificarlo con la richiesta."
+    },
+    {
+      "id": "A-004",
+      "verb": "riceve",
+      "actorId": "O-011",
+      "participants": [
+        {
+          "objectId": "O-012",
+          "role": "richiesta ricevuta"
+        }
+      ],
+      "resultIds": [],
+      "condition": "Quando un cliente conferma un acquisto",
+      "evidence": "l'Order Service riceve la richiesta contenente l'identificativo del cliente, i prodotti selezionati e le quantità richieste.",
+      "uncertainty": "Il mittente della richiesta non è identificato."
+    },
+    {
+      "id": "A-005",
+      "verb": "verifica",
+      "actorId": "O-011",
+      "participants": [
+        {
+          "objectId": "O-009",
+          "role": "disponibilità verificata"
+        }
+      ],
+      "resultIds": [],
+      "condition": null,
+      "evidence": "L'Order Service verifica la disponibilità interrogando l'Inventory Service",
+      "uncertainty": "L'identificazione di 'disponibilità' con 'informazioni sulla disponibilità' è un'interpretazione, ma supportata dal contesto."
+    },
+    {
+      "id": "A-006",
+      "verb": "interroga",
+      "actorId": "O-011",
+      "participants": [
+        {
+          "objectId": "O-016",
+          "role": "servizio interrogato"
+        }
+      ],
+      "resultIds": [],
+      "condition": null,
+      "evidence": "L'Order Service verifica la disponibilità interrogando l'Inventory Service",
+      "uncertainty": null
+    },
+    {
+      "id": "A-007",
+      "verb": "consulta",
+      "actorId": "O-016",
+      "participants": [
+        {
+          "objectId": "O-010",
+          "role": "risorsa consultata"
+        }
+      ],
+      "resultIds": [],
+      "condition": null,
+      "evidence": "che consulta l'Inventory Store",
+      "uncertainty": null
+    },
+    {
+      "id": "A-008",
+      "verb": "restituisce",
+      "actorId": "O-016",
+      "participants": [
+        {
+          "objectId": "O-017",
+          "role": "quantità restituite"
+        }
+      ],
+      "resultIds": [],
+      "condition": null,
+      "evidence": "restituisce le quantità disponibili",
+      "uncertainty": "Il destinatario della restituzione non è espresso."
+    },
+    {
+      "id": "A-009",
+      "verb": "crea",
+      "actorId": "O-011",
+      "participants": [],
+      "resultIds": [
+        "O-018"
+      ],
+      "condition": "Se tutti i prodotti richiesti sono disponibili",
+      "evidence": "Se tutti i prodotti richiesti sono disponibili, l'Order Service crea un ordine",
+      "uncertainty": null
+    },
+    {
+      "id": "A-010",
+      "verb": "registra",
+      "actorId": "O-011",
+      "participants": [
+        {
+          "objectId": "O-018",
+          "role": "ordine registrato"
+        },
+        {
+          "objectId": "O-019",
+          "role": "luogo di registrazione"
+        }
+      ],
+      "resultIds": [],
+      "condition": "Se tutti i prodotti richiesti sono disponibili",
+      "evidence": "e lo registra nell'Order Store",
+      "uncertainty": null
+    },
+    {
+      "id": "A-011",
+      "verb": "richiede",
+      "actorId": "O-011",
+      "participants": [
+        {
+          "objectId": "O-020",
+          "role": "destinatario della richiesta"
+        },
+        {
+          "objectId": "O-021",
+          "role": "autorizzazione richiesta"
+        }
+      ],
+      "resultIds": [],
+      "condition": "Successivamente [alla registrazione dell'ordine]",
+      "evidence": "Successivamente richiede al Payment Service l'autorizzazione del pagamento.",
+      "uncertainty": "La qualificazione temporale è relativa; il testo non specifica un intervallo."
+    },
+    {
+      "id": "A-012",
+      "verb": "comunica",
+      "actorId": "O-020",
+      "participants": [
+        {
+          "objectId": "O-022",
+          "role": "interlocutore"
+        }
+      ],
+      "resultIds": [],
+      "condition": null,
+      "evidence": "Il Payment Service comunica con un Payment Provider esterno",
+      "uncertainty": null
+    },
+    {
+      "id": "A-013",
+      "verb": "restituisce",
+      "actorId": "O-020",
+      "participants": [
+        {
+          "objectId": "O-023",
+          "role": "esito restituito"
+        }
+      ],
+      "resultIds": [],
+      "condition": null,
+      "evidence": "restituisce l'esito dell'autorizzazione",
+      "uncertainty": "Il destinatario dell'esito non è espresso."
+    },
+    {
+      "id": "A-014",
+      "verb": "viene autorizzato",
+      "actorId": null,
+      "participants": [
+        {
+          "objectId": "O-033",
+          "role": "pagamento autorizzato"
+        }
+      ],
+      "resultIds": [],
+      "condition": null,
+      "evidence": "il pagamento viene autorizzato",
+      "uncertainty": "L'attore dell'autorizzazione non è identificato."
+    },
+    {
+      "id": "A-015",
+      "verb": "richiede",
+      "actorId": "O-011",
+      "participants": [
+        {
+          "objectId": "O-016",
+          "role": "destinatario della richiesta"
+        },
+        {
+          "objectId": "O-024",
+          "role": "quantità da riservare"
+        }
+      ],
+      "resultIds": [],
+      "condition": "Quando il pagamento viene autorizzato",
+      "evidence": "l'Order Service richiede all'Inventory Service di riservare le quantità ordinate",
+      "uncertainty": "Richiesta di riservare, non esecuzione confermata della riserva."
+    },
+    {
+      "id": "A-016",
+      "verb": "assume",
+      "actorId": "O-018",
+      "participants": [
+        {
+          "objectId": "O-026",
+          "role": "stato assunto"
+        }
+      ],
+      "resultIds": [],
+      "condition": "Dopo la conferma della riserva",
+      "evidence": "l'ordine assume lo stato Confirmed",
+      "uncertainty": "La conferma della riserva è menzionata; attore e modalità non sono specificati."
+    },
+    {
+      "id": "A-017",
+      "verb": "viene inviata",
+      "actorId": null,
+      "participants": [
+        {
+          "objectId": "O-027",
+          "role": "notifica inviata"
+        },
+        {
+          "objectId": "O-002",
+          "role": "destinatario"
+        },
+        {
+          "objectId": "O-028",
+          "role": "mezzo di invio"
+        }
+      ],
+      "resultIds": [],
+      "condition": "Dopo la conferma della riserva",
+      "evidence": "viene inviata una notifica al cliente tramite il Notification Service",
+      "uncertainty": "Il mittente non è identificato; non attribuirlo automaticamente al Notification Service."
+    },
+    {
+      "id": "A-018",
+      "verb": "viene contrassegnato",
+      "actorId": null,
+      "participants": [
+        {
+          "objectId": "O-018",
+          "role": "ordine contrassegnato"
+        },
+        {
+          "objectId": "O-029",
+          "role": "stato assegnato"
+        }
+      ],
+      "resultIds": [],
+      "condition": "Se il pagamento non viene autorizzato",
+      "evidence": "l'ordine viene contrassegnato come Rejected",
+      "uncertainty": "L'attore che contrassegna l'ordine non è identificato."
+    },
+    {
+      "id": "A-019",
+      "verb": "non viene autorizzato",
+      "actorId": null,
+      "participants": [
+        {
+          "objectId": "O-033",
+          "role": "pagamento non autorizzato"
+        }
+      ],
+      "resultIds": [],
+      "condition": null,
+      "evidence": "Se il pagamento non viene autorizzato",
+      "uncertainty": "Condizione negativa menzionata; attore non identificato."
+    },
+    {
+      "id": "A-020",
+      "verb": "viene rifiutata",
+      "actorId": null,
+      "participants": [
+        {
+          "objectId": "O-012",
+          "role": "richiesta rifiutata"
+        }
+      ],
+      "resultIds": [],
+      "condition": "Se la disponibilità è insufficiente; prima di contattare il Payment Service",
+      "evidence": "la richiesta viene rifiutata prima di contattare il Payment Service",
+      "uncertainty": "L'attore del rifiuto non è identificato. Il testo non afferma che il Payment Service sia stato contattato o non contattato."
+    },
+    {
+      "id": "A-021",
+      "verb": "contattare",
+      "actorId": null,
+      "participants": [
+        {
+          "objectId": "O-020",
+          "role": "servizio menzionato come destinazione di un eventuale contatto"
+        }
+      ],
+      "resultIds": [],
+      "condition": "Menicato in 'prima di contattare'; non si afferma esecuzione",
+      "evidence": "prima di contattare il Payment Service",
+      "uncertainty": "Azione menzionata solo come limite temporale; attore ed esecuzione non sono specificati."
+    }
+  ],
+  "ambiguities": [
+    {
+      "description": "Il protocollo di comunicazione utilizzato non è specificato dalla documentazione.",
+      "evidence": "La documentazione non specifica il protocollo di comunicazione utilizzato",
+      "possibleInterpretations": [
+        "Protocollo non specificato dal testo",
+        "Informazione non determinabile"
+      ]
+    },
+    {
+      "description": "Il meccanismo di annullamento delle autorizzazioni di pagamento non è specificato dalla documentazione.",
+      "evidence": "né il meccanismo di annullamento delle autorizzazioni di pagamento",
+      "possibleInterpretations": [
+        "Meccanismo non specificato dal testo",
+        "Informazione non determinabile"
+      ]
+    },
+    {
+      "description": "Il soggetto mittente della notifica non è identificato.",
+      "evidence": "viene inviata una notifica al cliente tramite il Notification Service",
+      "possibleInterpretations": [
+        "Il Notification Service invia la notifica",
+        "Un altro componente invia la notifica tramite il Notification Service",
+        "Il mittente non è determinabile dal testo"
+      ]
+    },
+    {
+      "description": "Il mittente della richiesta ricevuta dall'Order Service non è identificato.",
+      "evidence": "l'Order Service riceve la richiesta contenente",
+      "possibleInterpretations": [
+        "La richiesta proviene dal cliente",
+        "La richiesta proviene da un componente non nominato",
+        "Il mittente non è determinabile dal testo"
+      ]
+    },
+    {
+      "description": "Il destinatario delle quantità disponibili restituite dall'Inventory Service non è espresso.",
+      "evidence": "restituisce le quantità disponibili",
+      "possibleInterpretations": [
+        "Le quantità sono restituite all'Order Service",
+        "Il destinatario non è determinabile dal testo"
+      ]
+    },
+    {
+      "description": "Il destinatario dell'esito dell'autorizzazione restituito dal Payment Service non è espresso.",
+      "evidence": "restituisce l'esito dell'autorizzazione",
+      "possibleInterpretations": [
+        "L'esito è restituito all'Order Service",
+        "Il destinatario non è determinabile dal testo"
+      ]
+    },
+    {
+      "description": "L'attore che autorizza il pagamento non è identificato.",
+      "evidence": "Quando il pagamento viene autorizzato",
+      "possibleInterpretations": [
+        "L'autorizzazione è attribuibile al Payment Provider",
+        "L'autorizzazione è attribuibile al Payment Service",
+        "L'attore non è determinabile dal testo"
+      ]
+    },
+    {
+      "description": "L'attore che contrassegna l'ordine come Rejected non è identificato.",
+      "evidence": "l'ordine viene contrassegnato come Rejected",
+      "possibleInterpretations": [
+        "L'Order Service contrassegna l'ordine",
+        "Un altro componente contrassegna l'ordine",
+        "L'attore non è determinabile dal testo"
+      ]
+    },
+    {
+      "description": "L'attore che rifiuta la richiesta non è identificato.",
+      "evidence": "la richiesta viene rifiutata prima di contattare il Payment Service",
+      "possibleInterpretations": [
+        "L'Order Service rifiuta la richiesta",
+        "Un altro componente rifiuta la richiesta",
+        "L'attore non è determinabile dal testo"
+      ]
+    },
+    {
+      "description": "Non è dichiarato che le quantità richieste coincidano con le quantità ordinate.",
+      "evidence": "di riservare le quantità ordinate",
+      "possibleInterpretations": [
+        "Le quantità ordinate coincidono con le quantità richieste",
+        "Le quantità ordinate sono un referente distinto",
+        "L'equivalenza non è determinabile dal testo"
+      ]
+    },
+    {
+      "description": "Il referente del pronome 'ne' in 'non ne gestisce l'infrastruttura' è ambiguo.",
+      "evidence": "ma non ne gestisce l'infrastruttura",
+      "possibleInterpretations": [
+        "Il referente è il Payment Provider",
+        "Il referente è il servizio del Payment Provider",
+        "Il referente non è determinabile con certezza"
+      ]
+    },
+    {
+      "description": "La conferma della riserva è menzionata, ma attore, modalità e timing non sono specificati.",
+      "evidence": "Dopo la conferma della riserva",
+      "possibleInterpretations": [
+        "La conferma proviene dall'Inventory Service",
+        "La conferma proviene da un altro soggetto o meccanismo non documentato",
+        "La conferma non è ulteriormente determinabile dal testo"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1427 @@
+review_findings
+json
+{
+  "review_findings": [
+    {
+      "findingId": "RF-001",
+      "targetModel": "DEEPSEEK",
+      "targetCollection": "actions",
+      "targetRecordId": "A-007",
+      "issueType": "CONDITION",
+      "explanation": "La registrazione dell'ordine avviene nella stessa frase condizionata della creazione: la condizione 'Se tutti i prodotti richiesti sono disponibili' vale anche per 'lo registra nell'Order Store'. DeepSeek lascia condition null su A-007.",
+      "exactSourceEvidence": "Se tutti i prodotti richiesti sono disponibili, l'Order Service crea un ordine e lo registra nell'Order Store.",
+      "suggestedCorrection": "Impostare condition su A-007 allo stesso valore di A-006: 'Se tutti i prodotti richiesti sono disponibili'."
+    },
+    {
+      "findingId": "RF-002",
+      "targetModel": "DEEPSEEK",
+      "targetCollection": "actions",
+      "targetRecordId": "A-008",
+      "issueType": "CONDITION",
+      "explanation": "La richiesta di autorizzazione è introdotta da 'Successivamente', che nel testo segue la registrazione dell'ordine. DeepSeek non registra alcuna condizione o qualificazione temporale.",
+      "exactSourceEvidence": "Successivamente richiede al Payment Service l'autorizzazione del pagamento.",
+      "suggestedCorrection": "Aggiungere condition: 'Successivamente [alla registrazione dell'ordine]' oppure una qualificazione temporale equivalente, senza inventare un ordine causale non scritto."
+    },
+    {
+      "findingId": "RF-003",
+      "targetModel": "DEEPSEEK",
+      "targetCollection": "actions",
+      "targetRecordId": "NEW",
+      "issueType": "OMISSION",
+      "explanation": "La prima frase descrive una capacità/permesso della piattaforma e l'azione di acquisto dei clienti. DeepSeek estrae gli oggetti ma non rappresenta né 'permette' né 'acquistare' come comportamenti/capacità.",
+      "exactSourceEvidence": "Una piattaforma di commercio elettronico permette ai clienti di acquistare prodotti disponibili nel catalogo.",
+      "suggestedCorrection": "Aggiungere un'azione/capacità 'permette' con attore Piattaforma e partecipanti Cliente, Prodotti, Catalogo, marcata come capacità/permesso e non come evento avvenuto. Valutare anche l'azione embedded 'acquistare'."
+    },
+    {
+      "findingId": "RF-004",
+      "targetModel": "DEEPSEEK",
+      "targetCollection": "actions",
+      "targetRecordId": "A-016",
+      "issueType": "CONDITION",
+      "explanation": "Il rifiuto della richiesta è collocato 'prima di contattare il Payment Service'. DeepSeek riporta solo 'la disponibilità è insufficiente' e perde il riferimento temporale/negato al contatto con Payment Service.",
+      "exactSourceEvidence": "Se la disponibilità è insufficiente, la richiesta viene rifiutata prima di contattare il Payment Service.",
+      "suggestedCorrection": "Integrare condition: 'Se la disponibilità è insufficiente; prima di contattare il Payment Service'. Non affermare che il contatto sia avvenuto o non avvenuto: il testo dice solo 'prima di contattare'."
+    },
+    {
+      "findingId": "RF-005",
+      "targetModel": "DEEPSEEK",
+      "targetCollection": "relations",
+      "targetRecordId": "R-006",
+      "issueType": "UNSUPPORTED",
+      "explanation": "Il ruolo 'titolare del servizio' attribuito a Payment Provider è più forte del testo, che dice solo 'il suo servizio'. Il pronome 'suo' indica un riferimento al Payment Provider, ma non autorizza a parlare di titolarità/ownership.",
+      "exactSourceEvidence": "La piattaforma utilizza il suo servizio",
+      "suggestedCorrection": "Sostituire il ruolo con 'referente pronominale del servizio' o 'fornitore menzionato tramite pronome', senza introdurre ownership."
+    },
+    {
+      "findingId": "RF-006",
+      "targetModel": "DEEPSEEK",
+      "targetCollection": "ambiguities",
+      "targetRecordId": "NEW",
+      "issueType": "OMISSION",
+      "explanation": "DeepSeek non segnala che il testo non dichiara l'equivalenza tra 'quantità richieste' e 'quantità ordinate'. Questa è un'incertezza rilevante per il confronto.",
+      "exactSourceEvidence": "di riservare le quantità ordinate",
+      "suggestedCorrection": "Aggiungere un'ambiguità: 'Quantità richieste e quantità ordinate non sono dichiarate equivalenti dal testo'."
+    },
+    {
+      "findingId": "RF-007",
+      "targetModel": "QWEN",
+      "targetCollection": "actions",
+      "targetRecordId": "A-004",
+      "issueType": "IDENTITY",
+      "explanation": "Qwen rappresenta 'conferma un acquisto' con partecipante O-013 'Richiesta di acquisto'. Il testo dice 'acquisto', non 'richiesta'. La richiesta è ricevuta dall'Order Service nella frase successiva.",
+      "exactSourceEvidence": "Quando un cliente conferma un acquisto",
+      "suggestedCorrection": "Usare un oggetto 'Acquisto' come partecipante dell'azione 'conferma', oppure lasciare il ruolo generico 'oggetto della conferma' senza identificarlo con la Richiesta."
+    },
+    {
+      "findingId": "RF-008",
+      "targetModel": "QWEN",
+      "targetCollection": "actions",
+      "targetRecordId": "A-015",
+      "issueType": "IDENTITY",
+      "explanation": "Qwen usa O-016 'Quantità richieste' come oggetto della richiesta di riserva. Il testo parla di 'quantità ordinate'. Non è dichiarata l'equivalenza tra i due referenti.",
+      "exactSourceEvidence": "l'Order Service richiede all'Inventory Service di riservare le quantità ordinate",
+      "suggestedCorrection": "Creare o usare un oggetto distinto 'Quantità ordinate' e aggiungere l'incertezza sull'eventuale identità con 'Quantità richieste'."
+    },
+    {
+      "findingId": "RF-009",
+      "targetModel": "QWEN",
+      "targetCollection": "actions",
+      "targetRecordId": "A-016",
+      "issueType": "MODALITY",
+      "explanation": "Qwen crea un'azione 'riservare' con attore Inventory Service e condizione 'Su richiesta dell'Order Service'. Il testo descrive una richiesta di riservare, non afferma direttamente che la riserva sia stata eseguita.",
+      "exactSourceEvidence": "richiede all'Inventory Service di riservare le quantità ordinate",
+      "suggestedCorrection": "Rappresentare l'azione come 'richiesta di riservare' oppure marcare 'riservare' come azione richiesta/non confermata. Non attribuire esecuzione certa senza evidenza."
+    },
+    {
+      "findingId": "RF-010",
+      "targetModel": "QWEN",
+      "targetCollection": "objects",
+      "targetRecordId": "O-030",
+      "issueType": "UNSUPPORTED",
+      "explanation": "Qwen crea oggetti positivi per 'Protocollo di comunicazione' e 'Meccanismo di annullamento' sulla base di una frase che dice che la documentazione NON li specifica. L'incertezza è presente, ma la classificazione come oggetti può suggerire esistenza o disponibilità non attestata.",
+      "exactSourceEvidence": "La documentazione non specifica il protocollo di comunicazione utilizzato né il meccanismo di annullamento delle autorizzazioni di pagamento.",
+      "suggestedCorrection": "Trattare questi come lacune informative/ambiguità, non come oggetti positivi del sistema, oppure etichettarli esplicitamente come 'referente solo menzionato come non specificato'."
+    },
+    {
+      "findingId": "RF-011",
+      "targetModel": "QWEN",
+      "targetCollection": "ambiguities",
+      "targetRecordId": "ambiguities[0]",
+      "issueType": "UNSUPPORTED",
+      "explanation": "Qwen elenca possibili protocolli specifici (HTTP/REST, gRPC, AMQP/Kafka). Il testo non fornisce elementi per ipotesi tecniche specifiche; la lacuna va conservata come 'non specificato'.",
+      "exactSourceEvidence": "La documentazione non specifica il protocollo di comunicazione utilizzato",
+      "suggestedCorrection": "Sostituire le interpretazioni specifiche con: 'Protocollo non specificato dal testo' e 'Informazione non determinabile'."
+    },
+    {
+      "findingId": "RF-012",
+      "targetModel": "QWEN",
+      "targetCollection": "relations",
+      "targetRecordId": "R-013",
+      "issueType": "UNCERTAINTY",
+      "explanation": "Qwen risolve il pronome 'ne' in 'non ne gestisce l'infrastruttura' direttamente su Payment Provider, senza incertezza. Il referente può essere il Payment Provider o il suo servizio.",
+      "exactSourceEvidence": "ma non ne gestisce l'infrastruttura",
+      "suggestedCorrection": "Aggiungere uncertainty sul referente di 'ne': Payment Provider oppure servizio del Payment Provider."
+    },
+    {
+      "findingId": "RF-013",
+      "targetModel": "QWEN",
+      "targetCollection": "ambiguities",
+      "targetRecordId": "NEW",
+      "issueType": "OMISSION",
+      "explanation": "Qwen non segnala l'incertezza tra 'quantità richieste' e 'quantità ordinate', pur usando 'quantità richieste' come oggetto della riserva.",
+      "exactSourceEvidence": "di riservare le quantità ordinate",
+      "suggestedCorrection": "Aggiungere un'ambiguità dedicata e mantenere i due referenti distinti."
+    },
+    {
+      "findingId": "RF-014",
+      "targetModel": "MISTRAL",
+      "targetCollection": "relations",
+      "targetRecordId": "R-005",
+      "issueType": "MERGE",
+      "explanation": "Mistral identifica 'i prodotti selezionati' con l'oggetto generico 'Prodotti' O-003, pur segnalando l'incertezza. Il testo non dichiara che i prodotti selezionati siano lo stesso insieme dei prodotti in catalogo.",
+      "exactSourceEvidence": "i prodotti selezionati",
+      "suggestedCorrection": "Mantenere un oggetto distinto 'Prodotti selezionati' oppure usare un partecipante non identificato con l'oggetto generico Prodotti, conservando l'incertezza."
+    },
+    {
+      "findingId": "RF-015",
+      "targetModel": "MISTRAL",
+      "targetCollection": "actions",
+      "targetRecordId": "A-010",
+      "issueType": "CONDITION",
+      "explanation": "La registrazione nell'Order Store è nella stessa frase condizionata della creazione dell'ordine. Mistral lascia condition null su A-010.",
+      "exactSourceEvidence": "Se tutti i prodotti richiesti sono disponibili, l'Order Service crea un ordine e lo registra nell'Order Store.",
+      "suggestedCorrection": "Aggiungere condition 'Se tutti i prodotti richiesti sono disponibili' anche ad A-010."
+    },
+    {
+      "findingId": "RF-016",
+      "targetModel": "MISTRAL",
+      "targetCollection": "actions",
+      "targetRecordId": "A-011",
+      "issueType": "CONDITION",
+      "explanation": "La richiesta di autorizzazione è introdotta da 'Successivamente' e segue la registrazione dell'ordine. Mistral non registra la qualificazione temporale.",
+      "exactSourceEvidence": "Successivamente richiede al Payment Service l'autorizzazione del pagamento.",
+      "suggestedCorrection": "Aggiungere condition/qualificazione 'Successivamente [alla registrazione dell'ordine]' senza inventare causalità non scritta."
+    },
+    {
+      "findingId": "RF-017",
+      "targetModel": "MISTRAL",
+      "targetCollection": "relations",
+      "targetRecordId": "R-008",
+      "issueType": "UNCERTAINTY",
+      "explanation": "Mistral include O-022 Payment Provider come 'Referente dell'infrastruttura' ma non segnala che il pronome 'ne' può riferirsi anche al servizio del Payment Provider.",
+      "exactSourceEvidence": "ma non ne gestisce l'infrastruttura",
+      "suggestedCorrection": "Aggiungere uncertainty sul referente di 'ne' oppure un'ambiguità dedicata."
+    },
+    {
+      "findingId": "RF-018",
+      "targetModel": "MISTRAL",
+      "targetCollection": "ambiguities",
+      "targetRecordId": "NEW",
+      "issueType": "OMISSION",
+      "explanation": "Mistral segnala l'incertezza sull'identità tra quantità richieste e ordinate in O-031/A-014, ma non la riporta tra le ambiguità. Per il confronto è utile un'ambiguità esplicita.",
+      "exactSourceEvidence": "di riservare le quantità ordinate",
+      "suggestedCorrection": "Aggiungere un'ambiguità: 'Quantità richieste e quantità ordinate non sono dichiarate equivalenti'."
+    }
+  ]
+}
+v2_extraction
+json
+{
+  "testId": "ONT-T01",
+  "objects": [
+    {
+      "id": "O-001",
+      "name": "Piattaforma di commercio elettronico",
+      "candidateCategory": "sistema",
+      "evidence": "Una piattaforma di commercio elettronico permette ai clienti di acquistare prodotti disponibili nel catalogo.",
+      "uncertainty": null
+    },
+    {
+      "id": "O-002",
+      "name": "Clienti",
+      "candidateCategory": "attore",
+      "evidence": "Una piattaforma di commercio elettronico permette ai clienti di acquistare prodotti disponibili nel catalogo.",
+      "uncertainty": null
+    },
+    {
+      "id": "O-003",
+      "name": "Prodotti",
+      "candidateCategory": "entità",
+      "evidence": "Una piattaforma di commercio elettronico permette ai clienti di acquistare prodotti disponibili nel catalogo.",
+      "uncertainty": null
+    },
+    {
+      "id": "O-004",
+      "name": "Catalogo",
+      "candidateCategory": "risorsa",
+      "evidence": "Una piattaforma di commercio elettronico permette ai clienti di acquistare prodotti disponibili nel catalogo.",
+      "uncertainty": null
+    },
+    {
+      "id": "O-005",
+      "name": "Identificativo del prodotto",
+      "candidateCategory": "dato",
+      "evidence": "Ogni prodotto possiede un identificativo, una descrizione e un prezzo.",
+      "uncertainty": null
+    },
+    {
+      "id": "O-006",
+      "name": "Descrizione del prodotto",
+      "candidateCategory": "dato",
+      "evidence": "Ogni prodotto possiede un identificativo, una descrizione e un prezzo.",
+      "uncertainty": null
+    },
+    {
+      "id": "O-007",
+      "name": "Prezzo del prodotto",
+      "candidateCategory": "dato",
+      "evidence": "Ogni prodotto possiede un identificativo, una descrizione e un prezzo.",
+      "uncertainty": null
+    },
+    {
+      "id": "O-008",
+      "name": "Catalog Service",
+      "candidateCategory": "servizio",
+      "evidence": "Il catalogo viene mantenuto dal Catalog Service",
+      "uncertainty": null
+    },
+    {
+      "id": "O-009",
+      "name": "Informazioni sulla disponibilità",
+      "candidateCategory": "informazione",
+      "evidence": "le informazioni sulla disponibilità sono conservate nell'Inventory Store",
+      "uncertainty": null
+    },
+    {
+      "id": "O-010",
+      "name": "Inventory Store",
+      "candidateCategory": "risorsa",
+      "evidence": "le informazioni sulla disponibilità sono conservate nell'Inventory Store",
+      "uncertainty": null
+    },
+    {
+      "id": "O-011",
+      "name": "Order Service",
+      "candidateCategory": "servizio",
+      "evidence": "l'Order Service riceve la richiesta contenente l'identificativo del cliente, i prodotti selezionati e le quantità richieste.",
+      "uncertainty": null
+    },
+    {
+      "id": "O-012",
+      "name": "Richiesta",
+      "candidateCategory": "messaggio",
+      "evidence": "l'Order Service riceve la richiesta contenente l'identificativo del cliente, i prodotti selezionati e le quantità richieste.",
+      "uncertainty": "Il testo dice 'la richiesta'; non la normalizzo in 'richiesta di acquisto'."
+    },
+    {
+      "id": "O-013",
+      "name": "Identificativo del cliente",
+      "candidateCategory": "dato",
+      "evidence": "la richiesta contenente l'identificativo del cliente, i prodotti selezionati e le quantità richieste",
+      "uncertainty": null
+    },
+    {
+      "id": "O-014",
+      "name": "Prodotti selezionati",
+      "candidateCategory": "insieme di prodotti",
+      "evidence": "la richiesta contenente l'identificativo del cliente, i prodotti selezionati e le quantità richieste",
+      "uncertainty": "Non è dichiarato che coincidano con l'oggetto generico Prodotti."
+    },
+    {
+      "id": "O-015",
+      "name": "Quantità richieste",
+      "candidateCategory": "dato",
+      "evidence": "la richiesta contenente l'identificativo del cliente, i prodotti selezionati e le quantità richieste",
+      "uncertainty": "Non è dichiarata l'equivalenza con le quantità ordinate."
+    },
+    {
+      "id": "O-016",
+      "name": "Inventory Service",
+      "candidateCategory": "servizio",
+      "evidence": "L'Order Service verifica la disponibilità interrogando l'Inventory Service",
+      "uncertainty": null
+    },
+    {
+      "id": "O-017",
+      "name": "Quantità disponibili",
+      "candidateCategory": "dato",
+      "evidence": "che consulta l'Inventory Store e restituisce le quantità disponibili",
+      "uncertainty": null
+    },
+    {
+      "id": "O-018",
+      "name": "Ordine",
+      "candidateCategory": "entità",
+      "evidence": "l'Order Service crea un ordine",
+      "uncertainty": null
+    },
+    {
+      "id": "O-019",
+      "name": "Order Store",
+      "candidateCategory": "risorsa",
+      "evidence": "lo registra nell'Order Store",
+      "uncertainty": null
+    },
+    {
+      "id": "O-020",
+      "name": "Payment Service",
+      "candidateCategory": "servizio",
+      "evidence": "Successivamente richiede al Payment Service l'autorizzazione del pagamento.",
+      "uncertainty": null
+    },
+    {
+      "id": "O-021",
+      "name": "Autorizzazione del pagamento",
+      "candidateCategory": "autorizzazione",
+      "evidence": "Successivamente richiede al Payment Service l'autorizzazione del pagamento.",
+      "uncertainty": null
+    },
+    {
+      "id": "O-022",
+      "name": "Payment Provider",
+      "candidateCategory": "servizio esterno",
+      "evidence": "Il Payment Service comunica con un Payment Provider esterno",
+      "uncertainty": "L'esternità è documentata nella frase, ma non nel nome dell'oggetto."
+    },
+    {
+      "id": "O-023",
+      "name": "Esito dell'autorizzazione",
+      "candidateCategory": "esito",
+      "evidence": "e restituisce l'esito dell'autorizzazione",
+      "uncertainty": null
+    },
+    {
+      "id": "O-024",
+      "name": "Quantità ordinate",
+      "candidateCategory": "dato",
+      "evidence": "l'Order Service richiede all'Inventory Service di riservare le quantità ordinate",
+      "uncertainty": "Non è dichiarata l'equivalenza con le quantità richieste."
+    },
+    {
+      "id": "O-025",
+      "name": "Riserva",
+      "candidateCategory": "operazione menzionata",
+      "evidence": "Dopo la conferma della riserva",
+      "uncertainty": "Il testo menziona una conferma della riserva, ma non descrive direttamente l'esecuzione né l'attore della riserva."
+    },
+    {
+      "id": "O-026",
+      "name": "Stato Confirmed",
+      "candidateCategory": "stato",
+      "evidence": "l'ordine assume lo stato Confirmed",
+      "uncertainty": null
+    },
+    {
+      "id": "O-027",
+      "name": "Notifica",
+      "candidateCategory": "messaggio",
+      "evidence": "viene inviata una notifica al cliente tramite il Notification Service",
+      "uncertainty": null
+    },
+    {
+      "id": "O-028",
+      "name": "Notification Service",
+      "candidateCategory": "servizio",
+      "evidence": "viene inviata una notifica al cliente tramite il Notification Service",
+      "uncertainty": null
+    },
+    {
+      "id": "O-029",
+      "name": "Stato Rejected",
+      "candidateCategory": "stato",
+      "evidence": "l'ordine viene contrassegnato come Rejected",
+      "uncertainty": null
+    },
+    {
+      "id": "O-030",
+      "name": "Organizzazione esterna",
+      "candidateCategory": "organizzazione",
+      "evidence": "Il Payment Provider è gestito da un'organizzazione esterna.",
+      "uncertainty": null
+    },
+    {
+      "id": "O-031",
+      "name": "Infrastruttura",
+      "candidateCategory": "risorsa",
+      "evidence": "ma non ne gestisce l'infrastruttura",
+      "uncertainty": "Il referente del pronome 'ne' è ambiguo: Payment Provider oppure servizio del Payment Provider."
+    },
+    {
+      "id": "O-032",
+      "name": "Servizio del Payment Provider",
+      "candidateCategory": "servizio",
+      "evidence": "La piattaforma utilizza il suo servizio",
+      "uncertainty": "Il pronome 'suo' è riferito al Payment Provider; non si introduce ownership."
+    },
+    {
+      "id": "O-033",
+      "name": "Pagamento",
+      "candidateCategory": "concetto",
+      "evidence": "il pagamento viene autorizzato",
+      "uncertainty": null
+    },
+    {
+      "id": "O-034",
+      "name": "Acquisto",
+      "candidateCategory": "concetto o operazione",
+      "evidence": "Quando un cliente conferma un acquisto",
+      "uncertainty": "Può essere letto come oggetto della conferma o come operazione; il testo non obbliga a una sola lettura."
+    },
+    {
+      "id": "O-035",
+      "name": "Conferma della riserva",
+      "candidateCategory": "evento o stato menzionato",
+      "evidence": "Dopo la conferma della riserva",
+      "uncertainty": "Attore, modalità e timing della conferma non sono specificati."
+    }
+  ],
+  "relations": [
+    {
+      "id": "R-001",
+      "description": "Il prodotto possiede identificativo, descrizione e prezzo",
+      "participants": [
+        {
+          "objectId": "O-003",
+          "role": "possessore"
+        },
+        {
+          "objectId": "O-005",
+          "role": "identificativo posseduto"
+        },
+        {
+          "objectId": "O-006",
+          "role": "descrizione posseduta"
+        },
+        {
+          "objectId": "O-007",
+          "role": "prezzo posseduto"
+        }
+      ],
+      "evidence": "Ogni prodotto possiede un identificativo, una descrizione e un prezzo.",
+      "uncertainty": null
+    },
+    {
+      "id": "R-002",
+      "description": "Il catalogo è mantenuto dal Catalog Service",
+      "participants": [
+        {
+          "objectId": "O-004",
+          "role": "catalogo mantenuto"
+        },
+        {
+          "objectId": "O-008",
+          "role": "mantenitore"
+        }
+      ],
+      "evidence": "Il catalogo viene mantenuto dal Catalog Service",
+      "uncertainty": null
+    },
+    {
+      "id": "R-003",
+      "description": "Le informazioni sulla disponibilità sono conservate nell'Inventory Store",
+      "participants": [
+        {
+          "objectId": "O-009",
+          "role": "informazioni conservate"
+        },
+        {
+          "objectId": "O-010",
+          "role": "luogo di conservazione"
+        }
+      ],
+      "evidence": "le informazioni sulla disponibilità sono conservate nell'Inventory Store",
+      "uncertainty": null
+    },
+    {
+      "id": "R-004",
+      "description": "I prodotti sono disponibili nel catalogo",
+      "participants": [
+        {
+          "objectId": "O-003",
+          "role": "prodotti disponibili"
+        },
+        {
+          "objectId": "O-004",
+          "role": "contesto di disponibilità"
+        }
+      ],
+      "evidence": "prodotti disponibili nel catalogo",
+      "uncertainty": null
+    },
+    {
+      "id": "R-005",
+      "description": "La richiesta contiene identificativo del cliente, prodotti selezionati e quantità richieste",
+      "participants": [
+        {
+          "objectId": "O-012",
+          "role": "contenitore"
+        },
+        {
+          "objectId": "O-013",
+          "role": "contenuto"
+        },
+        {
+          "objectId": "O-014",
+          "role": "contenuto"
+        },
+        {
+          "objectId": "O-015",
+          "role": "contenuto"
+        }
+      ],
+      "evidence": "la richiesta contenente l'identificativo del cliente, i prodotti selezionati e le quantità richieste",
+      "uncertainty": null
+    },
+    {
+      "id": "R-006",
+      "description": "Il Payment Provider è esterno",
+      "participants": [
+        {
+          "objectId": "O-022",
+          "role": "provider qualificato come esterno"
+        }
+      ],
+      "evidence": "un Payment Provider esterno",
+      "uncertainty": null
+    },
+    {
+      "id": "R-007",
+      "description": "Il Payment Provider è gestito da un'organizzazione esterna",
+      "participants": [
+        {
+          "objectId": "O-022",
+          "role": "gestito"
+        },
+        {
+          "objectId": "O-030",
+          "role": "gestore"
+        }
+      ],
+      "evidence": "Il Payment Provider è gestito da un'organizzazione esterna.",
+      "uncertainty": null
+    },
+    {
+      "id": "R-008",
+      "description": "La piattaforma utilizza il servizio del Payment Provider",
+      "participants": [
+        {
+          "objectId": "O-001",
+          "role": "utilizzatore"
+        },
+        {
+          "objectId": "O-032",
+          "role": "servizio utilizzato"
+        },
+        {
+          "objectId": "O-022",
+          "role": "referente pronominale del servizio"
+        }
+      ],
+      "evidence": "La piattaforma utilizza il suo servizio",
+      "uncertainty": "Il pronome 'suo' è riferito al Payment Provider; non si attribuisce ownership."
+    },
+    {
+      "id": "R-009",
+      "description": "La piattaforma NON gestisce l'infrastruttura",
+      "participants": [
+        {
+          "objectId": "O-001",
+          "role": "soggetto che non gestisce"
+        },
+        {
+          "objectId": "O-031",
+          "role": "infrastruttura non gestita"
+        }
+      ],
+      "evidence": "ma non ne gestisce l'infrastruttura",
+      "uncertainty": "Il referente di 'ne' è ambiguo: Payment Provider oppure servizio del Payment Provider."
+    },
+    {
+      "id": "R-010",
+      "description": "L'autorizzazione riguarda il pagamento",
+      "participants": [
+        {
+          "objectId": "O-021",
+          "role": "autorizzazione"
+        },
+        {
+          "objectId": "O-033",
+          "role": "pagamento oggetto dell'autorizzazione"
+        }
+      ],
+      "evidence": "l'autorizzazione del pagamento",
+      "uncertainty": null
+    }
+  ],
+  "actions": [
+    {
+      "id": "A-001",
+      "verb": "permette",
+      "actorId": "O-001",
+      "participants": [
+        {
+          "objectId": "O-002",
+          "role": "soggetto abilitato"
+        },
+        {
+          "objectId": "O-003",
+          "role": "oggetto dell'acquisto permesso"
+        },
+        {
+          "objectId": "O-004",
+          "role": "contesto di disponibilità"
+        }
+      ],
+      "resultIds": [],
+      "condition": null,
+      "evidence": "Una piattaforma di commercio elettronico permette ai clienti di acquistare prodotti disponibili nel catalogo.",
+      "uncertainty": "Capacità/permesso, non evento avvenuto."
+    },
+    {
+      "id": "A-002",
+      "verb": "acquistare",
+      "actorId": "O-002",
+      "participants": [
+        {
+          "objectId": "O-003",
+          "role": "oggetto dell'acquisto"
+        },
+        {
+          "objectId": "O-004",
+          "role": "contesto di disponibilità"
+        }
+      ],
+      "resultIds": [],
+      "condition": null,
+      "evidence": "Una piattaforma di commercio elettronico permette ai clienti di acquistare prodotti disponibili nel catalogo.",
+      "uncertainty": "Azione embedded nella capacità 'permette'; non si afferma un acquisto effettivo."
+    },
+    {
+      "id": "A-003",
+      "verb": "conferma",
+      "actorId": "O-002",
+      "participants": [
+        {
+          "objectId": "O-034",
+          "role": "acquisto confermato"
+        }
+      ],
+      "resultIds": [],
+      "condition": null,
+      "evidence": "Quando un cliente conferma un acquisto",
+      "uncertainty": "Il testo usa 'acquisto'; non identificarlo con la richiesta."
+    },
+    {
+      "id": "A-004",
+      "verb": "riceve",
+      "actorId": "O-011",
+      "participants": [
+        {
+          "objectId": "O-012",
+          "role": "richiesta ricevuta"
+        }
+      ],
+      "resultIds": [],
+      "condition": "Quando un cliente conferma un acquisto",
+      "evidence": "l'Order Service riceve la richiesta contenente l'identificativo del cliente, i prodotti selezionati e le quantità richieste.",
+      "uncertainty": "Il mittente della richiesta non è identificato."
+    },
+    {
+      "id": "A-005",
+      "verb": "verifica",
+      "actorId": "O-011",
+      "participants": [
+        {
+          "objectId": "O-009",
+          "role": "disponibilità verificata"
+        }
+      ],
+      "resultIds": [],
+      "condition": null,
+      "evidence": "L'Order Service verifica la disponibilità interrogando l'Inventory Service",
+      "uncertainty": "L'identificazione di 'disponibilità' con 'informazioni sulla disponibilità' è un'interpretazione, ma supportata dal contesto."
+    },
+    {
+      "id": "A-006",
+      "verb": "interroga",
+      "actorId": "O-011",
+      "participants": [
+        {
+          "objectId": "O-016",
+          "role": "servizio interrogato"
+        }
+      ],
+      "resultIds": [],
+      "condition": null,
+      "evidence": "L'Order Service verifica la disponibilità interrogando l'Inventory Service",
+      "uncertainty": null
+    },
+    {
+      "id": "A-007",
+      "verb": "consulta",
+      "actorId": "O-016",
+      "participants": [
+        {
+          "objectId": "O-010",
+          "role": "risorsa consultata"
+        }
+      ],
+      "resultIds": [],
+      "condition": null,
+      "evidence": "che consulta l'Inventory Store",
+      "uncertainty": null
+    },
+    {
+      "id": "A-008",
+      "verb": "restituisce",
+      "actorId": "O-016",
+      "participants": [
+        {
+          "objectId": "O-017",
+          "role": "quantità restituite"
+        }
+      ],
+      "resultIds": [],
+      "condition": null,
+      "evidence": "restituisce le quantità disponibili",
+      "uncertainty": "Il destinatario della restituzione non è espresso."
+    },
+    {
+      "id": "A-009",
+      "verb": "crea",
+      "actorId": "O-011",
+      "participants": [],
+      "resultIds": [
+        "O-018"
+      ],
+      "condition": "Se tutti i prodotti richiesti sono disponibili",
+      "evidence": "Se tutti i prodotti richiesti sono disponibili, l'Order Service crea un ordine",
+      "uncertainty": null
+    },
+    {
+      "id": "A-010",
+      "verb": "registra",
+      "actorId": "O-011",
+      "participants": [
+        {
+          "objectId": "O-018",
+          "role": "ordine registrato"
+        },
+        {
+          "objectId": "O-019",
+          "role": "luogo di registrazione"
+        }
+      ],
+      "resultIds": [],
+      "condition": "Se tutti i prodotti richiesti sono disponibili",
+      "evidence": "e lo registra nell'Order Store",
+      "uncertainty": null
+    },
+    {
+      "id": "A-011",
+      "verb": "richiede",
+      "actorId": "O-011",
+      "participants": [
+        {
+          "objectId": "O-020",
+          "role": "destinatario della richiesta"
+        },
+        {
+          "objectId": "O-021",
+          "role": "autorizzazione richiesta"
+        }
+      ],
+      "resultIds": [],
+      "condition": "Successivamente [alla registrazione dell'ordine]",
+      "evidence": "Successivamente richiede al Payment Service l'autorizzazione del pagamento.",
+      "uncertainty": "La qualificazione temporale è relativa; il testo non specifica un intervallo."
+    },
+    {
+      "id": "A-012",
+      "verb": "comunica",
+      "actorId": "O-020",
+      "participants": [
+        {
+          "objectId": "O-022",
+          "role": "interlocutore"
+        }
+      ],
+      "resultIds": [],
+      "condition": null,
+      "evidence": "Il Payment Service comunica con un Payment Provider esterno",
+      "uncertainty": null
+    },
+    {
+      "id": "A-013",
+      "verb": "restituisce",
+      "actorId": "O-020",
+      "participants": [
+        {
+          "objectId": "O-023",
+          "role": "esito restituito"
+        }
+      ],
+      "resultIds": [],
+      "condition": null,
+      "evidence": "restituisce l'esito dell'autorizzazione",
+      "uncertainty": "Il destinatario dell'esito non è espresso."
+    },
+    {
+      "id": "A-014",
+      "verb": "viene autorizzato",
+      "actorId": null,
+      "participants": [
+        {
+          "objectId": "O-033",
+          "role": "pagamento autorizzato"
+        }
+      ],
+      "resultIds": [],
+      "condition": null,
+      "evidence": "il pagamento viene autorizzato",
+      "uncertainty": "L'attore dell'autorizzazione non è identificato."
+    },
+    {
+      "id": "A-015",
+      "verb": "richiede",
+      "actorId": "O-011",
+      "participants": [
+        {
+          "objectId": "O-016",
+          "role": "destinatario della richiesta"
+        },
+        {
+          "objectId": "O-024",
+          "role": "quantità da riservare"
+        }
+      ],
+      "resultIds": [],
+      "condition": "Quando il pagamento viene autorizzato",
+      "evidence": "l'Order Service richiede all'Inventory Service di riservare le quantità ordinate",
+      "uncertainty": "Richiesta di riservare, non esecuzione confermata della riserva."
+    },
+    {
+      "id": "A-016",
+      "verb": "assume",
+      "actorId": "O-018",
+      "participants": [
+        {
+          "objectId": "O-026",
+          "role": "stato assunto"
+        }
+      ],
+      "resultIds": [],
+      "condition": "Dopo la conferma della riserva",
+      "evidence": "l'ordine assume lo stato Confirmed",
+      "uncertainty": "La conferma della riserva è menzionata; attore e modalità non sono specificati."
+    },
+    {
+      "id": "A-017",
+      "verb": "viene inviata",
+      "actorId": null,
+      "participants": [
+        {
+          "objectId": "O-027",
+          "role": "notifica inviata"
+        },
+        {
+          "objectId": "O-002",
+          "role": "destinatario"
+        },
+        {
+          "objectId": "O-028",
+          "role": "mezzo di invio"
+        }
+      ],
+      "resultIds": [],
+      "condition": "Dopo la conferma della riserva",
+      "evidence": "viene inviata una notifica al cliente tramite il Notification Service",
+      "uncertainty": "Il mittente non è identificato; non attribuirlo automaticamente al Notification Service."
+    },
+    {
+      "id": "A-018",
+      "verb": "viene contrassegnato",
+      "actorId": null,
+      "participants": [
+        {
+          "objectId": "O-018",
+          "role": "ordine contrassegnato"
+        },
+        {
+          "objectId": "O-029",
+          "role": "stato assegnato"
+        }
+      ],
+      "resultIds": [],
+      "condition": "Se il pagamento non viene autorizzato",
+      "evidence": "l'ordine viene contrassegnato come Rejected",
+      "uncertainty": "L'attore che contrassegna l'ordine non è identificato."
+    },
+    {
+      "id": "A-019",
+      "verb": "non viene autorizzato",
+      "actorId": null,
+      "participants": [
+        {
+          "objectId": "O-033",
+          "role": "pagamento non autorizzato"
+        }
+      ],
+      "resultIds": [],
+      "condition": null,
+      "evidence": "Se il pagamento non viene autorizzato",
+      "uncertainty": "Condizione negativa menzionata; attore non identificato."
+    },
+    {
+      "id": "A-020",
+      "verb": "viene rifiutata",
+      "actorId": null,
+      "participants": [
+        {
+          "objectId": "O-012",
+          "role": "richiesta rifiutata"
+        }
+      ],
+      "resultIds": [],
+      "condition": "Se la disponibilità è insufficiente; prima di contattare il Payment Service",
+      "evidence": "la richiesta viene rifiutata prima di contattare il Payment Service",
+      "uncertainty": "L'attore del rifiuto non è identificato. Il testo non afferma che il Payment Service sia stato contattato o non contattato."
+    },
+    {
+      "id": "A-021",
+      "verb": "contattare",
+      "actorId": null,
+      "participants": [
+        {
+          "objectId": "O-020",
+          "role": "servizio menzionato come destinazione di un eventuale contatto"
+        }
+      ],
+      "resultIds": [],
+      "condition": "Menicato in 'prima di contattare'; non si afferma esecuzione",
+      "evidence": "prima di contattare il Payment Service",
+      "uncertainty": "Azione menzionata solo come limite temporale; attore ed esecuzione non sono specificati."
+    }
+  ],
+  "ambiguities": [
+    {
+      "description": "Il protocollo di comunicazione utilizzato non è specificato dalla documentazione.",
+      "evidence": "La documentazione non specifica il protocollo di comunicazione utilizzato",
+      "possibleInterpretations": [
+        "Protocollo non specificato dal testo",
+        "Informazione non determinabile"
+      ]
+    },
+    {
+      "description": "Il meccanismo di annullamento delle autorizzazioni di pagamento non è specificato dalla documentazione.",
+      "evidence": "né il meccanismo di annullamento delle autorizzazioni di pagamento",
+      "possibleInterpretations": [
+        "Meccanismo non specificato dal testo",
+        "Informazione non determinabile"
+      ]
+    },
+    {
+      "description": "Il soggetto mittente della notifica non è identificato.",
+      "evidence": "viene inviata una notifica al cliente tramite il Notification Service",
+      "possibleInterpretations": [
+        "Il Notification Service invia la notifica",
+        "Un altro componente invia la notifica tramite il Notification Service",
+        "Il mittente non è determinabile dal testo"
+      ]
+    },
+    {
+      "description": "Il mittente della richiesta ricevuta dall'Order Service non è identificato.",
+      "evidence": "l'Order Service riceve la richiesta contenente",
+      "possibleInterpretations": [
+        "La richiesta proviene dal cliente",
+        "La richiesta proviene da un componente non nominato",
+        "Il mittente non è determinabile dal testo"
+      ]
+    },
+    {
+      "description": "Il destinatario delle quantità disponibili restituite dall'Inventory Service non è espresso.",
+      "evidence": "restituisce le quantità disponibili",
+      "possibleInterpretations": [
+        "Le quantità sono restituite all'Order Service",
+        "Il destinatario non è determinabile dal testo"
+      ]
+    },
+    {
+      "description": "Il destinatario dell'esito dell'autorizzazione restituito dal Payment Service non è espresso.",
+      "evidence": "restituisce l'esito dell'autorizzazione",
+      "possibleInterpretations": [
+        "L'esito è restituito all'Order Service",
+        "Il destinatario non è determinabile dal testo"
+      ]
+    },
+    {
+      "description": "L'attore che autorizza il pagamento non è identificato.",
+      "evidence": "Quando il pagamento viene autorizzato",
+      "possibleInterpretations": [
+        "L'autorizzazione è attribuibile al Payment Provider",
+        "L'autorizzazione è attribuibile al Payment Service",
+        "L'attore non è determinabile dal testo"
+      ]
+    },
+    {
+      "description": "L'attore che contrassegna l'ordine come Rejected non è identificato.",
+      "evidence": "l'ordine viene contrassegnato come Rejected",
+      "possibleInterpretations": [
+        "L'Order Service contrassegna l'ordine",
+        "Un altro componente contrassegna l'ordine",
+        "L'attore non è determinabile dal testo"
+      ]
+    },
+    {
+      "description": "L'attore che rifiuta la richiesta non è identificato.",
+      "evidence": "la richiesta viene rifiutata prima di contattare il Payment Service",
+      "possibleInterpretations": [
+        "L'Order Service rifiuta la richiesta",
+        "Un altro componente rifiuta la richiesta",
+        "L'attore non è determinabile dal testo"
+      ]
+    },
+    {
+      "description": "Non è dichiarato che le quantità richieste coincidano con le quantità ordinate.",
+      "evidence": "di riservare le quantità ordinate",
+      "possibleInterpretations": [
+        "Le quantità ordinate coincidono con le quantità richieste",
+        "Le quantità ordinate sono un referente distinto",
+        "L'equivalenza non è determinabile dal testo"
+      ]
+    },
+    {
+      "description": "Il referente del pronome 'ne' in 'non ne gestisce l'infrastruttura' è ambiguo.",
+      "evidence": "ma non ne gestisce l'infrastruttura",
+      "possibleInterpretations": [
+        "Il referente è il Payment Provider",
+        "Il referente è il servizio del Payment Provider",
+        "Il referente non è determinabile con certezza"
+      ]
+    },
+    {
+      "description": "La conferma della riserva è menzionata, ma attore, modalità e timing non sono specificati.",
+      "evidence": "Dopo la conferma della riserva",
+      "possibleInterpretations": [
+        "La conferma proviene dall'Inventory Service",
+        "La conferma proviene da un altro soggetto o meccanismo non documentato",
+        "La conferma non è ulteriormente determinabile dal testo"
+      ]
+    }
+  ]
+}
+change_log
+json
+{
+  "change_log": [
+    {
+      "changeId": "C-001",
+      "newV2RecordId": "A-001",
+      "changeType": "ADDED",
+      "relatedV1": [
+        "QWEN:actions:A-001",
+        "MISTRAL:actions:A-001"
+      ],
+      "reason": "Aggiunta esplicita della capacità/permesso 'permette' della piattaforma, distinta dall'evento di acquisto.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Qwen e Mistral rappresentano parte della prima frase; la riformulazione come capacità/permesso è una rianalisi autonoma."
+    },
+    {
+      "changeId": "C-002",
+      "newV2RecordId": "A-002",
+      "changeType": "ADDED",
+      "relatedV1": [
+        "QWEN:actions:A-001",
+        "MISTRAL:actions:A-002"
+      ],
+      "reason": "Separata l'azione 'acquistare' dalla capacità 'permette', evitando di trattarla come evento effettivo.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Qwen e Mistral includono 'acquistare'; V2 la mantiene come azione embedded non effettiva."
+    },
+    {
+      "changeId": "C-003",
+      "newV2RecordId": "O-012",
+      "changeType": "CORRECTED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-012",
+        "MISTRAL:objects:O-012",
+        "QWEN:objects:O-013"
+      ],
+      "reason": "Mantenuto il nome 'Richiesta' senza normalizzarlo in 'Richiesta di acquisto'; l'incertezza chiarisce la scelta.",
+      "contributionAttribution": "OWN_REANALYSIS",
+      "attributionExplanation": "La fonte dice 'la richiesta'; la normalizzazione di Qwen è più forte."
+    },
+    {
+      "changeId": "C-004",
+      "newV2RecordId": "O-014",
+      "changeType": "CORRECTED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-014",
+        "QWEN:objects:O-015",
+        "MISTRAL:relations:R-005"
+      ],
+      "reason": "Mantenuto 'Prodotti selezionati' distinto dall'oggetto generico 'Prodotti', con incertezza sull'identità.",
+      "contributionAttribution": "INFORMED_BY_MISTRAL",
+      "attributionExplanation": "Mistral segnala l'incertezza, ma V2 evita il merge."
+    },
+    {
+      "changeId": "C-005",
+      "newV2RecordId": "O-015",
+      "changeType": "CORRECTED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-015",
+        "QWEN:objects:O-016",
+        "MISTRAL:objects:O-014"
+      ],
+      "reason": "Aggiunta incertezza esplicita: le quantità richieste non sono dichiarate equivalenti alle quantità ordinate.",
+      "contributionAttribution": "INFORMED_BY_MISTRAL",
+      "attributionExplanation": "Mistral segnala l'incertezza in O-031; V2 la sposta anche sul referente delle quantità richieste."
+    },
+    {
+      "changeId": "C-006",
+      "newV2RecordId": "O-022",
+      "changeType": "CORRECTED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-022",
+        "QWEN:objects:O-022",
+        "MISTRAL:objects:O-022"
+      ],
+      "reason": "Nome 'Payment Provider' senza incorporare 'esterno'; l'esternità resta nella relazione R-006.",
+      "contributionAttribution": "INFORMED_BY_QWEN",
+      "attributionExplanation": "Qwen usa già 'Payment Provider'; V2 evita duplicazione con la qualifica esterna."
+    },
+    {
+      "changeId": "C-007",
+      "newV2RecordId": "O-024",
+      "changeType": "ADDED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-024",
+        "MISTRAL:objects:O-031"
+      ],
+      "reason": "Mantenuto un oggetto distinto 'Quantità ordinate' con incertezza sull'equivalenza con le quantità richieste.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "DeepSeek e Mistral hanno entrambi il referente; V2 esplicita l'incertezza."
+    },
+    {
+      "changeId": "C-008",
+      "newV2RecordId": "O-025",
+      "changeType": "ADDED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-025"
+      ],
+      "reason": "Rappresentata 'Riserva' come operazione menzionata, con incertezza su esecuzione e attore.",
+      "contributionAttribution": "INFORMED_BY_DEEPSEEK",
+      "attributionExplanation": "DeepSeek include 'Riserva'; V2 ne limita il valore ontologico."
+    },
+    {
+      "changeId": "C-009",
+      "newV2RecordId": "O-035",
+      "changeType": "ADDED",
+      "relatedV1": [],
+      "reason": "Aggiunto referente 'Conferma della riserva', menzionato come condizione ma non factificato nei V1.",
+      "contributionAttribution": "OWN_REANALYSIS",
+      "attributionExplanation": "Nessun V1 lo rappresenta come referente; la fonte lo menziona esplicitamente."
+    },
+    {
+      "changeId": "C-010",
+      "newV2RecordId": "R-004",
+      "changeType": "ADDED",
+      "relatedV1": [
+        "QWEN:relations:R-001",
+        "MISTRAL:relations:R-004"
+      ],
+      "reason": "Aggiunta relazione 'prodotti disponibili nel catalogo' dalla prima frase.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Qwen e Mistral estraggono questa relazione; V2 la mantiene separata dalla capacità."
+    },
+    {
+      "changeId": "C-011",
+      "newV2RecordId": "R-006",
+      "changeType": "ADDED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-022"
+      ],
+      "reason": "Separata la qualifica 'esterno' del Payment Provider dalla denominazione dell'oggetto.",
+      "contributionAttribution": "OWN_REANALYSIS",
+      "attributionExplanation": "DeepSeek incorpora 'esterno' nel nome; V2 lo tratta come fatto relazionale."
+    },
+    {
+      "changeId": "C-012",
+      "newV2RecordId": "R-008",
+      "changeType": "CORRECTED",
+      "relatedV1": [
+        "DEEPSEEK:relations:R-006",
+        "QWEN:relations:R-012",
+        "MISTRAL:relations:R-007"
+      ],
+      "reason": "Rimosso il ruolo 'titolare' e chiarito che 'suo' è un riferimento pronominale, non ownership.",
+      "contributionAttribution": "OWN_REANALYSIS",
+      "attributionExplanation": "La fonte non autorizza a parlare di titolarità."
+    },
+    {
+      "changeId": "C-013",
+      "newV2RecordId": "R-009",
+      "changeType": "CORRECTED",
+      "relatedV1": [
+        "DEEPSEEK:relations:R-007",
+        "QWEN:relations:R-013",
+        "MISTRAL:relations:R-008"
+      ],
+      "reason": "Mantenuta la negazione esplicita, ma aggiunta incertezza sul referente di 'ne'.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Tutti i V1 hanno la negazione; V2 corregge la risoluzione troppo netta del pronome."
+    },
+    {
+      "changeId": "C-014",
+      "newV2RecordId": "R-010",
+      "changeType": "ADDED",
+      "relatedV1": [
+        "MISTRAL:relations:R-009"
+      ],
+      "reason": "Aggiunta relazione tra autorizzazione e pagamento.",
+      "contributionAttribution": "INFORMED_BY_MISTRAL",
+      "attributionExplanation": "Mistral rappresenta questa relazione; V2 la include."
+    },
+    {
+      "changeId": "C-015",
+      "newV2RecordId": "A-004",
+      "changeType": "CORRECTED",
+      "relatedV1": [
+        "DEEPSEEK:actions:A-002",
+        "QWEN:actions:A-005",
+        "MISTRAL:actions:A-004"
+      ],
+      "reason": "Aggiunta condizione trigger 'Quando un cliente conferma un acquisto' e incertezza sul mittente della richiesta.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Qwen e Mistral riportano la condizione; V2 uniforma e aggiunge incertezza."
+    },
+    {
+      "changeId": "C-016",
+      "newV2RecordId": "A-010",
+      "changeType": "CORRECTED",
+      "relatedV1": [
+        "DEEPSEEK:actions:A-007",
+        "QWEN:actions:A-011",
+        "MISTRAL:actions:A-010"
+      ],
+      "reason": "Aggiunta la condizione 'Se tutti i prodotti richiesti sono disponibili' anche alla registrazione dell'ordine.",
+      "contributionAttribution": "INFORMED_BY_QWEN",
+      "attributionExplanation": "Qwen riporta la condizione su A-011; V2 la applica anche a registra."
+    },
+    {
+      "changeId": "C-017",
+      "newV2RecordId": "A-011",
+      "changeType": "CORRECTED",
+      "relatedV1": [
+        "DEEPSEEK:actions:A-008",
+        "QWEN:actions:A-012",
+        "MISTRAL:actions:A-011"
+      ],
+      "reason": "Aggiunta qualificazione temporale 'Successivamente [alla registrazione dell'ordine]'.",
+      "contributionAttribution": "INFORMED_BY_QWEN",
+      "attributionExplanation": "Qwen esplicita 'Successivamente alla registrazione'; V2 la mantiene come condizione relativa."
+    },
+    {
+      "changeId": "C-018",
+      "newV2RecordId": "A-014",
+      "changeType": "CORRECTED",
+      "relatedV1": [
+        "DEEPSEEK:actions:A-011"
+      ],
+      "reason": "Mantenuta l'azione passiva con attore null e incertezza sull'attore dell'autorizzazione.",
+      "contributionAttribution": "INFORMED_BY_DEEPSEEK",
+      "attributionExplanation": "DeepSeek ha l'azione passiva; V2 esplicita l'incertezza."
+    },
+    {
+      "changeId": "C-019",
+      "newV2RecordId": "A-015",
+      "changeType": "CORRECTED",
+      "relatedV1": [
+        "DEEPSEEK:actions:A-012",
+        "QWEN:actions:A-015",
+        "MISTRAL:actions:A-014"
+      ],
+      "reason": "Corretto l'oggetto: 'quantità ordinate', non 'quantità richieste'; aggiunta incertezza su richiesta vs esecuzione.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "DeepSeek e Mistral usano quantità ordinate; Qwen le confonde con le richieste. V2 riallinea alla fonte."
+    },
+    {
+      "changeId": "C-020",
+      "newV2RecordId": "A-016",
+      "changeType": "CORRECTED",
+      "relatedV1": [
+        "DEEPSEEK:actions:A-013",
+        "QWEN:actions:A-017",
+        "MISTRAL:actions:A-015"
+      ],
+      "reason": "Aggiunta incertezza su attore/modalità della conferma della riserva, mantenendo la condizione 'Dopo la conferma della riserva'.",
+      "contributionAttribution": "INFORMED_BY_MISTRAL",
+      "attributionExplanation": "Mistral segnala l'incertezza sulla conferma; V2 la esplicita."
+    },
+    {
+      "changeId": "C-021",
+      "newV2RecordId": "A-017",
+      "changeType": "CORRECTED",
+      "relatedV1": [
+        "DEEPSEEK:actions:A-014",
+        "QWEN:actions:A-018",
+        "MISTRAL:actions:A-016"
+      ],
+      "reason": "Mantenuto attore null e aggiunta incertezza esplicita: il Notification Service è mezzo, non necessariamente mittente.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Tutti i V1 hanno attore null; V2 conserva e chiarisce l'incertezza."
+    },
+    {
+      "changeId": "C-022",
+      "newV2RecordId": "A-018",
+      "changeType": "CORRECTED",
+      "relatedV1": [
+        "DEEPSEEK:actions:A-015",
+        "QWEN:actions:A-019",
+        "MISTRAL:actions:A-017"
+      ],
+      "reason": "Mantenuta azione passiva e condizione negativa; aggiunta incertezza sull'attore.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Tutti i V1 rappresentano la contrassegnazione; V2 uniforma l'incertezza."
+    },
+    {
+      "changeId": "C-023",
+      "newV2RecordId": "A-020",
+      "changeType": "CORRECTED",
+      "relatedV1": [
+        "DEEPSEEK:actions:A-016",
+        "QWEN:actions:A-020",
+        "MISTRAL:actions:A-018"
+      ],
+      "reason": "Integrata la condizione 'prima di contattare il Payment Service' senza affermare esecuzione o non esecuzione del contatto.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Tutti riportano l'evidenza; V2 esplicita il limite modale."
+    },
+    {
+      "changeId": "C-024",
+      "newV2RecordId": "A-021",
+      "changeType": "ADDED",
+      "relatedV1": [
+        "DEEPSEEK:actions:A-016",
+        "QWEN:actions:A-020",
+        "MISTRAL:actions:A-018"
+      ],
+      "reason": "Aggiunta azione 'contattare' come menzione condizionale, non come evento avvenuto.",
+      "contributionAttribution": "OWN_REANALYSIS",
+      "attributionExplanation": "La fonte menziona il contatto solo in 'prima di contattare'; nessun V1 lo factifica separatamente."
+    },
+    {
+      "changeId": "C-025",
+      "newV2RecordId": "ambiguities[0]",
+      "changeType": "CORRECTED",
+      "relatedV1": [
+        "QWEN:ambiguities:ambiguities[0]",
+        "DEEPSEEK:ambiguities:ambiguities[0]",
+        "MISTRAL:ambiguities:ambiguities[3]"
+      ],
+      "reason": "Rimosse interpretazioni tecniche specifiche del protocollo; mantenuta la lacuna come non determinabile.",
+      "contributionAttribution": "INFORMED_BY_QWEN",
+      "attributionExplanation": "Qwen elencava HTTP/REST, gRPC, AMQP/Kafka; V2 li elimina perché non supportati."
+    },
+    {
+      "changeId": "C-026",
+      "newV2RecordId": "ambiguities[9]",
+      "changeType": "ADDED",
+      "relatedV1": [
+        "MISTRAL:ambiguities:ambiguities[0]",
+        "MISTRAL:objects:O-031"
+      ],
+      "reason": "Aggiunta ambiguità esplicita sull'equivalenza tra quantità richieste e ordinate.",
+      "contributionAttribution": "INFORMED_BY_MISTRAL",
+      "attributionExplanation": "Mistral la segnala in O-031; V2 la promuove ad ambiguità."
+    },
+    {
+      "changeId": "C-027",
+      "newV2RecordId": "ambiguities[10]",
+      "changeType": "ADDED",
+      "relatedV1": [
+        "DEEPSEEK:relations:R-007",
+        "QWEN:relations:R-013",
+        "MISTRAL:relations:R-008"
+      ],
+      "reason": "Aggiunta ambiguità sul referente del pronome 'ne'.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "DeepSeek segnala l'incertezza; Qwen/Mistral la risolvono troppo nettamente. V2 la conserva."
+    },
+    {
+      "changeId": "C-028",
+      "newV2RecordId": "ambiguities[11]",
+      "changeType": "ADDED",
+      "relatedV1": [
+        "MISTRAL:ambiguities:ambiguities[2]"
+      ],
+      "reason": "Aggiunta ambiguità sulla conferma della riserva, includendo attore, modalità e timing.",
+      "contributionAttribution": "INFORMED_BY_MISTRAL",
+      "attributionExplanation": "Mistral segnala chi/cosa conferma la riserva; V2 amplia a modalità e timing."
+    }
+  ]
+}
+Riepilogo
+Principali miglioramenti: V2 separa capacità e evento nella prima frase; mantiene distinte quantità richieste e quantità ordinate; corregge la confusione di Qwen tra acquisto e richiesta; non attribuisce esecuzione certa alla riserva; conserva le negazioni esplicite e le incertezze su mittenti, destinatari, attori passivi e pronomi ambigui.
+
+Possibili regressioni: l'estrazione V2 è più prudente e granulare, quindi alcuni confronti automatici potrebbero richiedere normalizzazione per accettare rappresentazioni aggregate equivalenti. Inoltre, l'aggiunta di molte ambiguità esplicite può aumentare i falsi disallineamenti se il valutatore non tratta le ambiguità come informazioni di supporto e non come fatti positivi.

@@ -1,0 +1,54 @@
+{
+  "review_findings": [
+    {
+      "findingId": "F-001",
+      "targetModel": "QWEN",
+      "targetCollection": "ambiguities",
+      "targetRecordId": "ambiguities[0]",
+      "issueType": "UNSUPPORTED",
+      "explanation": "L'ambiguità elenca protocolli specifici (HTTP/REST, gRPC, AMQP, Kafka) come possibili interpretazioni. Questo viola la regola di non dedurre protocolli non documentati. Il testo afferma solo che non è specificato.",
+      "exactSourceEvidence": "La documentazione non specifica il protocollo di comunicazione utilizzato",
+      "suggestedCorrection": "Limitare le interpretazioni a: 'Un protocollo esiste ma non è documentato' o 'L'informazione non è determinabile dal testo', senza elencare tecnologie specifiche."
+    },
+    {
+      "findingId": "F-002",
+      "targetModel": "QWEN",
+      "targetCollection": "actions",
+      "targetRecordId": "A-016",
+      "issueType": "MODALITY",
+      "explanation": "L'azione 'riservare' è modellata come eseguita dall'Inventory Service. Tuttavia, il testo descrive esplicitamente solo la 'richiesta' di riservare e la successiva 'conferma della riserva'. Modellare l'esecuzione diretta come fatto certo è un'inferenza non supportata.",
+      "exactSourceEvidence": "l'Order Service richiede all'Inventory Service di riservare le quantità ordinate. Dopo la conferma della riserva...",
+      "suggestedCorrection": "Mantenere l'azione come 'richiede' (A-015 in Qwen V1) e non creare un'azione distinta 'riservare' come evento avvenuto, oppure marcarla con incertezza sull'esecuzione."
+    },
+    {
+      "findingId": "F-003",
+      "targetModel": "DEEPSEEK",
+      "targetCollection": "actions",
+      "targetRecordId": "A-016",
+      "issueType": "CONDITION",
+      "explanation": "L'azione 'viene rifiutata' omette la condizione temporale esplicita 'prima di contattare il Payment Service', che è un dettaglio cruciale del flusso descritto.",
+      "exactSourceEvidence": "Se la disponibilità è insufficiente, la richiesta viene rifiutata prima di contattare il Payment Service.",
+      "suggestedCorrection": "Aggiungere 'prima di contattare il Payment Service' al campo condition."
+    },
+    {
+      "findingId": "F-004",
+      "targetModel": "MISTRAL",
+      "targetCollection": "relations",
+      "targetRecordId": "R-005",
+      "issueType": "IDENTITY",
+      "explanation": "La relazione fonde 'prodotti selezionati' con l'entità generica 'Prodotti' (O-003). Sebbene correlati, 'prodotti selezionati' è un sottoinsieme specifico menzionato come contenuto della richiesta e meriterebbe un riferimento distinto o una qualifica più precisa per non perdere granularità.",
+      "exactSourceEvidence": "la richiesta contenente l'identificativo del cliente, i prodotti selezionati e le quantità richieste",
+      "suggestedCorrection": "Utilizzare un oggetto distinto per 'Prodotti selezionati' (come fatto correttamente da DeepSeek e Qwen) o specificare nel ruolo che si tratta di un sottoinsieme."
+    },
+    {
+      "findingId": "F-005",
+      "targetModel": "DEEPSEEK",
+      "targetCollection": "actions",
+      "targetRecordId": "A-006",
+      "issueType": "OTHER",
+      "explanation": "L'azione 'crea' ha l'array `participants` vuoto, ma `resultIds` contiene 'O-018'. Per coerenza strutturale e semantica, l'oggetto creato dovrebbe essere riferito anche nei partecipanti o la struttura dovrebbe essere uniformata.",
+      "exactSourceEvidence": "l'Order Service crea un ordine",
+      "suggestedCorrection": "Aggiungere O-018 con ruolo 'oggetto creato' nell'array participants."
+    }
+  ]
+}

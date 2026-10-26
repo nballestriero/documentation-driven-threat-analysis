@@ -1,0 +1,916 @@
+{
+  "change_log": [
+    {
+      "changeId": "C-001",
+      "newV2RecordId": "O-001",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-001",
+        "QWEN:objects:O-001",
+        "MISTRAL:objects:O-001"
+      ],
+      "reason": "Riconfermato direttamente dal testo fonte.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza di tutti i modelli; verificato indipendentemente."
+    },
+    {
+      "changeId": "C-002",
+      "newV2RecordId": "O-002",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-002",
+        "QWEN:objects:O-002",
+        "MISTRAL:objects:O-002"
+      ],
+      "reason": "Riconfermato direttamente dal testo fonte.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza di tutti i modelli."
+    },
+    {
+      "changeId": "C-003",
+      "newV2RecordId": "O-003",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-003",
+        "QWEN:objects:O-003",
+        "MISTRAL:objects:O-003"
+      ],
+      "reason": "Riconfermato direttamente dal testo fonte.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza di tutti i modelli."
+    },
+    {
+      "changeId": "C-004",
+      "newV2RecordId": "O-004",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-004",
+        "QWEN:objects:O-004",
+        "MISTRAL:objects:O-004"
+      ],
+      "reason": "Riconfermato direttamente dal testo fonte.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza di tutti i modelli."
+    },
+    {
+      "changeId": "C-005",
+      "newV2RecordId": "O-005",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-005",
+        "QWEN:objects:O-005",
+        "MISTRAL:objects:O-005"
+      ],
+      "reason": "Riconfermato direttamente dal testo fonte.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza di tutti i modelli."
+    },
+    {
+      "changeId": "C-006",
+      "newV2RecordId": "O-006",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-006",
+        "QWEN:objects:O-006",
+        "MISTRAL:objects:O-006"
+      ],
+      "reason": "Riconfermato direttamente dal testo fonte.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza di tutti i modelli."
+    },
+    {
+      "changeId": "C-007",
+      "newV2RecordId": "O-007",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-007",
+        "QWEN:objects:O-007",
+        "MISTRAL:objects:O-007"
+      ],
+      "reason": "Riconfermato direttamente dal testo fonte.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza di tutti i modelli."
+    },
+    {
+      "changeId": "C-008",
+      "newV2RecordId": "O-008",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-008",
+        "QWEN:objects:O-008",
+        "MISTRAL:objects:O-008"
+      ],
+      "reason": "Riconfermato direttamente dal testo fonte.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza di tutti i modelli."
+    },
+    {
+      "changeId": "C-009",
+      "newV2RecordId": "O-009",
+      "changeType": "CORRECTED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-009",
+        "QWEN:objects:O-010",
+        "MISTRAL:objects:O-009"
+      ],
+      "reason": "Nome allineato all'evidenza ('Informazioni sulla disponibilità', non 'Disponibilità' come in DeepSeek) e aggiunta uncertainty sulla non coincidenza dichiarata con 'la disponibilità' verificata.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Riclassificazione propria a partire dal confronto tra le tre formulazioni."
+    },
+    {
+      "changeId": "C-010",
+      "newV2RecordId": "O-010",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-010",
+        "QWEN:objects:O-009",
+        "MISTRAL:objects:O-010"
+      ],
+      "reason": "Riconfermato direttamente dal testo fonte.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza di tutti i modelli."
+    },
+    {
+      "changeId": "C-011",
+      "newV2RecordId": "O-011",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-011",
+        "QWEN:objects:O-012",
+        "MISTRAL:objects:O-011"
+      ],
+      "reason": "Riconfermato direttamente dal testo fonte.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza di tutti i modelli."
+    },
+    {
+      "changeId": "C-012",
+      "newV2RecordId": "O-012",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-012",
+        "QWEN:objects:O-013",
+        "MISTRAL:objects:O-012"
+      ],
+      "reason": "Riconfermato con nome letterale 'Richiesta'; scartata la normalizzazione 'Richiesta di acquisto' di Qwen non presente nel testo. Aggiunta uncertainty sul mittente non indicato.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Scelta di denominazione propria, informata dal confronto."
+    },
+    {
+      "changeId": "C-013",
+      "newV2RecordId": "O-013",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-013",
+        "QWEN:objects:O-014",
+        "MISTRAL:objects:O-013"
+      ],
+      "reason": "Riconfermato direttamente dal testo fonte.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza di tutti i modelli."
+    },
+    {
+      "changeId": "C-014",
+      "newV2RecordId": "O-014",
+      "changeType": "ADDED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-014",
+        "QWEN:objects:O-015"
+      ],
+      "reason": "Aggiunto oggetto distinto 'Prodotti selezionati': in V1 (Mistral) era fuso in 'Prodotti' con sola nota; mantenerlo separato riduce le fusioni improprie. Uncertainty sull'identità con i prodotti del catalogo.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Pratica di DeepSeek e Qwen adottata dopo rianalisi propria."
+    },
+    {
+      "changeId": "C-015",
+      "newV2RecordId": "O-015",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-015",
+        "QWEN:objects:O-016",
+        "MISTRAL:objects:O-014"
+      ],
+      "reason": "Riconfermato direttamente dal testo fonte.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza di tutti i modelli."
+    },
+    {
+      "changeId": "C-016",
+      "newV2RecordId": "O-016",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-016",
+        "QWEN:objects:O-017",
+        "MISTRAL:objects:O-015"
+      ],
+      "reason": "Riconfermato direttamente dal testo fonte.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza di tutti i modelli."
+    },
+    {
+      "changeId": "C-017",
+      "newV2RecordId": "O-017",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-017",
+        "QWEN:objects:O-018",
+        "MISTRAL:objects:O-016"
+      ],
+      "reason": "Riconfermato direttamente dal testo fonte.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza di tutti i modelli."
+    },
+    {
+      "changeId": "C-018",
+      "newV2RecordId": "O-018",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-018",
+        "QWEN:objects:O-011",
+        "MISTRAL:objects:O-017"
+      ],
+      "reason": "Riconfermato direttamente dal testo fonte.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza di tutti i modelli."
+    },
+    {
+      "changeId": "C-019",
+      "newV2RecordId": "O-019",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-019",
+        "QWEN:objects:O-019",
+        "MISTRAL:objects:O-018"
+      ],
+      "reason": "Riconfermato direttamente dal testo fonte.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza di tutti i modelli."
+    },
+    {
+      "changeId": "C-020",
+      "newV2RecordId": "O-020",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-020",
+        "QWEN:objects:O-020",
+        "MISTRAL:objects:O-019"
+      ],
+      "reason": "Riconfermato direttamente dal testo fonte.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza di tutti i modelli."
+    },
+    {
+      "changeId": "C-021",
+      "newV2RecordId": "O-021",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-033",
+        "MISTRAL:objects:O-020"
+      ],
+      "reason": "Riconfermato; Qwen non modella 'Pagamento' separatamente, ma il referente è attestato ('l'autorizzazione del pagamento').",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza DeepSeek/Mistral; verificato indipendentemente."
+    },
+    {
+      "changeId": "C-022",
+      "newV2RecordId": "O-022",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-021",
+        "QWEN:objects:O-021",
+        "MISTRAL:objects:O-021"
+      ],
+      "reason": "Riconfermato direttamente dal testo fonte.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza di tutti i modelli."
+    },
+    {
+      "changeId": "C-023",
+      "newV2RecordId": "O-023",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-022",
+        "QWEN:objects:O-022",
+        "MISTRAL:objects:O-022"
+      ],
+      "reason": "Riconfermato direttamente dal testo fonte.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza di tutti i modelli."
+    },
+    {
+      "changeId": "C-024",
+      "newV2RecordId": "O-024",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-023",
+        "QWEN:objects:O-023",
+        "MISTRAL:objects:O-023"
+      ],
+      "reason": "Riconfermato direttamente dal testo fonte.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza di tutti i modelli."
+    },
+    {
+      "changeId": "C-025",
+      "newV2RecordId": "O-025",
+      "changeType": "ADDED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-025"
+      ],
+      "reason": "Aggiunta ancora 'Riserva', citata dalla fonte ('la conferma della riserva') e necessaria per ancorare le condizioni di A-015/A-016; uncertainty su esecuzione ed esecutore non descritti.",
+      "contributionAttribution": "INFORMED_BY_DEEPSEEK",
+      "attributionExplanation": "Oggetto di DeepSeek rianalizzato e confermato sul testo."
+    },
+    {
+      "changeId": "C-026",
+      "newV2RecordId": "O-026",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-026",
+        "QWEN:objects:O-024",
+        "MISTRAL:objects:O-024"
+      ],
+      "reason": "Riconfermato direttamente dal testo fonte.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza di tutti i modelli."
+    },
+    {
+      "changeId": "C-027",
+      "newV2RecordId": "O-027",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-029",
+        "QWEN:objects:O-027",
+        "MISTRAL:objects:O-025"
+      ],
+      "reason": "Riconfermato direttamente dal testo fonte.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza di tutti i modelli."
+    },
+    {
+      "changeId": "C-028",
+      "newV2RecordId": "O-028",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-027",
+        "QWEN:objects:O-025",
+        "MISTRAL:objects:O-026"
+      ],
+      "reason": "Riconfermato direttamente dal testo fonte.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza di tutti i modelli."
+    },
+    {
+      "changeId": "C-029",
+      "newV2RecordId": "O-029",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-028",
+        "QWEN:objects:O-026",
+        "MISTRAL:objects:O-027"
+      ],
+      "reason": "Riconfermato direttamente dal testo fonte.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza di tutti i modelli."
+    },
+    {
+      "changeId": "C-030",
+      "newV2RecordId": "O-030",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-030",
+        "QWEN:objects:O-028",
+        "MISTRAL:objects:O-028"
+      ],
+      "reason": "Riconfermato direttamente dal testo fonte.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza di tutti i modelli."
+    },
+    {
+      "changeId": "C-031",
+      "newV2RecordId": "O-031",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-031",
+        "QWEN:objects:O-029",
+        "MISTRAL:objects:O-029"
+      ],
+      "reason": "Riconfermato; mantenuta l'incertezza sul referente pronominale 'ne'.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza di tutti i modelli."
+    },
+    {
+      "changeId": "C-032",
+      "newV2RecordId": "O-032",
+      "changeType": "ADDED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-032"
+      ],
+      "reason": "Aggiunto 'Servizio del Payment Provider': referente esplicito ('il suo servizio') con uncertainty sul riferimento pronominale e sulla distinzione dal provider.",
+      "contributionAttribution": "INFORMED_BY_DEEPSEEK",
+      "attributionExplanation": "Oggetto di DeepSeek rianalizzato e confermato sul testo."
+    },
+    {
+      "changeId": "C-033",
+      "newV2RecordId": "O-033",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-034",
+        "MISTRAL:objects:O-030"
+      ],
+      "reason": "Riconfermato; Qwen ne sentiva la mancanza, usando la Richiesta come oggetto della conferma.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza DeepSeek/Mistral; verificato indipendentemente."
+    },
+    {
+      "changeId": "C-034",
+      "newV2RecordId": "O-034",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-024",
+        "MISTRAL:objects:O-031"
+      ],
+      "reason": "Riconfermato come referente distinto da 'Quantità richieste'; scartata la fusione operata da Qwen (A-015/A-016 usavano O-016). Uncertainty sull'identità non dichiarata.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza DeepSeek/Mistral; verificato indipendentemente."
+    },
+    {
+      "changeId": "C-035",
+      "newV2RecordId": "R-001",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:relations:R-001",
+        "QWEN:relations:R-002",
+        "QWEN:relations:R-003",
+        "QWEN:relations:R-004",
+        "MISTRAL:relations:R-001"
+      ],
+      "reason": "Mantenuta la forma aggregata; la scomposizione binaria di Qwen è dichiarata equivalente in uncertainty.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Scelta di granularità propria dopo confronto."
+    },
+    {
+      "changeId": "C-036",
+      "newV2RecordId": "R-002",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:relations:R-002",
+        "QWEN:relations:R-005",
+        "MISTRAL:relations:R-002"
+      ],
+      "reason": "Riconfermato come relazione persistente; non adottata la duplicazione relazione+azione di Qwen (A-002).",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza dei modelli sulla relazione."
+    },
+    {
+      "changeId": "C-037",
+      "newV2RecordId": "R-003",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:relations:R-003",
+        "QWEN:relations:R-006",
+        "MISTRAL:relations:R-003"
+      ],
+      "reason": "Riconfermato come relazione persistente; non adottata la duplicazione relazione+azione di Qwen (A-003).",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza dei modelli sulla relazione."
+    },
+    {
+      "changeId": "C-038",
+      "newV2RecordId": "R-004",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "QWEN:relations:R-001",
+        "MISTRAL:relations:R-004"
+      ],
+      "reason": "Riconfermata la relazione prodotto–catalogo, assente in DeepSeek.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza Qwen/Mistral; verificato indipendentemente."
+    },
+    {
+      "changeId": "C-039",
+      "newV2RecordId": "R-005",
+      "changeType": "CORRECTED",
+      "relatedV1": [
+        "DEEPSEEK:relations:R-004",
+        "QWEN:relations:R-007",
+        "QWEN:relations:R-008",
+        "QWEN:relations:R-009",
+        "MISTRAL:relations:R-005"
+      ],
+      "reason": "Corretto il partecipante: i 'prodotti selezionati' ora usano l'oggetto distinto O-014 invece della fusione in O-003 usata in V1 (Mistral).",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Pratica di DeepSeek/Qwen adottata dopo rianalisi propria (F-024)."
+    },
+    {
+      "changeId": "C-040",
+      "newV2RecordId": "R-006",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:relations:R-005",
+        "QWEN:relations:R-011",
+        "MISTRAL:relations:R-006"
+      ],
+      "reason": "Riconfermato direttamente dal testo fonte.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza di tutti i modelli."
+    },
+    {
+      "changeId": "C-041",
+      "newV2RecordId": "R-007",
+      "changeType": "CORRECTED",
+      "relatedV1": [
+        "DEEPSEEK:relations:R-006",
+        "QWEN:relations:R-012",
+        "MISTRAL:relations:R-007"
+      ],
+      "reason": "Aggiunto 'Servizio del Payment Provider' (O-032) come partecipante distinto, oltre al fornitore (O-023), con uncertainty pronominale.",
+      "contributionAttribution": "INFORMED_BY_DEEPSEEK",
+      "attributionExplanation": "Struttura partecipanti di DeepSeek adottata dopo rianalisi."
+    },
+    {
+      "changeId": "C-042",
+      "newV2RecordId": "R-008",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:relations:R-007",
+        "QWEN:relations:R-013",
+        "MISTRAL:relations:R-008"
+      ],
+      "reason": "Riconfermata la negazione esplicita come relazione marcata.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza di tutti i modelli."
+    },
+    {
+      "changeId": "C-043",
+      "newV2RecordId": "R-009",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "MISTRAL:relations:R-009"
+      ],
+      "reason": "Riconfermata; assente in DeepSeek e Qwen.",
+      "contributionAttribution": "OWN_REANALYSIS",
+      "attributionExplanation": "Rianalisi propria confermata dal testo."
+    },
+    {
+      "changeId": "C-044",
+      "newV2RecordId": "A-001",
+      "changeType": "CORRECTED",
+      "relatedV1": [
+        "MISTRAL:actions:A-001"
+      ],
+      "reason": "Azione 'permettere' confermata (assente in DeepSeek e Qwen); aggiunta uncertainty di modalità: capacità, non evento verificatosi.",
+      "contributionAttribution": "OWN_REANALYSIS",
+      "attributionExplanation": "Rianalisi propria, corroborata dal contrasto con le omissioni dei pari."
+    },
+    {
+      "changeId": "C-045",
+      "newV2RecordId": "A-002",
+      "changeType": "CORRECTED",
+      "relatedV1": [
+        "QWEN:actions:A-001",
+        "MISTRAL:actions:A-002"
+      ],
+      "reason": "Azione 'acquistare' confermata; aggiunta uncertainty di modalità (comportamento abilitato, non evento specifico).",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza Qwen/Mistral; nota di modalità propria."
+    },
+    {
+      "changeId": "C-046",
+      "newV2RecordId": "A-003",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:actions:A-001",
+        "QWEN:actions:A-004",
+        "MISTRAL:actions:A-003"
+      ],
+      "reason": "Conferma dell'acquisto con oggetto 'Acquisto'; scartato il partecipante 'Richiesta' di Qwen non supportato dall'evidenza.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza DeepSeek/Mistral; correzione dell'errore di Qwen."
+    },
+    {
+      "changeId": "C-047",
+      "newV2RecordId": "A-004",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:actions:A-002",
+        "QWEN:actions:A-005",
+        "MISTRAL:actions:A-004"
+      ],
+      "reason": "Riconfermata con condizione trigger; l'omissione della condizione in DeepSeek è stata corretta tramite la forma di Qwen/Mistral. Aggiunta uncertainty sul mittente.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza Qwen/Mistral sulla guardia."
+    },
+    {
+      "changeId": "C-048",
+      "newV2RecordId": "A-005",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:actions:A-003",
+        "QWEN:actions:A-006",
+        "MISTRAL:actions:A-005"
+      ],
+      "reason": "Riconfermata con uncertainty sull'identificazione 'la disponibilità'/'informazioni sulla disponibilità'.",
+      "contributionAttribution": "OWN_REANALYSIS",
+      "attributionExplanation": "Trattamento V1 mantenuto; coerente con F-006/F-019."
+    },
+    {
+      "changeId": "C-049",
+      "newV2RecordId": "A-006",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "QWEN:actions:A-007",
+        "MISTRAL:actions:A-006"
+      ],
+      "reason": "Riconfermata come azione distinta da 'verificare' (DeepSeek la fondeva come partecipante).",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza Qwen/Mistral sulla separazione."
+    },
+    {
+      "changeId": "C-050",
+      "newV2RecordId": "A-007",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:actions:A-004",
+        "QWEN:actions:A-008",
+        "MISTRAL:actions:A-007"
+      ],
+      "reason": "Riconfermato direttamente dal testo fonte.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza di tutti i modelli."
+    },
+    {
+      "changeId": "C-051",
+      "newV2RecordId": "A-008",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:actions:A-005",
+        "QWEN:actions:A-009",
+        "MISTRAL:actions:A-008"
+      ],
+      "reason": "Riconfermata con risultato O-017 e uncertainty sul destinatario non esplicitato.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza di tutti i modelli; uncertainty propria."
+    },
+    {
+      "changeId": "C-052",
+      "newV2RecordId": "A-009",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:actions:A-006",
+        "QWEN:actions:A-010",
+        "MISTRAL:actions:A-009"
+      ],
+      "reason": "Riconfermata con guardia letterale.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza di tutti i modelli."
+    },
+    {
+      "changeId": "C-053",
+      "newV2RecordId": "A-010",
+      "changeType": "CORRECTED",
+      "relatedV1": [
+        "DEEPSEEK:actions:A-007",
+        "QWEN:actions:A-011",
+        "MISTRAL:actions:A-010"
+      ],
+      "reason": "Aggiunta la condizione 'Se tutti i prodotti richiesti sono disponibili', che governa l'intera frase (F-020); uncertainty esplicita sulla fonte della guardia.",
+      "contributionAttribution": "INFORMED_BY_QWEN",
+      "attributionExplanation": "Trattamento di Qwen adottato dopo verifica sul testo."
+    },
+    {
+      "changeId": "C-054",
+      "newV2RecordId": "A-011",
+      "changeType": "CORRECTED",
+      "relatedV1": [
+        "DEEPSEEK:actions:A-008",
+        "QWEN:actions:A-012",
+        "MISTRAL:actions:A-011"
+      ],
+      "reason": "Aggiunto il qualificatore temporale documentato 'Successivamente' in condition, distinguendolo dalle guardie logiche (F-021); aggiunto partecipante Pagamento come in DeepSeek.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Qualificatore da Qwen, partecipante da DeepSeek, verifica propria."
+    },
+    {
+      "changeId": "C-055",
+      "newV2RecordId": "A-012",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:actions:A-009",
+        "QWEN:actions:A-013",
+        "MISTRAL:actions:A-012"
+      ],
+      "reason": "Riconfermata; aggiunta uncertainty sul protocollo non specificato, coerente con l'ambiguità dedicata.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza di tutti i modelli."
+    },
+    {
+      "changeId": "C-056",
+      "newV2RecordId": "A-013",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:actions:A-010",
+        "QWEN:actions:A-014",
+        "MISTRAL:actions:A-013"
+      ],
+      "reason": "Riconfermata con risultato O-024 e uncertainty sul destinatario.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza di tutti i modelli."
+    },
+    {
+      "changeId": "C-057",
+      "newV2RecordId": "A-014",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:actions:A-012",
+        "QWEN:actions:A-015",
+        "MISTRAL:actions:A-014"
+      ],
+      "reason": "Riconfermata come richiesta (non esecuzione) con oggetto 'Quantità ordinate' distinto (O-034); scartata la fusione di Qwen con 'Quantità richieste' e non adottata alcuna azione di esecuzione della riserva.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza DeepSeek/Mistral; correzione degli errori di Qwen."
+    },
+    {
+      "changeId": "C-058",
+      "newV2RecordId": "A-015",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:actions:A-013",
+        "QWEN:actions:A-017",
+        "MISTRAL:actions:A-015"
+      ],
+      "reason": "Riconfermata con condizione 'Dopo la conferma della riserva'.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza di tutti i modelli."
+    },
+    {
+      "changeId": "C-059",
+      "newV2RecordId": "A-016",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:actions:A-014",
+        "QWEN:actions:A-018",
+        "MISTRAL:actions:A-016"
+      ],
+      "reason": "Riconfermata con attore nullo (forma passiva), destinatario, mezzo e risultato.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza di tutti i modelli."
+    },
+    {
+      "changeId": "C-060",
+      "newV2RecordId": "A-017",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:actions:A-015",
+        "QWEN:actions:A-019",
+        "MISTRAL:actions:A-017"
+      ],
+      "reason": "Riconfermata con attore nullo, condizione negativa e risultato.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza di tutti i modelli."
+    },
+    {
+      "changeId": "C-061",
+      "newV2RecordId": "A-018",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:actions:A-016",
+        "QWEN:actions:A-020",
+        "MISTRAL:actions:A-018"
+      ],
+      "reason": "Riconfermata con attore nullo e condizione; l'ordine documentato 'prima di contattare il Payment Service' resta nell'evidenza ed è richiamato in uncertainty.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza di tutti i modelli."
+    },
+    {
+      "changeId": "C-062",
+      "newV2RecordId": "ambiguities[0]",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "MISTRAL:ambiguities:ambiguities[0]"
+      ],
+      "reason": "Riconfermata l'ambiguità sull'identità tra quantità richieste e ordinate, non registrata da DeepSeek e Qwen (Qwen le fondeva).",
+      "contributionAttribution": "OWN_REANALYSIS",
+      "attributionExplanation": "Rianalisi propria confermata dal testo."
+    },
+    {
+      "changeId": "C-063",
+      "newV2RecordId": "ambiguities[1]",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "MISTRAL:ambiguities:ambiguities[1]"
+      ],
+      "reason": "Riconfermata l'ambiguità sul soggetto dell'autorizzazione del pagamento.",
+      "contributionAttribution": "OWN_REANALYSIS",
+      "attributionExplanation": "Rianalisi propria confermata dal testo."
+    },
+    {
+      "changeId": "C-064",
+      "newV2RecordId": "ambiguities[2]",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "MISTRAL:ambiguities:ambiguities[2]"
+      ],
+      "reason": "Riconfermata l'ambiguità sul soggetto della conferma della riserva.",
+      "contributionAttribution": "OWN_REANALYSIS",
+      "attributionExplanation": "Rianalisi propria confermata dal testo."
+    },
+    {
+      "changeId": "C-065",
+      "newV2RecordId": "ambiguities[3]",
+      "changeType": "ADDED",
+      "relatedV1": [
+        "DEEPSEEK:ambiguities:ambiguities[0]",
+        "QWEN:ambiguities:ambiguities[2]"
+      ],
+      "reason": "Aggiunta l'ambiguità sul mittente della notifica, in V1 presente solo come uncertainty dell'azione (F-025).",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Pratica di DeepSeek/Qwen adottata dopo rianalisi."
+    },
+    {
+      "changeId": "C-066",
+      "newV2RecordId": "ambiguities[4]",
+      "changeType": "ADDED",
+      "relatedV1": [
+        "MISTRAL:relations:R-005"
+      ],
+      "reason": "Promossa ad ambiguità autonoma l'incertezza sui 'prodotti selezionati' rispetto ai prodotti del catalogo.",
+      "contributionAttribution": "OWN_REANALYSIS",
+      "attributionExplanation": "Nota di V1 trasformata in ambiguità esplicita."
+    },
+    {
+      "changeId": "C-067",
+      "newV2RecordId": "ambiguities[5]",
+      "changeType": "ADDED",
+      "relatedV1": [
+        "MISTRAL:actions:A-005"
+      ],
+      "reason": "Promossa ad ambiguità autonoma l'incertezza tra 'la disponibilità' verificata e le 'informazioni sulla disponibilità' conservate.",
+      "contributionAttribution": "OWN_REANALYSIS",
+      "attributionExplanation": "Nota di V1 trasformata in ambiguità esplicita."
+    },
+    {
+      "changeId": "C-068",
+      "newV2RecordId": "ambiguities[6]",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:ambiguities:ambiguities[0]",
+        "QWEN:ambiguities:ambiguities[0]",
+        "MISTRAL:ambiguities:ambiguities[3]"
+      ],
+      "reason": "Riconfermata; non adottate le interpretazioni di Qwen con tecnologie specifiche non supportate dal testo (F-016).",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza sulla lacuna; riformulazione delle interpretazioni propria."
+    },
+    {
+      "changeId": "C-069",
+      "newV2RecordId": "ambiguities[7]",
+      "changeType": "UNCHANGED",
+      "relatedV1": [
+        "DEEPSEEK:ambiguities:ambiguities[0]",
+        "QWEN:ambiguities:ambiguities[1]",
+        "MISTRAL:ambiguities:ambiguities[4]"
+      ],
+      "reason": "Riconfermata; non adottate le interpretazioni speculative di Qwen (rollback, gestione manuale).",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Convergenza sulla lacuna; riformulazione delle interpretazioni propria."
+    },
+    {
+      "changeId": "C-070",
+      "newV2RecordId": "",
+      "changeType": "REMOVED",
+      "relatedV1": [
+        "QWEN:objects:O-030",
+        "QWEN:objects:O-031"
+      ],
+      "reason": "Non adottati gli oggetti 'Protocollo di comunicazione' e 'Meccanismo di annullamento': la fonte li dichiara non specificati; una lacuna non diventa un elemento positivo (F-008, F-009).",
+      "contributionAttribution": "OWN_REANALYSIS",
+      "attributionExplanation": "Esclusione propria basata sul testo."
+    },
+    {
+      "changeId": "C-071",
+      "newV2RecordId": "",
+      "changeType": "REMOVED",
+      "relatedV1": [
+        "QWEN:actions:A-016",
+        "QWEN:actions:A-002",
+        "QWEN:actions:A-003"
+      ],
+      "reason": "Non adottata l'azione di esecuzione della riserva attribuita all'Inventory Service (non documentata) né le duplicazioni relazione/azione 'mantenere' e 'conservare' (F-011, F-014).",
+      "contributionAttribution": "OWN_REANALYSIS",
+      "attributionExplanation": "Esclusione propria basata sul testo."
+    },
+    {
+      "changeId": "C-072",
+      "newV2RecordId": "",
+      "changeType": "REMOVED",
+      "relatedV1": [
+        "DEEPSEEK:actions:A-011",
+        "DEEPSEEK:actions:A-017"
+      ],
+      "reason": "Non adottate le guardie 'viene autorizzato'/'non viene autorizzato' come azioni autonome senza nota di modalità; le guardie restano come condizioni di A-014 e A-017 (F-005).",
+      "contributionAttribution": "OWN_REANALYSIS",
+      "attributionExplanation": "Esclusione propria basata sul testo."
+    }
+  ]
+}

@@ -1,0 +1,169 @@
+{
+  "review_findings": [
+    {
+      "findingId": "F-001",
+      "targetModel": "DEEPSEEK",
+      "targetCollection": "actions",
+      "targetRecordId": "A-002",
+      "issueType": "CONDITION",
+      "explanation": "La ricezione della richiesta è presentata senza la condizione documentata: il testo lega esplicitamente la ricezione alla conferma dell'acquisto tramite 'Quando'. La guardia andava conservata, come fanno Qwen (A-005) e Mistral (A-004).",
+      "exactSourceEvidence": "Quando un cliente conferma un acquisto, l'Order Service riceve la richiesta contenente l'identificativo del cliente",
+      "suggestedCorrection": "Aggiungere condition: 'Quando un cliente conferma un acquisto' ad A-002."
+    },
+    {
+      "findingId": "F-002",
+      "targetModel": "DEEPSEEK",
+      "targetCollection": "actions",
+      "targetRecordId": "A-007",
+      "issueType": "CONDITION",
+      "explanation": "La registrazione dell'ordine è governata dalla stessa frase condizionale che governa la creazione ('Se tutti i prodotti richiesti sono disponibili, l'Order Service crea un ordine e lo registra nell'Order Store'). A-007 ha condition: null, perdendo la guardia documentata. Qwen (A-011) la conserva correttamente.",
+      "exactSourceEvidence": "Se tutti i prodotti richiesti sono disponibili, l'Order Service crea un ordine e lo registra nell'Order Store.",
+      "suggestedCorrection": "Aggiungere condition: 'Se tutti i prodotti richiesti sono disponibili' ad A-007, con nota che la guardia è nella stessa frase di A-006."
+    },
+    {
+      "findingId": "F confonde richiesta, esecuzione e conferma.",
+      "exactSourceEvidence": "l'Order Service richiede all'Inventory Service di riservare le quantità ordinate",
+      "suggestedCorrection": "Rimuovere A-016 o riformularla come comportamento richiesto (non eseguito), conservando l'incertezza sull'esecuzione e sull'esecutore."
+    },
+    {
+      "findingId": "F-012",
+      "targetModel": "QWEN",
+      "targetCollection": "actions",
+      "targetRecordId": "A-004",
+      "issueType": "UNSUPPORTED",
+      "explanation": "Il partecipante di A-004 è la 'Richiesta di acquisto' (O-013), ma l'evidenza letterale dice che il cliente conferma 'un acquisto'. Il testo non afferma che il cliente confermi la richiesta; il referente dell'evidenza è l'acquisto. Il partecipante non è supportato dall'evidenza e Qwen non possiede alcun oggetto 'Acquisto'.",
+      "exactSourceEvidence": "Quando un cliente conferma un acquisto",
+      "suggestedCorrection": "Creare l'oggetto 'Acquisto' e usarlo come partecipante della conferma (come DeepSeek A-001 e Mistral A-003)."
+    },
+    {
+      "findingId": "F-013",
+      "targetModel": "QWEN",
+      "targetCollection": "objects",
+      "targetRecordId": "O-013",
+      "issueType": "OTHER",
+      "explanation": "La denominazione 'Richiesta di acquisto' non compare nel testo, che usa solo 'la richiesta'. La normalizzazione non è dimostrabilmente errata (il contesto è un acquisto), ma introduce un'etichetta non letterale che può penalizzare il confronto con estrazioni che usano 'Richiesta'.",
+      "exactSourceEvidence": "l'Order Service riceve la richiesta contenente l'identificativo del cliente, i prodotti selezionati e le quantità richieste",
+      "suggestedCorrection": "Rinominare in 'Richiesta', eventualmente con nota di normalizzazione."
+    },
+    {
+      "findingId": "F-014",
+      "targetModel": "QWEN",
+      "targetCollection": "actions",
+      "targetRecordId": "A-002",
+      "issueType": "MODALITY",
+      "explanation": "'Il catalogo viene mantenuto dal Catalog Service' descrive uno stato di fatto persistente, ma Qwen lo rappresenta sia come relazione (R-005) sia come azione (A-002), duplicando lo stesso fatto in due forme. Analoga duplicazione tra R-006 e A-003 ('conservare'). Rappresentare uno stato persistente come comportamento svolto rischia la confusione tra associazione e azione.",
+      "exactSourceEvidence": "Il catalogo viene mantenuto dal Catalog Service",
+      "suggestedCorrection": "Mantenere i fatti come relazioni persistenti (R-005, R-006) e rimuovere le azioni duplicate A-002 e A-003, oppure documentare la scelta di doppia rappresentazione."
+    },
+    {
+      "findingId": "F-015",
+      "targetModel": "QWEN",
+      "targetCollection": "actions",
+      "targetRecordId": "A-010",
+      "issueType": "OTHER",
+      "explanation": "In A-010 l'Ordine compare sia come partecipante ('Oggetto creato') sia in resultIds. La doppia elencazione dello stesso referente con due ruoli crea ambiguità sulla semantica del risultato e rende il confronto più fragile.",
+      "exactSourceEvidence": "l'Order Service crea un ordine",
+      "suggestedCorrection": "Rimuovere il partecipante duplicato e conservare l'Ordine solo in resultIds."
+    },
+    {
+      "findingId": "F-016",
+      "targetModel": "QWEN",
+      "targetCollection": "ambiguities",
+      "targetRecordId": "ambiguities[0]",
+      "issueType": "UNSUPPORTED",
+      "explanation": "Le interpretazioni candidate proposte ('HTTP/REST', 'gRPC', 'protocollo message-based come AMQP o Kafka') non hanno alcun appoggio nel testo, che si limita a dire che il protocollo non è specificato. Analogo problema in ambiguities[1] ('rollback automatico', 'gestito manualmente'). Le interpretazioni dovrebbero riguardare lo stato dell'informazione (documentata/non determinabile), non tecnologie inventate.",
+      "exactSourceEvidence": "La documentazione non specifica il protocollo di comunicazione utilizzato",
+      "suggestedCorrection": "Riformulare le interpretazioni come: 'Un protocollo esiste ma non è documentato' / 'L'informazione non è determinabile dal testo'."
+    },
+    {
+      "findingId": "F-017",
+      "targetModel": "QWEN",
+      "targetCollection": "actions",
+      "targetRecordId": "",
+      "issueType": "OMISSION",
+      "explanation": "Qwen copre 'acquistare' (A-001) ma non l'azione 'permettere' della piattaforma, che è il verbo principale della prima frase e l'abilitazione documentata.",
+      "exactSourceEvidence": "Una piattaforma di commercio elettronico permette ai clienti di acquistare prodotti disponibili nel catalogo",
+      "suggestedCorrection": "Aggiungere l'azione 'permettere' con attore Piattaforma e partecipante Clienti (soggetto abilitato)."
+    },
+    {
+      "findingId": "F-018",
+      "targetModel": "QWEN",
+      "targetCollection": "ambiguities",
+      "targetRecordId": "",
+      "issueType": "OMISSION",
+      "explanation": "Mancano le ambiguità sul soggetto che autorizza il pagamento e sul soggetto che conferma la riserva, entrambe in forma passiva nella fonte. Mistral V1 le registra (ambiguities[1] e ambiguities[2]).",
+      "exactSourceEvidence": "Quando il pagamento viene autorizzato",
+      "suggestedCorrection": "Aggiungere le due ambiguità con le rispettive evidenze letterali."
+    },
+    {
+      "findingId": "F-019",
+      "targetModel": "QWEN",
+      "targetCollection": "actions",
+      "targetRecordId": "A-006",
+      "issueType": "IDENTITY",
+      "explanation": "A-006 usa O-010 ('Informazioni sulla disponibilità') come oggetto della verifica, ma il testo dice che l'Order Service verifica 'la disponibilità'. L'identificazione tra il referente verificato e le informazioni conservate nell'Inventory Store è un'interpretazione non dichiarata (stesso problema di F-006 per DeepSeek).",
+      "exactSourceEvidence": "L'Order Service verifica la disponibilità interrogando l'Inventory Service",
+      "suggestedCorrection": "Dichiarare l'incertezza di identificazione oppure usare un'ancora distinta per 'la disponibilità' verificata."
+    },
+    {
+      "findingId": "F-020",
+      "targetModel": "MISTRAL",
+      "targetCollection": "actions",
+      "targetRecordId": "A-010",
+      "issueType": "CONDITION",
+      "explanation": "La registrazione dell'ordine ha condition: null, ma la stessa frase condizionale governa creazione e registrazione. La guardia documentata andava conservata anche per A-010 (Qwen A-011 lo fa correttamente).",
+      "exactSourceEvidence": "Se tutti i prodotti richiesti sono disponibili, l'Order Service crea un ordine e lo registra nell'Order Store.",
+      "suggestedCorrection": "Aggiungere condition: 'Se tutti i prodotti richiesti sono disponibili' ad A-010."
+    },
+    {
+      "findingId": "F-021",
+      "targetModel": "MISTRAL",
+      "targetCollection": "actions",
+      "targetRecordId": "A-011",
+      "issueType": "CONDITION",
+      "explanation": "'Successivamente' esprime una sequenza temporale documentata tra la registrazione dell'ordine e la richiesta di autorizzazione; in V1 compare solo nell'evidenza, non come qualificatore. Qwen A-012 lo cattura come condizione, preservando meglio l'informazione strutturale.",
+      "exactSourceEvidence": "Successivamente richiede al Payment Service l'autorizzazione del pagamento",
+      "suggestedCorrection": "Aggiungere il qualificatore temporale in condition, distinguendolo dalle guardie logiche."
+    },
+    {
+      "findingId": "F-022",
+      "targetModel": "MISTRAL",
+      "targetCollection": "objects",
+      "targetRecordId": "",
+      "issueType": "OMISSION",
+      "explanation": "Manca un oggetto per 'il suo servizio' usato dalla piattaforma, referente esplicito distinto (almeno potenzialmente) dal Payment Provider. DeepSeek lo modella (O-032) con nota sul pronome.",
+      "exactSourceEvidence": "La piattaforma utilizza il suo servizio",
+      "suggestedCorrection": "Aggiungere l'oggetto 'Servizio del Payment Provider' con incertezza sul riferimento pronominale e sulla distinzione dal provider."
+    },
+    {
+      "findingId": "F-023",
+      "targetModel": "MISTRAL",
+      "targetCollection": "objects",
+      "targetRecordId": "",
+      "issueType": "OMISSION",
+      "explanation": "Manca un'ancora per 'la riserva', citata dalla fonte ('la conferma della riserva') e usata come condizione in A-015/A-016. DeepSeek la modella (O-025). Senza ancora, i riferimenti alla conferma restano sospesi.",
+      "exactSourceEvidence": "Dopo la conferma della riserva",
+      "suggestedCorrection": "Aggiungere l'oggetto 'Riserva' con incertezza: la sua esecuzione ed esecutore non sono descritti direttamente."
+    },
+    {
+      "findingId": "F-024",
+      "targetModel": "MISTRAL",
+      "targetCollection": "relations",
+      "targetRecordId": "R-005",
+      "issueType": "IDENTITY",
+      "explanation": "I 'prodotti selezionati' vengono fusi nell'oggetto generico 'Prodotti' (O-003), con incertezza dichiarata ma senza ancora propria. DeepSeek e Qwen mantengono un oggetto distinto. Mantenere referenti distinti riduce il rischio di fusioni improprie.",
+      "exactSourceEvidence": "i prodotti selezionati",
+      "suggestedCorrection": "Creare l'oggetto 'Prodotti selezionati' distinto da 'Prodotti' e usarlo in R-005, registrando l'ambiguità di identità."
+    },
+    {
+      "findingId": "F-025",
+      "targetModel": "MISTRAL",
+      "targetCollection": "ambiguities",
+      "targetRecordId": "",
+      "issueType": "OMISSION",
+      "explanation": "Il mittente della notifica non identificato è catturato solo come uncertainty di A-016 e non come ambiguità autonoma. DeepSeek e Qwen la registrano esplicitamente nelle ambiguità.",
+      "exactSourceEvidence": "viene inviata una notifica al cliente tramite il Notification Service",
+      "suggestedCorrection": "Aggiungere l'ambiguità sul mittente della notifica."
+    }
+  ]
+}

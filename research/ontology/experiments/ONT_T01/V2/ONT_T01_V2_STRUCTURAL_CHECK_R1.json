@@ -1,0 +1,57 @@
+{
+  "DEEPSEEK": {
+    "n": {
+      "objects": 35,
+      "relations": 10,
+      "actions": 21,
+      "ambiguities": 12
+    },
+    "findings": 18,
+    "changes": 28,
+    "invalid_refs": [],
+    "nonliteral_evidence": [],
+    "invalid_finding_targets": [],
+    "change_log_missing_targets": [],
+    "invalid_finding_ids": []
+  },
+  "QWEN": {
+    "n": {
+      "objects": 32,
+      "relations": 12,
+      "actions": 16,
+      "ambiguities": 6
+    },
+    "findings": 5,
+    "changes": 5,
+    "invalid_refs": [],
+    "nonliteral_evidence": [
+      "ambiguities:5"
+    ],
+    "invalid_finding_targets": [],
+    "change_log_missing_targets": [],
+    "invalid_finding_ids": []
+  },
+  "MISTRAL": {
+    "n": {
+      "objects": 34,
+      "relations": 9,
+      "actions": 18,
+      "ambiguities": 8
+    },
+    "findings": 17,
+    "changes": 72,
+    "invalid_refs": [],
+    "nonliteral_evidence": [],
+    "invalid_finding_targets": [
+      "F confonde richiesta, esecuzione e conferma."
+    ],
+    "change_log_missing_targets": [
+      "C-070",
+      "C-071",
+      "C-072"
+    ],
+    "invalid_finding_ids": [
+      "F confonde richiesta, esecuzione e conferma."
+    ]
+  }
+}

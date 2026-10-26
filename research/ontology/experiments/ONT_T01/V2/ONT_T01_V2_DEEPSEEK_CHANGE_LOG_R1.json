@@ -1,0 +1,349 @@
+{
+  "change_log": [
+    {
+      "changeId": "C-001",
+      "newV2RecordId": "A-001",
+      "changeType": "ADDED",
+      "relatedV1": [
+        "QWEN:actions:A-001",
+        "MISTRAL:actions:A-001"
+      ],
+      "reason": "Aggiunta esplicita della capacità/permesso 'permette' della piattaforma, distinta dall'evento di acquisto.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Qwen e Mistral rappresentano parte della prima frase; la riformulazione come capacità/permesso è una rianalisi autonoma."
+    },
+    {
+      "changeId": "C-002",
+      "newV2RecordId": "A-002",
+      "changeType": "ADDED",
+      "relatedV1": [
+        "QWEN:actions:A-001",
+        "MISTRAL:actions:A-002"
+      ],
+      "reason": "Separata l'azione 'acquistare' dalla capacità 'permette', evitando di trattarla come evento effettivo.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Qwen e Mistral includono 'acquistare'; V2 la mantiene come azione embedded non effettiva."
+    },
+    {
+      "changeId": "C-003",
+      "newV2RecordId": "O-012",
+      "changeType": "CORRECTED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-012",
+        "MISTRAL:objects:O-012",
+        "QWEN:objects:O-013"
+      ],
+      "reason": "Mantenuto il nome 'Richiesta' senza normalizzarlo in 'Richiesta di acquisto'; l'incertezza chiarisce la scelta.",
+      "contributionAttribution": "OWN_REANALYSIS",
+      "attributionExplanation": "La fonte dice 'la richiesta'; la normalizzazione di Qwen è più forte."
+    },
+    {
+      "changeId": "C-004",
+      "newV2RecordId": "O-014",
+      "changeType": "CORRECTED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-014",
+        "QWEN:objects:O-015",
+        "MISTRAL:relations:R-005"
+      ],
+      "reason": "Mantenuto 'Prodotti selezionati' distinto dall'oggetto generico 'Prodotti', con incertezza sull'identità.",
+      "contributionAttribution": "INFORMED_BY_MISTRAL",
+      "attributionExplanation": "Mistral segnala l'incertezza, ma V2 evita il merge."
+    },
+    {
+      "changeId": "C-005",
+      "newV2RecordId": "O-015",
+      "changeType": "CORRECTED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-015",
+        "QWEN:objects:O-016",
+        "MISTRAL:objects:O-014"
+      ],
+      "reason": "Aggiunta incertezza esplicita: le quantità richieste non sono dichiarate equivalenti alle quantità ordinate.",
+      "contributionAttribution": "INFORMED_BY_MISTRAL",
+      "attributionExplanation": "Mistral segnala l'incertezza in O-031; V2 la sposta anche sul referente delle quantità richieste."
+    },
+    {
+      "changeId": "C-006",
+      "newV2RecordId": "O-022",
+      "changeType": "CORRECTED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-022",
+        "QWEN:objects:O-022",
+        "MISTRAL:objects:O-022"
+      ],
+      "reason": "Nome 'Payment Provider' senza incorporare 'esterno'; l'esternità resta nella relazione R-006.",
+      "contributionAttribution": "INFORMED_BY_QWEN",
+      "attributionExplanation": "Qwen usa già 'Payment Provider'; V2 evita duplicazione con la qualifica esterna."
+    },
+    {
+      "changeId": "C-007",
+      "newV2RecordId": "O-024",
+      "changeType": "ADDED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-024",
+        "MISTRAL:objects:O-031"
+      ],
+      "reason": "Mantenuto un oggetto distinto 'Quantità ordinate' con incertezza sull'equivalenza con le quantità richieste.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "DeepSeek e Mistral hanno entrambi il referente; V2 esplicita l'incertezza."
+    },
+    {
+      "changeId": "C-008",
+      "newV2RecordId": "O-025",
+      "changeType": "ADDED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-025"
+      ],
+      "reason": "Rappresentata 'Riserva' come operazione menzionata, con incertezza su esecuzione e attore.",
+      "contributionAttribution": "INFORMED_BY_DEEPSEEK",
+      "attributionExplanation": "DeepSeek include 'Riserva'; V2 ne limita il valore ontologico."
+    },
+    {
+      "changeId": "C-009",
+      "newV2RecordId": "O-035",
+      "changeType": "ADDED",
+      "relatedV1": [],
+      "reason": "Aggiunto referente 'Conferma della riserva', menzionato come condizione ma non factificato nei V1.",
+      "contributionAttribution": "OWN_REANALYSIS",
+      "attributionExplanation": "Nessun V1 lo rappresenta come referente; la fonte lo menziona esplicitamente."
+    },
+    {
+      "changeId": "C-010",
+      "newV2RecordId": "R-004",
+      "changeType": "ADDED",
+      "relatedV1": [
+        "QWEN:relations:R-001",
+        "MISTRAL:relations:R-004"
+      ],
+      "reason": "Aggiunta relazione 'prodotti disponibili nel catalogo' dalla prima frase.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Qwen e Mistral estraggono questa relazione; V2 la mantiene separata dalla capacità."
+    },
+    {
+      "changeId": "C-011",
+      "newV2RecordId": "R-006",
+      "changeType": "ADDED",
+      "relatedV1": [
+        "DEEPSEEK:objects:O-022"
+      ],
+      "reason": "Separata la qualifica 'esterno' del Payment Provider dalla denominazione dell'oggetto.",
+      "contributionAttribution": "OWN_REANALYSIS",
+      "attributionExplanation": "DeepSeek incorpora 'esterno' nel nome; V2 lo tratta come fatto relazionale."
+    },
+    {
+      "changeId": "C-012",
+      "newV2RecordId": "R-008",
+      "changeType": "CORRECTED",
+      "relatedV1": [
+        "DEEPSEEK:relations:R-006",
+        "QWEN:relations:R-012",
+        "MISTRAL:relations:R-007"
+      ],
+      "reason": "Rimosso il ruolo 'titolare' e chiarito che 'suo' è un riferimento pronominale, non ownership.",
+      "contributionAttribution": "OWN_REANALYSIS",
+      "attributionExplanation": "La fonte non autorizza a parlare di titolarità."
+    },
+    {
+      "changeId": "C-013",
+      "newV2RecordId": "R-009",
+      "changeType": "CORRECTED",
+      "relatedV1": [
+        "DEEPSEEK:relations:R-007",
+        "QWEN:relations:R-013",
+        "MISTRAL:relations:R-008"
+      ],
+      "reason": "Mantenuta la negazione esplicita, ma aggiunta incertezza sul referente di 'ne'.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Tutti i V1 hanno la negazione; V2 corregge la risoluzione troppo netta del pronome."
+    },
+    {
+      "changeId": "C-014",
+      "newV2RecordId": "R-010",
+      "changeType": "ADDED",
+      "relatedV1": [
+        "MISTRAL:relations:R-009"
+      ],
+      "reason": "Aggiunta relazione tra autorizzazione e pagamento.",
+      "contributionAttribution": "INFORMED_BY_MISTRAL",
+      "attributionExplanation": "Mistral rappresenta questa relazione; V2 la include."
+    },
+    {
+      "changeId": "C-015",
+      "newV2RecordId": "A-004",
+      "changeType": "CORRECTED",
+      "relatedV1": [
+        "DEEPSEEK:actions:A-002",
+        "QWEN:actions:A-005",
+        "MISTRAL:actions:A-004"
+      ],
+      "reason": "Aggiunta condizione trigger 'Quando un cliente conferma un acquisto' e incertezza sul mittente della richiesta.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Qwen e Mistral riportano la condizione; V2 uniforma e aggiunge incertezza."
+    },
+    {
+      "changeId": "C-016",
+      "newV2RecordId": "A-010",
+      "changeType": "CORRECTED",
+      "relatedV1": [
+        "DEEPSEEK:actions:A-007",
+        "QWEN:actions:A-011",
+        "MISTRAL:actions:A-010"
+      ],
+      "reason": "Aggiunta la condizione 'Se tutti i prodotti richiesti sono disponibili' anche alla registrazione dell'ordine.",
+      "contributionAttribution": "INFORMED_BY_QWEN",
+      "attributionExplanation": "Qwen riporta la condizione su A-011; V2 la applica anche a registra."
+    },
+    {
+      "changeId": "C-017",
+      "newV2RecordId": "A-011",
+      "changeType": "CORRECTED",
+      "relatedV1": [
+        "DEEPSEEK:actions:A-008",
+        "QWEN:actions:A-012",
+        "MISTRAL:actions:A-011"
+      ],
+      "reason": "Aggiunta qualificazione temporale 'Successivamente [alla registrazione dell'ordine]'.",
+      "contributionAttribution": "INFORMED_BY_QWEN",
+      "attributionExplanation": "Qwen esplicita 'Successivamente alla registrazione'; V2 la mantiene come condizione relativa."
+    },
+    {
+      "changeId": "C-018",
+      "newV2RecordId": "A-014",
+      "changeType": "CORRECTED",
+      "relatedV1": [
+        "DEEPSEEK:actions:A-011"
+      ],
+      "reason": "Mantenuta l'azione passiva con attore null e incertezza sull'attore dell'autorizzazione.",
+      "contributionAttribution": "INFORMED_BY_DEEPSEEK",
+      "attributionExplanation": "DeepSeek ha l'azione passiva; V2 esplicita l'incertezza."
+    },
+    {
+      "changeId": "C-019",
+      "newV2RecordId": "A-015",
+      "changeType": "CORRECTED",
+      "relatedV1": [
+        "DEEPSEEK:actions:A-012",
+        "QWEN:actions:A-015",
+        "MISTRAL:actions:A-014"
+      ],
+      "reason": "Corretto l'oggetto: 'quantità ordinate', non 'quantità richieste'; aggiunta incertezza su richiesta vs esecuzione.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "DeepSeek e Mistral usano quantità ordinate; Qwen le confonde con le richieste. V2 riallinea alla fonte."
+    },
+    {
+      "changeId": "C-020",
+      "newV2RecordId": "A-016",
+      "changeType": "CORRECTED",
+      "relatedV1": [
+        "DEEPSEEK:actions:A-013",
+        "QWEN:actions:A-017",
+        "MISTRAL:actions:A-015"
+      ],
+      "reason": "Aggiunta incertezza su attore/modalità della conferma della riserva, mantenendo la condizione 'Dopo la conferma della riserva'.",
+      "contributionAttribution": "INFORMED_BY_MISTRAL",
+      "attributionExplanation": "Mistral segnala l'incertezza sulla conferma; V2 la esplicita."
+    },
+    {
+      "changeId": "C-021",
+      "newV2RecordId": "A-017",
+      "changeType": "CORRECTED",
+      "relatedV1": [
+        "DEEPSEEK:actions:A-014",
+        "QWEN:actions:A-018",
+        "MISTRAL:actions:A-016"
+      ],
+      "reason": "Mantenuto attore null e aggiunta incertezza esplicita: il Notification Service è mezzo, non necessariamente mittente.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Tutti i V1 hanno attore null; V2 conserva e chiarisce l'incertezza."
+    },
+    {
+      "changeId": "C-022",
+      "newV2RecordId": "A-018",
+      "changeType": "CORRECTED",
+      "relatedV1": [
+        "DEEPSEEK:actions:A-015",
+        "QWEN:actions:A-019",
+        "MISTRAL:actions:A-017"
+      ],
+      "reason": "Mantenuta azione passiva e condizione negativa; aggiunta incertezza sull'attore.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Tutti i V1 rappresentano la contrassegnazione; V2 uniforma l'incertezza."
+    },
+    {
+      "changeId": "C-023",
+      "newV2RecordId": "A-020",
+      "changeType": "CORRECTED",
+      "relatedV1": [
+        "DEEPSEEK:actions:A-016",
+        "QWEN:actions:A-020",
+        "MISTRAL:actions:A-018"
+      ],
+      "reason": "Integrata la condizione 'prima di contattare il Payment Service' senza affermare esecuzione o non esecuzione del contatto.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "Tutti riportano l'evidenza; V2 esplicita il limite modale."
+    },
+    {
+      "changeId": "C-024",
+      "newV2RecordId": "A-021",
+      "changeType": "ADDED",
+      "relatedV1": [
+        "DEEPSEEK:actions:A-016",
+        "QWEN:actions:A-020",
+        "MISTRAL:actions:A-018"
+      ],
+      "reason": "Aggiunta azione 'contattare' come menzione condizionale, non come evento avvenuto.",
+      "contributionAttribution": "OWN_REANALYSIS",
+      "attributionExplanation": "La fonte menziona il contatto solo in 'prima di contattare'; nessun V1 lo factifica separatamente."
+    },
+    {
+      "changeId": "C-025",
+      "newV2RecordId": "ambiguities[0]",
+      "changeType": "CORRECTED",
+      "relatedV1": [
+        "QWEN:ambiguities:ambiguities[0]",
+        "DEEPSEEK:ambiguities:ambiguities[0]",
+        "MISTRAL:ambiguities:ambiguities[3]"
+      ],
+      "reason": "Rimosse interpretazioni tecniche specifiche del protocollo; mantenuta la lacuna come non determinabile.",
+      "contributionAttribution": "INFORMED_BY_QWEN",
+      "attributionExplanation": "Qwen elencava HTTP/REST, gRPC, AMQP/Kafka; V2 li elimina perché non supportati."
+    },
+    {
+      "changeId": "C-026",
+      "newV2RecordId": "ambiguities[9]",
+      "changeType": "ADDED",
+      "relatedV1": [
+        "MISTRAL:ambiguities:ambiguities[0]",
+        "MISTRAL:objects:O-031"
+      ],
+      "reason": "Aggiunta ambiguità esplicita sull'equivalenza tra quantità richieste e ordinate.",
+      "contributionAttribution": "INFORMED_BY_MISTRAL",
+      "attributionExplanation": "Mistral la segnala in O-031; V2 la promuove ad ambiguità."
+    },
+    {
+      "changeId": "C-027",
+      "newV2RecordId": "ambiguities[10]",
+      "changeType": "ADDED",
+      "relatedV1": [
+        "DEEPSEEK:relations:R-007",
+        "QWEN:relations:R-013",
+        "MISTRAL:relations:R-008"
+      ],
+      "reason": "Aggiunta ambiguità sul referente del pronome 'ne'.",
+      "contributionAttribution": "MULTIPLE",
+      "attributionExplanation": "DeepSeek segnala l'incertezza; Qwen/Mistral la risolvono troppo nettamente. V2 la conserva."
+    },
+    {
+      "changeId": "C-028",
+      "newV2RecordId": "ambiguities[11]",
+      "changeType": "ADDED",
+      "relatedV1": [
+        "MISTRAL:ambiguities:ambiguities[2]"
+      ],
+      "reason": "Aggiunta ambiguità sulla conferma della riserva, includendo attore, modalità e timing.",
+      "contributionAttribution": "INFORMED_BY_MISTRAL",
+      "attributionExplanation": "Mistral segnala chi/cosa conferma la riserva; V2 amplia a modalità e timing."
+    }
+  ]
+}

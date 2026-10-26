@@ -1,0 +1,60 @@
+{
+  "change_log": [
+    {
+      "changeId": "CL-001",
+      "newV2RecordId": "ambiguities[1] to ambiguities[4]",
+      "changeType": "ADDED",
+      "relatedV1": [
+        "MISTRAL:ambiguities[2]",
+        "MISTRAL:ambiguities[3]"
+      ],
+      "reason": "Aggiunta sistematica delle ambiguità sugli attori delle azioni passive (invio notifica, contrassegno Rejected, rifiuto richiesta). Mistral V1 ha gestito correttamente questa incertezza, mentre Qwen V1 tendeva a ometterla o inferirla.",
+      "contributionAttribution": "INFORMED_BY_MISTRAL",
+      "attributionExplanation": "Mistral ha correttamente identificato l'assenza dell'attore nelle forme passive, fornendo un modello da seguire per evitare inferenze non supportate."
+    },
+    {
+      "changeId": "CL-002",
+      "newV2RecordId": "ambiguities[0]",
+      "changeType": "CORRECTED",
+      "relatedV1": [
+        "QWEN:ambiguities[0]"
+      ],
+      "reason": "Rimozione delle ipotesi specifiche su protocolli (HTTP, gRPC, ecc.) presenti in Qwen V1, poiché violano la regola di non dedurre tecnologie non documentate.",
+      "contributionAttribution": "OWN_REANALYSIS",
+      "attributionExplanation": "Correzione diretta basata sul vincolo di non inventare dettagli tecnici assenti dal testo fonte."
+    },
+    {
+      "changeId": "CL-003",
+      "newV2RecordId": "actions:A-012",
+      "changeType": "CORRECTED",
+      "relatedV1": [
+        "QWEN:actions:A-016"
+      ],
+      "reason": "In Qwen V1, l'azione 'riservare' era modellata come eseguita dall'Inventory Service. Il testo descrive solo la 'richiesta' di riservare e la successiva 'conferma'. Modellare l'esecuzione come fatto certo è un'inferenza di modalità non supportata.",
+      "contributionAttribution": "OWN_REANALYSIS",
+      "attributionExplanation": "Analisi critica della differenza tra richiesta di azione e azione eseguita, allineata alle regole di estrazione."
+    },
+    {
+      "changeId": "CL-004",
+      "newV2RecordId": "actions:A-016",
+      "changeType": "CORRECTED",
+      "relatedV1": [
+        "DEEPSEEK:actions:A-016"
+      ],
+      "reason": "DeepSeek V1 ha omesso la condizione temporale 'prima di contattare il Payment Service' nell'azione di rifiuto della richiesta, che è un dettaglio cruciale del flusso.",
+      "contributionAttribution": "OWN_REANALYSIS",
+      "attributionExplanation": "Recupero della condizione temporale esplicita dal testo fonte per completare il fatto."
+    },
+    {
+      "changeId": "CL-005",
+      "newV2RecordId": "relations:R-006, R-007, R-008",
+      "changeType": "CORRECTED",
+      "relatedV1": [
+        "MISTRAL:relations:R-005"
+      ],
+      "reason": "Mistral V1 ha fuso 'prodotti selezionati' con l'entità generica 'Prodotti'. La V2 separa i contenuti della richiesta in relazioni distinte per preservare la granularità semantica, come fatto anche da Qwen V1.",
+      "contributionAttribution": "INFORMED_BY_QWEN",
+      "attributionExplanation": "Qwen V1 ha applicato correttamente la granularità fine ai contenuti della richiesta, evitando la fusione impropria di Mistral."
+    }
+  ]
+}

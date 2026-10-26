@@ -1,0 +1,184 @@
+{
+  "review_findings": [
+    {
+      "findingId": "RF-001",
+      "targetModel": "DEEPSEEK",
+      "targetCollection": "actions",
+      "targetRecordId": "A-007",
+      "issueType": "CONDITION",
+      "explanation": "La registrazione dell'ordine avviene nella stessa frase condizionata della creazione: la condizione 'Se tutti i prodotti richiesti sono disponibili' vale anche per 'lo registra nell'Order Store'. DeepSeek lascia condition null su A-007.",
+      "exactSourceEvidence": "Se tutti i prodotti richiesti sono disponibili, l'Order Service crea un ordine e lo registra nell'Order Store.",
+      "suggestedCorrection": "Impostare condition su A-007 allo stesso valore di A-006: 'Se tutti i prodotti richiesti sono disponibili'."
+    },
+    {
+      "findingId": "RF-002",
+      "targetModel": "DEEPSEEK",
+      "targetCollection": "actions",
+      "targetRecordId": "A-008",
+      "issueType": "CONDITION",
+      "explanation": "La richiesta di autorizzazione è introdotta da 'Successivamente', che nel testo segue la registrazione dell'ordine. DeepSeek non registra alcuna condizione o qualificazione temporale.",
+      "exactSourceEvidence": "Successivamente richiede al Payment Service l'autorizzazione del pagamento.",
+      "suggestedCorrection": "Aggiungere condition: 'Successivamente [alla registrazione dell'ordine]' oppure una qualificazione temporale equivalente, senza inventare un ordine causale non scritto."
+    },
+    {
+      "findingId": "RF-003",
+      "targetModel": "DEEPSEEK",
+      "targetCollection": "actions",
+      "targetRecordId": "NEW",
+      "issueType": "OMISSION",
+      "explanation": "La prima frase descrive una capacità/permesso della piattaforma e l'azione di acquisto dei clienti. DeepSeek estrae gli oggetti ma non rappresenta né 'permette' né 'acquistare' come comportamenti/capacità.",
+      "exactSourceEvidence": "Una piattaforma di commercio elettronico permette ai clienti di acquistare prodotti disponibili nel catalogo.",
+      "suggestedCorrection": "Aggiungere un'azione/capacità 'permette' con attore Piattaforma e partecipanti Cliente, Prodotti, Catalogo, marcata come capacità/permesso e non come evento avvenuto. Valutare anche l'azione embedded 'acquistare'."
+    },
+    {
+      "findingId": "RF-004",
+      "targetModel": "DEEPSEEK",
+      "targetCollection": "actions",
+      "targetRecordId": "A-016",
+      "issueType": "CONDITION",
+      "explanation": "Il rifiuto della richiesta è collocato 'prima di contattare il Payment Service'. DeepSeek riporta solo 'la disponibilità è insufficiente' e perde il riferimento temporale/negato al contatto con Payment Service.",
+      "exactSourceEvidence": "Se la disponibilità è insufficiente, la richiesta viene rifiutata prima di contattare il Payment Service.",
+      "suggestedCorrection": "Integrare condition: 'Se la disponibilità è insufficiente; prima di contattare il Payment Service'. Non affermare che il contatto sia avvenuto o non avvenuto: il testo dice solo 'prima di contattare'."
+    },
+    {
+      "findingId": "RF-005",
+      "targetModel": "DEEPSEEK",
+      "targetCollection": "relations",
+      "targetRecordId": "R-006",
+      "issueType": "UNSUPPORTED",
+      "explanation": "Il ruolo 'titolare del servizio' attribuito a Payment Provider è più forte del testo, che dice solo 'il suo servizio'. Il pronome 'suo' indica un riferimento al Payment Provider, ma non autorizza a parlare di titolarità/ownership.",
+      "exactSourceEvidence": "La piattaforma utilizza il suo servizio",
+      "suggestedCorrection": "Sostituire il ruolo con 'referente pronominale del servizio' o 'fornitore menzionato tramite pronome', senza introdurre ownership."
+    },
+    {
+      "findingId": "RF-006",
+      "targetModel": "DEEPSEEK",
+      "targetCollection": "ambiguities",
+      "targetRecordId": "NEW",
+      "issueType": "OMISSION",
+      "explanation": "DeepSeek non segnala che il testo non dichiara l'equivalenza tra 'quantità richieste' e 'quantità ordinate'. Questa è un'incertezza rilevante per il confronto.",
+      "exactSourceEvidence": "di riservare le quantità ordinate",
+      "suggestedCorrection": "Aggiungere un'ambiguità: 'Quantità richieste e quantità ordinate non sono dichiarate equivalenti dal testo'."
+    },
+    {
+      "findingId": "RF-007",
+      "targetModel": "QWEN",
+      "targetCollection": "actions",
+      "targetRecordId": "A-004",
+      "issueType": "IDENTITY",
+      "explanation": "Qwen rappresenta 'conferma un acquisto' con partecipante O-013 'Richiesta di acquisto'. Il testo dice 'acquisto', non 'richiesta'. La richiesta è ricevuta dall'Order Service nella frase successiva.",
+      "exactSourceEvidence": "Quando un cliente conferma un acquisto",
+      "suggestedCorrection": "Usare un oggetto 'Acquisto' come partecipante dell'azione 'conferma', oppure lasciare il ruolo generico 'oggetto della conferma' senza identificarlo con la Richiesta."
+    },
+    {
+      "findingId": "RF-008",
+      "targetModel": "QWEN",
+      "targetCollection": "actions",
+      "targetRecordId": "A-015",
+      "issueType": "IDENTITY",
+      "explanation": "Qwen usa O-016 'Quantità richieste' come oggetto della richiesta di riserva. Il testo parla di 'quantità ordinate'. Non è dichiarata l'equivalenza tra i due referenti.",
+      "exactSourceEvidence": "l'Order Service richiede all'Inventory Service di riservare le quantità ordinate",
+      "suggestedCorrection": "Creare o usare un oggetto distinto 'Quantità ordinate' e aggiungere l'incertezza sull'eventuale identità con 'Quantità richieste'."
+    },
+    {
+      "findingId": "RF-009",
+      "targetModel": "QWEN",
+      "targetCollection": "actions",
+      "targetRecordId": "A-016",
+      "issueType": "MODALITY",
+      "explanation": "Qwen crea un'azione 'riservare' con attore Inventory Service e condizione 'Su richiesta dell'Order Service'. Il testo descrive una richiesta di riservare, non afferma direttamente che la riserva sia stata eseguita.",
+      "exactSourceEvidence": "richiede all'Inventory Service di riservare le quantità ordinate",
+      "suggestedCorrection": "Rappresentare l'azione come 'richiesta di riservare' oppure marcare 'riservare' come azione richiesta/non confermata. Non attribuire esecuzione certa senza evidenza."
+    },
+    {
+      "findingId": "RF-010",
+      "targetModel": "QWEN",
+      "targetCollection": "objects",
+      "targetRecordId": "O-030",
+      "issueType": "UNSUPPORTED",
+      "explanation": "Qwen crea oggetti positivi per 'Protocollo di comunicazione' e 'Meccanismo di annullamento' sulla base di una frase che dice che la documentazione NON li specifica. L'incertezza è presente, ma la classificazione come oggetti può suggerire esistenza o disponibilità non attestata.",
+      "exactSourceEvidence": "La documentazione non specifica il protocollo di comunicazione utilizzato né il meccanismo di annullamento delle autorizzazioni di pagamento.",
+      "suggestedCorrection": "Trattare questi come lacune informative/ambiguità, non come oggetti positivi del sistema, oppure etichettarli esplicitamente come 'referente solo menzionato come non specificato'."
+    },
+    {
+      "findingId": "RF-011",
+      "targetModel": "QWEN",
+      "targetCollection": "ambiguities",
+      "targetRecordId": "ambiguities[0]",
+      "issueType": "UNSUPPORTED",
+      "explanation": "Qwen elenca possibili protocolli specifici (HTTP/REST, gRPC, AMQP/Kafka). Il testo non fornisce elementi per ipotesi tecniche specifiche; la lacuna va conservata come 'non specificato'.",
+      "exactSourceEvidence": "La documentazione non specifica il protocollo di comunicazione utilizzato",
+      "suggestedCorrection": "Sostituire le interpretazioni specifiche con: 'Protocollo non specificato dal testo' e 'Informazione non determinabile'."
+    },
+    {
+      "findingId": "RF-012",
+      "targetModel": "QWEN",
+      "targetCollection": "relations",
+      "targetRecordId": "R-013",
+      "issueType": "UNCERTAINTY",
+      "explanation": "Qwen risolve il pronome 'ne' in 'non ne gestisce l'infrastruttura' direttamente su Payment Provider, senza incertezza. Il referente può essere il Payment Provider o il suo servizio.",
+      "exactSourceEvidence": "ma non ne gestisce l'infrastruttura",
+      "suggestedCorrection": "Aggiungere uncertainty sul referente di 'ne': Payment Provider oppure servizio del Payment Provider."
+    },
+    {
+      "findingId": "RF-013",
+      "targetModel": "QWEN",
+      "targetCollection": "ambiguities",
+      "targetRecordId": "NEW",
+      "issueType": "OMISSION",
+      "explanation": "Qwen non segnala l'incertezza tra 'quantità richieste' e 'quantità ordinate', pur usando 'quantità richieste' come oggetto della riserva.",
+      "exactSourceEvidence": "di riservare le quantità ordinate",
+      "suggestedCorrection": "Aggiungere un'ambiguità dedicata e mantenere i due referenti distinti."
+    },
+    {
+      "findingId": "RF-014",
+      "targetModel": "MISTRAL",
+      "targetCollection": "relations",
+      "targetRecordId": "R-005",
+      "issueType": "MERGE",
+      "explanation": "Mistral identifica 'i prodotti selezionati' con l'oggetto generico 'Prodotti' O-003, pur segnalando l'incertezza. Il testo non dichiara che i prodotti selezionati siano lo stesso insieme dei prodotti in catalogo.",
+      "exactSourceEvidence": "i prodotti selezionati",
+      "suggestedCorrection": "Mantenere un oggetto distinto 'Prodotti selezionati' oppure usare un partecipante non identificato con l'oggetto generico Prodotti, conservando l'incertezza."
+    },
+    {
+      "findingId": "RF-015",
+      "targetModel": "MISTRAL",
+      "targetCollection": "actions",
+      "targetRecordId": "A-010",
+      "issueType": "CONDITION",
+      "explanation": "La registrazione nell'Order Store è nella stessa frase condizionata della creazione dell'ordine. Mistral lascia condition null su A-010.",
+      "exactSourceEvidence": "Se tutti i prodotti richiesti sono disponibili, l'Order Service crea un ordine e lo registra nell'Order Store.",
+      "suggestedCorrection": "Aggiungere condition 'Se tutti i prodotti richiesti sono disponibili' anche ad A-010."
+    },
+    {
+      "findingId": "RF-016",
+      "targetModel": "MISTRAL",
+      "targetCollection": "actions",
+      "targetRecordId": "A-011",
+      "issueType": "CONDITION",
+      "explanation": "La richiesta di autorizzazione è introdotta da 'Successivamente' e segue la registrazione dell'ordine. Mistral non registra la qualificazione temporale.",
+      "exactSourceEvidence": "Successivamente richiede al Payment Service l'autorizzazione del pagamento.",
+      "suggestedCorrection": "Aggiungere condition/qualificazione 'Successivamente [alla registrazione dell'ordine]' senza inventare causalità non scritta."
+    },
+    {
+      "findingId": "RF-017",
+      "targetModel": "MISTRAL",
+      "targetCollection": "relations",
+      "targetRecordId": "R-008",
+      "issueType": "UNCERTAINTY",
+      "explanation": "Mistral include O-022 Payment Provider come 'Referente dell'infrastruttura' ma non segnala che il pronome 'ne' può riferirsi anche al servizio del Payment Provider.",
+      "exactSourceEvidence": "ma non ne gestisce l'infrastruttura",
+      "suggestedCorrection": "Aggiungere uncertainty sul referente di 'ne' oppure un'ambiguità dedicata."
+    },
+    {
+      "findingId": "RF-018",
+      "targetModel": "MISTRAL",
+      "targetCollection": "ambiguities",
+      "targetRecordId": "NEW",
+      "issueType": "OMISSION",
+      "explanation": "Mistral segnala l'incertezza sull'identità tra quantità richieste e ordinate in O-031/A-014, ma non la riporta tra le ambiguità. Per il confronto è utile un'ambiguità esplicita.",
+      "exactSourceEvidence": "di riservare le quantità ordinate",
+      "suggestedCorrection": "Aggiungere un'ambiguità: 'Quantità richieste e quantità ordinate non sono dichiarate equivalenti'."
+    }
+  ]
+}
