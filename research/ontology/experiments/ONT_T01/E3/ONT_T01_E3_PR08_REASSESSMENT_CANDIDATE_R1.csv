@@ -1,0 +1,2 @@
+gold_id,model,previous_assessment,candidate_assessment,source_ids,rationale,review_status
+R3-057,deepseek,PARTIAL,MISSING,O-001;O-002;O-003;O-034;A-001,La capacità di abilitare acquisti esiste solo come testo della provenance; i campi semantici modellano referenti e la conferma di un acquisto senza predicato di abilitazione.,PROVISIONAL_NEEDS_HUMAN_REVIEW

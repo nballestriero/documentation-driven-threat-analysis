@@ -1,0 +1,24 @@
+gold_id,scoring_layer,gold_fact,gold_evidence,annotator_id,independent_assessment,extracted_ids,semantic_fields,rationale,review_status
+R3-006,ENTITY_MENTION,Informazioni sulla disponibilità,informazioni sulla disponibilità,,,,,,AWAITING_INDEPENDENT_ANNOTATION
+R3-038,BEHAVIOR,Order Service riceve richiesta,"Quando un cliente conferma un acquisto, l'Order Service riceve la richiesta contenente l'identificativo del cliente, i prodotti selezionati e le quantità richieste.",,,,,,AWAITING_INDEPENDENT_ANNOTATION
+R3-044,BEHAVIOR,Order Service registra ordine in Order Store,"Se tutti i prodotti richiesti sono disponibili, l'Order Service crea un ordine e lo registra nell'Order Store.",,,,,,AWAITING_INDEPENDENT_ANNOTATION
+R3-045,BEHAVIOR,Order Service richiede autorizzazione a Payment Service,Successivamente richiede al Payment Service l'autorizzazione del pagamento.,,,,,,AWAITING_INDEPENDENT_ANNOTATION
+R3-052,BEHAVIOR,Richiesta rifiutata,"Se la disponibilità è insufficiente, la richiesta viene rifiutata prima di contattare il Payment Service.",,,,,,AWAITING_INDEPENDENT_ANNOTATION
+R3-056,UNCERTAINTY_CHECK,Esecuzione della riserva non direttamente descritta,richiede all'Inventory Service di riservare le quantità ordinate,,,,,,AWAITING_INDEPENDENT_ANNOTATION
+R3-057,BEHAVIOR,Piattaforma permette ai clienti di acquistare prodotti,Una piattaforma di commercio elettronico permette ai clienti di acquistare prodotti disponibili nel catalogo.,,,,,,AWAITING_INDEPENDENT_ANNOTATION
+R3-058,SEMANTIC_FACT,Prodotti disponibili nel catalogo,prodotti disponibili nel catalogo,,,,,,AWAITING_INDEPENDENT_ANNOTATION
+R3-064,ENTITY_MENTION,Disponibilità verificata (menzione; identità rispetto a informazioni conservate non risolta),verifica la disponibilità,,,,,,AWAITING_INDEPENDENT_ANNOTATION
+R3-001,ENTITY_MENTION,Piattaforma di commercio elettronico,Una piattaforma di commercio elettronico,,,,,,AWAITING_INDEPENDENT_ANNOTATION
+R3-024,ENTITY_MENTION,Infrastruttura associata al servizio del Payment Provider,"La piattaforma utilizza il suo servizio, ma non ne gestisce l'infrastruttura.",,,,,,AWAITING_INDEPENDENT_ANNOTATION
+R3-016,ENTITY_MENTION,Payment Provider,Payment Provider esterno,,,,,,AWAITING_INDEPENDENT_ANNOTATION
+R3-025,SEMANTIC_FACT,Prodotto possiede identificativo,"Ogni prodotto possiede un identificativo, una descrizione e un prezzo.",,,,,,AWAITING_INDEPENDENT_ANNOTATION
+R3-030,SEMANTIC_FACT,Richiesta contiene identificativo cliente,"la richiesta contenente l'identificativo del cliente, i prodotti selezionati e le quantità richieste",,,,,,AWAITING_INDEPENDENT_ANNOTATION
+R3-034,SEMANTIC_FACT,Organizzazione esterna gestisce Payment Provider,Il Payment Provider è gestito da un'organizzazione esterna.,,,,,,AWAITING_INDEPENDENT_ANNOTATION
+R3-037,BEHAVIOR,Cliente conferma un acquisto,Quando un cliente conferma un acquisto,,,,,,AWAITING_INDEPENDENT_ANNOTATION
+R3-040,BEHAVIOR,Order Service interroga Inventory Service,interrogando l'Inventory Service,,,,,,AWAITING_INDEPENDENT_ANNOTATION
+R3-043,BEHAVIOR,Order Service crea un ordine,"Se tutti i prodotti richiesti sono disponibili, l'Order Service crea un ordine",,,,,,AWAITING_INDEPENDENT_ANNOTATION
+R3-048,BEHAVIOR,Order Service richiede riserva a Inventory Service,"Quando il pagamento viene autorizzato, l'Order Service richiede all'Inventory Service di riservare le quantità ordinate.",,,,,,AWAITING_INDEPENDENT_ANNOTATION
+R3-050,BEHAVIOR,Notifica inviata al cliente tramite Notification Service,"Dopo la conferma della riserva, l'ordine assume lo stato Confirmed e viene inviata una notifica al cliente tramite il Notification Service.",,,,,,AWAITING_INDEPENDENT_ANNOTATION
+R3-036,POLARITY_CHECK,Piattaforma NON gestisce infrastruttura del Payment Provider,ma non ne gestisce l'infrastruttura.,,,,,,AWAITING_INDEPENDENT_ANNOTATION
+R3-053,UNCERTAINTY_CHECK,Protocollo di comunicazione non specificato,La documentazione non specifica il protocollo di comunicazione utilizzato,,,,,,AWAITING_INDEPENDENT_ANNOTATION
+R3-062,TEMPORAL_CHECK,Conferma della riserva menzionata come antecedente,Dopo la conferma della riserva,,,,,,AWAITING_INDEPENDENT_ANNOTATION
