@@ -1,0 +1,5 @@
+model,original_status,objects,relations,actions,ambiguities,duplicate_ids,dangling_references,nonliteral_evidence,sha256
+deepseek,AVAILABLE,34,7,17,2,0,0,0,ca7bf015ad7757de766f4a629722ba9ce2b72fc6d0705045a59172b4a4409e75
+qwen,AVAILABLE,31,13,20,3,0,0,3,55ee5d233803c954efd2032a8e8df032d62b70fac691f6b2a22a51520c495a77
+mistral,AVAILABLE,31,9,18,5,0,0,0,8bd7c471a3f8218c859937a43fa9443b037c61b3477fbda5b76a0f57d5677522
+gemini,NOT_ARCHIVED,,,,,,,,

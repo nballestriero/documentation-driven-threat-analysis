@@ -1,0 +1,11 @@
+Una piattaforma di commercio elettronico permette ai clienti di acquistare prodotti disponibili nel catalogo. Ogni prodotto possiede un identificativo, una descrizione e un prezzo. Il catalogo viene mantenuto dal Catalog Service, mentre le informazioni sulla disponibilità sono conservate nell'Inventory Store.
+
+Quando un cliente conferma un acquisto, l'Order Service riceve la richiesta contenente l'identificativo del cliente, i prodotti selezionati e le quantità richieste. L'Order Service verifica la disponibilità interrogando l'Inventory Service, che consulta l'Inventory Store e restituisce le quantità disponibili.
+
+Se tutti i prodotti richiesti sono disponibili, l'Order Service crea un ordine e lo registra nell'Order Store. Successivamente richiede al Payment Service l'autorizzazione del pagamento. Il Payment Service comunica con un Payment Provider esterno e restituisce l'esito dell'autorizzazione.
+
+Quando il pagamento viene autorizzato, l'Order Service richiede all'Inventory Service di riservare le quantità ordinate. Dopo la conferma della riserva, l'ordine assume lo stato Confirmed e viene inviata una notifica al cliente tramite il Notification Service.
+
+Se il pagamento non viene autorizzato, l'ordine viene contrassegnato come Rejected. Se la disponibilità è insufficiente, la richiesta viene rifiutata prima di contattare il Payment Service.
+
+Il Payment Provider è gestito da un'organizzazione esterna. La piattaforma utilizza il suo servizio, ma non ne gestisce l'infrastruttura. La documentazione non specifica il protocollo di comunicazione utilizzato né il meccanismo di annullamento delle autorizzazioni di pagamento.

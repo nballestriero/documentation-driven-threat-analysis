@@ -1,0 +1,60 @@
+{
+  "deepseek": {
+    "sha256": "ca7bf015ad7757de766f4a629722ba9ce2b72fc6d0705045a59172b4a4409e75",
+    "counts": {
+      "objects": 34,
+      "relations": 7,
+      "actions": 17,
+      "ambiguities": 2
+    },
+    "duplicate_ids": [],
+    "dangling_refs": [],
+    "references_checked": 56,
+    "nonliteral_evidence": [],
+    "evidence_checked": 60
+  },
+  "qwen": {
+    "sha256": "55ee5d233803c954efd2032a8e8df032d62b70fac691f6b2a22a51520c495a77",
+    "counts": {
+      "objects": 31,
+      "relations": 13,
+      "actions": 20,
+      "ambiguities": 3
+    },
+    "duplicate_ids": [],
+    "dangling_refs": [],
+    "references_checked": 70,
+    "nonliteral_evidence": [
+      {
+        "section": "objects",
+        "id": "O-018",
+        "evidence": "l'Inventory Service consulta l'Inventory Store e restituisce le quantità disponibili"
+      },
+      {
+        "section": "actions",
+        "id": "A-008",
+        "evidence": "l'Inventory Service consulta l'Inventory Store"
+      },
+      {
+        "section": "actions",
+        "id": "A-009",
+        "evidence": "l'Inventory Service consulta l'Inventory Store e restituisce le quantità disponibili"
+      }
+    ],
+    "evidence_checked": 67
+  },
+  "mistral": {
+    "sha256": "8bd7c471a3f8218c859937a43fa9443b037c61b3477fbda5b76a0f57d5677522",
+    "counts": {
+      "objects": 31,
+      "relations": 9,
+      "actions": 18,
+      "ambiguities": 5
+    },
+    "duplicate_ids": [],
+    "dangling_refs": [],
+    "references_checked": 62,
+    "nonliteral_evidence": [],
+    "evidence_checked": 63
+  }
+}
