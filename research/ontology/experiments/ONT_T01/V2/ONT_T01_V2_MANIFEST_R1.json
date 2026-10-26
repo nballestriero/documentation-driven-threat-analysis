@@ -1,0 +1,49 @@
+{
+  "protocol": "ONT_T01_V2_SINGLE_ROUND_R1",
+  "status": "READY_FOR_EXTERNAL_LLM_EXECUTION",
+  "review_model_runs": 3,
+  "gold_in_prompt": false,
+  "inputs": {
+    "DEEPSEEK": {
+      "sha256": "1be20d2ec2adc731d18b84e83527ecb6416e5e842c8d715b475d946c7ece6525",
+      "counts": {
+        "objects": 34,
+        "relations": 7,
+        "actions": 17,
+        "ambiguities": 2
+      }
+    },
+    "QWEN": {
+      "sha256": "b4bd24f2565636ae2e56b398ecb93e7934b9328e4df1baf6c8a0589a4575b408",
+      "counts": {
+        "objects": 31,
+        "relations": 13,
+        "actions": 20,
+        "ambiguities": 3
+      }
+    },
+    "MISTRAL": {
+      "sha256": "8bd7c471a3f8218c859937a43fa9443b037c61b3477fbda5b76a0f57d5677522",
+      "counts": {
+        "objects": 31,
+        "relations": 9,
+        "actions": 18,
+        "ambiguities": 5
+      }
+    }
+  },
+  "prompts": {
+    "DEEPSEEK": {
+      "file": "ONT_T01_V2_PROMPT_DEEPSEEK_R1.txt",
+      "sha256": "496052a8d4702ef1005e0e09a6f5566b78f5b836c84eaeb4bd137edc140ec8fe"
+    },
+    "QWEN": {
+      "file": "ONT_T01_V2_PROMPT_QWEN_R1.txt",
+      "sha256": "89d8a0d3557e39b4c36d89555f3048ae8e74cb10eadd6a239867e794507a1db1"
+    },
+    "MISTRAL": {
+      "file": "ONT_T01_V2_PROMPT_MISTRAL_R1.txt",
+      "sha256": "f8b4efeb5306e96a1f2954b81e99c1f0ec49d8d9f1699a340cd62e16668c671d"
+    }
+  }
+}
