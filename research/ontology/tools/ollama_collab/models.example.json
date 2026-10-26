@@ -1,0 +1,13 @@
+{
+  "host": "http://localhost:11434",
+  "models": {
+    "qwen25_coder_3b": "qwen2.5-coder:3b",
+    "llama32_3b": "llama3.2:3b"
+  },
+  "seed": 42,
+  "num_ctx": 8192,
+  "max_attempts": 3,
+  "timeout_seconds": 900,
+  "collaboration_cycles": 1,
+  "cooldown_seconds": 120
+}
