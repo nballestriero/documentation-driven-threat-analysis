@@ -1,0 +1,65 @@
+id,dimension,fact,participants,qualification,evidence,source_r1,issues,modality,note
+R2-001,O,Piattaforma di commercio elettronico,Piattaforma,,Una piattaforma di commercio elettronico,GS-001,,DESCRIBED,
+R2-002,O,Cliente/i,Cliente,,ai clienti,GS-002,,DESCRIBED,
+R2-003,O,Prodotto/i,Prodotto,,Ogni prodotto possiede,GS-003,,DESCRIBED,
+R2-004,O,Catalogo,Catalogo,,nel catalogo,GS-004,,DESCRIBED,
+R2-005,O,Catalog Service,Catalog Service,,Catalog Service,GS-005,,DESCRIBED,
+R2-006,O,Informazioni sulla disponibilità,DisponibilitàInfo,,informazioni sulla disponibilità,GS-006,,DESCRIBED,
+R2-007,O,Inventory Store,Inventory Store,,Inventory Store,GS-007,,DESCRIBED,
+R2-008,O,Order Service,Order Service,,Order Service,GS-008,,DESCRIBED,
+R2-009,O,Richiesta,Richiesta,Rinominazione: nel testo è «la richiesta»,"la richiesta contenente l'identificativo del cliente, i prodotti selezionati e le quantità richieste",GS-009,C-09,DESCRIBED,; alias contestuale candidato: Richiesta di acquisto
+R2-010,O,Inventory Service,Inventory Service,,Inventory Service,GS-010,,DESCRIBED,
+R2-011,O,Quantità disponibili,QuantitaDisponibili,,quantità disponibili,GS-011,,DESCRIBED,
+R2-012,O,Ordine,Ordine,,crea un ordine,GS-012,,DESCRIBED,
+R2-013,O,Order Store,Order Store,,Order Store,GS-013,,DESCRIBED,
+R2-014,O,Payment Service,Payment Service,,Payment Service,GS-014,,DESCRIBED,
+R2-015,O,Autorizzazione del pagamento,AutorizzazionePagamento,,l'autorizzazione del pagamento,GS-015,,DESCRIBED,
+R2-016,O,Payment Provider,Payment Provider,,Payment Provider esterno,GS-016,C-12,DESCRIBED,; esternità valutata separatamente in GS-029
+R2-017,O,Esito autorizzazione,EsitoAutorizzazione,,l'esito dell'autorizzazione,GS-017,,DESCRIBED,
+R2-018,O,Quantità ordinate,QuantitaOrdinate,Equivalenza con QuantitaRichieste non dichiarata,quantità ordinate,GS-018,C-10,DESCRIBED,; confronto con quantità richieste senza equivalenza imposta
+R2-019,O,Stato Confirmed,Confirmed,,stato Confirmed,GS-019,,DESCRIBED,
+R2-020,O,Notifica al cliente,Notifica,,una notifica al cliente,GS-020,,DESCRIBED,
+R2-021,O,Notification Service,Notification Service,,Notification Service,GS-021,,DESCRIBED,
+R2-022,O,Stato Rejected,Rejected,,come Rejected,GS-022,,DESCRIBED,
+R2-023,O,Organizzazione esterna,OrgEsterna,,un'organizzazione esterna,GS-023,,DESCRIBED,
+R2-024,O,Infrastruttura associata al servizio del Payment Provider,InfrastrutturaProvider,Il referente del pronome «ne» è contestuale,"La piattaforma utilizza il suo servizio, ma non ne gestisce l'infrastruttura.",GS-024,C-11;C-19,DESCRIBED,; risoluzione precisa del pronome non obbligatoria
+R2-025,R,Prodotto possiede identificativo,Prodotto → IdentificativoProdotto,,"Ogni prodotto possiede un identificativo, una descrizione e un prezzo.",GS-025,C-04,DESCRIBED,Tre unità valutabili anche in unica relazione n-aria
+R2-026,R,Prodotto possiede descrizione,Prodotto → DescrizioneProdotto,,"Ogni prodotto possiede un identificativo, una descrizione e un prezzo.",GS-025,C-04,DESCRIBED,Tre unità valutabili anche in unica relazione n-aria
+R2-027,R,Prodotto possiede prezzo,Prodotto → PrezzoProdotto,,"Ogni prodotto possiede un identificativo, una descrizione e un prezzo.",GS-025,C-04,DESCRIBED,Tre unità valutabili anche in unica relazione n-aria
+R2-028,R,Catalog Service mantiene catalogo,Catalog Service → Catalogo,,Il catalogo viene mantenuto dal Catalog Service,GS-026,,DESCRIBED,
+R2-029,R,Informazioni disponibilità conservate in Inventory Store,DisponibilitàInfo → Inventory Store,,le informazioni sulla disponibilità sono conservate nell'Inventory Store,GS-027,,DESCRIBED,
+R2-030,R,Richiesta contiene identificativo cliente,Richiesta → IdentificativoCliente,,"la richiesta contenente l'identificativo del cliente, i prodotti selezionati e le quantità richieste",GS-028,C-03;C-05,DESCRIBED,Non è obbligatorio attribuire BAReferent autonomi ai campi
+R2-031,R,Richiesta contiene prodotti selezionati,Richiesta → ProdottiSelezionati,,"la richiesta contenente l'identificativo del cliente, i prodotti selezionati e le quantità richieste",GS-028,C-03;C-05,DESCRIBED,Non è obbligatorio attribuire BAReferent autonomi ai campi
+R2-032,R,Richiesta contiene quantità richieste,Richiesta → QuantitaRichieste,,"la richiesta contenente l'identificativo del cliente, i prodotti selezionati e le quantità richieste",GS-028,C-03;C-05,DESCRIBED,Non è obbligatorio attribuire BAReferent autonomi ai campi
+R2-033,R,Payment Provider è esterno,Payment Provider,,un Payment Provider esterno,GS-029,,DESCRIBED,
+R2-034,R,Organizzazione esterna gestisce Payment Provider,OrgEsterna → Payment Provider,,Il Payment Provider è gestito da un'organizzazione esterna.,GS-030,,DESCRIBED,
+R2-035,R,Piattaforma usa servizio del Payment Provider,Piattaforma → servizio Provider,,La piattaforma utilizza il suo servizio,GS-031,,DESCRIBED,Non attribuire ownership
+R2-036,N,Piattaforma NON gestisce infrastruttura del Payment Provider,Piattaforma → InfrastrutturaProvider,NEGATIVA,ma non ne gestisce l'infrastruttura.,GS-032,C-11;C-12;C-15,NEGATED,Separare da R: uso servizio; affermazione negativa distinta dall’uso del servizio
+R2-037,A,Cliente conferma un acquisto,Cliente → Acquisto,TRIGGER,Quando un cliente conferma un acquisto,GS-033,,CONDITIONAL_OR_ORDERED,
+R2-038,A,Order Service riceve richiesta,Order Service ← Richiesta,TRIGGER: conferma acquisto,l'Order Service riceve la richiesta contenente,GS-034,,CONDITIONAL_OR_ORDERED,Mittente del messaggio non nominato
+R2-039,A,Order Service verifica disponibilità,Order Service → Disponibilità,,L'Order Service verifica la disponibilità interrogando l'Inventory Service,GS-035,C-08,DESCRIBED,; non imporre identificazione con DisponibilitàInfo
+R2-040,A,Order Service interroga Inventory Service,Order Service → Inventory Service,,interrogando l'Inventory Service,GS-036,,DESCRIBED,
+R2-041,A,Inventory Service consulta Inventory Store,Inventory Service → Inventory Store,,che consulta l'Inventory Store,GS-037,,DESCRIBED,
+R2-042,A,Inventory Service restituisce quantità disponibili,Inventory Service → QuantitaDisponibili,,restituisce le quantità disponibili,GS-038,,DESCRIBED,Destinatario non espresso
+R2-043,A,Order Service crea un ordine,Order Service → Ordine,SE: tutti disponibili,"Se tutti i prodotti richiesti sono disponibili, l'Order Service crea un ordine",GS-039,,CONDITIONAL_OR_ORDERED,
+R2-044,A,Order Service registra ordine in Order Store,Order Service → Ordine → Order Store,SE: tutti disponibili,"Se tutti i prodotti richiesti sono disponibili, l'Order Service crea un ordine e lo registra nell'Order Store.",GS-040,C-13,CONDITIONAL_OR_ORDERED,
+R2-045,A,Order Service richiede autorizzazione a Payment Service,Order Service → Payment Service → AutorizzazionePagamento,DOPO: registrazione ordine,Successivamente richiede al Payment Service l'autorizzazione del pagamento.,GS-041,C-13,CONDITIONAL_OR_ORDERED,
+R2-046,A,Payment Service comunica con Payment Provider,Payment Service ↔ Payment Provider,,Il Payment Service comunica con un Payment Provider esterno,GS-042,,DESCRIBED,Protocollo ignoto
+R2-047,A,Payment Service restituisce esito autorizzazione,Payment Service → EsitoAutorizzazione,,restituisce l'esito dell'autorizzazione,GS-043,,DESCRIBED,Destinatario non espresso
+R2-048,A,Order Service richiede riserva a Inventory Service,Order Service → Inventory Service → QuantitaOrdinate,QUANDO: pagamento autorizzato,l'Order Service richiede all'Inventory Service di riservare le quantità ordinate,GS-044,,CONDITIONAL_OR_ORDERED,Richiesta ≠ esecuzione confermata
+R2-049,A,Ordine assume stato Confirmed,Ordine → Confirmed,DOPO: conferma riserva,"Dopo la conferma della riserva, l'ordine assume lo stato Confirmed",GS-045,C-06;C-13,CONDITIONAL_OR_ORDERED,Attore che cambia stato non specificato
+R2-050,A,Notifica inviata al cliente tramite Notification Service,Notifica → Cliente; tramite Notification Service,DOPO: conferma riserva,"Dopo la conferma della riserva, l'ordine assume lo stato Confirmed e viene inviata una notifica al cliente tramite il Notification Service.",GS-046,C-06;C-13,CONDITIONAL_OR_ORDERED,Mittente non specificato
+R2-051,A,Ordine contrassegnato come Rejected,Ordine → Rejected,SE: pagamento NON autorizzato,l'ordine viene contrassegnato come Rejected,GS-047,,CONDITIONAL_OR_ORDERED,Attore non specificato
+R2-052,A,Richiesta rifiutata,Richiesta,SE: disponibilità insufficiente; PRIMA: contatto Payment Service,la richiesta viene rifiutata prima di contattare il Payment Service,GS-048,C-17,CONDITIONAL_OR_ORDERED,Attore non specificato; PRIMA non implica MAI contattato
+R2-053,U,Protocollo di comunicazione non specificato,Protocollo,NON SPECIFICATO,La documentazione non specifica il protocollo di comunicazione utilizzato,GS-049,,EXPLICIT_UNSPECIFIED,Non creare un protocollo implementato
+R2-054,U,Meccanismo di annullamento autorizzazioni non specificato,MeccanismoAnnullamento,NON SPECIFICATO,né il meccanismo di annullamento delle autorizzazioni di pagamento.,GS-050,,EXPLICIT_UNSPECIFIED,Non affermare presenza o assenza del meccanismo
+R2-055,U,Soggetto mittente della notifica non identificato,AttoreMittente,NON IDENTIFICATO,viene inviata una notifica al cliente tramite il Notification Service,GS-051,,UNRESOLVED_IN_TEXT,Non attribuire automaticamente al Notification Service
+R2-056,U,Esecuzione della riserva non direttamente descritta,Riserva,NON CONCLUDERE esecuzione incondizionata,richiede all'Inventory Service di riservare le quantità ordinate,GS-052,C-06;C-16,UNRESOLVED_IN_TEXT,Esiste anche una successiva conferma della riserva
+R2-057,A,Piattaforma permette ai clienti di acquistare prodotti,Piattaforma → Cliente → Prodotto,CAPACITÀ / ABILITAZIONE,Una piattaforma di commercio elettronico permette ai clienti di acquistare prodotti disponibili nel catalogo.,NEW,C-01,CAPABILITY,Non è una prova di acquisti realizzati
+R2-058,R,Prodotti disponibili nel catalogo,Prodotto → Catalogo,,prodotti disponibili nel catalogo,NEW,C-02,DESCRIBED,Non attribuire formato o archiviazione fisica
+R2-059,O,Identificativo del cliente (menzione),IdentificativoCliente,MENZIONE VALUTABILE,l'identificativo del cliente,NEW,C-03;C-05,MENTION,Non obbliga alla creazione di BAReferent autonomo
+R2-060,O,Prodotti selezionati (menzione),ProdottiSelezionati,MENZIONE VALUTABILE,i prodotti selezionati,NEW,C-03;C-05,MENTION,Non obbliga alla creazione di BAReferent autonomo
+R2-061,O,Quantità richieste (menzione),QuantitaRichieste,MENZIONE VALUTABILE,le quantità richieste,NEW,C-03;C-05,MENTION,Non obbliga alla creazione di BAReferent autonomo
+R2-062,T,Conferma della riserva menzionata come antecedente,ConfermaRiserva,DOPO: la conferma precede Confirmed e invio notifica,Dopo la conferma della riserva,NEW,C-06;C-16,TEMPORAL_MENTION,"Attore e procedura della conferma non identificati; T è qualificazione valutativa, non nuova famiglia BA"
+R2-063,O,Acquisto (menzione),Acquisto,MENZIONE VALUTABILE,un acquisto,NEW,C-14,MENTION,Non impone entità ontologica autonoma
+R2-064,O,Disponibilità (menzione distinta da informazione conservata),Disponibilità,IDENTITÀ NON RISOLTA,verifica la disponibilità,NEW,C-08,MENTION,Non presumere identità o distinzione ontologica con Informazioni sulla disponibilità
