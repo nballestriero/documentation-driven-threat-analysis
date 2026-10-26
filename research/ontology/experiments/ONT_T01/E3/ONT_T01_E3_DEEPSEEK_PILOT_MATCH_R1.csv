@@ -1,0 +1,65 @@
+gold_id,dimension,scoring_layer,gold_fact,assessment,extracted_ids,rationale,review_status
+R3-001,O,ENTITY_MENTION,Piattaforma di commercio elettronico,MATCH,O-001,Il concetto è esplicitamente rappresentato; non richiede identità BA autonoma.,PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-002,O,ENTITY_MENTION,Cliente/i,MATCH,O-002,Il concetto è esplicitamente rappresentato; non richiede identità BA autonoma.,PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-003,O,ENTITY_MENTION,Prodotto/i,MATCH,O-003,Il concetto è esplicitamente rappresentato; non richiede identità BA autonoma.,PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-004,O,ENTITY_MENTION,Catalogo,MATCH,O-004,Il concetto è esplicitamente rappresentato; non richiede identità BA autonoma.,PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-005,O,ENTITY_MENTION,Catalog Service,MATCH,O-008,Il concetto è esplicitamente rappresentato; non richiede identità BA autonoma.,PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-006,O,ENTITY_MENTION,Informazioni sulla disponibilità,PARTIAL,O-009;R-003,"L’oggetto è denominato «Disponibilità» e la relazione descrive informazioni conservate: copertura informativa presente, identità informazione/proprietà non disambiguata.",PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-007,O,ENTITY_MENTION,Inventory Store,MATCH,O-010,Il concetto è esplicitamente rappresentato; non richiede identità BA autonoma.,PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-008,O,ENTITY_MENTION,Order Service,MATCH,O-011,Il concetto è esplicitamente rappresentato; non richiede identità BA autonoma.,PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-009,O,ENTITY_MENTION,Richiesta,MATCH,O-012,Il concetto è esplicitamente rappresentato; non richiede identità BA autonoma.,PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-010,O,ENTITY_MENTION,Inventory Service,MATCH,O-016,Il concetto è esplicitamente rappresentato; non richiede identità BA autonoma.,PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-011,O,ENTITY_MENTION,Quantità disponibili,MATCH,O-017,Il concetto è esplicitamente rappresentato; non richiede identità BA autonoma.,PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-012,O,ENTITY_MENTION,Ordine,MATCH,O-018,Il concetto è esplicitamente rappresentato; non richiede identità BA autonoma.,PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-013,O,ENTITY_MENTION,Order Store,MATCH,O-019,Il concetto è esplicitamente rappresentato; non richiede identità BA autonoma.,PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-014,O,ENTITY_MENTION,Payment Service,MATCH,O-020,Il concetto è esplicitamente rappresentato; non richiede identità BA autonoma.,PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-015,O,ENTITY_MENTION,Autorizzazione del pagamento,MATCH,O-021,Il concetto è esplicitamente rappresentato; non richiede identità BA autonoma.,PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-016,O,ENTITY_MENTION,Payment Provider,MATCH,O-022,Il concetto è esplicitamente rappresentato; non richiede identità BA autonoma.,PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-017,O,ENTITY_MENTION,Esito autorizzazione,MATCH,O-023,Il concetto è esplicitamente rappresentato; non richiede identità BA autonoma.,PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-018,O,ENTITY_MENTION,Quantità ordinate,MATCH,O-024,Il concetto è esplicitamente rappresentato; non richiede identità BA autonoma.,PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-019,O,ENTITY_MENTION,Stato Confirmed,MATCH,O-026,Il concetto è esplicitamente rappresentato; non richiede identità BA autonoma.,PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-020,O,ENTITY_MENTION,Notifica al cliente,MATCH,O-027,Il concetto è esplicitamente rappresentato; non richiede identità BA autonoma.,PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-021,O,ENTITY_MENTION,Notification Service,MATCH,O-028,Il concetto è esplicitamente rappresentato; non richiede identità BA autonoma.,PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-022,O,ENTITY_MENTION,Stato Rejected,MATCH,O-029,Il concetto è esplicitamente rappresentato; non richiede identità BA autonoma.,PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-023,O,ENTITY_MENTION,Organizzazione esterna,MATCH,O-030,Il concetto è esplicitamente rappresentato; non richiede identità BA autonoma.,PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-024,O,ENTITY_MENTION,Infrastruttura associata al servizio del Payment Provider,MATCH,O-031,Il concetto è esplicitamente rappresentato; non richiede identità BA autonoma.,PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-025,R,SEMANTIC_FACT,Prodotto possiede identificativo,MATCH,R-001,Ruoli e significato espliciti; una relazione n-aria può coprire più unità atomiche.,PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-026,R,SEMANTIC_FACT,Prodotto possiede descrizione,MATCH,R-001,Ruoli e significato espliciti; una relazione n-aria può coprire più unità atomiche.,PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-027,R,SEMANTIC_FACT,Prodotto possiede prezzo,MATCH,R-001,Ruoli e significato espliciti; una relazione n-aria può coprire più unità atomiche.,PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-028,R,SEMANTIC_FACT,Catalog Service mantiene catalogo,MATCH,R-002,Relazione esplicita con partecipanti e ruoli coerenti.,PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-029,R,SEMANTIC_FACT,Informazioni disponibilità conservate in Inventory Store,MATCH,R-003,Relazione esplicita con partecipanti e ruoli coerenti.,PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-030,R,SEMANTIC_FACT,Richiesta contiene identificativo cliente,MATCH,R-004,Ruoli e significato espliciti; una relazione n-aria può coprire più unità atomiche.,PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-031,R,SEMANTIC_FACT,Richiesta contiene prodotti selezionati,MATCH,R-004,Ruoli e significato espliciti; una relazione n-aria può coprire più unità atomiche.,PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-032,R,SEMANTIC_FACT,Richiesta contiene quantità richieste,MATCH,R-004,Ruoli e significato espliciti; una relazione n-aria può coprire più unità atomiche.,PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-033,R,SEMANTIC_FACT,Payment Provider è esterno,MATCH,O-022;A-009,"L’esternità è espressa nel nome/categoria dell’oggetto e nell’evidenza, anche senza relazione R autonoma.",PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-034,R,SEMANTIC_FACT,Organizzazione esterna gestisce Payment Provider,MATCH,R-005,Relazione esplicita con partecipanti e ruoli coerenti.,PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-035,R,SEMANTIC_FACT,Piattaforma usa servizio del Payment Provider,MATCH,R-006,Relazione esplicita con partecipanti e ruoli coerenti.,PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-036,N,POLARITY_CHECK,Piattaforma NON gestisce infrastruttura del Payment Provider,MATCH,R-007,Relazione esplicita con partecipanti e ruoli coerenti.,PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-037,A,BEHAVIOR,Cliente conferma un acquisto,MATCH,A-001,"Azione, attore ove identificato, e partecipanti fondamentali presenti.",PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-038,A,BEHAVIOR,Order Service riceve richiesta,PARTIAL,A-001;A-002,"Ricezione presente; manca nel campo condition/trigger la relazione esplicita con la conferma dell’acquisto, sebbene il contesto adiacente la suggerisca.",PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-039,A,BEHAVIOR,Order Service verifica disponibilità,MATCH,A-003,"Verifica e servizio interrogato compaiono nella medesima azione, con ruoli coerenti.",PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-040,A,BEHAVIOR,Order Service interroga Inventory Service,MATCH,A-003,L’interrogazione di Inventory Service è presente tra i partecipanti/ruoli della verifica; non è richiesto un secondo record A.,PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-041,A,BEHAVIOR,Inventory Service consulta Inventory Store,MATCH,A-004,"Azione, attore ove identificato, e partecipanti fondamentali presenti.",PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-042,A,BEHAVIOR,Inventory Service restituisce quantità disponibili,MATCH,A-005,"Azione, attore ove identificato, e partecipanti fondamentali presenti.",PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-043,A,BEHAVIOR,Order Service crea un ordine,MATCH,A-006,"Azione, attore ove identificato, e partecipanti fondamentali presenti.",PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-044,A,BEHAVIOR,Order Service registra ordine in Order Store,PARTIAL,A-007;A-006,"Registrazione e destinazione preservate, ma la condizione di disponibilità è registrata solo sull’azione di creazione precedente, non sulla registrazione.",PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-045,A,BEHAVIOR,Order Service richiede autorizzazione a Payment Service,PARTIAL,A-008,Richiesta e destinatario corretti; «Successivamente» appare nell’evidenza ma non come vincolo strutturato collegato alla registrazione.,PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-046,A,BEHAVIOR,Payment Service comunica con Payment Provider,MATCH,A-009,"Azione, attore ove identificato, e partecipanti fondamentali presenti.",PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-047,A,BEHAVIOR,Payment Service restituisce esito autorizzazione,MATCH,A-010,"Azione, attore ove identificato, e partecipanti fondamentali presenti.",PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-048,A,BEHAVIOR,Order Service richiede riserva a Inventory Service,MATCH,A-012,"Azione, attore ove identificato, e partecipanti fondamentali presenti.",PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-049,A,BEHAVIOR,Ordine assume stato Confirmed,MATCH,A-013,"Azione, attore ove identificato, e partecipanti fondamentali presenti.",PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-050,A,BEHAVIOR,Notifica inviata al cliente tramite Notification Service,MATCH,A-014,"Notifica, destinatario, tramite servizio e antecedente di conferma presenti anche se lo span evidence isolato è più corto.",PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-051,A,BEHAVIOR,Ordine contrassegnato come Rejected,MATCH,A-015,"Azione, attore ove identificato, e partecipanti fondamentali presenti.",PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-052,A,BEHAVIOR,Richiesta rifiutata,PARTIAL,A-016,Rifiuto e condizione corretti; la precedenza rispetto al contatto Payment Service resta nella citazione e non in campi di precedenza strutturata.,PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-053,U,UNCERTAINTY_CHECK,Protocollo di comunicazione non specificato,MATCH,ambiguities[0],La lacuna esplicita sul protocollo è presente nella prima ambiguità.,PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-054,U,UNCERTAINTY_CHECK,Meccanismo di annullamento autorizzazioni non specificato,MATCH,ambiguities[0],La lacuna esplicita sul meccanismo di annullamento è presente nella prima ambiguità.,PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-055,U,UNCERTAINTY_CHECK,Soggetto mittente della notifica non identificato,MATCH,ambiguities[1];A-014,Il mittente ignoto è segnalato esplicitamente e non viene attribuito al servizio.,PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-056,U,UNCERTAINTY_CHECK,Esecuzione della riserva non direttamente descritta,PARTIAL,A-012;O-025,La richiesta di riserva è distinta dall’operazione/menzione riserva; il limite «esecuzione non descritta direttamente» non è formulato come cautela esplicita.,PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-057,A,BEHAVIOR,Piattaforma permette ai clienti di acquistare prodotti,PARTIAL,O-001;O-002;O-003,La frase di capacità è conservata come evidenza sugli oggetti ma non formalizzata come azione/relazione di abilitazione.,PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-058,R,SEMANTIC_FACT,Prodotti disponibili nel catalogo,PARTIAL,O-003;O-004,"Prodotti e catalogo con citazione comune, ma manca il legame strutturato di disponibilità nel catalogo.",PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-059,O,ENTITY_MENTION,Identificativo del cliente (menzione),MATCH,O-013,Il concetto è esplicitamente rappresentato; non richiede identità BA autonoma.,PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-060,O,ENTITY_MENTION,Prodotti selezionati (menzione),MATCH,O-014,Il concetto è esplicitamente rappresentato; non richiede identità BA autonoma.,PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-061,O,ENTITY_MENTION,Quantità richieste (menzione),MATCH,O-015,Il concetto è esplicitamente rappresentato; non richiede identità BA autonoma.,PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-062,T,TEMPORAL_CHECK,Conferma della riserva menzionata come antecedente,MATCH,A-013;A-014;O-025,"La conferma della riserva precede entrambi gli eventi, senza imporre un ordine reciproco.",PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-063,O,ENTITY_MENTION,Acquisto (menzione),MATCH,O-034,Il concetto è esplicitamente rappresentato; non richiede identità BA autonoma.,PROVISIONAL_NEEDS_HUMAN_REVIEW
+R3-064,O,ENTITY_MENTION,Disponibilità verificata (menzione; identità rispetto a informazioni conservate non risolta),PARTIAL,O-009;A-003,La stessa identità O-009 è utilizzata per informazioni conservate e disponibilità verificata; non imporre né equivalenza né differenza.,PROVISIONAL_NEEDS_HUMAN_REVIEW
