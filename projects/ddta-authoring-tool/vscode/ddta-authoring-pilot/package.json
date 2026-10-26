@@ -2,7 +2,7 @@
   "name": "ddta-authoring-pilot",
   "displayName": "DDTA Authoring Pilot",
   "description": "Thin VS Code diagnostics adapter for the shared DDTA Python validator.",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "publisher": "ddta-research",
   "private": true,
   "engines": {"vscode": "^1.85.0"},

@@ -4,7 +4,6 @@ const path = require('path');
 const fs = require('fs');
 const cp = require('child_process');
 
-const TYPE_FOLDERS = new Set(['01-macro-requirements', '02-decisions', '03-functional-requirements']);
 let collection;
 const timers = new Map();
 const running = new Map();
@@ -14,13 +13,27 @@ let output;
 function contextFor(document) {
   if (document.uri.scheme !== 'file' || document.languageId !== 'markdown') return null;
   const file = document.uri.fsPath;
-  const parent = path.dirname(file);
-  const folder = path.basename(parent);
-  if (!TYPE_FOLDERS.has(folder)) return null;
-  if (path.basename(path.dirname(parent)) !== 'docs') return null;
-  if (!fs.existsSync(file)) return null; // C9 R1B only saved-document identities, unsaved text allowed.
-  const docs = path.dirname(parent);
-  return {docs, relative: `${folder}/${path.basename(file)}`};
+  if (!fs.existsSync(file)) return null; // Saved identity, unsaved contents supported.
+  // Project scoping, not a catalogue of document types or folder names.
+  // Locate a docs/ ancestor within the selected workspace, never above it.
+  const workspace = vscode.workspace.getWorkspaceFolder(document.uri);
+  if (!workspace) return null;
+  let cursor = path.dirname(file);
+  const workspaceRoot = path.resolve(workspace.uri.fsPath);
+  while (cursor !== path.dirname(cursor)) {
+    if (path.basename(cursor) === 'docs') {
+      const relative = path.relative(cursor, file);
+      if (relative.startsWith('..') || path.isAbsolute(relative) || !relative.includes(path.sep)) return null;
+      // Legacy DDTA folders also accept an incomplete draft lacking a front matter.
+      // Other folders require a YAML opening marker to avoid linting general README files.
+      const legacy = new Set(['01-macro-requirements','02-decisions','03-functional-requirements']);
+      if (!legacy.has(relative.split(path.sep)[0]) && !document.getText().startsWith('---')) return null;
+      return {docs: cursor, relative: relative.split(path.sep).join('/')};
+    }
+    if (path.resolve(cursor) === workspaceRoot) break;
+    cursor = path.dirname(cursor);
+  }
+  return null;
 }
 
 function frameworkRoot(document) {

@@ -2,7 +2,7 @@
 
 **Stato:** piano operativo di lavoro, non normativo
 **Ultimo aggiornamento:** 2026-10-23
-**Baseline Git pubblicata:** `master` / `0290aa6` (C9 R2, completamento schema-driven).
+**Baseline Git pubblicata:** `master` / `53c7613` (C9 R2P, build VSIX riproducibile); C9 R3 validato localmente, commit in attesa.
 **Ambito:** progetto `projects/ddta-authoring-tool/` nella tesi; futura separazione del framework ancora da verificare.
 
 ## 1. Scopo e autorità
@@ -51,7 +51,7 @@ Questo è il piano del **progetto Authoring Tool**, separato dai work plan metod
 | **C8 chiusura** | IN_PROGRESS | Audit dell'intera suite attuale e separazione fra tracciabilità dei test e copertura di tutte le NC | `DEC-MR03-06`; `FR-MR03-06-01/02/03/04` | Nessun metodo eseguibile senza classificazione/giustificazione; elenco NC scoperte distinto; non forzare `fullSuiteCovered` |
 | **C9 R1** | IN_PROGRESS | Definire e collaudare lo scope di un **progetto DDTA indipendente** | `MR-01`, `DEC-MR01-01`, `FR-MR01-01-01/02/03/04`; `MR-03`, `DEC-MR03-01`, `FR-MR03-01-01/02` | Un sottoprogetto estraneo ai documenti dell'Authoring Tool viene validato senza importare sorgenti del progetto ospite |
 | **C9 R2** | **DONE (risultato conseguito da C9 R1B)** | Collegare VS Code al motore comune; diagnostiche su buffer non salvato | `DEC-MR01-03`, `FR-MR01-03-01`, `FR-MR01-03-03`; diagnostiche sotto `MR-02` | VS Code 0.1.1: REL-TARGET-MISSING e rimozione automatica su buffer non salvato; commit `61ba4b6` |
-| **C9 R3** | IN_PROGRESS (primo incremento operativo C9 R2) | Completamento schema-driven e proposta di fix controllata | `FR-MR01-03-02`, `FR-MR01-03-03`; schemi in `prototype/generic-v01/schemas/` | C9 R2: campi e valori YAML verificati in VS Code 0.1.2; fix controllati, nuovi tipi e contratti ancora da verificare |
+| **C9 R3** | IN_PROGRESS (prove tecniche superate; commit in attesa) | Estensibilita dichiarativa e assistenza editor a nuovo tipo, entro grammatica supportata | `FR-MR01-03-02`, `FR-MR01-03-03`; schemi in `prototype/generic-v01/schemas/` | `C9DeclarativeProbe` strict PASS senza cambi al validatore; VS Code 0.1.3: completamenti e diagnostiche osservati nella nuova cartella; regressione `REL-TARGET-MISSING` confermata; 123 test Python OK. Fix controllati e altri contesti ancora aperti |
 | **C9 R4** | PLANNED | **Self-hosting**: VS Code deve assistere anche l'editing della documentazione e delle guide del framework stesso | `DEC-MR01-03`, `DEC-MR01-04`, `MR-02`, `MR-03` e guide BA pertinenti | Stessi controlli, stessi ID diagnostici e stessa semantica da CLI e VS Code, nel framework e in un progetto DDTA separato |
 | **C9 R5** | PLANNED | Stabilire confini/versioni per il riuso e preparare l'eventuale estrazione del framework | Assessment C9 R1–R4; eventuali Decision/FR da formalizzare in review | Un progetto può dichiarare la versione dei contratti usati; estrazione in repo autonomo senza duplicare il motore |
 | **Dopo C9** | DEFERRED | Estendere catalogo degli operatori BA e supporto a ulteriori tipi di documento | Guide BA e nuovi documenti governanti approvati | Nessun nuovo operatore o schema trattato come eseguibile prima di test e review |
@@ -99,7 +99,7 @@ Questi sono gate tecnici, non nuovi contratti normativi: qualsiasi modifica a MR
 
 ### C9 R2P — indipendenza dei client e riproducibilita (checkpoint operativo, non normativo)
 
-**Stato: IN_PROGRESS, verifica e commit in attesa.** Principio architetturale: contratti DDTA indipendenti dall'implementazione; motore Python utilizzabile senza VS Code, Node.js o LLM; CLI, editor, CI e AI sono client, senza copie di regole o dizionari. Le nuove grammatiche richiedono eventuali estensioni generali del motore, non eccezioni per ogni documento.
+**Stato: build verificata e commit `53c7613` pubblicato; installazione su ambiente pulito ancora aperta.** Principio architetturale: contratti DDTA indipendenti dall'implementazione; motore Python utilizzabile senza VS Code, Node.js o LLM; CLI, editor, CI e AI sono client, senza copie di regole o dizionari. Le nuove grammatiche richiedono eventuali estensioni generali del motore, non eccezioni per ogni documento.
 
 - Script versionati: `scripts/build_vsix.py`, `scripts/build-vsix.ps1`, `scripts/build-vsix.sh`.
 - Procedura: `docs/installation/ARCHITECTURE_AND_REPRODUCIBILITY.md`, `WINDOWS.md`, `LINUX.md`.
@@ -132,8 +132,10 @@ Questi sono gate tecnici, non nuovi contratti normativi: qualsiasi modifica a MR
 | **C9 R1A** | DONE — commit `4da8ee7` | 118 test Python OK; snapshot CLI/API equivalenti, progetto pilota 3 documenti, 0 errori; nessuna scrittura su disco nel test |
 | **C9 R1B** | DONE — commit `61ba4b6` | VS Code riconosce la VSIX 0.1.1; `REL-TARGET-MISSING` alla riga 6 su buffer non salvato e rimozione automatica dopo correzione; `node --check` OK; regressione 118/118 OK |
 | **C9 R2 — primo completamento YAML** | DONE — commit `0290aa6` | Modulo Python `suggest`, CLI, adapter VS Code 0.1.2; 121/121 test Python OK; `node --check` OK; `git diff --check` senza errori; VSIX installata con byte identici ai sorgenti; suggerimenti `implementationBindings`, `implementationClaim`, valori `lifecycle` e diagnostica per campo obbligatorio osservati in VS Code |
+| **C9 R2P â€” build VSIX riproducibile** | DONE â€” commit `53c7613` | Script e documentazione Windows/Linux versionati; VSIX 0.1.2 costruita e verificata byte-per-byte; 121/121 test; prova su ambiente pulito ancora da svolgere |
+| **C9 R3 â€” esperimento nuovo tipo** | IN_PROGRESS (prove superate, commit pending) | Nuovo schema `C9DeclarativeProbe` e documento sotto `06-declarative-probes`; strict PASS; 123/123 test; VSIX 0.1.3 installata e verificata; completamento e diagnostica del nuovo tipo e regressione `REL-TARGET-MISSING` osservati manualmente; relazioni per il nuovo tipo non contrattualizzate |
 | **C8 audit globale** | IN_PROGRESS | `scope: all`: 66 `TC-UNCOVERED-NC` in 24 FR (MR-01: 25, MR-02: 13, MR-03: 28); 0 `TC-UNMAPPED`; `fullSuiteCovered: false`. Da classificare per obbligo, senza dichiarare conformita sulla sola presenza di un TC |
 
-**Prossima azione concreta:** verificare build e installazione riproducibili dell’estensione (checkpoint infrastrutturale C9 R2P), poi eseguire un esperimento di estendibilita dichiarativa: aggiunta di un nuovo schema/tipo sintetico e assistenza CLI/VS Code senza cambiare codice. In seguito hover descrittivo generico, supporto delle grammatiche BA gia disponibili, TestSpecification e self-hosting. L’audit globale delle 66 NC rimane aperto e distinto; non introdurre binding fittizi per ottenere PASS.
+**Prossima azione concreta:** consolidare in Git il checkpoint C9 R3 verificato (nuovo schema sintetico, documento pilota, snapshot generico, VS Code 0.1.3 e test), poi introdurre descrizioni/hover generici derivati dai contratti. Restano aperti fix controllati, grammatiche BA, TestSpecification, self-hosting C9 R4 e installazione su ambiente pulito. Lâ€™audit globale delle 66 NC rimane aperto e distinto; non introdurre binding fittizi per ottenere PASS.
 
 **Regola di chiusura:** dopo ogni checkpoint aggiornare questa sezione soltanto con l'esito realmente osservato, riportando commit, test e limiti rimasti. Non confondere commit pubblicato, validazione strutturale e accettazione semantica.

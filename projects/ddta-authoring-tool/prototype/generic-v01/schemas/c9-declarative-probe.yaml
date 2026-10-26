@@ -1,0 +1,12 @@
+# C9 R3 synthetic extension probe — NON-NORMATIVE TEST FIXTURE.
+schemaId: C9DeclarativeProbe
+schemaVersion: '0.1'
+metadata:
+  type: {type: string, required: true, default: C9DeclarativeProbe, const: C9DeclarativeProbe}
+  schemaVersion: {type: string, required: true, default: '0.1', const: '0.1'}
+  id: {type: string, required: true, default: ''}
+  title: {type: string, required: true, default: ''}
+  lifecycle: {type: string, required: true, default: candidate, enum: [candidate, current, historical]}
+  reviewMode: {type: string, required: true, default: trace, enum: [trace, inspect]}
+sections:
+  - {name: Purpose, required: true, kind: text, hint: 'Synthetic contract discovery probe'}
