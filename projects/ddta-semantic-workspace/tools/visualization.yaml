@@ -1,0 +1,38 @@
+# DDTA visualization rules - pilot / non canonical.
+# Rendering conventions only; they do not modify RDF/OWL semantics.
+coreNamespace: "https://w3id.org/ddta/core#"
+layout: LR
+
+relations:
+  hasInput:
+    representation: arrow
+    direction: object-to-subject
+  hasOutput:
+    representation: arrow
+    direction: subject-to-object
+  hasPart:
+    representation: containment
+  constrainedBy:
+    representation: dashed-line
+    direction: none
+
+nodes:
+  Function:
+    shape: rounded
+    style: function
+  Information:
+    shape: rectangle
+    style: information
+  Contract:
+    shape: rectangle
+    style: contract
+  ContractElement:
+    shape: rectangle
+    style: element
+    showProperties: [minOccurs]
+
+styles:
+  function: {fill: "#dbeafe", stroke: "#2563eb", color: "#172554"}
+  information: {fill: "#f1f5f9", stroke: "#64748b", color: "#0f172a"}
+  contract: {fill: "#fef3c7", stroke: "#d97706", color: "#78350f"}
+  element: {fill: "#fff7ed", stroke: "#d97706", color: "#78350f"}

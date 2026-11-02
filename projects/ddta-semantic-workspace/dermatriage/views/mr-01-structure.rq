@@ -1,0 +1,17 @@
+# MR functional interface, contract constraints, and part-whole structures.
+# For other use cases replace the root IRI and/or property-path vocabulary.
+PREFIX ddta: <https://w3id.org/ddta/core#>
+PREFIX derma: <https://example.org/ddta/dermatriage#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+CONSTRUCT { ?s ?p ?o . }
+WHERE {
+    BIND(derma:DermatologicalTriageEvaluation AS ?root)
+    ?root (ddta:hasInput|ddta:hasOutput|ddta:constrainedBy|ddta:hasPart)* ?s .
+    ?s ?p ?o .
+    FILTER(?p IN (
+       rdf:type, rdfs:label, ddta:minOccurs,
+       ddta:hasInput, ddta:hasOutput, ddta:constrainedBy, ddta:hasPart
+    ))
+}

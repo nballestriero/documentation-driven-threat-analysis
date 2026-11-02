@@ -1,0 +1,3 @@
+# Versions validated for this workspace bootstrap; use a project virtual environment.
+rdflib==7.5.0
+PyYAML==6.0.3

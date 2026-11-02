@@ -1,0 +1,14 @@
+# Compact MR view: Function, direct inputs and outputs.
+# Adapt derma:DermatologicalTriageEvaluation to select a different root Function.
+PREFIX ddta: <https://w3id.org/ddta/core#>
+PREFIX derma: <https://example.org/ddta/dermatriage#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+CONSTRUCT { ?s ?p ?o . }
+WHERE {
+    BIND(derma:DermatologicalTriageEvaluation AS ?root)
+    ?root (ddta:hasInput|ddta:hasOutput)? ?s .
+    ?s ?p ?o .
+    FILTER(?p IN (rdf:type, rdfs:label, ddta:hasInput, ddta:hasOutput))
+}

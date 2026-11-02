@@ -1,0 +1,9 @@
+﻿@prefix ddta: <http://www.semanticweb.org/user/ontologies/2026/10/untitled-ontology-16/> .
+@prefix test: <https://example.org/ddta/tests/mentor#> .
+
+test:Probe
+    a ddta:Function ;
+    ddta:hasInput test:Input .
+
+test:Input
+    a ddta:Information .

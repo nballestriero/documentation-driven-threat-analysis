@@ -1,0 +1,136 @@
+@prefix : <https://w3id.org/ddta/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <https://w3id.org/ddta/core> .
+
+<https://w3id.org/ddta/core> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://w3id.org/ddta/core#constrainedBy
+:constrainedBy rdf:type owl:ObjectProperty ;
+               rdfs:range :Contract ;
+               rdfs:comment "Relates an entity to a contract specifying constraints that the entity is expected to satisfy. The relation does not imply that compliance has been verified or that an enforcement mechanism exists." .
+
+
+###  https://w3id.org/ddta/core#boundaryOf
+:boundaryOf rdf:type owl:ObjectProperty ;
+            rdfs:domain :Boundary ;
+            rdfs:comment "Relates a boundary to an entity whose architectural or topological scope it delimits. This relation does not imply part-whole composition, physical containment, trust classification, or security risk." .
+
+
+###  https://w3id.org/ddta/core#carries
+:carries rdf:type owl:ObjectProperty ;
+         rdfs:domain :Transfer ;
+         rdfs:comment "Relates a transfer to the information, message, or artifact designated to be conveyed from its source to its destination. The transferred entity may have its own internal structure, such as a message header and payload. This relation does not imply that the transfer has been executed or completed." .
+
+
+###  https://w3id.org/ddta/core#hasDestination
+:hasDestination rdf:type owl:ObjectProperty ;
+                rdfs:domain :Transfer ;
+                rdfs:comment "Relates a transfer to the entity designated as its destination for the modeled transfer leg. The destination is the intended receiving endpoint and is not necessarily the final consumer or owner of the transferred content. This relation does not imply that delivery has occurred or succeeded." .
+
+
+###  https://w3id.org/ddta/core#hasInput
+:hasInput rdf:type owl:ObjectProperty ;
+          rdfs:comment "Relates a function to an entity used or required as an input. This relation describes a functional interface and does not imply that an execution or a transfer has occurred." .
+
+
+###  https://w3id.org/ddta/core#hasOutput
+:hasOutput rdf:type owl:ObjectProperty ;
+           rdfs:comment "Relates a function to an entity made available as a result. This relation describes a functional interface and does not imply that an execution or a transfer has occurred." .
+
+
+###  https://w3id.org/ddta/core#hasPart
+:hasPart rdf:type owl:ObjectProperty ;
+         rdfs:comment "Relates an entity to another entity that is a constituent of its structure or composition. The relation does not, by itself, specify execution order, information flow, functional realization, or whether all constituent parts have been identified." .
+
+
+###  https://w3id.org/ddta/core#hasSource
+:hasSource rdf:type owl:ObjectProperty ;
+           rdfs:domain :Transfer ;
+           rdfs:comment "Relates a transfer to the entity acting as its source for the modeled transfer leg. The source is not necessarily the original creator or owner of the transferred content. This relation does not imply that the transfer has been executed." .
+
+
+###  https://w3id.org/ddta/core#realizesFunction
+:realizesFunction rdf:type owl:ObjectProperty ;
+                  rdfs:domain :Process ;
+                  rdfs:range :Function ;
+                  rdfs:comment "Relates a process to a function that the process is designed to realize. The relation does not imply that the process has been executed or that the function has been successfully performed." .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://w3id.org/ddta/core#minOccurs
+:minOccurs rdf:type owl:DatatypeProperty ;
+           rdfs:range xsd:nonNegativeInteger ;
+           rdfs:comment "Specifies the minimum required number of occurrences of an element or role within a defined context. A value of zero permits absence. This property expresses a requirement, not an observed quantity or evidence that the requirement has been satisfied." .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  https://w3id.org/ddta/core#Artifact
+:Artifact rdf:type owl:Class ;
+          rdfs:comment "An identifiable physical or digital item created or maintained for a purpose, such as a software package, model-weight file, configuration file, or document. An artifact is distinct from the information it represents and from the functions it may support. Its identity does not imply a particular storage location, implementation technology, or security property." .
+
+
+###  https://w3id.org/ddta/core#Contract
+:Contract rdf:type owl:Class ;
+          rdfs:comment "An explicit specification of requirements that an entity or interaction is expected to satisfy. A contract may define required and optional elements, information structures, conditions, and expected results. Its role as an input, output, or transfer contract depends on its relationship to other entities. A contract does not, by itself, assert that its requirements have been satisfied." .
+
+
+###  https://w3id.org/ddta/core#ContractElement
+:ContractElement rdf:type owl:Class ;
+                 rdfs:comment "A specification of an individual element expected or permitted within a contract. A contract element describes a requirement on content or structure rather than the actual information or artifact. Its constraints may include occurrence cardinality, expected type, and other conditions." .
+
+
+###  https://w3id.org/ddta/core#Environment
+:Environment rdf:type owl:Class ;
+             rdfs:comment "An identifiable operational or deployment context in which systems, processes, or resources are situated or made available. An environment may have its own constituent resources and arrangements. Its identity does not, by itself, imply ownership, trust classification, security properties, or a particular deployment technology." .
+
+
+###  https://w3id.org/ddta/core#System
+:System rdf:type owl:Class ;
+        rdfs:comment "An identifiable whole of related elements organized to provide or support capabilities. A system may contain other systems or components. Its identity does not, by itself, determine its deployment environment, architectural boundary, or security properties." .
+
+
+###  https://w3id.org/ddta/core#Boundary
+:Boundary rdf:type owl:Class ;
+          rdfs:comment "An identifiable architectural or topological demarcation that delimits a defined scope. A boundary does not, by itself, imply a trust classification, security risk, ownership, or physical separation." .
+
+
+###  https://w3id.org/ddta/core#Function
+:Function rdf:type owl:Class ;
+          rdfs:comment "A distinct capability that a system provides or is required to provide. A function is independent of its current technical implementation and does not represent a specific execution." .
+
+
+###  https://w3id.org/ddta/core#Information
+:Information rdf:type owl:Class ;
+             rdfs:comment "Content that represents facts, observations, instructions, or other meaningful information. Information is distinct from the physical or digital artifact used to represent, store, or communicate it." .
+
+
+###  https://w3id.org/ddta/core#Process
+:Process rdf:type owl:Class ;
+         rdfs:comment "A structured pattern of activities and their relationships that describes how work is performed to achieve an outcome. A process is distinct from a capability and from an individual execution." .
+
+
+###  https://w3id.org/ddta/core#Store
+:Store rdf:type owl:Class ;
+       rdfs:comment "An identifiable resource that retains information or artifacts and makes them available for subsequent retrieval or use. A store does not, by itself, imply a particular storage technology, physical location, ownership, or security property." .
+
+
+###  https://w3id.org/ddta/core#Transfer
+:Transfer rdf:type owl:Class ;
+          rdfs:comment "An explicitly modeled directed transfer of content from a source to a destination. A transfer represents one specified transfer leg, rather than an inferred route through intermediate entities. It does not, by itself, assert that an execution has occurred, that delivery has succeeded, or that a boundary has been crossed." .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi

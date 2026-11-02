@@ -1,0 +1,5 @@
+# Local Python environment and caches (do NOT ignore generated Mermaid: they are versioned artifacts).
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
