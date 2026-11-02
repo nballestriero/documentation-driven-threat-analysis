@@ -1,0 +1,12 @@
+# High-level view: shared input/output identities across MR-01 and MR-02.
+PREFIX ddta: <https://w3id.org/ddta/core#>
+PREFIX derma: <https://example.org/ddta/dermatriage#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+CONSTRUCT { ?s ?p ?o . }
+WHERE {
+    VALUES ?root { derma:DermatologicalTriageEvaluation derma:SpecialistDestinationDetermination }
+    ?root (ddta:hasInput|ddta:hasOutput)* ?s .
+    ?s ?p ?o .
+    FILTER(?p IN (rdf:type, ddta:hasInput, ddta:hasOutput))
+}

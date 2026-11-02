@@ -237,8 +237,18 @@ def project(graph: Graph, config: dict) -> str:
     return "\n".join(lines)
 
 
-def render(source: Path, config: Path, view: Path) -> str:
-    source_graph = read_rdf(source)
+def read_many_rdf(sources: list[Path]) -> Graph:
+    """Merge RDF by global IRI identity, independently of input order."""
+    if not sources:
+        raise ProjectionError("At least one RDF source is required")
+    result = Graph()
+    for source in sources:
+        result += read_rdf(source)
+    return result
+
+
+def render(source: Path | list[Path], config: Path, view: Path) -> str:
+    source_graph = read_many_rdf([source] if isinstance(source, Path) else source)
     view_graph = apply_sparql_view(source_graph, view)
     return project(view_graph, load_config(config))
 
@@ -254,7 +264,7 @@ def write_if_changed(path: Path, data: str, check: bool) -> bool:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--source", type=Path, required=True, help="Turtle .ttl or Markdown with exactly one fenced Turtle block")
+    parser.add_argument("--source", type=Path, action="append", required=True, help="Repeat for multiple Turtle/Markdown RDF sources")
     parser.add_argument("--config", type=Path, required=True, help="YAML visualization rules")
     parser.add_argument("--view", type=Path, required=True, help="SPARQL CONSTRUCT .rq view")
     parser.add_argument("--out", type=Path, required=True, help="Output path without extension; creates .mmd and .graph.md")

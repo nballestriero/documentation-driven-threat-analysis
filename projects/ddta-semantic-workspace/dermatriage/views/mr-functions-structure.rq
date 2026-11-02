@@ -1,0 +1,13 @@
+# Reusable structural view: all Function I/O and nested Information/Contract parts.
+# The graph is built from MR Turtle only. This query does not alter identities.
+PREFIX ddta: <https://w3id.org/ddta/core#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+CONSTRUCT { ?s ?p ?o . }
+WHERE {
+  ?root a ddta:Function .
+  ?root (ddta:hasInput|ddta:hasOutput|ddta:hasPart|ddta:constrainedBy)* ?s .
+  ?s ?p ?o .
+  FILTER (?p IN (rdf:type, rdfs:label, ddta:hasInput, ddta:hasOutput,
+                  ddta:hasPart, ddta:constrainedBy, ddta:minOccurs))
+}

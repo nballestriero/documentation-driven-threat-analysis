@@ -65,3 +65,31 @@ Updated: 2026-11-02. This plan covers a **candidate experimental workspace**, no
 - Public `w3id.org/ddta` registration/redirect is **not yet completed or verified**; resolve and register it before publication.
 - Do not use the old Protégé IRI in new documents. Keep original/historical references unchanged outside this workspace.
 - DermaTriage `https://example.org/ddta/dermatriage#` remains an experimental namespace pending a separate explicit decision.
+
+## Candidate follow-up — MR-01/MR-02 aggregated test
+
+- [x] Create experimental MR-02 with shared `TriageOutcome` IRI.
+- [x] Render MR-01 and MR-02 as one RDF graph with deterministic `--source` aggregation and SPARQL overview/structure views.
+- [ ] Validate the generated overview on the local VS Code preview and GitHub.
+- [ ] Decide how to assert system-level functional composition without conflating capability with physical part.
+- [ ] Extend to MR-03 and MR-04 only after reviewing the combined view.
+- [ ] Remove temporary `ontology/mentor-probe.ttl` from Git in a separate, reviewed cleanup.
+
+## MR-03 experimental composition (2026-11-02)
+
+- [x] Approve MR-03 candidate with TriageOutcome and ClinicalReview as inputs to ClinicalReviewManagement.
+- [x] Define ClinicalReviewRecord as Information with both original inputs as logical `hasPart` components; no duplicate RDF identities.
+- [x] Add reusable SPARQL views (`mr-functions-overview.rq`, `mr-functions-structure.rq`) selecting Function roots dynamically.
+- [ ] Validate single-IRI containment view and MR-01/02/03 combined view in VS Code; treat all combined views as **on-demand temporary output**, not required Git artifacts.
+- [ ] Evaluate composite information graph projection for cyclic flow layouts and whether Core needs new relations only if a **semantic** fact cannot be expressed.
+- [ ] Continue MR-04 separately before asserting a complete system graph or extending visualization tools.
+
+## MR-04 controlled adaptation experiment (2026-11-02)
+
+- [x] Approve autonomous MR-04 Intent and Context: evidence from accumulated clinical reviews, versioned pipeline AI components, qualification before any possible adoption, stable function identities.
+- [x] Express the structural MR-03 to MR-04 connection through shared `ClinicalReviewRecord` IRI and `AccumulatedClinicalReviewRecords hasPart ClinicalReviewRecord`.
+- [x] Distinguish `AdaptationCandidate` (`Artifact`) from `AdaptationQualificationResult` (`Information`) using only existing Core ontology vocabulary.
+- [x] Enable type-aware Artifact rendering through YAML with an existing style, without modifying Core or regenerating older graphs.
+- [ ] Inspect isolated MR-04 and combined MR-01…MR-04 Mermaid graphs visually in VS Code; keep previews temporary.
+- [ ] Later model the distinction between adaptation candidate, operational adoption, targeted stable Function and realization/version, when elaborating Decisions and FRs; do not invent automatic deployment semantics.
+- [ ] Future multiplicity/cardinality and qualifying evidence rules belong to lower-level requirements/instance models, not a single `hasPart` triple.

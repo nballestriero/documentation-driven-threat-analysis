@@ -1,0 +1,14 @@
+# Expanded view: MR-01/MR-02 functions, contracts and hasPart composition.
+PREFIX ddta: <https://w3id.org/ddta/core#>
+PREFIX derma: <https://example.org/ddta/dermatriage#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+CONSTRUCT { ?s ?p ?o . }
+WHERE {
+    VALUES ?root { derma:DermatologicalTriageEvaluation derma:SpecialistDestinationDetermination }
+    ?root (ddta:hasInput|ddta:hasOutput|ddta:hasPart|ddta:constrainedBy)* ?s .
+    ?s ?p ?o .
+    FILTER(?p IN (rdf:type, rdfs:label, ddta:hasInput, ddta:hasOutput,
+                  ddta:hasPart, ddta:constrainedBy, ddta:minOccurs))
+}

@@ -23,6 +23,9 @@ nodes:
   Information:
     shape: rectangle
     style: information
+  Artifact:
+    shape: rectangle
+    style: element
   Contract:
     shape: rectangle
     style: contract

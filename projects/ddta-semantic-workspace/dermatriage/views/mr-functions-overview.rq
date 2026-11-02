@@ -1,0 +1,11 @@
+# Reusable functional overview: all Functions present in selected MR sources.
+# No hardcoded MR names, and no invented inter-MR edges.
+PREFIX ddta: <https://w3id.org/ddta/core#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+CONSTRUCT { ?s ?p ?o . }
+WHERE {
+  ?root a ddta:Function .
+  ?root (ddta:hasInput|ddta:hasOutput)* ?s .
+  ?s ?p ?o .
+  FILTER (?p IN (rdf:type, ddta:hasInput, ddta:hasOutput))
+}
