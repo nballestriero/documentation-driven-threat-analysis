@@ -29,3 +29,16 @@ The functional overview does not yet assert an owning System or a runtime order;
 - `ControlledAdaptation` has the accumulated records as input; its outputs are an `AdaptationCandidate` (`Artifact`) and `AdaptationQualificationResult` (`Information`). Neither states that a candidate has been adopted or deployed.
 - Artifact node recognition is a **visualization-only** addition in `tools/visualization.yaml`, reusing an existing palette class. Core is unchanged.
 - Generate MR-01…MR-04 overview/structure previews on demand using `dermatriage/views/mr-functions-{overview,structure}.rq` and repeated `--source` arguments. No generated four-MR diagrams are stored in Git by default.
+
+## Generating a combined view on demand (all MR)
+
+From the workspace root, use `./tools/build_views.ps1 -AllMR` in PowerShell to
+load **all** `dermatriage/mr/MR-*.md` files, union their RDF by IRI and open the
+**structure** view in VS Code (`Ctrl+Shift+V` for Markdown preview). The output
+is written to `%TEMP%/DDTA-All-MR-structure.graph.md` and `.mmd`, **not** to
+Git. Run `./tools/build_views.ps1 -AllMR -View overview` for the simpler flow;
+`-NoOpen` generates the files without opening VS Code. The source count and
+names are printed to make omissions visible.
+
+The ordinary `./tools/build_views.ps1` and `./tools/check.ps1` still generate
+or verify only the intentionally tracked MR-01 and MR-01+MR-02 diagrams.
