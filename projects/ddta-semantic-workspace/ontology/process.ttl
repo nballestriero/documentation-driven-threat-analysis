@@ -1,0 +1,104 @@
+@prefix : <https://w3id.org/ddta/process#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <https://w3id.org/ddta/process> .
+
+<https://w3id.org/ddta/process>
+    a owl:Ontology ;
+    rdfs:label "DDTA Process Ontology (experimental bootstrap)"@en ;
+    rdfs:comment "Experimental DDTA module for domain-independent process composition and control flow. This bootstrap declares no process classes or properties. Terms are introduced individually after a documented use case, semantic review and tests. It reuses the identities of DDTA Core without redefining them."@en .
+
+# ============================================================================
+# STATUS: EXPERIMENTAL_NON_CANONICAL / BOOTSTRAP ONLY
+# ============================================================================
+# Ontology IRI:     https://w3id.org/ddta/process
+# Term namespace:   https://w3id.org/ddta/process#
+# Source file:      projects/ddta-semantic-workspace/ontology/process.ttl
+#
+# The w3id.org/ddta path has NOT been registered/verified for public resolution.
+# No owl:imports yet: ontology resolution/loading must be tested locally before
+# committing to import semantics. Core remains the source of truth for
+# ddta:Function, ddta:Process, ddta:hasInput, ddta:hasOutput, ddta:hasPart,
+# ddta:realizesFunction and all other existing generic terms.
+#
+# The lines below are deliberately COMMENTS, NOT RDF/OWL declarations.
+# There is no implementation of these constructs in this bootstrap.
+# A candidate's name does not authorize its use in project Turtle documents.
+#
+# ============================================================================
+# PROCESS DESIGN INVARIANTS (TO BE TESTED AS TERMS ARE ADDED)
+# ============================================================================
+# 1. Function = stable capability; Process = structured pattern of activities;
+#    ProcessStep (candidate) = an occurrence/role of an activity within a
+#    particular process. Do not confuse a step with the function it uses.
+# 2. Planned process structure != actual process execution or its outcome.
+# 3. Shared output/input does NOT, by itself, entail execution order.
+# 4. Composition (ddta:hasPart) does NOT, by itself, entail order or control.
+# 5. A documentation Decision (DDTA authoring construct) is NOT a runtime branch.
+# 6. A Condition describes an applicability rule; its truth in a specific run
+#    requires explicit contextual facts/evaluation, not missing RDF triples.
+# 7. No domain-specific AI, deployment or STRIDE concepts belong here.
+# 8. RDF semantics, SPARQL selection and Mermaid notation remain separate.
+#
+# ============================================================================
+# CANDIDATE IMPLEMENTATION BACKLOG -- NOT YET APPROVED
+# ============================================================================
+#
+# [CANDIDATE A] Step identity and membership
+#   Possible concept: ProcessStep, link to ddta:Process.
+#   Questions: Is a Step a kind of ddta:Process or a role within one?
+#              Can the same Function occur in several steps/processes?
+#              How should steps reference a ddta:Function without violating
+#              the existing domain of ddta:realizesFunction?
+#   Existing references for comparison: P-Plan Step/Plan, OWL-S processes.
+#   First possible test case: DEC-C6-01 setup stages.
+#
+# [CANDIDATE B] Precedence / control-flow transitions
+#   Possible designs: binary 'precedes' relation OR a first-class transition
+#   with source and destination steps. Do not select prematurely.
+#   Distinguish immediate ordering, transitive precedence, sequencing,
+#   and possible non-adjacent dependencies.
+#   Existing references: P-Plan isPreceededBy, BPMN sequence flows, OWL-S.
+#   First possible test case: six ordered stages in DEC-C6-01.
+#
+# [CANDIDATE C] Branches and guards
+#   Possible concepts: Condition, Branch, conditional transition/guard.
+#   Distinguish event 'image received' from condition 'image available'.
+#   Consider mutually exclusive vs inclusive branch and default branch.
+#   First possible test case: image-present and image-absent triage paths
+#   at Decision/FR level, NOT as a new MR-level architectural fact.
+#
+# [DEFERRED] Concurrency, parallelism, fork/join and synchronization
+#   Do not confuse concurrency (overlap/interleaving possible) with actual
+#   simultaneous execution. Specify start/completion semantics when needed.
+#
+# [DEFERRED] Loop, retry, timeout, failure and compensation paths
+#   Define only for a documented process that requires them.
+#
+# [DEFERRED] Execution/provenance
+#   Planned steps, executed activities, observations and outcomes are distinct.
+#   Compare PROV-O / P-Plan before introducing execution-specific vocabulary.
+#
+# [DEFERRED] Lifecycle/event/time context
+#   A relation may be qualified by time interval, lifecycle phase or events;
+#   these differ from runtime guards on a process branch.
+#   Coordinate with a potential ddta-lifecycle module and OWL-Time/PROV-O;
+#   do not duplicate event identities or make 'valid from/to' part of every
+#   process assertion by default.
+#
+# ============================================================================
+# INCREMENTAL ADOPTION RULE
+# ============================================================================
+# For EVERY new concept/property, in a separate reviewed change:
+#   1. Identify one source-supported Decision/FR example and semantic gap.
+#   2. State exact meaning, intended scope, domain/range and non-inferences.
+#   3. Compare reuse/alignment with P-Plan, OWL-S, BPMN and (if relevant)
+#      PROV-O / OWL-Time. Palantir is a conceptual reference, not a source
+#      of RDF/OWL axioms to copy.
+#   4. Add minimal Turtle vocabulary + positive/negative example + tests.
+#   5. Verify RDF parse and intended SPARQL results; use SHACL if needed.
+#   6. Only then adapt visualization YAML and generate/check Mermaid.
+#   7. Reassess integration with Core without editing Core automatically.
+#
+# First experimental target when needed: DEC-C6-01 (ordered setup process).
+# Later: conditional branches from a documented triage Decision/FR.
