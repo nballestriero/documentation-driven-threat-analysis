@@ -1,0 +1,16 @@
+@prefix ddta: <https://w3id.org/ddta/core#> .
+@prefix derma: <https://example.org/ddta/dermatriage#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+derma:DermaTriage
+    a ddta:System .
+
+derma:DermaTriageVerification
+    a ddta:Function ;
+    rdfs:label "Verifica sistema"@it ;
+    ddta:verifies derma:DermaTriage,
+                  derma:DermaTriageEnvironment ;
+    ddta:hasOutput derma:VerificationResults .
+
+derma:VerificationResults
+    a ddta:Information .

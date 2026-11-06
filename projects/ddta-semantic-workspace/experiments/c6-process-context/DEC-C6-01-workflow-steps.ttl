@@ -1,0 +1,40 @@
+# EXPERIMENTAL_NON_CANONICAL: a refinement of DEC-C6-01 structure, not
+# a change to the governed Decision and not a claim of actual execution.
+# The six ddta:Process IRIs are the SAME ones as in the earlier C6 pilot;
+# workflow-specific placements (ProcessStep) receive separate IRIs.
+# No order, branches, executions, or dependencies are asserted here.
+@prefix ddta: <https://w3id.org/ddta/core#> .
+@prefix proc: <https://w3id.org/ddta/process#> .
+@prefix derma: <https://example.org/ddta/dermatriage#> .
+
+# Source-supported C6 setup workflow, modeled at the level of placements.
+derma:EnvironmentPreparation a ddta:Function .
+derma:EnvironmentSetupProcedure a ddta:Process ;
+    ddta:realizesFunction derma:EnvironmentPreparation ;
+    ddta:hasPart
+        derma:SetupRepositoryStep,
+        derma:SetupDependenciesStep,
+        derma:SetupModelsStep,
+        derma:SetupConfigurationStep,
+        derma:SetupInitializationStep,
+        derma:SetupStartupStep .
+
+derma:SetupRepositoryStep a proc:ProcessStep ;
+    proc:referencesProcess derma:RepositoryAcquisitionStage .
+derma:SetupDependenciesStep a proc:ProcessStep ;
+    proc:referencesProcess derma:SoftwareDependencyInstallationStage .
+derma:SetupModelsStep a proc:ProcessStep ;
+    proc:referencesProcess derma:ModelResourceAcquisitionStage .
+derma:SetupConfigurationStep a proc:ProcessStep ;
+    proc:referencesProcess derma:EnvironmentConfigurationStage .
+derma:SetupInitializationStep a proc:ProcessStep ;
+    proc:referencesProcess derma:LocalResourceInitializationStage .
+derma:SetupStartupStep a proc:ProcessStep ;
+    proc:referencesProcess derma:ServiceStartupStage .
+
+derma:RepositoryAcquisitionStage a ddta:Process .
+derma:SoftwareDependencyInstallationStage a ddta:Process .
+derma:ModelResourceAcquisitionStage a ddta:Process .
+derma:EnvironmentConfigurationStage a ddta:Process .
+derma:LocalResourceInitializationStage a ddta:Process .
+derma:ServiceStartupStage a ddta:Process .

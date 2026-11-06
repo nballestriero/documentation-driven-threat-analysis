@@ -38,12 +38,12 @@
 
 ###  https://w3id.org/ddta/core#hasInput
 :hasInput rdf:type owl:ObjectProperty ;
-          rdfs:comment "Relates a function to an entity used or required as an input. This relation describes a functional interface and does not imply that an execution or a transfer has occurred." .
+          rdfs:comment "Relates a function or functional mode to an entity used as an input. This relation describes a functional interface and does not imply that an execution or a transfer has occurred." .
 
 
 ###  https://w3id.org/ddta/core#hasOutput
 :hasOutput rdf:type owl:ObjectProperty ;
-           rdfs:comment "Relates a function to an entity made available as a result. This relation describes a functional interface and does not imply that an execution or a transfer has occurred." .
+           rdfs:comment "Relates a function or functional mode to an entity made available as a result. This relation describes a functional interface and does not imply that an execution or a transfer has occurred." .
 
 
 ###  https://w3id.org/ddta/core#hasPart
@@ -62,6 +62,52 @@
                   rdfs:domain :Process ;
                   rdfs:range :Function ;
                   rdfs:comment "Relates a process to a function that the process is designed to realize. The relation does not imply that the process has been executed or that the function has been successfully performed." .
+
+
+###  https://w3id.org/ddta/core#hasPrimaryFunction
+:hasPrimaryFunction rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf :providesFunction ;
+                    rdfs:domain :System ;
+                    rdfs:range :Function ;
+                    rdfs:label "has primary function"@en ;
+                    rdfs:comment "Relates a system to a function identified as one of the system's principal intended capabilities. The relation is a specialization of providesFunction and does not imply exclusivity, a single primary function, priority of execution, successful operation, implementation details, or that other provided functions are secondary or unimportant."@en .
+
+
+###  https://w3id.org/ddta/core#providesFunction
+:providesFunction rdf:type owl:ObjectProperty ;
+                  rdfs:domain :System ;
+                  rdfs:range :Function ;
+                  rdfs:label "provides function"@en ;
+                  rdfs:comment "Relates a system to a function that the system provides as one of its capabilities. The relation does not imply any particular implementation, execution, or successful outcome." .
+
+
+###  https://w3id.org/ddta/core#prepares
+:prepares rdf:type owl:ObjectProperty ;
+          rdfs:domain :Function ;
+          rdfs:label "prepares"@en ;
+          rdfs:comment "Relates a function to an entity that the function is responsible for preparing for an intended use. The relation does not imply that preparation has been executed or completed successfully." .
+
+
+###  https://w3id.org/ddta/core#verifies
+:verifies rdf:type owl:ObjectProperty ;
+          rdfs:domain :Function ;
+          rdfs:label "verifies"@en ;
+          rdfs:comment "Relates a function to an entity whose properties, condition, or behavior the function is responsible for verifying against applicable criteria. The relation does not imply that verification has been executed or that the entity satisfies those criteria." .
+
+
+###  https://w3id.org/ddta/core#hasOperationalEnvironment
+:hasOperationalEnvironment rdf:type owl:ObjectProperty ;
+                           rdfs:domain :System ;
+                           rdfs:range :Environment ;
+                           rdfs:label "has operational environment"@en ;
+                           rdfs:comment "Relates a system to an environment designated to support its operation. The relation does not imply that the system is currently running, that the environment is ready, or that the system owns the environment." .
+
+
+###  https://w3id.org/ddta/core#adapts
+:adapts rdf:type owl:ObjectProperty ;
+        rdfs:domain :Function ;
+        rdfs:label "adapts"@en ;
+        rdfs:comment "Relates a function to an existing entity whose configuration, behavior, or constituents the function is responsible for modifying or adapting for an intended purpose. The relation does not imply that the adaptation has been executed, that a resulting change has been accepted, or that a new version has been deployed." .
 
 
 #################################################################
@@ -110,7 +156,7 @@
 
 ###  https://w3id.org/ddta/core#Function
 :Function rdf:type owl:Class ;
-          rdfs:comment "A distinct capability that a system provides or is required to provide. A function is independent of its current technical implementation and does not represent a specific execution." .
+          rdfs:comment "An identifiable capability or responsibility that may be provided by a system or applied to an entity. A function is independent of its technical implementation and does not represent a specific execution." .
 
 
 ###  https://w3id.org/ddta/core#Information
@@ -131,6 +177,60 @@
 ###  https://w3id.org/ddta/core#Transfer
 :Transfer rdf:type owl:Class ;
           rdfs:comment "An explicitly modeled directed transfer of content from a source to a destination. A transfer represents one specified transfer leg, rather than an inferred route through intermediate entities. It does not, by itself, assert that an execution has occurred, that delivery has succeeded, or that a boundary has been crossed." .
+
+
+# DDTA Core - functional modes, contract occurrence bounds, documentation gaps
+# All definitions below belong to Core; the former experiment extension is retired.
+# Documentation gaps require rdfs:label on EACH gap individual (validated outside OWL).
+
+:FunctionalMode a owl:Class ;
+    owl:disjointWith :Function, :Process ;
+    rdfs:comment "A declared variant of a stable function with its own functional input/output interface. Not a function, process, or subfunction. Applicability conditions are not inferred from missing input assertions."@en .
+
+:hasMode a owl:ObjectProperty ;
+    rdfs:domain :Function ;
+    rdfs:range :FunctionalMode ;
+    rdfs:comment "Declares a functional mode applicable to the given function; not a hasPart composition."@en .
+
+:constrainsInformation a owl:ObjectProperty ;
+    rdfs:domain :ContractElement ;
+    rdfs:range :Information ;
+    rdfs:comment "Relates a contract element to the information identity whose occurrence constraints it specifies. It does not assert that the information satisfies those constraints."@en .
+
+:maxOccurs a owl:DatatypeProperty ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Maximum permitted occurrences in the stated contract context (counterpart of minOccurs)."@en .
+
+# Documentation gaps describe missing assertions, not domain facts.
+# They may be reviewed and resolved independently of the entities concerned.
+:DocumentationGap a owl:Class ;
+    owl:disjointWith :Function, :Process, :Information, :FunctionalMode ;
+    rdfs:comment "An explicitly recorded insufficiency in available documentation; it is neither evidence that the missing fact is false nor a declaration of the missing fact. Each gap requires exactly one non-empty rdfs:label, checked by the authoring validator."@en .
+
+:EntityDocumentationGap a owl:Class ;
+    rdfs:subClassOf :DocumentationGap ;
+    owl:disjointWith :RelationDocumentationGap ;
+    rdfs:comment "Documentation is insufficient about a referenced entity or aspect of its description."@en .
+
+:RelationDocumentationGap a owl:Class ;
+    rdfs:subClassOf :DocumentationGap ;
+    rdfs:comment "Documentation does not establish whether a specified RDF relation holds between two identified endpoints. The relation triple is NOT asserted."@en .
+
+:concernsEntity a owl:ObjectProperty ;
+    rdfs:domain :EntityDocumentationGap ;
+    rdfs:comment "Identifies the entity whose description contains a documented gap."@en .
+
+:gapSource a owl:ObjectProperty ;
+    rdfs:domain :RelationDocumentationGap ;
+    rdfs:comment "The subject of an unresolved candidate relation; NOT a statement that the relation holds."@en .
+
+:gapTarget a owl:ObjectProperty ;
+    rdfs:domain :RelationDocumentationGap ;
+    rdfs:comment "The object of an unresolved candidate relation; NOT a statement that the relation holds."@en .
+
+:gapPredicate a owl:ObjectProperty ;
+    rdfs:domain :RelationDocumentationGap ;
+    rdfs:comment "Identifies the RDF predicate whose applicability is not established. A predicate as object does not assert its triple."@en .
 
 
 ###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi

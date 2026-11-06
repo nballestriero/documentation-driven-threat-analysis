@@ -1,0 +1,27 @@
+PREFIX ddta: <https://w3id.org/ddta/core#>
+PREFIX link: <urn:ddta:view#>
+
+# Enrich the RDF graph with *derived view relations*, preserving every input
+# statement for the next query in the chain. No transfer/execution is inferred.
+CONSTRUCT {
+    ?s ?p ?o .
+    ?from link:informationLink ?to .
+    ?source link:informationCompositionLink ?consumer .
+} WHERE {
+    { ?s ?p ?o }
+    UNION
+    {
+        ?from a ddta:Function ; ddta:hasOutput ?shared .
+        ?to a ddta:Function ; ddta:hasInput ?shared .
+        FILTER(?from != ?to)
+        ?system (ddta:providesFunction | ddta:hasPrimaryFunction) ?from, ?to .
+    }
+    UNION
+    {
+        ?source a ddta:Function ; ddta:hasOutput ?part .
+        ?collection ddta:hasPart ?part .
+        ?consumer a ddta:Function ; ddta:hasInput ?collection .
+        FILTER(?source != ?consumer)
+        ?system (ddta:providesFunction | ddta:hasPrimaryFunction) ?source, ?consumer .
+    }
+}

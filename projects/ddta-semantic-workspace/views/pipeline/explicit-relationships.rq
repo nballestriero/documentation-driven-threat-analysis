@@ -1,0 +1,19 @@
+PREFIX ddta: <https://w3id.org/ddta/core#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+# Second, unrelated query: only explicit interface / composition relations.
+CONSTRUCT {
+    ?s ?p ?o .
+    ?s rdf:type ?st .
+    ?o rdf:type ?ot .
+    ?s rdfs:label ?sl .
+    ?o rdfs:label ?ol .
+} WHERE {
+    VALUES ?p { ddta:hasInput ddta:hasOutput ddta:hasPart ddta:constrainedBy }
+    ?s ?p ?o .
+    OPTIONAL { ?s rdf:type ?st }
+    OPTIONAL { ?o rdf:type ?ot }
+    OPTIONAL { ?s rdfs:label ?sl }
+    OPTIONAL { ?o rdfs:label ?ol }
+}

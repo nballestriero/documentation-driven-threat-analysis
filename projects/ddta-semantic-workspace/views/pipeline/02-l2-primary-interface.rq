@@ -1,0 +1,114 @@
+PREFIX ddta: <https://w3id.org/ddta/core#>
+PREFIX link: <urn:ddta:view#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+# Graph L2: preserve the L1 overview while exposing the explicitly declared
+# primary-function inputs and outputs as shared Information nodes.
+#
+# Where an informationLink involving a primary function is fully represented
+# by explicit hasOutput and hasInput arcs through that SAME information URI,
+# omit ONLY that redundant synthetic link. Other informationLink and all
+# informationCompositionLink edges remain available.
+#
+# Other functions' interfaces are NOT expanded in general: only an explicit
+# input/output involving an already-expanded primary interface is included.
+# Do not infer data transfer, execution order, or new functional identities.
+# This query runs AFTER 01-information-links.rq on the enriched RDF graph.
+CONSTRUCT {
+    ?s ?p ?o .
+    ?s rdf:type ?sType .
+    ?o rdf:type ?oType .
+    ?s rdfs:label ?sLabel .
+    ?o rdfs:label ?oLabel .
+} WHERE {
+    {
+        ?s ddta:hasPrimaryFunction ?o .
+        BIND(ddta:hasPrimaryFunction AS ?p)
+    }
+    UNION
+    {
+        ?s ddta:providesFunction ?o .
+        FILTER NOT EXISTS {
+            ?s ddta:hasPrimaryFunction ?primary .
+            ?primary (link:informationLink | ^link:informationLink |
+                      link:informationCompositionLink | ^link:informationCompositionLink)* ?o .
+        }
+        BIND(ddta:providesFunction AS ?p)
+    }
+    UNION
+    {
+        ?s link:informationLink ?o .
+        # The primary produces the shared information, consumed by ?o.
+        FILTER NOT EXISTS {
+            ?system ddta:hasPrimaryFunction ?s ;
+                    (ddta:hasPrimaryFunction | ddta:providesFunction) ?o .
+            ?s ddta:hasOutput ?shared .
+            ?o ddta:hasInput ?shared .
+        }
+        # The primary consumes the shared information, produced by ?s.
+        FILTER NOT EXISTS {
+            ?system ddta:hasPrimaryFunction ?o ;
+                    (ddta:hasPrimaryFunction | ddta:providesFunction) ?s .
+            ?s ddta:hasOutput ?shared .
+            ?o ddta:hasInput ?shared .
+        }
+        BIND(link:informationLink AS ?p)
+    }
+    UNION
+    {
+        ?s link:informationCompositionLink ?o .
+        BIND(link:informationCompositionLink AS ?p)
+    }
+    UNION
+    {
+        # Expand ONLY the interface declared on a primary function.
+        ?system ddta:hasPrimaryFunction ?s .
+        ?s ddta:hasInput ?o .
+        BIND(ddta:hasInput AS ?p)
+    }
+    UNION
+    {
+        ?system ddta:hasPrimaryFunction ?s .
+        ?s ddta:hasOutput ?o .
+        BIND(ddta:hasOutput AS ?p)
+    }
+    UNION
+    {
+        # Connect consumers to the primary's EXPLICIT output information.
+        ?system ddta:hasPrimaryFunction ?primary .
+        ?primary ddta:hasOutput ?shared .
+        ?consumer ddta:hasInput ?shared .
+        ?system (ddta:hasPrimaryFunction | ddta:providesFunction) ?consumer .
+        FILTER(?consumer != ?primary)
+        BIND(?consumer AS ?s)
+        BIND(ddta:hasInput AS ?p)
+        BIND(?shared AS ?o)
+    }
+    UNION
+    {
+        # Symmetric case: another function produces a primary's input.
+        ?system ddta:hasPrimaryFunction ?primary .
+        ?primary ddta:hasInput ?shared .
+        ?producer ddta:hasOutput ?shared .
+        ?system (ddta:hasPrimaryFunction | ddta:providesFunction) ?producer .
+        FILTER(?producer != ?primary)
+        BIND(?producer AS ?s)
+        BIND(ddta:hasOutput AS ?p)
+        BIND(?shared AS ?o)
+    }
+    UNION
+    {
+        ?s ddta:hasOperationalEnvironment ?o .
+        BIND(ddta:hasOperationalEnvironment AS ?p)
+    }
+    UNION
+    {
+        VALUES ?p { ddta:prepares ddta:verifies ddta:adapts }
+        ?s ?p ?o .
+    }
+    OPTIONAL { ?s rdf:type ?sType . }
+    OPTIONAL { ?o rdf:type ?oType . }
+    OPTIONAL { ?s rdfs:label ?sLabel }
+    OPTIONAL { ?o rdfs:label ?oLabel }
+}

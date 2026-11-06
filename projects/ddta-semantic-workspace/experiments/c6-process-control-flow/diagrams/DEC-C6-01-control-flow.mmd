@@ -1,0 +1,48 @@
+%% Generated from DDTA RDF + pilot visualization.yaml; do not edit by hand.
+flowchart LR
+    subgraph wf_a1a0b9abe5["EnvironmentSetupProcedure · Process"]
+        direction LR
+        s_9b30535a3d["SetupRepositoryStep<br/>RepositoryAcquisitionStage"]
+        s_81976e9f3a["SetupDependenciesStep<br/>SoftwareDependencyInstallationStage"]
+        s_dacd150a4d["SetupModelsStep<br/>ModelResourceAcquisitionStage"]
+        s_8ae7b1c0d7["SetupConfigurationStep<br/>EnvironmentConfigurationStage"]
+        s_430e223bc6["SetupInitializationStep<br/>LocalResourceInitializationStage"]
+        s_cbd1b4832d["SetupStartupStep<br/>ServiceStartupStage"]
+        t_cc6bc6477f(["RepositoryToDependencies"])
+        t_b8d7f68c33(["DependenciesToModels"])
+        t_6726c17e2f(["ModelsToConfiguration"])
+        t_2e779d4e36(["ConfigurationToInitialization"])
+        t_66fe30e9dc(["InitializationToStartup"])
+        s_9b30535a3d --> t_cc6bc6477f --> s_81976e9f3a
+        s_81976e9f3a --> t_b8d7f68c33 --> s_dacd150a4d
+        s_dacd150a4d --> t_6726c17e2f --> s_8ae7b1c0d7
+        s_8ae7b1c0d7 --> t_2e779d4e36 --> s_430e223bc6
+        s_430e223bc6 --> t_66fe30e9dc --> s_cbd1b4832d
+    end
+    f_39fbb297e1(["EnvironmentPreparation<br/>Function"])
+    wf_a1a0b9abe5 -.->|realizesFunction| f_39fbb297e1
+    p_cdd5026182["RepositoryAcquisitionStage<br/>Process"]
+    s_9b30535a3d -.->|referencesProcess| p_cdd5026182
+    p_2b1dbcf5d2["SoftwareDependencyInstallationStage<br/>Process"]
+    s_81976e9f3a -.->|referencesProcess| p_2b1dbcf5d2
+    p_dc33a167b6["ModelResourceAcquisitionStage<br/>Process"]
+    s_dacd150a4d -.->|referencesProcess| p_dc33a167b6
+    p_38daa0f473["EnvironmentConfigurationStage<br/>Process"]
+    s_8ae7b1c0d7 -.->|referencesProcess| p_38daa0f473
+    p_e5a6dcfd52["LocalResourceInitializationStage<br/>Process"]
+    s_430e223bc6 -.->|referencesProcess| p_e5a6dcfd52
+    p_43ced1dfdc["ServiceStartupStage<br/>Process"]
+    s_cbd1b4832d -.->|referencesProcess| p_43ced1dfdc
+    classDef step fill:#eef2ff,stroke:#4f46e5,color:#1e1b4b
+    classDef transition fill:#f1f5f9,stroke:#64748b,color:#0f172a
+    class s_9b30535a3d step
+    class s_81976e9f3a step
+    class s_dacd150a4d step
+    class s_8ae7b1c0d7 step
+    class s_430e223bc6 step
+    class s_cbd1b4832d step
+    class t_cc6bc6477f transition
+    class t_b8d7f68c33 transition
+    class t_6726c17e2f transition
+    class t_2e779d4e36 transition
+    class t_66fe30e9dc transition

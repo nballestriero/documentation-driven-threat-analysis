@@ -1,0 +1,27 @@
+PREFIX ddta: <https://w3id.org/ddta/core#>
+PREFIX l1: <urn:ddta:l1-view#>
+
+# Generic L1 membership. Provides only scoped functions, no sequence/precedence.
+# An externally supplied function is in scope if it prepares, verifies or adapts
+# the system itself or an entity linked to it by supported architectural paths.
+CONSTRUCT {
+    ?system l1:includesFunction ?function .
+}
+WHERE {
+    ?system a ddta:System .
+    ?function a ddta:Function .
+    {
+        ?system (ddta:providesFunction | ddta:hasPrimaryFunction) ?function .
+    }
+    UNION
+    {
+        VALUES ?role { ddta:prepares ddta:verifies ddta:adapts }
+        ?function ?role ?system .
+    }
+    UNION
+    {
+        VALUES ?role { ddta:prepares ddta:verifies ddta:adapts }
+        ?function ?role ?target .
+        ?system (ddta:hasOperationalEnvironment | ddta:hasPart | ddta:providesFunction | ddta:hasPrimaryFunction)+ ?target .
+    }
+}

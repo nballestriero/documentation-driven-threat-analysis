@@ -1,0 +1,10 @@
+# Contextual placements of reusable process definitions.
+# ORDER BY is for deterministic query output only; it is NOT process ordering.
+PREFIX ddta: <https://w3id.org/ddta/core#>
+PREFIX proc: <https://w3id.org/ddta/process#>
+SELECT ?workflow ?step ?process WHERE {
+    ?workflow a ddta:Process ; ddta:hasPart ?step .
+    ?step a proc:ProcessStep ; proc:referencesProcess ?process .
+    ?process a ddta:Process .
+}
+ORDER BY ?workflow ?step

@@ -1,0 +1,23 @@
+@prefix ddta: <https://w3id.org/ddta/core#> .
+@prefix derma: <https://example.org/ddta/dermatriage#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Experimental copy of the four currently asserted provided functions.
+# No existing MR is changed. Whether the last two should remain
+# providesFunction assertions is a separate authoring decision.
+derma:DermaTriage a ddta:System ;
+    rdfs:label "DermaTriage"@it ;
+    ddta:providesFunction derma:DermatologicalTriageEvaluation,
+                          derma:SpecialistDestinationDetermination,
+                          derma:ClinicalReviewManagement,
+                          derma:ControlledAdaptation ;
+    ddta:hasPrimaryFunction derma:DermatologicalTriageEvaluation .
+
+derma:DermatologicalTriageEvaluation a ddta:Function ;
+    rdfs:label "Valutazione triage"@it .
+derma:SpecialistDestinationDetermination a ddta:Function ;
+    rdfs:label "Indirizzamento specialistico"@it .
+derma:ClinicalReviewManagement a ddta:Function ;
+    rdfs:label "Gestione revisione clinica"@it .
+derma:ControlledAdaptation a ddta:Function ;
+    rdfs:label "Adattamento controllato"@it .

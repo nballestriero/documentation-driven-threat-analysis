@@ -1,0 +1,185 @@
+PREFIX ddta: <https://w3id.org/ddta/core#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX view: <urn:ddta:view#>
+
+# Generic Graph L3 primary-Function focus, independent of DermaTriage IRIs.
+# Read the selected MR graph, not DEC/FR documents.
+# This projection suppresses the L2 direct Function <- CaseInformation
+# and Function -> TriageOutcome edges when explicit FunctionalModes are present.
+# Contract cardinality is COPIED TO VIEW METADATA only; it is not asserted
+# on Information in source RDF. An unresolved guarantee is explicit review
+# object and NEVER a hasOutput assertion.
+CONSTRUCT {
+  ?s ?p ?o .
+  ?s rdf:type ?sType .
+  ?o rdf:type ?oType .
+} WHERE {
+  {
+    ?system ddta:hasPrimaryFunction ?function .
+    ?function ddta:hasMode ?mode .
+    BIND(?function AS ?s)
+    BIND(ddta:hasMode AS ?p)
+    BIND(?mode AS ?o)
+  }
+  UNION
+  {
+    ?system ddta:hasPrimaryFunction ?function .
+    ?function ddta:hasMode ?mode .
+    ?function ddta:hasInput ?input .
+    ?input ddta:hasPart ?part .
+    BIND(?input AS ?s)
+    BIND(ddta:hasPart AS ?p)
+    BIND(?part AS ?o)
+  }
+  UNION
+  {
+    ?system ddta:hasPrimaryFunction ?function .
+    ?function ddta:hasMode ?mode .
+    ?function ddta:hasOutput ?result .
+    ?result ddta:hasPart ?part .
+    BIND(?result AS ?s)
+    BIND(ddta:hasPart AS ?p)
+    BIND(?part AS ?o)
+  }
+  UNION
+  {
+    ?system ddta:hasPrimaryFunction ?function .
+    ?function ddta:hasMode ?mode .
+    ?mode ddta:hasInput ?o .
+    BIND(?mode AS ?s)
+    BIND(ddta:hasInput AS ?p)
+  }
+  UNION
+  {
+    ?system ddta:hasPrimaryFunction ?function .
+    ?function ddta:hasMode ?mode .
+    ?mode ddta:hasOutput ?o .
+    BIND(?mode AS ?s)
+    BIND(ddta:hasOutput AS ?p)
+  }
+  UNION
+  {
+    ?system ddta:hasPrimaryFunction ?function .
+    ?function ddta:hasMode ?mode .
+    ?gap a ddta:RelationDocumentationGap ; ddta:gapSource ?mode ;
+         ddta:gapPredicate ?predicate ; ddta:gapTarget ?target .
+    BIND(?gap AS ?s)
+    BIND(ddta:gapSource AS ?p)
+    BIND(?mode AS ?o)
+  }
+  UNION
+  {
+    ?system ddta:hasPrimaryFunction ?function .
+    ?function ddta:hasMode ?mode .
+    ?gap a ddta:RelationDocumentationGap ; ddta:gapSource ?mode ;
+         ddta:gapPredicate ?predicate ; ddta:gapTarget ?target .
+    BIND(?gap AS ?s)
+    BIND(ddta:gapTarget AS ?p)
+    BIND(?target AS ?o)
+  }
+  UNION
+  {
+    ?system ddta:hasPrimaryFunction ?function .
+    ?function ddta:hasMode ?mode .
+    ?gap a ddta:RelationDocumentationGap ; ddta:gapSource ?mode ;
+         ddta:gapPredicate ?predicate ; ddta:gapTarget ?target .
+    ?gap ?metadataPredicate ?metadataValue .
+    FILTER(?metadataPredicate IN (ddta:gapPredicate, rdfs:comment, rdfs:label))
+    BIND(?gap AS ?s)
+    BIND(?metadataPredicate AS ?p)
+    BIND(?metadataValue AS ?o)
+  }
+  UNION
+  {
+    ?system ddta:hasPrimaryFunction ?function .
+    ?function ddta:hasInput ?input .
+    ?input (ddta:hasPart)? ?info .
+    ?gap a ddta:EntityDocumentationGap ; ddta:concernsEntity ?info .
+    BIND(?gap AS ?s)
+    BIND(ddta:concernsEntity AS ?p)
+    BIND(?info AS ?o)
+  }
+  UNION
+  {
+    ?system ddta:hasPrimaryFunction ?function .
+    ?function ddta:hasInput ?input .
+    ?input (ddta:hasPart)? ?info .
+    ?gap a ddta:EntityDocumentationGap ; ddta:concernsEntity ?info .
+    ?gap ?gapMetadataPredicate ?gapMetadataValue .
+    FILTER(?gapMetadataPredicate IN (rdfs:comment, rdfs:label))
+    BIND(?gap AS ?s)
+    BIND(?gapMetadataPredicate AS ?p)
+    BIND(?gapMetadataValue AS ?o)
+  }
+  UNION
+  {
+    ?system ddta:hasPrimaryFunction ?function .
+    ?function ddta:hasMode ?mode .
+    ?function ddta:hasInput ?input .
+    ?input ddta:constrainedBy ?contract ; ddta:hasPart ?info .
+    ?contract ddta:hasPart ?element .
+    ?element ddta:constrainsInformation ?info ; ddta:minOccurs ?min ; ddta:maxOccurs ?max .
+    BIND(?info AS ?s)
+    BIND(view:minOccurs AS ?p)
+    BIND(?min AS ?o)
+  }
+  UNION
+  {
+    ?system ddta:hasPrimaryFunction ?function .
+    ?function ddta:hasMode ?mode .
+    ?gap a ddta:RelationDocumentationGap ; ddta:gapSource ?mode ;
+         ddta:gapPredicate ?predicate ; ddta:gapTarget ?target .
+    BIND(?gap AS ?s)
+    BIND(ddta:gapTarget AS ?p)
+    BIND(?target AS ?o)
+  }
+  UNION
+  {
+    ?system ddta:hasPrimaryFunction ?function .
+    ?function ddta:hasMode ?mode .
+    ?gap a ddta:RelationDocumentationGap ; ddta:gapSource ?mode ;
+         ddta:gapPredicate ?predicate ; ddta:gapTarget ?target .
+    ?gap ?metadataPredicate ?metadataValue .
+    FILTER(?metadataPredicate IN (ddta:gapPredicate, rdfs:comment, rdfs:label))
+    BIND(?gap AS ?s)
+    BIND(?metadataPredicate AS ?p)
+    BIND(?metadataValue AS ?o)
+  }
+  UNION
+  {
+    ?system ddta:hasPrimaryFunction ?function .
+    ?function ddta:hasInput ?input .
+    ?input (ddta:hasPart)? ?info .
+    ?gap a ddta:EntityDocumentationGap ; ddta:concernsEntity ?info .
+    BIND(?gap AS ?s)
+    BIND(ddta:concernsEntity AS ?p)
+    BIND(?info AS ?o)
+  }
+  UNION
+  {
+    ?system ddta:hasPrimaryFunction ?function .
+    ?function ddta:hasInput ?input .
+    ?input (ddta:hasPart)? ?info .
+    ?gap a ddta:EntityDocumentationGap ; ddta:concernsEntity ?info .
+    ?gap ?gapMetadataPredicate ?gapMetadataValue .
+    FILTER(?gapMetadataPredicate IN (rdfs:comment, rdfs:label))
+    BIND(?gap AS ?s)
+    BIND(?gapMetadataPredicate AS ?p)
+    BIND(?gapMetadataValue AS ?o)
+  }
+  UNION
+  {
+    ?system ddta:hasPrimaryFunction ?function .
+    ?function ddta:hasMode ?mode .
+    ?function ddta:hasInput ?input .
+    ?input ddta:constrainedBy ?contract ; ddta:hasPart ?info .
+    ?contract ddta:hasPart ?element .
+    ?element ddta:constrainsInformation ?info ; ddta:minOccurs ?min ; ddta:maxOccurs ?max .
+    BIND(?info AS ?s)
+    BIND(view:cardinality AS ?p)
+    BIND(CONCAT(STR(?min), "..", STR(?max)) AS ?o)
+  }
+  OPTIONAL { ?s rdf:type ?sType . }
+  OPTIONAL { ?o rdf:type ?oType . }
+}

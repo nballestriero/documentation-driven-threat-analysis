@@ -1,0 +1,27 @@
+PREFIX ddta: <https://w3id.org/ddta/core#>
+PREFIX l1: <urn:ddta:l1-view#>
+
+# General architectural role evidence for visible System <-> Function arcs.
+# This is NOT an execution workflow, and indirect roles keep their target.
+# The property path covers components of an operational environment too.
+SELECT DISTINCT ?system ?function ?role ?target WHERE {
+    ?system l1:includesFunction ?function .
+    {
+        ?system (ddta:providesFunction | ddta:hasPrimaryFunction) ?function .
+        BIND(l1:providedFunction AS ?role)
+        BIND(?function AS ?target)
+    }
+    UNION
+    {
+        VALUES ?role { ddta:prepares ddta:verifies ddta:adapts }
+        ?function ?role ?system .
+        BIND(?system AS ?target)
+    }
+    UNION
+    {
+        VALUES ?role { ddta:prepares ddta:verifies ddta:adapts }
+        ?function ?role ?target .
+        ?system (ddta:hasOperationalEnvironment | ddta:hasPart | ddta:providesFunction | ddta:hasPrimaryFunction)+ ?target .
+    }
+}
+ORDER BY ?system ?function ?role ?target

@@ -1,0 +1,20 @@
+# A structure-only graph for the existing RDF -> Mermaid renderer.
+# No order, dataflow, or control-flow is projected.
+PREFIX ddta: <https://w3id.org/ddta/core#>
+PREFIX derma: <https://example.org/ddta/dermatriage#>
+
+CONSTRUCT {
+    derma:EnvironmentSetupProcedure
+        a ddta:Process ;
+        ddta:hasPart ?part ;
+        ddta:realizesFunction ?function .
+    ?part a ddta:Process .
+    ?function a ddta:Function .
+}
+WHERE {
+    derma:EnvironmentSetupProcedure a ddta:Process ;
+        ddta:hasPart ?part ;
+        ddta:realizesFunction ?function .
+    ?part a ddta:Process .
+    ?function a ddta:Function .
+}

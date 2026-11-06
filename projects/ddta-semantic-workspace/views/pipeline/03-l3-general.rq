@@ -1,0 +1,59 @@
+PREFIX ddta: <https://w3id.org/ddta/core#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX view: <urn:ddta:view#>
+
+# Graph L3 COMPACT — all selected MR. Source RDF is unchanged.
+# Contract and ContractElement stay in the canonical Turtle and get validated,
+# but are intentionally omitted as graphic nodes and edges in standard L3.
+# Element cardinalities are projected onto constrained Information as
+# presentation-only metadata. No contract constraints are asserted in source.
+# Gap nodes and providesFunction are hidden by default.
+CONSTRUCT {
+  ?s ?p ?o .
+  ?s rdf:type ?sType .
+  ?o rdf:type ?oType .
+  ?s rdfs:label ?sLabel .
+  ?o rdfs:label ?oLabel .
+} WHERE {
+  {
+    VALUES ?p {
+      ddta:hasPrimaryFunction ddta:hasOperationalEnvironment
+      ddta:prepares ddta:verifies ddta:adapts
+      ddta:hasInput ddta:hasOutput ddta:hasPart ddta:hasMode
+    }
+    ?s ?p ?o .
+    # Contract hasPart ContractElement must NOT be shown. General exclusion
+    # also covers contracts used as Function inputs or any other direct edge.
+    FILTER NOT EXISTS { ?s a ddta:Contract }
+    FILTER NOT EXISTS { ?s a ddta:ContractElement }
+    FILTER NOT EXISTS { ?o a ddta:Contract }
+    FILTER NOT EXISTS { ?o a ddta:ContractElement }
+  }
+  UNION
+  {
+    ?input ddta:constrainedBy ?contract .
+    ?contract a ddta:Contract ; ddta:hasPart ?element .
+    ?element a ddta:ContractElement ;
+             ddta:constrainsInformation ?info ;
+             ddta:minOccurs ?min ; ddta:maxOccurs ?max .
+    BIND(?info AS ?s)
+    BIND(view:minOccurs AS ?p)
+    BIND(?min AS ?o)
+  }
+  UNION
+  {
+    ?input ddta:constrainedBy ?contract .
+    ?contract a ddta:Contract ; ddta:hasPart ?element .
+    ?element a ddta:ContractElement ;
+             ddta:constrainsInformation ?info ;
+             ddta:minOccurs ?min ; ddta:maxOccurs ?max .
+    BIND(?info AS ?s)
+    BIND(view:cardinality AS ?p)
+    BIND(CONCAT(STR(?min), '..', STR(?max)) AS ?o)
+  }
+  OPTIONAL { ?s rdf:type ?sType . }
+  OPTIONAL { ?o rdf:type ?oType . }
+  OPTIONAL { ?s rdfs:label ?sLabel . }
+  OPTIONAL { ?o rdfs:label ?oLabel . }
+}

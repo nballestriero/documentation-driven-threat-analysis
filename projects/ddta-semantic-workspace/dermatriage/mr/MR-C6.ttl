@@ -1,0 +1,21 @@
+@prefix ddta: <https://w3id.org/ddta/core#> .
+@prefix derma: <https://example.org/ddta/dermatriage#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+derma:DermaTriage
+    a ddta:System ;
+    ddta:hasOperationalEnvironment derma:DermaTriageEnvironment .
+
+derma:EnvironmentPreparation
+    a ddta:Function ;
+    rdfs:label "Preparazione ambiente"@it ;
+    ddta:prepares derma:DermaTriageEnvironment ;
+    ddta:hasOutput derma:DermaTriageEnvironment .
+
+derma:DermaTriageEnvironment
+    a ddta:Environment ;
+    ddta:hasPart derma:ComputeResources,
+                 derma:SoftwareComponents,
+                 derma:ModelResources,
+                 derma:DataResources,
+                 derma:EnvironmentConfiguration .

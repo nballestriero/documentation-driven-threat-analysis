@@ -1,0 +1,9 @@
+@prefix ddta: <https://w3id.org/ddta/core#> .
+@prefix demo: <https://example.org/independent-monitoring#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# The query must NOT invent a primary function from providesFunction.
+demo:MonitoringSystem a ddta:System ;
+    rdfs:label "Monitoring system"@en ;
+    ddta:providesFunction demo:TelemetryAcquisition .
+demo:TelemetryAcquisition a ddta:Function .

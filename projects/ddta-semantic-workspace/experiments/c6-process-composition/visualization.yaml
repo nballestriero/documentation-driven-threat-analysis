@@ -1,0 +1,19 @@
+# EXPERIMENT ONLY: local presentation conventions, not RDF semantics.
+coreNamespace: "https://w3id.org/ddta/core#"
+layout: TB
+relations:
+  hasPart:
+    representation: containment
+  realizesFunction:
+    representation: arrow
+    direction: subject-to-object
+nodes:
+  Process:
+    shape: rectangle
+    style: process
+  Function:
+    shape: rounded
+    style: function
+styles:
+  process: {fill: "#eef2ff", stroke: "#6366f1", color: "#312e81"}
+  function: {fill: "#dbeafe", stroke: "#2563eb", color: "#172554"}

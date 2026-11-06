@@ -1,0 +1,17 @@
+PREFIX ddta: <https://w3id.org/ddta/core#>
+
+# General, evidence-preserving role selection. No OWL inference required.
+# "provided_other" does NOT mean "secondary" or "supporting".
+SELECT DISTINCT ?system ?function ?role WHERE {
+    {
+        ?system ddta:hasPrimaryFunction ?function .
+        BIND("primary" AS ?role)
+    }
+    UNION
+    {
+        ?system ddta:providesFunction ?function .
+        FILTER NOT EXISTS { ?system ddta:hasPrimaryFunction ?function }
+        BIND("provided_other" AS ?role)
+    }
+}
+ORDER BY ?system ?role ?function

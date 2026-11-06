@@ -1,0 +1,11 @@
+# Retrieve the composition. This query does NOT assign stage numbers/order.
+PREFIX ddta: <https://w3id.org/ddta/core#>
+PREFIX derma: <https://example.org/ddta/dermatriage#>
+
+SELECT ?part WHERE {
+    derma:EnvironmentSetupProcedure
+        a ddta:Process ;
+        ddta:hasPart ?part .
+    ?part a ddta:Process .
+}
+ORDER BY STR(?part)

@@ -1,0 +1,22 @@
+@prefix ddta: <https://w3id.org/ddta/core#> .
+@prefix shop: <https://example.org/independent-commerce#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Independent example with TWO primary functions.
+shop:CommercePlatform a ddta:System ;
+    rdfs:label "Commerce platform"@en ;
+    ddta:hasPrimaryFunction shop:OrderManagement, shop:ReturnManagement ;
+    ddta:providesFunction shop:FraudScreening .
+
+shop:OrderManagement a ddta:Function ;
+    rdfs:label "Order management"@en .
+shop:ReturnManagement a ddta:Function ;
+    rdfs:label "Return management"@en .
+shop:FraudScreening a ddta:Function ;
+    rdfs:label "Fraud screening"@en .
+
+# Environment preparation exists independently from a provided function.
+shop:EnvironmentSetup a ddta:Function ;
+    ddta:prepares shop:DeploymentEnvironment .
+shop:CommercePlatform ddta:hasOperationalEnvironment shop:DeploymentEnvironment .
+shop:DeploymentEnvironment a ddta:Environment .

@@ -1,0 +1,55 @@
+PREFIX ddta: <https://w3id.org/ddta/core#>
+PREFIX link: <urn:ddta:view#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+# L1 project-independent semantic selection. Input is the previous query's
+# enriched graph; the renderer knows nothing about L1 or DermaTriage.
+# Keep a direct providesFunction link only when no declared primary is
+# connected to it through the available function-information links.
+CONSTRUCT {
+    ?s ?p ?o .
+    ?s rdf:type ?sType .
+    ?o rdf:type ?oType .
+    ?s rdfs:label ?sLabel .
+    ?o rdfs:label ?oLabel .
+} WHERE {
+    {
+        ?s ddta:hasPrimaryFunction ?o .
+        BIND(ddta:hasPrimaryFunction AS ?p)
+    }
+    UNION
+    {
+        ?s ddta:providesFunction ?o .
+        FILTER NOT EXISTS {
+            ?s ddta:hasPrimaryFunction ?primary .
+            ?primary (link:informationLink | ^link:informationLink |
+                      link:informationCompositionLink | ^link:informationCompositionLink)* ?o .
+        }
+        BIND(ddta:providesFunction AS ?p)
+    }
+    UNION
+    {
+        ?s link:informationLink ?o .
+        BIND(link:informationLink AS ?p)
+    }
+    UNION
+    {
+        ?s link:informationCompositionLink ?o .
+        BIND(link:informationCompositionLink AS ?p)
+    }
+    UNION
+    {
+        ?s ddta:hasOperationalEnvironment ?o .
+        BIND(ddta:hasOperationalEnvironment AS ?p)
+    }
+    UNION
+    {
+        VALUES ?p { ddta:prepares ddta:verifies ddta:adapts }
+        ?s ?p ?o .
+    }
+    OPTIONAL { ?s rdf:type ?sType . FILTER(?sType IN (ddta:System, ddta:Function, ddta:Environment)) }
+    OPTIONAL { ?o rdf:type ?oType . FILTER(?oType IN (ddta:System, ddta:Function, ddta:Environment)) }
+    OPTIONAL { ?s rdfs:label ?sLabel }
+    OPTIONAL { ?o rdfs:label ?oLabel }
+}

@@ -1,0 +1,49 @@
+PREFIX ddta: <https://w3id.org/ddta/core#>
+PREFIX proc: <https://w3id.org/ddta/process#>
+PREFIX l1: <urn:ddta:l1-view#>
+
+# Every row identifies a witness for a derived L1 arc, scoped to one system.
+# OPTIONAL columns are bound only for planned workflow edges.
+# No project-specific IRIs or MR identifiers.
+SELECT DISTINCT
+    ?system ?source ?relation ?target ?witness
+    ?workflow ?sourceStep ?targetStep ?sourceProcess ?targetProcess ?collection
+WHERE {
+    ?system l1:includesFunction ?source, ?target .
+    FILTER (?source != ?target)
+    {
+        ?source ddta:hasOutput ?information .
+        ?target ddta:hasInput ?information .
+        ?information a ddta:Information .
+        BIND(l1:informationLink AS ?relation)
+        BIND(?information AS ?witness)
+    }
+    UNION
+    {
+        # A member information type is part of a collection used as input.
+        # This establishes an indirect information dependency, not data movement.
+        ?source ddta:hasOutput ?information .
+        ?information a ddta:Information .
+        ?collection a ddta:Information ;
+                    ddta:hasPart ?information .
+        ?target ddta:hasInput ?collection .
+        BIND(l1:informationCompositionLink AS ?relation)
+        BIND(?information AS ?witness)
+    }
+    UNION
+    {
+        ?workflow a ddta:Process ;
+                  ddta:hasPart ?sourceStep, ?targetStep, ?witness .
+        ?witness a proc:ControlFlowTransition ;
+                 proc:fromNode ?sourceStep ;
+                 proc:toNode ?targetStep .
+        ?sourceStep a proc:ProcessStep ;
+                    proc:referencesProcess ?sourceProcess .
+        ?targetStep a proc:ProcessStep ;
+                    proc:referencesProcess ?targetProcess .
+        ?sourceProcess ddta:realizesFunction ?source .
+        ?targetProcess ddta:realizesFunction ?target .
+        BIND(l1:plannedWorkflowLink AS ?relation)
+    }
+}
+ORDER BY ?system ?source ?relation ?target ?witness ?collection

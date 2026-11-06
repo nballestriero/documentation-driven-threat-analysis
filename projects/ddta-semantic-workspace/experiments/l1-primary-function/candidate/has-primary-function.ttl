@@ -1,0 +1,13 @@
+@prefix ddta: <https://w3id.org/ddta/core#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+# PILOT ONLY. This file is not an accepted amendment to ontology/core.ttl.
+ddta:hasPrimaryFunction
+    a owl:ObjectProperty ;
+    rdfs:subPropertyOf ddta:providesFunction ;
+    rdfs:domain ddta:System ;
+    rdfs:range ddta:Function ;
+    rdfs:label "has primary function"@en ;
+    rdfs:comment "Relates a system to a function identified as one of the system's principal intended capabilities. The relation is a specialization of providesFunction and does not imply exclusivity, a single primary function, priority of execution, successful operation, implementation details, or that other provided functions are secondary or unimportant."@en .

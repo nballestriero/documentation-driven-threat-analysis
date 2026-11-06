@@ -1,0 +1,29 @@
+# EXPERIMENTAL_NON_CANONICAL. This is NOT a promoted Decision or an execution log.
+# Source: DermaTriage DEC-C6-01, original R25 parallel case study, page 48.
+# Test hypothesis: each documented Stage can be treated as an autonomous
+# ddta:Process; the parent procedure is composed of six such processes.
+# Composition does NOT assert temporal order, runtime invocation, dependency,
+# successful installation, or uniqueness of process use across workflows.
+@prefix ddta: <https://w3id.org/ddta/core#> .
+@prefix derma: <https://example.org/ddta/dermatriage#> .
+
+derma:EnvironmentPreparation
+    a ddta:Function .
+
+derma:EnvironmentSetupProcedure
+    a ddta:Process ;
+    ddta:realizesFunction derma:EnvironmentPreparation ;
+    ddta:hasPart
+        derma:RepositoryAcquisitionStage,
+        derma:SoftwareDependencyInstallationStage,
+        derma:ModelResourceAcquisitionStage,
+        derma:EnvironmentConfigurationStage,
+        derma:LocalResourceInitializationStage,
+        derma:ServiceStartupStage .
+
+derma:RepositoryAcquisitionStage a ddta:Process .
+derma:SoftwareDependencyInstallationStage a ddta:Process .
+derma:ModelResourceAcquisitionStage a ddta:Process .
+derma:EnvironmentConfigurationStage a ddta:Process .
+derma:LocalResourceInitializationStage a ddta:Process .
+derma:ServiceStartupStage a ddta:Process .

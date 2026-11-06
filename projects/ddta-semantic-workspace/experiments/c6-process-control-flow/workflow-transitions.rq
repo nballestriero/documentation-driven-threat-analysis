@@ -1,0 +1,12 @@
+# Directed, workflow-scoped planned transitions (not execution evidence).
+# The same Process definitions can be used by multiple workflow placements.
+PREFIX ddta: <https://w3id.org/ddta/core#>
+PREFIX proc: <https://w3id.org/ddta/process#>
+SELECT ?workflow ?transition ?from ?to ?fromProcess ?toProcess WHERE {
+  ?workflow a ddta:Process ; ddta:hasPart ?transition, ?from, ?to .
+  ?transition a proc:ControlFlowTransition ;
+              proc:fromNode ?from ; proc:toNode ?to .
+  ?from a proc:ProcessStep ; proc:referencesProcess ?fromProcess .
+  ?to a proc:ProcessStep ; proc:referencesProcess ?toProcess .
+}
+ORDER BY ?workflow ?transition

@@ -1,0 +1,13 @@
+# HYPOTHETICAL_STRESS_TEST, not a documented DermaTriage workflow.
+# Load with ../c6-process-context/hypothetical-refresh.ttl and C6 files.
+# Demonstrates a different local ordering over the SAME process definitions.
+@prefix ddta: <https://w3id.org/ddta/core#> .
+@prefix proc: <https://w3id.org/ddta/process#> .
+@prefix derma: <https://example.org/ddta/dermatriage#> .
+
+derma:HypotheticalModelRefreshWorkflow
+    ddta:hasPart derma:RefreshModelsToRepository .
+
+derma:RefreshModelsToRepository a proc:ControlFlowTransition ;
+    proc:fromNode derma:RefreshModelsStep ;
+    proc:toNode derma:RefreshRepositoryStep .

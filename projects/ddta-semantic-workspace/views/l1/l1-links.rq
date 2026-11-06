@@ -1,0 +1,49 @@
+PREFIX ddta: <https://w3id.org/ddta/core#>
+PREFIX proc: <https://w3id.org/ddta/process#>
+PREFIX l1: <urn:ddta:l1-view#>
+
+# Execute against source RDF UNION derived scope RDF.
+# Every edge must have explicit evidence; projected predicates are view-only.
+# A planned workflow is NOT an observed execution nor a universal ordering.
+CONSTRUCT {
+    ?source ?relation ?target .
+}
+WHERE {
+    ?system l1:includesFunction ?source, ?target .
+    FILTER (?source != ?target)
+    {
+      {
+        ?source ddta:hasOutput ?information .
+        ?target ddta:hasInput ?information .
+        ?information a ddta:Information .
+        BIND(l1:informationLink AS ?relation)
+      }
+      UNION
+      {
+        # A produced information type is a declared part of an information
+        # collection required by another function. This is a functional
+        # composition dependency, not evidence of actual accumulation.
+        ?source ddta:hasOutput ?information .
+        ?information a ddta:Information .
+        ?collection a ddta:Information ;
+                    ddta:hasPart ?information .
+        ?target ddta:hasInput ?collection .
+        BIND(l1:informationCompositionLink AS ?relation)
+      }
+      UNION
+    {
+        ?workflow a ddta:Process ;
+                  ddta:hasPart ?sourceStep, ?targetStep, ?transition .
+        ?transition a proc:ControlFlowTransition ;
+                    proc:fromNode ?sourceStep ;
+                    proc:toNode ?targetStep .
+        ?sourceStep a proc:ProcessStep ;
+                    proc:referencesProcess ?sourceProcess .
+        ?targetStep a proc:ProcessStep ;
+                    proc:referencesProcess ?targetProcess .
+        ?sourceProcess ddta:realizesFunction ?source .
+        ?targetProcess ddta:realizesFunction ?target .
+        BIND(l1:plannedWorkflowLink AS ?relation)
+      }
+    }
+}

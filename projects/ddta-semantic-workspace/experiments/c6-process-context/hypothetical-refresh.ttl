@@ -1,0 +1,18 @@
+# HYPOTHETICAL_STRESS_TEST / NOT A DOCUMENTED DERMATRIAGE REQUIREMENT.
+# Tests reuse of the same Process IRI in a second workflow, without
+# assigning global order to any of the processes. The order discussed
+# in the README is a scenario assumption, not yet an RDF assertion.
+@prefix ddta: <https://w3id.org/ddta/core#> .
+@prefix proc: <https://w3id.org/ddta/process#> .
+@prefix derma: <https://example.org/ddta/dermatriage#> .
+
+derma:HypotheticalModelRefreshWorkflow a ddta:Process ;
+    ddta:hasPart
+        derma:RefreshModelsStep,
+        derma:RefreshRepositoryStep .
+
+derma:RefreshModelsStep a proc:ProcessStep ;
+    proc:referencesProcess derma:ModelResourceAcquisitionStage .
+
+derma:RefreshRepositoryStep a proc:ProcessStep ;
+    proc:referencesProcess derma:RepositoryAcquisitionStage .

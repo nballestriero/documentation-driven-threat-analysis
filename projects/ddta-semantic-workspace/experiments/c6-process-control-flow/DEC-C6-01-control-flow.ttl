@@ -1,0 +1,34 @@
+# EXPERIMENTAL_NON_CANONICAL. Planned control-flow for DEC-C6-01 only.
+# Load together with ../c6-process-context/DEC-C6-01-workflow-steps.ttl.
+# Retains process definitions/step identities; adds ONLY transition identities.
+# Source: DermaTriage parallel case study DEC-C6-01 p.48, stages 1..6.
+@prefix ddta: <https://w3id.org/ddta/core#> .
+@prefix proc: <https://w3id.org/ddta/process#> .
+@prefix derma: <https://example.org/ddta/dermatriage#> .
+
+derma:EnvironmentSetupProcedure ddta:hasPart
+    derma:RepositoryToDependencies,
+    derma:DependenciesToModels,
+    derma:ModelsToConfiguration,
+    derma:ConfigurationToInitialization,
+    derma:InitializationToStartup .
+
+derma:RepositoryToDependencies a proc:ControlFlowTransition ;
+    proc:fromNode derma:SetupRepositoryStep ;
+    proc:toNode derma:SetupDependenciesStep .
+
+derma:DependenciesToModels a proc:ControlFlowTransition ;
+    proc:fromNode derma:SetupDependenciesStep ;
+    proc:toNode derma:SetupModelsStep .
+
+derma:ModelsToConfiguration a proc:ControlFlowTransition ;
+    proc:fromNode derma:SetupModelsStep ;
+    proc:toNode derma:SetupConfigurationStep .
+
+derma:ConfigurationToInitialization a proc:ControlFlowTransition ;
+    proc:fromNode derma:SetupConfigurationStep ;
+    proc:toNode derma:SetupInitializationStep .
+
+derma:InitializationToStartup a proc:ControlFlowTransition ;
+    proc:fromNode derma:SetupInitializationStep ;
+    proc:toNode derma:SetupStartupStep .

@@ -1,0 +1,8 @@
+PREFIX ddta: <https://w3id.org/ddta/core#>
+
+# Local completeness check, not an OWL entailment / global CWA assertion.
+SELECT DISTINCT ?system WHERE {
+    ?system a ddta:System .
+    FILTER NOT EXISTS { ?system ddta:hasPrimaryFunction ?function }
+}
+ORDER BY ?system

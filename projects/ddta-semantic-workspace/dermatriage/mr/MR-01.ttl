@@ -1,0 +1,36 @@
+@prefix ddta: <https://w3id.org/ddta/core#> .
+@prefix derma: <https://example.org/ddta/dermatriage#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+derma:DermaTriage
+    a ddta:System ;
+    ddta:providesFunction derma:DermatologicalTriageEvaluation ;
+    ddta:hasPrimaryFunction derma:DermatologicalTriageEvaluation .
+
+derma:DermatologicalTriageEvaluation
+    a ddta:Function ;
+    rdfs:label "Valutazione triage"@it ;
+    ddta:hasInput derma:CaseInformation ;
+    ddta:hasOutput derma:TriageOutcome .
+
+derma:CaseInformation
+    a ddta:Information ;
+    ddta:constrainedBy derma:CaseInformationContract .
+
+derma:CaseInformationContract
+    a ddta:Contract ;
+    ddta:hasPart derma:LesionImageElement .
+
+derma:LesionImageElement
+    a ddta:ContractElement ;
+    ddta:minOccurs "0"^^xsd:nonNegativeInteger ;
+    rdfs:label "Lesion image element"@en .
+
+derma:TriageOutcome
+    a ddta:Information ;
+    ddta:hasPart derma:CaseUrgency,
+                 derma:OperationalTriagePriority .
+
+derma:CaseUrgency a ddta:Information .
+derma:OperationalTriagePriority a ddta:Information .

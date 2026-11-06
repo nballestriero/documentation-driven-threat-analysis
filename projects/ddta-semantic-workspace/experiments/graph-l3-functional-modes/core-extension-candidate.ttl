@@ -1,0 +1,6 @@
+@prefix ddta: <https://w3id.org/ddta/core#> .
+
+# HISTORICAL FILE / RETIRED EXTENSION.
+# The experimental declarations were promoted to ontology/core.ttl.
+# This file intentionally contains no schema assertions.
+# run_experiment.py validates against the canonical Core only.

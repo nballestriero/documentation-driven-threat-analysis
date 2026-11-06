@@ -1,0 +1,354 @@
+{
+  "document_count": 6,
+  "documents": [
+    {
+      "id": "MR-01",
+      "properties": {
+        "constrainedBy": [
+          [
+            "CaseInformation",
+            "CaseInformationContract"
+          ]
+        ],
+        "hasInput": [
+          [
+            "DermatologicalTriageEvaluation",
+            "CaseInformation"
+          ]
+        ],
+        "hasOutput": [
+          [
+            "DermatologicalTriageEvaluation",
+            "TriageOutcome"
+          ]
+        ],
+        "hasPart": [
+          [
+            "CaseInformationContract",
+            "LesionImageElement"
+          ],
+          [
+            "TriageOutcome",
+            "CaseUrgency"
+          ],
+          [
+            "TriageOutcome",
+            "OperationalTriagePriority"
+          ]
+        ],
+        "hasPrimaryFunction": [
+          [
+            "DermaTriage",
+            "DermatologicalTriageEvaluation"
+          ]
+        ],
+        "minOccurs": [
+          [
+            "LesionImageElement",
+            "0"
+          ]
+        ],
+        "providesFunction": [
+          [
+            "DermaTriage",
+            "DermatologicalTriageEvaluation"
+          ]
+        ]
+      },
+      "sha256": "8B5EA712779DEE08A4BCA25F71C6BCDBDA9405DF672723C641311454EE4B4624",
+      "source": "MR-01.md",
+      "triple_count": 19,
+      "types": [
+        [
+          "CaseInformation",
+          "ddta:Information"
+        ],
+        [
+          "CaseInformationContract",
+          "ddta:Contract"
+        ],
+        [
+          "CaseUrgency",
+          "ddta:Information"
+        ],
+        [
+          "DermaTriage",
+          "ddta:System"
+        ],
+        [
+          "DermatologicalTriageEvaluation",
+          "ddta:Function"
+        ],
+        [
+          "LesionImageElement",
+          "ddta:ContractElement"
+        ],
+        [
+          "OperationalTriagePriority",
+          "ddta:Information"
+        ],
+        [
+          "TriageOutcome",
+          "ddta:Information"
+        ]
+      ]
+    },
+    {
+      "id": "MR-02",
+      "properties": {
+        "hasInput": [
+          [
+            "SpecialistDestinationDetermination",
+            "TriageOutcome"
+          ]
+        ],
+        "hasOutput": [
+          [
+            "SpecialistDestinationDetermination",
+            "SpecialistDestinationIndication"
+          ]
+        ],
+        "providesFunction": [
+          [
+            "DermaTriage",
+            "SpecialistDestinationDetermination"
+          ]
+        ]
+      },
+      "sha256": "DB209BE064619B0207E13B92FDEB700446EAB5602BCFDF081F3A7869445D9364",
+      "source": "MR-02.md",
+      "triple_count": 7,
+      "types": [
+        [
+          "DermaTriage",
+          "ddta:System"
+        ],
+        [
+          "SpecialistDestinationDetermination",
+          "ddta:Function"
+        ],
+        [
+          "SpecialistDestinationIndication",
+          "ddta:Information"
+        ]
+      ]
+    },
+    {
+      "id": "MR-03",
+      "properties": {
+        "hasInput": [
+          [
+            "ClinicalReviewManagement",
+            "ClinicalReview"
+          ],
+          [
+            "ClinicalReviewManagement",
+            "TriageOutcome"
+          ]
+        ],
+        "hasOutput": [
+          [
+            "ClinicalReviewManagement",
+            "ClinicalReviewRecord"
+          ]
+        ],
+        "hasPart": [
+          [
+            "ClinicalReviewRecord",
+            "ClinicalReview"
+          ],
+          [
+            "ClinicalReviewRecord",
+            "TriageOutcome"
+          ]
+        ],
+        "providesFunction": [
+          [
+            "DermaTriage",
+            "ClinicalReviewManagement"
+          ]
+        ]
+      },
+      "sha256": "4F8C7E9B5E1EFDFF10C78B45C62FD49FE924523E8BF29089E3ED95576A54DD57",
+      "source": "MR-03.md",
+      "triple_count": 12,
+      "types": [
+        [
+          "ClinicalReview",
+          "ddta:Information"
+        ],
+        [
+          "ClinicalReviewManagement",
+          "ddta:Function"
+        ],
+        [
+          "ClinicalReviewRecord",
+          "ddta:Information"
+        ],
+        [
+          "DermaTriage",
+          "ddta:System"
+        ],
+        [
+          "TriageOutcome",
+          "ddta:Information"
+        ]
+      ]
+    },
+    {
+      "id": "MR-04",
+      "properties": {
+        "hasInput": [
+          [
+            "ControlledAdaptation",
+            "AccumulatedClinicalReviewRecords"
+          ]
+        ],
+        "hasOutput": [
+          [
+            "ControlledAdaptation",
+            "AdaptationCandidate"
+          ],
+          [
+            "ControlledAdaptation",
+            "AdaptationQualificationResult"
+          ]
+        ],
+        "hasPart": [
+          [
+            "AccumulatedClinicalReviewRecords",
+            "ClinicalReviewRecord"
+          ]
+        ],
+        "providesFunction": [
+          [
+            "DermaTriage",
+            "ControlledAdaptation"
+          ]
+        ]
+      },
+      "sha256": "AB560814B46FD0158CAC809B8B797407D831DB832244C6EB73455A86508314FC",
+      "source": "MR-04.md",
+      "triple_count": 12,
+      "types": [
+        [
+          "AccumulatedClinicalReviewRecords",
+          "ddta:Information"
+        ],
+        [
+          "AdaptationCandidate",
+          "ddta:Artifact"
+        ],
+        [
+          "AdaptationQualificationResult",
+          "ddta:Information"
+        ],
+        [
+          "ClinicalReviewRecord",
+          "ddta:Information"
+        ],
+        [
+          "ControlledAdaptation",
+          "ddta:Function"
+        ],
+        [
+          "DermaTriage",
+          "ddta:System"
+        ]
+      ]
+    },
+    {
+      "id": "MR-C6",
+      "properties": {
+        "hasOutput": [
+          [
+            "EnvironmentPreparation",
+            "DermaTriageEnvironment"
+          ]
+        ],
+        "hasPart": [
+          [
+            "DermaTriageEnvironment",
+            "ComputeResources"
+          ],
+          [
+            "DermaTriageEnvironment",
+            "DataResources"
+          ],
+          [
+            "DermaTriageEnvironment",
+            "EnvironmentConfiguration"
+          ],
+          [
+            "DermaTriageEnvironment",
+            "ModelResources"
+          ],
+          [
+            "DermaTriageEnvironment",
+            "SoftwareComponents"
+          ]
+        ]
+      },
+      "sha256": "0E8A1C02F5EE0F925F94B5CD3FB53644CCE3DE1A0A38F143B7803B49D2BC72E5",
+      "source": "MR-C6.md",
+      "triple_count": 8,
+      "types": [
+        [
+          "DermaTriageEnvironment",
+          "ddta:Environment"
+        ],
+        [
+          "EnvironmentPreparation",
+          "ddta:Function"
+        ]
+      ]
+    },
+    {
+      "id": "MR-C7",
+      "properties": {
+        "hasOutput": [
+          [
+            "DermaTriageVerification",
+            "VerificationResults"
+          ]
+        ],
+        "verifies": [
+          [
+            "DermaTriageVerification",
+            "DermaTriage"
+          ],
+          [
+            "DermaTriageVerification",
+            "DermaTriageEnvironment"
+          ]
+        ]
+      },
+      "sha256": "AF10A4B30F412FA8DB9041353D76273ACCC04D8C09092948E56AB4C1531E85DC",
+      "source": "MR-C7.md",
+      "triple_count": 7,
+      "types": [
+        [
+          "DermaTriage",
+          "ddta:System"
+        ],
+        [
+          "DermaTriageVerification",
+          "ddta:Function"
+        ],
+        [
+          "VerificationResults",
+          "ddta:Information"
+        ]
+      ]
+    }
+  ],
+  "unique_merged_triples": 59,
+  "untyped_composition_targets": [
+    "ComputeResources",
+    "DataResources",
+    "EnvironmentConfiguration",
+    "ModelResources",
+    "SoftwareComponents"
+  ],
+  "validation": "PASS"
+}

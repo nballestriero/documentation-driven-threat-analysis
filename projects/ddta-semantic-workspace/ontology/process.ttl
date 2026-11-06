@@ -1,15 +1,56 @@
 @prefix : <https://w3id.org/ddta/process#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ddta: <https://w3id.org/ddta/core#> .
 @base <https://w3id.org/ddta/process> .
 
 <https://w3id.org/ddta/process>
     a owl:Ontology ;
     rdfs:label "DDTA Process Ontology (experimental bootstrap)"@en ;
-    rdfs:comment "Experimental DDTA module for domain-independent process composition and control flow. This bootstrap declares no process classes or properties. Terms are introduced individually after a documented use case, semantic review and tests. It reuses the identities of DDTA Core without redefining them."@en .
+    rdfs:comment "Experimental DDTA module for domain-independent process composition and control flow. This experimental module adds workflow-contextual process placements and identifiable directed control-flow transitions. Guards, events, concurrency, executions and other dynamic semantics remain deferred. DDTA Core terms keep their original identities and meanings."@en .
+
+# ---------------------------------------------------------------------------
+# FIRST APPROVED EXPERIMENTAL TERMS: contextual use of reusable processes
+# ---------------------------------------------------------------------------
+
+:ProcessStep a owl:Class ;
+    rdfs:label "Process step"@en ;
+    rdfs:comment "An identifiable planned placement of a reusable process within a particular workflow. A step is not the referenced process definition or an individual execution. Being a part of a workflow does not determine execution order or imply successful performance."@en .
+
+:referencesProcess a owl:ObjectProperty ;
+    rdfs:domain :ProcessStep ;
+    rdfs:range ddta:Process ;
+    rdfs:label "references process"@en ;
+    rdfs:comment "Relates a workflow-specific process step to the reusable process definition assigned to that step. This relation does not imply invocation or execution, ordering, dependency, process containment, or exclusive use within one workflow."@en .
+
+# ---------------------------------------------------------------------------
+# SECOND APPROVED EXPERIMENTAL TERMS: flow nodes and first-class transitions
+# ---------------------------------------------------------------------------
+
+:FlowNode a owl:Class ;
+    rdfs:label "Flow node"@en ;
+    rdfs:comment "A position in a planned process control-flow graph that may be an endpoint of directed transitions. This abstraction does not imply execution, temporal occurrence, or any branch/fork/join semantics by itself."@en .
+
+:ProcessStep rdfs:subClassOf :FlowNode .
+
+:ControlFlowTransition a owl:Class ;
+    rdfs:label "Control-flow transition"@en ;
+    rdfs:comment "An identifiable, directed, planned control-flow connection between flow nodes in a process context. It specifies a possible control path, not an observed movement, a data transfer, an intrinsic dependency between reusable process definitions, or proof of execution. Conditions, triggering and concurrency semantics require separate explicit modeling."@en .
+
+:fromNode a owl:ObjectProperty ;
+    rdfs:domain :ControlFlowTransition ;
+    rdfs:range :FlowNode ;
+    rdfs:label "from node"@en ;
+    rdfs:comment "Identifies the source node of a planned control-flow transition. A transition's membership in the same workflow as both endpoints must be validated separately; OWL domain/range are not integrity constraints."@en .
+
+:toNode a owl:ObjectProperty ;
+    rdfs:domain :ControlFlowTransition ;
+    rdfs:range :FlowNode ;
+    rdfs:label "to node"@en ;
+    rdfs:comment "Identifies the destination node of a planned control-flow transition. Neither completion, eligibility, nor immediate runtime execution is implied; endpoint multiplicity must be validated outside OWL when required."@en .
 
 # ============================================================================
-# STATUS: EXPERIMENTAL_NON_CANONICAL / BOOTSTRAP ONLY
+# STATUS: EXPERIMENTAL_NON_CANONICAL / SECOND FOCUSED EXTENSION
 # ============================================================================
 # Ontology IRI:     https://w3id.org/ddta/process
 # Term namespace:   https://w3id.org/ddta/process#
@@ -21,15 +62,16 @@
 # ddta:Function, ddta:Process, ddta:hasInput, ddta:hasOutput, ddta:hasPart,
 # ddta:realizesFunction and all other existing generic terms.
 #
-# The lines below are deliberately COMMENTS, NOT RDF/OWL declarations.
-# There is no implementation of these constructs in this bootstrap.
-# A candidate's name does not authorize its use in project Turtle documents.
+# The implementation backlog below is COMMENTS, not declarations.
+# The approved test vocabulary comprises ProcessStep, referencesProcess,
+# FlowNode, ControlFlowTransition, fromNode and toNode.
+# Future candidate names do not authorize their use in project documents.
 #
 # ============================================================================
 # PROCESS DESIGN INVARIANTS (TO BE TESTED AS TERMS ARE ADDED)
 # ============================================================================
 # 1. Function = stable capability; Process = structured pattern of activities;
-#    ProcessStep (candidate) = an occurrence/role of an activity within a
+#    ProcessStep = a planned, contextual placement of an activity within a
 #    particular process. Do not confuse a step with the function it uses.
 # 2. Planned process structure != actual process execution or its outcome.
 # 3. Shared output/input does NOT, by itself, entail execution order.
@@ -44,22 +86,23 @@
 # CANDIDATE IMPLEMENTATION BACKLOG -- NOT YET APPROVED
 # ============================================================================
 #
-# [CANDIDATE A] Step identity and membership
-#   Possible concept: ProcessStep, link to ddta:Process.
-#   Questions: Is a Step a kind of ddta:Process or a role within one?
-#              Can the same Function occur in several steps/processes?
-#              How should steps reference a ddta:Function without violating
-#              the existing domain of ddta:realizesFunction?
-#   Existing references for comparison: P-Plan Step/Plan, OWL-S processes.
-#   First possible test case: DEC-C6-01 setup stages.
+# [IMPLEMENTED A] ProcessStep and referencesProcess
+#   A step is a workflow-specific placement, NOT a ddta:Process subclass.
+#   ddta:hasPart (workflow -> step) provides composition context.
+#   referencesProcess (step -> ddta:Process) preserves process identity.
+#   No implied invocation, execution, ordering or temporal dependency.
+#   Tested on DEC-C6-01 and a clearly hypothetical reuse scenario.
+#   Function-to-step mapping remains deferred. Inspired by P-Plan/OWL-S.
 #
-# [CANDIDATE B] Precedence / control-flow transitions
-#   Possible designs: binary 'precedes' relation OR a first-class transition
-#   with source and destination steps. Do not select prematurely.
-#   Distinguish immediate ordering, transitive precedence, sequencing,
-#   and possible non-adjacent dependencies.
-#   Existing references: P-Plan isPreceededBy, BPMN sequence flows, OWL-S.
-#   First possible test case: six ordered stages in DEC-C6-01.
+# [IMPLEMENTED B] Explicit directed control-flow transitions
+#   FlowNode generalizes ProcessStep for possible future gateways.
+#   ControlFlowTransition has fromNode/toNode and is a part of its workflow.
+#   This is NOT a global 'precedes' predicate on reusable processes.
+#   A transition is a planned route, not an execution/provenance record.
+#   Test: DEC-C6-01 six placements, five transitions in a linear path.
+#   Endpoint membership, cardinality and linear topology are checked by a
+#   focused validator rather than assumed from OWL domain/range.
+#   Process modeling references: BPMN sequence flows, OWL-S control flow.
 #
 # [CANDIDATE C] Branches and guards
 #   Possible concepts: Condition, Branch, conditional transition/guard.
@@ -100,5 +143,7 @@
 #   6. Only then adapt visualization YAML and generate/check Mermaid.
 #   7. Reassess integration with Core without editing Core automatically.
 #
-# First experimental target when needed: DEC-C6-01 (ordered setup process).
+# First test case: DEC-C6-01 contextual placements (prior increment).
+# Second test case: five workflow-local transitions joining six placements.
+# Next: joint review of definitions and ontology module catalog proposal.
 # Later: conditional branches from a documented triage Decision/FR.

@@ -1,0 +1,18 @@
+# Structural CONSTRUCT; OWL type inferencing is NOT assumed or required.
+# Query belongs to a single workflow: remove no membership constraints.
+PREFIX ddta: <https://w3id.org/ddta/core#>
+PREFIX proc: <https://w3id.org/ddta/process#>
+PREFIX derma: <https://example.org/ddta/dermatriage#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+CONSTRUCT {
+  derma:EnvironmentSetupProcedure rdf:type ddta:Process ; ddta:hasPart ?step, ?transition .
+  ?step rdf:type proc:ProcessStep ; proc:referencesProcess ?process .
+  ?process rdf:type ddta:Process .
+  ?transition rdf:type proc:ControlFlowTransition ; proc:fromNode ?from ; proc:toNode ?to .
+}
+WHERE {
+  derma:EnvironmentSetupProcedure a ddta:Process ; ddta:hasPart ?step, ?transition .
+  ?step a proc:ProcessStep ; proc:referencesProcess ?process .
+  ?transition a proc:ControlFlowTransition ; proc:fromNode ?from ; proc:toNode ?to .
+  derma:EnvironmentSetupProcedure ddta:hasPart ?from, ?to .
+}
