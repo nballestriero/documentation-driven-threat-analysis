@@ -1,0 +1,66 @@
+funzione,verso,contratto,ContractElement,label,minOccurs,maxOccurs,descrizione
+DiffieHellmanKeyAgreement,input,DiffieHellmanKeyAgreementInputContract,EnteredB,Valore b digitato,1,1,Valore privato candidato fornito dall’operatore umano; non ancora accettato.
+DiffieHellmanKeyAgreement,input,DiffieHellmanKeyAgreementInputContract,GeneratorG,Generatore g,1,1,Generatore pubblico compatibile con il gruppo concordato.
+DiffieHellmanKeyAgreement,input,DiffieHellmanKeyAgreementInputContract,ModulusP,Modulus p,1,1,"Parametro pubblico del gruppo Diffie-Hellman, modulo p."
+DiffieHellmanKeyAgreement,input,DiffieHellmanKeyAgreementInputContract,SubgroupOrderQ,Ordine q (se applicabile),0,1,"Ordine del sottogruppo, quando richiesto dai parametri adottati."
+DiffieHellmanKeyAgreement,output,DiffieHellmanKeyAgreementOutputContract,PublicA,Valore pubblico A,1,1,Valore pubblico g^a mod p specificato per il canale PC→User.
+DiffieHellmanKeyAgreement,output,DiffieHellmanKeyAgreementOutputContract,PublicB,Valore pubblico B,1,1,Valore pubblico g^b mod p specificato per il canale User→PC.
+DiffieHellmanKeyAgreement,output,DiffieHellmanKeyAgreementOutputContract,SharedKPC,Segreto condiviso K_PC,1,1,Segreto derivato localmente nel PC; non trasferito sul canale.
+DiffieHellmanKeyAgreement,output,DiffieHellmanKeyAgreementOutputContract,SharedKUser,Segreto condiviso K_User,1,1,Segreto derivato localmente nel sistema utente; non trasferito sul canale.
+PCCalculatePublic,input,PCCalculatePublicInputContract,GeneratorG,Generatore g,1,1,Generatore pubblico compatibile con il gruppo concordato.
+PCCalculatePublic,input,PCCalculatePublicInputContract,ModulusP,Modulus p,1,1,"Parametro pubblico del gruppo Diffie-Hellman, modulo p."
+PCCalculatePublic,input,PCCalculatePublicInputContract,PrivateA,Segreto privato a,1,1,Esponente privato del PC; rimane nel proprio dominio di trust.
+PCCalculatePublic,output,PCCalculatePublicOutputContract,PublicA,Valore pubblico A,1,1,Valore pubblico g^a mod p specificato per il canale PC→User.
+PCDeriveSecret,input,PCDeriveSecretInputContract,AcceptedBRequired,B_r accettato (richiesto),1,1,"Dato remoto già accettato, richiesto dal calcolo del segreto nell’ambiente PC."
+PCDeriveSecret,input,PCDeriveSecretInputContract,ModulusP,Modulus p,1,1,"Parametro pubblico del gruppo Diffie-Hellman, modulo p."
+PCDeriveSecret,input,PCDeriveSecretInputContract,PrivateA,Segreto privato a,1,1,Esponente privato del PC; rimane nel proprio dominio di trust.
+PCDeriveSecret,output,PCDeriveSecretOutputContract,SharedKPC,Segreto condiviso K_PC,1,1,Segreto derivato localmente nel PC; non trasferito sul canale.
+PCGeneratePrivate,input,PCGeneratePrivateInputContract,EntropyPC,Materiale casuale imprevedibile,1,1,Input informativo richiesto per la generazione di a; la sua fornitura dipende da una risorsa RNG da modellare successivamente.
+PCGeneratePrivate,input,PCGeneratePrivateInputContract,ModulusP,Modulus p,1,1,"Parametro pubblico del gruppo Diffie-Hellman, modulo p."
+PCGeneratePrivate,input,PCGeneratePrivateInputContract,SubgroupOrderQ,Ordine q (se applicabile),0,1,"Ordine del sottogruppo, quando richiesto dai parametri adottati."
+PCGeneratePrivate,output,PCGeneratePrivateOutputContract,PrivateA,Segreto privato a,1,1,Esponente privato del PC; rimane nel proprio dominio di trust.
+PCKeyAgreement,input,PCKeyAgreementInputContract,GeneratorG,Generatore g,1,1,Generatore pubblico compatibile con il gruppo concordato.
+PCKeyAgreement,input,PCKeyAgreementInputContract,ModulusP,Modulus p,1,1,"Parametro pubblico del gruppo Diffie-Hellman, modulo p."
+PCKeyAgreement,input,PCKeyAgreementInputContract,PublicB,Valore pubblico B,1,1,Valore pubblico g^b mod p specificato per il canale User→PC.
+PCKeyAgreement,input,PCKeyAgreementInputContract,SubgroupOrderQ,Ordine q (se applicabile),0,1,"Ordine del sottogruppo, quando richiesto dai parametri adottati."
+PCKeyAgreement,output,PCKeyAgreementOutputContract,PublicA,Valore pubblico A,1,1,Valore pubblico g^a mod p specificato per il canale PC→User.
+PCKeyAgreement,output,PCKeyAgreementOutputContract,SharedKPC,Segreto condiviso K_PC,1,1,Segreto derivato localmente nel PC; non trasferito sul canale.
+PCReceivePublic,input,PublicBOverChannel,PublicB,Valore pubblico B,1,1,Valore pubblico g^b mod p specificato per il canale User→PC.
+PCReceivePublic,output,PCReceivePublicOutputContract,ReceivedB,Valore ricevuto B_r,1,1,Dato ricevuto come presunto B; potrebbe differire da B per alterazioni o sostituzione.
+PCSendPublic,input,PCSendPublicInputContract,PublicA,Valore pubblico A,1,1,Valore pubblico g^a mod p specificato per il canale PC→User.
+PCSendPublic,output,PublicAOverChannel,PublicA,Valore pubblico A,1,1,Valore pubblico g^a mod p specificato per il canale PC→User.
+PCValidatePublic,input,PCValidatePublicInputContract,GeneratorG,Generatore g,1,1,Generatore pubblico compatibile con il gruppo concordato.
+PCValidatePublic,input,PCValidatePublicInputContract,ModulusP,Modulus p,1,1,"Parametro pubblico del gruppo Diffie-Hellman, modulo p."
+PCValidatePublic,input,PCValidatePublicInputContract,ReceivedB,Valore ricevuto B_r,1,1,Dato ricevuto come presunto B; potrebbe differire da B per alterazioni o sostituzione.
+PCValidatePublic,input,PCValidatePublicInputContract,SubgroupOrderQ,Ordine q (se applicabile),0,1,"Ordine del sottogruppo, quando richiesto dai parametri adottati."
+PCValidatePublic,output,PCValidatePublicOutputContract,AcceptedBOptional,B_r accettato (se valido),0,1,"Dato remoto accettato come matematicamente valido, disponibile soltanto sul percorso valido."
+PCValidatePublic,output,PCValidatePublicOutputContract,ValidityB,Esito validità B_r,1,1,Esito della verifica di validità matematica del valore remoto B_r; non autenticità.
+UserAcquirePrivate,input,UserAcquirePrivateInputContract,EnteredB,Valore b digitato,1,1,Valore privato candidato fornito dall’operatore umano; non ancora accettato.
+UserAcquirePrivate,input,UserAcquirePrivateInputContract,ModulusP,Modulus p,1,1,"Parametro pubblico del gruppo Diffie-Hellman, modulo p."
+UserAcquirePrivate,input,UserAcquirePrivateInputContract,SubgroupOrderQ,Ordine q (se applicabile),0,1,"Ordine del sottogruppo, quando richiesto dai parametri adottati."
+UserAcquirePrivate,output,UserAcquirePrivateOutputContract,PrivateB,Segreto privato b,1,1,Esponente privato accettato dall’ambiente utente; non trasmesso al peer.
+UserCalculatePublic,input,UserCalculatePublicInputContract,GeneratorG,Generatore g,1,1,Generatore pubblico compatibile con il gruppo concordato.
+UserCalculatePublic,input,UserCalculatePublicInputContract,ModulusP,Modulus p,1,1,"Parametro pubblico del gruppo Diffie-Hellman, modulo p."
+UserCalculatePublic,input,UserCalculatePublicInputContract,PrivateB,Segreto privato b,1,1,Esponente privato accettato dall’ambiente utente; non trasmesso al peer.
+UserCalculatePublic,output,UserCalculatePublicOutputContract,PublicB,Valore pubblico B,1,1,Valore pubblico g^b mod p specificato per il canale User→PC.
+UserDeriveSecret,input,UserDeriveSecretInputContract,AcceptedARequired,A_r accettato (richiesto),1,1,"Dato remoto già accettato, richiesto dal calcolo del segreto nell’ambiente utente."
+UserDeriveSecret,input,UserDeriveSecretInputContract,ModulusP,Modulus p,1,1,"Parametro pubblico del gruppo Diffie-Hellman, modulo p."
+UserDeriveSecret,input,UserDeriveSecretInputContract,PrivateB,Segreto privato b,1,1,Esponente privato accettato dall’ambiente utente; non trasmesso al peer.
+UserDeriveSecret,output,UserDeriveSecretOutputContract,SharedKUser,Segreto condiviso K_User,1,1,Segreto derivato localmente nel sistema utente; non trasferito sul canale.
+UserKeyAgreement,input,UserKeyAgreementInputContract,EnteredB,Valore b digitato,1,1,Valore privato candidato fornito dall’operatore umano; non ancora accettato.
+UserKeyAgreement,input,UserKeyAgreementInputContract,GeneratorG,Generatore g,1,1,Generatore pubblico compatibile con il gruppo concordato.
+UserKeyAgreement,input,UserKeyAgreementInputContract,ModulusP,Modulus p,1,1,"Parametro pubblico del gruppo Diffie-Hellman, modulo p."
+UserKeyAgreement,input,UserKeyAgreementInputContract,PublicA,Valore pubblico A,1,1,Valore pubblico g^a mod p specificato per il canale PC→User.
+UserKeyAgreement,input,UserKeyAgreementInputContract,SubgroupOrderQ,Ordine q (se applicabile),0,1,"Ordine del sottogruppo, quando richiesto dai parametri adottati."
+UserKeyAgreement,output,UserKeyAgreementOutputContract,PublicB,Valore pubblico B,1,1,Valore pubblico g^b mod p specificato per il canale User→PC.
+UserKeyAgreement,output,UserKeyAgreementOutputContract,SharedKUser,Segreto condiviso K_User,1,1,Segreto derivato localmente nel sistema utente; non trasferito sul canale.
+UserReceivePublic,input,PublicAOverChannel,PublicA,Valore pubblico A,1,1,Valore pubblico g^a mod p specificato per il canale PC→User.
+UserReceivePublic,output,UserReceivePublicOutputContract,ReceivedA,Valore ricevuto A_r,1,1,Dato ricevuto come presunto A; potrebbe differire da A per alterazioni o sostituzione.
+UserSendPublic,input,UserSendPublicInputContract,PublicB,Valore pubblico B,1,1,Valore pubblico g^b mod p specificato per il canale User→PC.
+UserSendPublic,output,PublicBOverChannel,PublicB,Valore pubblico B,1,1,Valore pubblico g^b mod p specificato per il canale User→PC.
+UserValidatePublic,input,UserValidatePublicInputContract,GeneratorG,Generatore g,1,1,Generatore pubblico compatibile con il gruppo concordato.
+UserValidatePublic,input,UserValidatePublicInputContract,ModulusP,Modulus p,1,1,"Parametro pubblico del gruppo Diffie-Hellman, modulo p."
+UserValidatePublic,input,UserValidatePublicInputContract,ReceivedA,Valore ricevuto A_r,1,1,Dato ricevuto come presunto A; potrebbe differire da A per alterazioni o sostituzione.
+UserValidatePublic,input,UserValidatePublicInputContract,SubgroupOrderQ,Ordine q (se applicabile),0,1,"Ordine del sottogruppo, quando richiesto dai parametri adottati."
+UserValidatePublic,output,UserValidatePublicOutputContract,AcceptedAOptional,A_r accettato (se valido),0,1,"Dato remoto accettato come matematicamente valido, disponibile soltanto sul percorso valido."
+UserValidatePublic,output,UserValidatePublicOutputContract,ValidityA,Esito validità A_r,1,1,Esito della verifica di validità matematica del valore remoto A_r; non autenticità.

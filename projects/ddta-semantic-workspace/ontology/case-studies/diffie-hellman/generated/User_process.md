@@ -1,0 +1,25 @@
+# UserProcess: Step e condizioni
+
+Fonte: `../model/dh_r5a.ttl`. Schema illustrativo generato da relazioni RDF.
+
+```mermaid
+flowchart TB
+    UserAcquirePrivateStep["UserAcquirePrivateStep<br/>ProcessStep<br/>→ UserAcquirePrivate"]
+    UserCalculatePublicStep["UserCalculatePublicStep<br/>ProcessStep<br/>→ UserCalculatePublic"]
+    UserDeriveSecretStep["UserDeriveSecretStep<br/>ProcessStep<br/>→ UserDeriveSecret"]
+    UserEnd{"UserEnd<br/>ControlNode"}
+    UserPublicValidityDecision{"UserPublicValidityDecision<br/>ControlNode"}
+    UserReceivePublicStep["UserReceivePublicStep<br/>ProcessStep<br/>→ UserReceivePublic"]
+    UserSendPublicStep["UserSendPublicStep<br/>ProcessStep<br/>→ UserSendPublic"]
+    UserValidatePublicStep["UserValidatePublicStep<br/>ProcessStep<br/>→ UserValidatePublic"]
+    UserAcquirePrivateStep --> UserReceivePublicStep
+    UserReceivePublicStep --> UserValidatePublicStep
+    UserValidatePublicStep --> UserPublicValidityDecision
+    UserPublicValidityDecision -->|"guard: UserPeerPublicValid"| UserCalculatePublicStep
+    UserCalculatePublicStep --> UserSendPublicStep
+    UserSendPublicStep --> UserDeriveSecretStep
+    UserDeriveSecretStep --> UserEnd
+    UserInvalidPublicGap(("?"))
+    UserPublicValidityDecision -.->|"false: non documentato"| UserInvalidPublicGap
+    style UserInvalidPublicGap stroke:#dc2626,stroke-width:2px,stroke-dasharray:5 4,fill:#fff1f1,color:#b91c1c
+```

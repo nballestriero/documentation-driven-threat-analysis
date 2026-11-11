@@ -1,0 +1,29 @@
+# Architettura CORE e confini di trust
+
+Fonte: `../model/dh_r5a.ttl`. Schema illustrativo generato da relazioni RDF.
+
+```mermaid
+flowchart LR
+    PCBoundary["PCBoundary<br/>Boundary"]
+    PCEndpoint["PCEndpoint<br/>Resource"]
+    PCEnvironment["PCEnvironment<br/>Environment"]
+    PCSystem["PCSystem<br/>System"]
+    PCToUserChannel["PCToUserChannel<br/>CommunicationChannel"]
+    UserBoundary["UserBoundary<br/>Boundary"]
+    UserEndpoint["UserEndpoint<br/>Resource"]
+    UserEnvironment["UserEnvironment<br/>Environment"]
+    UserSystem["UserSystem<br/>System"]
+    UserToPCChannel["UserToPCChannel<br/>CommunicationChannel"]
+    PCBoundary -->|"encloses"| PCEndpoint
+    PCEnvironment -->|"makesAvailable"| PCEndpoint
+    PCSystem -->|"hasOperationalEnvironment"| PCEnvironment
+    PCSystem -->|"hasBoundary"| PCBoundary
+    PCToUserChannel -->|"hasSource"| PCEndpoint
+    PCToUserChannel -->|"hasDestination"| UserEndpoint
+    UserBoundary -->|"encloses"| UserEndpoint
+    UserEnvironment -->|"makesAvailable"| UserEndpoint
+    UserSystem -->|"hasOperationalEnvironment"| UserEnvironment
+    UserSystem -->|"hasBoundary"| UserBoundary
+    UserToPCChannel -->|"hasSource"| UserEndpoint
+    UserToPCChannel -->|"hasDestination"| PCEndpoint
+```

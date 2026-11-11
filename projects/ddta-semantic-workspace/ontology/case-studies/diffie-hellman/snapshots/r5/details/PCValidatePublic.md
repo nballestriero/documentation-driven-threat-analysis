@@ -1,0 +1,22 @@
+# PCValidatePublic — contratti ed elementi
+
+```mermaid
+flowchart TB
+    F["Verifica validità B<br/>Function"]
+    Ci0["PCValidatePublicInputContract<br/>Contract"]
+    F -->|"hasInputContract"| Ci0
+    Ei0_0["Generatore g<br/>ContractElement [1..1]"]
+    Ci0 -->|"hasContractElement"| Ei0_0
+    Ei0_1["Modulus p<br/>ContractElement [1..1]"]
+    Ci0 -->|"hasContractElement"| Ei0_1
+    Ei0_2["Valore ricevuto B_r<br/>ContractElement [1..1]"]
+    Ci0 -->|"hasContractElement"| Ei0_2
+    Ei0_3["Ordine q (se applicabile)<br/>ContractElement [0..1]"]
+    Ci0 -->|"hasContractElement"| Ei0_3
+    Co0["PCValidatePublicOutputContract<br/>Contract"]
+    F -->|"hasOutputContract"| Co0
+    Eo0_0["B_r accettato (se valido)<br/>ContractElement [0..1]"]
+    Co0 -->|"hasContractElement"| Eo0_0
+    Eo0_1["Esito validità B_r<br/>ContractElement [1..1]"]
+    Co0 -->|"hasContractElement"| Eo0_1
+```

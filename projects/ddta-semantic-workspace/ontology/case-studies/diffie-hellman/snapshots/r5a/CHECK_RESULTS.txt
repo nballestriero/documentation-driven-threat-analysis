@@ -1,0 +1,107 @@
+PASS 15 funzioni identificate
+PASS Contratto hasInputContract per DiffieHellmanKeyAgreement
+PASS Elementi specificati per DiffieHellmanKeyAgreementInputContract
+PASS Contratto hasOutputContract per DiffieHellmanKeyAgreement
+PASS Elementi specificati per DiffieHellmanKeyAgreementOutputContract
+PASS Contratto hasInputContract per UserValidatePublic
+PASS Elementi specificati per UserValidatePublicInputContract
+PASS Contratto hasOutputContract per UserValidatePublic
+PASS Elementi specificati per UserValidatePublicOutputContract
+PASS Contratto hasInputContract per PCValidatePublic
+PASS Elementi specificati per PCValidatePublicInputContract
+PASS Contratto hasOutputContract per PCValidatePublic
+PASS Elementi specificati per PCValidatePublicOutputContract
+PASS Contratto hasInputContract per UserKeyAgreement
+PASS Elementi specificati per UserKeyAgreementInputContract
+PASS Contratto hasOutputContract per UserKeyAgreement
+PASS Elementi specificati per UserKeyAgreementOutputContract
+PASS Contratto hasInputContract per PCReceivePublic
+PASS Elementi specificati per PublicBOverChannel
+PASS Contratto hasOutputContract per PCReceivePublic
+PASS Elementi specificati per PCReceivePublicOutputContract
+PASS Contratto hasInputContract per UserCalculatePublic
+PASS Elementi specificati per UserCalculatePublicInputContract
+PASS Contratto hasOutputContract per UserCalculatePublic
+PASS Elementi specificati per UserCalculatePublicOutputContract
+PASS Contratto hasInputContract per PCDeriveSecret
+PASS Elementi specificati per PCDeriveSecretInputContract
+PASS Contratto hasOutputContract per PCDeriveSecret
+PASS Elementi specificati per PCDeriveSecretOutputContract
+PASS Contratto hasInputContract per UserDeriveSecret
+PASS Elementi specificati per UserDeriveSecretInputContract
+PASS Contratto hasOutputContract per UserDeriveSecret
+PASS Elementi specificati per UserDeriveSecretOutputContract
+PASS Contratto hasInputContract per UserAcquirePrivate
+PASS Elementi specificati per UserAcquirePrivateInputContract
+PASS Contratto hasOutputContract per UserAcquirePrivate
+PASS Elementi specificati per UserAcquirePrivateOutputContract
+PASS Contratto hasInputContract per PCCalculatePublic
+PASS Elementi specificati per PCCalculatePublicInputContract
+PASS Contratto hasOutputContract per PCCalculatePublic
+PASS Elementi specificati per PCCalculatePublicOutputContract
+PASS Contratto hasInputContract per PCKeyAgreement
+PASS Elementi specificati per PCKeyAgreementInputContract
+PASS Contratto hasOutputContract per PCKeyAgreement
+PASS Elementi specificati per PCKeyAgreementOutputContract
+PASS Contratto hasInputContract per PCSendPublic
+PASS Elementi specificati per PCSendPublicInputContract
+PASS Contratto hasOutputContract per PCSendPublic
+PASS Elementi specificati per PublicAOverChannel
+PASS Contratto hasInputContract per PCGeneratePrivate
+PASS Elementi specificati per PCGeneratePrivateInputContract
+PASS Contratto hasOutputContract per PCGeneratePrivate
+PASS Elementi specificati per PCGeneratePrivateOutputContract
+PASS Contratto hasInputContract per UserSendPublic
+PASS Elementi specificati per UserSendPublicInputContract
+PASS Contratto hasOutputContract per UserSendPublic
+PASS Elementi specificati per PublicBOverChannel
+PASS Contratto hasInputContract per UserReceivePublic
+PASS Elementi specificati per PublicAOverChannel
+PASS Contratto hasOutputContract per UserReceivePublic
+PASS Elementi specificati per UserReceivePublicOutputContract
+PASS PC system/ambiente
+PASS PC trust boundary/endpoint
+PASS User system/ambiente
+PASS User trust boundary/endpoint
+PASS Canale PCToUserChannel orientato
+PASS Canale UserToPCChannel orientato
+PASS PC process and 6 subprocesses
+PASS PCCalculatePublicProcess realizes function
+PASS PCDeriveSecretProcess realizes function
+PASS PCGeneratePrivateProcess realizes function
+PASS PCReceivePublicProcess realizes function
+PASS PCSendPublicProcess realizes function
+PASS PCValidatePublicProcess realizes function
+PASS User process and 6 subprocesses
+PASS UserAcquirePrivateProcess realizes function
+PASS UserCalculatePublicProcess realizes function
+PASS UserDeriveSecretProcess realizes function
+PASS UserReceivePublicProcess realizes function
+PASS UserSendPublicProcess realizes function
+PASS UserValidatePublicProcess realizes function
+PASS PRC-TRANS-01 PCTransition01
+PASS PRC-TRANS-01 PCTransition02
+PASS PRC-TRANS-01 PCTransition03
+PASS PRC-TRANS-01 PCTransition04
+PASS PRC-TRANS-01 PCTransition05
+PASS PRC-TRANS-01 PCTransition06
+PASS PRC-TRANS-01 PCTransition07
+PASS PRC-TRANS-01 UserTransition01
+PASS PRC-TRANS-01 UserTransition02
+PASS PRC-TRANS-01 UserTransition03
+PASS PRC-TRANS-01 UserTransition04
+PASS PRC-TRANS-01 UserTransition05
+PASS PRC-TRANS-01 UserTransition06
+PASS PRC-TRANS-01 UserTransition07
+PASS PC condizione collegata a esito ValidityB
+PASS PC esito presente nel contratto di output validazione
+PASS PC ramo nominale con guardia true (metadato view)
+PASS PC ramo negativo documentale ?
+PASS User condizione collegata a esito ValidityA
+PASS User esito presente nel contratto di output validazione
+PASS User ramo nominale con guardia true (metadato view)
+PASS User ramo negativo documentale ?
+PASS PublicAOverChannel send/receive sullo stesso canale
+PASS PublicBOverChannel send/receive sullo stesso canale
+PASS PublicAOverChannel nessun segreto privato sul canale
+PASS PublicBOverChannel nessun segreto privato sul canale

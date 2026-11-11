@@ -1,0 +1,43 @@
+flowchart LR
+    subgraph PC["PCProcess · ordine locale"]
+        PCGeneratePrivateStep["Genera segreto a"]
+        PCCalculatePublicStep["Calcola A"]
+        PCSendPublicStep["Invia A"]
+        PCReceivePublicStep["Riceve B"]
+        PCValidatePublicStep["Verifica validità B"]
+        PCDeriveSecretStep["Deriva K_PC"]
+        PCEnd{"PC fine processo"}
+        PCPublicValidityDecision{"PC peer public valid?"}
+    end
+    PCGeneratePrivateStep --> PCCalculatePublicStep
+    PCCalculatePublicStep --> PCSendPublicStep
+    PCSendPublicStep --> PCReceivePublicStep
+    PCReceivePublicStep --> PCValidatePublicStep
+    PCValidatePublicStep --> PCPublicValidityDecision
+    PCPublicValidityDecision -->|"true"| PCDeriveSecretStep
+    PCDeriveSecretStep --> PCEnd
+    PCInvalidPublicGap(("?"))
+    PCPublicValidityDecision -.->|"false / non documentato"| PCInvalidPublicGap
+    style PCInvalidPublicGap fill:#fff1f1,stroke:#dc2626,color:#dc2626,stroke-width:2px,stroke-dasharray:4 3
+    subgraph User["UserProcess · ordine locale"]
+        UserAcquirePrivateStep["Acquisisce segreto b"]
+        UserReceivePublicStep["Riceve A"]
+        UserValidatePublicStep["Verifica validità A"]
+        UserCalculatePublicStep["Calcola B"]
+        UserSendPublicStep["Invia B"]
+        UserDeriveSecretStep["Deriva K_User"]
+        UserEnd{"User fine processo"}
+        UserPublicValidityDecision{"User peer public valid?"}
+    end
+    UserAcquirePrivateStep --> UserReceivePublicStep
+    UserReceivePublicStep --> UserValidatePublicStep
+    UserValidatePublicStep --> UserPublicValidityDecision
+    UserPublicValidityDecision -->|"true"| UserCalculatePublicStep
+    UserCalculatePublicStep --> UserSendPublicStep
+    UserSendPublicStep --> UserDeriveSecretStep
+    UserDeriveSecretStep --> UserEnd
+    UserInvalidPublicGap(("?"))
+    UserPublicValidityDecision -.->|"false / non documentato"| UserInvalidPublicGap
+    style UserInvalidPublicGap fill:#fff1f1,stroke:#dc2626,color:#dc2626,stroke-width:2px,stroke-dasharray:4 3
+    PCSendPublicStep -.->|"PublicA / PCToUserChannel"| UserReceivePublicStep
+    UserSendPublicStep -.->|"PublicB / UserToPCChannel"| PCReceivePublicStep

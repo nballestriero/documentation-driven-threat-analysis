@@ -1,0 +1,10 @@
+flowchart TB
+    F["Riceve B<br/>Function"]
+    Ci0["PublicBOverChannel<br/>Contract"]
+    F -->|"hasInputContract"| Ci0
+    Ei0_0["Valore pubblico B<br/>ContractElement [1..1]"]
+    Ci0 -->|"hasContractElement"| Ei0_0
+    Co0["PCReceivePublicOutputContract<br/>Contract"]
+    F -->|"hasOutputContract"| Co0
+    Eo0_0["Valore ricevuto B_r<br/>ContractElement [1..1]"]
+    Co0 -->|"hasContractElement"| Eo0_0

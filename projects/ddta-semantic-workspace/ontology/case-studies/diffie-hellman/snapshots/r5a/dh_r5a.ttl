@@ -1,0 +1,725 @@
+@prefix ddta: <https://w3id.org/ddta/core#> .
+@prefix dh: <https://example.org/ddta/dh-deterministic-r4#> .
+@prefix proc: <https://w3id.org/ddta/process#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix viz: <https://example.org/ddta/view#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+dh:DiffieHellmanKeyAgreement a ddta:Function ;
+    rdfs:label "Diffie-Hellman · bilateral key agreement" ;
+    ddta:hasInputContract dh:DiffieHellmanKeyAgreementInputContract ;
+    ddta:hasOutputContract dh:DiffieHellmanKeyAgreementOutputContract ;
+    ddta:hasSubFunction dh:PCKeyAgreement,
+        dh:UserKeyAgreement .
+
+dh:PCProcess a ddta:Process ;
+    rdfs:label "PCProcess" ;
+    viz:initialStep dh:PCGeneratePrivateStep ;
+    ddta:hasStep dh:PCCalculatePublicStep,
+        dh:PCDeriveSecretStep,
+        dh:PCEnd,
+        dh:PCGeneratePrivateStep,
+        dh:PCPublicValidityDecision,
+        dh:PCReceivePublicStep,
+        dh:PCSendPublicStep,
+        dh:PCValidatePublicStep ;
+    ddta:realizesFunction dh:PCKeyAgreement ;
+    proc:hasSubProcess dh:PCCalculatePublicProcess,
+        dh:PCDeriveSecretProcess,
+        dh:PCGeneratePrivateProcess,
+        dh:PCReceivePublicProcess,
+        dh:PCSendPublicProcess,
+        dh:PCValidatePublicProcess ;
+    proc:hasTransition dh:PCTransition01,
+        dh:PCTransition02,
+        dh:PCTransition03,
+        dh:PCTransition04,
+        dh:PCTransition05,
+        dh:PCTransition06,
+        dh:PCTransition07 .
+
+dh:PCSystem a ddta:System ;
+    rdfs:label "PCSystem" ;
+    ddta:hasBoundary dh:PCBoundary ;
+    ddta:hasOperationalEnvironment dh:PCEnvironment ;
+    ddta:hasPrimaryFunction dh:PCKeyAgreement .
+
+dh:UserProcess a ddta:Process ;
+    rdfs:label "UserProcess" ;
+    viz:initialStep dh:UserAcquirePrivateStep ;
+    ddta:hasStep dh:UserAcquirePrivateStep,
+        dh:UserCalculatePublicStep,
+        dh:UserDeriveSecretStep,
+        dh:UserEnd,
+        dh:UserPublicValidityDecision,
+        dh:UserReceivePublicStep,
+        dh:UserSendPublicStep,
+        dh:UserValidatePublicStep ;
+    ddta:realizesFunction dh:UserKeyAgreement ;
+    proc:hasSubProcess dh:UserAcquirePrivateProcess,
+        dh:UserCalculatePublicProcess,
+        dh:UserDeriveSecretProcess,
+        dh:UserReceivePublicProcess,
+        dh:UserSendPublicProcess,
+        dh:UserValidatePublicProcess ;
+    proc:hasTransition dh:UserTransition01,
+        dh:UserTransition02,
+        dh:UserTransition03,
+        dh:UserTransition04,
+        dh:UserTransition05,
+        dh:UserTransition06,
+        dh:UserTransition07 .
+
+dh:UserSystem a ddta:System ;
+    rdfs:label "UserSystem" ;
+    ddta:hasBoundary dh:UserBoundary ;
+    ddta:hasOperationalEnvironment dh:UserEnvironment ;
+    ddta:hasPrimaryFunction dh:UserKeyAgreement .
+
+dh:AcceptedAOptional a ddta:ContractElement ;
+    rdfs:label "A_r accettato (se valido)"@it ;
+    rdfs:comment "Dato remoto accettato come matematicamente valido, disponibile soltanto sul percorso valido."@it ;
+    ddta:maxOccurs "1"^^xsd:nonNegativeInteger ;
+    ddta:minOccurs "0"^^xsd:nonNegativeInteger .
+
+dh:AcceptedARequired a ddta:ContractElement ;
+    rdfs:label "A_r accettato (richiesto)"@it ;
+    rdfs:comment "Dato remoto già accettato, richiesto dal calcolo del segreto nell’ambiente utente."@it ;
+    ddta:maxOccurs "1"^^xsd:nonNegativeInteger ;
+    ddta:minOccurs "1"^^xsd:nonNegativeInteger .
+
+dh:AcceptedBOptional a ddta:ContractElement ;
+    rdfs:label "B_r accettato (se valido)"@it ;
+    rdfs:comment "Dato remoto accettato come matematicamente valido, disponibile soltanto sul percorso valido."@it ;
+    ddta:maxOccurs "1"^^xsd:nonNegativeInteger ;
+    ddta:minOccurs "0"^^xsd:nonNegativeInteger .
+
+dh:AcceptedBRequired a ddta:ContractElement ;
+    rdfs:label "B_r accettato (richiesto)"@it ;
+    rdfs:comment "Dato remoto già accettato, richiesto dal calcolo del segreto nell’ambiente PC."@it ;
+    ddta:maxOccurs "1"^^xsd:nonNegativeInteger ;
+    ddta:minOccurs "1"^^xsd:nonNegativeInteger .
+
+dh:DiffieHellmanKeyAgreementInputContract a ddta:Contract ;
+    rdfs:label "DiffieHellmanKeyAgreementInputContract" ;
+    rdfs:comment "DiffieHellmanKeyAgreement/input: Specificazione bilaterale: due sistemi indipendenti utilizzano parametri compatibili. Il PC genera internamente a; b è acquisito dall’utente. Nessun segreto privato è comunicato."@it ;
+    ddta:hasContractElement dh:EnteredB,
+        dh:GeneratorG,
+        dh:ModulusP,
+        dh:SubgroupOrderQ .
+
+dh:DiffieHellmanKeyAgreementOutputContract a ddta:Contract ;
+    rdfs:label "DiffieHellmanKeyAgreementOutputContract" ;
+    rdfs:comment "DiffieHellmanKeyAgreement/output: Risultati locali nominali; con scambio integro e valori validi K_PC = K_User. Il contratto NON garantisce autenticità o resistenza a MITM."@it ;
+    ddta:hasContractElement dh:PublicA,
+        dh:PublicB,
+        dh:SharedKPC,
+        dh:SharedKUser .
+
+dh:EntropyPC a ddta:ContractElement ;
+    rdfs:label "Materiale casuale imprevedibile"@it ;
+    rdfs:comment "Input informativo richiesto per la generazione di a; la sua fornitura dipende da una risorsa RNG da modellare successivamente."@it ;
+    ddta:maxOccurs "1"^^xsd:nonNegativeInteger ;
+    ddta:minOccurs "1"^^xsd:nonNegativeInteger .
+
+dh:PCBoundary a ddta:Boundary ;
+    rdfs:label "PC trust boundary" ;
+    ddta:encloses dh:PCEndpoint .
+
+dh:PCCalculatePublicInputContract a ddta:Contract ;
+    rdfs:label "PCCalculatePublicInputContract" ;
+    rdfs:comment "PCCalculatePublic/input: Calcola A = g^a mod p."@it ;
+    ddta:hasContractElement dh:GeneratorG,
+        dh:ModulusP,
+        dh:PrivateA .
+
+dh:PCCalculatePublicOutputContract a ddta:Contract ;
+    rdfs:label "PCCalculatePublicOutputContract" ;
+    rdfs:comment "PCCalculatePublic/output: A è pubblicabile."@it ;
+    ddta:hasContractElement dh:PublicA .
+
+dh:PCDeriveSecretInputContract a ddta:Contract ;
+    rdfs:label "PCDeriveSecretInputContract" ;
+    rdfs:comment "PCDeriveSecret/input: Richiede il valore remoto accettato; l’obbligatorietà riguarda il percorso nominale valido."@it ;
+    ddta:hasContractElement dh:AcceptedBRequired,
+        dh:ModulusP,
+        dh:PrivateA .
+
+dh:PCDeriveSecretOutputContract a ddta:Contract ;
+    rdfs:label "PCDeriveSecretOutputContract" ;
+    rdfs:comment "PCDeriveSecret/output: Produce K_PC soltanto localmente."@it ;
+    ddta:hasContractElement dh:SharedKPC .
+
+dh:PCEnvironment a ddta:Environment ;
+    rdfs:label "PCEnvironment" ;
+    ddta:makesAvailable dh:PCEndpoint .
+
+dh:PCGeneratePrivateInputContract a ddta:Contract ;
+    rdfs:label "PCGeneratePrivateInputContract" ;
+    rdfs:comment "PCGeneratePrivate/input: Usa un generatore casuale adeguato, risorsa di realizzazione non descritta come ContractElement. Vincolo di intervallo determinato dai parametri del gruppo."@it ;
+    ddta:hasContractElement dh:EntropyPC,
+        dh:ModulusP,
+        dh:SubgroupOrderQ .
+
+dh:PCGeneratePrivateOutputContract a ddta:Contract ;
+    rdfs:label "PCGeneratePrivateOutputContract" ;
+    rdfs:comment "PCGeneratePrivate/output: Produce a senza comunicarlo."@it ;
+    ddta:hasContractElement dh:PrivateA .
+
+dh:PCInvalidPublicGap a viz:DocumentationGap ;
+    rdfs:label "? valore remoto non valido" .
+
+dh:PCKeyAgreementInputContract a ddta:Contract ;
+    rdfs:label "PCKeyAgreementInputContract" ;
+    rdfs:comment "PCKeyAgreement/input: Il valore B è richiesto come informazione remota ricevibile; a è generato internamente dalla sottofunzione dedicata."@it ;
+    ddta:hasContractElement dh:GeneratorG,
+        dh:ModulusP,
+        dh:PublicB,
+        dh:SubgroupOrderQ .
+
+dh:PCKeyAgreementOutputContract a ddta:Contract ;
+    rdfs:label "PCKeyAgreementOutputContract" ;
+    rdfs:comment "PCKeyAgreement/output: A è esposto al peer tramite CommunicationFunction; K_PC rimane locale. L’uscita segreta è prevista sul percorso nominale valido."@it ;
+    ddta:hasContractElement dh:PublicA,
+        dh:SharedKPC .
+
+dh:PCPeerPublicValid a proc:AtomicCondition ;
+    rdfs:label "PeerPublicValid PC" ;
+    rdfs:comment "Condizione di prosecuzione nominale: esito della validazione matematica = true. Non garantisce autenticazione del peer."@it ;
+    proc:leftOperand dh:PCValidationOutcomeOperand .
+
+dh:PCReceivePublicOutputContract a ddta:Contract ;
+    rdfs:label "PCReceivePublicOutputContract" ;
+    rdfs:comment "PCReceivePublic/output: ReceivedB è il dato ricevuto grezzo: non è ancora validato né autenticato."@it ;
+    ddta:hasContractElement dh:ReceivedB .
+
+dh:PCSendPublicInputContract a ddta:Contract ;
+    rdfs:label "PCSendPublicInputContract" ;
+    rdfs:comment "PCSendPublic/input: Input locale: A già calcolato. La CommunicationFunction utilizza PCToUserChannel."@it ;
+    ddta:hasContractElement dh:PublicA .
+
+dh:PCTransition01 a proc:ProcessTransition ;
+    rdfs:label "T 1" ;
+    proc:fromStep dh:PCGeneratePrivateStep ;
+    proc:toStep dh:PCCalculatePublicStep .
+
+dh:PCTransition02 a proc:ProcessTransition ;
+    rdfs:label "T 2" ;
+    proc:fromStep dh:PCCalculatePublicStep ;
+    proc:toStep dh:PCSendPublicStep .
+
+dh:PCTransition03 a proc:ProcessTransition ;
+    rdfs:label "T 3" ;
+    proc:fromStep dh:PCSendPublicStep ;
+    proc:toStep dh:PCReceivePublicStep .
+
+dh:PCTransition04 a proc:ProcessTransition ;
+    rdfs:label "T 4" ;
+    proc:fromStep dh:PCReceivePublicStep ;
+    proc:toStep dh:PCValidatePublicStep .
+
+dh:PCTransition05 a proc:ProcessTransition ;
+    rdfs:label "T 5" ;
+    proc:fromStep dh:PCValidatePublicStep ;
+    proc:toStep dh:PCPublicValidityDecision .
+
+dh:PCTransition06 a proc:ProcessTransition ;
+    rdfs:label "T 6" ;
+    viz:guardExpected "true" ;
+    proc:fromStep dh:PCPublicValidityDecision ;
+    proc:hasGuard dh:PCPeerPublicValid ;
+    proc:toStep dh:PCDeriveSecretStep .
+
+dh:PCTransition07 a proc:ProcessTransition ;
+    rdfs:label "T 7" ;
+    proc:fromStep dh:PCDeriveSecretStep ;
+    proc:toStep dh:PCEnd .
+
+dh:PCValidatePublicInputContract a ddta:Contract ;
+    rdfs:label "PCValidatePublicInputContract" ;
+    rdfs:comment "PCValidatePublic/input: Controlla validità matematica secondo i parametri concordati; predicato specifico non ancora formalizzato. Non verifica l’identità del peer."@it ;
+    ddta:hasContractElement dh:GeneratorG,
+        dh:ModulusP,
+        dh:ReceivedB,
+        dh:SubgroupOrderQ .
+
+dh:PCValidatePublicOutputContract a ddta:Contract ;
+    rdfs:label "PCValidatePublicOutputContract" ;
+    rdfs:comment "PCValidatePublic/output: Fornisce sempre l’esito ValidityB; fornisce AcceptedBOptional solo sul percorso valido. Il ramo non valido resta ? documentale."@it ;
+    ddta:hasContractElement dh:AcceptedBOptional,
+        dh:ValidityB .
+
+dh:PCValidationOutcomeOperand a proc:Operand ;
+    rdfs:label "PC peer-public validation outcome" ;
+    proc:referencesContractElement dh:ValidityB .
+
+dh:UserAcquirePrivateInputContract a ddta:Contract ;
+    rdfs:label "UserAcquirePrivateInputContract" ;
+    rdfs:comment "UserAcquirePrivate/input: L’utente inserisce un valore privato candidato; il contratto richiede che sia accettabile secondo i vincoli del gruppo."@it ;
+    ddta:hasContractElement dh:EnteredB,
+        dh:ModulusP,
+        dh:SubgroupOrderQ .
+
+dh:UserAcquirePrivateOutputContract a ddta:Contract ;
+    rdfs:label "UserAcquirePrivateOutputContract" ;
+    rdfs:comment "UserAcquirePrivate/output: PrivateB è prodotto soltanto se il candidato è accettato. Il comportamento per input non valido non è ancora documentato (?)."@it ;
+    ddta:hasContractElement dh:PrivateB .
+
+dh:UserBoundary a ddta:Boundary ;
+    rdfs:label "User trust boundary" ;
+    ddta:encloses dh:UserEndpoint .
+
+dh:UserCalculatePublicInputContract a ddta:Contract ;
+    rdfs:label "UserCalculatePublicInputContract" ;
+    rdfs:comment "UserCalculatePublic/input: Calcola B = g^b mod p."@it ;
+    ddta:hasContractElement dh:GeneratorG,
+        dh:ModulusP,
+        dh:PrivateB .
+
+dh:UserCalculatePublicOutputContract a ddta:Contract ;
+    rdfs:label "UserCalculatePublicOutputContract" ;
+    rdfs:comment "UserCalculatePublic/output: B è pubblicabile."@it ;
+    ddta:hasContractElement dh:PublicB .
+
+dh:UserDeriveSecretInputContract a ddta:Contract ;
+    rdfs:label "UserDeriveSecretInputContract" ;
+    rdfs:comment "UserDeriveSecret/input: Richiede il valore remoto accettato; l’obbligatorietà riguarda il percorso nominale valido."@it ;
+    ddta:hasContractElement dh:AcceptedARequired,
+        dh:ModulusP,
+        dh:PrivateB .
+
+dh:UserDeriveSecretOutputContract a ddta:Contract ;
+    rdfs:label "UserDeriveSecretOutputContract" ;
+    rdfs:comment "UserDeriveSecret/output: Produce K_User soltanto localmente."@it ;
+    ddta:hasContractElement dh:SharedKUser .
+
+dh:UserEnvironment a ddta:Environment ;
+    rdfs:label "UserEnvironment" ;
+    ddta:makesAvailable dh:UserEndpoint .
+
+dh:UserInvalidPublicGap a viz:DocumentationGap ;
+    rdfs:label "? valore remoto non valido" .
+
+dh:UserKeyAgreementInputContract a ddta:Contract ;
+    rdfs:label "UserKeyAgreementInputContract" ;
+    rdfs:comment "UserKeyAgreement/input: L’operatore fornisce il valore privato candidato b; A è la specifica del valore pubblico atteso dall’altro partecipante."@it ;
+    ddta:hasContractElement dh:EnteredB,
+        dh:GeneratorG,
+        dh:ModulusP,
+        dh:PublicA,
+        dh:SubgroupOrderQ .
+
+dh:UserKeyAgreementOutputContract a ddta:Contract ;
+    rdfs:label "UserKeyAgreementOutputContract" ;
+    rdfs:comment "UserKeyAgreement/output: B è esposto al peer tramite CommunicationFunction; K_User rimane locale. L’uscita segreta è prevista sul percorso nominale valido."@it ;
+    ddta:hasContractElement dh:PublicB,
+        dh:SharedKUser .
+
+dh:UserPeerPublicValid a proc:AtomicCondition ;
+    rdfs:label "PeerPublicValid User" ;
+    rdfs:comment "Condizione di prosecuzione nominale: esito della validazione matematica = true. Non garantisce autenticazione del peer."@it ;
+    proc:leftOperand dh:UserValidationOutcomeOperand .
+
+dh:UserReceivePublicOutputContract a ddta:Contract ;
+    rdfs:label "UserReceivePublicOutputContract" ;
+    rdfs:comment "UserReceivePublic/output: ReceivedA è il dato ricevuto grezzo: non è ancora validato né autenticato."@it ;
+    ddta:hasContractElement dh:ReceivedA .
+
+dh:UserSendPublicInputContract a ddta:Contract ;
+    rdfs:label "UserSendPublicInputContract" ;
+    rdfs:comment "UserSendPublic/input: Input locale: B già calcolato. La CommunicationFunction utilizza UserToPCChannel."@it ;
+    ddta:hasContractElement dh:PublicB .
+
+dh:UserTransition01 a proc:ProcessTransition ;
+    rdfs:label "T 1" ;
+    proc:fromStep dh:UserAcquirePrivateStep ;
+    proc:toStep dh:UserReceivePublicStep .
+
+dh:UserTransition02 a proc:ProcessTransition ;
+    rdfs:label "T 2" ;
+    proc:fromStep dh:UserReceivePublicStep ;
+    proc:toStep dh:UserValidatePublicStep .
+
+dh:UserTransition03 a proc:ProcessTransition ;
+    rdfs:label "T 3" ;
+    proc:fromStep dh:UserValidatePublicStep ;
+    proc:toStep dh:UserPublicValidityDecision .
+
+dh:UserTransition04 a proc:ProcessTransition ;
+    rdfs:label "T 4" ;
+    viz:guardExpected "true" ;
+    proc:fromStep dh:UserPublicValidityDecision ;
+    proc:hasGuard dh:UserPeerPublicValid ;
+    proc:toStep dh:UserCalculatePublicStep .
+
+dh:UserTransition05 a proc:ProcessTransition ;
+    rdfs:label "T 5" ;
+    proc:fromStep dh:UserCalculatePublicStep ;
+    proc:toStep dh:UserSendPublicStep .
+
+dh:UserTransition06 a proc:ProcessTransition ;
+    rdfs:label "T 6" ;
+    proc:fromStep dh:UserSendPublicStep ;
+    proc:toStep dh:UserDeriveSecretStep .
+
+dh:UserTransition07 a proc:ProcessTransition ;
+    rdfs:label "T 7" ;
+    proc:fromStep dh:UserDeriveSecretStep ;
+    proc:toStep dh:UserEnd .
+
+dh:UserValidatePublicInputContract a ddta:Contract ;
+    rdfs:label "UserValidatePublicInputContract" ;
+    rdfs:comment "UserValidatePublic/input: Controlla validità matematica del valore remoto ricevuto; predicato non formalizzato. Non verifica provenienza o autenticità."@it ;
+    ddta:hasContractElement dh:GeneratorG,
+        dh:ModulusP,
+        dh:ReceivedA,
+        dh:SubgroupOrderQ .
+
+dh:UserValidatePublicOutputContract a ddta:Contract ;
+    rdfs:label "UserValidatePublicOutputContract" ;
+    rdfs:comment "UserValidatePublic/output: Fornisce sempre ValidityA; fornisce AcceptedAOptional solo sul percorso valido. Il ramo non valido resta ? documentale."@it ;
+    ddta:hasContractElement dh:AcceptedAOptional,
+        dh:ValidityA .
+
+dh:UserValidationOutcomeOperand a proc:Operand ;
+    rdfs:label "User peer-public validation outcome" ;
+    proc:referencesContractElement dh:ValidityA .
+
+dh:PCCalculatePublicProcess a ddta:Process ;
+    rdfs:label "PC CalculatePublic subprocess" ;
+    ddta:realizesFunction dh:PCCalculatePublic .
+
+dh:PCDeriveSecretProcess a ddta:Process ;
+    rdfs:label "PC DeriveSecret subprocess" ;
+    ddta:realizesFunction dh:PCDeriveSecret .
+
+dh:PCEnd a proc:ControlNode ;
+    rdfs:label "PC fine processo" ;
+    proc:controlKind "EndProcess" .
+
+dh:PCGeneratePrivate a ddta:Function ;
+    rdfs:label "Genera segreto a" ;
+    ddta:hasInputContract dh:PCGeneratePrivateInputContract ;
+    ddta:hasOutputContract dh:PCGeneratePrivateOutputContract ;
+    ddta:mustPrecede dh:PCCalculatePublic,
+        dh:PCDeriveSecret .
+
+dh:PCGeneratePrivateProcess a ddta:Process ;
+    rdfs:label "PC GeneratePrivate subprocess" ;
+    ddta:realizesFunction dh:PCGeneratePrivate .
+
+dh:PCReceivePublic a ddta:CommunicationFunction ;
+    rdfs:label "Riceve B" ;
+    viz:communicationRole "receive" ;
+    ddta:hasInputContract dh:PublicBOverChannel ;
+    ddta:hasOutputContract dh:PCReceivePublicOutputContract ;
+    ddta:mustPrecede dh:PCValidatePublic ;
+    ddta:usesChannel dh:UserToPCChannel .
+
+dh:PCReceivePublicProcess a ddta:Process ;
+    rdfs:label "PC ReceivePublic subprocess" ;
+    ddta:realizesFunction dh:PCReceivePublic .
+
+dh:PCSendPublicProcess a ddta:Process ;
+    rdfs:label "PC SendPublic subprocess" ;
+    ddta:realizesFunction dh:PCSendPublic .
+
+dh:PCToUserChannel a ddta:CommunicationChannel ;
+    rdfs:label "PC → User" ;
+    ddta:hasDestination dh:UserEndpoint ;
+    ddta:hasSource dh:PCEndpoint .
+
+dh:PCValidatePublicProcess a ddta:Process ;
+    rdfs:label "PC ValidatePublic subprocess" ;
+    ddta:realizesFunction dh:PCValidatePublic .
+
+dh:PublicAOverChannel a ddta:Contract ;
+    rdfs:label "PublicAOverChannel" ;
+    rdfs:comment "PCSendPublic/output: Contratto condiviso PublicAOverChannel: A è previsto come informazione inviata, non prova di ricezione."@it,
+        "UserReceivePublic/input: Contratto condiviso PublicAOverChannel: ci si aspetta A, ma il dato concretamente ricevuto potrebbe essere A_r diverso."@it ;
+    ddta:hasContractElement dh:PublicA .
+
+dh:PublicBOverChannel a ddta:Contract ;
+    rdfs:label "PublicBOverChannel" ;
+    rdfs:comment "PCReceivePublic/input: Contratto condiviso PublicBOverChannel: ci si aspetta B, ma il contenuto concretamente ricevuto potrebbe essere B_r diverso."@it,
+        "UserSendPublic/output: Contratto condiviso PublicBOverChannel: B è previsto come informazione inviata, non prova di ricezione."@it ;
+    ddta:hasContractElement dh:PublicB .
+
+dh:ReceivedA a ddta:ContractElement ;
+    rdfs:label "Valore ricevuto A_r"@it ;
+    rdfs:comment "Dato ricevuto come presunto A; potrebbe differire da A per alterazioni o sostituzione."@it ;
+    ddta:maxOccurs "1"^^xsd:nonNegativeInteger ;
+    ddta:minOccurs "1"^^xsd:nonNegativeInteger .
+
+dh:ReceivedB a ddta:ContractElement ;
+    rdfs:label "Valore ricevuto B_r"@it ;
+    rdfs:comment "Dato ricevuto come presunto B; potrebbe differire da B per alterazioni o sostituzione."@it ;
+    ddta:maxOccurs "1"^^xsd:nonNegativeInteger ;
+    ddta:minOccurs "1"^^xsd:nonNegativeInteger .
+
+dh:UserAcquirePrivate a ddta:Function ;
+    rdfs:label "Acquisisce segreto b" ;
+    ddta:hasInputContract dh:UserAcquirePrivateInputContract ;
+    ddta:hasOutputContract dh:UserAcquirePrivateOutputContract ;
+    ddta:mustPrecede dh:UserCalculatePublic,
+        dh:UserDeriveSecret .
+
+dh:UserAcquirePrivateProcess a ddta:Process ;
+    rdfs:label "User AcquirePrivate subprocess" ;
+    ddta:realizesFunction dh:UserAcquirePrivate .
+
+dh:UserCalculatePublicProcess a ddta:Process ;
+    rdfs:label "User CalculatePublic subprocess" ;
+    ddta:realizesFunction dh:UserCalculatePublic .
+
+dh:UserDeriveSecretProcess a ddta:Process ;
+    rdfs:label "User DeriveSecret subprocess" ;
+    ddta:realizesFunction dh:UserDeriveSecret .
+
+dh:UserEnd a proc:ControlNode ;
+    rdfs:label "User fine processo" ;
+    proc:controlKind "EndProcess" .
+
+dh:UserReceivePublic a ddta:CommunicationFunction ;
+    rdfs:label "Riceve A" ;
+    viz:communicationRole "receive" ;
+    ddta:hasInputContract dh:PublicAOverChannel ;
+    ddta:hasOutputContract dh:UserReceivePublicOutputContract ;
+    ddta:mustPrecede dh:UserValidatePublic ;
+    ddta:usesChannel dh:PCToUserChannel .
+
+dh:UserReceivePublicProcess a ddta:Process ;
+    rdfs:label "User ReceivePublic subprocess" ;
+    ddta:realizesFunction dh:UserReceivePublic .
+
+dh:UserSendPublicProcess a ddta:Process ;
+    rdfs:label "User SendPublic subprocess" ;
+    ddta:realizesFunction dh:UserSendPublic .
+
+dh:UserToPCChannel a ddta:CommunicationChannel ;
+    rdfs:label "User → PC" ;
+    ddta:hasDestination dh:PCEndpoint ;
+    ddta:hasSource dh:UserEndpoint .
+
+dh:UserValidatePublicProcess a ddta:Process ;
+    rdfs:label "User ValidatePublic subprocess" ;
+    ddta:realizesFunction dh:UserValidatePublic .
+
+dh:ValidityA a ddta:ContractElement ;
+    rdfs:label "Esito validità A_r"@it ;
+    rdfs:comment "Esito della verifica di validità matematica del valore remoto A_r; non autenticità."@it ;
+    ddta:maxOccurs "1"^^xsd:nonNegativeInteger ;
+    ddta:minOccurs "1"^^xsd:nonNegativeInteger .
+
+dh:ValidityB a ddta:ContractElement ;
+    rdfs:label "Esito validità B_r"@it ;
+    rdfs:comment "Esito della verifica di validità matematica del valore remoto B_r; non autenticità."@it ;
+    ddta:maxOccurs "1"^^xsd:nonNegativeInteger ;
+    ddta:minOccurs "1"^^xsd:nonNegativeInteger .
+
+dh:EnteredB a ddta:ContractElement ;
+    rdfs:label "Valore b digitato"@it ;
+    rdfs:comment "Valore privato candidato fornito dall’operatore umano; non ancora accettato."@it ;
+    ddta:maxOccurs "1"^^xsd:nonNegativeInteger ;
+    ddta:minOccurs "1"^^xsd:nonNegativeInteger .
+
+dh:PCCalculatePublic a ddta:Function ;
+    rdfs:label "Calcola A" ;
+    ddta:hasInputContract dh:PCCalculatePublicInputContract ;
+    ddta:hasOutputContract dh:PCCalculatePublicOutputContract ;
+    ddta:mustPrecede dh:PCSendPublic .
+
+dh:PCCalculatePublicStep a ddta:ProcessStep ;
+    rdfs:label "Calcola A" ;
+    viz:localOrder 2 ;
+    proc:invokesProcess dh:PCCalculatePublicProcess .
+
+dh:PCDeriveSecretStep a ddta:ProcessStep ;
+    rdfs:label "Deriva K_PC" ;
+    viz:localOrder 6 ;
+    proc:invokesProcess dh:PCDeriveSecretProcess .
+
+dh:PCGeneratePrivateStep a ddta:ProcessStep ;
+    rdfs:label "Genera segreto a" ;
+    viz:localOrder 1 ;
+    proc:invokesProcess dh:PCGeneratePrivateProcess .
+
+dh:PCKeyAgreement a ddta:Function ;
+    rdfs:label "PCKeyAgreement" ;
+    ddta:hasInputContract dh:PCKeyAgreementInputContract ;
+    ddta:hasOutputContract dh:PCKeyAgreementOutputContract ;
+    ddta:hasSubFunction dh:PCCalculatePublic,
+        dh:PCDeriveSecret,
+        dh:PCGeneratePrivate,
+        dh:PCReceivePublic,
+        dh:PCSendPublic,
+        dh:PCValidatePublic .
+
+dh:PCPublicValidityDecision a proc:ControlNode ;
+    rdfs:label "PC peer public valid?" ;
+    viz:localOrder 5 ;
+    viz:unresolvedFalseBranch dh:PCInvalidPublicGap .
+
+dh:PCReceivePublicStep a ddta:ProcessStep ;
+    rdfs:label "Riceve B" ;
+    viz:localOrder 4 ;
+    proc:invokesProcess dh:PCReceivePublicProcess .
+
+dh:PCSendPublic a ddta:CommunicationFunction ;
+    rdfs:label "Invia A" ;
+    viz:communicationRole "send" ;
+    ddta:hasInputContract dh:PCSendPublicInputContract ;
+    ddta:hasOutputContract dh:PublicAOverChannel ;
+    ddta:usesChannel dh:PCToUserChannel .
+
+dh:PCSendPublicStep a ddta:ProcessStep ;
+    rdfs:label "Invia A" ;
+    viz:localOrder 3 ;
+    proc:invokesProcess dh:PCSendPublicProcess .
+
+dh:PCValidatePublic a ddta:Function ;
+    rdfs:label "Verifica validità B" ;
+    ddta:hasInputContract dh:PCValidatePublicInputContract ;
+    ddta:hasOutputContract dh:PCValidatePublicOutputContract ;
+    ddta:mustPrecede dh:PCDeriveSecret .
+
+dh:PCValidatePublicStep a ddta:ProcessStep ;
+    rdfs:label "Verifica validità B" ;
+    viz:localOrder 5 ;
+    proc:invokesProcess dh:PCValidatePublicProcess .
+
+dh:PrivateA a ddta:ContractElement ;
+    rdfs:label "Segreto privato a"@it ;
+    rdfs:comment "Esponente privato del PC; rimane nel proprio dominio di trust."@it ;
+    ddta:maxOccurs "1"^^xsd:nonNegativeInteger ;
+    ddta:minOccurs "1"^^xsd:nonNegativeInteger .
+
+dh:PrivateB a ddta:ContractElement ;
+    rdfs:label "Segreto privato b"@it ;
+    rdfs:comment "Esponente privato accettato dall’ambiente utente; non trasmesso al peer."@it ;
+    ddta:maxOccurs "1"^^xsd:nonNegativeInteger ;
+    ddta:minOccurs "1"^^xsd:nonNegativeInteger .
+
+dh:SharedKPC a ddta:ContractElement ;
+    rdfs:label "Segreto condiviso K_PC"@it ;
+    rdfs:comment "Segreto derivato localmente nel PC; non trasferito sul canale."@it ;
+    ddta:maxOccurs "1"^^xsd:nonNegativeInteger ;
+    ddta:minOccurs "1"^^xsd:nonNegativeInteger .
+
+dh:SharedKUser a ddta:ContractElement ;
+    rdfs:label "Segreto condiviso K_User"@it ;
+    rdfs:comment "Segreto derivato localmente nel sistema utente; non trasferito sul canale."@it ;
+    ddta:maxOccurs "1"^^xsd:nonNegativeInteger ;
+    ddta:minOccurs "1"^^xsd:nonNegativeInteger .
+
+dh:UserAcquirePrivateStep a ddta:ProcessStep ;
+    rdfs:label "Acquisisce segreto b" ;
+    viz:localOrder 1 ;
+    proc:invokesProcess dh:UserAcquirePrivateProcess .
+
+dh:UserCalculatePublic a ddta:Function ;
+    rdfs:label "Calcola B" ;
+    ddta:hasInputContract dh:UserCalculatePublicInputContract ;
+    ddta:hasOutputContract dh:UserCalculatePublicOutputContract ;
+    ddta:mustPrecede dh:UserSendPublic .
+
+dh:UserCalculatePublicStep a ddta:ProcessStep ;
+    rdfs:label "Calcola B" ;
+    viz:localOrder 4 ;
+    proc:invokesProcess dh:UserCalculatePublicProcess .
+
+dh:UserDeriveSecretStep a ddta:ProcessStep ;
+    rdfs:label "Deriva K_User" ;
+    viz:localOrder 6 ;
+    proc:invokesProcess dh:UserDeriveSecretProcess .
+
+dh:UserKeyAgreement a ddta:Function ;
+    rdfs:label "UserKeyAgreement" ;
+    ddta:hasInputContract dh:UserKeyAgreementInputContract ;
+    ddta:hasOutputContract dh:UserKeyAgreementOutputContract ;
+    ddta:hasSubFunction dh:UserAcquirePrivate,
+        dh:UserCalculatePublic,
+        dh:UserDeriveSecret,
+        dh:UserReceivePublic,
+        dh:UserSendPublic,
+        dh:UserValidatePublic .
+
+dh:UserPublicValidityDecision a proc:ControlNode ;
+    rdfs:label "User peer public valid?" ;
+    viz:localOrder 3 ;
+    viz:unresolvedFalseBranch dh:UserInvalidPublicGap .
+
+dh:UserReceivePublicStep a ddta:ProcessStep ;
+    rdfs:label "Riceve A" ;
+    viz:localOrder 2 ;
+    proc:invokesProcess dh:UserReceivePublicProcess .
+
+dh:UserSendPublic a ddta:CommunicationFunction ;
+    rdfs:label "Invia B" ;
+    viz:communicationRole "send" ;
+    ddta:hasInputContract dh:UserSendPublicInputContract ;
+    ddta:hasOutputContract dh:PublicBOverChannel ;
+    ddta:usesChannel dh:UserToPCChannel .
+
+dh:UserSendPublicStep a ddta:ProcessStep ;
+    rdfs:label "Invia B" ;
+    viz:localOrder 5 ;
+    proc:invokesProcess dh:UserSendPublicProcess .
+
+dh:UserValidatePublic a ddta:Function ;
+    rdfs:label "Verifica validità A" ;
+    ddta:hasInputContract dh:UserValidatePublicInputContract ;
+    ddta:hasOutputContract dh:UserValidatePublicOutputContract ;
+    ddta:mustPrecede dh:UserDeriveSecret .
+
+dh:UserValidatePublicStep a ddta:ProcessStep ;
+    rdfs:label "Verifica validità A" ;
+    viz:localOrder 3 ;
+    proc:invokesProcess dh:UserValidatePublicProcess .
+
+dh:PCDeriveSecret a ddta:Function ;
+    rdfs:label "Deriva K_PC" ;
+    ddta:hasInputContract dh:PCDeriveSecretInputContract ;
+    ddta:hasOutputContract dh:PCDeriveSecretOutputContract .
+
+dh:PCEndpoint a ddta:Resource ;
+    rdfs:label "PC logical endpoint" .
+
+dh:UserDeriveSecret a ddta:Function ;
+    rdfs:label "Deriva K_User" ;
+    ddta:hasInputContract dh:UserDeriveSecretInputContract ;
+    ddta:hasOutputContract dh:UserDeriveSecretOutputContract .
+
+dh:UserEndpoint a ddta:Resource ;
+    rdfs:label "User logical endpoint" .
+
+dh:PublicA a ddta:ContractElement ;
+    rdfs:label "Valore pubblico A"@it ;
+    rdfs:comment "Valore pubblico g^a mod p specificato per il canale PC→User."@it ;
+    ddta:maxOccurs "1"^^xsd:nonNegativeInteger ;
+    ddta:minOccurs "1"^^xsd:nonNegativeInteger .
+
+dh:PublicB a ddta:ContractElement ;
+    rdfs:label "Valore pubblico B"@it ;
+    rdfs:comment "Valore pubblico g^b mod p specificato per il canale User→PC."@it ;
+    ddta:maxOccurs "1"^^xsd:nonNegativeInteger ;
+    ddta:minOccurs "1"^^xsd:nonNegativeInteger .
+
+dh:GeneratorG a ddta:ContractElement ;
+    rdfs:label "Generatore g"@it ;
+    rdfs:comment "Generatore pubblico compatibile con il gruppo concordato."@it ;
+    ddta:maxOccurs "1"^^xsd:nonNegativeInteger ;
+    ddta:minOccurs "1"^^xsd:nonNegativeInteger .
+
+dh:SubgroupOrderQ a ddta:ContractElement ;
+    rdfs:label "Ordine q (se applicabile)"@it ;
+    rdfs:comment "Ordine del sottogruppo, quando richiesto dai parametri adottati."@it ;
+    ddta:maxOccurs "1"^^xsd:nonNegativeInteger ;
+    ddta:minOccurs "0"^^xsd:nonNegativeInteger .
+
+dh:ModulusP a ddta:ContractElement ;
+    rdfs:label "Modulus p"@it ;
+    rdfs:comment "Parametro pubblico del gruppo Diffie-Hellman, modulo p."@it ;
+    ddta:maxOccurs "1"^^xsd:nonNegativeInteger ;
+    ddta:minOccurs "1"^^xsd:nonNegativeInteger .
+

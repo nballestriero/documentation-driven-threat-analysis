@@ -1,0 +1,10 @@
+# Q-1: Every function, its contracts and elements (run as SPARQL SELECT)
+PREFIX ddta: <https://w3id.org/ddta/core#>
+SELECT ?function ?direction ?contract ?element ?min ?max WHERE {
+  { ?function ddta:hasInputContract ?contract . BIND("input" AS ?direction) }
+  UNION
+  { ?function ddta:hasOutputContract ?contract . BIND("output" AS ?direction) }
+  ?contract ddta:hasContractElement ?element .
+  OPTIONAL { ?element ddta:minOccurs ?min }
+  OPTIONAL { ?element ddta:maxOccurs ?max }
+} ORDER BY ?function ?direction ?contract ?element

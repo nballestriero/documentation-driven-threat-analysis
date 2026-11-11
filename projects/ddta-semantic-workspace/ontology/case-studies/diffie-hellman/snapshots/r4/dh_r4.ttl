@@ -1,0 +1,560 @@
+@prefix ddta: <https://w3id.org/ddta/core#> .
+@prefix dh: <https://example.org/ddta/dh-deterministic-r4#> .
+@prefix proc: <https://w3id.org/ddta/process#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix viz: <https://example.org/ddta/view#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+dh:DiffieHellmanKeyAgreement a ddta:Function ;
+    rdfs:label "Diffie-Hellman · bilateral key agreement" ;
+    ddta:hasSubFunction dh:PCKeyAgreement,
+        dh:UserKeyAgreement .
+
+dh:PCProcess a ddta:Process ;
+    rdfs:label "PCProcess" ;
+    viz:initialStep dh:PCGeneratePrivateStep ;
+    ddta:hasStep dh:PCCalculatePublicStep,
+        dh:PCDeriveSecretStep,
+        dh:PCEnd,
+        dh:PCGeneratePrivateStep,
+        dh:PCPublicValidityDecision,
+        dh:PCReceivePublicStep,
+        dh:PCSendPublicStep,
+        dh:PCValidatePublicStep ;
+    ddta:realizesFunction dh:PCKeyAgreement ;
+    proc:hasSubProcess dh:PCCalculatePublicProcess,
+        dh:PCDeriveSecretProcess,
+        dh:PCGeneratePrivateProcess,
+        dh:PCReceivePublicProcess,
+        dh:PCSendPublicProcess,
+        dh:PCValidatePublicProcess ;
+    proc:hasTransition dh:PCTransition01,
+        dh:PCTransition02,
+        dh:PCTransition03,
+        dh:PCTransition04,
+        dh:PCTransition05,
+        dh:PCTransition06,
+        dh:PCTransition07 .
+
+dh:PCSystem a ddta:System ;
+    rdfs:label "PCSystem" ;
+    ddta:hasBoundary dh:PCBoundary ;
+    ddta:hasOperationalEnvironment dh:PCEnvironment ;
+    ddta:hasPrimaryFunction dh:PCKeyAgreement .
+
+dh:UserProcess a ddta:Process ;
+    rdfs:label "UserProcess" ;
+    viz:initialStep dh:UserAcquirePrivateStep ;
+    ddta:hasStep dh:UserAcquirePrivateStep,
+        dh:UserCalculatePublicStep,
+        dh:UserDeriveSecretStep,
+        dh:UserEnd,
+        dh:UserPublicValidityDecision,
+        dh:UserReceivePublicStep,
+        dh:UserSendPublicStep,
+        dh:UserValidatePublicStep ;
+    ddta:realizesFunction dh:UserKeyAgreement ;
+    proc:hasSubProcess dh:UserAcquirePrivateProcess,
+        dh:UserCalculatePublicProcess,
+        dh:UserDeriveSecretProcess,
+        dh:UserReceivePublicProcess,
+        dh:UserSendPublicProcess,
+        dh:UserValidatePublicProcess ;
+    proc:hasTransition dh:UserTransition01,
+        dh:UserTransition02,
+        dh:UserTransition03,
+        dh:UserTransition04,
+        dh:UserTransition05,
+        dh:UserTransition06,
+        dh:UserTransition07 .
+
+dh:UserSystem a ddta:System ;
+    rdfs:label "UserSystem" ;
+    ddta:hasBoundary dh:UserBoundary ;
+    ddta:hasOperationalEnvironment dh:UserEnvironment ;
+    ddta:hasPrimaryFunction dh:UserKeyAgreement .
+
+dh:EnteredB a ddta:ContractElement ;
+    rdfs:label "EnteredB" .
+
+dh:InputsPCDerive a ddta:ContractElement ;
+    rdfs:label "InputsPCDerive" .
+
+dh:InputsPCPublic a ddta:ContractElement ;
+    rdfs:label "InputsPCPublic" .
+
+dh:InputsUserDerive a ddta:ContractElement ;
+    rdfs:label "InputsUserDerive" .
+
+dh:InputsUserPublic a ddta:ContractElement ;
+    rdfs:label "InputsUserPublic" .
+
+dh:LocalPublicA a ddta:ContractElement ;
+    rdfs:label "LocalPublicA" .
+
+dh:LocalPublicB a ddta:ContractElement ;
+    rdfs:label "LocalPublicB" .
+
+dh:PCBoundary a ddta:Boundary ;
+    rdfs:label "PC trust boundary" ;
+    ddta:encloses dh:PCEndpoint .
+
+dh:PCDeriveInput a ddta:Contract ;
+    rdfs:label "PCDeriveInput" ;
+    ddta:hasContractElement dh:InputsPCDerive .
+
+dh:PCDeriveOutput a ddta:Contract ;
+    rdfs:label "PCDeriveOutput" ;
+    ddta:hasContractElement dh:SharedKPC .
+
+dh:PCEnvironment a ddta:Environment ;
+    rdfs:label "PCEnvironment" ;
+    ddta:makesAvailable dh:PCEndpoint .
+
+dh:PCInvalidPublicGap a viz:DocumentationGap ;
+    rdfs:label "? valore remoto non valido" .
+
+dh:PCPeerPublicValid a proc:AtomicCondition ;
+    rdfs:label "PeerPublicValid PC" ;
+    proc:leftOperand dh:PCReceivedPublicOperand .
+
+dh:PCPrivateOutput a ddta:Contract ;
+    rdfs:label "PCPrivateOutput" ;
+    ddta:hasContractElement dh:PrivateA .
+
+dh:PCPublicCalcInput a ddta:Contract ;
+    rdfs:label "PCPublicCalcInput" ;
+    ddta:hasContractElement dh:InputsPCPublic .
+
+dh:PCPublicCalcOutput a ddta:Contract ;
+    rdfs:label "PCPublicCalcOutput" ;
+    ddta:hasContractElement dh:PublicA .
+
+dh:PCReceiveOutput a ddta:Contract ;
+    rdfs:label "PCReceiveOutput" ;
+    ddta:hasContractElement dh:ReceivedB .
+
+dh:PCReceivedPublicOperand a proc:Operand ;
+    rdfs:label "PC remote public operand" ;
+    proc:referencesContractElement dh:ReceivedB .
+
+dh:PCSendInput a ddta:Contract ;
+    rdfs:label "PCSendInput" ;
+    ddta:hasContractElement dh:LocalPublicA .
+
+dh:PCTransition01 a proc:ProcessTransition ;
+    rdfs:label "T 1" ;
+    proc:fromStep dh:PCGeneratePrivateStep ;
+    proc:toStep dh:PCCalculatePublicStep .
+
+dh:PCTransition02 a proc:ProcessTransition ;
+    rdfs:label "T 2" ;
+    proc:fromStep dh:PCCalculatePublicStep ;
+    proc:toStep dh:PCSendPublicStep .
+
+dh:PCTransition03 a proc:ProcessTransition ;
+    rdfs:label "T 3" ;
+    proc:fromStep dh:PCSendPublicStep ;
+    proc:toStep dh:PCReceivePublicStep .
+
+dh:PCTransition04 a proc:ProcessTransition ;
+    rdfs:label "T 4" ;
+    proc:fromStep dh:PCReceivePublicStep ;
+    proc:toStep dh:PCValidatePublicStep .
+
+dh:PCTransition05 a proc:ProcessTransition ;
+    rdfs:label "T 5" ;
+    proc:fromStep dh:PCValidatePublicStep ;
+    proc:toStep dh:PCPublicValidityDecision .
+
+dh:PCTransition06 a proc:ProcessTransition ;
+    rdfs:label "T 6" ;
+    viz:guardExpected "true" ;
+    proc:fromStep dh:PCPublicValidityDecision ;
+    proc:hasGuard dh:PCPeerPublicValid ;
+    proc:toStep dh:PCDeriveSecretStep .
+
+dh:PCTransition07 a proc:ProcessTransition ;
+    rdfs:label "T 7" ;
+    proc:fromStep dh:PCDeriveSecretStep ;
+    proc:toStep dh:PCEnd .
+
+dh:PCValidationInput a ddta:Contract ;
+    rdfs:label "PCValidationInput" ;
+    ddta:hasContractElement dh:ReceivedB .
+
+dh:PCValidationOutput a ddta:Contract ;
+    rdfs:label "PCValidationOutput" ;
+    ddta:hasContractElement dh:ValidityB .
+
+dh:PrivateA a ddta:ContractElement ;
+    rdfs:label "PrivateA" .
+
+dh:PrivateB a ddta:ContractElement ;
+    rdfs:label "PrivateB" .
+
+dh:SharedKPC a ddta:ContractElement ;
+    rdfs:label "SharedKPC" .
+
+dh:SharedKUser a ddta:ContractElement ;
+    rdfs:label "SharedKUser" .
+
+dh:UserBoundary a ddta:Boundary ;
+    rdfs:label "User trust boundary" ;
+    ddta:encloses dh:UserEndpoint .
+
+dh:UserDeriveInput a ddta:Contract ;
+    rdfs:label "UserDeriveInput" ;
+    ddta:hasContractElement dh:InputsUserDerive .
+
+dh:UserDeriveOutput a ddta:Contract ;
+    rdfs:label "UserDeriveOutput" ;
+    ddta:hasContractElement dh:SharedKUser .
+
+dh:UserEnvironment a ddta:Environment ;
+    rdfs:label "UserEnvironment" ;
+    ddta:makesAvailable dh:UserEndpoint .
+
+dh:UserInvalidPublicGap a viz:DocumentationGap ;
+    rdfs:label "? valore remoto non valido" .
+
+dh:UserPeerPublicValid a proc:AtomicCondition ;
+    rdfs:label "PeerPublicValid User" ;
+    proc:leftOperand dh:UserReceivedPublicOperand .
+
+dh:UserPrivate a ddta:Contract ;
+    rdfs:label "UserPrivate" ;
+    ddta:hasContractElement dh:PrivateB .
+
+dh:UserPublicCalcInput a ddta:Contract ;
+    rdfs:label "UserPublicCalcInput" ;
+    ddta:hasContractElement dh:InputsUserPublic .
+
+dh:UserPublicCalcOutput a ddta:Contract ;
+    rdfs:label "UserPublicCalcOutput" ;
+    ddta:hasContractElement dh:PublicB .
+
+dh:UserReceiveOutput a ddta:Contract ;
+    rdfs:label "UserReceiveOutput" ;
+    ddta:hasContractElement dh:ReceivedA .
+
+dh:UserReceivedPublicOperand a proc:Operand ;
+    rdfs:label "User remote public operand" ;
+    proc:referencesContractElement dh:ReceivedA .
+
+dh:UserSecretInput a ddta:Contract ;
+    rdfs:label "UserSecretInput" ;
+    ddta:hasContractElement dh:EnteredB .
+
+dh:UserSendInput a ddta:Contract ;
+    rdfs:label "UserSendInput" ;
+    ddta:hasContractElement dh:LocalPublicB .
+
+dh:UserTransition01 a proc:ProcessTransition ;
+    rdfs:label "T 1" ;
+    proc:fromStep dh:UserAcquirePrivateStep ;
+    proc:toStep dh:UserReceivePublicStep .
+
+dh:UserTransition02 a proc:ProcessTransition ;
+    rdfs:label "T 2" ;
+    proc:fromStep dh:UserReceivePublicStep ;
+    proc:toStep dh:UserValidatePublicStep .
+
+dh:UserTransition03 a proc:ProcessTransition ;
+    rdfs:label "T 3" ;
+    proc:fromStep dh:UserValidatePublicStep ;
+    proc:toStep dh:UserPublicValidityDecision .
+
+dh:UserTransition04 a proc:ProcessTransition ;
+    rdfs:label "T 4" ;
+    viz:guardExpected "true" ;
+    proc:fromStep dh:UserPublicValidityDecision ;
+    proc:hasGuard dh:UserPeerPublicValid ;
+    proc:toStep dh:UserCalculatePublicStep .
+
+dh:UserTransition05 a proc:ProcessTransition ;
+    rdfs:label "T 5" ;
+    proc:fromStep dh:UserCalculatePublicStep ;
+    proc:toStep dh:UserSendPublicStep .
+
+dh:UserTransition06 a proc:ProcessTransition ;
+    rdfs:label "T 6" ;
+    proc:fromStep dh:UserSendPublicStep ;
+    proc:toStep dh:UserDeriveSecretStep .
+
+dh:UserTransition07 a proc:ProcessTransition ;
+    rdfs:label "T 7" ;
+    proc:fromStep dh:UserDeriveSecretStep ;
+    proc:toStep dh:UserEnd .
+
+dh:UserValidationInput a ddta:Contract ;
+    rdfs:label "UserValidationInput" ;
+    ddta:hasContractElement dh:ReceivedA .
+
+dh:UserValidationOutput a ddta:Contract ;
+    rdfs:label "UserValidationOutput" ;
+    ddta:hasContractElement dh:ValidityA .
+
+dh:ValidityA a ddta:ContractElement ;
+    rdfs:label "ValidityA" .
+
+dh:ValidityB a ddta:ContractElement ;
+    rdfs:label "ValidityB" .
+
+dh:PCCalculatePublicProcess a ddta:Process ;
+    rdfs:label "PC CalculatePublic subprocess" ;
+    ddta:realizesFunction dh:PCCalculatePublic .
+
+dh:PCDeriveSecretProcess a ddta:Process ;
+    rdfs:label "PC DeriveSecret subprocess" ;
+    ddta:realizesFunction dh:PCDeriveSecret .
+
+dh:PCEnd a proc:ControlNode ;
+    rdfs:label "PC fine processo" ;
+    proc:controlKind "EndProcess" .
+
+dh:PCGeneratePrivate a ddta:Function ;
+    rdfs:label "Genera segreto a" ;
+    ddta:hasOutputContract dh:PCPrivateOutput ;
+    ddta:mustPrecede dh:PCCalculatePublic,
+        dh:PCDeriveSecret .
+
+dh:PCGeneratePrivateProcess a ddta:Process ;
+    rdfs:label "PC GeneratePrivate subprocess" ;
+    ddta:realizesFunction dh:PCGeneratePrivate .
+
+dh:PCReceivePublic a ddta:CommunicationFunction ;
+    rdfs:label "Riceve B" ;
+    viz:communicationRole "receive" ;
+    ddta:hasInputContract dh:PublicBOverChannel ;
+    ddta:hasOutputContract dh:PCReceiveOutput ;
+    ddta:mustPrecede dh:PCValidatePublic ;
+    ddta:usesChannel dh:UserToPCChannel .
+
+dh:PCReceivePublicProcess a ddta:Process ;
+    rdfs:label "PC ReceivePublic subprocess" ;
+    ddta:realizesFunction dh:PCReceivePublic .
+
+dh:PCSendPublicProcess a ddta:Process ;
+    rdfs:label "PC SendPublic subprocess" ;
+    ddta:realizesFunction dh:PCSendPublic .
+
+dh:PCToUserChannel a ddta:CommunicationChannel ;
+    rdfs:label "PC → User" ;
+    ddta:hasDestination dh:UserEndpoint ;
+    ddta:hasSource dh:PCEndpoint .
+
+dh:PCValidatePublicProcess a ddta:Process ;
+    rdfs:label "PC ValidatePublic subprocess" ;
+    ddta:realizesFunction dh:PCValidatePublic .
+
+dh:PublicA a ddta:ContractElement ;
+    rdfs:label "PublicA" .
+
+dh:PublicAOverChannel a ddta:Contract ;
+    rdfs:label "PublicAOverChannel" ;
+    ddta:hasContractElement dh:PublicA .
+
+dh:PublicB a ddta:ContractElement ;
+    rdfs:label "PublicB" .
+
+dh:PublicBOverChannel a ddta:Contract ;
+    rdfs:label "PublicBOverChannel" ;
+    ddta:hasContractElement dh:PublicB .
+
+dh:UserAcquirePrivate a ddta:Function ;
+    rdfs:label "Acquisisce segreto b" ;
+    ddta:hasInputContract dh:UserSecretInput ;
+    ddta:hasOutputContract dh:UserPrivate ;
+    ddta:mustPrecede dh:UserCalculatePublic,
+        dh:UserDeriveSecret .
+
+dh:UserAcquirePrivateProcess a ddta:Process ;
+    rdfs:label "User AcquirePrivate subprocess" ;
+    ddta:realizesFunction dh:UserAcquirePrivate .
+
+dh:UserCalculatePublicProcess a ddta:Process ;
+    rdfs:label "User CalculatePublic subprocess" ;
+    ddta:realizesFunction dh:UserCalculatePublic .
+
+dh:UserDeriveSecretProcess a ddta:Process ;
+    rdfs:label "User DeriveSecret subprocess" ;
+    ddta:realizesFunction dh:UserDeriveSecret .
+
+dh:UserEnd a proc:ControlNode ;
+    rdfs:label "User fine processo" ;
+    proc:controlKind "EndProcess" .
+
+dh:UserReceivePublic a ddta:CommunicationFunction ;
+    rdfs:label "Riceve A" ;
+    viz:communicationRole "receive" ;
+    ddta:hasInputContract dh:PublicAOverChannel ;
+    ddta:hasOutputContract dh:UserReceiveOutput ;
+    ddta:mustPrecede dh:UserValidatePublic ;
+    ddta:usesChannel dh:PCToUserChannel .
+
+dh:UserReceivePublicProcess a ddta:Process ;
+    rdfs:label "User ReceivePublic subprocess" ;
+    ddta:realizesFunction dh:UserReceivePublic .
+
+dh:UserSendPublicProcess a ddta:Process ;
+    rdfs:label "User SendPublic subprocess" ;
+    ddta:realizesFunction dh:UserSendPublic .
+
+dh:UserToPCChannel a ddta:CommunicationChannel ;
+    rdfs:label "User → PC" ;
+    ddta:hasDestination dh:PCEndpoint ;
+    ddta:hasSource dh:UserEndpoint .
+
+dh:UserValidatePublicProcess a ddta:Process ;
+    rdfs:label "User ValidatePublic subprocess" ;
+    ddta:realizesFunction dh:UserValidatePublic .
+
+dh:PCCalculatePublic a ddta:Function ;
+    rdfs:label "Calcola A" ;
+    ddta:hasInputContract dh:PCPublicCalcInput ;
+    ddta:hasOutputContract dh:PCPublicCalcOutput ;
+    ddta:mustPrecede dh:PCSendPublic .
+
+dh:PCCalculatePublicStep a ddta:ProcessStep ;
+    rdfs:label "Calcola A" ;
+    viz:localOrder 2 ;
+    proc:invokesProcess dh:PCCalculatePublicProcess .
+
+dh:PCDeriveSecretStep a ddta:ProcessStep ;
+    rdfs:label "Deriva K_PC" ;
+    viz:localOrder 6 ;
+    proc:invokesProcess dh:PCDeriveSecretProcess .
+
+dh:PCGeneratePrivateStep a ddta:ProcessStep ;
+    rdfs:label "Genera segreto a" ;
+    viz:localOrder 1 ;
+    proc:invokesProcess dh:PCGeneratePrivateProcess .
+
+dh:PCKeyAgreement a ddta:Function ;
+    rdfs:label "PCKeyAgreement" ;
+    ddta:hasSubFunction dh:PCCalculatePublic,
+        dh:PCDeriveSecret,
+        dh:PCGeneratePrivate,
+        dh:PCReceivePublic,
+        dh:PCSendPublic,
+        dh:PCValidatePublic .
+
+dh:PCPublicValidityDecision a proc:ControlNode ;
+    rdfs:label "PC peer public valid?" ;
+    viz:localOrder 5 ;
+    viz:unresolvedFalseBranch dh:PCInvalidPublicGap .
+
+dh:PCReceivePublicStep a ddta:ProcessStep ;
+    rdfs:label "Riceve B" ;
+    viz:localOrder 4 ;
+    proc:invokesProcess dh:PCReceivePublicProcess .
+
+dh:PCSendPublic a ddta:CommunicationFunction ;
+    rdfs:label "Invia A" ;
+    viz:communicationRole "send" ;
+    ddta:hasInputContract dh:PCSendInput ;
+    ddta:hasOutputContract dh:PublicAOverChannel ;
+    ddta:usesChannel dh:PCToUserChannel .
+
+dh:PCSendPublicStep a ddta:ProcessStep ;
+    rdfs:label "Invia A" ;
+    viz:localOrder 3 ;
+    proc:invokesProcess dh:PCSendPublicProcess .
+
+dh:PCValidatePublic a ddta:Function ;
+    rdfs:label "Verifica validità B" ;
+    ddta:hasInputContract dh:PCValidationInput ;
+    ddta:hasOutputContract dh:PCValidationOutput ;
+    ddta:mustPrecede dh:PCDeriveSecret .
+
+dh:PCValidatePublicStep a ddta:ProcessStep ;
+    rdfs:label "Verifica validità B" ;
+    viz:localOrder 5 ;
+    proc:invokesProcess dh:PCValidatePublicProcess .
+
+dh:ReceivedA a ddta:ContractElement ;
+    rdfs:label "ReceivedA" .
+
+dh:ReceivedB a ddta:ContractElement ;
+    rdfs:label "ReceivedB" .
+
+dh:UserAcquirePrivateStep a ddta:ProcessStep ;
+    rdfs:label "Acquisisce segreto b" ;
+    viz:localOrder 1 ;
+    proc:invokesProcess dh:UserAcquirePrivateProcess .
+
+dh:UserCalculatePublic a ddta:Function ;
+    rdfs:label "Calcola B" ;
+    ddta:hasInputContract dh:UserPublicCalcInput ;
+    ddta:hasOutputContract dh:UserPublicCalcOutput ;
+    ddta:mustPrecede dh:UserSendPublic .
+
+dh:UserCalculatePublicStep a ddta:ProcessStep ;
+    rdfs:label "Calcola B" ;
+    viz:localOrder 4 ;
+    proc:invokesProcess dh:UserCalculatePublicProcess .
+
+dh:UserDeriveSecretStep a ddta:ProcessStep ;
+    rdfs:label "Deriva K_User" ;
+    viz:localOrder 6 ;
+    proc:invokesProcess dh:UserDeriveSecretProcess .
+
+dh:UserKeyAgreement a ddta:Function ;
+    rdfs:label "UserKeyAgreement" ;
+    ddta:hasSubFunction dh:UserAcquirePrivate,
+        dh:UserCalculatePublic,
+        dh:UserDeriveSecret,
+        dh:UserReceivePublic,
+        dh:UserSendPublic,
+        dh:UserValidatePublic .
+
+dh:UserPublicValidityDecision a proc:ControlNode ;
+    rdfs:label "User peer public valid?" ;
+    viz:localOrder 3 ;
+    viz:unresolvedFalseBranch dh:UserInvalidPublicGap .
+
+dh:UserReceivePublicStep a ddta:ProcessStep ;
+    rdfs:label "Riceve A" ;
+    viz:localOrder 2 ;
+    proc:invokesProcess dh:UserReceivePublicProcess .
+
+dh:UserSendPublic a ddta:CommunicationFunction ;
+    rdfs:label "Invia B" ;
+    viz:communicationRole "send" ;
+    ddta:hasInputContract dh:UserSendInput ;
+    ddta:hasOutputContract dh:PublicBOverChannel ;
+    ddta:usesChannel dh:UserToPCChannel .
+
+dh:UserSendPublicStep a ddta:ProcessStep ;
+    rdfs:label "Invia B" ;
+    viz:localOrder 5 ;
+    proc:invokesProcess dh:UserSendPublicProcess .
+
+dh:UserValidatePublic a ddta:Function ;
+    rdfs:label "Verifica validità A" ;
+    ddta:hasInputContract dh:UserValidationInput ;
+    ddta:hasOutputContract dh:UserValidationOutput ;
+    ddta:mustPrecede dh:UserDeriveSecret .
+
+dh:UserValidatePublicStep a ddta:ProcessStep ;
+    rdfs:label "Verifica validità A" ;
+    viz:localOrder 3 ;
+    proc:invokesProcess dh:UserValidatePublicProcess .
+
+dh:PCDeriveSecret a ddta:Function ;
+    rdfs:label "Deriva K_PC" ;
+    ddta:hasInputContract dh:PCDeriveInput ;
+    ddta:hasOutputContract dh:PCDeriveOutput .
+
+dh:PCEndpoint a ddta:Resource ;
+    rdfs:label "PC logical endpoint" .
+
+dh:UserDeriveSecret a ddta:Function ;
+    rdfs:label "Deriva K_User" ;
+    ddta:hasInputContract dh:UserDeriveInput ;
+    ddta:hasOutputContract dh:UserDeriveOutput .
+
+dh:UserEndpoint a ddta:Resource ;
+    rdfs:label "User logical endpoint" .
+

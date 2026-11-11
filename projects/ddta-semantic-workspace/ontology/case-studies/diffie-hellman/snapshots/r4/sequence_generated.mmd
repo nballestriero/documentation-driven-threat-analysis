@@ -1,0 +1,19 @@
+sequenceDiagram
+    autonumber
+    participant PC as PCProcess
+    participant User as UserProcess
+    Note over PC,User: Percorso nominale; una linearizzazione valida, non ordine globale unico
+    PC->>PC: Genera segreto a
+    PC->>PC: Calcola A
+    PC->>User: PublicA via PCToUserChannel
+    User->>User: Acquisisce segreto b
+    Note over User: Ricezione di PublicA
+    User->>User: Verifica validità A
+    Note over User: PeerPublicValid true: prosegue; false: ❓ GAP non documentato
+    User->>User: Calcola B
+    User->>PC: PublicB via UserToPCChannel
+    Note over PC: Ricezione di PublicB
+    PC->>PC: Verifica validità B
+    Note over PC: PeerPublicValid true: prosegue; false: ❓ GAP non documentato
+    PC->>PC: Deriva K_PC
+    User->>User: Deriva K_User

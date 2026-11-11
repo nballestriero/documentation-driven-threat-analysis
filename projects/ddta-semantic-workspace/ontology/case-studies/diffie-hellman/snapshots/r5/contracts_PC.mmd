@@ -1,0 +1,44 @@
+flowchart TB
+    x_PCSystem["PCSystem<br/>System"]
+    x_PCKeyAgreement["PCKeyAgreement<br/>Function"]
+    x_PCKeyAgreementInputContract["PCKeyAgreementInputContract(br/)Generatore g, Modulus p, Valore pubblico B, Ordine q (se applicabile)<br/>Contract"]
+    x_PCKeyAgreement -->|"hasInputContract"| x_PCKeyAgreementInputContract
+    x_PCKeyAgreementOutputContract["PCKeyAgreementOutputContract(br/)Valore pubblico A, Segreto condiviso K_PC<br/>Contract"]
+    x_PCKeyAgreement -->|"hasOutputContract"| x_PCKeyAgreementOutputContract
+    x_PCCalculatePublic["Calcola A<br/>Function"]
+    x_PCCalculatePublicInputContract["PCCalculatePublicInputContract(br/)Generatore g, Modulus p, Segreto privato a<br/>Contract"]
+    x_PCCalculatePublic -->|"hasInputContract"| x_PCCalculatePublicInputContract
+    x_PCCalculatePublicOutputContract["PCCalculatePublicOutputContract(br/)Valore pubblico A<br/>Contract"]
+    x_PCCalculatePublic -->|"hasOutputContract"| x_PCCalculatePublicOutputContract
+    x_PCDeriveSecret["Deriva K_PC<br/>Function"]
+    x_PCDeriveSecretInputContract["PCDeriveSecretInputContract(br/)B_r accettato (richiesto), Modulus p, Segreto privato a<br/>Contract"]
+    x_PCDeriveSecret -->|"hasInputContract"| x_PCDeriveSecretInputContract
+    x_PCDeriveSecretOutputContract["PCDeriveSecretOutputContract(br/)Segreto condiviso K_PC<br/>Contract"]
+    x_PCDeriveSecret -->|"hasOutputContract"| x_PCDeriveSecretOutputContract
+    x_PCGeneratePrivate["Genera segreto a<br/>Function"]
+    x_PCGeneratePrivateInputContract["PCGeneratePrivateInputContract(br/)Materiale casuale imprevedibile, Modulus p, Ordine q (se applicabile)<br/>Contract"]
+    x_PCGeneratePrivate -->|"hasInputContract"| x_PCGeneratePrivateInputContract
+    x_PCGeneratePrivateOutputContract["PCGeneratePrivateOutputContract(br/)Segreto privato a<br/>Contract"]
+    x_PCGeneratePrivate -->|"hasOutputContract"| x_PCGeneratePrivateOutputContract
+    x_PCReceivePublic["Riceve B<br/>Function"]
+    x_PublicBOverChannel["PublicBOverChannel(br/)Valore pubblico B<br/>Contract"]
+    x_PCReceivePublic -->|"hasInputContract"| x_PublicBOverChannel
+    x_PCReceivePublicOutputContract["PCReceivePublicOutputContract(br/)Valore ricevuto B_r<br/>Contract"]
+    x_PCReceivePublic -->|"hasOutputContract"| x_PCReceivePublicOutputContract
+    x_PCSendPublic["Invia A<br/>Function"]
+    x_PCSendPublicInputContract["PCSendPublicInputContract(br/)Valore pubblico A<br/>Contract"]
+    x_PCSendPublic -->|"hasInputContract"| x_PCSendPublicInputContract
+    x_PublicAOverChannel["PublicAOverChannel(br/)Valore pubblico A<br/>Contract"]
+    x_PCSendPublic -->|"hasOutputContract"| x_PublicAOverChannel
+    x_PCValidatePublic["Verifica validità B<br/>Function"]
+    x_PCValidatePublicInputContract["PCValidatePublicInputContract(br/)Generatore g, Modulus p, Valore ricevuto B_r, Ordine q (se applicabile)<br/>Contract"]
+    x_PCValidatePublic -->|"hasInputContract"| x_PCValidatePublicInputContract
+    x_PCValidatePublicOutputContract["PCValidatePublicOutputContract(br/)B_r accettato (se valido), Esito validità B_r<br/>Contract"]
+    x_PCValidatePublic -->|"hasOutputContract"| x_PCValidatePublicOutputContract
+    x_PCSystem -->|"hasPrimaryFunction"| x_PCKeyAgreement
+    x_PCKeyAgreement -->|"hasSubFunction"| x_PCCalculatePublic
+    x_PCKeyAgreement -->|"hasSubFunction"| x_PCDeriveSecret
+    x_PCKeyAgreement -->|"hasSubFunction"| x_PCGeneratePrivate
+    x_PCKeyAgreement -->|"hasSubFunction"| x_PCReceivePublic
+    x_PCKeyAgreement -->|"hasSubFunction"| x_PCSendPublic
+    x_PCKeyAgreement -->|"hasSubFunction"| x_PCValidatePublic

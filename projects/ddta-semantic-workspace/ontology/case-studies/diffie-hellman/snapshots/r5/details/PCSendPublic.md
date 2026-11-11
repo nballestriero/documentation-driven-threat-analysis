@@ -1,0 +1,14 @@
+# PCSendPublic — contratti ed elementi
+
+```mermaid
+flowchart TB
+    F["Invia A<br/>Function"]
+    Ci0["PCSendPublicInputContract<br/>Contract"]
+    F -->|"hasInputContract"| Ci0
+    Ei0_0["Valore pubblico A<br/>ContractElement [1..1]"]
+    Ci0 -->|"hasContractElement"| Ei0_0
+    Co0["PublicAOverChannel<br/>Contract"]
+    F -->|"hasOutputContract"| Co0
+    Eo0_0["Valore pubblico A<br/>ContractElement [1..1]"]
+    Co0 -->|"hasContractElement"| Eo0_0
+```
