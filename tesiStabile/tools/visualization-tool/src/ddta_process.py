@@ -3,8 +3,8 @@
 
 CORE generator is never imported, patched, or called here. The last composition
 stage consumes an immutable R10.1 CORE Mermaid file and the Process fragment.
-Supported: Step containment, declared transitions, guarded XOR, concurrent split,
-2/2 joins, implementedBy, invokesProcess and black-box retraining.
+Supported: Step containment, direct Step successors, AtomicCondition XOR,
+concurrent control, implementedBy and invokesProcess.
 Unsupported PROCESS declarations are reported (not silently invented).
 """
 from __future__ import annotations
@@ -15,6 +15,26 @@ import yaml
 
 CORE=Namespace('https://w3id.org/ddta/core#')
 PR=Namespace('https://w3id.org/ddta/process#')
+
+# These RDF names were removed from the approved PROCESS ontology. Retain the
+# names here *only* to reject stale input, never to project or render them.
+_DEPRECATED_PROCESS_NAMES = (
+    'ProcessTransition', 'hasTransition', 'fromStep', 'toStep', 'hasGuard',
+    'CompositeCondition', 'Condition', 'hasCondition', 'logicalOperator',
+    'SynchronizationNode', 'hasActivationCondition',
+)
+
+def reject_deprecated_process_vocabulary(graph):
+    """Fail closed even when obsolete triples are disconnected from a Process."""
+    found=[]
+    for name in _DEPRECATED_PROCESS_NAMES:
+        iri=PR[name]
+        if (any(graph.triples((iri,None,None))) or
+            any(graph.triples((None,iri,None))) or
+            any(graph.triples((None,None,iri)))):
+            found.append(name)
+    if found:
+        raise ValueError('Vocabolario PROCESS obsoleto: '+', '.join('process:'+name for name in found))
 
 def local(iri): return str(iri).rsplit('#',1)[-1]
 def stable(key, prefix='PX'): return prefix+'_'+hashlib.sha256(str(key).encode('utf-8')).hexdigest()[:12]
@@ -126,6 +146,7 @@ def project(core_ttl,process_ttl,guide):
     guide_rules(guide)
     g=Graph().parse(str(core_ttl),format='turtle'); baseline=set(g)
     g.parse(str(process_ttl),format='turtle')
+    reject_deprecated_process_vocabulary(g)
     if not baseline.issubset(set(g)):raise AssertionError('CORE modificato nella composizione')
     processes=sorted(g.subjects(RDF.type,CORE.Process),key=lambda p:(-len(set(g.objects(p,CORE.hasStep))),str(p)))
     typemap={}
@@ -139,7 +160,7 @@ def project(core_ttl,process_ttl,guide):
         if str(s) not in nodes:
             nodes[str(s)]={'iri':str(s),'name':local(s),'label':deterministic_label(g,s,local(s)),
               'rdfTypes':typemap.get(str(s),[]),'controlKind':str(optional_single(g,s,PR.controlKind,'')),
-              'isStep':(s,RDF.type,CORE.ProcessStep) in g or (s,RDF.type,PR.ControlNode) in g or (s,RDF.type,PR.SynchronizationNode) in g,
+              'isStep':(s,RDF.type,CORE.ProcessStep) in g or (s,RDF.type,PR.ControlNode) in g,
               'joinPolicy':str(optional_single(g,s,PR.joinPolicy,'')),
               'requiredCount':str(optional_single(g,s,PR.requiredCount,'')),
               'completionCriterion':str(optional_single(g,s,PR.completionCriterion,'')),
@@ -152,34 +173,26 @@ def project(core_ttl,process_ttl,guide):
         return nodes[str(s)]
     def add_condition(c):
         if str(c) in conditions:return
-        typ=typemap.get(str(c),[])
-        if str(PR.CompositeCondition) in typ:
-            op=str(exactly(g,c,PR.logicalOperator));members=sorted(g.objects(c,PR.hasCondition),key=str)
-            if (op=='NOT' and len(members)!=1) or (op in ('AND','OR') and len(members)<2) or op not in ('NOT','AND','OR'):
-                raise ValueError('Composizione non valida: '+local(c))
-            conditions[str(c)]={'iri':str(c),'name':local(c),'rdfType':'process:CompositeCondition','operator':op,'members':[str(x) for x in members]}
-            for m in members:add_condition(m)
-        elif str(PR.AtomicCondition) in typ:
-            op=str(exactly(g,c,PR.comparisonOperator))
-            if op not in ('EQ','NE','LT','LE','GT','GE'):raise ValueError('Operatore non ammesso: '+op)
-            left=exactly(g,c,PR.hasLeftOperand);right=exactly(g,c,PR.hasRightOperand)
-            for operand in (left,right):
-                if (operand,RDF.type,PR.Operand) not in g:
-                    raise ValueError('Operand non tipizzato: '+local(operand))
-                elements=sorted(g.objects(operand,PR.referencesContractElement),key=str)
-                if len(elements)>1:raise ValueError('Operand con ContractElement ambiguo: '+local(operand))
-                if elements and (elements[0],RDF.type,CORE.ContractElement) not in g:
-                    raise ValueError('ContractElement non tipizzato: '+local(elements[0]))
-                result['operands'][str(operand)]={'iri':str(operand),'name':local(operand),
-                    'contractElement':str(elements[0]) if elements else None,
-                    'resourceReferences':[str(x) for x in sorted(g.objects(operand,PR.referencesResource),key=str)],
-                    'valueLocator':[str(x) for x in sorted(g.objects(operand,PR.valueLocator),key=str)],
-                    'literalValue':[str(x) for x in sorted(g.objects(operand,PR.literalValue),key=str)]}
-            conditions[str(c)]={'iri':str(c),'name':local(c),'rdfType':'process:AtomicCondition','operator':op,'members':[],
-              'left':str(left),'right':str(right)}
-        elif str(PR.Condition) in typ:
-            conditions[str(c)]={'iri':str(c),'name':local(c),'rdfType':'process:Condition','operator':'','members':[]}
-        else:raise ValueError('Guardia senza classe Condition: '+local(c))
+        if (c,RDF.type,PR.AtomicCondition) not in g:
+            raise ValueError('evaluatesCondition richiede process:AtomicCondition: '+local(c))
+        op=str(exactly(g,c,PR.comparisonOperator))
+        if op not in ('EQ','NE','LT','LE','GT','GE'):
+            raise ValueError('Operatore non ammesso: '+op)
+        left=exactly(g,c,PR.hasLeftOperand);right=exactly(g,c,PR.hasRightOperand)
+        for operand in (left,right):
+            if (operand,RDF.type,PR.Operand) not in g:
+                raise ValueError('Operand non tipizzato: '+local(operand))
+            elements=sorted(g.objects(operand,PR.referencesContractElement),key=str)
+            if len(elements)>1:raise ValueError('Operand con ContractElement ambiguo: '+local(operand))
+            if elements and (elements[0],RDF.type,CORE.ContractElement) not in g:
+                raise ValueError('ContractElement non tipizzato: '+local(elements[0]))
+            result['operands'][str(operand)]={'iri':str(operand),'name':local(operand),
+                'contractElement':str(elements[0]) if elements else None,
+                'resourceReferences':[str(x) for x in sorted(g.objects(operand,PR.referencesResource),key=str)],
+                'valueLocator':[str(x) for x in sorted(g.objects(operand,PR.valueLocator),key=str)],
+                'literalValue':[str(x) for x in sorted(g.objects(operand,PR.literalValue),key=str)]}
+        conditions[str(c)]={'iri':str(c),'name':local(c),'rdfType':'process:AtomicCondition',
+                            'operator':op,'members':[],'left':str(left),'right':str(right)}
     for p in processes:
         steps=sorted(g.objects(p,CORE.hasStep),key=str)
         for s in steps:
@@ -202,17 +215,6 @@ def project(core_ttl,process_ttl,guide):
         initial=sorted(set(g.objects(p,PR.hasInitialStep)),key=str)
         if any(entry not in steps for entry in initial):
             raise ValueError('InitialStep fuori da hasStep: '+local(p))
-        transids=sorted(g.objects(p,PR.hasTransition),key=str)
-        for t in transids:
-            if (t,RDF.type,PR.ProcessTransition) not in g:raise ValueError('Tipo ProcessTransition mancante: '+local(t))
-            src=exactly(g,t,PR.fromStep);dst=exactly(g,t,PR.toStep)
-            if src not in steps or dst not in steps:raise ValueError('Estremi transizione fuori da hasStep: '+local(t))
-            guards=list(g.objects(t,PR.hasGuard))
-            if len(guards)>1:raise ValueError('Guardia doppia: '+local(t))
-            if guards:add_condition(guards[0])
-            trans.append({'iri':str(t),'process':str(p),'from':str(src),'to':str(dst),'guard':str(guards[0]) if guards else None,
-                          'sourceRelation':'process:ProcessTransition', 'branch':None})
-        explicit_pairs={(t['from'], t['to']) for t in trans if t['process']==str(p)}
         # R5: a ControlNode directly declares its TRUE/FALSE successor. These
         # are subproperties of CORE hasNextStep (no named transition individual).
         for s in steps:
@@ -227,7 +229,7 @@ def project(core_ttl,process_ttl,guide):
                 if len(targets)>1:raise ValueError('Piu successori per ramo '+polarity+': '+local(s))
                 for target in targets:
                     if target not in steps:raise ValueError('Successore fuori hasStep: '+local(target))
-                    if (s,CORE.hasNextStep,target) in g or (str(s),str(target)) in explicit_pairs:
+                    if (s,CORE.hasNextStep,target) in g:
                         raise ValueError('Successione duplicata nel TTL: '+local(s)+' -> '+local(target))
                     direct_branches.append((target,rel,polarity))
             if direct_branches and ((s,RDF.type,PR.ControlNode) not in g or str(optional_single(g,s,PR.controlKind,''))!='XOR_SPLIT'):
@@ -242,7 +244,7 @@ def project(core_ttl,process_ttl,guide):
         for s in steps:
             for target in sorted(set(g.objects(s,CORE.hasNextStep)),key=str):
                 if target not in steps:continue
-                if (str(s),str(target)) in direct_pairs:continue  # RDF alternative encoding already modeled
+                if (str(s),str(target)) in direct_pairs:continue  # TRUE/FALSE subproperties already modeled
                 trans.append({'iri':None,'process':str(p),'from':str(s),'to':str(target),
                               'guard':None,'sourceRelation':'ddta:hasNextStep','branch':None})
         for s in steps:
@@ -264,7 +266,7 @@ def project(core_ttl,process_ttl,guide):
         result['processes'].append({'iri':str(p),'name':local(p),'initial':str(initial[0]) if initial else None,
          'initials':[str(s) for s in initial],
          'subProcesses':[str(s) for s in sorted(set(g.objects(p,PR.hasSubProcess)),key=str)],
-         'steps':[str(s) for s in steps],'transitions':[str(t) for t in transids], 'function':str(funcs[0]) if funcs else None, 'activationConditions':[str(x) for x in sorted(g.objects(p,PR.hasActivationCondition),key=str)]})
+         'steps':[str(s) for s in steps], 'function':str(funcs[0]) if funcs else None})
     # hasSubProcess: explicit structural composition only. The YAML requires
     # recursive containment, rejects cycles and does not permit arbitrary
     # multiple visual parents that would duplicate one RDF Process identity.
@@ -347,9 +349,6 @@ def project(core_ttl,process_ttl,guide):
             if n['joinPolicy']=='N_OF_M' and not n['participantSteps']:
                 if not n['requiredCount'] or int(n['requiredCount'])>incoming[s] or int(n['requiredCount'])<1:
                     raise ValueError('Sincronizzazione N_OF_M incoerente: '+n['name'])
-    for pp in result['processes']:
-        if pp['activationConditions']:
-            result['diagnostics'].append({'severity':'warning','code':'ACTIVATION_GATE_NOT_RENDERED_IN_R1','process':pp['iri'],'conditions':pp['activationConditions']})
     if result['realizations']:
         result['diagnostics'].append({'severity':'warning','code':'REALIZES_FUNCTION_LAYOUT_NOT_INTEGRATED_IN_IR_R1','message':'L identita RDF e conservata, ma non la disposizione CORE §24'})
     result['references'].sort(key=lambda x:(x['from'],x['predicate'],x['to']))
@@ -370,7 +369,7 @@ class ProcessRenderer:
         self.out=collections.defaultdict(list);self.inc=collections.defaultdict(list)
         for t in ir['transitions']:
             self.out[t['from']].append(t);self.inc[t['to']].append(t)
-        for k in self.out:self.out[k].sort(key=lambda t:(t.get('branch')=='FALSE',t['guard'] is not None and self.conds[t['guard']]['operator']=='NOT',t['to']))
+        for k in self.out:self.out[k].sort(key=lambda t:(t.get('branch')=='FALSE',t['to']))
         self.header_compressions=[]
         self.contract_rule=self.rules[('projection-rule-id','process-step-internal-contracts')]['projection']
         self.ref_rule=self.rules[('projection-rule-id','process-operand-contract-reference')]['projection']
@@ -446,7 +445,6 @@ class ProcessRenderer:
         # The diamond is the declared operator's GRAPHIC, never a new RDF
         # ControlNode. Visible AtomicCondition follows the PROCESS guide:
         # Operand A -- operator EQ/GE/etc -- Operand B (horizontal layout).
-        # For a generic Condition the operator diamond stays unlabelled.
         self.add(oid+'{'+quote(c['operator'])+'}',depth+1);self.style('operator',oid)
         if c['rdfType']=='process:AtomicCondition':
             left=stable('operand-left:'+control+':'+guard)
@@ -527,14 +525,6 @@ class ProcessRenderer:
             render_operand(c['left'],left)
             render_operand(c['right'],right)
             self.add(left+' ~~~ '+oid+' ~~~ '+right,depth+1)
-        # A NOT displays its declared component inside the condition itself;
-        # the component is a graphical reference, not a new RDF individual.
-        for member in c.get('members',[]):
-            item=self.conds[member]
-            child=stable('condition-component:'+control+':'+guard+':'+member)
-            self.add(child+'['+self.text_label(item['name'],item['rdfType'],'#334155')+']',depth+1)
-            self.style('component',child)
-            self.add(oid+' ~~~ '+child,depth+1)
         self.add('end',depth);self.style('condition',cid)
         self.condition_uses.append({'control':control,'guard':guard,'wrapper':cid,'members':c.get('members',[])})
     def draw_step(self,iri,depth):
@@ -852,14 +842,7 @@ class ProcessRenderer:
             if pos['guard'] and pos['guard']==neg['guard'] and self.conds[pos['guard']]['rdfType']=='process:AtomicCondition':
                 return {'positive':pos['guard'],'negative':neg['guard'],'directBranches':True}
             return None
-        if 'outgoingTransitionCount' not in rule:return None
-        if len(out)!=rule['outgoingTransitionCount'] or any(not t['guard'] for t in out):return None
-        pos=[t for t in out if self.conds[t['guard']]['rdfType']==rule['positiveGuardClass']]
-        neg=[t for t in out if self.conds[t['guard']]['rdfType']==rule['negativeGuardClass']]
-        if len(pos)!=1 or len(neg)!=1:return None
-        guard=self.conds[neg[0]['guard']]
-        if guard['operator']!=rule['negativeOperatorValue'] or guard['members']!=[pos[0]['guard']]:return None
-        return {'positive':pos[0]['guard'],'negative':neg[0]['guard']}
+        return None
     def visible_step_id(self,iri):
         hdr=self.xor_header(iri) if iri in self.nodes else None
         return self.cond_id(hdr['positive'],iri) if hdr else self.sid(iri)
@@ -1056,8 +1039,8 @@ class ProcessRenderer:
                 target=self.next_step_attachment_id(t['to'])
             hdr=self.xor_header(t['from'])
             if hdr:
-                # One visual condition container for both RDF guards. These
-                # visualization edges are NOT extra RDF ProcessTransition triples.
+                # Both successor branches share one declared AtomicCondition.
+                # Visualization edges are not additional RDF triples.
                 ix=self.emitted_links
                 self.add(source+' --> '+target)
                 if t.get('branch')=='TRUE' or (not t.get('branch') and t['guard']==hdr['positive']):
@@ -1066,14 +1049,7 @@ class ProcessRenderer:
                     self.linkstyles.append((ix,self.xor_rule['projection']['negativeColor']))
                 else:raise ValueError('Uscita XOR non classificata: '+str(t['iri']))
             elif t['guard']:
-                c_id=self.cond_id(t['guard'],t['from'])
-                ix=self.emitted_links
-                self.add(source+' --> '+c_id+' --> '+target)
-                pol=self.conds[t['guard']]['operator']
-                if pol=='NOT':color=negative
-                elif any(c['operator']=='NOT' and t['guard'] in c.get('members',[]) for c in self.conds.values()):color=positive
-                else:color=None
-                if color is not None:self.linkstyles.append((ix+1,color))
+                raise ValueError('Condizione su arco non XOR non supportata: '+str(t['from']))
             else:
                 if t.get('sourceRelation')=='ddta:hasNextStep':
                     rule=self.rules[('relation-style','ddta:hasNextStep')]

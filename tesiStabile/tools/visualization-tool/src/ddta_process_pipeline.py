@@ -50,7 +50,7 @@ def trace_projection(ir_path: Path, path: Path) -> None:
         'transitionIRI': t['iri'], 'processIRI': t['process'],
         'fromStepIRI': t['from'], 'toStepIRI': t['to'],
         'guardIRI': t['guard'],
-        'sourceRelation': t.get('sourceRelation','process:ProcessTransition'),
+        'sourceRelation': t['sourceRelation'],
         'branch': t.get('branch'),
     } for t in ir['transitions']]
     contracts = []
