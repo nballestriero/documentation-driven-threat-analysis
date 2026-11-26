@@ -1,4 +1,4 @@
-"""Regression for R4.5 deterministic orchestrator and RDF ordering."""
+"""Regression for the current deterministic CORE+PROCESS orchestrator."""
 import json
 import subprocess
 import sys
@@ -13,8 +13,8 @@ from ddta_process import project,ProcessRenderer,deterministic_label
 from ddta_process_pipeline import sha
 
 CORE=ROOT/'tests/fixtures/process/examples/00_PLATE_GATE_CORE_BASELINE.ttl'
-PROCESS=ROOT/'tests/fixtures/process/examples/01_RECOGNIZE_PLATE_PROCESS.ttl'
-GUIDE=ROOT/'tests/fixtures/process/legacy/DDTA_PROCESS_VISUALIZATION_R79.md'
+PROCESS=ROOT/'tests/fixtures/process/examples/PLATE_GATE_PROCESS_TEST.ttl'
+GUIDE=ROOT.parents[1]/'ontologies/process/DDTA_PROCESS_VISUALIZATION.md'
 COREGUIDE=ROOT.parents[1]/'ontologies/core/DDTA_CORE_VISUALIZATION.md'
 BASE=ROOT/'tests/fixtures/process/examples/CORE_BASE_GRAFO_SCELTO.mmd'
 ENTRY=ROOT/'src/ddta_process_pipeline.py'
@@ -30,7 +30,7 @@ def args(out, *,core_mermaid=BASE, process_ttl=PROCESS, core_generator=None):
         cmd+=['--core-mermaid',str(core_mermaid)]
     return cmd
 
-class TestDeterministicPipelineR45(unittest.TestCase):
+class TestDeterministicPipeline(unittest.TestCase):
     def test_two_independent_generations_and_provenance(self):
         with tempfile.TemporaryDirectory() as tmp:
             out=Path(tmp)/'out'
@@ -47,9 +47,11 @@ class TestDeterministicPipelineR45(unittest.TestCase):
             trace=json.loads((out/'core_process_extended/07_rdf_trace.json').read_text('utf-8'))
             names={p['operandIRI'].rsplit('#',1)[-1]:p['contractElementIRI'].rsplit('#',1)[-1]
                    for p in trace['operandReferences']}
-            self.assertEqual(names,{'ExtractedPlateOperand':'ExtractedPlateNumber',
-                                    'VerifiedPlateOperand':'VerifiedPlateNumber'})
+            self.assertEqual(names,{'ExtractedPlateOperand':'PlateNumber',
+                                    'VerifiedPlateOperand':'PlateNumber'})
             self.assertTrue(all(not p['isDataTransfer'] for p in trace['operandReferences']))
+            self.assertTrue(all(p['producerStepIRI'] is None for p in trace['operandReferences']))
+            self.assertTrue(all(len(p['candidateProducerStepIRIs'])==2 for p in trace['operandReferences']))
 
     def test_rdf_turtle_statement_order_does_not_affect_mermaid(self):
         ir=project(CORE,PROCESS,GUIDE)
@@ -70,7 +72,7 @@ class TestDeterministicPipelineR45(unittest.TestCase):
             fake=d/'fake_core.py'
             fake.write_text(
                 'import argparse\nfrom pathlib import Path\n'
-                'p=argparse.ArgumentParser();p.add_argument("--guides-md");p.add_argument("--ttl");p.add_argument("--out-dir");a=p.parse_args()\n'
+                'p=argparse.ArgumentParser();p.add_argument("--guides-md");p.add_argument("--ttl");p.add_argument("--out-dir");p.add_argument("--view");a=p.parse_args()\n'
                 f'base=Path({str(BASE)!r})\n'
                 'out=Path(a.out_dir);out.mkdir(parents=True,exist_ok=True)\n'
                 '(out/"05_graph.mmd").write_bytes(base.read_bytes())\n'

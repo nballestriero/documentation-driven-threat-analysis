@@ -13,7 +13,7 @@ CORE=Namespace('https://w3id.org/ddta/core#')
 PR=Namespace('https://w3id.org/ddta/process#')
 EX=Namespace('https://example.org/ddta/plate-gate#')
 CORE_FILE=ROOT/'tests/fixtures/process/examples/00_PLATE_GATE_CORE_BASELINE.ttl'
-TTLF=ROOT/'tests/fixtures/process/examples/02_RECOGNIZE_PLATE_PROCESS_R6_CANDIDATA.ttl'
+TTLF=ROOT/'tests/fixtures/process/examples/PLATE_GATE_PROCESS_TEST.ttl'
 VIS=ROOT.parents[1]/'ontologies/process/DDTA_PROCESS_VISUALIZATION.md'
 COREGUIDE=ROOT.parents[1]/'ontologies/core/DDTA_CORE_VISUALIZATION.md'
 

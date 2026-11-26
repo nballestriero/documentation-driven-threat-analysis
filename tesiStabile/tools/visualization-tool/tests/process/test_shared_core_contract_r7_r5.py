@@ -17,7 +17,7 @@ EX = Namespace('https://example.org/ddta/plate-gate#')
 DDTA = Namespace('https://w3id.org/ddta/core#')
 PR = Namespace('https://w3id.org/ddta/process#')
 CORE = ROOT / 'tests/fixtures/process/examples/00_PLATE_GATE_CORE_BASELINE.ttl'
-PROCESS = ROOT / 'tests/fixtures/process/examples/02_RECOGNIZE_PLATE_PROCESS_R6_CANDIDATA.ttl'
+PROCESS = ROOT / 'tests/fixtures/process/examples/PLATE_GATE_PROCESS_TEST.ttl'
 GUIDE = ROOT.parents[1] / 'ontologies/process/DDTA_PROCESS_VISUALIZATION.md'
 CORE_GUIDE = ROOT.parents[1] / 'ontologies/core/DDTA_CORE_VISUALIZATION.md'
 

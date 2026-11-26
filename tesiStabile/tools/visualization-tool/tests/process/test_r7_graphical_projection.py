@@ -14,7 +14,7 @@ from ddta_process import project,ProcessRenderer,guide_rules,core_contract_rules
 GUIDE=ROOT.parents[1]/'ontologies/process/DDTA_PROCESS_VISUALIZATION.md'
 CORE_GUIDE=ROOT.parents[1]/'ontologies/core/DDTA_CORE_VISUALIZATION.md'
 CORE=ROOT/'tests/fixtures/process/examples/00_PLATE_GATE_CORE_BASELINE.ttl'
-PROCESS=ROOT/'tests/fixtures/process/examples/02_RECOGNIZE_PLATE_PROCESS_R6_CANDIDATA.ttl'
+PROCESS=ROOT/'tests/fixtures/process/examples/PLATE_GATE_PROCESS_TEST.ttl'
 BASE=ROOT/'tests/fixtures/process/examples/CORE_BASE_GRAFO_SCELTO.mmd'
 EX='https://example.org/ddta/plate-gate#'
 

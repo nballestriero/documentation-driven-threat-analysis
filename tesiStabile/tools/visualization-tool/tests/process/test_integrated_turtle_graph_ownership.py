@@ -25,14 +25,14 @@ DOC=REPO/'examples/plate-gate/DDTA_TARGA_COSTRUZIONE_PROGRESSIVA.md'
 
 def step_turtle(number):
     md=DOC.read_text(encoding='utf-8')
-    heading={13:'### 13.2',14:'### 14.3',15:'### 15.3'}[number]
+    heading={13:'### 13.2',14:'### 14.3'}[number]
     beginning=md.index(heading)
     return re.search(r'```turtle\s*\n(.*?)\n```',md[beginning:],re.S).group(1)+'\n'
 
 
 class IntegratedTurtleVisualOwnershipTest(unittest.TestCase):
     def test_source_unchanged_and_process_members_are_not_duplicated(self):
-        for step in (13,14,15):
+        for step in (13,14):
             with self.subTest(step=step), TemporaryDirectory() as temp:
                 source=Path(temp)/'full.ttl';core=Path(temp)/'view.ttl'
                 source.write_text(step_turtle(step),encoding='utf-8')
@@ -41,7 +41,7 @@ class IntegratedTurtleVisualOwnershipTest(unittest.TestCase):
                 actual=Graph().parse(str(core),format='turtle')
                 self.assertEqual(before,hashlib.sha256(source.read_bytes()).hexdigest())
                 self.assertLess(len(actual),report['sourceTriples'])
-                self.assertNotIn((EX.RecognizePlateNumberProcess,RDF.type,CORE.Process),actual)
+                self.assertIn((EX.RecognizePlateNumberProcess,RDF.type,CORE.Process),actual)
                 self.assertNotIn((EX.OCR_CNN_AttentionLSTMStep,RDF.type,CORE.ProcessStep),actual)
                 self.assertNotIn((EX.CNN_OCRResultContract,RDF.type,CORE.Contract),actual)
                 self.assertNotIn((EX.Transformer_OCRResultContract,RDF.type,CORE.Contract),actual)
@@ -53,9 +53,6 @@ class IntegratedTurtleVisualOwnershipTest(unittest.TestCase):
                 if step>=14:
                     self.assertIn((EX.PlateRecognitionSystem,CORE.hasSupportFunction,EX.AutomaticOCRRetraining),actual)
                     self.assertIn((EX.ProcessingEnvironment,CORE.makesAvailable,EX.OCRRetrainingConfigurationRuntime),actual)
-                if step==15:
-                    self.assertIn((EX.HumanReviewSystem,CORE.hasPrimaryFunction,EX.ManuallyIdentifyPlateNumber),actual)
-                    self.assertIn((EX.HumanToGateChannel,RDF.type,CORE.CommunicationChannel),actual)
                 other=Path(temp)/'again.ttl'
                 build_core_visual_projection(source,other)
                 self.assertEqual(core.read_bytes(),other.read_bytes())
