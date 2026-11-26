@@ -1,0 +1,5 @@
+@prefix demo: <https://example.org/ddta/demo#> .
+
+# Entità sintetiche isolate: test di una futura ontologia autonoma.
+demo:ProcessorA a demo:Processor ; demo:leadsTo demo:ProcessorB .
+demo:ProcessorB a demo:Processor .

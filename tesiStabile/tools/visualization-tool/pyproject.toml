@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ddta-visualization-tool"
+version = "0.1.0"
+description = "DDTA visualization from RDF and graphical rules in Markdown"
+requires-python = ">=3.11"
+dependencies = ["rdflib>=7.0,<9", "PyYAML>=6.0,<7"]
+
+[project.scripts]
+ddta-viz = "ddta_viz.pipeline:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

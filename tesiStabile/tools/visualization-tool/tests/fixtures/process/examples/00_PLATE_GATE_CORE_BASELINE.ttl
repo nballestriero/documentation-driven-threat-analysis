@@ -1,0 +1,45 @@
+@prefix ddta: <https://w3id.org/ddta/core#> .
+@prefix ex:   <https://example.org/ddta/plate-gate#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# Test CORE 02
+# Scenario: a camera captures a license-plate image, an ML-based recognition
+# function reads the image and produces the recognized plate number, and a gate
+# control function receives the plate number.
+# Focus: functions, contracts, contract elements, and functional precedence.
+# Intentionally modeled so that the same contract is reused between adjacent
+# functions, enabling a single merged graph test with shared contracts.
+
+# Function decomposition
+ex:ManageVehicleAccess a ddta:Function ;
+    ddta:hasSubFunction ex:CapturePlateImage,
+                        ex:RecognizePlateNumber,
+                        ex:OpenGate .
+
+ex:CapturePlateImage a ddta:Function ;
+    ddta:hasOutputContract ex:PlateImageContract ;
+    ddta:mustPrecede ex:RecognizePlateNumber .
+
+ex:RecognizePlateNumber a ddta:Function ;
+    ddta:hasInputContract ex:PlateImageContract ;
+    ddta:hasOutputContract ex:PlateNumberContract ;
+    ddta:mustPrecede ex:OpenGate .
+
+ex:OpenGate a ddta:Function ;
+    ddta:hasInputContract ex:PlateNumberContract .
+
+# Contracts
+ex:PlateImageContract a ddta:Contract ;
+    ddta:hasContractElement ex:PlateImage .
+
+ex:PlateNumberContract a ddta:Contract ;
+    ddta:hasContractElement ex:PlateNumber .
+
+# Contract elements
+ex:PlateImage a ddta:ContractElement ;
+    ddta:minOccurs 1 ;
+    ddta:maxOccurs 1 .
+
+ex:PlateNumber a ddta:ContractElement ;
+    ddta:minOccurs 1 ;
+    ddta:maxOccurs 1 .

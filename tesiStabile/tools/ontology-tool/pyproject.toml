@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ontology-markdown-tool"
+version = "0.1.0"
+description = "Portable validation of ontology Markdown and optional RDF/OWL Turtle generation"
+requires-python = ">=3.11"
+dependencies = [
+    "PyYAML>=6.0,<7",
+    "rdflib>=7.0,<8",
+    "markdown-it-py>=3.0,<5",
+]
+
+[project.scripts]
+ontology-md = "ddta_ontology.cli:main"
+
+[tool.setuptools]
+packages = ["ddta_ontology"]
+
+[tool.setuptools.package-data]
+ddta_ontology = ["default_config.yaml", "function_model.yaml"]

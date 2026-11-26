@@ -1,0 +1,14 @@
+@prefix ex: <https://example.org/ddta/plate-gate#> .
+@prefix ddta: <https://w3id.org/ddta/core#> .
+@prefix process: <https://w3id.org/ddta/process#> .
+
+# Purely synthetic fixture, not an assertion about the real plate workflow.
+ex:ParentProcessTest a ddta:Process ;
+    process:hasSubProcess ex:ChildProcessTest ;
+    ddta:hasStep ex:ParentStartTest ;
+    process:hasInitialStep ex:ParentStartTest .
+ex:ChildProcessTest a ddta:Process ;
+    ddta:hasStep ex:ChildStartTest ;
+    process:hasInitialStep ex:ChildStartTest .
+ex:ParentStartTest a ddta:ProcessStep .
+ex:ChildStartTest a ddta:ProcessStep .

@@ -1,0 +1,61 @@
+%%{init: {"htmlLabels":true,"theme":"base","layout":"elk"}}%%
+flowchart TB
+    subgraph O_35de793b934dca["<div style='display:inline-block;text-align:center;white-space:nowrap;line-height:1.4;padding:8px 12px;background:transparent;opacity:1;color:#374151'><span style='display:block;text-align:center;font-size:17px;font-weight:700;color:#374151'>ManageVehicleAccess</span><span style='display:block;text-align:center;font-size:12px;font-weight:400;color:#374151'>ddta:Function</span></div>"]
+        direction TB
+        subgraph G_5ae47f2c84013f["Subfunctions"]
+            direction TB
+            subgraph O_e08942d3ed67d6["<div style='display:inline-block;text-align:center;white-space:nowrap;line-height:1.4;padding:8px 12px;background:transparent;opacity:1;color:#374151'><span style='display:block;text-align:center;font-size:17px;font-weight:700;color:#374151'>CapturePlateImage</span><span style='display:block;text-align:center;font-size:12px;font-weight:400;color:#374151'>ddta:Function</span></div>"]
+                direction TB
+                subgraph G_6c756a11f96baa["Contracts"]
+                    direction LR
+                    subgraph O_cd704b98fa9aa0["<img src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgdmlld0JveD0iMCAwIDI4IDI4IiBmaWxsPSJub25lIiBzdHJva2U9IiNDNkEzNEQiIHN0cm9rZS13aWR0aD0iMS44IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIGQ9Ik03IDIuN2gxMGw1IDV2MTcuNUg3YTIgMiAwIDAgMS0yLTJWNC43YTIgMiAwIDAgMSAyLTJaIi8+PHBhdGggZD0iTTE3IDIuN3Y1aDVNOSAxM2g4TTkgMTdoNE0xNC41IDIxbDIgMiA0LTQiLz48L3N2Zz4=' width='27' height='27'/><div style='display:inline-block;text-align:center;white-space:nowrap;line-height:1.4;padding:8px 12px;background:transparent;opacity:1;color:#C6A34D'><span style='display:block;text-align:center;font-size:17px;font-weight:700;color:#C6A34D'>PlateImageContract</span><span style='display:block;text-align:center;font-size:12px;font-weight:400;color:#C6A34D'>ddta:Contract · OUTPUT</span></div>"]
+                        direction TB
+                        O_1228ab82fc86d3("<div style='display:inline-block;text-align:center;white-space:nowrap;line-height:1.4;padding:8px 12px;background:transparent;opacity:1;color:#C6A34D'><span style='display:block;text-align:center;font-size:17px;font-weight:700;color:#C6A34D'>PlateImage</span><span style='display:block;text-align:center;font-size:12px;font-weight:400;color:#C6A34D'>ddta:ContractElement</span><span style='display:block;text-align:center;font-size:12px'>1..1</span></div>")
+                    end
+                end
+            end
+            subgraph O_f08f808fb4da33["<div style='display:inline-block;text-align:center;white-space:nowrap;line-height:1.4;padding:8px 12px;background:transparent;opacity:1;color:#374151'><span style='display:block;text-align:center;font-size:17px;font-weight:700;color:#374151'>RecognizePlateNumber</span><span style='display:block;text-align:center;font-size:12px;font-weight:400;color:#374151'>ddta:Function</span></div>"]
+                direction TB
+                subgraph G_8f509de615e175["Contracts"]
+                    direction LR
+                    subgraph O_a587e189f0d05b["<img src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgdmlld0JveD0iMCAwIDI4IDI4IiBmaWxsPSJub25lIiBzdHJva2U9IiNDNkEzNEQiIHN0cm9rZS13aWR0aD0iMS44IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIGQ9Ik03IDIuN2gxMGw1IDV2MTcuNUg3YTIgMiAwIDAgMS0yLTJWNC43YTIgMiAwIDAgMSAyLTJaIi8+PHBhdGggZD0iTTE3IDIuN3Y1aDVNOSAxM2g4TTkgMTdoNE0xNC41IDIxbDIgMiA0LTQiLz48L3N2Zz4=' width='27' height='27'/><div style='display:inline-block;text-align:center;white-space:nowrap;line-height:1.4;padding:8px 12px;background:transparent;opacity:1;color:#C6A34D'><span style='display:block;text-align:center;font-size:17px;font-weight:700;color:#C6A34D'>PlateImageContract</span><span style='display:block;text-align:center;font-size:12px;font-weight:400;color:#C6A34D'>ddta:Contract · INPUT</span></div>"]
+                        direction TB
+                        O_9e17d36b057c2c("<div style='display:inline-block;text-align:center;white-space:nowrap;line-height:1.4;padding:8px 12px;background:transparent;opacity:1;color:#C6A34D'><span style='display:block;text-align:center;font-size:17px;font-weight:700;color:#C6A34D'>PlateImage</span><span style='display:block;text-align:center;font-size:12px;font-weight:400;color:#C6A34D'>ddta:ContractElement</span><span style='display:block;text-align:center;font-size:12px'>1..1</span></div>")
+                    end
+                    subgraph O_2e702fd4dce2c1["<img src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgdmlld0JveD0iMCAwIDI4IDI4IiBmaWxsPSJub25lIiBzdHJva2U9IiNDNkEzNEQiIHN0cm9rZS13aWR0aD0iMS44IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIGQ9Ik03IDIuN2gxMGw1IDV2MTcuNUg3YTIgMiAwIDAgMS0yLTJWNC43YTIgMiAwIDAgMSAyLTJaIi8+PHBhdGggZD0iTTE3IDIuN3Y1aDVNOSAxM2g4TTkgMTdoNE0xNC41IDIxbDIgMiA0LTQiLz48L3N2Zz4=' width='27' height='27'/><div style='display:inline-block;text-align:center;white-space:nowrap;line-height:1.4;padding:8px 12px;background:transparent;opacity:1;color:#C6A34D'><span style='display:block;text-align:center;font-size:17px;font-weight:700;color:#C6A34D'>PlateNumberContract</span><span style='display:block;text-align:center;font-size:12px;font-weight:400;color:#C6A34D'>ddta:Contract · OUTPUT</span></div>"]
+                        direction TB
+                        O_f568a85f932b46("<div style='display:inline-block;text-align:center;white-space:nowrap;line-height:1.4;padding:8px 12px;background:transparent;opacity:1;color:#C6A34D'><span style='display:block;text-align:center;font-size:17px;font-weight:700;color:#C6A34D'>PlateNumber</span><span style='display:block;text-align:center;font-size:12px;font-weight:400;color:#C6A34D'>ddta:ContractElement</span><span style='display:block;text-align:center;font-size:12px'>1..1</span></div>")
+                    end
+                end
+            end
+            subgraph O_d69fd16c4a4627["<div style='display:inline-block;text-align:center;white-space:nowrap;line-height:1.4;padding:8px 12px;background:transparent;opacity:1;color:#374151'><span style='display:block;text-align:center;font-size:17px;font-weight:700;color:#374151'>OpenGate</span><span style='display:block;text-align:center;font-size:12px;font-weight:400;color:#374151'>ddta:Function</span></div>"]
+                direction TB
+                subgraph G_ad77d28dab0914["Contracts"]
+                    direction LR
+                    subgraph O_c11fab4fa5abba["<img src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgdmlld0JveD0iMCAwIDI4IDI4IiBmaWxsPSJub25lIiBzdHJva2U9IiNDNkEzNEQiIHN0cm9rZS13aWR0aD0iMS44IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIGQ9Ik03IDIuN2gxMGw1IDV2MTcuNUg3YTIgMiAwIDAgMS0yLTJWNC43YTIgMiAwIDAgMSAyLTJaIi8+PHBhdGggZD0iTTE3IDIuN3Y1aDVNOSAxM2g4TTkgMTdoNE0xNC41IDIxbDIgMiA0LTQiLz48L3N2Zz4=' width='27' height='27'/><div style='display:inline-block;text-align:center;white-space:nowrap;line-height:1.4;padding:8px 12px;background:transparent;opacity:1;color:#C6A34D'><span style='display:block;text-align:center;font-size:17px;font-weight:700;color:#C6A34D'>PlateNumberContract</span><span style='display:block;text-align:center;font-size:12px;font-weight:400;color:#C6A34D'>ddta:Contract · INPUT</span></div>"]
+                        direction TB
+                        O_b97effd1475b3d("<div style='display:inline-block;text-align:center;white-space:nowrap;line-height:1.4;padding:8px 12px;background:transparent;opacity:1;color:#C6A34D'><span style='display:block;text-align:center;font-size:17px;font-weight:700;color:#C6A34D'>PlateNumber</span><span style='display:block;text-align:center;font-size:12px;font-weight:400;color:#C6A34D'>ddta:ContractElement</span><span style='display:block;text-align:center;font-size:12px'>1..1</span></div>")
+                    end
+                end
+            end
+    G_5f2abd3435e3c2(["mustPrecede"])
+    O_e08942d3ed67d6 --- G_5f2abd3435e3c2 --> O_f08f808fb4da33
+    G_343b720a66bf8b(["mustPrecede"])
+    O_f08f808fb4da33 --- G_343b720a66bf8b --> O_d69fd16c4a4627
+        end
+    end
+    linkStyle 0,1 stroke:#374151,stroke-width:1.8px,stroke-dasharray:6 4
+    linkStyle 2,3 stroke:#374151,stroke-width:1.8px,stroke-dasharray:6 4
+
+    classDef DDTA_BASE_CLASS_00 fill:#F3F4F6,stroke:#374151,color:#374151,rx:12px,ry:12px
+    class G_343b720a66bf8b,G_5f2abd3435e3c2 DDTA_BASE_CLASS_00
+    classDef DDTA_BASE_CLASS_01 fill:#FFF8DE,stroke:#C6A34D,color:#C6A34D,stroke-width:1.5px,rx:12px,ry:12px
+    class O_2e702fd4dce2c1,O_a587e189f0d05b,O_c11fab4fa5abba,O_cd704b98fa9aa0 DDTA_BASE_CLASS_01
+    classDef DDTA_BASE_CLASS_02 fill:#FFF8DE,stroke:#C6A34D,color:#C6A34D,stroke-width:1.5px,rx:8px,ry:8px
+    class G_6c756a11f96baa,G_8f509de615e175,G_ad77d28dab0914 DDTA_BASE_CLASS_02
+    classDef DDTA_BASE_CLASS_03 fill:#FFFCF0,stroke:#C6A34D,color:#9CA3AF,stroke-width:1.2px,rx:7px,ry:7px
+    class O_1228ab82fc86d3,O_9e17d36b057c2c,O_b97effd1475b3d,O_f568a85f932b46 DDTA_BASE_CLASS_03
+    classDef DDTA_BASE_CLASS_04 fill:#FFFFFF,stroke:#374151,color:#374151,stroke-width:1.5px
+    class G_5ae47f2c84013f DDTA_BASE_CLASS_04
+    classDef DDTA_BASE_CLASS_05 fill:#FFFFFF,stroke:#374151,color:#374151,stroke-width:1.5px,rx:14px,ry:14px
+    class O_35de793b934dca,O_d69fd16c4a4627,O_e08942d3ed67d6,O_f08f808fb4da33 DDTA_BASE_CLASS_05

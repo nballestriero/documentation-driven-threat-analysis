@@ -1,0 +1,57 @@
+@prefix ddta: <https://w3id.org/ddta/core#> .
+@prefix ex:   <https://example.org/ddta/plate-gate#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# CASO DI PROVA — TRE SISTEMI CON RUOLI PRIMARIO E SUPPORTO
+# Sostituisce, soltanto nella baseline CORE di test, il contenitore generale
+# ex:ManageVehicleAccess con tre System dotati di Environment e Boundary.
+# Le tre funzioni primarie appartengono a tre System diversi.
+# Precedenze esplicite tra funzioni anche attraverso i confini dei sistemi.
+
+ex:CameraSystem a ddta:System ;
+    ddta:hasPrimaryFunction ex:CapturePlateImage ;
+    ddta:hasOperationalEnvironment ex:CameraEnvironment ;
+    ddta:hasBoundary ex:CameraTrustBoundary .
+ex:CameraEnvironment a ddta:Environment .
+ex:CameraTrustBoundary a ddta:Boundary .
+
+ex:PlateRecognitionSystem a ddta:System ;
+    ddta:hasPrimaryFunction ex:RecognizePlateNumber ;
+    ddta:hasSupportFunction ex:RetrainPlateOCRModels ;
+    ddta:hasOperationalEnvironment ex:MLRuntimeEnvironment ;
+    ddta:hasBoundary ex:MLTrustBoundary .
+ex:MLRuntimeEnvironment a ddta:Environment .
+ex:MLTrustBoundary a ddta:Boundary .
+
+ex:GateControlSystem a ddta:System ;
+    ddta:hasPrimaryFunction ex:OpenGate ;
+    ddta:hasOperationalEnvironment ex:GateControlEnvironment ;
+    ddta:hasBoundary ex:GateControlTrustBoundary .
+ex:GateControlEnvironment a ddta:Environment .
+ex:GateControlTrustBoundary a ddta:Boundary .
+
+ex:CapturePlateImage a ddta:Function ;
+    ddta:hasOutputContract ex:PlateImageContract ;
+    ddta:mustPrecede ex:RecognizePlateNumber .
+
+ex:RecognizePlateNumber a ddta:Function ;
+    ddta:hasInputContract ex:PlateImageContract ;
+    ddta:hasOutputContract ex:PlateNumberContract ;
+    ddta:mustPrecede ex:OpenGate, ex:RetrainPlateOCRModels .
+
+ex:RetrainPlateOCRModels a ddta:Function ;
+    rdfs:comment "Funzione di riaddestramento attivabile quando la condizione di processo e' soddisfatta; l'ordine funzionale non implica attivazione per ogni riconoscimento."@it .
+
+ex:OpenGate a ddta:Function ;
+    ddta:hasInputContract ex:PlateNumberContract .
+
+# Stessi contratti CORE condivisi fra funzioni. Nessun trasferimento
+# o canale introdotto senza una dichiarazione RDF aggiuntiva.
+ex:PlateImageContract a ddta:Contract ;
+    ddta:hasContractElement ex:PlateImage .
+ex:PlateNumberContract a ddta:Contract ;
+    ddta:hasContractElement ex:PlateNumber .
+ex:PlateImage a ddta:ContractElement ;
+    ddta:minOccurs 1 ; ddta:maxOccurs 1 .
+ex:PlateNumber a ddta:ContractElement ;
+    ddta:minOccurs 1 ; ddta:maxOccurs 1 .

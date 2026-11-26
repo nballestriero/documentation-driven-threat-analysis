@@ -1,0 +1,13 @@
+# Optional namespace registry for existing modules.
+# New modules may be registered here OR use 'yaml ddta-namespace' in their MD.
+# Names of files and directories are not part of the module identity.
+modules:
+  core:
+    prefix: ddta
+    namespace: https://w3id.org/ddta/core#
+  process:
+    prefix: process
+    namespace: https://w3id.org/ddta/process#
+  security:
+    prefix: security
+    namespace: https://w3id.org/ddta/security#

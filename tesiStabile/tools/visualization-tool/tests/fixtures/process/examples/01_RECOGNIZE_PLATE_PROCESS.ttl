@@ -1,0 +1,228 @@
+@prefix ddta: <https://w3id.org/ddta/core#> .
+@prefix ex: <https://example.org/ddta/plate-gate#> .
+@prefix process: <https://w3id.org/ddta/process#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex:RecognizePlateNumberProcess a ddta:Process ;
+    ddta:hasStep ex:ModelAgreementXor,
+        ex:ConcurrentOCRSplit,
+        ex:EndAgreement,
+        ex:EndDiscordance,
+        ex:EndRetrainingRequested,
+        ex:ExtractPlateNumberStep,
+        ex:IncrementDiscordanceCountStep,
+        ex:InvokeRetrainingStep,
+        ex:OCRReadingsJoin,
+        ex:ReceivePlateImageStep,
+        ex:ReportDiscordanceStep,
+        ex:RetrainingThresholdXor,
+        ex:VerifyPlateNumberStep ;
+    ddta:realizesFunction ex:RecognizePlateNumber ;
+    process:hasInitialStep ex:ReceivePlateImageStep ;
+    process:hasTransition ex:T_ModelAgreementXor_to_EndAgreement,
+        ex:T_ModelAgreementXor_to_ReportDiscordanceStep,
+        ex:T_ConcurrentOCRSplit_to_ExtractPlateNumberStep,
+        ex:T_ConcurrentOCRSplit_to_VerifyPlateNumberStep,
+        ex:T_ExtractPlateNumberStep_to_OCRReadingsJoin,
+        ex:T_IncrementDiscordanceCountStep_to_RetrainingThresholdXor,
+        ex:T_InvokeRetrainingStep_to_EndRetrainingRequested,
+        ex:T_OCRReadingsJoin_to_ModelAgreementXor,
+        ex:T_ReceivePlateImageStep_to_ConcurrentOCRSplit,
+        ex:T_ReportDiscordanceStep_to_IncrementDiscordanceCountStep,
+        ex:T_RetrainingThresholdXor_to_EndDiscordance,
+        ex:T_RetrainingThresholdXor_to_InvokeRetrainingStep,
+        ex:T_VerifyPlateNumberStep_to_OCRReadingsJoin .
+
+ex:BelowTenDiscordances a process:CompositeCondition ;
+    process:hasCondition ex:AtLeastTenDiscordances ;
+    process:logicalOperator "NOT" .
+
+ex:DiscordanceCountContent a ddta:StoredContent ;
+    rdfs:comment "Valore operativo che conta le discordanze; periodo, reset e sincronizzazione ancora da definire."@it .
+
+ex:DiscordanceCountOperand a process:Operand ;
+    process:referencesResource ex:DiscordanceCounterStore .
+
+ex:DiscordanceCounterStore a ddta:Store ;
+    ddta:stores ex:DiscordanceCountContent .
+
+ex:ExtractedPlateOperand a process:Operand ;
+    process:referencesContractElement ex:ExtractedPlateNumber .
+
+# Contratti dei due risultati intermedi, NON copie dei contratti della funzione.
+ex:ExtractedPlateContract a ddta:Contract ;
+    ddta:hasContractElement ex:ExtractedPlateNumber .
+ex:ExtractedPlateNumber a ddta:ContractElement ;
+    rdfs:label "normalized_plate (Extract)" .
+
+ex:VerifiedPlateContract a ddta:Contract ;
+    ddta:hasContractElement ex:VerifiedPlateNumber .
+ex:VerifiedPlateNumber a ddta:ContractElement ;
+    rdfs:label "normalized_plate (Verify)" .
+
+ex:ModelResultsDisagree a process:CompositeCondition ;
+    process:hasCondition ex:ModelResultsAgree ;
+    process:logicalOperator "NOT" .
+
+ex:VerifiedPlateOperand a process:Operand ;
+    process:referencesContractElement ex:VerifiedPlateNumber .
+
+ex:PlateRetrainingProcess a ddta:Process ;
+    rdfs:comment "Processo di retraining attivabile quando la soglia è raggiunta; passi interni da definire."@it ;
+    ddta:realizesFunction ex:RetrainPlateOCRModels ;
+    process:hasActivationCondition ex:AtLeastTenDiscordances .
+
+ex:RetrainPlateOCRModels a ddta:Function ;
+    rdfs:comment "Funzione candidata di riaddestramento OCR; contratti e passi non ancora descritti."@it .
+
+ex:T_ModelAgreementXor_to_EndAgreement a process:ProcessTransition ;
+    process:fromStep ex:ModelAgreementXor ;
+    process:hasGuard ex:ModelResultsAgree ;
+    process:toStep ex:EndAgreement .
+
+ex:T_ModelAgreementXor_to_ReportDiscordanceStep a process:ProcessTransition ;
+    process:fromStep ex:ModelAgreementXor ;
+    process:hasGuard ex:ModelResultsDisagree ;
+    process:toStep ex:ReportDiscordanceStep .
+
+ex:T_ConcurrentOCRSplit_to_ExtractPlateNumberStep a process:ProcessTransition ;
+    process:fromStep ex:ConcurrentOCRSplit ;
+    process:toStep ex:ExtractPlateNumberStep .
+
+ex:T_ConcurrentOCRSplit_to_VerifyPlateNumberStep a process:ProcessTransition ;
+    process:fromStep ex:ConcurrentOCRSplit ;
+    process:toStep ex:VerifyPlateNumberStep .
+
+ex:T_ExtractPlateNumberStep_to_OCRReadingsJoin a process:ProcessTransition ;
+    process:fromStep ex:ExtractPlateNumberStep ;
+    process:toStep ex:OCRReadingsJoin .
+
+ex:T_IncrementDiscordanceCountStep_to_RetrainingThresholdXor a process:ProcessTransition ;
+    process:fromStep ex:IncrementDiscordanceCountStep ;
+    process:toStep ex:RetrainingThresholdXor .
+
+ex:T_InvokeRetrainingStep_to_EndRetrainingRequested a process:ProcessTransition ;
+    process:fromStep ex:InvokeRetrainingStep ;
+    process:toStep ex:EndRetrainingRequested .
+
+ex:T_OCRReadingsJoin_to_ModelAgreementXor a process:ProcessTransition ;
+    process:fromStep ex:OCRReadingsJoin ;
+    process:toStep ex:ModelAgreementXor .
+
+ex:T_ReceivePlateImageStep_to_ConcurrentOCRSplit a process:ProcessTransition ;
+    process:fromStep ex:ReceivePlateImageStep ;
+    process:toStep ex:ConcurrentOCRSplit .
+
+ex:T_ReportDiscordanceStep_to_IncrementDiscordanceCountStep a process:ProcessTransition ;
+    process:fromStep ex:ReportDiscordanceStep ;
+    process:toStep ex:IncrementDiscordanceCountStep .
+
+ex:T_RetrainingThresholdXor_to_EndDiscordance a process:ProcessTransition ;
+    process:fromStep ex:RetrainingThresholdXor ;
+    process:hasGuard ex:BelowTenDiscordances ;
+    process:toStep ex:EndDiscordance .
+
+ex:T_RetrainingThresholdXor_to_InvokeRetrainingStep a process:ProcessTransition ;
+    process:fromStep ex:RetrainingThresholdXor ;
+    process:hasGuard ex:AtLeastTenDiscordances ;
+    process:toStep ex:InvokeRetrainingStep .
+
+ex:T_VerifyPlateNumberStep_to_OCRReadingsJoin a process:ProcessTransition ;
+    process:fromStep ex:VerifyPlateNumberStep ;
+    process:toStep ex:OCRReadingsJoin .
+
+ex:ThresholdTenOperand a process:Operand ;
+    process:literalValue 10 .
+
+ex:FastPlateOCR_CCT_S_V2_Global a ddta:Resource ;
+    rdfs:label "fast-plate-ocr / cct-s-v2-global-model" ;
+    rdfs:comment "OCR specifico per targhe, modello preaddestrato effettivamente distribuito da ankandrew/fast-plate-ocr; input: immagine ritagliata della targa, output: lettura A."@it .
+
+ex:ModelResultsAgree a process:AtomicCondition ;
+    rdfs:comment "Uguaglianza fra due risultati OCR normalizzati e validi; dettagli di normalizzazione e missing-output non ancora formalizzati."@it ;
+    process:comparisonOperator "EQ" ;
+    process:hasLeftOperand ex:ExtractedPlateOperand ;
+    process:hasRightOperand ex:VerifiedPlateOperand .
+
+ex:PaddleOCR_Latin_PPOCRv5_MobileRec a ddta:Resource ;
+    rdfs:label "PaddleOCR / latin_PP-OCRv5_mobile_rec" ;
+    rdfs:comment "Riconoscimento OCR indipendente della medesima immagine ritagliata, con modello latino di PP-OCRv5 che include l'italiano; output: lettura B."@it .
+
+ex:AtLeastTenDiscordances a process:AtomicCondition ;
+    process:comparisonOperator "GE" ;
+    process:hasLeftOperand ex:DiscordanceCountOperand ;
+    process:hasRightOperand ex:ThresholdTenOperand .
+
+ex:EndAgreement a ddta:ProcessStep,
+        process:ControlNode ;
+    rdfs:comment "Termina il percorso con riconoscimento concordante"@it ;
+    process:controlKind "END_PROCESS" .
+
+ex:EndDiscordance a ddta:ProcessStep,
+        process:ControlNode ;
+    rdfs:comment "Termina il percorso discordante prima della soglia"@it ;
+    process:controlKind "END_PROCESS" .
+
+ex:EndRetrainingRequested a ddta:ProcessStep,
+        process:ControlNode ;
+    rdfs:comment "Termina il percorso dopo il richiamo del retraining"@it ;
+    process:controlKind "END_PROCESS" .
+
+ex:ReceivePlateImageStep a ddta:ProcessStep ;
+    rdfs:comment "Riceve l’immagine prevista dal contratto di ingresso"@it ;
+    ddta:hasNextStep ex:ConcurrentOCRSplit .
+
+ex:ExtractPlateNumberStep a ddta:ProcessStep ;
+    process:declaresOutputContract ex:ExtractedPlateContract ;
+    rdfs:comment "Lettura indipendente A in parallelo alla lettura B: FastPlateOCR cct-s-v2-global-model, sulla stessa targa ritagliata."@it ;
+    ddta:hasNextStep ex:OCRReadingsJoin ;
+    process:implementedBy ex:FastPlateOCR_CCT_S_V2_Global .
+
+ex:IncrementDiscordanceCountStep a ddta:ProcessStep ;
+    rdfs:comment "Aggiorna il conteggio persistente delle discordanze"@it ;
+    ddta:hasNextStep ex:RetrainingThresholdXor .
+
+ex:InvokeRetrainingStep a ddta:ProcessStep ;
+    rdfs:comment "Richiama il processo distinto di retraining"@it ;
+    ddta:hasNextStep ex:EndRetrainingRequested ;
+    process:invokesProcess ex:PlateRetrainingProcess .
+
+ex:ReportDiscordanceStep a ddta:ProcessStep ;
+    rdfs:comment "Segnala una discordanza tra i modelli"@it ;
+    ddta:hasNextStep ex:IncrementDiscordanceCountStep .
+
+ex:VerifyPlateNumberStep a ddta:ProcessStep ;
+    process:declaresOutputContract ex:VerifiedPlateContract ;
+    rdfs:comment "Lettura indipendente B in parallelo alla lettura A: PaddleOCR latin_PP-OCRv5_mobile_rec, sulla stessa targa ritagliata."@it ;
+    ddta:hasNextStep ex:OCRReadingsJoin ;
+    process:implementedBy ex:PaddleOCR_Latin_PPOCRv5_MobileRec .
+
+ex:ModelAgreementXor a ddta:ProcessStep,
+        process:ControlNode ;
+    rdfs:comment "Diramazione esclusiva secondo il criterio di concordanza"@it ;
+    ddta:hasNextStep ex:EndAgreement,
+        ex:ReportDiscordanceStep ;
+    process:controlKind "XOR_SPLIT" .
+
+ex:ConcurrentOCRSplit a ddta:ProcessStep,
+        process:ControlNode ;
+    rdfs:comment "Abilita due letture OCR logicamente concorrenti; nessun ordine obbligatorio fra i rami."@it ;
+    ddta:hasNextStep ex:ExtractPlateNumberStep,
+        ex:VerifyPlateNumberStep ;
+    process:controlKind "CONCURRENT_SPLIT" .
+
+ex:RetrainingThresholdXor a ddta:ProcessStep,
+        process:ControlNode ;
+    rdfs:comment "Diramazione esclusiva rispetto alla soglia di retraining"@it ;
+    ddta:hasNextStep ex:EndDiscordance,
+        ex:InvokeRetrainingStep ;
+    process:controlKind "XOR_SPLIT" .
+
+ex:OCRReadingsJoin a ddta:ProcessStep,
+        process:SynchronizationNode ;
+    rdfs:comment "Prosegue soltanto quando entrambe le letture OCR indipendenti hanno completato con successo: 2/2."@it ;
+    ddta:hasNextStep ex:ModelAgreementXor ;
+    process:completionCriterion "SUCCESS" ;
+    process:joinPolicy "N_OF_M" ;
+    process:requiredCount "2"^^xsd:positiveInteger .

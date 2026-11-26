@@ -1,0 +1,74 @@
+# DESCRIZIONE TECNICA CANDIDATA, non un blocco normativo `yaml ddta-ontology`.
+# Non genera assiomi OWL e non modifica CORE o Process.
+# Gli identificatori `tool:*` sono locali a questa descrizione, non IRI pubblicati.
+schema: ddta-code-function-model/1
+system:
+  id: tool:DDTAOntologyTool
+  type: ddta:System
+  hasPrimaryFunction: tool:ValidateSpecifications
+  providesFunction:
+    - tool:ValidateSpecifications
+    - tool:GenerateVocabulary
+    - tool:CheckGeneratedFiles
+    - tool:ExportCodeMap
+functions:
+  - id: tool:ValidateSpecifications
+    type: ddta:Function
+    hasSubFunction: [tool:DiscoverSources, tool:ReadNormativeBlocks, tool:ValidateVocabulary]
+    hasInputContract: tool:MarkdownSourcePaths
+    hasOutputContract: tool:ValidatedRecords
+    pythonFunctions: [ddta_ontology.workflow.validate_sources]
+  - id: tool:DiscoverSources
+    type: ddta:Function
+    hasInputContract: tool:SourceSelectors
+    hasOutputContract: tool:MarkdownSourcePaths
+    pythonFunctions: [ddta_ontology.source.discover_sources]
+  - id: tool:ReadNormativeBlocks
+    type: ddta:Function
+    hasInputContract: tool:MarkdownDocument
+    hasOutputContract: tool:ParsedRecords
+    pythonFunctions: [ddta_ontology.source.load_document]
+  - id: tool:ValidateVocabulary
+    type: ddta:Function
+    hasInputContract: tool:ParsedRecords
+    hasOutputContract: tool:VocabularyCounts
+    pythonFunctions: [ddta_ontology.schema.validate_records]
+  - id: tool:GenerateVocabulary
+    type: ddta:Function
+    hasSubFunction: [tool:BuildRDFGraph, tool:SerializeReadableTurtle]
+    hasInputContract: tool:ValidatedRecords
+    hasOutputContract: tool:TurtleInMemory
+    pythonFunctions: [ddta_ontology.workflow.generate_turtle]
+  - id: tool:BuildRDFGraph
+    type: ddta:Function
+    hasInputContract: tool:ValidatedRecords
+    hasOutputContract: tool:RDFGraph
+    pythonFunctions: [ddta_ontology.rdf_builder.build_graph]
+  - id: tool:SerializeReadableTurtle
+    type: ddta:Function
+    hasInputContract: tool:RDFGraph
+    hasOutputContract: tool:TurtleInMemory
+    pythonFunctions: [ddta_ontology.turtle.stable_turtle]
+  - id: tool:CheckGeneratedFiles
+    type: ddta:Function
+    hasInputContract: tool:TurtleAndDestinations
+    hasOutputContract: tool:ComparisonOutcome
+    pythonFunctions: [ddta_ontology.workflow.check_outputs]
+  - id: tool:ExportCodeMap
+    type: ddta:Function
+    hasInputContract: tool:PythonSourceFiles
+    hasOutputContract: tool:CodeMapData
+    pythonFunctions: [ddta_ontology.trace.collect_call_map]
+contracts:
+  - {id: tool:SourceSelectors, type: ddta:Contract, hasContractElement: [explicitFiles, sourceDirectories]}
+  - {id: tool:MarkdownSourcePaths, type: ddta:Contract, hasContractElement: [sourcePaths]}
+  - {id: tool:MarkdownDocument, type: ddta:Contract, hasContractElement: [path]}
+  - {id: tool:ParsedRecords, type: ddta:Contract, hasContractElement: [records]}
+  - {id: tool:VocabularyCounts, type: ddta:Contract, hasContractElement: [counts]}
+  - {id: tool:ValidatedRecords, type: ddta:Contract, hasContractElement: [records, counts]}
+  - {id: tool:RDFGraph, type: ddta:Contract, hasContractElement: [graph]}
+  - {id: tool:TurtleInMemory, type: ddta:Contract, hasContractElement: [turtleByModule, counts]}
+  - {id: tool:TurtleAndDestinations, type: ddta:Contract, hasContractElement: [turtleByModule, outputDirectory]}
+  - {id: tool:ComparisonOutcome, type: ddta:Contract, hasContractElement: [passOrError]}
+  - {id: tool:PythonSourceFiles, type: ddta:Contract, hasContractElement: [packageDirectory]}
+  - {id: tool:CodeMapData, type: ddta:Contract, hasContractElement: [functions, calls, passedArguments]}

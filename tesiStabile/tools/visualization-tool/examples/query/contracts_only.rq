@@ -1,0 +1,14 @@
+PREFIX ex: <https://example.org/ddta/test-communication#>
+PREFIX ddta: <https://w3id.org/ddta/core#>
+
+# Query dimostrativa: funzione + contratti + elementi, senza il resto del sistema.
+SELECT ?s ?p ?o WHERE {
+  {
+    { BIND(ex:ReadUserRecord AS ?s) }
+    UNION
+    { ex:ReadUserRecord (ddta:hasInputContract|ddta:hasOutputContract) ?s }
+    UNION
+    { ex:ReadUserRecord (ddta:hasInputContract|ddta:hasOutputContract)/ddta:hasContractElement ?s }
+  }
+  ?s ?p ?o .
+}

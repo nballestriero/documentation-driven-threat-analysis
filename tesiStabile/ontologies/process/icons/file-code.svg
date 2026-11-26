@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="Icona file con codice" style="color:#79B991" data-ddta-color-source="border-stroke">
+  <path d="M13 2.75H6.5A2.5 2.5 0 0 0 4 5.25v13.5a2.5 2.5 0 0 0 2.5 2.5h11a2.5 2.5 0 0 0 2.5-2.5V9.75Z" />
+  <path d="M13 2.75v7h7" />
+  <path d="m9.1 13.3-2.3 2.2 2.3 2.2" />
+  <path d="m14.9 13.3 2.3 2.2-2.3 2.2" />
+  <path d="m13.3 12.75-2.6 5.5" />
+</svg>

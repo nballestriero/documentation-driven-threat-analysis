@@ -1,0 +1,105 @@
+<https://w3id.org/ddta/process-validation#PRC-ATOM-01_P1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/shacl#PropertyShape> .
+<https://w3id.org/ddta/process-validation#PRC-ATOM-01_P1> <http://www.w3.org/ns/shacl#maxCount> "1"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/ddta/process-validation#PRC-ATOM-01_P1> <http://www.w3.org/ns/shacl#message> "PRC-ATOM-01 process:hasLeftOperand" .
+<https://w3id.org/ddta/process-validation#PRC-ATOM-01_P1> <http://www.w3.org/ns/shacl#minCount> "1"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/ddta/process-validation#PRC-ATOM-01_P1> <http://www.w3.org/ns/shacl#path> <https://w3id.org/ddta/process#hasLeftOperand> .
+<https://w3id.org/ddta/process-validation#PRC-ATOM-01_P2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/shacl#PropertyShape> .
+<https://w3id.org/ddta/process-validation#PRC-ATOM-01_P2> <http://www.w3.org/ns/shacl#maxCount> "1"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/ddta/process-validation#PRC-ATOM-01_P2> <http://www.w3.org/ns/shacl#message> "PRC-ATOM-01 process:hasRightOperand" .
+<https://w3id.org/ddta/process-validation#PRC-ATOM-01_P2> <http://www.w3.org/ns/shacl#minCount> "1"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/ddta/process-validation#PRC-ATOM-01_P2> <http://www.w3.org/ns/shacl#path> <https://w3id.org/ddta/process#hasRightOperand> .
+<https://w3id.org/ddta/process-validation#PRC-ATOM-01_P3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/shacl#PropertyShape> .
+<https://w3id.org/ddta/process-validation#PRC-ATOM-01_P3> <http://www.w3.org/ns/shacl#maxCount> "1"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/ddta/process-validation#PRC-ATOM-01_P3> <http://www.w3.org/ns/shacl#message> "PRC-ATOM-01 process:comparisonOperator" .
+<https://w3id.org/ddta/process-validation#PRC-ATOM-01_P3> <http://www.w3.org/ns/shacl#minCount> "1"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/ddta/process-validation#PRC-ATOM-01_P3> <http://www.w3.org/ns/shacl#path> <https://w3id.org/ddta/process#comparisonOperator> .
+<https://w3id.org/ddta/process-validation#PRC-ATOM-02> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/shacl#SPARQLConstraint> .
+<https://w3id.org/ddta/process-validation#PRC-ATOM-02> <http://www.w3.org/ns/shacl#message> "PRC-ATOM-02: L'operatore di confronto deve appartenere al vocabolario definito."@it .
+<https://w3id.org/ddta/process-validation#PRC-ATOM-02> <http://www.w3.org/ns/shacl#select> "PREFIX process: <https://w3id.org/ddta/process#>\nSELECT $this WHERE {\n  $this process:comparisonOperator ?op .\n  FILTER(?op NOT IN (\"EQ\", \"NE\", \"LT\", \"LE\", \"GT\", \"GE\"))\n}" .
+<https://w3id.org/ddta/process-validation#PRC-COMP-01> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/shacl#SPARQLConstraint> .
+<https://w3id.org/ddta/process-validation#PRC-COMP-01> <http://www.w3.org/ns/shacl#message> "PRC-COMP-01: La decomposizione dei processi contiene un ciclo."@it .
+<https://w3id.org/ddta/process-validation#PRC-COMP-01> <http://www.w3.org/ns/shacl#select> "PREFIX process: <https://w3id.org/ddta/process#>\nSELECT $this WHERE { $this process:hasSubProcess+ $this . }" .
+<https://w3id.org/ddta/process-validation#PRC-COMP-02> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/shacl#SPARQLConstraint> .
+<https://w3id.org/ddta/process-validation#PRC-COMP-02> <http://www.w3.org/ns/shacl#message> "PRC-COMP-02: Il passo iniziale deve appartenere direttamente al processo che lo dichiara."@it .
+<https://w3id.org/ddta/process-validation#PRC-COMP-02> <http://www.w3.org/ns/shacl#select> "PREFIX ddta: <https://w3id.org/ddta/core#>\nPREFIX process: <https://w3id.org/ddta/process#>\nSELECT $this ?value WHERE {\n  $this process:hasInitialStep ?value .\n  FILTER NOT EXISTS { $this ddta:hasStep ?value . }\n}" .
+<https://w3id.org/ddta/process-validation#PRC-COMP-03_P1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/shacl#PropertyShape> .
+<https://w3id.org/ddta/process-validation#PRC-COMP-03_P1> <http://www.w3.org/ns/shacl#maxCount> "1"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/ddta/process-validation#PRC-COMP-03_P1> <http://www.w3.org/ns/shacl#message> "PRC-COMP-03 process:invokesProcess" .
+<https://w3id.org/ddta/process-validation#PRC-COMP-03_P1> <http://www.w3.org/ns/shacl#path> <https://w3id.org/ddta/process#invokesProcess> .
+<https://w3id.org/ddta/process-validation#PRC-CTRL-01> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/shacl#SPARQLConstraint> .
+<https://w3id.org/ddta/process-validation#PRC-CTRL-01> <http://www.w3.org/ns/shacl#message> "PRC-CTRL-01: Ogni nodo di controllo richiede esattamente un tipo riconosciuto."@it .
+<https://w3id.org/ddta/process-validation#PRC-CTRL-01> <http://www.w3.org/ns/shacl#select> "PREFIX process: <https://w3id.org/ddta/process#>\nSELECT $this WHERE {\n  {\n    FILTER NOT EXISTS { $this process:controlKind ?kind . }\n  } UNION {\n    $this process:controlKind ?kind .\n    FILTER(?kind NOT IN\n      (\"XOR_SPLIT\", \"XOR_MERGE\", \"CONCURRENT_SPLIT\",\n       \"WAIT\", \"END_BRANCH\", \"END_PROCESS\"))\n  } UNION {\n    $this process:controlKind ?kind1, ?kind2 .\n    FILTER(?kind1 != ?kind2)\n  }\n}" .
+<https://w3id.org/ddta/process-validation#PRC-CTRL-02_P1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/shacl#PropertyShape> .
+<https://w3id.org/ddta/process-validation#PRC-CTRL-02_P1> <http://www.w3.org/ns/shacl#maxCount> "1"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/ddta/process-validation#PRC-CTRL-02_P1> <http://www.w3.org/ns/shacl#message> "PRC-CTRL-02 process:hasTrueNextStep" .
+<https://w3id.org/ddta/process-validation#PRC-CTRL-02_P1> <http://www.w3.org/ns/shacl#path> <https://w3id.org/ddta/process#hasTrueNextStep> .
+<https://w3id.org/ddta/process-validation#PRC-CTRL-02_P2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/shacl#PropertyShape> .
+<https://w3id.org/ddta/process-validation#PRC-CTRL-02_P2> <http://www.w3.org/ns/shacl#maxCount> "1"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/ddta/process-validation#PRC-CTRL-02_P2> <http://www.w3.org/ns/shacl#message> "PRC-CTRL-02 process:hasFalseNextStep" .
+<https://w3id.org/ddta/process-validation#PRC-CTRL-02_P2> <http://www.w3.org/ns/shacl#path> <https://w3id.org/ddta/process#hasFalseNextStep> .
+<https://w3id.org/ddta/process-validation#PRC-CTRL-02_P3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/shacl#PropertyShape> .
+<https://w3id.org/ddta/process-validation#PRC-CTRL-02_P3> <http://www.w3.org/ns/shacl#maxCount> "1"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/ddta/process-validation#PRC-CTRL-02_P3> <http://www.w3.org/ns/shacl#message> "PRC-CTRL-02 process:evaluatesCondition" .
+<https://w3id.org/ddta/process-validation#PRC-CTRL-02_P3> <http://www.w3.org/ns/shacl#path> <https://w3id.org/ddta/process#evaluatesCondition> .
+<https://w3id.org/ddta/process-validation#PRC-CTRL-03> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/shacl#SPARQLConstraint> .
+<https://w3id.org/ddta/process-validation#PRC-CTRL-03> <http://www.w3.org/ns/shacl#message> "PRC-CTRL-03: I rami binari dichiarati devono essere entrambi presenti e appartenere a un XOR_SPLIT."@it .
+<https://w3id.org/ddta/process-validation#PRC-CTRL-03> <http://www.w3.org/ns/shacl#select> "PREFIX process: <https://w3id.org/ddta/process#>\nSELECT $this WHERE {\n  {\n    $this process:hasTrueNextStep ?target .\n    FILTER NOT EXISTS { $this process:hasFalseNextStep ?other . }\n  } UNION {\n    $this process:hasFalseNextStep ?target .\n    FILTER NOT EXISTS { $this process:hasTrueNextStep ?other . }\n  } UNION {\n    $this (process:hasTrueNextStep|process:hasFalseNextStep) ?target .\n    FILTER NOT EXISTS { $this process:controlKind \"XOR_SPLIT\" . }\n  }\n}" .
+<https://w3id.org/ddta/process-validation#PRC-CTRL-04> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/shacl#SPARQLConstraint> .
+<https://w3id.org/ddta/process-validation#PRC-CTRL-04> <http://www.w3.org/ns/shacl#message> "PRC-CTRL-04: Il successore di ramo dichiarato deve appartenere direttamente allo stesso Process."@it .
+<https://w3id.org/ddta/process-validation#PRC-CTRL-04> <http://www.w3.org/ns/shacl#select> "PREFIX process: <https://w3id.org/ddta/process#>\nPREFIX ddta: <https://w3id.org/ddta/core#>\nSELECT $this ?value WHERE {\n  $this (process:hasTrueNextStep|process:hasFalseNextStep) ?value .\n  FILTER NOT EXISTS { ?p ddta:hasStep $this ; ddta:hasStep ?value . }\n}" .
+<https://w3id.org/ddta/process-validation#PRC-SYNC-01> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/shacl#SPARQLConstraint> .
+<https://w3id.org/ddta/process-validation#PRC-SYNC-01> <http://www.w3.org/ns/shacl#message> "PRC-SYNC-01: Un controllo concorrente deve dichiarare partecipanti, regola e criterio di completamento."@it .
+<https://w3id.org/ddta/process-validation#PRC-SYNC-01> <http://www.w3.org/ns/shacl#select> "PREFIX process: <https://w3id.org/ddta/process#>\nSELECT $this WHERE {\n  $this process:controlKind \"CONCURRENT_SPLIT\" .\n  FILTER (\n    NOT EXISTS { $this process:hasParticipantStep ?p . } ||\n    NOT EXISTS { $this process:joinPolicy ?policy . } ||\n    NOT EXISTS { $this process:completionCriterion ?criterion . }\n  )\n}" .
+<https://w3id.org/ddta/process-validation#PRC-SYNC-02> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/shacl#SPARQLConstraint> .
+<https://w3id.org/ddta/process-validation#PRC-SYNC-02> <http://www.w3.org/ns/shacl#message> "PRC-SYNC-02: La regola di sincronizzazione o il criterio di completamento non è riconosciuto."@it .
+<https://w3id.org/ddta/process-validation#PRC-SYNC-02> <http://www.w3.org/ns/shacl#select> "PREFIX process: <https://w3id.org/ddta/process#>\nSELECT $this WHERE {\n  { $this process:joinPolicy ?policy . FILTER(?policy NOT IN (\"ALL\", \"ANY\", \"N_OF_M\")) }\n  UNION\n  { $this process:completionCriterion ?criterion . FILTER(?criterion NOT IN (\"SUCCESS\", \"TERMINATED\")) }\n}" .
+<https://w3id.org/ddta/process-validation#PRC-SYNC-03> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/shacl#SPARQLConstraint> .
+<https://w3id.org/ddta/process-validation#PRC-SYNC-03> <http://www.w3.org/ns/shacl#message> "PRC-SYNC-03: N_OF_M richiede un conteggio valido; ALL/ANY non devono dichiararlo."@it .
+<https://w3id.org/ddta/process-validation#PRC-SYNC-03> <http://www.w3.org/ns/shacl#select> "PREFIX process: <https://w3id.org/ddta/process#>\nSELECT $this WHERE {\n  $this process:joinPolicy ?policy .\n  {\n    FILTER(?policy = \"N_OF_M\")\n    FILTER NOT EXISTS { $this process:requiredCount ?n . FILTER(?n >= 1) }\n  } UNION {\n    FILTER(?policy IN (\"ALL\", \"ANY\"))\n    $this process:requiredCount ?n .\n  }\n}" .
+<https://w3id.org/ddta/process-validation#PRC-SYNC-04_P1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/shacl#PropertyShape> .
+<https://w3id.org/ddta/process-validation#PRC-SYNC-04_P1> <http://www.w3.org/ns/shacl#maxCount> "1"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/ddta/process-validation#PRC-SYNC-04_P1> <http://www.w3.org/ns/shacl#message> "PRC-SYNC-04 process:joinPolicy" .
+<https://w3id.org/ddta/process-validation#PRC-SYNC-04_P1> <http://www.w3.org/ns/shacl#path> <https://w3id.org/ddta/process#joinPolicy> .
+<https://w3id.org/ddta/process-validation#PRC-SYNC-04_P2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/shacl#PropertyShape> .
+<https://w3id.org/ddta/process-validation#PRC-SYNC-04_P2> <http://www.w3.org/ns/shacl#maxCount> "1"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/ddta/process-validation#PRC-SYNC-04_P2> <http://www.w3.org/ns/shacl#message> "PRC-SYNC-04 process:completionCriterion" .
+<https://w3id.org/ddta/process-validation#PRC-SYNC-04_P2> <http://www.w3.org/ns/shacl#path> <https://w3id.org/ddta/process#completionCriterion> .
+<https://w3id.org/ddta/process-validation#PRC-SYNC-04_P3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/shacl#PropertyShape> .
+<https://w3id.org/ddta/process-validation#PRC-SYNC-04_P3> <http://www.w3.org/ns/shacl#maxCount> "1"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/ddta/process-validation#PRC-SYNC-04_P3> <http://www.w3.org/ns/shacl#message> "PRC-SYNC-04 process:requiredCount" .
+<https://w3id.org/ddta/process-validation#PRC-SYNC-04_P3> <http://www.w3.org/ns/shacl#path> <https://w3id.org/ddta/process#requiredCount> .
+<https://w3id.org/ddta/process-validation#PRC-SYNC-05> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/shacl#SPARQLConstraint> .
+<https://w3id.org/ddta/process-validation#PRC-SYNC-05> <http://www.w3.org/ns/shacl#message> "PRC-SYNC-05: Ogni partecipante concorrente deve essere uno Step diretto dello stesso Process."@it .
+<https://w3id.org/ddta/process-validation#PRC-SYNC-05> <http://www.w3.org/ns/shacl#select> "PREFIX process: <https://w3id.org/ddta/process#>\nPREFIX ddta: <https://w3id.org/ddta/core#>\nSELECT $this ?value WHERE {\n  $this process:hasParticipantStep ?value .\n  FILTER(?value = $this || NOT EXISTS { ?p ddta:hasStep $this ; ddta:hasStep ?value . })\n}" .
+<https://w3id.org/ddta/process-validation#PRC-SYNC-06> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/shacl#SPARQLConstraint> .
+<https://w3id.org/ddta/process-validation#PRC-SYNC-06> <http://www.w3.org/ns/shacl#message> "PRC-SYNC-06: Il conteggio N_OF_M non può superare il numero di partecipanti distinti."@it .
+<https://w3id.org/ddta/process-validation#PRC-SYNC-06> <http://www.w3.org/ns/shacl#select> "PREFIX process: <https://w3id.org/ddta/process#>\nSELECT $this WHERE {\n  $this process:joinPolicy \"N_OF_M\" ; process:requiredCount ?n .\n  OPTIONAL { $this process:hasParticipantStep ?member . }\n}\nGROUP BY $this ?n\nHAVING (?n > COUNT(DISTINCT ?member))" .
+<https://w3id.org/ddta/process-validation#Shape_ddta_Process> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/shacl#NodeShape> .
+<https://w3id.org/ddta/process-validation#Shape_ddta_Process> <http://www.w3.org/ns/shacl#sparql> <https://w3id.org/ddta/process-validation#PRC-COMP-01> .
+<https://w3id.org/ddta/process-validation#Shape_ddta_Process> <http://www.w3.org/ns/shacl#sparql> <https://w3id.org/ddta/process-validation#PRC-COMP-02> .
+<https://w3id.org/ddta/process-validation#Shape_ddta_Process> <http://www.w3.org/ns/shacl#targetClass> <https://w3id.org/ddta/core#Process> .
+<https://w3id.org/ddta/process-validation#Shape_ddta_ProcessStep> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/shacl#NodeShape> .
+<https://w3id.org/ddta/process-validation#Shape_ddta_ProcessStep> <http://www.w3.org/ns/shacl#property> <https://w3id.org/ddta/process-validation#PRC-COMP-03_P1> .
+<https://w3id.org/ddta/process-validation#Shape_ddta_ProcessStep> <http://www.w3.org/ns/shacl#targetClass> <https://w3id.org/ddta/core#ProcessStep> .
+<https://w3id.org/ddta/process-validation#Shape_process_AtomicCondition> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/shacl#NodeShape> .
+<https://w3id.org/ddta/process-validation#Shape_process_AtomicCondition> <http://www.w3.org/ns/shacl#property> <https://w3id.org/ddta/process-validation#PRC-ATOM-01_P1> .
+<https://w3id.org/ddta/process-validation#Shape_process_AtomicCondition> <http://www.w3.org/ns/shacl#property> <https://w3id.org/ddta/process-validation#PRC-ATOM-01_P2> .
+<https://w3id.org/ddta/process-validation#Shape_process_AtomicCondition> <http://www.w3.org/ns/shacl#property> <https://w3id.org/ddta/process-validation#PRC-ATOM-01_P3> .
+<https://w3id.org/ddta/process-validation#Shape_process_AtomicCondition> <http://www.w3.org/ns/shacl#sparql> <https://w3id.org/ddta/process-validation#PRC-ATOM-02> .
+<https://w3id.org/ddta/process-validation#Shape_process_AtomicCondition> <http://www.w3.org/ns/shacl#targetClass> <https://w3id.org/ddta/process#AtomicCondition> .
+<https://w3id.org/ddta/process-validation#Shape_process_ControlNode> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/shacl#NodeShape> .
+<https://w3id.org/ddta/process-validation#Shape_process_ControlNode> <http://www.w3.org/ns/shacl#property> <https://w3id.org/ddta/process-validation#PRC-CTRL-02_P1> .
+<https://w3id.org/ddta/process-validation#Shape_process_ControlNode> <http://www.w3.org/ns/shacl#property> <https://w3id.org/ddta/process-validation#PRC-CTRL-02_P2> .
+<https://w3id.org/ddta/process-validation#Shape_process_ControlNode> <http://www.w3.org/ns/shacl#property> <https://w3id.org/ddta/process-validation#PRC-CTRL-02_P3> .
+<https://w3id.org/ddta/process-validation#Shape_process_ControlNode> <http://www.w3.org/ns/shacl#property> <https://w3id.org/ddta/process-validation#PRC-SYNC-04_P1> .
+<https://w3id.org/ddta/process-validation#Shape_process_ControlNode> <http://www.w3.org/ns/shacl#property> <https://w3id.org/ddta/process-validation#PRC-SYNC-04_P2> .
+<https://w3id.org/ddta/process-validation#Shape_process_ControlNode> <http://www.w3.org/ns/shacl#property> <https://w3id.org/ddta/process-validation#PRC-SYNC-04_P3> .
+<https://w3id.org/ddta/process-validation#Shape_process_ControlNode> <http://www.w3.org/ns/shacl#sparql> <https://w3id.org/ddta/process-validation#PRC-CTRL-01> .
+<https://w3id.org/ddta/process-validation#Shape_process_ControlNode> <http://www.w3.org/ns/shacl#sparql> <https://w3id.org/ddta/process-validation#PRC-CTRL-03> .
+<https://w3id.org/ddta/process-validation#Shape_process_ControlNode> <http://www.w3.org/ns/shacl#sparql> <https://w3id.org/ddta/process-validation#PRC-CTRL-04> .
+<https://w3id.org/ddta/process-validation#Shape_process_ControlNode> <http://www.w3.org/ns/shacl#sparql> <https://w3id.org/ddta/process-validation#PRC-SYNC-01> .
+<https://w3id.org/ddta/process-validation#Shape_process_ControlNode> <http://www.w3.org/ns/shacl#sparql> <https://w3id.org/ddta/process-validation#PRC-SYNC-02> .
+<https://w3id.org/ddta/process-validation#Shape_process_ControlNode> <http://www.w3.org/ns/shacl#sparql> <https://w3id.org/ddta/process-validation#PRC-SYNC-03> .
+<https://w3id.org/ddta/process-validation#Shape_process_ControlNode> <http://www.w3.org/ns/shacl#sparql> <https://w3id.org/ddta/process-validation#PRC-SYNC-05> .
+<https://w3id.org/ddta/process-validation#Shape_process_ControlNode> <http://www.w3.org/ns/shacl#sparql> <https://w3id.org/ddta/process-validation#PRC-SYNC-06> .
+<https://w3id.org/ddta/process-validation#Shape_process_ControlNode> <http://www.w3.org/ns/shacl#targetClass> <https://w3id.org/ddta/process#ControlNode> .
