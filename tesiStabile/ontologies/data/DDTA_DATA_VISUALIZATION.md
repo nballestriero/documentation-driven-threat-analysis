@@ -13,7 +13,7 @@ Le specializzazioni riutilizzano la forma grafica della classe CORE di riferimen
 
 La relazione CORE `ddta:stores` conserva la propria rappresentazione mediante contenimento. DATA aggiunge un ulteriore livello di contenimento per i blocchi di dati identificabili all'interno di uno `StoredContent`. Non sono disegnate frecce per le relazioni di contenimento.
 
-Il riferimento di regressione è il Mermaid integrato R2 approvato visivamente. Le schede seguenti formalizzano le regole di quella revisione. Il caricamento dichiarativo delle regole DATA in sostituzione delle regole sperimentali interne al Python dovrà essere verificato mediante rigenerazione e confronto con tale riferimento. In particolare, le dichiarazioni di ereditarietà grafica devono essere risolte copiando la forma CORE, e l'estensione di `StoredContent` deve essere applicata senza duplicare la scheda CORE.
+Il riferimento di regressione è il Mermaid integrato R2 approvato visivamente. Le schede seguenti formalizzano le regole di quella revisione. Il caricamento dichiarativo delle regole DATA è stato verificato nella revisione R3 mediante rigenerazione e confronto con tale riferimento (30 output identici). In particolare, le dichiarazioni di ereditarietà grafica devono essere risolte copiando la forma CORE, e l'estensione di `StoredContent` deve essere applicata senza duplicare la scheda CORE.
 
 ---
 
@@ -103,7 +103,7 @@ render:
       childrenDirection: TB
 ```
 
-Il record estende la scheda `class-style` CORE esistente, mantenendo gli altri campi invariati. `classStyleExtension` è la forma dichiarativa da collegare alla pipeline: corrisponde ai due campi `container` e `layout` impostati dal renderer R2. Non costituisce una seconda definizione `class-style` per `ddta:StoredContent`. La proiezione a contenitore dipende dalla presenza di figli visibili tramite la regola di contenimento della sezione 6.
+Il record estende la scheda `class-style` CORE esistente, mantenendo gli altri campi invariati. `classStyleExtension` è la forma dichiarativa utilizzata dalla pipeline: corrisponde ai due campi `container` e `layout` impostati dal renderer R2. Non costituisce una seconda definizione `class-style` per `ddta:StoredContent`. La proiezione a contenitore dipende dalla presenza di figli visibili tramite la regola di contenimento della sezione 6.
 
 ---
 
@@ -228,4 +228,4 @@ flowchart TB
     class O_4473024364fdd7,O_a5044a52402339 DDTA_C_d75aabb7f485
 ```
 
-L'esempio Mermaid è un output effettivo della pipeline R2 sul sottografo Turtle precedente; non è stato riscritto manualmente. Le regole DATA della R2 sono ancora caricate dal modulo Python sperimentale. La rigenerazione con le dichiarazioni YAML della presente guida sarà verificata durante la successiva integrazione dichiarativa.
+L'esempio Mermaid è un output effettivo della pipeline R2 sul sottografo Turtle precedente; non è stato riscritto manualmente. La R3 carica le dichiarazioni YAML della presente guida mediante `--data-guide`. Il confronto del grafico cumulativo con la R2 ha restituito output identici.

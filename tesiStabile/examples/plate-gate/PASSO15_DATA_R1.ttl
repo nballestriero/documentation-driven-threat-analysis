@@ -1,0 +1,238 @@
+@prefix data: <https://w3id.org/ddta/data#> .
+@prefix ddta: <https://w3id.org/ddta/core#> .
+@prefix ex: <https://example.org/ddta/plate-gate#> .
+@prefix process: <https://w3id.org/ddta/process#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:CameraSystem a ddta:System ;
+    ddta:hasOperationalEnvironment ex:CameraEnvironment ;
+    ddta:hasSupportFunction ex:SendPlateImage .
+
+ex:GateControlSystem a ddta:System ;
+    ddta:hasOperationalEnvironment ex:GateEnvironment ;
+    ddta:hasSupportFunction ex:ReceivePlateNumber .
+
+ex:HumanReviewSystem a ddta:System ;
+    ddta:hasOperationalEnvironment ex:HumanReviewEnvironment ;
+    ddta:hasPrimaryFunction ex:ImageHumanReview ;
+    ddta:hasSupportFunction ex:ReceivePlateImageForReview .
+
+ex:PlateRecognitionSystem a ddta:System ;
+    ddta:hasOperationalEnvironment ex:ProcessingEnvironment ;
+    ddta:hasPrimaryFunction ex:RecognizePlateNumber ;
+    ddta:hasSupportFunction ex:AutomaticOCRRetraining,
+        ex:ReceivePlateImage,
+        ex:SendPlateImageForReview,
+        ex:SendPlateNumber .
+
+ex:RecognizePlateNumberProcess a ddta:Process ;
+    ddta:hasStep ex:CheckOCRRetrainingThreshold,
+        ex:ContinueWithoutOCRRetrainingStep,
+        ex:EvaluateOCRResultsStep,
+        ex:HandleOCRDisagreementStep,
+        ex:LaunchAutomaticOCRRetrainingStep,
+        ex:OCR_CNN_AttentionLSTMStep,
+        ex:OCR_MobileNetTransformerStep,
+        ex:ParallelOCRControl,
+        ex:PlateRecognitionEndStep,
+        ex:ReturnMatchingPlateNumberStep ;
+    ddta:realizesFunction ex:RecognizePlateNumber ;
+    process:hasInitialStep ex:ParallelOCRControl .
+
+ex:AutomaticOCRRetrainingProcess a ddta:Process ;
+    ddta:realizesFunction ex:AutomaticOCRRetraining .
+
+ex:CNNPlateNumberOperand a process:Operand ;
+    process:referencesContractElement ex:CNN_RecognizedPlateNumber .
+
+ex:CNN_AttentionLSTM_OCR a ddta:Resource ;
+    rdfs:label "CNN + Attention-LSTM OCR"@it .
+
+ex:CameraEnvironment a ddta:Environment ;
+    ddta:makesAvailable ex:CameraToProcessingChannel .
+
+ex:DisagreementCountOperand a process:Operand ;
+    process:valueLocator "DisagreementCount" .
+
+ex:DisagreementCountReachedLimit a process:AtomicCondition ;
+    process:comparisonOperator "GE" ;
+    process:hasLeftOperand ex:DisagreementCountOperand ;
+    process:hasRightOperand ex:RetrainingThresholdOperand .
+
+ex:GateEnvironment a ddta:Environment ;
+    ddta:makesAvailable ex:GateToProcessingChannel .
+
+ex:GateToProcessingChannel a ddta:CommunicationChannel .
+
+ex:HumanReviewEnvironment a ddta:Environment .
+
+ex:ImageHumanReviewProcess a ddta:Process ;
+    ddta:realizesFunction ex:ImageHumanReview .
+
+ex:MobileNetV3_Transformer_OCR a ddta:Resource ;
+    rdfs:label "MobileNetV3 + Transformer OCR"@it .
+
+ex:OCRConfigurationStableStore a data:StableStore ;
+    ddta:stores ex:OCRRetrainingConfigurationFile .
+
+ex:OCRDisagreementCounterRuntime a data:DataBlock .
+
+ex:OCRDisagreementHistoryStore a ddta:Store,
+        data:StableStore .
+
+ex:OCRNumbersEqualCondition a process:AtomicCondition ;
+    process:comparisonOperator "EQ" ;
+    process:hasLeftOperand ex:CNNPlateNumberOperand ;
+    process:hasRightOperand ex:TransformerPlateNumberOperand .
+
+ex:OCRRetrainingConfigurationFile a ddta:StoredContent .
+
+ex:OCRRetrainingConfigurationRuntime a ddta:StoredContent ;
+    data:hasDataBlock ex:OCRRetrainingThresholdRuntime .
+
+ex:OCRRetrainingThresholdRuntime a data:DataBlock .
+
+ex:OCRRunningStore a data:RunningStore ;
+    ddta:stores ex:OCRRetrainingConfigurationRuntime,
+        ex:OCRRuntimeState .
+
+ex:OCRRuntimeState a ddta:StoredContent ;
+    data:hasDataBlock ex:OCRDisagreementCounterRuntime .
+
+ex:PlateImage a ddta:ContractElement .
+
+ex:PlateNumber a ddta:ContractElement .
+
+ex:ProcessingEnvironment a ddta:Environment ;
+    ddta:makesAvailable ex:OCRConfigurationStableStore,
+        ex:OCRDisagreementHistoryStore,
+        ex:OCRRunningStore,
+        ex:ProcessingToCameraChannel,
+        ex:ProcessingToGateChannel,
+        ex:ProcessingToHumanReviewChannel .
+
+ex:ProcessingToCameraChannel a ddta:CommunicationChannel .
+
+ex:ReceivePlateImage a ddta:CommunicationFunction ;
+    ddta:hasInputContract ex:PlateImageContract ;
+    ddta:hasOutputContract ex:PlateImageContract ;
+    ddta:mustPrecede ex:RecognizePlateNumber ;
+    ddta:usesChannelForInput ex:CameraToProcessingChannel .
+
+ex:ReceivePlateNumber a ddta:CommunicationFunction ;
+    ddta:hasInputContract ex:PlateNumberContract ;
+    ddta:usesChannelForInput ex:ProcessingToGateChannel .
+
+ex:RetrainingThresholdOperand a process:Operand ;
+    process:valueLocator "L" .
+
+ex:SendPlateImage a ddta:CommunicationFunction ;
+    ddta:hasOutputContract ex:PlateImageContract ;
+    ddta:usesChannelForOutput ex:CameraToProcessingChannel .
+
+ex:SendPlateImageForReview a ddta:CommunicationFunction ;
+    ddta:hasInputContract ex:PlateImageContract ;
+    ddta:hasOutputContract ex:PlateImageContract ;
+    ddta:mustPrecede ex:ReceivePlateImageForReview ;
+    ddta:usesChannelForOutput ex:ProcessingToHumanReviewChannel .
+
+ex:TransformerPlateNumberOperand a process:Operand ;
+    process:referencesContractElement ex:Transformer_RecognizedPlateNumber .
+
+ex:AutomaticOCRRetraining a ddta:Function .
+
+ex:CNN_OCRResultContract a ddta:Contract ;
+    ddta:hasContractElement ex:CNN_RecognizedPlateNumber .
+
+ex:CNN_RecognizedPlateNumber a ddta:ContractElement .
+
+ex:CheckOCRRetrainingThreshold a process:ControlNode ;
+    process:controlKind "XOR_SPLIT" ;
+    process:evaluatesCondition ex:DisagreementCountReachedLimit ;
+    process:hasFalseNextStep ex:ContinueWithoutOCRRetrainingStep ;
+    process:hasTrueNextStep ex:LaunchAutomaticOCRRetrainingStep .
+
+ex:ContinueWithoutOCRRetrainingStep a ddta:ProcessStep .
+
+ex:EvaluateOCRResultsStep a ddta:ProcessStep,
+        process:ControlNode ;
+    process:controlKind "XOR_SPLIT" ;
+    process:declaresInputContract ex:CNN_OCRResultContract,
+        ex:Transformer_OCRResultContract ;
+    process:evaluatesCondition ex:OCRNumbersEqualCondition ;
+    process:hasFalseNextStep ex:HandleOCRDisagreementStep ;
+    process:hasTrueNextStep ex:ReturnMatchingPlateNumberStep .
+
+ex:HandleOCRDisagreementStep a ddta:ProcessStep ;
+    rdfs:label "Gestione targhe discordanti — da specificare"@it ;
+    ddta:hasNextStep ex:CheckOCRRetrainingThreshold ;
+    process:declaresInputContract ex:PlateImageContract ;
+    process:invokesProcess ex:ImageHumanReviewProcess .
+
+ex:LaunchAutomaticOCRRetrainingStep a ddta:ProcessStep ;
+    process:invokesProcess ex:AutomaticOCRRetrainingProcess .
+
+ex:OCR_CNN_AttentionLSTMStep a ddta:ProcessStep ;
+    process:declaresInputContract ex:PlateImageContract ;
+    process:declaresOutputContract ex:CNN_OCRResultContract ;
+    process:implementedBy ex:CNN_AttentionLSTM_OCR .
+
+ex:OCR_MobileNetTransformerStep a ddta:ProcessStep ;
+    process:declaresInputContract ex:PlateImageContract ;
+    process:declaresOutputContract ex:Transformer_OCRResultContract ;
+    process:implementedBy ex:MobileNetV3_Transformer_OCR .
+
+ex:ParallelOCRControl a ddta:ProcessStep,
+        process:ControlNode ;
+    ddta:hasNextStep ex:EvaluateOCRResultsStep ;
+    process:completionCriterion "SUCCESS" ;
+    process:controlKind "CONCURRENT_SPLIT" ;
+    process:hasParticipantStep ex:OCR_CNN_AttentionLSTMStep,
+        ex:OCR_MobileNetTransformerStep ;
+    process:joinPolicy "ALL" .
+
+ex:PlateRecognitionEndStep a ddta:ProcessStep,
+        process:ControlNode ;
+    process:controlKind "END_PROCESS" .
+
+ex:ReceivePlateImageForReview a ddta:CommunicationFunction ;
+    ddta:hasInputContract ex:PlateImageContract ;
+    ddta:hasOutputContract ex:PlateImageContract ;
+    ddta:mustPrecede ex:ImageHumanReview ;
+    ddta:usesChannelForInput ex:ProcessingToHumanReviewChannel .
+
+ex:ReturnMatchingPlateNumberStep a ddta:ProcessStep ;
+    ddta:hasNextStep ex:PlateRecognitionEndStep ;
+    process:declaresOutputContract ex:PlateNumberContract .
+
+ex:SendPlateNumber a ddta:CommunicationFunction ;
+    ddta:hasInputContract ex:PlateNumberContract ;
+    ddta:hasOutputContract ex:PlateNumberContract ;
+    ddta:usesChannelForOutput ex:ProcessingToGateChannel .
+
+ex:Transformer_OCRResultContract a ddta:Contract ;
+    ddta:hasContractElement ex:Transformer_RecognizedPlateNumber .
+
+ex:Transformer_RecognizedPlateNumber a ddta:ContractElement .
+
+ex:CameraToProcessingChannel a ddta:CommunicationChannel .
+
+ex:ImageHumanReview a ddta:Function ;
+    ddta:hasInputContract ex:PlateImageContract ;
+    ddta:hasOutputContract ex:PlateNumberContract .
+
+ex:ProcessingToGateChannel a ddta:CommunicationChannel .
+
+ex:ProcessingToHumanReviewChannel a ddta:CommunicationChannel .
+
+ex:RecognizePlateNumber a ddta:Function ;
+    ddta:hasInputContract ex:PlateImageContract ;
+    ddta:hasOutputContract ex:PlateNumberContract ;
+    ddta:mustPrecede ex:SendPlateNumber .
+
+ex:PlateNumberContract a ddta:Contract ;
+    ddta:hasContractElement ex:PlateNumber .
+
+ex:PlateImageContract a ddta:Contract ;
+    ddta:hasContractElement ex:PlateImage .
+

@@ -23,6 +23,7 @@ def main(argv=None):
     ap.add_argument('--view',choices=['association','functional-flow'],default='association',help='Vista della comunicazione')
     ap.add_argument('--strict',action='store_true',help='Blocca generazione in presenza di ambiguità')
     ap.add_argument('--out-dir',required=True,type=Path,help='Cartella di output')
+    ap.add_argument('--data-guide', type=Path, help='Guida grafica DATA Markdown')
     args=ap.parse_args(argv)
     out=args.out_dir; out.mkdir(parents=True,exist_ok=True)
     if args.guides_md:
@@ -36,6 +37,9 @@ def main(argv=None):
     g=select_subgraph(args.ttl,args.query,selected)
     focus=URIRef(qname_or_uri(g,args.focus)) if args.focus else None
     catalog=Catalog([compiled])
+    if args.data_guide:
+        from .render_data import extend_catalog
+        extend_catalog(catalog,g,args.data_guide,out/'01_data_rules_extracted.yaml')
     ir=project(g,catalog,focus=focus,view=args.view,strict=args.strict)
     dump_json(ir,out/'04_projection.json')
     mmd=render(ir,catalog)

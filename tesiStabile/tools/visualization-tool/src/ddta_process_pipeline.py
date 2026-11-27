@@ -94,7 +94,10 @@ def main(argv=None) -> int:
     ap.add_argument('--ttl', type=Path, help='Unico Turtle integrato CORE+PROCESS (alternativa a --core-ttl e --process-ttl)')
     ap.add_argument('--out-dir', type=Path, required=True)
     ap.add_argument('--show-operand-resource-references',action='store_true',help='Abilita proiezione opzionale RDF process:referencesResource')
+    ap.add_argument('--data-guide', type=Path, help='Guida grafica DATA Markdown nella proiezione integrata')
     a=ap.parse_args(argv)
+    if a.data_guide and (a.core_generator is None or a.ttl is None):
+        ap.error('--data-guide requires --core-generator and --ttl')
     root = Path(__file__).resolve().parent
     renderer=require_input(root/'ddta_process.py','Python PROCESS')
     if a.ttl is not None:
@@ -124,7 +127,7 @@ def main(argv=None) -> int:
         core.mkdir(parents=True)
         if a.core_generator is not None:
             checked_run([sys.executable,str(a.core_generator),'--guides-md',str(a.core_guide),
-                         '--ttl',str(core_visual_ttl),'--view','functional-flow','--out-dir',str(core)], 'CORE live')
+                         '--ttl',str(core_visual_ttl),'--view','functional-flow','--out-dir',str(core)] + (['--data-guide',str(a.data_guide)] if a.data_guide else []), 'CORE live')
             core_mmd=require_input(core/'05_graph.mmd','CORE generato')
         else:
             core_mmd=core/'05_graph.mmd'
@@ -171,6 +174,10 @@ def main(argv=None) -> int:
     }
     if a.core_generator is not None:input_paths['core-generator-python']=a.core_generator
     if a.core_mermaid is not None:input_paths['core-mermaid-offline']=a.core_mermaid
+    if a.data_guide:
+        input_paths['data-guide']=require_input(a.data_guide,'data_guide')
+        for name in ('render_data','pipeline','render_mermaid'):
+            input_paths['data-render-'+name]=root/'ddta_viz'/(name+'.py')
     initial_hashes={k:sha(v) for k,v in sorted(input_paths.items())}
 
     # Two independent runs in temporary directories. Publish only if the

@@ -153,7 +153,7 @@ def render(ir, rules:Catalog):
         stroke=style.get('stroke','#374151')
         label=ll.format(stroke=html.escape(str(stroke)),
                         name=html.escape(node['name'],quote=True),
-                        rdfType=html.escape(node['rdfType'],quote=True))
+                        rdfType=html.escape(rec.get('displayType',node['rdfType']),quote=True))
         extra=[]
         role=node.get('role')
         if role:

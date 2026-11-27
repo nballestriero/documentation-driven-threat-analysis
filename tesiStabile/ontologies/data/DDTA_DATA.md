@@ -1,4 +1,4 @@
-# DDTA — Data Ontology: guida di definizione e schede ontologiche (R0, candidata)
+# DDTA — Data Ontology: guida di definizione e schede ontologiche (R1, candidata)
 
 Questo documento costituisce la **sorgente di authoring candidata** della DDTA Data Ontology, estensione modulare del documento normativo `DDTA_CORE.md`, compatibile con le identità e le strutture operative descritte in `DDTA_PROCESS.md`.
 
@@ -6,7 +6,7 @@ Il **vocabolario autorevole è dichiarato esclusivamente nei blocchi `yaml ddta-
 
 **Namespace candidato:** `data: <https://w3id.org/ddta/data#>`. Rimangono di proprietà di CORE `ddta: <https://w3id.org/ddta/core#>` e di PROCESS `process: <https://w3id.org/ddta/process#>`.
 
-**Stato della revisione:** questa versione R0 è sottoposta a verifica. La scelta di rendere disgiunte `data:ReadStep` e `data:WriteStep` è già stata approvata; le altre definizioni e i relativi domain/range sono candidate fino alla revisione del documento. Le schede mantengono `status: proposed` e saranno promosse singolarmente ad `approved` dopo l'accettazione. Lo stato di una scheda non afferma che la pipeline attuale abbia già generato `data.ttl`.
+**Stato della revisione:** questa versione R1 è sottoposta a verifica. La scelta di rendere disgiunte `data:ReadStep` e `data:WriteStep` è già stata approvata; le altre definizioni e i relativi domain/range sono candidate fino alla revisione del documento. Le schede mantengono `status: proposed` e saranno promosse singolarmente ad `approved` dopo l'accettazione. Lo stato di una scheda non afferma che la pipeline attuale abbia già generato `data.ttl`.
 
 ---
 
@@ -23,10 +23,12 @@ DATA **non** ridefinisce `ddta:Store`, `ddta:StoredContent`, `ddta:ProcessStep`,
 
 `ddta:Store` è un deposito logico e non implica persistenza o uno specifico supporto fisico. `ddta:stores` identifica contenuti conservati direttamente oppure Store annidati; non rappresenta una lettura, una scrittura o un trasferimento. `ddta:StoredContent` identifica il contenuto e non è una sottoclasse di `ddta:Resource`.
 
-### 1.1 Inventario minimo R0
+### 1.1 Inventario minimo R1
 
 | Elemento DATA | Natura | Specializzazione / dominio e range |
 |---|---|---|
+| `data:DataBlock` | Classe | Unità logica interna a StoredContent |
+| `data:hasDataBlock` | Object Property | `ddta:StoredContent` → `data:DataBlock` |
 | `data:StableStore` | Classe | `rdfs:subClassOf ddta:Store` |
 | `data:RunningStore` | Classe | `rdfs:subClassOf ddta:Store` |
 | `data:ReadStep` | Classe | `rdfs:subClassOf ddta:ProcessStep` |
@@ -50,7 +52,7 @@ DATA **non** ridefinisce `ddta:Store`, `ddta:StoredContent`, `ddta:ProcessStep`,
 3. Un `RunningStore` non implica una specifica tecnologia di memoria, né una particolare durata o persistenza.
 4. Un dato temporaneo può essere creato direttamente durante il processo: non è obbligatorio che provenga da uno `StableStore`.
 5. I domain/range OWL determinano inferenze di classe; non attestano la completezza della documentazione. Gli obblighi di completezza saranno espressi separatamente mediante controlli documentali quando approvati.
-6. I vincoli descritti in questa R0 **non** determinano, da soli, l'appartenenza di uno Step e di uno Store allo stesso sistema. La verifica di località e dell'eventuale canale richiederà le informazioni architetturali effettivamente dichiarate.
+6. I vincoli descritti in questa R1 **non** determinano, da soli, l'appartenenza di uno Step e di uno Store allo stesso sistema. La verifica di località e dell'eventuale canale richiederà le informazioni architetturali effettivamente dichiarate.
 
 ---
 
@@ -95,11 +97,11 @@ La specializzazione descrive il **ruolo di conservazione** dello Store, non il s
 
 ### 4.3 Interrogazioni SPARQL
 
-Per interrogare i contenuti si riutilizzano le query CORE su `ddta:stores`; DATA R0 non definisce nuove proprietà specifiche di contenimento.
+Per interrogare i contenuti si riutilizzano le query CORE su `ddta:stores`; DATA R1 riutilizza stores per gli Store e introduce hasDataBlock per la composizione interna dei contenuti.
 
 ### 4.4 Vincoli di completezza e coerenza documentale
 
-Non sono introdotti nuovi `yaml ontology-validation` per `StableStore` in R0. Non si presume che la specializzazione implichi immutabilità o persistenza fisica.
+Non sono introdotti nuovi `yaml ontology-validation` per `StableStore` in R1. Non si presume che la specializzazione implichi immutabilità o persistenza fisica.
 
 ### 4.5 Esempio illustrativo (escluso dal TTL generato)
 
@@ -142,7 +144,7 @@ La query per le copie esatte in uno Store operativo è presentata nella scheda `
 
 ### 5.4 Vincoli di completezza e coerenza documentale
 
-**Non si dichiara** `owl:disjointWith` tra `StableStore` e `RunningStore` nella R0. Nessun vincolo impone che un contenuto operativo provenga da uno `StableStore`.
+**Non si dichiara** `owl:disjointWith` tra `StableStore` e `RunningStore` nella R1. Nessun vincolo impone che un contenuto operativo provenga da uno `StableStore`.
 
 ### 5.5 Esempio illustrativo (escluso dal TTL generato)
 
@@ -410,7 +412,7 @@ Questi punti descrivono **verifiche da affrontare**, non regole SHACL già appro
 1. **CORE / contenimento:** identificare i contenuti con `ddta:StoredContent` e la loro collocazione con `ddta:stores`, senza duplicare la proprietà in DATA.
 2. **PROCESS / Step:** mantenere `ddta:hasStep` e `ddta:hasNextStep`; la successione non dimostra automaticamente il trasferimento del valore letto verso quello scritto.
 3. **Comunicazione:** non introdurre Object Property DATA che duplichino le comunicazioni CORE. L'accesso a uno Store remoto deve essere rappresentato attraverso gli elementi di comunicazione effettivamente dichiarati.
-4. **Località degli accessi:** le definizioni R0, da sole, non dimostrano che Step e Store appartengano al medesimo sistema; i controlli dipenderanno dalle informazioni architetturali dichiarate.
+4. **Località degli accessi:** le definizioni R1, da sole, non dimostrano che Step e Store appartengano al medesimo sistema; i controlli dipenderanno dalle informazioni architetturali dichiarate.
 5. **Contenuti operativi:** un dato temporaneo può nascere nel `RunningStore` senza origine in uno `StableStore`. La disgiunzione fra le due tipologie di Store non è stata approvata.
 6. **Validazione:** non sono ancora approvate shape `yaml ontology-validation` per località degli accessi, completezza della collocazione negli Store o tracciabilità tra contratti.
 
@@ -418,9 +420,9 @@ Questi punti descrivono **verifiche da affrontare**, non regole SHACL già appro
 
 ## 11. Generazione del vocabolario OWL/Turtle
 
-La **sorgente autorevole** è costituita dai blocchi `yaml ddta-ontology` delle sezioni 4–8. Il generatore seleziona esclusivamente tali blocchi; esempi, query e testo discorsivo non aggiungono dichiarazioni al vocabolario.
+La **sorgente autorevole** è costituita dai blocchi `yaml ddta-ontology` delle sezioni 4–8 e 12. Il generatore seleziona esclusivamente tali blocchi; esempi, query e testo discorsivo non aggiungono dichiarazioni al vocabolario.
 
-L'inventario dichiarato contiene **4 classi e 3 Object Property**, senza modifiche alle definizioni CORE o PROCESS.
+L'inventario dichiarato contiene **5 classi e 4 Object Property**, senza modifiche alle definizioni CORE o PROCESS.
 
 Prima di considerare completa l'integrazione con la pipeline ufficiale, occorre verificare:
 
@@ -429,3 +431,45 @@ Prima di considerare completa l'integrazione con la pipeline ufficiale, occorre 
 3. la generazione del Turtle esclusivamente dalle schede, escludendo l'esempio integrativo.
 
 L'assenza del supporto va segnalata: **non autorizza a scrivere il vocabolario normativo direttamente in Turtle**. La guida grafica `DDTA_DATA_VISUALIZATION.md` e le modifiche agli esempi targhe verranno affrontate solo dopo la revisione delle schede DATA.
+
+---
+
+## 12. Scheda ontologica — `DataBlock` (R1 candidata)
+
+```yaml ddta-ontology
+record: class
+module: data
+iri: data:DataBlock
+status: proposed
+label:
+  en: Data Block
+  it: Blocco di dati
+definition:
+  en: >-
+    An identifiable logical unit within stored content, consisting
+    of a single value or a structured collection of values.
+  it: >-
+    Unità logica identificabile interna a un contenuto memorizzato,
+    costituita da un singolo valore o da un insieme strutturato di valori.
+```
+
+```yaml ddta-ontology
+record: object-properties
+module: data
+owner: ddta:StoredContent
+properties:
+  - iri: data:hasDataBlock
+    status: proposed
+    domain: ddta:StoredContent
+    range: data:DataBlock
+    label:
+      en: has data block
+      it: contiene blocco di dati
+    definition:
+      en: Relates stored content to an identifiable logical data unit within it.
+      it: Collega un contenuto memorizzato a una unità logica di dati interna.
+```
+
+Non si dichiara DataBlock sottoclasse di StoredContent o Resource.
+Non si introducono vincoli di cardinalità, disgiunzioni o composizione ricorsiva.
+I range di readsFrom e writesTo restano invariati; i riferimenti PROCESS ai DataBlock saranno discussi separatamente.
