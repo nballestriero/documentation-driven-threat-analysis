@@ -68,6 +68,7 @@ def trace_projection(ir_path: Path, path: Path) -> None:
         'rdfPredicate': 'https://w3id.org/ddta/process#referencesContractElement',
         'isDataTransfer': False,
     } for p in ir['operandProvenance']]
+    operands.extend({'operandIRI':iri,'storedContentIRI':target,'rdfPredicate':'https://w3id.org/ddta/process#referencesStoredContent','isDataTransfer':False} for iri,operand in sorted(ir['operands'].items()) for target in operand.get('storedContentReferences',[]))
     write_json(path, {
         'schema': 'ddta-process-rdf-trace-v1',
         'transitions': sorted(transitions, key=lambda x:(x['processIRI'],x['fromStepIRI'],x['toStepIRI'],x['sourceRelation'],x['transitionIRI'] or '')),
@@ -77,6 +78,7 @@ def trace_projection(ir_path: Path, path: Path) -> None:
         'controlParticipants': sorted([{'controlIRI':n['iri'],'participantIRI':m,'rdfPredicate':'https://w3id.org/ddta/process#hasParticipantStep','isControlFlow':False,'isDataTransfer':False} for n in ir['nodes'].values() for m in n.get('participantSteps',[])], key=lambda x:(x['controlIRI'],x['participantIRI'])),
         'controlCompletionPolicies': sorted([{'controlIRI':n['iri'],'policy':n['joinPolicy'],'requiredCount':n['requiredCount'],'completionCriterion':n['completionCriterion'],'participantCount':len(n.get('participantSteps',[]))} for n in ir['nodes'].values() if n.get('participantSteps')], key=lambda x:x['controlIRI']),
         'operandReferences': sorted(operands,key=lambda x:x['operandIRI']),
+        **({'dataAccessReferences':[{'stepIRI':iri,'rdfPredicate':r['predicate'],'storedContentIRI':r['target']} for iri,n in sorted(ir['nodes'].items()) for r in n.get('dataAccessReferences',[])]} if any(n.get('dataAccessReferences') for n in ir['nodes'].values()) else {}),
         'realizations': sorted(ir['realizations'],key=lambda x:(x['process'],x['function'])),
         'diagnostics': ir['diagnostics'],
     })
@@ -111,6 +113,14 @@ def main(argv=None) -> int:
         setattr(a,field,require_input(getattr(a,field),field))
     if a.core_generator is not None:a.core_generator=require_input(a.core_generator,'core_generator')
     if a.core_mermaid is not None:a.core_mermaid=require_input(a.core_mermaid,'core_mermaid')
+    # Validate the original RDF, before any projection or generated files.
+    from rdflib import Graph
+    from data_process_validation import uses_data, require_valid
+    validation_graph = Graph().parse(a.core_ttl, format="turtle")
+    if a.process_ttl != a.core_ttl:
+        validation_graph.parse(a.process_ttl, format="turtle")
+    if a.data_guide or uses_data(validation_graph):
+        require_valid(validation_graph)
     # In live mode the CORE renderer receives an internal RDF view; the original
     # Turtle is always passed unchanged to the PROCESS projector.
     destination=a.out_dir.resolve()
@@ -138,6 +148,7 @@ def main(argv=None) -> int:
         base=[sys.executable,str(renderer),'--core-ttl',str(a.core_ttl),
               '--process-ttl',str(a.process_ttl),'--process-guide',str(a.process_guide),
               '--core-guide',str(a.core_guide),'--core-mermaid',str(core_mmd)]
+        if a.data_guide:base+=['--data-guide',str(a.data_guide)]
         if a.show_operand_resource_references:
             base+=['--show-operand-resource-references']
         if integrated:
@@ -171,6 +182,7 @@ def main(argv=None) -> int:
         'process-python': renderer,
         'orchestrator-python': Path(__file__).resolve(),
         'integrated-projection-python': root/'ddta_integrated_projection.py',
+        'integrated-compose-python': root/'ddta_integrated_compose.py',
     }
     if a.core_generator is not None:input_paths['core-generator-python']=a.core_generator
     if a.core_mermaid is not None:input_paths['core-mermaid-offline']=a.core_mermaid

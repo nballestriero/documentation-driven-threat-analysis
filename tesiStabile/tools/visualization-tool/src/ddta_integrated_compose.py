@@ -82,7 +82,7 @@ def _blocks(lines,ids):
     return blocks,occupied
 
 
-def compose_integrated(core_mmd,process_fragment,ir,diag,core_guide=None):
+def compose_integrated(core_mmd,process_fragment,ir,diag,core_guide=None,process_guide=None,data_guide=None):
     """Splice PROCESS structure into CORE Process occurrences, preserve links.
 
     Requires the CORE graph to be rendered from the internal projection that
@@ -197,4 +197,53 @@ def compose_integrated(core_mmd,process_fragment,ir,diag,core_guide=None):
             # Avoid redundant Mermaid linkStyle for the standard invocation connector.
             continue
         relink.append(f'    linkStyle {final_pos[mapped_key]} stroke:{color},{details}')
+    stored=diag.get('storedContentReferenceOccurrences',{})
+    if stored:
+        from ddta_process import guide_rules, mermaid_style, quote
+        spec=guide_rules(process_guide)[('relation-style','process:referencesStoredContent')]
+        rep,lab=spec['representation'],spec['label']
+        if (rep['type']!='directed-edge-via-label-node' or not rep['drawEdge'] or
+            rep['direction']!='subject-to-object' or rep['targetOccurrence']!='existing-core-occurrence' or
+            lab['rdfIndividual'] is not False or lab['representation']!='ellipse-inline-node' or
+            rep['sourceSegment']!='-.->' or rep['targetSegment']!='-.->'):
+            raise ValueError('Unsupported referencesStoredContent rule')
+        idx=len(out_edges)
+        for operand, sources in sorted(stored.items()):
+            for target in ir['operands'][operand]['storedContentReferences']:
+                matches=occurrences.get(target,[])
+                if len(matches)!=1:raise ValueError(f'StoredContent occurrence unresolved/ambiguous: {target}')
+                dest=matches[0]['id']
+                for source in sources:
+                    lid=_process_sid('stored-content-reference:'+source+':'+target)
+                    composed.append('    '+lid+'(['+quote(lab['text'])+'])')
+                    composed.append('    '+source+' '+rep['sourceSegment']+' '+lid+' '+rep['targetSegment']+' '+dest)
+                    extra_styles.append('    style '+lid+' '+mermaid_style(lab))
+                    detail='stroke:'+rep['stroke']+',stroke-width:'+str(rep['strokeWidth'])+'px'
+                    if rep['strokePattern']=='dashed':detail+=',stroke-dasharray:'+rep['dashArray']
+                    relink.extend('    linkStyle '+str(i)+' '+detail for i in (idx,idx+1))
+                    idx+=2
+    accesses=[(iri,ref) for iri,node in sorted(ir['nodes'].items()) for ref in node.get('dataAccessReferences',[])]
+    if accesses:
+        from ddta_process import data_step_graphic_rules, quote
+        from ddta_viz.render_mermaid import css
+        _,rules=data_step_graphic_rules(data_guide)
+        idx=len(_edge_occurrences(composed))
+        for iri,ref in accesses:
+            spec=rules[ref['predicate']];rep=spec['representation'];lab=spec['label']
+            if (rep.get('type')!='directed-edge' or rep.get('direction')!='subject-to-object' or rep.get('drawEdge') is not True or lab.get('representation')!='rounded-inline-node' or rep.get('arrowhead')!='target'):
+                raise ValueError('Unsupported DATA access graphical rule: '+ref['predicate'])
+            source=_process_sid(iri);matches=occurrences.get(ref['target'],[])
+            if len(matches)!=1:raise ValueError('DATA access target unresolved/ambiguous: '+ref['target'])
+            if not any(re.match(r'^\s*(?:subgraph )?'+re.escape(source)+r'\[',line) for line in composed):
+                raise ValueError('DATA access Step occurrence not found: '+iri)
+            text=lab['text']
+            if not re.fullmatch(r'[A-Za-z][A-Za-z0-9_:]*',text):raise ValueError('Invalid DATA edge label')
+            dest=matches[0]['id']
+            lid=_process_sid('data-access:'+source+':'+ref['predicate']+':'+ref['target'])
+            composed.append('    '+lid+'(['+quote(text)+'])')
+            composed.append('    '+source+' --- '+lid+' --> '+dest)
+            extra_styles.append('    style '+lid+' '+css(lab))
+            detail=css(rep)
+            if detail:relink.append('    linkStyle '+str(idx)+','+str(idx+1)+' '+detail)
+            idx+=2
     return '\n'.join(composed+core_styles+extra_styles+relink)+'\n'

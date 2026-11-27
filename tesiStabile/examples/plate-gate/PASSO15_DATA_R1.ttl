@@ -52,6 +52,7 @@ ex:CameraEnvironment a ddta:Environment ;
     ddta:makesAvailable ex:CameraToProcessingChannel .
 
 ex:DisagreementCountOperand a process:Operand ;
+    process:referencesStoredContent ex:OCRDisagreementCounterRuntime ;
     process:valueLocator "DisagreementCount" .
 
 ex:DisagreementCountReachedLimit a process:AtomicCondition ;
@@ -75,8 +76,6 @@ ex:MobileNetV3_Transformer_OCR a ddta:Resource ;
 ex:OCRConfigurationStableStore a data:StableStore ;
     ddta:stores ex:OCRRetrainingConfigurationFile .
 
-ex:OCRDisagreementCounterRuntime a data:DataBlock .
-
 ex:OCRDisagreementHistoryStore a ddta:Store,
         data:StableStore .
 
@@ -89,8 +88,6 @@ ex:OCRRetrainingConfigurationFile a ddta:StoredContent .
 
 ex:OCRRetrainingConfigurationRuntime a ddta:StoredContent ;
     data:hasDataBlock ex:OCRRetrainingThresholdRuntime .
-
-ex:OCRRetrainingThresholdRuntime a data:DataBlock .
 
 ex:OCRRunningStore a data:RunningStore ;
     ddta:stores ex:OCRRetrainingConfigurationRuntime,
@@ -124,6 +121,7 @@ ex:ReceivePlateNumber a ddta:CommunicationFunction ;
     ddta:usesChannelForInput ex:ProcessingToGateChannel .
 
 ex:RetrainingThresholdOperand a process:Operand ;
+    process:referencesStoredContent ex:OCRRetrainingThresholdRuntime ;
     process:valueLocator "L" .
 
 ex:SendPlateImage a ddta:CommunicationFunction ;
@@ -171,6 +169,12 @@ ex:HandleOCRDisagreementStep a ddta:ProcessStep ;
 
 ex:LaunchAutomaticOCRRetrainingStep a ddta:ProcessStep ;
     process:invokesProcess ex:AutomaticOCRRetrainingProcess .
+
+ex:OCRDisagreementCounterRuntime a ddta:StoredContent,
+        data:DataBlock .
+
+ex:OCRRetrainingThresholdRuntime a ddta:StoredContent,
+        data:DataBlock .
 
 ex:OCR_CNN_AttentionLSTMStep a ddta:ProcessStep ;
     process:declaresInputContract ex:PlateImageContract ;
@@ -236,3 +240,11 @@ ex:PlateNumberContract a ddta:Contract ;
 ex:PlateImageContract a ddta:Contract ;
     ddta:hasContractElement ex:PlateImage .
 
+ex:PlateRecognitionSystem ddta:hasSupportFunction ex:InitializeOCRConfiguration .
+ex:InitializeOCRConfiguration a ddta:Function .
+ex:InitializeOCRConfigurationProcess a ddta:Process ;
+    ddta:realizesFunction ex:InitializeOCRConfiguration ;
+    ddta:hasStep ex:ReadOCRConfigurationStep ;
+    process:hasInitialStep ex:ReadOCRConfigurationStep .
+ex:ReadOCRConfigurationStep a ddta:ProcessStep, data:ReadStep ;
+    data:readsFrom ex:OCRRetrainingConfigurationFile .

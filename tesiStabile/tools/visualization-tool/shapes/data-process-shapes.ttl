@@ -1,0 +1,23 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix profile: <https://w3id.org/ddta/data-process-validation#> .
+@prefix process: <https://w3id.org/ddta/process#> .
+
+profile:OperandRunningStoreShape a sh:NodeShape ;
+    sh:targetSubjectsOf process:referencesStoredContent ;
+    sh:severity sh:Violation ;
+    sh:sparql profile:DATA-01 .
+
+profile:DATA-01 a sh:SPARQLConstraint ;
+    sh:message "DATA-01: operand content must belong to a RunningStore." ;
+    sh:select """
+        PREFIX ddta: <https://w3id.org/ddta/core#>
+        PREFIX data: <https://w3id.org/ddta/data#>
+        PREFIX process: <https://w3id.org/ddta/process#>
+        SELECT $this ?value WHERE {
+            $this process:referencesStoredContent ?value .
+            FILTER NOT EXISTS {
+                ?store a data:RunningStore .
+                ?store ddta:stores+/data:hasDataBlock* ?value .
+            }
+        }
+    """ .

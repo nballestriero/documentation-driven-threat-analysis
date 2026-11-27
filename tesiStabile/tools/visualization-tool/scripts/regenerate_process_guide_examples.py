@@ -26,6 +26,8 @@ def gather(s:str):
     res=[]
     for i,m in enumerate(markers):
         end=markers[i+1].start() if i<len(markers)-1 else len(s)
+        integrated=s.find("<!-- DDTA-PROCESS-INTEGRATED-EXAMPLE-",m.end(),end)
+        if integrated>=0:end=integrated
         sec=s[m.end():end];tt=list(TURTLE.finditer(sec));mm=list(MERMAID.finditer(sec))
         if len(tt)!=1 or len(mm)!=1 or tt[0].end()>mm[0].start():
             raise ValueError(f'ESEMPIO_{i+1:02d}: occorre un Turtle prima di un Mermaid')

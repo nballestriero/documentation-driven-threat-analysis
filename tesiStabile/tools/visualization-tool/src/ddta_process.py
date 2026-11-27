@@ -15,6 +15,7 @@ import yaml
 
 CORE=Namespace('https://w3id.org/ddta/core#')
 PR=Namespace('https://w3id.org/ddta/process#')
+DATA=Namespace('https://w3id.org/ddta/data#')
 
 # These RDF names were removed from the approved PROCESS ontology. Retain the
 # names here *only* to reject stale input, never to project or render them.
@@ -87,6 +88,30 @@ def guide_rules(path):
 
 
 
+def data_step_graphic_rules(path):
+    """DATA graphic declarations used by the integrated Step owner.
+
+    All display names, relation labels and styles originate in the guide.
+    No example individuals or placement inferred from their labels.
+    """
+    if path is None:return {},{}
+    raw=re.findall(r'```yaml ddta-visualization\s*\n(.*?)\n```',Path(path).read_text(encoding='utf-8'),re.S)
+    classes={}; relations={}
+    for block in raw:
+        rule=yaml.safe_load(block)
+        if rule.get('module')!='data':raise ValueError('Non-DATA rule in DATA guide')
+        target=rule.get('target','')
+        if not target.startswith('data:'):continue
+        iri=str(DATA[target.split(':',1)[1]])
+        if rule.get('record')=='class-style' and rule.get('inheritsVisualFormFrom')=='ddta:ProcessStep':
+            if iri in classes or rule.get('displayType')!=target:raise ValueError('Invalid DATA Step graphic rule: '+target)
+            classes[iri]=rule
+        if rule.get('record')=='relation-style' and rule.get('representation',{}).get('targetOccurrence')=='existing-core-occurrence':
+            if iri in relations:raise ValueError('Duplicate DATA Step relation graphic rule: '+target)
+            relations[iri]=rule
+    return classes,relations
+
+
 def core_contract_rules(path):
     """Read-only CORE visual semantics. No CORE generator code is imported."""
     content=Path(path).read_text(encoding='utf-8')
@@ -142,8 +167,9 @@ def contract_element_style(rule, element):
             st.update({k:v for k,v in spec.items() if k!='when'})
     return st
 
-def project(core_ttl,process_ttl,guide):
+def project(core_ttl,process_ttl,guide,data_guide=None):
     guide_rules(guide)
+    data_classes,data_relations=data_step_graphic_rules(data_guide)
     g=Graph().parse(str(core_ttl),format='turtle'); baseline=set(g)
     g.parse(str(process_ttl),format='turtle')
     reject_deprecated_process_vocabulary(g)
@@ -156,6 +182,14 @@ def project(core_ttl,process_ttl,guide):
             'processes':[],'nodes':{},'conditions':{},'transitions':[],
             'references':[],'realizations':[],'diagnostics':[],'contracts':{},'operands':{},'operandProvenance':[]}
     nodes=result['nodes'];conditions=result['conditions'];trans=result['transitions'];references=result['references']
+    if list(g.triples((None,DATA.readsFrom,None))) and str(DATA.readsFrom) not in data_relations:
+        raise ValueError('DATA readsFrom requires its graphical relation rule in --data-guide')
+    if list(g.subjects(RDF.type,DATA.ReadStep)) and str(DATA.ReadStep) not in data_classes:
+        raise ValueError('DATA ReadStep requires its graphical class rule in --data-guide')
+    if list(g.triples((None,DATA.writesTo,None))) and str(DATA.writesTo) not in data_relations:
+        raise ValueError('DATA writesTo requires its graphical relation rule in --data-guide')
+    if list(g.subjects(RDF.type,DATA.WriteStep)) and str(DATA.WriteStep) not in data_classes:
+        raise ValueError('DATA WriteStep requires its graphical class rule in --data-guide')
     def add_node(s):
         if str(s) not in nodes:
             nodes[str(s)]={'iri':str(s),'name':local(s),'label':deterministic_label(g,s,local(s)),
@@ -191,12 +225,26 @@ def project(core_ttl,process_ttl,guide):
                 'resourceReferences':[str(x) for x in sorted(g.objects(operand,PR.referencesResource),key=str)],
                 'valueLocator':[str(x) for x in sorted(g.objects(operand,PR.valueLocator),key=str)],
                 'literalValue':[str(x) for x in sorted(g.objects(operand,PR.literalValue),key=str)]}
+            stored_refs=sorted(set(g.objects(operand,PR.referencesStoredContent)),key=str)
+            if stored_refs:
+                result['operands'][str(operand)]['storedContentReferences']=[str(x) for x in stored_refs]
         conditions[str(c)]={'iri':str(c),'name':local(c),'rdfType':'process:AtomicCondition',
                             'operator':op,'members':[],'left':str(left),'right':str(right)}
     for p in processes:
         steps=sorted(g.objects(p,CORE.hasStep),key=str)
         for s in steps:
             node=add_node(s)
+            specializations=sorted(set(node['rdfTypes'])&set(data_classes))
+            if len(specializations)>1:raise ValueError('Ambiguous DATA Step graphic class: '+str(s))
+            if specializations:node['dataStepGraphicClass']=specializations[0]
+            access=[]
+            for pred in sorted(data_relations):
+                for target in sorted(set(g.objects(s,URIRef(pred))),key=str):
+                    if not specializations:raise ValueError('DATA access requires a declared DATA Step class: '+str(s))
+                    if not any((target,RDF.type,t) in g for t in (CORE.StoredContent,DATA.DataBlock)):
+                        raise ValueError('DATA access target must be StoredContent: '+str(target))
+                    access.append({'predicate':pred,'target':str(target)})
+            if access:node['dataAccessReferences']=access
             for field,rel in (('inputContracts',PR.declaresInputContract),('outputContracts',PR.declaresOutputContract)):
                 declared=sorted(set(g.objects(s,rel)),key=str)
                 node[field]=[str(c) for c in declared]
@@ -267,6 +315,10 @@ def project(core_ttl,process_ttl,guide):
          'initials':[str(s) for s in initial],
          'subProcesses':[str(s) for s in sorted(set(g.objects(p,PR.hasSubProcess)),key=str)],
          'steps':[str(s) for s in steps], 'function':str(funcs[0]) if funcs else None})
+    declared_steps={s for p in result['processes'] for s in p['steps']}
+    for pred in sorted(data_relations):
+        for subject in sorted(set(g.subjects(URIRef(pred),None)),key=str):
+            if str(subject) not in declared_steps:raise ValueError('DATA access Step not owned by a Process: '+str(subject))
     # hasSubProcess: explicit structural composition only. The YAML requires
     # recursive containment, rejects cycles and does not permit arbitrary
     # multiple visual parents that would duplicate one RDF Process identity.
@@ -357,11 +409,12 @@ def project(core_ttl,process_ttl,guide):
     return result
 
 class ProcessRenderer:
-    def __init__(self,ir,guide,core_guide,contract_view="compact",show_operand_resource_references=False):
+    def __init__(self,ir,guide,core_guide,contract_view="compact",show_operand_resource_references=False,data_guide=None):
         if contract_view not in ('compact','extended'):raise ValueError('contract_view: compact oppure extended')
         self.contract_view=contract_view
         self.show_operand_resource_references=bool(show_operand_resource_references)
         self.core=core_contract_rules(core_guide);self.core_guide=core_guide;self.guide=guide
+        self.data_step_classes,_=data_step_graphic_rules(data_guide)
         self.ir=ir;self.rules=guide_rules(guide);self.lines=[];self.styles=collections.defaultdict(set)
         self.edges=[];self.shown=set();self.condition_uses=[];self.boxes={};self.linkstyles=[];self.emitted_links=0;self.seen_steps=set();self.relation_label_defs=set();self.branch_local_flow_edges=set();self.process_local_flow_edges=set()
         self.nodes=ir['nodes'];self.conds=ir['conditions'];self.steprefs=collections.defaultdict(list)
@@ -527,6 +580,13 @@ class ProcessRenderer:
             self.add(left+' ~~~ '+oid+' ~~~ '+right,depth+1)
         self.add('end',depth);self.style('condition',cid)
         self.condition_uses.append({'control':control,'guard':guard,'wrapper':cid,'members':c.get('members',[])})
+    def step_type_label(self,node):
+        key=node.get('dataStepGraphicClass')
+        return self.data_step_classes[key]['displayType'] if key else 'ddta:ProcessStep'
+
+    def step_label_color(self,node):
+        return self.core['classes']['ddta:ProcessStep']['style']['color'] if node.get('dataStepGraphicClass') else '#334155'
+
     def draw_step(self,iri,depth):
         n=self.nodes[iri];nid=self.sid(iri);self.seen_steps.add(iri)
         if n['controlKind'] in ('END_PROCESS','END_BRANCH','WAIT'):
@@ -536,13 +596,13 @@ class ProcessRenderer:
             value=f"{n['requiredCount']}/{count}" if rep=='N_OF_M' else rep
             self.add(nid+'(('+quote(value)+'))',depth);self.style('controlsolid',nid)
         else:
-            self.add(nid+'['+self.text_label(n['name'],'ddta:ProcessStep','#334155')+']',depth)
-            self.style('step',nid)
+            self.add(nid+'['+self.text_label(n['name'],self.step_type_label(n),self.step_label_color(n))+']',depth)
+            self.style('coreProcessStep' if n.get('dataStepGraphicClass') else 'step',nid)
     def draw_contract_step(self,iri,declared,depth):
         """CORE class and group styling, PROCESS relations, RDF-only selection."""
         node=self.nodes[iri]; sid=self.sid(iri)
         self.seen_steps.add(iri)
-        self.add('subgraph '+sid+'['+self.text_label(node['name'],'ddta:ProcessStep','#334155')+']',depth)
+        self.add('subgraph '+sid+'['+self.text_label(node['name'],self.step_type_label(node),self.step_label_color(node))+']',depth)
         self.add('direction TB',depth+1)
         group=stable('step-contracts-group:'+iri)
         gspec=self.core['group']
@@ -1115,7 +1175,7 @@ class ProcessRenderer:
                  'conditionPlacements':self.condition_uses,'implementationGroups':self.boxes,
                  'xorConditionHeaders':self.header_compressions,
                  'internalContracts':len(self.ir['contracts']),'contractView':self.contract_view,'operandProvenance':self.ir['operandProvenance'],
-                 'processEdgeCount':self.emitted_links,'processLinkStylesRelative':self.linkstyles,'omitNeutralInvocationLinkStyle':self.rules[('relation-style','process:invokesProcess')]['representation'].get('emitMermaidLinkStyle') is False,'allProcessStepsShown':True}
+                 'processEdgeCount':self.emitted_links,'processLinkStylesRelative':self.linkstyles,'omitNeutralInvocationLinkStyle':self.rules[('relation-style','process:invokesProcess')]['representation'].get('emitMermaidLinkStyle') is False,'allProcessStepsShown':True, **({'storedContentReferenceOccurrences': {iri:sorted(set(ids)) for iri,ids in sorted(self.operand_occurrences.items()) if self.ir['operands'][iri].get('storedContentReferences')}} if any(o.get('storedContentReferences') for o in self.ir['operands'].values()) else {})}
 
 def count_mermaid_edges(code):
     n=0
@@ -1196,6 +1256,7 @@ def main():
     ap.add_argument('--process-ttl',type=Path,required=True)
     ap.add_argument('--process-guide',type=Path,required=True)
     ap.add_argument('--core-guide',type=Path,required=True,help='CORE graphical guide, read-only')
+    ap.add_argument('--data-guide',type=Path,help='DATA graphical guide, read-only')
     ap.add_argument('--contract-view',choices=['compact','extended'],default='compact')
     ap.add_argument('--show-operand-resource-references',action='store_true',help='Visualizza gli archi RDF process:referencesResource verso risorse runtime (regola grafica R2)')
     ap.add_argument('--core-mermaid',type=Path,required=True)
@@ -1217,14 +1278,18 @@ def main():
                          indent=2,ensure_ascii=False))
         return
     else:
-        ir=project(a.core_ttl,a.process_ttl,a.process_guide)
+        ir=project(a.core_ttl,a.process_ttl,a.process_guide,a.data_guide)
         (a.out_dir/'04_process_projection.json').write_text(json.dumps(ir,indent=2,ensure_ascii=False)+'\n',encoding='utf-8',newline='\n')
-        fragment,rdiag=ProcessRenderer(ir,a.process_guide,a.core_guide,a.contract_view,show_operand_resource_references=a.show_operand_resource_references).render()
+        fragment,rdiag=ProcessRenderer(ir,a.process_guide,a.core_guide,a.contract_view,show_operand_resource_references=a.show_operand_resource_references,data_guide=a.data_guide).render()
         (a.out_dir/'04_process_fragment.mmd').write_text(fragment,encoding='utf-8',newline='\n')
         if a.integrated_splice:
             from ddta_integrated_compose import compose_integrated
-            mmd=compose_integrated(a.core_mermaid,fragment,ir,rdiag,a.core_guide)
+            mmd=compose_integrated(a.core_mermaid,fragment,ir,rdiag,a.core_guide,a.process_guide,a.data_guide)
         else:
+            if any(n.get("dataAccessReferences") for n in ir["nodes"].values()):
+                raise ValueError("DATA access requires integrated composition")
+            if any(o.get("storedContentReferences") for o in ir["operands"].values()):
+                raise ValueError("referencesStoredContent requires integrated composition")
             mmd=compose(a.core_mermaid,fragment,ir,rdiag,a.core_guide)
         diag={'modules':modules,'coreUnchanged':True,'processEnabled':True,**rdiag}
         (a.out_dir/'06_process_diagnostics.json').write_text(json.dumps(diag,ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')

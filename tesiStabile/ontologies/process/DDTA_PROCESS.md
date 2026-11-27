@@ -235,6 +235,15 @@ properties:
     definition:
       en: Identifies a resource from which an operand may be resolved.
       it: Identifica una risorsa da cui un operando può essere risolto.
+  - iri: process:referencesStoredContent
+    status: approved
+    domain: process:Operand
+    range: ddta:StoredContent
+    label: {en: references stored content, it: fa riferimento a contenuto memorizzato}
+    definition:
+      en: Identifies the stored content referred to by an operand, without asserting a read or a data transfer.
+      it: Identifica il contenuto memorizzato cui si riferisce un operando, senza asserire una lettura o un trasferimento.
+
 ```
 
 ```yaml ddta-ontology
@@ -260,16 +269,19 @@ properties:
       it: Localizzatore logico del valore in una risorsa o contesto operativo identificato.
 ```
 
+`referencesStoredContent` usa esclusivamente una classe CORE; le specializzazioni di StoredContent sono ammesse senza dipendenze da altri moduli. Il riferimento non sostituisce un’operazione di lettura.
+
 **Disciplina dei riferimenti.** Un operando può riferirsi a un elemento contrattuale, a un valore di configurazione, a uno stato operativo o a una costante. Per una condizione automaticamente valutabile è necessario che il riferimento sia risolvibile e abbia semantica e tipo del valore noti. `valueLocator` non è un linguaggio di query standardizzato: la sua sintassi e interpretazione appartengono alla specializzazione o al valutatore, non sono inferite dall’ontologia. Non viene inferita una variabile di codice a partire dal nome di un `ContractElement`.
 
 ### 6.3 Interrogazione SPARQL
 
 ```sparql
 PREFIX process: <https://w3id.org/ddta/process#>
-SELECT ?operand ?contractElement ?resource ?locator ?literal WHERE {
+SELECT ?operand ?contractElement ?resource ?storedContent ?locator ?literal WHERE {
   ?operand a process:Operand .
   OPTIONAL { ?operand process:referencesContractElement ?contractElement . }
   OPTIONAL { ?operand process:referencesResource ?resource . }
+  OPTIONAL { ?operand process:referencesStoredContent ?storedContent . }
   OPTIONAL { ?operand process:valueLocator ?locator . }
   OPTIONAL { ?operand process:literalValue ?literal . }
 }

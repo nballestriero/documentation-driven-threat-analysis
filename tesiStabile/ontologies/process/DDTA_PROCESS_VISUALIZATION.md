@@ -9,6 +9,7 @@ Questa guida proietta gli individui RDF e le relazioni dichiarate in ontologia P
 - Un `CONCURRENT_SPLIT` composto è un **unico** `ControlNode`; i partecipanti vengono scelti soltanto da `hasParticipantStep`; policy e criterio di completamento sono attributi dello stesso nodo.
 - Gli archi `hasParticipantStep` sono relazioni di partecipazione, non flussi di controllo né trasferimenti dati.
 - I contratti interni sono mostrati come contenimento nello Step; i contratti della funzione CORE restano immutati e sono riutilizzati per identità.
+- `referencesStoredContent` collega un Operand all’occorrenza CORE di un contenuto, anche se specializzata da un modulo esterno; non crea una seconda occorrenza.
 - Le risorse implementative compaiono tramite `implementedBy`; non vengono modellate posizioni in Store o modalità di caricamento.
 - I rami senza provenienza RDF dichiarata non vengono inventati. Le regole della vista candidata non impongono nuove semantiche di attacco o memorizzazione.
 
@@ -28,13 +29,11 @@ introdotte relazioni per completare il disegno.
 Questi sono esempi **isolati** di regole grafiche, non la ricostruzione dello
 scenario integrato *RecognizePlateProcess*. In questa serie, il renderer CORE è
 eseguito con un Turtle esplicitamente vuoto (zero triple) per non introdurre
-System, Environment o Function fittizi nel diagramma. I casi integrati
-CORE+PROCESS verranno trattati separatamente, con il collegamento esplicito
-`ddta:realizesFunction` e la separazione documentata di sistemi e ambienti.
+System, Environment o Function fittizi nel diagramma. I casi integrati CORE+PROCESS sono trattati separatamente: la sezione finale contiene un esempio integrato autonomo per referencesStoredContent. I 17 esempi isolati rimangono invariati.
 
 Le rappresentazioni qui incorporate sono **candidate per revisione visiva**:
 non aggiornare gli snapshot del pilota prima dell'approvazione. Il programma
-`regenerate_process_guide_examples.py` ricostruisce ogni grafico dal Turtle,
+`regenerate_process_guide_examples.py` ricostruisce i 17 grafici isolati dal Turtle,
 controlla il determinismo e confronta i Mermaid con la guida.
 
 
@@ -1885,4 +1884,139 @@ objectPresentation:
   strokeWidth: 1.5
   strokePattern: dashed
   dashArray: "8 5"
+```
+
+### process:referencesStoredContent — Riferimento a un contenuto memorizzato
+
+Il riferimento è rappresentato con una freccia grigia tratteggiata e un’etichetta intermedia grigia tratteggiata. La destinazione è l’occorrenza CORE del contenuto, anche quando il contenuto è specializzato o annidato. Non si crea un secondo nodo per il dato. Si rappresentano esclusivamente le triple selezionate, senza inferire una lettura o un trasferimento. La regola opera nella composizione integrata; un riferimento senza destinazione visibile o con più occorrenze ambigue viene segnalato.
+
+```yaml ddta-visualization
+record: relation-style
+module: process
+target: process:referencesStoredContent
+representation:
+  type: directed-edge-via-label-node
+  drawEdge: true
+  direction: subject-to-object
+  sourceSegment: "-.->"
+  targetSegment: "-.->"
+  stroke: "#7B8794"
+  strokeWidth: 1.5
+  strokePattern: dashed
+  dashArray: "5 4"
+  targetOccurrence: existing-core-occurrence
+label:
+  text: referencesStoredContent
+  representation: ellipse-inline-node
+  rdfIndividual: false
+  fill: "#F1F5F9"
+  stroke: "#94A3B8"
+  color: "#64748B"
+  strokeWidth: 1
+  strokePattern: dashed
+  dashArray: "5 4"
+```
+
+<!-- DDTA-PROCESS-INTEGRATED-EXAMPLE-01 rule="process:referencesStoredContent" -->
+**Esempio integrato 01 — CORE + PROCESS, senza DATA.**
+
+```turtle
+@prefix ddta: <https://w3id.org/ddta/core#> .
+@prefix process: <https://w3id.org/ddta/process#> .
+@prefix ex: <https://example.org/ddta/stored-reference-example#> .
+
+ex:ExampleProcess a ddta:Process ;
+    ddta:hasStep ex:Decision, ex:OnTrue, ex:OnFalse ;
+    process:hasInitialStep ex:Decision .
+ex:Decision a ddta:ProcessStep, process:ControlNode ;
+    process:controlKind "XOR_SPLIT" ;
+    process:evaluatesCondition ex:ThresholdCondition ;
+    process:hasTrueNextStep ex:OnTrue ;
+    process:hasFalseNextStep ex:OnFalse .
+ex:OnTrue a ddta:ProcessStep .
+ex:OnFalse a ddta:ProcessStep .
+ex:ThresholdCondition a process:AtomicCondition ;
+    process:comparisonOperator "GE" ;
+    process:hasLeftOperand ex:CountOperand ;
+    process:hasRightOperand ex:LimitOperand .
+ex:CountOperand a process:Operand ;
+    process:referencesStoredContent ex:Counter .
+ex:LimitOperand a process:Operand ;
+    process:referencesStoredContent ex:Threshold .
+ex:RuntimeStore a ddta:Store ; ddta:stores ex:Counter, ex:Threshold .
+ex:Counter a ddta:StoredContent .
+ex:Threshold a ddta:StoredContent .
+```
+
+```mermaid
+%%{init: {"htmlLabels":true,"theme":"base","layout":"elk"}}%%
+flowchart TB
+    subgraph O_febe12288a9e70["<div style='display:inline-block;text-align:center;white-space:nowrap;line-height:1.4;padding:6px 10px;background:transparent'><span style='display:block;font-size:16px;font-weight:700;color:#334155'>ExampleProcess</span><span style='display:block;font-size:11px;color:#334155'>ddta:Process</span></div>"]
+        direction TB
+        subgraph PX_65a8d3886f83["<div style='display:inline-block;text-align:center;white-space:nowrap;line-height:1.4;padding:6px 10px;background:transparent'><span style='display:block;font-size:16px;font-weight:700;color:#2563EB'>Decision</span><span style='display:block;font-size:11px;color:#2563EB'>process:ControlNode</span></div>"]
+            direction TB
+            subgraph PX_85906585a261["<div style='display:inline-block;text-align:center;white-space:nowrap;line-height:1.4;padding:6px 10px;background:transparent'><span style='display:block;font-size:16px;font-weight:700;color:#A67C00'>ThresholdCondition</span><span style='display:block;font-size:11px;color:#A67C00'>process:AtomicCondition</span></div>"]
+                direction LR
+                PX_4279ccf24f6a{"GE"}
+                PX_a2da7ec708ea["<div style='display:inline-block;text-align:center;white-space:nowrap;line-height:1.4;padding:6px 10px;background:transparent'><span style='display:block;font-size:16px;font-weight:700;color:#334155'>CountOperand</span><span style='display:block;font-size:11px;color:#334155'>process:Operand</span></div>"]
+                PX_dd42421d9f98["<div style='display:inline-block;text-align:center;white-space:nowrap;line-height:1.4;padding:6px 10px;background:transparent'><span style='display:block;font-size:16px;font-weight:700;color:#334155'>LimitOperand</span><span style='display:block;font-size:11px;color:#334155'>process:Operand</span></div>"]
+                PX_a2da7ec708ea ~~~ PX_4279ccf24f6a ~~~ PX_dd42421d9f98
+            end
+            subgraph PX_17abbeac2139[" "]
+                direction LR
+                subgraph PX_1f8f1803a620[" "]
+                    direction TB
+                    PX_3ae930950058["<div style='display:inline-block;text-align:center;white-space:nowrap;line-height:1.4;padding:6px 10px;background:transparent'><span style='display:block;font-size:16px;font-weight:700;color:#334155'>OnTrue</span><span style='display:block;font-size:11px;color:#334155'>ddta:ProcessStep</span></div>"]
+                end
+                subgraph PX_8919784bd809[" "]
+                    direction TB
+                    PX_45ee5041881f["<div style='display:inline-block;text-align:center;white-space:nowrap;line-height:1.4;padding:6px 10px;background:transparent'><span style='display:block;font-size:16px;font-weight:700;color:#334155'>OnFalse</span><span style='display:block;font-size:11px;color:#334155'>ddta:ProcessStep</span></div>"]
+                end
+            end
+        end
+        PX_63be08c65a4f(["START"])
+        style PX_63be08c65a4f fill:#F3F5F7,stroke:#B6BEC8,color:#596674
+        PX_63be08c65a4f --> PX_65a8d3886f83
+    end
+    subgraph O_d341bddd5d352c["<img src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiM0NTg0NUIiIHN0cm9rZS13aWR0aD0iMS43NSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48ZWxsaXBzZSBjeD0iMTIiIGN5PSI1IiByeD0iOSIgcnk9IjMiLz48cGF0aCBkPSJNMyA1djE0YzAgMS42NiA0LjAzIDMgOSAzczktMS4zNCA5LTNWNSIvPjxwYXRoIGQ9Ik0zIDEyYzAgMS42NiA0LjAzIDMgOSAzczktMS4zNCA5LTMiLz48L3N2Zz4=' width='27' height='27'/><div style='display:inline-block;text-align:center;white-space:nowrap;line-height:1.4;padding:8px 12px;background:transparent;opacity:1;color:#64748B'><span style='display:block;text-align:center;font-size:17px;font-weight:700;color:#64748B'>RuntimeStore</span><span style='display:block;text-align:center;font-size:12px;font-weight:400;color:#64748B'>ddta:Store</span></div>"]
+        direction TB
+        O_dd8bd0e381c86b["<div style='display:inline-block;text-align:center;white-space:nowrap;line-height:1.4;padding:8px 12px;background:transparent;opacity:1;color:#94A3B8'><span style='display:block;text-align:center;font-size:17px;font-weight:700;color:#94A3B8'>Counter</span><span style='display:block;text-align:center;font-size:12px;font-weight:400;color:#94A3B8'>ddta:StoredContent</span></div>"]
+        O_464de984e54cbf["<div style='display:inline-block;text-align:center;white-space:nowrap;line-height:1.4;padding:8px 12px;background:transparent;opacity:1;color:#94A3B8'><span style='display:block;text-align:center;font-size:17px;font-weight:700;color:#94A3B8'>Threshold</span><span style='display:block;text-align:center;font-size:12px;font-weight:400;color:#94A3B8'>ddta:StoredContent</span></div>"]
+    end
+    PX_85906585a261 --> PX_45ee5041881f
+    PX_85906585a261 --> PX_3ae930950058
+    PX_98d2b5ca7ed1(["referencesStoredContent"])
+    PX_a2da7ec708ea -.-> PX_98d2b5ca7ed1 -.-> O_dd8bd0e381c86b
+    PX_581783c7ff75(["referencesStoredContent"])
+    PX_dd42421d9f98 -.-> PX_581783c7ff75 -.-> O_464de984e54cbf
+    classDef DDTA_C_9c53de845317 fill:#F1F5F9,stroke:#64748B,color:#64748B,stroke-width:1.5px,rx:12px,ry:12px
+    class O_d341bddd5d352c DDTA_C_9c53de845317
+    classDef DDTA_C_51a0b50eca1f fill:#F1F5F9,stroke:#94A3B8,color:#94A3B8,stroke-width:1.0px,stroke-dasharray:5 4,rx:5px,ry:5px
+    class O_464de984e54cbf,O_dd8bd0e381c86b DDTA_C_51a0b50eca1f
+    classDef DDTA_C_db520d489522 fill:#F8FAFC,stroke:#7B8794,color:#7B8794,stroke-width:2px
+    classDef DDTA_C_a6bdc037a9c8 fill:#F8FAFC,stroke:#7B8794,color:#7B8794,stroke-width:2px,rx:8px,ry:8px
+    class O_febe12288a9e70 DDTA_C_a6bdc037a9c8
+    classDef PROC_step fill:#FFFFFF,stroke:#7B8794,color:#334155,stroke-width:1.5px,stroke-dasharray:5 4
+    class PX_3ae930950058,PX_45ee5041881f PROC_step
+    classDef PROC_process fill:#F8FAFC,stroke:#7B8794,color:#334155,stroke-width:2px,rx:8px,ry:8px
+    classDef PROC_region fill:#FFFFFF,stroke:#2563EB,color:#2563EB,stroke-width:2px,stroke-dasharray:6 4
+    class PX_65a8d3886f83 PROC_region
+    classDef PROC_branchdashed fill:#FFFFFF,stroke:#2563EB,color:#2563EB,stroke-width:1.5px,stroke-dasharray:6 4
+    class PX_1f8f1803a620,PX_8919784bd809 PROC_branchdashed
+    classDef PROC_invisible fill:transparent,stroke:transparent,stroke-width:0px
+    class PX_17abbeac2139 PROC_invisible
+    classDef PROC_condition fill:#FFFFFF,stroke:#D6A100,color:#A67C00,stroke-width:2px
+    class PX_85906585a261 PROC_condition
+    classDef PROC_operator fill:#FFFFFF,stroke:#D6A100,color:#A67C00,stroke-width:1.5px
+    class PX_4279ccf24f6a PROC_operator
+    classDef PROC_component fill:#FFFFFF,stroke:#7B8794,color:#334155,stroke-width:1.5px
+    class PX_a2da7ec708ea,PX_dd42421d9f98 PROC_component
+    style PX_98d2b5ca7ed1 fill:#F1F5F9,stroke:#94A3B8,color:#64748B,stroke-width:1px,stroke-dasharray:5 4
+    style PX_581783c7ff75 fill:#F1F5F9,stroke:#94A3B8,color:#64748B,stroke-width:1px,stroke-dasharray:5 4
+    linkStyle 3 stroke:#C62828,stroke-width:2.5px
+    linkStyle 4 stroke:#238636,stroke-width:2.5px
+    linkStyle 5 stroke:#7B8794,stroke-width:1.5px,stroke-dasharray:5 4
+    linkStyle 6 stroke:#7B8794,stroke-width:1.5px,stroke-dasharray:5 4
+    linkStyle 7 stroke:#7B8794,stroke-width:1.5px,stroke-dasharray:5 4
+    linkStyle 8 stroke:#7B8794,stroke-width:1.5px,stroke-dasharray:5 4
 ```

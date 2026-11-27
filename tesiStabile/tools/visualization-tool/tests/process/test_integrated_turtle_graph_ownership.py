@@ -52,7 +52,9 @@ class IntegratedTurtleVisualOwnershipTest(unittest.TestCase):
                 self.assertIn((EX.ProcessingToHumanReviewChannel,RDF.type,CORE.CommunicationChannel),actual)
                 if step>=14:
                     self.assertIn((EX.PlateRecognitionSystem,CORE.hasSupportFunction,EX.AutomaticOCRRetraining),actual)
-                    self.assertIn((EX.ProcessingEnvironment,CORE.makesAvailable,EX.OCRRetrainingConfigurationRuntime),actual)
+                    self.assertIn((EX.OCRRetrainingConfigurationRuntime,RDF.type,CORE.StoredContent),actual)
+                    self.assertNotIn((EX.ProcessingEnvironment,CORE.makesAvailable,EX.OCRRetrainingConfigurationRuntime),actual)
+                    self.assertNotIn((EX.OCRRetrainingConfigurationRuntime,RDF.type,CORE.Resource),actual)
                 other=Path(temp)/'again.ttl'
                 build_core_visual_projection(source,other)
                 self.assertEqual(core.read_bytes(),other.read_bytes())

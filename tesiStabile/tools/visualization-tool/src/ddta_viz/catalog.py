@@ -66,7 +66,7 @@ class Catalog:
             if cls in result: raise RuleError(f"Ciclo ereditarietà grafica: {result + [cls]}")
             result.append(cls)
             rec = self.classes.get(cls)
-            cls = rec.get('inheritsVisualFormFrom') if rec else None
+            cls = (rec.get('specializesVisualClass') or rec.get('inheritsVisualFormFrom')) if rec else None
         return result
 
     def matches(self, individual_types, expected):
