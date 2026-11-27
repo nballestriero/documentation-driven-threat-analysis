@@ -72,7 +72,7 @@ def validate_records(records: list[Record], config: OntologyConfig) -> dict[str,
         b = rec.body
         kind, ctx = b["record"], rec.context
         if kind == "class":
-            _fields(b, {"record", "module", "iri", "status", "subClassOf", "label", "definition"},
+            _fields(b, {"record", "module", "iri", "status", "subClassOf", "disjointWith", "label", "definition"},
                     {"record", "module", "iri", "status", "label", "definition"}, ctx)
             _status(b["status"], ctx)
             register(b["iri"], "class", ctx)
@@ -80,6 +80,9 @@ def validate_records(records: list[Record], config: OntologyConfig) -> dict[str,
             _texts(b["definition"], f"{ctx}.definition")
             if "subClassOf" in b:
                 resolve(b["subClassOf"], f"{ctx}.subClassOf")
+            if "disjointWith" in b:
+                target = resolve(b["disjointWith"], f"{ctx}.disjointWith")
+                require(target != resolve(b["iri"], ctx), f"{ctx}: disjointWith cannot reference the class itself")
         elif kind in ("object-properties", "datatype-properties"):
             _fields(b, {"record", "module", "owner", "properties"},
                     {"record", "module", "owner", "properties"}, ctx)
@@ -135,8 +138,10 @@ def validate_records(records: list[Record], config: OntologyConfig) -> dict[str,
 
     for rec in records:
         b, ctx = rec.body, rec.context
-        if b["record"] == "class" and "subClassOf" in b:
-            check_ref(b["subClassOf"], {"class"}, f"{ctx}.subClassOf")
+        if b["record"] == "class":
+            for field in ("subClassOf", "disjointWith"):
+                if field in b:
+                    check_ref(b[field], {"class"}, f"{ctx}.{field}")
         elif b["record"] in ("object-properties", "datatype-properties"):
             check_ref(b["owner"], {"class"}, f"{ctx}.owner")
             for i, p in enumerate(b["properties"], 1):

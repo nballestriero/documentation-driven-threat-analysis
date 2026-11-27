@@ -62,6 +62,8 @@ def build_graph(records: list[Record], module: str, config: OntologyConfig) -> G
             graph.add((subject, RDF.type, OWL.Class))
             if "subClassOf" in b:
                 graph.add((subject, RDFS.subClassOf, expand_iri(b["subClassOf"], rec.context, config)))
+            if "disjointWith" in b:
+                graph.add((subject, OWL.disjointWith, expand_iri(b["disjointWith"], rec.context, config)))
             _add_texts(graph, subject, RDFS.label, b["label"])
             _add_texts(graph, subject, RDFS.comment, b["definition"])
         elif kind in ("object-properties", "datatype-properties"):

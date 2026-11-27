@@ -198,7 +198,7 @@ written = write_outputs(result, Path('my-generated-output'), paths)
 
 ## 6. Contratto di validazione
 
-L'input riconosciuto è un fence Markdown con info-string *esatta* `yaml ddta-ontology`. I record correnti sono `class`, `object-properties`, `datatype-properties` e `named-individuals`. Il campo `status` deve essere `approved` ove previsto. Il generatore controlla le chiavi ammesse e obbligatorie, i label e le definizioni bilingui, gli IRI, `subClassOf`, `subPropertyOf`, `domain`, `range`, `unionOf` e i riferimenti fra record.
+L'input riconosciuto è un fence Markdown con info-string *esatta* `yaml ddta-ontology`. I record correnti sono `class`, `object-properties`, `datatype-properties` e `named-individuals`. Il campo `status` deve essere `approved` ove previsto. Il generatore controlla le chiavi ammesse e obbligatorie, i label e le definizioni bilingui, gli IRI, `subClassOf`, `disjointWith`, `subPropertyOf`, `domain`, `range`, `unionOf` e i riferimenti fra record.
 
 Tutte le schede selezionate vengono validate in un unico vocabolario: la risoluzione delle dipendenze è globale, mentre il Turtle viene serializzato un modulo alla volta. Questo permette un modulo esteso che introduce proprietà il cui `owner` è una classe dichiarata in un altro modulo, senza creare una nuova definizione di quella classe.
 
@@ -231,3 +231,7 @@ I test inclusi usano documenti temporanei e una quarta ontologia di esempio: val
 ## 10. Rappresentazione futura del codice
 
 `function_model.yaml` dichiara una **vista logica candidata** basata sui concetti `System`, `Function`, `Contract` e `ContractElement`. `trace.py` crea una **vista tecnica** del codice Python tramite AST. La corrispondenza fra le due non è un'assunzione automatica di `hasSubFunction` o di altre relazioni normative. Per i diagrammi futuri sono preservati il nome delle funzioni, le firme, gli argomenti testuali e le chiamate individuabili staticamente.
+
+### Disgiunzione tra classi
+
+Il campo opzionale `disjointWith` in un record `class` accetta un singolo QName di una classe dichiarata nelle sorgenti selezionate, diverso dalla classe stessa. Genera un assioma `owl:disjointWith`; non occorre dichiarare la relazione inversa. Non modifica il conteggio delle classi o proprietà. Il generatore valida la struttura, non esegue un reasoner OWL.
