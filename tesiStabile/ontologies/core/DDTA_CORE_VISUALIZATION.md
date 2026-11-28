@@ -1,7 +1,7 @@
 # DDTA — Regole grafiche dell'ontologia CORE
 **Fonte semantica:** `DDTA_CORE.md` (modulo `core`).  
 **Documento:** `DDTA_CORE_VISUALIZATION.md`.  
-**Ambito:** `Function`, `hasSubFunction`, `System`, `hasPrimaryFunction`, `hasSupportFunction`, `Environment`, `hasOperationalEnvironment`, `makesAvailable`, `Store`, `stores`, `StoredContent`, `CommunicationChannel`, `CommunicationFunction`, `usesChannel`, `usesChannelForInput`, `usesChannelForOutput`, `Boundary`, `hasBoundary`, `encloses`, `Contract`, `ContractElement`, `hasContractElement`, `hasInputContract`, `hasOutputContract`, `mustPrecede`, `Resource`, `Process`, `ProcessStep`, `hasStep`, `hasNextStep`, `realizesFunction`.
+**Ambito:** `Function`, `hasSubFunction`, `System`, `hasPrimaryFunction`, `hasSupportFunction`, `Environment`, `hasOperationalEnvironment`, `makesAvailable`, `Store`, `stores`, `StoredContent`, `CommunicationChannel`, `CommunicationFunction`, `usesChannel`, `usesChannelForInput`, `usesChannelForOutput`, `Boundary`, `hasBoundary`, `encloses`, `Contract`, `ContractElement`, `hasContractElement`, `hasInputContract`, `hasOutputContract`, `mustPrecede`, `Resource`, `Process`, `ProcessStep`, `hasStep`, `hasNextStep`, `realizesFunction`, `hasSubContractElement`, `ContentType`, `hasContentType`.
 
 Questo documento stabilisce **esclusivamente regole di rappresentazione grafica**. Le classi, le proprietà e il loro significato appartengono alle ontologie DDTA. Le query SPARQL selezionano il sottografo da mostrare; queste schede ne determinano forma, colore, contenimento visivo, icone e layout. Non vengono introdotte nuove triple RDF per soddisfare esigenze grafiche.
 
@@ -3203,4 +3203,162 @@ flowchart TB
     class O_1f2666cfe7be37,O_2eb179c910b01e,O_efa12f26811730 DDTA_C_963300b37fb7
     classDef DDTA_C_81f47a4bec6f fill:#FFFCF0,stroke:#C6A34D,color:#9CA3AF,stroke-width:1.2px,stroke-dasharray:5 4,rx:7px,ry:7px
     class O_373f4778516ae0 DDTA_C_81f47a4bec6f
+```
+
+
+## 31. Scheda grafica — ContentType e hasContentType
+
+Le caratterizzazioni sono proiettate dentro l'etichetta dell'elemento, in rettangoli neutri arrotondati, ordinati per IRI. Il QName conserva il prefisso del vocabolario quando dichiarato; in sua assenza viene visualizzato l'IRI. Nessun arco esterno, nessuna composizione RDF. Un tipo condiviso conserva un unico IRI nell'IR e può comparire in più etichette. Se non vi sono caratterizzazioni selezionate, non appare alcuna sezione. Anche un elemento composto mantiene le caratterizzazioni nell'intestazione. Il colore non esprime una garanzia di sicurezza.
+
+```yaml ddta-visualization
+record: class-style
+module: core
+target: ddta:ContentType
+node:
+  shape: rounded
+  style: content-type
+style:
+  fill: "#F1F5F9"
+  stroke: "#909090"
+  color: "#475569"
+  strokeWidth: 1
+  cornerRadius: 4
+```
+
+```yaml ddta-visualization
+record: relation-style
+module: core
+target: ddta:hasContentType
+scope:
+  subjectClasses: [ddta:ContractElement, ddta:StoredContent]
+  objectClass: ddta:ContentType
+representation:
+  type: inline-reference
+  drawEdge: false
+  label: hasContentType
+  labelColor: "#64748B"
+  fill: "#F1F5F9"
+  stroke: "#909090"
+  color: "#475569"
+  cornerRadius: 4
+  order: iri
+  display: qname-or-iri
+```
+
+### 31.1 Un tipo
+
+<!-- DDTA-EXAMPLE-28 -->
+
+```turtle
+@prefix ddta: <https://w3id.org/ddta/core#> .
+@prefix ex: <https://example.org/ddta/content-type#> .
+ex:C a ddta:Contract ; ddta:hasContractElement ex:A .
+ex:A a ddta:ContractElement ; ddta:hasContentType ex:Text .
+ex:Text a ddta:ContentType .
+```
+
+```mermaid
+%%{init: {"htmlLabels":true,"theme":"base","layout":"elk"}}%%
+flowchart TB
+    subgraph O_6cbde02270e906["<img src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgdmlld0JveD0iMCAwIDI4IDI4IiBmaWxsPSJub25lIiBzdHJva2U9IiNDNkEzNEQiIHN0cm9rZS13aWR0aD0iMS44IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIGQ9Ik03IDIuN2gxMGw1IDV2MTcuNUg3YTIgMiAwIDAgMS0yLTJWNC43YTIgMiAwIDAgMSAyLTJaIi8+PHBhdGggZD0iTTE3IDIuN3Y1aDVNOSAxM2g4TTkgMTdoNE0xNC41IDIxbDIgMiA0LTQiLz48L3N2Zz4=' width='27' height='27'/><div style='display:inline-block;text-align:center;white-space:nowrap;line-height:1.4;padding:8px 12px;background:transparent;opacity:1;color:#C6A34D'><span style='display:block;text-align:center;font-size:17px;font-weight:700;color:#C6A34D'>C</span><span style='display:block;text-align:center;font-size:12px;font-weight:400;color:#C6A34D'>ddta:Contract</span></div>"]
+        direction TB
+        O_7dbcf9d6a0728d("<div style='display:inline-block;text-align:center;white-space:nowrap;line-height:1.4;padding:8px 12px;background:transparent;opacity:1;color:#9CA3AF'><span style='display:block;text-align:center;font-size:17px;font-weight:700;color:#9CA3AF'>A</span><span style='display:block;text-align:center;font-size:12px;font-weight:400;color:#9CA3AF'>ddta:ContractElement</span><span style='display:block;border-top:1px solid #909090;margin-top:5px;padding-top:4px;font-size:12px;color:#64748B'>hasContentType</span><span style='display:block;margin:3px;padding:3px 8px;border:1px solid #909090;border-radius:4px;background:#F1F5F9;color:#475569;font-size:12px'>ex:Text</span></div>")
+    end
+    classDef DDTA_C_79f0ec56fa96 fill:#FFF8DE,stroke:#C6A34D,color:#C6A34D,stroke-width:1.5px,rx:12px,ry:12px
+    class O_6cbde02270e906 DDTA_C_79f0ec56fa96
+    classDef DDTA_C_e3649365f865 fill:#FFFCF0,stroke:#9CA3AF,color:#9CA3AF,stroke-width:1.2px,rx:7px,ry:7px
+    class O_7dbcf9d6a0728d DDTA_C_e3649365f865
+```
+
+### 31.2 Più tipi
+
+<!-- DDTA-EXAMPLE-29 -->
+
+```turtle
+@prefix ddta: <https://w3id.org/ddta/core#> .
+@prefix ex: <https://example.org/ddta/content-type#> .
+ex:A a ddta:ContractElement ; ddta:hasContentType ex:Text, ex:Ciphertext .
+ex:Text a ddta:ContentType .
+ex:Ciphertext a ddta:ContentType .
+```
+
+```mermaid
+%%{init: {"htmlLabels":true,"theme":"base","layout":"elk"}}%%
+flowchart TB
+    O_2d16cd724d07be("<div style='display:inline-block;text-align:center;white-space:nowrap;line-height:1.4;padding:8px 12px;background:transparent;opacity:1;color:#9CA3AF'><span style='display:block;text-align:center;font-size:17px;font-weight:700;color:#9CA3AF'>A</span><span style='display:block;text-align:center;font-size:12px;font-weight:400;color:#9CA3AF'>ddta:ContractElement</span><span style='display:block;border-top:1px solid #909090;margin-top:5px;padding-top:4px;font-size:12px;color:#64748B'>hasContentType</span><span style='display:block;margin:3px;padding:3px 8px;border:1px solid #909090;border-radius:4px;background:#F1F5F9;color:#475569;font-size:12px'>ex:Ciphertext</span><span style='display:block;margin:3px;padding:3px 8px;border:1px solid #909090;border-radius:4px;background:#F1F5F9;color:#475569;font-size:12px'>ex:Text</span></div>")
+    classDef DDTA_C_e3649365f865 fill:#FFFCF0,stroke:#9CA3AF,color:#9CA3AF,stroke-width:1.2px,rx:7px,ry:7px
+    class O_2d16cd724d07be DDTA_C_e3649365f865
+```
+
+### 31.3 Contenuto memorizzato
+
+<!-- DDTA-EXAMPLE-30 -->
+
+```turtle
+@prefix ddta: <https://w3id.org/ddta/core#> .
+@prefix ex: <https://example.org/ddta/content-type#> .
+ex:S a ddta:Store ; ddta:stores ex:A .
+ex:A a ddta:StoredContent ; ddta:hasContentType ex:Text, ex:Ciphertext .
+ex:Text a ddta:ContentType .
+ex:Ciphertext a ddta:ContentType .
+```
+
+```mermaid
+%%{init: {"htmlLabels":true,"theme":"base","layout":"elk"}}%%
+flowchart TB
+    subgraph O_0be346b922cf62["<img src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiM0NTg0NUIiIHN0cm9rZS13aWR0aD0iMS43NSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48ZWxsaXBzZSBjeD0iMTIiIGN5PSI1IiByeD0iOSIgcnk9IjMiLz48cGF0aCBkPSJNMyA1djE0YzAgMS42NiA0LjAzIDMgOSAzczktMS4zNCA5LTNWNSIvPjxwYXRoIGQ9Ik0zIDEyYzAgMS42NiA0LjAzIDMgOSAzczktMS4zNCA5LTMiLz48L3N2Zz4=' width='27' height='27'/><div style='display:inline-block;text-align:center;white-space:nowrap;line-height:1.4;padding:8px 12px;background:transparent;opacity:1;color:#64748B'><span style='display:block;text-align:center;font-size:17px;font-weight:700;color:#64748B'>S</span><span style='display:block;text-align:center;font-size:12px;font-weight:400;color:#64748B'>ddta:Store</span></div>"]
+        direction TB
+        O_96d0d84a3929a0["<div style='display:inline-block;text-align:center;white-space:nowrap;line-height:1.4;padding:8px 12px;background:transparent;opacity:1;color:#94A3B8'><span style='display:block;text-align:center;font-size:17px;font-weight:700;color:#94A3B8'>A</span><span style='display:block;text-align:center;font-size:12px;font-weight:400;color:#94A3B8'>ddta:StoredContent</span><span style='display:block;border-top:1px solid #909090;margin-top:5px;padding-top:4px;font-size:12px;color:#64748B'>hasContentType</span><span style='display:block;margin:3px;padding:3px 8px;border:1px solid #909090;border-radius:4px;background:#F1F5F9;color:#475569;font-size:12px'>ex:Ciphertext</span><span style='display:block;margin:3px;padding:3px 8px;border:1px solid #909090;border-radius:4px;background:#F1F5F9;color:#475569;font-size:12px'>ex:Text</span></div>"]
+    end
+    classDef DDTA_C_9c53de845317 fill:#F1F5F9,stroke:#64748B,color:#64748B,stroke-width:1.5px,rx:12px,ry:12px
+    class O_0be346b922cf62 DDTA_C_9c53de845317
+    classDef DDTA_C_51a0b50eca1f fill:#F1F5F9,stroke:#94A3B8,color:#94A3B8,stroke-width:1.0px,stroke-dasharray:5 4,rx:5px,ry:5px
+    class O_96d0d84a3929a0 DDTA_C_51a0b50eca1f
+```
+
+### 31.4 Composizione ricorsiva
+
+<!-- DDTA-EXAMPLE-31 -->
+
+```turtle
+@prefix ddta: <https://w3id.org/ddta/core#> .
+@prefix ex: <https://example.org/ddta/content-type#> .
+ex:A a ddta:ContractElement ; ddta:hasSubContractElement ex:B ; ddta:hasContentType ex:Text .
+ex:B a ddta:ContractElement ; ddta:hasContentType ex:Ciphertext .
+ex:Text a ddta:ContentType .
+ex:Ciphertext a ddta:ContentType .
+```
+
+```mermaid
+%%{init: {"htmlLabels":true,"theme":"base","layout":"elk"}}%%
+flowchart TB
+    subgraph O_2d16cd724d07be["<div style='display:inline-block;text-align:center;white-space:nowrap;line-height:1.4;padding:8px 12px;background:transparent;opacity:1;color:#9CA3AF'><span style='display:block;text-align:center;font-size:17px;font-weight:700;color:#9CA3AF'>A</span><span style='display:block;text-align:center;font-size:12px;font-weight:400;color:#9CA3AF'>ddta:ContractElement</span><span style='display:block;border-top:1px solid #909090;margin-top:5px;padding-top:4px;font-size:12px;color:#64748B'>hasContentType</span><span style='display:block;margin:3px;padding:3px 8px;border:1px solid #909090;border-radius:4px;background:#F1F5F9;color:#475569;font-size:12px'>ex:Text</span></div>"]
+        direction TB
+        O_1dace769b21805("<div style='display:inline-block;text-align:center;white-space:nowrap;line-height:1.4;padding:8px 12px;background:transparent;opacity:1;color:#9CA3AF'><span style='display:block;text-align:center;font-size:17px;font-weight:700;color:#9CA3AF'>B</span><span style='display:block;text-align:center;font-size:12px;font-weight:400;color:#9CA3AF'>ddta:ContractElement</span><span style='display:block;border-top:1px solid #909090;margin-top:5px;padding-top:4px;font-size:12px;color:#64748B'>hasContentType</span><span style='display:block;margin:3px;padding:3px 8px;border:1px solid #909090;border-radius:4px;background:#F1F5F9;color:#475569;font-size:12px'>ex:Ciphertext</span></div>")
+    end
+    classDef DDTA_C_e3649365f865 fill:#FFFCF0,stroke:#9CA3AF,color:#9CA3AF,stroke-width:1.2px,rx:7px,ry:7px
+    class O_1dace769b21805,O_2d16cd724d07be DDTA_C_e3649365f865
+```
+
+### 31.5 Tipo condiviso
+
+<!-- DDTA-EXAMPLE-32 -->
+
+```turtle
+@prefix ddta: <https://w3id.org/ddta/core#> .
+@prefix ex: <https://example.org/ddta/content-type#> .
+ex:A a ddta:ContractElement ; ddta:hasContentType ex:Text .
+ex:B a ddta:StoredContent ; ddta:hasContentType ex:Text .
+ex:Text a ddta:ContentType .
+```
+
+```mermaid
+%%{init: {"htmlLabels":true,"theme":"base","layout":"elk"}}%%
+flowchart TB
+    O_2d16cd724d07be("<div style='display:inline-block;text-align:center;white-space:nowrap;line-height:1.4;padding:8px 12px;background:transparent;opacity:1;color:#9CA3AF'><span style='display:block;text-align:center;font-size:17px;font-weight:700;color:#9CA3AF'>A</span><span style='display:block;text-align:center;font-size:12px;font-weight:400;color:#9CA3AF'>ddta:ContractElement</span><span style='display:block;border-top:1px solid #909090;margin-top:5px;padding-top:4px;font-size:12px;color:#64748B'>hasContentType</span><span style='display:block;margin:3px;padding:3px 8px;border:1px solid #909090;border-radius:4px;background:#F1F5F9;color:#475569;font-size:12px'>ex:Text</span></div>")
+    O_a79fe21b9e3dde["<div style='display:inline-block;text-align:center;white-space:nowrap;line-height:1.4;padding:8px 12px;background:transparent;opacity:1;color:#94A3B8'><span style='display:block;text-align:center;font-size:17px;font-weight:700;color:#94A3B8'>B</span><span style='display:block;text-align:center;font-size:12px;font-weight:400;color:#94A3B8'>ddta:StoredContent</span><span style='display:block;border-top:1px solid #909090;margin-top:5px;padding-top:4px;font-size:12px;color:#64748B'>hasContentType</span><span style='display:block;margin:3px;padding:3px 8px;border:1px solid #909090;border-radius:4px;background:#F1F5F9;color:#475569;font-size:12px'>ex:Text</span></div>"]
+    classDef DDTA_C_51a0b50eca1f fill:#F1F5F9,stroke:#94A3B8,color:#94A3B8,stroke-width:1.0px,stroke-dasharray:5 4,rx:5px,ry:5px
+    class O_a79fe21b9e3dde DDTA_C_51a0b50eca1f
+    classDef DDTA_C_e3649365f865 fill:#FFFCF0,stroke:#9CA3AF,color:#9CA3AF,stroke-width:1.2px,rx:7px,ry:7px
+    class O_2d16cd724d07be DDTA_C_e3649365f865
 ```

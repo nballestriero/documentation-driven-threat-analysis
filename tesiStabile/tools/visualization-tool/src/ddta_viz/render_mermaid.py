@@ -183,6 +183,13 @@ def render(ir, rules:Catalog):
                 label=label[:-6]+additional+'</div>'
             else:
                 label+='<br/>'+additional
+        refs = node.get('inlineReferences', [])
+        for predicate in sorted({item['predicate'] for item in refs}):
+            spec = rules.relations[predicate]['representation']
+            esc = lambda x: html.escape(str(x), quote=True)
+            header = "<span style='display:block;border-top:1px solid " + esc(spec['stroke']) + ";margin-top:5px;padding-top:4px;font-size:12px;color:" + esc(spec['labelColor']) + "'>" + esc(spec['label']) + "</span>"
+            values = ''.join("<span style='display:block;margin:3px;padding:3px 8px;border:1px solid " + esc(spec['stroke']) + ";border-radius:" + esc(spec['cornerRadius']) + "px;background:" + esc(spec['fill']) + ";color:" + esc(spec['color']) + ";font-size:12px'>" + esc(item['display']) + "</span>" for item in sorted((x for x in refs if x['predicate']==predicate),key=lambda x:x['iri']))
+            label = label[:-6]+header+values+'</div>' if label.endswith('</div>') else label+header+values
         icon=rec.get('icon',{})
         if icon.get('source'):
             data=svg_embed(node,icon['source'],rec)

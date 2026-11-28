@@ -1,4 +1,4 @@
-"""Prove ricavate dai 32 record grafici CORE e dagli esempi di integrazione.
+"""Prove ricavate dai 34 record grafici CORE e dagli esempi di integrazione.
 
 Le entità Sample* usate nei dati di prova sono dati di test, non nuova ontologia.
 """
@@ -44,14 +44,14 @@ class CompleteGuideTests(unittest.TestCase):
         ir=project(g,self.catalog,**kwargs)
         return ir,render(ir,self.catalog)
 
-    def test_01_guide_has_all_32_normative_rules(self):
-        self.assertEqual(len(self.catalog.records),32)
+    def test_01_guide_has_all_34_normative_rules(self):
+        self.assertEqual(len(self.catalog.records),34)
         self.assertEqual({r['record'] for r in self.catalog.records},
                          {'class-style','relation-style','grouped-relations-style','global-label-style','projection-rule'})
 
     def test_02_every_class_style_generates_a_node_with_declared_color(self):
         items=[r for r in self.catalog.records if r['record']=='class-style']
-        self.assertEqual(len(items),13)
+        self.assertEqual(len(items),14)
         for r in items:
             with self.subTest(target=r['target']):
                 g=self.new_graph(); s=EX['Sample']
@@ -78,6 +78,7 @@ class CompleteGuideTests(unittest.TestCase):
          'encloses':('Boundary','Resource','plain','parent'),
          'hasContractElement':('Contract','ContractElement','plain','parent'),
          'hasSubContractElement':('ContractElement','ContractElement','plain','parent'),
+         'hasContentType':('ContractElement','ContentType','plain','parent'),
          'mustPrecede':('Function','Function','siblings','parent'),
          'hasNextStep':('ProcessStep','ProcessStep','steps','process'),
          'realizesFunction':('Process','Function','plain',None),
@@ -96,9 +97,9 @@ class CompleteGuideTests(unittest.TestCase):
         focus_ = EX.Parent if mode in ('siblings','steps') else a if focus=='parent' else b if focus=='child' else None
         return g,focus_
 
-    def test_03_all_14_relation_styles_are_exercised(self):
+    def test_03_all_15_relation_styles_are_exercised(self):
         rules=[r for r in self.catalog.records if r['record']=='relation-style']
-        self.assertEqual(len(rules),14)
+        self.assertEqual(len(rules),15)
         for r in rules:
             rel=r['target'].split(':')[-1]
             with self.subTest(relation=rel):
@@ -108,6 +109,10 @@ class CompleteGuideTests(unittest.TestCase):
                     self.assertEqual(ir['edges'],[])
                     self.assertIn('Sample' if False else 'ddta:',mmd)
                     self.assertGreaterEqual(ir['statistics']['visualOccurrences'],2)
+                elif r['representation']['type']=='inline-reference':
+                    self.assertEqual(ir['edges'],[])
+                    self.assertEqual(len(ir['roots'][0]['inlineReferences']),1)
+                    self.assertIn('ex:B',mmd)
                 else:
                     self.assertTrue(any(e['predicate']==r['target'] for e in ir['edges']))
                     if r.get('label',{}).get('text'):self.assertIn(r['label']['text'],mmd)
@@ -278,7 +283,7 @@ class CompleteGuideTests(unittest.TestCase):
             proc=subprocess.run(command,capture_output=True,text=True,cwd=ROOT)
             self.assertEqual(proc.returncode,0,proc.stderr)
             report=json.loads((out/'06_diagnostics.json').read_text())
-            self.assertEqual(report['regole'],34)
+            self.assertEqual(report['regole'],36)
             self.assertEqual(report['triple'],96)
             mmd=(out/'05_graph.mmd').read_text()
             self.assertIn('ProcessorA',mmd)

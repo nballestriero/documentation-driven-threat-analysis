@@ -21,8 +21,8 @@ def sha(data:bytes)->str:return hashlib.sha256(data).hexdigest()
 
 def get_examples(text):
     markers=list(MARK.finditer(text))
-    if len(markers)!=27 or [int(m.group(1)) for m in markers]!=list(range(1,28)):
-        raise ValueError('Attesi marcatori univoci DDTA-EXAMPLE-01..27 in ordine')
+    if len(markers)!=32 or [int(m.group(1)) for m in markers]!=list(range(1,33)):
+        raise ValueError('Attesi marcatori univoci DDTA-EXAMPLE-01..32 in ordine')
     result=[]
     for idx, mark in enumerate(markers):
         end=markers[idx+1].start() if idx<len(markers)-1 else len(text)

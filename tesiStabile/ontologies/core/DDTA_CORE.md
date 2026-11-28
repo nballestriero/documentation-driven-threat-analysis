@@ -34,6 +34,8 @@ Una `Function` identifica una capacità o responsabilità, indipendentemente dal
 
 `Contract` specifica requisiti relativi agli ingressi o alle uscite attese di una `Function`; i suoi `ContractElement` possono descrivere elementi richiesti o facoltativi tramite `minOccurs` e `maxOccurs`. Un contratto non coincide con il contenuto concretamente scambiato, con una codifica o con un protocollo. I contratti non sono associati direttamente al canale.
 
+`ContractElement` e `StoredContent` possono avere zero o più caratterizzazioni semantiche mediante `hasContentType` (scheda 19). Le categorie `ContentType` sono estendibili da moduli specialistici e non implicano garanzie di sicurezza.
+
 `Store` è una sottoclasse di `Resource` e rappresenta un deposito logico, indipendentemente da persistenza, tecnologia o supporto fisico. La proprietà `stores` collega uno `Store` sia a un altro `Store` sia a uno `StoredContent`. `StoredContent` identifica un contenuto e non è una sottoclasse di `Store`. `stores` non è transitiva.
 
 ### 1.3 Comunicazione e confini
@@ -4553,3 +4555,43 @@ python .\ontology_from_md.py --source "<percorso-DDTA_CORE.md>" --check --output
 ```
 
 Il file `core.ttl` viene scritto nella directory di output indicata. `--source` seleziona il documento esplicitamente; per generare più moduli o risolvere dipendenze dichiarate in altri documenti, il parametro può essere ripetuto. Il parser esporta esclusivamente le dichiarazioni normative, non gli esempi illustrativi, le query SPARQL o i diagrammi Mermaid. L'installazione delle dipendenze Python e l'organizzazione dei file del toolkit sono descritte nella relativa documentazione tecnica.
+
+
+## 19. Caratterizzazione semantica dei contenuti
+
+`ddta:ContentType` identifica una categoria semantica relativa alla natura, al significato o allo stato dichiarato di un contenuto. I moduli specialistici possono definire individui di questa classe. Una categoria non prova l'efficacia di un trattamento né implica una garanzia di sicurezza.
+
+```yaml ddta-ontology
+record: class
+module: core
+iri: ddta:ContentType
+status: approved
+label:
+  en: Content Type
+  it: Tipologia di contenuto
+definition:
+  en: A semantic category of the nature, meaning or declared state of informational content.
+  it: Categoria semantica della natura, del significato o dello stato dichiarato di un contenuto informativo.
+```
+
+```yaml ddta-ontology
+record: object-properties
+module: core
+owner: ddta:ContentType
+properties:
+  - iri: ddta:hasContentType
+    status: approved
+    domain:
+      unionOf:
+        - ddta:ContractElement
+        - ddta:StoredContent
+    range: ddta:ContentType
+    label:
+      en: has content type
+      it: ha tipologia di contenuto
+    definition:
+      en: Relates informational content to a declared semantic category.
+      it: Collega un contenuto informativo a una categoria semantica dichiarata.
+```
+
+Cardinalità documentale 0..*, non funzionale, non transitiva. DataBlock può utilizzare la relazione in quanto specializzazione di StoredContent. Non è una relazione di composizione. Il dominio OWL è inferenziale; la validazione documentale dell'uso richiede controlli espliciti. La sola tipologia non dimostra riservatezza, integrità, anonimato o altre garanzie; non si inferiscono tipi dal nome degli individui o dai contenitori. Le motivazioni e le valutazioni tecniche possono rimanere nelle Decision testuali.

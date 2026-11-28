@@ -4,7 +4,7 @@ from pathlib import Path
 from .common import load_yaml
 
 KINDS = {"class-style", "relation-style", "grouped-relations-style", "global-label-style", "projection-rule"}
-OPERATIONS = {"containment", "directed-edge", "semantic-relation-with-visual-symbol"}
+OPERATIONS = {"containment", "directed-edge", "semantic-relation-with-visual-symbol", "inline-reference"}
 
 
 class RuleError(ValueError): pass
@@ -49,6 +49,11 @@ class Catalog:
             op = r.get('representation', {}).get('type')
             if op not in OPERATIONS:
                 raise RuleError(f"{path}: relazione {r.get('target')} usa primitiva sconosciuta {op}")
+            if op == 'inline-reference':
+                spec = r['representation']
+                required = {'label','labelColor','fill','stroke','color','cornerRadius','order','display','drawEdge'}
+                if not required.issubset(spec) or spec['order'] != 'iri' or spec['display'] != 'qname-or-iri' or spec['drawEdge'] is not False:
+                    raise RuleError(f"{path}: inline-reference richiede stile, order: iri, display: qname-or-iri e drawEdge: false")
             self._put(self.relations, r['target'], r)
         elif kind == 'grouped-relations-style':
             self._put(self.groups, r['subjectClass'], r)

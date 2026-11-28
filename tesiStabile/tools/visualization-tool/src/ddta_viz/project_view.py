@@ -105,6 +105,29 @@ def project(graph: Graph, rules: Catalog, *, focus=None, view='association', str
         typ = selected_type(s)
         defs[str(s)] = {'iri':str(s),'name':local_name(str(s)),'rdfType':typ,'types':sorted(rdf_types(s)),'attributes':attributes(s)}
 
+    # Inline references are graphical annotations, not ownership or RDF containment.
+    inline = defaultdict(list)
+    inline_targets = set()
+    for pred, rule in sorted(rules.relations.items()):
+        rep = rule['representation']
+        if rep['type'] != 'inline-reference': continue
+        p = iri(pred)
+        if p is None: continue
+        scope = rule.get('scope', {})
+        for s, o in sorted(graph.subject_objects(p), key=lambda t: tuple(map(str,t))):
+            valid = (s in selected and o in selected and
+                     (not scope.get('subjectClasses') or any(matches(s,c) for c in scope['subjectClasses'])) and
+                     (not scope.get('objectClass') or matches(o,scope['objectClass'])))
+            if not valid:
+                diag.append({'code':'INVALID_INLINE_REFERENCE','severity':'warning','rdfSubject':str(s),'rdfPredicate':str(p),'rdfObject':str(o)})
+                continue
+            try:
+                prefix, namespace, name = graph.namespace_manager.compute_qname(o, generate=False)
+                display = f'{prefix}:{name}'
+            except (ValueError, KeyError):
+                display = str(o)
+            inline[str(s)].append({'predicate':pred,'iri':str(o),'display':display})
+            inline_targets.add(str(o))
     ownership = defaultdict(set)
     # Graph of RDF-declared parent-child relationships, prior to generating any layout.
     for subj in typed:
@@ -207,7 +230,7 @@ def project(graph: Graph, rules: Catalog, *, focus=None, view='association', str
                 raise RuleError(f"{rule['target']}: multipleParents:error per {child}: {sorted(parents)}")
     # Do not diagnose graphical sharing yet: a focused view can show only one
     # of several RDF parents. Report only identities actually rendered repeatedly.
-    roots = [str(x) for x in typed if str(x) not in ownership]
+    roots = [str(x) for x in typed if str(x) not in ownership and str(x) not in inline_targets]
     if focus is not None:
         root_iri = str(focus)
         if root_iri not in defs: raise RuleError(f'Radice richiesta non tipizzata/visibile: {root_iri}')
@@ -234,6 +257,8 @@ def project(graph: Graph, rules: Catalog, *, focus=None, view='association', str
         active.append(key)
         occurrence = 'O_'+hashlib.sha256(json.dumps([key,parent_path,role],sort_keys=True).encode()).hexdigest()[:14]
         element = {'kind':'individual', **defs[key], 'occurrence': occurrence, 'role':role, 'children':[]}
+        if key in inline:
+            element['inlineReferences'] = inline[key]
         occurrences[key].append({'id':occurrence,'path':list(parent_path),'role':role})
         group_rule = rules.group_rule(defs[key]['rdfType'])
         claimed = set()
@@ -375,7 +400,7 @@ def project(graph: Graph, rules: Catalog, *, focus=None, view='association', str
     edges=[]
     for pred,rule in sorted(rules.relations.items()):
         rep=rule['representation']
-        if rep['type']=='containment':continue
+        if rep['type'] in ('containment','inline-reference'):continue
         p=iri(pred)
         if p is None: continue
         for s,o in sorted(graph.subject_objects(p),key=lambda so:(str(so[0]),str(so[1]))):
