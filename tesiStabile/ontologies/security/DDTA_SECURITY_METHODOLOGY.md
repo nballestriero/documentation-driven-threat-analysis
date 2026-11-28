@@ -1,10 +1,12 @@
 # DDTA — Security Analysis Methodology
 
-**Stato:** proposta R3 per revisione metodologica — 28 novembre 2026. Le scelte di indirizzo condivise sono distinte dai costrutti candidati. Nessuna nuova classe, proprietà o regola eseguibile è approvata da questo documento.
+**Stato:** proposta R5 per revisione metodologica — 28 novembre 2026. Le scelte di indirizzo condivise sono distinte dai costrutti candidati. È condivisa la scelta di rappresentare la dichiarazione di sicurezza come individuo autonomo (SecurityPropertyStatement, alternativa B); la sua formalizzazione, le cardinalità e le regole eseguibili restano da discutere.
 
 ## 1. Obiettivo
 
 Documentation-Driven Threat Analysis (DDTA) mira a derivare valutazioni di sicurezza tracciabili, riproducibili e aggiornabili dalla documentazione ontologica di un sistema. La documentazione nasce durante la progettazione; la ricostruzione retrospettiva di sistemi esistenti costituisce un possibile esperimento di validazione, non il processo ordinario.
+
+Il principio scientifico centrale è derivare, ove possibile, proprietà STRIDE da fatti tecnici semanticamente documentati, senza richiedere al progettista di anticipare tutte le conclusioni dell’analisi. I nomi degli individui RDF non costituiscono evidenza semantica. La caratterizzazione dei contenuti non equivale a una garanzia; la valutazione specialistica e le motivazioni delle Decision possono rimanere testuali, senza imporne la formalizzazione integrale. Le dichiarazioni esplicite di garanzia restano ammesse, ma non equivalgono a risultati derivati.
 
 Il risultato atteso è una valutazione della copertura documentale delle proprietà di sicurezza, delle esposizioni, delle dipendenze, delle incompatibilità e delle informazioni mancanti. Non costituisce una prova della sicurezza dell'implementazione o del sistema operativo.
 
@@ -12,7 +14,7 @@ Il risultato atteso è una valutazione della copertura documentale delle proprie
 
 CORE, PROCESS e DATA descrivono il sistema; il futuro modulo SECURITY ne descrive anzitutto le proprietà effettivamente supportate, le esposizioni, i meccanismi, i contributi e le condizioni. I requisiti di sicurezza appartengono a una successiva valutazione di conformità, non sono un prerequisito della descrizione. I risultati derivati sono separati dalle dichiarazioni originarie e riportano le regole e le evidenze utilizzate.
 
-I selettori principali sono il tipo di analisi e una o più proprietà di sicurezza associate a STRIDE. In futuro un ulteriore selettore, AnalysisFramework, distinguerà STRIDE da STRIDE-AI senza duplicare il nucleo SECURITY. Il livello di dettaglio e il focus sono secondari. I tipi di analisi sono configurazioni metodologiche candidate, non necessariamente individui del sistema.
+I selettori principali sono il tipo di analisi e una o più proprietà di sicurezza associate a STRIDE. Il perimetro e la granularità dell’analisi (sistema, funzione, comunicazione, contenuto, operazione o risorsa) sono distinti dai filtri grafici. La definizione dei livelli di espressività grafica è rinviata; nascondere un elemento non deve modificare il risultato dell’analisi. In futuro un ulteriore selettore, AnalysisFramework, distinguerà STRIDE da STRIDE-AI senza duplicare il nucleo SECURITY. Il livello di dettaglio e il focus sono secondari. I tipi di analisi sono configurazioni metodologiche candidate, non necessariamente individui del sistema.
 
 | Proprietà | STRIDE |
 |---|---|
@@ -47,9 +49,9 @@ La protezione può riguardare l'accettazione di un risultato e non l'impossibili
 
 1. Selezionare perimetro, tipo e proprietà; dichiarare modello di minaccia e fase.
 2. Identificare individui e relazioni pertinenti, inclusi elementi di contesto.
-3. Documentare le garanzie e le non-garanzie note, il loro ambito e le esposizioni; distinguere ciò che non è documentato. Solo in una successiva analisi di conformità confrontare con eventuali requisiti.
+3. Documentare i fatti tecnici, la natura dei contenuti, le trasformazioni, le relazioni e le operazioni; ammettere dichiarazioni esplicite di garanzia e non-garanzia, qualificandone l’ambito e la provenienza. Distinguere ciò che non è documentato. Solo in una successiva analisi di conformità confrontare con eventuali requisiti.
 4. Ricostruire i meccanismi documentati, l'oggetto delle verifiche, le condizioni, le dipendenze e gli esiti.
-5. Applicare regole dichiarative, distinguendo assenza di informazioni e contraddizioni.
+5. Applicare regole dichiarative ai fatti tecnici per derivare risultati di sicurezza, distinguendo assenza di informazioni, non-garanzie esplicite e contraddizioni.
 6. Generare risultati tracciabili e proiezioni orientate all'analisi.
 7. Rivalutare al cambiamento del modello, delle assunzioni o delle regole.
 
@@ -128,7 +130,7 @@ Per la fase di trasmissione iniziale, nello scenario TLS delimitato nella sezion
 | ClientHello | − | − | − | − | − | − |
 | ServerHello | − | − | − | − | − | − |
 
-Questi stati sono dichiarazioni da introdurre, non deduzioni dal TTL CORE attuale. Se non introdotte, il renderer mostra `?`. L'assenza di un canale dichiarato rimane una lacuna della vista Communication.
+Questi stati sono un riferimento illustrativo, non deduzioni dal TTL CORE attuale. Potranno essere ottenuti mediante dichiarazioni esplicite circoscritte oppure regole fondate su fatti tecnici sufficienti. In assenza di entrambe le fonti, il renderer mostra `?`. L'assenza di un canale dichiarato rimane una lacuna della vista Communication.
 
 ### 11.3 Obiettivo grafico Mermaid
 
@@ -192,16 +194,119 @@ Riferimenti di partenza da esaminare per la specializzazione futura (non costitu
 - *Modeling Threats to AI-ML Systems Using STRIDE* (2022), https://www.mdpi.com/1424-8220/22/17/6662
 - TLS 1.3: RFC 8446, sezioni 4.1.3, 4.4.3, 4.4.4, https://www.rfc-editor.org/rfc/rfc8446.html
 
-## 13. Piano di lavoro e criteri di accettazione
+## 13. Architettura estensibile e derivazione da fatti tecnici
+
+### 13.1 Separare descrizione, conoscenza specialistica e valutazione
+
+Il progettista documenta il sistema: natura dei contenuti, trasformazioni, algoritmi, parametri, chiavi, oggetti interessati e operazioni effettivamente previste, al livello di dettaglio pertinente. Non tutte queste informazioni devono essere formalizzate in RDF: le Decision e la documentazione tecnica possono conservare motivazioni, scelte e valutazioni specialistiche. Un nome come `DigitalSignature` non autorizza alcuna inferenza crittografica. La natura di una firma deve essere dichiarata semanticamente; occorre poter identificare ciò che firma e le operazioni che la generano e la verificano.
+
+SECURITY definisce il linguaggio comune delle proprietà, delle dichiarazioni, delle condizioni e dei risultati. Le estensioni specialistiche forniscono la conoscenza tecnica necessaria alle regole. Il motore di analisi deriva risultati motivati; il renderer li visualizza. Il modello non attribuisce automaticamente una garanzia per il solo fatto che sia presente un algoritmo.
+
+| Livello | Responsabilità | Esempio |
+|---|---|---|
+| Strutturale | CORE, PROCESS, DATA | ContractElement, Function, StoredContent |
+| Tecnico | Moduli specialistici | Firma digitale, chiave pubblica, anonimizzazione |
+| Sicurezza | SECURITY | Integrità, riservatezza, condizioni e dichiarazioni |
+| Analisi | Profili e regole versionate | STRIDE, STRIDE-AI, LINDDUN |
+| Presentazione | Proiezioni e report | Indicatori colorati e motivazioni |
+
+### 13.2 Moduli candidati e direzione delle dipendenze
+
+```mermaid
+flowchart BT
+    CRYPTO[CRYPTO candidato] --> SECURITY[SECURITY]
+    PRIVACY[PRIVACY candidato] --> SECURITY
+    ML[ML SECURITY candidato] --> SECURITY
+    SECURITY --> CORE[CORE]
+    PROCESS --> CORE
+    DATA --> CORE
+```
+
+Le frecce indicano una possibile direzione di dipendenza concettuale (estensione verso base), non un insieme già approvato di import OWL. Le dipendenze effettive di DATA e PROCESS rimangono quelle stabilite nelle rispettive guide; il diagramma è schematico. I moduli specialistici possono riferirsi ai moduli strutturali pertinenti, senza che CORE o SECURITY debbano importare tutte le estensioni. Le regole di integrazione possono operare su più moduli caricati insieme. Evitare dipendenze circolari e rendere opzionali le estensioni non necessarie allo scenario.
+
+| Modulo candidato | Conoscenza specialistica |
+|---|---|
+| CRYPTO | Chiavi, firme, cifratura, hash, MAC, algoritmi, parametri, operazioni e condizioni crittografiche |
+| PRIVACY | Natura identificativa dei dati, trasformazioni di anonimizzazione e pseudonimizzazione, correlabilità, contesto di trattamento |
+| ML SECURITY | Asset ML, proprietà e assunzioni specifiche, evidenze di validazione e minacce del ciclo di vita |
+
+La separazione in moduli autonomi è una scelta architetturale proposta, non implica ancora la creazione delle rispettive ontologie. CRYPTO può riutilizzare SECURITY senza diventare sinonimo di STRIDE; PRIVACY può introdurre proprietà e concetti ulteriori, non riducibili alla riservatezza STRIDE. STRIDE-AI e LINDDUN sono profili di analisi che possono utilizzare conoscenza condivisa da più moduli. La corrispondenza puntuale con la letteratura e le rispettive tassonomie va verificata in seguito.
+
+### 13.3 Oggetto, contesto e applicabilità
+
+Un contratto descrive le informazioni; un canale è la risorsa utilizzata; una funzione descrive l’operazione. La garanzia può riguardare un contenuto, una risorsa, un'operazione o una combinazione contestualizzata di questi elementi. Non si presume che tutte le proprietà STRIDE siano applicabili a ogni classe. Definire l’applicabilità separatamente dallo stato della garanzia, in funzione dell’analisi e del contesto. Un medesimo contratto può essere trasmesso in chiaro o attraverso un canale protetto; la protezione del canale non è una caratteristica intrinseca della struttura del contratto. Un contenuto cifrato separatamente può conservare protezione anche su un canale non protetto. Nessuna propagazione automatica delle garanzie per mero contenimento ontologico.
+
+SecurityPropertyStatement, nella forma individuale condivisa, dovrà poter rappresentare proprietà, soggetto e ambito. Distinguere origine dichiarata e derivata, condizioni, riferimento alle evidenze e regola applicata. Il vocabolario definitivo e il modo di rappresentare il contesto restano da discutere. Il risultato derivato non deve sovrascrivere una dichiarazione originaria; eventuali incompatibilità sono segnalazioni tracciabili.
+
+### 13.4 Esempio crittografico: dalla firma alla valutazione
+
+| Fatti tecnici documentati progressivamente | Risultato atteso dell’analisi |
+|---|---|
+| Un ContractElement contiene una firma digitale | Evidenza crittografica identificata; nessuna garanzia automatica |
+| È identificato il contenuto firmato | Ambito della firma determinabile |
+| Sono documentati algoritmo, chiave e generazione | Dipendenze crittografiche identificabili |
+| È documentata la verifica con chiave attendibile | Possibilità di verificare integrità e autenticità nell’ambito pertinente |
+| È documentato il rifiuto in caso di fallimento, prima dell’accettazione | Copertura documentale della non-accettazione di contenuti alterati, condizionata alle assunzioni |
+
+La firma può contribuire a integrità, autenticazione e, sotto condizioni ulteriori, non ripudio. La cifratura può contribuire alla riservatezza; la cifratura autenticata può contribuire anche all’integrità. Un hash non autenticato non costituisce da solo una protezione contro un attaccante attivo. L’idoneità dell’algoritmo, la protezione delle chiavi e la corretta implementazione restano condizioni da considerare. Non derivare automaticamente tutte le proprietà STRIDE da una caratteristica tecnica.
+
+Per TLS, il messaggio Hello iniziale resta modificabile e osservabile. CertificateVerify e la successiva verifica possono contribuire alla garanzia relativa alla negoziazione accettata, senza cambiare retroattivamente le caratteristiche della trasmissione iniziale. Il riferimento grafico della sezione 11 resta valido per lo scambio isolato e le relative non-garanzie esplicite.
+
+### 13.5 Esempio privacy: anonimizzazione
+
+Un futuro modulo PRIVACY potrebbe descrivere quali attributi vengono rimossi, generalizzati o sostituiti, la trasformazione applicata, le informazioni ausiliarie disponibili, il contesto di rilascio e le ipotesi relative a chi osserva i dati. Un identificativo sostituito da uno pseudonimo non dimostra l’anonimato; la possibilità di correlare record o reidentificare persone dipende anche da altri dati e dal contesto. L’analisi LINDDUN potrebbe usare queste dichiarazioni insieme alle informazioni su canali, accessi e memorizzazione. La cifratura durante il transito non implica anonimizzazione del contenuto per il destinatario.
+
+### 13.6 Verificabilità scientifica
+
+Ogni risultato derivato dovrebbe indicare oggetto e ambito, proprietà, esito, fatti tecnici utilizzati, condizioni, identificativo e versione della regola. Le regole possono utilizzare OWL per inferenze logiche compatibili, SHACL per completezza e coerenza documentale, SPARQL o un motore di regole per valutazioni contestuali. La tecnologia definitiva non è ancora scelta. L’assenza di un fatto non consente di derivarne la negazione senza una regola di completezza esplicita e circoscritta.
+
+Esperimenti candidati: rinominare gli individui senza modificare le relazioni (risultati equivalenti a meno degli identificativi); mantenere un nome evocativo eliminando la caratterizzazione tecnica (nessuna inferenza basata sul nome); rimuovere l’ambito della firma, la verifica o la gestione del fallimento (perdita motivata della copertura o lacuna); trasferire la stessa regola a un file firmato; confrontare un dato pseudonimizzato con una dichiarazione di anonimizzazione non supportata. Misurare i risultati secondo la sezione 9, distinguendo chiaramente inferenza documentale e prova della sicurezza operativa.
+
+### 13.7 Caratterizzazione semantica estendibile nel CORE
+
+È condiviso il principio di introdurre nel CORE un costrutto generale per caratterizzare i contenuti, riutilizzabile dalle ontologie specialistiche. La formalizzazione delle schede CORE resta da approvare. `ddta:ContentType` è la classe candidata per le categorie di contenuto; `ddta:hasContentType` è la relazione candidata, non funzionale e non transitiva, con cardinalità documentale 0..*. CRYPTO, PRIVACY e ML possono introdurre propri individui di ContentType senza ridefinire la relazione né imporre dipendenze inverse al CORE. Più caratterizzazioni possono coesistere sullo stesso elemento, se semanticamente compatibili e riferite al medesimo livello di rappresentazione.
+
+La relazione può descrivere la natura, il significato o lo stato dichiarato del contenuto risultante da una trasformazione. Non rappresenta da sola la trasformazione, la sua provenienza, la sua efficacia o una proprietà STRIDE. La struttura funzionale, mediante contratti di input e output, può distinguere contenuti prima e dopo un trattamento; l'associazione puntuale fra elementi di contratti diversi può richiedere informazioni ulteriori se la funzione ha più input o output. Non dedurre automaticamente che un contenuto dichiarato anonimizzato non sia reidentificabile.
+
+Esempio illustrativo, non ancora vocabolario approvato: una funzione AnonymizeText riceve TextA e restituisce TextA1. I due elementi hanno identità RDF distinte. TextA può essere caratterizzato come Text e PersonalData; TextA1 come Text e Anonymized (stato dichiarato del trattamento, non prova dell'anonimato). La funzione e i contratti descrivono l'operazione; la valutazione della sua efficacia rimane distinta.
+
+| Costrutto candidato | Proposta |
+|---|---|
+| `ddta:ContentType` | Classe estendibile da vocabolari specialistici |
+| `ddta:hasContentType` | Object Property, range ContentType, 0..* |
+| Dominio iniziale, da approvare | Unione OWL di ContractElement e StoredContent |
+| DataBlock | Applicabile tramite la specializzazione di StoredContent già definita in DATA |
+| Store, System, Function, CommunicationChannel | Non soggetti diretti nel dominio iniziale; contengono, elaborano o trasmettono informazioni |
+
+Il dominio proposto utilizza soltanto classi CORE, evitando dipendenze da DATA o altri moduli. Un futuro tipo informativo non riconducibile a queste classi richiederà di rivedere il dominio o introdurre una superclasse comune. Il dominio OWL ha semantica inferenziale, non costituisce da solo un controllo di validazione: un uso non appropriato va segnalato da controlli documentali espliciti. Non imporre una caratterizzazione a ogni contenuto. Non derivare garanzie dal semplice contenimento o dal nome di un individuo. Nessuna modifica normativa al CORE è effettuata in questa revisione.
+
+### 13.8 Confine tra fatti, Decision e valutazione di sicurezza
+
+Una funzione EncryptText può produrre un contenuto Ciphertext usando un cifrario di Cesare oppure AES-256-GCM. La caratterizzazione dell'output è identica, ma non implica Confidentiality Guaranteed in nessuno dei due casi. Anche con un algoritmo moderno la protezione dipende dalle chiavi, dai nonce, dall'implementazione e dallo scenario. Non è obiettivo del reasoner generale stabilire autonomamente l'adeguatezza crittografica di ogni algoritmo. L'algoritmo può essere formalizzato se utile all'analisi, ma non è obbligatorio rappresentarne ogni dettaglio nel grafo.
+
+La Decision che sostituisce il cifrario di Cesare può documentare nel testo la scelta, la motivazione di sicurezza e le conseguenze tecniche. L'identità logica della funzione e la tipologia dell'output possono rimanere invariate. Non è necessario codificare ontologicamente il ragionamento della Decision. Se si desidera usare automaticamente il suo esito, occorre una dichiarazione strutturata esplicita, distinta dalla motivazione testuale; il riferimento alla Decision può consentire la tracciabilità. La forma di questo riferimento resta da definire.
+
+| Livello | Esempio | Risultato |
+|---|---|---|
+| Fatto documentato | TextA1 è Ciphertext | Identificazione automatica della caratteristica dichiarata |
+| Relazione documentata | TextA1 appartiene al contratto di output di EncryptText | Individuazione della funzione e dei percorsi documentati |
+| Valutazione progettuale | Una Decision motiva la sostituzione del cifrario | Evidenza da consultare; non inferenza dal solo nome o testo |
+| Garanzia di sicurezza | Riservatezza supportata sotto condizioni esplicite | Dichiarazione qualificata o risultato derivato da regole e fatti sufficienti |
+
+DDTA deve rendere sistematica e ripetibile la ricerca delle informazioni rilevanti e delle lacune, senza sostituire necessariamente l'analista. Se manca un fatto necessario a una regola, l'esito resta indeterminato o condizionato secondo le informazioni effettive; non si attribuisce automaticamente una vulnerabilità. La caratterizzazione tecnica non basta a produrre un indicatore verde. La sicurezza operativa richiede verifiche ulteriori. Le Decision testuali non sono interpretate come fatti RDF da un reasoner.
+
+Esperimento candidato: mantenere identiche le caratterizzazioni RDF di due soluzioni di cifratura e cambiare soltanto la Decision testuale. Il reasoner deve produrre lo stesso risultato a parità di fatti e regole; l'analista deve poter distinguere le valutazioni documentate. Solo un fatto strutturato o una valutazione esplicitamente acquisita può modificare il risultato automatico. Questo test delimita il contributo della semantica ontologica rispetto al giudizio specialistico.
+
+## 14. Piano di lavoro e criteri di accettazione
 
 | Incremento | Risultato verificabile |
 |---|---|
 | 1. Metodologia | Revisione del presente documento |
-| 2. Vocabolario minimo | Sei proprietà STRIDE, dichiarazioni di garanzia con ambito e condizioni; assenza distinta da negazione |
-| 3. Caso Hello | TTL candidato che conserva la baseline CORE e documenta gli stati espliciti |
+| 2. Vocabolario minimo | Discutere e approvare ContentType e hasContentType nel CORE; poi sei proprietà STRIDE, dichiarazioni individuali con ambito, applicabilità e provenienza; assenza distinta da negazione |
+| 3. Caso Hello | TTL candidato che conserva la baseline CORE, caratterizza le comunicazioni e sperimenta i fatti tecnici minimi e gli stati espliciti |
 | 4. Visualizzazione | Mermaid colorato generato deterministicamente dal TTL; selezione delle proprietà; nessuna semantica inventata |
 | 5. Contributi | CertificateVerify, verifica e reazione; distinzione fra protezione in transito e accettazione |
-| 6. Analisi | Regole generali, risultati tracciabili, test di omissione e regressione |
-| 7. Estensione | File, store, accessi, algoritmi e casi ML; confronto con profili STRIDE-AI |
+| 6. Analisi | Derivazione da fatti tecnici, risultati tracciabili, test di rinomina, omissione e regressione |
+| 7. Estensione | Valutare CRYPTO, PRIVACY e ML SECURITY; file, store, accessi, algoritmi, STRIDE-AI e LINDDUN |
 
 Destinazione proposta: `tesiStabile/ontologies/security/DDTA_SECURITY_METHODOLOGY.md`. I futuri `DDTA_SECURITY.md` e `DDTA_SECURITY_VISUALIZATION.md` saranno creati solo dopo la discussione delle schede. Il toolkit resta quello esistente. Nessun aggiornamento del repository, nessun nuovo TTL SECURITY e nessun test di rendering sono effettuati da questa revisione.
