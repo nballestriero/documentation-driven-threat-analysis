@@ -1836,11 +1836,11 @@ Nella vista composta il medesimo individuo è rappresentato con `subgraph` anzic
 
 - **Tipo:** classe ontologica CORE.
 - **IRI:** `ddta:ContractElement`.
-- **Proprietà già definite nel CORE:** `ddta:minOccurs`, `ddta:maxOccurs`.
+- **Proprietà definite nel CORE:** `ddta:minOccurs`, `ddta:maxOccurs`, `ddta:hasSubContractElement`.
 
 ### 16.2 Rappresentazione concordata
 
-Ogni `ContractElement` è un piccolo rettangolo **giallo molto chiaro** (`#FFFCF0`), arrotondato, **senza icona**, con nome, tipo `ddta:ContractElement` e cardinalità quando dichiarata.
+Un `ContractElement` senza sottoelementi visibili è un piccolo rettangolo **giallo molto chiaro** (`#FFFCF0`), arrotondato, **senza icona**, con nome, tipo `ddta:ContractElement` e cardinalità quando dichiarata. Se contiene sottoelementi visibili mediante `ddta:hasSubContractElement`, diventa un contenitore con lo stesso stile (scheda 30).
 
 La forma del bordo dipende da `minOccurs`, se dichiarato:
 
@@ -1877,6 +1877,13 @@ label:
   typeText: "ddta:ContractElement"
   showDeclaredCardinality: true
   omitUndeclaredCardinality: true
+
+container:
+  when: visible
+  renderer: mermaid-subgraph
+  cornerRadius: 7
+layout:
+  childrenDirection: TB
 
 conditionalStyles:
   - when:
@@ -1935,7 +1942,7 @@ Qui `~~~` non è la relazione `hasContractElement`: è soltanto un vincolo di im
 
 ### 17.2 Rappresentazione
 
-Ogni tripla selezionata `Contratto ddta:hasContractElement Elemento` viene rappresentata inserendo il `ContractElement` **all'interno del contenitore `Contract`**, senza frecce. `Contract` e `ContractElement` mantengono gli stili definiti **solo** nelle rispettive schede 15 e 16. La proprietà non è ricorsiva nel CORE attuale: questa visualizzazione non presuppone una relazione `hasPart` tra ContractElement.
+Ogni tripla selezionata `Contratto ddta:hasContractElement Elemento` viene rappresentata inserendo il `ContractElement` **all'interno del contenitore `Contract`**, senza frecce. `Contract` e `ContractElement` mantengono gli stili definiti **solo** nelle rispettive schede 15 e 16. La proprietà collega il contratto ai soli elementi diretti; la ricorsione tra elementi è rappresentata da `ddta:hasSubContractElement` (scheda 30).
 
 ### 17.3 Dichiarazione YAML
 
@@ -3135,4 +3142,65 @@ flowchart TB
     linkStyle 14,15 stroke:#8870B5,stroke-width:2px
     linkStyle 16,17 stroke:#8870B5,stroke-width:2px
     linkStyle 18,19 stroke:#8870B5,stroke-width:2px
+```
+
+
+---
+
+## 30. Scheda grafica — `ddta:hasSubContractElement`
+
+### 30.1 Rappresentazione
+
+Il sottoelemento è contenuto nel ContractElement padre, senza arco. Un elemento senza figli visibili rimane un nodo arrotondato; con figli visibili diventa un subgraph con lo stesso stile, nome, tipo e cardinalità. Si applicano le regole condizionali della scheda 16 anche ai contenitori. L'annidamento è ricorsivo e aciclico. Le occorrenze grafiche condivise non modificano l'identità RDF. Nessun simbolo aggiuntivo rappresenta una selezione esclusiva.
+
+```yaml ddta-visualization
+record: relation-style
+module: core
+target: ddta:hasSubContractElement
+representation:
+  type: containment
+  parent: subject
+  child: object
+  renderer: mermaid-subgraph
+  drawEdge: false
+  recursive: true
+validation:
+  rejectCycles: true
+  multipleParents: alternate-view
+```
+
+### 30.2 Esempio a tre livelli
+
+<!-- DDTA-EXAMPLE-27 -->
+
+```turtle
+@prefix ddta: <https://w3id.org/ddta/core#> .
+@prefix ex: <https://example.org/ddta/core-visualization#> .
+ex:MessageContract a ddta:Contract ; ddta:hasContractElement ex:Message .
+ex:Message a ddta:ContractElement ; ddta:minOccurs 1 ; ddta:maxOccurs 1 ; ddta:hasSubContractElement ex:Parameters .
+ex:Parameters a ddta:ContractElement ; ddta:minOccurs 0 ; ddta:maxOccurs 1 ; ddta:hasSubContractElement ex:Version, ex:Algorithm .
+ex:Version a ddta:ContractElement ; ddta:minOccurs 1 ; ddta:maxOccurs 1 .
+ex:Algorithm a ddta:ContractElement ; ddta:minOccurs 1 ; ddta:maxOccurs 1 .
+```
+
+```mermaid
+%%{init: {"htmlLabels":true,"theme":"base","layout":"elk"}}%%
+flowchart TB
+    subgraph O_18d3f68121eb62["<img src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgdmlld0JveD0iMCAwIDI4IDI4IiBmaWxsPSJub25lIiBzdHJva2U9IiNDNkEzNEQiIHN0cm9rZS13aWR0aD0iMS44IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIGQ9Ik03IDIuN2gxMGw1IDV2MTcuNUg3YTIgMiAwIDAgMS0yLTJWNC43YTIgMiAwIDAgMSAyLTJaIi8+PHBhdGggZD0iTTE3IDIuN3Y1aDVNOSAxM2g4TTkgMTdoNE0xNC41IDIxbDIgMiA0LTQiLz48L3N2Zz4=' width='27' height='27'/><div style='display:inline-block;text-align:center;white-space:nowrap;line-height:1.4;padding:8px 12px;background:transparent;opacity:1;color:#C6A34D'><span style='display:block;text-align:center;font-size:17px;font-weight:700;color:#C6A34D'>MessageContract</span><span style='display:block;text-align:center;font-size:12px;font-weight:400;color:#C6A34D'>ddta:Contract</span></div>"]
+        direction TB
+        subgraph O_1f2666cfe7be37["<div style='display:inline-block;text-align:center;white-space:nowrap;line-height:1.4;padding:8px 12px;background:transparent;opacity:1;color:#C6A34D'><span style='display:block;text-align:center;font-size:17px;font-weight:700;color:#C6A34D'>Message</span><span style='display:block;text-align:center;font-size:12px;font-weight:400;color:#C6A34D'>ddta:ContractElement</span><span style='display:block;text-align:center;font-size:12px'>1..1</span></div>"]
+            direction TB
+            subgraph O_373f4778516ae0["<div style='display:inline-block;text-align:center;white-space:nowrap;line-height:1.4;padding:8px 12px;background:transparent;opacity:1;color:#C6A34D'><span style='display:block;text-align:center;font-size:17px;font-weight:700;color:#C6A34D'>Parameters</span><span style='display:block;text-align:center;font-size:12px;font-weight:400;color:#C6A34D'>ddta:ContractElement</span><span style='display:block;text-align:center;font-size:12px'>0..1</span></div>"]
+                direction TB
+                O_efa12f26811730("<div style='display:inline-block;text-align:center;white-space:nowrap;line-height:1.4;padding:8px 12px;background:transparent;opacity:1;color:#C6A34D'><span style='display:block;text-align:center;font-size:17px;font-weight:700;color:#C6A34D'>Algorithm</span><span style='display:block;text-align:center;font-size:12px;font-weight:400;color:#C6A34D'>ddta:ContractElement</span><span style='display:block;text-align:center;font-size:12px'>1..1</span></div>")
+                O_2eb179c910b01e("<div style='display:inline-block;text-align:center;white-space:nowrap;line-height:1.4;padding:8px 12px;background:transparent;opacity:1;color:#C6A34D'><span style='display:block;text-align:center;font-size:17px;font-weight:700;color:#C6A34D'>Version</span><span style='display:block;text-align:center;font-size:12px;font-weight:400;color:#C6A34D'>ddta:ContractElement</span><span style='display:block;text-align:center;font-size:12px'>1..1</span></div>")
+            end
+        end
+    end
+    classDef DDTA_C_79f0ec56fa96 fill:#FFF8DE,stroke:#C6A34D,color:#C6A34D,stroke-width:1.5px,rx:12px,ry:12px
+    class O_18d3f68121eb62 DDTA_C_79f0ec56fa96
+    classDef DDTA_C_963300b37fb7 fill:#FFFCF0,stroke:#C6A34D,color:#9CA3AF,stroke-width:1.2px,rx:7px,ry:7px
+    class O_1f2666cfe7be37,O_2eb179c910b01e,O_efa12f26811730 DDTA_C_963300b37fb7
+    classDef DDTA_C_81f47a4bec6f fill:#FFFCF0,stroke:#C6A34D,color:#9CA3AF,stroke-width:1.2px,stroke-dasharray:5 4,rx:7px,ry:7px
+    class O_373f4778516ae0 DDTA_C_81f47a4bec6f
 ```

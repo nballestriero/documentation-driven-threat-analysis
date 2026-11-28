@@ -163,6 +163,33 @@ def project(graph: Graph, rules: Catalog, *, focus=None, view='association', str
                         diag.append({'code': 'AMBIGUOUS_GRAPHICAL_WRAPPER', 'severity': 'warning',
                                      'subject': str(member), 'parent': str(parent),
                                      'wrappers': [str(x) for x in wrappers]})
+    # Enforce declared cycle rejection even for disconnected components and focused views.
+    for rule in rules.relations.values():
+        if rule['representation']['type'] != 'containment' or not rule.get('validation', {}).get('rejectCycles'):
+            continue
+        pred = iri(rule['target'])
+        if pred is None:
+            continue
+        adjacency = defaultdict(set)
+        vertices = set()
+        for subj, obj in graph.subject_objects(pred):
+            adjacency[subj].add(obj)
+            vertices.update((subj, obj))
+        indegree = {v: 0 for v in vertices}
+        for children in adjacency.values():
+            for child in children:
+                indegree[child] += 1
+        ready = [v for v in vertices if indegree[v] == 0]
+        visited = 0
+        while ready:
+            vertex = ready.pop()
+            visited += 1
+            for child in adjacency[vertex]:
+                indegree[child] -= 1
+                if indegree[child] == 0:
+                    ready.append(child)
+        if visited != len(vertices):
+            raise RuleError(f"{rule['target']}: Ciclo di contenimento")
     # Explicit multipleParents:error on containment relations cannot be downgraded to warning.
     for rule in rules.relations.values():
         if rule['representation']['type']!='containment' or rule.get('validation',{}).get('multipleParents')!='error':

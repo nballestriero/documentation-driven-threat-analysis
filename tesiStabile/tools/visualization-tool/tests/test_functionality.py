@@ -1,4 +1,4 @@
-"""Prove ricavate dai 29 record grafici CORE e dagli esempi di integrazione.
+"""Prove ricavate dai 32 record grafici CORE e dagli esempi di integrazione.
 
 Le entità Sample* usate nei dati di prova sono dati di test, non nuova ontologia.
 """
@@ -44,8 +44,8 @@ class CompleteGuideTests(unittest.TestCase):
         ir=project(g,self.catalog,**kwargs)
         return ir,render(ir,self.catalog)
 
-    def test_01_guide_has_all_29_normative_rules(self):
-        self.assertEqual(len(self.catalog.records),31)
+    def test_01_guide_has_all_32_normative_rules(self):
+        self.assertEqual(len(self.catalog.records),32)
         self.assertEqual({r['record'] for r in self.catalog.records},
                          {'class-style','relation-style','grouped-relations-style','global-label-style','projection-rule'})
 
@@ -77,6 +77,7 @@ class CompleteGuideTests(unittest.TestCase):
          'hasBoundary':('System','Boundary','plain','child'),
          'encloses':('Boundary','Resource','plain','parent'),
          'hasContractElement':('Contract','ContractElement','plain','parent'),
+         'hasSubContractElement':('ContractElement','ContractElement','plain','parent'),
          'mustPrecede':('Function','Function','siblings','parent'),
          'hasNextStep':('ProcessStep','ProcessStep','steps','process'),
          'realizesFunction':('Process','Function','plain',None),
@@ -95,9 +96,9 @@ class CompleteGuideTests(unittest.TestCase):
         focus_ = EX.Parent if mode in ('siblings','steps') else a if focus=='parent' else b if focus=='child' else None
         return g,focus_
 
-    def test_03_all_11_relation_styles_are_exercised(self):
+    def test_03_all_14_relation_styles_are_exercised(self):
         rules=[r for r in self.catalog.records if r['record']=='relation-style']
-        self.assertEqual(len(rules),13)
+        self.assertEqual(len(rules),14)
         for r in rules:
             rel=r['target'].split(':')[-1]
             with self.subTest(relation=rel):
@@ -277,7 +278,7 @@ class CompleteGuideTests(unittest.TestCase):
             proc=subprocess.run(command,capture_output=True,text=True,cwd=ROOT)
             self.assertEqual(proc.returncode,0,proc.stderr)
             report=json.loads((out/'06_diagnostics.json').read_text())
-            self.assertEqual(report['regole'],33)
+            self.assertEqual(report['regole'],34)
             self.assertEqual(report['triple'],96)
             mmd=(out/'05_graph.mmd').read_text()
             self.assertIn('ProcessorA',mmd)

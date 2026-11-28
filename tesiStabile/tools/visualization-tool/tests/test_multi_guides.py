@@ -20,7 +20,7 @@ class MultiGuideTests(unittest.TestCase):
             code = main(["--guides-md",str(guide),str(extguide),"--ttl",str(ttl),str(extttl),"--strict","--out-dir",str(output)])
             self.assertEqual(code,0)
             report = json.loads((output / '06_diagnostics.json').read_text(encoding='utf-8'))
-            self.assertEqual(report['regole'], 33)
+            self.assertEqual(report['regole'], 34)
             self.assertEqual(report['triple'], 96)
             self.assertEqual(len([d for d in report['diagnostici'] if d['severity']=='warning']),0)
             diagram = (output / '05_graph.mmd').read_text(encoding='utf-8')

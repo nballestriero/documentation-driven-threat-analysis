@@ -1346,7 +1346,7 @@ Le relazioni `hasInputContract` e `hasOutputContract`, definite nella scheda `Fu
 
 La stessa istanza di `Contract` può essere associata a più funzioni mediante tali relazioni.
 
-La composizione contrattuale è rappresentata mediante `hasContractElement`.
+La composizione diretta del contratto è rappresentata mediante `hasContractElement`; la decomposizione dei suoi elementi mediante `hasSubContractElement`.
 
 ### 7.3 Interrogazioni SPARQL
 
@@ -1616,7 +1616,28 @@ Quando una cardinalità non è dichiarata, il relativo limite non è specificato
 
 #### Object Properties
 
-`ContractElement` non introduce Object Properties proprie.
+```yaml ddta-ontology
+record: object-properties
+module: core
+owner: ddta:ContractElement
+properties:
+  - iri: ddta:hasSubContractElement
+    status: approved
+    domain: ddta:ContractElement
+    range: ddta:ContractElement
+    label:
+      en: has sub contract element
+      it: ha un sottoelemento contrattuale
+    definition:
+      en: >-
+        Relates a contract element to another contract element that
+        directly constitutes part of its informational structure.
+      it: >-
+        Collega un elemento contrattuale a un altro elemento contrattuale
+        che costituisce direttamente parte della sua struttura informativa.
+```
+
+La relazione `hasSubContractElement` rappresenta la composizione informativa diretta. La decomposizione può essere ricorsiva, ma la proprietà non è transitiva; non sono ammessi cicli. Non introduce una nuova classe. Le cardinalità dei sottoelementi sono relative alla struttura del loro elemento padre; l'obbligatorietà di più sottoelementi non esprime una scelta esclusiva. Gli elementi possono essere condivisi quando rappresentano lo stesso requisito con gli stessi vincoli.
 
 La relazione di appartenenza a un contratto è rappresentata mediante `hasContractElement`, definita nella scheda `Contract`:
 
@@ -1700,13 +1721,35 @@ WHERE {
 ORDER BY ?element
 ```
 
+#### Q-CEL-04 — Discendenti di un elemento contrattuale
+
+```sparql
+PREFIX ddta: <https://w3id.org/ddta/core#>
+PREFIX ex: <https://example.org/ddta/test#>
+SELECT DISTINCT ?element WHERE {
+    ex:ExampleContractElement ddta:hasSubContractElement+ ?element .
+}
+```
+
+#### Q-CEL-05 — Tutti gli elementi di un contratto, anche indiretti
+
+```sparql
+PREFIX ddta: <https://w3id.org/ddta/core#>
+PREFIX ex: <https://example.org/ddta/test#>
+SELECT DISTINCT ?element WHERE {
+    ex:ExampleContract ddta:hasContractElement/ddta:hasSubContractElement* ?element .
+}
+```
+
 #### Interpretazione dei risultati
 
 `Q-CEL-01` recupera i contratti che fanno riferimento all'elemento mediante `hasContractElement`.
 
 `Q-CEL-02` restituisce i limiti dichiarati per l'elemento. Una variabile non valorizzata indica che il corrispondente limite non è specificato nel grafo interrogato.
 
-`Q-CEL-03` consente di esaminare gli elementi di un contratto insieme alle rispettive cardinalità.
+`Q-CEL-03` consente di esaminare gli elementi diretti di un contratto insieme alle rispettive cardinalità.
+
+`Q-CEL-04` e `Q-CEL-05` navigano la decomposizione ricorsiva senza inferire nuove triple.
 
 Le interrogazioni descrivono la specifica contrattuale. Non verificano il numero di occorrenze effettivamente presenti nei dati ricevuti o prodotti da un processo.
 
@@ -1719,6 +1762,7 @@ Le interrogazioni descrivono la specifica contrattuale. Non verificano il numero
 | `minOccurs` | `0..1` | Facoltativo |
 | `maxOccurs` | `0..1` | Facoltativo |
 | Contratti associati mediante `hasContractElement` | `0..*` | Nessun vincolo di presenza |
+| Sottoelementi mediante `hasSubContractElement` | `0..*` | Facoltativo |
 
 Un `ContractElement` può essere dichiarato senza specificare immediatamente tutte le sue cardinalità.
 
@@ -1729,6 +1773,7 @@ Quando entrambe le cardinalità sono presenti, il valore minimo non deve superar
 | ID | Controllo |
 |---|---|
 | `CEL-01` | `minOccurs` non deve essere maggiore di `maxOccurs` quando entrambi sono dichiarati |
+| `CEL-02` | Nessun ciclo nella decomposizione dei ContractElement |
 
 Il controllo riguarda la coerenza dei valori della specifica contrattuale.
 
@@ -1759,6 +1804,14 @@ constraints:
         $this ddta:maxOccurs ?max .
         FILTER(?min > ?max)
       }
+  - id: CEL-02
+    type: sparql
+    message:
+      en: Contract element decomposition must be acyclic.
+      it: La decomposizione degli elementi contrattuali deve essere aciclica.
+    select: |-
+      PREFIX ddta: <https://w3id.org/ddta/core#>
+      SELECT $this WHERE { $this ddta:hasSubContractElement+ $this . }
 ```
 
 #### Shape SHACL risultante
@@ -1785,8 +1838,17 @@ ddta:ContractElementShape
                 FILTER(?min > ?max)
             }
         """
+    ] ;
+    sh:sparql [
+        sh:message "Contract element decomposition must be acyclic."@en ;
+        sh:select """
+            PREFIX ddta: <https://w3id.org/ddta/core#>
+            SELECT $this WHERE { $this ddta:hasSubContractElement+ $this . }
+        """
     ] .
 ```
+
+Il controllo `CEL-02` identifica i cicli, anche indiretti. I discendenti sono interrogabili mediante `ddta:hasSubContractElement+`, senza inferire relazioni dirette.
 
 Il controllo `CEL-01` identifica gli elementi per i quali è dichiarato un minimo maggiore del massimo.
 
