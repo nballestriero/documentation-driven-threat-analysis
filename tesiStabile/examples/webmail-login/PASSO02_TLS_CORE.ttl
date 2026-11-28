@@ -1,0 +1,108 @@
+@prefix ddta: <https://w3id.org/ddta/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ex: <https://example.org/ddta/webmail-login#> .
+
+# Passo 01: perimetro funzionale della connessione TLS.
+# Trasporto non ancora specificato.
+ex:WebBrowser a ddta:System ;
+    ddta:hasOperationalEnvironment ex:ClientEnvironment ;
+    ddta:hasPrimaryFunction ex:EstablishSecureConnection ;
+    ddta:providesFunction ex:EstablishSecureConnection .
+
+ex:WebMailPortal a ddta:System ;
+    ddta:hasOperationalEnvironment ex:ServerEnvironment ;
+    ddta:hasPrimaryFunction ex:AcceptSecureConnection ;
+    ddta:providesFunction ex:AcceptSecureConnection .
+
+ex:EstablishSecureConnection a ddta:Function .
+ex:AcceptSecureConnection a ddta:Function .
+
+ex:ClientEnvironment a ddta:Environment .
+ex:ServerEnvironment a ddta:Environment .
+
+# Passo 02: negoziazione TLS 1.3 ECDHE, senza PSK o HelloRetryRequest.
+ex:WebBrowser ddta:hasSupportFunction ex:SendClientHello, ex:ReceiveServerHello ;
+    ddta:providesFunction ex:SendClientHello, ex:ReceiveServerHello .
+ex:WebMailPortal ddta:hasSupportFunction ex:ReceiveClientHello, ex:SendServerHello ;
+    ddta:providesFunction ex:ReceiveClientHello, ex:SendServerHello .
+
+ex:EstablishSecureConnection ddta:hasSubFunction ex:SelectSupportedCryptographicParameters .
+ex:AcceptSecureConnection ddta:hasSubFunction ex:SelectCryptographicParameters .
+
+ex:SelectSupportedCryptographicParameters a ddta:Function ;
+    ddta:hasOutputContract ex:ClientHelloContract ;
+    ddta:mustPrecede ex:SendClientHello .
+ex:SendClientHello a ddta:CommunicationFunction ;
+    ddta:hasInputContract ex:ClientHelloContract ;
+    ddta:hasOutputContract ex:ClientHelloContract ;
+    ddta:mustPrecede ex:ReceiveClientHello .
+ex:ReceiveClientHello a ddta:CommunicationFunction ;
+    ddta:hasInputContract ex:ClientHelloContract ;
+    ddta:hasOutputContract ex:ClientHelloContract ;
+    ddta:mustPrecede ex:SelectCryptographicParameters .
+ex:SelectCryptographicParameters a ddta:Function ;
+    ddta:hasInputContract ex:ClientHelloContract ;
+    ddta:hasOutputContract ex:ServerHelloContract ;
+    ddta:mustPrecede ex:SendServerHello .
+ex:SendServerHello a ddta:CommunicationFunction ;
+    ddta:hasInputContract ex:ServerHelloContract ;
+    ddta:hasOutputContract ex:ServerHelloContract ;
+    ddta:mustPrecede ex:ReceiveServerHello .
+ex:ReceiveServerHello a ddta:CommunicationFunction ;
+    ddta:hasInputContract ex:ServerHelloContract ;
+    ddta:hasOutputContract ex:ServerHelloContract .
+
+
+ex:ClientHelloContract a ddta:Contract ;
+    ddta:hasContractElement
+        ex:ClientRandom,
+        ex:SupportedVersions,
+        ex:CipherSuites,
+        ex:SupportedGroups,
+        ex:SignatureAlgorithms,
+        ex:ClientKeyShare,
+        ex:ServerName .
+ex:ClientRandom a ddta:ContractElement ;
+    ddta:minOccurs "1"^^xsd:nonNegativeInteger ;
+    ddta:maxOccurs "1"^^xsd:nonNegativeInteger .
+ex:SupportedVersions a ddta:ContractElement ;
+    ddta:minOccurs "1"^^xsd:nonNegativeInteger ;
+    ddta:maxOccurs "1"^^xsd:nonNegativeInteger .
+ex:CipherSuites a ddta:ContractElement ;
+    ddta:minOccurs "1"^^xsd:nonNegativeInteger ;
+    ddta:maxOccurs "1"^^xsd:nonNegativeInteger .
+ex:SupportedGroups a ddta:ContractElement ;
+    ddta:minOccurs "1"^^xsd:nonNegativeInteger ;
+    ddta:maxOccurs "1"^^xsd:nonNegativeInteger .
+ex:SignatureAlgorithms a ddta:ContractElement ;
+    ddta:minOccurs "1"^^xsd:nonNegativeInteger ;
+    ddta:maxOccurs "1"^^xsd:nonNegativeInteger .
+ex:ClientKeyShare a ddta:ContractElement ;
+    ddta:minOccurs "1"^^xsd:nonNegativeInteger ;
+    ddta:maxOccurs "1"^^xsd:nonNegativeInteger .
+ex:ServerName a ddta:ContractElement ;
+    ddta:minOccurs "0"^^xsd:nonNegativeInteger ;
+    ddta:maxOccurs "1"^^xsd:nonNegativeInteger .
+
+ex:ServerHelloContract a ddta:Contract ;
+    ddta:hasContractElement
+        ex:ServerRandom,
+        ex:SelectedVersion,
+        ex:SelectedCipherSuite,
+        ex:SelectedGroup,
+        ex:ServerEphemeralPublicKey .
+ex:ServerRandom a ddta:ContractElement ;
+    ddta:minOccurs "1"^^xsd:nonNegativeInteger ;
+    ddta:maxOccurs "1"^^xsd:nonNegativeInteger .
+ex:SelectedVersion a ddta:ContractElement ;
+    ddta:minOccurs "1"^^xsd:nonNegativeInteger ;
+    ddta:maxOccurs "1"^^xsd:nonNegativeInteger .
+ex:SelectedCipherSuite a ddta:ContractElement ;
+    ddta:minOccurs "1"^^xsd:nonNegativeInteger ;
+    ddta:maxOccurs "1"^^xsd:nonNegativeInteger .
+ex:SelectedGroup a ddta:ContractElement ;
+    ddta:minOccurs "1"^^xsd:nonNegativeInteger ;
+    ddta:maxOccurs "1"^^xsd:nonNegativeInteger .
+ex:ServerEphemeralPublicKey a ddta:ContractElement ;
+    ddta:minOccurs "1"^^xsd:nonNegativeInteger ;
+    ddta:maxOccurs "1"^^xsd:nonNegativeInteger .

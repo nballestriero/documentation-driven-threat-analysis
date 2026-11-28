@@ -1,0 +1,21 @@
+@prefix ddta: <https://w3id.org/ddta/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ex: <https://example.org/ddta/webmail-login#> .
+
+# Passo 01: perimetro funzionale della connessione TLS.
+# Trasporto non ancora specificato.
+ex:WebBrowser a ddta:System ;
+    ddta:hasOperationalEnvironment ex:ClientEnvironment ;
+    ddta:hasPrimaryFunction ex:EstablishSecureConnection ;
+    ddta:providesFunction ex:EstablishSecureConnection .
+
+ex:WebMailPortal a ddta:System ;
+    ddta:hasOperationalEnvironment ex:ServerEnvironment ;
+    ddta:hasPrimaryFunction ex:AcceptSecureConnection ;
+    ddta:providesFunction ex:AcceptSecureConnection .
+
+ex:EstablishSecureConnection a ddta:Function .
+ex:AcceptSecureConnection a ddta:Function .
+
+ex:ClientEnvironment a ddta:Environment .
+ex:ServerEnvironment a ddta:Environment .
